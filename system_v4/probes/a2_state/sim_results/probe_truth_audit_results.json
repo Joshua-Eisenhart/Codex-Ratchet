@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-04-17T11:49:16.039610+00:00",
+  "generated_at": "2026-04-17T13:04:37.167194+00:00",
   "strict_stale": false,
-  "files_scanned": 3175,
+  "files_scanned": 3373,
   "summary": {
-    "hard_finding_count": 200,
-    "warning_finding_count": 10,
+    "hard_finding_count": 173,
+    "warning_finding_count": 12,
     "ok": false
   },
   "hard_findings": [
@@ -22,6 +22,10 @@
     },
     {
       "kind": "canonical_summary_false",
+      "result_json": "cvc5_frege_system_constraint_results.json"
+    },
+    {
+      "kind": "canonical_summary_false",
       "result_json": "cvc5_proof_complexity_size_constraint_results.json"
     },
     {
@@ -32,12 +36,6 @@
       "kind": "load_bearing_without_used",
       "result_json": "dirac_hopf_clifford_triple_coexistence_results.json",
       "tool": "xgi",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "groebner_basis_constraint_canonical_results.json",
-      "tool": "cvc5",
       "depth": "load_bearing"
     },
     {
@@ -77,6 +75,12 @@
       "kind": "load_bearing_without_used",
       "result_json": "lego_povm_measurement_results.json",
       "tool": "cvc5",
+      "depth": "load_bearing"
+    },
+    {
+      "kind": "load_bearing_without_used",
+      "result_json": "leviathan_authority_entropy_operator_results.json",
+      "tool": "numpy",
       "depth": "load_bearing"
     },
     {
@@ -201,25 +205,6 @@
       ]
     },
     {
-      "kind": "canonical_summary_false",
-      "result_json": "rustworkx_capability_results.json"
-    },
-    {
-      "kind": "canonical_has_failed_checks",
-      "result_json": "rustworkx_capability_results.json",
-      "paths": [
-        "$.positive.rustworkx_available.pass",
-        "$.negative.rustworkx_available.pass",
-        "$.boundary.rustworkx_available.pass"
-      ]
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "rustworkx_capability_results.json",
-      "tool": "rustworkx",
-      "depth": "load_bearing"
-    },
-    {
       "kind": "load_bearing_without_used",
       "result_json": "sim_a_infinity_algebra_constraint_canonical_results.json",
       "tool": "cvc5",
@@ -273,14 +258,18 @@
       "kind": "canonical_has_failed_checks",
       "result_json": "sim_bicategory_coherence_constraint_canonical_results.json",
       "paths": [
-        "$.boundary.test_trivial_bicategory.pass"
+        "$.negative.test_associator_not_iso_unsat.pass",
+        "$.boundary.test_trivial_bicategory.pass",
+        "$.boundary.test_identity_boundary.pass"
       ]
     },
     {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_bicategory_coherence_constraint_canonical_results.json",
-      "tool": "cvc5",
-      "depth": "load_bearing"
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_bishop_gromov_constraint_canonical_results.json",
+      "paths": [
+        "$.positive.flat_case_ratio.pass",
+        "$.boundary.small_r_limit.pass"
+      ]
     },
     {
       "kind": "canonical_has_failed_checks",
@@ -319,6 +308,14 @@
       "result_json": "sim_cobordism_constraint_canonical_results.json",
       "tool": "cvc5",
       "depth": "load_bearing"
+    },
+    {
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_communication_complexity_constraint_canonical_results.json",
+      "paths": [
+        "$.negative.test_eq1_above_lower_bound_unsat.pass",
+        "$.negative.test_eq2_above_lower_bound_unsat.pass"
+      ]
     },
     {
       "kind": "load_bearing_without_used",
@@ -394,12 +391,6 @@
     },
     {
       "kind": "load_bearing_without_used",
-      "result_json": "sim_cvc5_cubical_type_theory_path_constraint_results.json",
-      "tool": "cvc5",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
       "result_json": "sim_cvc5_cut_elimination_normalization_results.json",
       "tool": "cvc5",
       "depth": "load_bearing"
@@ -413,12 +404,6 @@
     {
       "kind": "load_bearing_without_used",
       "result_json": "sim_cvc5_descent_data_constraint_results.json",
-      "tool": "cvc5",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_cvc5_fundamental_group_constraint_results.json",
       "tool": "cvc5",
       "depth": "load_bearing"
     },
@@ -445,6 +430,13 @@
       "result_json": "sim_cvc5_linear_type_use_count_constraint_results.json",
       "tool": "cvc5",
       "depth": "load_bearing"
+    },
+    {
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_cvc5_modal_mu_calculus_constraint_results.json",
+      "paths": [
+        "$.positive.test_minimality_empty_unsat.pass"
+      ]
     },
     {
       "kind": "load_bearing_without_used",
@@ -525,6 +517,33 @@
       "depth": "load_bearing"
     },
     {
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_deformation_quantization_constraint_canonical_results.json",
+      "paths": [
+        "$.positive.test_1_moyal_associativity_sat.pass",
+        "$.positive.test_3_planck_limit.pass",
+        "$.negative.test_1_jacobi_failure_unsat.pass",
+        "$.negative.test_2_deformation_incompatibility_unsat.pass",
+        "$.boundary.test_1_classical_limit.pass",
+        "$.boundary.test_2_abelian_poisson.pass",
+        "$.boundary.test_3_commutative_associator.pass"
+      ]
+    },
+    {
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_deformation_theory_constraint_canonical_results.json",
+      "paths": [
+        "$.positive.test_1_elliptic_curve_deformations.pass",
+        "$.positive.test_2_projective_line_rigid.pass",
+        "$.negative.test_1_h1_zero_no_deformation.pass",
+        "$.negative.test_2_obstruction_and_h2_coexistence.pass",
+        "$.negative.test_3_dimension_exceeds_h1.pass",
+        "$.boundary.test_1_rigid_manifold_zero_deformations.pass",
+        "$.boundary.test_2_unobstructed_deformations.pass",
+        "$.boundary.test_3_ext1_h1_isomorphism.pass"
+      ]
+    },
+    {
       "kind": "load_bearing_without_used",
       "result_json": "sim_derived_deformation_theory_constraint_canonical_results.json",
       "tool": "cvc5",
@@ -533,6 +552,12 @@
     {
       "kind": "load_bearing_without_used",
       "result_json": "sim_derived_intersection_constraint_canonical_results.json",
+      "tool": "cvc5",
+      "depth": "load_bearing"
+    },
+    {
+      "kind": "load_bearing_without_used",
+      "result_json": "sim_dilworth_theorem_constraint_canonical_results.json",
       "tool": "cvc5",
       "depth": "load_bearing"
     },
@@ -664,12 +689,7 @@
       "kind": "canonical_has_failed_checks",
       "result_json": "sim_geometric_langlands_constraint_canonical_results.json",
       "paths": [
-        "$.negative.test_1_cvc5_eigenvalue_trace_mismatch.pass",
-        "$.negative.test_2_cvc5_rank_eigenvalue_bound.pass",
-        "$.negative.test_3_cvc5_rank2_characteristic_polynomial.pass",
-        "$.boundary.test_1_boundary_rank_1.pass",
-        "$.boundary.test_2_boundary_rank_2_equal_eigenvalues.pass",
-        "$.boundary.test_3_boundary_rank_10.pass"
+        "$.negative.test_2_cvc5_rank_eigenvalue_bound.pass"
       ]
     },
     {
@@ -736,6 +756,13 @@
       "depth": "load_bearing"
     },
     {
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_geometry_formal_group_law_constraint_canonical_results.json",
+      "paths": [
+        "$.positive.test_additive_formal_group.pass"
+      ]
+    },
+    {
       "kind": "load_bearing_without_used",
       "result_json": "sim_geometry_hyperbolic_volume_constraint_canonical_results.json",
       "tool": "cvc5",
@@ -778,34 +805,11 @@
       "depth": "load_bearing"
     },
     {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_geometry_stable_maps_gromov_witten_constraint_canonical_results.json",
-      "tool": "cvc5",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_gerbe_contact_clifford_torch_canonical_results.json",
-      "tool": "pytorch",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_gerbe_contact_clifford_torch_canonical_results.json",
-      "tool": "z3",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_gerbe_contact_clifford_torch_canonical_results.json",
-      "tool": "sympy",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_gerbe_contact_clifford_torch_canonical_results.json",
-      "tool": "clifford",
-      "depth": "load_bearing"
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_geometry_stability_manifold_wall_crossing_constraint_canonical_results.json",
+      "paths": [
+        "$.positive.test_3_multiple_walls.pass"
+      ]
     },
     {
       "kind": "load_bearing_without_used",
@@ -814,33 +818,26 @@
       "depth": "load_bearing"
     },
     {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_gerbe_derived_stack_holonomy_canonical_results.json",
-      "tool": "rustworkx",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_gerbe_derived_stack_holonomy_canonical_results.json",
-      "tool": "xgi",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_gerbe_z3_bounded_repair_results.json",
-      "tool": "rustworkx",
-      "depth": "load_bearing"
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_hecke_eigenvalue_constraint_canonical_results.json",
+      "paths": [
+        "$.positive.test_1_e37_ramanujan_bound.pass",
+        "$.negative.test_2_cvc5_false_newform.pass",
+        "$.boundary.test_1_boundary_a_p_equals_2.pass",
+        "$.boundary.test_2_boundary_a_p_equals_minus2.pass",
+        "$.boundary.test_3_boundary_a_p_just_outside.pass"
+      ]
     },
     {
       "kind": "canonical_has_failed_checks",
-      "result_json": "sim_gopakumar_vafa_invariant_constraint_canonical_results.json",
+      "result_json": "sim_hochschild_cohomology_constraint_canonical_results.json",
       "paths": [
-        "$.positive.test_1_cvc5_non_integer_unsat.pass",
-        "$.positive.test_2_cvc5_integer_sat.pass",
-        "$.negative.test_1_negative_non_integer.pass",
-        "$.negative.test_2_negative_genus_exceeds_dim.pass",
-        "$.boundary.test_1_boundary_high_genus.pass",
-        "$.boundary.test_2_boundary_genus_equals_dim.pass"
+        "$.positive.test_1_delta2_zero_sat.pass",
+        "$.positive.test_3_chain_SAT.pass",
+        "$.negative.test_1_delta2_nonzero_unsat.pass",
+        "$.negative.test_2_coboundary_uniqueness_unsat.pass",
+        "$.boundary.test_1_zero_cochain.pass",
+        "$.boundary.test_2_large_coefficients.pass"
       ]
     },
     {
@@ -852,22 +849,11 @@
       ]
     },
     {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_hopf_symplectic_contact_torch_canonical_results.json",
-      "tool": "pytorch",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_hopf_symplectic_contact_torch_canonical_results.json",
-      "tool": "z3",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_hopf_symplectic_contact_torch_canonical_results.json",
-      "tool": "sympy",
-      "depth": "load_bearing"
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_infinity_stack_descent_constraint_canonical_results.json",
+      "paths": [
+        "$.results.test_non_descent_unsat.pass"
+      ]
     },
     {
       "kind": "canonical_has_failed_checks",
@@ -885,37 +871,10 @@
       "kind": "canonical_has_failed_checks",
       "result_json": "sim_information_complexity_constraint_canonical_results.json",
       "paths": [
-        "$.positive.test_and_ic_le_cc.pass",
         "$.positive.test_eq_external_information_bound.pass",
         "$.negative.test_ic_greater_cc_unsat.pass",
-        "$.negative.test_ic_below_external_bound_unsat.pass",
-        "$.boundary.test_constant_function_zero_ic.pass",
-        "$.boundary.test_xor_ic_cc.pass"
+        "$.negative.test_ic_below_external_bound_unsat.pass"
       ]
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_information_complexity_constraint_canonical_results.json",
-      "tool": "cvc5",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_kahler_torch_foundation_results.json",
-      "tool": "pytorch",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_kahler_torch_foundation_results.json",
-      "tool": "z3",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_kahler_torch_foundation_results.json",
-      "tool": "sympy",
-      "depth": "load_bearing"
     },
     {
       "kind": "canonical_has_failed_checks",
@@ -941,12 +900,6 @@
       "tool": "xgi"
     },
     {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_matroid_intersection_constraint_canonical_results.json",
-      "tool": "cvc5",
-      "depth": "load_bearing"
-    },
-    {
       "kind": "canonical_has_failed_checks",
       "result_json": "sim_max_stack_gtower_ratchet_6tools_results.json",
       "paths": [
@@ -964,18 +917,6 @@
     },
     {
       "kind": "load_bearing_without_used",
-      "result_json": "sim_mechanism_design_ic_constraint_canonical_results.json",
-      "tool": "cvc5",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_min_cost_flow_constraint_canonical_results.json",
-      "tool": "cvc5",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
       "result_json": "sim_morse_theory_constraint_canonical_results.json",
       "tool": "cvc5",
       "depth": "load_bearing"
@@ -987,22 +928,27 @@
       "depth": "load_bearing"
     },
     {
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_omega_category_globular_constraint_canonical_results.json",
+      "paths": [
+        "$.positive.test_globularity_axioms.pass",
+        "$.positive.test_parity_complex_boundary.pass",
+        "$.negative.test_composability_dimension_unsat.pass"
+      ]
+    },
+    {
       "kind": "load_bearing_without_used",
       "result_json": "sim_p_adic_l_function_constraint_canonical_results.json",
       "tool": "cvc5",
       "depth": "load_bearing"
     },
     {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_poisson_process_constraint_canonical_results.json",
-      "tool": "cvc5",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_ricci_flow_constraint_canonical_results.json",
-      "tool": "cvc5",
-      "depth": "load_bearing"
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_rectangle_bound_constraint_canonical_results.json",
+      "paths": [
+        "$.negative.test_disjointness_n2_below_lower_bound_unsat.pass",
+        "$.negative.test_disjointness_n8_below_lower_bound_unsat.pass"
+      ]
     },
     {
       "kind": "load_bearing_without_used",
@@ -1023,52 +969,9 @@
       "depth": "load_bearing"
     },
     {
-      "kind": "canonical_has_failed_checks",
-      "result_json": "sim_shellability_constraint_canonical_results.json",
-      "paths": [
-        "$.negative.test_unsat_shellable_torsion.pass"
-      ]
-    },
-    {
       "kind": "load_bearing_without_used",
-      "result_json": "sim_shimura_variety_canonical_model_results.json",
+      "result_json": "sim_runge_kutta_stability_constraint_canonical_results.json",
       "tool": "cvc5",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_spectral_triple_torch_foundation_results.json",
-      "tool": "pytorch",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_spectral_triple_torch_foundation_results.json",
-      "tool": "z3",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_spectral_triple_torch_foundation_results.json",
-      "tool": "sympy",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_symplectic_torch_foundation_results.json",
-      "tool": "pytorch",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_symplectic_torch_foundation_results.json",
-      "tool": "z3",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_symplectic_torch_foundation_results.json",
-      "tool": "sympy",
       "depth": "load_bearing"
     },
     {
@@ -1079,22 +982,18 @@
       ]
     },
     {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_torch_mi_dephasing_primitive_results.json",
-      "tool": "pytorch",
-      "depth": "load_bearing"
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_tricategory_gray_tensor_constraint_canonical_results.json",
+      "paths": [
+        "$.negative.test_gray_tensor_wrong_dimension_unsat.pass"
+      ]
     },
     {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_torch_mi_dephasing_primitive_results.json",
-      "tool": "z3",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_torch_mi_dephasing_primitive_results.json",
-      "tool": "sympy",
-      "depth": "load_bearing"
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_ultraproduct_constraint_canonical_results.json",
+      "paths": [
+        "$.positive.positive_test_3_sympy_atomic_los.pass"
+      ]
     },
     {
       "kind": "canonical_has_failed_checks",
@@ -1134,31 +1033,6 @@
       "result_json": "sim_weyl_clifford_spectral_triple_coupling_canonical_results.json",
       "tool": "clifford",
       "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_weyl_torch_foundation_results.json",
-      "tool": "pytorch",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_weyl_torch_foundation_results.json",
-      "tool": "z3",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "sim_weyl_torch_foundation_results.json",
-      "tool": "sympy",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "canonical_has_failed_checks",
-      "result_json": "sim_wigner_semicircle_constraint_canonical_results.json",
-      "paths": [
-        "$.negative.test_unsat_out_of_bounds.pass"
-      ]
     },
     {
       "kind": "load_bearing_without_used",
@@ -1202,18 +1076,6 @@
       "kind": "load_bearing_without_used",
       "result_json": "tool_integration_manim_results.json",
       "tool": "manim",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "torsion_curvature_splitting_results.json",
-      "tool": "geomstats",
-      "depth": "load_bearing"
-    },
-    {
-      "kind": "load_bearing_without_used",
-      "result_json": "tropical_geometry_constraint_canonical_results.json",
-      "tool": "cvc5",
       "depth": "load_bearing"
     },
     {
@@ -1314,6 +1176,13 @@
       "result_json": "qit_szilard_record_companion_results.json"
     },
     {
+      "kind": "non_boolean_pass_fields",
+      "result_json": "sim_L10_engine_family_split_results.json",
+      "paths": [
+        "$.pass"
+      ]
+    },
+    {
       "kind": "stale_source_newer_than_result",
       "source": "sim_spectral_triple_weyl_mera_emergence_quantities.py",
       "result_json": "spectral_triple_weyl_mera_emergence_quantities_results.json"
@@ -1322,6 +1191,18 @@
       "kind": "stale_source_newer_than_result",
       "source": "sim_pure_lego_z_measurement.py",
       "result_json": "z_measurement_results.json"
+    },
+    {
+      "kind": "controller_truth_snapshot_mismatch",
+      "result_json": "controller_alignment_audit_results.json",
+      "expected": {
+        "ok": false,
+        "hard_finding_count": 173
+      },
+      "actual": {
+        "ok": false,
+        "hard_finding_count": 200
+      }
     }
   ]
 }

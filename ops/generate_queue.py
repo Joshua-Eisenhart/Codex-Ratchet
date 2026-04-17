@@ -7,7 +7,14 @@ repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(repo)
 
 probes = sorted(glob.glob('system_v4/probes/*.py'))
-probes = [p for p in probes if not os.path.basename(p).startswith('_') and os.path.basename(p) != '__init__.py']
+# Skip private helpers and non-sim utility scripts. Only include actual probe-runnable files.
+SKIP_PREFIXES = ('test_', 'run_', 'validate_', 'strata_', 'gen_', 'audit_', 'check_')
+probes = [
+    p for p in probes
+    if not os.path.basename(p).startswith('_')
+    and os.path.basename(p) != '__init__.py'
+    and not any(os.path.basename(p).startswith(pre) for pre in SKIP_PREFIXES)
+]
 
 result_dirs = [
     'system_v4/probes/a2_state/sim_results',

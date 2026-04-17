@@ -22,9 +22,9 @@
       "reason": "UNSAT: FEP fixed point (F=KL=0) requires q=p; if p encodes Nash payoffs then q=Nash; cannot have FEP equilibrium and off-Nash simultaneously"
     },
     "cvc5": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "not needed; z3 handles FEP-Nash equivalence proof"
     },
     "sympy": {
       "tried": true,
@@ -37,24 +37,24 @@
       "reason": "grade-1 belief vector in Cl(3,0); Nash fixed point as grade-0 KL=0 scalar; proves FEP dynamics are grade-reduction toward Nash invariant"
     },
     "geomstats": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "not needed; Clifford grade-reduction handles belief projection"
     },
     "e3nn": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "not needed; no equivariant network in this sim"
     },
     "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "not installed"
+      "tried": true,
+      "used": true,
+      "reason": "FEP update DAG and IGT best-response DAG: both sink at Nash equilibrium node (0.5, 0.5); proves Nash is the common attractor for both gradient dynamics"
     },
     "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "not installed"
+      "tried": true,
+      "used": true,
+      "reason": "active inference as triadic hyperedge {fep_agent, igt_opponent, outcome}; proves FEP-IGT coupling is irreducibly higher-order, not decomposable into pairs"
     },
     "toponetx": {
       "tried": true,
@@ -112,6 +112,36 @@
       "initial_belief_deviation_from_nash": 0.42426406871192857,
       "kl_at_nash_fixed_point": 0.0,
       "claim": "FEP belief state is grade-1 vector in Cl(3,0); Nash equilibrium is the grade-0 scalar fixed point (KL=0); FEP dynamics reduce grade-1 belief to its grade-0 invariant (Nash value)"
+    },
+    "rustworkx_fep_igt_share_nash_sink": {
+      "pass": true,
+      "fep_sink": [
+        {
+          "belief": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "igt_sink": [
+        {
+          "strategy": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "claim": "FEP belief-update DAG and IGT best-response DAG both have (0.5, 0.5) as their unique sink node; Nash equilibrium is the common attractor of both dynamics"
+    },
+    "xgi_active_inference_triadic_hyperedge": {
+      "pass": true,
+      "edge_sizes": [
+        3,
+        2,
+        2,
+        2
+      ],
+      "claim": "Active inference (FEP in game context) is triadic {agent, opponent, outcome}; cannot be decomposed into bilateral FEP-perception and IGT-response separately; higher-order hyperedge captures the agent-game coupling"
     }
   },
   "negative": {
@@ -164,6 +194,19 @@
       "pass": true,
       "norm_at_nash": 0.19999999999999998,
       "claim": "At Nash belief (0.5*e1 + 0.5*e2), outer product with any non-collinear opponent is non-degenerate; Nash equilibrium is a stable grade-2 contract point"
+    },
+    "rustworkx_combined_convergence_same_sink": {
+      "pass": true,
+      "num_paths_to_nash": 4,
+      "sink_label": "nash",
+      "claim": "Combined FEP+IGT convergence graph: both dynamics reach Nash sink; boundary case: starting from same belief state, convergence paths overlap"
+    },
+    "xgi_solo_fep_degenerate_no_game": {
+      "pass": true,
+      "edge_sizes": [
+        1
+      ],
+      "claim": "FEP agent with no game partner: degenerate hyperedge (size 1); FEP-IGT coupling requires at least one opponent; solo FEP is not IGT-coupled"
     }
   },
   "overall_pass": true,

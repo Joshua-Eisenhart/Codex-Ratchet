@@ -1,13 +1,28 @@
 {
-  "generated_at": "2026-04-17T17:12:17.928805+00:00",
+  "generated_at": "2026-04-17T19:14:23.379935+00:00",
   "strict_stale": false,
-  "files_scanned": 3749,
+  "files_scanned": 3759,
   "summary": {
-    "hard_finding_count": 160,
-    "warning_finding_count": 11,
+    "hard_finding_count": 165,
+    "warning_finding_count": 12,
     "ok": false
   },
   "hard_findings": [
+    {
+      "kind": "stale_source_newer_than_result",
+      "source": "sim_classical_landauer_erasure_cost_curve.py",
+      "result_json": "classical_landauer_erasure_cost_curve_results.json"
+    },
+    {
+      "kind": "stale_source_newer_than_result",
+      "source": "sim_classical_maxwell_demon_information_accounting.py",
+      "result_json": "classical_maxwell_demon_information_accounting_results.json"
+    },
+    {
+      "kind": "stale_source_newer_than_result",
+      "source": "sim_classical_szilard_one_bit_measurement_work.py",
+      "result_json": "classical_szilard_one_bit_measurement_work_results.json"
+    },
     {
       "kind": "canonical_summary_false",
       "result_json": "cvc5_frege_system_constraint_results.json"
@@ -32,6 +47,18 @@
       "result_json": "hopf_horizontal_projector_constraint_results.json",
       "paths": [
         "$.positive.symbolic_horizontal_annihilation.pass"
+      ]
+    },
+    {
+      "kind": "canonical_has_failed_checks",
+      "result_json": "hopf_s15_connection_parallel_transport_results.json",
+      "paths": [
+        "$.positive.parallel_transport_norm_preserving.pass",
+        "$.positive.parallel_transport_norm_preserving.checks[0].pass",
+        "$.positive.parallel_transport_norm_preserving.checks[1].pass",
+        "$.positive.parallel_transport_norm_preserving.checks[2].pass",
+        "$.positive.parallel_transport_norm_preserving.checks[3].pass",
+        "$.negative.zero_basepoint_fails.pass"
       ]
     },
     {
@@ -738,6 +765,16 @@
     },
     {
       "kind": "canonical_has_failed_checks",
+      "result_json": "sim_gtower_e_class_cartan_admissibility_shell_local_results.json",
+      "paths": [
+        "$.positive.e6_determinant.pass",
+        "$.positive.e7_determinant.pass",
+        "$.positive.e8_determinant.pass",
+        "$.positive.determinants_strictly_ordered.pass"
+      ]
+    },
+    {
+      "kind": "canonical_has_failed_checks",
       "result_json": "sim_hecke_eigenvalue_constraint_canonical_results.json",
       "paths": [
         "$.positive.test_1_e37_ramanujan_bound.pass",
@@ -1101,6 +1138,11 @@
     },
     {
       "kind": "stale_source_newer_than_result",
+      "source": "sim_constraint_shells_binding_crosscheck.py",
+      "result_json": "constraint_shells_binding_crosscheck_results.json"
+    },
+    {
+      "kind": "stale_source_newer_than_result",
       "source": "sim_qit_szilard_record_companion.py",
       "result_json": "qit_szilard_record_companion_results.json"
     },
@@ -1126,11 +1168,11 @@
       "result_json": "controller_alignment_audit_results.json",
       "expected": {
         "ok": false,
-        "hard_finding_count": 160
+        "hard_finding_count": 165
       },
       "actual": {
         "ok": false,
-        "hard_finding_count": 200
+        "hard_finding_count": 170
       }
     }
   ]

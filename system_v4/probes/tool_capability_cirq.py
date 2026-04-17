@@ -186,7 +186,7 @@ def run_boundary_tests():
     }
 
     line_qid = cirq.LineQid(3, dimension=3)
-    qutrit_identity = cirq.Circuit(cirq.I(line_qid))
+    qutrit_identity = cirq.Circuit(cirq.IdentityGate(1, qid_shape=(3,))(line_qid))
     qutrit_unitary = cirq.unitary(qutrit_identity)
     _mark_cirq_used()
     results["qutrit_identity_boundary"] = {

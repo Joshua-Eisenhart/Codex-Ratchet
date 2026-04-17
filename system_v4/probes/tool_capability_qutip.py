@@ -83,7 +83,7 @@ def run_positive_tests():
         dims=[[2], [2]],
     )
     transformed = hadamard * plus_state
-    overlap_zero = abs((qutip.basis(2, 0).dag() * transformed)[0, 0]) ** 2
+    overlap_zero = abs(qutip.basis(2, 0).overlap(transformed)) ** 2
     _mark_qutip_used()
     results["hadamard_maps_plus_to_zero_basis"] = {
         "transformed_state": _complex_pairs(transformed.full()),
@@ -104,7 +104,7 @@ def run_positive_tests():
     gamma = 0.35
     e0 = qutip.Qobj([[1.0, 0.0], [0.0, math.sqrt(1.0 - gamma)]], dims=[[2], [2]])
     e1 = qutip.Qobj([[0.0, math.sqrt(gamma)], [0.0, 0.0]], dims=[[2], [2]])
-    damped = qutip.kraus_to_super([e0, e1]) * rho_plus
+    damped = e0 * rho_plus * e0.dag() + e1 * rho_plus * e1.dag()
     coherence = abs(damped.full()[0][1])
     trace_value = damped.tr()
     _mark_qutip_used()
@@ -132,7 +132,7 @@ def run_negative_tests():
 
     ket_zero = qutip.basis(2, 0)
     ket_one = qutip.basis(2, 1)
-    overlap = abs((ket_one.dag() * ket_zero)[0, 0])
+    overlap = abs(ket_one.overlap(ket_zero))
     _mark_qutip_used()
     results["orthogonal_basis_states_exclude_unit_overlap_claim"] = {
         "observed_overlap": _clean_float(overlap),
@@ -181,7 +181,7 @@ def run_boundary_tests():
     identity = qutip.qeye(2)
     basis_zero = qutip.basis(2, 0)
     identity_state = identity * basis_zero
-    identity_overlap = abs((basis_zero.dag() * identity_state)[0, 0]) ** 2
+    identity_overlap = abs(basis_zero.overlap(identity_state)) ** 2
     _mark_qutip_used()
     results["identity_operator_boundary"] = {
         "state_after_identity": _complex_pairs(identity_state.full()),

@@ -27,6 +27,8 @@ import os
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     # --- Computation layer ---
     "pytorch": {"tried": False, "used": False, "reason": ""},
@@ -143,7 +145,9 @@ except ImportError:
 # =====================================================================
 
 def run_positive_tests():
-    """Test that monoidal functors satisfy TQFT constraints."""
+    """
+
+Test that monoidal functors satisfy TQFT constraints."""
     import sympy as sp
     import cvc5
 

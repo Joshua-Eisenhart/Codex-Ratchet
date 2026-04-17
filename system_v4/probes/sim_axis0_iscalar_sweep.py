@@ -1140,9 +1140,11 @@ def main() -> None:
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "axis0_iscalar_sweep_results.json")
-    with open(out_path, "w") as f:
-        json.dump(json_safe({
+    canonical_out_path = os.path.join(
+        out_dir, f"{os.path.splitext(os.path.basename(__file__))[0]}_results.json"
+    )
+    legacy_out_path = os.path.join(out_dir, "axis0_iscalar_sweep_results.json")
+    payload = json.dumps(json_safe({
             "timestamp": datetime.now(UTC).isoformat(),
             "classification": classification,
             "divergence_log": divergence_log,
@@ -1161,8 +1163,11 @@ def main() -> None:
             },
             "overall_pass": bool(agg["all_pass"]),
             "all_pass": bool(agg["all_pass"]),
-        }), f, indent=2)
-    print(f"\n  Results → {out_path}")
+        }), indent=2)
+    for target in dict.fromkeys([canonical_out_path, legacy_out_path]):
+        with open(target, "w") as f:
+            f.write(payload)
+    print(f"\n  Results → {canonical_out_path}")
 
 
 if __name__ == "__main__":

@@ -19,6 +19,7 @@ not a toy API smoke test.
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import dataclass
 from typing import Any
 
@@ -264,7 +265,14 @@ def _jsonable(value: Any) -> Any:
 
 
 def main() -> int:
-    print(json.dumps(_jsonable(run_bridge_probe()), indent=2, sort_keys=True))
+    summary = _jsonable(run_bridge_probe())
+    out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "a2_state", "sim_results")
+    os.makedirs(out_dir, exist_ok=True)
+    out_path = os.path.join(out_dir, "qutip_classical_bridge_density_roundtrip_results.json")
+    with open(out_path, "w", encoding="utf-8") as handle:
+        json.dump(summary, handle, indent=2, sort_keys=True)
+    print(json.dumps(summary, indent=2, sort_keys=True))
+    print(f"Results written to {out_path}")
     return 0
 
 

@@ -44,7 +44,7 @@ If a sim batch violates that order, it is off-plan even if it produces passing o
 ---
 
 ## CURRENT STATE (what exists now)
-- numpy legos = classical baselines (verified, committed). Count: see `system_v4/probes/` manifest.
+- numpy legos = classical baselines (present, committed). Count: see `system_v4/probes/` manifest.
 - Negative battery concepts with multiple battery files and 100+ failure modes. Count: see [BATTERY_INDEX.md](BATTERY_INDEX.md).
 - L0-L7 constraint cascade mapped. Counts: see PYTORCH_RATCHET_BUILD_PLAN.md Phase 2.
 - Irreducible families identified with independent observables. Counts: see [MIGRATION_REGISTRY.md](MIGRATION_REGISTRY.md).
@@ -55,29 +55,40 @@ If a sim batch violates that order, it is off-plan even if it produces passing o
 - Tool manifest is defined in the template but not yet present in legacy result JSONs
 - Enforcement is still process-based until all new sims use the template and automatic promotion gates exist; bounded controller-side validator/gap-matrix tooling now exists, but these are not CI gates
 - 7+ engine variants (core through Cl(6) unified)
-- Axes: 6, 5, 3, 4 verified. Axes 1, 2 open. Axis 0 unsolved.
+- Axes 6, 5, 3, and 4 currently have stronger evidence than Axes 1, 2, and 0, but do not report them with a stronger public label unless a fresh file/result check was performed in the current run.
 - The bridge / `Phi0` seam is now separated much better than before (`Xi`, `rho_AB`, cut kernels, `Phi0` bakeoffs), but it is still mostly numpy-first and underintegrated with proof/graph tooling.
 - The basic plan is still only partially done: foundations and bridge separation are much better covered now, but the deep graph/proof integration pass has still not actually been completed.
 - Controller-side enforcement now has a dedicated gap matrix (`new docs/LLM_RESEARCH_GAP_MATRIX.json`) and validator (`system_v4/skills/llm_research_enforcement_validator.py`), but these are process tools, not automatic gates.
 
 ## TARGET BUILD REGIME (what we are building toward)
-All 13 rules below describe the target regime. They are the standard new work should meet. Legacy work is not retroactively invalid, but it is not promoted to canonical status without meeting these rules. No automated enforcement machinery exists yet — these are design constraints, not runtime checks.
+All 13 rules below describe the target regime. They are the standard new work should meet. Legacy work is not retroactively invalid, but it is not promoted to `canonical by process` without meeting these rules. No automated enforcement machinery exists yet — these are design constraints, not runtime checks.
 
 ---
 
 ## Definitions
 - **Layer / shell**: a simultaneous constraint surface, not a sequential rung. Higher layers do not replace lower layers; they restrict the same state space further.
-- **Classical baseline**: a verified numpy-era result. Useful as a baseline and negative control, not the target substrate.
+- **Classical baseline**: a numpy-era baseline artifact/result family. Useful as a baseline and negative control, not the target substrate. Its public status label still has to be checked separately (`exists`, `runs`, `passes local rerun`, or `canonical by process`).
 - **Canonical sim**: a deep, current-phase sim that uses PyTorch as the computation substrate and attempts the relevant proof/graph tools.
 - **Supporting work**: docs, manifests, audits, indexes, and migration helpers. These have lighter tool requirements than canonical sims.
 - **Relevance**: a tool may be omitted only if it cannot change the result or would be purely decorative. The omission must be explicit.
+
+## Vocabulary crosswalk
+This document uses three different vocabularies that must not be collapsed:
+
+| Vocabulary | Examples | What it answers |
+|---|---|---|
+| public repo truth labels | `exists`, `runs`, `passes local rerun`, `canonical by process` | what can be reported about the file/result in controller closeout |
+| process / ontology language | `open`, `killed`, `survived`, candidate order, shell-local, coupling | what happened inside the constraint-selection program |
+| internal build / promotion language | `classical_baseline`, `canonical sim`, lane coverage, promotion blockers | how the work is staged and what stronger work remains |
+
+Do not report process terms like `survived` or internal terms like `classical_baseline` as if they were public truth labels.
 
 ---
 
 ## Rule 1: PyTorch-native computation
 All new core computation uses PyTorch tensors. numpy is for loading data, conversion, or legacy comparison, NOT for core computation. Density matrices = torch tensors. Operators = torch operations. Gradients = autograd.
 
-**Why:** numpy arrays are Cartesian grids — they import coordinate-first ontology. PyTorch computational graphs are relational (edges, not coordinates). Quantum math is relational. The substrate must match the ontology.
+**Why:** numpy arrays encourage Cartesian, coordinate-first computation. PyTorch computational graphs are a better fit for the current relational/non-coordinate design target. Treat this as current build rationale, not as a standalone proof of ontology.
 
 ## Rule 2: Try all tools; make at least one relevant tool load-bearing
 Every canonical sim must attempt to use each relevant tool from the full stack. Document which tools were tried and why each was used or not relevant. Exceptions must be justified explicitly in the sim output. See TOOLING_STATUS.md for versions and install status.
@@ -129,7 +140,7 @@ Required tool-role contract:
 **Why:** Each tool carries a different ontological commitment. z3/cvc5 do constraint logic (non-classical). Clifford does geometric product (non-commutative). TopoNetX/GUDHI do topology (relational). geomstats does Riemannian geometry (intrinsic, not coordinate-first). e3nn does equivariant computation (symmetry-native). PyG does graph computation (non-Cartesian). Using them forces non-classical thinking.
 
 ## Rule 3: No engine jargon in sims
-Standard mathematical terms only. Z-dephasing, not Ti. X-rotation, not Fi. The Jungian labels are a Rosetta mapping applied after the math is verified.
+Standard mathematical terms only. Z-dephasing, not Ti. X-rotation, not Fi. The Jungian labels are a Rosetta mapping applied only after the math has earned the relevant checks; they must not steer the computation layer.
 
 **Why:** Jungian labels carry psychological ontology that contaminates the math. The math should stand alone. Labels are a mapping layer, not a computation layer.
 
@@ -166,9 +177,9 @@ This applies especially to:
 - later entropy / `Phi0` layers
 
 ## Rule 5: Two-lane quality policy
-**Lane 1 -- Coverage**: mass independent lego construction. Each lego is a standalone verified building block. Breadth matters for coverage. A lego must pass its own positive and negative tests, but does not need the full canonical workup.
+**Lane 1 -- Coverage**: mass independent lego construction. Each lego is a standalone building-block candidate. Breadth matters for coverage. A lego should pass its own positive and negative tests, but this lane does not by itself grant a stronger public truth label or closure claim.
 
-**Lane 2 -- Promotion**: promotion-grade deepening. A lego becomes "canonical" only after deep testing:
+**Lane 2 -- Promotion**: promotion-grade deepening. A lego becomes `canonical by process` only after deep testing:
 - multiple test states (not just one state)
 - theoretical value comparison
 - at least one negative/failure case
@@ -178,7 +189,7 @@ This applies especially to:
 - a clear statement of what would falsify the result
 - tool manifest documenting all tools tried
 
-Both lanes run simultaneously. Lane 1 produces baselines. Lane 2 promotes them to canonical.
+Both lanes run simultaneously. Lane 1 produces baselines. Lane 2 is the path to `canonical by process`.
 
 **Why:** Breadth without depth is shallow. Depth without breadth is incomplete. Both are required, but they serve different purposes and should not block each other.
 
@@ -197,13 +208,13 @@ Use "survived" not "created." Use "coupled with" not "causes." Use "constraint o
 
 **Why:** The system is nominalist. Language carries rationalist/Platonic bias from training. Every word must be checked.
 
-## Rule 9: The computational graph IS the ratchet
+## Rule 9: The computational graph as ratchet-aligned computation substrate
 - Forward pass = exploring the allowed math space (possibilities)
 - Backward pass = constraints selecting what survives (selection)
 - Graph topology = constraint manifold (what is computable)
 - Gradient = what is load-bearing (signal)
 - Zero gradient = what is redundant (noise)
-- This is not metaphor — it is the architecture.
+- Treat this as a strong architectural working thesis for current build design, not as a public proof claim.
 
 **Mathematical basis:** Autograd traces relationships between operations (relational, not Cartesian). Backprop flows information backward through constraints (non-causal, constraint-based). The graph topology determines what is computable (topological, not coordinate-based).
 

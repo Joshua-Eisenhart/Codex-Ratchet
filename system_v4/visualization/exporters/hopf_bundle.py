@@ -8,9 +8,12 @@ import numpy as np
 from system_v4.probes import hopf_manifold as hopf
 from system_v4.visualization.capabilities import HOPF_CAPABILITIES
 from system_v4.visualization.schema_v1 import (
+    ADMISSION_STAGE_LABELS,
+    ADMISSION_STAGE_NEXT,
     HOPF_ENTITY_KIND,
     HOPF_FAMILY,
     HOPF_SIM_NAME,
+    MESH_PATCH_ENTITY_KIND,
     SCHEMA_VERSION,
 )
 
@@ -24,6 +27,15 @@ def _normalize_vector(vec: np.ndarray) -> np.ndarray:
     if norm < 1e-12:
         return vec.astype(float)
     return (vec / norm).astype(float)
+
+
+def _line_indices(count: int, *, closed: bool = False) -> list[list[int]]:
+    if count < 2:
+        return []
+    indices = [[index, index + 1] for index in range(count - 1)]
+    if closed:
+        indices.append([count - 1, 0])
+    return indices
 
 
 def _fallback_tangent(base: np.ndarray) -> np.ndarray:
@@ -60,6 +72,10 @@ def _build_loop(n_points: int, fiber_twist: float) -> tuple[np.ndarray, np.ndarr
     return thetas, np.array(loop_q), np.array(loop_base)
 
 
+def _projected_loop_points(loop_q: np.ndarray) -> list[list[float]]:
+    return [hopf.stereographic_s3_to_r3(q).astype(float).tolist() for q in loop_q]
+
+
 def build_run_manifest(run_id: str, frame_count: int) -> dict:
     return {
         "schema_version": SCHEMA_VERSION,
@@ -69,6 +85,80 @@ def build_run_manifest(run_id: str, frame_count: int) -> dict:
         "capabilities": HOPF_CAPABILITIES,
         "entity_kind": HOPF_ENTITY_KIND,
         "frame_count": frame_count,
+        "constraint_set": "hopf_bundle_local_loop",
+        "probe_family": "hopf_bundle_probe",
+        "carrier": "hopf_fiber_over_s2_loop",
+        "lane": "shell-local",
+        "layer": "bundle_curve_geometry",
+        "witness_type": "direct_probe",
+        "admission_stage": "pairwise",
+        "admission_stage_index": ADMISSION_STAGE_LABELS.index("pairwise"),
+        "promotion_target_stage": ADMISSION_STAGE_NEXT["pairwise"],
+        "claim_state": "candidate",
+        "promotion_status": "supporting",
+        "status_label": "exists",
+        "geometry_rendering_status": "admitted_rendering",
+        "negative_controls": [
+            "base_motion_breaks_fiber_equivalence",
+            "projected_s3_norm_drift",
+            "berry_phase_trivialization",
+        ],
+        "exclusion_criteria": [
+            "fiber action fails to preserve base projection",
+            "s3 carrier leaves unit sphere tolerance",
+            "berry phase fails bounded nontriviality check",
+        ],
+        "live_splits": [],
+        "witness_trace_id": f"{run_id}::hopf_bundle_probe",
+        "required_negatives": [
+            "base_motion_breaks_fiber_equivalence",
+            "projected_s3_norm_drift",
+            "berry_phase_trivialization",
+        ],
+        "negatives_run": [
+            "base_motion_breaks_fiber_equivalence",
+            "projected_s3_norm_drift",
+            "berry_phase_trivialization",
+        ],
+        "kill_conditions": [
+            "fiber action fails to preserve base projection",
+            "s3 carrier leaves unit sphere tolerance",
+            "berry phase fails bounded nontriviality check",
+        ],
+        "required_artifacts": [
+            "run_manifest.json",
+            "scene.json",
+            "summary.json",
+            "witness_trace.json",
+            "frames/*.json",
+        ],
+        "artifacts_emitted": [
+            "run_manifest.json",
+            "scene.json",
+            "summary.json",
+            "witness_trace.json",
+            "frames/*.json",
+        ],
+        "pass_rule": "fiber-preserving and berry-phase checks remain bounded and summary all_pass stays true",
+        "fail_rule": "fiber-preservation, s3 validity, or berry-phase checks fail",
+        "eligible_consumers": [
+            "bundle_curve_report",
+            "pairwise_geometry_inventory",
+        ],
+        "blocked_consumers": [
+            "coexistence_claims",
+            "bridge_level_claims",
+        ],
+        "promotion_blockers": [
+            "no coexistence rerun evidence",
+            "no topology-variant rerun evidence",
+            "no bridge-level admission evidence",
+        ],
+        "lane_admission": {
+            "current_lane": "shell-local",
+            "prerequisite_lanes": [],
+            "admission_rule": "local Hopf bundle evidence does not by itself admit coexistence, emergence, or bridge claims",
+        },
     }
 
 
@@ -130,31 +220,82 @@ def normalize_frame_record(
         for sample in fiber_loop
     ]
     projected_s3_xyz = hopf.stereographic_s3_to_r3(q).astype(float).tolist()
+    base_points_xyz = base_points.astype(float).tolist()
+    projected_loop_xyz = _projected_loop_points(
+        np.array(
+            [
+                hopf.fiber_action(hopf.lift_base_point(base_point), fiber_twist * theta_value)
+                for theta_value, base_point in zip(
+                    np.linspace(0.0, 2.0 * np.pi, len(base_points), endpoint=False),
+                    base_points,
+                )
+            ],
+            dtype=float,
+        )
+    )
+    loop_progress = np.linspace(0.0, 1.0, len(base_points), endpoint=False).astype(float).tolist()
+    fiber_phase_progress = np.linspace(0.0, 1.0, len(fiber_samples_xyz), endpoint=False).astype(float).tolist()
 
     return {
         "step_index": int(step_index),
         "sim_time": float(step_index / len(base_points)),
-        "entities": [{
-            "entity_id": "carrier_0",
-            "base_xyz": base.tolist(),
-            "s3_point": q.tolist(),
-            "projected_s3_xyz": projected_s3_xyz,
-            "fiber_samples_xyz": fiber_samples_xyz,
-            "frame_vectors": {
-                "tangent": tangent.tolist(),
-                "normal": normal.tolist(),
-                "binormal": binormal.tolist(),
+        "entities": [
+            {
+                "entity_id": "carrier_0",
+                "entity_kind": HOPF_ENTITY_KIND,
+                "base_xyz": base.tolist(),
+                "s3_point": q.tolist(),
+                "projected_s3_xyz": projected_s3_xyz,
+                "fiber_samples_xyz": fiber_samples_xyz,
+                "frame_vectors": {
+                    "tangent": tangent.tolist(),
+                    "normal": normal.tolist(),
+                    "binormal": binormal.tolist(),
+                },
+                "scalars": {
+                    "fiber_phase": float(fiber_twist * theta),
+                    "transport_error": transport_error,
+                    "tangent_leakage": tangent_leakage,
+                },
+                "tags": {
+                    "loop_theta": float(theta),
+                    "hopf_patch_id": "north" if base[2] >= 0.0 else "south",
+                },
             },
-            "scalars": {
-                "fiber_phase": float(fiber_twist * theta),
-                "transport_error": transport_error,
-                "tangent_leakage": tangent_leakage,
+            {
+                "entity_id": "base_loop_patch",
+                "entity_kind": MESH_PATCH_ENTITY_KIND,
+                "points_xyz": base_points_xyz,
+                "line_indices": _line_indices(len(base_points_xyz), closed=True),
+                "patch_id": "base_loop",
+                "chart_id": "s2_equator",
+                "point_scalars": {
+                    "loop_progress": loop_progress,
+                },
             },
-            "tags": {
-                "loop_theta": float(theta),
-                "hopf_patch_id": "north" if base[2] >= 0.0 else "south",
+            {
+                "entity_id": "fiber_ring_patch",
+                "entity_kind": MESH_PATCH_ENTITY_KIND,
+                "points_xyz": fiber_samples_xyz,
+                "line_indices": _line_indices(len(fiber_samples_xyz), closed=True),
+                "patch_id": "fiber_ring",
+                "chart_id": "hopf_fiber",
+                "point_scalars": {
+                    "fiber_phase_progress": fiber_phase_progress,
+                },
             },
-        }],
+            {
+                "entity_id": "projected_s3_patch",
+                "entity_kind": MESH_PATCH_ENTITY_KIND,
+                "points_xyz": projected_loop_xyz,
+                "line_indices": _line_indices(len(projected_loop_xyz), closed=True),
+                "patch_id": "projected_s3",
+                "chart_id": "stereographic_s3",
+                "point_scalars": {
+                    "loop_progress": loop_progress,
+                },
+            },
+        ],
         "events": [],
     }
 
@@ -185,6 +326,29 @@ def build_summary(loop_q: np.ndarray, loop_base: np.ndarray, fiber_twist: float)
             "fiber_base_variation": fiber_base_variation,
         },
         "all_pass": all_pass,
+    }
+
+
+def build_witness_trace(thetas: np.ndarray) -> dict:
+    return {
+        "witness_trace_id": "hopf_bundle_probe",
+        "probe_family": "hopf_bundle_probe",
+        "constraint_set": "hopf_bundle_local_loop",
+        "events": [
+            {
+                "event_kind": "fiber_loop_step",
+                "step_index": int(index),
+                "loop_theta": float(theta),
+                "status_label": "exists",
+            }
+            for index, theta in enumerate(thetas)
+        ],
+        "negative_controls_run": [
+            "base_motion_breaks_fiber_equivalence",
+            "projected_s3_norm_drift",
+            "berry_phase_trivialization",
+        ],
+        "exclusion_events": [],
     }
 
 
@@ -226,6 +390,7 @@ def export_hopf_bundle(
         ),
     )
     _json_dump(run_dir / "summary.json", build_summary(loop_q=loop_q, loop_base=loop_base, fiber_twist=fiber_twist))
+    _json_dump(run_dir / "witness_trace.json", build_witness_trace(thetas))
 
     for frame in frames:
         frame_name = f"{frame['step_index']:06d}.json"

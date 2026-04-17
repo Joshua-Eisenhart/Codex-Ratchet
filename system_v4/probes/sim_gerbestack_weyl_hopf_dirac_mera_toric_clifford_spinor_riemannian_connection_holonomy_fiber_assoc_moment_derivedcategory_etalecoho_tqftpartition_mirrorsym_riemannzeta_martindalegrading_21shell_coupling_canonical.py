@@ -37,6 +37,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -696,7 +698,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_martindalegrading_21shell_coupling_canonical",
         "description": "Coupling Program #126: GerbeStack×Weyl×Hopf×Dirac×MERA×Toric×Clifford×Spinor×Riemannian×Connection×Holonomy×Fiber×AssocBundle×MomentIndex×DerivedCategory×EtaleCoho×TQFTPartition×MirrorSym×RiemannZeta×MartingaleGrading — 21-shell coupling with torch-native MI and twenty-one entropy shells. Q_21 = MI × log(2)^17 × log(4)^2 × log(3)^2; autograd Axis 0 confirmed.",
-        "classification": "classical_baseline",
+        "classification": classification,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "positive": {k: v for k, v in tests.items() if k.startswith("P")},

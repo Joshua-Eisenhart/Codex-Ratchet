@@ -985,6 +985,7 @@ if __name__ == "__main__":
     results = {
         "name": "torch_channel_taxonomy",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "classification": "canonical",
         "summary": {
             "positive_pass": p_pass,

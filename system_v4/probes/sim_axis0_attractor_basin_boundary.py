@@ -1067,10 +1067,15 @@ if __name__ == "__main__":
         "all_pass": bool(deep_contract["pass"]),
     }
 
-    out_path = os.path.join(RESULTS_DIR, "axis0_attractor_basin_boundary_results.json")
-    with open(out_path, "w") as f:
-        json.dump(results, f, indent=2)
-    print(f"\nResults written to {out_path}")
+    canonical_out_path = os.path.join(
+        RESULTS_DIR, f"{os.path.splitext(os.path.basename(__file__))[0]}_results.json"
+    )
+    legacy_out_path = os.path.join(RESULTS_DIR, "axis0_attractor_basin_boundary_results.json")
+    payload = json.dumps(results, indent=2)
+    for target in dict.fromkeys([canonical_out_path, legacy_out_path]):
+        with open(target, "w") as f:
+            f.write(payload)
+    print(f"\nResults written to {canonical_out_path}")
     print("\n=== DEEP CONTRACT ===")
     print(f"  Deep pass:                    {deep_contract['pass']}")
     print(f"  Boundary frontier:           {deep_contract['frontier_size']}/{deep_contract['candidate_universe_size']}")

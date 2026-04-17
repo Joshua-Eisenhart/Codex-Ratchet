@@ -7,8 +7,8 @@ Pairing: Axis 0 (Base Geometry / S3 Dimensionality) x Axis 4 (Math Class)
 Proof bounds:
 - Axis 0 scales the base coordinate dimensionality (d=4, 8, 16).
 - Axis 4 dictates exactly the computational Math Class: 
-    - DEDUCTIVE: Reduces variance (Condensation). Operates via Ti (projections) and Fe (cooling jumps).
-    - INDUCTIVE: Expands variance (Distribution). Operates via Fi (spectral fuzz) and Te (rotation).
+    - DEDUCTIVE: Reduces variance (Condensation). Operates via projection and bridge-local jumps.
+    - INDUCTIVE: Expands variance (Distribution). Operates via spectral spreading and rotation.
 
 Hypothesis: The geometric dimension scale must not synthetically flip the gradient of the computational
 math class. Deductive must ALWAYS explicitly drop system entropy. Inductive must ALWAYS explicitly 
@@ -74,7 +74,7 @@ def execute_ort_0_4_proof():
                 for _ in range(5):
                     rho = C_Te(rho, Te_op, dt=1.0)
                     rho = C_Fi(rho, Fi_op)
-                    # Fi filter can push off-diagonals, Te redistributes. 
+                    # The spreading filter can push off-diagonals while rotation redistributes them.
                     # Add generic local noise to ensure Inductive distribution expands.
                     rho = 0.7 * rho + 0.3 * mixed_state
                     

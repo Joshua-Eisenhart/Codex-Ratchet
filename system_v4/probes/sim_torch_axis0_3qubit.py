@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 """
-Axis 0 Gradient Field: 3-Qubit System with XX_23 Relay (cut2)
-==============================================================
+Axis 0 Gradient Field: 3-Qubit System with relay_23 (cut2)
+==========================================================
 
 Scales the 2-qubit Axis 0 probe to the 3-qubit system required by project docs.
 
     System: 3 qubits A, B, C  (dimension 8x8)
     Parameters: eta = (theta_AB, theta_BC, phi_AB, phi_BC, r_A, r_B, r_C)  -- 7 params
-    Gates: CNOT_AB (qubits 1,2) + CNOT_BC (qubits 2,3) -- the XX_23 relay
+    Gates: CNOT_AB (qubits 1,2) + CNOT_BC (qubits 2,3) -- the relay_23 coupling
     Noise: Z-dephasing on qubit A with strength p
     Coherent information:
         I_c(A>BC) = S(BC) - S(ABC)
         I_c(AB>C) = S(C) - S(ABC)
     Axis 0 := nabla_eta I_c   (7-dimensional gradient field)
 
-Key test: cut2 needs 3 qubits because the XX_23 relay between qubits 2 and 3
+Key test: cut2 needs 3 qubits because the relay_23 coupling between qubits 2 and 3
 mediates information flow. theta_BC must have nonzero gradient for I_c(A>BC)
 when the relay is active, and zero gradient when the relay is removed.
 
@@ -26,7 +26,7 @@ import json
 import os
 import time
 import numpy as np
-classification = "canonical"
+classification = "classical_baseline"
 
 # =====================================================================
 # TOOL MANIFEST
@@ -221,7 +221,7 @@ def build_3qubit_rho(theta_AB, theta_BC, phi_AB, phi_BC, r_A, r_B, r_C,
 
     1. Start with rho_A x rho_B x rho_C (parameterized single-qubit states)
     2. Apply CNOT_AB (entangles A and B)
-    3. Optionally apply CNOT_BC (the XX_23 relay -- entangles B and C)
+    3. Optionally apply CNOT_BC (the relay_23 coupling -- entangles B and C)
     4. Optionally apply Z-dephasing on qubit A
 
     Parameters:
@@ -826,13 +826,13 @@ if __name__ == "__main__":
             "Axis 0 = nabla_eta I_c on the 3-qubit shell parameter space. "
             "7-dimensional gradient field over eta = (theta_AB, theta_BC, phi_AB, phi_BC, r_A, r_B, r_C). "
             "Two cuts: I_c(A>BC) and I_c(AB>C). "
-            "Key result: the XX_23 relay (CNOT_BC) is load-bearing -- theta_BC gradient "
+            "Key result: the relay_23 coupling (CNOT_BC) is load-bearing on the flat 3-qubit baseline -- theta_BC gradient "
             "is nonzero for I_c(A>BC) only when the relay is active."
         ),
         "formal_definition": {
             "system": "3 qubits A, B, C -- dimension 8x8",
             "eta": "7 shell parameters: (theta_AB, theta_BC, phi_AB, phi_BC, r_A, r_B, r_C)",
-            "gates": "CNOT_AB (qubits 1,2) + CNOT_BC (qubits 2,3) -- the XX_23 relay",
+            "gates": "CNOT_AB (qubits 1,2) + CNOT_BC (qubits 2,3) -- the relay_23 coupling",
             "noise": "Z-dephasing on qubit A with strength p",
             "I_c_A_BC": "S(BC) - S(ABC)  (coherent info: A given BC)",
             "I_c_AB_C": "S(C) - S(ABC)  (coherent info: AB given C)",
@@ -844,7 +844,8 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "sympy_check": sympy_check,
-        "classification": "canonical",
+        "classification": classification,
+        "substrate": "flat_3q_hilbert",
         "elapsed_seconds": round(elapsed, 2),
         "summary": {
             "total_tests": total_tests,

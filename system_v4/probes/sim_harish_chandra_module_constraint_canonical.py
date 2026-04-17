@@ -88,10 +88,8 @@ def run_positive_tests():
         dim_V_tau = tm.mkConst(tm.getIntegerSort(), "dim_V_tau")
 
         # Each K-isotypic component is finite
-        slv.assertFormula(tm.mkAnd(
-            tm.mkGEq(dim_V_tau, tm.mkInteger(1)),
-            tm.mkLEq(dim_V_tau, tm.mkInteger(max_dim))
-        ))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.GEQ, dim_V_tau, tm.mkInteger(1)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ, dim_V_tau, tm.mkInteger(max_dim)))
 
         is_sat = slv.checkSat().isSat()
         results["k_isotypic_finiteness"] = {
@@ -162,15 +160,11 @@ def run_positive_tests():
         mult = tm.mkConst(tm.getIntegerSort(), "mult")  # Multiplicity per isotype
 
         # All multiplicities must be finite
-        slv.assertFormula(tm.mkAnd(
-            tm.mkGEq(num_isotypes, tm.mkInteger(1)),
-            tm.mkLEq(num_isotypes, tm.mkInteger(100))  # Bounded
-        ))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.GEQ, num_isotypes, tm.mkInteger(1)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ, num_isotypes, tm.mkInteger(100)))
 
-        slv.assertFormula(tm.mkAnd(
-            tm.mkGEq(mult, tm.mkInteger(1)),
-            tm.mkLEq(mult, tm.mkInteger(50))  # Bounded multiplicity
-        ))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.GEQ, mult, tm.mkInteger(1)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ, mult, tm.mkInteger(50)))
 
         is_sat = slv.checkSat().isSat()
         results["admissibility_finiteness"] = {
@@ -224,11 +218,11 @@ def run_negative_tests():
         max_bound = 100
 
         # Assert finiteness constraint
-        slv.assertFormula(tm.mkLEq(dim_V_tau, tm.mkInteger(max_bound)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ, dim_V_tau, tm.mkInteger(max_bound)))
 
         # Try to violate: claim dimension > max_bound
         slv.push()
-        slv.assertFormula(tm.mkGt(dim_V_tau, tm.mkInteger(max_bound)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.GT, dim_V_tau, tm.mkInteger(max_bound)))
         is_unsat = not slv.checkSat().isSat()
         slv.pop()
 
@@ -254,11 +248,11 @@ def run_negative_tests():
         dim_Z_g = tm.mkConst(tm.getIntegerSort(), "dim_Z_g")
 
         # Z(g) has dimension rank
-        slv.assertFormula(tm.mkEq(dim_Z_g, tm.mkInteger(rank)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, dim_Z_g, tm.mkInteger(rank)))
 
         # Try to claim different dimension
         slv.push()
-        slv.assertFormula(tm.mkNot(tm.mkEq(dim_Z_g, tm.mkInteger(rank))))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT, tm.mkTerm(cvc5.Kind.EQUAL, dim_Z_g, tm.mkInteger(rank))))
         is_unsat = not slv.checkSat().isSat()
         slv.pop()
 
@@ -285,11 +279,11 @@ def run_negative_tests():
         m_tau = tm.mkConst(tm.getIntegerSort(), "m_tau")
 
         # Multiplicity ≤ rank(K)
-        slv.assertFormula(tm.mkLEq(m_tau, tm.mkInteger(rank_K)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ, m_tau, tm.mkInteger(rank_K)))
 
         # Try to claim m_τ > rank_K
         slv.push()
-        slv.assertFormula(tm.mkGt(m_tau, tm.mkInteger(rank_K)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.GT, m_tau, tm.mkInteger(rank_K)))
         is_unsat = not slv.checkSat().isSat()
         slv.pop()
 
@@ -335,14 +329,12 @@ def run_negative_tests():
         chi_lambda = tm.mkConst(tm.getIntegerSort(), "chi_lambda")
 
         # χ_λ determined uniquely by λ ∈ h*
-        slv.assertFormula(tm.mkEq(chi_lambda, tm.mkMul(lambda_val, lambda_val)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, chi_lambda, tm.mkTerm(cvc5.Kind.MULT, lambda_val, lambda_val)))
 
         # Try to claim two different χ for same λ
         slv.push()
-        slv.assertFormula(tm.mkAnd(
-            tm.mkEq(lambda_val, tm.mkInteger(2)),
-            tm.mkNot(tm.mkEq(chi_lambda, tm.mkInteger(4)))
-        ))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, lambda_val, tm.mkInteger(2)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT, tm.mkTerm(cvc5.Kind.EQUAL, chi_lambda, tm.mkInteger(4))))
         is_unsat = not slv.checkSat().isSat()
         slv.pop()
 
@@ -414,7 +406,7 @@ def run_boundary_tests():
 
         # Minimal non-trivial (g,K)-module has dim ≥ rank(K)
         min_dim = 1
-        slv.assertFormula(tm.mkGEq(dim, tm.mkInteger(min_dim)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.GEQ, dim, tm.mkInteger(min_dim)))
 
         is_sat = slv.checkSat().isSat()
         results["boundary_minimal_dimension"] = {

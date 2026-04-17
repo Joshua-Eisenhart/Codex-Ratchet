@@ -13,6 +13,7 @@ Symbol order must be positive (multiplicative structure).
 See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md
 """
 
+
 import json
 import os
 import numpy as np
@@ -20,6 +21,8 @@ import numpy as np
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================
+
+classification = "canonical"
 
 TOOL_MANIFEST = {
     # --- Computation layer ---

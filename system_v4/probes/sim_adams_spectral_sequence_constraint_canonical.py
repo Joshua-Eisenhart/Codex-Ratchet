@@ -13,6 +13,8 @@ Supportive: sympy (E_2 page calculation for π_*(S^0) at p=2)
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

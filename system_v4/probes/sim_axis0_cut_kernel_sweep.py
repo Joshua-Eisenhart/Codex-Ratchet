@@ -65,7 +65,7 @@ CLASSIFICATION_NOTE = divergence_log
 
 np.random.seed(42)
 EPS = 1e-12
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "cut-kernel battery numerics, density-matrix algebra, and discrimination aggregates"},
@@ -797,11 +797,16 @@ if __name__ == "__main__":
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "axis0_cut_kernel_sweep_results.json")
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2, default=str)
+    canonical_out_path = os.path.join(
+        out_dir, f"{os.path.splitext(os.path.basename(__file__))[0]}_results.json"
+    )
+    legacy_out_path = os.path.join(out_dir, "axis0_cut_kernel_sweep_results.json")
+    payload = json.dumps(results, indent=2, default=str)
+    for target in dict.fromkeys([canonical_out_path, legacy_out_path]):
+        with open(target, "w", encoding="utf-8") as f:
+            f.write(payload)
 
-    print(f"Results written to {out_path}")
+    print(f"Results written to {canonical_out_path}")
     print("\n=== LEGACY CUT KERNELS ===")
     print(f"Legacy pass: {legacy_all_pass}")
     print(f"Tests: {results['summary']['passed']}/{results['summary']['total_tests']} passed")

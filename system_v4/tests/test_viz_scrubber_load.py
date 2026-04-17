@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import importlib.util
+import json
+import sys
 from pathlib import Path
 
 import pytest
@@ -33,14 +35,32 @@ def test_load_run_reads_exported_transport_artifacts(tmp_path: Path) -> None:
     assert summary["all_pass"] is True
 
 
+def test_prepare_matplotlib_runtime_sets_writable_tmp_dir(monkeypatch: pytest.MonkeyPatch) -> None:
+    scrubber = _load_module(SCRUBBER_PATH, "scrubber_pyvista")
+
+    monkeypatch.delenv("MPLCONFIGDIR", raising=False)
+    configured = scrubber._prepare_matplotlib_runtime()
+
+    assert configured == "/tmp/codex_ratchet_matplotlib"
+    assert Path(configured).exists()
+
+
 def test_open_scrubber_fails_closed_when_pyvista_is_missing(tmp_path: Path) -> None:
     exporter = _load_module(EXPORTER_PATH, "transport_s2_exporter")
     scrubber = _load_module(SCRUBBER_PATH, "scrubber_pyvista")
 
     run_dir = exporter.export_transport_s2("scrubber_missing_dep", tmp_path, steps_per_arc=8)
+    original = sys.modules.get("pyvista", ...)
+    sys.modules["pyvista"] = None
 
-    with pytest.raises(RuntimeError, match="PyVista is required"):
-        scrubber.open_scrubber(run_dir)
+    try:
+        with pytest.raises(RuntimeError, match="PyVista is required"):
+            scrubber.open_scrubber(run_dir)
+    finally:
+        if original is ...:
+            sys.modules.pop("pyvista", None)
+        else:
+            sys.modules["pyvista"] = original
 
 
 def test_load_run_reads_exported_hopf_artifacts_and_overlay_payload(tmp_path: Path) -> None:
@@ -73,6 +93,38 @@ def test_open_scrubber_hopf_run_reaches_pyvista_dependency_boundary(tmp_path: Pa
     scrubber = _load_module(SCRUBBER_PATH, "scrubber_pyvista")
 
     run_dir = exporter.export_hopf_bundle("hopf_missing_dep", tmp_path, n_points=16, fiber_points=8, fiber_twist=1.0)
+    original = sys.modules.get("pyvista", ...)
+    sys.modules["pyvista"] = None
 
-    with pytest.raises(RuntimeError, match="PyVista is required"):
-        scrubber.open_scrubber(run_dir)
+    try:
+        with pytest.raises(RuntimeError, match="PyVista is required"):
+            scrubber.open_scrubber(run_dir)
+    finally:
+        if original is ...:
+            sys.modules.pop("pyvista", None)
+        else:
+            sys.modules["pyvista"] = original
+
+
+def test_frame_status_text_mentions_multi_entity_primary(tmp_path: Path) -> None:
+    exporter = _load_module(HOPF_EXPORTER_PATH, "hopf_bundle_exporter")
+    scrubber = _load_module(SCRUBBER_PATH, "scrubber_pyvista")
+
+    run_dir = exporter.export_hopf_bundle("hopf_multi_status", tmp_path, n_points=16, fiber_points=8, fiber_twist=1.0)
+    frame_path = sorted((run_dir / "frames").glob("*.json"))[-1]
+    frame_payload = json.loads(frame_path.read_text(encoding="utf-8"))
+    extra_entity = json.loads(json.dumps(frame_payload["entities"][0]))
+    extra_entity["entity_id"] = "carrier_1"
+    frame_payload["entities"].append(extra_entity)
+    frame_path.write_text(json.dumps(frame_payload, indent=2), encoding="utf-8")
+
+    _manifest, scene, frames, _summary = scrubber.load_run(run_dir)
+    text = scrubber._frame_status_text(frames[-1], scene["expected_invariants"]["expected_berry_phase"], _manifest)
+
+    assert "constraint set: hopf_bundle_local_loop" in text
+    assert "probe family: hopf_bundle_probe" in text
+    assert "claim ceiling: exists" in text
+    assert "claim/promotion: candidate / supporting" in text
+    assert "admission: pairwise -> coexistence" in text
+    assert "entities: 5" in text
+    assert "primary: carrier_0" in text

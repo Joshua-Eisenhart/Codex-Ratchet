@@ -34,7 +34,7 @@ If `clifford` not importable -> report blocker, do NOT fall back to numpy.
 import json
 import os
 import math
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST

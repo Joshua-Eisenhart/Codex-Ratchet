@@ -23,6 +23,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed; simplicial topology is combinatorial, not tensor network"},
     "pyg": {"tried": False, "used": False, "reason": "not needed; simplicial fiber products not graph-representable"},
@@ -136,7 +138,9 @@ except ImportError:
 # =====================================================================
 
 def simplicial_size(n):
-    """Size of X_n simplicial set (typically binomial coefficient)."""
+    """
+
+Size of X_n simplicial set (typically binomial coefficient)."""
     # Model: |X_n| = C(n+2, 2) for standard simplex
     if n == 0:
         return 1

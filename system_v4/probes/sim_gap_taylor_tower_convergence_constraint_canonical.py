@@ -27,6 +27,8 @@ from cvc5 import Solver, Kind
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -73,6 +75,8 @@ TOOL_INTEGRATION_DEPTH = {
 
 def run_positive_tests():
     """
+
+
     Three positive tests showing analytic functors with convergent Taylor towers.
     """
     results = {}

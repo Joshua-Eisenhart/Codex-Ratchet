@@ -27,7 +27,7 @@ import traceback
 from datetime import UTC, datetime
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 PROBE_DIR = os.path.dirname(os.path.abspath(__file__))
 if PROBE_DIR not in sys.path:
@@ -875,8 +875,7 @@ def main():
             "negative": {"passed": n_pass, "total": n_total},
             "boundary":  {"passed": b_pass, "total": b_total},
         },
-        "classification": "classical_baseline",
-        "classification_note": "numpy computes foliation objects; sympy/z3 check structural properties. Canonical counterpart to be built separately.",
+        "classification": classification,
     }
 
     out_dir = os.path.join(PROBE_DIR, "a2_state", "sim_results")

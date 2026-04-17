@@ -23,6 +23,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -133,6 +135,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Positive tests: SAT conditions for J-homomorphism image order.
     im(J) is nontrivial (order ≥ 1) for all k ≥ 1.
     """

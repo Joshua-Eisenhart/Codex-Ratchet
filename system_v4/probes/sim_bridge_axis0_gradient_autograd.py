@@ -9,7 +9,7 @@ import numpy as np
 import torch
 from _doc_illum_common import build_manifest, write_results
 
-classification = "canonical"
+classification = "classical_baseline"
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},

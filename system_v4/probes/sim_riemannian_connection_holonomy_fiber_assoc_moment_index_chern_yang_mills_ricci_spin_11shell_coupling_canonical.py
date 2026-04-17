@@ -28,6 +28,8 @@ import os
 import torch
 import numpy as np
 
+classification = "classical_baseline"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

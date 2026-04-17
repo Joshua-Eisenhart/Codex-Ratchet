@@ -167,6 +167,15 @@ Must be one of:
 - `diagnostic_only`
 - `broken`
 
+These are internal sim-role / promotion states. They are not the public repo truth labels.
+For controller closeout and repo reporting, use only:
+- `exists`
+- `runs`
+- `passes local rerun`
+- `canonical by process`
+
+A sim can be internally `keep_but_open` while the file itself only has the public status `runs` or `passes local rerun`. Do not collapse those two vocabularies.
+
 ### `eligible_consumers`
 Higher-level sims or packets that are allowed to use this sim as input.
 
@@ -300,7 +309,7 @@ No higher consumer may collapse them into one fake closure object.
 ## 9. Promotion rules
 
 ### 9.1 A lego sim starts as `diagnostic_only`
-A sim should be considered `diagnostic_only` by default until it proves otherwise.
+A sim should be considered `diagnostic_only` by default until it earns a stronger internal promotion state.
 
 ### 9.2 Promotion requires:
 - required fields declared

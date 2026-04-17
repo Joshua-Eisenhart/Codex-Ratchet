@@ -20,6 +20,8 @@ import json
 import os
 import sys
 
+classification = "canonical"
+
 try:
     import cvc5
     from cvc5 import Kind
@@ -124,6 +126,8 @@ TOOL_INTEGRATION_DEPTH = {
 
 def cvc5_formal_group_height_constraint(height, prime, first_nonzero_degree=None):
     """
+
+
     Prove: For formal group law of height h, [p](x) has first nonzero term at degree p^h
 
     Args:

@@ -13,6 +13,7 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
+from axis0_constraint_types import build_constraint_family_profile
 
 ROOT = Path(__file__).resolve().parent
 SIM_RESULTS = ROOT / "a2_state" / "sim_results"
@@ -25,6 +26,43 @@ def load_json(path: Path) -> dict:
 
 def gate(ok: bool, name: str, detail: dict) -> dict:
     return {"name": name, "pass": bool(ok), "detail": detail}
+
+
+def _packet_constraint_family_profile(gate_map: dict[str, dict]) -> dict[str, float]:
+    observational_names = (
+        "T1_exact_same_carrier_loop_law_survives_search",
+        "T4_downstream_cut_effect_is_fenced_off_from_lower_transport_law",
+    )
+    admissible_names = (
+        "T2_generic_transport_activity_is_not_promoted_to_law",
+        "T3_symmetric_motion_summary_is_killed_as_fake_transport_law",
+        "T4_downstream_cut_effect_is_fenced_off_from_lower_transport_law",
+    )
+    stable_names = (
+        "T1_exact_same_carrier_loop_law_survives_search",
+        "T3_symmetric_motion_summary_is_killed_as_fake_transport_law",
+    )
+    entropy_names = (
+        "T1_exact_same_carrier_loop_law_survives_search",
+        "T2_generic_transport_activity_is_not_promoted_to_law",
+    )
+    topology_names = (
+        "T1_exact_same_carrier_loop_law_survives_search",
+        "T4_downstream_cut_effect_is_fenced_off_from_lower_transport_law",
+    )
+
+    def _fraction(names: tuple[str, ...]) -> float:
+        if not names:
+            return 0.0
+        return float(sum(1.0 if gate_map[name]["pass"] else 0.0 for name in names) / len(names))
+
+    return build_constraint_family_profile(
+        observational=_fraction(observational_names),
+        admissible=_fraction(admissible_names),
+        stable=_fraction(stable_names),
+        entropy_conditioned=_fraction(entropy_names),
+        topology_conditioned=_fraction(topology_names),
+    )
 
 
 def main() -> int:
@@ -85,12 +123,14 @@ def main() -> int:
     ]
 
     passed = sum(1 for item in gates if item["pass"])
+    gate_map = {item["name"]: item for item in gates}
     payload = {
         "name": "lower_tier_transport_law_search_validation",
         "timestamp": datetime.now(UTC).isoformat(),
         "passed_gates": passed,
         "total_gates": len(gates),
         "score": passed / len(gates) if gates else 0.0,
+        "constraint_family_profile": _packet_constraint_family_profile(gate_map),
         "gates": gates,
     }
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")

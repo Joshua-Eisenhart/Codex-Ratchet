@@ -1349,10 +1349,15 @@ def main():
         "all_pass": bool(deep_contract["pass"]),
     }
     
-    out_path = os.path.join(output_dir, "axis0_chiral_deep_search_results.json")
-    with open(out_path, "w") as f:
-        json.dump(clean(summary), f, indent=2)
-    print(f"\n  Results saved: {out_path}")
+    canonical_out_path = os.path.join(
+        output_dir, f"{os.path.splitext(os.path.basename(__file__))[0]}_results.json"
+    )
+    legacy_out_path = os.path.join(output_dir, "axis0_chiral_deep_search_results.json")
+    payload = json.dumps(clean(summary), indent=2)
+    for target in dict.fromkeys([canonical_out_path, legacy_out_path]):
+        with open(target, "w") as f:
+            f.write(payload)
+    print(f"\n  Results saved: {canonical_out_path}")
     
     print(f"\n{'=' * 80}")
     print(f"PROBE STATUS: {'PASS' if deep_contract['pass'] else 'FAIL'}")

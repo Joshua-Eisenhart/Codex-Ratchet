@@ -349,6 +349,7 @@ if __name__ == "__main__":
         "name": "torch_l1_coherence",
         "description": "L1Coherence: C_l1(rho) = sum |rho_ij| for i!=j, zero for incoherent states",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive, "negative": negative,
         "boundary": boundary, "sympy_check": sympy_check,
         "classification": "canonical",

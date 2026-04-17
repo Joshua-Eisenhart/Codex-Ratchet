@@ -8,6 +8,8 @@ Supporting: sympy derives n-truncation conditions symbolically.
 import json, os
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"},
     "pyg": {"tried": False, "used": False, "reason": "PyG not needed; no graph message passing in this constraint sim"},
@@ -51,7 +53,9 @@ except ImportError:
 
 
 def run_positive_tests():
-    """Positive test: valid groupoid composition where source(b) = target(a)."""
+    """
+
+Positive test: valid groupoid composition where source(b) = target(a)."""
     results = []
 
     if not cvc5_available:

@@ -20,6 +20,8 @@ import json
 import os
 import sys
 
+classification = "canonical"
+
 try:
     import cvc5
     from cvc5 import Kind
@@ -124,6 +126,8 @@ TOOL_INTEGRATION_DEPTH = {
 
 def cvc5_type_periodicity_constraint(type_n, prime, periodicity_degree=None):
     """
+
+
     Prove: Type n complex (mod p) has periodic self-map of degree 2(p^n - 1)
 
     This is the Devinatz-Hopkins-Smith periodicity theorem constraint.

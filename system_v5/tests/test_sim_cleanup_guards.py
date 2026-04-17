@@ -7,6 +7,8 @@ import sys
 import time
 from pathlib import Path
 
+import pytest
+
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
@@ -15,12 +17,381 @@ def _load_module(module_name: str, path: Path):
     spec = importlib.util.spec_from_file_location(module_name, path)
     assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
+    module_parent = str(path.parent)
+    inserted_parent = False
+    if module_parent not in sys.path:
+        sys.path.insert(0, module_parent)
+        inserted_parent = True
     sys.modules[module_name] = module
     try:
         spec.loader.exec_module(module)
         return module
     finally:
         sys.modules.pop(module_name, None)
+        if inserted_parent:
+            sys.path.remove(module_parent)
+
+
+def test_axis0_result_loader_prefers_canonical_over_legacy(tmp_path) -> None:
+    module = _load_module(
+        "axis0_result_loader_prefers_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "axis0_result_loader.py",
+    )
+    results = tmp_path / "sim_results"
+    results.mkdir()
+    (results / "sim_axis0_bridge_search_results.json").write_text(
+        json.dumps({"source": "canonical"}),
+        encoding="utf-8",
+    )
+    (results / "axis0_bridge_search_results.json").write_text(
+        json.dumps({"source": "legacy"}),
+        encoding="utf-8",
+    )
+
+    resolved = module.resolve_axis0_result_path(results, "axis0_bridge_search_results.json")
+    payload = module.load_axis0_result(results, "axis0_bridge_search_results.json")
+
+    assert resolved.name == "sim_axis0_bridge_search_results.json"
+    assert payload["source"] == "canonical"
+
+
+def test_axis0_result_loader_falls_back_to_legacy_when_canonical_missing(tmp_path) -> None:
+    module = _load_module(
+        "axis0_result_loader_fallback_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "axis0_result_loader.py",
+    )
+    results = tmp_path / "sim_results"
+    results.mkdir()
+    (results / "axis0_phase5b_results.json").write_text(
+        json.dumps({"source": "legacy"}),
+        encoding="utf-8",
+    )
+
+    resolved = module.resolve_axis0_result_path(results, "axis0_phase5b_results.json")
+    payload = module.load_axis0_result(results, "axis0_phase5b_results.json")
+
+    assert resolved.name == "axis0_phase5b_results.json"
+    assert payload["source"] == "legacy"
+
+
+def test_validate_axis0_attractor_basin_boundary_search_accepts_canonical_only_result(
+    tmp_path, monkeypatch
+) -> None:
+    monkeypatch.syspath_prepend(str(REPO_ROOT / "system_v4" / "probes"))
+    module = _load_module(
+        "validate_axis0_attractor_basin_boundary_search_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_axis0_attractor_basin_boundary_search.py",
+    )
+    results = tmp_path / "sim_results"
+    results.mkdir()
+    q1_configs = [
+        {
+            "constant_at_1": False,
+            "lr_asym_min": 0.91,
+            "lr_asym_mean": 0.92,
+            "lr_asym_max": 0.995,
+        }
+        for _ in range(8)
+    ]
+    payload = {
+        "q1_trajectory_lr_asym": {"configs": q1_configs},
+        "q3_ti_boundary": {
+            "best_lr_asym_before_threshold": 0.05,
+            "threshold_accuracy": 0.95,
+            "n_successes": 20,
+            "n_failures": 5,
+            "failure_asym_before_mean": 0.2,
+            "success_asym_before_mean": 0.89,
+        },
+    }
+    (results / "sim_axis0_attractor_basin_boundary_results.json").write_text(
+        json.dumps(payload),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "SIM_RESULTS", results)
+    monkeypatch.setattr(
+        module,
+        "OUTPUT_PATH",
+        results / "axis0_attractor_basin_boundary_search_validation.json",
+    )
+    monkeypatch.setattr(sys, "argv", ["validate_axis0_attractor_basin_boundary_search.py"])
+
+    rc = module.main()
+    written = json.loads(module.OUTPUT_PATH.read_text(encoding="utf-8"))
+
+    assert rc == 0
+    assert written["passed_gates"] == written["total_gates"] == 3
+
+
+def test_validate_c1_bridge_object_support_contract_accepts_open_search_with_explicit_handoff(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "validate_c1_bridge_object_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_c1_bridge_object_packet.py",
+    )
+    results = tmp_path / "sim_results"
+    results.mkdir()
+    payload = {
+        "bridge_object": {
+            "name": "Xi_chiral_entangle",
+            "status": "admitted_bridge_object_for_downstream_readout_not_final_owner_law",
+            "scope": "downstream_readout_only",
+            "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+            "evidence": {
+                "bridge_winner": "Xi_chiral_entangle",
+                "winner_mean_mi": 0.82,
+                "winner_mean_i_c": 0.03,
+                "runner_up": "Xi_chiral_hist_entangle",
+                "runner_up_mean_i_c": -0.07,
+                "lr_direct_mean_mi": 0.0,
+                "counterfeit_status": "counterfeit_beats_mi_but_loses_signed_honesty",
+                "counterfeit_mean_live_I_c": 0.03,
+                "counterfeit_mean_counterfeit_I_c": -0.06,
+                "counterfeit_mean_I_c_gap": 0.09,
+            },
+        },
+        "support_contract": {
+            "c1_search_closed": False,
+            "bridge_owner_alignment": {
+                "pass": True,
+                "status": "axis_internal_candidate_not_final_owner_law",
+                "placement_relation": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+                "owner_dependency": "must_bind_under_xi_hist_signed_law",
+                "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+                "winner": "Xi_chiral_entangle",
+                "runner_up": "Xi_chiral_hist_entangle",
+            },
+            "carrier_handoff": {
+                "candidate": "Xi_chiral_entangle",
+                "status": "provisional_handoff_ready",
+                "placement_contract": "downstream_axis_internal_bridge_candidate_only",
+                "owner_dependency": "must_bind_under_xi_hist_signed_law",
+                "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+                "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+            },
+            "carrier_selection_handoff_matches_search": True,
+            "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+            "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+            "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            "entropy_gate_name": "E10_current_bridge_candidate_is_explicit_and_provisional",
+            "entropy_gate_status": "admitted_executable_candidate_not_final_owner_law",
+        },
+        "non_claims": {
+            "status": "explicit_non_owner_reservation",
+            "final_xi_owner_law": "reserved_for_future_owner_doctrine_not_claimed_by_c1",
+            "shell_doctrine": "reserved_for_future_shell_doctrine_not_claimed_by_c1",
+            "history_law_replacement": "reserved_for_future_history_law_replacement_not_claimed_by_c1",
+            "entropy_family_owner_doctrine": "reserved_for_future_entropy_owner_doctrine_not_claimed_by_c1",
+            "owner_dependency": "must_bind_under_xi_hist_signed_law",
+            "consumer_scope": "downstream_readout_only",
+        },
+    }
+    (results / "c1_bridge_object_packet_results.json").write_text(json.dumps(payload), encoding="utf-8")
+
+    monkeypatch.setattr(module, "SIM_RESULTS", results)
+    monkeypatch.setattr(module, "OUTPUT_PATH", results / "c1_bridge_object_packet_validation.json")
+    monkeypatch.setattr(sys, "argv", ["validate_c1_bridge_object_packet.py"])
+
+    rc = module.main()
+    written = json.loads(module.OUTPUT_PATH.read_text(encoding="utf-8"))
+    gate_map = {gate["name"]: gate for gate in written["gates"]}
+
+    assert rc == 0
+    assert gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"] is True
+
+
+def test_validate_c1_signed_bridge_candidate_search_accepts_near_live_counterfeit_pressure(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "validate_c1_signed_bridge_candidate_search_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_c1_signed_bridge_candidate_search.py",
+    )
+    results = tmp_path / "sim_results"
+    results.mkdir()
+    payload = {
+        "candidate_object": {
+            "status": "provisional_signed_bridge_candidate",
+            "keep": True,
+            "evidence": {
+                "bridge_winner": "Xi_chiral_entangle",
+                "winner_mean_mi": 0.82,
+                "winner_mean_i_c": 0.03,
+                "runner_up": "Xi_chiral_hist_entangle",
+                "runner_up_mean_i_c": -0.07,
+                "lr_direct_mean_mi": 0.0,
+            },
+        },
+        "negative_family": {
+            "history_mispair_counterfeit": {
+                "status": "counterfeit_beats_mi_but_loses_signed_honesty",
+                "keep": True,
+                "evidence": {
+                    "mean_live_I_AB": 0.82,
+                    "mean_counterfeit_I_AB": 0.78,
+                    "mean_live_I_c": 0.03,
+                    "mean_counterfeit_I_c": -0.06,
+                    "mean_I_c_gap": 0.09,
+                },
+            }
+        },
+        "support_chain": {
+            "bridge_owner_alignment": {
+                "pass": True,
+                "status": "axis_internal_candidate_not_final_owner_law",
+                "placement_relation": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+                "owner_dependency": "must_bind_under_xi_hist_signed_law",
+                "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+                "winner": "Xi_chiral_entangle",
+                "runner_up": "Xi_chiral_hist_entangle",
+            },
+            "matched_marginal_closed": True,
+            "matched_marginal_contract_scope": "xi_downstream_handoff_and_honesty_layer",
+            "matched_marginal_required_gates": [
+                "M8_matched_marginal_layer_preserves_xi_downstream_handoff_contract",
+                "M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping",
+            ],
+            "matched_marginal_required_passes": {
+                "M8_matched_marginal_layer_preserves_xi_downstream_handoff_contract": True,
+                "M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping": True,
+            },
+            "matched_marginal_excluded_failures": ["M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner"],
+            "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+            "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+            "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            "entropy_readout_current_bridge_gate": "E10_current_bridge_candidate_is_explicit_and_provisional",
+        },
+        "unresolved": {
+            "status": "explicit_non_owner_reservation",
+            "final_xi_owner_law": "reserved_for_future_owner_doctrine_not_claimed_by_c1",
+            "shell_doctrine": "reserved_for_future_shell_doctrine_not_claimed_by_c1",
+            "history_law_replacement": "reserved_for_future_history_law_replacement_not_claimed_by_c1",
+            "entropy_family_owner_doctrine": "reserved_for_future_entropy_owner_doctrine_not_claimed_by_c1",
+            "owner_dependency": "must_bind_under_xi_hist_signed_law",
+            "consumer_scope": "downstream_readout_only",
+        },
+        "owner_read": {
+            "status": "admitted_executable_candidate_not_final_owner_law",
+        },
+    }
+    (results / "c1_signed_bridge_candidate_search_results.json").write_text(
+        json.dumps(payload),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "SIM_RESULTS", results)
+    monkeypatch.setattr(
+        module,
+        "OUTPUT_PATH",
+        results / "c1_signed_bridge_candidate_search_validation.json",
+    )
+    monkeypatch.setattr(sys, "argv", ["validate_c1_signed_bridge_candidate_search.py"])
+
+    rc = module.main()
+    written = json.loads(module.OUTPUT_PATH.read_text(encoding="utf-8"))
+    gate_map = {gate["name"]: gate for gate in written["gates"]}
+
+    assert rc == 0
+    assert gate_map["C1S2_counterfeit_pressure_keeps_signed_honesty_load_bearing"]["pass"] is True
+
+
+def test_validate_c1_signed_bridge_candidate_search_keeps_support_chain_fail_closed(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "validate_c1_signed_bridge_candidate_search_fail_closed_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_c1_signed_bridge_candidate_search.py",
+    )
+    results = tmp_path / "sim_results"
+    results.mkdir()
+    payload = {
+        "candidate_object": {
+            "status": "provisional_signed_bridge_candidate",
+            "keep": True,
+            "evidence": {
+                "bridge_winner": "Xi_chiral_entangle",
+                "winner_mean_mi": 0.82,
+                "winner_mean_i_c": 0.03,
+                "runner_up": "Xi_chiral_hist_entangle",
+                "runner_up_mean_i_c": -0.07,
+                "lr_direct_mean_mi": 0.0,
+            },
+        },
+        "negative_family": {
+            "history_mispair_counterfeit": {
+                "status": "counterfeit_beats_mi_but_loses_signed_honesty",
+                "keep": True,
+                "evidence": {
+                    "mean_live_I_AB": 0.82,
+                    "mean_counterfeit_I_AB": 0.78,
+                    "mean_live_I_c": 0.03,
+                    "mean_counterfeit_I_c": -0.06,
+                    "mean_I_c_gap": 0.09,
+                },
+            }
+        },
+        "support_chain": {
+            "bridge_owner_alignment": {
+                "pass": True,
+                "status": "axis_internal_candidate_not_final_owner_law",
+                "placement_relation": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+                "owner_dependency": "must_bind_under_xi_hist_signed_law",
+                "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+                "winner": "Xi_chiral_entangle",
+                "runner_up": "Xi_chiral_hist_entangle",
+            },
+            "matched_marginal_closed": False,
+            "matched_marginal_contract_scope": "xi_downstream_handoff_and_honesty_layer",
+            "matched_marginal_required_gates": [
+                "M8_matched_marginal_layer_preserves_xi_downstream_handoff_contract",
+                "M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping",
+            ],
+            "matched_marginal_required_passes": {
+                "M8_matched_marginal_layer_preserves_xi_downstream_handoff_contract": False,
+                "M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping": True,
+            },
+            "matched_marginal_excluded_failures": ["M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner"],
+            "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+            "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+            "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            "entropy_readout_current_bridge_gate": "E10_current_bridge_candidate_is_explicit_and_provisional",
+        },
+        "unresolved": {
+            "status": "explicit_non_owner_reservation",
+            "final_xi_owner_law": "reserved_for_future_owner_doctrine_not_claimed_by_c1",
+            "shell_doctrine": "reserved_for_future_shell_doctrine_not_claimed_by_c1",
+            "history_law_replacement": "reserved_for_future_history_law_replacement_not_claimed_by_c1",
+            "entropy_family_owner_doctrine": "reserved_for_future_entropy_owner_doctrine_not_claimed_by_c1",
+            "owner_dependency": "must_bind_under_xi_hist_signed_law",
+            "consumer_scope": "downstream_readout_only",
+        },
+        "owner_read": {
+            "status": "admitted_executable_candidate_not_final_owner_law",
+        },
+    }
+    (results / "c1_signed_bridge_candidate_search_results.json").write_text(
+        json.dumps(payload),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "SIM_RESULTS", results)
+    monkeypatch.setattr(
+        module,
+        "OUTPUT_PATH",
+        results / "c1_signed_bridge_candidate_search_validation.json",
+    )
+    monkeypatch.setattr(sys, "argv", ["validate_c1_signed_bridge_candidate_search.py"])
+
+    rc = module.main()
+    written = json.loads(module.OUTPUT_PATH.read_text(encoding="utf-8"))
+    gate_map = {gate["name"]: gate for gate in written["gates"]}
+
+    assert rc == 1
+    assert gate_map["C1S1_current_signed_bridge_candidate_is_explicit"]["pass"] is True
+    assert gate_map["C1S2_counterfeit_pressure_keeps_signed_honesty_load_bearing"]["pass"] is True
+    assert gate_map["C1S3_support_chain_is_closed_before_candidate_packaging"]["pass"] is False
 
 
 def test_live_queue_controller_ignores_copy_sims(tmp_path, monkeypatch) -> None:
@@ -4982,3 +5353,1213 @@ def test_controller_plane_snapshot_dry_mode_prints_snapshot(
 
     assert rc == 0
     assert '"control_plane"' in out
+
+
+def test_axis0_xi_law_fingerprint_matches_across_strict_pre_entropy_and_entropy() -> None:
+    module = _load_module(
+        "axis0_xi_law_fingerprint_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "axis0_xi_law_fingerprint.py",
+    )
+    law_summary = {
+        "law_name": "Xi_hist signed law",
+        "owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
+        "late_anchor_equivalence": {
+            "placement_8_23_equals_16_31": True,
+            "placement_8_23_equals_prefix_8_15_on_mi": True,
+            "placement_8_23_equals_prefix_8_15_on_ic": True,
+            "placement_8_23_equals_prefix_8_15_on_signed_cut": True,
+        },
+        "anchor_and_width_profile": {
+            "best_prefix_drop_by_ic_is_8_15": True,
+            "best_early_width_by_ic_is_0_7_majority": True,
+            "late_anchor_beats_0_3_globally_on_ic": True,
+            "front_half_signed_cut_preference_all_seats": True,
+            "clifford_mi_0_7_vs_0_15_is_tied": True,
+        },
+        "counts": {
+            "total_rows": 6,
+            "off_clifford_rows": 4,
+            "clifford_rows": 2,
+            "placement_8_23_beats_0_3_on_ic_count": 6,
+            "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
+            "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
+            "best_early_width_by_ic_counts": {"0_3": 1, "0_7": 5, "0_11": 0, "0_15": 0},
+            "best_prefix_drop_by_ic_counts": {"0_15": 0, "1_15": 0, "2_15": 0, "4_15": 0, "8_15": 6},
+        },
+    }
+    strict_payload = {"verdict": {"xi_hist_signed_law_summary": law_summary}}
+    pre_entropy_payload = {
+        "gates": [
+            {
+                "name": "P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff",
+                "detail": law_summary,
+            }
+        ]
+    }
+    entropy_payload = {
+        "gates": [
+            {
+                "name": "E12_xi_hist_law_summary_binds_pre_entropy_to_readout",
+                "detail": {"p14_detail": law_summary},
+            }
+        ]
+    }
+
+    strict_fp = module.strict_law_fingerprint(strict_payload)
+    pre_fp = module.pre_entropy_law_fingerprint(pre_entropy_payload)
+    entropy_fp = module.entropy_law_fingerprint(entropy_payload)
+
+    assert strict_fp == pre_fp == entropy_fp
+
+
+def test_axis0_xi_law_fingerprint_carrier_alignment_uses_global_0_7_8_23_8_15() -> None:
+    module = _load_module(
+        "axis0_xi_law_fingerprint_carrier_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "axis0_xi_law_fingerprint.py",
+    )
+    strict_law = {
+        "law_name": "Xi_hist signed law",
+        "owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
+        "late_anchor_equivalence": {
+            "placement_8_23_equals_16_31": True,
+            "placement_8_23_equals_prefix_8_15_on_mi": True,
+            "placement_8_23_equals_prefix_8_15_on_ic": True,
+            "placement_8_23_equals_prefix_8_15_on_signed_cut": True,
+        },
+        "anchor_and_width_profile": {
+            "best_prefix_drop_by_ic_is_8_15": True,
+            "best_early_width_by_ic_is_0_7_majority": True,
+            "late_anchor_beats_0_3_globally_on_ic": True,
+            "front_half_signed_cut_preference_all_seats": True,
+            "clifford_mi_0_7_vs_0_15_is_tied": True,
+        },
+        "counts": {
+            "total_rows": 6,
+            "off_clifford_rows": 4,
+            "clifford_rows": 2,
+            "placement_8_23_beats_0_3_on_ic_count": 6,
+            "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
+            "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
+            "best_early_width_by_ic_counts": {"0_3": 1, "0_7": 5, "0_11": 0, "0_15": 0},
+            "best_prefix_drop_by_ic_counts": {"0_15": 0, "1_15": 0, "2_15": 0, "4_15": 0, "8_15": 6},
+        },
+    }
+    carrier_payload = {
+        "gates": [
+            {
+                "name": "C5_strict_bakeoff_confirms_structured_history_without_shell_shortcut",
+                "detail": {
+                    "history_nontrivial_while_shell_flat": True,
+                    "point_ref_minus_shell_base_std": 0.2,
+                    "best_window_by_mi_counts": {"0_3": 0, "0_7": 6, "0_11": 0, "0_15": 0},
+                    "best_placement_by_mi_counts": {"0_15": 0, "8_23": 6, "16_31": 0},
+                    "best_prefix_drop_by_mi_counts": {"0_15": 0, "1_15": 0, "2_15": 0, "4_15": 0, "8_15": 6},
+                    "early_window_beats_shifted_count": 0,
+                },
+            }
+        ]
+    }
+
+    law_fp = module.strict_law_fingerprint({"verdict": {"xi_hist_signed_law_summary": strict_law}})
+    carrier_fp = module.carrier_law_fingerprint(carrier_payload)
+
+    assert module.carrier_matches_law(carrier_fp, law_fp) is True
+    carrier_fp["best_prefix_drop_by_mi_counts"]["8_15"] = 5
+    assert module.carrier_matches_law(carrier_fp, law_fp) is False
+
+
+def test_fe_indexed_xi_hist_owner_alignment_stays_subordinate_to_strict_law() -> None:
+    module = _load_module(
+        "axis0_fe_indexed_xi_hist_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "sim_axis0_fe_indexed_xi_hist.py",
+    )
+    strict_law = {
+        "owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
+        "placement_label": "8_23",
+        "canonical_prefix_drop": "8_15",
+        "canonical_early_width": "0_7",
+    }
+    summary = {
+        "winner_counts": {
+            "A_phase4_winner": 6,
+            "B_fe_indexed": 0,
+            "C_fe_pairs_only": 0,
+            "D_lag7_pairs": 0,
+        },
+        "best_new_bridge": "C_fe_pairs_only",
+        "best_gain": -0.061,
+    }
+    deep_contract = {"winner": "A_phase4_winner"}
+    results = [
+        {
+            "bridges": {
+                "A_phase4_winner": {"ic": 0.5},
+                "C_fe_pairs_only": {"ic": 0.4},
+            }
+        }
+        for _ in range(6)
+    ]
+
+    alignment = module._xi_hist_owner_alignment_surface(
+        results,
+        summary,
+        deep_contract,
+        strict_law,
+    )
+
+    assert alignment["pass"] is True
+    assert alignment["status"] == "subordinate_refinement_only"
+    assert alignment["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+
+    results[0]["bridges"]["C_fe_pairs_only"]["ic"] = 0.6
+    broken = module._xi_hist_owner_alignment_surface(
+        results,
+        summary,
+        deep_contract,
+        strict_law,
+    )
+    assert broken["pass"] is False
+
+
+def test_bridge_search_owner_alignment_stays_downstream_of_xi_hist_signed_law() -> None:
+    module = _load_module(
+        "axis0_bridge_search_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "sim_axis0_bridge_search.py",
+    )
+    strict_law = {
+        "owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
+        "placement_label": "8_23",
+        "canonical_prefix_drop": "8_15",
+        "canonical_early_width": "0_7",
+    }
+    ranking = ["Xi_chiral_entangle", "Xi_chiral_hist_entangle"]
+    candidate_mis = {
+        "Xi_chiral_entangle": [0.82, 0.81],
+        "Xi_chiral_hist_entangle": [0.51, 0.50],
+    }
+    candidate_ics = {
+        "Xi_chiral_entangle": [0.03, 0.028],
+        "Xi_chiral_hist_entangle": [-0.07, -0.08],
+    }
+    deep_contract = {"winner": "Xi_chiral_entangle"}
+
+    alignment = module._xi_hist_owner_alignment_surface(
+        ranking,
+        candidate_mis,
+        candidate_ics,
+        deep_contract,
+        strict_law,
+    )
+
+    assert alignment["pass"] is True
+    assert alignment["status"] == "axis_internal_candidate_not_final_owner_law"
+    assert alignment["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+
+    candidate_ics["Xi_chiral_hist_entangle"] = [0.01, 0.02]
+    broken = module._xi_hist_owner_alignment_surface(
+        ranking,
+        candidate_mis,
+        candidate_ics,
+        deep_contract,
+        strict_law,
+    )
+    assert broken["pass"] is False
+
+
+def test_entropy_readout_bridge_owner_alignment_contract_is_fail_closed() -> None:
+    module = _load_module(
+        "axis0_entropy_readout_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_entropy_readout_packet.py",
+    )
+    alignment = {
+        "pass": True,
+        "status": "axis_internal_candidate_not_final_owner_law",
+        "placement_relation": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+        "owner_dependency": "must_bind_under_xi_hist_signed_law",
+        "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+        "winner": "Xi_chiral_entangle",
+        "runner_up": "Xi_chiral_hist_entangle",
+    }
+
+    assert module.bridge_owner_alignment_ok(alignment) is True
+
+    broken = dict(alignment)
+    broken["owner_dependency"] = "free_owner_promotion"
+    assert module.bridge_owner_alignment_ok(broken) is False
+
+
+def test_c1_bridge_owner_alignment_contract_is_fail_closed() -> None:
+    signed_module = _load_module(
+        "axis0_c1_signed_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_c1_signed_bridge_candidate_search.py",
+    )
+    bridge_module = _load_module(
+        "axis0_c1_bridge_object_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_c1_bridge_object_packet.py",
+    )
+    alignment = {
+        "pass": True,
+        "status": "axis_internal_candidate_not_final_owner_law",
+        "placement_relation": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+        "owner_dependency": "must_bind_under_xi_hist_signed_law",
+        "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+        "winner": "Xi_chiral_entangle",
+        "runner_up": "Xi_chiral_hist_entangle",
+    }
+
+    assert signed_module.bridge_owner_alignment_ok(alignment) is True
+    assert bridge_module.bridge_owner_alignment_ok(alignment) is True
+
+    broken = dict(alignment)
+    broken["runner_up"] = "Xi_loop_phase"
+    assert signed_module.bridge_owner_alignment_ok(broken) is False
+    assert bridge_module.bridge_owner_alignment_ok(broken) is False
+
+
+def test_axis0_signed_bridge_handoff_contract_is_fail_closed() -> None:
+    module = _load_module(
+        "axis0_bridge_contract_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "axis0_bridge_owner_alignment_contract.py",
+    )
+    handoff = {
+        "candidate": "Xi_chiral_entangle",
+        "status": "provisional_handoff_ready",
+        "placement_contract": "downstream_axis_internal_bridge_candidate_only",
+        "owner_dependency": "must_bind_under_xi_hist_signed_law",
+        "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+        "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+    }
+
+    assert module.signed_bridge_handoff_ok(handoff) is True
+
+    broken = dict(handoff)
+    broken["consumer_status"] = "final_owner_law"
+    assert module.signed_bridge_handoff_ok(broken) is False
+
+    built = module.build_signed_bridge_handoff(
+        bridge_owner_alignment={
+            "pass": True,
+            "status": "axis_internal_candidate_not_final_owner_law",
+            "placement_relation": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            "owner_dependency": "must_bind_under_xi_hist_signed_law",
+            "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+            "winner": "Xi_chiral_entangle",
+            "runner_up": "Xi_chiral_hist_entangle",
+        },
+        extra_fields={"object": "c1_signed_bridge_candidate_handoff"},
+    )
+    assert built["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi"
+    assert built["bridge_owner_alignment"]["winner"] == "Xi_chiral_entangle"
+    assert module.axis_internal_candidate_status() == "axis_internal_candidate_not_final_owner_law"
+    assert (
+        module.axis_internal_candidate_relation()
+        == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+    )
+    assert (
+        module.axis_internal_candidate_placement()
+        == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law"
+    )
+    assert module.current_bridge_gate_name() == "E10_current_bridge_candidate_is_explicit_and_provisional"
+    assert module.current_bridge_object_status() == "admitted_bridge_object_for_downstream_readout_not_final_owner_law"
+    assert module.axis_internal_mapping_ok({"Xi_chiral_entangle": module.axis_internal_candidate_status()}) is True
+    assert (
+        module.axis_internal_placement_ok(
+            {"Xi_chiral_entangle": module.axis_internal_candidate_placement()}
+        )
+        is True
+    )
+
+    with pytest.raises(ValueError):
+        module.build_signed_bridge_handoff(
+            extra_fields={"consumer_status": "final_owner_law"},
+        )
+
+    reservation = module.build_non_owner_reservation()
+    assert module.non_owner_reservation_ok(reservation) is True
+
+    broken_reservation = dict(reservation)
+    broken_reservation["consumer_scope"] = "final_owner_law"
+    assert module.non_owner_reservation_ok(broken_reservation) is False
+
+    with pytest.raises(ValueError):
+        module.build_non_owner_reservation(
+            extra_fields={"consumer_scope": "final_owner_law"},
+        )
+
+    owner_read = module.build_owner_read(note=module.c1_signed_candidate_owner_note())
+    assert module.owner_read_ok(owner_read) is True
+    assert "without replacing xi_hist signed law" in owner_read["note"]
+
+    broken_owner_read = dict(owner_read)
+    broken_owner_read["status"] = "final_owner_law"
+    assert module.owner_read_ok(broken_owner_read) is False
+
+
+def test_axis0_bridge_owner_packet_surface_is_fail_closed(tmp_path) -> None:
+    module = _load_module(
+        "axis0_bridge_owner_packet_surface_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "axis0_bridge_owner_packet_surface.py",
+    )
+    results = tmp_path / "sim_results"
+    results.mkdir()
+
+    c1_signed_result = {
+        "support_chain": {
+            "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+            "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+            "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            "entropy_readout_current_bridge_gate": "E10_current_bridge_candidate_is_explicit_and_provisional",
+        },
+        "downstream_handoff": {
+            "candidate": "Xi_chiral_entangle",
+            "status": "provisional_handoff_ready",
+            "placement_contract": "downstream_axis_internal_bridge_candidate_only",
+            "owner_dependency": "must_bind_under_xi_hist_signed_law",
+            "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+            "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+        },
+        "unresolved": {
+            "status": "explicit_non_owner_reservation",
+            "final_xi_owner_law": "reserved_for_future_owner_doctrine_not_claimed_by_c1",
+            "shell_doctrine": "reserved_for_future_shell_doctrine_not_claimed_by_c1",
+            "history_law_replacement": "reserved_for_future_history_law_replacement_not_claimed_by_c1",
+            "entropy_family_owner_doctrine": "reserved_for_future_entropy_owner_doctrine_not_claimed_by_c1",
+            "owner_dependency": "must_bind_under_xi_hist_signed_law",
+            "consumer_scope": "downstream_readout_only",
+        },
+        "owner_read": {
+            "status": "admitted_executable_candidate_not_final_owner_law",
+            "note": "bounded",
+        },
+    }
+    c1_bridge_result = {
+        "bridge_object": {
+            "status": "admitted_bridge_object_for_downstream_readout_not_final_owner_law",
+        },
+        "support_contract": {
+            "bridge_owner_alignment": {
+                "pass": True,
+                "status": "axis_internal_candidate_not_final_owner_law",
+                "placement_relation": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+                "owner_dependency": "must_bind_under_xi_hist_signed_law",
+                "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+                "winner": "Xi_chiral_entangle",
+                "runner_up": "Xi_chiral_hist_entangle",
+            },
+            "carrier_handoff": {
+                "candidate": "Xi_chiral_entangle",
+                "status": "provisional_handoff_ready",
+                "placement_contract": "downstream_axis_internal_bridge_candidate_only",
+                "owner_dependency": "must_bind_under_xi_hist_signed_law",
+                "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+                "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+            },
+            "carrier_selection_handoff_matches_search": True,
+            "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+            "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+            "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            "entropy_gate_name": "E10_current_bridge_candidate_is_explicit_and_provisional",
+            "entropy_gate_status": "admitted_executable_candidate_not_final_owner_law",
+        },
+        "non_claims": {
+            "status": "explicit_non_owner_reservation",
+            "final_xi_owner_law": "reserved_for_future_owner_doctrine_not_claimed_by_c1",
+            "shell_doctrine": "reserved_for_future_shell_doctrine_not_claimed_by_c1",
+            "history_law_replacement": "reserved_for_future_history_law_replacement_not_claimed_by_c1",
+            "entropy_family_owner_doctrine": "reserved_for_future_entropy_owner_doctrine_not_claimed_by_c1",
+            "owner_dependency": "must_bind_under_xi_hist_signed_law",
+            "consumer_scope": "downstream_readout_only",
+        },
+    }
+    validation_payload = lambda name: {"gates": [{"name": name, "pass": True}]}
+    stack_validation = {
+        "gates": [
+            {"name": "S5_axis0_ladder_is_mechanically_traversable", "pass": True},
+            {"name": "S6_xi_chiral_entangle_remains_axis_internal_and_not_owner_law", "pass": True},
+            {"name": "S7_axis0_stack_explicitly_consumes_named_contract_gates", "pass": True},
+            {"name": "S9_axis0_stack_consumes_standalone_c1_bridge_object_contract", "pass": True},
+        ]
+    }
+
+    (results / "c1_signed_bridge_candidate_search_results.json").write_text(
+        json.dumps(c1_signed_result),
+        encoding="utf-8",
+    )
+    (results / "c1_signed_bridge_candidate_search_validation.json").write_text(
+        json.dumps(
+            {
+                "gates": [
+                    {"name": "C1S3_support_chain_is_closed_before_candidate_packaging", "pass": True},
+                    {"name": "C1S4_candidate_stays_provisional_and_does_not_overpromote", "pass": True},
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    (results / "c1_bridge_object_packet_results.json").write_text(
+        json.dumps(c1_bridge_result),
+        encoding="utf-8",
+    )
+    (results / "c1_bridge_object_packet_validation.json").write_text(
+        json.dumps(
+            {
+                "gates": [
+                    {"name": "C1B1_bridge_object_is_explicit_and_downstream_only", "pass": True},
+                    {"name": "C1B3_bridge_object_is_bound_to_the_existing_support_contract", "pass": True},
+                    {"name": "C1B4_bridge_object_keeps_owner_doctrine_questions_open", "pass": True},
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    (results / "pre_entropy_packet_validation.json").write_text(
+        json.dumps(
+            {
+                "gates": [
+                    {"name": "P22_c1_signed_bridge_candidate_is_explicit_and_provisional", "pass": True},
+                    {"name": "P23_xi_chiral_entangle_remains_downstream_of_xi_hist_signed_law", "pass": True},
+                    {"name": "P24_carrier_handoff_matches_pre_entropy_downstream_mapping", "pass": True},
+                    {"name": "P25_standalone_c1_bridge_object_matches_pre_entropy_contract", "pass": True},
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    (results / "entropy_readout_packet_validation.json").write_text(
+        json.dumps(validation_payload("E10_current_bridge_candidate_is_explicit_and_provisional")),
+        encoding="utf-8",
+    )
+    (results / "axis0_stack_packet_validation.json").write_text(
+        json.dumps(stack_validation),
+        encoding="utf-8",
+    )
+
+    surface = module.load_bridge_owner_packet_surface(results)
+    assert surface["pass"] is True
+    assert surface["gate_passes"]["S6_xi_chiral_entangle_remains_axis_internal_and_not_owner_law"] is True
+
+    broken = dict(c1_bridge_result)
+    broken["support_contract"] = dict(c1_bridge_result["support_contract"])
+    broken["support_contract"]["entropy_gate_status"] = "final_owner_law"
+    (results / "c1_bridge_object_packet_results.json").write_text(
+        json.dumps(broken),
+        encoding="utf-8",
+    )
+
+    broken_surface = module.load_bridge_owner_packet_surface(results)
+    assert broken_surface["pass"] is False
+
+
+def test_axis0_distinguishability_constraint_is_fail_closed() -> None:
+    module = _load_module(
+        "axis0_constraint_types_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "axis0_constraint_types.py",
+    )
+
+    surface = module.build_distinguishability_constraint(
+        observational=True,
+        admissible=True,
+        stable=True,
+        entropy_conditioned=True,
+        topology_conditioned=True,
+        note="ok",
+    )
+    assert surface["type"] == "distinguishability_constraint"
+    assert surface["pass"] is True
+    assert surface["gate_fraction"] == 1.0
+    assert surface["signals"] == {}
+    assert surface["constraint_profile"]["entropy_conditioned"] == 0.0
+
+    broken = module.build_distinguishability_constraint(
+        observational=True,
+        admissible=False,
+        stable=True,
+        entropy_conditioned=True,
+        topology_conditioned=True,
+        note="broken",
+    )
+    assert broken["pass"] is False
+    assert broken["gate_fraction"] < 1.0
+
+    thresholded = module.build_distinguishability_constraint(
+        observational=True,
+        admissible=False,
+        stable=True,
+        entropy_conditioned=True,
+        topology_conditioned=True,
+        note="thresholded",
+        pass_threshold=0.8,
+        signals={"entropy_signal": 1.25},
+    )
+    assert thresholded["pass"] is True
+    assert thresholded["gate_fraction"] == 0.8
+    assert thresholded["pass_threshold"] == 0.8
+    assert thresholded["signals"]["entropy_signal"] == 1.25
+    assert thresholded["constraint_profile"]["entropy_conditioned"] == 1.25
+
+
+def test_axis0_pyg_distinguishability_uses_lane_native_graph_operator_separation() -> None:
+    module = _load_module(
+        "axis0_pyg_proxy_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "sim_axis0_pyg_proxy.py",
+    )
+
+    strong = module._pyg_distinguishability_surface(
+        {
+            "P2_gradient_varies_with_theta": {"grad_std": 0.01},
+            "P4_theta_star_exists": {
+                "in_admissible_range": True,
+                "grad_at_theta_star": 0.02,
+                "grad_threshold_used": 0.01,
+            },
+        },
+        {
+            "B1_theta_near_zero_pole_behavior": {"is_finite": True},
+            "B2_theta_near_halfpi_equator_behavior": {"is_finite": True},
+        },
+        {"A0_gradient_profile_matches_expected": {"is_nonmonotone": True}},
+        {"edge_count": 9, "longest_path_length": 5},
+        {"sat": True},
+        {"symbolic_hubble_mid": 1.1},
+        {"mean_geodesic_distance": 0.4},
+        {"dynamic_vs_frozen_gap": 0.03},
+        [
+            {"option": "pyg_topology_surface", "composite_score": 1.3},
+            {"option": "solver_formula_surface", "composite_score": 1.2},
+            {"option": "chain_direction_surface", "composite_score": 0.6},
+            {"option": "proxy_nonnegative_surface", "composite_score": 0.4},
+        ],
+    )
+    assert strong["gates"]["entropy_conditioned"] is True
+
+    weak = module._pyg_distinguishability_surface(
+        {
+            "P2_gradient_varies_with_theta": {"grad_std": 0.01},
+            "P4_theta_star_exists": {
+                "in_admissible_range": True,
+                "grad_at_theta_star": 0.02,
+                "grad_threshold_used": 0.01,
+            },
+        },
+        {
+            "B1_theta_near_zero_pole_behavior": {"is_finite": True},
+            "B2_theta_near_halfpi_equator_behavior": {"is_finite": True},
+        },
+        {"A0_gradient_profile_matches_expected": {"is_nonmonotone": True}},
+        {"edge_count": 9, "longest_path_length": 5},
+        {"sat": True},
+        {"symbolic_hubble_mid": 1.1},
+        {"mean_geodesic_distance": 0.4},
+        {"dynamic_vs_frozen_gap": 0.01},
+        [
+            {"option": "pyg_topology_surface", "composite_score": 0.8},
+            {"option": "solver_formula_surface", "composite_score": 0.9},
+            {"option": "chain_direction_surface", "composite_score": 0.7},
+            {"option": "proxy_nonnegative_surface", "composite_score": 0.6},
+        ],
+    )
+    assert weak["gates"]["entropy_conditioned"] is False
+
+
+def test_axis0_crosslane_distinguishability_alignment_compares_gate_patterns() -> None:
+    module = _load_module(
+        "axis0_crosslane_core_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "axis0_lambda_crosslane_semantic_core.py",
+    )
+
+    aligned = module._pairwise_distinguishability_alignment_surface(
+        [
+            {
+                "lane": "lhs",
+                "distinguishability_gate_fraction": 1.0,
+                "distinguishability_surface": {
+                    "gates": {
+                        "observational": True,
+                        "admissible": True,
+                        "stable": True,
+                        "entropy_conditioned": True,
+                        "topology_conditioned": True,
+                    },
+                    "signals": {
+                        "observational_signal": 1.0,
+                        "entropy_signal": 1.2,
+                    },
+                },
+            },
+            {
+                "lane": "rhs",
+                "distinguishability_gate_fraction": 1.0,
+                "distinguishability_surface": {
+                    "gates": {
+                        "observational": True,
+                        "admissible": True,
+                        "stable": True,
+                        "entropy_conditioned": True,
+                        "topology_conditioned": True,
+                    },
+                    "signals": {
+                        "observational_signal": 1.0,
+                        "entropy_signal": 1.2,
+                    },
+                },
+            },
+        ]
+    )
+    assert aligned["min_gate_agreement"] == 1.0
+    assert aligned["max_gate_disagreement"] == 0.0
+    assert aligned["min_surface_cosine_similarity"] == 1.0
+    assert aligned["min_constraint_profile_cosine_similarity"] == pytest.approx(1.0)
+    assert aligned["min_signal_cosine_similarity"] == pytest.approx(1.0)
+
+    drifted = module._pairwise_distinguishability_alignment_surface(
+        [
+            {
+                "lane": "lhs",
+                "distinguishability_gate_fraction": 1.0,
+                "distinguishability_surface": {
+                    "gates": {
+                        "observational": True,
+                        "admissible": True,
+                        "stable": True,
+                        "entropy_conditioned": True,
+                        "topology_conditioned": True,
+                    },
+                    "signals": {
+                        "observational_signal": 1.0,
+                        "entropy_signal": 1.2,
+                    },
+                },
+            },
+            {
+                "lane": "rhs",
+                "distinguishability_gate_fraction": 0.6,
+                "distinguishability_surface": {
+                    "gates": {
+                        "observational": True,
+                        "admissible": True,
+                        "stable": True,
+                        "entropy_conditioned": False,
+                        "topology_conditioned": False,
+                    },
+                    "signals": {
+                        "observational_signal": 0.2,
+                        "entropy_signal": 0.1,
+                    },
+                },
+            },
+        ]
+    )
+    assert drifted["min_gate_agreement"] < 1.0
+    assert drifted["max_gate_disagreement"] == 1.0
+    assert drifted["min_surface_cosine_similarity"] < 1.0
+    assert drifted["min_constraint_profile_cosine_similarity"] < 1.0
+    assert drifted["min_signal_cosine_similarity"] < 1.0
+
+
+def test_axis0_semantic_row_exposes_constraint_family_profile() -> None:
+    module = _load_module(
+        "axis0_crosslane_core_rows_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "axis0_lambda_crosslane_semantic_core.py",
+    )
+
+    row = module.semantic_row(
+        lane="test_lane",
+        symbolic_hubble_mid=1.0,
+        constraint_pass=True,
+        cvc5_pass=True,
+        graph_longest_path_length=5,
+        manifold_distance=0.4,
+        pyg_mean_aggregate_norm=1.2,
+        distinguishability_pass=True,
+        distinguishability_gate_fraction=1.0,
+        distinguishability_surface={
+            "constraint_profile": {
+                "observational": 1.1,
+                "admissible": 1.0,
+                "stable": 0.9,
+                "entropy_conditioned": 1.3,
+                "topology_conditioned": 0.8,
+            }
+        },
+        constraint_family_profile={
+            "observational": 1.1,
+            "admissible": 1.0,
+            "stable": 0.9,
+            "entropy_conditioned": 1.3,
+            "topology_conditioned": 0.8,
+        },
+    )
+    assert row["constraint_family_profile"]["entropy_conditioned"] == 1.3
+
+
+def test_axis0_entropy_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_entropy_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_entropy_readout_packet.py",
+    )
+
+    gate_map = {
+        "E1_qubit_spectral_family_is_order_equivalent": {"pass": True},
+        "E2_shannon_diagonal_is_not_geometry_safe": {"pass": True},
+        "E3_product_proxy_and_pure_fi_negatives_hold": {"pass": True},
+        module.current_bridge_gate_name(): {"pass": True},
+        "E11_xi_chiral_entangle_signed_honesty_beats_mispair_counterfeit": {"pass": False},
+        "E4_bridge_family_ranking_is_separated": {"pass": True},
+        "E5_raw_and_lr_controls_stay_entropy_trivial": {"pass": True},
+        "E8_history_family_handoff_supports_signed_readout_on_same_objects": {"pass": False},
+        "E6_shell_bridge_supports_signed_entropy_readout": {"pass": True},
+        "E7_history_bridges_are_nontrivial_and_torus_sensitive": {"pass": True},
+        "E9_fep_framing_shows_nonclassical_directionality": {"pass": False},
+        "E12_xi_hist_law_summary_binds_pre_entropy_to_readout": {"pass": True},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 1.0
+    assert profile["admissible"] == 0.5
+    assert profile["stable"] == 2.0 / 3.0
+    assert profile["entropy_conditioned"] == 0.75
+    assert profile["topology_conditioned"] == 1.0
+
+
+def test_axis0_carrier_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_carrier_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_carrier_selection_packet.py",
+    )
+
+    gate_map = {
+        "C1_search_and_bridge_surfaces_execute_cleanly": {"pass": True},
+        "C2_missing_axis_search_finds_uncaptured_candidate": {"pass": False},
+        "C3_live_carrier_wins_and_honesty_signal_stays_unique": {"pass": True},
+        "C4_bridge_search_separates_winning_bridges_from_controls": {"pass": True},
+        "C5_strict_bakeoff_confirms_structured_history_without_shell_shortcut": {"pass": False},
+        "C6_direct_lr_stays_ranked_as_control_not_winner": {"pass": True},
+        "C7_counterfeit_history_games_mi_but_not_coherent_info": {"pass": True},
+        "C8_provisional_signed_bridge_candidate_handoff_is_explicit": {"pass": True},
+        "C9_handoff_contract_freezes_downstream_only_placement": {"pass": False},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 0.5
+    assert profile["admissible"] == 0.5
+    assert profile["stable"] == 1.0
+    assert profile["entropy_conditioned"] == 0.5
+    assert profile["topology_conditioned"] == 0.5
+
+
+def test_axis0_pre_entropy_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_pre_entropy_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_pre_entropy_packet.py",
+    )
+
+    gate_map = {
+        "P1_bridge_admission_is_fail_closed": {"pass": True},
+        "P3_history_windows_currently_degenerate": {"pass": False},
+        "P4_shell_flat_pointref_varies": {"pass": True},
+        "P10_xi_hist_signed_handoff_uses_8_23_anchor_8_15_prefix_and_front_half_signed_cut": {"pass": True},
+        "P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement": {"pass": True},
+        "P22_c1_signed_bridge_candidate_is_explicit_and_provisional": {"pass": True},
+        "P24_carrier_handoff_matches_pre_entropy_downstream_mapping": {"pass": False},
+        "P25_standalone_c1_bridge_object_matches_pre_entropy_contract": {"pass": True},
+        "P5_bridge_is_multicycle_stable_off_clifford": {"pass": True},
+        "P6_clifford_is_the_edge_case_not_the_norm": {"pass": True},
+        "P8_dynamic_shell_is_explicitly_unresolved": {"pass": False},
+        "P2_strict_bakeoff_keeps_history_structured_without_shell_shortcut": {"pass": True},
+        "P7_fe_pairs_only_is_strongest_new_candidate_but_phase4_still_wins": {"pass": True},
+        "P9_xi_hist_handoff_prefers_shifted_anchor_and_8_15_prefix": {"pass": True},
+        "P12_xi_hist_late_anchor_beats_0_3_globally_on_ic": {"pass": True},
+        "P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_7": {"pass": True},
+        "P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff": {"pass": True},
+        "P23_xi_chiral_entangle_remains_downstream_of_xi_hist_signed_law": {"pass": True},
+        "P15_owner_worthiness_map_demotes_raw_deltas_and_open_flux_labels": {"pass": True},
+        "P16_transport_delta_branch_survives_but_is_not_owner_law_yet": {"pass": False},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 2.0 / 3.0
+    assert profile["admissible"] == 0.8
+    assert profile["stable"] == 2.0 / 3.0
+    assert profile["entropy_conditioned"] == 1.0
+    assert profile["topology_conditioned"] == 0.75
+
+
+def test_axis0_root_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_root_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_root_emergence_packet.py",
+    )
+
+    gate_map = {
+        "R1_formal_geometry_prerequisite_is_closed": {"pass": True},
+        "R2_root_guards_and_ec3_execute_cleanly": {"pass": True},
+        "R3_missing_axis_search_finds_uncaptured_structure": {"pass": False},
+        "R4_bridge_search_rejects_direct_cartesian_carrier": {"pass": True},
+        "R10_root_emergence_bridge_winner_respects_xi_handoff_contract": {"pass": False},
+        "R5_small_carrier_family_selects_live_hopf_weyl": {"pass": True},
+        "R6_live_carrier_keeps_unique_positive_honesty_signal": {"pass": True},
+        "R7_mispair_counterfeit_games_mi_but_not_coherent_info": {"pass": False},
+        "R8_coarising_is_attractor_specific_not_universal_algebra": {"pass": True},
+        "R9_root_emergence_remains_open_without_smuggling": {"pass": True},
+        "R10A_attractor_basin_keeps_trajectory_far_from_ti_failure_boundary": {"pass": True},
+        "R10B_te_steps_stay_on_antiparallel_yz_band_on_attractor": {"pass": True},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 2.0 / 3.0
+    assert profile["admissible"] == 0.5
+    assert profile["stable"] == 2.0 / 3.0
+    assert profile["entropy_conditioned"] == 1.0
+    assert profile["topology_conditioned"] == 1.0
+
+
+def test_axis0_root_packet_requires_upstream_constraint_profiles() -> None:
+    formal_profile = {
+        "observational": 1.0,
+        "admissible": 1.0,
+        "stable": 1.0,
+    }
+    attractor_profile = {
+        "admissible": 1.0,
+        "entropy_conditioned": 1.0,
+        "topology_conditioned": 1.0,
+        "stable": 1.0,
+    }
+    c1_profile = {
+        "admissible": 1.0,
+        "topology_conditioned": 1.0,
+    }
+
+    assert formal_profile["observational"] >= 1.0
+    assert attractor_profile["entropy_conditioned"] >= 1.0
+    assert attractor_profile["topology_conditioned"] >= 1.0
+    assert c1_profile["admissible"] >= 1.0
+    assert c1_profile["topology_conditioned"] >= 1.0
+
+
+def test_axis0_matched_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_matched_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_matched_marginal_packet.py",
+    )
+
+    gate_map = {
+        "M1_phase4_and_phase5a_execute_cleanly": {"pass": True},
+        "M2_phase4_winner_fails_matched_marginal_filter": {"pass": False},
+        "M8_matched_marginal_layer_preserves_xi_downstream_handoff_contract": {"pass": True},
+        "M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping": {"pass": True},
+        "M3_phase5a_certifies_marginal_preserving_family": {"pass": True},
+        "M4_preserving_mi_collapses_while_chiral_mi_stays_large": {"pass": True},
+        "M5_optimizer_finds_no_nonproduct_preserving_advantage": {"pass": False},
+        "M6_exact_preserving_point_reference_stays_discriminator_only": {"pass": True},
+        "M7_fe_indexed_pairs_remain_the_strongest_structured_refinement_candidate": {"pass": False},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 0.5
+    assert profile["admissible"] == 1.0
+    assert profile["stable"] == 2.0 / 3.0
+    assert profile["entropy_conditioned"] == 0.5
+    assert profile["topology_conditioned"] == 2.0 / 3.0
+
+
+def test_axis0_formal_geometry_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_formal_geometry_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_formal_geometry_packet.py",
+    )
+
+    gate_map = {
+        "G1_exact_hopf_geometry_truth": {"pass": True},
+        "G2_weyl_ambient_rung": {"pass": True},
+        "G3_ambient_vs_engine_overlay": {"pass": False},
+        "G4_live_engine_family_split": {"pass": True},
+        "G5_dual_weyl_cycle_stability": {"pass": False},
+        "G6_torus_negative_is_load_bearing": {"pass": True},
+        "G7_no_chirality_negative_still_incomplete": {"pass": False},
+        "G8_exact_loop_law_swap_negative": {"pass": True},
+        "G9_owner_anchor_state_explicit": {"pass": True},
+        "G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit": {"pass": True},
+        "G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion": {"pass": False},
+        "G12_lower_tier_chiral_law_search_is_explicit_and_fail_closed": {"pass": True},
+        "G13_lower_tier_transport_law_search_is_explicit_and_fail_closed": {"pass": False},
+        "G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed": {"pass": True},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 0.75
+    assert profile["admissible"] == 2.0 / 3.0
+    assert profile["stable"] == 2.0 / 3.0
+    assert profile["entropy_conditioned"] == 1.0 / 3.0
+    assert profile["topology_conditioned"] == 2.0 / 3.0
+
+
+def test_axis0_c1_bridge_object_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_c1_bridge_object_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_c1_bridge_object_packet.py",
+    )
+
+    gate_map = {
+        "C1B1_bridge_object_is_explicit_and_downstream_only": {"pass": True},
+        "C1B2_counterfeit_pressure_remains_bound_to_the_bridge_object": {"pass": False},
+        "C1B3_bridge_object_is_bound_to_the_existing_support_contract": {"pass": True},
+        "C1B4_bridge_object_keeps_owner_doctrine_questions_open": {"pass": True},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 1.0
+    assert profile["admissible"] == 1.0
+    assert profile["stable"] == 2.0 / 3.0
+    assert profile["entropy_conditioned"] == 0.5
+    assert profile["topology_conditioned"] == 1.0
+
+
+def test_axis0_c1_signed_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_c1_signed_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_c1_signed_bridge_candidate_search.py",
+    )
+
+    gate_map = {
+        "C1S1_current_signed_bridge_candidate_is_explicit": {"pass": True},
+        "C1S2_counterfeit_pressure_keeps_signed_honesty_load_bearing": {"pass": False},
+        "C1S3_support_chain_is_closed_before_candidate_packaging": {"pass": True},
+        "C1S4_candidate_stays_provisional_and_does_not_overpromote": {"pass": True},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 1.0
+    assert profile["admissible"] == 1.0
+    assert profile["stable"] == 2.0 / 3.0
+    assert profile["entropy_conditioned"] == 0.5
+    assert profile["topology_conditioned"] == 1.0
+
+
+def test_axis0_lower_tier_transport_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_lower_tier_transport_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_lower_tier_transport_law_search.py",
+    )
+
+    gate_map = {
+        "T1_exact_same_carrier_loop_law_survives_search": {"pass": True},
+        "T2_generic_transport_activity_is_not_promoted_to_law": {"pass": False},
+        "T3_symmetric_motion_summary_is_killed_as_fake_transport_law": {"pass": True},
+        "T4_downstream_cut_effect_is_fenced_off_from_lower_transport_law": {"pass": True},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 1.0
+    assert profile["admissible"] == 2.0 / 3.0
+    assert profile["stable"] == 1.0
+    assert profile["entropy_conditioned"] == 0.5
+    assert profile["topology_conditioned"] == 1.0
+
+
+def test_axis0_weyl_delta_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_weyl_delta_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_weyl_delta_packet.py",
+    )
+
+    gate_map = {
+        "W1_stagewise_raw_delta_surfaces_exist": {"pass": True},
+        "W2_transport_geometry_is_mechanically_nontrivial": {"pass": True},
+        "W3_chirality_differential_is_real_pre_axis_signal": {"pass": False},
+        "W4_raw_lr_deltas_are_not_reducible_to_symmetric_dphi_shim": {"pass": True},
+        "W5_branch_map_keeps_flux_placement_open": {"pass": False},
+        "W6_flux_family_is_explicit_without_canonizing_flux": {"pass": True},
+        "W7_branch_map_preserves_skeptical_flux_read": {"pass": False},
+        "W8_pre_axis_object_inventory_is_explicit": {"pass": True},
+        "W9_transport_embargo_boundary_is_explicit": {"pass": True},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 2.0 / 3.0
+    assert profile["admissible"] == 0.5
+    assert profile["stable"] == 2.0 / 3.0
+    assert profile["entropy_conditioned"] == 2.0 / 3.0
+    assert profile["topology_conditioned"] == 0.75
+
+
+def test_axis0_lower_tier_chiral_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_lower_tier_chiral_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_lower_tier_chiral_law_search.py",
+    )
+
+    gate_map = {
+        "L1_fake_lower_tier_chiral_law_routes_are_killed": {"pass": True},
+        "L2_delta_chirality_is_real_signal_but_not_owner_law": {"pass": False},
+        "L3_compound_transport_chirality_branch_survives_search": {"pass": True},
+        "L4_search_keeps_single_lower_tier_chiral_law_open_but_unadmitted": {"pass": True},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 0.5
+    assert profile["admissible"] == 2.0 / 3.0
+    assert profile["stable"] == 1.0
+    assert profile["entropy_conditioned"] == 0.5
+    assert profile["topology_conditioned"] == 1.0
+
+
+def test_axis0_transport_embargo_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_transport_embargo_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_transport_embargo_packet.py",
+    )
+
+    gate_map = {
+        "TE1_weyl_delta_transport_family_is_live_but_fail_closed": {"pass": True},
+        "TE2_lower_tier_transport_law_stays_narrow_and_non_generic": {"pass": False},
+        "TE3_transport_embargo_branch_is_explicitly_supported_but_not_promoted": {"pass": True},
+        "TE4_nonproxy_support_and_embargo_blocker_are_bound_together": {"pass": True},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 1.0
+    assert profile["admissible"] == 0.75
+    assert profile["stable"] == 0.5
+    assert profile["entropy_conditioned"] == 1.0
+    assert profile["topology_conditioned"] == 2.0 / 3.0
+
+
+def test_axis0_no_chirality_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_no_chirality_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_no_chirality_search.py",
+    )
+
+    gate_map = {
+        "N1_no_chirality_kill_is_real_but_not_total": {"pass": True},
+        "N2_no_chirality_residual_is_explicitly_nontrivial": {"pass": False},
+        "N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run": {"pass": True},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 2.0 / 3.0
+    assert profile["admissible"] == 0.5
+    assert profile["stable"] == 1.0
+    assert profile["entropy_conditioned"] == 0.5
+    assert profile["topology_conditioned"] == 1.0
+
+
+def test_axis0_attractor_boundary_packet_constraint_family_profile_is_typed() -> None:
+    module = _load_module(
+        "axis0_attractor_boundary_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_axis0_attractor_basin_boundary_search.py",
+    )
+
+    gate_map = {
+        "AB1_trajectory_lr_asym_surface_is_explicit_and_nontrivial": {"pass": True},
+        "AB2_ti_failure_boundary_is_explicit_and_predictive": {"pass": False},
+        "AB3_observed_trajectory_stays_clear_of_the_ti_failure_regime": {"pass": True},
+    }
+    profile = module._packet_constraint_family_profile(gate_map)
+    assert profile["observational"] == 0.5
+    assert profile["admissible"] == 0.5
+    assert profile["stable"] == 1.0
+    assert profile["entropy_conditioned"] == 0.5
+    assert profile["topology_conditioned"] == 0.5
+
+
+def test_axis0_stack_run_loads_emitted_constraint_profiles(tmp_path: Path) -> None:
+    module = _load_module(
+        "axis0_stack_run_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "run_axis0_stack_packet.py",
+    )
+
+    (tmp_path / "formal_geometry_packet_validation.json").write_text(
+        json.dumps(
+            {
+                "constraint_family_profile": {
+                    "observational": 1.0,
+                    "admissible": 0.5,
+                    "stable": 0.25,
+                    "entropy_conditioned": 0.75,
+                    "topology_conditioned": 1.0,
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+    (tmp_path / "entropy_readout_packet_validation.json").write_text(
+        json.dumps(
+            {
+                "constraint_family_profile": {
+                    "observational": 0.5,
+                    "admissible": 1.0,
+                    "stable": 0.75,
+                    "entropy_conditioned": 1.0,
+                    "topology_conditioned": 0.5,
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    profiles = module._load_constraint_profile_results(tmp_path)
+    assert profiles["formal_geometry"]["stable"] == 0.25
+    assert profiles["entropy_readout"]["entropy_conditioned"] == 1.0
+
+
+def test_axis0_stack_run_constraint_family_profile_averages_emitted_sources() -> None:
+    module = _load_module(
+        "axis0_stack_run_profile_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "run_axis0_stack_packet.py",
+    )
+
+    profile = module._mean_profile(
+        {
+            "observational": 1.0,
+            "admissible": 0.5,
+            "stable": 0.5,
+            "entropy_conditioned": 1.0,
+            "topology_conditioned": 0.0,
+        },
+        {
+            "observational": 0.0,
+            "admissible": 1.0,
+            "stable": 1.0,
+            "entropy_conditioned": 0.0,
+            "topology_conditioned": 1.0,
+        },
+    )
+    assert profile["observational"] == 0.5
+    assert profile["admissible"] == 0.75
+    assert profile["stable"] == 0.75
+    assert profile["entropy_conditioned"] == 0.5
+    assert profile["topology_conditioned"] == 0.5
+
+
+def test_axis0_stack_constraint_family_profile_averages_sources() -> None:
+    module = _load_module(
+        "axis0_stack_packet_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_axis0_stack_packet.py",
+    )
+
+    profile = module._mean_profile(
+        {"observational": 1.0, "admissible": 0.5, "stable": 0.75, "entropy_conditioned": 1.0, "topology_conditioned": 0.5},
+        {"observational": 0.0, "admissible": 1.0, "stable": 0.25, "entropy_conditioned": 0.5, "topology_conditioned": 1.0},
+    )
+    assert profile["observational"] == 0.5
+    assert profile["admissible"] == 0.75
+    assert profile["stable"] == 0.5
+    assert profile["entropy_conditioned"] == 0.75
+    assert profile["topology_conditioned"] == 0.75
+
+
+def test_carrier_and_root_bridge_owner_alignment_contracts_are_fail_closed() -> None:
+    carrier_module = _load_module(
+        "axis0_carrier_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_carrier_selection_packet.py",
+    )
+    root_module = _load_module(
+        "axis0_root_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "validate_root_emergence_packet.py",
+    )
+    alignment = {
+        "pass": True,
+        "status": "axis_internal_candidate_not_final_owner_law",
+        "placement_relation": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+        "owner_dependency": "must_bind_under_xi_hist_signed_law",
+        "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+        "winner": "Xi_chiral_entangle",
+        "runner_up": "Xi_chiral_hist_entangle",
+    }
+
+    assert carrier_module.bridge_owner_alignment_ok(alignment) is True
+    assert root_module.bridge_owner_alignment_ok(alignment) is True
+
+    broken = dict(alignment)
+    broken["status"] = "final_owner_law"
+    assert carrier_module.bridge_owner_alignment_ok(broken) is False
+    assert root_module.bridge_owner_alignment_ok(broken) is False

@@ -16,8 +16,8 @@ Key question: do the constraint shells preserve enough gradient signal for
 the ratchet to learn?  If projection destroys the gradient (all zeros),
 the ratchet cannot optimize through the constraint manifold.
 
-Mark pytorch=used, z3=tried. Classification: canonical.
-Output: system_v4/probes/a2_state/sim_results/axis0_through_shells_results.json
+Mark pytorch=used, z3=tried. Classification: classical_baseline.
+Output: system_v4/probes/a2_state/sim_results/sim_axis0_through_shells_results.json
 """
 
 import json
@@ -50,6 +50,8 @@ from torch_geometric.nn import MessagePassing
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from axis0_bridge_owner_packet_surface import load_bridge_owner_packet_surface
+from axis0_constraint_types import build_distinguishability_constraint
 from sim_axis0_dynamic_shell import lane_d_topology_expansion_bridge
 from sim_axis0_iscalar_sweep import (
     _clifford_vector,
@@ -1273,6 +1275,17 @@ def _aggregate_deep_contract(positive: dict, negative: dict, boundary: dict, she
         "candidate_universe_size": len(candidate_names),
         "frontier_size": len(ranking),
         "shell_bridge_pass_fraction": shell_bridge_pass_fraction,
+        "distinguishability_surface": _through_shells_distinguishability_surface(
+            positive,
+            negative,
+            boundary,
+            shell_bridge_pass_fraction,
+            graph_surface,
+            pyg_surface,
+            constraint_surface,
+            cvc5_surface,
+            symbolic_surface,
+        ),
         "semantic_row_surface": semantic_row_surface(
             {
                 "symbolic_surface": symbolic_surface,
@@ -1281,6 +1294,18 @@ def _aggregate_deep_contract(positive: dict, negative: dict, boundary: dict, she
                 "graph_surface": graph_surface,
                 "manifold_surface": manifold_surface,
                 "pyg_surface": pyg_surface,
+                "shell_bridge_pass_fraction": shell_bridge_pass_fraction,
+                "distinguishability_surface": _through_shells_distinguishability_surface(
+                    positive,
+                    negative,
+                    boundary,
+                    shell_bridge_pass_fraction,
+                    graph_surface,
+                    pyg_surface,
+                    constraint_surface,
+                    cvc5_surface,
+                    symbolic_surface,
+                ),
             }
         ),
         "candidate_rows": candidate_rows,
@@ -1324,14 +1349,44 @@ def _aggregate_deep_contract(positive: dict, negative: dict, boundary: dict, she
 
 
 def semantic_row_surface(deep_contract: dict[str, object]) -> dict[str, object]:
+    bridge_owner_surface = load_bridge_owner_packet_surface()
+    bridge_owner_gate_fraction = float(
+        np.mean([1.0 if passed else 0.0 for passed in bridge_owner_surface["gate_passes"].values()])
+    )
+    shell_bridge_pass_fraction = float(
+        deep_contract.get(
+            "shell_bridge_pass_fraction",
+            1.0 if int(deep_contract["graph_surface"]["longest_path_length"]) >= 1 else 0.0,
+        )
+    )
+    distinguishability_surface = deep_contract.get(
+        "distinguishability_surface",
+        _through_shells_distinguishability_surface(
+            {},
+            {},
+            {},
+            shell_bridge_pass_fraction,
+            deep_contract["graph_surface"],
+            deep_contract["pyg_surface"],
+            deep_contract["constraint_surface"],
+            deep_contract["cvc5_surface"],
+            deep_contract["symbolic_surface"],
+        ),
+    )
     return {
         "lane": "through_shells",
         "symbolic_hubble_mid": float(deep_contract["symbolic_surface"]["symbolic_hubble_mid"]),
         "constraint_pass": bool(deep_contract["constraint_surface"]["sat"]),
         "cvc5_pass": bool(deep_contract["cvc5_surface"]["pass"]),
+        "bridge_owner_pass": bool(bridge_owner_surface["pass"]),
+        "bridge_owner_gate_fraction": bridge_owner_gate_fraction,
+        "distinguishability_pass": bool(distinguishability_surface["pass"]),
+        "distinguishability_gate_fraction": float(distinguishability_surface["gate_fraction"]),
+        "constraint_family_profile": distinguishability_surface["constraint_profile"],
         "graph_longest_path_length": int(deep_contract["graph_surface"]["longest_path_length"]),
         "manifold_distance": float(deep_contract["manifold_surface"]["mean_geodesic_distance"]),
         "pyg_mean_aggregate_norm": float(deep_contract["pyg_surface"]["mean_aggregate_norm"]),
+        "distinguishability_surface": distinguishability_surface,
     }
 
 
@@ -1408,6 +1463,59 @@ def _pyg_shell_mechanics_surface(candidate_rows: list[dict[str, object]]) -> dic
         "winner_aggregate_norm": float(aggregate_norms[0].item()),
         "edge_weight_mean": float(edge_attr.mean().item()),
     }
+
+
+def _through_shells_distinguishability_surface(
+    positive: dict[str, object],
+    negative: dict[str, object],
+    boundary: dict[str, object],
+    shell_bridge_pass_fraction: float,
+    graph_surface: dict[str, object],
+    pyg_surface: dict[str, object],
+    constraint_surface: dict[str, object],
+    cvc5_surface: dict[str, object],
+    symbolic_surface: dict[str, object],
+) -> dict[str, object]:
+    p1_tests = positive.get("P1_gradient_exists_after_shells", {}).get("tests", {})
+    p2 = positive.get("P2_shells_change_gradient", {})
+    b1_tests = boundary.get("B1_already_satisfying_shells", {}).get("tests", {})
+    n1 = negative.get("N1_mixed_state_zero_gradient", {})
+    gradient_norms = [
+        float(row.get("gradient_norm", 0.0))
+        for row in p1_tests.values()
+        if isinstance(row, dict) and "gradient_norm" in row
+    ]
+    bare_match_diffs = [
+        float(row.get("max_grad_diff", 0.0))
+        for row in b1_tests.values()
+        if isinstance(row, dict) and "max_grad_diff" in row
+    ]
+    mean_gradient_norm = float(np.mean(gradient_norms)) if gradient_norms else 0.0
+    mean_bare_match_diff = float(np.mean(bare_match_diffs)) if bare_match_diffs else 0.0
+    return build_distinguishability_constraint(
+        observational=bool(shell_bridge_pass_fraction >= 1.0),
+        admissible=bool(constraint_surface["sat"] and cvc5_surface["pass"]),
+        stable=bool(float(symbolic_surface["symbolic_hubble_mid"]) > 0.9),
+        entropy_conditioned=bool(
+            mean_gradient_norm > 0.05
+            and bool(p2.get("pass", False))
+            and bool(n1.get("pass", False))
+            and mean_bare_match_diff < 0.1
+        ),
+        topology_conditioned=bool(graph_surface["longest_path_length"] >= 7),
+        signals={
+            "observational_signal": float(shell_bridge_pass_fraction),
+            "admissibility_signal": 1.0 if (constraint_surface["sat"] and cvc5_surface["pass"]) else 0.0,
+            "stability_signal": float(symbolic_surface["symbolic_hubble_mid"]),
+            "entropy_signal": mean_gradient_norm + max(0.0, 0.1 - mean_bare_match_diff),
+            "topology_signal": float(graph_surface["longest_path_length"]) / 7.0,
+            "mean_gradient_norm": mean_gradient_norm,
+            "mean_bare_match_diff": mean_bare_match_diff,
+            "symbolic_hubble_mid": float(symbolic_surface["symbolic_hubble_mid"]),
+        },
+        note="Through-shells distinguishability is load-bearing only when shell transport remains admissible and topology-supported.",
+        pass_threshold=0.8,
+    )
 
 
 def _cvc5_shell_mechanics_constraint_surface(candidate_rows: list[dict[str, object]]) -> dict[str, object]:
@@ -1517,7 +1625,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "Axis 0 Through Constraint Shells -- Differentiable Dykstra",
-        "classification": "canonical",
+        "classification": classification,
         "classification_backfill": classification,
         "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
@@ -1537,9 +1645,14 @@ if __name__ == "__main__":
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "axis0_through_shells_results.json")
-    with open(out_path, "w") as f:
-        json.dump(results, f, indent=2, default=str)
+    canonical_out_path = os.path.join(
+        out_dir, f"{os.path.splitext(os.path.basename(__file__))[0]}_results.json"
+    )
+    legacy_out_path = os.path.join(out_dir, "axis0_through_shells_results.json")
+    payload = json.dumps(results, indent=2, default=str)
+    for target in dict.fromkeys([canonical_out_path, legacy_out_path]):
+        with open(target, "w") as f:
+            f.write(payload)
 
     print(f"\n{'='*70}")
     print(f"Axis 0 Through Shells -- Results")
@@ -1559,7 +1672,7 @@ if __name__ == "__main__":
     for k, v in boundary.items():
         if isinstance(v, dict) and "pass" in v:
             print(f"  {k}: {'PASS' if v['pass'] else 'FAIL'}")
-    print(f"\nResults written to {out_path}")
+    print(f"\nResults written to {canonical_out_path}")
     print(f"\n{'=' * 80}")
     print("DEEP CONTRACT")
     print(f"{'=' * 80}")

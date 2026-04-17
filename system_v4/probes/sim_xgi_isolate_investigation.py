@@ -664,6 +664,7 @@ if __name__ == "__main__":
         "name": "xgi_isolate_investigation",
         "classification": "canonical",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "summary": {
             "tests_passed": n_pass,
             "tests_total": n_total,

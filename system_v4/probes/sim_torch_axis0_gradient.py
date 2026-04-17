@@ -32,7 +32,7 @@ import json
 import os
 import time
 import numpy as np
-classification = "canonical"
+classification = "classical_baseline"
 
 # =====================================================================
 # TOOL MANIFEST
@@ -1027,7 +1027,8 @@ if __name__ == "__main__":
         "geometry": geometry,
         "sympy_check": sympy_check,
         "geomstats_check": geomstats_check,
-        "classification": "canonical",
+        "classification": classification,
+        "substrate": "flat_3q_hilbert",
         "elapsed_seconds": round(elapsed, 2),
         "summary": {
             "total_tests": total_tests,

@@ -19,6 +19,8 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -496,14 +498,31 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+
+    def _section_all_pass(section, expected_key):
+        return all(item.get(expected_key) is True for item in section.values())
+
+    overall_pass = (
+        _section_all_pass(positive, "sat")
+        and _section_all_pass(negative, "unsat")
+        and _section_all_pass({
+            key: {"sat": value.get("sat", value.get("passed"))}
+            for key, value in boundary.items()
+        }, "sat")
+    )
+
     results = {
         "name": "Hopf Fibration S³ → S² Constraint via cvc5",
         "description": "cvc5 proves Hopf fibration constraint: unit quaternions map to S²",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "overall_pass": overall_pass,
         "classification": "canonical",
     }
 
@@ -512,4 +531,4 @@ if __name__ == "__main__":
     out_path = os.path.join(out_dir, "sim_cvc5_hopf_fiber_constraint_results.json")
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2, default=str)
-    print(f"Results written to {out_path}")
+    print(f"overall_pass={overall_pass} -> {out_path}")

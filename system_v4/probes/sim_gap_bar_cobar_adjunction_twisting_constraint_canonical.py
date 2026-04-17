@@ -28,6 +28,8 @@ import sympy as sp
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -82,6 +84,8 @@ except ImportError as e:
 
 def maurer_cartan_constraint(solver, tau_value, partial_tau, mu_composition, delta_coeff):
     """
+
+
     Maurer-Cartan equation: ∂τ + μ(τ⊗τ)∘Δ = 0
 
     In discrete/integer form:

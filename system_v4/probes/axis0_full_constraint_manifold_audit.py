@@ -34,8 +34,8 @@ I2 = np.eye(2, dtype=complex)
 sm = np.array([[0, 0], [1, 0]], dtype=complex)
 sp = np.array([[0, 1], [0, 0]], dtype=complex)
 
-DED_ORDER = ["Se", "Ne", "Ni", "Si"]
-IND_ORDER = ["Se", "Si", "Ni", "Ne"]
+DED_ORDER = ["Se", "Ne", "channel_decay", "Si"]
+IND_ORDER = ["Se", "Si", "channel_decay", "Ne"]
 
 
 def density(psi: np.ndarray) -> np.ndarray:
@@ -147,7 +147,7 @@ def terrain_joint_step(
     if terrain == "Ne":
         drho = -1j * (H_joint @ rho_lr - rho_lr @ H_joint)
         return ensure_valid_density(rho_lr + dt * drho)
-    if terrain == "Ni":
+    if terrain == "channel_decay":
         jump_L = np.kron(np.sqrt(0.25) * sm, I2)
         jump_R = np.kron(I2, np.sqrt(0.25) * sp)
         drho = -1j * (H_joint @ rho_lr - rho_lr @ H_joint) * 0.05
@@ -182,7 +182,7 @@ def terrain_single_step(rho_l: np.ndarray, rho_r: np.ndarray, terrain: str, q: n
         rho_l = ensure_valid_density(rho_l + dt * liouvillian_single(rho_l, H_l, []))
         rho_r = ensure_valid_density(rho_r + dt * liouvillian_single(rho_r, H_r, []))
         return rho_l, rho_r
-    if terrain == "Ni":
+    if terrain == "channel_decay":
         rho_l = ensure_valid_density(rho_l + dt * liouvillian_single(rho_l, 0.05 * H_l, [np.sqrt(0.25) * sm]))
         rho_r = ensure_valid_density(rho_r + dt * liouvillian_single(rho_r, 0.05 * H_r, [np.sqrt(0.25) * sp]))
         return rho_l, rho_r

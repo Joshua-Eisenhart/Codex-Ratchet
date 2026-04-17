@@ -31,6 +31,16 @@ from e3nn import o3
 from torch_geometric.data import Data
 from torch_geometric.nn import MessagePassing
 
+from axis0_result_loader import load_axis0_result
+from axis0_bridge_owner_packet_surface import load_bridge_owner_packet_surface
+from axis0_constraint_types import build_distinguishability_constraint
+from axis0_xi_law_fingerprint import (
+    carrier_law_fingerprint,
+    carrier_matches_law,
+    entropy_law_fingerprint,
+    pre_entropy_law_fingerprint,
+    strict_law_fingerprint,
+)
 from sim_axis0_axis6_coupling_seam import (
     _aggregate_deep_contract as _seam_aggregate_deep_contract,
     _build_seam_shell_history,
@@ -99,12 +109,18 @@ DEFAULT_T = 0.91
 DEFAULT_RESULTS_DIR = Path(__file__).resolve().parent / "a2_state" / "sim_results"
 
 
-def _persisted_result_paths(root: Path) -> dict[str, Path]:
+def _persisted_result_paths(root: Path) -> dict[str, list[Path]]:
     return {
-        "lambda_cosmology": root / "sim_axis0_lambda_expansion_cosmology_stack_results.json",
-        "axis6_seam": root / "sim_axis0_axis6_coupling_seam_results.json",
-        "through_shells": root / "axis0_through_shells_results.json",
-        "pyg_proxy": root / "axis0_pyg_proxy_results.json",
+        "lambda_cosmology": [root / "sim_axis0_lambda_expansion_cosmology_stack_results.json"],
+        "axis6_seam": [root / "sim_axis0_axis6_coupling_seam_results.json"],
+        "through_shells": [
+            root / "sim_axis0_through_shells_results.json",
+            root / "axis0_through_shells_results.json",
+        ],
+        "pyg_proxy": [
+            root / "sim_axis0_pyg_proxy_results.json",
+            root / "axis0_pyg_proxy_results.json",
+        ],
     }
 
 
@@ -138,14 +154,18 @@ def ensure_persisted_semantic_rows(results_dir: str | Path | None = None) -> lis
     refreshed: list[str] = []
     paths = _persisted_result_paths(root)
     allow_refresh = root.resolve() == DEFAULT_RESULTS_DIR.resolve()
-    for lane, path in paths.items():
-        if path.exists():
+    for lane, candidates in paths.items():
+        if any(path.exists() for path in candidates):
             continue
         if not allow_refresh:
-            raise FileNotFoundError(f"Persisted semantic row artifact missing: {path}")
+            rendered = ", ".join(str(path) for path in candidates)
+            raise FileNotFoundError(f"Persisted semantic row artifact missing: {rendered}")
         _refresh_persisted_result_artifact(lane)
-        if not path.exists():
-            raise FileNotFoundError(f"Persisted semantic row artifact still missing after refresh: {path}")
+        if not any(path.exists() for path in candidates):
+            rendered = ", ".join(str(path) for path in candidates)
+            raise FileNotFoundError(
+                f"Persisted semantic row artifact still missing after refresh: {rendered}"
+            )
         refreshed.append(lane)
     return refreshed
 
@@ -154,6 +174,49 @@ def _load_cosmology_case_fn():
     from sim_axis0_lambda_expansion_cosmology_stack import _cosmology_case
 
     return _cosmology_case
+
+
+def _load_xi_packet_surface(results_dir: str | Path | None = None) -> dict[str, object]:
+    root = Path(results_dir) if results_dir is not None else DEFAULT_RESULTS_DIR
+    strict_result = load_axis0_result(root, "axis0_xi_strict_bakeoff_results.json")
+    carrier_validation = json.loads((root / "carrier_selection_packet_validation.json").read_text())
+    pre_entropy_validation = json.loads((root / "pre_entropy_packet_validation.json").read_text())
+    entropy_validation = json.loads((root / "entropy_readout_packet_validation.json").read_text())
+    stack_validation = json.loads((root / "axis0_stack_packet_validation.json").read_text())
+
+    strict_fp = strict_law_fingerprint(strict_result)
+    carrier_fp = carrier_validation.get(
+        "xi_hist_carrier_semantics",
+        carrier_law_fingerprint(carrier_validation),
+    )
+    pre_entropy_fp = pre_entropy_validation.get(
+        "xi_hist_law_fingerprint",
+        pre_entropy_law_fingerprint(pre_entropy_validation),
+    )
+    entropy_fp = entropy_validation.get(
+        "xi_hist_law_fingerprint",
+        entropy_law_fingerprint(entropy_validation),
+    )
+    stack_gate = next(
+        item
+        for item in stack_validation["gates"]
+        if item["name"] == "S8_xi_hist_law_is_semantically_consistent_across_stack"
+    )
+    pass_flag = bool(
+        stack_gate["pass"]
+        and strict_fp == pre_entropy_fp
+        and strict_fp == entropy_fp
+        and carrier_matches_law(carrier_fp, strict_fp)
+    )
+    return {
+        "pass": pass_flag,
+        "stack_gate_pass": bool(stack_gate["pass"]),
+        "strict_vs_pre_entropy_match": bool(strict_fp == pre_entropy_fp),
+        "strict_vs_entropy_readout_match": bool(strict_fp == entropy_fp),
+        "carrier_matches_strict_law": bool(carrier_matches_law(carrier_fp, strict_fp)),
+        "strict_xi_law": strict_fp,
+        "carrier_xi_semantics": carrier_fp,
+    }
 
 
 def _diag_density(prob: float) -> np.ndarray:
@@ -210,11 +273,27 @@ def semantic_row(
     graph_longest_path_length: int,
     manifold_distance: float,
     pyg_mean_aggregate_norm: float,
+    bridge_owner_pass: bool | None = None,
+    bridge_owner_gate_fraction: float | None = None,
+    distinguishability_pass: bool | None = None,
+    distinguishability_gate_fraction: float | None = None,
+    distinguishability_surface: dict[str, object] | None = None,
+    constraint_family_profile: dict[str, object] | None = None,
 ) -> dict[str, object]:
+    doctrine_components = [float(constraint_pass), float(cvc5_pass)]
+    if bridge_owner_pass is not None:
+        doctrine_components.append(float(bridge_owner_pass))
+    if bridge_owner_gate_fraction is not None:
+        doctrine_components.append(float(bridge_owner_gate_fraction))
+    if distinguishability_pass is not None:
+        doctrine_components.append(float(distinguishability_pass))
+    if distinguishability_gate_fraction is not None:
+        doctrine_components.append(float(distinguishability_gate_fraction))
+    doctrine_score = float(np.mean(doctrine_components))
     semantic_vector = np.array(
         [
             float(symbolic_hubble_mid),
-            0.5 * (float(constraint_pass) + float(cvc5_pass)),
+            doctrine_score,
             _structure_proxy(
                 graph_longest_path_length,
                 manifold_distance,
@@ -229,6 +308,20 @@ def semantic_row(
         "symbolic_hubble_mid": float(symbolic_hubble_mid),
         "constraint_pass": bool(constraint_pass),
         "cvc5_pass": bool(cvc5_pass),
+        "bridge_owner_pass": None if bridge_owner_pass is None else bool(bridge_owner_pass),
+        "bridge_owner_gate_fraction": (
+            None if bridge_owner_gate_fraction is None else float(bridge_owner_gate_fraction)
+        ),
+        "distinguishability_pass": (
+            None if distinguishability_pass is None else bool(distinguishability_pass)
+        ),
+        "distinguishability_gate_fraction": (
+            None
+            if distinguishability_gate_fraction is None
+            else float(distinguishability_gate_fraction)
+        ),
+        "distinguishability_surface": distinguishability_surface,
+        "constraint_family_profile": constraint_family_profile,
         "graph_longest_path_length": int(graph_longest_path_length),
         "manifold_distance": float(manifold_distance),
         "pyg_mean_aggregate_norm": float(pyg_mean_aggregate_norm),
@@ -370,11 +463,154 @@ def _pairwise_alignment_surface(candidate_rows: list[dict[str, object]]) -> dict
             min_cosine = min(min_cosine, cosine)
             max_gap = max(max_gap, gap)
     consensus_vector = np.mean(semantic_matrix, axis=0) if len(semantic_matrix) else np.zeros(3, dtype=np.float64)
+    distinguishability_alignment = _pairwise_distinguishability_alignment_surface(candidate_rows)
     return {
         "rows": pairwise_rows,
         "min_cosine_similarity": float(min_cosine if pairwise_rows else 1.0),
         "max_component_gap": float(max_gap),
         "consensus_vector": consensus_vector.tolist(),
+        "distinguishability_alignment": distinguishability_alignment,
+    }
+
+
+def _pairwise_distinguishability_alignment_surface(
+    candidate_rows: list[dict[str, object]],
+) -> dict[str, object]:
+    gate_names = (
+        "observational",
+        "admissible",
+        "stable",
+        "entropy_conditioned",
+        "topology_conditioned",
+    )
+    pairwise_rows: list[dict[str, object]] = []
+    min_gate_agreement = 1.0
+    max_gate_disagreement = 0.0
+    min_surface_cosine = 1.0
+    min_signal_cosine = 1.0
+    min_signal_overlap = 0
+
+    def _surface_vector(row: dict[str, object]) -> np.ndarray:
+        surface = row.get("distinguishability_surface") or {}
+        gates = surface.get("gates") or {}
+        return np.asarray(
+            [
+                1.0 if bool(gates.get(name, False)) else 0.0
+                for name in gate_names
+            ]
+            + [
+                float(row.get("distinguishability_gate_fraction", 0.0)),
+            ],
+            dtype=np.float64,
+        )
+
+    def _signal_map(row: dict[str, object]) -> dict[str, float]:
+        surface = row.get("distinguishability_surface") or {}
+        raw = surface.get("signals") or {}
+        return {str(key): float(value) for key, value in raw.items()}
+
+    def _constraint_profile(row: dict[str, object]) -> dict[str, float]:
+        surface = row.get("distinguishability_surface") or {}
+        raw = surface.get("constraint_profile") or {}
+        if raw:
+            return {str(key): float(value) for key, value in raw.items()}
+        raw_signals = surface.get("signals") or {}
+        return {
+            "observational": float(raw_signals.get("observational_signal", 0.0)),
+            "admissible": float(raw_signals.get("admissibility_signal", 0.0)),
+            "stable": float(raw_signals.get("stability_signal", 0.0)),
+            "entropy_conditioned": float(raw_signals.get("entropy_signal", 0.0)),
+            "topology_conditioned": float(raw_signals.get("topology_signal", 0.0)),
+        }
+
+    for idx in range(len(candidate_rows)):
+        for jdx in range(idx + 1, len(candidate_rows)):
+            lhs = _surface_vector(candidate_rows[idx])
+            rhs = _surface_vector(candidate_rows[jdx])
+            lhs_profile = _constraint_profile(candidate_rows[idx])
+            rhs_profile = _constraint_profile(candidate_rows[jdx])
+            lhs_signals = _signal_map(candidate_rows[idx])
+            rhs_signals = _signal_map(candidate_rows[jdx])
+            profile_keys = (
+                "observational",
+                "admissible",
+                "stable",
+                "entropy_conditioned",
+                "topology_conditioned",
+            )
+            lhs_profile_vector = np.asarray(
+                [lhs_profile.get(key, 0.0) for key in profile_keys],
+                dtype=np.float64,
+            )
+            rhs_profile_vector = np.asarray(
+                [rhs_profile.get(key, 0.0) for key in profile_keys],
+                dtype=np.float64,
+            )
+            lhs_profile_vector = np.tanh(lhs_profile_vector)
+            rhs_profile_vector = np.tanh(rhs_profile_vector)
+            profile_cosine = float(
+                np.dot(lhs_profile_vector, rhs_profile_vector)
+                / max(np.linalg.norm(lhs_profile_vector) * np.linalg.norm(rhs_profile_vector), EPS)
+            )
+            shared_signal_keys = sorted(set(lhs_signals).intersection(rhs_signals))
+            if shared_signal_keys:
+                lhs_signal_vector = np.asarray(
+                    [lhs_signals[key] for key in shared_signal_keys],
+                    dtype=np.float64,
+                )
+                rhs_signal_vector = np.asarray(
+                    [rhs_signals[key] for key in shared_signal_keys],
+                    dtype=np.float64,
+                )
+                lhs_signal_vector = np.tanh(lhs_signal_vector)
+                rhs_signal_vector = np.tanh(rhs_signal_vector)
+                signal_cosine = float(
+                    np.dot(lhs_signal_vector, rhs_signal_vector)
+                    / max(np.linalg.norm(lhs_signal_vector) * np.linalg.norm(rhs_signal_vector), EPS)
+                )
+            else:
+                signal_cosine = 1.0
+            gate_agreement = float(np.mean(np.isclose(lhs[:-1], rhs[:-1]).astype(np.float64)))
+            max_gate_diff = float(np.max(np.abs(lhs[:-1] - rhs[:-1])))
+            cosine = float(np.dot(lhs, rhs) / max(np.linalg.norm(lhs) * np.linalg.norm(rhs), EPS))
+            pairwise_rows.append(
+                {
+                    "lhs": candidate_rows[idx]["lane"],
+                    "rhs": candidate_rows[jdx]["lane"],
+                    "gate_agreement": gate_agreement,
+                    "max_gate_disagreement": max_gate_diff,
+                    "surface_cosine_similarity": cosine,
+                    "constraint_profile_cosine_similarity": profile_cosine,
+                    "signal_keys": shared_signal_keys,
+                    "signal_cosine_similarity": signal_cosine,
+                }
+            )
+            min_gate_agreement = min(min_gate_agreement, gate_agreement)
+            max_gate_disagreement = max(max_gate_disagreement, max_gate_diff)
+            min_surface_cosine = min(min_surface_cosine, cosine)
+            min_signal_cosine = min(min_signal_cosine, signal_cosine)
+            min_signal_overlap = min_signal_overlap if min_signal_overlap else len(shared_signal_keys)
+            if min_signal_overlap:
+                min_signal_overlap = min(min_signal_overlap, len(shared_signal_keys))
+            else:
+                min_signal_overlap = len(shared_signal_keys)
+
+    return {
+        "rows": pairwise_rows,
+        "min_gate_agreement": float(min_gate_agreement if pairwise_rows else 1.0),
+        "max_gate_disagreement": float(max_gate_disagreement),
+        "min_surface_cosine_similarity": float(min_surface_cosine if pairwise_rows else 1.0),
+        "min_constraint_profile_cosine_similarity": float(
+            min(
+                (
+                    float(row["constraint_profile_cosine_similarity"])
+                    for row in pairwise_rows
+                ),
+                default=1.0,
+            )
+        ),
+        "min_signal_cosine_similarity": float(min_signal_cosine if pairwise_rows else 1.0),
+        "min_shared_signal_count": int(min_signal_overlap if pairwise_rows else 0),
     }
 
 
@@ -530,6 +766,7 @@ def _crosslane_e3nn_surface(consensus_vector: np.ndarray) -> dict[str, object]:
 def crosslane_bridge(candidate_rows: list[dict[str, object]], source_surface: dict[str, object]) -> dict[str, object]:
     rows = [dict(row) for row in candidate_rows]
     alignment_surface = _pairwise_alignment_surface(rows)
+    distinguishability_alignment = alignment_surface["distinguishability_alignment"]
     flat_frontier = bool(alignment_surface["max_component_gap"] <= 1e-12)
 
     max_mean_abs = max(abs(float(row["semantic_vector"][0])) for row in rows)
@@ -693,6 +930,10 @@ def crosslane_bridge(candidate_rows: list[dict[str, object]], source_surface: di
         source_surface["pass"]
         and alignment_surface["min_cosine_similarity"] >= PAIRWISE_COSINE_THRESHOLD
         and alignment_surface["max_component_gap"] <= PAIRWISE_GAP_THRESHOLD
+        and distinguishability_alignment["min_gate_agreement"] >= 0.8
+        and distinguishability_alignment["min_surface_cosine_similarity"] >= 0.94
+        and distinguishability_alignment["min_constraint_profile_cosine_similarity"] >= 0.9
+        and distinguishability_alignment["min_signal_cosine_similarity"] >= 0.9
         and shell_bridge["lane_d_keep"]
         and graph_surface["longest_path_length"] >= max(1, len(ranked_rows) - 2)
         and hypergraph_surface["max_hyperedge_size"] >= 3
@@ -748,9 +989,13 @@ def run_positive_tests(
         t=DEFAULT_T,
     )
     bridge = crosslane_bridge(payload["rows"], source_surface)
+    xi_packet_surface = _load_xi_packet_surface()
+    bridge_owner_surface = load_bridge_owner_packet_surface()
     return {
-        "pass": bool(bridge["pass"]),
+        "pass": bool(bridge["pass"] and xi_packet_surface["pass"] and bridge_owner_surface["pass"]),
         "crosslane_bridge": bridge,
+        "xi_packet_surface": xi_packet_surface,
+        "bridge_owner_surface": bridge_owner_surface,
         "lane_rows": payload["rows"],
     }
 
@@ -853,7 +1098,11 @@ def load_persisted_semantic_rows(results_dir: str | Path | None = None) -> dict[
     root = Path(results_dir) if results_dir is not None else DEFAULT_RESULTS_DIR
     paths = _persisted_result_paths(root)
     loaded: dict[str, dict[str, object]] = {}
-    for lane, path in paths.items():
+    for lane, candidates in paths.items():
+        path = next((candidate for candidate in candidates if candidate.exists()), None)
+        if path is None:
+            rendered = ", ".join(str(candidate) for candidate in candidates)
+            raise FileNotFoundError(f"Persisted semantic row artifact missing at load time: {rendered}")
         data = json.loads(path.read_text())
         if lane == "lambda_cosmology":
             row = dict(data["positive"]["axis0_lambda_expansion"]["semantic_row_surface"])
@@ -879,9 +1128,13 @@ def run_positive_tests_from_results(results_dir: str | Path | None = None) -> di
         t=DEFAULT_T,
     )
     bridge = crosslane_bridge(rows, source_surface)
+    xi_packet_surface = _load_xi_packet_surface(results_dir)
+    bridge_owner_surface = load_bridge_owner_packet_surface(results_dir)
     return {
-        "pass": bool(bridge["pass"]),
+        "pass": bool(bridge["pass"] and xi_packet_surface["pass"] and bridge_owner_surface["pass"]),
         "crosslane_bridge": bridge,
+        "xi_packet_surface": xi_packet_surface,
+        "bridge_owner_surface": bridge_owner_surface,
         "lane_rows": rows,
         "row_source": "persisted_results",
         "refreshed_missing_artifacts": refreshed_lanes,

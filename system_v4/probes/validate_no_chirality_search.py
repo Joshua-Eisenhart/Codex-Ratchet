@@ -13,6 +13,7 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
+from axis0_constraint_types import build_constraint_family_profile
 
 ROOT = Path(__file__).resolve().parent
 SIM_RESULTS = ROOT / "a2_state" / "sim_results"
@@ -25,6 +26,43 @@ def load_json(path: Path) -> dict:
 
 def gate(ok: bool, name: str, detail: dict) -> dict:
     return {"name": name, "pass": bool(ok), "detail": detail}
+
+
+def _packet_constraint_family_profile(gate_map: dict[str, dict]) -> dict[str, float]:
+    observational_names = (
+        "N1_no_chirality_kill_is_real_but_not_total",
+        "N2_no_chirality_residual_is_explicitly_nontrivial",
+        "N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run",
+    )
+    admissible_names = (
+        "N1_no_chirality_kill_is_real_but_not_total",
+        "N2_no_chirality_residual_is_explicitly_nontrivial",
+    )
+    stable_names = (
+        "N1_no_chirality_kill_is_real_but_not_total",
+        "N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run",
+    )
+    entropy_names = (
+        "N2_no_chirality_residual_is_explicitly_nontrivial",
+        "N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run",
+    )
+    topology_names = (
+        "N1_no_chirality_kill_is_real_but_not_total",
+        "N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run",
+    )
+
+    def _fraction(names: tuple[str, ...]) -> float:
+        if not names:
+            return 0.0
+        return float(sum(1.0 if gate_map[name]["pass"] else 0.0 for name in names) / len(names))
+
+    return build_constraint_family_profile(
+        observational=_fraction(observational_names),
+        admissible=_fraction(admissible_names),
+        stable=_fraction(stable_names),
+        entropy_conditioned=_fraction(entropy_names),
+        topology_conditioned=_fraction(topology_names),
+    )
 
 
 def main() -> int:
@@ -77,12 +115,14 @@ def main() -> int:
     ]
 
     passed = sum(1 for item in gates if item["pass"])
+    gate_map = {item["name"]: item for item in gates}
     payload = {
         "name": "no_chirality_search_validation",
         "timestamp": datetime.now(UTC).isoformat(),
         "passed_gates": passed,
         "total_gates": len(gates),
         "score": passed / len(gates) if gates else 0.0,
+        "constraint_family_profile": _packet_constraint_family_profile(gate_map),
         "gates": gates,
     }
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")

@@ -18,6 +18,8 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
+from axis0_result_loader import load_axis0_result
+
 
 ROOT = Path(__file__).resolve().parent
 SIM_RESULTS = ROOT / "a2_state" / "sim_results"
@@ -37,7 +39,7 @@ def main() -> int:
     parser.add_argument("--pretty", action="store_true")
     args = parser.parse_args()
 
-    basin = load_json(SIM_RESULTS / "axis0_attractor_basin_boundary_results.json")
+    basin = load_axis0_result(SIM_RESULTS, "axis0_attractor_basin_boundary_results.json")
 
     q1 = basin["q1_trajectory_lr_asym"]
     q3 = basin["q3_ti_boundary"]

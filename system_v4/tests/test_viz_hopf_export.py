@@ -47,6 +47,7 @@ def test_export_hopf_bundle_writes_extended_geometry_payload(tmp_path: Path) -> 
     assert "s3_state" in manifest["capabilities"]
     assert "fiber_phase" in manifest["capabilities"]
     assert "fiber_samples" in manifest["capabilities"]
+    assert "mesh_geometry" in manifest["capabilities"]
     assert "holonomy" not in manifest["capabilities"]
     assert len(entity["s3_point"]) == 4
     assert len(entity["projected_s3_xyz"]) == 3
@@ -54,6 +55,13 @@ def test_export_hopf_bundle_writes_extended_geometry_payload(tmp_path: Path) -> 
     assert scene["projected_path_spec"]["kind"] == "stereographic_s3_path"
     assert len(scene["projected_path_spec"]["offset_xyz"]) == 3
     assert "fiber_phase" in entity["scalars"]
+    mesh_entities = [candidate for candidate in frame_payload["entities"] if candidate.get("entity_kind") == "mesh_patch"]
+    assert {candidate["entity_id"] for candidate in mesh_entities} == {
+        "base_loop_patch",
+        "fiber_ring_patch",
+        "projected_s3_patch",
+    }
+    assert all(candidate["line_indices"] for candidate in mesh_entities)
     assert abs(abs(summary["invariants"]["measured_berry_phase"]) - np.pi) < 5e-2
 
     report = validator.validate_run_dir(run_dir)

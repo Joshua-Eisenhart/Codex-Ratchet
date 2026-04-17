@@ -48,6 +48,7 @@ FEP framing note:
 from __future__ import annotations
 import json, os, sys
 from datetime import UTC, datetime
+from pathlib import Path
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
 os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
@@ -105,6 +106,8 @@ TOOL_INTEGRATION_DEPTH = {
 }
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from axis0_result_loader import load_axis0_result
+from axis0_xi_law_fingerprint import strict_law_fingerprint
 from engine_core import GeometricEngine
 from geometric_operators import _ensure_valid_density
 from hopf_manifold import TORUS_CLIFFORD, TORUS_INNER, TORUS_OUTER
@@ -539,6 +542,47 @@ def _aggregate_deep_contract(all_results: list[dict]) -> dict[str, object]:
     }
 
 
+def _xi_hist_owner_alignment_surface(
+    all_results: list[dict],
+    summary: dict[str, object],
+    deep_contract: dict[str, object],
+    strict_law: dict[str, object],
+) -> dict[str, object]:
+    total_configs = int(len(all_results))
+    fe_pairs_only_beats_phase4_on_ic_count = int(
+        sum(
+            1
+            for row in all_results
+            if float(row["bridges"]["C_fe_pairs_only"]["ic"])
+            > float(row["bridges"]["A_phase4_winner"]["ic"])
+        )
+    )
+    phase4_wins_all_configs = int(summary["winner_counts"]["A_phase4_winner"]) == total_configs
+    pass_flag = bool(
+        phase4_wins_all_configs
+        and str(summary["best_new_bridge"]) == "C_fe_pairs_only"
+        and float(summary["best_gain"]) < 0.0
+        and float(summary["best_gain"]) > -0.1
+        and str(deep_contract["winner"]) == "A_phase4_winner"
+        and fe_pairs_only_beats_phase4_on_ic_count == 0
+    )
+    return {
+        "pass": pass_flag,
+        "status": "subordinate_refinement_only",
+        "owner_dependency": "must_bind_under_xi_hist_signed_law",
+        "strict_owner_read": str(strict_law["owner_read"]),
+        "canonical_anchor_label": str(strict_law["placement_label"]),
+        "canonical_prefix_drop": str(strict_law["canonical_prefix_drop"]),
+        "canonical_early_width": str(strict_law["canonical_early_width"]),
+        "phase4_wins_all_configs": bool(phase4_wins_all_configs),
+        "best_new_bridge": str(summary["best_new_bridge"]),
+        "best_gain": float(summary["best_gain"]),
+        "deep_contract_winner": str(deep_contract["winner"]),
+        "fe_pairs_only_beats_phase4_on_ic_count": fe_pairs_only_beats_phase4_on_ic_count,
+        "total_configs": total_configs,
+    }
+
+
 # --------------------------------------------------------------------------- #
 # Runner                                                                       #
 # --------------------------------------------------------------------------- #
@@ -653,6 +697,12 @@ def main() -> None:
     }
     mean_fe_adv = float(np.mean([r["fe_advantage"] for r in results]))
     deep_contract = _aggregate_deep_contract(results)
+    strict_law = strict_law_fingerprint(
+        load_axis0_result(
+            Path(__file__).resolve().parent / "a2_state" / "sim_results",
+            "axis0_xi_strict_bakeoff_results.json",
+        )
+    )
 
     print()
     print("=" * 72)
@@ -716,7 +766,29 @@ def main() -> None:
         f"clifford={deep_contract['clifford_vector_gap']:.2e} | "
         f"torch_ga={deep_contract['torch_ga_vector_gap']:.2e}"
     )
+
+    summary = {
+        "winner_counts": winner_counts,
+        "mean_mi": mean_mi,
+        "mean_ic": mean_ic,
+        "mean_gains_vs_A": mean_gains,
+        "best_new_bridge": best_new,
+        "best_gain": best_gain,
+        "mean_fe_advantage": mean_fe_adv,
+        "deep_contract_pass": bool(deep_contract["pass"]),
+        "deep_contract_winner": deep_contract["winner"],
+    }
+    xi_hist_owner_alignment = _xi_hist_owner_alignment_surface(
+        results,
+        summary,
+        deep_contract,
+        strict_law,
+    )
+
     print()
+    print(f"  Xi owner alignment pass:      {xi_hist_owner_alignment['pass']}")
+    print(f"  Xi owner alignment status:    {xi_hist_owner_alignment['status']}")
+    print(f"  Xi owner dependency:          {xi_hist_owner_alignment['owner_dependency']}")
     print("================================================================================")
     print(f"PROBE STATUS: {'PASS' if deep_contract['pass'] else 'FAIL'}")
     print("================================================================================")
@@ -738,17 +810,8 @@ def main() -> None:
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "compression_horizon_steps": WINDOW,
         "results": safe(results),
-        "summary": {
-            "winner_counts": winner_counts,
-            "mean_mi": mean_mi,
-            "mean_ic": mean_ic,
-            "mean_gains_vs_A": mean_gains,
-            "best_new_bridge": best_new,
-            "best_gain": best_gain,
-            "mean_fe_advantage": mean_fe_adv,
-            "deep_contract_pass": bool(deep_contract["pass"]),
-            "deep_contract_winner": deep_contract["winner"],
-        },
+        "summary": summary,
+        "xi_hist_owner_alignment": safe(xi_hist_owner_alignment),
         "aggregate": {
             "deep_contract": safe(deep_contract),
             "all_pass": bool(deep_contract["pass"]),
@@ -757,13 +820,16 @@ def main() -> None:
         "all_pass": bool(deep_contract["pass"]),
     }
 
-    out_path = os.path.join(
-        os.path.dirname(__file__),
-        "a2_state", "sim_results", "axis0_fe_indexed_xi_hist_results.json",
+    out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
+    canonical_out_path = os.path.join(
+        out_dir, f"{os.path.splitext(os.path.basename(__file__))[0]}_results.json"
     )
-    with open(out_path, "w") as f:
-        json.dump(output, f, indent=2)
-    print(f"\nResults written to {out_path}")
+    legacy_out_path = os.path.join(out_dir, "axis0_fe_indexed_xi_hist_results.json")
+    payload = json.dumps(output, indent=2)
+    for target in dict.fromkeys([canonical_out_path, legacy_out_path]):
+        with open(target, "w") as f:
+            f.write(payload)
+    print(f"\nResults written to {canonical_out_path}")
 
 
 if __name__ == "__main__":

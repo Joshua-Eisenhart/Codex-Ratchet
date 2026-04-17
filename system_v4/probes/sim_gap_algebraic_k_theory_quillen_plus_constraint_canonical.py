@@ -16,6 +16,8 @@ from cvc5 import Solver, Kind
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for algebraic K-theory"},
     "pyg": {"tried": False, "used": False, "reason": "not needed for algebraic K-theory"},
@@ -53,6 +55,8 @@ TOOL_INTEGRATION_DEPTH = {
 
 def run_positive_tests():
     """
+
+
     Positive 1: rank(P) + rank(Q) = rank(P⊕Q)
     Positive 2: Stable isomorphism uniqueness: [P] = [Q] iff P⊕R ≅ Q⊕R
     Positive 3: Multi-module composition

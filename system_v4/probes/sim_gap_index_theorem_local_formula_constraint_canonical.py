@@ -15,6 +15,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -125,6 +127,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Positive: index of D is an integer. For flat bundles, index=0 (valid).
     For twisted Dirac operator, index can be any integer value.
     """

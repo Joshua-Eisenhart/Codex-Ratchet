@@ -75,14 +75,14 @@ def apply_coupled_unitary(rho_ab, da, db, dt=0.05):
 
 def apply_local_heating(rho_ab, da, db):
     """
-    Applies a local thermalizing Lindbladian (like +Te and +Fe) only on Engine B.
+    Applies a local thermalizing Lindbladian only on Engine B.
     By the Data Processing Inequality, local operations on B MUST consume/burn
     the Mutual Information I(A:B) built up across the boundary.
     """
     rho_a = partial_trace_B(rho_ab, da, db)
     rho_b = partial_trace_A(rho_ab, da, db)
     
-    # Engine B undergoes heating/mixing locally (+Fe)
+    # Engine B undergoes a local heating/mixing update.
     rho_b_heated = 0.6 * rho_b + 0.4 * (np.eye(db) / db)
     
     # While a rigorous joint Lindbladian would preserve the exact tensor structure,
@@ -119,7 +119,7 @@ def axis0_gradient_test():
         rho_current = apply_coupled_unitary(rho_current, da, db, dt=0.5)
         
         # Artificial cooling on B to trace out entropy into the bath
-        # (Fe / Ti operators mapping into ground state projection)
+        # operator mix mapping into the ground-state projection
         rho_b = partial_trace_A(rho_current, da, db)
         P0 = np.zeros((db, db), dtype=complex)
         P0[0,0] = 1.0
@@ -139,7 +139,7 @@ def axis0_gradient_test():
     
     # 2. Inductive Heating Phase (Engine B consumes S(A|B) to generate topological work)
     for _ in range(5):
-        # Local +Te and +Fe operations on B alone (Data Processing Inequality ensures MI drops)
+        # Local operations on B alone (Data Processing Inequality ensures MI drops)
         rho_current = apply_local_heating(rho_current, da, db)
         
     MI_heated = quantum_mutual_information(rho_current, da, db)

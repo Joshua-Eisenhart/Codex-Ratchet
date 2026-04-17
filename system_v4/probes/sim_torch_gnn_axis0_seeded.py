@@ -29,7 +29,7 @@ import json
 import os
 import traceback
 import numpy as np
-classification = "canonical"
+classification = "classical_baseline"
 
 # =====================================================================
 # TOOL MANIFEST
@@ -1023,7 +1023,8 @@ if __name__ == "__main__":
         "positive": positive_results,
         "negative": negative_results,
         "boundary": boundary_results,
-        "classification": "canonical",
+        "classification": classification,
+        "substrate": "flat_3q_hilbert",
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

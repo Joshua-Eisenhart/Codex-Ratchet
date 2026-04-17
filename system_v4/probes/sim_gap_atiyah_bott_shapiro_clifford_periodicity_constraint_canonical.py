@@ -15,6 +15,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -125,6 +127,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Positive: Cl(n) has period 8, so Cl(n) ≅ Cl(n mod 8).
     cvc5 should SAT when we assert n = 8*k + n_mod8 with 0 ≤ n_mod8 < 8.
     """

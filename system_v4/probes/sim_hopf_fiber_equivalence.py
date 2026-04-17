@@ -24,7 +24,7 @@ import traceback
 from datetime import UTC, datetime
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 PROBE_DIR = os.path.dirname(os.path.abspath(__file__))
 if PROBE_DIR not in sys.path:
@@ -313,7 +313,7 @@ def main():
         },
         "all_pass": all_pass,
         "summary": {"positive": {"passed": p_pass, "total": p_total}, "negative": {"passed": n_pass, "total": n_total}, "boundary": {"passed": b_pass, "total": b_total}},
-        "classification": "canonical",
+        "classification": classification,
     }
     out_dir = os.path.join(PROBE_DIR, "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

@@ -9,7 +9,7 @@ import json
 import pathlib
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
 EPS = 1e-10

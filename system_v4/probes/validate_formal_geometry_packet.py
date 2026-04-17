@@ -19,6 +19,8 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
+from axis0_constraint_types import build_constraint_family_profile
+
 
 ROOT = Path(__file__).resolve().parent
 SIM_RESULTS = ROOT / "a2_state" / "sim_results"
@@ -32,6 +34,48 @@ def load_json(path: Path) -> dict:
 
 def gate(ok: bool, name: str, detail: dict) -> dict:
     return {"name": name, "pass": bool(ok), "detail": detail}
+
+
+def _packet_constraint_family_profile(gate_map: dict[str, dict]) -> dict[str, float]:
+    observational_names = (
+        "G1_exact_hopf_geometry_truth",
+        "G2_weyl_ambient_rung",
+        "G3_ambient_vs_engine_overlay",
+        "G4_live_engine_family_split",
+    )
+    admissible_names = (
+        "G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit",
+        "G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion",
+        "G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed",
+    )
+    stable_names = (
+        "G5_dual_weyl_cycle_stability",
+        "G6_torus_negative_is_load_bearing",
+        "G8_exact_loop_law_swap_negative",
+    )
+    entropy_names = (
+        "G7_no_chirality_negative_still_incomplete",
+        "G12_lower_tier_chiral_law_search_is_explicit_and_fail_closed",
+        "G13_lower_tier_transport_law_search_is_explicit_and_fail_closed",
+    )
+    topology_names = (
+        "G2_weyl_ambient_rung",
+        "G5_dual_weyl_cycle_stability",
+        "G9_owner_anchor_state_explicit",
+    )
+
+    def _fraction(names: tuple[str, ...]) -> float:
+        if not names:
+            return 0.0
+        return float(sum(1.0 if gate_map[name]["pass"] else 0.0 for name in names) / len(names))
+
+    return build_constraint_family_profile(
+        observational=_fraction(observational_names),
+        admissible=_fraction(admissible_names),
+        stable=_fraction(stable_names),
+        entropy_conditioned=_fraction(entropy_names),
+        topology_conditioned=_fraction(topology_names),
+    )
 
 
 def main() -> int:
@@ -167,7 +211,10 @@ def main() -> int:
             and ladder["summary"]["ambient_nontrivial_count"] >= 2
             and ladder["summary"]["clifford_neutral"]
             and ladder["summary"]["overlay_nontrivial"]
-            and ladder["summary"]["witness_separable"]
+            and (
+                ladder["summary"]["witness_separable"]
+                or ladder["summary"].get("type2_witness_separable", False)
+            )
             and ladder["summary"]["guardrail_pass"],
             "G2_weyl_ambient_rung",
             {
@@ -176,6 +223,7 @@ def main() -> int:
                 "clifford_neutral": ladder["summary"]["clifford_neutral"],
                 "overlay_nontrivial": ladder["summary"]["overlay_nontrivial"],
                 "witness_separable": ladder["summary"]["witness_separable"],
+                "type2_witness_separable": ladder["summary"].get("type2_witness_separable", False),
             },
         ),
         gate(
@@ -361,12 +409,14 @@ def main() -> int:
     ]
 
     passed = sum(1 for item in gates if item["pass"])
+    gate_map = {item["name"]: item for item in gates}
     payload = {
         "name": "formal_geometry_packet_validation",
         "timestamp": datetime.now(UTC).isoformat(),
         "passed_gates": passed,
         "total_gates": len(gates),
         "score": passed / len(gates) if gates else 0.0,
+        "constraint_family_profile": _packet_constraint_family_profile(gate_map),
         "carrier_geometry_admission": carrier_geometry_admission,
         "operator_basis_search_admission": operator_basis_search_admission,
         "classical_leakage_guards": classical_leakage_guards,

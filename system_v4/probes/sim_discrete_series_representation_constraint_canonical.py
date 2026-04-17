@@ -85,14 +85,12 @@ def run_positive_tests():
         rank_K = tm.mkConst(tm.getIntegerSort(), "rank_K")
 
         # Harisch-Chandra condition: ranks equal
-        slv.assertFormula(tm.mkEq(rank_G, rank_K))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, rank_G, rank_K))
 
         # Example: G = SL(2,R), K = SO(2), both rank 1
         slv.push()
-        slv.assertFormula(tm.mkAnd(
-            tm.mkEq(rank_G, tm.mkInteger(1)),
-            tm.mkEq(rank_K, tm.mkInteger(1))
-        ))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, rank_G, tm.mkInteger(1)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, rank_K, tm.mkInteger(1)))
         is_sat = slv.checkSat().isSat()
         slv.pop()
 
@@ -226,17 +224,16 @@ def run_negative_tests():
         has_discrete = tm.mkConst(tm.getIntegerSort(), "has_discrete")
 
         # Discrete series require rank equality
-        slv.assertFormula(tm.mkImplies(
-            tm.mkEq(has_discrete, tm.mkInteger(1)),
-            tm.mkEq(rank_G, rank_K)
+        # If has_discrete=1, then rank_G = rank_K
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.IMPLIES,
+            tm.mkTerm(cvc5.Kind.EQUAL, has_discrete, tm.mkInteger(1)),
+            tm.mkTerm(cvc5.Kind.EQUAL, rank_G, rank_K)
         ))
 
         # Try: rank_G ≠ rank_K but discrete series exist
         slv.push()
-        slv.assertFormula(tm.mkAnd(
-            tm.mkNot(tm.mkEq(rank_G, rank_K)),
-            tm.mkEq(has_discrete, tm.mkInteger(1))
-        ))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT, tm.mkTerm(cvc5.Kind.EQUAL, rank_G, rank_K)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, has_discrete, tm.mkInteger(1)))
         is_unsat = not slv.checkSat().isSat()
         slv.pop()
 
@@ -261,11 +258,11 @@ def run_negative_tests():
         d_pi = tm.mkConst(tm.getRealSort(), "d_pi")
 
         # Formal degree positive
-        slv.assertFormula(tm.mkGt(d_pi, tm.mkReal(0)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.GT, d_pi, tm.mkReal(0)))
 
         # Try to claim negative degree
         slv.push()
-        slv.assertFormula(tm.mkLEq(d_pi, tm.mkReal(0)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ, d_pi, tm.mkReal(0)))
         is_unsat = not slv.checkSat().isSat()
         slv.pop()
 
@@ -310,19 +307,13 @@ def run_negative_tests():
         d_pi = tm.mkConst(tm.getRealSort(), "d_pi")
 
         # Correct formula
-        slv.assertFormula(tm.mkEq(
-            d_pi,
-            tm.mkDiv(tm.mkMul(lambda_plus_rho, lambda_plus_rho),
-                     tm.mkAbs(inner_prod))
-        ))
+        correct_formula = tm.mkDiv(tm.mkMul(lambda_plus_rho, lambda_plus_rho),
+                                   tm.mkAbs(inner_prod))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, d_pi, correct_formula))
 
         # Try to claim different value
         slv.push()
-        slv.assertFormula(tm.mkNot(tm.mkEq(
-            d_pi,
-            tm.mkDiv(tm.mkMul(lambda_plus_rho, lambda_plus_rho),
-                     tm.mkAbs(inner_prod))
-        )))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT, tm.mkTerm(cvc5.Kind.EQUAL, d_pi, correct_formula)))
         is_unsat = not slv.checkSat().isSat()
         slv.pop()
 
@@ -348,11 +339,12 @@ def run_negative_tests():
         integral = tm.mkConst(tm.getRealSort(), "integral")
 
         # Orthogonality: integral = 1/d_π
-        slv.assertFormula(tm.mkEq(integral, tm.mkDiv(tm.mkReal(1), d_pi)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, integral, tm.mkDiv(tm.mkReal(1), d_pi)))
 
         # Try to claim different integral value
         slv.push()
-        slv.assertFormula(tm.mkGt(tm.mkAbs(tm.mkSub(integral, tm.mkDiv(tm.mkReal(1), d_pi))), tm.mkReal(0.01)))
+        diff = tm.mkAbs(tm.mkSub(integral, tm.mkDiv(tm.mkReal(1), d_pi)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.GT, diff, tm.mkReal(0.01)))
         is_unsat = not slv.checkSat().isSat()
         slv.pop()
 
@@ -385,7 +377,7 @@ def run_boundary_tests():
 
         rank = tm.mkConst(tm.getIntegerSort(), "rank")
 
-        slv.assertFormula(tm.mkEq(rank, tm.mkInteger(0)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, rank, tm.mkInteger(0)))
         is_sat = slv.checkSat().isSat()
 
         results["boundary_trivial_group"] = {

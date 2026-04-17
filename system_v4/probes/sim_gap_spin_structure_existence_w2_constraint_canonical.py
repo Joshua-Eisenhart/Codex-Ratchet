@@ -15,6 +15,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -125,6 +127,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Positive: w_1=0 AND w_2=0 should SAT (spin structure exists)
     """
     results = {}

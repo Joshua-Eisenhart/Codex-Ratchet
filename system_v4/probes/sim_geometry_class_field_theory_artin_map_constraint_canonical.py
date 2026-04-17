@@ -17,6 +17,8 @@ Supportive: sympy (algebraic verification of norm subgroup properties)
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================

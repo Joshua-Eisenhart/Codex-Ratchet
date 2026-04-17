@@ -40,7 +40,7 @@ divergence_log = (
 
 EPS = 1e-10
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
@@ -591,16 +591,19 @@ def main() -> None:
         "all_pass": overall_pass,
     }
 
-    out_path = (
+    legacy_out_path = (
         pathlib.Path(__file__).resolve().parent
         / "a2_state"
         / "sim_results"
         / "axis0_kernel_phi0_results.json"
     )
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(results, indent=2, default=str))
+    canonical_out_path = legacy_out_path.with_name(f"{pathlib.Path(__file__).stem}_results.json")
+    legacy_out_path.parent.mkdir(parents=True, exist_ok=True)
+    payload = json.dumps(results, indent=2, default=str)
+    for target in (canonical_out_path, legacy_out_path):
+        target.write_text(payload)
 
-    print(f"Results written to {out_path}")
+    print(f"Results written to {canonical_out_path}")
     print("\n=== LEGACY KERNEL ===")
     print(f"Legacy pass: {legacy_all_pass}")
     print(f"Phi0 symmetric case: {phi0_same:.6f}")

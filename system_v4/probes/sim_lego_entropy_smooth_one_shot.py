@@ -397,6 +397,7 @@ if __name__ == "__main__":
         "classification": "canonical",
         "proxy_note": "Hypothesis-testing style proxy only; not an exact smooth min/max entropy solver",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

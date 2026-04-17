@@ -858,7 +858,7 @@ def main():
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "axis0_phase6_clifford_anomaly.json")
+    out_path = os.path.join(out_dir, "sim_axis0_phase6_clifford_anomaly_results.json")
     with open(out_path, "w") as f:
         json.dump(js({
             "timestamp":    datetime.now(UTC).isoformat(),

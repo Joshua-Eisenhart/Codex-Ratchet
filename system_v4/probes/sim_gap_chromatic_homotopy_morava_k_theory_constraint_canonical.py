@@ -20,6 +20,8 @@ import json
 import os
 import sys
 
+classification = "canonical"
+
 try:
     import cvc5
     from cvc5 import Kind
@@ -124,6 +126,8 @@ TOOL_INTEGRATION_DEPTH = {
 
 def cvc5_height_degree_constraint(height, prime, target_degree=None):
     """
+
+
     Prove or disprove: degree == 2 * (prime^height - 1)
 
     Args:

@@ -84,7 +84,7 @@ def run_positive_tests():
         num_globalizations = tm.mkConst(tm.getIntegerSort(), "num_glob")
 
         # Casselman-Wallach: exactly one globalization
-        slv.assertFormula(tm.mkEq(num_globalizations, tm.mkInteger(1)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, num_globalizations, tm.mkInteger(1)))
 
         is_sat = slv.checkSat().isSat()
         results["unique_globalization"] = {
@@ -130,8 +130,8 @@ def run_positive_tests():
         dim_E = tm.mkConst(tm.getIntegerSort(), "dim_E")
 
         # V embeds: dim(V) ≤ dim(E)
-        slv.assertFormula(tm.mkLEq(dim_V, dim_E))
-        slv.assertFormula(tm.mkGt(dim_E, dim_V))  # Strict inclusion (completion adds stuff)
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ, dim_V, dim_E))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.GT, dim_E, dim_V))  # Strict inclusion (completion adds stuff)
 
         is_sat = slv.checkSat().isSat()
         results["v_in_e_embedding"] = {
@@ -205,11 +205,11 @@ def run_negative_tests():
         num_glob = tm.mkConst(tm.getIntegerSort(), "num_glob")
 
         # Uniqueness constraint
-        slv.assertFormula(tm.mkEq(num_glob, tm.mkInteger(1)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, num_glob, tm.mkInteger(1)))
 
         # Try to claim two globalizations
         slv.push()
-        slv.assertFormula(tm.mkGt(num_glob, tm.mkInteger(1)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.GT, num_glob, tm.mkInteger(1)))
         is_unsat = not slv.checkSat().isSat()
         slv.pop()
 
@@ -235,11 +235,11 @@ def run_negative_tests():
         is_banach = tm.mkConst(tm.getIntegerSort(), "is_banach")
 
         # Globalization is Fréchet (Fréchet ⊃ Banach)
-        slv.assertFormula(tm.mkGEq(is_frechet, is_banach))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.GEQ, is_frechet, is_banach))
 
         # Try to claim non-Fréchet
         slv.push()
-        slv.assertFormula(tm.mkLt(is_frechet, tm.mkInteger(1)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LT, is_frechet, tm.mkInteger(1)))
         is_unsat = not slv.checkSat().isSat()
         slv.pop()
 
@@ -265,11 +265,11 @@ def run_negative_tests():
         dim_E = tm.mkConst(tm.getIntegerSort(), "dim_E")
 
         # V ⊆ E
-        slv.assertFormula(tm.mkLEq(dim_V, dim_E))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ, dim_V, dim_E))
 
         # Try to claim V ⊄ E
         slv.push()
-        slv.assertFormula(tm.mkGt(dim_V, dim_E))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.GT, dim_V, dim_E))
         is_unsat = not slv.checkSat().isSat()
         slv.pop()
 
@@ -312,11 +312,11 @@ def run_negative_tests():
         kfin_preserved = tm.mkConst(tm.getIntegerSort(), "kfin_preserved")
 
         # K-finiteness must be preserved
-        slv.assertFormula(tm.mkEq(kfin_preserved, tm.mkInteger(1)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, kfin_preserved, tm.mkInteger(1)))
 
         # Try to claim lost
         slv.push()
-        slv.assertFormula(tm.mkEq(kfin_preserved, tm.mkInteger(0)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, kfin_preserved, tm.mkInteger(0)))
         is_unsat = not slv.checkSat().isSat()
         slv.pop()
 
@@ -350,7 +350,7 @@ def run_boundary_tests():
         dim_V = tm.mkConst(tm.getIntegerSort(), "dim_V")
 
         # Trivial rep: dim = 1
-        slv.assertFormula(tm.mkEq(dim_V, tm.mkInteger(1)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, dim_V, tm.mkInteger(1)))
 
         is_sat = slv.checkSat().isSat()
         results["boundary_trivial_rep"] = {

@@ -25,6 +25,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -139,6 +141,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Test valid BBDG decompositions where all summands are either:
     - Simple (cannot be further decomposed), OR
     - Already decomposed into simple pieces

@@ -22,6 +22,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -72,6 +74,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Test cases where prolongation correctly increases integral element space
     or preserves it (for involutive systems).
     Solver should return SAT.

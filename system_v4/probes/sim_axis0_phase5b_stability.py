@@ -683,8 +683,11 @@ def main():
         if isinstance(obj, list): return [clean(v) for v in obj]
         return obj
     
-    with open(os.path.join(out_dir, "axis0_phase5b_results.json"), "w") as f:
-        json.dump(clean({
+    canonical_out_path = os.path.join(
+        out_dir, f"{os.path.splitext(os.path.basename(__file__))[0]}_results.json"
+    )
+    legacy_out_path = os.path.join(out_dir, "axis0_phase5b_results.json")
+    payload = json.dumps(clean({
             "timestamp": datetime.now(UTC).isoformat(),
             "probe": "sim_axis0_phase5b_stability",
             "classification": classification,
@@ -706,7 +709,10 @@ def main():
             },
             "overall_pass": bool(deep_contract["pass"]),
             "all_pass": bool(deep_contract["pass"]),
-        }), f, indent=2)
+        }), indent=2)
+    for target in dict.fromkeys([canonical_out_path, legacy_out_path]):
+        with open(target, "w") as f:
+            f.write(payload)
     
     print(f"\n{'=' * 80}")
     print(f"PROBE STATUS: {'PASS' if deep_contract['pass'] else 'FAIL'}")

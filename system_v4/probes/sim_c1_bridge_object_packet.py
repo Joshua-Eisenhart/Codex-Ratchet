@@ -16,6 +16,17 @@ from __future__ import annotations
 import json
 from datetime import UTC, datetime
 from pathlib import Path
+
+from axis0_bridge_owner_alignment_contract import (
+    build_non_owner_reservation,
+    build_signed_bridge_handoff,
+    c1_bridge_object_read,
+    c1_signed_bridge_handoff_read,
+    current_bridge_gate_name,
+    current_bridge_gate_status,
+    current_bridge_object_status,
+)
+
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical packaging baseline: this packages the current C1 bridge object for downstream readout, not a canonical nonclassical witness."
 TOOL_MANIFEST = {
@@ -42,7 +53,17 @@ def main() -> int:
 
     candidate = search["candidate_object"]
     counterfeit = search["negative_family"]["history_mispair_counterfeit"]
-    handoff = carrier_selection["signed_bridge_candidate_handoff"]
+    carrier_selection_handoff = carrier_selection["signed_bridge_candidate_handoff"]
+    handoff = search.get("downstream_handoff") or build_signed_bridge_handoff(
+        bridge_owner_alignment=search["support_chain"]["bridge_owner_alignment"],
+        extra_fields={
+            "object": "c1_signed_bridge_candidate_handoff",
+            "origin_surface": "sim_c1_signed_bridge_candidate_search",
+            "support_chain_gate": "C1S3_support_chain_is_closed_before_candidate_packaging",
+            "signed_metric": "I_c",
+            "read": c1_signed_bridge_handoff_read(),
+        },
+    )
     current_mapping = pre_entropy["pre_axis_admission_schema"]["current_mapping"]
     placement_relations = pre_entropy["pre_axis_admission_schema"]["placement_relations"]
     axis_internal_readout = pre_entropy["owner_worthiness_map"]["axis_internal_readout"]
@@ -52,14 +73,11 @@ def main() -> int:
         "timestamp": datetime.now(UTC).isoformat(),
         "bridge_object": {
             "name": "Xi_chiral_entangle",
-            "status": "admitted_bridge_object_for_downstream_readout_not_final_owner_law",
+            "status": current_bridge_object_status(),
             "keep": True,
             "scope": "downstream_readout_only",
             "consumer_status": handoff["consumer_status"],
-            "read": (
-                "Xi_chiral_entangle is the current admitted bridge object for downstream readout use. "
-                "It is not a final Xi owner law, shell doctrine, history-law replacement, or entropy-family owner doctrine."
-            ),
+            "read": c1_bridge_object_read(),
             "evidence": {
                 "bridge_winner": candidate["evidence"]["bridge_winner"],
                 "winner_mean_mi": candidate["evidence"]["winner_mean_mi"],
@@ -76,22 +94,26 @@ def main() -> int:
         },
         "support_contract": {
             "c1_search_closed": search_validation["passed_gates"] == search_validation["total_gates"],
+            "bridge_owner_alignment": search["support_chain"]["bridge_owner_alignment"],
             "carrier_handoff": handoff,
+            "carrier_selection_handoff_matches_search": all(
+                carrier_selection_handoff.get(key) == handoff.get(key)
+                for key in (
+                    "candidate",
+                    "status",
+                    "placement_contract",
+                    "owner_dependency",
+                    "forbidden_reclassification",
+                    "consumer_status",
+                )
+            ),
             "pre_entropy_mapping": current_mapping["Xi_chiral_entangle"],
             "pre_entropy_relation": axis_internal_readout["Xi_chiral_entangle_relation"],
             "pre_entropy_placement": placement_relations["Xi_chiral_entangle"],
-            "entropy_gate_name": "E10_current_bridge_candidate_is_explicit_and_provisional",
-            "entropy_gate_status": "admitted_executable_candidate_not_final_owner_law",
+            "entropy_gate_name": current_bridge_gate_name(),
+            "entropy_gate_status": current_bridge_gate_status(),
         },
-        "non_claims": {
-            "status": "explicit_non_owner_reservation",
-            "final_xi_owner_law": "reserved_for_future_owner_doctrine_not_claimed_by_c1",
-            "shell_doctrine": "reserved_for_future_shell_doctrine_not_claimed_by_c1",
-            "history_law_replacement": "reserved_for_future_history_law_replacement_not_claimed_by_c1",
-            "entropy_family_owner_doctrine": "reserved_for_future_entropy_owner_doctrine_not_claimed_by_c1",
-            "owner_dependency": handoff["owner_dependency"],
-            "consumer_scope": "downstream_readout_only",
-        },
+        "non_claims": build_non_owner_reservation(),
     }
 
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")

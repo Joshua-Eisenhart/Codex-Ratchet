@@ -25,6 +25,8 @@ import sympy as sp
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -81,6 +83,8 @@ except ImportError:
 
 def cvc5_excision_constraint_check(h_M, h_P, h_N, h_union, h_tensor) -> dict:
     """
+
+
     Check excision constraint via cvc5:
     ∫_{M ∪_N P} A = ∫_M A ⊗_{∫_N A} ∫_P A
 

@@ -592,6 +592,7 @@ all_sections_pass = all(
     for k in sorted(RESULTS.keys())
 )
 RESULTS["all_pass"] = all_sections_pass
+RESULTS["classification"] = classification
 
 for k in sorted(RESULTS.keys()):
     if k == "all_pass":

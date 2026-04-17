@@ -14,12 +14,12 @@ Reported by the recent foundation runs:
 The key point is not that one metric won everywhere.
 The key point is that several families collapse to the same underlying structure under different probes, while some remain genuinely distinct.
 
-## Likely base primitives after the L0 passes
+## Likely early-admitted object families after the L0 passes
 The current working hypothesis is:
-- density matrices are foundational
-- probes are foundational
-- Pauli / Clifford generators are foundational operator bases
-- partial trace / CPTP structure is foundational for dynamics and composition
+- density matrices are early-admitted stable working objects
+- probes are early-admitted stable working objects
+- Pauli / Clifford generators are early-admitted operator bases
+- partial trace / CPTP structure is early-admitted for dynamics and composition
 - geometry is not separate from the carrier; it is constraint-compatible structure on the same state space
 
 ## L0 collapse classes to keep separate
@@ -124,7 +124,7 @@ The next aligned simulations should include:
    - Which are genuinely distinct?
 
 2. Dependency DAG
-   - Which families require which lower-level primitives?
+   - Which families require which lower-level carriers, probes, or operator families?
    - Which are derived views rather than new structure?
 
 3. L1 upward fence test
@@ -161,5 +161,5 @@ It is canon only if it:
 
 ## Practical takeaway
 The repo now has enough evidence to stop treating the system as a single entropy story.
-The correct build program is a stacked one:
+The current harness-aligned build program is a stacked one:
 carrier → geometry → operators → correlations → entropy → axes.

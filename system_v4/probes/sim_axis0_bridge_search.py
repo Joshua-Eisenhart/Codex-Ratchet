@@ -46,6 +46,7 @@ import json
 import os
 import sys
 from datetime import UTC, datetime
+from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 
@@ -68,6 +69,10 @@ from scipy.linalg import sqrtm, logm
 from scipy.linalg import expm
 from toponetx import CellComplex
 from z3 import Real, RealVal, Solver, Sum, sat
+from axis0_bridge_owner_alignment_contract import (
+    axis_internal_candidate_placement,
+    axis_internal_candidate_status,
+)
 classification = "classical_baseline"  # auto-backfill
 divergence_log = (
     "Classical foundation baseline: this searches Xi bridge candidates "
@@ -107,6 +112,8 @@ TOOL_INTEGRATION_DEPTH = {
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from axis0_result_loader import load_axis0_result
+from axis0_xi_law_fingerprint import strict_law_fingerprint
 from engine_core import GeometricEngine, StageControls
 from geometric_operators import _ensure_valid_density
 from hopf_manifold import (
@@ -847,6 +854,47 @@ def _aggregate_deep_contract(results: List[Dict]) -> Dict[str, object]:
     }
 
 
+def _xi_hist_owner_alignment_surface(
+    ranking: list[str],
+    candidate_mis: dict[str, list[float]],
+    candidate_ics: dict[str, list[float]],
+    deep_contract: dict[str, object],
+    strict_law: dict[str, object],
+) -> dict[str, object]:
+    winner = ranking[0] if ranking else None
+    runner_up = ranking[1] if len(ranking) > 1 else None
+    winner_mean_ic = float(np.mean(candidate_ics.get(winner, [0.0]))) if winner else 0.0
+    runner_up_mean_ic = float(np.mean(candidate_ics.get(runner_up, [0.0]))) if runner_up else 0.0
+    winner_mean_mi = float(np.mean(candidate_mis.get(winner, [0.0]))) if winner else 0.0
+    runner_up_mean_mi = float(np.mean(candidate_mis.get(runner_up, [0.0]))) if runner_up else 0.0
+    pass_flag = bool(
+        winner == "Xi_chiral_entangle"
+        and runner_up == "Xi_chiral_hist_entangle"
+        and winner_mean_ic > 0.02
+        and runner_up_mean_ic < 0.0
+        and winner_mean_mi > runner_up_mean_mi
+        and str(deep_contract["winner"]) == "Xi_chiral_entangle"
+    )
+    return {
+        "pass": pass_flag,
+        "status": axis_internal_candidate_status(),
+        "placement_relation": axis_internal_candidate_placement(),
+        "owner_dependency": "must_bind_under_xi_hist_signed_law",
+        "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+        "strict_owner_read": str(strict_law["owner_read"]),
+        "canonical_anchor_label": str(strict_law["placement_label"]),
+        "canonical_prefix_drop": str(strict_law["canonical_prefix_drop"]),
+        "canonical_early_width": str(strict_law["canonical_early_width"]),
+        "winner": winner,
+        "runner_up": runner_up,
+        "winner_mean_mi": winner_mean_mi,
+        "runner_up_mean_mi": runner_up_mean_mi,
+        "winner_mean_i_c": winner_mean_ic,
+        "runner_up_mean_i_c": runner_up_mean_ic,
+        "deep_contract_winner": str(deep_contract["winner"]),
+    }
+
+
 def run_mass_bakeoff():
     """Run all Xi candidates across all engine configurations."""
     
@@ -1041,6 +1089,19 @@ def save_results(results, ranking, candidate_mis, candidate_ics):
         return obj
     
     deep_contract = _aggregate_deep_contract(results)
+    strict_law = strict_law_fingerprint(
+        load_axis0_result(
+            Path(__file__).resolve().parent / "a2_state" / "sim_results",
+            "axis0_xi_strict_bakeoff_results.json",
+        )
+    )
+    xi_hist_owner_alignment = _xi_hist_owner_alignment_surface(
+        ranking,
+        candidate_mis,
+        candidate_ics,
+        deep_contract,
+        strict_law,
+    )
     summary = {
         "timestamp": datetime.now(UTC).isoformat(),
         "probe": "sim_axis0_bridge_search",
@@ -1053,6 +1114,7 @@ def save_results(results, ranking, candidate_mis, candidate_ics):
         "mean_mi_by_candidate": {k: float(np.mean(v)) for k, v in candidate_mis.items()},
         "mean_ic_by_candidate": {k: float(np.mean(v)) for k, v in candidate_ics.items()},
         "winner": ranking[0] if ranking else None,
+        "xi_hist_owner_alignment": xi_hist_owner_alignment,
         "results": results,
         "aggregate": {
             "deep_contract": deep_contract,
@@ -1067,17 +1129,22 @@ def save_results(results, ranking, candidate_mis, candidate_ics):
         "all_pass": bool(deep_contract["pass"]),
     }
     
-    out_path = os.path.join(output_dir, "axis0_bridge_search_results.json")
-    with open(out_path, "w") as f:
-        json.dump(clean(summary), f, indent=2)
-    print(f"\n  Results saved: {out_path}")
-    return deep_contract
+    canonical_out_path = os.path.join(
+        output_dir, f"{os.path.splitext(os.path.basename(__file__))[0]}_results.json"
+    )
+    legacy_out_path = os.path.join(output_dir, "axis0_bridge_search_results.json")
+    payload = json.dumps(clean(summary), indent=2)
+    for target in dict.fromkeys([canonical_out_path, legacy_out_path]):
+        with open(target, "w") as f:
+            f.write(payload)
+    print(f"\n  Results saved: {canonical_out_path}")
+    return deep_contract, xi_hist_owner_alignment
 
 
 if __name__ == "__main__":
     results = run_mass_bakeoff()
     ranking, candidate_mis, candidate_ics = print_ranking(results)
-    deep_contract = save_results(results, ranking, candidate_mis, candidate_ics)
+    deep_contract, xi_hist_owner_alignment = save_results(results, ranking, candidate_mis, candidate_ics)
 
     print(f"\n{'─' * 80}")
     print("DEEP CONTRACT")
@@ -1096,6 +1163,9 @@ if __name__ == "__main__":
         f"clifford={deep_contract['clifford_vector_gap']:.2e} | "
         f"torch_ga={deep_contract['torch_ga_vector_gap']:.2e}"
     )
+    print(f"  Xi owner alignment pass:      {xi_hist_owner_alignment['pass']}")
+    print(f"  Xi owner status:              {xi_hist_owner_alignment['status']}")
+    print(f"  Xi owner dependency:          {xi_hist_owner_alignment['owner_dependency']}")
     
     print(f"\n{'=' * 80}")
     print(f"PROBE STATUS: {'PASS' if deep_contract['pass'] else 'FAIL'}")

@@ -111,7 +111,7 @@ records: what was tested, what constraint killed it, what the kill means for the
 surviving surface. A rich graveyard is more informative than a list of survivors,
 because it maps the boundary of M(C) by elimination.
 
-Nothing "passes." Things are not-yet-killed. The status vocabulary is:
+Nothing "passes." Things are not-yet-killed. The process/ontology status vocabulary is:
 - NOT_YET_TESTED: no constraint check performed
 - SURVIVED: checked against one or more constraints, not killed
 - KILLED: shown to be off M(C), with the killing constraint recorded
@@ -119,6 +119,18 @@ Nothing "passes." Things are not-yet-killed. The status vocabulary is:
 
 "PASS" implies verification of correctness. This system does not verify
 correctness. It falsifies what it can and reports what remains.
+
+These process states are not substitutes for the public controller truth labels.
+For repo closeout and worker/controller reporting, use the four labels from
+`LLM_CONTROLLER_CONTRACT.md`:
+- `exists`
+- `runs`
+- `passes local rerun`
+- `canonical by process`
+
+A result can be `SURVIVED` or `OPEN` in the constraint-selection sense while the
+file carrying it is only `exists` or `runs` in the public reporting sense.
+Do not collapse those vocabularies.
 
 ---
 
@@ -174,7 +186,7 @@ Purpose: route between boots. Teach the fences. Debug failures. Translate
 between A1 output and B-admissible input.
 
 Rules:
-- Knows all boots but cannot write canon
+- Knows all boots but cannot assign public canonical-by-process status
 - Atomic routing only (one paste unit per box)
 - Must not paraphrase boot text
 - Expansion before compression, asymmetry before symmetry
@@ -189,8 +201,8 @@ All SIM output is subject to B-admission before it counts as evidence.
 
 ### Contamination Rule
 
-A1 output (recon) does NOT become B evidence (canon) without going through
-the proper pipeline:
+A1 output (recon) does NOT become B evidence or controller-reportable
+canonical-by-process support without going through the proper pipeline:
 
   A1 produces recon artifacts
   → A translates into B-admissible EXPORT_BLOCK format

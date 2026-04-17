@@ -1257,10 +1257,15 @@ def main():
         "all_pass": bool(deep_contract["pass"]),
     }
 
-    out = os.path.join(RESULTS_DIR, "axis0_orbit_phase_alignment_results.json")
-    with open(out, "w") as fh:
-        json.dump(results, fh, indent=2)
-    print(f"\nResults written to {out}")
+    canonical_out = os.path.join(
+        RESULTS_DIR, f"{os.path.splitext(os.path.basename(__file__))[0]}_results.json"
+    )
+    legacy_out = os.path.join(RESULTS_DIR, "axis0_orbit_phase_alignment_results.json")
+    payload = json.dumps(results, indent=2)
+    for target in dict.fromkeys([canonical_out, legacy_out]):
+        with open(target, "w") as fh:
+            fh.write(payload)
+    print(f"\nResults written to {canonical_out}")
     print("\n=== DEEP CONTRACT ===")
     print(f"legacy_all_pass = {legacy_all_pass}")
     print(f"  Deep pass:                    {deep_contract['pass']}")

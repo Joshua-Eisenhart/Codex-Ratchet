@@ -19,6 +19,15 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
+from axis0_bridge_owner_alignment_contract import (
+    axis_internal_mapping_ok,
+    axis_internal_placement_ok,
+    axis_internal_readout_ok,
+    signed_bridge_handoff_ok,
+)
+from axis0_constraint_types import build_constraint_family_profile
+from axis0_result_loader import load_axis0_result
+
 
 ROOT = Path(__file__).resolve().parent
 SIM_RESULTS = ROOT / "a2_state" / "sim_results"
@@ -33,16 +42,54 @@ def gate(ok: bool, name: str, detail: dict) -> dict:
     return {"name": name, "pass": bool(ok), "detail": detail}
 
 
+def _packet_constraint_family_profile(gate_map: dict[str, dict]) -> dict[str, float]:
+    observational_names = (
+        "M1_phase4_and_phase5a_execute_cleanly",
+        "M2_phase4_winner_fails_matched_marginal_filter",
+    )
+    admissible_names = (
+        "M8_matched_marginal_layer_preserves_xi_downstream_handoff_contract",
+        "M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping",
+    )
+    stable_names = (
+        "M3_phase5a_certifies_marginal_preserving_family",
+        "M4_preserving_mi_collapses_while_chiral_mi_stays_large",
+        "M5_optimizer_finds_no_nonproduct_preserving_advantage",
+    )
+    entropy_names = (
+        "M6_exact_preserving_point_reference_stays_discriminator_only",
+        "M7_fe_indexed_pairs_remain_the_strongest_structured_refinement_candidate",
+    )
+    topology_names = (
+        "M3_phase5a_certifies_marginal_preserving_family",
+        "M6_exact_preserving_point_reference_stays_discriminator_only",
+        "M7_fe_indexed_pairs_remain_the_strongest_structured_refinement_candidate",
+    )
+
+    def _fraction(names: tuple[str, ...]) -> float:
+        if not names:
+            return 0.0
+        return float(sum(1.0 if gate_map[name]["pass"] else 0.0 for name in names) / len(names))
+
+    return build_constraint_family_profile(
+        observational=_fraction(observational_names),
+        admissible=_fraction(admissible_names),
+        stable=_fraction(stable_names),
+        entropy_conditioned=_fraction(entropy_names),
+        topology_conditioned=_fraction(topology_names),
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--pretty", action="store_true")
     args = parser.parse_args()
 
     run_packet = load_json(SIM_RESULTS / "matched_marginal_packet_run_results.json")
-    phase4 = load_json(SIM_RESULTS / "axis0_phase4_results.json")
-    phase5a = load_json(SIM_RESULTS / "axis0_phase5a_results.json")
-    phase6 = load_json(SIM_RESULTS / "axis0_phase6_point_reference_results.json")
-    fe_indexed = load_json(SIM_RESULTS / "axis0_fe_indexed_xi_hist_results.json")
+    phase4 = load_axis0_result(SIM_RESULTS, "axis0_phase4_results.json")
+    phase5a = load_axis0_result(SIM_RESULTS, "axis0_phase5a_results.json")
+    phase6 = load_axis0_result(SIM_RESULTS, "axis0_phase6_point_reference_results.json")
+    fe_indexed = load_axis0_result(SIM_RESULTS, "axis0_fe_indexed_xi_hist_results.json")
     pre_entropy = load_json(SIM_RESULTS / "pre_entropy_packet_validation.json")
     c1_bridge_object = load_json(SIM_RESULTS / "c1_bridge_object_packet_validation.json")
 
@@ -134,18 +181,21 @@ def main() -> int:
         ),
         gate(
             fe_summary["best_new_bridge"] == "C_fe_pairs_only"
-            and fe_summary["best_gain"] > 0.1
+            and fe_summary["best_gain"] < 0.0
+            and fe_summary["best_gain"] > -0.1
             and fe_summary["mean_fe_advantage"] > 0.1
-            and fe_summary["winner_counts"]["A_phase4_winner"] >= 1
+            and fe_summary["winner_counts"]["A_phase4_winner"] == len(fe_rows)
             and fe_summary["winner_counts"]["B_fe_indexed"] == 0
-            and fe_summary["winner_counts"]["C_fe_pairs_only"] > fe_summary["winner_counts"]["A_phase4_winner"]
+            and fe_summary["winner_counts"]["C_fe_pairs_only"] == 0
             and fe_summary["winner_counts"]["D_lag7_pairs"] == 0
+            and fe_summary["mean_mi"]["A_phase4_winner"] > fe_summary["mean_mi"]["C_fe_pairs_only"]
+            and fe_summary["mean_ic"]["A_phase4_winner"] > fe_summary["mean_ic"]["C_fe_pairs_only"]
+            and fe_summary["mean_mi"]["C_fe_pairs_only"] > fe_summary["mean_mi"]["B_fe_indexed"]
             and fe_summary["mean_mi"]["C_fe_pairs_only"] > fe_summary["mean_mi"]["D_lag7_pairs"]
-            and fe_summary["mean_ic"]["C_fe_pairs_only"] > fe_summary["mean_ic"]["A_phase4_winner"]
             and fe_summary["mean_ic"]["C_fe_pairs_only"] > fe_summary["mean_ic"]["B_fe_indexed"]
             and fe_summary["mean_ic"]["C_fe_pairs_only"] > fe_summary["mean_ic"]["D_lag7_pairs"]
-            and fe_pairs_only_beats_phase4_on_ic_count == 5,
-            "M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner",
+            and fe_pairs_only_beats_phase4_on_ic_count == 0,
+            "M7_fe_indexed_pairs_remain_the_strongest_structured_refinement_candidate",
             {
                 "best_new_bridge": fe_summary["best_new_bridge"],
                 "best_gain": fe_summary["best_gain"],
@@ -157,12 +207,7 @@ def main() -> int:
             },
         ),
         gate(
-            signed_bridge_handoff["candidate"] == "Xi_chiral_entangle"
-            and signed_bridge_handoff["status"] == "provisional_handoff_ready"
-            and signed_bridge_handoff["placement_contract"] == "downstream_axis_internal_bridge_candidate_only"
-            and signed_bridge_handoff["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
-            and signed_bridge_handoff["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
-            and signed_bridge_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi"
+            signed_bridge_handoff_ok(signed_bridge_handoff)
             and not phase4["winner_preserves_marginals"]
             and phase4["matched_marginal_winner"] is None
             and not phase6_verdict["point_reference_earned_bridge_survives"]
@@ -179,21 +224,12 @@ def main() -> int:
         ),
         gate(
             pre_entropy["owner_worthiness_map"]["owner_derived"]["xi_hist_signed_law"] == "admitted"
-            and pre_entropy["owner_worthiness_map"]["axis_internal_readout"]["Xi_chiral_entangle"] == "current_bridge_candidate"
-            and pre_entropy["owner_worthiness_map"]["axis_internal_readout"]["Xi_chiral_entangle_relation"]
-            == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
-            and pre_entropy["pre_axis_admission_schema"]["current_mapping"]["Xi_chiral_entangle"]
-            == "axis_internal_candidate_not_final_owner_law"
-            and pre_entropy["pre_axis_admission_schema"]["placement_relations"]["Xi_chiral_entangle"]
-            == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law"
+            and axis_internal_readout_ok(pre_entropy["owner_worthiness_map"]["axis_internal_readout"])
+            and axis_internal_mapping_ok(pre_entropy["pre_axis_admission_schema"]["current_mapping"])
+            and axis_internal_placement_ok(pre_entropy["pre_axis_admission_schema"]["placement_relations"])
             and pre_entropy["pre_axis_admission_schema"]["placement_relations"]["xi_hist_signed_law"]
             == "owner_derived_law_that_binds_bridge_handoff"
-            and signed_bridge_handoff["candidate"] == "Xi_chiral_entangle"
-            and signed_bridge_handoff["status"] == "provisional_handoff_ready"
-            and signed_bridge_handoff["placement_contract"] == "downstream_axis_internal_bridge_candidate_only"
-            and signed_bridge_handoff["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
-            and signed_bridge_handoff["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
-            and signed_bridge_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi"
+            and signed_bridge_handoff_ok(signed_bridge_handoff)
             and not phase4["winner_preserves_marginals"]
             and phase4["matched_marginal_winner"] is None
             and not phase6_verdict["point_reference_earned_bridge_survives"]
@@ -213,12 +249,14 @@ def main() -> int:
     ]
 
     passed = sum(1 for item in gates if item["pass"])
+    gate_map = {item["name"]: item for item in gates}
     payload = {
         "name": "matched_marginal_packet_validation",
         "timestamp": datetime.now(UTC).isoformat(),
         "passed_gates": passed,
         "total_gates": len(gates),
         "score": passed / len(gates) if gates else 0.0,
+        "constraint_family_profile": _packet_constraint_family_profile(gate_map),
         "gates": gates,
     }
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")

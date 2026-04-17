@@ -50,6 +50,8 @@ from torch_geometric.data import Data
 from torch_geometric.nn import MessagePassing
 from z3 import Real, RealVal, Solver, Sum, sat
 
+from axis0_bridge_owner_packet_surface import load_bridge_owner_packet_surface
+from axis0_constraint_types import build_distinguishability_constraint
 from sim_integration_quantum_open_entangle_correlator_mega_stack import (
     _bell_prep,
     _cirq_prep,
@@ -852,6 +854,10 @@ def _cosmology_case(
     clifford_vector = _clifford_vector(cosmology_vector)
     torch_ga_vector = _torch_ga_roundtrip(cosmology_vector)
     e3nn_surface = _shell_e3nn_surface(cosmology_vector)
+    bridge_owner_surface = load_bridge_owner_packet_surface()
+    bridge_owner_gate_fraction = float(
+        np.mean([1.0 if passed else 0.0 for passed in bridge_owner_surface["gate_passes"].values()])
+    )
 
     metrics = {
         "prep_density_errors": {
@@ -901,21 +907,88 @@ def _cosmology_case(
         "torch_ga_vector": torch_ga_vector.tolist(),
         "cosmology_vector": cosmology_vector.tolist(),
         "e3nn_surface": e3nn_surface,
+        "bridge_owner_surface": bridge_owner_surface,
+        "bridge_owner_gate_fraction": bridge_owner_gate_fraction,
     }
     metrics["semantic_row_surface"] = semantic_row_surface(metrics)
     return metrics
 
 
 def semantic_row_surface(metrics: dict[str, object]) -> dict[str, object]:
+    distinguishability_surface = metrics.get(
+        "distinguishability_surface",
+        _lambda_distinguishability_surface(metrics),
+    )
     return {
         "lane": "lambda_cosmology",
         "symbolic_hubble_mid": float(metrics["symbolic_surface"]["symbolic_hubble_mid"]),
         "constraint_pass": bool(metrics["constraint_surface"]["sat"]),
         "cvc5_pass": bool(metrics["cvc5_surface"]["pass"]),
+        "bridge_owner_pass": bool(metrics["bridge_owner_surface"]["pass"]),
+        "bridge_owner_gate_fraction": float(metrics["bridge_owner_gate_fraction"]),
+        "distinguishability_pass": bool(distinguishability_surface["pass"]),
+        "distinguishability_gate_fraction": float(distinguishability_surface["gate_fraction"]),
+        "constraint_family_profile": distinguishability_surface["constraint_profile"],
         "graph_longest_path_length": int(metrics["graph_surface"]["longest_path_length"]),
         "manifold_distance": float(metrics["manifold_surface"]["mean_geodesic_distance"]),
         "pyg_mean_aggregate_norm": float(metrics["pyg_surface"]["mean_aggregate_norm"]),
+        "distinguishability_surface": distinguishability_surface,
     }
+
+
+def _lambda_distinguishability_surface(metrics: dict[str, object]) -> dict[str, object]:
+    lambda_density = np.asarray(metrics["lambda_density"], dtype=np.float64)
+    shell_spread = float(np.max(lambda_density) - np.min(lambda_density))
+    topology = metrics["topology_surface"]
+    dynamic_gap = float(metrics["dynamic_vs_frozen_gap"])
+    coherent_span = float(metrics["coherent_information_span"])
+    entropy_span = float(metrics["full_entropy_span"])
+    fuzz_level = float(metrics["jk_fuzz_dynamic"])
+    topology_signal = float(
+        min(
+            metrics["graph_surface"]["longest_path_length"] / max(len(metrics["lambda_shells"]) - 2, 1),
+            1.0,
+        )
+    )
+    return build_distinguishability_constraint(
+        observational=bool(
+            dynamic_gap > 0.02
+            and coherent_span > 0.1
+        ),
+        admissible=bool(metrics["constraint_surface"]["sat"] and metrics["cvc5_surface"]["pass"]),
+        stable=bool(
+            float(metrics["prep_density_errors"]["numpy_vs_cirq"]) < 1e-6
+            and float(metrics["prep_density_errors"]["numpy_vs_pennylane"]) < 1e-6
+            and float(metrics["open_system_density_errors"]["numpy_vs_qutip"]) < 1e-6
+        ),
+        entropy_conditioned=bool(
+            entropy_span > 0.1
+            and fuzz_level > 1.5
+            and shell_spread > 0.05
+        ),
+        topology_conditioned=bool(
+            metrics["graph_surface"]["longest_path_length"] >= len(metrics["lambda_shells"]) - 2
+            and topology["beta0"] == 1
+            and topology["beta1"] == 0
+        ),
+        signals={
+            "observational_signal": min(dynamic_gap / 0.02, 2.0) + min(coherent_span / 0.1, 2.0),
+            "admissibility_signal": 1.0 if (metrics["constraint_surface"]["sat"] and metrics["cvc5_surface"]["pass"]) else 0.0,
+            "stability_signal": 1.0
+            - max(
+                float(metrics["prep_density_errors"]["numpy_vs_cirq"]),
+                float(metrics["prep_density_errors"]["numpy_vs_pennylane"]),
+                float(metrics["open_system_density_errors"]["numpy_vs_qutip"]),
+            ),
+            "entropy_signal": min(entropy_span / 0.1, 2.0) + min(fuzz_level / 1.5, 2.0) + min(shell_spread / 0.05, 2.0),
+            "topology_signal": topology_signal,
+            "shell_spread": shell_spread,
+            "fuzz_level": fuzz_level,
+            "coherent_information_span": coherent_span,
+        },
+        note="Lambda cosmology row distinguishes states through shell-native fuzz separation, entropy span, coherent-information spread, and topology closure.",
+        pass_threshold=0.8,
+    )
 
 
 def _crosslane_semantic_surface(
@@ -997,6 +1070,7 @@ def run_positive_tests() -> dict[str, object]:
         "axis0_lambda_expansion": {
             "pass": bool(axis0_ok),
             "semantic_row_surface": metrics["semantic_row_surface"],
+            "bridge_owner_surface": metrics["bridge_owner_surface"],
             "jk_fuzz_dynamic": metrics["jk_fuzz_dynamic"],
             "i_scalar_dynamic": metrics["i_scalar_dynamic"],
             "i_scalar_frozen": metrics["i_scalar_frozen"],
@@ -1052,6 +1126,8 @@ def run_positive_tests() -> dict[str, object]:
                 "loss": crosslane_positive["crosslane_bridge"]["torch_fit"]["loss"],
                 "max_gap": crosslane_positive["crosslane_bridge"]["torch_fit"]["max_gap"],
             },
+            "xi_packet_surface": crosslane_positive["xi_packet_surface"],
+            "bridge_owner_surface": crosslane_positive["bridge_owner_surface"],
         },
     }
 

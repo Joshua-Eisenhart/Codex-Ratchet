@@ -16,7 +16,7 @@ Two modes are compared:
   A. local-only evolution:
      independent L/R terrain channels applied correctly on rho_LR
   B. coupled control:
-     same local channels plus an explicit nonlocal entangling bridge
+     same local channels plus an explicit nonlocal entangling coupling
 
 This is a guardrail sim. If local-only evolution generates mutual
 information from a product state, the implementation is wrong.
@@ -53,8 +53,8 @@ sz = np.array([[1, 0], [0, -1]], dtype=complex)
 sm = np.array([[0, 0], [1, 0]], dtype=complex)
 sp = np.array([[0, 1], [0, 0]], dtype=complex)
 
-DED_ORDER = ["Se", "Ne", "Ni", "Si"]
-IND_ORDER = ["Se", "Si", "Ni", "Ne"]
+DED_ORDER = ["Se", "Ne", "channel_decay", "Si"]
+IND_ORDER = ["Se", "Si", "channel_decay", "Ne"]
 
 
 def vn_entropy(rho: np.ndarray) -> float:
@@ -158,7 +158,7 @@ def coupling_unitary(eta: float, loop_type: str, terrain: str) -> np.ndarray:
     terrain_gain = {
         "Se": 0.9,
         "Ne": 0.4,
-        "Ni": 1.0,
+        "channel_decay": 1.0,
         "Si": 0.5,
     }[terrain]
     g = 0.06 * geom * loop_gain * terrain_gain
@@ -178,7 +178,7 @@ def terrain_kraus_pair(terrain: str, q: np.ndarray) -> tuple[list[np.ndarray], l
         return depolarizing_kraus(0.10), depolarizing_kraus(0.10)
     if terrain == "Ne":
         return unitary_kraus(nL, 0.18), unitary_kraus(-nR, 0.18)
-    if terrain == "Ni":
+    if terrain == "channel_decay":
         return amplitude_damping_kraus(0.12, raising=False), amplitude_damping_kraus(0.12, raising=True)
     if terrain == "Si":
         return dephasing_basis_kraus(psiL, 0.12), dephasing_basis_kraus(psiR, 0.12)

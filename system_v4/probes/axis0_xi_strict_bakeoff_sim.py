@@ -927,7 +927,7 @@ def verdicts(
             "mean_mi_0_15_minus_8_15": mean_mi_0_15_minus_8_15,
         }
     history_seat_aware_summary["seat_read"] = (
-        "clifford_0_15_mi__front_half_lean__inner_outer_back_half_mi__all_back_half_signed_cut"
+        "clifford_0_7_or_0_15_mi_tie__front_half_signed_cut__inner_outer_back_half_mi"
     )
     seat_aware_candidate_rows = []
     seat_aware_beats_uniform_0_15_count = 0
@@ -1055,9 +1055,17 @@ def verdicts(
         better_clifford_mi_candidate = "B"
     elif mean_clifford_candidate_b_minus_candidate_a_mi < -1e-6:
         better_clifford_mi_candidate = "A"
+    early_width_ic_counts = {
+        label: int(sum(1 for row in early_width_rows if row["best_early_width_by_ic"] == label))
+        for label in [label for label, _, _ in EARLY_WIDTH_SPECS]
+    }
+    prefix_drop_ic_counts = {
+        label: int(sum(1 for row in prefix_drop_rows if row["best_prefix_drop_by_ic"] == label))
+        for label in [label for label, _, _ in PREFIX_DROP_SPECS]
+    }
     xi_hist_signed_law_summary = {
         "law_name": "Xi_hist signed law",
-        "owner_read": "late-anchor equivalence plus clifford-local short-width stress",
+        "owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
         "late_anchor_equivalence": {
             "placement_8_23_equals_16_31": bool(
                 placement_8_23_equals_16_31_count == len(late_anchor_rows)
@@ -1072,23 +1080,36 @@ def verdicts(
                 placement_8_23_equals_prefix_8_15_on_signed_count == len(late_anchor_rows)
             ),
         },
-        "short_width_stress": {
-            "best_early_width_by_ic_is_0_3": bool(
-                all(row["best_early_width_by_ic"] == "0_3" for row in early_width_rows)
+        "anchor_and_width_profile": {
+            "best_prefix_drop_by_ic_is_8_15": bool(
+                all(row["best_prefix_drop_by_ic"] == "8_15" for row in prefix_drop_rows)
             ),
-            "late_anchor_beats_0_3_off_clifford": bool(
-                placement_8_23_beats_0_3_on_ic_off_clifford_count == 4
+            "best_early_width_by_ic_is_0_7_majority": bool(
+                early_width_ic_counts["0_7"] >= len(early_width_rows) - 1
+                and early_width_ic_counts["0_15"] == 0
+                and early_width_ic_counts["0_11"] == 0
             ),
-            "0_3_beats_late_anchor_on_clifford_only": bool(
-                short_width_0_3_beats_8_23_on_ic_clifford_count == 2
+            "late_anchor_beats_0_3_globally_on_ic": bool(
+                placement_8_23_beats_0_3_on_ic_count == len(late_anchor_rows)
+                and short_width_0_3_beats_8_23_on_ic_clifford_count == 0
             ),
+            "front_half_signed_cut_preference_all_seats": bool(
+                all(
+                    history_seat_aware_summary[torus]["signed_cut_half_preference"] == "front_half"
+                    for torus in ("inner", "clifford", "outer")
+                )
+            ),
+            "clifford_mi_0_7_vs_0_15_is_tied": bool(better_clifford_mi_candidate == "tie"),
         },
         "counts": {
             "total_rows": len(late_anchor_rows),
             "off_clifford_rows": int(sum(1 for row in late_anchor_rows if row["torus"] in ("inner", "outer"))),
             "clifford_rows": int(sum(1 for row in late_anchor_rows if row["torus"] == "clifford")),
+            "placement_8_23_beats_0_3_on_ic_count": placement_8_23_beats_0_3_on_ic_count,
             "placement_8_23_beats_0_3_on_ic_off_clifford_count": placement_8_23_beats_0_3_on_ic_off_clifford_count,
             "short_width_0_3_beats_8_23_on_ic_clifford_count": short_width_0_3_beats_8_23_on_ic_clifford_count,
+            "best_early_width_by_ic_counts": early_width_ic_counts,
+            "best_prefix_drop_by_ic_counts": prefix_drop_ic_counts,
         },
     }
 
@@ -1219,8 +1240,8 @@ def verdicts(
         "axis0_current_live_seat_summary": {
             "mi_seat_pattern": mi_seat_pattern,
             "signed_cut_seat_pattern": signed_cut_seat_pattern,
-            "mi_read": "inner_outer_back_half__clifford_0_15__clifford_front_half_lean",
-            "signed_cut_read": "all_seats_back_half",
+            "mi_read": "late_anchor_8_23_equals_8_15__inner_outer_back_half__clifford_0_7_or_0_15_tie",
+            "signed_cut_read": "all_seats_front_half",
         },
         "clifford_edge_case_summary": {
             "threshold_mi_gain": threshold,

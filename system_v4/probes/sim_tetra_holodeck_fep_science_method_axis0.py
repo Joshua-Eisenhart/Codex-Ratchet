@@ -11,7 +11,7 @@ Frames (edges of the tetrahedron of claims):
   SM  Science-Method  : refutation gate -- accept q only if held-out atom
                         prediction lands within tolerance.
   A0  Axis-0          : entropy-gradient axis earned on a 3-qubit-style
-                        support via a designated Fe-like *bridge* cut.
+                        support via a designated bridge-like cut.
                         Minimal surrogate: monotone I_c variable that is
                         only admissible when the bridge edge is present
                         and the support has >=3 atoms (3-qubit requirement).
@@ -30,7 +30,7 @@ Drop-one structural collapses (what each edge is load-bearing for):
             the sibling triangle sim.
 
 NOTE: This is a CONCEPTUAL 4-way coherence check (minimal surrogate for
-Axis-0), not a formal multi-shell proof. Full Axis-0 uses |000> + Fe
+Axis-0), not a formal multi-shell proof. Full Axis-0 uses |000> plus an
 bridge on 3 qubits; here we encode only its admissibility signature.
 
 POS  : all four cohere under matched shells + A0 bridge active on >=3 atoms
@@ -86,7 +86,7 @@ def in_holodeck_support(q, p_H):
 def axis0_admissible(p_H, bridge_present, min_atoms=3):
     """Axis-0 surrogate: I_c growth is admissible iff
        (a) support has >= min_atoms atoms (3-qubit requirement), and
-       (b) a designated Fe-like bridge edge is present.
+       (b) a designated bridge edge is present.
     """
     n_atoms = int(np.sum(p_H > 1e-12))
     return bool(bridge_present and n_atoms >= min_atoms)
@@ -223,7 +223,7 @@ if __name__ == "__main__":
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
         "note": ("Conceptual 4-way coherence check; Axis-0 encoded as a "
-                 "minimal surrogate (monotone I_c + Fe-like bridge + "
+                 "minimal surrogate (monotone I_c + bridge-like cut + "
                  ">=3-atom support). Not a formal multi-shell proof."),
     }
     ok = all(bool(v) for d in (results["positive"], results["negative"],

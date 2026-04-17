@@ -14,6 +14,8 @@ Boundary: Near-commutative limits, low-dimensional cases
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================

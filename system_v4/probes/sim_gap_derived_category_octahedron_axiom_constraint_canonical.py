@@ -23,6 +23,8 @@ import sympy as sp
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     # --- Computation layer ---
     "pytorch": {"tried": False, "used": False, "reason": ""},
@@ -140,6 +142,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Positive tests: composable maps in triangulated categories that satisfy
     the octahedron axiom naturally.
     """

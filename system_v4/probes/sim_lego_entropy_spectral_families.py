@@ -339,6 +339,7 @@ if __name__ == "__main__":
         "schema_version": "1.0",
         "classification": "canonical",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

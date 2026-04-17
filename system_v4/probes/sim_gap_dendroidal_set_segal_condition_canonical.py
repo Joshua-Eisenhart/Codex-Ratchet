@@ -22,6 +22,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed; dendroidal structure is combinatorial, not tensor network"},
     "pyg": {"tried": False, "used": False, "reason": "not needed; dendroidal topology not representable as standard graph"},
@@ -136,6 +138,8 @@ except ImportError:
 
 def count_horn_fillings(horn_id, tree_id):
     """
+
+
     Count how many distinct ways to fill an inner horn Λ_e ⊂ Δ_T.
 
     For Segal dendroidal sets: exactly 1 filling (unique).

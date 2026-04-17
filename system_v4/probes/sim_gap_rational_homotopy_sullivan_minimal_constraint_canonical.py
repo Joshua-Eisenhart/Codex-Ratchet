@@ -30,6 +30,8 @@ import sympy as sp
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -84,6 +86,8 @@ except ImportError as e:
 
 def sullivan_minimality_constraint(solver, generator_id, d_image_is_decomposable, d_image_degree):
     """
+
+
     Sullivan minimality constraint:
     For a generator v ∈ V, d(v) must be in ∧^{≥2}V (decomposable elements).
 

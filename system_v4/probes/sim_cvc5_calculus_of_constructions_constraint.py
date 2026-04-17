@@ -14,6 +14,8 @@ Sympy derives normalization theorem and reduction rules.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -336,7 +338,7 @@ if __name__ == "__main__":
         "positive": run_positive_tests(),
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
-        "classification": "canonical",
+        "classification": classification,
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

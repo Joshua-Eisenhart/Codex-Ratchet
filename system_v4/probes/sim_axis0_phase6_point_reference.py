@@ -635,38 +635,42 @@ def main():
 
     out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "axis0_phase6_point_reference_results.json")
-    with open(out_path, "w") as f:
-        json.dump(
-            {
-                "generated_at": datetime.now(UTC).isoformat(),
-                "classification": classification,
-                "divergence_log": divergence_log,
-                "tool_manifest": TOOL_MANIFEST,
-                "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-                "n_samples": N_SAMPLES,
-                "tolerances": TOLS,
-                "suites": suites,
-                "verdict": verdict,
-                "config_records": config_records,
-                "aggregate": {
-                    "deep_contract": deep_contract,
-                    "all_pass": bool(deep_contract["pass"]),
-                },
-                "summary": {
-                    "point_reference_earned_bridge_survives": verdict["point_reference_earned_bridge_survives"],
-                    "controller_read": verdict["controller_read"],
-                    "deep_contract_pass": bool(deep_contract["pass"]),
-                    "deep_contract_winner": deep_contract["winner"],
-                },
-                "overall_pass": bool(deep_contract["pass"]),
+    canonical_out_path = os.path.join(
+        out_dir, f"{os.path.splitext(os.path.basename(__file__))[0]}_results.json"
+    )
+    legacy_out_path = os.path.join(out_dir, "axis0_phase6_point_reference_results.json")
+    payload = json.dumps(
+        {
+            "generated_at": datetime.now(UTC).isoformat(),
+            "classification": classification,
+            "divergence_log": divergence_log,
+            "tool_manifest": TOOL_MANIFEST,
+            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+            "n_samples": N_SAMPLES,
+            "tolerances": TOLS,
+            "suites": suites,
+            "verdict": verdict,
+            "config_records": config_records,
+            "aggregate": {
+                "deep_contract": deep_contract,
                 "all_pass": bool(deep_contract["pass"]),
             },
-            f,
-            indent=2,
-        )
+            "summary": {
+                "point_reference_earned_bridge_survives": verdict["point_reference_earned_bridge_survives"],
+                "controller_read": verdict["controller_read"],
+                "deep_contract_pass": bool(deep_contract["pass"]),
+                "deep_contract_winner": deep_contract["winner"],
+            },
+            "overall_pass": bool(deep_contract["pass"]),
+            "all_pass": bool(deep_contract["pass"]),
+        },
+        indent=2,
+    )
+    for target in dict.fromkeys([canonical_out_path, legacy_out_path]):
+        with open(target, "w") as f:
+            f.write(payload)
 
-    print(f"\nWrote {out_path}")
+    print(f"\nWrote {canonical_out_path}")
     print(f"\n{'=' * 80}")
     print(f"PROBE STATUS: {'PASS' if deep_contract['pass'] else 'FAIL'}")
     print(f"{'=' * 80}")

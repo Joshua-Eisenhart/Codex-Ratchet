@@ -17,6 +17,8 @@ import os
 import torch
 import numpy as np
 
+classification = "classical_baseline"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Density matrices as float64 tensors; dephasing + MI computation via eigh+matrix_log; autograd gradient dQ/d(eps); 25-factor product with load-bearing MI component"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph topology not required for direct entropy algebra of gerbe and clifford structure"},
@@ -264,7 +266,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_coupling_143_25shell_jordanblock_classical",
         "description": "Coupling Program #143: 25-shell extension with JordanBlock. Q_25 = MI × log(2)^21 × log(3)^3 × log(4)^2; torch+z3 load-bearing; autograd Axis 0.",
-        "classification": "classical_baseline",
+            "classification": classification,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "positive": {k: v for k, v in tests.items() if k.startswith("P")},

@@ -13,6 +13,8 @@ and hyperfinite rank growth.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

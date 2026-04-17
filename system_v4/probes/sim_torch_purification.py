@@ -544,6 +544,7 @@ if __name__ == "__main__":
         "family": "GEOMETRIC",
         "description": "Purification of mixed state via spectral decomposition, torch.nn.Module",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

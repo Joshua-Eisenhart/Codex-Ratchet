@@ -17,6 +17,9 @@ import time
 from datetime import UTC, datetime
 from pathlib import Path
 
+from axis0_result_loader import load_axis0_result
+from axis0_xi_law_fingerprint import strict_law_fingerprint
+
 
 ROOT = Path(__file__).resolve().parent
 RESULTS_PATH = ROOT / "a2_state" / "sim_results" / "pre_entropy_packet_run_results.json"
@@ -52,12 +55,18 @@ def main() -> int:
 
     step_results = [run_step(label, script_name) for label, script_name in steps]
     all_ok = all(step["ok"] for step in step_results)
+    xi_law_fingerprint = None
+    if all_ok:
+        xi_law_fingerprint = strict_law_fingerprint(
+            load_axis0_result(RESULTS_PATH.parent, "axis0_xi_strict_bakeoff_results.json")
+        )
 
     payload = {
         "name": "pre_entropy_packet_run",
         "timestamp": datetime.now(UTC).isoformat(),
         "all_ok": all_ok,
         "steps": step_results,
+        "xi_hist_strict_law_fingerprint": xi_law_fingerprint,
     }
     with open(RESULTS_PATH, "w", encoding="utf-8") as handle:
         json.dump(payload, handle, indent=2)

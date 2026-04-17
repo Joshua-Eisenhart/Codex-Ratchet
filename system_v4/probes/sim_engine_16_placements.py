@@ -866,6 +866,7 @@ if __name__ == "__main__":
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "elapsed_seconds": elapsed,
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "sympy_stationarity_proof": sympy_proof,
         "pytorch_verification": torch_result,
         "positive": positive,

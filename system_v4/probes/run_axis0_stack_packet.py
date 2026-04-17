@@ -15,9 +15,53 @@ import time
 from datetime import UTC, datetime
 from pathlib import Path
 
+from axis0_constraint_types import build_constraint_family_profile
+from axis0_xi_law_fingerprint import runner_law_fingerprints_consistent
+
 
 ROOT = Path(__file__).resolve().parent
 RESULTS_PATH = ROOT / "a2_state" / "sim_results" / "axis0_stack_packet_run_results.json"
+
+
+def _mean_profile(*profiles: dict[str, float]) -> dict[str, float]:
+    keys = (
+        "observational",
+        "admissible",
+        "stable",
+        "entropy_conditioned",
+        "topology_conditioned",
+    )
+    present = [profile for profile in profiles if profile]
+    if not present:
+        return build_constraint_family_profile()
+    return build_constraint_family_profile(
+        **{
+            key: sum(float(profile.get(key, 0.0)) for profile in present) / len(present)
+            for key in keys
+        }
+    )
+
+
+def _load_constraint_profile_results(results_dir: Path) -> dict[str, dict[str, float]]:
+    constraint_profile_paths = {
+        "formal_geometry": "formal_geometry_packet_validation.json",
+        "root_emergence": "root_emergence_packet_validation.json",
+        "carrier_selection": "carrier_selection_packet_validation.json",
+        "pre_entropy": "pre_entropy_packet_validation.json",
+        "c1_bridge_object": "c1_bridge_object_packet_validation.json",
+        "matched_marginal": "matched_marginal_packet_validation.json",
+        "entropy_readout": "entropy_readout_packet_validation.json",
+    }
+    constraint_profile_results = {}
+    for label, result_name in constraint_profile_paths.items():
+        path = results_dir / result_name
+        if not path.exists():
+            continue
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        profile = payload.get("constraint_family_profile")
+        if profile:
+            constraint_profile_results[label] = profile
+    return constraint_profile_results
 
 
 def run_step(label: str, script_name: str) -> dict:
@@ -50,12 +94,31 @@ def main() -> int:
     ]
     step_results = [run_step(label, script_name) for label, script_name in steps]
     all_ok = all(step["ok"] for step in step_results)
+    constraint_profile_results = _load_constraint_profile_results(RESULTS_PATH.parent)
+    xi_hist_law_fingerprints = {}
+    for label, result_name in (
+        ("carrier_selection", "carrier_selection_packet_run_results.json"),
+        ("pre_entropy", "pre_entropy_packet_run_results.json"),
+    ):
+        path = RESULTS_PATH.parent / result_name
+        if not path.exists():
+            continue
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        fingerprint = payload.get("xi_hist_strict_law_fingerprint")
+        if fingerprint is not None:
+            xi_hist_law_fingerprints[label] = fingerprint
 
     payload = {
         "name": "axis0_stack_packet_run",
         "timestamp": datetime.now(UTC).isoformat(),
         "all_ok": all_ok,
         "steps": step_results,
+        "xi_hist_law_fingerprints": xi_hist_law_fingerprints,
+        "constraint_family_profiles": constraint_profile_results,
+        "constraint_family_profile": _mean_profile(*constraint_profile_results.values()),
+        "xi_hist_law_fingerprints_consistent": runner_law_fingerprints_consistent(
+            {"xi_hist_law_fingerprints": xi_hist_law_fingerprints}
+        ) if xi_hist_law_fingerprints else False,
     }
     RESULTS_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 

@@ -17,6 +17,8 @@ import os
 import torch
 import numpy as np
 
+classification = "classical_baseline"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -649,7 +651,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_coupling_142_25shell_kktmultiplier_classical",
         "description": "Coupling Program #142: 25-shell extension with KKTMultiplier. Q_25 = MI × log(2)^21 × log(3)^3 × log(4)^2; torch+z3 load-bearing; autograd Axis 0.",
-        "classification": "classical_baseline",
+            "classification": classification,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "positive": {k: v for k, v in tests.items() if k.startswith("P")},

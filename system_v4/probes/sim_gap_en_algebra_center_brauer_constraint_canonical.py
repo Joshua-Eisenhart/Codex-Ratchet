@@ -25,6 +25,8 @@ import sympy as sp
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -81,6 +83,8 @@ except ImportError:
 
 def cvc5_en_center_shift_test(n: int, center_levels: int) -> dict:
     """
+
+
     Use cvc5 to prove that Z_{E_n}(A) must have exactly n+1 commutativity levels.
 
     The Brauer shift axiom: center of E_n algebra is E_{n+1}.

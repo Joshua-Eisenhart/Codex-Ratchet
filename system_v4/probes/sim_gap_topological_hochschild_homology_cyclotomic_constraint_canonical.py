@@ -16,6 +16,8 @@ from cvc5 import Solver, Kind
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for THH"},
     "pyg": {"tried": False, "used": False, "reason": "not needed for THH"},
@@ -53,6 +55,8 @@ TOOL_INTEGRATION_DEPTH = {
 
 def run_positive_tests():
     """
+
+
     Positive 1: THH degree ≥ 0 (valid non-negative grading)
     Positive 2: Frobenius compatibility: φ_p maps THH(R) → THH(R)^{C_p}
     Positive 3: Multi-degree composition

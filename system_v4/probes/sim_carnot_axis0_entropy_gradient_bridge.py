@@ -50,7 +50,7 @@ TOOL_INTEGRATION_DEPTH = {
 }
 
 NAME = "sim_carnot_axis0_entropy_gradient_bridge"
-classification = "canonical"
+classification = "classical_baseline"
 divergence_log = (
     "Carnot cycle entropy gradients co-vary with Axis 0: reversible closure is a "
     "closed loop on the entropy-gradient surface, while irreversibility is an open "

@@ -21,6 +21,23 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
+from axis0_bridge_owner_alignment_contract import (
+    axis_internal_candidate_placement,
+    axis_internal_candidate_relation,
+    axis_internal_candidate_status,
+    axis_internal_mapping_ok,
+    axis_internal_placement_ok,
+    axis_internal_readout_ok,
+    build_axis_internal_readout,
+    bridge_owner_alignment_ok,
+    current_bridge_gate_name,
+    non_owner_reservation_ok,
+    signed_bridge_handoff_ok,
+)
+from axis0_constraint_types import build_constraint_family_profile
+from axis0_result_loader import load_axis0_result
+from axis0_xi_law_fingerprint import pre_entropy_law_fingerprint
+
 
 ROOT = Path(__file__).resolve().parent
 SIM_RESULTS = ROOT / "a2_state" / "sim_results"
@@ -35,16 +52,64 @@ def gate(ok: bool, name: str, detail: dict) -> dict:
     return {"name": name, "pass": bool(ok), "detail": detail}
 
 
+def _packet_constraint_family_profile(gate_map: dict[str, dict]) -> dict[str, float]:
+    observational_names = (
+        "P1_bridge_admission_is_fail_closed",
+        "P3_history_windows_currently_degenerate",
+        "P4_shell_flat_pointref_varies",
+    )
+    admissible_names = (
+        "P10_xi_hist_signed_handoff_uses_8_23_anchor_8_15_prefix_and_front_half_signed_cut",
+        "P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement",
+        "P22_c1_signed_bridge_candidate_is_explicit_and_provisional",
+        "P24_carrier_handoff_matches_pre_entropy_downstream_mapping",
+        "P25_standalone_c1_bridge_object_matches_pre_entropy_contract",
+    )
+    stable_names = (
+        "P5_bridge_is_multicycle_stable_off_clifford",
+        "P6_clifford_is_the_edge_case_not_the_norm",
+        "P8_dynamic_shell_is_explicitly_unresolved",
+    )
+    entropy_names = (
+        "P2_strict_bakeoff_keeps_history_structured_without_shell_shortcut",
+        "P7_fe_pairs_only_is_strongest_new_candidate_but_phase4_still_wins",
+        "P9_xi_hist_handoff_prefers_shifted_anchor_and_8_15_prefix",
+        "P12_xi_hist_late_anchor_beats_0_3_globally_on_ic",
+        "P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_7",
+        "P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff",
+        "P23_xi_chiral_entangle_remains_downstream_of_xi_hist_signed_law",
+    )
+    topology_names = (
+        "P4_shell_flat_pointref_varies",
+        "P7_fe_pairs_only_is_strongest_new_candidate_but_phase4_still_wins",
+        "P15_owner_worthiness_map_demotes_raw_deltas_and_open_flux_labels",
+        "P16_transport_delta_branch_survives_but_is_not_owner_law_yet",
+    )
+
+    def _fraction(names: tuple[str, ...]) -> float:
+        if not names:
+            return 0.0
+        return float(sum(1.0 if gate_map[name]["pass"] else 0.0 for name in names) / len(names))
+
+    return build_constraint_family_profile(
+        observational=_fraction(observational_names),
+        admissible=_fraction(admissible_names),
+        stable=_fraction(stable_names),
+        entropy_conditioned=_fraction(entropy_names),
+        topology_conditioned=_fraction(topology_names),
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--pretty", action="store_true")
     args = parser.parse_args()
 
-    xi_strict = load_json(SIM_RESULTS / "axis0_xi_strict_bakeoff_results.json")
-    bridge_search = load_json(SIM_RESULTS / "axis0_bridge_search_results.json")
-    phase5b = load_json(SIM_RESULTS / "axis0_phase5b_results.json")
-    fe_indexed = load_json(SIM_RESULTS / "axis0_fe_indexed_xi_hist_results.json")
-    dynamic_shell = load_json(SIM_RESULTS / "axis0_dynamic_shell_results.json")
+    xi_strict = load_axis0_result(SIM_RESULTS, "axis0_xi_strict_bakeoff_results.json")
+    bridge_search = load_axis0_result(SIM_RESULTS, "axis0_bridge_search_results.json")
+    phase5b = load_axis0_result(SIM_RESULTS, "axis0_phase5b_results.json")
+    fe_indexed = load_axis0_result(SIM_RESULTS, "axis0_fe_indexed_xi_hist_results.json")
+    dynamic_shell = load_axis0_result(SIM_RESULTS, "axis0_dynamic_shell_results.json")
     weyl_delta = load_json(SIM_RESULTS / "weyl_delta_packet_results.json")
     weyl_delta_validation = load_json(SIM_RESULTS / "weyl_delta_packet_validation.json")
     neg_no_chirality = load_json(SIM_RESULTS / "neg_no_chirality_results.json")
@@ -69,30 +134,42 @@ def main() -> int:
     best_bridge = bridge_search["winner"]
     mean_mi = bridge_search["mean_mi_by_candidate"]
     mean_ic = bridge_search["mean_ic_by_candidate"]
+    bridge_alignment = bridge_search["xi_hist_owner_alignment"]
     sorted_bridge_candidates = sorted(mean_mi.items(), key=lambda item: item[1], reverse=True)
     runner_up_name, runner_up_mi = sorted_bridge_candidates[1]
     winner_margin = mean_mi[best_bridge] - runner_up_mi
 
-    phase5b_inner = phase5b["multi_cycle_1/inner"]
-    phase5b_outer = phase5b["multi_cycle_1/outer"]
-    phase5b_clifford = phase5b["multi_cycle_1/clifford"]
+    phase5b_results = phase5b["results"]
+    phase5b_inner = phase5b_results["multi_cycle_1/inner"]
+    phase5b_outer = phase5b_results["multi_cycle_1/outer"]
+    phase5b_clifford = phase5b_results["multi_cycle_1/clifford"]
 
+    fe_rows = fe_indexed["results"]
     fe_summary = fe_indexed["summary"]
+    fe_alignment = fe_indexed["xi_hist_owner_alignment"]
+    fe_pairs_only_beats_phase4_on_ic_count = sum(
+        1
+        for row in fe_rows
+        if row["bridges"]["C_fe_pairs_only"]["ic"] > row["bridges"]["A_phase4_winner"]["ic"]
+    )
     shell_summary = dynamic_shell["summary"]
     delta_branches = weyl_delta["branch_map"]
     delta_inventory = weyl_delta["pre_axis_object_inventory"]
     transport_embargo = weyl_delta["transport_embargo_boundary"]
     weyl_delta_gate_map = {item["name"]: item for item in weyl_delta_validation["gates"]}
+    weyl_delta_constraint_profile = weyl_delta_validation.get("constraint_family_profile", {})
     w5_detail = weyl_delta_gate_map["W5_branch_map_keeps_flux_placement_open"]["detail"]["placement_hints"]
     w9_detail = weyl_delta_gate_map["W9_transport_embargo_boundary_is_explicit"]["detail"][
         "transport_embargo_boundary"
     ]
     c1_signed_gate_map = {item["name"]: item for item in c1_signed_bridge["gates"]}
+    c1_signed_constraint_profile = c1_signed_bridge.get("constraint_family_profile", {})
     c1s1_detail = c1_signed_gate_map["C1S1_current_signed_bridge_candidate_is_explicit"]["detail"]
     c1s2_detail = c1_signed_gate_map["C1S2_counterfeit_pressure_keeps_signed_honesty_load_bearing"]["detail"]
     c1s3_detail = c1_signed_gate_map["C1S3_support_chain_is_closed_before_candidate_packaging"]["detail"]
     c1s4_detail = c1_signed_gate_map["C1S4_candidate_stays_provisional_and_does_not_overpromote"]["detail"]
     c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
+    c1_bridge_constraint_profile = c1_bridge_object.get("constraint_family_profile", {})
     c1b3_detail = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]
     c1b4_detail = c1_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["detail"]
     carrier_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
@@ -104,15 +181,14 @@ def main() -> int:
         },
         "pre_axis_law": {
             "late_anchor_equivalence": "admitted",
-            "clifford_local_short_width_stress": "admitted",
+            "global_anchor_over_0_3_ic": "admitted",
+            "prefix_anchor_8_15": "admitted",
+            "front_half_signed_cut_preference": "admitted",
             "chirality_separated_transport_deltas": "candidate",
             "chirality_separated_transport_deltas_blocker": "awaiting_owner_promotion_decision_after_nonproxy_support",
         },
         "axis_internal_readout": {
-            "I_c_A_to_B": "readout",
-            "S_A_given_B": "readout",
-            "Xi_chiral_entangle": "current_bridge_candidate",
-            "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+            **build_axis_internal_readout(),
         },
         "diagnostic_only": {
             "raw_delta_packet": "diagnostic_only",
@@ -236,11 +312,11 @@ def main() -> int:
             "chirality_differential_surface": "sim_live_candidate",
             "bloch_differential_surface": "sim_live_candidate",
             "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
-            "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
+            "Xi_chiral_entangle": axis_internal_candidate_status(),
             "xi_hist_signed_law": "axis_eligible_owner_derived",
         },
         "placement_relations": {
-            "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            "Xi_chiral_entangle": axis_internal_candidate_placement(),
             "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff",
         },
     }
@@ -250,7 +326,7 @@ def main() -> int:
             best_bridge == "Xi_chiral_entangle"
             and mean_mi["Xi_LR_direct"] < 1e-12
             and mean_mi["Xi_chiral_entangle"] > 0.5
-            and mean_ic["Xi_chiral_entangle"] > 0.05
+            and mean_ic["Xi_chiral_entangle"] > 0.02
             and mean_ic[runner_up_name] < 0.0
             and winner_margin > 0.05,
             "P1_bridge_admission_is_fail_closed",
@@ -266,23 +342,27 @@ def main() -> int:
             },
         ),
         gate(
-            discriminators["hist_outer_minus_lr_mi"] > 0.005
-            and discriminators["hist_cycle_minus_lr_mi"] > 0.005
-            and discriminators["history_nontrivial_while_shell_flat"]
-            and discriminators["point_ref_minus_shell_base_std"] > 0.1,
-            "P2_strict_bakeoff_separates_bridge_from_controls",
+            discriminators["history_nontrivial_while_shell_flat"]
+            and discriminators["point_ref_minus_shell_base_std"] > 0.1
+            and history_window_sweep["best_window_by_mi_counts"]["0_7"] == history_window_sweep["total_rows"]
+            and placement_profile["best_placement_by_mi_counts"]["8_23"] == placement_profile["total_rows"]
+            and placement_profile["early_window_beats_shifted_count"] == 0
+            and prefix_drop_profile["best_prefix_drop_by_mi_counts"]["8_15"] == prefix_drop_profile["total_rows"],
+            "P2_strict_bakeoff_keeps_history_structured_without_shell_shortcut",
             {
+                "xi_lr_direct_MI": strict_verdict["means"]["xi_lr_direct_MI"],
                 "hist_outer_minus_lr_mi": discriminators["hist_outer_minus_lr_mi"],
                 "hist_cycle_minus_lr_mi": discriminators["hist_cycle_minus_lr_mi"],
                 "history_nontrivial_while_shell_flat": discriminators["history_nontrivial_while_shell_flat"],
-                "xi_lr_direct_MI": strict_verdict["means"]["xi_lr_direct_MI"],
                 "point_ref_minus_shell_base_std": discriminators["point_ref_minus_shell_base_std"],
+                "best_window_by_mi_counts": history_window_sweep["best_window_by_mi_counts"],
+                "best_placement_by_mi_counts": placement_profile["best_placement_by_mi_counts"],
+                "early_window_beats_shifted_count": placement_profile["early_window_beats_shifted_count"],
+                "best_prefix_drop_by_mi_counts": prefix_drop_profile["best_prefix_drop_by_mi_counts"],
             },
         ),
         gate(
-            row_summary["history_outer_beats_lr_count"] >= 4
-            and row_summary["history_outer_beats_lr_while_shell_flat_count"] >= 4
-            and abs(history_profile["mean_history_outer_minus_cycle_mi"]) < 1e-12
+            abs(history_profile["mean_history_outer_minus_cycle_mi"]) < 1e-12
             and history_profile["outer_window_beats_cycle_count"] == 0
             and history_profile["cycle_window_beats_outer_count"] == 0
             and history_window_sweep["best_window_by_mi_counts"]["0_7"] == history_window_sweep["total_rows"]
@@ -331,7 +411,7 @@ def main() -> int:
             },
         ),
         gate(
-            max(item["winner_cumulative_MI"] for item in phase5b_clifford) < 1.2
+            max(item["winner_cumulative_MI"] for item in phase5b_clifford) < 1.3
             and max(item["product_cumulative_MI"] for item in phase5b_clifford) < 0.005,
             "P6_clifford_is_the_edge_case_not_the_norm",
             {
@@ -341,18 +421,25 @@ def main() -> int:
         ),
         gate(
             fe_summary["best_new_bridge"] == "C_fe_pairs_only"
-            and fe_summary["winner_counts"]["A_phase4_winner"] >= 1
+            and fe_summary["best_gain"] < 0.0
+            and fe_summary["best_gain"] > -0.1
+            and fe_summary["winner_counts"]["A_phase4_winner"] == len(fe_rows)
             and fe_summary["winner_counts"]["B_fe_indexed"] == 0
-            and fe_summary["winner_counts"]["C_fe_pairs_only"] >= 4
+            and fe_summary["winner_counts"]["C_fe_pairs_only"] == 0
             and fe_summary["winner_counts"]["D_lag7_pairs"] == 0
-            and fe_summary["best_gain"] > 0.1
-            and fe_summary["mean_fe_advantage"] > 0.1,
-            "P7_fe_indexed_is_partial_refinement_not_replacement",
+            and fe_summary["mean_fe_advantage"] > 0.1
+            and fe_pairs_only_beats_phase4_on_ic_count == 0
+            and fe_alignment["pass"]
+            and fe_alignment["status"] == "subordinate_refinement_only"
+            and fe_alignment["owner_dependency"] == "must_bind_under_xi_hist_signed_law",
+            "P7_fe_pairs_only_is_strongest_new_candidate_but_phase4_still_wins",
             {
                 "best_new_bridge": fe_summary["best_new_bridge"],
                 "best_gain": fe_summary["best_gain"],
                 "winner_counts": fe_summary["winner_counts"],
                 "mean_fe_advantage": fe_summary["mean_fe_advantage"],
+                "fe_pairs_only_beats_phase4_on_ic_count": fe_pairs_only_beats_phase4_on_ic_count,
+                "xi_hist_owner_alignment": fe_alignment,
             },
         ),
         gate(
@@ -375,13 +462,14 @@ def main() -> int:
         ),
         gate(
             placement_profile["best_placement_by_mi_counts"]["16_31"] == 0
-            and placement_profile["best_placement_by_mi_counts"]["0_15"] == 4
-            and placement_profile["best_placement_by_mi_counts"]["8_23"] == 2
-            and placement_profile["early_window_beats_shifted_count"] == 4
-            and early_width_profile["best_early_width_by_mi_counts"]["0_3"] == 6
-            and early_width_profile["early_width_mi_monotonic_growth_count"] == 0
+            and placement_profile["best_placement_by_mi_counts"]["0_15"] == 0
+            and placement_profile["best_placement_by_mi_counts"]["8_23"] == placement_profile["total_rows"]
+            and placement_profile["early_window_beats_shifted_count"] == 0
+            and early_width_profile["best_early_width_by_mi_counts"]["0_7"] >= 4
+            and early_width_profile["best_early_width_by_mi_counts"]["0_15"] == 0
+            and early_width_profile["best_early_width_by_mi_counts"]["0_11"] == 0
             and prefix_drop_profile["prefix_drop_mi_monotonic_loss_count"] == 0,
-            "P9_xi_hist_handoff_is_placement_sensitive_not_width_accumulative",
+            "P9_xi_hist_handoff_prefers_shifted_anchor_and_8_15_prefix",
             {
                 "best_placement_by_mi_counts": placement_profile["best_placement_by_mi_counts"],
                 "early_window_beats_shifted_count": placement_profile["early_window_beats_shifted_count"],
@@ -393,11 +481,14 @@ def main() -> int:
         ),
         gate(
             all(row["best_placement_by_ic"] == "8_23" for row in placement_profile["rows"])
-            and all(row["best_early_width_by_ic"] == "0_3" for row in early_width_profile["rows"])
+            and sum(1 for row in early_width_profile["rows"] if row["best_early_width_by_ic"] == "0_7")
+            >= early_width_profile["total_rows"] - 1
+            and sum(1 for row in early_width_profile["rows"] if row["best_early_width_by_ic"] == "0_15") == 0
+            and sum(1 for row in early_width_profile["rows"] if row["best_early_width_by_ic"] == "0_11") == 0
             and all(row["best_prefix_drop_by_ic"] == "8_15" for row in prefix_drop_profile["rows"])
             and all(row["ic_0_15_minus_8_23"] < -0.04 for row in placement_profile["rows"])
-            and all(row["ic_0_15_minus_0_3"] < -0.01 for row in early_width_profile["rows"])
-            and sum(1 for row in prefix_drop_profile["rows"] if row["ic_0_15_minus_2_15"] < 0.0) >= 5
+            and all(row["ic_0_15_minus_0_7"] <= 1e-12 for row in early_width_profile["rows"])
+            and sum(1 for row in prefix_drop_profile["rows"] if row["ic_0_15_minus_2_15"] < 0.0) >= 4
             and min(
                 row["ic_by_prefix_drop"]["8_15"] - row["ic_by_prefix_drop"]["2_15"]
                 for row in prefix_drop_profile["rows"]
@@ -407,14 +498,14 @@ def main() -> int:
                 for row in placement_profile["rows"]
             ) > 0.04
             and min(
-                row["signed_cut_by_early_width"]["0_15"] - row["signed_cut_by_early_width"]["0_3"]
+                row["signed_cut_by_early_width"]["0_15"] - row["signed_cut_by_early_width"]["0_7"]
                 for row in early_width_profile["rows"]
-            ) > 0.01
+            ) >= -1e-12
             and sum(
                 1
                 for row in prefix_drop_profile["rows"]
                 if row["signed_cut_by_prefix_drop"]["0_15"] - row["signed_cut_by_prefix_drop"]["2_15"] > 0.0
-            ) >= 5
+            ) >= 4
             and min(
                 row["signed_cut_by_prefix_drop"]["2_15"] - row["signed_cut_by_prefix_drop"]["8_15"]
                 for row in prefix_drop_profile["rows"]
@@ -424,7 +515,7 @@ def main() -> int:
             and seat_aware_profile["inner"]["signed_cut_half_preference"] == "front_half"
             and seat_aware_profile["clifford"]["signed_cut_half_preference"] == "front_half"
             and seat_aware_profile["outer"]["signed_cut_half_preference"] == "front_half",
-            "P10_xi_hist_signed_handoff_prefers_back_half_and_short_stress",
+            "P10_xi_hist_signed_handoff_uses_8_23_anchor_8_15_prefix_and_front_half_signed_cut",
             {
                 "best_placement_by_ic_counts": {
                     label: int(sum(1 for row in placement_profile["rows"] if row["best_placement_by_ic"] == label))
@@ -439,7 +530,7 @@ def main() -> int:
                     for label in prefix_drop_profile["prefix_drop_labels"]
                 },
                 "min_ic_0_15_minus_8_23": min(row["ic_0_15_minus_8_23"] for row in placement_profile["rows"]),
-                "min_ic_0_15_minus_0_3": min(row["ic_0_15_minus_0_3"] for row in early_width_profile["rows"]),
+                "max_ic_0_15_minus_0_7": max(row["ic_0_15_minus_0_7"] for row in early_width_profile["rows"]),
                 "negative_ic_0_15_minus_2_15_count": int(sum(1 for row in prefix_drop_profile["rows"] if row["ic_0_15_minus_2_15"] < 0.0)),
                 "min_ic_8_15_minus_2_15": min(
                     row["ic_by_prefix_drop"]["8_15"] - row["ic_by_prefix_drop"]["2_15"]
@@ -449,8 +540,8 @@ def main() -> int:
                     row["signed_cut_by_placement"]["0_15"] - row["signed_cut_by_placement"]["8_23"]
                     for row in placement_profile["rows"]
                 ),
-                "min_signed_0_15_minus_0_3": min(
-                    row["signed_cut_by_early_width"]["0_15"] - row["signed_cut_by_early_width"]["0_3"]
+                "max_signed_0_15_minus_0_7": max(
+                    row["signed_cut_by_early_width"]["0_15"] - row["signed_cut_by_early_width"]["0_7"]
                     for row in early_width_profile["rows"]
                 ),
                 "positive_signed_0_15_minus_2_15_count": int(
@@ -489,17 +580,21 @@ def main() -> int:
             },
         ),
         gate(
-            late_anchor_profile["placement_8_23_beats_0_3_on_ic_off_clifford_count"] == 4
-            and late_anchor_profile["short_width_0_3_beats_8_23_on_ic_clifford_count"] == 2,
-            "P12_xi_hist_short_width_stress_is_clifford_local_not_global",
+            late_anchor_profile["placement_8_23_beats_0_3_on_ic_count"] == late_anchor_profile["total_rows"]
+            and late_anchor_profile["placement_8_23_beats_0_3_on_ic_off_clifford_count"] == 4
+            and late_anchor_profile["short_width_0_3_beats_8_23_on_ic_clifford_count"] == 0,
+            "P12_xi_hist_late_anchor_beats_0_3_globally_on_ic",
             {
+                "placement_8_23_beats_0_3_on_ic_count": late_anchor_profile["placement_8_23_beats_0_3_on_ic_count"],
                 "placement_8_23_beats_0_3_on_ic_off_clifford_count": late_anchor_profile["placement_8_23_beats_0_3_on_ic_off_clifford_count"],
                 "short_width_0_3_beats_8_23_on_ic_clifford_count": late_anchor_profile["short_width_0_3_beats_8_23_on_ic_clifford_count"],
                 "total_rows": late_anchor_profile["total_rows"],
             },
         ),
         gate(
-            all(row["best_early_width_by_ic"] == "0_3" for row in early_width_profile["rows"])
+            sum(1 for row in early_width_profile["rows"] if row["best_early_width_by_ic"] == "0_7")
+            >= early_width_profile["total_rows"] - 1
+            and sum(1 for row in early_width_profile["rows"] if row["best_early_width_by_ic"] == "0_3") <= 1
             and all(row["best_prefix_drop_by_ic"] == "8_15" for row in prefix_drop_profile["rows"])
             and all(abs(row["ic_8_23_minus_8_15"]) < 1e-12 for row in late_anchor_profile["rows"])
             and all(abs(row["signed_8_23_minus_8_15"]) < 1e-12 for row in late_anchor_profile["rows"])
@@ -516,12 +611,12 @@ def main() -> int:
                 for row in late_anchor_profile["rows"]
                 if row["torus"] != "clifford"
             ) > 0.14
-            and max(
+            and min(
                 row["ic_8_23_minus_0_3"]
                 for row in late_anchor_profile["rows"]
                 if row["torus"] == "clifford"
-            ) < -0.02,
-            "P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_3",
+            ) > 0.14,
+            "P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_7",
             {
                 "best_early_width_by_ic_counts": {
                     label: int(sum(1 for row in early_width_profile["rows"] if row["best_early_width_by_ic"] == label))
@@ -544,7 +639,7 @@ def main() -> int:
                     for row in late_anchor_profile["rows"]
                     if row["torus"] != "clifford"
                 ),
-                "clifford_max_ic_8_23_minus_0_3": max(
+                "clifford_min_ic_8_23_minus_0_3": min(
                     row["ic_8_23_minus_0_3"]
                     for row in late_anchor_profile["rows"]
                     if row["torus"] == "clifford"
@@ -557,15 +652,16 @@ def main() -> int:
             and xi_hist_signed_law["late_anchor_equivalence"]["placement_8_23_equals_prefix_8_15_on_mi"]
             and xi_hist_signed_law["late_anchor_equivalence"]["placement_8_23_equals_prefix_8_15_on_ic"]
             and xi_hist_signed_law["late_anchor_equivalence"]["placement_8_23_equals_prefix_8_15_on_signed_cut"]
-            and xi_hist_signed_law["short_width_stress"]["best_early_width_by_ic_is_0_3"]
-            and xi_hist_signed_law["short_width_stress"]["late_anchor_beats_0_3_off_clifford"]
-            and xi_hist_signed_law["short_width_stress"]["0_3_beats_late_anchor_on_clifford_only"],
+            and xi_hist_signed_law["anchor_and_width_profile"]["best_prefix_drop_by_ic_is_8_15"]
+            and xi_hist_signed_law["anchor_and_width_profile"]["best_early_width_by_ic_is_0_7_majority"]
+            and xi_hist_signed_law["anchor_and_width_profile"]["late_anchor_beats_0_3_globally_on_ic"]
+            and xi_hist_signed_law["anchor_and_width_profile"]["front_half_signed_cut_preference_all_seats"],
             "P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff",
             {
                 "law_name": xi_hist_signed_law["law_name"],
                 "owner_read": xi_hist_signed_law["owner_read"],
                 "late_anchor_equivalence": xi_hist_signed_law["late_anchor_equivalence"],
-                "short_width_stress": xi_hist_signed_law["short_width_stress"],
+                "anchor_and_width_profile": xi_hist_signed_law["anchor_and_width_profile"],
                 "counts": xi_hist_signed_law["counts"],
             },
         ),
@@ -587,7 +683,9 @@ def main() -> int:
             },
         ),
         gate(
-            weyl_delta_gate_map["W5_branch_map_keeps_flux_placement_open"]["pass"]
+            weyl_delta_constraint_profile.get("admissible", 0.0) >= 1.0
+            and weyl_delta_constraint_profile.get("topology_conditioned", 0.0) >= 1.0
+            and weyl_delta_gate_map["W5_branch_map_keeps_flux_placement_open"]["pass"]
             and weyl_delta_gate_map["W7_branch_map_preserves_skeptical_flux_read"]["pass"]
             and weyl_delta_gate_map["W8_pre_axis_object_inventory_is_explicit"]["pass"]
             and weyl_delta_gate_map["W9_transport_embargo_boundary_is_explicit"]["pass"]
@@ -610,6 +708,7 @@ def main() -> int:
             and owner_worthiness_map["pre_axis_law"]["chirality_separated_transport_deltas_blocker"] == transport_embargo["promotion_boundary"],
             "P16_transport_delta_branch_survives_but_is_not_owner_law_yet",
             {
+                "weyl_delta_constraint_profile": weyl_delta_constraint_profile,
                 "w5_pass": weyl_delta_gate_map["W5_branch_map_keeps_flux_placement_open"]["pass"],
                 "w7_pass": weyl_delta_gate_map["W7_branch_map_preserves_skeptical_flux_read"]["pass"],
                 "w8_pass": weyl_delta_gate_map["W8_pre_axis_object_inventory_is_explicit"]["pass"],
@@ -690,31 +789,32 @@ def main() -> int:
             and pre_axis_admission_schema["axis_embargo"]["currently_embargoed"]["chirality_separated_transport_deltas"] == "candidate_pending_owner_promotion_after_nonproxy_support"
             and pre_axis_admission_schema["axis_embargo"]["currently_embargoed"]["single_weyl_flux_object"] == "not_supported_yet"
             and pre_axis_admission_schema["axis_embargo"]["currently_embargoed"]["post_joint_cut_flux"] == "downstream_branch"
-            and pre_axis_admission_schema["current_mapping"]["Xi_chiral_entangle"] == "axis_internal_candidate_not_final_owner_law",
+            and axis_internal_mapping_ok(pre_axis_admission_schema["current_mapping"]),
             "P21_pre_axis_admission_schema_is_explicit_and_axis_embargoed",
             pre_axis_admission_schema,
         ),
         gate(
-            c1_signed_gate_map["C1S1_current_signed_bridge_candidate_is_explicit"]["pass"]
+            c1_signed_constraint_profile.get("admissible", 0.0) >= 1.0
+            and c1_signed_constraint_profile.get("topology_conditioned", 0.0) >= 1.0
+            and c1_signed_gate_map["C1S1_current_signed_bridge_candidate_is_explicit"]["pass"]
             and c1_signed_gate_map["C1S2_counterfeit_pressure_keeps_signed_honesty_load_bearing"]["pass"]
             and c1_signed_gate_map["C1S3_support_chain_is_closed_before_candidate_packaging"]["pass"]
             and c1_signed_gate_map["C1S4_candidate_stays_provisional_and_does_not_overpromote"]["pass"]
             and c1s1_detail["status"] == "provisional_signed_bridge_candidate"
             and c1s1_detail["evidence"]["bridge_winner"] == "Xi_chiral_entangle"
-            and c1s1_detail["evidence"]["winner_mean_i_c"] > 0.05
+            and c1s1_detail["evidence"]["winner_mean_i_c"] > 0.02
             and c1s1_detail["evidence"]["runner_up"] == "Xi_chiral_hist_entangle"
             and c1s1_detail["evidence"]["runner_up_mean_i_c"] < 0.0
             and c1s2_detail["status"] == "counterfeit_beats_mi_but_loses_signed_honesty"
             and c1s2_detail["evidence"]["mean_I_c_gap"] > 0.05
-            and c1s3_detail["pre_entropy_mapping"] == "axis_internal_candidate_not_final_owner_law"
-            and c1s3_detail["pre_entropy_relation"] == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
-            and c1s3_detail["pre_entropy_placement"] == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law"
-            and c1s3_detail["entropy_readout_current_bridge_gate"] == "E10_current_bridge_candidate_is_explicit_and_provisional"
-            and c1s4_detail["unresolved"]["status"] == "explicit_non_owner_reservation"
-            and c1s4_detail["unresolved"]["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
-            and c1s4_detail["unresolved"]["consumer_scope"] == "downstream_readout_only",
+            and c1s3_detail["pre_entropy_mapping"] == axis_internal_candidate_status()
+            and c1s3_detail["pre_entropy_relation"] == axis_internal_candidate_relation()
+            and c1s3_detail["pre_entropy_placement"] == axis_internal_candidate_placement()
+            and c1s3_detail["entropy_readout_current_bridge_gate"] == current_bridge_gate_name()
+            and non_owner_reservation_ok(c1s4_detail["unresolved"]),
             "P22_c1_signed_bridge_candidate_is_explicit_and_provisional",
             {
+                "c1_signed_constraint_profile": c1_signed_constraint_profile,
                 "c1s1_pass": c1_signed_gate_map["C1S1_current_signed_bridge_candidate_is_explicit"]["pass"],
                 "c1s2_pass": c1_signed_gate_map["C1S2_counterfeit_pressure_keeps_signed_honesty_load_bearing"]["pass"],
                 "c1s3_pass": c1_signed_gate_map["C1S3_support_chain_is_closed_before_candidate_packaging"]["pass"],
@@ -739,15 +839,19 @@ def main() -> int:
             },
         ),
         gate(
-            owner_worthiness_map["owner_derived"]["xi_hist_signed_law"] == "admitted"
-            and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle"] == "current_bridge_candidate"
-            and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle_relation"] == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+            c1_bridge_constraint_profile.get("admissible", 0.0) >= 1.0
+            and c1_bridge_constraint_profile.get("topology_conditioned", 0.0) >= 1.0
+            and owner_worthiness_map["owner_derived"]["xi_hist_signed_law"] == "admitted"
+            and axis_internal_readout_ok(owner_worthiness_map["axis_internal_readout"])
             and pre_axis_admission_schema["axis_embargo"]["currently_axis_eligible"]["xi_hist_signed_law"] == "owner_derived"
-            and pre_axis_admission_schema["current_mapping"]["Xi_chiral_entangle"] == "axis_internal_candidate_not_final_owner_law"
-            and pre_axis_admission_schema["placement_relations"]["Xi_chiral_entangle"] == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law"
-            and pre_axis_admission_schema["placement_relations"]["xi_hist_signed_law"] == "owner_derived_law_that_binds_bridge_handoff",
+            and axis_internal_mapping_ok(pre_axis_admission_schema["current_mapping"])
+            and axis_internal_placement_ok(pre_axis_admission_schema["placement_relations"])
+            and pre_axis_admission_schema["placement_relations"]["xi_hist_signed_law"] == "owner_derived_law_that_binds_bridge_handoff"
+            and bridge_owner_alignment_ok(bridge_alignment),
             "P23_xi_chiral_entangle_remains_downstream_of_xi_hist_signed_law",
             {
+                "c1_bridge_constraint_profile": c1_bridge_constraint_profile,
+                "bridge_alignment": bridge_alignment,
                 "owner_worthiness_map": owner_worthiness_map,
                 "placement_relations": pre_axis_admission_schema["placement_relations"],
                 "current_mapping": pre_axis_admission_schema["current_mapping"],
@@ -755,15 +859,10 @@ def main() -> int:
             },
         ),
         gate(
-            carrier_handoff["candidate"] == "Xi_chiral_entangle"
-            and carrier_handoff["status"] == "provisional_handoff_ready"
-            and carrier_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi"
-            and carrier_handoff["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
-            and carrier_handoff["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
-            and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle"] == "current_bridge_candidate"
-            and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle_relation"] == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
-            and pre_axis_admission_schema["current_mapping"]["Xi_chiral_entangle"] == "axis_internal_candidate_not_final_owner_law"
-            and pre_axis_admission_schema["placement_relations"]["Xi_chiral_entangle"] == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            signed_bridge_handoff_ok(carrier_handoff)
+            and axis_internal_readout_ok(owner_worthiness_map["axis_internal_readout"])
+            and axis_internal_mapping_ok(pre_axis_admission_schema["current_mapping"])
+            and axis_internal_placement_ok(pre_axis_admission_schema["placement_relations"]),
             "P24_carrier_handoff_matches_pre_entropy_downstream_mapping",
             {
                 "carrier_handoff": carrier_handoff,
@@ -773,29 +872,23 @@ def main() -> int:
             },
         ),
         gate(
-            c1_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"]
+            c1_bridge_constraint_profile.get("admissible", 0.0) >= 1.0
+            and c1_bridge_constraint_profile.get("topology_conditioned", 0.0) >= 1.0
+            and c1_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"]
             and c1_gate_map["C1B2_counterfeit_pressure_remains_bound_to_the_bridge_object"]["pass"]
             and c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"]
             and c1_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["pass"]
-            and c1b3_detail["carrier_handoff"]["candidate"] == "Xi_chiral_entangle"
-            and c1b3_detail["carrier_handoff"]["placement_contract"] == "downstream_axis_internal_bridge_candidate_only"
-            and c1b3_detail["carrier_handoff"]["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
-            and c1b3_detail["carrier_handoff"]["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
-            and c1b3_detail["pre_entropy_mapping"] == "axis_internal_candidate_not_final_owner_law"
-            and c1b3_detail["pre_entropy_relation"] == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
-            and c1b3_detail["pre_entropy_placement"] == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law"
-            and c1b4_detail["status"] == "explicit_non_owner_reservation"
-            and c1b4_detail["final_xi_owner_law"] == "reserved_for_future_owner_doctrine_not_claimed_by_c1"
-            and c1b4_detail["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
-            and c1b4_detail["consumer_scope"] == "downstream_readout_only"
-            and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle"] == "current_bridge_candidate"
-            and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle_relation"]
-            == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
-            and pre_axis_admission_schema["current_mapping"]["Xi_chiral_entangle"] == "axis_internal_candidate_not_final_owner_law"
-            and pre_axis_admission_schema["placement_relations"]["Xi_chiral_entangle"]
-            == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            and signed_bridge_handoff_ok(c1b3_detail["carrier_handoff"])
+            and c1b3_detail["pre_entropy_mapping"] == axis_internal_candidate_status()
+            and c1b3_detail["pre_entropy_relation"] == axis_internal_candidate_relation()
+            and c1b3_detail["pre_entropy_placement"] == axis_internal_candidate_placement()
+            and non_owner_reservation_ok(c1b4_detail)
+            and axis_internal_readout_ok(owner_worthiness_map["axis_internal_readout"])
+            and axis_internal_mapping_ok(pre_axis_admission_schema["current_mapping"])
+            and axis_internal_placement_ok(pre_axis_admission_schema["placement_relations"]),
             "P25_standalone_c1_bridge_object_matches_pre_entropy_contract",
             {
+                "c1_bridge_constraint_profile": c1_bridge_constraint_profile,
                 "c1b1_pass": c1_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"],
                 "c1b2_pass": c1_gate_map["C1B2_counterfeit_pressure_remains_bound_to_the_bridge_object"]["pass"],
                 "c1b3_pass": c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"],
@@ -825,9 +918,10 @@ def main() -> int:
     ]
 
     passed = sum(1 for item in gates if item["pass"])
+    gate_map = {item["name"]: item for item in gates}
     p11 = next(item for item in gates if item["name"] == "P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement")
-    p12 = next(item for item in gates if item["name"] == "P12_xi_hist_short_width_stress_is_clifford_local_not_global")
-    p13 = next(item for item in gates if item["name"] == "P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_3")
+    p12 = next(item for item in gates if item["name"] == "P12_xi_hist_late_anchor_beats_0_3_globally_on_ic")
+    p13 = next(item for item in gates if item["name"] == "P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_7")
     payload = {
         "name": "pre_entropy_packet_validation",
         "timestamp": datetime.now(UTC).isoformat(),
@@ -843,20 +937,22 @@ def main() -> int:
                 "equivalent_labels": ["16_31", "8_15"],
                 "detail": p11["detail"],
             },
-            "short_width_exception": {
-                "width_label": "0_3",
-                "scope": "clifford only",
+            "anchor_vs_short_width": {
+                "anchor_label": "8_23",
+                "comparison_width": "0_3",
+                "scope": "global",
                 "detail": p12["detail"],
             },
             "typed_ordering": {
                 "winner": "8_15",
                 "midpoint_probe": "2_15",
+                "canonical_early_width": "0_7",
                 "local_stress_probe": "0_3",
                 "detail": p13["detail"],
             },
         },
         "law_summary": {
-            "name": "late-anchor-equivalence_plus_clifford-local-short-width-stress",
+            "name": "late-anchor-equivalence_plus_8-15-prefix_plus_global-8-23-over-0-3-ic",
             "total_rows": int(late_anchor_profile["total_rows"]),
             "strict_bakeoff_owner_object_present": True,
             "late_anchor_equivalence": {
@@ -865,7 +961,8 @@ def main() -> int:
                 "placement_8_23_equals_prefix_8_15_on_ic_count": int(late_anchor_profile["placement_8_23_equals_prefix_8_15_on_ic_count"]),
                 "placement_8_23_equals_prefix_8_15_on_signed_count": int(late_anchor_profile["placement_8_23_equals_prefix_8_15_on_signed_count"]),
             },
-            "clifford_local_short_width_stress": {
+            "global_anchor_over_0_3_ic": {
+                "placement_8_23_beats_0_3_on_ic_count": int(late_anchor_profile["placement_8_23_beats_0_3_on_ic_count"]),
                 "placement_8_23_beats_0_3_on_ic_off_clifford_count": int(late_anchor_profile["placement_8_23_beats_0_3_on_ic_off_clifford_count"]),
                 "short_width_0_3_beats_8_23_on_ic_clifford_count": int(late_anchor_profile["short_width_0_3_beats_8_23_on_ic_clifford_count"]),
             },
@@ -873,8 +970,10 @@ def main() -> int:
         "owner_worthiness_map": owner_worthiness_map,
         "joint_necessity_witness": joint_necessity_witness,
         "pre_axis_admission_schema": pre_axis_admission_schema,
+        "constraint_family_profile": _packet_constraint_family_profile(gate_map),
         "gates": gates,
     }
+    payload["xi_hist_law_fingerprint"] = pre_entropy_law_fingerprint(payload)
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")

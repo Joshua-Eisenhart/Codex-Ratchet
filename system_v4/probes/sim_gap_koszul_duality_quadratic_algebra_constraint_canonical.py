@@ -27,6 +27,8 @@ import sympy as sp
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -81,6 +83,8 @@ except ImportError as e:
 
 def koszul_duality_constraint(solver, n_dim, dual_dim, dual_dual_dim):
     """
+
+
     Constraint: if A is quadratic with dim(A)=n_dim,
     then dim(A^!)=dual_dim and dim((A^!)^!)=dual_dual_dim.
 

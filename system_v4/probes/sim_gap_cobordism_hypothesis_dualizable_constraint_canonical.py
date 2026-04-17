@@ -25,6 +25,8 @@ import os
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     # --- Computation layer ---
     "pytorch": {"tried": False, "used": False, "reason": ""},
@@ -141,7 +143,9 @@ except ImportError:
 # =====================================================================
 
 def run_positive_tests():
-    """Test that dualizable objects satisfy cobordism hypothesis."""
+    """
+
+Test that dualizable objects satisfy cobordism hypothesis."""
     import sympy as sp
     import cvc5
 

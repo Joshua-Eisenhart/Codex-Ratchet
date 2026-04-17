@@ -98,9 +98,9 @@ e1 = blades_cl3['e1']
 e2 = blades_cl3['e2']
 e3 = blades_cl3['e3']
 
-classification = "canonical"
+classification = "classical_baseline"
 divergence_log = (
-    "QIT-Axis0 distinguishability bridge; canonical contract note "
+    "QIT-Axis0 distinguishability bridge; classical-baseline contract note "
     "for trace distance, distinguishability cost, and Axis0 correspondence."
 )
 CLASSIFICATION_NOTE = divergence_log

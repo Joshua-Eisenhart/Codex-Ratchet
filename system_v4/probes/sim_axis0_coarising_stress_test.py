@@ -950,13 +950,16 @@ def main() -> None:
         "all_pass": bool(deep_contract["pass"]),
     }
 
-    out_path = os.path.join(
-        os.path.dirname(__file__),
-        "a2_state", "sim_results", "axis0_coarising_stress_test_results.json",
+    out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
+    canonical_out_path = os.path.join(
+        out_dir, f"{os.path.splitext(os.path.basename(__file__))[0]}_results.json"
     )
-    with open(out_path, "w") as f:
-        json.dump(output, f, indent=2)
-    print(f"\nResults written to {out_path}")
+    legacy_out_path = os.path.join(out_dir, "axis0_coarising_stress_test_results.json")
+    payload = json.dumps(output, indent=2)
+    for target in dict.fromkeys([canonical_out_path, legacy_out_path]):
+        with open(target, "w") as f:
+            f.write(payload)
+    print(f"\nResults written to {canonical_out_path}")
 
 
 if __name__ == "__main__":

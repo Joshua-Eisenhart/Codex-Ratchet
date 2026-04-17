@@ -41,8 +41,8 @@ C — Multi-Shell Coexistence: quantities that become discriminating only under 
 D — Topology Variant: same test on different topology class (stable vs sensitive)
 E — Emergence: quantities that appear only when A-D coverage exists
 
-Status terms (5 only — ban all others):
-exists | runs locally | passes local rerun | proof-backed | canonical by process
+Status terms (4 only — ban all others):
+exists | runs | passes local rerun | canonical by process
 
 ## Tool Enforcement (must be load-bearing where relevant)
 - Impossibility: z3 (UNSAT) + cvc5 cross-check

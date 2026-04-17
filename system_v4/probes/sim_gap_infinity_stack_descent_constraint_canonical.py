@@ -20,6 +20,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for cocycle constraints"},
     "pyg": {"tried": False, "used": False, "reason": "not needed for descent algebra"},
@@ -70,6 +72,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Test: Cocycle condition g_{ij} * g_{jk} = g_{ik} is satisfiable.
     Model as modular integer arithmetic (mod n).
     """

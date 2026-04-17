@@ -8,6 +8,8 @@ Supporting: sympy derives dimension-0 (fundamental group) boundary cases.
 import json, os
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"},
     "pyg": {"tried": False, "used": False, "reason": "PyG not needed; no graph message passing in this constraint sim"},
@@ -51,7 +53,9 @@ except ImportError:
 
 
 def run_positive_tests():
-    """Positive test: valid pushout with overlapping subspaces U and V."""
+    """
+
+Positive test: valid pushout with overlapping subspaces U and V."""
     results = []
 
     if not cvc5_available:

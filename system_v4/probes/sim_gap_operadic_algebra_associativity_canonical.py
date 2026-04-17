@@ -20,6 +20,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed; operadic composition is categorical structure, not tensor network"},
     "pyg": {"tried": False, "used": False, "reason": "not needed; operadic algebra lacks graph representation"},
@@ -133,7 +135,9 @@ except ImportError:
 # =====================================================================
 
 def operadic_compose(a, b):
-    """Model binary operadic composition: μ(a, b)."""
+    """
+
+Model binary operadic composition: μ(a, b)."""
     return a + b
 
 

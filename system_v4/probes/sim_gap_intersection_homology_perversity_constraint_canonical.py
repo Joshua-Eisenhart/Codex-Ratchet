@@ -24,6 +24,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -138,6 +140,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Test valid perversities that satisfy:
       - p̄(0) = 0
       - p̄(k) ≤ p̄(k+1) ≤ p̄(k) + 1

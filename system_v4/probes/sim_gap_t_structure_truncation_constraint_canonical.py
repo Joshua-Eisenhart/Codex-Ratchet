@@ -20,6 +20,8 @@ import sympy as sp
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     # --- Computation layer ---
     "pytorch": {"tried": False, "used": False, "reason": ""},
@@ -137,6 +139,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Positive tests: (D^{<=0}, D^{>=0}) pairs satisfying D^{<=0} ∩ D^{>=1} = {0}.
     """
     results = {}

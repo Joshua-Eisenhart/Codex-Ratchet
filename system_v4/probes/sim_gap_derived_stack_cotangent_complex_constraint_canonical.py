@@ -20,6 +20,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for amplitude constraints"},
     "pyg": {"tried": False, "used": False, "reason": "not needed for algebraic constraints"},
@@ -70,6 +72,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Test: For n=1 truncation, amplitude in [-1, 0] is admissible.
     """
     results = {}

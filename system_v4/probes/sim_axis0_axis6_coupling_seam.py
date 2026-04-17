@@ -48,6 +48,7 @@ from cvc5 import Kind
 from e3nn import o3
 from geomstats.geometry.hypersphere import Hypersphere
 from geomstats.learning.frechet_mean import FrechetMean
+from axis0_constraint_types import build_distinguishability_constraint
 from scipy.linalg import expm
 from toponetx import CellComplex
 from torch_geometric.data import Data
@@ -56,6 +57,7 @@ from z3 import Bool, BoolVal, Real, RealVal, Solver, Not, And, Or, Sum, Implies,
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from axis0_bridge_owner_packet_surface import load_bridge_owner_packet_surface
 from sim_axis0_dynamic_shell import lane_d_topology_expansion_bridge
 from sim_axis0_iscalar_sweep import (
     _clifford_vector,
@@ -366,6 +368,48 @@ def _e3nn_seam_surface(winner_vector: np.ndarray) -> dict[str, object]:
         "x_parity_gap": x_parity_gap,
         "yz_invariance_gap": yz_invariance_gap,
     }
+
+
+def _seam_distinguishability_surface(
+    pos: dict[str, object],
+    bnd: dict[str, object],
+    graph_surface: dict[str, object],
+    pyg_surface: dict[str, object],
+    constraint_surface: dict[str, object],
+    cvc5_surface: dict[str, object],
+    manifold_surface: dict[str, object],
+) -> dict[str, object]:
+    p1 = pos.get("P1_bell_chirality_flip", {})
+    p2 = pos.get("P2_gradient_orthogonality", {})
+    b1 = bnd.get("B1_product_state", {})
+    chirality_entropy_cost = float(b1.get("chirality_entropy_cost", 0.0))
+    bell_invariance_gap = abs(float(p1.get("Ic_before", 0.0)) - float(p1.get("Ic_after", 0.0)))
+    gradient_dot = abs(float(p2.get("dot_product", 0.0)))
+    aggregate_norm = float(pyg_surface["winner_aggregate_norm"])
+    return build_distinguishability_constraint(
+        observational=bool(aggregate_norm > 1.0),
+        admissible=bool(constraint_surface["sat"] and cvc5_surface["pass"]),
+        stable=bool(float(cvc5_surface["winner_gap"]) > 0.09),
+        entropy_conditioned=bool(
+            chirality_entropy_cost >= LOG2 - 1e-6
+            and bell_invariance_gap < EPS
+            and gradient_dot < 0.1
+        ),
+        topology_conditioned=bool(graph_surface["longest_path_length"] >= 5),
+        signals={
+            "observational_signal": aggregate_norm,
+            "admissibility_signal": 1.0 if (constraint_surface["sat"] and cvc5_surface["pass"]) else 0.0,
+            "stability_signal": float(cvc5_surface["winner_gap"]),
+            "entropy_signal": chirality_entropy_cost + max(0.0, 0.1 - gradient_dot),
+            "topology_signal": float(graph_surface["longest_path_length"]) / 5.0,
+            "chirality_entropy_cost": chirality_entropy_cost,
+            "bell_invariance_gap": bell_invariance_gap,
+            "gradient_orthogonality_gap": gradient_dot,
+            "manifold_distance": float(manifold_surface["mean_geodesic_distance"]),
+        },
+        note="Axis6 seam distinguishability only counts when chirality separation remains admissible without changing Axis 0 content.",
+        pass_threshold=0.8,
+    )
 
 
 def bell_state_rho() -> "torch.Tensor":
@@ -912,6 +956,15 @@ def _aggregate_deep_contract(pos: dict, neg: dict, bnd: dict, shell_bridge: dict
         "candidate_universe_size": len(candidate_names),
         "frontier_size": len(ranking),
         "shell_bridge_pass_fraction": shell_bridge_pass_fraction,
+        "distinguishability_surface": _seam_distinguishability_surface(
+            pos,
+            bnd,
+            graph_surface,
+            pyg_surface,
+            constraint_surface,
+            cvc5_surface,
+            manifold_surface,
+        ),
         "semantic_row_surface": semantic_row_surface(
             {
                 "symbolic_surface": symbolic_surface,
@@ -920,6 +973,15 @@ def _aggregate_deep_contract(pos: dict, neg: dict, bnd: dict, shell_bridge: dict
                 "graph_surface": graph_surface,
                 "manifold_surface": manifold_surface,
                 "pyg_surface": pyg_surface,
+                "distinguishability_surface": _seam_distinguishability_surface(
+                    pos,
+                    bnd,
+                    graph_surface,
+                    pyg_surface,
+                    constraint_surface,
+                    cvc5_surface,
+                    manifold_surface,
+                ),
             }
         ),
         "candidate_rows": candidate_rows,
@@ -963,14 +1025,36 @@ def _aggregate_deep_contract(pos: dict, neg: dict, bnd: dict, shell_bridge: dict
 
 
 def semantic_row_surface(deep_contract: dict[str, object]) -> dict[str, object]:
+    bridge_owner_surface = load_bridge_owner_packet_surface()
+    bridge_owner_gate_fraction = float(
+        np.mean([1.0 if passed else 0.0 for passed in bridge_owner_surface["gate_passes"].values()])
+    )
+    distinguishability_surface = deep_contract.get(
+        "distinguishability_surface",
+        _seam_distinguishability_surface(
+            {},
+            {},
+            deep_contract["graph_surface"],
+            deep_contract["pyg_surface"],
+            deep_contract["constraint_surface"],
+            deep_contract["cvc5_surface"],
+            deep_contract["manifold_surface"],
+        ),
+    )
     return {
         "lane": "axis6_seam",
         "symbolic_hubble_mid": float(deep_contract["symbolic_surface"]["symbolic_hubble_mid"]),
         "constraint_pass": bool(deep_contract["constraint_surface"]["sat"]),
         "cvc5_pass": bool(deep_contract["cvc5_surface"]["pass"]),
+        "bridge_owner_pass": bool(bridge_owner_surface["pass"]),
+        "bridge_owner_gate_fraction": bridge_owner_gate_fraction,
+        "distinguishability_pass": bool(distinguishability_surface["pass"]),
+        "distinguishability_gate_fraction": float(distinguishability_surface["gate_fraction"]),
+        "constraint_family_profile": distinguishability_surface["constraint_profile"],
         "graph_longest_path_length": int(deep_contract["graph_surface"]["longest_path_length"]),
         "manifold_distance": float(deep_contract["manifold_surface"]["mean_geodesic_distance"]),
         "pyg_mean_aggregate_norm": float(deep_contract["pyg_surface"]["mean_aggregate_norm"]),
+        "distinguishability_surface": distinguishability_surface,
     }
 
 

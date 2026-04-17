@@ -47,7 +47,7 @@ divergence_log = (
     "toward higher distinguishability. The same doctrine is now grounded in the deep Axis 0 shell/"
     "topology/symbolic/solver/manifold contract instead of a shallow helper surface."
 )
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = divergence_log
 EPS = 1e-12
 
@@ -83,6 +83,7 @@ TOOL_INTEGRATION_DEPTH = {
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from sim_axis0_dynamic_shell import lane_d_topology_expansion_bridge
+from axis0_constraint_types import build_distinguishability_constraint
 from sim_axis0_iscalar_sweep import (
     _clifford_vector,
     _option_cell_complex_surface as _candidate_cell_complex_surface,
@@ -357,7 +358,6 @@ def _aggregate_deep_contract(
     transition_gain = float(boundary_transition["I_c_schedule"][-1] - boundary_transition["I_c_schedule"][0])
     gradient_gain = float(boundary_gradient["final_I_c"] - boundary_gradient["initial_I_c"])
     concentration_gap = float(numpy_negative["uniform_I_c"] - numpy_negative["concentrated_I_c"])
-
     candidate_rows: list[dict[str, object]] = [
         {
             "option": "distinguishability_sat_surface",
@@ -514,6 +514,35 @@ def _aggregate_deep_contract(
     topology_parity_ok = bool(
         cell_complex_surface["euler_characteristic"] == topology_surface["euler_characteristic"]
     )
+    distinguishability_surface = build_distinguishability_constraint(
+        observational=bool(
+            exact_checks["three_state_entropy_positive"]
+            and concentration_gap > 0.0
+        ),
+        admissible=bool(
+            exact_checks["z3_sat_requires_two_states"]
+            and exact_checks["z3_single_state_unsat"]
+        ),
+        stable=bool(
+            exact_checks["gradient_points_to_uniform"]
+            and exact_checks["transition_is_monotone"]
+        ),
+        entropy_conditioned=bool(
+            exact_checks["concentration_reduces_entropy"]
+            and exact_checks["uniform_is_max_entropy"]
+        ),
+        topology_conditioned=bool(
+            shell_bridge["lane_d_keep"]
+            and graph_surface["longest_path_length"] >= len(ranking) - 1
+            and topology_surface["beta0"] == 1
+            and topology_surface["beta1"] == 0
+        ),
+        note=(
+            "Axis 0 distinguishability is treated as a constrained state-selection surface: "
+            "differences must be observable, admissible, stable, entropy-conditioned, and "
+            "topology-supported."
+        ),
+    )
     frontier_count = sum(
         1
         for row in ranking
@@ -537,6 +566,7 @@ def _aggregate_deep_contract(
         and exact_checks["z3_sat_requires_two_states"]
         and exact_checks["z3_single_state_unsat"]
         and exact_checks["gradient_points_to_uniform"]
+        and distinguishability_surface["pass"]
     )
 
     return {
@@ -564,6 +594,7 @@ def _aggregate_deep_contract(
         },
         "symbolic_surface": symbolic_surface,
         "constraint_surface": constraint_surface,
+        "distinguishability_surface": distinguishability_surface,
         "manifold_surface": manifold_surface,
         "torch_fit": {
             "weights": torch_fit["weights"],

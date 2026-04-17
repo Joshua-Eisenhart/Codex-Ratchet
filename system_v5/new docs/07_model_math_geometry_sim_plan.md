@@ -15,10 +15,10 @@ The system should test the full family of allowed math and geometry from the sta
 
 ## Owner-model alignment
 The current thesis is:
-- primitive substrate = constraint on distinguishability
-- probes are fundamental to identity
-- entropy is a later admissible measure, not the primitive
-- density matrices are a natural base object once a finite carrier is admitted
+- the earliest governing constraint surface is constraint on distinguishability
+- probes are load-bearing for identity claims
+- entropy is a later admissible measure, not a front-door primitive
+- density matrices are early stable working objects once a finite carrier is admitted
 - geometry is constraint compatibility on that carrier
 - correlation, entanglement, and operator structure are not decorative; they are the thing being measured
 
@@ -28,8 +28,8 @@ This means the right question is not:
 The right question is:
 "Which families of math survive simulation at each admissible layer?"
 
-## Base mathematical primitives that should probably be primary
-Likely fundamental objects for the system:
+## Early admissible mathematical object families
+Likely early stable object families for the system:
 - density matrices / density operators
 - probes / admissible probe families
 - channels / CPTP maps
@@ -40,7 +40,7 @@ Likely fundamental objects for the system:
 - Pauli and Clifford generators as operator bases
 
 Working hypothesis:
-- density matrices and probes are probably the first stable language
+- density matrices and probes are probably the first stable working language
 - geometry then appears as admissible structure on top of that language
 - the axes are then families of constrained operations on those objects
 

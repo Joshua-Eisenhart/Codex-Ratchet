@@ -24,6 +24,8 @@ import sympy as sp
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -80,6 +82,8 @@ except ImportError:
 
 def cvc5_en_algebra_unsat_test(n: int, attempted_levels: int) -> dict:
     """
+
+
     Use cvc5 to prove that an E_n algebra cannot have more than n commutativity levels.
 
     Args:

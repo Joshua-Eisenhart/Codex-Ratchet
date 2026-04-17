@@ -23,6 +23,8 @@ import os
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     # --- Computation layer ---
     "pytorch": {"tried": False, "used": False, "reason": ""},
@@ -139,7 +141,9 @@ except ImportError:
 # =====================================================================
 
 def run_positive_tests():
-    """Test that valid partition functions satisfy TFT axioms."""
+    """
+
+Test that valid partition functions satisfy TFT axioms."""
     import sympy as sp
     import cvc5
 

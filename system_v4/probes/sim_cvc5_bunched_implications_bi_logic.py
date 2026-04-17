@@ -12,6 +12,8 @@ sympy: BI model validation formula verification.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -349,7 +351,7 @@ if __name__ == "__main__":
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
         "sympy_validation": validate_bi_formula(),
-        "classification": "canonical",
+        "classification": classification,
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

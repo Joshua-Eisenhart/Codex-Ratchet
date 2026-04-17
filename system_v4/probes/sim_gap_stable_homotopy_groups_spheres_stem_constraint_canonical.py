@@ -22,6 +22,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -132,6 +134,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Positive tests: SAT conditions for stem constraint.
     Each stem n > 0 has order ≥ 1 (finite group).
     """

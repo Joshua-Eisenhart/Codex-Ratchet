@@ -15,19 +15,19 @@ import numpy as np
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "networkx": {"tried": False, "used": False, "reason": ""},
-    "pytorch": {"tried": False, "used": False, "reason": ""},
-    "pyg": {"tried": False, "used": False, "reason": ""},
-    "z3": {"tried": False, "used": False, "reason": ""},
-    "cvc5": {"tried": False, "used": False, "reason": ""},
-    "sympy": {"tried": False, "used": False, "reason": ""},
-    "clifford": {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn": {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi": {"tried": False, "used": False, "reason": ""},
-    "toponetx": {"tried": False, "used": False, "reason": ""},
-    "gudhi": {"tried": False, "used": False, "reason": ""},
+    "networkx": {"tried": False, "used": False, "reason": "primary graph-algorithm library under capability test"},
+    "pytorch": {"tried": False, "used": False, "reason": "tensor/autograd layer not needed for this pure networkx capability probe"},
+    "pyg": {"tried": False, "used": False, "reason": "message-passing graph learning is not needed for classical shortest-path and flow checks"},
+    "z3": {"tried": False, "used": False, "reason": "SMT solving is not needed for this direct algorithm capability check"},
+    "cvc5": {"tried": False, "used": False, "reason": "SMT cross-checking is unnecessary for this direct networkx probe"},
+    "sympy": {"tried": False, "used": False, "reason": "symbolic algebra is not needed for graph shortest-path, spectrum, and max-flow checks"},
+    "clifford": {"tried": False, "used": False, "reason": "geometric algebra is out of scope for this graph capability probe"},
+    "geomstats": {"tried": False, "used": False, "reason": "Riemannian geometry is not needed for networkx graph algorithms"},
+    "e3nn": {"tried": False, "used": False, "reason": "equivariant neural layers are not needed for this classical graph-library capability check"},
+    "rustworkx": {"tried": False, "used": False, "reason": "this standalone probe isolates networkx rather than cross-validating against rustworkx"},
+    "xgi": {"tried": False, "used": False, "reason": "hypergraph structure is not needed for the pairwise graph tasks in this capability probe"},
+    "toponetx": {"tried": False, "used": False, "reason": "cell-complex topology is not needed for this networkx capability probe"},
+    "gudhi": {"tried": False, "used": False, "reason": "persistent homology is not needed for this graph algorithm capability check"},
 }
 
 TOOL_INTEGRATION_DEPTH = {

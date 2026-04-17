@@ -21,6 +21,8 @@ import sympy as sp
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     # --- Computation layer ---
     "pytorch": {"tried": False, "used": False, "reason": ""},
@@ -142,6 +144,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Positive tests: (Z, P) pairs that satisfy support property.
     For each, we verify that |Z(E)| >= C·||E|| for some C > 0.
     """

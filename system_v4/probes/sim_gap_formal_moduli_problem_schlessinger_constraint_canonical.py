@@ -21,6 +21,8 @@ import os
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for dimension constraints"},
     "pyg": {"tried": False, "used": False, "reason": "not needed for moduli theory"},
@@ -71,6 +73,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Test: Tangent space T¹ has finite non-negative dimension under Schlessinger H4.
     """
     results = {}

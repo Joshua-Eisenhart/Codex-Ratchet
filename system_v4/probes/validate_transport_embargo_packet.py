@@ -20,6 +20,7 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
+from axis0_constraint_types import build_constraint_family_profile
 
 ROOT = Path(__file__).resolve().parent
 SIM_RESULTS = ROOT / "a2_state" / "sim_results"
@@ -32,6 +33,46 @@ def load_json(path: Path) -> dict:
 
 def gate(ok: bool, name: str, detail: dict) -> dict:
     return {"name": name, "pass": bool(ok), "detail": detail}
+
+
+def _packet_constraint_family_profile(gate_map: dict[str, dict]) -> dict[str, float]:
+    observational_names = (
+        "TE1_weyl_delta_transport_family_is_live_but_fail_closed",
+        "TE3_transport_embargo_branch_is_explicitly_supported_but_not_promoted",
+    )
+    admissible_names = (
+        "TE1_weyl_delta_transport_family_is_live_but_fail_closed",
+        "TE2_lower_tier_transport_law_stays_narrow_and_non_generic",
+        "TE3_transport_embargo_branch_is_explicitly_supported_but_not_promoted",
+        "TE4_nonproxy_support_and_embargo_blocker_are_bound_together",
+    )
+    stable_names = (
+        "TE2_lower_tier_transport_law_stays_narrow_and_non_generic",
+        "TE4_nonproxy_support_and_embargo_blocker_are_bound_together",
+    )
+    entropy_names = (
+        "TE1_weyl_delta_transport_family_is_live_but_fail_closed",
+        "TE3_transport_embargo_branch_is_explicitly_supported_but_not_promoted",
+        "TE4_nonproxy_support_and_embargo_blocker_are_bound_together",
+    )
+    topology_names = (
+        "TE1_weyl_delta_transport_family_is_live_but_fail_closed",
+        "TE2_lower_tier_transport_law_stays_narrow_and_non_generic",
+        "TE3_transport_embargo_branch_is_explicitly_supported_but_not_promoted",
+    )
+
+    def _fraction(names: tuple[str, ...]) -> float:
+        if not names:
+            return 0.0
+        return float(sum(1.0 if gate_map[name]["pass"] else 0.0 for name in names) / len(names))
+
+    return build_constraint_family_profile(
+        observational=_fraction(observational_names),
+        admissible=_fraction(admissible_names),
+        stable=_fraction(stable_names),
+        entropy_conditioned=_fraction(entropy_names),
+        topology_conditioned=_fraction(topology_names),
+    )
 
 
 def main() -> int:
@@ -47,6 +88,9 @@ def main() -> int:
     weyl_gate_map = {item["name"]: item for item in weyl_delta["gates"]}
     transport_gate_map = {item["name"]: item for item in lower_transport["gates"]}
     pre_gate_map = {item["name"]: item for item in pre_entropy["gates"]}
+    weyl_constraint_profile = weyl_delta.get("constraint_family_profile", {})
+    lower_transport_constraint_profile = lower_transport.get("constraint_family_profile", {})
+    pre_entropy_constraint_profile = pre_entropy.get("constraint_family_profile", {})
 
     weyl_delta_results = load_json(SIM_RESULTS / "weyl_delta_packet_results.json")
     transport_embargo_boundary = weyl_delta_results["transport_embargo_boundary"]
@@ -72,7 +116,10 @@ def main() -> int:
 
     gates = [
         gate(
-            weyl_gate_map["W5_branch_map_keeps_flux_placement_open"]["pass"]
+            weyl_constraint_profile.get("observational", 0.0) >= 1.0
+            and weyl_constraint_profile.get("admissible", 0.0) >= 1.0
+            and weyl_constraint_profile.get("topology_conditioned", 0.0) >= 1.0
+            and weyl_gate_map["W5_branch_map_keeps_flux_placement_open"]["pass"]
             and weyl_gate_map["W6_flux_family_is_explicit_without_canonizing_flux"]["pass"]
             and weyl_gate_map["W7_branch_map_preserves_skeptical_flux_read"]["pass"]
             and weyl_gate_map["W8_pre_axis_object_inventory_is_explicit"]["pass"]
@@ -86,6 +133,7 @@ def main() -> int:
             and transport_embargo_boundary["promotion_boundary"] == "awaiting_owner_promotion_decision_after_nonproxy_support",
             "TE1_weyl_delta_transport_family_is_live_but_fail_closed",
             {
+                "weyl_constraint_profile": weyl_constraint_profile,
                 "w5_pass": weyl_gate_map["W5_branch_map_keeps_flux_placement_open"]["pass"],
                 "w6_pass": weyl_gate_map["W6_flux_family_is_explicit_without_canonizing_flux"]["pass"],
                 "w7_pass": weyl_gate_map["W7_branch_map_preserves_skeptical_flux_read"]["pass"],
@@ -95,12 +143,16 @@ def main() -> int:
             },
         ),
         gate(
-            transport_gate_map["T1_exact_same_carrier_loop_law_survives_search"]["pass"]
+            lower_transport_constraint_profile.get("admissible", 0.0) >= 1.0
+            and lower_transport_constraint_profile.get("stable", 0.0) >= 1.0
+            and lower_transport_constraint_profile.get("topology_conditioned", 0.0) >= 1.0
+            and transport_gate_map["T1_exact_same_carrier_loop_law_survives_search"]["pass"]
             and transport_gate_map["T2_generic_transport_activity_is_not_promoted_to_law"]["pass"]
             and transport_gate_map["T3_symmetric_motion_summary_is_killed_as_fake_transport_law"]["pass"]
             and transport_gate_map["T4_downstream_cut_effect_is_fenced_off_from_lower_transport_law"]["pass"],
             "TE2_lower_tier_transport_law_stays_narrow_and_non_generic",
             {
+                "lower_transport_constraint_profile": lower_transport_constraint_profile,
                 "t1_pass": transport_gate_map["T1_exact_same_carrier_loop_law_survives_search"]["pass"],
                 "t2_pass": transport_gate_map["T2_generic_transport_activity_is_not_promoted_to_law"]["pass"],
                 "t3_pass": transport_gate_map["T3_symmetric_motion_summary_is_killed_as_fake_transport_law"]["pass"],
@@ -108,7 +160,10 @@ def main() -> int:
             },
         ),
         gate(
-            pre_gate_map["P16_transport_delta_branch_survives_but_is_not_owner_law_yet"]["pass"]
+            pre_entropy_constraint_profile.get("admissible", 0.0) >= 1.0
+            and pre_entropy_constraint_profile.get("entropy_conditioned", 0.0) >= 1.0
+            and pre_entropy_constraint_profile.get("topology_conditioned", 0.0) >= 1.0
+            and pre_gate_map["P16_transport_delta_branch_survives_but_is_not_owner_law_yet"]["pass"]
             and pre_gate_map["P17_transport_delta_branch_now_has_nonproxy_joint_necessity_support"]["pass"]
             and pre_gate_map["P18_joint_same_carrier_ablation_keeps_proxy_screen_closed"]["pass"]
             and pre_gate_map["P19_transport_gap_scalar_is_live_and_joint_ablation_collapses_it"]["pass"]
@@ -129,6 +184,7 @@ def main() -> int:
             and transport_embargo_contract["promotion_blocker"] == "awaiting_owner_promotion_decision_after_nonproxy_support",
             "TE3_transport_embargo_branch_is_explicitly_supported_but_not_promoted",
             {
+                "pre_entropy_constraint_profile": pre_entropy_constraint_profile,
                 "p16_pass": pre_gate_map["P16_transport_delta_branch_survives_but_is_not_owner_law_yet"]["pass"],
                 "p17_pass": pre_gate_map["P17_transport_delta_branch_now_has_nonproxy_joint_necessity_support"]["pass"],
                 "p18_pass": pre_gate_map["P18_joint_same_carrier_ablation_keeps_proxy_screen_closed"]["pass"],
@@ -174,12 +230,14 @@ def main() -> int:
     ]
 
     passed = sum(1 for item in gates if item["pass"])
+    gate_map = {item["name"]: item for item in gates}
     payload = {
         "name": "transport_embargo_packet_validation",
         "timestamp": datetime.now(UTC).isoformat(),
         "passed_gates": passed,
         "total_gates": len(gates),
         "score": passed / len(gates) if gates else 0.0,
+        "constraint_family_profile": _packet_constraint_family_profile(gate_map),
         "transport_embargo_contract": transport_embargo_contract,
         "gates": gates,
     }

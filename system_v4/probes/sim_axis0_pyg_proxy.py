@@ -61,7 +61,10 @@ from torch_geometric.data import HeteroData
 from torch_geometric.nn import MessagePassing
 from z3 import Int, Real, RealVal, Solver, Sum, sat, unsat
 
-classification = "canonical"
+from axis0_bridge_owner_packet_surface import load_bridge_owner_packet_surface
+from axis0_constraint_types import build_distinguishability_constraint
+
+classification = "classical_baseline"
 divergence_log = (
     "Canonical Axis 0 proxy doctrine is preserved: the candidate signal is still the "
     "theta_S3 gradient of the I_c proxy through the admissible PyG constraint chain. "
@@ -1017,12 +1020,36 @@ def _aggregate_deep_contract(
         "frontier_count": int(frontier_count),
         "frontier_size": int(len(ranking)),
         "shell_bridge_pass_fraction": float(shell_bridge_pass_fraction),
+        "distinguishability_surface": _pyg_distinguishability_surface(
+            pos,
+            bnd,
+            ax0,
+            graph_surface,
+            constraint_surface,
+            symbolic_surface,
+            manifold_surface,
+            shell_bridge,
+            ranking,
+        ),
         "semantic_row_surface": semantic_row_surface(
             {
                 "symbolic_surface": symbolic_surface,
                 "constraint_surface": constraint_surface,
                 "graph_surface": graph_surface,
                 "manifold_surface": manifold_surface,
+                "shell_bridge": shell_bridge,
+                "candidate_rows": ranking,
+                "distinguishability_surface": _pyg_distinguishability_surface(
+                    pos,
+                    bnd,
+                    ax0,
+                    graph_surface,
+                    constraint_surface,
+                    symbolic_surface,
+                    manifold_surface,
+                    shell_bridge,
+                    ranking,
+                ),
             }
         ),
         "candidate_rows": ranking,
@@ -1061,15 +1088,107 @@ def _aggregate_deep_contract(
 
 
 def semantic_row_surface(deep_contract: dict[str, object]) -> dict[str, object]:
+    bridge_owner_surface = load_bridge_owner_packet_surface()
+    bridge_owner_gate_fraction = float(
+        np.mean([1.0 if passed else 0.0 for passed in bridge_owner_surface["gate_passes"].values()])
+    )
+    distinguishability_surface = deep_contract.get(
+        "distinguishability_surface",
+        _pyg_distinguishability_surface(
+            {},
+            {},
+            {},
+            deep_contract["graph_surface"],
+            deep_contract["constraint_surface"],
+            deep_contract["symbolic_surface"],
+            deep_contract["manifold_surface"],
+            deep_contract.get("shell_bridge"),
+            deep_contract.get("candidate_rows"),
+        ),
+    )
     return {
         "lane": "pyg_proxy",
         "symbolic_hubble_mid": float(deep_contract["symbolic_surface"]["symbolic_hubble_mid"]),
         "constraint_pass": bool(deep_contract["constraint_surface"]["sat"]),
         "cvc5_pass": bool(deep_contract["constraint_surface"]["sat"]),
+        "bridge_owner_pass": bool(bridge_owner_surface["pass"]),
+        "bridge_owner_gate_fraction": bridge_owner_gate_fraction,
+        "distinguishability_pass": bool(distinguishability_surface["pass"]),
+        "distinguishability_gate_fraction": float(distinguishability_surface["gate_fraction"]),
+        "constraint_family_profile": distinguishability_surface["constraint_profile"],
         "graph_longest_path_length": int(deep_contract["graph_surface"]["longest_path_length"]),
         "manifold_distance": float(deep_contract["manifold_surface"]["mean_geodesic_distance"]),
         "pyg_mean_aggregate_norm": float(deep_contract["graph_surface"]["edge_count"]),
+        "distinguishability_surface": distinguishability_surface,
     }
+
+
+def _pyg_distinguishability_surface(
+    pos: dict[str, object],
+    bnd: dict[str, object],
+    ax0: dict[str, object],
+    graph_surface: dict[str, object],
+    constraint_surface: dict[str, object],
+    symbolic_surface: dict[str, object],
+    manifold_surface: dict[str, object],
+    shell_bridge: dict[str, object] | None = None,
+    candidate_rows: list[dict[str, object]] | None = None,
+) -> dict[str, object]:
+    p2 = pos.get("P2_gradient_varies_with_theta", {})
+    p4 = pos.get("P4_theta_star_exists", {})
+    a0 = ax0.get("A0_gradient_profile_matches_expected", {})
+    b1 = bnd.get("B1_theta_near_zero_pole_behavior", {})
+    b2 = bnd.get("B2_theta_near_halfpi_equator_behavior", {})
+    candidate_by_option = {
+        str(row.get("option")): row
+        for row in (candidate_rows or [])
+        if isinstance(row, dict) and row.get("option") is not None
+    }
+    topology_score = float(candidate_by_option.get("pyg_topology_surface", {}).get("composite_score", 0.0))
+    solver_score = float(candidate_by_option.get("solver_formula_surface", {}).get("composite_score", 0.0))
+    chain_score = float(candidate_by_option.get("chain_direction_surface", {}).get("composite_score", 0.0))
+    proxy_score = float(candidate_by_option.get("proxy_nonnegative_surface", {}).get("composite_score", 0.0))
+    perturbation_gap = float((shell_bridge or {}).get("dynamic_vs_frozen_gap", 0.0))
+    graph_operator_separation = min(topology_score - proxy_score, solver_score - chain_score)
+    grad_std = float(p2.get("grad_std", 0.0))
+    theta_star_in_range = bool(p4.get("in_admissible_range", False))
+    grad_at_star = abs(float(p4.get("grad_at_theta_star", 0.0)))
+    grad_threshold = float(p4.get("grad_threshold_used", 0.0))
+    perturbation_peak_is_meaningful = bool(grad_threshold > 0.0 and grad_at_star >= grad_threshold)
+    longest_path = int(graph_surface["longest_path_length"])
+    manifold_distance = float(manifold_surface["mean_geodesic_distance"])
+    return build_distinguishability_constraint(
+        observational=bool(graph_surface["edge_count"] >= 9),
+        admissible=bool(constraint_surface["sat"]),
+        stable=bool(float(symbolic_surface["symbolic_hubble_mid"]) > 1.0),
+        entropy_conditioned=bool(
+            graph_operator_separation > 0.5
+            and perturbation_gap > 0.02
+            and grad_std > 1e-3
+            and theta_star_in_range
+            and perturbation_peak_is_meaningful
+            and bool(a0.get("is_nonmonotone", False))
+            and bool(b1.get("is_finite", False))
+            and bool(b2.get("is_finite", False))
+        ),
+        topology_conditioned=bool(
+            longest_path >= 5
+            and manifold_distance > 0.3
+        ),
+        signals={
+            "observational_signal": float(graph_surface["edge_count"]) / 9.0,
+            "admissibility_signal": 1.0 if constraint_surface["sat"] else 0.0,
+            "stability_signal": float(symbolic_surface["symbolic_hubble_mid"]),
+            "entropy_signal": graph_operator_separation + perturbation_gap + grad_std,
+            "topology_signal": min(longest_path / 5.0, 2.0) + min(manifold_distance / 0.3, 2.0),
+            "graph_operator_separation": graph_operator_separation,
+            "perturbation_gap": perturbation_gap,
+            "grad_std": grad_std,
+            "theta_star_grad_ratio": 0.0 if grad_threshold <= 0.0 else grad_at_star / grad_threshold,
+        },
+        note="PyG proxy distinguishability is only load-bearing when perturbation-driven graph separation survives across the admissible activation profile.",
+        pass_threshold=0.8,
+    )
 
 
 # =====================================================================
@@ -1176,7 +1295,8 @@ if __name__ == "__main__":
 
     results = {
         "name":               "sim_axis0_pyg_proxy",
-        "classification":     "canonical",
+        "classification":     classification,
+        "substrate":          "flat_3q_hilbert",
         "divergence_log":     divergence_log,
         "tool_manifest":      TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
@@ -1235,12 +1355,16 @@ if __name__ == "__main__":
 
     out_dir  = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "axis0_pyg_proxy_results.json")
+    canonical_out_path = os.path.join(
+        out_dir, f"{os.path.splitext(os.path.basename(__file__))[0]}_results.json"
+    )
+    legacy_out_path = os.path.join(out_dir, "axis0_pyg_proxy_results.json")
+    payload = json.dumps(strip(results), indent=2)
+    for target in dict.fromkeys([canonical_out_path, legacy_out_path]):
+        with open(target, "w") as f:
+            f.write(payload)
 
-    with open(out_path, "w") as f:
-        json.dump(strip(results), f, indent=2)
-
-    print(f"\nResults written to {out_path}")
+    print(f"\nResults written to {canonical_out_path}")
     print("\n=== DEEP CONTRACT ===")
     print(f"Legacy pass: {legacy_all_pass}")
     print(f"Deep pass: {deep_contract['pass']}")

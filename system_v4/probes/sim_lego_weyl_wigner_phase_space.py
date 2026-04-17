@@ -640,6 +640,7 @@ if __name__ == "__main__":
         "probe": "lego_weyl_wigner_phase_space",
         "purpose": "Verify discrete qubit Wigner kernels, normalization, negativity, and Stratonovich-Weyl structure",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "tools_used": collect_tools_used(),
         "positive": run_positive_tests(),
         "negative": run_negative_tests(),

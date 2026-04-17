@@ -25,6 +25,8 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
@@ -139,6 +141,8 @@ except ImportError:
 
 def run_positive_tests():
     """
+
+
     Test valid intersection cohomology dimensions that satisfy Poincaré duality:
     dim(IH^k) = dim(IH^{n-k}) for a compact n-dimensional pseudomanifold.
     """

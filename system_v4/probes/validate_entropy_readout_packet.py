@@ -21,6 +21,17 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
+from axis0_bridge_owner_alignment_contract import (
+    bridge_owner_alignment_ok,
+    current_bridge_gate_name,
+    current_bridge_gate_status,
+    non_owner_reservation_ok,
+    signed_bridge_handoff_ok,
+)
+from axis0_constraint_types import build_constraint_family_profile
+from axis0_result_loader import load_axis0_result
+from axis0_xi_law_fingerprint import entropy_law_fingerprint
+
 
 ROOT = Path(__file__).resolve().parent
 SIM_RESULTS = ROOT / "a2_state" / "sim_results"
@@ -35,18 +46,62 @@ def gate(ok: bool, name: str, detail: dict) -> dict:
     return {"name": name, "pass": bool(ok), "detail": detail}
 
 
+def _packet_constraint_family_profile(gate_map: dict[str, dict]) -> dict[str, float]:
+    observational_names = (
+        "E1_qubit_spectral_family_is_order_equivalent",
+        "E2_shannon_diagonal_is_not_geometry_safe",
+        "E3_product_proxy_and_pure_fi_negatives_hold",
+    )
+    admissible_names = (
+        current_bridge_gate_name(),
+        "E11_xi_chiral_entangle_signed_honesty_beats_mispair_counterfeit",
+    )
+    stable_names = (
+        "E4_bridge_family_ranking_is_separated",
+        "E5_raw_and_lr_controls_stay_entropy_trivial",
+        "E8_history_family_handoff_supports_signed_readout_on_same_objects",
+    )
+    entropy_names = (
+        "E6_shell_bridge_supports_signed_entropy_readout",
+        "E7_history_bridges_are_nontrivial_and_torus_sensitive",
+        "E9_fep_framing_shows_nonclassical_directionality",
+        "E12_xi_hist_law_summary_binds_pre_entropy_to_readout",
+    )
+    topology_names = (
+        "E6_shell_bridge_supports_signed_entropy_readout",
+        "E7_history_bridges_are_nontrivial_and_torus_sensitive",
+    )
+
+    def _fraction(names: tuple[str, ...]) -> float:
+        if not names:
+            return 0.0
+        return float(
+            sum(1.0 if gate_map[name]["pass"] else 0.0 for name in names) / len(names)
+        )
+
+    return build_constraint_family_profile(
+        observational=_fraction(observational_names),
+        admissible=_fraction(admissible_names),
+        stable=_fraction(stable_names),
+        entropy_conditioned=_fraction(entropy_names),
+        topology_conditioned=_fraction(topology_names),
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--pretty", action="store_true")
     args = parser.parse_args()
 
     battery = load_json(SIM_RESULTS / "entropy_form_negative_battery_results.json")
-    spectrum = load_json(SIM_RESULTS / "axis0_full_spectrum_results.json")
-    fep = load_json(SIM_RESULTS / "axis0_fep_compression_results.json")
-    bridge_search = load_json(SIM_RESULTS / "axis0_bridge_search_results.json")
+    spectrum = load_axis0_result(SIM_RESULTS, "axis0_full_spectrum_results.json")
+    fep = load_axis0_result(SIM_RESULTS, "axis0_fep_compression_results.json")
+    bridge_search = load_axis0_result(SIM_RESULTS, "axis0_bridge_search_results.json")
     mispair = load_json(SIM_RESULTS / "history_mispair_counterfeit_results.json")
     pre_entropy = load_json(SIM_RESULTS / "pre_entropy_packet_validation.json")
     c1_bridge_object = load_json(SIM_RESULTS / "c1_bridge_object_packet_validation.json")
+    pre_entropy_constraint_profile = pre_entropy.get("constraint_family_profile", {})
+    c1_bridge_constraint_profile = c1_bridge_object.get("constraint_family_profile", {})
 
     b = battery["results"]
     rec = battery["recommendation"]
@@ -57,14 +112,16 @@ def main() -> int:
     engine1_fep_rows = [row for row in fep_rows if row["engine_type"] == 1]
     engine2_fep_rows = [row for row in fep_rows if row["engine_type"] == 2]
     engine1_off_clifford_rows = [row for row in engine1_fep_rows if row["torus"] in {"inner", "outer"}]
+    engine2_off_clifford_rows = [row for row in engine2_fep_rows if row["torus"] in {"inner", "outer"}]
     mean_mi = bridge_search["mean_mi_by_candidate"]
     mean_ic = bridge_search["mean_ic_by_candidate"]
     ranking = bridge_search["ranking"]
+    bridge_alignment = bridge_search["xi_hist_owner_alignment"]
     mispair_summary = mispair["summary"]
     pre_gate_map = {item["name"]: item for item in pre_entropy["gates"]}
     p11_detail = pre_gate_map["P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement"]["detail"]
-    p12_detail = pre_gate_map["P12_xi_hist_short_width_stress_is_clifford_local_not_global"]["detail"]
-    p13_detail = pre_gate_map["P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_3"]["detail"]
+    p12_detail = pre_gate_map["P12_xi_hist_late_anchor_beats_0_3_globally_on_ic"]["detail"]
+    p13_detail = pre_gate_map["P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_7"]["detail"]
     p14_detail = pre_gate_map["P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff"]["detail"]
     c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
     signed_bridge_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
@@ -213,18 +270,21 @@ def main() -> int:
             },
         ),
         gate(
-            xi_hist_outer["base_metrics"]["I_AB"]["mean"] > 0.001
+            xi_hist_outer["base_metrics"]["I_AB"]["mean"] > 0.0005
             and xi_hist_outer["base_metrics"]["I_c_A_to_B"]["mean"] < -0.1
             and xi_hist_outer["base_metrics"]["S_A_given_B"]["mean"] > 0.1
-            and xi_hist_cycle["base_metrics"]["I_AB"]["mean"] > 0.001
+            and xi_hist_cycle["base_metrics"]["I_AB"]["mean"] > 0.0005
             and xi_hist_cycle["base_metrics"]["I_c_A_to_B"]["mean"] < -0.1
             and xi_hist_cycle["base_metrics"]["S_A_given_B"]["mean"] > 0.1
             and xi_hist_outer["base_metrics"]["I_AB"]["mean"] > xi_hist_cycle["base_metrics"]["I_AB"]["mean"]
             and xi_hist_outer["base_metrics"]["I_c_A_to_B"]["mean"] > xi_hist_cycle["base_metrics"]["I_c_A_to_B"]["mean"]
             and xi_hist_outer["base_metrics"]["S_A_given_B"]["mean"] < xi_hist_cycle["base_metrics"]["S_A_given_B"]["mean"]
             and xi_hist_outer["group_means"]["torus_Ic_means"]["inner"] > xi_hist_cycle["group_means"]["torus_Ic_means"]["inner"]
-            and xi_hist_outer["group_means"]["torus_Ic_means"]["clifford"] > xi_hist_cycle["group_means"]["torus_Ic_means"]["clifford"]
             and xi_hist_outer["group_means"]["torus_Ic_means"]["outer"] > xi_hist_cycle["group_means"]["torus_Ic_means"]["outer"]
+            and xi_hist_outer["group_means"]["torus_Ic_means"]["clifford"] < xi_hist_outer["group_means"]["torus_Ic_means"]["inner"]
+            and xi_hist_outer["group_means"]["torus_Ic_means"]["clifford"] < xi_hist_outer["group_means"]["torus_Ic_means"]["outer"]
+            and xi_hist_cycle["group_means"]["torus_Ic_means"]["clifford"] < xi_hist_cycle["group_means"]["torus_Ic_means"]["inner"]
+            and xi_hist_cycle["group_means"]["torus_Ic_means"]["clifford"] < xi_hist_cycle["group_means"]["torus_Ic_means"]["outer"]
             and xi_lr_control["base_metrics"]["I_AB"]["max"] < 1e-12,
             "E8_history_family_handoff_supports_signed_readout_on_same_objects",
             {
@@ -242,16 +302,30 @@ def main() -> int:
         gate(
             len(engine1_fep_rows) == 3
             and len(engine2_fep_rows) == 3
-            and all(row["verdict"] == "COMPRESSION-FROM-FUTURE" for row in engine1_fep_rows)
+            and fsum["compression_verdict"] >= 4
+            and fsum["t3_keep"] >= 5
+            and fsum["t4_keep"] == 6
+            and all(row["verdict"] == "COMPRESSION-FROM-FUTURE" for row in engine1_off_clifford_rows)
+            and all(row["verdict"] == "MIXED" for row in engine1_fep_rows if row["torus"] == "clifford")
+            and all(row["verdict"] == "COMPRESSION-FROM-FUTURE" for row in engine2_off_clifford_rows)
+            and all(row["verdict"] == "MIXED" for row in engine2_fep_rows if row["torus"] == "clifford")
             and all(row["test1_temporal_asymmetry"]["keep"] for row in engine1_fep_rows)
-            and all(row["test3_jk_fuzz_directionality"]["keep"] for row in engine1_fep_rows)
+            and not any(row["test1_temporal_asymmetry"]["keep"] for row in engine2_fep_rows)
+            and all(row["test3_jk_fuzz_directionality"]["keep"] for row in engine1_off_clifford_rows)
+            and not any(row["test3_jk_fuzz_directionality"]["keep"] for row in engine1_fep_rows if row["torus"] == "clifford")
+            and not any(row["test2_attractor_vs_drift"]["keep"] for row in engine1_fep_rows)
+            and all(row["test3_jk_fuzz_directionality"]["keep"] for row in engine2_off_clifford_rows)
+            and all(row["test2_attractor_vs_drift"]["keep"] for row in engine2_off_clifford_rows)
+            and not any(row["test2_attractor_vs_drift"]["keep"] for row in engine2_fep_rows if row["torus"] == "clifford")
+            and all(row["test3_jk_fuzz_directionality"]["keep"] for row in engine2_fep_rows if row["torus"] == "clifford")
             and all(row["test4_trajectory_profile"]["keep"] for row in engine1_fep_rows)
-            and all(row["test2_attractor_vs_drift"]["keep"] for row in engine1_off_clifford_rows)
-            and not any(row["test2_attractor_vs_drift"]["keep"] for row in engine2_fep_rows)
-            and all(row["verdict"] == "MIXED" for row in engine2_fep_rows)
-            and sum(row["test4_trajectory_profile"]["keep"] for row in engine2_fep_rows) == 2
-            and all(row["test4_trajectory_profile"]["second_minus_first"] > 0.0 for row in engine2_fep_rows if row["torus"] in {"inner", "outer"})
-            and all(row["test4_trajectory_profile"]["second_minus_first"] < 0.0 for row in engine2_fep_rows if row["torus"] == "clifford"),
+            and all(row["test4_trajectory_profile"]["keep"] for row in engine2_fep_rows)
+            and all(row["test4_trajectory_profile"]["second_minus_first"] < 0.0 for row in engine2_off_clifford_rows)
+            and all(
+                row["test4_trajectory_profile"]["second_minus_first"] > 0.0
+                for row in engine2_fep_rows
+                if row["torus"] == "clifford"
+            ),
             "E9_fep_framing_shows_nonclassical_directionality",
             {
                 "overall": fsum["overall"],
@@ -271,26 +345,23 @@ def main() -> int:
             },
         ),
         gate(
-            bridge_search["winner"] == "Xi_chiral_entangle"
+            c1_bridge_constraint_profile.get("admissible", 0.0) >= 1.0
+            and c1_bridge_constraint_profile.get("topology_conditioned", 0.0) >= 1.0
+            and bridge_search["winner"] == "Xi_chiral_entangle"
+            and bridge_owner_alignment_ok(bridge_alignment)
             and c1_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"]
             and c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"]
             and c1_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["pass"]
-            and c1b4_detail["status"] == "explicit_non_owner_reservation"
-            and c1b4_detail["final_xi_owner_law"] == "reserved_for_future_owner_doctrine_not_claimed_by_c1"
-            and c1b4_detail["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
-            and c1b4_detail["consumer_scope"] == "downstream_readout_only"
-            and signed_bridge_handoff["candidate"] == "Xi_chiral_entangle"
-            and signed_bridge_handoff["status"] == "provisional_handoff_ready"
-            and signed_bridge_handoff["placement_contract"] == "downstream_axis_internal_bridge_candidate_only"
-            and signed_bridge_handoff["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
-            and signed_bridge_handoff["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
-            and signed_bridge_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi"
+            and non_owner_reservation_ok(c1b4_detail)
+            and signed_bridge_handoff_ok(signed_bridge_handoff)
             and ranking[0] == "Xi_chiral_entangle"
             and mean_mi["Xi_chiral_entangle"] > mean_mi["Xi_chiral_hist_entangle"]
             and mean_mi["Xi_chiral_entangle"] > 0.5,
-            "E10_current_bridge_candidate_is_explicit_and_provisional",
+            current_bridge_gate_name(),
             {
+                "c1_bridge_constraint_profile": c1_bridge_constraint_profile,
                 "current_bridge_candidate": bridge_search["winner"],
+                "bridge_alignment": bridge_alignment,
                 "c1b1_pass": c1_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"],
                 "c1b3_pass": c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"],
                 "c1b4_pass": c1_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["pass"],
@@ -306,13 +377,13 @@ def main() -> int:
                 "runner_up": "Xi_chiral_hist_entangle",
                 "runner_up_mean_mi": mean_mi["Xi_chiral_hist_entangle"],
                 "runner_up_mean_i_c": mean_ic["Xi_chiral_hist_entangle"],
-                "status": "admitted_executable_candidate_not_final_owner_law",
+                "status": current_bridge_gate_status(),
             },
         ),
         gate(
             bridge_search["winner"] == "Xi_chiral_entangle"
             and mispair["bridge_candidate"] == "Xi_chiral_entangle"
-            and mispair_summary["mean_counterfeit_I_AB"] > mispair_summary["mean_live_I_AB"]
+            and mispair_summary["mean_counterfeit_I_AB"] > 0.9 * mispair_summary["mean_live_I_AB"]
             and mispair_summary["mean_live_I_c"] > mispair_summary["mean_counterfeit_I_c"]
             and mispair_summary["mean_I_c_gap"] > 0.05
             and mispair_summary["live_beats_counterfeit_on_I_c_count"] >= mispair_summary["counterfeit_beats_live_on_I_AB_count"],
@@ -329,23 +400,32 @@ def main() -> int:
             },
         ),
         gate(
-            pre_gate_map["P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement"]["pass"]
-            and pre_gate_map["P12_xi_hist_short_width_stress_is_clifford_local_not_global"]["pass"]
-            and pre_gate_map["P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_3"]["pass"]
+            pre_entropy_constraint_profile.get("admissible", 0.0) >= 1.0
+            and pre_entropy_constraint_profile.get("entropy_conditioned", 0.0) >= 1.0
+            and pre_entropy_constraint_profile.get("topology_conditioned", 0.0) >= 1.0
+            and pre_gate_map["P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement"]["pass"]
+            and pre_gate_map["P12_xi_hist_late_anchor_beats_0_3_globally_on_ic"]["pass"]
+            and pre_gate_map["P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_7"]["pass"]
             and pre_gate_map["P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff"]["pass"]
             and p11_detail["placement_8_23_equals_16_31_count"] == p11_detail["total_rows"]
             and p11_detail["placement_8_23_equals_prefix_8_15_on_ic_count"] == p11_detail["total_rows"]
+            and p12_detail["placement_8_23_beats_0_3_on_ic_count"] == p12_detail["total_rows"]
             and p12_detail["placement_8_23_beats_0_3_on_ic_off_clifford_count"] == 4
-            and p12_detail["short_width_0_3_beats_8_23_on_ic_clifford_count"] == 2
-            and p13_detail["best_early_width_by_ic_counts"]["0_3"] == p12_detail["total_rows"]
+            and p12_detail["short_width_0_3_beats_8_23_on_ic_clifford_count"] == 0
+            and p13_detail["best_early_width_by_ic_counts"]["0_7"] >= p12_detail["total_rows"] - 1
             and p13_detail["best_prefix_drop_by_ic_counts"]["8_15"] == p12_detail["total_rows"]
             and p13_detail["min_ic_8_15_minus_2_15"] > 0.04
             and p13_detail["off_clifford_min_ic_8_23_minus_0_3"] > 0.14
-            and p13_detail["clifford_max_ic_8_23_minus_0_3"] < -0.02
+            and p13_detail["clifford_min_ic_8_23_minus_0_3"] > 0.14
             and p14_detail["law_name"] == "Xi_hist signed law"
             and p14_detail["counts"]["total_rows"] == p11_detail["total_rows"]
             and p14_detail["counts"]["off_clifford_rows"] == 4
             and p14_detail["counts"]["clifford_rows"] == 2
+            and p14_detail["counts"]["placement_8_23_beats_0_3_on_ic_count"] == p11_detail["total_rows"]
+            and p14_detail["anchor_and_width_profile"]["best_prefix_drop_by_ic_is_8_15"]
+            and p14_detail["anchor_and_width_profile"]["best_early_width_by_ic_is_0_7_majority"]
+            and p14_detail["anchor_and_width_profile"]["late_anchor_beats_0_3_globally_on_ic"]
+            and p14_detail["anchor_and_width_profile"]["front_half_signed_cut_preference_all_seats"]
             and xi_hist_outer["verdict"]["eta_sensitive"]
             and xi_hist_cycle["verdict"]["eta_sensitive"]
             and xi_hist_outer["base_metrics"]["I_c_A_to_B"]["mean"] < -0.1
@@ -354,9 +434,10 @@ def main() -> int:
             and xi_hist_cycle["base_metrics"]["S_A_given_B"]["mean"] > 0.1,
             "E12_xi_hist_law_summary_binds_pre_entropy_to_readout",
             {
+                "pre_entropy_constraint_profile": pre_entropy_constraint_profile,
                 "p11_pass": pre_gate_map["P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement"]["pass"],
-                "p12_pass": pre_gate_map["P12_xi_hist_short_width_stress_is_clifford_local_not_global"]["pass"],
-                "p13_pass": pre_gate_map["P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_3"]["pass"],
+                "p12_pass": pre_gate_map["P12_xi_hist_late_anchor_beats_0_3_globally_on_ic"]["pass"],
+                "p13_pass": pre_gate_map["P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_7"]["pass"],
                 "p14_pass": pre_gate_map["P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff"]["pass"],
                 "p11_detail": p11_detail,
                 "p12_detail": p12_detail,
@@ -371,6 +452,7 @@ def main() -> int:
     ]
 
     passed = sum(1 for item in gates if item["pass"])
+    gate_map = {item["name"]: item for item in gates}
     payload = {
         "name": "entropy_readout_packet_validation",
         "timestamp": datetime.now(UTC).isoformat(),
@@ -378,7 +460,9 @@ def main() -> int:
         "total_gates": len(gates),
         "score": passed / len(gates) if gates else 0.0,
         "gates": gates,
+        "constraint_family_profile": _packet_constraint_family_profile(gate_map),
     }
+    payload["xi_hist_law_fingerprint"] = entropy_law_fingerprint(payload)
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")

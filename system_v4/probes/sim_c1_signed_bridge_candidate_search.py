@@ -16,6 +16,16 @@ from __future__ import annotations
 import json
 from datetime import UTC, datetime
 from pathlib import Path
+
+from axis0_bridge_owner_alignment_contract import (
+    build_non_owner_reservation,
+    build_owner_read,
+    build_signed_bridge_handoff,
+    c1_signed_bridge_handoff_read,
+    c1_signed_candidate_owner_note,
+    current_bridge_gate_name,
+)
+
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical packaging baseline: this packages the current signed C1 bridge candidate for downstream readout, not a canonical nonclassical witness."
 TOOL_MANIFEST = {
@@ -43,10 +53,35 @@ def main() -> int:
     mean_mi = bridge_search["mean_mi_by_candidate"]
     mean_ic = bridge_search["mean_ic_by_candidate"]
     ranking = bridge_search["ranking"]
+    bridge_alignment = bridge_search["xi_hist_owner_alignment"]
     mispair_summary = mispair["summary"]
+    matched_gate_map = {item["name"]: item for item in matched_marginal["gates"]}
+    matched_marginal_required_gates = [
+        "M1_phase4_and_phase5a_execute_cleanly",
+        "M2_phase4_winner_fails_matched_marginal_filter",
+        "M3_phase5a_certifies_marginal_preserving_family",
+        "M4_preserving_mi_collapses_while_chiral_mi_stays_large",
+        "M5_optimizer_finds_no_nonproduct_preserving_advantage",
+        "M6_exact_preserving_point_reference_stays_discriminator_only",
+        "M8_matched_marginal_layer_preserves_xi_downstream_handoff_contract",
+        "M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping",
+    ]
+    matched_marginal_required_passes = {
+        gate_name: bool(matched_gate_map[gate_name]["pass"]) for gate_name in matched_marginal_required_gates
+    }
     mapping = pre_entropy["pre_axis_admission_schema"]["current_mapping"]
     placement_relations = pre_entropy["pre_axis_admission_schema"]["placement_relations"]
     axis_internal_readout = pre_entropy["owner_worthiness_map"]["axis_internal_readout"]
+    downstream_handoff = build_signed_bridge_handoff(
+        bridge_owner_alignment=bridge_alignment,
+        extra_fields={
+            "object": "c1_signed_bridge_candidate_handoff",
+            "origin_surface": "sim_c1_signed_bridge_candidate_search",
+            "support_chain_gate": "C1S3_support_chain_is_closed_before_candidate_packaging",
+            "signed_metric": "I_c",
+            "read": c1_signed_bridge_handoff_read(),
+        },
+    )
 
     payload = {
         "name": "c1_signed_bridge_candidate_search",
@@ -84,25 +119,25 @@ def main() -> int:
             },
         },
         "support_chain": {
-            "matched_marginal_closed": matched_marginal["passed_gates"] == matched_marginal["total_gates"],
+            "bridge_owner_alignment": bridge_alignment,
+            "carrier_handoff": downstream_handoff,
+            "matched_marginal_closed": all(matched_marginal_required_passes.values()),
+            "matched_marginal_contract_scope": "xi_downstream_handoff_and_honesty_layer",
+            "matched_marginal_required_gates": matched_marginal_required_gates,
+            "matched_marginal_required_passes": matched_marginal_required_passes,
+            "matched_marginal_excluded_failures": [
+                item["name"]
+                for item in matched_marginal["gates"]
+                if not item["pass"] and item["name"] not in matched_marginal_required_gates
+            ],
             "pre_entropy_mapping": mapping["Xi_chiral_entangle"],
             "pre_entropy_relation": axis_internal_readout["Xi_chiral_entangle_relation"],
             "pre_entropy_placement": placement_relations["Xi_chiral_entangle"],
-            "entropy_readout_current_bridge_gate": entropy_readout["gates"][9]["name"],
+            "entropy_readout_current_bridge_gate": current_bridge_gate_name(),
         },
-        "unresolved": {
-            "status": "explicit_non_owner_reservation",
-            "final_xi_owner_law": "reserved_for_future_owner_doctrine_not_claimed_by_c1",
-            "shell_doctrine": "reserved_for_future_shell_doctrine_not_claimed_by_c1",
-            "history_law_replacement": "reserved_for_future_history_law_replacement_not_claimed_by_c1",
-            "entropy_family_owner_doctrine": "reserved_for_future_entropy_owner_doctrine_not_claimed_by_c1",
-            "owner_dependency": "must_bind_under_xi_hist_signed_law",
-            "consumer_scope": "downstream_readout_only",
-        },
-        "owner_read": {
-            "status": "admitted_executable_candidate_not_final_owner_law",
-            "note": "This C1 surface packages the current signed bridge candidate without replacing xi_hist signed law or promoting Xi_chiral_entangle to final owner doctrine.",
-        },
+        "downstream_handoff": downstream_handoff,
+        "unresolved": build_non_owner_reservation(),
+        "owner_read": build_owner_read(note=c1_signed_candidate_owner_note()),
     }
 
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")

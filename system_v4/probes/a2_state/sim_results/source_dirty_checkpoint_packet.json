@@ -1,97 +1,26 @@
 {
-  "generated_at": "2026-04-15T23:47:11.495097+00:00",
-  "lane_id": "source_dirty__skill_runtime__skill_runtime",
-  "group_id": "skill_runtime__skill_runtime",
-  "selected_group_id": "skill_runtime__skill_runtime",
-  "owned_files": [
-    "system_v4/skills/llm_research_enforcement_validator 2.py"
-  ],
+  "generated_at": "2026-04-17T07:11:05.636519+00:00",
+  "lane_id": "source_dirty__no_actionable_lanes",
+  "group_id": null,
+  "selected_group_id": null,
+  "owned_files": [],
   "result_companions": [],
   "verification_snapshot": {
     "checks_run": [
       "lane_manifest_present",
-      "truth_audit_green",
-      "result_companions_present",
-      "repo_hygiene_no_result_placement_drift",
-      "git_snapshot_collected"
+      "no_actionable_lane_state"
     ],
     "checks_passed": [
       "lane_manifest_present",
-      "result_companions_present"
+      "no_actionable_lane_state"
     ],
-    "checks_failed": [
-      "truth_audit_green",
-      "repo_hygiene_no_result_placement_drift",
-      "git_snapshot_collected"
+    "checks_failed": [],
+    "notes": [
+      "No checkpoint-ready lane is available; manual-only residue remains outside packetized cleanup."
     ],
-    "notes": [],
     "git_status": []
   },
-  "required_git_paths_clean": [
-    "system_v4/skills/llm_research_enforcement_validator 2.py"
-  ],
+  "required_git_paths_clean": [],
   "ready_for_checkpoint": false,
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no tensor computation required in this classical baseline probe"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation required in this classical baseline probe"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required in this probe"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required here"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex required in this probe"
-    }
-  }
+  "status": "no_actionable_lane"
 }

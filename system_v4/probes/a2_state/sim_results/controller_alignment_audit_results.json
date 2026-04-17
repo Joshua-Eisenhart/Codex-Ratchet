@@ -1,9 +1,9 @@
 {
   "name": "controller_alignment_audit",
-  "generated_at": "2026-04-17T07:00:26.187928+00:00",
+  "generated_at": "2026-04-17T07:12:26.756661+00:00",
   "classification": "audit",
   "interpreter_authority": {
-    "sys_executable": "/usr/local/bin/python3",
+    "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "makefile_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "imessage_bot_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "makefile_and_bot_agree": true
@@ -12,11 +12,11 @@
     "torch": {
       "distribution": "torch",
       "import_name": "torch",
-      "installed_version": "2.8.0",
+      "installed_version": "2.11.0",
       "import_ok": true,
       "import_error": null,
       "required_floor": "2.11.0",
-      "meets_floor": false
+      "meets_floor": true
     },
     "sympy": {
       "distribution": "sympy",
@@ -39,11 +39,11 @@
     "cvc5": {
       "distribution": "cvc5",
       "import_name": "cvc5",
-      "installed_version": null,
-      "import_ok": false,
-      "import_error": "ModuleNotFoundError: No module named 'cvc5'",
+      "installed_version": "1.3.3",
+      "import_ok": true,
+      "import_error": null,
       "required_floor": "1.3.3",
-      "meets_floor": null
+      "meets_floor": true
     },
     "clifford": {
       "distribution": "clifford",
@@ -57,38 +57,38 @@
     "geomstats": {
       "distribution": "geomstats",
       "import_name": "geomstats",
-      "installed_version": null,
-      "import_ok": false,
-      "import_error": "ModuleNotFoundError: No module named 'geomstats'",
+      "installed_version": "2.8.0",
+      "import_ok": true,
+      "import_error": null,
       "required_floor": "2.8.0",
-      "meets_floor": null
+      "meets_floor": true
     },
     "e3nn": {
       "distribution": "e3nn",
       "import_name": "e3nn",
-      "installed_version": null,
-      "import_ok": false,
-      "import_error": "ModuleNotFoundError: No module named 'e3nn'",
+      "installed_version": "0.6.0",
+      "import_ok": true,
+      "import_error": null,
       "required_floor": "0.6.0",
-      "meets_floor": null
+      "meets_floor": true
     },
     "rustworkx": {
       "distribution": "rustworkx",
       "import_name": "rustworkx",
-      "installed_version": null,
-      "import_ok": false,
-      "import_error": "ModuleNotFoundError: No module named 'rustworkx'",
+      "installed_version": "0.17.1",
+      "import_ok": true,
+      "import_error": null,
       "required_floor": "0.17.1",
-      "meets_floor": null
+      "meets_floor": true
     },
     "xgi": {
       "distribution": "xgi",
       "import_name": "xgi",
-      "installed_version": null,
-      "import_ok": false,
-      "import_error": "ModuleNotFoundError: No module named 'xgi'",
+      "installed_version": "0.10.1",
+      "import_ok": true,
+      "import_error": null,
       "required_floor": "0.10.1",
-      "meets_floor": null
+      "meets_floor": true
     },
     "TopoNetX": {
       "distribution": "TopoNetX",
@@ -138,20 +138,20 @@
     "pandas": {
       "distribution": "pandas",
       "import_name": "pandas",
-      "installed_version": "2.3.1",
+      "installed_version": "2.3.3",
       "import_ok": true,
       "import_error": null,
-      "required_floor": "3.0.0",
-      "meets_floor": false
+      "required_floor": "2.3.3",
+      "meets_floor": true
     },
     "networkx": {
       "distribution": "networkx",
       "import_name": "networkx",
-      "installed_version": "3.5",
+      "installed_version": "3.6.1",
       "import_ok": true,
       "import_error": null,
       "required_floor": "3.6",
-      "meets_floor": false
+      "meets_floor": true
     }
   },
   "known_env_risks": {
@@ -160,224 +160,10 @@
   },
   "probe_truth_audit": {
     "available": true,
-    "ok": false,
-    "hard_finding_count": 83,
-    "warning_finding_count": 13,
-    "blocked_results": {
-      "cvc5_frege_system_constraint_results.json": [
-        "canonical_summary_false"
-      ],
-      "cvc5_proof_complexity_size_constraint_results.json": [
-        "canonical_summary_false"
-      ],
-      "cvc5_resolution_proof_constraint_results.json": [
-        "canonical_summary_false"
-      ],
-      "geom_noncomm_weyl_then_hopf_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "heat_equation_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "layer_coupling_matrix_v3_results.json": [
-        "load_bearing_without_used"
-      ],
-      "lego_pauli_algebra_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "leviathan_authority_entropy_operator_results.json": [
-        "load_bearing_without_used"
-      ],
-      "leviathan_explore_as_hypergraph_potential_results.json": [
-        "load_bearing_without_used"
-      ],
-      "leviathan_gudhi_stability_persistence_results.json": [
-        "load_bearing_without_used"
-      ],
-      "pure_lego_steane_surface_results.json": [
-        "used_without_tried"
-      ],
-      "pure_lego_stokes_mueller_results.json": [
-        "used_without_tried"
-      ],
-      "pure_lego_symplectic_kahler_weyl_results.json": [
-        "used_without_tried",
-        "used_without_tried"
-      ],
-      "qit_carnot_hold_policy_companion_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "qit_engine_companion_array_results.json": [
-        "canonical_summary_false",
-        "canonical_has_failed_checks"
-      ],
-      "qit_szilard_record_companion_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "qit_szilard_record_reconciled_translation_lane_results.json": [
-        "canonical_summary_false",
-        "canonical_has_failed_checks"
-      ],
-      "qit_szilard_record_translation_lane_results.json": [
-        "canonical_summary_false",
-        "canonical_has_failed_checks"
-      ],
-      "qit_szilard_substep_promotion_translation_lane_results.json": [
-        "canonical_summary_false",
-        "canonical_has_failed_checks"
-      ],
-      "qit_szilard_substep_refinement_translation_lane_results.json": [
-        "canonical_summary_false",
-        "canonical_has_failed_checks"
-      ],
-      "qit_szilard_substep_structural_translation_lane_results.json": [
-        "canonical_summary_false",
-        "canonical_has_failed_checks"
-      ],
-      "rustworkx_apsp_constraint_skeleton_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_a_infinity_algebra_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_arthur_packet_multiplicity_formula_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_automorphic_l_function_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_cvc5_abstract_interpretation_lattice_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_cvc5_adams_spectral_sequence_ext_constraint_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_cvc5_adem_relation_composition_constraint_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_cvc5_colored_operad_arity_color_constraint_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_cvc5_descent_data_constraint_results.json": [
-        "used_without_tried"
-      ],
-      "sim_cvc5_grothendieck_topology_coverage_constraint_results.json": [
-        "used_without_tried"
-      ],
-      "sim_cvc5_multicategory_composition_typing_constraint_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_cvc5_operad_composition_associativity_constraint_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_cvc5_sheaf_gluing_condition_constraint_results.json": [
-        "used_without_tried"
-      ],
-      "sim_endoscopy_transfer_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_fundamental_lemma_ngo_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_gap_cartan_kahler_tableau_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_gap_exterior_differential_system_prolongation_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_gap_frobenius_theorem_involutivity_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_bridgeland_stability_condition_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_bsd_conjecture_rank_vanishing_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_c_star_algebra_gelfand_naimark_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_characteristic_variety_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_class_field_theory_artin_map_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_crossed_product_algebra_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_dolbeault_cohomology_hodge_numbers_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_galois_cohomology_tate_duality_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_gns_construction_cyclic_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_higgs_bundle_hitchin_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_geometry_hopf_algebroid_source_target_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_intersection_cohomology_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_langlands_dual_group_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_reductive_group_root_datum_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_satake_correspondence_weight_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_stopped_liouville_sector_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_varifold_first_variation_mean_curvature_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_lagrangian_intersection_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_quillen_theorem_muf_universal_constraint_canonical_results.json": [
-        "used_without_tried"
-      ],
-      "sim_spectral_triple_clifford_z3_coupling_results.json": [
-        "used_without_tried"
-      ],
-      "spectral_triple_weyl_mera_bridge_claims_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "stage_family_order_identifiability_results.json": [
-        "used_without_tried",
-        "used_without_tried"
-      ],
-      "stage_order_identifiability_results.json": [
-        "used_without_tried",
-        "used_without_tried"
-      ],
-      "tetra_holodeck_fep_science_method_axis0_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "unified_engine_tuning_results.json": [
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried"
-      ],
-      "weyl_ambient_vs_engine_overlay_results.json": [
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried"
-      ]
-    }
+    "ok": true,
+    "hard_finding_count": 0,
+    "warning_finding_count": 14,
+    "blocked_results": {}
   },
   "stale_doc_hits": [],
   "stale_doc_summary": {
@@ -451,7 +237,7 @@
     ]
   },
   "tool_stack_summary": {
-    "files_with_manifest_or_depth": 2439,
+    "files_with_manifest_or_depth": 2437,
     "per_tool": {
       "pytorch": {
         "tried_count": 1111,
@@ -1141,7 +927,7 @@
         ]
       },
       "z3": {
-        "tried_count": 980,
+        "tried_count": 981,
         "used_count": 625,
         "load_bearing_count": 543,
         "depth_present_count": 580,
@@ -1699,9 +1485,9 @@
         ]
       },
       "cvc5": {
-        "tried_count": 782,
+        "tried_count": 783,
         "used_count": 508,
-        "load_bearing_count": 500,
+        "load_bearing_count": 497,
         "depth_present_count": 509,
         "anchor_stage_coverage": [
           "boundary"
@@ -1927,7 +1713,6 @@
           "sim_gap_bar_cobar_adjunction_twisting_constraint_canonical_results.json",
           "sim_gap_bbdg_decomposition_theorem_constraint_canonical_results.json",
           "sim_gap_bridgeland_stability_condition_constraint_canonical_results.json",
-          "sim_gap_cartan_kahler_tableau_constraint_canonical_results.json",
           "sim_gap_chromatic_homotopy_morava_k_theory_constraint_canonical_results.json",
           "sim_gap_clifford_module_bott_periodicity_coupling_canonical_results.json",
           "sim_gap_cobordism_hypothesis_dualizable_constraint_canonical_results.json",
@@ -1941,11 +1726,9 @@
           "sim_gap_en_algebra_center_brauer_constraint_canonical_results.json",
           "sim_gap_en_algebra_little_disks_constraint_canonical_results.json",
           "sim_gap_exceptional_jordan_algebra_octonionic_canonical_results.json",
-          "sim_gap_exterior_differential_system_prolongation_constraint_canonical_results.json",
           "sim_gap_factorization_homology_excision_constraint_canonical_results.json",
           "sim_gap_formal_group_law_height_constraint_canonical_results.json",
           "sim_gap_formal_moduli_problem_schlessinger_constraint_canonical_results.json",
-          "sim_gap_frobenius_theorem_involutivity_constraint_canonical_results.json",
           "sim_gap_fully_extended_tqft_symmetric_monoidal_constraint_canonical_results.json",
           "sim_gap_fundamental_infinity_groupoid_van_kampen_constraint_canonical_results.json",
           "sim_gap_g_tower_triple_coexistence_constraint_canonical_results.json",
@@ -2210,7 +1993,7 @@
         ]
       },
       "sympy": {
-        "tried_count": 1216,
+        "tried_count": 1219,
         "used_count": 1013,
         "load_bearing_count": 433,
         "depth_present_count": 992,
@@ -2659,10 +2442,9 @@
       "clifford": {
         "tried_count": 699,
         "used_count": 254,
-        "load_bearing_count": 219,
+        "load_bearing_count": 218,
         "depth_present_count": 236,
         "anchor_stage_coverage": [
-          "coupling",
           "coexistence"
         ],
         "anchor_result_files": [
@@ -2744,7 +2526,6 @@
           "igt_deep_ring_topology_chirality_results.json",
           "layer_coupling_matrix_results.json",
           "layer_coupling_matrix_v2_results.json",
-          "layer_coupling_matrix_v3_results.json",
           "layer_triple_catalog_results.json",
           "leggett_garg_k3_clifford_canonical_results.json",
           "lego_05_cl_rotor_pair_results.json",
@@ -3258,7 +3039,7 @@
       "xgi": {
         "tried_count": 588,
         "used_count": 156,
-        "load_bearing_count": 134,
+        "load_bearing_count": 133,
         "depth_present_count": 147,
         "anchor_stage_coverage": [
           "assembly",
@@ -3306,7 +3087,6 @@
           "hypergraph_geometry_results.json",
           "lego_weyl_hypergraph_local_results.json",
           "leviathan_diversity_preserves_fuel_supply_results.json",
-          "leviathan_explore_as_hypergraph_potential_results.json",
           "leviathan_potential_mining_probe_results.json",
           "leviathan_xgi_coalition_hypergraph_results.json",
           "mera_shell_axis0_results.json",
@@ -3404,7 +3184,7 @@
         ]
       },
       "toponetx": {
-        "tried_count": 542,
+        "tried_count": 543,
         "used_count": 104,
         "load_bearing_count": 83,
         "depth_present_count": 98,
@@ -3658,7 +3438,7 @@
       {
         "file": "foundation_channel_constraints_hardway_results.json",
         "exists": true,
-        "classification": "canonical",
+        "classification": "classical_baseline",
         "signal": {
           "all_pass": true
         }
@@ -3692,7 +3472,7 @@
       {
         "file": "integrated_dependency_chain_results.json",
         "exists": true,
-        "classification": "canonical",
+        "classification": "classical_baseline",
         "signal": {
           "all_pass": true
         }
@@ -3756,13 +3536,13 @@
       {
         "file": "gudhi_cascade_persistence_results.json",
         "exists": true,
-        "classification": "canonical",
+        "classification": "classical_baseline",
         "signal": null
       },
       {
         "file": "gudhi_wasserstein_significance_results.json",
         "exists": true,
-        "classification": "canonical",
+        "classification": "classical_baseline",
         "signal": null
       },
       {
@@ -3844,8 +3624,8 @@
     "interpreter_aligned": true,
     "phase7_c2_surface_consistent": true,
     "phase7_source_has_legacy_subset_branch": false,
-    "trusted_spine_risky_entries": 1,
-    "truth_audit_ok": false,
+    "trusted_spine_risky_entries": 4,
+    "truth_audit_ok": true,
     "shallow_tool_count": 0,
     "code_process_green": false,
     "docs_current": true,
@@ -3854,7 +3634,7 @@
   "doc_drift_count": 0,
   "phase7_c2_surface_consistent": true,
   "phase7_source_has_legacy_subset_branch": false,
-  "trusted_spine_risky_entries": 1,
+  "trusted_spine_risky_entries": 4,
   "shallow_tools": [],
   "shallow_tool_count": 0,
   "doc_drift_by_kind": {},

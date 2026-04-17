@@ -82,11 +82,18 @@ Auditor requirements after runner marks all 4 DONE:
 - write `/Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_d_certificates.md`
 - refresh `/Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_d.md`
 
+Audit-log discipline:
+- use `_steward_log.md` status semantics from ops/AUDIT_TRAIL.md exactly
+- `cycle_end status=<polling|idle|working>` means the process is still alive after a poll or work batch
+- `exited status=<gate_pass|blocker|failed|killed>` is only for actual process end
+
 Blocker discipline once gate is open:
 - if launch is blocked by preflight, missing references, runner not live, or scope collision, write the exact blocker to `tier_d.md`
 - append any judgment-needed question to `_steward_questions.md`
-- append exit status to `_steward_log.md`
+- if the controller remains alive for another cycle, append `cycle_end status=polling` or `cycle_end status=idle` as appropriate
+- use `exited status=blocker` only if the Tier D controller is actually ending
 - stop rather than guessing
 
 Completion condition:
 - either Tier D is launched cleanly and status files reflect that, or a concrete blocker is written with exact evidence paths.
+- if a bounded work batch finishes and the controller stays alive, append `cycle_end status=working` rather than `exited`.

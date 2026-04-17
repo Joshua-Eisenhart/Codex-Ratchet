@@ -28,6 +28,12 @@ def log(msg: str) -> None:
         f.write(f'[{ts()}] {msg}\n')
 
 
+def steward_cycle_end(status: str) -> None:
+    steward_log = WIKI / '_steward_log.md'
+    with steward_log.open('a', encoding='utf-8') as f:
+        f.write(f"{ts()} tier_d_gate_poller tier_d cycle_end status={status}\n")
+
+
 def tier_b_gate_green() -> bool:
     if not TIER_B.exists():
         return False
@@ -79,6 +85,9 @@ def main() -> int:
                 log(f'Tier D launch session returned code={code}')
                 if code == 0 or tier_d_already_owned():
                     return 0
+                steward_cycle_end('polling')
+            else:
+                steward_cycle_end('polling')
             time.sleep(POLL_SECONDS)
         except KeyboardInterrupt:
             log('poller interrupted')

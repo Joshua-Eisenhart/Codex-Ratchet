@@ -55,10 +55,24 @@ At first tick past local midnight, write `~/wiki/projects/codex-ratchet/digest_Y
 
 Cap digest at 500 words.
 
-### Step 5 — Report only if non-trivial
+### Step 5 — Rebuild L3 dashboard
+
+Rewrite `~/wiki/projects/codex-ratchet/STATUS.md` per the spec in `ops/AUDIT_TRAIL.md`. Pull from:
+- Runner log tail → `overnight_logs/sim_runner_current.log`
+- Queue state → `ops/queue_tier_*.txt` (count DONE/FAIL/pending)
+- Tier gate state → each `tier_<X>.md`
+- Active terminals → `/tmp/hermes_active_scopes.txt`
+- Pending questions → `_steward_questions.md`
+- Timeline tail → last 5 gate events in `_steward_log.md`
+- Health flags → this tick's audit results
+
+Include `last_updated: <ISO>` at top.
+
+### Step 6 — Report only if non-trivial
 
 - If changes made OR audit flag raised: telegram `"wiki: <N> updates, <M> audits, <K> flags"`.
 - Nothing changed: silent tick.
+- STATUS.md is rewritten every tick regardless, so L3 can always audit from the file directly.
 
 ## Rules
 

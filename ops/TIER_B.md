@@ -1,10 +1,10 @@
 # Tier B — Geometry Shell-Local Lego Coverage
 
-Preconditions: read `ops/HERMES_RULES.md`. Run preflight. Verify Tier A gate passed: `test -f ~/wiki/projects/codex-ratchet/tier_a.md`.
+Preconditions: read `ops/HERMES_RULES.md` and `ops/SIM_RUNNER.md`. Preflight. Tier A gate passed: `test -f ~/wiki/projects/codex-ratchet/tier_a.md`. Runner is live.
 
-## Objective
+## Role
 
-Every geometry layer has canonical shell-local sims in isolation. Five layers, one Haiku worker each, separate worktrees.
+Hermes spawns Claude Code workers per layer. Workers write probes and append to `ops/queue_tier_b.txt`. Runner executes. Workers never run sims.
 
 ## Layers
 
@@ -16,7 +16,9 @@ Every geometry layer has canonical shell-local sims in isolation. Five layers, o
 | B4 | `flux_*`, `u1_*` | ≥6 (2 already exist: `sim_flux_stokes_cell_shell_canonical.py`, `sim_u1_orientation_holonomy_shell_canonical.py`) |
 | B5 | `clifford_*`, `pauli_*` | ≥4 |
 
-## Worker template (each layer)
+One Haiku worker per layer, separate worktrees. Each layer may spawn sub-workers across sub-domains (e.g. B1 might run 3 sub-Claudes for G₂ / F₄ / E-class separately) — up to 3 sub-workers per layer, still in separate worktrees.
+
+## Worker template
 
 Read:
 - `~/wiki/harness/00_READ_FIRST.md`
@@ -25,32 +27,36 @@ Read:
 - `system_v4/probes/SIM_TEMPLATE.py`
 - Scan `~/wiki/concepts/` for layer-name matches
 
-Scope: your layer prefix ONLY. Do not touch other layers.
+Scope: your layer prefix ONLY.
 
 Tasks:
-1. Inventory: list every existing sim in your scope. Classify `canonical / classical_baseline / broken`.
-2. Coverage gaps: which shell-local questions are NOT yet simmed? Use harness/06 step 1: "which objects (states, operators, probes, entropies) are well-defined in isolation?"
-3. Write ≥N new canonical shell-local sims to fill gaps (N per table above).
-4. Every new sim: `SIM_TEMPLATE` conformant, ≥1 `load_bearing` tool from `{z3, cvc5, sympy, PyG, TopoNetX, Clifford, torch}`.
-5. B4 only: you are creating a NEW category. U(1) gauge formulation on standard QED conventions; probe coupling to Pauli carriers as shell-local only (not coupled).
+1. Inventory existing sims in your scope. Classify `canonical / classical_baseline / broken`.
+2. Identify shell-local gaps per harness/06 step 1: "which objects (states, operators, probes, entropies) are well-defined in isolation?"
+3. Write ≥N new canonical shell-local probes to fill gaps.
+4. Each new probe: `SIM_TEMPLATE` conformant, ≥1 `load_bearing` tool from Tier A's capability set.
+5. B4 only: new category. U(1) gauge formulation on standard QED conventions; probe coupling to Pauli carriers as shell-local only, never coupled.
 
 Rules:
-- Shell-local ONLY. No cross-layer coupling in this tier.
+- Shell-local ONLY. No cross-layer coupling.
 - Language discipline per `03_language_discipline.md` — no banned verbs.
-- If a sim needs another layer to work, DO NOT build it. Log as "requires coupling; deferred to Tier D".
-- Commit per sim: `"tier-b/B<n>: <sim-name>"`.
+- If a probe needs another layer → DO NOT build it; log as "requires coupling; deferred to Tier D".
+- Commit per probe: `"tier-b/B<n>: <probe-name>"`.
+- Append each new probe basename to `ops/queue_tier_b.txt`. Do NOT execute.
 
-## Auditor (Haiku, after workers report)
+## Auditor (Haiku, after workers report written)
 
-Verify per-layer N-count met, `SIM_TEMPLATE` conformance, `load_bearing` tool present, classification correct.
+Tail runner log. For each probe claimed, verify:
+- Probe file exists, `SIM_TEMPLATE` conformant
+- Runner reports DONE (not FAIL)
+- Result JSON: `classification = "canonical"`, ≥1 `load_bearing` tool, positive + negative + boundary sections present
 
 ## Gate
 
-- ✓ 5 layer coverage reports at `~/wiki/projects/codex-ratchet/tier_b_<layer>.md`
-- ✓ Minimum N new canonical sims per layer met
-- ✓ No cross-layer coupling in any Tier B sim
-- ✓ Auditor pass
+- ✓ Per-layer coverage report at `~/wiki/projects/codex-ratchet/tier_b_<layer>.md`
+- ✓ Minimum N new canonical probes per layer, all DONE in runner log
+- ✓ No cross-layer coupling in any Tier B probe
+- ✓ Auditor clean
 
-## Report
+## Save + Report
 
-Telegram L3 once: gate pass OR blocker.
+`~/wiki/projects/codex-ratchet/tier_b.md`. Telegram L3 once: gate pass OR blocker.

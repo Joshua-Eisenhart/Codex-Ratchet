@@ -81,3 +81,13 @@ Never imply a higher label from a lower one. Never use "verified / confirmed / A
 - One telegram line on gate pass or blocker.
 - No progress chatter.
 - Telegram: `joshua.eisenhart@gmail.com` via iMessage daemon at `/tmp/lev_imessage_daemon.py`.
+- All durable status goes to the canonical audit files — see `ops/AUDIT_TRAIL.md`. L3 reads those files directly; never ask owner to paste output.
+
+## 10. Audit discipline (see ops/AUDIT_TRAIL.md)
+
+- On terminal start: append `<ISO> <terminal_id> <brief> started scope=<list>` to `~/wiki/projects/codex-ratchet/_steward_log.md`.
+- On terminal exit: append `<ISO> <terminal_id> <brief> exited status=<gate_pass|blocker|stopped>`.
+- On every probe committed by a worker: append `<ISO> <terminal_id> <worker_id> probe=<basename> commit=<sha> enqueued=<queue>`.
+- Tier gate evidence goes to `~/wiki/projects/codex-ratchet/tier_<X>.md` with `last_updated:` header line.
+- Pending L3 judgment questions go to `~/wiki/projects/codex-ratchet/_steward_questions.md` (one question per section).
+- Nothing important stays in terminal scrollback or telegram only.

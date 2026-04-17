@@ -43,14 +43,14 @@
       "reason": "E(3) equivariance not relevant to triple coexistence; excluded"
     },
     "rustworkx": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "triple-layer coexistence DAG: three shell nodes + joint constraint edge [NOT INSTALLED]"
+      "reason": "triple-layer coexistence DAG: three shell nodes + joint constraint edge"
     },
     "xgi": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "triadic hyperedge {Dirac, Symplectic, Weyl} \u2014 triple coexistence as irreducible 3-edge [NOT INSTALLED]"
+      "reason": "triadic hyperedge {Dirac, Symplectic, Weyl} \u2014 triple coexistence as irreducible 3-edge"
     },
     "toponetx": {
       "tried": true,
@@ -113,14 +113,16 @@
       "interpretation": "MI decays across 3 layers for 5/5 seeds under triple coexistence"
     },
     "P5_rustworkx_triple_coexistence_dag": {
-      "passed": false,
-      "error": "rustworkx not installed"
+      "passed": true,
+      "n_nodes": 4,
+      "n_edges": 3,
+      "interpretation": "Triple coexistence DAG (3 shells \u2192 joint constraint) survived"
     },
     "P6_xgi_triple_hyperedge": {
-      "passed": false,
-      "error": "xgi not installed"
+      "passed": true,
+      "interpretation": "Dirac/Symplectic/Weyl triple coupling survived as irreducible 3-hyperedge"
     },
-    "pass": false
+    "pass": true
   },
   "negative": {
     "N1_z3_unsat_MI_increase_under_dephasing": {
@@ -158,11 +160,11 @@
     },
     "pass": true
   },
-  "overall_pass": false,
+  "overall_pass": true,
   "summary": {
-    "all_pass": false,
+    "all_pass": true,
     "n_tests": 11,
-    "n_pass": 9
+    "n_pass": 11
   },
   "divergence_log": [
     "All three shells active simultaneously: H_dirac, H_symp, H_weyl all positive",

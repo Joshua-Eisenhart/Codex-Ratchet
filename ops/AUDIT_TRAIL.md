@@ -12,8 +12,8 @@ Required sections:
 # Codex-Ratchet Status — <ISO timestamp>
 
 ## Runner
-- PID: <pid or "stopped">
-- Thermal: <level> / <PAUSE=60>
+- PID: <pid or "stopped">  (liveness: `ps -p <pid>` verified)
+- Thermal: cpu_speed_limit=<N>/100 (pause<85, resume>95)
 - Current probe: <basename or "idle">
 - Last 10 log lines: (tail)
 
@@ -28,18 +28,24 @@ Required sections:
 - Tier B: <state>   Gate: <red|yellow|green>   Evidence: tier_b.md
 - Tier D: <state>   Gate: <red|yellow|green>   Evidence: tier_d.md
 
-## Active terminals
-<lines from /tmp/hermes_active_scopes.txt>
+## Active terminals (liveness verified)
+Each line: <terminal_id> pid=<pid> alive=<yes|no> brief=<brief> last_event=<cycle_end|exited|started> at=<ISO>
+
+Source: /tmp/hermes_active_scopes.txt + `ps -p` liveness check per entry.
 
 ## Pending L3 judgment
 <contents of _steward_questions.md or "(none)">
 
 ## Last 5 gate pass/blocker events
-<tail from _steward_log.md filtered on "gate" or "blocker">
+<tail from _steward_log.md filtered on "started|exited|gate"; exclude cycle_end lines>
 
 ## Health flags
 <any audit flags from last steward tick, or "(clean)">
 ```
+
+### Liveness check requirement
+
+For every terminal in `/tmp/hermes_active_scopes.txt`, steward runs `ps -p <pid>` and records `alive=yes|no`. Dead terminals in STATUS.md are labeled clearly so L3 doesn't misinterpret a stale scope entry.
 
 ## Canonical status files (single source of truth per tier)
 
@@ -76,12 +82,22 @@ When owner asks "how's it going" or similar:
 
 ## Terminal check-in
 
-Each Hermes terminal writes one line on startup and on shutdown to `_steward_log.md`:
+Each Hermes terminal writes structured lines to `_steward_log.md`:
 
 ```
-<ISO> <terminal_id> <brief> started scope=<list>
-<ISO> <terminal_id> <brief> exited status=<gate_pass|blocker|stopped>
+<ISO> <terminal_id> <brief> started scope=<list> pid=<pid>
+<ISO> <terminal_id> <brief> cycle_end status=<polling|idle|working>     # healthy cycle pause (still alive)
+<ISO> <terminal_id> <brief> exited status=<gate_pass|blocker|failed|killed>  # process ended
 ```
+
+Distinctions:
+- `cycle_end` — a poll loop or work batch completed; process still alive for next cycle
+- `exited status=gate_pass` — clean completion, gate green
+- `exited status=blocker` — stopped because brief declared blocker; needs L3
+- `exited status=failed` — process crashed or unhandled exception
+- `exited status=killed` — OS kill or owner-stop; not a failure
+
+L3 interprets: only `exited` lines mean the terminal is dead. `cycle_end` does NOT mean dead.
 
 Each worker Claude also logs one line per probe committed:
 

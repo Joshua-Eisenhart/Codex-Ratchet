@@ -59,14 +59,24 @@ Cap digest at 500 words.
 
 Rewrite `~/wiki/projects/codex-ratchet/STATUS.md` per the spec in `ops/AUDIT_TRAIL.md`. Pull from:
 - Runner log tail → `overnight_logs/sim_runner_current.log`
+- Runner PID liveness → `pgrep -f ops/sim_runner.sh`; `ps -p <pid>` to confirm
 - Queue state → `ops/queue_tier_*.txt` (count DONE/FAIL/pending)
 - Tier gate state → each `tier_<X>.md`
 - Active terminals → `/tmp/hermes_active_scopes.txt`
+- **Per-terminal liveness** → for each scope-entry, `ps -p <pid>` → label `alive=yes|no`
 - Pending questions → `_steward_questions.md`
-- Timeline tail → last 5 gate events in `_steward_log.md`
+- Timeline tail → last 5 `started|exited|gate` events from `_steward_log.md` (EXCLUDE `cycle_end` lines — those are healthy cycle pauses, not events)
 - Health flags → this tick's audit results
 
 Include `last_updated: <ISO>` at top.
+
+### Exit status schema (enforced)
+
+When writing terminal lifecycle lines to `_steward_log.md`, use:
+- `cycle_end status=polling|idle|working` — still alive, just completed a cycle
+- `exited status=gate_pass|blocker|failed|killed` — process ended
+
+Only `exited` lines mean dead. Past log entries using `exited status=stopped` should be reinterpreted: if steward can still see the PID alive, it's really `cycle_end`. Steward flags ambiguity via audit flag.
 
 ### Step 6 — Report only if non-trivial
 

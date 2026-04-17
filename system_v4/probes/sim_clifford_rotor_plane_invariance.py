@@ -100,7 +100,8 @@ def sandwich(R: Any, mv: Any) -> Any:
 
 
 def scalar_part(mv: Any) -> float:
-    return float(mv[()]) if () in mv.keys() else float(np.asarray(mv.value)[0])
+    coeffs = np.asarray(mv.value, dtype=float).reshape(-1)
+    return float(coeffs[0])
 
 
 def symbolic_rotation_checks() -> Dict[str, Any]:

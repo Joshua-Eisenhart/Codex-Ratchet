@@ -143,7 +143,7 @@ def run_positive_tests():
 def run_negative_tests():
     solver = Solver()
     f1, f2, f3, f4 = Bool('f1'), Bool('f2'), Bool('f3'), Bool('f4')
-    odd = Xor(f1, f2, f3, f4)
+    odd = Xor(Xor(f1, f2), Xor(f3, f4))
     solver.add(odd)
     solver.add(Not(odd))
     norms = [float(torch.dot(root, root)) for root in ROOTS]

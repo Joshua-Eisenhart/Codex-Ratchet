@@ -1,6 +1,6 @@
 {
   "name": "sim_axis0_lambda_crosslane_result_audit",
-  "timestamp": "2026-04-16T21:39:24.314700+00:00",
+  "timestamp": "2026-04-17T08:49:45.460572+00:00",
   "classification": "classical_baseline",
   "divergence_log": "Persisted-result Axis 0 cross-lane semantic audit. This does not claim a finished cosmology law. It checks whether the lane-owned semantic rows already written by the lambda cosmology, seam, through-shells, and PyG witnesses still satisfy the shared semantic bridge when read back from result artifacts.",
   "tool_manifest": {
@@ -117,9 +117,9 @@
   },
   "audit_mode": "persisted_results",
   "positive": {
-    "pass": false,
+    "pass": true,
     "crosslane_bridge": {
-      "pass": false,
+      "pass": true,
       "source_surface": {
         "pass": true,
         "prep_surface": {
@@ -187,9 +187,15 @@
               "gate_agreement": 1.0,
               "max_gate_disagreement": 0.0,
               "surface_cosine_similarity": 1.0000000000000002,
-              "constraint_profile_cosine_similarity": 0.0,
-              "signal_keys": [],
-              "signal_cosine_similarity": 1.0
+              "constraint_profile_cosine_similarity": 0.9294519378762097,
+              "signal_keys": [
+                "admissibility_signal",
+                "entropy_signal",
+                "observational_signal",
+                "stability_signal",
+                "topology_signal"
+              ],
+              "signal_cosine_similarity": 0.9294519378762095
             },
             {
               "lhs": "lambda_cosmology",
@@ -197,9 +203,15 @@
               "gate_agreement": 1.0,
               "max_gate_disagreement": 0.0,
               "surface_cosine_similarity": 1.0000000000000002,
-              "constraint_profile_cosine_similarity": 0.0,
-              "signal_keys": [],
-              "signal_cosine_similarity": 1.0
+              "constraint_profile_cosine_similarity": 0.9940824938185845,
+              "signal_keys": [
+                "admissibility_signal",
+                "entropy_signal",
+                "observational_signal",
+                "stability_signal",
+                "topology_signal"
+              ],
+              "signal_cosine_similarity": 0.9940824938185847
             },
             {
               "lhs": "lambda_cosmology",
@@ -207,9 +219,15 @@
               "gate_agreement": 1.0,
               "max_gate_disagreement": 0.0,
               "surface_cosine_similarity": 1.0000000000000002,
-              "constraint_profile_cosine_similarity": 0.0,
-              "signal_keys": [],
-              "signal_cosine_similarity": 1.0
+              "constraint_profile_cosine_similarity": 0.9585296596164552,
+              "signal_keys": [
+                "admissibility_signal",
+                "entropy_signal",
+                "observational_signal",
+                "stability_signal",
+                "topology_signal"
+              ],
+              "signal_cosine_similarity": 0.9585296596164552
             },
             {
               "lhs": "axis6_seam",
@@ -217,9 +235,15 @@
               "gate_agreement": 1.0,
               "max_gate_disagreement": 0.0,
               "surface_cosine_similarity": 1.0000000000000002,
-              "constraint_profile_cosine_similarity": 0.0,
-              "signal_keys": [],
-              "signal_cosine_similarity": 1.0
+              "constraint_profile_cosine_similarity": 0.9197447702974479,
+              "signal_keys": [
+                "admissibility_signal",
+                "entropy_signal",
+                "observational_signal",
+                "stability_signal",
+                "topology_signal"
+              ],
+              "signal_cosine_similarity": 0.9197447702974479
             },
             {
               "lhs": "axis6_seam",
@@ -227,9 +251,15 @@
               "gate_agreement": 1.0,
               "max_gate_disagreement": 0.0,
               "surface_cosine_similarity": 1.0000000000000002,
-              "constraint_profile_cosine_similarity": 0.0,
-              "signal_keys": [],
-              "signal_cosine_similarity": 1.0
+              "constraint_profile_cosine_similarity": 0.9029584661570553,
+              "signal_keys": [
+                "admissibility_signal",
+                "entropy_signal",
+                "observational_signal",
+                "stability_signal",
+                "topology_signal"
+              ],
+              "signal_cosine_similarity": 0.9029584661570553
             },
             {
               "lhs": "through_shells",
@@ -237,17 +267,23 @@
               "gate_agreement": 1.0,
               "max_gate_disagreement": 0.0,
               "surface_cosine_similarity": 1.0000000000000002,
-              "constraint_profile_cosine_similarity": 0.0,
-              "signal_keys": [],
-              "signal_cosine_similarity": 1.0
+              "constraint_profile_cosine_similarity": 0.9736914312417136,
+              "signal_keys": [
+                "admissibility_signal",
+                "entropy_signal",
+                "observational_signal",
+                "stability_signal",
+                "topology_signal"
+              ],
+              "signal_cosine_similarity": 0.9736914312417136
             }
           ],
           "min_gate_agreement": 1.0,
           "max_gate_disagreement": 0.0,
           "min_surface_cosine_similarity": 1.0,
-          "min_constraint_profile_cosine_similarity": 0.0,
-          "min_signal_cosine_similarity": 1.0,
-          "min_shared_signal_count": 0
+          "min_constraint_profile_cosine_similarity": 0.9029584661570553,
+          "min_signal_cosine_similarity": 0.9029584661570553,
+          "min_shared_signal_count": 5
         }
       },
       "ranked_rows": [
@@ -277,9 +313,32 @@
               "entropy_conditioned": true,
               "topology_conditioned": true
             },
+            "signals": {
+              "observational_signal": 1.0,
+              "admissibility_signal": 1.0,
+              "stability_signal": 1.0060358738703938,
+              "entropy_signal": 1.3717928188714463,
+              "topology_signal": 1.0,
+              "mean_gradient_norm": 1.2717928188714471,
+              "mean_bare_match_diff": 7.771561172376096e-16,
+              "symbolic_hubble_mid": 1.0060358738703938
+            },
+            "constraint_profile": {
+              "observational": 1.0,
+              "admissible": 1.0,
+              "stable": 1.0060358738703938,
+              "entropy_conditioned": 1.3717928188714463,
+              "topology_conditioned": 1.0
+            },
             "note": "Through-shells distinguishability is load-bearing only when shell transport remains admissible and topology-supported."
           },
-          "constraint_family_profile": null,
+          "constraint_family_profile": {
+            "observational": 1.0,
+            "admissible": 1.0,
+            "stable": 1.0060358738703938,
+            "entropy_conditioned": 1.3717928188714463,
+            "topology_conditioned": 1.0
+          },
           "graph_longest_path_length": 7,
           "manifold_distance": 0.5538809589025677,
           "pyg_mean_aggregate_norm": 1.3589480460718129,
@@ -391,9 +450,33 @@
               "entropy_conditioned": true,
               "topology_conditioned": true
             },
+            "signals": {
+              "observational_signal": 1.0,
+              "admissibility_signal": 1.0,
+              "stability_signal": 1.13358421229186,
+              "entropy_signal": 0.6004746993306572,
+              "topology_signal": 2.0644750322074197,
+              "graph_operator_separation": 0.5576084198854776,
+              "perturbation_gap": 0.03601474986189801,
+              "grad_std": 0.0068515295832816455,
+              "theta_star_grad_ratio": 2.0
+            },
+            "constraint_profile": {
+              "observational": 1.0,
+              "admissible": 1.0,
+              "stable": 1.13358421229186,
+              "entropy_conditioned": 0.6004746993306572,
+              "topology_conditioned": 2.0644750322074197
+            },
             "note": "PyG proxy distinguishability is only load-bearing when perturbation-driven graph separation survives across the admissible activation profile."
           },
-          "constraint_family_profile": null,
+          "constraint_family_profile": {
+            "observational": 1.0,
+            "admissible": 1.0,
+            "stable": 1.13358421229186,
+            "entropy_conditioned": 0.6004746993306572,
+            "topology_conditioned": 2.0644750322074197
+          },
           "graph_longest_path_length": 5,
           "manifold_distance": 0.3193425096622258,
           "pyg_mean_aggregate_norm": 9.0,
@@ -436,9 +519,32 @@
               "entropy_conditioned": true,
               "topology_conditioned": true
             },
+            "signals": {
+              "observational_signal": 3.252058665792677,
+              "admissibility_signal": 1.0,
+              "stability_signal": 0.9999998726892481,
+              "entropy_signal": 5.850485695683674,
+              "topology_signal": 1.0,
+              "shell_spread": 0.6379761355184627,
+              "fuzz_level": 2.7757285435255117,
+              "coherent_information_span": 0.43751352572365915
+            },
+            "constraint_profile": {
+              "observational": 3.252058665792677,
+              "admissible": 1.0,
+              "stable": 0.9999998726892481,
+              "entropy_conditioned": 5.850485695683674,
+              "topology_conditioned": 1.0
+            },
             "note": "Lambda cosmology row distinguishes states through shell-native fuzz separation, entropy span, coherent-information spread, and topology closure."
           },
-          "constraint_family_profile": null,
+          "constraint_family_profile": {
+            "observational": 3.252058665792677,
+            "admissible": 1.0,
+            "stable": 0.9999998726892481,
+            "entropy_conditioned": 5.850485695683674,
+            "topology_conditioned": 1.0
+          },
           "graph_longest_path_length": 6,
           "manifold_distance": 0.5230782255041673,
           "pyg_mean_aggregate_norm": 5.5922342474790145,
@@ -893,9 +999,32 @@
             "entropy_conditioned": true,
             "topology_conditioned": true
           },
+          "signals": {
+            "observational_signal": 3.252058665792677,
+            "admissibility_signal": 1.0,
+            "stability_signal": 0.9999998726892481,
+            "entropy_signal": 5.850485695683674,
+            "topology_signal": 1.0,
+            "shell_spread": 0.6379761355184627,
+            "fuzz_level": 2.7757285435255117,
+            "coherent_information_span": 0.43751352572365915
+          },
+          "constraint_profile": {
+            "observational": 3.252058665792677,
+            "admissible": 1.0,
+            "stable": 0.9999998726892481,
+            "entropy_conditioned": 5.850485695683674,
+            "topology_conditioned": 1.0
+          },
           "note": "Lambda cosmology row distinguishes states through shell-native fuzz separation, entropy span, coherent-information spread, and topology closure."
         },
-        "constraint_family_profile": null,
+        "constraint_family_profile": {
+          "observational": 3.252058665792677,
+          "admissible": 1.0,
+          "stable": 0.9999998726892481,
+          "entropy_conditioned": 5.850485695683674,
+          "topology_conditioned": 1.0
+        },
         "graph_longest_path_length": 6,
         "manifold_distance": 0.5230782255041673,
         "pyg_mean_aggregate_norm": 5.5922342474790145
@@ -983,9 +1112,32 @@
             "entropy_conditioned": true,
             "topology_conditioned": true
           },
+          "signals": {
+            "observational_signal": 1.0,
+            "admissibility_signal": 1.0,
+            "stability_signal": 1.0060358738703938,
+            "entropy_signal": 1.3717928188714463,
+            "topology_signal": 1.0,
+            "mean_gradient_norm": 1.2717928188714471,
+            "mean_bare_match_diff": 7.771561172376096e-16,
+            "symbolic_hubble_mid": 1.0060358738703938
+          },
+          "constraint_profile": {
+            "observational": 1.0,
+            "admissible": 1.0,
+            "stable": 1.0060358738703938,
+            "entropy_conditioned": 1.3717928188714463,
+            "topology_conditioned": 1.0
+          },
           "note": "Through-shells distinguishability is load-bearing only when shell transport remains admissible and topology-supported."
         },
-        "constraint_family_profile": null,
+        "constraint_family_profile": {
+          "observational": 1.0,
+          "admissible": 1.0,
+          "stable": 1.0060358738703938,
+          "entropy_conditioned": 1.3717928188714463,
+          "topology_conditioned": 1.0
+        },
         "graph_longest_path_length": 7,
         "manifold_distance": 0.5538809589025677,
         "pyg_mean_aggregate_norm": 1.3589480460718129
@@ -1016,9 +1168,33 @@
             "entropy_conditioned": true,
             "topology_conditioned": true
           },
+          "signals": {
+            "observational_signal": 1.0,
+            "admissibility_signal": 1.0,
+            "stability_signal": 1.13358421229186,
+            "entropy_signal": 0.6004746993306572,
+            "topology_signal": 2.0644750322074197,
+            "graph_operator_separation": 0.5576084198854776,
+            "perturbation_gap": 0.03601474986189801,
+            "grad_std": 0.0068515295832816455,
+            "theta_star_grad_ratio": 2.0
+          },
+          "constraint_profile": {
+            "observational": 1.0,
+            "admissible": 1.0,
+            "stable": 1.13358421229186,
+            "entropy_conditioned": 0.6004746993306572,
+            "topology_conditioned": 2.0644750322074197
+          },
           "note": "PyG proxy distinguishability is only load-bearing when perturbation-driven graph separation survives across the admissible activation profile."
         },
-        "constraint_family_profile": null,
+        "constraint_family_profile": {
+          "observational": 1.0,
+          "admissible": 1.0,
+          "stable": 1.13358421229186,
+          "entropy_conditioned": 0.6004746993306572,
+          "topology_conditioned": 2.0644750322074197
+        },
         "graph_longest_path_length": 5,
         "manifold_distance": 0.3193425096622258,
         "pyg_mean_aggregate_norm": 9.0
@@ -1028,9 +1204,9 @@
     "refreshed_missing_artifacts": []
   },
   "summary": {
-    "persisted_positive_all_pass": false,
-    "all_pass": false
+    "persisted_positive_all_pass": true,
+    "all_pass": true
   },
-  "overall_pass": false,
-  "all_pass": false
+  "overall_pass": true,
+  "all_pass": true
 }

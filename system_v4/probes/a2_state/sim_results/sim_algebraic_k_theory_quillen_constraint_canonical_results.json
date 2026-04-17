@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "SMT constraint proofs: K_0 rank constraint, K_1 multiplicative structure"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -66,7 +66,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -77,8 +77,7 @@
     "gudhi": null
   },
   "positive": {
-    "test_k0_rank_constraint_sat": "True",
-    "test_k0_rank_error": "type object 'Kind' has no attribute 'EQ'",
+    "test_k0_rank_error": "No module named 'cvc5'",
     "test_k1_fp_order": 6,
     "test_k1_fp_element_orders": [
       1,
@@ -90,7 +89,7 @@
     "test_adams_op_k23_order": 8
   },
   "negative": {
-    "test_k0_rank_violation_error": "type object 'Kind' has no attribute 'EQ'",
+    "test_k0_rank_violation_error": "No module named 'cvc5'",
     "test_k1_fp_impossible_order": true,
     "test_k_order_constraint_violated": true
   },

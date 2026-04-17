@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "proves all canonical morphisms between same objects have unique rank (UNSAT for distinct canonical isomorphisms claiming different ranks)"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -77,31 +77,13 @@
     "gudhi": null
   },
   "positive": {
-    "positive_test_1_pentagonal_coherence": {
-      "name": "Pentagonal diagram coherence",
-      "constraint": "rank(path1) = rank(path2) = 1",
-      "satisfiable": "True",
-      "theorem": "Mac Lane pentagonal axiom holds"
-    },
-    "positive_tests_error": "Given sort is not associated with this term manager"
+    "positive_tests_error": "No module named 'cvc5'"
   },
   "negative": {
-    "negative_test_1_distinct_canonical_ranks_unsat": {
-      "name": "Two canonical morphisms with different ranks (UNSAT)",
-      "formula": "rank(f canonical) = 1 AND rank(g canonical) = 2 AND rank(f) = rank(g)",
-      "satisfiable": "False",
-      "proof": "Mac Lane: all canonical morphisms X\u2192Y have same rank"
-    },
-    "negative_tests_error": "Given sort is not associated with this term manager"
+    "negative_tests_error": "No module named 'cvc5'"
   },
   "boundary": {
-    "boundary_test_1_unit_isomorphisms": {
-      "name": "Unit isomorphisms at boundaries",
-      "constraint": "rank(lambda) = rank(rho) = 1",
-      "satisfiable": "True",
-      "note": "Triangle axiom ensures coherence at I boundary"
-    },
-    "boundary_tests_error": "Given sort is not associated with this term manager"
+    "boundary_tests_error": "No module named 'cvc5'"
   },
   "classification": "canonical"
 }

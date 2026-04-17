@@ -20,9 +20,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "GW virtual dimension formula validated via QF_LIA"
+      "tried": false,
+      "used": false,
+      "reason": "not installed: No module named 'cvc5'"
     },
     "sympy": {
       "tried": true,
@@ -80,50 +80,10 @@
     "gudhi": null
   },
   "positive": {
-    "test_1_cy3_g0_n3": {
-      "name": "cy3_genus_0_3_marked_points",
-      "description": "M\u0304_{0,3}(CY_3, \u03b2) with c_1=0: vdim = 3",
-      "expected": "SAT",
-      "result": "sat",
-      "pass": true
-    },
-    "test_2_k3_g0_n3": {
-      "name": "k3_genus_0_3_marked",
-      "description": "M\u0304_{0,3}(K3, \u03b2) with dimX=2: vdim = 2",
-      "expected": "SAT",
-      "result": "sat",
-      "pass": true
-    },
-    "test_3_cy3_g1_n0": {
-      "name": "cy3_genus_1_no_marked",
-      "description": "M\u0304_{1,0}(CY_3, \u03b2): vdim = 0",
-      "expected": "SAT",
-      "result": "sat",
-      "pass": true
-    }
+    "error": "cvc5 not installed"
   },
   "negative": {
-    "test_1_vdim_contradiction": {
-      "name": "contradictory_vdim_values",
-      "description": "vdim = 5 AND vdim = 3 simultaneously: impossible",
-      "expected": "UNSAT",
-      "result": "unsat",
-      "pass": true
-    },
-    "test_2_negative_g": {
-      "name": "negative_genus",
-      "description": "g < 0 AND g >= 0: impossible",
-      "expected": "UNSAT",
-      "result": "unsat",
-      "pass": true
-    },
-    "test_3_negative_dimX": {
-      "name": "negative_target_dimension",
-      "description": "dimX < 0 AND dimX >= 0: impossible",
-      "expected": "UNSAT",
-      "result": "unsat",
-      "pass": true
-    }
+    "error": "cvc5 not installed"
   },
   "boundary": {
     "test_1_cp2_fano": {

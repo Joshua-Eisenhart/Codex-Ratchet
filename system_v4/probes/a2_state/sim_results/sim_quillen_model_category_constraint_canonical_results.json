@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "load-bearing: QF_LIA constraint on morphism weak-equivalence statuses; proves 2-of-3"
+      "reason": "cvc5 not installed"
     },
     "sympy": {
       "tried": true,
@@ -77,40 +77,18 @@
     "gudhi": null
   },
   "positive": {
-    "test_f_g_weak_implies_gf_weak": {
-      "description": "If f and g are weak equivalences, g\u2218f is weak equivalence",
-      "status": "pass",
-      "configuration": "f_weak=True, g_weak=True, gf_weak=True",
-      "cvc5_satisfiable": true
-    },
-    "error_positive": {
-      "status": "error",
-      "message": "type object 'Kind' has no attribute 'EQ'"
+    "cvc5_unavailable": {
+      "status": "skip",
+      "reason": "cvc5 not installed"
     }
   },
   "negative": {
-    "test_violation_f_g_weak_gf_not_weak": {
-      "description": "If f and g are weak, g\u2218f must be weak. Claiming otherwise is UNSAT.",
-      "status": "pass",
-      "configuration": "f_weak=True, g_weak=True, gf_weak=False",
-      "should_be_unsat": true
-    },
-    "error_negative": {
-      "status": "error",
-      "message": "type object 'Kind' has no attribute 'EQ'"
+    "cvc5_unavailable": {
+      "status": "skip",
+      "reason": "cvc5 not installed"
     }
   },
   "boundary": {
-    "test_identity_is_weak": {
-      "description": "Identity morphism id_A: A\u2192A is always a weak equivalence",
-      "status": "pass",
-      "id_weak": true,
-      "reason": "identity is a homotopy equivalence to itself"
-    },
-    "error_boundary": {
-      "status": "error",
-      "message": "type object 'Kind' has no attribute 'EQ'"
-    },
     "test_sympy_topological_space_structure": {
       "description": "Verify 2-of-3 property for topological space model structure",
       "status": "pass",

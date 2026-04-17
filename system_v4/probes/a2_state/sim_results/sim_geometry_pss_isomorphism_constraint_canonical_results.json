@@ -18,9 +18,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of PSS rank and quantum correction constraints"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -78,88 +78,13 @@
     "gudhi": null
   },
   "positive": {
-    "test_1_pss_cp1": {
-      "name": "PSS isomorphism on CP^1",
-      "manifold": "CP^1",
-      "rank_h": 2,
-      "rank_qh": 2,
-      "sat": true,
-      "expected": true,
-      "pass": true
-    },
-    "test_2_pss_s2": {
-      "name": "PSS isomorphism on S^2",
-      "manifold": "S^2",
-      "rank_h": 2,
-      "rank_qh": 2,
-      "sat": true,
-      "expected": true,
-      "pass": true
-    },
-    "test_3_pss_quantum_product_cp1": {
-      "name": "PSS quantum product formula for CP^1",
-      "manifold": "CP^1",
-      "gw_invariant": 1,
-      "quantum_correction_formula": "q",
-      "expected": "1*q",
-      "pass": true
-    }
+    "error": "cvc5 or sympy not installed"
   },
   "negative": {
-    "test_1_pss_violation_cp1": {
-      "name": "PSS violation: quantum cohomology too small on CP^1",
-      "manifold": "CP^1",
-      "rank_h": 2,
-      "rank_qh": 1,
-      "sat": false,
-      "expected": false,
-      "pass": true
-    },
-    "test_2_pss_violation_cpn": {
-      "name": "PSS violation: small quantum cohomology on CP^3",
-      "manifold": "CP^3",
-      "rank_h": 4,
-      "rank_qh": 3,
-      "sat": false,
-      "expected": false,
-      "pass": true
-    },
-    "test_3_negative_quantum_cohomology": {
-      "name": "Negative quantum cohomology rank (impossible)",
-      "rank_h": 2,
-      "rank_qh": -1,
-      "sat": false,
-      "expected": false,
-      "pass": true
-    }
+    "error": "cvc5 not installed"
   },
   "boundary": {
-    "test_1_pss_equality": {
-      "name": "PSS equality case: rank(QH*) = rank(H*)",
-      "rank_h": 2,
-      "rank_qh": 2,
-      "sat": true,
-      "expected": true,
-      "pass": true
-    },
-    "test_2_pss_cp5": {
-      "name": "PSS on CP^5",
-      "manifold": "CP^5",
-      "rank_h": 6,
-      "rank_qh": 6,
-      "sat": true,
-      "expected": true,
-      "pass": true
-    },
-    "test_3_pss_quantum_series": {
-      "name": "PSS quantum product series",
-      "manifold": "General monotone",
-      "classical_part": 1,
-      "quantum_expansion": "q**2 + q + 1",
-      "degree": 2,
-      "has_all_terms": true,
-      "pass": true
-    }
+    "error": "cvc5 or sympy not installed"
   },
   "classification": "canonical"
 }

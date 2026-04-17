@@ -14,17 +14,17 @@
     },
     "z3": {
       "tried": true,
-      "used": true,
+      "used": false,
       "reason": "cvc5 is primary proof engine for lattice meets"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 is the proof engine"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
-      "used": true,
+      "used": false,
       "reason": "symbolic cross-check of lattice algebra"
     },
     "clifford": {
@@ -66,9 +66,9 @@
   "tool_integration_depth": {
     "pytorch": null,
     "pyg": null,
-    "z3": "supportive",
-    "cvc5": "load_bearing",
-    "sympy": "supportive",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
     "clifford": null,
     "geomstats": null,
     "e3nn": null,
@@ -77,59 +77,8 @@
     "toponetx": null,
     "gudhi": null
   },
-  "positive": {
-    "test_positive_meet_leq_a": {
-      "description": "cvc5 SAT: A\u2229B \u2264 A holds",
-      "sat": true,
-      "expected": true,
-      "model": "[3, 2, 1]"
-    },
-    "test_positive_meet_leq_b": {
-      "description": "cvc5 SAT: A\u2229B \u2264 B holds",
-      "sat": true,
-      "expected": true,
-      "model": "[2, 3, 1]"
-    },
-    "test_positive_glb_property": {
-      "description": "cvc5 SAT: A\u2229B is greatest lower bound",
-      "sat": true,
-      "expected": true,
-      "model": "[4, 3, 2, 1]"
-    }
-  },
-  "negative": {
-    "test_negative_meet_leq_a_violation": {
-      "description": "cvc5 UNSAT: A\u2229B > A contradicts A\u2229B \u2264 A",
-      "unsat": true,
-      "expected": true
-    },
-    "test_negative_meet_leq_b_violation": {
-      "description": "cvc5 UNSAT: A\u2229B > B contradicts A\u2229B \u2264 B",
-      "unsat": true,
-      "expected": true
-    },
-    "test_negative_glb_violation": {
-      "description": "cvc5 UNSAT: if C\u2264A and C\u2264B, then C\u2264A\u2229B must hold",
-      "unsat": false,
-      "expected": true
-    }
-  },
-  "boundary": {
-    "test_boundary_idempotence": {
-      "error": "cannot get value unless model generation is enabled (try --produce-models)"
-    },
-    "test_boundary_z3_cross_check": {
-      "description": "z3 cross-check: A\u2229B \u2264 A must hold",
-      "unsat": true,
-      "expected": true
-    },
-    "test_boundary_symbolic_meet": {
-      "description": "sympy: symbolic lattice meet A\u2229B = min(A, B)",
-      "meet_formula": "Min(A, B)",
-      "property1_meet_leq_a": "min(A,B) \u2264 A",
-      "property2_meet_leq_b": "min(A,B) \u2264 B",
-      "expected": true
-    }
-  },
+  "positive": {},
+  "negative": {},
+  "boundary": {},
   "classification": "canonical"
 }

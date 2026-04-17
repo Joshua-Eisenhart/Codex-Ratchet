@@ -217,6 +217,18 @@ def run_boundary():
     return {"zero_info": {"net": float(net), "erase_cost": float(ec)}}
 
 
+def run_positive_tests():
+    return run_positive()
+
+
+def run_negative_tests():
+    return run_negative()
+
+
+def run_boundary_tests():
+    return run_boundary()
+
+
 if __name__ == "__main__":
     pos = run_positive()
     neg = run_negative()

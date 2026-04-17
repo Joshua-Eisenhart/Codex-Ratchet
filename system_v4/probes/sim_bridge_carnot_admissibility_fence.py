@@ -92,6 +92,18 @@ def run_boundary():
             "unsat_as_expected": bool(result == z3.unsat)}
 
 
+def run_positive_tests():
+    return run_positive()
+
+
+def run_negative_tests():
+    return run_negative()
+
+
+def run_boundary_tests():
+    return run_boundary()
+
+
 if __name__ == "__main__":
     TM["z3"] = {"tried": True, "used": True, "reason": "Proves UNSAT for super-Carnot; load-bearing admissibility fence"}
     DEPTH["z3"] = "load_bearing"

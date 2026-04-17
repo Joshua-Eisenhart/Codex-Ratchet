@@ -79,6 +79,18 @@ def run_boundary():
             "sat_as_expected": bool(res == z3.sat)}
 
 
+def run_positive_tests():
+    return run_positive()
+
+
+def run_negative_tests():
+    return run_negative()
+
+
+def run_boundary_tests():
+    return run_boundary()
+
+
 if __name__ == "__main__":
     TM["z3"] = {"tried": True, "used": True, "reason": "UNSAT on sub-Landauer erasure; load-bearing admissibility floor"}
     DEPTH["z3"] = "load_bearing"

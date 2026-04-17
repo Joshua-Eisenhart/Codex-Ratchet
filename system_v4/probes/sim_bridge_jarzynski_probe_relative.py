@@ -79,6 +79,18 @@ def run_boundary():
     return {"delta_limit_equal": bool(sp.simplify(lhs - rhs) == 0)}
 
 
+def run_positive_tests():
+    return run_positive()
+
+
+def run_negative_tests():
+    return run_negative()
+
+
+def run_boundary_tests():
+    return run_boundary()
+
+
 if __name__ == "__main__":
     TM["sympy"] = {"tried": True, "used": True, "reason": "Symbolic proof of Jarzynski identity; load-bearing"}
     DEPTH["sympy"] = "load_bearing"

@@ -926,6 +926,20 @@ def compute_final_verdict(per_step, z3_proofs, geomstats_results, sympy_results)
     return verdict
 
 
+def run_positive_tests():
+    states = make_test_states()
+    per_step = run_per_step_displacement(states)
+    z3_proofs = run_z3_proofs(per_step)
+    geomstats_results = run_geomstats_geodesic(states, per_step)
+    sympy_results = run_sympy_symbolic()
+    return {
+        "per_step_displacement": per_step,
+        "z3_proofs": z3_proofs,
+        "geomstats_geodesic": geomstats_results,
+        "sympy_symbolic": sympy_results,
+    }
+
+
 # =====================================================================
 # NEGATIVE TESTS
 # =====================================================================

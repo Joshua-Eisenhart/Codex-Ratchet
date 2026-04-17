@@ -276,6 +276,14 @@ def proof3_relay_load_bearing():
     }
 
 
+def run_positive_tests():
+    return {
+        "proof1_symmetry": proof1_dephasing_symmetry(),
+        "proof2_negativity_boundary": proof2_negativity_boundary(),
+        "proof3_relay_load_bearing": proof3_relay_load_bearing(),
+    }
+
+
 # =====================================================================
 # NEGATIVE TESTS: flip the assertions -- should now be SAT
 # =====================================================================

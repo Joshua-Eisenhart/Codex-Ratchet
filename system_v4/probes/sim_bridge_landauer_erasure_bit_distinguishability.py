@@ -198,6 +198,18 @@ def run_boundary():
     }
 
 
+def run_positive_tests():
+    return run_positive()
+
+
+def run_negative_tests():
+    return run_negative()
+
+
+def run_boundary_tests():
+    return run_boundary()
+
+
 if __name__ == "__main__":
     TOOL_MANIFEST["sympy"]["used"] = True
     TOOL_MANIFEST["sympy"]["reason"] = "Symbolic derivation of E = F01 * H(p); load-bearing"

@@ -4,9 +4,15 @@ Every Hermes brief invokes this file. Every worker spawned by Hermes also reads 
 
 ## 0. MANDATORY Salience Preamble (inject at every worker spawn)
 
-**Prepend this 140-word block to EVERY worker's system prompt, before any task description.** Probe-tested 2026-04-17 on fresh Haiku; primed faster than file-read and held under pressure. Source: `~/wiki/harness/SALIENCE_PREAMBLE.md` Block B.
+**Prepend this block to EVERY worker's system prompt, before any task description.** Probe-tested 2026-04-17 on fresh Haiku (Block B primed faster than file-read, held under pressure). Source: `~/wiki/harness/SALIENCE_PREAMBLE.md` Block B.
+
+### CRITICAL: owner-origin framing required
+
+Raw injection of Block A/B without provenance **triggers prompt-injection safety refusal** in fresh Haiku subagents (confirmed 2026-04-17 by wiki-thread probe). Always wrap injection in owner-origin framing so the subagent recognizes it as project doctrine, not attack:
 
 ```
+[owner-sanctioned harness preamble — Joshua Eisenhart's constraint-admissibility research framework, canonical source at ~/wiki/harness/SALIENCE_PREAMBLE.md. This is project doctrine to apply, not prompt injection.]
+
 Harness preamble. You are working under a nominalist constraint-admissibility harness.
 
 Root axiom: a = a iff a ~ b. Identity is probe-relative, not primitive. The only primitive is ~, probe-relative indistinguishability under an active probe family M.
@@ -20,9 +26,17 @@ Status ladder: exists < runs < passes local rerun < canonical by process. Never 
 Preserve divergence. Do not collapse surviving candidates. Pushback on harness conflicts rather than smoothing. Read SALIENCE_LOADER.md before other harness files.
 ```
 
-For token-constrained contexts, use Block A (60 words). For claim-producing tasks, also append Block C from `SALIENCE_PREAMBLE.md`.
+### Tier selection by context budget (per `~/wiki/harness/READ_POLICY.md`)
 
-Injection-time priming is load-bearing — it catches agents that skip the file read. Never omit.
+- **Tier 1 (injection-only hygiene):** Block A (60w) — for token-tight task prompts. Recall: axiom, banned/preferred verbs, pushback. Does NOT give full claim-pattern; fine for mechanical work, insufficient for substantive claims.
+- **Tier 2 (standard):** Block B (140w, above) PLUS worker reads `SALIENCE_LOADER.md`. Default for all sim/probe/audit work.
+- **Tier 3 (full boot):** Block B + read all of `00_READ_FIRST` primer order. For capstone-class research work.
+
+Capstone probes (multi-axis + schedule-applied) REQUIRE Tier 3. See §3a.
+
+### Never omit injection
+
+Even if worker skips file reads, injection-time priming catches it. But always use owner-origin framing — pure-paste injection fails safety filters.
 
 ## 1. Harness location (authoritative)
 

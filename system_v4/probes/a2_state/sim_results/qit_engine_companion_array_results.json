@@ -1,6 +1,6 @@
 {
   "name": "qit_engine_companion_array",
-  "classification": "classical_baseline",
+  "classification": "canonical",
   "classification_note": "Companion array that keeps to tighter QIT-style carriers and readouts while pointing to the closest open-lab analogues for later repair.",
   "divergence_log": "Companion array that keeps to tighter QIT-style carriers and readouts while pointing to the closest open-lab analogues for later repair.",
   "lego_ids": [
@@ -109,7 +109,7 @@
       ],
       "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_landauer_cycle_results.json",
       "strictness_reason": "exact_finite_bookkeeping_row_with_valid_density_operators",
-      "classification": "canonical",
+      "classification": "classical_baseline",
       "headline_metrics": {
         "temperature": 1.0,
         "information_gain": 0.6931471805599453,
@@ -249,7 +249,7 @@
       ],
       "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_companion_results.json",
       "strictness_reason": "finite two-qubit repair companion for record persistence and reset mechanics",
-      "classification": "canonical",
+      "classification": "classical_baseline",
       "headline_metrics": {
         "best_ordering_margin": 0.18365253678100868,
         "best_setting": {
@@ -328,7 +328,7 @@
       ],
       "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_hold_policy_companion_results.json",
       "strictness_reason": "finite qubit repair companion for hold-policy closure and performance tradeoffs",
-      "classification": "canonical",
+      "classification": "classical_baseline",
       "headline_metrics": {
         "best_closure_policy": "fixed_full_chain_2000",
         "best_closure_trace_distance": 0.0003434168608109911,
@@ -435,7 +435,7 @@
       "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_substep_refinement_sweep_results.json",
       "closest_companion_id": "qit_szilard_substep_companion",
       "bridge_reason": "refined stochastic substep carrier with stronger feedback and reset mechanics",
-      "classification": "supporting",
+      "classification": "exploratory",
       "headline_metrics": {
         "all_pass": false
       }
@@ -479,7 +479,7 @@
       "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_substep_ordering_push_sweep_results.json",
       "closest_companion_id": "qit_szilard_substep_companion",
       "bridge_reason": "ordering-focused push on the balanced stochastic substep carrier",
-      "classification": "supporting",
+      "classification": "exploratory",
       "headline_metrics": {
         "all_pass": true
       }
@@ -655,7 +655,7 @@
       "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_ordering_refinement_sweep_results.json",
       "closest_companion_id": "qit_szilard_record_companion",
       "bridge_reason": "local ordering refinement around the strongest hard-reset record carrier",
-      "classification": "supporting",
+      "classification": "exploratory",
       "headline_metrics": {
         "all_pass": true
       }
@@ -1062,7 +1062,5 @@
     ],
     "closest_open_lab_match_count": 19,
     "scope_note": "QIT-aligned companion array that separates a strict finite-carrier subset from the current open-lab rows. Use it as the comparison surface for later constraint repair."
-  },
-  "classification_reason": "truth_audit_demoted_2026-04-17",
-  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+  }
 }

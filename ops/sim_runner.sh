@@ -74,29 +74,39 @@ pick_next() {
 
 regen_default_queue() {
   local q="${QUEUES[3]}"
-  log "Regenerating default queue from canonical-missing-depth list"
-  "$PYTHON" - <<'PY' > "$q"
-import json, glob, os
-for p in sorted(glob.glob('system_v4/probes/a2_state/sim_results/*.json')):
-    try: d = json.load(open(p))
-    except Exception: continue
-    if not isinstance(d, dict): continue
-    if d.get('classification') == 'canonical' and 'tool_integration_depth' not in d:
-        base = os.path.basename(p).replace('_results.json', '')
-        py_path = f'system_v4/probes/{base}.py'
-        if os.path.exists(py_path):
-            print(base)
-PY
+  log "Regenerating default queue via ops/generate_queue.py"
+  "$PYTHON" "$OPS/generate_queue.py" > "$q"
+  log "Default queue: $(grep -cv '^#\|^$' "$q") pending"
 }
 
 mark_line() {
   local q="$1" basename="$2" status="$3" dur="$4"
-  sed -i '' "0,/^${basename}$/s//# ${status} $(date +%Y-%m-%d_%H:%M:%S) ${basename} (${dur}s)/" "$q"
+  local ts; ts=$(date +%Y-%m-%d_%H:%M:%S)
+  local tmp; tmp=$(mktemp)
+  awk -v bn="$basename" -v st="$status" -v ts="$ts" -v dur="$dur" '
+    !done_flag && $0 == bn { print "# " st " " ts " " bn " (" dur "s)"; done_flag=1; next }
+    { print }
+  ' "$q" > "$tmp" && mv "$tmp" "$q"
 }
 
 consecutive_failures=0
+sim_count=0
+STATS_EVERY=10
+
+queue_stats() {
+  for q in "${QUEUES[@]}"; do
+    [ -f "$q" ] || continue
+    local pending done_count fail_count
+    pending=$(grep -cvE '^#|^$' "$q" 2>/dev/null | tr -d '\n')
+    done_count=$(grep -cE '^# DONE' "$q" 2>/dev/null | tr -d '\n')
+    fail_count=$(grep -cE '^# FAIL' "$q" 2>/dev/null | tr -d '\n')
+    printf "  %s: %sp/%sd/%sf\n" "${q##*/}" "${pending:-0}" "${done_count:-0}" "${fail_count:-0}"
+  done
+}
 
 log "Runner started. Priority: A > B > D > default."
+log "Initial queue state:"
+queue_stats | while read line; do log "$line"; done
 
 while :; do
   check_stop
@@ -145,6 +155,12 @@ while :; do
       sleep "$POST_FAIL_PAUSE"
       consecutive_failures=0
     fi
+  fi
+
+  sim_count=$((sim_count + 1))
+  if [ $((sim_count % STATS_EVERY)) -eq 0 ]; then
+    log "Progress after $sim_count sims:"
+    queue_stats | while read line; do log "$line"; done
   fi
 
   sleep "$INTER_SIM_SLEEP"

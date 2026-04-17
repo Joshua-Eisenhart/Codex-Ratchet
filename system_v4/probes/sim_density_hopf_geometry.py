@@ -31,18 +31,18 @@ classification = "canonical"
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
-    "pyg":       {"tried": False, "used": False, "reason": "not needed for this sim"},
-    "z3":        {"tried": False, "used": False, "reason": "not needed for this sim"},
-    "cvc5":      {"tried": False, "used": False, "reason": "not needed for this sim"},
-    "sympy":     {"tried": False, "used": False, "reason": "not needed for this sim"},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn":      {"tried": False, "used": False, "reason": "not needed for this sim"},
-    "rustworkx": {"tried": False, "used": False, "reason": "not needed for this sim"},
-    "xgi":       {"tried": False, "used": False, "reason": "not needed for this sim"},
-    "toponetx":  {"tried": False, "used": False, "reason": "not needed for this sim"},
-    "gudhi":     {"tried": False, "used": False, "reason": "not needed for this sim"},
+    "pytorch":   {"tried": True,  "used": True,  "reason": "core tensor computation + autograd"},
+    "pyg":       {"tried": True,  "used": False, "reason": "not needed for this local density sim"},
+    "z3":        {"tried": True,  "used": False, "reason": "not needed for this numeric density sim"},
+    "cvc5":      {"tried": True,  "used": False, "reason": "not needed for this numeric density sim"},
+    "sympy":     {"tried": True,  "used": False, "reason": "not needed for this numeric density sim"},
+    "clifford":  {"tried": True,  "used": True,  "reason": "Cl(3) rotor-spinor cross-check"},
+    "geomstats": {"tried": True,  "used": True,  "reason": "Frechet mean on SPD manifold"},
+    "e3nn":      {"tried": True,  "used": True,  "reason": "equivariance cross-check for Bloch projection"},
+    "rustworkx": {"tried": True,  "used": False, "reason": "not needed for this local density sim"},
+    "xgi":       {"tried": True,  "used": False, "reason": "not needed for this local density sim"},
+    "toponetx":  {"tried": True,  "used": False, "reason": "not needed for this local density sim"},
+    "gudhi":     {"tried": True,  "used": False, "reason": "not needed for this local density sim"},
 }
 
 TOOL_INTEGRATION_DEPTH = {

@@ -17,9 +17,10 @@ QUEUES=(
   "$OPS/queue_default.txt"
 )
 
-THERMAL_PAUSE_LEVEL=60
-THERMAL_RESUME_LEVEL=40
-LOAD_PAUSE_FACTOR=0.75
+# Apple Silicon thermal: CPU_Speed_Limit from `pmset -g therm`.
+# 100 = no throttle; drops below when hot.
+THERMAL_PAUSE_BELOW=85     # pause if speed limit drops below this
+THERMAL_RESUME_ABOVE=95    # resume when speed limit back above this
 COOLDOWN_SECS=120
 INTER_SIM_SLEEP=5
 CONSECUTIVE_FAIL_LIMIT=5
@@ -38,16 +39,9 @@ check_stop() {
   [ -f "$STOP" ] && { log "Stop file present. Exiting."; exit 0; }
 }
 
+# Returns CPU_Speed_Limit (1-100). 100 = no throttle.
 check_thermal() {
-  sysctl -n machdep.xcpm.cpu_thermal_level 2>/dev/null || echo 0
-}
-
-check_load_ok() {
-  local ncpus load1
-  ncpus=$(sysctl -n hw.ncpu)
-  load1=$(sysctl -n vm.loadavg | awk '{print $2}')
-  awk -v l="$load1" -v n="$ncpus" -v f="$LOAD_PAUSE_FACTOR" \
-      'BEGIN { exit !(l < n * f) }'
+  pmset -g therm 2>/dev/null | awk -F'=' '/CPU_Speed_Limit/ {gsub(/ /,"",$2); print $2; exit}' || echo 100
 }
 
 wait_until_cool() {
@@ -55,10 +49,11 @@ wait_until_cool() {
     check_stop
     local t
     t=$(check_thermal)
-    if [ "$t" -lt "$THERMAL_RESUME_LEVEL" ] && check_load_ok; then
+    [ -z "$t" ] && t=100
+    if [ "$t" -ge "$THERMAL_RESUME_ABOVE" ]; then
       return 0
     fi
-    log "Cooldown: thermal_level=$t, waiting ${COOLDOWN_SECS}s"
+    log "Cooldown: cpu_speed_limit=$t (resume at $THERMAL_RESUME_ABOVE), waiting ${COOLDOWN_SECS}s"
     sleep "$COOLDOWN_SECS"
   done
 }
@@ -85,6 +80,7 @@ import json, glob, os
 for p in sorted(glob.glob('system_v4/probes/a2_state/sim_results/*.json')):
     try: d = json.load(open(p))
     except Exception: continue
+    if not isinstance(d, dict): continue
     if d.get('classification') == 'canonical' and 'tool_integration_depth' not in d:
         base = os.path.basename(p).replace('_results.json', '')
         py_path = f'system_v4/probes/{base}.py'
@@ -126,8 +122,9 @@ while :; do
   fi
 
   t=$(check_thermal)
-  if [ "$t" -ge "$THERMAL_PAUSE_LEVEL" ] || ! check_load_ok; then
-    log "Thermal/load high (thermal=$t). Cooling down."
+  [ -z "$t" ] && t=100
+  if [ "$t" -lt "$THERMAL_PAUSE_BELOW" ]; then
+    log "Thermal throttle detected: cpu_speed_limit=$t (pause<$THERMAL_PAUSE_BELOW). Cooling down."
     wait_until_cool
   fi
 

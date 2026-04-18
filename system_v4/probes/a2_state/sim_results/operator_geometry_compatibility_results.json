@@ -2,7 +2,7 @@
   "name": "operator_geometry_compatibility",
   "sim": "operator_geometry_compatibility",
   "description": "Supporting compatibility matrix between operator families and geometry manifolds, plus attractor discovery.",
-  "timestamp": "2026-04-18T03:19:40",
+  "timestamp": "2026-04-18T03:27:09",
   "n_operators": 8,
   "n_geometries": 6,
   "n_cells": 48,
@@ -896,7 +896,7 @@
           1.0
         ],
         "avg_purity_change": 0.0,
-        "avg_entropy_change": -0.0,
+        "avg_entropy_change": 0.0,
         "avg_norm_change": 0.0,
         "purity_preserved": "True",
         "entropy_preserved": "True",
@@ -915,9 +915,9 @@
           1.0,
           1.0
         ],
-        "avg_purity_change": 0.0,
+        "avg_purity_change": -0.0,
         "avg_entropy_change": 0.0,
-        "avg_norm_change": 0.0,
+        "avg_norm_change": -0.0,
         "purity_preserved": "True",
         "entropy_preserved": "True",
         "norm_preserved": "True"
@@ -937,7 +937,7 @@
         ],
         "avg_purity_change": 0.0,
         "avg_entropy_change": -0.0,
-        "avg_norm_change": -0.0,
+        "avg_norm_change": 0.0,
         "purity_preserved": "True",
         "entropy_preserved": "True",
         "norm_preserved": "True"
@@ -956,8 +956,8 @@
           1.0
         ],
         "avg_purity_change": 0.0,
-        "avg_entropy_change": -0.0,
-        "avg_norm_change": 0.0,
+        "avg_entropy_change": 0.0,
+        "avg_norm_change": -0.0,
         "purity_preserved": "True",
         "entropy_preserved": "True",
         "norm_preserved": "True"
@@ -976,7 +976,7 @@
           1.0
         ],
         "avg_purity_change": 0.0,
-        "avg_entropy_change": -0.0,
+        "avg_entropy_change": 0.0,
         "avg_norm_change": 0.0,
         "purity_preserved": "True",
         "entropy_preserved": "True",
@@ -1126,8 +1126,8 @@
     },
     "clifford": {
       "tried": true,
-      "used": false,
-      "reason": "optional import failed: cannot cache function 'canonical_reordering_sign': no locator available for file '/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/clifford/_layout.py'; using analytic SO(3) fallback for the exploratory compatibility map, so do not count clifford as load_bearing in this run"
+      "used": true,
+      "reason": "load-bearing for native Cl(3) rotor action"
     },
     "geomstats": {
       "tried": false,
@@ -1166,7 +1166,7 @@
     "z3": null,
     "cvc5": null,
     "sympy": null,
-    "clifford": null,
+    "clifford": "load_bearing",
     "geomstats": null,
     "e3nn": null,
     "rustworkx": null,
@@ -1182,5 +1182,5 @@
   },
   "classification": "supporting",
   "classification_note": "Supporting compatibility-map lego. Useful for operator/geometry routing, not a closure-grade proof or full promotion surface.",
-  "elapsed_seconds": 0.4
+  "elapsed_seconds": 146.44
 }

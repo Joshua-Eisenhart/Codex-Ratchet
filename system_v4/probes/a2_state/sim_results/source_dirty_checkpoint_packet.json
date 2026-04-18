@@ -1,26 +1,34 @@
 {
-  "generated_at": "2026-04-18T01:22:17.194633+00:00",
-  "lane_id": "source_dirty__no_actionable_lanes",
-  "group_id": null,
-  "selected_group_id": null,
-  "owned_files": [],
+  "generated_at": "2026-04-18T05:28:22.610451+00:00",
+  "lane_id": "source_dirty__root_runtime__root_runtime",
+  "group_id": "root_runtime__root_runtime",
+  "selected_group_id": "root_runtime__root_runtime",
+  "owned_files": [
+    "imessage_bot.py"
+  ],
   "result_companions": [],
   "verification_snapshot": {
     "checks_run": [
       "lane_manifest_present",
-      "no_actionable_lane_state"
+      "truth_audit_green",
+      "result_companions_present",
+      "repo_hygiene_no_result_placement_drift",
+      "git_snapshot_collected"
     ],
     "checks_passed": [
       "lane_manifest_present",
-      "no_actionable_lane_state"
+      "result_companions_present",
+      "repo_hygiene_no_result_placement_drift"
     ],
-    "checks_failed": [],
-    "notes": [
-      "No checkpoint-ready lane is available; manual-only residue remains outside packetized cleanup."
+    "checks_failed": [
+      "truth_audit_green",
+      "git_snapshot_collected"
     ],
+    "notes": [],
     "git_status": []
   },
-  "required_git_paths_clean": [],
-  "ready_for_checkpoint": false,
-  "status": "no_actionable_lane"
+  "required_git_paths_clean": [
+    "imessage_bot.py"
+  ],
+  "ready_for_checkpoint": false
 }

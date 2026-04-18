@@ -1,9 +1,17 @@
 {
   "probe": "sim_pure_lego_state_discrimination",
-  "timestamp": "2026-04-18T10:58:54.111932+00:00",
+  "timestamp": "2026-04-18T11:05:36.144442+00:00",
+  "classification": "classical_baseline",
   "verdict": "ALL PASS",
   "total_tests": 20,
   "pass_count": 20,
+  "summary": {
+    "helstrom": "10/10",
+    "boundary": "3/3",
+    "pgm": "3/3",
+    "min_error": "4/4",
+    "all_pass": true
+  },
   "helstrom_binary_tests": [
     {
       "pair_name": "orthogonal_|0>_|1>",
@@ -145,5 +153,22 @@
       "helstrom_p_succ": 0.8535533906,
       "PASS": true
     }
-  ]
+  ],
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "numeric state-discrimination calculations for the classical baseline"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix square-root and exponential support for the classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive"
+  },
+  "divergence_log": "Classical baseline: this pure lego probe studies state discrimination numerically with numpy/scipy and does not claim a nonclassical witness."
 }

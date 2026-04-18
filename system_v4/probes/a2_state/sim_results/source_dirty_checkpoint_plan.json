@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-04-18T02:13:44.197698+00:00",
+  "generated_at": "2026-04-18T06:20:12.826918+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
   "dirty_source_count": 0,
-  "plan_group_count": 3,
-  "checkpoint_candidate_count": 1,
+  "plan_group_count": 2,
+  "checkpoint_candidate_count": 0,
   "quarantine_candidate_count": 0,
   "manual_only_count": 2,
   "code_only_manual_count": 2,
@@ -16,8 +16,8 @@
   "next_code_only_manual_result_path": null,
   "summary": {
     "dirty_source_count": 0,
-    "plan_group_count": 3,
-    "checkpoint_candidate_count": 1,
+    "plan_group_count": 2,
+    "checkpoint_candidate_count": 0,
     "quarantine_candidate_count": 0,
     "manual_only_count": 2,
     "code_only_manual_count": 2,
@@ -34,17 +34,11 @@
     "archive_review": "Legacy or reference cluster requiring separate ownership review.",
     "manual_split_required": "Active cluster too broad for one safe checkpoint and should be split further."
   },
-  "recommended_checkpoint_order": [
-    {
-      "group_id": "root_runtime__root_runtime",
-      "file_count": 1,
-      "safe_next_action": "checkpoint"
-    }
-  ],
+  "recommended_checkpoint_order": [],
   "recommended_manual_split_order": [
     {
       "group_id": "other_source__other_source",
-      "file_count": 7,
+      "file_count": 6,
       "safe_next_action": "manual_split_required"
     },
     {
@@ -65,9 +59,9 @@
     },
     {
       "group_id": "other_source__other_source",
-      "file_count": 7,
+      "file_count": 6,
       "untracked_count": 0,
-      "tracked_dirty_count": 7,
+      "tracked_dirty_count": 6,
       "safe_next_action": "manual_split_required",
       "source_path": null,
       "result_path": null
@@ -111,15 +105,13 @@
       "label": "other_source",
       "display_name": "Other source surfaces",
       "path_prefixes": [
-        "lev_imessage_daemon.py",
         "system_v4/a2_state/audit_logs",
         "system_v4/a2_state/graphs"
       ],
-      "file_count": 7,
-      "tracked_dirty_count": 7,
+      "file_count": 6,
+      "tracked_dirty_count": 6,
       "untracked_count": 0,
       "sample_paths": [
-        "lev_imessage_daemon.py",
         "system_v4/a2_state/audit_logs/AXIS_INTERACTION_MATRIX__CURRENT__v1.json",
         "system_v4/a2_state/audit_logs/ENGINE_CONVERGENCE_DIAGNOSTIC__CURRENT__v1.json",
         "system_v4/a2_state/audit_logs/ENGINE_PHASE_SPACE__CURRENT__v1.json",
@@ -128,35 +120,12 @@
         "system_v4/a2_state/graphs/evidence_graph.json"
       ],
       "dominant_kinds": [
-        "modified",
-        "deleted"
+        "modified"
       ],
       "safe_next_action": "manual_split_required",
       "safe_auto": false,
       "blocking_reason": "active_source_pressure",
       "notes": "Unclassified source/config residue needs manual grouping before checkpointing."
-    },
-    {
-      "group_id": "root_runtime__root_runtime",
-      "bucket": "root_runtime",
-      "label": "root_runtime",
-      "display_name": "Root runtime entrypoints",
-      "path_prefixes": [
-        "imessage_bot.py"
-      ],
-      "file_count": 1,
-      "tracked_dirty_count": 1,
-      "untracked_count": 0,
-      "sample_paths": [
-        "imessage_bot.py"
-      ],
-      "dominant_kinds": [
-        "modified"
-      ],
-      "safe_next_action": "checkpoint",
-      "safe_auto": false,
-      "blocking_reason": "bounded_human_checkpoint",
-      "notes": "Root runtime entrypoints changed; checkpoint with build contract if related."
     }
   ]
 }

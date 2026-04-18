@@ -1,31 +1,31 @@
 {
-  "generated_at": "2026-04-18T10:43:13.087925+00:00",
+  "generated_at": "2026-04-18T13:03:08.197157+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
   "dirty_source_count": 0,
-  "plan_group_count": 10,
+  "plan_group_count": 18,
   "checkpoint_candidate_count": 1,
   "quarantine_candidate_count": 0,
-  "manual_only_count": 9,
-  "code_only_manual_count": 9,
+  "manual_only_count": 17,
+  "code_only_manual_count": 17,
   "largest_group_id": "legacy_runtime__legacy_runtime",
-  "next_code_only_manual_group_id": "probe_source__sim_family_a1",
+  "next_code_only_manual_group_id": "probe_source__sim_family_axis0",
   "next_code_only_manual_file_count": 1,
-  "next_code_only_manual_source_path": "system_v4/probes/sim_a1_homotopy_3_reduction.py",
-  "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/a1_homotopy_3_reduction_results.json",
+  "next_code_only_manual_source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
+  "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json",
   "summary": {
     "dirty_source_count": 0,
-    "plan_group_count": 10,
+    "plan_group_count": 18,
     "checkpoint_candidate_count": 1,
     "quarantine_candidate_count": 0,
-    "manual_only_count": 9,
-    "code_only_manual_count": 9,
+    "manual_only_count": 17,
+    "code_only_manual_count": 17,
     "largest_group_id": "legacy_runtime__legacy_runtime",
-    "next_code_only_manual_group_id": "probe_source__sim_family_a1",
+    "next_code_only_manual_group_id": "probe_source__sim_family_axis0",
     "next_code_only_manual_file_count": 1,
-    "next_code_only_manual_source_path": "system_v4/probes/sim_a1_homotopy_3_reduction.py",
-    "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/a1_homotopy_3_reduction_results.json",
+    "next_code_only_manual_source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
+    "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json",
     "ok": true
   },
   "rules": {
@@ -49,7 +49,7 @@
     },
     {
       "group_id": "probe_source__lego_family",
-      "file_count": 8,
+      "file_count": 29,
       "safe_next_action": "manual_split_required"
     },
     {
@@ -63,6 +63,11 @@
       "safe_next_action": "manual_split_required"
     },
     {
+      "group_id": "probe_source__sim_family_probe",
+      "file_count": 2,
+      "safe_next_action": "manual_split_required"
+    },
+    {
       "group_id": "probe_source__torch_family",
       "file_count": 2,
       "safe_next_action": "manual_split_required"
@@ -73,22 +78,41 @@
       "safe_next_action": "manual_split_required"
     },
     {
+      "group_id": "probe_source__sim_family_axis0",
+      "file_count": 1,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_carrier",
+      "file_count": 1,
+      "safe_next_action": "manual_split_required"
+    },
+    {
       "group_id": "probe_source__sim_family_compound",
       "file_count": 1,
       "safe_next_action": "manual_split_required"
     },
     {
-      "group_id": "probe_source__sim_family_operator",
+      "group_id": "probe_source__sim_family_distinguishability",
       "file_count": 1,
       "safe_next_action": "manual_split_required"
     },
     {
-      "group_id": "probe_source__sim_family_pytorch",
+      "group_id": "probe_source__sim_family_foundation",
       "file_count": 1,
       "safe_next_action": "manual_split_required"
     }
   ],
   "recommended_code_only_order": [
+    {
+      "group_id": "probe_source__sim_family_axis0",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
+    },
     {
       "group_id": "probe_source__sim_family_a1",
       "file_count": 1,
@@ -97,6 +121,15 @@
       "safe_next_action": "manual_split_required",
       "source_path": "system_v4/probes/sim_a1_homotopy_3_reduction.py",
       "result_path": "system_v4/probes/a2_state/sim_results/a1_homotopy_3_reduction_results.json"
+    },
+    {
+      "group_id": "probe_source__sim_family_carrier",
+      "file_count": 1,
+      "untracked_count": 0,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_carrier_probe_support.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/carrier_probe_support_results.json"
     },
     {
       "group_id": "probe_source__sim_family_compound",
@@ -108,6 +141,33 @@
       "result_path": "system_v4/probes/a2_state/sim_results/compound_operator_geometry_results.json"
     },
     {
+      "group_id": "probe_source__sim_family_distinguishability",
+      "file_count": 1,
+      "untracked_count": 0,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_distinguishability_relation.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/distinguishability_relation_results.json"
+    },
+    {
+      "group_id": "probe_source__sim_family_foundation",
+      "file_count": 1,
+      "untracked_count": 0,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_foundation_hopf_torus_geomstats_clifford.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/foundation_hopf_torus_geomstats_clifford_results.json"
+    },
+    {
+      "group_id": "probe_source__sim_family_helstrom",
+      "file_count": 1,
+      "untracked_count": 0,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_helstrom_guess_bound.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/helstrom_guess_bound_results.json"
+    },
+    {
       "group_id": "probe_source__sim_family_operator",
       "file_count": 1,
       "untracked_count": 0,
@@ -115,6 +175,24 @@
       "safe_next_action": "manual_split_required",
       "source_path": "system_v4/probes/sim_operator_geometry_compatibility.py",
       "result_path": "system_v4/probes/a2_state/sim_results/operator_geometry_compatibility_results.json"
+    },
+    {
+      "group_id": "probe_source__sim_family_positivity",
+      "file_count": 1,
+      "untracked_count": 0,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_positivity_constraint.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json"
+    },
+    {
+      "group_id": "probe_source__sim_family_pure",
+      "file_count": 1,
+      "untracked_count": 0,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_pure_geometry_hopf_tori.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/pure_geometry_hopf_tori_results.json"
     },
     {
       "group_id": "probe_source__sim_family_pytorch",
@@ -126,59 +204,23 @@
       "result_path": "system_v4/probes/a2_state/sim_results/pytorch_capability_isolated_results.json"
     },
     {
-      "group_id": "probe_source__torch_family",
+      "group_id": "probe_source__sim_family_probe",
       "file_count": 2,
       "untracked_count": 0,
       "tracked_dirty_count": 2,
       "safe_next_action": "manual_split_required",
       "source_path": null,
       "result_path": null
-    },
-    {
-      "group_id": "probe_source__sim_family_integration",
-      "file_count": 3,
-      "untracked_count": 0,
-      "tracked_dirty_count": 3,
-      "safe_next_action": "manual_split_required",
-      "source_path": null,
-      "result_path": null
-    },
-    {
-      "group_id": "other_source__other_source",
-      "file_count": 7,
-      "untracked_count": 0,
-      "tracked_dirty_count": 7,
-      "safe_next_action": "manual_split_required",
-      "source_path": null,
-      "result_path": null
-    },
-    {
-      "group_id": "probe_source__lego_family",
-      "file_count": 8,
-      "untracked_count": 0,
-      "tracked_dirty_count": 8,
-      "safe_next_action": "manual_split_required",
-      "source_path": null,
-      "result_path": null
-    },
-    {
-      "group_id": "legacy_runtime__legacy_runtime",
-      "file_count": 32,
-      "untracked_count": 6,
-      "tracked_dirty_count": 26,
-      "safe_next_action": "archive_review",
-      "source_path": null,
-      "result_path": null
     }
   ],
   "next_code_only_manual": {
-    "group_id": "probe_source__sim_family_a1",
+    "group_id": "probe_source__sim_family_axis0",
     "file_count": 1,
-    "untracked_count": 0,
-    "tracked_dirty_count": 1,
+    "untracked_count": 1,
+    "tracked_dirty_count": 0,
     "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_a1_homotopy_3_reduction.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/a1_homotopy_3_reduction_results.json"
+    "source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
+    "result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
   },
   "checkpoint_groups": [
     {
@@ -284,26 +326,47 @@
       "display_name": "Lego and pure-lego sims",
       "path_prefixes": [
         "system_v4/probes/sim_lego_adiabatic_theorem.py",
+        "system_v4/probes/sim_lego_assoc_bundle_load_bearing.py",
+        "system_v4/probes/sim_lego_clifford_commutator_algebra.py",
+        "system_v4/probes/sim_lego_coherent_info_advanced.py",
         "system_v4/probes/sim_lego_constraint_admissibility_fence_z3.py",
         "system_v4/probes/sim_lego_cptp_channel_family.py",
+        "system_v4/probes/sim_lego_dirac_gamma.py",
         "system_v4/probes/sim_lego_entropy_family_crosscheck.py",
+        "system_v4/probes/sim_lego_fiber_bundles.py",
+        "system_v4/probes/sim_lego_gksl_kossakowski.py",
+        "system_v4/probes/sim_lego_lindblad_dissipator.py",
+        "system_v4/probes/sim_lego_lindblad_spectral.py",
+        "system_v4/probes/sim_lego_pauli_algebra.py",
         "system_v4/probes/sim_lego_povm_measurement.py",
         "system_v4/probes/sim_lego_probe_guard_admissibility_cvc5.py",
+        "system_v4/probes/sim_lego_spectral_triple_carrier.py",
+        "system_v4/probes/sim_lego_spectral_triple_heat_kernel.py",
+        "system_v4/probes/sim_lego_toric_code.py",
+        "system_v4/probes/sim_lego_unitary_generators.py",
+        "system_v4/probes/sim_pure_lego_adiabatic_berry_dynamics.py",
+        "system_v4/probes/sim_pure_lego_berry_phase_u1_abelian.py",
+        "system_v4/probes/sim_pure_lego_geodesic_exponential_map.py",
+        "system_v4/probes/sim_pure_lego_hopf_tori_base.py",
         "system_v4/probes/sim_pure_lego_ic_shell_boundary_continuity.py",
-        "system_v4/probes/sim_pure_lego_wilczek_zee_curvature.py"
+        "system_v4/probes/sim_pure_lego_levi_civita_connection.py",
+        "system_v4/probes/sim_pure_lego_no_go_theorems.py",
+        "system_v4/probes/sim_pure_lego_state_discrimination.py",
+        "system_v4/probes/sim_pure_lego_wilczek_zee_curvature.py",
+        "system_v4/probes/sim_pure_lego_wilczek_zee_holonomy.py"
       ],
-      "file_count": 8,
-      "tracked_dirty_count": 8,
+      "file_count": 29,
+      "tracked_dirty_count": 29,
       "untracked_count": 0,
       "sample_paths": [
         "system_v4/probes/sim_lego_adiabatic_theorem.py",
+        "system_v4/probes/sim_lego_assoc_bundle_load_bearing.py",
+        "system_v4/probes/sim_lego_clifford_commutator_algebra.py",
+        "system_v4/probes/sim_lego_coherent_info_advanced.py",
         "system_v4/probes/sim_lego_constraint_admissibility_fence_z3.py",
         "system_v4/probes/sim_lego_cptp_channel_family.py",
-        "system_v4/probes/sim_lego_entropy_family_crosscheck.py",
-        "system_v4/probes/sim_lego_povm_measurement.py",
-        "system_v4/probes/sim_lego_probe_guard_admissibility_cvc5.py",
-        "system_v4/probes/sim_pure_lego_ic_shell_boundary_continuity.py",
-        "system_v4/probes/sim_pure_lego_wilczek_zee_curvature.py"
+        "system_v4/probes/sim_lego_dirac_gamma.py",
+        "system_v4/probes/sim_lego_entropy_family_crosscheck.py"
       ],
       "dominant_kinds": [
         "modified"
@@ -336,6 +399,50 @@
       "notes": "Active sim family 'a1' should be checkpointed in a bounded family batch."
     },
     {
+      "group_id": "probe_source__sim_family_axis0",
+      "bucket": "probe_source",
+      "label": "sim_family_axis0",
+      "display_name": "Probe sim family: axis0",
+      "path_prefixes": [
+        "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'axis0' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_carrier",
+      "bucket": "probe_source",
+      "label": "sim_family_carrier",
+      "display_name": "Probe sim family: carrier",
+      "path_prefixes": [
+        "system_v4/probes/sim_carrier_probe_support.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_carrier_probe_support.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'carrier' should be checkpointed in a bounded family batch."
+    },
+    {
       "group_id": "probe_source__sim_family_compound",
       "bucket": "probe_source",
       "label": "sim_family_compound",
@@ -356,6 +463,72 @@
       "safe_auto": false,
       "blocking_reason": "active_source_pressure",
       "notes": "Active sim family 'compound' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_distinguishability",
+      "bucket": "probe_source",
+      "label": "sim_family_distinguishability",
+      "display_name": "Probe sim family: distinguishability",
+      "path_prefixes": [
+        "system_v4/probes/sim_distinguishability_relation.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_distinguishability_relation.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'distinguishability' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_foundation",
+      "bucket": "probe_source",
+      "label": "sim_family_foundation",
+      "display_name": "Probe sim family: foundation",
+      "path_prefixes": [
+        "system_v4/probes/sim_foundation_hopf_torus_geomstats_clifford.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_foundation_hopf_torus_geomstats_clifford.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'foundation' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_helstrom",
+      "bucket": "probe_source",
+      "label": "sim_family_helstrom",
+      "display_name": "Probe sim family: helstrom",
+      "path_prefixes": [
+        "system_v4/probes/sim_helstrom_guess_bound.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_helstrom_guess_bound.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'helstrom' should be checkpointed in a bounded family batch."
     },
     {
       "group_id": "probe_source__sim_family_integration",
@@ -404,6 +577,74 @@
       "safe_auto": false,
       "blocking_reason": "active_source_pressure",
       "notes": "Active sim family 'operator' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_positivity",
+      "bucket": "probe_source",
+      "label": "sim_family_positivity",
+      "display_name": "Probe sim family: positivity",
+      "path_prefixes": [
+        "system_v4/probes/sim_positivity_constraint.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_positivity_constraint.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'positivity' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_probe",
+      "bucket": "probe_source",
+      "label": "sim_family_probe",
+      "display_name": "Probe sim family: probe",
+      "path_prefixes": [
+        "system_v4/probes/sim_probe_identity_preservation.py",
+        "system_v4/probes/sim_probe_object.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 2,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_probe_identity_preservation.py",
+        "system_v4/probes/sim_probe_object.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'probe' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_pure",
+      "bucket": "probe_source",
+      "label": "sim_family_pure",
+      "display_name": "Probe sim family: pure",
+      "path_prefixes": [
+        "system_v4/probes/sim_pure_geometry_hopf_tori.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_pure_geometry_hopf_tori.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'pure' should be checkpointed in a bounded family batch."
     },
     {
       "group_id": "probe_source__sim_family_pytorch",

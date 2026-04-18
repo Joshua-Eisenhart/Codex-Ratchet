@@ -1,7 +1,7 @@
 {
   "probe": "sim_compound_legos_forced",
   "purpose": "Test which lego COMBINATIONS are FORCED / FORBIDDEN / EMERGENT by constraint layers",
-  "timestamp": "2026-04-18T08:04:15.388442+00:00",
+  "timestamp": "2026-04-18T11:43:43.166559+00:00",
   "test1_F01_forced": {
     "density_matrix_forces_discrete_spectrum": {
       "forced": true,
@@ -563,15 +563,31 @@
         0
       ],
       [
+        "berry_phase",
+        1
+      ],
+      [
+        "partial_transpose",
+        1
+      ],
+      [
         "trace_distance",
         1
       ],
       [
-        "pauli_decomposition",
+        "partial_trace",
         1
       ],
       [
-        "partial_trace",
+        "fubini_study",
+        1
+      ],
+      [
+        "choi_matrix",
+        1
+      ],
+      [
+        "pauli_decomposition",
         1
       ],
       [
@@ -583,27 +599,7 @@
         1
       ],
       [
-        "fubini_study",
-        1
-      ],
-      [
-        "partial_transpose",
-        1
-      ],
-      [
-        "berry_phase",
-        1
-      ],
-      [
-        "choi_matrix",
-        1
-      ],
-      [
-        "entanglement_of_formation",
-        2
-      ],
-      [
-        "entanglement_entropy",
+        "von_neumann_entropy",
         2
       ],
       [
@@ -615,15 +611,19 @@
         2
       ],
       [
-        "qgt_metric",
-        2
-      ],
-      [
         "kraus_extraction",
         2
       ],
       [
-        "von_neumann_entropy",
+        "entanglement_of_formation",
+        2
+      ],
+      [
+        "qgt_metric",
+        2
+      ],
+      [
+        "entanglement_entropy",
         2
       ]
     ],
@@ -863,8 +863,8 @@
     "critical_path": {
       "path": [
         "density_matrix",
-        "concurrence",
-        "entanglement_of_formation"
+        "eigenvalue_decomposition",
+        "von_neumann_entropy"
       ],
       "length": 2,
       "note": "This is the LONGEST forced chain: you MUST compute these in this order."
@@ -874,24 +874,24 @@
         "density_matrix"
       ],
       "layer_1_first_derived": [
-        "trace_distance",
-        "pauli_decomposition",
-        "partial_trace",
-        "concurrence",
-        "eigenvalue_decomposition",
-        "fubini_study",
-        "partial_transpose",
         "berry_phase",
-        "choi_matrix"
+        "partial_transpose",
+        "trace_distance",
+        "partial_trace",
+        "fubini_study",
+        "choi_matrix",
+        "pauli_decomposition",
+        "concurrence",
+        "eigenvalue_decomposition"
       ],
       "layer_2_second_derived": [
-        "entanglement_of_formation",
-        "entanglement_entropy",
+        "von_neumann_entropy",
         "bloch_vector",
         "negativity",
-        "qgt_metric",
         "kraus_extraction",
-        "von_neumann_entropy"
+        "entanglement_of_formation",
+        "qgt_metric",
+        "entanglement_entropy"
       ],
       "layer_3_plus": []
     }
@@ -1035,7 +1035,7 @@
     }
   },
   "summary": {
-    "elapsed_seconds": 0.092,
+    "elapsed_seconds": 0.084,
     "errors": [],
     "n_errors": 0,
     "verdict": "ALL TESTS PASSED",

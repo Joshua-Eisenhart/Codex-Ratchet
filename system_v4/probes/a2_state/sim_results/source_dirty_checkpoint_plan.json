@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-04-18T18:15:45.445625+00:00",
+  "generated_at": "2026-04-18T20:36:12.599605+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
   "dirty_source_count": 0,
-  "plan_group_count": 18,
+  "plan_group_count": 19,
   "checkpoint_candidate_count": 1,
   "quarantine_candidate_count": 0,
-  "manual_only_count": 17,
-  "code_only_manual_count": 17,
+  "manual_only_count": 18,
+  "code_only_manual_count": 18,
   "largest_group_id": "legacy_runtime__legacy_runtime",
   "next_code_only_manual_group_id": "probe_source__sim_family_axis0",
   "next_code_only_manual_file_count": 1,
@@ -16,11 +16,11 @@
   "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json",
   "summary": {
     "dirty_source_count": 0,
-    "plan_group_count": 18,
+    "plan_group_count": 19,
     "checkpoint_candidate_count": 1,
     "quarantine_candidate_count": 0,
-    "manual_only_count": 17,
-    "code_only_manual_count": 17,
+    "manual_only_count": 18,
+    "code_only_manual_count": 18,
     "largest_group_id": "legacy_runtime__legacy_runtime",
     "next_code_only_manual_group_id": "probe_source__sim_family_axis0",
     "next_code_only_manual_file_count": 1,
@@ -54,7 +54,7 @@
     },
     {
       "group_id": "other_source__other_source",
-      "file_count": 7,
+      "file_count": 8,
       "safe_next_action": "manual_split_required"
     },
     {
@@ -70,6 +70,11 @@
     {
       "group_id": "probe_source__torch_family",
       "file_count": 2,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__probe_misc",
+      "file_count": 1,
       "safe_next_action": "manual_split_required"
     },
     {
@@ -96,11 +101,6 @@
       "group_id": "probe_source__sim_family_distinguishability",
       "file_count": 1,
       "safe_next_action": "manual_split_required"
-    },
-    {
-      "group_id": "probe_source__sim_family_foundation",
-      "file_count": 1,
-      "safe_next_action": "manual_split_required"
     }
   ],
   "recommended_code_only_order": [
@@ -112,6 +112,15 @@
       "safe_next_action": "manual_split_required",
       "source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
       "result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
+    },
+    {
+      "group_id": "probe_source__probe_misc",
+      "file_count": 1,
+      "untracked_count": 0,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/SIM_TEMPLATE.py",
+      "result_path": null
     },
     {
       "group_id": "probe_source__sim_family_a1",
@@ -202,15 +211,6 @@
       "safe_next_action": "manual_split_required",
       "source_path": "system_v4/probes/sim_pytorch_capability_isolated.py",
       "result_path": "system_v4/probes/a2_state/sim_results/pytorch_capability_isolated_results.json"
-    },
-    {
-      "group_id": "probe_source__sim_family_probe",
-      "file_count": 2,
-      "untracked_count": 0,
-      "tracked_dirty_count": 2,
-      "safe_next_action": "manual_split_required",
-      "source_path": null,
-      "result_path": null
     }
   ],
   "next_code_only_manual": {
@@ -298,11 +298,12 @@
       "display_name": "Other source surfaces",
       "path_prefixes": [
         "system_v4/a2_state/audit_logs",
-        "system_v4/a2_state/graphs"
+        "system_v4/a2_state/graphs",
+        "visualizer/"
       ],
-      "file_count": 7,
+      "file_count": 8,
       "tracked_dirty_count": 7,
-      "untracked_count": 0,
+      "untracked_count": 1,
       "sample_paths": [
         "system_v4/a2_state/audit_logs/AXIS_INTERACTION_MATRIX__CURRENT__v1.json",
         "system_v4/a2_state/audit_logs/ENGINE_CONVERGENCE_DIAGNOSTIC__CURRENT__v1.json",
@@ -310,10 +311,12 @@
         "system_v4/a2_state/audit_logs/GRAPH_HEALTH_DASHBOARD__v1.md",
         "system_v4/a2_state/audit_logs/TORUS_CHIRALITY_EVIDENCE__CURRENT__v1.json",
         "system_v4/a2_state/audit_logs/TORUS_CHIRALITY_EVIDENCE__CURRENT__v1.md",
-        "system_v4/a2_state/graphs/evidence_graph.json"
+        "system_v4/a2_state/graphs/evidence_graph.json",
+        "visualizer/"
       ],
       "dominant_kinds": [
-        "modified"
+        "modified",
+        "untracked"
       ],
       "safe_next_action": "manual_split_required",
       "safe_auto": false,
@@ -376,6 +379,28 @@
       "safe_auto": false,
       "blocking_reason": "active_source_pressure",
       "notes": "Active probe family; checkpoint in bounded family batches rather than sweeping."
+    },
+    {
+      "group_id": "probe_source__probe_misc",
+      "bucket": "probe_source",
+      "label": "probe_misc",
+      "display_name": "Misc active probes",
+      "path_prefixes": [
+        "system_v4/probes/SIM_TEMPLATE.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/SIM_TEMPLATE.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active probe/control sources still mixed together."
     },
     {
       "group_id": "probe_source__sim_family_a1",

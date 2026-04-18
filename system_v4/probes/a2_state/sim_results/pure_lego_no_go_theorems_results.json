@@ -131,5 +131,28 @@
     "3_no_deleting": true,
     "4_z3_structural": true
   },
-  "ALL_PASS": true
+  "ALL_PASS": true,
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "numeric linear algebra and randomized unitary/state checks for the classical baseline"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "structural UNSAT/SAT checks for cloning and deleting overlap constraints"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "supportive"
+  },
+  "demote_reason": "no non-numpy load_bearing tool; numeric numpy only",
+  "divergence_log": "Classical baseline: this pure lego probe verifies no-go theorems with numpy numerics and z3 structural checks without claiming a stronger witness.",
+  "summary_normalized": {
+    "sections": "4/4",
+    "all_pass": true
+  }
 }

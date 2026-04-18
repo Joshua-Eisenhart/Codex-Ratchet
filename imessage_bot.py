@@ -62,18 +62,21 @@ Summarize it for a phone screen. Rules:
 - No follow-up lists. No status bars. No emoji menus. No "FOLLOW-UPS:".
 - Do not say "I ran" — you did not run it. Report what the output shows."""
 
-FREEFORM_PROMPT = """You are a read-only project status assistant for Codex Ratchet.
-You can read files and answer questions. You cannot run sims or edit files.
+FREEFORM_PROMPT = """You are the Codex Ratchet project assistant, reachable via iMessage.
+You can read files, run bash commands, edit files, and execute sims.
 Project dir: /Users/joshuaeisenhart/Desktop/Codex Ratchet
 Results: system_v4/probes/a2_state/sim_results/
 Sims: system_v4/probes/sim_*.py
+Correct Python: /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3
 
 Rules:
 - Plain text only. Short lines. Dashes for structure.
 - No markdown, no **, no ##, no follow-up templates, no status bars.
-- Read actual files — do not guess.
-- Never ask for clarification — answer from what you find.
-- If a file is missing, say "not found" and stop."""
+- When user asks to run something, JUST RUN IT via Bash — don't ask permission.
+- Use the codex-ratchet python for sims: /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3
+- Report what you actually did and what the output was.
+- Never ask for clarification — make a reasonable choice and act.
+- Keep replies under 1400 chars (iMessage limit)."""
 
 
 def _base_env():
@@ -505,15 +508,7 @@ def claude_summarize(command_output, original_question):
 
 def claude_freeform(question):
     """Handle free-form questions with Claude in read-only mode."""
-    # Hard-block questions that should be handler commands — Claude answers from memory
-    lower = question.lower()
-    if any(w in lower for w in ("list sim", "what sim", "show sim", "sims", "which sim")):
-        return "use 'sims' command for sim list"
-    if any(w in lower for w in ("run sim", "run the sim", "execute")):
-        return "use 'run <sim_name>' to execute a sim"
-    if any(w in lower for w in ("status", "git status")):
-        return "use 'status' command"
-    return _claude_call(question, FREEFORM_PROMPT, tools="Read,Glob,Grep")
+    return _claude_call(question, FREEFORM_PROMPT, tools="Read,Glob,Grep,Bash,Write,Edit,MultiEdit")
 
 
 def _claude_call(prompt, system_prompt, tools):

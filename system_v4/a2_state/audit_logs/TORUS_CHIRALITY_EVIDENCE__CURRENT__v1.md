@@ -1,6 +1,6 @@
 # Torus/Chirality Evidence Loop Results
 
-- generated_utc: `2026-04-17T18:13:13Z`
+- generated_utc: `2026-04-18T01:47:43Z`
 - do_not_promote: `True`
 
 ## Verdicts

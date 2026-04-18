@@ -1,31 +1,31 @@
 {
-  "generated_at": "2026-04-18T06:20:12.826918+00:00",
+  "generated_at": "2026-04-18T10:43:13.087925+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
   "dirty_source_count": 0,
-  "plan_group_count": 2,
-  "checkpoint_candidate_count": 0,
+  "plan_group_count": 10,
+  "checkpoint_candidate_count": 1,
   "quarantine_candidate_count": 0,
-  "manual_only_count": 2,
-  "code_only_manual_count": 2,
-  "largest_group_id": "other_source__other_source",
-  "next_code_only_manual_group_id": "legacy_runtime__legacy_runtime",
+  "manual_only_count": 9,
+  "code_only_manual_count": 9,
+  "largest_group_id": "legacy_runtime__legacy_runtime",
+  "next_code_only_manual_group_id": "probe_source__sim_family_a1",
   "next_code_only_manual_file_count": 1,
-  "next_code_only_manual_source_path": "system_v5/ops/queue_default.txt",
-  "next_code_only_manual_result_path": null,
+  "next_code_only_manual_source_path": "system_v4/probes/sim_a1_homotopy_3_reduction.py",
+  "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/a1_homotopy_3_reduction_results.json",
   "summary": {
     "dirty_source_count": 0,
-    "plan_group_count": 2,
-    "checkpoint_candidate_count": 0,
+    "plan_group_count": 10,
+    "checkpoint_candidate_count": 1,
     "quarantine_candidate_count": 0,
-    "manual_only_count": 2,
-    "code_only_manual_count": 2,
-    "largest_group_id": "other_source__other_source",
-    "next_code_only_manual_group_id": "legacy_runtime__legacy_runtime",
+    "manual_only_count": 9,
+    "code_only_manual_count": 9,
+    "largest_group_id": "legacy_runtime__legacy_runtime",
+    "next_code_only_manual_group_id": "probe_source__sim_family_a1",
     "next_code_only_manual_file_count": 1,
-    "next_code_only_manual_source_path": "system_v5/ops/queue_default.txt",
-    "next_code_only_manual_result_path": null,
+    "next_code_only_manual_source_path": "system_v4/probes/sim_a1_homotopy_3_reduction.py",
+    "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/a1_homotopy_3_reduction_results.json",
     "ok": true
   },
   "rules": {
@@ -34,65 +34,214 @@
     "archive_review": "Legacy or reference cluster requiring separate ownership review.",
     "manual_split_required": "Active cluster too broad for one safe checkpoint and should be split further."
   },
-  "recommended_checkpoint_order": [],
+  "recommended_checkpoint_order": [
+    {
+      "group_id": "docs_and_specs__docs_and_specs",
+      "file_count": 1,
+      "safe_next_action": "checkpoint"
+    }
+  ],
   "recommended_manual_split_order": [
     {
-      "group_id": "other_source__other_source",
-      "file_count": 6,
+      "group_id": "legacy_runtime__legacy_runtime",
+      "file_count": 32,
+      "safe_next_action": "archive_review"
+    },
+    {
+      "group_id": "probe_source__lego_family",
+      "file_count": 8,
       "safe_next_action": "manual_split_required"
     },
     {
-      "group_id": "legacy_runtime__legacy_runtime",
+      "group_id": "other_source__other_source",
+      "file_count": 7,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_integration",
+      "file_count": 3,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__torch_family",
+      "file_count": 2,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_a1",
       "file_count": 1,
-      "safe_next_action": "archive_review"
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_compound",
+      "file_count": 1,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_operator",
+      "file_count": 1,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_pytorch",
+      "file_count": 1,
+      "safe_next_action": "manual_split_required"
     }
   ],
   "recommended_code_only_order": [
     {
-      "group_id": "legacy_runtime__legacy_runtime",
+      "group_id": "probe_source__sim_family_a1",
       "file_count": 1,
       "untracked_count": 0,
       "tracked_dirty_count": 1,
-      "safe_next_action": "archive_review",
-      "source_path": "system_v5/ops/queue_default.txt",
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_a1_homotopy_3_reduction.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/a1_homotopy_3_reduction_results.json"
+    },
+    {
+      "group_id": "probe_source__sim_family_compound",
+      "file_count": 1,
+      "untracked_count": 0,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_compound_operator_geometry.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/compound_operator_geometry_results.json"
+    },
+    {
+      "group_id": "probe_source__sim_family_operator",
+      "file_count": 1,
+      "untracked_count": 0,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_operator_geometry_compatibility.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/operator_geometry_compatibility_results.json"
+    },
+    {
+      "group_id": "probe_source__sim_family_pytorch",
+      "file_count": 1,
+      "untracked_count": 0,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_pytorch_capability_isolated.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/pytorch_capability_isolated_results.json"
+    },
+    {
+      "group_id": "probe_source__torch_family",
+      "file_count": 2,
+      "untracked_count": 0,
+      "tracked_dirty_count": 2,
+      "safe_next_action": "manual_split_required",
+      "source_path": null,
+      "result_path": null
+    },
+    {
+      "group_id": "probe_source__sim_family_integration",
+      "file_count": 3,
+      "untracked_count": 0,
+      "tracked_dirty_count": 3,
+      "safe_next_action": "manual_split_required",
+      "source_path": null,
       "result_path": null
     },
     {
       "group_id": "other_source__other_source",
-      "file_count": 6,
+      "file_count": 7,
       "untracked_count": 0,
-      "tracked_dirty_count": 6,
+      "tracked_dirty_count": 7,
       "safe_next_action": "manual_split_required",
+      "source_path": null,
+      "result_path": null
+    },
+    {
+      "group_id": "probe_source__lego_family",
+      "file_count": 8,
+      "untracked_count": 0,
+      "tracked_dirty_count": 8,
+      "safe_next_action": "manual_split_required",
+      "source_path": null,
+      "result_path": null
+    },
+    {
+      "group_id": "legacy_runtime__legacy_runtime",
+      "file_count": 32,
+      "untracked_count": 6,
+      "tracked_dirty_count": 26,
+      "safe_next_action": "archive_review",
       "source_path": null,
       "result_path": null
     }
   ],
   "next_code_only_manual": {
-    "group_id": "legacy_runtime__legacy_runtime",
+    "group_id": "probe_source__sim_family_a1",
     "file_count": 1,
     "untracked_count": 0,
     "tracked_dirty_count": 1,
-    "safe_next_action": "archive_review",
-    "source_path": "system_v5/ops/queue_default.txt",
-    "result_path": null
+    "safe_next_action": "manual_split_required",
+    "source_path": "system_v4/probes/sim_a1_homotopy_3_reduction.py",
+    "result_path": "system_v4/probes/a2_state/sim_results/a1_homotopy_3_reduction_results.json"
   },
   "checkpoint_groups": [
+    {
+      "group_id": "docs_and_specs__docs_and_specs",
+      "bucket": "docs_and_specs",
+      "label": "docs_and_specs",
+      "display_name": "Docs and specs",
+      "path_prefixes": [
+        "CLAUDE.md"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "CLAUDE.md"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "checkpoint",
+      "safe_auto": false,
+      "blocking_reason": "bounded_human_checkpoint",
+      "notes": "Docs/specs are bounded and can be checkpointed separately."
+    },
     {
       "group_id": "legacy_runtime__legacy_runtime",
       "bucket": "legacy_runtime",
       "label": "legacy_runtime",
       "display_name": "Legacy/reference runtime surfaces",
       "path_prefixes": [
-        "system_v5/ops/queue_default.txt"
+        "system_v5/docs/16_lego_build_catalog.md",
+        "system_v5/docs/17_actual_lego_registry.md",
+        "system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md",
+        "system_v5/docs/LLM_CONTROLLER_CONTRACT.md",
+        "system_v5/docs/plans",
+        "system_v5/ops/OVERNIGHT.md",
+        "system_v5/ops/SIM_RUNNER.md",
+        "system_v5/ops/TIER_A.md",
+        "system_v5/ops/TIER_D.md",
+        "system_v5/ops/generate_queue.py",
+        "system_v5/ops/queue_default.txt",
+        "system_v5/ops/queue_tier_a.txt",
+        "system_v5/ops/sim_runner.sh",
+        "system_v5/ops/stage_gate.json",
+        "system_v5/ops/tier_d_gate_poller.py",
+        "system_v5/ops/tier_d_launch_prompt.md"
       ],
-      "file_count": 1,
-      "tracked_dirty_count": 1,
-      "untracked_count": 0,
+      "file_count": 32,
+      "tracked_dirty_count": 26,
+      "untracked_count": 6,
       "sample_paths": [
-        "system_v5/ops/queue_default.txt"
+        "system_v5/docs/16_lego_build_catalog.md",
+        "system_v5/docs/17_actual_lego_registry.md",
+        "system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md",
+        "system_v5/docs/LLM_CONTROLLER_CONTRACT.md",
+        "system_v5/docs/plans/lanes.md",
+        "system_v5/docs/plans/plans/TOOL_CAPABILITY_AND_INTEGRATION_LEDGER.md",
+        "system_v5/docs/plans/plans/controller_maintenance_checklist.md",
+        "system_v5/docs/plans/plans/corrected-bounded-automation-plan.md"
       ],
       "dominant_kinds": [
-        "modified"
+        "modified",
+        "untracked"
       ],
       "safe_next_action": "archive_review",
       "safe_auto": false,
@@ -108,13 +257,14 @@
         "system_v4/a2_state/audit_logs",
         "system_v4/a2_state/graphs"
       ],
-      "file_count": 6,
-      "tracked_dirty_count": 6,
+      "file_count": 7,
+      "tracked_dirty_count": 7,
       "untracked_count": 0,
       "sample_paths": [
         "system_v4/a2_state/audit_logs/AXIS_INTERACTION_MATRIX__CURRENT__v1.json",
         "system_v4/a2_state/audit_logs/ENGINE_CONVERGENCE_DIAGNOSTIC__CURRENT__v1.json",
         "system_v4/a2_state/audit_logs/ENGINE_PHASE_SPACE__CURRENT__v1.json",
+        "system_v4/a2_state/audit_logs/GRAPH_HEALTH_DASHBOARD__v1.md",
         "system_v4/a2_state/audit_logs/TORUS_CHIRALITY_EVIDENCE__CURRENT__v1.json",
         "system_v4/a2_state/audit_logs/TORUS_CHIRALITY_EVIDENCE__CURRENT__v1.md",
         "system_v4/a2_state/graphs/evidence_graph.json"
@@ -126,6 +276,180 @@
       "safe_auto": false,
       "blocking_reason": "active_source_pressure",
       "notes": "Unclassified source/config residue needs manual grouping before checkpointing."
+    },
+    {
+      "group_id": "probe_source__lego_family",
+      "bucket": "probe_source",
+      "label": "lego_family",
+      "display_name": "Lego and pure-lego sims",
+      "path_prefixes": [
+        "system_v4/probes/sim_lego_adiabatic_theorem.py",
+        "system_v4/probes/sim_lego_constraint_admissibility_fence_z3.py",
+        "system_v4/probes/sim_lego_cptp_channel_family.py",
+        "system_v4/probes/sim_lego_entropy_family_crosscheck.py",
+        "system_v4/probes/sim_lego_povm_measurement.py",
+        "system_v4/probes/sim_lego_probe_guard_admissibility_cvc5.py",
+        "system_v4/probes/sim_pure_lego_ic_shell_boundary_continuity.py",
+        "system_v4/probes/sim_pure_lego_wilczek_zee_curvature.py"
+      ],
+      "file_count": 8,
+      "tracked_dirty_count": 8,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_lego_adiabatic_theorem.py",
+        "system_v4/probes/sim_lego_constraint_admissibility_fence_z3.py",
+        "system_v4/probes/sim_lego_cptp_channel_family.py",
+        "system_v4/probes/sim_lego_entropy_family_crosscheck.py",
+        "system_v4/probes/sim_lego_povm_measurement.py",
+        "system_v4/probes/sim_lego_probe_guard_admissibility_cvc5.py",
+        "system_v4/probes/sim_pure_lego_ic_shell_boundary_continuity.py",
+        "system_v4/probes/sim_pure_lego_wilczek_zee_curvature.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active probe family; checkpoint in bounded family batches rather than sweeping."
+    },
+    {
+      "group_id": "probe_source__sim_family_a1",
+      "bucket": "probe_source",
+      "label": "sim_family_a1",
+      "display_name": "Probe sim family: a1",
+      "path_prefixes": [
+        "system_v4/probes/sim_a1_homotopy_3_reduction.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_a1_homotopy_3_reduction.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'a1' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_compound",
+      "bucket": "probe_source",
+      "label": "sim_family_compound",
+      "display_name": "Probe sim family: compound",
+      "path_prefixes": [
+        "system_v4/probes/sim_compound_operator_geometry.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_compound_operator_geometry.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'compound' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_integration",
+      "bucket": "probe_source",
+      "label": "sim_family_integration",
+      "display_name": "Probe sim family: integration",
+      "path_prefixes": [
+        "system_v4/probes/sim_integration_geomstats_constraint_manifold.py",
+        "system_v4/probes/sim_integration_networkx_rustworkx_crosscheck.py",
+        "system_v4/probes/sim_integration_ribs_z3_constraint_archive.py"
+      ],
+      "file_count": 3,
+      "tracked_dirty_count": 3,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_integration_geomstats_constraint_manifold.py",
+        "system_v4/probes/sim_integration_networkx_rustworkx_crosscheck.py",
+        "system_v4/probes/sim_integration_ribs_z3_constraint_archive.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'integration' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_operator",
+      "bucket": "probe_source",
+      "label": "sim_family_operator",
+      "display_name": "Probe sim family: operator",
+      "path_prefixes": [
+        "system_v4/probes/sim_operator_geometry_compatibility.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_operator_geometry_compatibility.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'operator' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_pytorch",
+      "bucket": "probe_source",
+      "label": "sim_family_pytorch",
+      "display_name": "Probe sim family: pytorch",
+      "path_prefixes": [
+        "system_v4/probes/sim_pytorch_capability_isolated.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_pytorch_capability_isolated.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'pytorch' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__torch_family",
+      "bucket": "probe_source",
+      "label": "torch_family",
+      "display_name": "Torch family sims",
+      "path_prefixes": [
+        "system_v4/probes/sim_torch_channel_taxonomy.py",
+        "system_v4/probes/sim_torch_t_gate.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 2,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_torch_channel_taxonomy.py",
+        "system_v4/probes/sim_torch_t_gate.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Large active migration/sim cluster in active probe sources."
     }
   ]
 }

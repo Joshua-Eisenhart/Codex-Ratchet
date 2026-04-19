@@ -1,6 +1,6 @@
 {
   "audit_type": "partial_trace_einsum",
-  "timestamp": "2026-04-18T21:19:40.806937",
+  "timestamp": "2026-04-19T01:50:22.571210",
   "classification": "audit",
   "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
   "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
@@ -8662,7 +8662,7 @@
       "patterns": [
         {
           "file": "sim_dirac_contact_mera_topology_variants.py",
-          "line": 94,
+          "line": 100,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -8685,7 +8685,7 @@
         },
         {
           "file": "sim_dirac_contact_mera_topology_variants.py",
-          "line": 95,
+          "line": 101,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -16712,7 +16712,7 @@
       "patterns": [
         {
           "file": "sim_lego_qit_batch.py",
-          "line": 163,
+          "line": 168,
           "pattern": "ijkj->ik",
           "line_text": "return np.einsum('ijkj->ik', rho)",
           "classification": {
@@ -16735,7 +16735,7 @@
         },
         {
           "file": "sim_lego_qit_batch.py",
-          "line": 169,
+          "line": 174,
           "pattern": "ijil->jl",
           "line_text": "return np.einsum('ijil->jl', rho)",
           "classification": {
@@ -18099,7 +18099,7 @@
       "patterns": [
         {
           "file": "sim_quantum_discord_depolarizing_c2.py",
-          "line": 210,
+          "line": 215,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum(\"ijkj->ik\", rho)",
           "classification": {
@@ -18122,7 +18122,7 @@
         },
         {
           "file": "sim_quantum_discord_depolarizing_c2.py",
-          "line": 216,
+          "line": 221,
           "pattern": "ijil->jl",
           "line_text": "return torch.einsum(\"ijil->jl\", rho)",
           "classification": {
@@ -22950,7 +22950,7 @@
       "patterns": [
         {
           "file": "sim_weyl_chirality_bipartite.py",
-          "line": 174,
+          "line": 179,
           "pattern": "ibjb->ij",
           "line_text": "return np.einsum(\"ibjb->ij\", rho_r)",
           "classification": {
@@ -22973,7 +22973,7 @@
         },
         {
           "file": "sim_weyl_chirality_bipartite.py",
-          "line": 180,
+          "line": 185,
           "pattern": "ajai->ij",
           "line_text": "return np.einsum(\"ajai->ij\", rho_r)",
           "classification": {

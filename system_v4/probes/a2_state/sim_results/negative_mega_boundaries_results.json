@@ -1,9 +1,9 @@
 {
   "probe": "negative_mega_boundaries",
-  "timestamp": "2026-04-20T12:42:32.382688+00:00",
+  "timestamp": "2026-04-20T15:01:04.534082+00:00",
   "total_tests": 15,
   "num_errors": 0,
-  "total_runtime_sec": 15.95,
+  "total_runtime_sec": 16.07,
   "verdict_summary": {
     "01_purity_discord_boundary": "ALWAYS_DETECTABLE",
     "02_channel_composition_depth": "CONVERGED",
@@ -328,7 +328,7 @@
       ],
       "first_undetectable_mix_param": null,
       "verdict": "ALWAYS_DETECTABLE",
-      "runtime_sec": 13.588
+      "runtime_sec": 13.689
     },
     "02_channel_composition_depth": {
       "test": "channel_composition_depth",
@@ -1242,7 +1242,7 @@
       ],
       "first_failure_gap": 1e-15,
       "verdict": "BOUNDARY_FOUND",
-      "runtime_sec": 0.001
+      "runtime_sec": 0.002
     },
     "04_fidelity_near_one": {
       "test": "fidelity_near_one",
@@ -1434,7 +1434,7 @@
       ],
       "noise_floor_omega": null,
       "verdict": "ALL_DETECTABLE",
-      "runtime_sec": 0.034
+      "runtime_sec": 0.036
     },
     "07_qfi_low_signal": {
       "test": "qfi_low_signal",
@@ -1512,7 +1512,7 @@
       ],
       "failure_theta": null,
       "verdict": "ALL_RELIABLE",
-      "runtime_sec": 0.0
+      "runtime_sec": 0.001
     },
     "08_kraus_operator_count": {
       "test": "kraus_operator_count",
@@ -1601,7 +1601,7 @@
         {
           "d": 2,
           "joint_dim": 4,
-          "time_sec": 4e-06,
+          "time_sec": 5e-06,
           "trace": 1.0,
           "min_eigenvalue": 0.3630738251004111,
           "valid": true
@@ -1617,7 +1617,7 @@
         {
           "d": 8,
           "joint_dim": 64,
-          "time_sec": 4e-06,
+          "time_sec": 5e-06,
           "trace": 1.0,
           "min_eigenvalue": 0.10010797874444527,
           "valid": true
@@ -1625,7 +1625,7 @@
         {
           "d": 16,
           "joint_dim": 256,
-          "time_sec": 9e-06,
+          "time_sec": 1.7e-05,
           "trace": 1.0,
           "min_eigenvalue": 0.055436513565428336,
           "valid": true
@@ -1633,7 +1633,7 @@
         {
           "d": 32,
           "joint_dim": 1024,
-          "time_sec": 0.000156,
+          "time_sec": 0.000195,
           "trace": 1.0,
           "min_eigenvalue": 0.029463920274649537,
           "valid": true
@@ -1641,14 +1641,14 @@
         {
           "d": 64,
           "joint_dim": 4096,
-          "time_sec": 0.001378,
+          "time_sec": 0.001342,
           "trace": 1.0,
           "min_eigenvalue": 0.015171714024730843,
           "valid": true
         }
       ],
       "verdict": "SCALING_DOCUMENTED",
-      "runtime_sec": 2.053
+      "runtime_sec": 2.083
     },
     "10_relative_entropy_asymmetry": {
       "test": "relative_entropy_asymmetry",
@@ -1715,7 +1715,7 @@
         }
       ],
       "verdict": "ASYMMETRY_DOCUMENTED",
-      "runtime_sec": 0.108
+      "runtime_sec": 0.098
     },
     "11_concurrence_negativity_disagreement": {
       "test": "concurrence_negativity_disagreement",
@@ -1723,7 +1723,7 @@
       "num_disagreements": 0,
       "disagreements": [],
       "verdict": "CONSISTENT",
-      "runtime_sec": 0.029
+      "runtime_sec": 0.031
     },
     "12_mi_strong_subadditivity": {
       "test": "mi_strong_subadditivity",
@@ -1787,7 +1787,7 @@
       "expected_slope": -0.5,
       "scaling_consistent": "False",
       "verdict": "SCALING_ANOMALOUS",
-      "runtime_sec": 0.003
+      "runtime_sec": 0.001
     },
     "15_compression_vs_entanglement": {
       "test": "compression_vs_entanglement",
@@ -1796,7 +1796,7 @@
       "mean_C_original": 0.11681148638420634,
       "mean_C_loss": 0.45575666660598296,
       "verdict": "UNCORRELATED",
-      "runtime_sec": 0.01
+      "runtime_sec": 0.008
     }
   },
   "divergence_log": "Classical baseline: this negative-boundary audit probes numeric failure edges in quantum-information primitives, not a canonical nonclassical witness.",

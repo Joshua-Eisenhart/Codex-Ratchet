@@ -119,14 +119,14 @@
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "No assignment satisfies Q <= I_c AND Q > I_c simultaneously. Hashing bound Q <= I_c confirmed: quantum capacity cannot exceed the coherent information. Q > I_c is impossible given the bound.",
-      "elapsed_s": 0.0029
+      "elapsed_s": 0.0026
     },
     "proof2_Ic_upper_bound": {
       "name": "Ic_upper_bound_1ebit_unsat",
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "I_c = S(output) - S(exchange) > 1 is UNSAT given S(output) <= 1. The coherent information cannot exceed log(dim) = 1 ebit for a qubit channel. Upper bound I_c <= 1 is confirmed.",
-      "elapsed_s": 0.0016
+      "elapsed_s": 0.0025
     },
     "proof3_degradable_Q_equals_Ic": {
       "name": "degradable_Q_equals_Ic_unsat",
@@ -184,6 +184,6 @@
     "status": "PASS",
     "synthesized_Q_bound": "(lambda ((Ic Real)) (ite (<= (/ 1 2) Ic) Ic 0.0))",
     "interpretation": "cvc5 synthesized Q_bound(I_c) = (lambda ((Ic Real)) (ite (<= (/ 1 2) Ic) Ic 0.0)). This confirms the hashing bound is a function of I_c alone. For I_c > 0: Q_bound = I_c (linear). For I_c <= 0: Q_bound = 0.",
-    "elapsed_s": 0.1116
+    "elapsed_s": 0.1333
   }
 }

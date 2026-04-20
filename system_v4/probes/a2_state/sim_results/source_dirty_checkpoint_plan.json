@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-20T19:01:33.778945+00:00",
+  "generated_at": "2026-04-20T21:20:15.532836+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
@@ -44,7 +44,7 @@
   "recommended_manual_split_order": [
     {
       "group_id": "legacy_runtime__legacy_runtime",
-      "file_count": 43,
+      "file_count": 45,
       "safe_next_action": "archive_review"
     },
     {
@@ -54,7 +54,7 @@
     },
     {
       "group_id": "other_source__other_source",
-      "file_count": 10,
+      "file_count": 11,
       "safe_next_action": "manual_split_required"
     },
     {
@@ -73,6 +73,11 @@
       "safe_next_action": "manual_split_required"
     },
     {
+      "group_id": "probe_source__probe_misc",
+      "file_count": 3,
+      "safe_next_action": "manual_split_required"
+    },
+    {
       "group_id": "probe_source__sim_family_integration",
       "file_count": 3,
       "safe_next_action": "manual_split_required"
@@ -80,11 +85,6 @@
     {
       "group_id": "probe_source__sim_family_weyl",
       "file_count": 3,
-      "safe_next_action": "manual_split_required"
-    },
-    {
-      "group_id": "probe_source__probe_misc",
-      "file_count": 2,
       "safe_next_action": "manual_split_required"
     },
     {
@@ -261,6 +261,7 @@
         "system_v5/ops/TIER_A.md",
         "system_v5/ops/TIER_D.md",
         "system_v5/ops/TOOL_STAGE_ROUTING_AND_SKIP_AHEAD.md",
+        "system_v5/ops/cli_worker_scale_probe.py",
         "system_v5/ops/drafts",
         "system_v5/ops/generate_queue.py",
         "system_v5/ops/queue_default 2.txt",
@@ -274,9 +275,9 @@
         "system_v5/ops/tier_d_gate_poller.py",
         "system_v5/ops/tier_d_launch_prompt.md"
       ],
-      "file_count": 43,
+      "file_count": 45,
       "tracked_dirty_count": 26,
-      "untracked_count": 17,
+      "untracked_count": 19,
       "sample_paths": [
         "system_v5/docs/16_lego_build_catalog.md",
         "system_v5/docs/17_actual_lego_registry.md",
@@ -306,10 +307,11 @@
         "scripts/claim_lane.py",
         "system_v4/a2_state/audit_logs",
         "system_v4/a2_state/graphs",
+        "system_v4/tests/test_live_queue_controller.py",
         "visualizer/"
       ],
-      "file_count": 10,
-      "tracked_dirty_count": 8,
+      "file_count": 11,
+      "tracked_dirty_count": 9,
       "untracked_count": 2,
       "sample_paths": [
         "scripts/claim_lane.py",
@@ -399,14 +401,16 @@
       "display_name": "Misc active probes",
       "path_prefixes": [
         "system_v4/probes/SIM_TEMPLATE.py",
-        "system_v4/probes/engine_geometric.py"
+        "system_v4/probes/engine_geometric.py",
+        "system_v4/probes/live_queue_controller.py"
       ],
-      "file_count": 2,
-      "tracked_dirty_count": 2,
+      "file_count": 3,
+      "tracked_dirty_count": 3,
       "untracked_count": 0,
       "sample_paths": [
         "system_v4/probes/SIM_TEMPLATE.py",
-        "system_v4/probes/engine_geometric.py"
+        "system_v4/probes/engine_geometric.py",
+        "system_v4/probes/live_queue_controller.py"
       ],
       "dominant_kinds": [
         "modified"

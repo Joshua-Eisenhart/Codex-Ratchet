@@ -1,63 +1,38 @@
 {
   "name": "quantum_capacity_classical",
   "classification": "classical_baseline",
-  "classification_note": "Shannon capacity remains the classical ceiling for this DMC baseline. qutip/cirq/pennylane witness only a bounded coherent one-qubit reference surface on the same carrier so the file can contrast classical coding against nonclassical channel evolution without changing the theorem.",
   "tool_manifest": {
     "numpy": {
       "tried": true,
       "used": true,
-      "reason": "Blahut-Arimoto iteration and closed-form channel checks"
+      "reason": "Blahut-Arimoto iteration and closed-form checks"
     },
-    "qutip": {
-      "tried": true,
-      "used": true,
-      "reason": "one-qubit amplitude-damping reference witness"
-    },
-    "cirq": {
-      "tried": true,
-      "used": true,
-      "reason": "one-qubit amplitude-damping reference witness"
-    },
-    "pennylane": {
-      "tried": true,
-      "used": true,
-      "reason": "one-qubit amplitude-damping reference witness"
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
     }
   },
   "tool_integration_depth": {
-    "numpy": "supportive",
-    "qutip": "supportive",
-    "cirq": "supportive",
-    "pennylane": "supportive"
+    "numpy": "supportive"
   },
   "positive": {
-    "BSC_capacity_1_minus_h2": true,
-    "BEC_capacity_1_minus_eps": true,
-    "capacity_nonneg": true,
-    "qutip_cirq_density_match": true,
-    "qutip_pennylane_density_match": true,
-    "coherence_survives_reference_channel": true
+    "BSC_capacity_1_minus_h2": "True",
+    "BEC_capacity_1_minus_eps": "True",
+    "capacity_nonneg": "True"
   },
   "negative": {
-    "useless_channel_zero_capacity": true,
-    "full_damping_kills_coherence": true
+    "useless_channel_zero_capacity": "True",
+    "classical_cannot_reach_quantum_Q_ge_C_separation": true
   },
   "boundary": {
-    "identity_2ary_capacity_1": true,
-    "identity_3ary_capacity_log2_3": true,
-    "BSC_at_half_zero_capacity": true,
-    "no_damping_preserves_coherence": true
-  },
-  "bridge_witnesses": {
-    "bridge_qutip_cirq_density_match": true,
-    "bridge_qutip_pennylane_density_match": true,
-    "bridge_cirq_pennylane_density_match": true,
-    "bridge_reference_coherence_consistent": true,
-    "bridge_reference_remains_nonclassical": true
+    "identity_2ary_capacity_1": "True",
+    "identity_3ary_capacity_log2_3": "True",
+    "BSC_at_half_zero_capacity": "True"
   },
   "all_pass": true,
   "summary": {
     "all_pass": true
   },
-  "divergence_log": "Shannon capacity remains the classical ceiling for this DMC baseline. qutip/cirq/pennylane witness only a bounded coherent one-qubit reference surface on the same carrier so the file can contrast classical coding against nonclassical channel evolution without changing the theorem."
+  "divergence_log": "Shannon capacity is a single-letter max over input distributions; quantum capacity Q requires the regularized coherent-information formula lim_n (1/n) max_rho I_c(rho, N^{\u2297n}) and is known to be superadditive (Smith-Yard). The classical baseline therefore cannot express private capacity P, assisted capacities Q_E, nor the nonadditivity phenomena that are the signature of genuinely quantum channel coding. It also cannot witness channels with zero classical capacity but nonzero quantum capacity such as certain Horodecki private states."
 }

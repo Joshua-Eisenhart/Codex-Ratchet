@@ -157,7 +157,7 @@
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "No linear function through boundary corners of amplitude_damping can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
-          "elapsed_s": 0.0064
+          "elapsed_s": 0.0066
         },
         "proof2_no_quadratic_needed": {
           "verdict": "UNSAT",
@@ -175,7 +175,7 @@
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "No linear function through boundary corners of phase_damping can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
-          "elapsed_s": 0.0014
+          "elapsed_s": 0.0015
         },
         "proof2_no_quadratic_needed": {
           "verdict": "UNSAT",
@@ -251,14 +251,14 @@
       "example_lambda2": "3/4",
       "interpretation": "2-qubit depolarizing CAN have \u03bb1+\u03bb2 > 1 while still being admissible (product contraction >= 0). This VIOLATES the linear boundary theorem. Confirms: linear boundary only holds for SINGLE-parameter qubit channels. 2-qubit channels require a NONLINEAR (quadratic) boundary: admissibility condition involves \u03bb1*\u03bb2 cross-term.",
       "linear_boundary_fails_for_2qubit": true,
-      "elapsed_s": 0.0045
+      "elapsed_s": 0.0035
     },
     "test_single_qubit_boundary_strict": {
       "name": "single_qubit_linear_boundary_strict",
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "\u03bb > 3/4 with |1-4\u03bb/3| <= 1 is UNSAT. Single-qubit depolarizing linear boundary \u03bb = 3/4 is strict -- no admissible channel exceeds it.",
-      "elapsed_s": 0.0003
+      "elapsed_s": 0.0004
     }
   },
   "boundary": {
@@ -307,6 +307,6 @@
     "synthesized_function": "(lambda ((lambda Real) (p Real)) (- (+ p lambda) 1.0))",
     "is_linear": true,
     "interpretation": "cvc5 synthesized: (lambda ((lambda Real) (p Real)) (- (+ p lambda) 1.0)). Boundary IS linear. Cross-check with z3 linear boundary proof: AGREES.",
-    "elapsed_s": 0.4395
+    "elapsed_s": 0.4359
   }
 }

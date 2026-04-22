@@ -1,1 +1,0 @@
-# ratchet_proofs

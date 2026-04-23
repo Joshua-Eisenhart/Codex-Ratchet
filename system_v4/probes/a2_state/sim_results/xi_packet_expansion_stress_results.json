@@ -1,0 +1,231 @@
+{
+  "name": "PURE LEGO: Xi Packet Expansion Stress",
+  "probe": "xi_packet_expansion_stress",
+  "purpose": "Stress surviving Xi-family winner claims against expanded packet families and targeted disqualifiers",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded packet stress sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded packet stress sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded packet stress sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded packet stress sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded packet stress sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded packet stress sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded packet stress sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded packet stress sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded packet stress sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded packet stress sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded packet stress sim"
+    }
+  },
+  "positive": {
+    "reference_target_prefers_xi_ref": {
+      "scores": {
+        "Xi_ref": 0.29454621552879223,
+        "Xi_shell": 0.03368232085023763,
+        "Xi_hist": 0.021852298148077643
+      },
+      "winner": "Xi_ref",
+      "pass": true
+    },
+    "shell_target_prefers_xi_shell": {
+      "scores": {
+        "Xi_ref": 0.01737137008048725,
+        "Xi_shell": 0.23374672672653785,
+        "Xi_hist": 0.015051984086684844
+      },
+      "winner": "Xi_shell",
+      "pass": true
+    },
+    "history_target_prefers_xi_hist": {
+      "scores": {
+        "Xi_ref": 0.02444674772290677,
+        "Xi_shell": 0.03276006626031929,
+        "Xi_hist": 1.1077540381639959
+      },
+      "winner": "Xi_hist",
+      "pass": true
+    },
+    "expanded_library_has_no_universal_winner": {
+      "winners": {
+        "reference_target": "Xi_ref",
+        "shell_target": "Xi_shell",
+        "history_target": "Xi_hist"
+      },
+      "distinct_winners": 3,
+      "pass": true
+    }
+  },
+  "negative": {
+    "counterfeit_driver_packet_is_fragile_low_margin_even_before_rebalance": {
+      "base_scores": {
+        "Xi_ref": 0.011078529831798967,
+        "Xi_shell": 0.029824987400720548,
+        "Xi_hist": 0.014771266970738262
+      },
+      "shifted_scores": {
+        "Xi_ref": 0.011078529831798967,
+        "Xi_shell": 0.029792821621917733,
+        "Xi_hist": 0.014771266970738262
+      },
+      "base_margin": 0.015053720429982285,
+      "shifted_margin": 0.015021554651179471,
+      "low_margin_regime": true,
+      "pass": true
+    },
+    "freeze_candidate_is_not_reference_dominated_under_expanded_coverage": {
+      "base_scores": {
+        "Xi_ref": 0.011506650434814148,
+        "Xi_shell": 0.16459335663595911,
+        "Xi_hist": 0.02552574204885366
+      },
+      "frozen_scores": {
+        "Xi_ref": 0.010733439677966406,
+        "Xi_shell": 0.16459335663595911,
+        "Xi_hist": 0.02552574204885366
+      },
+      "xi_ref_drop": 0.0007732107568477423,
+      "shell_remains_winner": true,
+      "pass": true
+    },
+    "shell_ablation_candidate_remains_shell_dominated_after_ablation": {
+      "base_scores": {
+        "Xi_ref": 0.015519647813237369,
+        "Xi_shell": 0.1802429209057767,
+        "Xi_hist": 0.019203281962780327
+      },
+      "ablated_scores": {
+        "Xi_ref": 0.015519647813237369,
+        "Xi_shell": 0.3576749518498087,
+        "Xi_hist": 0.019203281962780327
+      },
+      "xi_shell_change": 0.17743203094403198,
+      "shell_still_wins": true,
+      "pass": true
+    },
+    "history_scramble_candidate_is_genuinely_scramble_blind_here": {
+      "base_scores": {
+        "Xi_ref": 0.023300032822772865,
+        "Xi_shell": 0.03329356815734765,
+        "Xi_hist": 1.1054949305324497
+      },
+      "scrambled_scores": {
+        "Xi_ref": 0.023300032822772865,
+        "Xi_shell": 0.03329356815734765,
+        "Xi_hist": 1.1059589256432292
+      },
+      "xi_hist_change": 0.000463995110779436,
+      "winner_stable": true,
+      "near_invariant": true,
+      "pass": true
+    },
+    "small_balance_candidate_does_not_collapse_under_tiny_rebalance": {
+      "base_scores": {
+        "Xi_ref": 0.015348977502386863,
+        "Xi_shell": 0.10117724604751421,
+        "Xi_hist": 0.02350926405137942
+      },
+      "shifted_scores": {
+        "Xi_ref": 0.015348977502386863,
+        "Xi_shell": 0.09325699790935264,
+        "Xi_hist": 0.02350926405137942
+      },
+      "base_margin": 0.0776679819961348,
+      "shifted_margin": 0.06974773385797323,
+      "winner_stable": true,
+      "margin_reduction_small": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "matched_target_packets_keep_clear_positive_margins": {
+      "reference_margin": 0.2608638946785546,
+      "shell_margin": 0.2163753566460506,
+      "history_margin": 1.0749939719036765,
+      "all_positive": true,
+      "pass": true
+    },
+    "small_rebalance_does_not_break_legitimate_shell_target": {
+      "base_scores": {
+        "Xi_ref": 0.01737137008048725,
+        "Xi_shell": 0.23374672672653785,
+        "Xi_hist": 0.015051984086684844
+      },
+      "rebalanced_scores": {
+        "Xi_ref": 0.01737137008048725,
+        "Xi_shell": 0.2258628235197569,
+        "Xi_hist": 0.015051984086684844
+      },
+      "same_winner": true,
+      "pass": true
+    },
+    "expanded_packets_separate_targeted_and_counterfeit_classes": {
+      "target_winners": {
+        "reference": "Xi_ref",
+        "shell": "Xi_shell",
+        "history": "Xi_hist"
+      },
+      "counterfeit_winner": "Xi_shell",
+      "not_all_same": true,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "caveat": "Bounded stress battery only. This expands packet coverage around Xi-family winner claims but does not promote final canon.",
+  "summary": {
+    "positive_pass": 4,
+    "positive_fail": 0,
+    "negative_pass": 5,
+    "negative_fail": 0,
+    "boundary_pass": 3,
+    "boundary_fail": 0,
+    "total_fail": 0,
+    "all_pass": true
+  }
+}

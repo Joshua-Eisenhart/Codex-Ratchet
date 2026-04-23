@@ -1,0 +1,131 @@
+{
+  "name": "sim_geometry_shimura_variety_reciprocity_constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for reciprocity constraint encoding"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for reciprocity constraint encoding"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 chosen for SMT reciprocity proof"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "core tool: proves reciprocity factorization through norm group"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic encoding of Galois group structure and norm map"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "reciprocity is pure algebra, not spinor geometry"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "reciprocity is not a Riemannian manifold problem"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance structure needed for reciprocity proof"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Galois group tree is small, direct encoding sufficient"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure in reciprocity law"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no topological complex in reciprocity constraint"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_basic_reciprocity": {
+      "satisfiable": true,
+      "description": "Galois action factors through norm group",
+      "passed": true
+    },
+    "test_2_cm_reciprocity": {
+      "satisfiable": true,
+      "description": "CM field norm index divides conductor",
+      "passed": true
+    },
+    "test_3_elliptic_curve": {
+      "satisfiable": true,
+      "description": "Elliptic curve torsion Galois action factors through norm",
+      "passed": true
+    }
+  },
+  "negative": {
+    "test_1_non_factorizable": {
+      "satisfiable": false,
+      "description": "4 does not divide 6 - reciprocity violated",
+      "passed": true
+    },
+    "test_2_cm_incompatibility": {
+      "satisfiable": false,
+      "description": "5 does not divide 12 - CM reciprocity violated",
+      "passed": true
+    },
+    "test_3_ec_mismatch": {
+      "satisfiable": false,
+      "description": "4 does not divide 15 - elliptic curve reciprocity violated",
+      "passed": true
+    }
+  },
+  "boundary": {
+    "test_1_minimal_orders": {
+      "satisfiable": true,
+      "description": "Trivial group (order 1) satisfies reciprocity",
+      "passed": true
+    },
+    "test_2_large_orders": {
+      "satisfiable": true,
+      "description": "Highly composite norm order admits many Galois subgroups",
+      "passed": true
+    },
+    "test_3_prime_galois": {
+      "satisfiable": true,
+      "description": "Prime order Galois group reciprocity",
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

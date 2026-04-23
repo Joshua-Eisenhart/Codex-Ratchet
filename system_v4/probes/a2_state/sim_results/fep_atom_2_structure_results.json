@@ -1,0 +1,100 @@
+{
+  "name": "fep_atom_2_structure",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no learning here"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "message passing is reduction atom"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "conditional-indep proof is atom 4"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "redundant"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "symbolic done in atom 1"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no metric yet"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "blanket removal splits I from E"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "2-uniform suffices"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "blanket_separates": {
+      "full_components": 1,
+      "no_blanket_components": 2,
+      "pass": true
+    }
+  },
+  "negative": {
+    "leaky_blanket_rejected": {
+      "no_blanket_components": 1,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "blanket_only_degenerate": {
+      "components": 1,
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

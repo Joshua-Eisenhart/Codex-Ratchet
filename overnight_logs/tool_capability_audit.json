@@ -1,0 +1,29 @@
+{
+  "audit_date": "2026-04-14",
+  "interpreter": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+  "probes_dir": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes",
+  "logs_dir": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/overnight_logs/tool_capability_runs",
+  "tools": {
+    "numpy":     {"path": "system_v4/probes/sim_numpy_capability.py",     "exists": true,  "runs": true, "passes": true, "version": "2.3.4",  "classification": "canonical", "notes": "all_pass=True"},
+    "pytorch":   {"path": "system_v4/probes/sim_pytorch_capability.py",   "exists": true,  "runs": true, "passes": true, "version": "2.11.0", "classification": "canonical", "notes": "all_pass=True"},
+    "sympy":     {"path": "system_v4/probes/sim_sympy_capability.py",     "exists": true,  "runs": true, "passes": true, "version": "1.14.0", "classification": "canonical", "notes": "all_pass=True"},
+    "z3":        {"path": "system_v4/probes/sim_z3_capability.py",        "exists": true,  "runs": true, "passes": true, "version": "4.16.0", "classification": "canonical", "notes": "all_pass=True"},
+    "cvc5":      {"path": "system_v4/probes/sim_cvc5_capability.py",      "exists": true,  "runs": true, "passes": true, "version": "1.3.3",  "classification": "canonical", "notes": "all_pass=True"},
+    "clifford":  {"path": "system_v4/probes/sim_clifford_capability.py",  "exists": true,  "runs": true, "passes": true, "version": "1.5.1",  "classification": "canonical", "notes": "all_pass=True"},
+    "e3nn":      {"path": "system_v4/probes/sim_e3nn_capability.py",      "exists": true,  "runs": true, "passes": true, "version": "0.6.0",  "classification": "canonical", "notes": "all_pass=True"},
+    "geomstats": {"path": "system_v4/probes/sim_geomstats_capability.py", "exists": true,  "runs": true, "passes": true, "version": "2.8.0",  "classification": "canonical", "notes": "all_pass=True 7/7"},
+    "pyg":       {"path": "system_v4/probes/sim_pyg_capability.py",       "exists": true,  "runs": true, "passes": true, "version": "2.7.0",  "classification": "canonical", "notes": "all_pass=True (torch_geometric)"},
+    "rustworkx": {"path": "system_v4/probes/sim_rustworkx_capability.py", "exists": true,  "runs": true, "passes": true, "version": "0.17.1", "classification": "canonical", "notes": "all_pass=True"},
+    "toponetx":  {"path": "system_v4/probes/sim_toponetx_capability.py",  "exists": true,  "runs": true, "passes": true, "version": "unknown (no __version__ attr)", "classification": "canonical", "notes": "all_pass=True; package exposes no __version__"},
+    "gudhi":     {"path": "system_v4/probes/sim_gudhi_capability.py",     "exists": true,  "runs": true, "passes": true, "version": "3.12.0", "classification": "canonical", "notes": "all_pass=True"},
+    "xgi":       {"path": "system_v4/probes/sim_xgi_capability.py",       "exists": true,  "runs": true, "passes": true, "version": "0.10.1", "classification": "canonical", "notes": "all_pass=True"},
+    "networkx":  {"path": "system_v4/probes/sim_networkx_capability.py",  "exists": false, "runs": false, "passes": false, "version": "3.6.1", "classification": null, "notes": "MISSING: no sim_networkx_capability.py; only sim_networkx_deep_expander_gap.py exists. Needs author."}
+  },
+  "summary": {
+    "total": 14,
+    "present": 13,
+    "runs_clean": 13,
+    "all_pass_true": 13,
+    "missing_or_fix_needed": ["networkx"]
+  }
+}

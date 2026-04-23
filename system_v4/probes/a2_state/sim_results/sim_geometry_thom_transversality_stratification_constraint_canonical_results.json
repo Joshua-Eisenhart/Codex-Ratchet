@@ -1,0 +1,151 @@
+{
+  "name": "sim_geometry_thom_transversality_stratification_constraint_canonical",
+  "description": "Whitney stratification: Whitney condition A and transversality constraints",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_1_cone": {
+      "name": "Cone stratification",
+      "strata": [
+        {
+          "name": "vertex",
+          "dimension": 0
+        },
+        {
+          "name": "cone_part",
+          "dimension": 2
+        }
+      ],
+      "adjacent_pairs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "whitney_a_satisfied": true,
+      "passes": true
+    },
+    "positive_2_smooth_manifold": {
+      "name": "Smooth manifold S^2",
+      "strata": [
+        {
+          "name": "manifold",
+          "dimension": 2
+        }
+      ],
+      "adjacent_pairs": [],
+      "whitney_a_satisfied": true,
+      "passes": true
+    },
+    "positive_3_cross": {
+      "name": "Transversal cross stratification",
+      "strata": [
+        {
+          "name": "origin",
+          "dimension": 0
+        },
+        {
+          "name": "line_1",
+          "dimension": 1
+        },
+        {
+          "name": "line_2",
+          "dimension": 1
+        }
+      ],
+      "adjacent_pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "whitney_a_satisfied": true,
+      "passes": true
+    }
+  },
+  "negative": {
+    "error": "cvc5 not available"
+  },
+  "boundary": {
+    "error": "cvc5 not available"
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,269 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Codex Ratchet 12 Nested Graphs Schema",
+  "description": "Schemas for the 12 nested graphs composing the Body 1 Hard Ratchet Graph",
+  "definitions": {
+    "rich_edge": {
+      "type": "object",
+      "required": ["source", "target", "relation_type"],
+      "properties": {
+        "source": { "type": "string" },
+        "target": { "type": "string" },
+        "relation_type": { "type": "string" },
+        "sign": { "type": "integer", "enum": [-1, 0, 1], "default": 0 },
+        "attention_corr": { "type": "number", "minimum": -1.0, "maximum": 1.0, "default": 0.0 },
+        "attention_anti": { "type": "number", "minimum": -1.0, "maximum": 1.0, "default": 0.0 },
+        "tension": { "type": "number", "minimum": 0.0, "maximum": 1.0, "default": 0.0 },
+        "confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0, "default": 1.0 },
+        "pos_evidence": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "neg_evidence": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "graveyard_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0, "default": 0.0 },
+        "projector": { 
+          "type": "string",
+          "description": "Rule turning soft geometry edge into hard claim"
+        }
+      }
+    },
+    
+    "base_node": {
+      "type": "object",
+      "required": ["id", "node_type"],
+      "properties": {
+        "id": { "type": "string" },
+        "node_type": { "type": "string" },
+        "name": { "type": "string" },
+        "trust_zone": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "1_root_constraint_graph": {
+      "description": "F01_FINITUDE, N01_NONCOMMUTATION, derived-only guards",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/base_node" },
+              { "properties": { "node_type": { "enum": ["CONSTRAINT", "AXIOM"] } } }
+            ]
+          }
+        },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/rich_edge" } }
+      }
+    },
+
+    "2_authority_boot_graph": {
+      "description": "A2->A1->A0->B->SIM operational routes",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/base_node" },
+              { "properties": { "node_type": { "enum": ["AUTHORITY_ZONE", "PIPELINE_STAGE"] } } }
+            ]
+          }
+        },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/rich_edge" } }
+      }
+    },
+
+    "3_intent_graph": {
+      "description": "Goals, preferences, tensions, priority shifts",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/base_node" },
+              { "properties": { "node_type": { "enum": ["INTENT_SIGNAL", "MAKER_GOAL", "SYSTEM_PRIORITY"] } } }
+            ]
+          }
+        },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/rich_edge" } }
+      }
+    },
+
+    "4_self_model_graph": {
+      "description": "System beliefs about itself: components, limits, modes, blind spots",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/base_node" },
+              { "properties": { "node_type": { "enum": ["SELF_BELIEF", "BLIND_SPOT", "MODE_STATE"] } } }
+            ]
+          }
+        },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/rich_edge" } }
+      }
+    },
+
+    "5_target_graph": {
+      "description": "Thing being ratcheted: concepts, invariants, open questions",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/base_node" },
+              { "properties": { "node_type": { "enum": ["TARGET_CONCEPT", "OPEN_QUESTION", "RATCHET_FOCUS"] } } }
+            ]
+          }
+        },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/rich_edge" } }
+      }
+    },
+
+    "6_artifact_provenance_graph": {
+      "description": "Docs, zips, patches, saves, hashes, lineage",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/base_node" },
+              { "properties": { "node_type": { "enum": ["SOURCE_DOCUMENT", "PATCH", "ARTIFACT"] } } }
+            ]
+          }
+        },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/rich_edge" } }
+      }
+    },
+
+    "7_concept_invariant_graph": {
+      "description": "Terms, math defs, sims, constraints, allowed/blocked states",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/base_node" },
+              { "properties": { "node_type": { "enum": ["EXTRACTED_CONCEPT", "REFINED_CONCEPT", "KERNEL_CONCEPT", "TERM"] } } }
+            ]
+          }
+        },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/rich_edge" } }
+      }
+    },
+
+    "8_skill_graph": {
+      "description": "Every skill as a node with preconditions, outputs, cost, authority, evidence",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/base_node" },
+              { "properties": { 
+                  "node_type": { "enum": ["V4_SKILL", "V4_SKILL_SPEC", "V3_TOOL"] },
+                  "authority": { "type": "string" },
+                  "cost_metric": { "type": "number" }
+              } }
+            ]
+          }
+        },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/rich_edge" } }
+      }
+    },
+
+    "9_proposal_branch_graph": {
+      "description": "A1 lanes, alternatives, attacks, rescues, contradiction maps",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/base_node" },
+              { "properties": { "node_type": { "enum": ["A1_LANE", "PROPOSAL", "CONTRADICTION", "RESCUE_PLAN"] } } }
+            ]
+          }
+        },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/rich_edge" } }
+      }
+    },
+
+    "10_runtime_session_graph": {
+      "description": "Live runs, state snapshots, active lanes, mode declarations",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/base_node" },
+              { "properties": { "node_type": { "enum": ["SESSION", "THREAD_SEAL", "STATE_SNAPSHOT"] } } }
+            ]
+          }
+        },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/rich_edge" } }
+      }
+    },
+
+    "11_evidence_graveyard_graph": {
+      "description": "SIM evidence, kill signals, neg classes, rescue paths",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/base_node" },
+              { "properties": { "node_type": { "enum": ["SIM_EVIDENCED", "SIM_KILL", "GRAVEYARD_RECORD", "B_PARKED", "B_SURVIVOR"] } } }
+            ]
+          }
+        },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/rich_edge" } }
+      }
+    },
+
+    "12_latent_geometry_graph": {
+      "description": "Quaternions, tensors, Hopf-torus, attractors (never primitive canon)",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/base_node" },
+              { "properties": { "node_type": { "enum": ["GEOMETRY_NODE", "ATTRACTOR", "TENSOR_FIELD"] } } }
+            ]
+          }
+        },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/rich_edge" } }
+      }
+    }
+  },
+  
+  "type": "object",
+  "properties": {
+    "graphs": {
+      "type": "object",
+      "properties": {
+        "1_root_constraint": { "$ref": "#/definitions/1_root_constraint_graph" },
+        "2_authority_boot": { "$ref": "#/definitions/2_authority_boot_graph" },
+        "3_intent": { "$ref": "#/definitions/3_intent_graph" },
+        "4_self_model": { "$ref": "#/definitions/4_self_model_graph" },
+        "5_target": { "$ref": "#/definitions/5_target_graph" },
+        "6_artifact_provenance": { "$ref": "#/definitions/6_artifact_provenance_graph" },
+        "7_concept_invariant": { "$ref": "#/definitions/7_concept_invariant_graph" },
+        "8_skill": { "$ref": "#/definitions/8_skill_graph" },
+        "9_proposal_branch": { "$ref": "#/definitions/9_proposal_branch_graph" },
+        "10_runtime_session": { "$ref": "#/definitions/10_runtime_session_graph" },
+        "11_evidence_graveyard": { "$ref": "#/definitions/11_evidence_graveyard_graph" },
+        "12_latent_geometry": { "$ref": "#/definitions/12_latent_geometry_graph" }
+      }
+    }
+  }
+}

@@ -1,0 +1,291 @@
+{
+  "name": "xi_family_separation",
+  "probe": "pure_math_bridge_family_comparison",
+  "purpose": "Compare reference-anchored, shell-weighted, and ordered-history bridge candidates on the same geometry/history packet without claiming a final canon.",
+  "classification": "supporting",
+  "tools_used": [
+    "numpy"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; this is a small closed-form numpy probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph learning is not needed for this bounded family separation test"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic satisfiability claim is required here"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no synthesis or SMT cross-check is required here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "all calculations are numerical and finite-dimensional"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "the probe uses only Bloch-vector density matrices"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "manifold tooling is not needed for this bounded comparison"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant neural tooling is outside scope"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph-algorithm layer is required here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph layer is required here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "this probe uses direct shell/history arrays, not cell complexes"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence computation is needed here"
+    }
+  },
+  "positive": {
+    "packet_features": {
+      "reference_offset": 0.3944397110687088,
+      "shell_dispersion": 0.24115462996914566,
+      "history_turning": 0.125
+    },
+    "families": {
+      "Xi_ref": {
+        "validity": {
+          "trace_one": true,
+          "hermitian": true,
+          "min_eigenvalue": 0.07279192985312748,
+          "positive_semidefinite": true
+        },
+        "metrics": {
+          "von_neumann_entropy": 1.6486849240842056,
+          "mutual_information": 0.010750996192686157,
+          "coherent_information": -0.7992650495759417,
+          "negativity": 0.0,
+          "correlation_tensor_norm": 0.2742539266789362
+        }
+      },
+      "Xi_shell": {
+        "validity": {
+          "trace_one": true,
+          "hermitian": true,
+          "min_eigenvalue": 0.11236643318720742,
+          "positive_semidefinite": true
+        },
+        "metrics": {
+          "von_neumann_entropy": 1.5691101698675805,
+          "mutual_information": 0.2144242849903677,
+          "coherent_information": -0.6773429424386066,
+          "negativity": 0.020010554548784542,
+          "correlation_tensor_norm": 0.64369539689953
+        }
+      },
+      "Xi_hist": {
+        "validity": {
+          "trace_one": true,
+          "hermitian": true,
+          "min_eigenvalue": 0.13728593782038276,
+          "positive_semidefinite": true
+        },
+        "metrics": {
+          "von_neumann_entropy": 1.703566230398013,
+          "mutual_information": 0.13634899039798642,
+          "coherent_information": -0.7836086200000134,
+          "negativity": 0.0,
+          "correlation_tensor_norm": 0.5136633617346673
+        }
+      }
+    },
+    "pairwise_distinction": [
+      {
+        "pair": "Xi_ref vs Xi_shell",
+        "frobenius_distance": 0.24290863986670222,
+        "mutual_information_gap": 0.20367328879768154,
+        "negativity_gap": 0.020010554548784542,
+        "distinct": true
+      },
+      {
+        "pair": "Xi_ref vs Xi_hist",
+        "frobenius_distance": 0.21326692714938456,
+        "mutual_information_gap": 0.12559799420530027,
+        "negativity_gap": 0.0,
+        "distinct": true
+      },
+      {
+        "pair": "Xi_shell vs Xi_hist",
+        "frobenius_distance": 0.09979450250061118,
+        "mutual_information_gap": 0.07807529459238127,
+        "negativity_gap": 0.020010554548784542,
+        "distinct": true
+      }
+    ],
+    "all_valid": true,
+    "all_distinct": true,
+    "pass": true
+  },
+  "negative": {
+    "history_scrambling": {
+      "distance": 0.6200721604433838,
+      "pass": true,
+      "base_metrics": {
+        "von_neumann_entropy": 1.703566230398013,
+        "mutual_information": 0.13634899039798642,
+        "coherent_information": -0.7836086200000134,
+        "negativity": 0.0,
+        "correlation_tensor_norm": 0.5136633617346673
+      },
+      "scrambled_metrics": {
+        "von_neumann_entropy": 0.2719693276918311,
+        "mutual_information": 1.7275482158108673,
+        "coherent_information": 0.7277894440595181,
+        "negativity": 0.4651886998327814,
+        "correlation_tensor_norm": 1.6516676085702813
+      }
+    },
+    "shell_ablation": {
+      "distance": 0.14265816602579748,
+      "pass": true,
+      "base_metrics": {
+        "von_neumann_entropy": 1.5691101698675805,
+        "mutual_information": 0.2144242849903677,
+        "coherent_information": -0.6773429424386066,
+        "negativity": 0.020010554548784542,
+        "correlation_tensor_norm": 0.64369539689953
+      },
+      "ablated_metrics": {
+        "von_neumann_entropy": 1.6119262249876238,
+        "mutual_information": 0.11120051349798965,
+        "coherent_information": -0.7503628557448173,
+        "negativity": 0.0,
+        "correlation_tensor_norm": 0.510317346796901
+      }
+    },
+    "reference_freeze": {
+      "distance": 0.12629423915146365,
+      "pass": true,
+      "base_metrics": {
+        "von_neumann_entropy": 1.6486849240842056,
+        "mutual_information": 0.010750996192686157,
+        "coherent_information": -0.7992650495759417,
+        "negativity": 0.0,
+        "correlation_tensor_norm": 0.2742539266789362
+      },
+      "frozen_metrics": {
+        "von_neumann_entropy": 1.482965479862549,
+        "mutual_information": 0.0,
+        "coherent_information": -0.7414827399312744,
+        "negativity": 0.0,
+        "correlation_tensor_norm": 0.3363999999999994
+      }
+    },
+    "degenerate_zero_packet": {
+      "Xi_ref_valid": {
+        "trace_one": true,
+        "hermitian": true,
+        "min_eigenvalue": 0.25,
+        "positive_semidefinite": true
+      },
+      "Xi_shell_valid": {
+        "trace_one": true,
+        "hermitian": true,
+        "min_eigenvalue": 0.20499999999999993,
+        "positive_semidefinite": true
+      },
+      "Xi_hist_valid": {
+        "trace_one": true,
+        "hermitian": true,
+        "min_eigenvalue": 0.25,
+        "positive_semidefinite": true
+      },
+      "all_finite_and_valid": true,
+      "pass": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "single_history_sample": {
+      "metrics": {
+        "von_neumann_entropy": 1.790611824837819,
+        "mutual_information": 0.1486864168241515,
+        "coherent_information": -0.8209627040068338,
+        "negativity": 0.0,
+        "correlation_tensor_norm": 0.5026872279579492
+      },
+      "validity": {
+        "trace_one": true,
+        "hermitian": true,
+        "min_eigenvalue": 0.15981446141414968,
+        "positive_semidefinite": true
+      },
+      "pass": true
+    },
+    "flat_shell_packet": {
+      "metrics": {
+        "von_neumann_entropy": 1.5620461484843022,
+        "mutual_information": 0.09805003028623371,
+        "coherent_information": -0.7319980590990341,
+        "negativity": 0.0,
+        "correlation_tensor_norm": 0.519509862716555
+      },
+      "validity": {
+        "trace_one": true,
+        "hermitian": true,
+        "min_eigenvalue": 0.10464878477070376,
+        "positive_semidefinite": true
+      },
+      "pass": true
+    },
+    "exact_reference_match": {
+      "metrics": {
+        "von_neumann_entropy": 1.482965479862549,
+        "mutual_information": 0.0,
+        "coherent_information": -0.7414827399312744,
+        "negativity": 0.0,
+        "correlation_tensor_norm": 0.3363999999999994
+      },
+      "validity": {
+        "trace_one": true,
+        "hermitian": true,
+        "min_eigenvalue": 0.04410000000000024,
+        "positive_semidefinite": true
+      },
+      "distance_to_current_product": 3.220424312187024e-16,
+      "pass": true
+    },
+    "pass": true
+  },
+  "summary": {
+    "tests_total": 3,
+    "tests_passed": 3,
+    "all_pass": true,
+    "classification_note": "Three bridge-candidate families separate on the same pure-math packet and respond differently to targeted ablations. No final family is promoted.",
+    "most_history_sensitive_family": "Xi_hist",
+    "most_shell_sensitive_family": "Xi_shell",
+    "most_reference_sensitive_family": "Xi_ref"
+  }
+}

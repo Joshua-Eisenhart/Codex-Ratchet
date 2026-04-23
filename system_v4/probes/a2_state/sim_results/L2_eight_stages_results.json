@@ -1,0 +1,131 @@
+{
+  "timestamp": "2026-04-22T23:37:40.132894+00:00",
+  "layer": 2,
+  "name": "Eight_Topological_Stages_Validation",
+  "classification": "canonical",
+  "TOOL_MANIFEST": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: 4 stages are mutually exclusive and exhaustive over 2 binary bits"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "z3_unsat_proof": "UNSAT_proof_valid",
+  "results": {
+    "all_labels_populated": true,
+    "stages_distinct": true,
+    "chirality_independent": true,
+    "base_loop_all_stages": true,
+    "base_loop_stage_counts": {
+      "Se": 63,
+      "Si": 64,
+      "Ne": 65,
+      "Ni": 63
+    },
+    "transitions_up": 2,
+    "smooth_transitions": true,
+    "total_stages": 8,
+    "correct_count": true
+  },
+  "stage_invariants": {
+    "Se": {
+      "avg_eta": 0.5884716457092074,
+      "avg_transverse": 0.8998387088969403,
+      "avg_curvature": 0.373942508161646
+    },
+    "Si": {
+      "avg_eta": 1.3761777164621707,
+      "avg_transverse": 0.36978505060553934,
+      "avg_curvature": -0.901555166247853
+    },
+    "Ne": {
+      "avg_eta": 0.19461861033272576,
+      "avg_transverse": 0.3697850506055391,
+      "avg_curvature": 0.9015551662478531
+    },
+    "Ni": {
+      "avg_eta": 0.9823246810856892,
+      "avg_transverse": 0.8998387088969404,
+      "avg_curvature": -0.37394250816164576
+    }
+  },
+  "evidence_ledger": [
+    {
+      "token_id": "E_EIGHT_STAGES_VALID",
+      "sim_spec_id": "S_L2_EIGHT_STAGES",
+      "status": "PASS",
+      "measured_value": 8.0,
+      "kill_reason": null,
+      "timestamp": "2026-04-22T23:37:40.131711"
+    }
+  ]
+}

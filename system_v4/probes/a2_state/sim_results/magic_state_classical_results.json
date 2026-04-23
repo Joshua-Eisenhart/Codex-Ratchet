@@ -1,0 +1,41 @@
+{
+  "name": "magic_state_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "bit arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "zero_string_is_stabilizer": true,
+    "one_string_is_stabilizer": true,
+    "classical_magic_is_zero": true
+  },
+  "negative": {
+    "non_bit_rejected": true,
+    "classical_cannot_represent_T_state": true
+  },
+  "boundary": {
+    "empty_string_trivially_stabilizer": true,
+    "single_bit_zero_magic": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical bit states have zero magic by construction",
+    "no T-state / H-state representation; no robustness-of-magic witness",
+    "cannot seed universal quantum computation via magic state distillation"
+  ]
+}

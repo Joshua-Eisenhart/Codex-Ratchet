@@ -1,0 +1,40 @@
+{
+  "name": "schmidt_decomposition_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "SVD"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "product_rank_1": true,
+    "bell_rank_2": true,
+    "bell_schmidt_values_equal": "True"
+  },
+  "negative": {
+    "zero_matrix_rank_zero": true
+  },
+  "boundary": {
+    "reconstruction_exact": true,
+    "singular_values_nonincreasing": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "Schmidt rank purely algebraic; no entanglement-as-resource distinction",
+    "cannot distinguish locally-prepared correlation from nonlocal entanglement",
+    "no relation to reduced-state entropy under partial trace (requires quantum structure)"
+  ]
+}

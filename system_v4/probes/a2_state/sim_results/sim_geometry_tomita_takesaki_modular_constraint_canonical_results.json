@@ -1,0 +1,90 @@
+{
+  "name": "Tomita-Takesaki Modular Constraint Canonical",
+  "description": "Modular operator, KMS condition, modular automorphism preservation via cvc5",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for constraint proof"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for constraint proof"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 chosen for modular constraint encoding"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic modular operator eigenvalue decomposition"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_tests_error": "No module named 'cvc5'"
+  },
+  "negative": {
+    "negative_tests_error": "No module named 'cvc5'"
+  },
+  "boundary": {
+    "boundary_tests_error": "No module named 'cvc5'"
+  },
+  "classification": "canonical"
+}

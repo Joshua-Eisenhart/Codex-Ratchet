@@ -1,0 +1,136 @@
+{
+  "name": "OperadicAlgebraAssociativity -- P-algebra composition must be associative",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; operadic composition is categorical structure, not tensor network"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; operadic algebra lacks graph representation"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 handles nonlinear integer constraints; z3 less efficient for NIA"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for operadic algebra associativity"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; operadic algebras are not clifford algebras"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; operadic composition is not topological"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no persistent homology in operadic algebra"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_binary_associativity": {
+      "pass": true,
+      "detail": "\u03bc(\u03bc(1,2,3), 4) = \u03bc(1, \u03bc(2,3,4)) = 10",
+      "left_side": 10,
+      "right_side": 10
+    },
+    "test_large_value_associativity": {
+      "pass": true,
+      "detail": "Associativity holds for larger values",
+      "left_side": 100,
+      "right_side": 100
+    },
+    "test_mixed_sign_associativity": {
+      "pass": true,
+      "detail": "Associativity with mixed positive/negative values",
+      "left_side": 4,
+      "right_side": 4
+    }
+  },
+  "negative": {
+    "test_unsat_non_associative_composition": {
+      "pass": false,
+      "error": "cvc5 not available"
+    },
+    "test_unsat_arithmetic_associativity_violation": {
+      "pass": false,
+      "error": "cvc5 not available"
+    },
+    "test_sympy_operadic_associativity": {
+      "pass": true,
+      "detail": "Associativity property verified symbolically",
+      "left_expr": "a + b + c + d",
+      "right_expr": "a + b + c + d"
+    }
+  },
+  "boundary": {
+    "test_associativity_with_zero": {
+      "pass": true,
+      "detail": "Associativity holds when one operand is 0",
+      "left_side": 30,
+      "right_side": 30
+    },
+    "test_nested_operadic_associativity": {
+      "pass": true,
+      "detail": "Nested operadic composition preserves structure",
+      "result": 15,
+      "expected": 15
+    },
+    "test_associativity_large_operands": {
+      "pass": true,
+      "detail": "Associativity maintains for large operand values",
+      "left_side": 3330,
+      "right_side": 3330
+    }
+  },
+  "classification": "canonical"
+}

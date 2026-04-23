@@ -1,0 +1,1556 @@
+{
+  "timestamp": "2026-04-17T17:55:38.440638+00:00",
+  "probe": "sim_axis0_phase5a_marginal_preserving",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical foundation baseline: this optimizes marginal-preserving Axis-0 bridges numerically. The preserving-MI verdict is preserved, and a deep contract now binds the honesty surfaces to the same shell bridge, graph/topology, symbolic expansion, solver closure, geometric algebra, and manifold witnesses used elsewhere in Axis 0.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "density-matrix and mutual-information numerics"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "numerical optimization and preserving-surface propagator witness"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "fit and gradient witness over the preserving-surface frontier"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric carrier witness for the winning preserving-surface vector"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric algebra roundtrip witness for the winning preserving-surface vector"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "ordered DAG witness over the ranked preserving-surface frontier"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "higher-order config-to-surface coupling witness"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex boundary witness for preserving-surface closure"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent topology witness for the preserving-surface complex"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic interpolation and derivative witness for preserving-surface expansion"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "constraint witness enforcing preserving-surface rank order and monotone scale growth"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Frechet-mean manifold witness for aggregate preserving-surface geometry"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing"
+  },
+  "results": [
+    {
+      "engine_type": 1,
+      "torus": "inner",
+      "eta": 0.39269908169872414,
+      "final_state": {
+        "product_MI": 4.440892098500626e-16,
+        "max_preserving_MI": 2.220446049250313e-16,
+        "optimizer_status": "OK",
+        "certified": true,
+        "chiral_bell_MI": 1.4244941934610174,
+        "ratio_preserving_to_chiral": 1.558761039140395e-16,
+        "marginal_check": {
+          "search_status": "feasible_candidate_found",
+          "optimizer_status": "OK",
+          "certified": true,
+          "feasible_candidates": 1,
+          "seeded_with_product_state": true,
+          "best_source": "product_seed",
+          "dev_A": 1.2738115944464653e-16,
+          "dev_B": 2.612012026770126e-16,
+          "preserves_marginals_within_tol": true,
+          "ic": -0.34165098268975924
+        },
+        "p_geom": 0.8281171341337783
+      },
+      "history_averaged": {
+        "product_MI": 0.0,
+        "max_preserving_MI": 0.0,
+        "optimizer_status": "OK",
+        "certified": true,
+        "chiral_bell_MI": 1.667682298197185,
+        "ratio_preserving_to_chiral": 0.0,
+        "marginal_check": {
+          "search_status": "feasible_candidate_found",
+          "optimizer_status": "OK",
+          "certified": true,
+          "feasible_candidates": 1,
+          "seeded_with_product_state": true,
+          "best_source": "product_seed",
+          "dev_A": 1.5011122659325205e-16,
+          "dev_B": 1.2794688166302258e-16,
+          "preserves_marginals_within_tol": true,
+          "ic": -0.26296667524378364
+        },
+        "p_geom": 0.906641683088268,
+        "n_history": 8
+      },
+      "per_step_sample": [
+        {
+          "step": 0,
+          "max_preserving_MI": 1.1102230246251565e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 1.1102230246251565e-16,
+          "lr_asymmetry": 0.7797544062601868
+        },
+        {
+          "step": 1,
+          "max_preserving_MI": 1.1102230246251565e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 5.551115123125783e-16,
+          "lr_asymmetry": 0.7957986665418708
+        },
+        {
+          "step": 2,
+          "max_preserving_MI": 6.661338147750939e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.979861117447304
+        },
+        {
+          "step": 3,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 6.869504964868156e-16,
+          "lr_asymmetry": 0.9960397390805297
+        },
+        {
+          "step": 4,
+          "max_preserving_MI": 9.402201239794294e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 6.279698983036042e-16,
+          "lr_asymmetry": 0.9794970215403542
+        },
+        {
+          "step": 5,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.9743683061850164
+        },
+        {
+          "step": 6,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.9796805410111374
+        },
+        {
+          "step": 7,
+          "max_preserving_MI": 3.469446951953614e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.99083795989826
+        }
+      ],
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06584523240642737,
+        "jk_fuzz_dynamic": 1.2806899705580403,
+        "lambda_density_mean": 1.8814495059322884,
+        "dark_energy_pressure_mean": 2.3266493269543793,
+        "gravity_response_mean": 2.32664932695438,
+        "final_scale_factor": 6.032341318752867,
+        "mean_hubble_proxy": 1.7036718080709,
+        "mean_acceleration_proxy": -1.3234408619847282,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.09332963082997472,
+          "symbolic_acceleration_mid": 2.879550909754471,
+          "symbolic_dark_energy_mid": 4.791803471156982
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7508667101431425,
+          "max_geodesic_distance": 1.6574064179008405,
+          "mean_norm": 0.9999999999999998
+        },
+        "torch_fit": {
+          "weights": [
+            0.24399717381012648,
+            -0.1035374702245272
+          ],
+          "bias": 1.3768712823888383,
+          "loss": 0.77685672421338,
+          "max_gap": 1.8320695109529126
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 1.0045956111426335e-07,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      }
+    },
+    {
+      "engine_type": 1,
+      "torus": "clifford",
+      "eta": 0.7853981633974483,
+      "final_state": {
+        "product_MI": 0.0,
+        "max_preserving_MI": 0.0,
+        "optimizer_status": "OK",
+        "certified": true,
+        "chiral_bell_MI": 1.1118235353957808,
+        "ratio_preserving_to_chiral": 0.0,
+        "marginal_check": {
+          "search_status": "feasible_candidate_found",
+          "optimizer_status": "OK",
+          "certified": true,
+          "feasible_candidates": 1,
+          "seeded_with_product_state": true,
+          "best_source": "product_seed",
+          "dev_A": 1.716587549445839e-16,
+          "dev_B": 3.0182194481103634e-16,
+          "preserves_marginals_within_tol": true,
+          "ic": -0.5718229236957392
+        },
+        "p_geom": 0.7298110091680065
+      },
+      "history_averaged": {
+        "product_MI": 6.661338147750939e-16,
+        "max_preserving_MI": 2.220446049250313e-16,
+        "optimizer_status": "OK",
+        "certified": true,
+        "chiral_bell_MI": 1.169469401512293,
+        "ratio_preserving_to_chiral": 1.8986781923298348e-16,
+        "marginal_check": {
+          "search_status": "feasible_candidate_found",
+          "optimizer_status": "OK",
+          "certified": true,
+          "feasible_candidates": 1,
+          "seeded_with_product_state": true,
+          "best_source": "product_seed",
+          "dev_A": 1.8094421531119201e-16,
+          "dev_B": 2.0206364052201326e-16,
+          "preserves_marginals_within_tol": true,
+          "ic": -0.5838782240892455
+        },
+        "p_geom": 0.7489497453390928,
+        "n_history": 8
+      },
+      "per_step_sample": [
+        {
+          "step": 0,
+          "max_preserving_MI": 4.440892098500626e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 4.440892098500626e-16,
+          "lr_asymmetry": 0.5775000000000005
+        },
+        {
+          "step": 1,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.5213661174452128
+        },
+        {
+          "step": 2,
+          "max_preserving_MI": 2.220446049250313e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.743002338319055
+        },
+        {
+          "step": 3,
+          "max_preserving_MI": 5.551115123125783e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.8079727211411789
+        },
+        {
+          "step": 4,
+          "max_preserving_MI": 1.1102230246251565e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 3.3306690738754696e-16,
+          "lr_asymmetry": 0.8338366039348749
+        },
+        {
+          "step": 5,
+          "max_preserving_MI": 4.440892098500626e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 1.1102230246251565e-16,
+          "lr_asymmetry": 0.8479084277168424
+        },
+        {
+          "step": 6,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 1.1102230246251565e-16,
+          "lr_asymmetry": 0.8588118819973002
+        },
+        {
+          "step": 7,
+          "max_preserving_MI": 7.771561172376096e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.8838638523650748
+        }
+      ],
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.0,
+        "jk_fuzz_dynamic": 2.999999937788565,
+        "lambda_density_mean": 1.0,
+        "dark_energy_pressure_mean": 1.0,
+        "gravity_response_mean": 1.0,
+        "final_scale_factor": 2.999999999999999,
+        "mean_hubble_proxy": 1.115022328076172,
+        "mean_acceleration_proxy": -1.0208993632849026,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 1.0000000000008598,
+          "symbolic_acceleration_mid": 8.043343768804334e-12,
+          "symbolic_dark_energy_mid": 1.0000000000006184
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.0,
+          "max_geodesic_distance": 0.0,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.5383407760253907,
+            0.5383407760253907
+          ],
+          "bias": 0.038340776025390697,
+          "loss": 0.13623975858108436,
+          "max_gap": 0.6441786698901701
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 2.640228280448298e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      }
+    },
+    {
+      "engine_type": 1,
+      "torus": "outer",
+      "eta": 1.1780972450961724,
+      "final_state": {
+        "product_MI": 0.0,
+        "max_preserving_MI": 0.0,
+        "optimizer_status": "OK",
+        "certified": true,
+        "chiral_bell_MI": 1.4232890376574785,
+        "ratio_preserving_to_chiral": 0.0,
+        "marginal_check": {
+          "search_status": "feasible_candidate_found",
+          "optimizer_status": "OK",
+          "certified": true,
+          "feasible_candidates": 1,
+          "seeded_with_product_state": true,
+          "best_source": "product_seed",
+          "dev_A": 1.965067311441623e-16,
+          "dev_B": 2.6766507790745728e-16,
+          "preserves_marginals_within_tol": true,
+          "ic": -0.341832306628141
+        },
+        "p_geom": 0.8277213219931334
+      },
+      "history_averaged": {
+        "product_MI": 0.0,
+        "max_preserving_MI": 6.661338147750939e-16,
+        "optimizer_status": "OK",
+        "certified": true,
+        "chiral_bell_MI": 1.6675354011462302,
+        "ratio_preserving_to_chiral": 3.994720677694803e-16,
+        "marginal_check": {
+          "search_status": "feasible_candidate_found",
+          "optimizer_status": "OK",
+          "certified": true,
+          "feasible_candidates": 1,
+          "seeded_with_product_state": true,
+          "best_source": "product_seed",
+          "dev_A": 1.1102230246251565e-16,
+          "dev_B": 1.8619006149354548e-16,
+          "preserves_marginals_within_tol": true,
+          "ic": -0.2903010033799676
+        },
+        "p_geom": 0.9065867049322469,
+        "n_history": 8
+      },
+      "per_step_sample": [
+        {
+          "step": 0,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 9.992007221626409e-16,
+          "lr_asymmetry": 0.7797544062601864
+        },
+        {
+          "step": 1,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.7957986665418705
+        },
+        {
+          "step": 2,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 9.159339953157541e-16,
+          "lr_asymmetry": 0.9798611174473045
+        },
+        {
+          "step": 3,
+          "max_preserving_MI": 2.4147350785597155e-15,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 2.1788126858268697e-15,
+          "lr_asymmetry": 0.9960397390805295
+        },
+        {
+          "step": 4,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 2.255140518769849e-16,
+          "lr_asymmetry": 0.9797124250290584
+        },
+        {
+          "step": 5,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 1.1102230246251565e-16,
+          "lr_asymmetry": 0.9742957831257761
+        },
+        {
+          "step": 6,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.9795817095646361
+        },
+        {
+          "step": 7,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.9907999673134436
+        }
+      ],
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06731448067275725,
+        "jk_fuzz_dynamic": 1.2810930191169831,
+        "lambda_density_mean": 1.9079525240672277,
+        "dark_energy_pressure_mean": 2.366219053788939,
+        "gravity_response_mean": 2.36621905378894,
+        "final_scale_factor": 6.122786408660432,
+        "mean_hubble_proxy": 1.7163724249406735,
+        "mean_acceleration_proxy": -1.3278209636374916,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.0813459926249822,
+          "symbolic_acceleration_mid": 2.7606382897793083,
+          "symbolic_dark_energy_mid": 4.906119305471748
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7531727997365836,
+          "max_geodesic_distance": 1.6625367838305087,
+          "mean_norm": 0.9999999999999999
+        },
+        "torch_fit": {
+          "weights": [
+            0.24401101149261128,
+            -0.10397519660782226
+          ],
+          "bias": 1.3850170073699244,
+          "loss": 0.8026861512808962,
+          "max_gap": 1.8723996409726633
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 5.422076387873176e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      }
+    },
+    {
+      "engine_type": 2,
+      "torus": "inner",
+      "eta": 0.39269908169872414,
+      "final_state": {
+        "product_MI": 5.551115123125783e-16,
+        "max_preserving_MI": 7.771561172376096e-16,
+        "optimizer_status": "OK",
+        "certified": true,
+        "chiral_bell_MI": 1.4478198710041856,
+        "ratio_preserving_to_chiral": 5.367767999330256e-16,
+        "marginal_check": {
+          "search_status": "feasible_candidate_found",
+          "optimizer_status": "OK",
+          "certified": true,
+          "feasible_candidates": 1,
+          "seeded_with_product_state": true,
+          "best_source": "product_seed",
+          "dev_A": 1.422104639912586e-16,
+          "dev_B": 2.16778083907997e-16,
+          "preserves_marginals_within_tol": true,
+          "ic": -0.37664618399754457
+        },
+        "p_geom": 0.8370766656276131
+      },
+      "history_averaged": {
+        "product_MI": 2.220446049250313e-16,
+        "max_preserving_MI": 0.0,
+        "optimizer_status": "OK",
+        "certified": true,
+        "chiral_bell_MI": 1.61736811148823,
+        "ratio_preserving_to_chiral": 0.0,
+        "marginal_check": {
+          "search_status": "feasible_candidate_found",
+          "optimizer_status": "OK",
+          "certified": true,
+          "feasible_candidates": 1,
+          "seeded_with_product_state": true,
+          "best_source": "product_seed",
+          "dev_A": 1.4686870114880517e-16,
+          "dev_B": 3.3306690738754696e-16,
+          "preserves_marginals_within_tol": true,
+          "ic": -0.3139428605105784
+        },
+        "p_geom": 0.8911639006584003,
+        "n_history": 8
+      },
+      "per_step_sample": [
+        {
+          "step": 0,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.7797544062601874
+        },
+        {
+          "step": 1,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.9786829078315203
+        },
+        {
+          "step": 2,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 4.996003610813204e-16,
+          "lr_asymmetry": 0.9958947148109486
+        },
+        {
+          "step": 3,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 2.220446049250313e-16,
+          "lr_asymmetry": 0.7119322643255978
+        },
+        {
+          "step": 4,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 2.498001805406602e-16,
+          "lr_asymmetry": 0.9706585623558778
+        },
+        {
+          "step": 5,
+          "max_preserving_MI": 4.996003610813204e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 9.020562075079397e-17,
+          "lr_asymmetry": 0.9834142485250578
+        },
+        {
+          "step": 6,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 1.3877787807814457e-16,
+          "lr_asymmetry": 0.9781778673505334
+        },
+        {
+          "step": 7,
+          "max_preserving_MI": 1.970645868709653e-15,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 5.551115123125783e-17,
+          "lr_asymmetry": 0.9838183770267501
+        }
+      ],
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06763326530450664,
+        "jk_fuzz_dynamic": 1.2808028297269445,
+        "lambda_density_mean": 1.9073019202537687,
+        "dark_energy_pressure_mean": 2.3654696925304055,
+        "gravity_response_mean": 2.3654696925304064,
+        "final_scale_factor": 6.121073582926641,
+        "mean_hubble_proxy": 1.7161336052799605,
+        "mean_acceleration_proxy": -1.3277392287556,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.07919192018811852,
+          "symbolic_acceleration_mid": 2.906411784613738,
+          "symbolic_dark_energy_mid": 4.903100578531848
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7534037745133855,
+          "max_geodesic_distance": 1.6628845284748983,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.2430247394896452,
+            -0.10305986989596638
+          ],
+          "bias": 1.385050945109927,
+          "loss": 0.8016749634826282,
+          "max_gap": 1.8702178282864368
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 1.0767021052515702e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      }
+    },
+    {
+      "engine_type": 2,
+      "torus": "clifford",
+      "eta": 0.7853981633974483,
+      "final_state": {
+        "product_MI": 0.0,
+        "max_preserving_MI": 0.0,
+        "optimizer_status": "OK",
+        "certified": true,
+        "chiral_bell_MI": 0.9884355699672276,
+        "ratio_preserving_to_chiral": 0.0,
+        "marginal_check": {
+          "search_status": "feasible_candidate_found",
+          "optimizer_status": "OK",
+          "certified": true,
+          "feasible_candidates": 1,
+          "seeded_with_product_state": true,
+          "best_source": "product_seed",
+          "dev_A": 2.0584085788909642e-16,
+          "dev_B": 4.0221650305342743e-16,
+          "preserves_marginals_within_tol": true,
+          "ic": -0.6423774052127025
+        },
+        "p_geom": 0.6875796962850752
+      },
+      "history_averaged": {
+        "product_MI": 0.0,
+        "max_preserving_MI": 0.0,
+        "optimizer_status": "OK",
+        "certified": true,
+        "chiral_bell_MI": 0.9202634221441848,
+        "ratio_preserving_to_chiral": 0.0,
+        "marginal_check": {
+          "search_status": "feasible_candidate_found",
+          "optimizer_status": "OK",
+          "certified": true,
+          "feasible_candidates": 1,
+          "seeded_with_product_state": true,
+          "best_source": "product_seed",
+          "dev_A": 2.0396099332657776e-16,
+          "dev_B": 1.9675159943996247e-16,
+          "preserves_marginals_within_tol": true,
+          "ic": -0.6048606984475478
+        },
+        "p_geom": 0.6632310257696304,
+        "n_history": 8
+      },
+      "per_step_sample": [
+        {
+          "step": 0,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.5775000000000008
+        },
+        {
+          "step": 1,
+          "max_preserving_MI": 2.220446049250313e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.667330732173682
+        },
+        {
+          "step": 2,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.7205269093093681
+        },
+        {
+          "step": 3,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.4723372080990854
+        },
+        {
+          "step": 4,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.6256945476091126
+        },
+        {
+          "step": 5,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.7431527594500943
+        },
+        {
+          "step": 6,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.8025382612984263
+        },
+        {
+          "step": 7,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.8313015298697642
+        }
+      ],
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.0,
+        "jk_fuzz_dynamic": 2.999999937788565,
+        "lambda_density_mean": 1.0,
+        "dark_energy_pressure_mean": 1.0,
+        "gravity_response_mean": 1.0,
+        "final_scale_factor": 2.999999999999999,
+        "mean_hubble_proxy": 1.115022328076172,
+        "mean_acceleration_proxy": -1.0208993632849026,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 1.0000000000008598,
+          "symbolic_acceleration_mid": 8.043343768804334e-12,
+          "symbolic_dark_energy_mid": 1.0000000000006184
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.0,
+          "max_geodesic_distance": 0.0,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.5383407760253907,
+            0.5383407760253907
+          ],
+          "bias": 0.038340776025390697,
+          "loss": 0.13623975858108436,
+          "max_gap": 0.6441786698901701
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 2.640228280448298e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      }
+    },
+    {
+      "engine_type": 2,
+      "torus": "outer",
+      "eta": 1.1780972450961724,
+      "final_state": {
+        "product_MI": 0.0,
+        "max_preserving_MI": 5.551115123125783e-16,
+        "optimizer_status": "OK",
+        "certified": true,
+        "chiral_bell_MI": 1.4558733949117573,
+        "ratio_preserving_to_chiral": 3.8129106160762224e-16,
+        "marginal_check": {
+          "search_status": "feasible_candidate_found",
+          "optimizer_status": "OK",
+          "certified": true,
+          "feasible_candidates": 1,
+          "seeded_with_product_state": true,
+          "best_source": "product_seed",
+          "dev_A": 2.7894008272968645e-16,
+          "dev_B": 3.453624890869476e-16,
+          "preserves_marginals_within_tol": true,
+          "ic": -0.3751506401568404
+        },
+        "p_geom": 0.8397647358561375
+      },
+      "history_averaged": {
+        "product_MI": 0.0,
+        "max_preserving_MI": 0.0,
+        "optimizer_status": "OK",
+        "certified": true,
+        "chiral_bell_MI": 1.6179500104697822,
+        "ratio_preserving_to_chiral": 0.0,
+        "marginal_check": {
+          "search_status": "feasible_candidate_found",
+          "optimizer_status": "OK",
+          "certified": true,
+          "feasible_candidates": 1,
+          "seeded_with_product_state": true,
+          "best_source": "product_seed",
+          "dev_A": 2.847483988694276e-16,
+          "dev_B": 1.986996825864056e-16,
+          "preserves_marginals_within_tol": true,
+          "ic": -0.309449015149271
+        },
+        "p_geom": 0.8913401490950774,
+        "n_history": 8
+      },
+      "per_step_sample": [
+        {
+          "step": 0,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.7797544062601868
+        },
+        {
+          "step": 1,
+          "max_preserving_MI": 3.0531133177191805e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 9.159339953157541e-16,
+          "lr_asymmetry": 0.9786829078315203
+        },
+        {
+          "step": 2,
+          "max_preserving_MI": 8.118505867571457e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 2.0816681711721685e-15,
+          "lr_asymmetry": 0.9958947148109472
+        },
+        {
+          "step": 3,
+          "max_preserving_MI": 6.661338147750939e-16,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 4.440892098500626e-16,
+          "lr_asymmetry": 0.7119322643255985
+        },
+        {
+          "step": 4,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 9.71445146547012e-16,
+          "lr_asymmetry": 0.971596002626783
+        },
+        {
+          "step": 5,
+          "max_preserving_MI": 2.4841240175987878e-15,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 2.366162821232365e-15,
+          "lr_asymmetry": 0.9833650179762956
+        },
+        {
+          "step": 6,
+          "max_preserving_MI": 0.0,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.9782515188768888
+        },
+        {
+          "step": 7,
+          "max_preserving_MI": 1.3600232051658168e-15,
+          "optimizer_status": "OK",
+          "certified": true,
+          "product_MI": 0.0,
+          "lr_asymmetry": 0.9838971140921355
+        }
+      ],
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06746887517386846,
+        "jk_fuzz_dynamic": 1.2807414011977087,
+        "lambda_density_mean": 1.9040553745293285,
+        "dark_energy_pressure_mean": 2.36063224132325,
+        "gravity_response_mean": 2.3606322413232506,
+        "final_scale_factor": 6.110016551596,
+        "mean_hubble_proxy": 1.7145903534510465,
+        "mean_acceleration_proxy": -1.3272104810270569,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.08053304608873205,
+          "symbolic_acceleration_mid": 2.9272390695405193,
+          "symbolic_dark_energy_mid": 4.8890878962329225
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7531410953714981,
+          "max_geodesic_distance": 1.6622917353554945,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.24297965304754882,
+            -0.10296501279095542
+          ],
+          "bias": 1.3840672753112442,
+          "loss": 0.7984898093550097,
+          "max_gap": 1.86525114227644
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 6.015564801842288e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      }
+    }
+  ],
+  "mean_preserving": 2.590520390792032e-16,
+  "mean_chiral": 1.3086226003995745,
+  "certified_blocks": 12,
+  "total_blocks": 12,
+  "failed_blocks": 0,
+  "aggregate": {
+    "deep_contract": {
+      "pass": true,
+      "winner": "history_gap_surface",
+      "candidate_universe_size": 5,
+      "frontier_size": 5,
+      "shell_bridge_pass_fraction": 1.0,
+      "candidate_rows": [
+        {
+          "option": "history_gap_surface",
+          "mean_abs_a0": 1.4433781074929841,
+          "mean_signed_a0": -1.4802973661668753e-16,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.9658942882710325,
+          "shell_alignment_abs": 0.9658942882710325,
+          "signal_score": 1.0,
+          "composite_score": 0.9931788576542065,
+          "mean_signal": 1.4433781074929841,
+          "scale_factor": 1.0,
+          "hubble_proxy": 2.4000461518872918
+        },
+        {
+          "option": "final_gap_surface",
+          "mean_abs_a0": 1.3086226003995742,
+          "mean_signed_a0": -2.590520390792032e-16,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.9799366958691104,
+          "shell_alignment_abs": 0.9799366958691104,
+          "signal_score": 0.9066388035166558,
+          "composite_score": 0.9633109204046516,
+          "mean_signal": 1.3086226003995742,
+          "scale_factor": 1.822139824067171,
+          "hubble_proxy": 1.8564599959970343
+        },
+        {
+          "option": "step_asymmetry_surface",
+          "mean_abs_a0": 0.8590006824654868,
+          "mean_signed_a0": -3.2215260551785957e-16,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.9725482578666115,
+          "shell_alignment_abs": 0.9725482578666115,
+          "signal_score": 0.5951321265066799,
+          "composite_score": 0.8528058958506602,
+          "mean_signal": 0.8590006824654868,
+          "scale_factor": 2.5300270591501954,
+          "hubble_proxy": 1.0171200238443316
+        },
+        {
+          "option": "history_fidelity_surface",
+          "mean_abs_a0": 0.9999999999997732,
+          "mean_signed_a0": 0.9999999999997732,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.6928191544602833,
+          "composite_score": 0.6924867040610991,
+          "mean_signal": 0.9999999999997732,
+          "scale_factor": 3.0300270591501386,
+          "hubble_proxy": 0.6661510767978265
+        },
+        {
+          "option": "final_fidelity_surface",
+          "mean_abs_a0": 0.9999999999997008,
+          "mean_signed_a0": 0.9999999999997008,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.6928191544602331,
+          "composite_score": 0.6924867040610816,
+          "mean_signal": 0.9999999999997008,
+          "scale_factor": 3.530027059150064,
+          "hubble_proxy": 0.6109359460137664
+        }
+      ],
+      "graph_surface": {
+        "edge_count": 7,
+        "longest_path_length": 4,
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ]
+        ],
+        "path_budget": 3
+      },
+      "hypergraph_surface": {
+        "num_edges": 6,
+        "max_hyperedge_size": 3,
+        "connected_components": 2,
+        "hyperedges": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            1,
+            3,
+            4
+          ],
+          [
+            0,
+            1,
+            3
+          ]
+        ]
+      },
+      "topology_surface": {
+        "betti_numbers": [
+          1,
+          0
+        ],
+        "euler_characteristic": 1,
+        "parity_ok": true,
+        "loop_budget": 2
+      },
+      "symbolic_surface": {
+        "scale_factor_polynomial": "3.21623339927466*lam**4 - 5.82311965730065*lam**3 + 2.04621691891965*lam**2 + 3.0906963982564*lam + 1.0",
+        "expansion_drive_polynomial": "13.2728410952797*lam**4 - 20.3171691411009*lam**3 + 6.74063082511069*lam**2 - 1.10557517505396*lam + 3.40927239576402",
+        "scale_poly_degree": 4,
+        "drive_poly_degree": 4,
+        "mid_lambda": 0.5,
+        "symbolic_hubble_mid": 0.939788475873664,
+        "symbolic_acceleration_mid": -3.728224936238675,
+        "symbolic_drive_mid": 2.8315489403320857
+      },
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          0.042172785161073645,
+          0.0,
+          0.9991103323416076
+        ],
+        "mean_norm": 0.9999999999999998,
+        "mean_geodesic_distance": 0.13589139208252624,
+        "max_geodesic_distance": 0.27883183112067444
+      },
+      "torch_fit": {
+        "weights": [
+          2.2455212955525248,
+          -0.5530336971002744,
+          0.6789477427071968
+        ],
+        "bias": -1.0530336971002745,
+        "loss": 0.006915644925858921,
+        "max_gap": 0.14133833449726385
+      },
+      "winner_vector": [
+        1.4433781074929841,
+        1.0,
+        0.9658942882710325
+      ],
+      "clifford_vector_gap": 0.0,
+      "torch_ga_vector_gap": 1.6634524646619298e-08,
+      "scale_factors": [
+        1.0,
+        1.822139824067171,
+        2.5300270591501954,
+        3.0300270591501386,
+        3.530027059150064
+      ],
+      "hubble_proxy": [
+        2.4000461518872918,
+        1.8564599959970343,
+        1.0171200238443316,
+        0.6661510767978265,
+        0.6109359460137664
+      ],
+      "propagator_traces": [
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "all_pass": true
+  },
+  "summary": {
+    "mean_preserving": 2.590520390792032e-16,
+    "mean_chiral": 1.3086226003995745,
+    "deep_contract_pass": true,
+    "deep_contract_winner": "history_gap_surface"
+  },
+  "overall_pass": true,
+  "all_pass": true
+}

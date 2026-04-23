@@ -1,0 +1,40 @@
+{
+  "name": "spectral_triple_dirac_spectrum",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "numpy.linalg.eigh spectrum of D"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic characteristic polynomial check"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "sympy": "supportive",
+    "gudhi": null
+  },
+  "positive": {
+    "eigs_real": true,
+    "spectrum_symmetric_about_zero": true,
+    "chiral_partner_negates_eigenvalue": true,
+    "sympy_char_poly_even_only": true
+  },
+  "negative": {
+    "non_hermitian_rejected": true,
+    "non_chiral_spectrum_asymmetric": true
+  },
+  "boundary": {
+    "zero_spectrum_degenerate": true,
+    "eigenvalues_scale_linearly": true
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,156 @@
+{
+  "classification": "canonical",
+  "sim_name": "CalibratedGeometry",
+  "timestamp": "2026-04-16T20:04:15",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of calibrated geometry constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for calibration forms and comass computation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; form constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "tests": {
+    "positive": [
+      {
+        "test": "positive_calibration_closure",
+        "phi": "1",
+        "d_phi": "0",
+        "closed": true,
+        "status": "pass"
+      },
+      {
+        "test": "positive_comass_formula",
+        "comass": 1.0,
+        "vol_on_standard_basis": 1.0,
+        "comass_equals_1": true,
+        "status": "pass"
+      },
+      {
+        "test": "positive_unit_k_plane_bound",
+        "volume_kplane": 1.0,
+        "phi_eval": 1.0,
+        "phi_leq_vol": true,
+        "status": "pass"
+      }
+    ],
+    "negative": [
+      {
+        "test": "negative_comass_exceeds_one",
+        "constraint": "phi_eval > 1",
+        "expected": "unsat",
+        "actual": "unsat",
+        "passed": true,
+        "status": "pass"
+      },
+      {
+        "test": "negative_form_not_closed",
+        "constraint": "d_phi > 0 AND d_phi == 0",
+        "expected": "unsat",
+        "actual": "unsat",
+        "passed": true,
+        "status": "pass"
+      },
+      {
+        "test": "negative_comass_over_limit",
+        "comass_claim": 1.5,
+        "bound": 1.0,
+        "expected": "unsat",
+        "actual": "unsat",
+        "passed": true,
+        "status": "pass"
+      }
+    ],
+    "boundary": [
+      {
+        "test": "boundary_comass_at_limit",
+        "max_comass": 1.0,
+        "sub_max_comass": "in [0, 1)",
+        "expected": "sat",
+        "actual": "sat",
+        "passed": true,
+        "status": "pass"
+      },
+      {
+        "test": "boundary_closure_variance",
+        "d_phi": 0,
+        "closed": true,
+        "status": "pass"
+      }
+    ]
+  },
+  "summary": {
+    "total_tests": 8,
+    "passed": 8,
+    "failed": 0,
+    "all_pass": true
+  }
+}

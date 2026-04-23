@@ -1,0 +1,150 @@
+{
+  "name": "QuillenAdjunctionDerivedFunctor -- Canonical Sim",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_cvc5_L_preserves_cofibrations": {
+      "test": "cvc5 validates L preserves cofibrations",
+      "status": "SAT",
+      "passed": true,
+      "interpretation": "left adjoint L preserves the cofibration property",
+      "method": "cvc5 QF_LIA constraint proof"
+    },
+    "test_2_cvc5_L_preserves_acyclic_cofibrations": {
+      "test": "cvc5 validates L preserves acyclic cofibrations",
+      "status": "SAT",
+      "passed": true,
+      "interpretation": "left adjoint L preserves acyclic cofibrations",
+      "method": "cvc5 QF_LIA constraint proof"
+    },
+    "test_3_cvc5_derived_adjunction_exists": {
+      "test": "cvc5 validates derived adjunction (LF \u22a3 RG) exists",
+      "status": "SAT",
+      "passed": true,
+      "interpretation": "preservation properties guarantee derived functor existence",
+      "method": "cvc5 QF_LIA constraint proof"
+    }
+  },
+  "negative": {
+    "test_1_cvc5_unsat_L_not_preserve_cof": {
+      "test": "cvc5 proves UNSAT: L does not preserve cofibrations",
+      "status": "UNSAT",
+      "passed": true,
+      "interpretation": "violating preservation property is structurally impossible",
+      "method": "cvc5 QF_LIA proof of unsatisfiability"
+    },
+    "test_2_cvc5_unsat_L_not_preserve_acyclic": {
+      "test": "cvc5 proves UNSAT: L does not preserve acyclic cofibrations",
+      "status": "UNSAT",
+      "passed": true,
+      "interpretation": "loss of acyclic-cofibrancy breaks Quillen property",
+      "method": "cvc5 QF_LIA proof of unsatisfiability"
+    },
+    "test_3_cvc5_derived_adj_without_preservation": {
+      "test": "cvc5 shows: derived adjunction fails without preservation",
+      "status": "SAT",
+      "passed": true,
+      "interpretation": "derived adjunction requires preservation",
+      "method": "cvc5 QF_LIA constraint analysis"
+    }
+  },
+  "boundary": {
+    "test_1_boundary_identity_adjoint": {
+      "test": "Boundary: identity adjoint preserves everything",
+      "status": "SAT",
+      "passed": true,
+      "interpretation": "identity is always a valid Quillen adjoint",
+      "method": "cvc5 QF_LIA"
+    },
+    "test_2_boundary_sympy_preservation": {
+      "test": "Boundary: sympy validates preservation in simple functor",
+      "is_cofibration": 1.0,
+      "preserves": 1.0,
+      "passed": true,
+      "interpretation": "simple preservation example is valid",
+      "method": "sympy symbolic implication"
+    },
+    "test_3_boundary_partial_preservation": {
+      "test": "Boundary: L preserves acyclic cofibrations but not cofibrations",
+      "status": "UNSAT",
+      "passed": false,
+      "interpretation": "partial preservation is logically possible but not Quillen",
+      "method": "cvc5 QF_LIA"
+    }
+  },
+  "classification": "canonical"
+}

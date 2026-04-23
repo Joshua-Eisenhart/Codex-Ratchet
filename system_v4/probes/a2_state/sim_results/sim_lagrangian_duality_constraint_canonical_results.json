@@ -1,0 +1,151 @@
+{
+  "name": "Lagrangian Duality Constraint Canonical",
+  "description": "Lagrangian duality: foundational to constrained optimization; weak duality d* \u2264 p* always holds; constraint surface is relationship between primal and dual optima satisfying: (1) primal minimize f(x) subject to g_i(x)\u22640, h_j(x)=0, (2) dual maximize g(\u03bb,\u03bc) s.t. \u03bb_i\u22650, (3) duality gap g=p*-d*\u22650; z3 proves dual exceeding primal is UNSAT; validates dual as lower bound on feasible objectives",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for duality constraints"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for Lagrangian structure"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Encodes weak duality constraint via QF_NRA: enforces d_star \u2264 p_star; proves dual optimal cannot exceed primal optimal (UNSAT if violated); validates duality gap p* - d* \u2265 0; enforces dual as lower bound on any feasible objective value; demonstrates strong duality when gap = 0; fundamental to all Lagrangian relaxation guarantees"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for weak duality encoding"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Constructs Lagrangian L(x,\u03bb,\u03bc) = f(x) + \u03a3\u03bb_i g_i(x) + \u03a3\u03bc_j h_j(x); evaluates dual function g(\u03bb,\u03bc) = inf_x L(x,\u03bb,\u03bc); computes duality gap p* - d*; analyzes constraint qualification conditions (Slater, LICQ); verifies strong duality when Slater holds; evaluates Lagrange multipliers"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for optimization duality"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for dual function analysis"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for gap computations"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for dual problems"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for constraint structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for duality geometry"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for Lagrangian properties"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "weak_duality_holds": {
+      "status": "satisfiable",
+      "interpretation": "Weak duality: for any constrained optimization problem, the dual optimal d* always satisfies d* \u2264 p* (primal optimal); dual provides a lower bound on primal; fundamental property of Lagrangian relaxation",
+      "primal_optimal": 10.0,
+      "dual_optimal": 8.0,
+      "weak_duality": true
+    },
+    "dual_lower_bound": {
+      "status": "satisfiable",
+      "interpretation": "Dual as lower bound: for any dual-feasible (\u03bb,\u03bc), the dual function g(\u03bb,\u03bc) \u2264 f(x) for all feasible x; g(\u03bb,\u03bc) \u2264 p*; dual provides certificate of optimality",
+      "dual_value": 5.0,
+      "objective_at_feasible_x": 7.0,
+      "primal_optimal": 8.5,
+      "dual_lower_bound_property": true
+    },
+    "duality_gap_nonneg": {
+      "status": "satisfiable",
+      "interpretation": "Duality gap: the difference p* - d* is always non-negative; measures suboptimality of dual relaxation; zero gap indicates strong duality (Slater condition); positive gap indicates constraints are active",
+      "primal_optimal": 15.0,
+      "dual_optimal": 12.0,
+      "duality_gap": 3.0,
+      "gap_nonnegative": true
+    }
+  },
+  "negative": {
+    "dual_exceeds_primal_unsat": {
+      "status": "unsat",
+      "interpretation": "Weak duality violation: claiming dual optimal d* > primal optimal p* contradicts weak duality theorem; all Lagrangian dual problems satisfy d* \u2264 p*; no feasible dual multipliers can produce value exceeding primal optimum"
+    },
+    "negative_gap_unsat": {
+      "status": "unsat",
+      "interpretation": "Negative duality gap forbidden: duality gap p* - d* \u2265 0 always; negative gap would imply d* > p*, violating weak duality; gap cannot be negative by definition of optimal values"
+    },
+    "dual_bound_violation_unsat": {
+      "status": "unsat",
+      "interpretation": "Dual bound violation: dual function value g(\u03bb,\u03bc) cannot exceed objective f(x) at any feasible x; claiming d_val > f_x while maintaining d_val \u2264 f_x is contradictory; dual always provides lower bound"
+    }
+  },
+  "boundary": {
+    "zero_gap_strong_duality": {
+      "status": "satisfiable",
+      "interpretation": "Strong duality (boundary): when duality gap = 0, dual optimal equals primal optimal; occurs when Slater condition holds; indicates dual solution is optimal for primal problem",
+      "primal_optimal": 5.0,
+      "dual_optimal": 5.0,
+      "duality_gap": 0.0,
+      "strong_duality": true
+    },
+    "positive_gap_suboptimal_dual": {
+      "status": "satisfiable",
+      "interpretation": "Suboptimal dual (boundary): positive but small duality gap indicates dual is near-optimal; gap > 0 means some constraints are not satisfied with equality; measure of relaxation looseness",
+      "primal_optimal": 10.0,
+      "dual_optimal": 9.95,
+      "duality_gap": 0.05,
+      "gap_positive_minimal": true
+    },
+    "dual_approach_primal": {
+      "status": "satisfiable",
+      "interpretation": "Iterative improvement: as dual problems improve (e.g., via constraint refinement), dual values increase monotonically while always remaining \u2264 primal optimal; demonstrates weak duality preserved under algorithm progress",
+      "primal_optimal": 10.0,
+      "dual_values": [
+        6.0,
+        8.0,
+        9.5
+      ],
+      "monotone_increasing": true,
+      "all_below_primal": true
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

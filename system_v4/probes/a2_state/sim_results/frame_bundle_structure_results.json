@@ -1,0 +1,146 @@
+{
+  "name": "frame_bundle_structure",
+  "probe": "frame_bundle_structure",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core: frame bundle fiber representation, Maurer-Cartan form algebra, wedge product d\u03b8 + \u03b8\u2227\u03b8 = 0, solder form \u03b8^a\u2227\u03b8^b structure"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 principal bundle fibers"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Proof: frame bundle without gauge structure UNSAT on Lie algebra closure [\u03c9, \u03c9] = 0; soldering enforces compatibility constraints"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic: Maurer-Cartan equation d\u03b8 + \u03b8\u2227\u03b8 = 0 formalization, frame closure under Lie bracket, identity verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: Lie algebra so(n) as bivectors in Cl(n,0), commutation [\u03c9_ab, \u03c9_cd] structure, Jacobi identity verification"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: frame bundle as simplicial fiber over base manifold; fiber dimension tracking at each base point"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "supportive",
+    "gudhi": null
+  },
+  "positive": {
+    "P1_frame_full_rank": {
+      "pass": true,
+      "det_frame": 1.0,
+      "dimension": 3
+    },
+    "P2_coframe_dual_to_frame": {
+      "pass": true,
+      "max_deviation_from_identity": 0.0
+    },
+    "P3_gauge_redundancy_so": {
+      "pass": true,
+      "comment": "Different frames related by SO(n) transformation"
+    },
+    "P4_frame_orthonormality": {
+      "pass": true,
+      "max_gram_error": 3.3306690738754696e-16,
+      "comment": "Frame orthonormality: frame.T @ frame = I"
+    },
+    "P5_solder_full_rank": {
+      "pass": "True",
+      "rank": "3",
+      "expected": 3
+    }
+  },
+  "negative": {
+    "N1_singular_frame_fails": {
+      "pass": "True",
+      "det": 0.0,
+      "comment": "Singular frame cannot span full tangent space"
+    },
+    "N2_ungauged_frame_incomplete": {
+      "pass": true,
+      "comment": "Frame without gauge structure lacks Lie closure"
+    },
+    "N3_coframe_must_be_dual": {
+      "pass": true,
+      "product_diagonal": [
+        0.0674467571151312,
+        -0.40243385548227406,
+        -1.2639338110249094
+      ]
+    },
+    "N4_maurer_cartan_closure": {
+      "pass": true,
+      "comment": "SO(n) connection satisfies d\u03c9 + \u03c9\u2227\u03c9 = 0 (principal bundle structure)"
+    }
+  },
+  "boundary": {
+    "B1_so1_trivial": {
+      "pass": "True",
+      "comment": "SO(1) = {e}, frame is 1\u00d71 identity"
+    },
+    "B2_so2_rotation": {
+      "pass": "True",
+      "angle": 0.7853981633974483,
+      "det": 1.0
+    },
+    "B3_high_dim_so10": {
+      "pass": true,
+      "dimension": 10,
+      "expected_so_dim": 45,
+      "det_frame": 1.0
+    }
+  }
+}

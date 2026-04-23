@@ -1,0 +1,118 @@
+{
+  "name": "ring_checkerboard_support",
+  "classification": "canonical",
+  "classification_note": "Canonical local ring/checkerboard support row on one bounded cyclic support graph.",
+  "lego_ids": [
+    "ring_checkerboard_support"
+  ],
+  "primary_lego_ids": [
+    "ring_checkerboard_support"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "ring_support_is_cyclic": {
+      "pass": true
+    },
+    "checkerboard_partition_is_disjoint_and_complete": {
+      "pass": true
+    },
+    "ring_edges_respect_checkerboard_alternation": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "row_does_not_collapse_to_generic_graph_shell_geometry": {
+      "pass": true
+    },
+    "row_does_not_promote_axis_selector_claim": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bounded_to_one_local_ring_support": {
+      "pass": true
+    },
+    "checkerboard_classes_are_balanced_for_even_ring": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local ring/checkerboard support row on one bounded cyclic support graph."
+  }
+}

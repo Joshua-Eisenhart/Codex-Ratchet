@@ -1,0 +1,154 @@
+{
+  "name": "sim_clifford_weyl_contact_bridge_claims_canonical",
+  "classification": "classical_baseline",
+  "divergence_log": "Bridge claims for Clifford\u00d7Weyl\u00d7Contact (26th program). Q_CWC = MI \u00d7 H_clifford \u00d7 H_weyl \u00d7 H_contact. rho_CWC valid (8x8, trace=1, PSD, float64). r(Q_CWC, MI) > 0.99 with fixed H (proportional by construction). Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. sympy: four-factor product collapse. pytorch: rho_CWC trace validated (float64).",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Construct rho_CWC via torch.outer float64; validate trace=1 and compute Pearson r for P2 and Axis 0 gradient for P3; gating for bridge claims P1/P4 (load-bearing)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph learning not invoked in CWC bridge claims step; Q_CWC is a scalar product, not a graph quantity requiring message passing"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: MI=0 with Q_CWC>0 impossible \u2014 entanglement required for nonzero four-factor CWC product; gating constraint for bridge claim N1 (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 is sufficient for the UNSAT impossibility proof in CWC bridge step; cvc5 adds no new information at this level"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic four-factor product collapse: a*b*c*d=0 if any factor=0 \u2014 encodes Q_CWC zero gate algebraically for bridge claim N2 (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Construct Cl(3,0) rotor e1*e2 and compute norm as H_clifford; real geometric algebra product gating bridge claim P1/P2 Q_CWC four-factor product (load-bearing)."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geometry not invoked in rho construction or MI correlation bridge computation for Q_CWC scalar product"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) equivariant networks not needed for scalar CWC bridge claim tests on four-factor Q_CWC product"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal required in CWC bridge claims density matrix or Pearson-r computation for Q_CWC"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure required in 8x8 rho construction or MI scalar CWC bridge tests"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "CellComplex exercised in topology-variants step; not needed in CWC bridge claims density matrix"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not needed in rho trace and MI correlation CWC bridge test for Q_CWC"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
+  },
+  "H_values": {
+    "H_clifford": 1.4142135623730951,
+    "H_weyl": 0.6931471805599453,
+    "H_contact": 2.833213344056216
+  },
+  "positive": {
+    "P1_rho_CWC_valid": {
+      "trace": 1.0000000000000002,
+      "min_eval": -7.411172533493066e-17,
+      "shape": [
+        8,
+        8
+      ],
+      "passed": true
+    },
+    "P2_pearson_r_Q_vs_MI": {
+      "H_clifford": 1.4142135623730951,
+      "H_weyl": 0.6931471805599453,
+      "H_contact": 2.833213344056216,
+      "r": 0.9999999999999999,
+      "passed": true
+    },
+    "P3_axis0_gradient_input_gt_final": {
+      "seeds_confirmed": 20,
+      "total": 20,
+      "passed": true
+    },
+    "P4_pytorch_rho_trace": {
+      "trace": 1.0,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_MI0_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_product_zero_factor": {
+      "a=0": "0",
+      "b=0": "0",
+      "c=0": "0",
+      "d=0": "0",
+      "passed": true
+    },
+    "N3_high_dephasing_steeper_gradient": {
+      "diffs": [
+        1.3863,
+        1.3863,
+        1.3863,
+        1.3818,
+        1.3846
+      ],
+      "note": "eps=0.9 gives steeper Axis 0 gradient than eps=0.3",
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_rho_hermitian": {
+      "max_err": 5.551115123125783e-17,
+      "passed": true
+    },
+    "B2_rho_shape_8x8": {
+      "shape": [
+        8,
+        8
+      ],
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

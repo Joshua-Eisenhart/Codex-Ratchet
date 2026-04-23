@@ -1,0 +1,163 @@
+{
+  "name": "Derived Category Exact Triangle Constraint",
+  "description": "Exact triangles induce long exact sequences in cohomology; verified via z3 SAT/UNSAT and sympy axiom derivation",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "proof is symbolic, not numeric"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "triangle is abstract, no graph structure"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SAT/UNSAT consistency of exact triangle and long exact sequence"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for morphism composition constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic derivation of octahedron axiom and composition rules"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no clifford algebra structure in derived categories"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "derived category is algebraic, not geometric"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance in abstract category"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph topology in derivation"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "abstract structure, not topological"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no simplicial complex needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_triangle_standard": {
+      "triangle": "A\u2192B\u2192C\u2192A[1]",
+      "maps": [
+        "f: A\u2192B",
+        "g: B\u2192C",
+        "h: C\u2192A[1]"
+      ],
+      "constraints": [
+        "g\u2218f = 0",
+        "h\u2218g = 0"
+      ],
+      "z3_status": "sat",
+      "pass": true
+    },
+    "positive_cone_triangle": {
+      "triangle": "Cone(id_V) \u2192 V\u2295W \u2192 W \u2192 Cone(id_V)[1]",
+      "construction": "mapping cone of identity",
+      "z3_status": "sat",
+      "pass": true
+    },
+    "positive_fiber_triangle": {
+      "triangle": "Cone(f) \u2192 A \u2192 B \u2192 Cone(f)[1]",
+      "construction": "mapping fiber",
+      "z3_status": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_nonzero_composition": {
+      "claim": "Triangle is exact but g\u2218f \u2260 0",
+      "contradiction": "exact triangles require all compositions to vanish",
+      "z3_status": "unsat",
+      "pass": true
+    },
+    "negative_broken_sequence": {
+      "claim": "Triangle exact but long exact sequence broken",
+      "contradiction": "exact triangle must give long exact sequence in cohomology",
+      "z3_status": "unsat",
+      "pass": true
+    },
+    "negative_missing_maps": {
+      "claim": "Exact triangle with missing maps f and g",
+      "contradiction": "exact triangle requires all three maps",
+      "z3_status": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_octahedron_axiom": {
+      "axiom": "TR5 (Octahedron)",
+      "statement": "Cone(f) \u2192 Cone(g\u2218f) \u2192 Cone(g) \u2192 Cone(f)[1] is exact",
+      "significance": "determines how cones interact under composition",
+      "universal": true
+    },
+    "boundary_rotation_invariance": {
+      "property": "distinguished triangles are closed under rotation",
+      "rotations": [
+        "A \u2192 B \u2192 C \u2192 A[1]",
+        "B \u2192 C \u2192 A[1] \u2192 B[1]",
+        "C \u2192 A[1] \u2192 B[1] \u2192 C[1]"
+      ],
+      "count": 3
+    },
+    "boundary_composition_symbolic": {
+      "theorem": "In exact triangle A\u2192B\u2192C\u2192A[1], composition g\u2218f vanishes",
+      "symbolic_form": "Eq(composition, 0)",
+      "interpretation": "maps compose to zero in derived category"
+    },
+    "boundary_cone_uniqueness": {
+      "property": "mapping cone is unique distinguished triangle for any morphism",
+      "universal_property": "Hom(Cone(f), X) characterizes extensions by f",
+      "construction": "cone is functorial in f"
+    },
+    "boundary_ses_to_triangle": {
+      "ses": "0 \u2192 A \u2192 B \u2192 C \u2192 0",
+      "triangle": "A \u2192 B \u2192 C \u2192 A[1]",
+      "connection": "SES in abelian category lifts to distinguished triangle",
+      "shift": "shift operator A[1] = A\u2297R[1]"
+    }
+  },
+  "classification": "canonical",
+  "overall_pass": true
+}

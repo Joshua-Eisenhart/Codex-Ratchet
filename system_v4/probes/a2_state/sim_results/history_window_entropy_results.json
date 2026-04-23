@@ -1,0 +1,128 @@
+{
+  "name": "history_window_entropy",
+  "classification": "canonical",
+  "classification_note": "Canonical local history-window entropy row on one bounded state path, kept separate from transport weighting and shell weighting bundles.",
+  "lego_ids": [
+    "history_window_entropy"
+  ],
+  "primary_lego_ids": [
+    "history_window_entropy"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sliding_windows_are_well_defined": {
+      "values": [
+        0.31077970422975343,
+        0.524381188078986,
+        0.7097975646830367
+      ],
+      "pass": true
+    },
+    "window_means_change_along_path": {
+      "values": [
+        0.31077970422975343,
+        0.524381188078986,
+        0.7097975646830367
+      ],
+      "pass": true
+    },
+    "window_entropies_stay_in_bounded_range": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "row_does_not_collapse_to_transport_or_operator_order": {
+      "pass": true
+    },
+    "window_size_zero_is_not_admitted": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bounded_to_one_local_state_path": {
+      "pass": true
+    },
+    "all_path_states_remain_density_operators": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local sliding-window entropy row on one bounded state path."
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "name": "trace_distance_geometry",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "triangle_n2": true,
+    "unitary_invariance_n2": true,
+    "nonneg_n2": true,
+    "identity_n2": true,
+    "triangle_n3": true,
+    "unitary_invariance_n3": true,
+    "nonneg_n3": true,
+    "identity_n3": true,
+    "triangle_n4": true,
+    "unitary_invariance_n4": true,
+    "nonneg_n4": true,
+    "identity_n4": true
+  },
+  "negative": {
+    "nonunitary_changes_distance": true,
+    "distinct_positive": true
+  },
+  "boundary": {
+    "zero_self_distance": true,
+    "orthogonal_dist_one": true
+  },
+  "classical_captured": "triangle inequality, unitary invariance, non-negativity, 0/1 extremes",
+  "innately_missing": "trace distance under nonclassical coupling / probe contextuality",
+  "all_pass": true
+}

@@ -1,0 +1,86 @@
+{
+  "layer": 6,
+  "name": "operators_algebra",
+  "positive": {
+    "P1_distinct": {
+      "pass": true,
+      "pairwise_trace_distances": {
+        "Ti-Fe": 0.223607,
+        "Ti-Te": 0.245967,
+        "Ti-Fi": 0.268127,
+        "Fe-Te": 0.142776,
+        "Fe-Fi": 0.166718,
+        "Te-Fi": 0.163915
+      }
+    },
+    "P2_noncommutation": {
+      "pass": true,
+      "Ti_Fi_commutator_dist": 0.087077,
+      "Ti_Fe_commutator_dist": 0.0,
+      "Te_Fi_commutator_dist": 0.0,
+      "note": "[Ti,Fi]\u22600 confirms N01 at operator level"
+    },
+    "P3_su2_algebra": {
+      "pass": true,
+      "commutator_xy_is_2i_sz": true,
+      "commutator_yz_is_2i_sx": true,
+      "commutator_zx_is_2i_sy": true,
+      "note": "Operators use all 3 Pauli generators \u2192 span su(2)"
+    },
+    "P4_dissipative_vs_unitary": {
+      "pass": true,
+      "S_input": 0.721928,
+      "S_Ti": 0.881291,
+      "S_Te": 0.867491,
+      "S_Fe": 0.721928,
+      "S_Fi": 0.721928,
+      "Ti_dissipative": true,
+      "Te_dissipative": true,
+      "Fe_unitary": true,
+      "Fi_unitary": true
+    },
+    "P5_clifford_roundtrip": {
+      "pass": true,
+      "max_error": 5.551115123125783e-17
+    }
+  },
+  "negative": {
+    "N1_remove_Ti": {
+      "pass": true,
+      "offdiag_with_Ti": 0.000136,
+      "offdiag_without_Ti": 0.148978,
+      "note": "Without Ti, z-coherence is not destroyed \u2192 constraint operator missing"
+    },
+    "N2_remove_Fi": {
+      "pass": true,
+      "population_shift_with_Fi": 0.499999,
+      "population_shift_without_Fi": 0.499997,
+      "note": "Without Fi, x-rotation missing \u2192 populations cannot fully mix"
+    },
+    "N3_all_commuting": {
+      "pass": true,
+      "S_commuting": 0.881291,
+      "S_noncommuting": 1.0,
+      "negentropy_commuting": 0.118709,
+      "negentropy_noncommuting": 0.0,
+      "note": "Commuting operators cannot produce the same dynamics as noncommuting"
+    },
+    "N4_u1_only": {
+      "pass": true,
+      "p1_population_u1": 0.0,
+      "p1_population_su2": 0.097883,
+      "note": "u(1) = Z only cannot mix populations. su(2) needed for full dynamics."
+    }
+  },
+  "tools_used": [
+    "geometric_operators",
+    "engine_core",
+    "numpy"
+  ],
+  "timestamp": "2026-04-05",
+  "summary": {
+    "positive_pass": "5/5",
+    "negative_pass": "4/4",
+    "all_pass": true
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "name": "f01_compose_14_iterated_measurement_saturates_log_N",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "saturation at log2(N) binary probes; load-bearing"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "N2_k1_sat": true,
+    "N4_k2_sat": true,
+    "N16_k4_sat": true
+  },
+  "negative": {
+    "N4_k1_unsat": true,
+    "N16_k3_unsat": true
+  },
+  "boundary": {
+    "N8_k3_sat": true,
+    "N8_k2_unsat": true
+  },
+  "overall_pass": true
+}

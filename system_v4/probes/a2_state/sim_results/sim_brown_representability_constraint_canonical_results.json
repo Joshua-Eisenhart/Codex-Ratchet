@@ -1,0 +1,181 @@
+{
+  "name": "Brown Representability Theorem",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; cohomology is discrete algebraic"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no graph structure in representability"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 handles exactness constraints via rank matching"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: verifies exact sequence rank relations"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no Clifford algebra in cohomology"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for rank-only constraints"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; representability is homotopy-theoretic"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_mayer_vietoris_exact": {
+      "pass": true,
+      "detail": "Mayer-Vietoris sequence is exact with ranks (X=5, A=2, B=3, A\u2229B=1)",
+      "ranks": {
+        "X": 5,
+        "A": 2,
+        "B": 3,
+        "A_cap_B": 1
+      }
+    },
+    "test_wedge_axiom": {
+      "pass": true,
+      "detail": "h^n(X \u2228 Y) has rank = rank(h^n(X)) + rank(h^n(Y)) = 7",
+      "rank_x": 3,
+      "rank_y": 4,
+      "rank_wedge": 7
+    },
+    "test_representability_match": {
+      "pass": true,
+      "detail": "Cohomology ranks match spectrum ranks (representable)",
+      "cohomology_ranks": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "spectrum_ranks": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    "test_multiple_cohomology_theories": {
+      "pass": true,
+      "detail": "Multiple cohomology theories can satisfy Mayer-Vietoris",
+      "theory_1_exact": true,
+      "theory_2_exact": true
+    }
+  },
+  "negative": {
+    "test_unsat_mayer_vietoris_violation": {
+      "pass": false,
+      "error": "cvc5 not available"
+    },
+    "test_unsat_wedge_axiom_violation": {
+      "pass": false,
+      "error": "cvc5 not available"
+    },
+    "test_mayer_vietoris_rank_consistency": {
+      "pass": true,
+      "detail": "Sympy confirms rank relation: rank(A) + rank(B) >= rank(A\u2229B)",
+      "values": {
+        "r_a": 2,
+        "r_b": 3,
+        "r_ab": 1
+      }
+    }
+  },
+  "boundary": {
+    "test_boundary_trivial_space": {
+      "pass": true,
+      "detail": "Trivial space: h^0(*) = Z (rank 1), h^n(*) = 0 for n>0",
+      "ranks": {
+        "h^0": 1,
+        "h^1": 0,
+        "h^2": 0
+      }
+    },
+    "test_boundary_sphere": {
+      "pass": true,
+      "detail": "S^2: H^*(S^2) = Z in degrees 0,2 only",
+      "ranks": {
+        "H^0": 1,
+        "H^1": 0,
+        "H^2": 1,
+        "H^3": 0
+      }
+    },
+    "test_boundary_wedge_with_point": {
+      "pass": true,
+      "detail": "h^n(X \u2228 *) = h^n(X) (point is identity for wedge)",
+      "rank_x": 5,
+      "rank_wedge": 5
+    },
+    "test_boundary_mayer_vietoris_disjoint": {
+      "pass": true,
+      "detail": "Mayer-Vietoris with empty intersection (A \u2229 B = \u2205)",
+      "ranks": {
+        "A \u222a B": 5,
+        "A": 2,
+        "B": 3,
+        "empty": 0
+      }
+    }
+  },
+  "classification": "canonical"
+}

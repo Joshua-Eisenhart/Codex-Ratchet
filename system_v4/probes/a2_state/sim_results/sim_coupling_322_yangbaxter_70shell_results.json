@@ -1,0 +1,121 @@
+{
+  "name": "Coupling Program #322 \u2014 YangBaxterRMatrix (70-shell)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: autograd computes dQ/d\u03b5 (Axis 0 gradient) for 70-shell coupling"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; shell coupling handled via torch tensor ops"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; classical coupling program uses torch autograd"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 not needed; constraint satisfaction via autograd in this sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "sympy not needed; numerical torch computation is sufficient"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; geometry computed via direct tensor ops"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; shell geometry via torch"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise shell interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard tensor ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_autograd": {
+      "description": "dQ/d\u03b5 != 0 for 70-shell",
+      "gradient": 7.20746053675083e-12,
+      "passed": true
+    },
+    "test_positive_shell_count": {
+      "shell_count": 70,
+      "passed": true
+    },
+    "test_positive_q_nonzero": {
+      "q_value": 3.6037302683754164e-12,
+      "passed": true
+    }
+  },
+  "negative": {
+    "test_negative_zero_mi": {
+      "passed": true
+    },
+    "test_negative_not_equal_69": {
+      "passed": true
+    },
+    "test_negative_negative_mi": {
+      "passed": true
+    }
+  },
+  "boundary": {
+    "test_boundary_scaling_ratio": {
+      "ratio": 0.6931471805599453,
+      "passed": true
+    },
+    "test_boundary_formula": {
+      "expected": 3.6037302683754164e-12,
+      "passed": true
+    },
+    "test_boundary_dtype": {
+      "passed": true
+    }
+  },
+  "classification": "classical_baseline",
+  "shells": 70,
+  "Q_formula": "MI * log(2)^70"
+}

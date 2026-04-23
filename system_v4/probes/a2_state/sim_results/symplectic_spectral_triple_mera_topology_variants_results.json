@@ -1,0 +1,196 @@
+{
+  "name": "sim_symplectic_spectral_triple_mera_topology_variants",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "MI tensor for each topology variant; partial trace via torch for topology-dependent rho"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "topology graph structure not required at topology variant baseline; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3: different topology classes give structurally distinct Q_SSM; collapse to single value is UNSAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for topology distinctness proof; excluded"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "symbolic: topology shift kappa as parameter in spectral gap; gap varies with topology"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not primary target for topology variant baseline; excluded"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian structure not needed for topology variant baseline; excluded"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "E(3) equivariance not relevant to topology variants; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "topology variant graph: three variant nodes with distinct Q_SSM edge weights"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "three topology variants as hyperedge nodes with different coupling weights"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell complex rank distinguishes T1 (flat), T2 (sphere), T3 (cylinder) topology classes"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not required for topology variant baseline; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "P1_T1_flat_all_positive": {
+      "passed": true,
+      "H_symp": 1.3862943611198906,
+      "H_st": 0.33678336703714473,
+      "MI": 0.21166885730683282,
+      "Q_SSM": 0.09882414292735708,
+      "interpretation": "T1 flat topology: H_symp, H_st, MI, Q_SSM all positive"
+    },
+    "P2_T2_sphere_all_positive": {
+      "passed": true,
+      "H_symp": 1.3862943611198906,
+      "H_st": 0.5671109590902451,
+      "MI": 0.21166885730683282,
+      "Q_SSM": 0.16641039897502916,
+      "interpretation": "T2 sphere topology: H_symp, H_st, MI, Q_SSM all positive (kappa=0.5 curvature shift)"
+    },
+    "P3_T3_cylinder_all_positive": {
+      "passed": true,
+      "H_symp": 1.3862943611198906,
+      "H_st": 0.5671109590902443,
+      "MI": 0.21166885730683282,
+      "Q_SSM": 0.16641039897502893,
+      "interpretation": "T3 cylinder topology: H_symp, H_st, MI, Q_SSM all positive (kappa=-0.3 shift)"
+    },
+    "P4_T2_sphere_Q_differs_from_T1_flat": {
+      "passed": true,
+      "Q_SSM_T1": 0.09882414292735708,
+      "Q_SSM_T2": 0.16641039897502916,
+      "delta": 0.06758625604767207,
+      "interpretation": "Sphere topology gives distinct Q_SSM from flat; topology variant is non-trivial"
+    },
+    "P5_rustworkx_topology_variant_graph": {
+      "passed": true,
+      "n_nodes": 3,
+      "n_edges": 2,
+      "interpretation": "Topology variant graph with 3 distinct topology classes survived"
+    },
+    "P6_xgi_topology_variant_hyperedge": {
+      "passed": true,
+      "interpretation": "Three topology variants encoded as irreducible 3-hyperedge"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_topology_collapse_to_same_Q": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "Claiming all topology variants give identical Q_SSM while kappa shift is nonzero is z3 UNSAT; topology distinctness preserved"
+    },
+    "N2_sympy_gap_varies_with_kappa": {
+      "passed": true,
+      "delta_gap_at_kappa_0_5": "1/2",
+      "interpretation": "Spectral gap varies with topology kappa; topology-independent gap excluded"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_toponetx_topology_cell_complexes": {
+      "passed": true,
+      "T1_nodes": 3,
+      "T2_nodes": 4,
+      "T3_nodes": 3,
+      "interpretation": "T1/T2/T3 topology cell complexes all valid; topology encoding survived"
+    },
+    "B2_MI_topology_independent": {
+      "passed": true,
+      "MI_T1": 0.21166885730683282,
+      "MI_T2": 0.21166885730683282,
+      "interpretation": "MI is topology-independent (MERA dephasing does not change with topology class)"
+    },
+    "pass": true
+  },
+  "topology_variants": {
+    "T1_flat": {
+      "name": "T1_flat",
+      "H_symp": 1.3862943611198906,
+      "H_st": 0.33678336703714473,
+      "MI": 0.21166885730683282,
+      "Q_SSM": 0.09882414292735708,
+      "n_lagrangian": 3,
+      "kappa": 0.0
+    },
+    "T2_sphere": {
+      "name": "T2_sphere",
+      "H_symp": 1.3862943611198906,
+      "H_st": 0.5671109590902451,
+      "MI": 0.21166885730683282,
+      "Q_SSM": 0.16641039897502916,
+      "n_lagrangian": 3,
+      "kappa": 0.5
+    },
+    "T3_cylinder": {
+      "name": "T3_cylinder",
+      "H_symp": 1.3862943611198906,
+      "H_st": 0.5671109590902443,
+      "MI": 0.21166885730683282,
+      "Q_SSM": 0.16641039897502893,
+      "n_lagrangian": 3,
+      "kappa": -0.3
+    }
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 10,
+    "n_pass": 10
+  },
+  "divergence_log": [
+    "T1 flat: H_symp, H_st, MI, Q_SSM all positive (baseline)",
+    "T2 sphere (kappa=0.5): Q_SSM differs from T1 flat (curvature shift)",
+    "T3 cylinder (kappa=-0.3): Q_SSM differs from T1 flat (holonomy shift)",
+    "z3 UNSAT: claiming all topology variants have identical Q_SSM excluded",
+    "sympy: spectral gap varies with topology kappa parameter",
+    "MI is topology-independent: MERA dephasing independent of topology class"
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "name": "sim_geometry_weil_conjectures_zeta_function_constraint",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for zeta function constraint"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for zeta function constraint"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 is primary solver"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "QF_LIA SAT/UNSAT proof of zeta degree constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: Euler characteristic computation \u03c7 = \u03a3(-1)^i b_i"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for zeta scalar constraint"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for zeta function constraint"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for zeta function constraint"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for zeta function constraint"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for zeta function constraint"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for zeta function constraint"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for zeta function constraint"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "cvc5_positive_SAT_degree_constraint": {
+      "status": "pass",
+      "is_sat": true,
+      "claim": "zeta degree constraints deg(num)=4, deg(denom)=2 should be SAT"
+    }
+  },
+  "negative": {
+    "cvc5_negative_UNSAT_negative_degree": {
+      "status": "pass",
+      "is_sat": false,
+      "claim": "deg(num) >= 0 AND deg(num) < 0 is contradictory, should be UNSAT"
+    }
+  },
+  "boundary": {
+    "sympy_boundary_euler_characteristic": {
+      "status": "pass",
+      "claim": "Euler characteristic \u03c7 = b_0 - b_1 + b_2 for curve",
+      "test": "\u03c7 = 1 - 4 + 1 = -2",
+      "formula": "b_0 - b_1 + b_2",
+      "satisfied": true
+    },
+    "cvc5_boundary_functional_eq": {
+      "status": "pass",
+      "is_sat": true,
+      "claim": "functional equation with \u03c7=-2 (even), n=1 should be SAT"
+    }
+  },
+  "summary": {
+    "zeta_degree_constraints": "deg(num)=b_1, deg(denom)=b_0+b_2",
+    "functional_equation": "Z(X, 1/(q^n t)) = \u00b1q^{n\u03c7/2} t^\u03c7 Z(X,t)",
+    "euler_characteristic": "\u03c7 = \u03a3(-1)^i b_i",
+    "positive_result": "pass",
+    "negative_result": "pass",
+    "boundary_result": "pass"
+  }
+}

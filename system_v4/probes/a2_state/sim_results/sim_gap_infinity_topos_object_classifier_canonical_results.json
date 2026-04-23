@@ -1,0 +1,156 @@
+{
+  "name": "sim_gap_infinity_topos_object_classifier_canonical",
+  "description": "\u221e-topos object classifier \u03a9 with homotopy type constraint: \u03c0_0(\u03a9)={true,false} for Boolean \u221e-topos",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for pure constraint checking"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for topological constraint"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "tried but cvc5 preferred for homotopy constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "QF_LIA solver for connected components constraint in Boolean \u221e-topos"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "homotopy group check: \u03c0_0 contractibility and fundamental group"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to \u221e-topos"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to \u221e-topos"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to \u221e-topos"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "graph representation of \u03a9 with connected components"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hypergraph structure of higher homotopy cells"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell complex of \u221e-topos with simplicial/cubical structure"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent homology of \u03a9 over parameter space"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": "supportive",
+    "gudhi": "supportive"
+  },
+  "positive": [
+    {
+      "name": "positive_1_boolean_infinity_topos",
+      "condition": "components=2 for \u03c0_0(\u03a9)={true,false}, components>=1",
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "positive_2_contractible_one_component",
+      "condition": "components=1 for contractible \u03a9 (trivial \u221e-topos)",
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "positive_3_sympy_homotopy_groups",
+      "condition": "\u03c0_0(\u03a9)=Z/2Z (size 2), \u03c0_n(\u03a9)=0 for n>0",
+      "pi_0_size": 2,
+      "pi_1_trivial": true,
+      "expected_pi_0": 2,
+      "passed": true
+    }
+  ],
+  "negative": [
+    {
+      "name": "negative_1_no_components_contradiction",
+      "condition": "components=0 < 1 AND components>=1",
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "negative_2_negative_components",
+      "condition": "components=-1 AND components>=0",
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "negative_3_sympy_invalid_component_count",
+      "condition": "components=0 not in {1,2} for valid \u221e-topos",
+      "components": 0,
+      "valid_counts": [
+        1,
+        2
+      ],
+      "expected": false,
+      "passed": true
+    }
+  ],
+  "boundary": [
+    {
+      "name": "boundary_1_contractible_trivial_topos",
+      "condition": "components=1 (contractible \u03a9, trivial \u221e-topos)",
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "boundary_2_disconnected_nonboolean",
+      "condition": "components=3 > 2 (non-Boolean \u221e-topos)",
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "boundary_3_cellular_infinity_topos",
+      "condition": "components=10 for cellular \u221e-topos (product structure)",
+      "components": 10,
+      "realizable": true,
+      "expected": true,
+      "passed": true
+    }
+  ],
+  "classification": "canonical"
+}

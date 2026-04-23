@@ -1,0 +1,121 @@
+{
+  "name": "sim_variational_quantum_bridge_pytorch",
+  "purpose": "Bridge classical SGD optimization (PyTorch) with quantum constraint structure (z3); validate entanglement-maximization convergence.",
+  "timestamp": "2026-04-18T05:55:10.328239+00:00",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Autograd differentiation for gate parameters; SGD optimizer for variational circuit training toward entanglement maximization."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification that parameter update directions maintain unitary structure; UNSAT rules out non-admissible gradient steps."
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Pauli matrix definitions; statevector evolution for ground-truth comparison; entanglement measure baseline."
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "Matrix exponential for parameterized gates; eigensolver for concurrence calculation."
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "Symbolic differentiation of gate parameters; not required when PyTorch autograd suffices."
+    },
+    "TopoNetX": {
+      "tried": true,
+      "used": false,
+      "reason": "Circuit topology as hypergraph; not required for single 2-qubit circuit."
+    },
+    "PyGeometric": {
+      "tried": true,
+      "used": false,
+      "reason": "Message passing for parameter space structure; not required for dense optimization."
+    },
+    "Clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra for gate representations; not required; matrix representation sufficient."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "Alternative SMT solver; z3 sufficient for constraint validation."
+    },
+    "qiskit": {
+      "tried": true,
+      "used": false,
+      "reason": "Alternative circuit backend; not required; explicit matrix computation sufficient."
+    },
+    "numba": {
+      "tried": true,
+      "used": false,
+      "reason": "JIT for tight loops; PyTorch CUDA backend sufficient for 2-qubit system."
+    },
+    "jax": {
+      "tried": true,
+      "used": false,
+      "reason": "Alternative JAX framework; PyTorch sufficient for this problem."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "z3": "load_bearing",
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "sympy": null,
+    "TopoNetX": null,
+    "PyGeometric": null,
+    "Clifford": null,
+    "cvc5": null,
+    "qiskit": null,
+    "numba": null,
+    "jax": null
+  },
+  "z3_validation": {
+    "z3_gradient_unitarity": true,
+    "interpretation": "Parameter gradients admissible for unitary evolution"
+  },
+  "positive": {
+    "sgd_entanglement_increase": {
+      "initial_concurrence": 0.9999999921092537,
+      "final_concurrence": 0.9999999939995181,
+      "improvement": 1.890264389459162e-09,
+      "optimization_converged": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "bell_robustness_to_local_gates": {
+      "theta": 3.700000047683716,
+      "phi": 2.0999999046325684,
+      "concurrence": 0.9999999903006442,
+      "bell_state_preserved": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "identity_maximally_entangled": {
+      "theta": 0.0,
+      "phi": 0.0,
+      "concurrence": 0.9999999999999994,
+      "is_bell_state": true,
+      "pass": true
+    }
+  },
+  "summary": {
+    "z3_gradient_unitarity": true,
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "overall_pass": true
+}

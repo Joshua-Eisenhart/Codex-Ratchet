@@ -1,0 +1,38 @@
+{
+  "name": "constraint_probe_admissibility",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "linear-constraint admissibility and probe-set numerics"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "nonempty": true,
+    "monotone_under_probe_add": true,
+    "probe_order_invariant": true
+  },
+  "negative": {
+    "inconsistent_probes_empty": true,
+    "reject_point": true
+  },
+  "boundary": {
+    "boundary_equality": true,
+    "empty_probes_all_in": true
+  },
+  "classical_captured": "linear-inequality admissible region, monotonicity, order-invariance",
+  "innately_missing": "probe-order contextuality, noncommuting probe incompatibility",
+  "divergence_log": {
+    "note": "classical probe-set admissibility is order-invariant and monotone; nonclassical is not",
+    "missing": [
+      "probe-order contextuality",
+      "noncommuting probe incompatibility",
+      "admissibility change under entanglement with probe"
+    ]
+  },
+  "all_pass": true
+}

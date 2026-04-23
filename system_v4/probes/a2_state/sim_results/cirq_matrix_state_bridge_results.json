@@ -1,0 +1,108 @@
+{
+  "name": "sim_cirq_matrix_state_bridge",
+  "purpose": "Compare matrix-state evolution against Cirq simulator output on the same 2-qubit bridge.",
+  "timestamp": "2026-04-18T05:30:39.212567+00:00",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "statevector, density-matrix, and overlap arithmetic for the matrix reference"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix exponential and square-root routines for the reference unitary and fidelity checks"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "circuit construction and simulator readout for the bridge comparison"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "scipy": "load_bearing",
+    "cirq": "load_bearing"
+  },
+  "positive": {
+    "bell_phase_bridge": {
+      "theta": 1.0471975511965976,
+      "phi": 0.6283185307179586,
+      "swapped": false,
+      "statevector_overlap": 0.9999999888438547,
+      "fidelity": 1.0000000113841239,
+      "trace_distance": 2.1624394408893246e-08,
+      "concurrence": 0.9999999914513552,
+      "matrix_state": [
+        "(0.5824007953680204-0.33624925598197863j)",
+        "(-0.10925400611220523-0.18923348951678015j)",
+        "(0.1092540061122052-0.18923348951678012j)",
+        "(0.5824007953680204+0.33624925598197863j)"
+      ],
+      "cirq_state": [
+        "(0.5824007987976074-0.3362492620944977j)",
+        "(-0.10925401002168655-0.18923348188400269j)",
+        "(0.10925399512052536-0.18923348188400269j)",
+        "(0.5824007987976074+0.3362492322921753j)"
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "control_target_swap_contrast": {
+      "theta": 1.0471975511965976,
+      "phi": 0.6283185307179586,
+      "swapped": true,
+      "statevector_overlap": 0.2500000040580266,
+      "fidelity": 0.2500000078214995,
+      "trace_distance": 0.8660253950005325,
+      "concurrence": 0.9999999914513552,
+      "matrix_state": [
+        "(0.5824007953680204-0.33624925598197863j)",
+        "(-0.10925400611220523-0.18923348951678015j)",
+        "(0.1092540061122052-0.18923348951678012j)",
+        "(0.5824007953680204+0.33624925598197863j)"
+      ],
+      "cirq_state": [
+        "(0.5824007987976074-0.3362492620944977j)",
+        "(-0.10925401002168655-0.18923348188400269j)",
+        "(0.5824007987976074+0.3362492322921753j)",
+        "(0.10925399512052536-0.18923348188400269j)"
+      ],
+      "pass": true
+    }
+  },
+  "boundary": {
+    "identity_boundary_bell_state": {
+      "theta": 0.0,
+      "phi": 0.0,
+      "swapped": false,
+      "statevector_overlap": 0.9999999657714581,
+      "fidelity": 0.9999999783017884,
+      "trace_distance": 1.7114270778328944e-08,
+      "concurrence": 0.9999999999999994,
+      "matrix_state": [
+        "(0.7071067811865475+0j)",
+        "0j",
+        "0j",
+        "(0.7071067811865475+0j)"
+      ],
+      "cirq_state": [
+        "(0.7071067690849304+0j)",
+        "0j",
+        "0j",
+        "(0.7071067690849304+0j)"
+      ],
+      "pass": true,
+      "boundary_nonclassical": true
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "overall_pass": true
+}

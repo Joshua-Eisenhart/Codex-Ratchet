@@ -1,0 +1,95 @@
+{
+  "name": "sim_geometry_stringy_e_function_constraint_canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG not needed; motivic geometry handled algebraically"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; algebraic geometry via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats not needed; motivic integration handled symbolically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "stringy_hodge_nonneg_unsat": true,
+    "stringy_vs_ordinary_unsat": true,
+    "orbifold_formula_structure_correct": true
+  },
+  "negative": {
+    "negative_hodge_number_unsat": true,
+    "orbifold_formula_violation_unsat": false,
+    "stringy_equals_ordinary_unsat": true
+  },
+  "boundary": {
+    "stringy_euler_number_correct": true,
+    "calabi_yau_3fold_euler_zero": true,
+    "orbifold_averaging_correct": true
+  },
+  "classification": "canonical"
+}

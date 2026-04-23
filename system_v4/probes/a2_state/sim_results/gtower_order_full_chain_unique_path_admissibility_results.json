@@ -1,0 +1,97 @@
+{
+  "name": "sim_gtower_order_full_chain_unique_path_admissibility",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: canonical full-chain uniqueness",
+  "ordering_claim": "only forward chain admits symplectic-orthogonal witness; metric<->orient swap is UNSAT; phase<->complex swap is sanity-commuting in 2D",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SAT/UNSAT over full chain orderings; unique admitting path identified by UNSAT on swaps of load-bearing fences"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "canonical_chain": "sat",
+    "pass": true
+  },
+  "negative": {
+    "reverse_metric_orient_unsat": "unsat",
+    "witness_excluded": true,
+    "pass": true
+  },
+  "boundary": {
+    "commuting_adjacent_swap_phase_complex": "sat",
+    "pass": true
+  },
+  "rigid_or_flexible": "mostly_rigid_with_isolated_commuting_pair",
+  "overall_pass": true
+}

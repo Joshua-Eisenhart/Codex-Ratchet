@@ -1,0 +1,110 @@
+{
+  "name": "PAdicHodgeCST \u2014 H^i_et \u2297 B_cris \u2245 H^i_cris \u2297 B_cris (Hodge decomposition)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "tensor ops not needed for constraint proof"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph structure handled by cvc5 constraint logic"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 more suitable for multi-sort arithmetic"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: computes Hodge numbers and validates decomposition formulas"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Hodge theory is not clifford-algebraic"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not installed"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "simplicial complex implicit"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_sphere_s1_hodge_sum": null,
+    "test_torus_t2_hodge_sum": null,
+    "test_rank_comparison_et_cris": null
+  },
+  "negative": {
+    "test_hodge_sum_mismatch_2_vs_1": null,
+    "test_hodge_sum_mismatch_1_vs_3": null,
+    "test_rank_mismatch_et_cris": null
+  },
+  "boundary": {
+    "test_hodge_sum_zero": null,
+    "test_high_dim_p3": null,
+    "test_sympy_hodge_validation": {
+      "passed": false,
+      "reason": "sympy computes Hodge numbers for T^2",
+      "hodge_numbers": {
+        "(0, 0)": 1,
+        "(0, 1)": 1,
+        "(0, 2)": 1,
+        "(1, 0)": 2,
+        "(1, 1)": 2,
+        "(1, 2)": 2,
+        "(2, 0)": 1,
+        "(2, 1)": 1,
+        "(2, 2)": 1
+      },
+      "hodge_sum_for_degree_1": 3
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,121 @@
+{
+  "name": "classical_axis0_entropy_gradient",
+  "classification": "classical_baseline",
+  "scope_note": "AXIS_AND_ENTROPY_REFERENCE.md Axis 0; CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md Shannon",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "fd gradient + entropy"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "uniform_grad": {
+      "pass": true,
+      "g": [
+        0.38629436105441783,
+        0.38629436105441783,
+        0.38629436105441783,
+        0.38629436105441783
+      ],
+      "expected": 0.3862943611198906
+    }
+  },
+  "negative": {
+    "nonuniform_not_constant": {
+      "pass": true,
+      "g": [
+        1.3025850930104,
+        0.6094379124688132,
+        0.2039728043135014,
+        -0.08370926818379587
+      ]
+    }
+  },
+  "boundary": {
+    "near_degenerate_finite": {
+      "pass": true,
+      "g": [
+        -0.9899496641735395,
+        4.298317373217786,
+        4.298317373217786
+      ]
+    }
+  },
+  "pass": true
+}

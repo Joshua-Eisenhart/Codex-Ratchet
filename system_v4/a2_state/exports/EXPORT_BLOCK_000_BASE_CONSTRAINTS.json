@@ -1,0 +1,40 @@
+{
+  "item_class": "A1_STRATEGY_v1",
+  "compile_target": "A0_COMPILER",
+  "strategy_canonical": [
+    {
+      "item_class": "SPEC_HYP",
+      "id": "F01_FINITUDE",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": {
+        "OBJECTS": "finite_dimensional_hilbert_space density_matrix_rho",
+        "OPERATIONS": "trace partial_trace",
+        "DOMAIN": "finite_dimensional_density_matrices",
+        "CODOMAIN": "finite_scalars",
+        "INVARIANTS": "bounded_capacity trace_equals_one",
+        "FORMULA": "dim(H) = d < infinity AND Tr(rho) = 1"
+      },
+      "asserts": {
+        "EXISTS": "MATH_TOKEN FINITUDE"
+      }
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "N01_NONCOMMUTATION",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": {
+        "OBJECTS": "operator_A operator_B",
+        "OPERATIONS": "ordered_composition",
+        "DOMAIN": "admissible_cptp_maps",
+        "CODOMAIN": "admissible_cptp_maps",
+        "INVARIANTS": "order_sensitivity_preserved",
+        "FORMULA": "A * B != B * A under condition [A,B] != 0"
+      },
+      "asserts": {
+        "EXISTS": "MATH_TOKEN NONCOMMUTATION"
+      }
+    }
+  ]
+}

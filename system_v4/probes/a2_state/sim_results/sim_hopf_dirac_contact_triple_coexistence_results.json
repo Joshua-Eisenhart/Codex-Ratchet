@@ -1,0 +1,149 @@
+{
+  "name": "sim_hopf_dirac_contact_triple_coexistence",
+  "classification": "classical_baseline",
+  "classification_note": "Triple coexistence step of Hopf\u00d7Dirac\u00d7Contact (23rd program). H_hopf, H_dirac, and H_contact are normalized via h/(1+h) and compared through joint-vs-pairwise products without changing program scope.",
+  "divergence_log": "Triple coexistence step of Hopf\u00d7Dirac\u00d7Contact (23rd program). H_hopf, H_dirac, and H_contact are normalized via h/(1+h) and compared through joint-vs-pairwise products without changing program scope.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute normalized entropies h/(1+h) and joint/pairwise products as float64 tensors (load-bearing coexistence check)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph learning not invoked in triple coexistence scalar tests; deferred to emergence step"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: joint normalized product > each pairwise product simultaneously impossible for h/(1+h) in (0,1) (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 is sufficient for sub-multiplicativity UNSAT; cvc5 not required at this step"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic sub-multiplicativity: a*b*c \u2264 a*b for a,b,c \u2208 (0,1) \u2014 derives from c<1 (load-bearing algebraic gate)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Hopf holonomy is a scalar entropy in this step; Cl(3,0) rotor used in topology-variants"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian coexistence geometry not invoked in normalized scalar product tests"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) equivariant networks not needed for scalar triple coexistence check"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal required in normalized entropy triple product computation"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure required in three-shell scalar coexistence test"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "CellComplex exercised in topology-variants step; not needed in triple coexistence"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not needed for scalar normalized product sub-multiplicativity test"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
+  },
+  "H_values": {
+    "H_hopf": 0.34657359027997264,
+    "H_dirac": 0.33678336703714473,
+    "H_contact": 2.833213344056216
+  },
+  "normalized": {
+    "n_hopf": 0.25737441516873566,
+    "n_dirac": 0.25193563545273123,
+    "n_contact": 0.7391222689051209
+  },
+  "positive": {
+    "P1_normalized_in_unit_interval": {
+      "n_hopf": 0.25737441516873566,
+      "n_dirac": 0.25193563545273123,
+      "n_contact": 0.7391222689051209,
+      "passed": true
+    },
+    "P2_joint_le_pair_HD": {
+      "joint": 0.04792600860520732,
+      "pair_HD": 0.06484178683481048,
+      "passed": true
+    },
+    "P3_joint_le_pair_HCo": {
+      "joint": 0.04792600860520732,
+      "pair_HCo": 0.19023116169764445,
+      "passed": true
+    },
+    "P4_joint_le_pair_DCo": {
+      "joint": 0.04792600860520732,
+      "pair_DCo": 0.18621123849387614,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_joint_gt_pairwise": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_submult_derivation": {
+      "diff_expr": "-a*b*(c - 1)",
+      "note": "a*b - a*b*c = a*b*(1-c) > 0 for c in (0,1)",
+      "passed": true
+    },
+    "N3_raw_joint_can_exceed_pairwise": {
+      "raw_joint": 0.3306932866969143,
+      "raw_pair_HD": 0.11672022066064104,
+      "exceeds": true,
+      "note": "normalization necessary; raw entropies above 1 break sub-mult",
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_normalize_near_zero": {
+      "input": 1e-10,
+      "normalized": 9.999999999e-11,
+      "in_unit_interval": true,
+      "passed": true
+    },
+    "B2_joint_positive": {
+      "joint": 0.04792600860520732,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

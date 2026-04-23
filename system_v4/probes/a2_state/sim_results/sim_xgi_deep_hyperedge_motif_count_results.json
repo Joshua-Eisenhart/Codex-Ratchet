@@ -1,0 +1,111 @@
+{
+  "name": "sim_xgi_deep_hyperedge_motif_count",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "purely combinatorial, no tensor compute"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "pairwise hyperedge count, no tensor ops"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "enumeration approach, no first-order logic"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "enumeration only, no Clifford algebra"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric motif count, no manifold needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra in this motif probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold geometry in this sim scope"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance constraint in this probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure required, not graph ops"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "true triadic edges enumerable; projection cannot distinguish"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not a cell complex sim, hypergraph only"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology in this motif sim"
+    },
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "verify projection isomorphism while motif count differs"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "random seeding only, no algebra needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null,
+    "networkx": "supportive",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "motif_count_positive": {
+      "pass": true,
+      "count": 109
+    }
+  },
+  "negative": {
+    "dyadic_version_zero_motif": {
+      "pass": true,
+      "motif_count_fake": 0,
+      "projection_isomorphic": true
+    }
+  },
+  "boundary": {
+    "empty_zero_motifs": {
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

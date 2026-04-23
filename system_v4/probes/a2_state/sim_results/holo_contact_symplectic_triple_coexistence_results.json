@@ -1,0 +1,160 @@
+{
+  "name": "sim_holo_contact_symplectic_triple_coexistence",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "Construct rho_HCS (64\u00d764) from three 4\u00d74 subsystem density matrices via torch.kron; validate trace=1 and PSD via pytorch float64 \u2014 load-bearing triple-coexistence check"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "Graph learning not required for triple coexistence baseline; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 SAT: all three shells active simultaneously is satisfiable; z3 UNSAT: any shell degenerate while Q_HCS>0 is impossible"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for triple coexistence admissibility check; excluded"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "Symbolic Q_HCS product: confirm all-positive factors give positive Q; monotone decrease of MI across layers proven symbolically"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not primary target for triple coexistence; excluded"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian manifold not required for triple coexistence baseline; excluded"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) equivariance not relevant to HCS triple coexistence; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "Three-shell compatibility graph: 3 nodes + 3 pairwise edges; confirms full connectivity"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "Order-3 hyperedge {H_holo, H_contact, H_symp}: verifies irreducible three-way coexistence"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "CellComplex with 2-cell for each shell boundary; chain complex confirms topological coexistence"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "Persistent homology not required for triple coexistence baseline; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": null,
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "P1_rho_HCS_64x64_trace1_PSD": {
+      "passed": true,
+      "shape": [
+        64,
+        64
+      ],
+      "min_eigenvalue": 2.6581425031985774e-05,
+      "interpretation": "rho_HCS 64\u00d764 trace=1 PSD; valid tripartite quantum state for triple coexistence"
+    },
+    "P2_Q_HCS_positive_20_20_seeds": {
+      "passed": true,
+      "n_pass": 20,
+      "Q_min": 0.5514496708729323,
+      "Q_max": 1.3527105803277233,
+      "interpretation": "Q_HCS > 0 confirmed 20/20 seeds; all three shells coexist with nonzero emergence observable"
+    },
+    "P3_MI_monotone_20_20_seeds": {
+      "passed": true,
+      "n_pass": 20,
+      "interpretation": "MI[input] > MI[final] confirmed 20/20 seeds; dephasing-MERA is entropy-increasing"
+    },
+    "P4_rustworkx_triple_shell_fully_connected": {
+      "passed": true,
+      "n_nodes": 3,
+      "n_edges": 3,
+      "interpretation": "Three-shell compatibility graph is fully connected; all pairs are pairwise compatible"
+    },
+    "P5_xgi_order4_coexistence_hyperedge": {
+      "passed": true,
+      "n_nodes": 4,
+      "n_hyperedges": 1,
+      "interpretation": "Order-4 hyperedge {H_holo,H_contact,H_symp,MI} encodes full triple coexistence"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_contact_degenerate": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "H_contact=0 AND Q_HCS>0 is z3 UNSAT; contact shell degeneracy excludes coexistence"
+    },
+    "N2_z3_unsat_holographic_degenerate": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "H_holo=0 AND Q_HCS>0 is z3 UNSAT; holographic shell degeneracy excludes coexistence"
+    },
+    "N3_sympy_all_factors_zero_collapse": {
+      "passed": true,
+      "interpretation": "Q_HCS=0 when any of {MI,H_holo,H_contact,H_symp}=0; product structure confirmed"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_rho_HCS_trace_stable_5_seeds": {
+      "passed": true,
+      "traces": [
+        1.0,
+        0.9999999999999998,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "interpretation": "rho_HCS trace=1 confirmed stable across 5 seeds; tensor product normalisation is robust"
+    },
+    "B2_extreme_dephasing_Q_near_zero": {
+      "passed": true,
+      "MI_near0": 1.373515783331669e-07,
+      "Q_HCS_near0": 8.682456520353385e-07,
+      "interpretation": "Extreme dephasing (eps\u22481) drives MI\u21920 and Q_HCS\u21920; boundary of coexistence region"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 10,
+    "n_pass": 10
+  },
+  "Q_form": "Q_HCS = MI \u00d7 H_holo \u00d7 H_contact \u00d7 H_symp"
+}

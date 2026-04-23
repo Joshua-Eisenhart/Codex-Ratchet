@@ -1,0 +1,53 @@
+{
+  "name": "assoc_bundle_associated_vector_bundle_construction",
+  "tool_manifest": {
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic proof rho(g) rho(g^{-1}) = 1 and cocycle condition"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "complex arithmetic for equivalence classes"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "sympy": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "equivariance_k=1_theta=0.4": true,
+    "equivariance_k=1_theta=1.9": true,
+    "equivariance_k=1_theta=-0.7": true,
+    "cocycle_round_trip": true,
+    "sympy_rho_inverse": true
+  },
+  "negative": {
+    "wrong_weight_breaks_equivariance": true,
+    "constant_section_fails_k1": true
+  },
+  "boundary": {
+    "k0_trivial_equivariance": true,
+    "u1_2pi_periodic": true
+  },
+  "classification": "canonical"
+}

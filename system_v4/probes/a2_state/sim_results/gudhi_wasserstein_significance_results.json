@@ -1,0 +1,188 @@
+{
+  "name": "gudhi_wasserstein_significance",
+  "description": "Statistical significance of the L0-L7 cascade persistence diagram vs N=100 random null cascades (random kill-layer assignments). Uses Wasserstein (hera) and bottleneck distances.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for distance statistics"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph neural nets needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "no SMT constraints in statistical test"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "no SMT constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "no symbolic algebra needed"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford algebra ops"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian geometry"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no equivariant NN"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph algorithms needed"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph needed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "GUDHI handles all persistence"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "primary: Rips persistence, hera Wasserstein, bottleneck distance"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "distance matrices, statistics, random shuffling"
+    }
+  },
+  "positive": {
+    "real_diagram_shape": [
+      3,
+      2
+    ],
+    "real_distinct_H0_death_values": 1,
+    "real_diagram_pairs": [
+      [
+        0.0,
+        11.0
+      ],
+      [
+        0.0,
+        2.0
+      ],
+      [
+        0.0,
+        2.0
+      ]
+    ],
+    "real_self_wasserstein": 0.0,
+    "test1_pass": true,
+    "test1_detail": "Wasserstein distance of any diagram to itself must be 0.",
+    "n_null_identical_to_real": 2,
+    "p_value_wasserstein": 0.02,
+    "p_value_significant": true,
+    "test2_pass": true,
+    "test2_detail": "p-value = 0.0200. 2/100 null cascades produce persistence diagrams identical (W-dist < eps) to the real cascade. p < 0.05 means the real kill-layer structure is rare among random assignments.",
+    "null_wasserstein_mean": 2.815,
+    "null_wasserstein_std": 1.3613504324750478,
+    "null_wasserstein_min": 0.0,
+    "null_wasserstein_max": 5.5,
+    "z_score": 2.0677996883448273,
+    "z_score_significant": true,
+    "test3_pass": true,
+    "test3_detail": "Null W-dist: mean=2.8150, std=1.3614, min=0.0000, max=5.5000. Z-score=2.0678.",
+    "real_H0_pair_count": 3,
+    "null_H0_pair_count_distribution": {
+      "3": 100
+    },
+    "fraction_nulls_same_H0_count": 1.0,
+    "test4_pass": true,
+    "test4_detail": "Real cascade has 3 H0 pairs. 100.0% of nulls match.",
+    "null_bottleneck_mean": 1.955,
+    "null_bottleneck_std": 0.8126961301741261,
+    "null_bottleneck_min": 1.9563094009235675e-308,
+    "null_bottleneck_max": 3.5,
+    "test5_pass": true,
+    "test5_detail": "Bottleneck: mean=1.9550, std=0.8127. Positive mean confirms most nulls differ topologically from real.",
+    "summary": {
+      "real_kill_layers": [
+        4,
+        6
+      ],
+      "null_model": "random 2-layer kill assignment from L0-L7",
+      "n_null": 100,
+      "p_value": 0.02,
+      "wasserstein_z_score": 2.0677996883448273,
+      "interpretation": "The real cascade's persistence diagram is compared to diagrams from random kill-layer assignments. A low p-value means the specific L4+L6 kill structure produces rare topological features."
+    }
+  },
+  "negative": {
+    "null_self_wasserstein": 0.0,
+    "neg1_pass": true,
+    "neg1_detail": "Random cascade (kill at L0, L5): self-distance = 0.00e+00. Any diagram's Wasserstein distance to itself must be 0.",
+    "null1_kill_layers": [
+      0,
+      5
+    ],
+    "null2_kill_layers": [
+      7,
+      0
+    ],
+    "cross_wasserstein": 4.0,
+    "cross_bottleneck": 2.0,
+    "neg2_pass": true,
+    "neg2_detail": "Cascade(L0,L5) vs Cascade(L7,L0): W=4.0000, bottleneck=2.0000. Distance is non-negative (metric axiom guaranteed).",
+    "different_layers_produce_different_diagrams": true,
+    "neg2_structure_detail": "Different kill-layer pairs should usually produce different persistence diagrams."
+  },
+  "boundary": {
+    "all_at_l4_H0_pairs": 2,
+    "all_at_l4_diagram": [
+      [
+        0.0,
+        11.0
+      ],
+      [
+        0.0,
+        4.0
+      ]
+    ],
+    "all_at_l4_wasserstein_from_real": 3.0,
+    "all_at_l4_bottleneck_from_real": 2.0,
+    "boundary1_pass": true,
+    "boundary1_detail": "All 23 killed at L4: 2 H0 pairs (expected 2). W-dist from real = 3.0000, bottleneck = 2.0000.",
+    "trivial_H0_pairs": 1,
+    "trivial_diagram": [
+      [
+        0.0,
+        11.0
+      ]
+    ],
+    "trivial_wasserstein_from_real": 2.0,
+    "trivial_bottleneck_from_real": 1.0,
+    "boundary2_pass": true,
+    "boundary2_detail": "No-kill cascade: 1 H0 pair(s) (expected 1). W-dist from real = 2.0000, bottleneck = 1.0000.",
+    "adjacent_kill_layers": [
+      4,
+      5
+    ],
+    "adjacent_wasserstein_from_real": 2.0,
+    "adjacent_bottleneck_from_real": 1.0,
+    "boundary3_pass": true,
+    "boundary3_detail": "Adjacent kill layers (L4,L5) vs real (L4,L6): W=2.0000, bottleneck=1.0000. Shows sensitivity to kill-layer spacing."
+  },
+  "classification": "canonical"
+}

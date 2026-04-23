@@ -1,0 +1,132 @@
+{
+  "name": "sim_lagrangian_intersection_constraint_canonical",
+  "description": "Floer chain complex constraint: \u2202\u00b2 = 0 (boundary of boundary is zero)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for algebraic constraint"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for algebraic constraint"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 preferred for linear arithmetic"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: proves \u2202\u00b2=0 constraint; UNSAT when trying to violate boundary nilpotency"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: verifies graded structure and explicit \u2202\u00b2 computation for T^2"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Floer cohomology"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Floer theory"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symplectic geometry"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Floer differential"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Floer theory"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Floer constraint"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Floer cohomology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_error": {
+      "error": "'cvc5.cvc5_python_base.Solver' object has no attribute 'mkEqual'"
+    },
+    "test_2_error": {
+      "error": "'cvc5.cvc5_python_base.Solver' object has no attribute 'mkEqual'"
+    },
+    "test_3_sympy_matrix_boundary": {
+      "description": "Sympy computation of \u2202\u00b2 on Floer chain",
+      "partial_squared_coeff": "a*b",
+      "for_unsat_need": "a*b = 0",
+      "note": "Grading automatically enforces \u2202\u00b2=0 for appropriate dimension",
+      "pass": true
+    }
+  },
+  "negative": {
+    "test_1_error": {
+      "error": "'cvc5.cvc5_python_base.Solver' object has no attribute 'mkNot'"
+    },
+    "test_2_error": {
+      "error": "'cvc5.cvc5_python_base.Solver' object has no attribute 'mkMul'"
+    },
+    "test_3_sympy_nonzero_boundary": {
+      "description": "Non-nilpotent matrix violates Floer condition",
+      "partial": "Matrix([[0, 1], [1, 0]])",
+      "partial_squared": "Matrix([[1, 0], [0, 1]])",
+      "is_zero": false,
+      "expected": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "test_1_error": {
+      "error": "'cvc5.cvc5_python_base.Solver' object has no attribute 'mkEqual'"
+    },
+    "test_2_constant_grading": {
+      "description": "All generators at same degree (no differential)",
+      "cvc5_satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_3_sympy_nilpotent_matrix": {
+      "description": "Large strictly-upper-triangular Floer differential",
+      "matrix_dim": 4,
+      "partial_squared_zero": false,
+      "expected": true,
+      "pass": false
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

@@ -1,0 +1,78 @@
+{
+  "layer": 11,
+  "name": "torus_transport",
+  "positive": {
+    "P1_different_eta_different_entropy": {
+      "pass": true,
+      "entropy_inner": 0.7319752617107607,
+      "entropy_clifford": 0.6334170113514047,
+      "entropy_outer": 0.7496266299164213,
+      "note": "Different torus latitudes produce different entropy profiles"
+    },
+    "P2_clifford_concurrence_maximum": {
+      "pass": true,
+      "concurrence_clifford": 0.4172289817728478,
+      "concurrence_inner": 0.14944466131496456,
+      "concurrence_outer": 0.14480512257221692,
+      "entropy_clifford": 0.6334170113514047,
+      "note": "Clifford torus has maximum concurrence (balanced radii maximise entangling)"
+    }
+  },
+  "negative": {
+    "N1_degenerate_kills_structure": {
+      "pass": false,
+      "entropy_degenerate_0": 0.7047913930492966,
+      "entropy_degenerate_pi2": 0.7048382606243777,
+      "entropy_clifford": 0.6334170113514047,
+      "note": "Degenerate torus (eta near 0 or pi/2) has less structure than Clifford"
+    }
+  },
+  "entropy_profiles": {
+    "inner": {
+      "eta": 0.39269908169872414,
+      "entropy": 0.7319752617107607,
+      "concurrence": 0.14944466131496456,
+      "R_major": 0.9238795325112867,
+      "R_minor": 0.3826834323650898
+    },
+    "clifford": {
+      "eta": 0.7853981633974483,
+      "entropy": 0.6334170113514047,
+      "concurrence": 0.4172289817728478,
+      "R_major": 0.7071067811865476,
+      "R_minor": 0.7071067811865475
+    },
+    "outer": {
+      "eta": 1.1780972450961724,
+      "entropy": 0.7496266299164213,
+      "concurrence": 0.14480512257221692,
+      "R_major": 0.38268343236508984,
+      "R_minor": 0.9238795325112867
+    },
+    "degenerate_0": {
+      "eta": 0.001,
+      "entropy": 0.7047913930492966,
+      "concurrence": 0.0,
+      "R_major": 0.9999995000000417,
+      "R_minor": 0.0009999998333333417
+    },
+    "degenerate_pi2": {
+      "eta": 1.5697963267948967,
+      "entropy": 0.7048382606243777,
+      "concurrence": 0.0,
+      "R_major": 0.0009999998333332927,
+      "R_minor": 0.9999995000000417
+    }
+  },
+  "tools_used": [
+    "GeometricEngine",
+    "torus_radii",
+    "TORUS_INNER/CLIFFORD/OUTER"
+  ],
+  "timestamp": "2026-04-05",
+  "summary": {
+    "passed": 2,
+    "total": 3,
+    "all_pass": false
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "name": "sim_classical_szilard_maxwell_demon_coupled",
+  "scope_note": "classical_baseline for Szilard/Maxwell-demon coupling (ENGINE_MATH_REFERENCE.md)",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: classical baseline; numpy sufficient for closed-form check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no graph message passing in this baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no SAT/UNSAT claim; numeric comparison only"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no SMT obligation"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: numeric-only classical check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no Cl(p,q) rotor used in classical baseline"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no manifold geometry in classical baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no equivariant network in classical baseline"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no graph algorithms invoked"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no hypergraph in this baseline"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no cell complex in classical baseline"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no persistent homology in classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "numpy_integration": "load_bearing",
+  "positive": {
+    "T100": {
+      "W": 9.56992961692908e-22,
+      "expected": 9.56992961692908e-22,
+      "pass": "True"
+    },
+    "T300": {
+      "W": 2.870978885078724e-21,
+      "expected": 2.870978885078724e-21,
+      "pass": "True"
+    },
+    "T1000": {
+      "W": 9.56992961692908e-21,
+      "expected": 9.56992961692908e-21,
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "no_info_no_work": {
+      "W": 0.0,
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "zero_T_zero_W": {
+      "W": 0.0,
+      "pass": "True"
+    }
+  },
+  "overall_pass": true
+}

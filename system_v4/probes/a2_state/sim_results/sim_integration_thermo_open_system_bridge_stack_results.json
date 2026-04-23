@@ -1,0 +1,223 @@
+{
+  "boundary": {
+    "all_pass": true,
+    "beta": 1e-06,
+    "checks": {
+      "cirq_matches_classical": true,
+      "free_energy_finite": true,
+      "pennylane_matches_classical": true,
+      "qutip_matches_classical": true,
+      "thermal_state_valid": true
+    },
+    "cirq_excited": [
+      0.5,
+      0.5,
+      0.4999995231628418
+    ],
+    "classical_excited": [
+      0.5,
+      0.4999999995,
+      0.49999950000025
+    ],
+    "errors": {
+      "cirq_vs_classical": 2.3162591789027687e-08,
+      "pennylane_vs_classical": 5.051514762044462e-15,
+      "qutip_vs_classical": 2.7755575615628914e-16
+    },
+    "free_energy": -693147.1805604454,
+    "gamma": 1e-06,
+    "p_excited0": 0.5,
+    "pennylane_excited": [
+      0.5000000000000049,
+      0.49999999950000495,
+      0.49999950000025506
+    ],
+    "qutip_excited": [
+      0.5,
+      0.4999999995,
+      0.4999995000002503
+    ],
+    "rho_beta": [
+      [
+        0.4999995,
+        0.0
+      ],
+      [
+        0.0,
+        0.5000005
+      ]
+    ],
+    "times": [
+      0.0,
+      0.001,
+      1.0
+    ]
+  },
+  "classification": "classical_baseline",
+  "divergence_log": "Classical-to-nonclassical thermodynamics bridge baseline: one qubit, one relaxation channel, and one free-energy surface must agree across numpy/scipy, QuTiP, Cirq, and PennyLane instead of being re-glued per sim.",
+  "name": "sim_integration_thermo_open_system_bridge_stack",
+  "negative": {
+    "all_pass": true,
+    "beta": 1.2,
+    "checks": {
+      "negative_cirq_mismatch_detected": true,
+      "pennylane_still_consistent": true,
+      "qutip_still_consistent": true
+    },
+    "cirq_excited": [
+      0.800000011920929,
+      0.6484673619270325,
+      0.42607346177101135,
+      0.27995020151138306,
+      0.12085744738578796
+    ],
+    "classical_excited": [
+      0.8,
+      0.6954865883190448,
+      0.5256374558520455,
+      0.39726824303312763,
+      0.22692322119981634
+    ],
+    "errors": {
+      "cirq_vs_classical": 0.11731804152174458,
+      "pennylane_vs_classical": 8.104628079763643e-15,
+      "qutip_vs_classical": 2.376479110166585e-07
+    },
+    "free_energy": -1.0723634601282914,
+    "gamma": 0.7,
+    "p_excited0": 0.8,
+    "pennylane_excited": [
+      0.8000000000000078,
+      0.6954865883190527,
+      0.5256374558520536,
+      0.3972682430331357,
+      0.22692322119982436
+    ],
+    "qutip_excited": [
+      0.8,
+      0.6954868259669558,
+      0.5256374468858762,
+      0.3972682059834073,
+      0.22692334101201883
+    ],
+    "rho_beta": [
+      [
+        0.0831726964939224,
+        0.0
+      ],
+      [
+        0.0,
+        0.9168273035060777
+      ]
+    ],
+    "times": [
+      0.0,
+      0.2,
+      0.6,
+      1.0,
+      1.8
+    ]
+  },
+  "positive": {
+    "all_pass": true,
+    "beta": 1.2,
+    "checks": {
+      "cirq_matches_classical": true,
+      "free_energy_finite": true,
+      "pennylane_matches_classical": true,
+      "qutip_matches_classical": true,
+      "thermal_state_valid": true
+    },
+    "cirq_excited": [
+      0.800000011920929,
+      0.6954866051673889,
+      0.5256374478340149,
+      0.39726826548576355,
+      0.22692322731018066
+    ],
+    "classical_excited": [
+      0.8,
+      0.6954865883190448,
+      0.5256374558520455,
+      0.39726824303312763,
+      0.22692322119981634
+    ],
+    "errors": {
+      "cirq_vs_classical": 2.2452635917158403e-08,
+      "pennylane_vs_classical": 8.104628079763643e-15,
+      "qutip_vs_classical": 2.376479110166585e-07
+    },
+    "free_energy": -1.0723634601282914,
+    "gamma": 0.7,
+    "p_excited0": 0.8,
+    "pennylane_excited": [
+      0.8000000000000078,
+      0.6954865883190527,
+      0.5256374558520536,
+      0.3972682430331357,
+      0.22692322119982436
+    ],
+    "qutip_excited": [
+      0.8,
+      0.6954868259669558,
+      0.5256374468858762,
+      0.3972682059834073,
+      0.22692334101201883
+    ],
+    "rho_beta": [
+      [
+        0.0831726964939224,
+        0.0
+      ],
+      [
+        0.0,
+        0.9168273035060777
+      ]
+    ],
+    "times": [
+      0.0,
+      0.2,
+      0.6,
+      1.0,
+      1.8
+    ]
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Bounded qubit thermodynamics/open-system bridge across classical, QuTiP, Cirq, and PennyLane surfaces."
+  },
+  "tool_integration_depth": {
+    "cirq": "load_bearing",
+    "numpy": "load_bearing",
+    "pennylane": "load_bearing",
+    "qutip": "load_bearing",
+    "scipy": "load_bearing"
+  },
+  "tool_manifest": {
+    "cirq": {
+      "reason": "density-matrix simulator witness using an explicit damping channel",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "thermal populations, rate equations, and density checks",
+      "tried": true,
+      "used": true
+    },
+    "pennylane": {
+      "reason": "mixed-state QNode witness for the same qubit relaxation surface",
+      "tried": true,
+      "used": true
+    },
+    "qutip": {
+      "reason": "open-system mesolve witness for amplitude damping thermalization",
+      "tried": true,
+      "used": true
+    },
+    "scipy": {
+      "reason": "matrix exponentials for thermal state construction",
+      "tried": true,
+      "used": true
+    }
+  }
+}

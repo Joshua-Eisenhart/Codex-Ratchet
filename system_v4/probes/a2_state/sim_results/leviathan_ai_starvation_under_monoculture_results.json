@@ -1,0 +1,41 @@
+{
+  "name": "leviathan_ai_starvation_under_monoculture",
+  "classification": "canonical",
+  "positive": {
+    "flux_diverse": 13.0,
+    "flux_positive": true,
+    "diverse_sat": "sat"
+  },
+  "negative": {
+    "flux_monoculture": 0.0,
+    "ai_starves": true,
+    "monoculture_excluded": true
+  },
+  "boundary": {
+    "tiny_H": 1.0,
+    "flux_nearly_zero": true,
+    "limit_H_to_0": "0"
+  },
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "admissibility of positive flux"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "limit of flux under monoculture"
+    },
+    "networkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing",
+    "sympy": "supportive",
+    "networkx": null
+  }
+}

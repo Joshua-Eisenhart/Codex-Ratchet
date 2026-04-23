@@ -1,0 +1,54 @@
+{
+  "layer": 13,
+  "name": "Entanglement Earned",
+  "positive": {
+    "P1_z3_earned_consistency": {
+      "description": "I_c=0 at start, I_c>0 after N cycles: consistency check",
+      "result": "sat",
+      "model": "[ic_after = 1, n_cycles = 1, ic_init = 0]",
+      "passed": true
+    },
+    "P2_sympy_Fe_unitary": {
+      "description": "Fe operator XX x I is unitary: U\u2020U = I (symbolic)",
+      "passed": true
+    },
+    "P3_sympy_eigenvalues": {
+      "description": "XX x I has eigenvalues +/-1 each with multiplicity 4",
+      "eigenvalues_minus1_count": 4,
+      "eigenvalues_plus1_count": 4,
+      "passed": true
+    },
+    "numerical_trajectory": {
+      "description": "10 cycles from |000>, deph=0.05, theta=pi",
+      "trajectory": [
+        0.0,
+        0.18184794,
+        0.2058081,
+        0.28302676,
+        0.40055782,
+        0.41087431,
+        0.30249462,
+        0.15485517,
+        -0.02425916,
+        -0.21310648,
+        -0.41162799
+      ],
+      "first_positive_cycle": 1,
+      "passed": true
+    }
+  },
+  "negative": {
+    "N1_z3_no_free_entanglement": {
+      "description": "I_c > 0 at cycle 0 for separable state is impossible",
+      "result": "unsat",
+      "passed": true
+    }
+  },
+  "tools_used": [
+    "z3",
+    "sympy",
+    "numpy"
+  ],
+  "timestamp": "2026-04-06",
+  "summary": "Entanglement earned: z3 SAT=sat, UNSAT=unsat, Fe unitary=True, eigenvals correct=True, first positive cycle=1"
+}

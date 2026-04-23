@@ -1,0 +1,139 @@
+{
+  "name": "Kazhdan-Lusztig Polynomial Non-Negative Coefficient Constraint",
+  "description": "cvc5 proves P_{x,w}(q) has non-negative integer coefficients; sympy verifies base cases",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 proves non-negative coefficient constraint via QF_LIA"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy verifies P_{e,s}(q)=1 base case for simple reflections"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_simple_reflection_P_es": {
+      "satisfiable": true,
+      "claim": "P_{e,s}(q) = 1 satisfies non-negative constraint",
+      "cvc5_result": "sat"
+    },
+    "test_composite_P_st": {
+      "satisfiable": true,
+      "claim": "P_{s,st}(q) = q + 1 satisfies non-negative constraint",
+      "cvc5_result": "sat"
+    },
+    "test_sympy_P_es_base_case": {
+      "polynomial": "1",
+      "coefficients": [
+        1
+      ],
+      "all_non_negative": true,
+      "claim": "P_{e,s}(q)=1 has non-negative coefficients by definition"
+    }
+  },
+  "negative": {
+    "test_negative_coefficient_P_es": {
+      "satisfiable": false,
+      "claim": "P_{e,s}(q) cannot have coefficient -1",
+      "expected_unsat": true,
+      "cvc5_result": "unsat"
+    },
+    "test_negative_coefficient_composite": {
+      "satisfiable": false,
+      "claim": "No KL polynomial can have negative coefficient",
+      "expected_unsat": true,
+      "cvc5_result": "unsat"
+    }
+  },
+  "boundary": {
+    "test_zero_polynomial_boundary": {
+      "satisfiable": true,
+      "claim": "P_{x,w}(q)=0 is a valid boundary case (when x>w)",
+      "cvc5_result": "sat"
+    },
+    "test_high_degree_polynomial_boundary": {
+      "polynomial": "q**3 + 2*q**2 + q + 1",
+      "coefficients": [
+        1,
+        2,
+        1,
+        1
+      ],
+      "all_non_negative": true,
+      "claim": "Higher-degree KL polynomials maintain non-negative coefficients"
+    },
+    "test_multi_coefficient_boundary": {
+      "satisfiable": true,
+      "num_coefficients": 5,
+      "claim": "Non-negative constraint extends to multi-coefficient polynomials",
+      "cvc5_result": "sat"
+    }
+  },
+  "classification": "canonical"
+}

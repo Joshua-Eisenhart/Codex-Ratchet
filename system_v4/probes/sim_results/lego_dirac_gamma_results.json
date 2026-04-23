@@ -1,0 +1,218 @@
+{
+  "name": "lego_dirac_gamma -- Dirac equation gamma matrices in finite-dim QIT",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "core tensor computation for gamma matrices, projectors, CPT operators"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph structure"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- numerical + symbolic verification"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "exact symbolic verification of Clifford algebra and projector identities"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(1,3) Clifford algebra cross-check of anticommutation relations"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "positive": {
+    "T1_clifford_algebra": {
+      "pass": true,
+      "detail": "All 16 anticommutator relations verified",
+      "pairs_checked": 16
+    },
+    "T2_gamma5_properties": {
+      "pass": true,
+      "gamma5_squared_is_I": true,
+      "anticommutes_with_all_gamma_mu": true,
+      "hermitian": true,
+      "traceless": true
+    },
+    "T3_weyl_projectors": {
+      "pass": true,
+      "P_L_idempotent": true,
+      "P_R_idempotent": true,
+      "P_L_plus_P_R_eq_I": true,
+      "P_L_P_R_eq_0": true,
+      "P_R_P_L_eq_0": true,
+      "P_L_rank": 2,
+      "P_R_rank": 2
+    },
+    "T4_spinor_decomposition": {
+      "pass": true,
+      "psi_L_plus_psi_R_eq_psi": true,
+      "P_L_psi_L_eq_psi_L": true,
+      "P_R_psi_R_eq_psi_R": true,
+      "gamma5_psi_L_eq_neg_psi_L": true,
+      "gamma5_psi_R_eq_pos_psi_R": true,
+      "psi_L_norm": 0.7103427978409096,
+      "psi_R_norm": 0.7038558869225637
+    },
+    "T5_trace_identities": {
+      "pass": true,
+      "Tr_single_gamma_zero": true,
+      "Tr_pair_eq_4eta": true,
+      "Tr_triple_zero": true
+    },
+    "T6_CPT_operators": {
+      "pass": true,
+      "C_gamma_mu_Cinv_eq_neg_gamma_muT": true,
+      "P_preserves_gamma0": true,
+      "P_flips_spatial_gammas": true,
+      "CPT_squared_proportional_to_I": true
+    },
+    "T7_CPT_spinor": {
+      "pass": true,
+      "C_gamma5_Cinv_eq_gamma5T": true,
+      "CC_star_proportional_to_I": true,
+      "psi_L_norm": 0.7103427978409096,
+      "psi_R_norm": 0.7038558869225637,
+      "psi_c_L_norm": 0.7038558869225637,
+      "psi_c_R_norm": 0.7103427978409096,
+      "psi_c_norm": 1.0
+    },
+    "T8_clifford_Cl13_crosscheck": {
+      "pass": true,
+      "signature_squares_correct": true,
+      "anticommutation_zero": true
+    },
+    "T9_sympy_exact_verification": {
+      "pass": true,
+      "clifford_algebra_exact": true,
+      "gamma5_squared_exact": true
+    },
+    "T10_hopf_weyl_connection": {
+      "pass": true,
+      "L_embedding_preserved_by_P_L": true,
+      "L_embedding_killed_by_P_R": true,
+      "R_embedding_preserved_by_P_R": true,
+      "R_embedding_killed_by_P_L": true,
+      "gamma5_L_eigenvalue_neg1": true,
+      "gamma5_R_eigenvalue_pos1": true,
+      "phi_recovery_from_L": true,
+      "hopf_eta": 0.5235987755982988,
+      "hopf_xi": 0.7853981633974483,
+      "detail": "Hopf torus 2-spinors embed as Weyl components via [phi, -/+phi]/sqrt(2) in Dirac rep"
+    },
+    "_summary": {
+      "passes": 10,
+      "fails": 0,
+      "total": 10
+    }
+  },
+  "negative": {
+    "N1_gammas_do_not_commute": {
+      "pass": true,
+      "nonzero_commutator_pairs": 6,
+      "expected": 6
+    },
+    "N2_wrong_metric_fails": {
+      "pass": true,
+      "matching_with_euclidean": 1,
+      "expected_matching": 1,
+      "detail": "Only gamma^0 squares to +I; spatial gammas square to -I (Minkowski, not Euclidean)"
+    },
+    "N3_wrong_gamma5_fails_anticommutation": {
+      "pass": true,
+      "wrong_gamma5_anticommutes": false,
+      "detail": "gamma^0 used as gamma^5 does NOT anticommute with all gamma^mu"
+    },
+    "N4_generic_spinor_not_chiral_eigenstate": {
+      "pass": true,
+      "is_positive_eigenstate": false,
+      "is_negative_eigenstate": false
+    },
+    "N5_gamma5_not_spatial_gamma": {
+      "pass": true,
+      "gamma5_squared_eq_neg_I": false,
+      "detail": "(gamma^5)^2 = +I, not -I, so gamma^5 is not a spatial gamma matrix"
+    },
+    "_summary": {
+      "passes": 5,
+      "fails": 0,
+      "total": 5
+    }
+  },
+  "boundary": {
+    "B1_projector_orthogonality_precision": {
+      "pass": true,
+      "max_element_P_L_P_R": 0.0,
+      "threshold": 1e-14
+    },
+    "B2_boundary_eta0_pure_L": {
+      "pass": true,
+      "detail": "At eta=0, Hopf spinor [1,0] embeds as [1,0,-1,0]/sqrt(2) = pure left-handed in Dirac rep"
+    },
+    "B3_boundary_eta_pi2_pure_L": {
+      "pass": true,
+      "detail": "At eta=pi/2, Hopf spinor [0,1] embeds as [0,1,0,-1]/sqrt(2) = pure left-handed"
+    },
+    "B4_gamma_determinants_unit": {
+      "pass": true,
+      "detail": "All gamma matrices have |det| = 1"
+    },
+    "B5_lorentz_generators": {
+      "pass": true,
+      "num_generators": 6,
+      "all_traceless": true,
+      "detail": "sigma^{mu,nu} = (i/4)[gamma^mu, gamma^nu] gives 6 traceless Lorentz generators"
+    },
+    "_summary": {
+      "passes": 5,
+      "fails": 0,
+      "total": 5
+    }
+  },
+  "classification": "canonical",
+  "connections": {
+    "sim_weyl_hopf_tori": "L/R Weyl spinors from Hopf parameterization embed as chiral components of 4-spinor",
+    "dual_weyl_spinor_engine_sim": "Type1/Type2 engines correspond to L/R chirality sectors of Dirac algebra"
+  }
+}

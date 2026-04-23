@@ -1,0 +1,2331 @@
+# Retooling External Methods into a Nonclassical Topological Runtime for Lev
+
+## Abstract
+
+This note proposes a way to extend **Lev** from a graph-first agent runtime into a **graph-first, topological reasoning runtime**. The goal is not to replace Lev’s core architecture. The goal is to give Lev a richer **state model** and a richer **operator model** so that a wide range of existing methods—Bayesian updating, Markov transitions, active inference, property-based testing, model checking, search control, abstraction learning, and so on—can be re-used **without importing the classical assumptions that usually come with them**.
+
+The central claim is simple:
+
+* Lev already has the right large-scale separation: **Topology → Orchestration → Dispatch**
+* what is missing is a deeper **runtime state geometry**
+* once state is structured and transforms are ordered, many methods from other fields can be re-expressed as **operators on that state-space**
+* this allows those methods to work together rather than remaining a bag of disconnected frameworks
+
+The proposed runtime is built around these assumptions:
+
+* state is **structured**, not flat
+* transforms are **ordered** and non-commutative by default
+* the system respects **finitude**
+* equivalence is **probe-relative**, not primitive
+* simulations are **tiered** and include **negative simulations**
+* traces are **append-only witnesses**
+* the machine navigates a **state-space** rather than just passing around prompts and blobs
+
+This note is written for the developer of Lev and assumes comfort with systems design, but not necessarily with all the fields referenced below.
+
+---
+
+## Executive Summary
+
+Lev already does several things unusually well:
+
+* it treats workflow as **graph topology**
+* it separates topology from traversal policy and execution backend
+* it has a **typed context injection pipeline**
+* it has an **append-only event spine**
+* it supports **compile-time determinism**
+* it has **loop safety** and **execution policies**
+* it has a clear **dispatch plane**
+
+Those are exactly the kinds of features that make a richer runtime possible.
+
+The additional step proposed here is:
+
+1. define a **structured runtime state**
+2. define **probes** as state-observation operators
+3. define **transforms** as ordered state evolutions
+4. define **witnesses** as append-only evidence objects
+5. reinterpret outside methods as **operators on the structured state-space**
+6. use Lev’s topology/orchestration/dispatch stack to host those operators
+
+The unifying picture is not “just use topology as a metaphor.” The unifying picture is:
+
+> a machine organized around a structured nonclassical state-space, where imported methods are stripped down to their useful operational process and re-expressed as operators on that state-space.
+
+---
+
+## Lev as the Host Architecture
+
+Lev’s published design already provides the three planes needed for this:
+
+### Topology
+
+Lev’s graph-first topology is the right place to represent:
+
+* possible regions
+* possible transitions
+* allowed execution routes
+* terminal conditions
+* gates and branch points
+
+### Orchestration
+
+Lev’s orchestration overlays are the right place to represent:
+
+* loop policies
+* retry behavior
+* convergence rules
+* parallel fan-out/fan-in
+* bounded self-improvement loops
+* phase-sensitive traversal policies
+
+### Dispatch
+
+Lev’s dispatch plane is the right place to represent:
+
+* local transform execution
+* remote agent execution
+* simulation executors
+* reviewers
+* validators
+* composite or routed executors
+
+### Event Spine
+
+Lev’s append-only event spine is the right place to represent:
+
+* witness traces
+* positive evidence
+* negative evidence
+* counterexamples
+* state transition projections
+* failure basins
+* replayable episodes
+
+The proposal in this note is therefore **not** “replace Lev.” It is:
+
+> keep Lev’s three-plane architecture and add a deeper state / operator / witness model beneath it.
+
+---
+
+## Shared Runtime Kernel
+
+The rest of the note assumes this minimal kernel.
+
+```ts
+type LoopScale = "micro" | "meso" | "macro";
+
+type BoundaryTag =
+  | "stable"
+  | "frontier"
+  | "blocked"
+  | "unstable"
+  | "degenerate"
+  | "admissible";
+
+type Scalar = string | number | boolean | null;
+
+interface RuntimeState {
+  region: string;                         // location in structured space
+  phaseIndex: number;                     // local phase position
+  phasePeriod: number;                    // phase modulus
+  loopScale: LoopScale;                   // current loop scale
+  boundaries: BoundaryTag[];              // active boundary relations
+  invariants: string[];                   // currently surviving structure claims
+  dof: Record<string, unknown>;           // active degrees of freedom
+  context: Record<string, unknown>;       // structured local context
+}
+
+interface Observation {
+  probeId: string;
+  features: Record<string, Scalar>;
+}
+
+interface Probe {
+  id: string;
+  observe(state: RuntimeState): Observation;
+}
+
+interface Transform {
+  id: string;
+  apply(state: RuntimeState, input?: unknown): RuntimeState;
+}
+
+interface StepEvent {
+  at: string;
+  op: string;
+  beforeHash: string;
+  afterHash: string;
+  notes?: string[];
+}
+
+interface Witness {
+  kind: "positive" | "negative" | "counterexample";
+  pass: boolean;
+  violations: string[];
+  touchedBoundaries: BoundaryTag[];
+  trace: StepEvent[];
+}
+
+function normalizePhase(index: number, period: number): number {
+  return ((index % period) + period) % period;
+}
+
+function compose(left: Transform, right: Transform): Transform {
+  return {
+    id: `${left.id}∘${right.id}`,
+    apply(state, input) {
+      return left.apply(right.apply(state, input), input);
+    }
+  };
+}
+
+function equivalentUnder(
+  a: RuntimeState,
+  b: RuntimeState,
+  probes: Probe[]
+): boolean {
+  return probes.every((p) => {
+    const oa = p.observe(a);
+    const ob = p.observe(b);
+
+    const keys = [...new Set([
+      ...Object.keys(oa.features),
+      ...Object.keys(ob.features)
+    ])].sort();
+
+    return keys.every((k) => oa.features[k] === ob.features[k]);
+  });
+}
+```
+
+This kernel already encodes four key commitments:
+
+1. **state is structured**
+2. **transform order matters**
+3. **equivalence is probe-relative**
+4. **evidence is explicit and replayable**
+
+Everything below can be implemented as operators or policies on top of this kernel.
+
+---
+
+# Part I — Topology / Geometry Layer
+
+## 1. Nested Hopf Tori
+
+### What it is
+
+A Hopf fibration is a topological construction where a sphere can be decomposed into linked circles. In more intuitive terms:
+
+* you do not just have isolated loops
+* you have loops that are **nested**
+* those loops can be linked into a larger structure
+* local motion on one loop relates to a larger enclosing organization
+
+For runtime design, the useful part is not “claim that the universe is literally a Hopf fibration.” The useful part is that Hopf-style thinking gives a concrete geometry for systems that have:
+
+* local cycles
+* nested larger cycles
+* phase-sensitive movement
+* multi-scale recurrence
+
+A flat state machine struggles to represent this.
+
+### Why it matters
+
+A lot of intelligent behavior is not linear. It is:
+
+* revisiting
+* correcting
+* looping
+* escalating to a higher-level review loop
+* dropping back into a smaller local correction loop
+* moving across scales of attention or control
+
+If runtime state has no explicit way to represent **phase** and **loop scale**, those distinctions are lost. Then recurrence collapses into “same state visited again,” which is too weak.
+
+Nested Hopf-torus thinking matters because it lets the runtime express:
+
+* the base region
+* the local phase in a cycle
+* the enclosing loop scale
+* how local movement can be different depending on the enclosing loop
+
+### What classical assumption causes drift
+
+The drift source is the classical habit of treating state as:
+
+* a flat point
+* in a flat space
+* with no phase
+* with no loop scale
+* with recurrence treated as raw repetition rather than structured cycle
+
+This flattening makes multi-scale control and phase-sensitive updates harder to model cleanly.
+
+### How it is retooled
+
+The retool is not “encode a literal Hopf fibration first.” The retool is to let the runtime state carry:
+
+* `region`
+* `phaseIndex`
+* `phasePeriod`
+* `loopScale`
+
+That is enough to make the runtime Hopf-like in the sense that it is no longer flat.
+
+### How it integrates with Lev
+
+In Lev:
+
+* **Topology** hosts the allowed regions and graph connectivity
+* **Orchestration** hosts loop policies and phase progression rules
+* **Dispatch** hosts the executors that perform phase-sensitive transforms
+
+Nested-loop structure therefore becomes a first-class orchestration concern backed by explicit runtime state.
+
+### Code example
+
+```ts
+type LoopScale = "micro" | "meso" | "macro";
+
+interface HopfLikeState extends RuntimeState {
+  fiberId?: string;   // optional local loop identity
+}
+
+function advanceLocalPhase(state: HopfLikeState): HopfLikeState {
+  return {
+    ...state,
+    phaseIndex: normalizePhase(state.phaseIndex + 1, state.phasePeriod)
+  };
+}
+
+function changeLoopScale(
+  state: HopfLikeState,
+  nextScale: LoopScale
+): HopfLikeState {
+  return {
+    ...state,
+    loopScale: nextScale,
+    phaseIndex: 0
+  };
+}
+
+function hopfAwareTransform(
+  state: HopfLikeState
+): HopfLikeState {
+  const phaseBand = Math.floor(
+    (state.phaseIndex / state.phasePeriod) * 4
+  );
+
+  // Example: change behavior by loop scale and local phase.
+  if (state.loopScale === "macro" && phaseBand === 3) {
+    return {
+      ...state,
+      region: `${state.region}:macro-review`,
+      boundaries: [...new Set([...state.boundaries, "frontier"])]
+    };
+  }
+
+  if (state.loopScale === "micro" && phaseBand === 1) {
+    return {
+      ...state,
+      region: `${state.region}:micro-correction`
+    };
+  }
+
+  return advanceLocalPhase(state);
+}
+```
+
+---
+
+## 2. Topology / Orchestration / Dispatch Split
+
+### What it is
+
+This split says that a serious runtime should separate:
+
+* **Topology**: the shape of what can connect to what
+* **Orchestration**: how movement through that structure is managed
+* **Dispatch**: who or what actually executes each step
+
+These are often collapsed in typical agent systems, which makes the system hard to inspect, hard to modify, and hard to reason about.
+
+### Why it matters
+
+A common failure mode in agent frameworks is the “controller blob”:
+
+* graph shape is hidden in code
+* loop logic is hidden in prompts
+* dispatch is tangled with semantics
+* node meaning depends on the executor
+* retry logic depends on output shape
+* the control plane silently becomes the ontology
+
+Separating topology/orchestration/dispatch makes the system more modular and more legible.
+
+### What classical assumption causes drift
+
+The drift source is not a piece of classical mathematics so much as a classical control assumption:
+
+* one central controller owns structure, traversal, and execution
+* state is flat enough that all these concerns can be collapsed
+
+That assumption works for small systems, but it flattens the architecture and makes richer state models harder to integrate.
+
+### How it is retooled
+
+The retool is to preserve the split rigidly and let each plane see only what it needs:
+
+* topology defines potential adjacency
+* orchestration chooses traversal strategy
+* dispatch chooses the executor
+
+The deeper runtime state lives *under* this split, not instead of it.
+
+### How it integrates with Lev
+
+This is one of the easiest fits because Lev already uses this split. The proposal here is not to invent it. It is to **populate it with richer state and operators**.
+
+### Code example
+
+```ts
+interface NodeSpec {
+  kind: "transform" | "gate" | "sim" | "review" | "terminal";
+  payload?: Record<string, unknown>;
+}
+
+interface Topology {
+  nodes: Record<string, NodeSpec>;
+  edges: Array<{ from: string; to: string }>;
+}
+
+interface OrchestrationPolicy {
+  loop?: {
+    maxIters: number;
+    stopOnInvariantBreak: boolean;
+    phaseAdvance?: number;
+  };
+  parallel?: {
+    enabled: boolean;
+    width: number;
+  };
+  retry?: {
+    maxRetries: number;
+    backoffMs?: number;
+  };
+}
+
+interface DispatchPolicy {
+  executor: "local" | "remote" | "sim" | "review";
+  budget: number;
+  timeoutMs: number;
+}
+
+interface ExecutionStep {
+  nodeId: string;
+  state: RuntimeState;
+  topo: Topology;
+  orchestration: OrchestrationPolicy;
+  dispatch: DispatchPolicy;
+}
+
+async function executeStep(step: ExecutionStep): Promise<RuntimeState | Witness> {
+  const node = step.topo.nodes[step.nodeId];
+
+  switch (node.kind) {
+    case "transform":
+      return {
+        ...step.state,
+        context: { ...step.state.context, executedNode: step.nodeId }
+      };
+
+    case "gate":
+      return {
+        kind: "positive",
+        pass: true,
+        violations: [],
+        touchedBoundaries: step.state.boundaries,
+        trace: []
+      };
+
+    default:
+      return step.state;
+  }
+}
+```
+
+---
+
+## 3. Graph Topology Thinking
+
+### What it is
+
+Graph topology thinking treats the workflow itself as a graph:
+
+* nodes are operations or decision points
+* edges are allowed transitions
+* terminal nodes define stopping conditions
+
+The important thing is that the graph is not just a picture. It is the executable topology.
+
+### Why it matters
+
+Graphs give you:
+
+* inspectability
+* reachability analysis
+* deterministic replay
+* explicit branch structure
+* explicit gates
+* explicit terminal conditions
+
+This is stronger than letting control flow emerge implicitly from prompts or tool chains.
+
+### What classical assumption causes drift
+
+The drift source is the assumption that the graph alone is the whole runtime. That makes the graph “flat”: it captures transitions but not the richer structure of state.
+
+### How it is retooled
+
+Keep the graph as the **execution topology**, but treat state as a richer object moving on the graph.
+
+So the graph gives:
+
+* allowed edges
+
+The state carries:
+
+* region
+* phase
+* loop scale
+* boundaries
+* invariants
+
+### How it integrates with Lev
+
+This is already native to Lev. The enhancement is that graph nodes become transforms or probes over structured state, not just tool invocations.
+
+### Code example
+
+```ts
+interface GraphNode {
+  id: string;
+  type: "transform" | "gate" | "sim" | "review" | "terminal";
+  run(state: RuntimeState): Promise<RuntimeState | Witness>;
+}
+
+interface FlowGraph {
+  nodes: Record<string, GraphNode>;
+  edges: Array<{ from: string; to: string }>;
+  entry: string;
+}
+
+function nextNodes(graph: FlowGraph, current: string): string[] {
+  return graph.edges
+    .filter((e) => e.from === current)
+    .map((e) => e.to);
+}
+
+async function runGraphStep(
+  graph: FlowGraph,
+  nodeId: string,
+  state: RuntimeState
+): Promise<{ result: RuntimeState | Witness; next: string[] }> {
+  const node = graph.nodes[nodeId];
+  const result = await node.run(state);
+  return { result, next: nextNodes(graph, nodeId) };
+}
+```
+
+---
+
+## 4. Nonclassical State Space
+
+### What it is
+
+A nonclassical state space is a state representation where:
+
+* order matters
+* equivalence can be context-dependent
+* local observations may not uniquely define global structure
+* multiple views can be structured yet incompatible
+* state is more than a flat coordinate or label
+
+This is broader than any one mathematical formalism.
+
+### Why it matters
+
+If your system needs to preserve:
+
+* order sensitivity
+* contextuality
+* path dependence
+* local/global coupling
+* structured disagreement
+
+then a flat classical state model is often not enough.
+
+### What classical assumption causes drift
+
+The drift source is the assumption that:
+
+* state is a flat point
+* equality is primitive
+* updates are effectively commutative unless specially marked
+
+That set of assumptions erases distinctions you might actually care about.
+
+### How it is retooled
+
+Retool by:
+
+* making transform order explicit
+* making equivalence probe-relative
+* letting state carry boundary and phase structure
+* logging witnesses instead of just end states
+
+### How it integrates with Lev
+
+Lev’s compile-time determinism and event spine are powerful precisely because they can support a richer state model without losing replayability.
+
+### Code example
+
+```ts
+function transformSequence(
+  state: RuntimeState,
+  transforms: Transform[]
+): RuntimeState {
+  return transforms.reduce((s, t) => t.apply(s), state);
+}
+
+function compareOrders(
+  state: RuntimeState,
+  a: Transform,
+  b: Transform,
+  probes: Probe[]
+): boolean {
+  const ab = compose(a, b).apply(state);
+  const ba = compose(b, a).apply(state);
+
+  return equivalentUnder(ab, ba, probes);
+}
+
+const setFrontier: Transform = {
+  id: "set-frontier",
+  apply(state) {
+    return {
+      ...state,
+      boundaries: [...new Set([...state.boundaries, "frontier"])]
+    };
+  }
+};
+
+const rotateOnce: Transform = {
+  id: "rotate-once",
+  apply(state) {
+    return {
+      ...state,
+      phaseIndex: normalizePhase(state.phaseIndex + 1, state.phasePeriod)
+    };
+  }
+};
+```
+
+---
+
+## 5. Phase / Loop-Scale Runtime Model
+
+### What it is
+
+This is the runtime decision to make phase and loop scale explicit rather than implicit.
+
+### Why it matters
+
+Without it, recurrence is hard to distinguish from repetition. You lose the ability to say:
+
+* this is the same region, but a different phase
+* this is a larger loop review, not a local retry
+* this transform is legal at one loop scale but not another
+
+### What classical assumption causes drift
+
+The drift source is “time as a flat step counter” and “looping as the same action repeated until success.”
+
+That is too weak for structured reasoning.
+
+### How it is retooled
+
+State includes:
+
+* `phaseIndex`
+* `phasePeriod`
+* `loopScale`
+
+Policies can then branch on those values.
+
+### How it integrates with Lev
+
+Lev’s loop runner becomes more informative if it can reason about phase and scale explicitly.
+
+### Code example
+
+```ts
+function phaseBand(state: RuntimeState, bands = 8): number {
+  return Math.floor((state.phaseIndex / state.phasePeriod) * bands);
+}
+
+function shouldEscalateLoopScale(state: RuntimeState): boolean {
+  return state.loopScale === "micro" && phaseBand(state) >= 6;
+}
+
+function escalateLoopScale(state: RuntimeState): RuntimeState {
+  const next: Record<LoopScale, LoopScale> = {
+    micro: "meso",
+    meso: "macro",
+    macro: "macro"
+  };
+
+  return {
+    ...state,
+    loopScale: next[state.loopScale],
+    phaseIndex: 0,
+    boundaries: [...new Set([...state.boundaries, "frontier"])]
+  };
+}
+```
+
+---
+
+# Part II — AI Engineering Layer
+
+## 6. Karpathy Design Philosophy
+
+### What it is
+
+This is not a theorem or a formal system. It is a design attitude:
+
+* keep the core loop visible
+* keep abstraction overhead low
+* prefer legibility over framework sprawl
+* mutate one thing at a time
+* evaluate explicitly
+* keep or discard based on evidence
+
+### Why it matters
+
+You can have a theoretically rich runtime that still becomes unusable because the control plane is too bloated.
+
+Karpathy-style simplicity acts as a constraint against:
+
+* invisible complexity
+* prompt soup
+* wrapper pyramids
+* inscrutable orchestration
+
+### What classical assumption causes drift
+
+The drift source here is not classical math but classical engineering flattening:
+
+* the assumption that if a system is more sophisticated it can tolerate more hidden layers and more control indirection
+
+That assumption often destroys inspectability.
+
+### How it is retooled
+
+Retool it as a **control-plane hygiene rule**:
+
+* small visible loops
+* bounded mutations
+* explicit scoring
+* explicit keep/discard
+
+### How it integrates with Lev
+
+Lev’s graph-first execution can become bloated if every node type or overlay adds implicit logic. Karpathy-style simplicity is a counter-pressure that keeps graphs and runtime state legible.
+
+### Code example
+
+```ts
+async function boundedImprove<T>(
+  artifact: T,
+  mutate: (x: T) => T,
+  evalFn: (x: T) => number,
+  rounds = 5
+): Promise<T> {
+  let current = artifact;
+  let currentScore = evalFn(current);
+
+  for (let i = 0; i < rounds; i++) {
+    const candidate = mutate(current);
+    const score = evalFn(candidate);
+
+    if (score > currentScore) {
+      current = candidate;
+      currentScore = score;
+    }
+  }
+
+  return current;
+}
+
+function evaluateStateLegibility(state: RuntimeState): number {
+  return (
+    state.invariants.length -
+    state.boundaries.filter((b) => b === "degenerate").length
+  );
+}
+```
+
+---
+
+## 7. nanochat
+
+### What it is
+
+The value of a “nanochat”-style project is not a specific repo. The value is a runtime small enough that you can still see the core mechanism.
+
+### Why it matters
+
+Many AI runtimes become unreadable long before they become truly powerful. A small visible core is a useful design pressure.
+
+### What classical assumption causes drift
+
+The drift source is the assumption that runtime sophistication requires a thick stack of wrappers, middleware, prompts, and handlers.
+
+### How it is retooled
+
+Keep the small-core principle, but replace “chat state” with structured runtime state.
+
+### How it integrates with Lev
+
+Lev can host rich graphs, but individual node execution should still be explainable without tracing through five abstraction layers.
+
+### Code example
+
+```ts
+interface SimpleNodeRunner {
+  run(nodeId: string, state: RuntimeState): Promise<RuntimeState | Witness>;
+}
+
+class MinimalRunner implements SimpleNodeRunner {
+  constructor(private graph: FlowGraph) {}
+
+  async run(nodeId: string, state: RuntimeState): Promise<RuntimeState | Witness> {
+    const node = this.graph.nodes[nodeId];
+    return node.run(state);
+  }
+}
+```
+
+---
+
+## 8. autoresearch
+
+### What it is
+
+A bounded self-improvement loop:
+
+* mutate one thing
+* evaluate the change
+* keep or discard it
+* repeat
+
+### Why it matters
+
+This is one of the healthiest forms of “self-improvement” because it is local, explicit, and evaluable.
+
+### What classical assumption causes drift
+
+The drift source is the tendency to turn all self-improvement into a single scalar optimization problem or an unconstrained autonomous loop.
+
+### How it is retooled
+
+Use it as a bounded machine-improvement operator inside the orchestration plane, with explicit witness traces.
+
+### How it integrates with Lev
+
+Lev already has loop execution and event logging. That makes it a natural host for bounded mutate/evaluate/commit loops.
+
+### Code example
+
+```ts
+interface MutationProposal<T> {
+  before: T;
+  after: T;
+  rationale: string;
+}
+
+interface MutationDecision<T> {
+  kept: boolean;
+  proposal: MutationProposal<T>;
+  scoreBefore: number;
+  scoreAfter: number;
+}
+
+function mutateAndEvaluate<T>(
+  current: T,
+  mutate: (x: T) => T,
+  scoreFn: (x: T) => number
+): MutationDecision<T> {
+  const after = mutate(current);
+  const scoreBefore = scoreFn(current);
+  const scoreAfter = scoreFn(after);
+
+  return {
+    kept: scoreAfter > scoreBefore,
+    proposal: {
+      before: current,
+      after,
+      rationale: "bounded mutation"
+    },
+    scoreBefore,
+    scoreAfter
+  };
+}
+```
+
+---
+
+## 9. llm-council
+
+### What it is
+
+A structured way to gather multiple views on the same issue instead of trusting one chain of reasoning.
+
+### Why it matters
+
+Disagreement is often more informative than single-path confidence.
+
+### What classical assumption causes drift
+
+The drift source is the assumption that one coherent answer is naturally the right answer, or that consensus itself is a truth signal.
+
+### How it is retooled
+
+Treat multiple outputs as different traversals through the same state-space. Compare them using probes or witness criteria rather than raw voting.
+
+### How it integrates with Lev
+
+Lev’s dispatch plane already supports parallel execution. That makes it easy to run multiple reviewers or candidate generators.
+
+### Code example
+
+```ts
+type Reviewer<T> = (input: T) => Promise<string>;
+
+interface CouncilResult {
+  views: string[];
+  disagreements: Array<{ i: number; j: number }>;
+}
+
+async function councilReview<T>(
+  input: T,
+  reviewers: Reviewer<T>[]
+): Promise<CouncilResult> {
+  const views = await Promise.all(reviewers.map((r) => r(input)));
+  const disagreements: Array<{ i: number; j: number }> = [];
+
+  for (let i = 0; i < views.length; i++) {
+    for (let j = i + 1; j < views.length; j++) {
+      if (views[i] !== views[j]) {
+        disagreements.push({ i, j });
+      }
+    }
+  }
+
+  return { views, disagreements };
+}
+```
+
+---
+
+# Part III — Mathematical / Inference Layer
+
+## 10. Bayesian Updating
+
+### What it is
+
+At the plain-language level, Bayesian updating is just:
+
+* you have a current state of belief
+* you see new evidence
+* you revise the state
+
+That process is useful independent of any one formalism.
+
+### Why it matters
+
+It gives a disciplined update loop for:
+
+* model revision
+* state revision
+* evidence assimilation
+
+### What classical assumption causes drift
+
+The drift source is when:
+
+* prior and posterior are treated as the underlying ontology
+* probability distributions are treated as the only possible state representation
+* normalization becomes the essence of update
+
+### How it is retooled
+
+Keep the process:
+
+* current state
+* evidence
+* revised state
+
+But replace probability distribution with structured runtime state and probe-relative observation.
+
+### How it integrates with Lev
+
+As a transform node or simulation operator that consumes observations and produces revised state.
+
+### Code example
+
+```ts
+function mismatchScore(expected: Observation, observed: Observation): number {
+  const keys = [...new Set([
+    ...Object.keys(expected.features),
+    ...Object.keys(observed.features)
+  ])];
+
+  if (keys.length === 0) return 0;
+
+  let mismatches = 0;
+  for (const k of keys) {
+    if (expected.features[k] !== observed.features[k]) mismatches += 1;
+  }
+
+  return mismatches / keys.length;
+}
+
+function reviseState(
+  state: RuntimeState,
+  probe: Probe,
+  observed: Observation
+): RuntimeState {
+  const predicted = probe.observe(state);
+  const mismatch = mismatchScore(predicted, observed);
+
+  if (mismatch > 0.7) {
+    return {
+      ...state,
+      region: `${state.region}:updated`,
+      phaseIndex: normalizePhase(state.phaseIndex + 1, state.phasePeriod),
+      boundaries: [...new Set([...state.boundaries, "frontier"])]
+    };
+  }
+
+  return {
+    ...state,
+    boundaries: state.boundaries.filter((b) => b !== "frontier")
+  };
+}
+```
+
+---
+
+## 11. Markov Chains
+
+### What it is
+
+A Markov chain describes a sequence of state transitions:
+
+* current state
+* transition law
+* next state
+
+The useful part is explicit state evolution.
+
+### Why it matters
+
+Many systems need a clean way to say:
+
+* what can happen next
+* what transforms are legal
+* how local dynamics proceed
+
+### What classical assumption causes drift
+
+The drift source is when the transition law is treated as:
+
+* a stochastic matrix over flat enumerated states
+* commutative or path-insensitive by default
+
+### How it is retooled
+
+Use transforms over structured state instead of probability tables.
+
+### How it integrates with Lev
+
+Lev nodes already represent transitions in a graph. This adds a richer transition semantics to each node.
+
+### Code example
+
+```ts
+const rotatePhase: Transform = {
+  id: "rotate-phase",
+  apply(state) {
+    return {
+      ...state,
+      phaseIndex: normalizePhase(state.phaseIndex + 1, state.phasePeriod)
+    };
+  }
+};
+
+const crossBoundary: Transform = {
+  id: "cross-boundary",
+  apply(state) {
+    if (state.boundaries.includes("blocked")) {
+      return {
+        ...state,
+        boundaries: [...new Set([...state.boundaries, "degenerate"])]
+      };
+    }
+
+    return {
+      ...state,
+      region: `${state.region}->adjacent`
+    };
+  }
+};
+
+function evolve(
+  state: RuntimeState,
+  transition: Transform
+): RuntimeState {
+  return transition.apply(state);
+}
+```
+
+---
+
+## 12. FEP / Active Inference
+
+### What it is
+
+At the process level:
+
+* predict what will happen
+* compare with what actually happened
+* measure mismatch
+* update the internal state
+* repeat
+
+### Why it matters
+
+That loop is useful for:
+
+* adaptation
+* self-correction
+* boundary maintenance
+* world-model behavior
+
+### What classical assumption causes drift
+
+The drift source is:
+
+* probability-first ontology
+* variational/Bayesian machinery treated as foundational
+* continuous-time assumptions
+* blanket metaphysics treated as already solved
+
+### How it is retooled
+
+Retool it as:
+
+* prediction over structured state
+* mismatch as divergence between expected and observed probe response
+* update as regulation of structured state and boundaries
+
+### How it integrates with Lev
+
+This maps naturally to Lev’s loop runner and gate system.
+
+### Code example
+
+```ts
+function predict(state: RuntimeState): Observation {
+  return {
+    probeId: "predict",
+    features: {
+      region: state.region,
+      phaseBand: Math.floor((state.phaseIndex / state.phasePeriod) * 8),
+      boundaryCount: state.boundaries.length,
+      loopScale: state.loopScale
+    }
+  };
+}
+
+function divergence(pred: Observation, actual: Observation): number {
+  const keys = [...new Set([
+    ...Object.keys(pred.features),
+    ...Object.keys(actual.features)
+  ])];
+
+  let d = 0;
+  for (const k of keys) {
+    if (pred.features[k] !== actual.features[k]) d += 1;
+  }
+
+  return d;
+}
+
+function regulate(
+  state: RuntimeState,
+  actual: Observation
+): RuntimeState {
+  const pred = predict(state);
+  const d = divergence(pred, actual);
+
+  if (d === 0) return state;
+
+  return {
+    ...state,
+    region: `${state.region}:corrected`,
+    phaseIndex: normalizePhase(state.phaseIndex + 2, state.phasePeriod),
+    boundaries: [...new Set([...state.boundaries, "unstable"])]
+  };
+}
+```
+
+---
+
+## 13. Information Geometry
+
+### What it is
+
+Information geometry studies spaces where “closeness” is defined by how distinguishable states are, rather than just ordinary Euclidean coordinates.
+
+### Why it matters
+
+It gives a way to say:
+
+* which states are meaningfully similar
+* which transitions are small vs large
+* where regions cluster
+
+### What classical assumption causes drift
+
+The drift source is the usual assumption that the geometry is built over classical probability distributions.
+
+### How it is retooled
+
+Define geometry from **probe-relative distinguishability** over runtime state.
+
+### How it integrates with Lev
+
+Useful for routing, clustering, branch pruning, and witness comparison.
+
+### Code example
+
+```ts
+function distinguishability(
+  a: RuntimeState,
+  b: RuntimeState,
+  probes: Probe[]
+): number {
+  let diff = 0;
+
+  for (const p of probes) {
+    const oa = p.observe(a);
+    const ob = p.observe(b);
+
+    if (JSON.stringify(oa.features) !== JSON.stringify(ob.features)) {
+      diff += 1;
+    }
+  }
+
+  return diff;
+}
+
+function nearestState(
+  target: RuntimeState,
+  candidates: RuntimeState[],
+  probes: Probe[]
+): RuntimeState | null {
+  if (candidates.length === 0) return null;
+
+  let best = candidates[0];
+  let bestScore = distinguishability(target, best, probes);
+
+  for (const c of candidates.slice(1)) {
+    const score = distinguishability(target, c, probes);
+    if (score < bestScore) {
+      best = c;
+      bestScore = score;
+    }
+  }
+
+  return best;
+}
+```
+
+---
+
+## 14. Algorithmic Information Theory
+
+### What it is
+
+This is the family of ideas around:
+
+* shortest descriptions
+* compression
+* description length
+* reusable structure
+
+### Why it matters
+
+Compression is often a clue that some repeated structure or reusable mechanism is present.
+
+### What classical assumption causes drift
+
+The drift source is when “simple” or “compressed” gets mistaken for “true.”
+
+### How it is retooled
+
+Use description length as a search heuristic or motif detector, not as an acceptance criterion.
+
+### How it integrates with Lev
+
+Useful for:
+
+* trace compression
+* recurring transform discovery
+* operator library induction
+
+### Code example
+
+```ts
+function traceSignature(trace: StepEvent[]): string {
+  return trace.map((e) => e.op).join(" -> ");
+}
+
+function repeatedOps(trace: StepEvent[]): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const e of trace) {
+    counts[e.op] = (counts[e.op] ?? 0) + 1;
+  }
+  return counts;
+}
+
+function rankByCompressionPotential(
+  traces: StepEvent[][]
+): Array<{ signature: string; count: number }> {
+  const counts: Record<string, number> = {};
+
+  for (const trace of traces) {
+    const sig = traceSignature(trace);
+    counts[sig] = (counts[sig] ?? 0) + 1;
+  }
+
+  return Object.entries(counts)
+    .map(([signature, count]) => ({ signature, count }))
+    .sort((a, b) => b.count - a.count);
+}
+```
+
+---
+
+# Part IV — Verification / Testing Layer
+
+## 15. Property-Based Testing
+
+### What it is
+
+Instead of testing a few hand-written examples, property-based testing generates many inputs and checks whether a property still holds.
+
+### Why it matters
+
+It is one of the most efficient ways to expose:
+
+* edge cases
+* broken invariants
+* hidden assumptions
+
+### What classical assumption causes drift
+
+The drift source is not usually a classical math assumption. It is poor invariant selection and meaningless random generation.
+
+### How it is retooled
+
+Generate structured perturbations or probe families, and define invariants over structured state.
+
+### How it integrates with Lev
+
+As gates or simulation nodes that emit witnesses.
+
+### Code example
+
+```ts
+type Invariant = (state: RuntimeState) => boolean;
+type Perturbation = (state: RuntimeState) => RuntimeState;
+
+function propertyPressure(
+  seed: RuntimeState,
+  perturbations: Perturbation[],
+  invariant: Invariant
+): Witness[] {
+  return perturbations.map((p, i) => {
+    const next = p(seed);
+    const pass = invariant(next);
+
+    return {
+      kind: pass ? "positive" : "negative",
+      pass,
+      violations: pass ? [] : [`INVARIANT_BREAK_${i}`],
+      touchedBoundaries: next.boundaries,
+      trace: []
+    };
+  });
+}
+```
+
+---
+
+## 16. CEGIS
+
+### What it is
+
+Counterexample-Guided Inductive Synthesis:
+
+* propose a candidate
+* search for a counterexample
+* use the counterexample to refine
+* repeat
+
+### Why it matters
+
+It is one of the cleanest architectures for learning from failure.
+
+### What classical assumption causes drift
+
+Very little. The main risk is sloppy candidate language or weak counterexamples.
+
+### How it is retooled
+
+Counterexamples become explicit witnesses of broken regions, illegal paths, or boundary failures.
+
+### How it integrates with Lev
+
+As an iterative orchestration pattern with gates and event logging.
+
+### Code example
+
+```ts
+interface Candidate {
+  id: string;
+  family: string;
+  transforms: Transform[];
+  claimedInvariants: string[];
+}
+
+function checkCandidate(
+  seed: RuntimeState,
+  candidate: Candidate,
+  probes: Probe[]
+): Witness {
+  const endState = candidate.transforms.reduce((s, t) => t.apply(s), seed);
+  const violations = endState.boundaries.includes("degenerate")
+    ? ["DEGENERATE_END_STATE"]
+    : [];
+
+  return {
+    kind: violations.length ? "counterexample" : "positive",
+    pass: violations.length === 0,
+    violations,
+    touchedBoundaries: endState.boundaries,
+    trace: []
+  };
+}
+
+function cegis(
+  seed: RuntimeState,
+  propose: () => Candidate,
+  refine: (c: Candidate, w: Witness) => Candidate,
+  rounds = 10
+): Candidate | null {
+  let c = propose();
+
+  for (let i = 0; i < rounds; i++) {
+    const w = checkCandidate(seed, c, []);
+    if (w.pass) return c;
+    c = refine(c, w);
+  }
+
+  return null;
+}
+```
+
+---
+
+## 17. SAT / SMT
+
+### What it is
+
+SAT/SMT solvers determine whether a set of constraints can all hold together.
+
+### Why it matters
+
+They are excellent at:
+
+* rejecting impossible combinations
+* isolating conflicts
+* giving hard incompatibility information
+
+### What classical assumption causes drift
+
+The drift source is when solver logic is treated as a full worldview rather than as a local rejection mechanism.
+
+### How it is retooled
+
+Use it only for:
+
+* hard incompatibility detection
+* illegal composition detection
+* minimal failure set extraction
+
+### How it integrates with Lev
+
+As compile-time checks or gate nodes.
+
+### Code example
+
+```ts
+type Constraint = (state: RuntimeState) => boolean;
+
+function illegalComposition(
+  state: RuntimeState,
+  constraints: Constraint[]
+): string[] {
+  const violations: string[] = [];
+
+  constraints.forEach((c, i) => {
+    if (!c(state)) violations.push(`constraint_${i}`);
+  });
+
+  return violations;
+}
+
+function minimalFailureSet(
+  state: RuntimeState,
+  constraints: Constraint[]
+): string[] {
+  const failed = illegalComposition(state, constraints);
+  return failed.slice(0, 1); // placeholder for a real unsat-core-like reducer
+}
+```
+
+---
+
+## 18. Differential Testing
+
+### What it is
+
+Run multiple implementations or variants on the same surface and compare results.
+
+### Why it matters
+
+It exposes disagreement and hidden divergence.
+
+### What classical assumption causes drift
+
+The drift source is assuming outputs must match exactly in a flat sense instead of using structured equivalence.
+
+### How it is retooled
+
+Compare variants under shared probe surfaces.
+
+### How it integrates with Lev
+
+As parallel fan-out/fan-in orchestration.
+
+### Code example
+
+```ts
+function compareVariants(
+  seed: RuntimeState,
+  variants: Candidate[],
+  probes: Probe[]
+): Array<{ left: string; right: string }> {
+  const outputs = variants.map((v) => ({
+    id: v.id,
+    state: v.transforms.reduce((s, t) => t.apply(s), seed)
+  }));
+
+  const disagreements: Array<{ left: string; right: string }> = [];
+
+  for (let i = 0; i < outputs.length; i++) {
+    for (let j = i + 1; j < outputs.length; j++) {
+      if (!equivalentUnder(outputs[i].state, outputs[j].state, probes)) {
+        disagreements.push({ left: outputs[i].id, right: outputs[j].id });
+      }
+    }
+  }
+
+  return disagreements;
+}
+```
+
+---
+
+## 19. Model Checking
+
+### What it is
+
+Explore possible execution paths and find explicit traces that violate a desired property.
+
+### Why it matters
+
+It gives concrete witness traces rather than abstract failure statements.
+
+### What classical assumption causes drift
+
+The drift source is flat state-machine metaphysics.
+
+### How it is retooled
+
+Explore paths over structured state and structured transforms.
+
+### How it integrates with Lev
+
+As path exploration on top of Lev’s graph topology plus event spine logging.
+
+### Code example
+
+```ts
+function hashState(state: RuntimeState): string {
+  return JSON.stringify(state);
+}
+
+function guardTransition(
+  before: RuntimeState,
+  after: RuntimeState
+): string[] {
+  const violations: string[] = [];
+
+  if (before.boundaries.includes("blocked") && before.region !== after.region) {
+    violations.push("ILLEGAL_BOUNDARY_CROSSING");
+  }
+
+  return violations;
+}
+
+function explore(
+  seed: RuntimeState,
+  ops: Transform[],
+  depth: number
+): Witness[] {
+  const out: Witness[] = [];
+
+  function dfs(state: RuntimeState, trace: StepEvent[], d: number) {
+    if (d === 0) return;
+
+    for (const op of ops) {
+      const next = op.apply(state);
+      const event: StepEvent = {
+        at: new Date().toISOString(),
+        op: op.id,
+        beforeHash: hashState(state),
+        afterHash: hashState(next)
+      };
+
+      const violations = guardTransition(state, next);
+
+      if (violations.length) {
+        out.push({
+          kind: "counterexample",
+          pass: false,
+          violations,
+          touchedBoundaries: next.boundaries,
+          trace: [...trace, event]
+        });
+        continue;
+      }
+
+      dfs(next, [...trace, event], d - 1);
+    }
+  }
+
+  dfs(seed, [], depth);
+  return out;
+}
+```
+
+---
+
+## 20. Abstract Interpretation
+
+### What it is
+
+Analyze a coarse abstraction first, then refine only where needed.
+
+### Why it matters
+
+It avoids doing expensive exact analysis everywhere.
+
+### What classical assumption causes drift
+
+The drift source is not usually classical math. It is choosing abstractions that throw away the wrong structure.
+
+### How it is retooled
+
+Use abstractions that preserve:
+
+* region
+* phase band
+* boundary class
+
+### How it integrates with Lev
+
+As staged validation and sim tiering.
+
+### Code example
+
+```ts
+interface CoarseState {
+  region: string;
+  phaseBand: number;
+  boundaryClass: "stable" | "frontier" | "blocked";
+}
+
+function abstractState(state: RuntimeState): CoarseState {
+  return {
+    region: state.region,
+    phaseBand: Math.floor((state.phaseIndex / state.phasePeriod) * 4),
+    boundaryClass: state.boundaries.includes("blocked")
+      ? "blocked"
+      : state.boundaries.includes("frontier")
+      ? "frontier"
+      : "stable"
+  };
+}
+
+function coarseInvariant(state: CoarseState): boolean {
+  return state.boundaryClass !== "blocked";
+}
+```
+
+---
+
+## 21. Fuzzing
+
+### What it is
+
+Generate adversarial or strange inputs to break the system.
+
+### Why it matters
+
+It exposes fragile assumptions and unstable neighborhoods.
+
+### What classical assumption causes drift
+
+The drift source is meaningless noise rather than structured adversarial perturbation.
+
+### How it is retooled
+
+Fuzz:
+
+* phase
+* region
+* boundaries
+* transform inputs
+
+### How it integrates with Lev
+
+As negative simulation generation and failure-corpus growth.
+
+### Code example
+
+```ts
+function fuzzState(state: RuntimeState): RuntimeState[] {
+  return [
+    {
+      ...state,
+      phaseIndex: normalizePhase(state.phaseIndex + 5, state.phasePeriod)
+    },
+    {
+      ...state,
+      region: `${state.region}:mutant`
+    },
+    {
+      ...state,
+      boundaries: [...state.boundaries, "blocked"]
+    }
+  ];
+}
+
+function minimizeFailure(
+  seed: RuntimeState,
+  mutants: RuntimeState[],
+  predicate: (s: RuntimeState) => boolean
+): RuntimeState | null {
+  for (const m of mutants) {
+    if (!predicate(m)) return m;
+  }
+  return null;
+}
+```
+
+---
+
+# Part V — Search / Synthesis Layer
+
+## 22. AlphaGeometry-Style Search
+
+### What it is
+
+Disciplined search with:
+
+* candidate generation
+* aggressive pruning
+* partial-result reuse
+* branch budgeting
+
+### Why it matters
+
+Search spaces explode rapidly. Good search control is often the difference between usable and unusable systems.
+
+### What classical assumption causes drift
+
+The drift source is when this search process is locked to:
+
+* theorem/proof worldview
+* Euclidean geometry assumptions
+
+### How it is retooled
+
+Use the same search-control mechanics over structured state and transforms.
+
+### How it integrates with Lev
+
+As orchestration policies controlling frontier expansion.
+
+### Code example
+
+```ts
+interface FrontierNode {
+  state: RuntimeState;
+  score: number;
+  trace: StepEvent[];
+}
+
+function heuristic(state: RuntimeState): number {
+  return state.boundaries.includes("admissible") ? 100 : 0;
+}
+
+function abstractFrontierKey(state: RuntimeState): string {
+  return JSON.stringify({
+    region: state.region,
+    phaseBand: Math.floor((state.phaseIndex / state.phasePeriod) * 4),
+    boundaries: [...state.boundaries].sort()
+  });
+}
+
+function search(
+  seed: RuntimeState,
+  ops: Transform[],
+  budget: number
+): FrontierNode | null {
+  const frontier: FrontierNode[] = [{ state: seed, score: 0, trace: [] }];
+  const seen = new Set<string>();
+
+  while (frontier.length && budget-- > 0) {
+    frontier.sort((a, b) => b.score - a.score);
+    const current = frontier.shift()!;
+    const key = abstractFrontierKey(current.state);
+
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    if (current.state.boundaries.includes("admissible")) return current;
+
+    for (const op of ops) {
+      const next = op.apply(current.state);
+      const violations = guardTransition(current.state, next);
+      if (violations.length) continue;
+
+      frontier.push({
+        state: next,
+        score: heuristic(next),
+        trace: current.trace.concat({
+          at: new Date().toISOString(),
+          op: op.id,
+          beforeHash: hashState(current.state),
+          afterHash: hashState(next)
+        })
+      });
+    }
+  }
+
+  return null;
+}
+```
+
+---
+
+## 23. Program Synthesis
+
+### What it is
+
+Generate structured candidate programs or objects and validate them against contracts.
+
+### Why it matters
+
+It imposes discipline on candidate generation.
+
+### What classical assumption causes drift
+
+The drift source is turning synthesis into blind optimization or assuming generated programs already carry the right semantics.
+
+### How it is retooled
+
+Generate:
+
+* transform families
+* probe families
+* candidate invariants
+
+and validate them under the ratchet.
+
+### How it integrates with Lev
+
+As pre-execution candidate generation in the topology or orchestration layer.
+
+### Code example
+
+```ts
+function synthesizeCandidate(
+  id: string,
+  family: string,
+  transforms: Transform[],
+  claimedInvariants: string[]
+): Candidate {
+  return {
+    id,
+    family,
+    transforms,
+    claimedInvariants
+  };
+}
+
+function candidateEndState(seed: RuntimeState, candidate: Candidate): RuntimeState {
+  return candidate.transforms.reduce((s, t) => t.apply(s), seed);
+}
+```
+
+---
+
+## 24. DreamCoder / Abstraction Learning
+
+### What it is
+
+Solve tasks, discover reusable abstractions, use them to search faster later.
+
+### Why it matters
+
+It helps create a reusable operator vocabulary from actual successful traces.
+
+### What classical assumption causes drift
+
+The drift source is equating compression with truth.
+
+### How it is retooled
+
+Use abstraction learning as a **library-learning** mechanism, not an ontology engine.
+
+### How it integrates with Lev
+
+As motif extraction and operator library growth from event traces.
+
+### Code example
+
+```ts
+function mineTransformMotifs(traces: StepEvent[][]): Record<string, number> {
+  const motifs: Record<string, number> = {};
+
+  for (const trace of traces) {
+    const sig = trace.map((e) => e.op).join(" -> ");
+    motifs[sig] = (motifs[sig] ?? 0) + 1;
+  }
+
+  return motifs;
+}
+
+function promoteMotifToLibrary(
+  motif: string,
+  library: Record<string, Transform>
+): Record<string, Transform> {
+  // placeholder: in a real system this would compile motif strings to actual transforms
+  return { ...library };
+}
+```
+
+---
+
+## 25. Evolutionary Search
+
+### What it is
+
+Generate variation through mutation/recombination and let testing decide which branches survive.
+
+### Why it matters
+
+It is useful when there is no neat straight-line derivation through the search space.
+
+### What classical assumption causes drift
+
+The drift source is “fitness = truth.”
+
+### How it is retooled
+
+Use evolutionary mechanics for:
+
+* diversity
+* branching
+* perturbation
+
+but let the ratchet and simulations decide what survives.
+
+### How it integrates with Lev
+
+As candidate generation policies inside orchestration.
+
+### Code example
+
+```ts
+function mutateTransform(op: Transform): Transform {
+  return {
+    id: `${op.id}:mut`,
+    apply(state) {
+      const next = op.apply(state);
+      return {
+        ...next,
+        phaseIndex: normalizePhase(next.phaseIndex + 1, next.phasePeriod)
+      };
+    }
+  };
+}
+
+function recombineTransforms(a: Transform, b: Transform): Transform {
+  return compose(a, b);
+}
+```
+
+---
+
+# Part VI — Infrastructure Layer
+
+## 26. Constrained Decoding
+
+### What it is
+
+Force outputs into a known schema rather than allowing unconstrained prose.
+
+### Why it matters
+
+It reduces ambiguity and makes artifacts easier to validate and route.
+
+### What classical assumption causes drift
+
+The drift source is confusing format-validity with semantic correctness.
+
+### How it is retooled
+
+Use it for **transport discipline only**.
+
+### How it integrates with Lev
+
+As typed input/output contracts for nodes.
+
+### Code example
+
+```ts
+import { z } from "zod";
+
+const CandidatePacket = z.object({
+  id: z.string(),
+  family: z.string(),
+  claimedInvariants: z.array(z.string())
+});
+
+type CandidatePacket = z.infer<typeof CandidatePacket>;
+
+function parseCandidatePacket(input: unknown): CandidatePacket {
+  return CandidatePacket.parse(input);
+}
+```
+
+---
+
+## 27. Guardrail Pipelines
+
+### What it is
+
+Generate output, then validate it before letting it propagate.
+
+### Why it matters
+
+It stops malformed or illegal artifacts from becoming state.
+
+### What classical assumption causes drift
+
+The drift source is generic or weak validation rules.
+
+### How it is retooled
+
+Validate:
+
+* structure
+* provenance
+* allowed transitions
+* boundary compatibility
+
+### How it integrates with Lev
+
+As gate nodes, compile checks, and admission guards.
+
+### Code example
+
+```ts
+function guardStep(
+  before: RuntimeState,
+  after: RuntimeState
+): { ok: boolean; reasons: string[] } {
+  const reasons: string[] = [];
+
+  if (after.phasePeriod <= 0) reasons.push("BAD_PHASE");
+
+  if (
+    before.boundaries.includes("blocked") &&
+    before.region !== after.region
+  ) {
+    reasons.push("ILLEGAL_BOUNDARY_CROSSING");
+  }
+
+  return { ok: reasons.length === 0, reasons };
+}
+```
+
+---
+
+## 28. Build / Reproducibility Systems
+
+### What it is
+
+Explicit dependencies, deterministic rebuilds, and replayable results.
+
+### Why it matters
+
+It is one of the strongest guards against mythologized systems.
+
+### What classical assumption causes drift
+
+There is little mathematical drift here. The main risk is hidden dependency logic.
+
+### How it is retooled
+
+Mostly direct import.
+
+### How it integrates with Lev
+
+Lev already does this well through compile-time determinism and event logging.
+
+### Code example
+
+```ts
+interface BuildNode {
+  id: string;
+  deps: string[];
+  run(): Promise<void>;
+}
+
+async function runBuild(graph: Record<string, BuildNode>, order: string[]) {
+  for (const id of order) {
+    await graph[id].run();
+  }
+}
+```
+
+---
+
+## 29. Graph Mining / Topology Extraction
+
+### What it is
+
+Analyze graphs for clusters, motifs, bottlenecks, and recurrent structures.
+
+### Why it matters
+
+A runtime like this will generate:
+
+* region-transition graphs
+* witness graphs
+* failure graphs
+* motif graphs
+
+These need to be mined.
+
+### What classical assumption causes drift
+
+Very little. This is one of the cleaner imports.
+
+### How it is retooled
+
+Use it directly on event spine projections.
+
+### How it integrates with Lev
+
+As projections built from Lev’s append-only event spine.
+
+### Code example
+
+```ts
+interface TransitionEdge {
+  from: string;
+  to: string;
+  op: string;
+}
+
+function buildTransitionGraph(
+  events: StepEvent[],
+  stateLookup: Record<string, RuntimeState>
+): TransitionEdge[] {
+  return events.map((e) => ({
+    from: stateLookup[e.beforeHash].region,
+    to: stateLookup[e.afterHash].region,
+    op: e.op
+  }));
+}
+
+function clusterByRegion(edges: TransitionEdge[]): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const e of edges) {
+    counts[e.from] = (counts[e.from] ?? 0) + 1;
+    counts[e.to] = (counts[e.to] ?? 0) + 1;
+  }
+  return counts;
+}
+```
+
+---
+
+# Putting It All Together
+
+## Unified Runtime Picture
+
+The point of this entire note is not “thirty cool concepts.”
+
+The point is that these are **operator families** that can be made consistent with each other if they all operate on:
+
+* structured state
+* explicit boundaries
+* explicit phase
+* explicit loop scale
+* ordered transforms
+* probe-relative equivalence
+* replayable witness traces
+
+That gives one consistent picture:
+
+* **topology** gives the space
+* **orchestration** gives traversal policy
+* **dispatch** gives execution backend
+* **state** gives region / phase / boundary / invariants
+* **transforms** move state through the space
+* **probes** observe state
+* **witnesses** record evidence
+* **sims** provide tiered positive and negative evidence
+* **outside methods** become operators on this space
+
+## Suggested Lev Layering
+
+### Topology Plane
+
+Use Lev’s graph topology to define:
+
+* allowed regions
+* possible transitions
+* branch points
+* gates
+* terminal nodes
+
+### Orchestration Plane
+
+Use Lev’s orchestration layer to define:
+
+* loop policies
+* phase advancement policies
+* branch budgets
+* retry policies
+* CEGIS loops
+* bounded self-improvement loops
+* council fan-out/fan-in
+
+### Dispatch Plane
+
+Use Lev’s dispatch layer to run:
+
+* local transforms
+* remote agent calls
+* simulations
+* reviewers
+* validators
+
+### Event Spine
+
+Use Lev’s event spine to record:
+
+* state transition traces
+* witness traces
+* negative evidence
+* counterexamples
+* replayable episodes
+* graph-mining inputs
+
+## Minimal Integration Path
+
+If I were implementing this incrementally, I would do it in this order:
+
+1. add `RuntimeState`, `Probe`, `Transform`, `Witness`
+2. add probe-relative equivalence
+3. add phase / loop-scale fields to state
+4. make graph nodes transform structured state
+5. add guard/gate logic for illegal transitions
+6. add append-only witness logging
+7. add tiered positive/negative sim nodes
+8. add search-control operators (AlphaGeometry-style pruning)
+9. add motif mining / abstraction learning on traces
+
+---
+
+# Final Statement
+
+The reason I care about all of these ideas together is not because I want to collect references.
+
+It is because they all contribute something useful once stripped of the assumptions that flatten them.
+
+What I want is one runtime where:
+
+* topology is real
+* nonclassical structure is preserved
+* loops and phase are explicit
+* useful outside processes are retooled into operators
+* evidence is witness-driven
+* and the whole thing stays inspectable enough to actually engineer
+
+That is the direction.
+
+If you want, I can turn this next into an even tighter **Lev-specific mini-spec** with:
+
+* exact Lev insertion points
+* recommended node kinds
+* orchestration policies
+* event spine schema
+* and a minimal end-to-end example flow.

@@ -1,0 +1,56 @@
+{
+  "item_class": "A1_STRATEGY_v1",
+  "compile_target": "A0_COMPILER",
+  "strategy_canonical": [
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S_HOPF_FIBRATION_MATH_DEF",
+      "kind": "MATH_DEF",
+      "requires": [
+        "F01_FINITUDE",
+        "N01_NONCOMMUTATION",
+        "S_ENTROPIC_GRADIENT_MATH",
+        "S_ACTION_PRECEDENCE_NONCOLLAPSE",
+        "S_GENERATOR_ALGEBRA_FGA",
+        "S_CHIRAL_FLUX_DUAL_WEYL_FALSIFICATION",
+        "S_VARIANCE_DIRECTION_MATH",
+        "S_COUPLING_REGIME_MATH",
+        "S_FRAME_REPRESENTATION_MATH"
+      ],
+      "def_fields": {
+        "OBJECTS": "S3_total_space S2_base_space S1_fiber projection_map",
+        "OPERATIONS": "fiber_projection section_lift parallel_transport",
+        "DOMAIN": "finite_dimensional_density_matrices",
+        "CODOMAIN": "fiber_bundle_manifolds",
+        "INVARIANTS": "fiber_bundle_structure_preserved_under_all_cptp_maps",
+        "FORMULA": "embed_constraint_dimensions_as_nested_tori_in_S3_to_S2_fibration"
+      },
+      "asserts": {
+        "EXISTS": "MATH_TOKEN HOPF_FIBRATION"
+      }
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S_NESTED_TORI_TOPOLOGY_MATH_DEF",
+      "kind": "MATH_DEF",
+      "requires": [
+        "F01_FINITUDE",
+        "N01_NONCOMMUTATION",
+        "S_HOPF_FIBRATION_MATH_DEF",
+        "S_VARIANCE_DIRECTION_MATH",
+        "S_WEYL_ORIENTATION_MATH_DEF"
+      ],
+      "def_fields": {
+        "OBJECTS": "inner_torus_convergent_constraint_first_left_weyl outer_torus_divergent_release_first_right_weyl",
+        "OPERATIONS": "torus_winding_number_computation intersection_form",
+        "DOMAIN": "S3_total_space",
+        "CODOMAIN": "integer_winding_numbers",
+        "INVARIANTS": "topological_non_collapse chiral_flux_orientation_preserved",
+        "FORMULA": "winding_number_inner_torus != winding_number_outer_torus_under_continuous_deformation_and_cptp_maps"
+      },
+      "asserts": {
+        "EXISTS": "MATH_TOKEN NESTED_TORI_TOPOLOGY"
+      }
+    }
+  ]
+}

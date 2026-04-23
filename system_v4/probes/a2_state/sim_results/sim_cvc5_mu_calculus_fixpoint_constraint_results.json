@@ -1,0 +1,140 @@
+{
+  "name": "sim_cvc5_mu_calculus_fixpoint_constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; modal logic handled via SMT solver"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of mu-calculus fixpoint constraints via Knaster-Tarski encoding"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "sympy available for parity game symbolic formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; temporal logic constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry in this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_least_fixpoint_rank_1": {
+      "expected_sat": true,
+      "actual_sat": true,
+      "pass": true,
+      "description": "\u03bcX.X\u2227p, rank constraint R\u22651 should be SAT"
+    },
+    "test_2_greatest_fixpoint_rank_2": {
+      "expected_sat": true,
+      "actual_sat": true,
+      "pass": true,
+      "description": "\u03bdX.X\u2228p, rank constraint R\u22652 should be SAT"
+    },
+    "test_3_nested_fixpoint_rank_3": {
+      "expected_sat": true,
+      "actual_sat": true,
+      "pass": true,
+      "description": "\u03bcX.\u03bdY.X\u2227Y, nested fixpoint rank \u22653 should be SAT"
+    }
+  },
+  "negative": {
+    "neg_test_1_rank_too_small": {
+      "expected_sat": false,
+      "actual_sat": false,
+      "pass": true,
+      "description": "\u03bcX.X\u2227p with R<1 should be UNSAT (contradicts R\u22651 requirement)"
+    },
+    "neg_test_2_greatest_insufficient_rank": {
+      "expected_sat": false,
+      "actual_sat": false,
+      "pass": true,
+      "description": "\u03bdX.X\u2228p with R<2 should be UNSAT (contradicts R\u22652 requirement)"
+    },
+    "neg_test_3_nested_rank_insufficient": {
+      "expected_sat": false,
+      "actual_sat": false,
+      "pass": true,
+      "description": "\u03bcX.\u03bdY.X\u2227Y with R<3 should be UNSAT (contradicts R\u22653 requirement)"
+    }
+  },
+  "boundary": {
+    "boundary_1_exact_minimal_rank": {
+      "expected_sat": true,
+      "actual_sat": true,
+      "pass": true,
+      "description": "Fixpoint at exact minimal rank R=1 should be SAT"
+    },
+    "boundary_2_degenerate_rank_0": {
+      "expected_sat": true,
+      "actual_sat": true,
+      "pass": true,
+      "description": "Degenerate fixpoint \u03bcX.X with R=0 should be SAT"
+    },
+    "boundary_3_high_alternation_rank_5": {
+      "expected_sat": true,
+      "actual_sat": true,
+      "pass": true,
+      "description": "High alternation depth (R\u22655) should be SAT"
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,74 @@
+{
+  "name": "assoc_bundle_associated_bundle_coupling_to_g_tower",
+  "tool_manifest": {
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check SU(2) group manifold behaviour"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification U \u2283 SU inclusions and det constraints"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix group membership tests"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "geomstats": "supportive",
+    "e3nn": null,
+    "sympy": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "GL_admits_u_s_gl": [
+      "True",
+      "True",
+      "True"
+    ],
+    "U_admits_u_s": [
+      true,
+      true
+    ],
+    "SU_admits_s": "True",
+    "Sp1_admits_s": true,
+    "narrowing_counts": {
+      "GL": "50",
+      "U": 50,
+      "SU": "0",
+      "Sp1": "0"
+    },
+    "monotone_narrowing": true,
+    "sympy_su2_det_constraint": true
+  },
+  "negative": {
+    "GL_not_in_U": true,
+    "U_not_in_SU": true,
+    "zero_not_in_GL": true
+  },
+  "boundary": {
+    "identity_in_all": [
+      "True",
+      true,
+      "True",
+      true
+    ],
+    "minusI_in_SU": "True",
+    "near_singular_still_GL": "False"
+  },
+  "classification": "canonical"
+}

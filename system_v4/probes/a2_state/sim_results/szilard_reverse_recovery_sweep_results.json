@@ -1,0 +1,1196 @@
+{
+  "name": "szilard_reverse_recovery_sweep",
+  "classification": "exploratory",
+  "classification_note": "Exploratory Szilard reverse/recovery sweep on a finite double-well carrier. It compares forward erasure, naive reverse, and designed recovery across protocol durations, while keeping trajectory bookkeeping explicit.",
+  "lego_ids": [
+    "stochastic_thermodynamics",
+    "landauer_erasure"
+  ],
+  "primary_lego_ids": [
+    "stochastic_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "erasure_improves_with_longer_protocols": {
+      "first_success": 0.5145,
+      "last_success": 0.74775,
+      "pass": true
+    },
+    "recovery_restores_more_entropy_than_naive_reverse": {
+      "mean_naive_entropy": 0.21445164911638143,
+      "mean_recovery_entropy": 0.37088973127272673,
+      "pass": true
+    },
+    "no_tilt_control_stays_worse_than_tilted_erasure": {
+      "mean_no_tilt_success": 0.4985625,
+      "mean_erase_success": 0.6190625,
+      "pass": true
+    }
+  },
+  "negative": {
+    "naive_reverse_is_not_reliable_restoration": {
+      "mean_naive_reverse_entropy": 0.21445164911638143,
+      "pass": true
+    },
+    "recovery_is_not_perfect_restoration": {
+      "mean_recovery_entropy": 0.37088973127272673,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_protocols_have_closed_work_heat_bookkeeping": {
+      "pass": true
+    },
+    "all_summary_values_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "temperature": 1.0,
+    "n_trajectories": 4000,
+    "protocol_steps": [
+      60,
+      120,
+      240,
+      420
+    ],
+    "mean_erase_success": 0.6190625,
+    "mean_recovery_entropy": 0.37088973127272673,
+    "mean_naive_reverse_entropy": 0.21445164911638143,
+    "mean_recovery_entropy_restoration_fraction": 0.5350807760238032,
+    "mean_naive_reverse_entropy_restoration_fraction": 0.3093883306906635,
+    "scope_note": "Duration sweep for erase / naive reverse / designed recovery on a finite double-well memory. Exploratory, not canonical."
+  },
+  "rows": [
+    {
+      "steps": 60,
+      "erase_success": 0.5145,
+      "erase_logical_entropy_final": 0.6927266216000256,
+      "erase_entropy_restoration_fraction": 0.9993932616741225,
+      "erase_work": 0.6048528862814495,
+      "erase_landauer_gap": 0.6048528862814495,
+      "naive_reverse_final_entropy": 0.08100222229998755,
+      "naive_reverse_entropy_restoration_fraction": 0.11686150441317744,
+      "naive_reverse_success": 0.98425,
+      "recovery_final_entropy": 0.14162706960881935,
+      "recovery_entropy_restoration_fraction": 0.2043246709802797,
+      "recovery_success": 0.968,
+      "no_tilt_success": 0.5045,
+      "no_tilt_work": 0.5882698122769755,
+      "closure_error_max": 4.440892098500626e-16
+    },
+    {
+      "steps": 120,
+      "erase_success": 0.56825,
+      "erase_logical_entropy_final": 0.6838019077079915,
+      "erase_entropy_restoration_fraction": 0.986517621200732,
+      "erase_work": 0.8264472112834923,
+      "erase_landauer_gap": 0.8264472112834923,
+      "naive_reverse_final_entropy": 0.16475296776262988,
+      "naive_reverse_entropy_restoration_fraction": 0.23768828956288537,
+      "naive_reverse_success": 0.961,
+      "recovery_final_entropy": 0.31844084833177105,
+      "recovery_entropy_restoration_fraction": 0.45941303270472067,
+      "recovery_success": 0.903,
+      "no_tilt_success": 0.49425,
+      "no_tilt_work": 0.7920125605757117,
+      "closure_error_max": 4.440892098500626e-16
+    },
+    {
+      "steps": 240,
+      "erase_success": 0.64575,
+      "erase_logical_entropy_final": 0.6500379312999651,
+      "erase_entropy_restoration_fraction": 0.9378064998761804,
+      "erase_work": 0.963688547944916,
+      "erase_landauer_gap": 0.963688547944916,
+      "naive_reverse_final_entropy": 0.28423055089735627,
+      "naive_reverse_entropy_restoration_fraction": 0.410058006248754,
+      "naive_reverse_success": 0.91775,
+      "recovery_final_entropy": 0.45707344253347204,
+      "recovery_entropy_restoration_fraction": 0.6594175888650867,
+      "recovery_success": 0.82925,
+      "no_tilt_success": 0.48925,
+      "no_tilt_work": 0.9316130486935492,
+      "closure_error_max": 4.440892098500626e-16
+    },
+    {
+      "steps": 420,
+      "erase_success": 0.74775,
+      "erase_logical_entropy_final": 0.5647935491272862,
+      "erase_entropy_restoration_fraction": 0.814824852452013,
+      "erase_work": 0.9704996850290064,
+      "erase_landauer_gap": 0.9704996850290064,
+      "naive_reverse_final_entropy": 0.327820855505552,
+      "naive_reverse_entropy_restoration_fraction": 0.47294552253783734,
+      "naive_reverse_success": 0.89875,
+      "recovery_final_entropy": 0.5664175646168444,
+      "recovery_entropy_restoration_fraction": 0.8171678115451255,
+      "recovery_success": 0.74625,
+      "no_tilt_success": 0.50625,
+      "no_tilt_work": 0.9314312738780361,
+      "closure_error_max": 4.440892098500626e-16
+    }
+  ],
+  "by_steps": {
+    "60": {
+      "erase": {
+        "mode": "erase",
+        "steps": 60,
+        "use_tilt": true,
+        "p_left_init": 0.4945,
+        "p_left_final": 0.5145,
+        "logical_entropy_init": 0.693086679339803,
+        "logical_entropy_final": 0.6927266216000256,
+        "entropy_restoration_fraction": 0.9993932616741225,
+        "entropy_gap_to_uniform": 0.0004205589599196591,
+        "info_erased": 0.0003600577397773197,
+        "mean_work": 0.6048528862814495,
+        "mean_heat": -0.45540825078785846,
+        "mean_delta_u": 0.14944463549359105,
+        "closure_error": 0.0,
+        "equilibrium_delta_f": -1.0524712186362772,
+        "landauer_floor": 0.0,
+        "landauer_gap": 0.6048528862814495,
+        "stage_logs": [
+          {
+            "name": "lower_barrier",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": -0.31709577509481884,
+            "mean_heat": 0.1287885209858828,
+            "mean_delta_u": -0.18830725410893606,
+            "mean_barrier_work": -0.31709577509481884,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "tilt_left",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": -0.0034390728961913625,
+            "mean_heat": -0.02937312388744676,
+            "mean_delta_u": -0.03281219678363812,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": -0.0034390728961913625
+          },
+          {
+            "name": "raise_barrier",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": 0.9253877342724597,
+            "mean_heat": -0.33344070289044236,
+            "mean_delta_u": 0.5919470313820172,
+            "mean_barrier_work": 0.9253877342724597,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "left_lock_hold",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": 0.0,
+            "mean_heat": -0.22138294499585207,
+            "mean_delta_u": -0.22138294499585207,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      },
+      "naive_reverse": {
+        "mode": "naive_reverse",
+        "steps": 60,
+        "use_tilt": true,
+        "p_left_init": 1.0,
+        "p_left_final": 0.98425,
+        "logical_entropy_init": 3.551116999690106e-14,
+        "logical_entropy_final": 0.08100222229998755,
+        "entropy_restoration_fraction": 0.11686150441317744,
+        "entropy_gap_to_uniform": 0.6121449582599577,
+        "info_erased": -0.08100222229995203,
+        "mean_work": 2.632388295980361,
+        "mean_heat": -0.23077237630689312,
+        "mean_delta_u": 2.401615919673468,
+        "closure_error": 4.440892098500626e-16,
+        "equilibrium_delta_f": 1.0524712186362772,
+        "landauer_floor": 1.0524712186362772,
+        "landauer_gap": 1.5799170773440836,
+        "stage_logs": [
+          {
+            "name": "naive_reverse_left_lock_hold",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": 0.0,
+            "mean_heat": 0.1392904425833973,
+            "mean_delta_u": 0.1392904425833973,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "naive_reverse_raise_barrier",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": -0.4915249672438863,
+            "mean_heat": 0.07822255410224009,
+            "mean_delta_u": -0.4133024131416461,
+            "mean_barrier_work": -0.4915249672438863,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "naive_reverse_tilt_left",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": 1.9265130815727087,
+            "mean_heat": -0.016468736051485536,
+            "mean_delta_u": 1.910044345521223,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 1.9265130815727087
+          },
+          {
+            "name": "naive_reverse_lower_barrier",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": 1.1974001816515387,
+            "mean_heat": -0.43181663694104505,
+            "mean_delta_u": 0.765583544710494,
+            "mean_barrier_work": 1.1974001816515387,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      },
+      "recovery": {
+        "mode": "recovery",
+        "steps": 60,
+        "use_tilt": true,
+        "p_left_init": 1.0,
+        "p_left_final": 0.968,
+        "logical_entropy_init": 3.551116999690106e-14,
+        "logical_entropy_final": 0.14162706960881935,
+        "entropy_restoration_fraction": 0.2043246709802797,
+        "entropy_gap_to_uniform": 0.551520110951126,
+        "info_erased": -0.14162706960878385,
+        "mean_work": 2.893545253659915,
+        "mean_heat": -0.4508715056260919,
+        "mean_delta_u": 2.4426737480338234,
+        "closure_error": 4.440892098500626e-16,
+        "equilibrium_delta_f": 1.0524712186362772,
+        "landauer_floor": 1.0524712186362772,
+        "landauer_gap": 1.8410740350236376,
+        "stage_logs": [
+          {
+            "name": "release_barrier",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": -0.35581815286758206,
+            "mean_heat": 0.08538505425656193,
+            "mean_delta_u": -0.27043309861102016,
+            "mean_barrier_work": -0.35581815286758206,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "reverse_tilt_washout",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": 3.7849701870017776,
+            "mean_heat": -0.021974095723653157,
+            "mean_delta_u": 3.762996091278124,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 3.7849701870017776
+          },
+          {
+            "name": "untilt_low_barrier",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": -1.831900428607128,
+            "mean_heat": -0.023851555384141698,
+            "mean_delta_u": -1.85575198399127,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": -1.831900428607128
+          },
+          {
+            "name": "raise_barrier_symmetric",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": 1.2962936481328484,
+            "mean_heat": -0.49043090877485895,
+            "mean_delta_u": 0.8058627393579894,
+            "mean_barrier_work": 1.2962936481328484,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      },
+      "no_tilt": {
+        "mode": "erase",
+        "steps": 60,
+        "use_tilt": false,
+        "p_left_init": 0.501,
+        "p_left_final": 0.5045,
+        "logical_entropy_init": 0.693145180558612,
+        "logical_entropy_final": 0.6931066800131775,
+        "entropy_restoration_fraction": 0.9999415700620249,
+        "entropy_gap_to_uniform": 4.0500546767741064e-05,
+        "info_erased": 3.850054543441672e-05,
+        "mean_work": 0.5882698122769755,
+        "mean_heat": -0.251122696799072,
+        "mean_delta_u": 0.3371471154779035,
+        "closure_error": 0.0,
+        "equilibrium_delta_f": 0.0,
+        "landauer_floor": 0.0,
+        "landauer_gap": 0.5882698122769755,
+        "stage_logs": [
+          {
+            "name": "lower_barrier",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": -0.3154986873117671,
+            "mean_heat": 0.13196233944659974,
+            "mean_delta_u": -0.18353634786516737,
+            "mean_barrier_work": -0.3154986873117671,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "tilt_left",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": 0.0,
+            "mean_heat": 0.01582784780113247,
+            "mean_delta_u": 0.01582784780113247,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "raise_barrier",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": 0.9037684995887425,
+            "mean_heat": -0.22047638153523996,
+            "mean_delta_u": 0.6832921180535025,
+            "mean_barrier_work": 0.9037684995887425,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "left_lock_hold",
+            "temperature": 1.0,
+            "steps": 15,
+            "mean_work": 0.0,
+            "mean_heat": -0.17843650251156423,
+            "mean_delta_u": -0.17843650251156423,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      }
+    },
+    "120": {
+      "erase": {
+        "mode": "erase",
+        "steps": 120,
+        "use_tilt": true,
+        "p_left_init": 0.51,
+        "p_left_final": 0.56825,
+        "logical_entropy_init": 0.6929471672244782,
+        "logical_entropy_final": 0.6838019077079915,
+        "entropy_restoration_fraction": 0.986517621200732,
+        "entropy_gap_to_uniform": 0.009345272851953745,
+        "info_erased": 0.009145259516486703,
+        "mean_work": 0.8264472112834923,
+        "mean_heat": -0.8539006372926765,
+        "mean_delta_u": -0.02745342600918427,
+        "closure_error": 5.898059818321144e-17,
+        "equilibrium_delta_f": -1.0524712186362772,
+        "landauer_floor": 0.0,
+        "landauer_gap": 0.8264472112834923,
+        "stage_logs": [
+          {
+            "name": "lower_barrier",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": -0.4194404482885659,
+            "mean_heat": 0.23169435717158088,
+            "mean_delta_u": -0.18774609111698493,
+            "mean_barrier_work": -0.4194404482885659,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "tilt_left",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": -0.05463272006606059,
+            "mean_heat": -0.044435684127598546,
+            "mean_delta_u": -0.09906840419365914,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": -0.05463272006606059
+          },
+          {
+            "name": "raise_barrier",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": 1.3005203796381186,
+            "mean_heat": -0.7627801395040438,
+            "mean_delta_u": 0.537740240134075,
+            "mean_barrier_work": 1.3005203796381186,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "left_lock_hold",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": 0.0,
+            "mean_heat": -0.27837917083261515,
+            "mean_delta_u": -0.27837917083261515,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      },
+      "naive_reverse": {
+        "mode": "naive_reverse",
+        "steps": 120,
+        "use_tilt": true,
+        "p_left_init": 1.0,
+        "p_left_final": 0.961,
+        "logical_entropy_init": 3.551116999690106e-14,
+        "logical_entropy_final": 0.16475296776262988,
+        "entropy_restoration_fraction": 0.23768828956288537,
+        "entropy_gap_to_uniform": 0.5283942127973154,
+        "info_erased": -0.16475296776259438,
+        "mean_work": 3.0936958914130757,
+        "mean_heat": -0.7549653896323253,
+        "mean_delta_u": 2.3387305017807503,
+        "closure_error": 0.0,
+        "equilibrium_delta_f": 1.0524712186362772,
+        "landauer_floor": 1.0524712186362772,
+        "landauer_gap": 2.0412246727767984,
+        "stage_logs": [
+          {
+            "name": "naive_reverse_left_lock_hold",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": 0.0,
+            "mean_heat": 0.19473399149078113,
+            "mean_delta_u": 0.19473399149078113,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "naive_reverse_raise_barrier",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": -0.6361478051251327,
+            "mean_heat": 0.11148525491551882,
+            "mean_delta_u": -0.5246625502096137,
+            "mean_barrier_work": -0.6361478051251327,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "naive_reverse_tilt_left",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": 2.0299265674644347,
+            "mean_heat": -0.01361347433369808,
+            "mean_delta_u": 2.0163130931307367,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 2.0299265674644347
+          },
+          {
+            "name": "naive_reverse_lower_barrier",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": 1.6999171290737733,
+            "mean_heat": -1.047571161704927,
+            "mean_delta_u": 0.6523459673688461,
+            "mean_barrier_work": 1.6999171290737733,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      },
+      "recovery": {
+        "mode": "recovery",
+        "steps": 120,
+        "use_tilt": true,
+        "p_left_init": 1.0,
+        "p_left_final": 0.903,
+        "logical_entropy_init": 3.551116999690106e-14,
+        "logical_entropy_final": 0.31844084833177105,
+        "entropy_restoration_fraction": 0.45941303270472067,
+        "entropy_gap_to_uniform": 0.37470633222817423,
+        "info_erased": -0.3184408483317355,
+        "mean_work": 3.2865591288829767,
+        "mean_heat": -0.9167254903214345,
+        "mean_delta_u": 2.3698336385615426,
+        "closure_error": 4.440892098500626e-16,
+        "equilibrium_delta_f": 1.0524712186362772,
+        "landauer_floor": 1.0524712186362772,
+        "landauer_gap": 2.2340879102466995,
+        "stage_logs": [
+          {
+            "name": "release_barrier",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": -0.4863039488922759,
+            "mean_heat": 0.18151420153846415,
+            "mean_delta_u": -0.3047897473538118,
+            "mean_barrier_work": -0.4863039488922759,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "reverse_tilt_washout",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": 3.913213040253014,
+            "mean_heat": -0.04751804106226327,
+            "mean_delta_u": 3.865694999190751,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 3.913213040253014
+          },
+          {
+            "name": "untilt_low_barrier",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": -1.7996204487547867,
+            "mean_heat": -0.08029022031037594,
+            "mean_delta_u": -1.8799106690651624,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": -1.7996204487547867
+          },
+          {
+            "name": "raise_barrier_symmetric",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": 1.6592704862770253,
+            "mean_heat": -0.9704314304872593,
+            "mean_delta_u": 0.688839055789766,
+            "mean_barrier_work": 1.6592704862770253,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      },
+      "no_tilt": {
+        "mode": "erase",
+        "steps": 120,
+        "use_tilt": false,
+        "p_left_init": 0.49575,
+        "p_left_final": 0.49425,
+        "logical_entropy_init": 0.6931110551249275,
+        "logical_entropy_final": 0.693081054102363,
+        "entropy_restoration_fraction": 0.9999045996875745,
+        "entropy_gap_to_uniform": 6.612645758230506e-05,
+        "info_erased": 3.000102256456305e-05,
+        "mean_work": 0.7920125605757117,
+        "mean_heat": -0.4532210559371201,
+        "mean_delta_u": 0.33879150463859165,
+        "closure_error": 5.551115123125783e-17,
+        "equilibrium_delta_f": 0.0,
+        "landauer_floor": 0.0,
+        "landauer_gap": 0.7920125605757117,
+        "stage_logs": [
+          {
+            "name": "lower_barrier",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": -0.41642688034651676,
+            "mean_heat": 0.2396708128757776,
+            "mean_delta_u": -0.17675606747073913,
+            "mean_barrier_work": -0.41642688034651676,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "tilt_left",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": 0.0,
+            "mean_heat": 0.028808728514341148,
+            "mean_delta_u": 0.028808728514341148,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "raise_barrier",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": 1.2084394409222285,
+            "mean_heat": -0.5801294564931363,
+            "mean_delta_u": 0.628309984429092,
+            "mean_barrier_work": 1.2084394409222285,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "left_lock_hold",
+            "temperature": 1.0,
+            "steps": 30,
+            "mean_work": 0.0,
+            "mean_heat": -0.14157114083410244,
+            "mean_delta_u": -0.14157114083410244,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      }
+    },
+    "240": {
+      "erase": {
+        "mode": "erase",
+        "steps": 240,
+        "use_tilt": true,
+        "p_left_init": 0.497,
+        "p_left_final": 0.64575,
+        "logical_entropy_init": 0.6931291804519437,
+        "logical_entropy_final": 0.6500379312999651,
+        "entropy_restoration_fraction": 0.9378064998761804,
+        "entropy_gap_to_uniform": 0.043109249259980165,
+        "info_erased": 0.043091249151978595,
+        "mean_work": 0.963688547944916,
+        "mean_heat": -1.261275103106398,
+        "mean_delta_u": -0.29758655516148225,
+        "closure_error": 2.220446049250313e-16,
+        "equilibrium_delta_f": -1.0524712186362772,
+        "landauer_floor": 0.0,
+        "landauer_gap": 0.963688547944916,
+        "stage_logs": [
+          {
+            "name": "lower_barrier",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": -0.5257163321922382,
+            "mean_heat": 0.35238656067301377,
+            "mean_delta_u": -0.17332977151922455,
+            "mean_barrier_work": -0.5257163321922382,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "tilt_left",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": -0.056729360473263095,
+            "mean_heat": -0.09835374621849206,
+            "mean_delta_u": -0.15508310669175515,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": -0.056729360473263095
+          },
+          {
+            "name": "raise_barrier",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": 1.5461342406104173,
+            "mean_heat": -1.2322303416756322,
+            "mean_delta_u": 0.31390389893478526,
+            "mean_barrier_work": 1.5461342406104173,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "left_lock_hold",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": 0.0,
+            "mean_heat": -0.28307757588528787,
+            "mean_delta_u": -0.28307757588528787,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      },
+      "naive_reverse": {
+        "mode": "naive_reverse",
+        "steps": 240,
+        "use_tilt": true,
+        "p_left_init": 1.0,
+        "p_left_final": 0.91775,
+        "logical_entropy_init": 3.551116999690106e-14,
+        "logical_entropy_final": 0.28423055089735627,
+        "entropy_restoration_fraction": 0.410058006248754,
+        "entropy_gap_to_uniform": 0.408916629662589,
+        "info_erased": -0.28423055089732074,
+        "mean_work": 3.509280376696261,
+        "mean_heat": -1.3088277572030511,
+        "mean_delta_u": 2.2004526194932095,
+        "closure_error": 4.440892098500626e-16,
+        "equilibrium_delta_f": 1.0524712186362772,
+        "landauer_floor": 1.0524712186362772,
+        "landauer_gap": 2.4568091580599836,
+        "stage_logs": [
+          {
+            "name": "naive_reverse_left_lock_hold",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": 0.0,
+            "mean_heat": 0.2630429627911418,
+            "mean_delta_u": 0.2630429627911418,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "naive_reverse_raise_barrier",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": -0.7793110156478126,
+            "mean_heat": 0.16230333732330218,
+            "mean_delta_u": -0.6170076783245105,
+            "mean_barrier_work": -0.7793110156478126,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "naive_reverse_tilt_left",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": 2.127358493903321,
+            "mean_heat": -0.008985024969817115,
+            "mean_delta_u": 2.118373468933503,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 2.127358493903321
+          },
+          {
+            "name": "naive_reverse_lower_barrier",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": 2.161232898440752,
+            "mean_heat": -1.7251890323476777,
+            "mean_delta_u": 0.43604386609307466,
+            "mean_barrier_work": 2.161232898440752,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      },
+      "recovery": {
+        "mode": "recovery",
+        "steps": 240,
+        "use_tilt": true,
+        "p_left_init": 1.0,
+        "p_left_final": 0.82925,
+        "logical_entropy_init": 3.551116999690106e-14,
+        "logical_entropy_final": 0.45707344253347204,
+        "entropy_restoration_fraction": 0.6594175888650867,
+        "entropy_gap_to_uniform": 0.23607373802647325,
+        "info_erased": -0.4570734425334365,
+        "mean_work": 3.5309699962995715,
+        "mean_heat": -1.305022118352786,
+        "mean_delta_u": 2.2259478779467856,
+        "closure_error": 0.0,
+        "equilibrium_delta_f": 1.0524712186362772,
+        "landauer_floor": 1.0524712186362772,
+        "landauer_gap": 2.4784987776632943,
+        "stage_logs": [
+          {
+            "name": "release_barrier",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": -0.6835696209304415,
+            "mean_heat": 0.30949346135524713,
+            "mean_delta_u": -0.37407615957519436,
+            "mean_barrier_work": -0.6835696209304415,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "reverse_tilt_washout",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": 4.150281872898379,
+            "mean_heat": -0.10184098954399573,
+            "mean_delta_u": 4.048440883354384,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 4.150281872898379
+          },
+          {
+            "name": "untilt_low_barrier",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": -1.7536805780206361,
+            "mean_heat": -0.19444353824533647,
+            "mean_delta_u": -1.9481241162659724,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": -1.7536805780206361
+          },
+          {
+            "name": "raise_barrier_symmetric",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": 1.8179383223522692,
+            "mean_heat": -1.3182310519187008,
+            "mean_delta_u": 0.4997072704335684,
+            "mean_barrier_work": 1.8179383223522692,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      },
+      "no_tilt": {
+        "mode": "erase",
+        "steps": 240,
+        "use_tilt": false,
+        "p_left_init": 0.50025,
+        "p_left_final": 0.48925,
+        "logical_entropy_init": 0.6931470555599402,
+        "logical_entropy_final": 0.6929160377503969,
+        "entropy_restoration_fraction": 0.9996665314149275,
+        "entropy_gap_to_uniform": 0.00023114280954839028,
+        "info_erased": 0.00023101780954326578,
+        "mean_work": 0.9316130486935492,
+        "mean_heat": -0.6288464005799951,
+        "mean_delta_u": 0.3027666481135543,
+        "closure_error": 1.6653345369377348e-16,
+        "equilibrium_delta_f": 0.0,
+        "landauer_floor": 0.0,
+        "landauer_gap": 0.9316130486935492,
+        "stage_logs": [
+          {
+            "name": "lower_barrier",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": -0.5289331195862289,
+            "mean_heat": 0.35162459698407383,
+            "mean_delta_u": -0.17730852260215516,
+            "mean_barrier_work": -0.5289331195862289,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "tilt_left",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": 0.0,
+            "mean_heat": 0.052936139699506446,
+            "mean_delta_u": 0.052936139699506446,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "raise_barrier",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": 1.4605461682797782,
+            "mean_heat": -0.9260768023821307,
+            "mean_delta_u": 0.5344693658976476,
+            "mean_barrier_work": 1.4605461682797782,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "left_lock_hold",
+            "temperature": 1.0,
+            "steps": 60,
+            "mean_work": 0.0,
+            "mean_heat": -0.10733033488144449,
+            "mean_delta_u": -0.10733033488144449,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      }
+    },
+    "420": {
+      "erase": {
+        "mode": "erase",
+        "steps": 420,
+        "use_tilt": true,
+        "p_left_init": 0.49975,
+        "p_left_final": 0.74775,
+        "logical_entropy_init": 0.6931470555599402,
+        "logical_entropy_final": 0.5647935491272862,
+        "entropy_restoration_fraction": 0.814824852452013,
+        "entropy_gap_to_uniform": 0.1283536314326591,
+        "info_erased": 0.12835350643265397,
+        "mean_work": 0.9704996850290064,
+        "mean_heat": -1.6304461274100066,
+        "mean_delta_u": -0.6599464423810001,
+        "closure_error": 1.1102230246251565e-16,
+        "equilibrium_delta_f": -1.0524712186362772,
+        "landauer_floor": 0.0,
+        "landauer_gap": 0.9704996850290064,
+        "stage_logs": [
+          {
+            "name": "lower_barrier",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": -0.6045657602205385,
+            "mean_heat": 0.4511654986692567,
+            "mean_delta_u": -0.15340026155128192,
+            "mean_barrier_work": -0.6045657602205385,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "tilt_left",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": -0.14441606754933883,
+            "mean_heat": -0.18885800837234423,
+            "mean_delta_u": -0.3332740759216831,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": -0.14441606754933883
+          },
+          {
+            "name": "raise_barrier",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": 1.719481512798884,
+            "mean_heat": -1.568631369000369,
+            "mean_delta_u": 0.15085014379851525,
+            "mean_barrier_work": 1.719481512798884,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "left_lock_hold",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": 0.0,
+            "mean_heat": -0.3241222487065503,
+            "mean_delta_u": -0.3241222487065503,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      },
+      "naive_reverse": {
+        "mode": "naive_reverse",
+        "steps": 420,
+        "use_tilt": true,
+        "p_left_init": 1.0,
+        "p_left_final": 0.89875,
+        "logical_entropy_init": 3.551116999690106e-14,
+        "logical_entropy_final": 0.327820855505552,
+        "entropy_restoration_fraction": 0.47294552253783734,
+        "entropy_gap_to_uniform": 0.3653263250543933,
+        "info_erased": -0.3278208555055165,
+        "mean_work": 3.7288253217234666,
+        "mean_heat": -1.613444283015232,
+        "mean_delta_u": 2.115381038708234,
+        "closure_error": 4.440892098500626e-16,
+        "equilibrium_delta_f": 1.0524712186362772,
+        "landauer_floor": 1.0524712186362772,
+        "landauer_gap": 2.6763541030871894,
+        "stage_logs": [
+          {
+            "name": "naive_reverse_left_lock_hold",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": 0.0,
+            "mean_heat": 0.26896524985285,
+            "mean_delta_u": 0.26896524985285,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "naive_reverse_raise_barrier",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": -0.8985800758240464,
+            "mean_heat": 0.23047429103301015,
+            "mean_delta_u": -0.6681057847910363,
+            "mean_barrier_work": -0.8985800758240464,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "naive_reverse_tilt_left",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": 2.276679384705213,
+            "mean_heat": -0.020562121795229992,
+            "mean_delta_u": 2.2561172629099837,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 2.276679384705213
+          },
+          {
+            "name": "naive_reverse_lower_barrier",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": 2.3507260128423,
+            "mean_heat": -2.0923217021058624,
+            "mean_delta_u": 0.2584043107364373,
+            "mean_barrier_work": 2.3507260128423,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      },
+      "recovery": {
+        "mode": "recovery",
+        "steps": 420,
+        "use_tilt": true,
+        "p_left_init": 1.0,
+        "p_left_final": 0.74625,
+        "logical_entropy_init": 3.551116999690106e-14,
+        "logical_entropy_final": 0.5664175646168444,
+        "entropy_restoration_fraction": 0.8171678115451255,
+        "entropy_gap_to_uniform": 0.12672961594310084,
+        "info_erased": -0.5664175646168089,
+        "mean_work": 3.485519767373072,
+        "mean_heat": -1.3343344999675024,
+        "mean_delta_u": 2.151185267405569,
+        "closure_error": 4.440892098500626e-16,
+        "equilibrium_delta_f": 1.0524712186362772,
+        "landauer_floor": 1.0524712186362772,
+        "landauer_gap": 2.4330485487367945,
+        "stage_logs": [
+          {
+            "name": "release_barrier",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": -0.873618717778321,
+            "mean_heat": 0.4446559191749932,
+            "mean_delta_u": -0.4289627986033278,
+            "mean_barrier_work": -0.873618717778321,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "reverse_tilt_washout",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": 4.283904641827636,
+            "mean_heat": -0.20998718243625838,
+            "mean_delta_u": 4.073917459391378,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 4.283904641827636
+          },
+          {
+            "name": "untilt_low_barrier",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": -1.5303942336180285,
+            "mean_heat": -0.38961226366275387,
+            "mean_delta_u": -1.9200064972807822,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": -1.5303942336180285
+          },
+          {
+            "name": "raise_barrier_symmetric",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": 1.605628076941785,
+            "mean_heat": -1.1793909730434833,
+            "mean_delta_u": 0.4262371038983017,
+            "mean_barrier_work": 1.605628076941785,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      },
+      "no_tilt": {
+        "mode": "erase",
+        "steps": 420,
+        "use_tilt": false,
+        "p_left_init": 0.50475,
+        "p_left_final": 0.50625,
+        "logical_entropy_init": 0.6931020548811655,
+        "logical_entropy_final": 0.693069053525313,
+        "entropy_restoration_fraction": 0.9998872865145767,
+        "entropy_gap_to_uniform": 7.812703463228043e-05,
+        "info_erased": 3.300135585249109e-05,
+        "mean_work": 0.9314312738780361,
+        "mean_heat": -0.6179828913662357,
+        "mean_delta_u": 0.31344838251180046,
+        "closure_error": 5.551115123125783e-17,
+        "equilibrium_delta_f": 0.0,
+        "landauer_floor": 0.0,
+        "landauer_gap": 0.9314312738780361,
+        "stage_logs": [
+          {
+            "name": "lower_barrier",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": -0.6225483514241362,
+            "mean_heat": 0.4556940813125572,
+            "mean_delta_u": -0.16685427011157902,
+            "mean_barrier_work": -0.6225483514241362,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "tilt_left",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": 0.0,
+            "mean_heat": 0.08913965338937203,
+            "mean_delta_u": 0.08913965338937203,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "raise_barrier",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": 1.5539796253021723,
+            "mean_heat": -1.1445030310449835,
+            "mean_delta_u": 0.4094765942571887,
+            "mean_barrier_work": 1.5539796253021723,
+            "mean_tilt_work": 0.0
+          },
+          {
+            "name": "left_lock_hold",
+            "temperature": 1.0,
+            "steps": 105,
+            "mean_work": 0.0,
+            "mean_heat": -0.018313595023181275,
+            "mean_delta_u": -0.018313595023181275,
+            "mean_barrier_work": 0.0,
+            "mean_tilt_work": 0.0
+          }
+        ]
+      }
+    }
+  }
+}

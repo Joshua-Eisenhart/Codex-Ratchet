@@ -1,0 +1,122 @@
+{
+  "name": "real_only_geometry_rejection",
+  "classification": "canonical",
+  "classification_note": "Canonical local falsifier showing that a real-only restriction collapses distinct complex phase states and erases nontrivial cycle phase geometry.",
+  "lego_ids": [
+    "real_only_geometry_rejection"
+  ],
+  "primary_lego_ids": [
+    "real_only_geometry_rejection"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "complex_phase_pair_is_geometrically_distinct": {
+      "trace_distance": 0.7071067811865474,
+      "pass": true
+    },
+    "real_projection_collapses_conjugate_phase_pair": {
+      "trace_distance": 0.0,
+      "pass": true
+    },
+    "complex_loop_has_nontrivial_cycle_phase": {
+      "phase_magnitude": 0.35028234466557906,
+      "pass": true
+    }
+  },
+  "negative": {
+    "real_only_projection_erases_cycle_phase_geometry": {
+      "phase_magnitude": 0.0,
+      "pass": true
+    },
+    "row_does_not_collapse_to_generic_state_representation_claim": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "comparison_uses_one_bounded_phase_family": {
+      "pass": true
+    },
+    "all_state_vectors_remain_normalized": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local falsifier showing that real-only restriction collapses distinct complex phase states and erases nontrivial cycle-phase geometry."
+  }
+}

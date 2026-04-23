@@ -1,0 +1,121 @@
+{
+  "name": "sim_integration_cirq_pennylane_entanglement_bridge",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical-to-nonclassical bridge baseline: the same 2-qubit unitary must agree across explicit numpy/scipy matrix algebra, Cirq simulation, and PennyLane statevector evaluation. The entanglement witness is the same Bell-like surface, not a separate ad hoc check.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "statevector, density-matrix, concurrence, and correlation arithmetic for the bridge"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix exponential for the exact 2-qubit reference rotations"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "two-qubit circuit construction and simulator witness for the bridge"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "QNode statevector and correlation witness for the same 2-qubit surface"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing"
+  },
+  "positive": {
+    "pass": true,
+    "cases": {
+      "entangled_case_1": {
+        "theta": 1.127,
+        "phi": -0.713,
+        "reversed_entangler": false,
+        "density_gap_cirq": 1.2731075198650083e-07,
+        "density_gap_pennylane": 0.0,
+        "state_overlap_cirq": 1.000000119212233,
+        "state_overlap_pennylane": 1.0,
+        "zz_gap_cirq": 1.2178827601960762e-07,
+        "zz_gap_pennylane": 0.0,
+        "concurrence": 0.6831288043875756,
+        "entropy": 0.57059366287055,
+        "pass": true
+      },
+      "entangled_case_2": {
+        "theta": 0.889,
+        "phi": 0.531,
+        "reversed_entangler": false,
+        "density_gap_cirq": 3.527198209248436e-08,
+        "density_gap_pennylane": 1.0215739271412683e-16,
+        "state_overlap_cirq": 0.9999999657999569,
+        "state_overlap_pennylane": 0.9999999999999998,
+        "zz_gap_cirq": 2.5441974305095982e-08,
+        "zz_gap_pennylane": 0.0,
+        "concurrence": 0.6695267495895421,
+        "entropy": 0.5536027785748449,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "pass": true,
+    "reversed_entangler": {
+      "theta": 1.127,
+      "phi": -0.713,
+      "reversed_entangler": true,
+      "density_gap_cirq": 1.2688220272244237,
+      "density_gap_pennylane": 1.2688219669858536,
+      "state_overlap_cirq": 0.19504545082729313,
+      "state_overlap_pennylane": 0.19504540804707463,
+      "zz_gap_cirq": 0.32703175829725006,
+      "zz_gap_pennylane": 0.32703184452406675,
+      "concurrence": 0.6831288043875756,
+      "entropy": 0.57059366287055,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "pass": true,
+    "separable_axis_boundary": {
+      "theta": 0.0,
+      "phi": 1.231,
+      "reversed_entangler": false,
+      "density_gap_cirq": 1.2391938170879215e-08,
+      "density_gap_pennylane": 1.9229626863835638e-16,
+      "state_overlap_cirq": 0.9999999956680234,
+      "state_overlap_pennylane": 1.0,
+      "zz_gap_cirq": 1.4036511064574597e-08,
+      "zz_gap_pennylane": 1.1102230246251565e-16,
+      "concurrence": 0.0,
+      "entropy": 4.9828921423310435e-14,
+      "pass": true
+    },
+    "tiny_rotation_boundary": {
+      "theta": 1e-08,
+      "phi": -1e-08,
+      "reversed_entangler": false,
+      "density_gap_cirq": 6.077470991844712e-17,
+      "density_gap_pennylane": 0.0,
+      "state_overlap_cirq": 1.0,
+      "state_overlap_pennylane": 1.0,
+      "zz_gap_cirq": 0.0,
+      "zz_gap_pennylane": 0.0,
+      "concurrence": 1e-08,
+      "entropy": 4.9828921423310435e-14,
+      "pass": true
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true
+}

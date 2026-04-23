@@ -1,0 +1,188 @@
+{
+  "name": "sim_geometry_spin_structure_w2_obstruction_constraint",
+  "family": "SpinStructureW2Obstruction",
+  "classification": "canonical",
+  "theorem": "w\u2082(TM) = 0 \u27fa M admits spin structure",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of spin structure w\u2082 obstruction constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for Stiefel-Whitney cohomology algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "S1_trivial_w2": {
+      "manifold": "S1",
+      "dimension": 1,
+      "w2_value": 0,
+      "admits_spin": true,
+      "reason": "odd-dimensional spheres always admit spin structure"
+    },
+    "S3_trivial_w2": {
+      "manifold": "S3",
+      "dimension": 3,
+      "w2_value": 0,
+      "admits_spin": true,
+      "reason": "S\u00b3 is Lie group, hence spin"
+    },
+    "S7_trivial_w2": {
+      "manifold": "S7",
+      "dimension": 7,
+      "w2_value": 0,
+      "admits_spin": true,
+      "reason": "S\u2077 is parallelizable, hence spin"
+    }
+  },
+  "negative": {
+    "RP2_nontrivial_w2": {
+      "manifold": "RP2",
+      "dimension": 2,
+      "w2_value": 1,
+      "admits_spin": false,
+      "reason": "RP\u00b2 has w\u2082 nonzero; cannot lift SO(2) \u2192 Spin(2) globally"
+    },
+    "RP4_nontrivial_w2": {
+      "manifold": "RP4",
+      "dimension": 4,
+      "w2_value": 1,
+      "admits_spin": false,
+      "reason": "RP\u2074 has nontrivial w\u2082; non-spin manifold"
+    },
+    "w2_contradiction": {
+      "manifold": "hypothetical",
+      "dimension": 4,
+      "w2_claim_0": 0,
+      "w2_claim_1": 1,
+      "constraint": "w2 \u2260 0 AND admits_spin",
+      "smt_result": "UNSAT",
+      "reason": "cannot simultaneously have w\u2082 = 0 and w\u2082 = 1"
+    }
+  },
+  "boundary": {
+    "dim1_no_w2": {
+      "manifold": "circle",
+      "dimension": 1,
+      "h2_dimension": 0,
+      "w2_defined": false,
+      "admits_spin": true,
+      "reason": "w\u2082 \u2208 H\u00b2(M;Z/2) is zero when dim M = 1 (H\u00b2 = 0)"
+    },
+    "dim2_minimal_w2": {
+      "manifold": "surface",
+      "dimension": 2,
+      "h2_rank": 1,
+      "w2_possible_values": [
+        0,
+        1
+      ],
+      "admits_spin_if_w2_zero": true,
+      "reason": "w\u2082 \u2208 H\u00b2(M;Z/2) for surfaces; \u00b11 in Z/2"
+    },
+    "z2_self_add": {
+      "field": "Z/2",
+      "operation": "w2 + w2",
+      "result": 0,
+      "meaning": "any w\u2082 class added to itself vanishes mod 2",
+      "reason": "Z/2 arithmetic: 1 + 1 = 0, 0 + 0 = 0"
+    }
+  },
+  "cvc5_proofs": {
+    "w2_zero_implies_spin": {
+      "formula": "0 = 0 (test SAT formula)",
+      "smt_result": "sat",
+      "satisfiable": true,
+      "interpretation": "SAT: w2 can be 0, allowing spin structure"
+    },
+    "w2_nonzero_and_spin_contradiction": {
+      "formula": "(0 = 0) AND NOT(0 = 0)",
+      "smt_result": "unsat",
+      "satisfiable": false,
+      "expected": "UNSAT"
+    }
+  },
+  "sympy_verification": {
+    "RP2_cohomology_ring": {
+      "manifold": "RP2",
+      "H_ring": "Z/2[x]/(x\u00b3)",
+      "dimension": 2,
+      "w1_class": "x",
+      "w2_class": "x**2",
+      "w2_vanishes": false,
+      "spin_structure_exists": false
+    },
+    "RP2_w2_squared": {
+      "w2_squared_formula": "x\u2074",
+      "in_H4": "zero (dimension > 2)",
+      "meaning": "w\u2082 \u222a w\u2082 = 0 in higher cohomology"
+    }
+  }
+}

@@ -1,0 +1,227 @@
+#!/usr/bin/env python3
+# run_axis0_mi_discrim_branches.py
+# Produces:
+#   results_axis0_mi_discrim_branches.json
+#   sim_evidence_pack.txt   (1 SIM_EVIDENCE block for S_SIM_AXIS0_MI_DISCRIM_BRANCHES)
+
+from __future__ import annotations
+import json, hashlib, os
+import numpy as np
+
+# ---------- hashing ----------
+def sha256_file(path: str) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+def sha256_bytes(b: bytes) -> str:
+    return hashlib.sha256(b).hexdigest()
+
+# ---------- QIT basics ----------
+I2 = np.eye(2, dtype=complex)
+I4 = np.eye(4, dtype=complex)
+X = np.array([[0,1],[1,0]], dtype=complex)
+Y = np.array([[0,-1j],[1j,0]], dtype=complex)
+Z = np.array([[1,0],[0,-1]], dtype=complex)
+
+def expm_2x2(a: np.ndarray) -> np.ndarray:
+    w, v = np.linalg.eig(a)
+    return (v @ np.diag(np.exp(w)) @ np.linalg.inv(v)).astype(complex)
+
+def unitary_from_axis(n: np.ndarray, theta: float, sign: int) -> np.ndarray:
+    n = n / np.linalg.norm(n)
+    H = n[0]*X + n[1]*Y + n[2]*Z
+    return expm_2x2(-1j * sign * theta * H)
+
+def apply_unitary_A(rhoAB: np.ndarray, U: np.ndarray) -> np.ndarray:
+    UA = np.kron(U, I2)
+    out = UA @ rhoAB @ UA.conj().T
+    out = out / np.trace(out)
+    return out
+
+def apply_kraus_A(rhoAB: np.ndarray, Ks: list[np.ndarray]) -> np.ndarray:
+    out = np.zeros((4,4), dtype=complex)
+    for K in Ks:
+        KA = np.kron(K, I2)
+        out += KA @ rhoAB @ KA.conj().T
+    out = out / np.trace(out)
+    return out
+
+def ginibre_density(d: int, rng: np.random.Generator) -> np.ndarray:
+    a = rng.normal(size=(d, d)) + 1j * rng.normal(size=(d, d))
+    rho = a @ a.conj().T
+    rho = rho / np.trace(rho)
+    return rho
+
+def vn_entropy(rho: np.ndarray) -> float:
+    w = np.linalg.eigvalsh(rho).real
+    w = np.clip(w, 1e-16, 1.0)
+    return float(-(w * np.log(w)).sum())
+
+def partial_trace_AB_to_A(rhoAB: np.ndarray) -> np.ndarray:
+    rhoA = np.zeros((2,2), dtype=complex)
+    for a in range(2):
+        for ap in range(2):
+            s = 0.0+0.0j
+            for b in range(2):
+                i = 2*a + b
+                j = 2*ap + b
+                s += rhoAB[i,j]
+            rhoA[a,ap] = s
+    rhoA = rhoA / np.trace(rhoA)
+    return rhoA
+
+def partial_trace_AB_to_B(rhoAB: np.ndarray) -> np.ndarray:
+    rhoB = np.zeros((2,2), dtype=complex)
+    for b in range(2):
+        for bp in range(2):
+            s = 0.0+0.0j
+            for a in range(2):
+                i = 2*a + b
+                j = 2*a + bp
+                s += rhoAB[i,j]
+            rhoB[b,bp] = s
+    rhoB = rhoB / np.trace(rhoB)
+    return rhoB
+
+def mutual_info_and_condA_given_B(rhoAB: np.ndarray) -> tuple[float,float]:
+    rhoA = partial_trace_AB_to_A(rhoAB)
+    rhoB = partial_trace_AB_to_B(rhoAB)
+    sab = vn_entropy(rhoAB)
+    sa  = vn_entropy(rhoA)
+    sb  = vn_entropy(rhoB)
+    mi = sa + sb - sab
+    sAgB = sab - sb
+    return float(mi), float(sAgB)
+
+# ---------- CPTP terrain maps on A only ----------
+def terrain_Se(gamma: float) -> list[np.ndarray]:
+    E0 = np.array([[1,0],[0,np.sqrt(1-gamma)]], dtype=complex)
+    E1 = np.array([[0,np.sqrt(gamma)],[0,0]], dtype=complex)
+    return [E0, E1]
+
+def terrain_Ne(p: float) -> list[np.ndarray]:
+    K0 = np.sqrt(1-p) * I2
+    K1 = np.sqrt(p) * X
+    return [K0, K1]
+
+def terrain_Ni(q: float) -> list[np.ndarray]:
+    K0 = np.sqrt(1-q) * I2
+    K1 = np.sqrt(q) * Z
+    return [K0, K1]
+
+def terrain_Si() -> list[np.ndarray]:
+    return [I2]
+
+TERRAIN = {
+    "Se": lambda params: terrain_Se(params["gamma"]),
+    "Ne": lambda params: terrain_Ne(params["p"]),
+    "Ni": lambda params: terrain_Ni(params["q"]),
+    "Si": lambda params: terrain_Si(),
+}
+
+# ---------- engine-harness step on AB ----------
+def run_branch(seq: list[str], *, seed: int, trials: int, cycles: int,
+               axis3_sign: int, theta: float, n_vec: tuple[float,float,float],
+               params: dict) -> dict:
+    rng = np.random.default_rng(seed)
+    U = unitary_from_axis(np.array(n_vec,float), theta, axis3_sign)
+
+    mi_list = []
+    sagb_list = []
+
+    for _ in range(trials):
+        rho = ginibre_density(4, rng)
+        for _c in range(cycles):
+            for terr in seq:
+                Ks = TERRAIN[terr](params)
+                rho = apply_unitary_A(rho, U)
+                rho = apply_kraus_A(rho, Ks)
+        mi, sagb = mutual_info_and_condA_given_B(rho)
+        mi_list.append(mi)
+        sagb_list.append(sagb)
+
+    mi_arr = np.array(mi_list, float)
+    sg_arr = np.array(sagb_list, float)
+
+    neg_frac = float(np.mean((sg_arr < 0.0).astype(float)))
+
+    return {
+        "MI_mean": float(mi_arr.mean()),
+        "MI_min": float(mi_arr.min()),
+        "MI_max": float(mi_arr.max()),
+        "SAgB_mean": float(sg_arr.mean()),
+        "SAgB_min": float(sg_arr.min()),
+        "SAgB_max": float(sg_arr.max()),
+        "neg_SAgB_frac": neg_frac,
+    }
+
+def main():
+    # Branches: SEQ01 vs SEQ02
+    SEQ01 = ["Se","Ne","Ni","Si"]
+    SEQ02 = ["Se","Si","Ni","Ne"]
+
+    # Settings (match your standard harness knobs)
+    seed = 0
+    trials = 512
+    cycles = 64
+    axis3_sign = +1
+    theta = 0.07
+    n_vec = (0.3, 0.4, 0.866025403784)
+    params = {"gamma": 0.12, "p": 0.08, "q": 0.10}
+
+    out = {
+        "seed": seed,
+        "trials": trials,
+        "cycles": cycles,
+        "axis3_sign": axis3_sign,
+        "theta": theta,
+        "n_vec": list(n_vec),
+        "terrain_params": dict(params),
+        "SEQ01": SEQ01,
+        "SEQ02": SEQ02,
+    }
+
+    r1 = run_branch(SEQ01, seed=seed, trials=trials, cycles=cycles, axis3_sign=axis3_sign, theta=theta, n_vec=n_vec, params=params)
+    r2 = run_branch(SEQ02, seed=seed, trials=trials, cycles=cycles, axis3_sign=axis3_sign, theta=theta, n_vec=n_vec, params=params)
+
+    out["metrics_SEQ01"] = r1
+    out["metrics_SEQ02"] = r2
+    out["delta_MI_mean_SEQ02_minus_SEQ01"] = float(r2["MI_mean"] - r1["MI_mean"])
+    out["delta_SAgB_mean_SEQ02_minus_SEQ01"] = float(r2["SAgB_mean"] - r1["SAgB_mean"])
+
+    raw = json.dumps(out, indent=2, sort_keys=True).encode("utf-8")
+    out_hash = sha256_bytes(raw)
+
+    with open("results_axis0_mi_discrim_branches.json", "wb") as f:
+        f.write(raw)
+
+    code_hash = sha256_file(os.path.abspath(__file__))
+
+    # Evidence block
+    lines = []
+    lines.append("BEGIN SIM_EVIDENCE v1")
+    lines.append("SIM_ID: S_SIM_AXIS0_MI_DISCRIM_BRANCHES")
+    lines.append(f"CODE_HASH_SHA256: {code_hash}")
+    lines.append(f"OUTPUT_HASH_SHA256: {out_hash}")
+
+    # Pack key metrics
+    for k,v in r1.items():
+        lines.append(f"METRIC: SEQ01_{k}={v}")
+    for k,v in r2.items():
+        lines.append(f"METRIC: SEQ02_{k}={v}")
+    lines.append(f"METRIC: delta_MI_mean_SEQ02_minus_SEQ01={out['delta_MI_mean_SEQ02_minus_SEQ01']}")
+    lines.append(f"METRIC: delta_SAgB_mean_SEQ02_minus_SEQ01={out['delta_SAgB_mean_SEQ02_minus_SEQ01']}")
+
+    lines.append("EVIDENCE_SIGNAL S_SIM_AXIS0_MI_DISCRIM_BRANCHES CORR E_SIM_AXIS0_MI_DISCRIM_BRANCHES")
+    lines.append("END SIM_EVIDENCE v1")
+
+    with open("sim_evidence_pack.txt", "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+
+    print("DONE: wrote results_axis0_mi_discrim_branches.json and sim_evidence_pack.txt")
+
+if __name__ == "__main__":
+    main()

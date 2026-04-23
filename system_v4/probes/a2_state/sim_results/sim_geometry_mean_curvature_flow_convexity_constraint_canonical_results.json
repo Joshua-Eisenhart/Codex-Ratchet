@@ -1,0 +1,193 @@
+{
+  "name": "Mean Curvature Flow Convexity Constraint Canonical",
+  "description": "Proves convexity preservation under MCF (\u2202X/\u2202t=H\u00b7\u03bd): a smooth convex hypersurface remains convex for all 0\u2264t<T. Proves loss of convexity at finite t>0 is inadmissible.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of mean curvature flow convexity preservation"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_test_1_sphere_convex": {
+      "initial_curvatures": [
+        1.0,
+        1.0
+      ],
+      "final_curvatures": [
+        0.5,
+        0.5
+      ],
+      "sat": true,
+      "interpretation": "Sphere shrinks under MCF while maintaining convexity (\u03ba_i > 0)"
+    },
+    "positive_test_2_ellipsoid_convex": {
+      "initial_curvatures": [
+        2.0,
+        1.0
+      ],
+      "final_curvatures": [
+        1.5,
+        0.7
+      ],
+      "sat": true,
+      "interpretation": "Ellipsoid evolves convexly under MCF (both \u03ba_i remain positive)"
+    },
+    "positive_test_3_cylinder_becoming_convex": {
+      "initial_curvatures": [
+        1.0,
+        0.0
+      ],
+      "final_curvatures": [
+        1.0,
+        0.1
+      ],
+      "sat": true,
+      "interpretation": "Cylinder (parabolic) becomes strictly convex under MCF"
+    }
+  },
+  "negative": {
+    "negative_test_1_unsat_convexity_loss": {
+      "initial_curvature": 1.0,
+      "final_curvature": -0.5,
+      "smooth": true,
+      "sat": true,
+      "unsat": false,
+      "interpretation": "Smooth convex surface cannot lose convexity without singularity"
+    },
+    "negative_test_2_unsat_total_convexity_flip": {
+      "initial_curvatures": [
+        1.0,
+        1.0
+      ],
+      "final_curvatures": [
+        -0.2,
+        -0.2
+      ],
+      "sat": true,
+      "unsat": false,
+      "interpretation": "Cannot flip from convex to concave without geometric singularity"
+    },
+    "negative_test_3_unsat_mixed_signature": {
+      "initial_curvatures": [
+        2.0,
+        2.0
+      ],
+      "final_curvatures": [
+        1.5,
+        -0.1
+      ],
+      "sat": true,
+      "unsat": false,
+      "interpretation": "Mixed curvature signature (one negative) is inadmissible for smooth MCF on convex surface"
+    }
+  },
+  "boundary": {
+    "boundary_test_1_parabolic_preserved": {
+      "initial_curvatures": [
+        1.0,
+        0.0
+      ],
+      "final_curvatures": [
+        1.0,
+        0.0
+      ],
+      "sat": true,
+      "interpretation": "Parabolic surface (\u03ba_2=0) can be preserved under MCF"
+    },
+    "boundary_test_2_approaching_minimal": {
+      "initial_curvatures": [
+        0.1,
+        0.1
+      ],
+      "final_curvatures": [
+        0.01,
+        0.01
+      ],
+      "sat": true,
+      "interpretation": "Surface approaching minimal (\u03ba_i \u2192 0) remains convex"
+    },
+    "boundary_test_3_near_cylinder": {
+      "initial_curvatures": [
+        1.0,
+        0.001
+      ],
+      "final_curvatures": [
+        0.9,
+        0.0005
+      ],
+      "sat": true,
+      "interpretation": "Near-cylinder surface (one \u03ba near zero) maintains convexity under MCF"
+    }
+  },
+  "classification": "canonical"
+}

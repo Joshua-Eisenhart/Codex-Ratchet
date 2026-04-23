@@ -1,0 +1,43 @@
+{
+  "name": "mutual_information_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "marginal/joint pmf log arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "independent_MI_zero": true,
+    "perfect_corr_MI_equals_HX": true,
+    "nonneg_random": true
+  },
+  "negative": {
+    "zero_joint_not_allowed_via_normalization": "True",
+    "MI_bounded_by_min_marginal": true
+  },
+  "boundary": {
+    "symmetry": true,
+    "nonneg": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "classification_note": "Classical mutual information over a commuting joint pmf: this baseline cannot represent noncommuting observables, probe-conditional admissibility, or entanglement-driven quantum mutual information.",
+  "divergence_log": "Classical mutual information over a commuting joint pmf: this baseline cannot represent noncommuting observables, probe-conditional admissibility, or entanglement-driven quantum mutual information."
+}

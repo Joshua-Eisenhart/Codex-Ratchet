@@ -1,0 +1,65 @@
+{
+  "layer": 15,
+  "name": "Sustained Positive I_c",
+  "positive": {
+    "numerical_30_cycles": {
+      "description": "30 cycles at deph=0.05, theta=pi from |000>",
+      "trajectory": [
+        0.18184794,
+        0.2058081,
+        0.28302676,
+        0.40055782,
+        0.41087431,
+        0.30249462,
+        0.15485517,
+        -0.02425916,
+        -0.21310648,
+        -0.41162799,
+        -0.48652766,
+        -0.43052585,
+        -0.43253437,
+        -0.35356302,
+        -0.26117474,
+        -0.26857226,
+        -0.30705691,
+        -0.35876828,
+        -0.47399953,
+        -0.58503105,
+        -0.65542412,
+        -0.71418208,
+        -0.70686,
+        -0.68929722,
+        -0.64768237,
+        -0.59655653,
+        -0.59820926,
+        -0.61225197,
+        -0.63351507,
+        -0.7065715
+      ],
+      "positive_count": 7,
+      "max_ic": 0.41087431,
+      "has_positive_window": true,
+      "passed": true
+    },
+    "P1_z3_earned_window": {
+      "description": "dephasing < 0.1 AND theta = pi => earned positive window (>= 3 cycles)",
+      "result": "sat",
+      "positive_cycles_actual": 7,
+      "passed": true
+    }
+  },
+  "negative": {
+    "N1_z3_high_dephasing": {
+      "description": "dephasing > 1.5 AND sustained = True is impossible",
+      "result": "unsat",
+      "high_deph_positive_cycles": 1,
+      "passed": true
+    }
+  },
+  "tools_used": [
+    "z3",
+    "numpy"
+  ],
+  "timestamp": "2026-04-06",
+  "summary": "Sustained I_c: 7/30 positive cycles, z3 SAT=sat, high-deph UNSAT=unsat"
+}

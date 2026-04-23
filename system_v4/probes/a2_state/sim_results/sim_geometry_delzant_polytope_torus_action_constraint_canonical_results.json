@@ -1,0 +1,141 @@
+{
+  "name": "sim_geometry_delzant_polytope_torus_action_constraint_canonical",
+  "description": "Delzant polytope condition: lattice generation at vertices",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for lattice constraints"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for lattice constraints"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for lattice constraints"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for lattice constraints"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for lattice constraints"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for lattice constraints"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for lattice constraints"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for lattice constraints"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for lattice constraints"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for lattice constraints"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "error": "cvc5 not installed"
+  },
+  "negative": {
+    "error": "cvc5 not installed"
+  },
+  "boundary": {
+    "test_1": {
+      "name": "standard_basis_generates_Z2",
+      "description": "Standard basis (1,0)/(0,1) generates Z^2 (det=1)",
+      "edges": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "det": 1,
+      "generates_lattice": true,
+      "passed": true
+    },
+    "test_2": {
+      "name": "delzant_lattice_span",
+      "description": "Edges (1,1)/(1,0) span Z^2 (det=-1)",
+      "edges": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "det": -1,
+      "generates_lattice": true,
+      "passed": true
+    },
+    "test_3": {
+      "name": "non_delzant_lattice_index",
+      "description": "Edges (2,0)/(0,1) have det=2 (index 2 sublattice of Z^2)",
+      "edges": [
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "det": 2,
+      "is_delzant": false,
+      "lattice_index": 2,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

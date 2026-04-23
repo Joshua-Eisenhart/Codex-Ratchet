@@ -1,0 +1,92 @@
+{
+  "name": "G-Tower Triple Coexistence Constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no tensor computation needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph dynamics needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 chosen for ordering constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "proves g1\u2264g2\u2264g3 ordering via SMT; load_bearing"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic ordering check and boundary analysis"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "constraint is on dimension, not algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold computation needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance computation needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "constraint is algebraic, not topological"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no simplicial complex needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "error": "cvc5 not installed"
+  },
+  "negative": {
+    "error": "cvc5 not installed"
+  },
+  "boundary": {
+    "flat_tower_degenerate": {
+      "g1_equals_g2_equals_g3": true,
+      "explanation": "g1=g2=g3 is degenerate but admissible; no nesting constraints, all layers identical dimension"
+    }
+  },
+  "classification": "canonical"
+}

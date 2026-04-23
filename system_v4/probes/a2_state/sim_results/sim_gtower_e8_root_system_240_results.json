@@ -1,0 +1,130 @@
+{
+  "name": "sim_gtower_e8_root_system_240",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Gram matrix rank computation and I_c entropy measurement over root subset"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Structural impossibility proof: count constraint UNSAT + simply-laced constraint UNSAT"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Exact Rational arithmetic for root construction and length verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "P1_root_count": {
+      "description": "Total E8 roots = 240 (112 type1 + 128 type2)",
+      "type1_count": 112,
+      "type2_count": 128,
+      "total": 240,
+      "expected": 240,
+      "pass": true,
+      "tool": "sympy"
+    },
+    "P2_root_length_squared": {
+      "description": "All 240 roots satisfy |root|\u00b2 = 2 (simply-laced)",
+      "num_checked": 240,
+      "num_violations": 0,
+      "pass": true,
+      "tool": "sympy"
+    }
+  },
+  "negative": {
+    "P3_z3_count_not_240_unsat": {
+      "description": "z3 UNSAT: asserting |roots|\u2260240 is unsatisfiable",
+      "z3_status": "unsat",
+      "pass": true,
+      "tool": "z3"
+    },
+    "N1_z3_length_not_2_unsat": {
+      "description": "z3 UNSAT: asserting length\u00b2\u22602 for any root is unsatisfiable (simply-laced)",
+      "z3_status": "unsat",
+      "pass": true,
+      "tool": "z3"
+    }
+  },
+  "boundary": {
+    "B1_type1_type2_disjoint": {
+      "description": "112 type-1 roots are distinct from 128 type-2 roots (no overlap)",
+      "overlap_count": 0,
+      "pass": true,
+      "tool": "sympy"
+    },
+    "B2_gram_rank8_I_c": {
+      "description": "Random 8-root subset spans full R^8 (rank=8); I_c=log(8)",
+      "rank": 8,
+      "I_c": 2.0794415416798357,
+      "expected_I_c": 2.0794415416798357,
+      "I_c_match": true,
+      "pass": true,
+      "tool": "pytorch"
+    }
+  },
+  "all_pass": true
+}

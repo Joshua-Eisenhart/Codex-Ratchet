@@ -1,0 +1,125 @@
+{
+  "name": "branch_weight",
+  "classification": "canonical",
+  "classification_note": "Canonical local support row for normalized branch weights on one bounded finite branch family.",
+  "lego_ids": [
+    "branch_weight"
+  ],
+  "primary_lego_ids": [
+    "branch_weight"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "weights_normalize_to_one": {
+      "value": 1.0,
+      "pass": "True"
+    },
+    "all_weights_remain_nonnegative": {
+      "weights": [
+        0.1,
+        0.2,
+        0.3,
+        0.4
+      ],
+      "pass": "True"
+    },
+    "changing_raw_branch_mass_changes_normalized_profile": {
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "row_does_not_collapse_to_path_or_transport_entropy": {
+      "pass": true
+    },
+    "zero_total_mass_not_admitted": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bounded_to_one_local_branch_family": {
+      "pass": true
+    },
+    "order_is_preserved_for_strictly_ordered_raw_weights": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local normalized branch-weight row on one bounded finite branch family."
+  }
+}

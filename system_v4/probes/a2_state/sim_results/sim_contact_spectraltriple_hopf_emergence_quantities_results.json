@@ -1,0 +1,168 @@
+{
+  "name": "sim_contact_spectraltriple_hopf_emergence_quantities",
+  "classification": "classical_baseline",
+  "classification_note": "Classical baseline Contact\u00d7SpectralTriple\u00d7Hopf emergence probe: this file checks scalar emergence quantities with torch, z3, sympy, and clifford helpers where available, but it does not claim a canonical nonclassical witness.",
+  "divergence_log": "Classical baseline Contact\u00d7SpectralTriple\u00d7Hopf emergence probe: this file checks scalar emergence quantities with torch, z3, sympy, and clifford helpers where available, but it does not claim a canonical nonclassical witness.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute emergence Q_CSH as torch tensor; E1-E7 via torch ops (load-bearing)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning in emergence step"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: any_factor=0 with Q>0 impossible \u2014 all four factors required (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for emergence UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic proof: a*b*c*d=0 if any factor=0 (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford algebra in emergence"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold in emergence"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3) equivariance in emergence"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal in emergence"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph in emergence"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "chain-complex not invoked in emergence"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistence not in emergence scope"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "E1_contact_alone_Q_zero": {
+      "H_contact": 2.833213344056216,
+      "Q": 0.0,
+      "note": "no MI factor; single shell Q=0 by definition",
+      "passed": true
+    },
+    "E2_spectraltriiple_alone_Q_zero": {
+      "H_st": 0.6176781863564109,
+      "Q": 0.0,
+      "note": "no MI factor; single shell Q=0 by definition",
+      "passed": true
+    },
+    "E3_hopf_alone_Q_zero": {
+      "H_hopf": 0.34657359027997264,
+      "Q": 0.0,
+      "note": "no MI factor; single shell Q=0 by definition",
+      "passed": true
+    },
+    "E4_contact_spectraltriiple_pair_Q_zero": {
+      "Q": 0.0,
+      "note": "no MI; pair product without MI = H_c*H_s, but Q_CSH requires MI",
+      "passed": true
+    },
+    "E5_contact_hopf_pair_Q_zero": {
+      "Q": 0.0,
+      "note": "no MI; Q_CSH requires all four factors",
+      "passed": true
+    },
+    "E6_spectraltriiple_hopf_pair_Q_zero": {
+      "Q": 0.0,
+      "note": "no MI; Q_CSH requires all four factors",
+      "passed": true
+    },
+    "E7_all_three_plus_MI_Q_positive": {
+      "MI": 0.10814930452367744,
+      "H_contact": 2.833213344056216,
+      "H_st": 0.6176781863564109,
+      "H_hopf": 0.34657359027997264,
+      "Q_CSH": 0.06559349006048167,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_any_factor_zero_Q_nonzero": {
+      "unsat_MI_zero": true,
+      "unsat_Hc_zero": true,
+      "passed": true
+    },
+    "N2_sympy_four_factor_zero": {
+      "results": {
+        "a": "0",
+        "b": "0",
+        "c": "0",
+        "d": "0"
+      },
+      "all_zero": true,
+      "passed": true
+    },
+    "N3_subsystem_Q_always_zero": {
+      "E1_Q": 0.0,
+      "E2_Q": 0.0,
+      "E3_Q": 0.0,
+      "E4_Q": 0.0,
+      "E5_Q": 0.0,
+      "E6_Q": 0.0,
+      "note": "Q_CSH = MI * H_c * H_s * H_h; absent MI gives zero",
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_Q_CSH_exact_match": {
+      "Q_numpy": 0.06559349006048167,
+      "Q_torch": 0.06559349006048167,
+      "diff": 0.0,
+      "passed": true
+    },
+    "B2_MI_positive": {
+      "MI": 0.10814930452367744,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

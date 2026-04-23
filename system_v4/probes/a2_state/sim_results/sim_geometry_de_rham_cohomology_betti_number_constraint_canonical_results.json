@@ -1,0 +1,140 @@
+{
+  "name": "DeRhamCohomologyBettiNumber",
+  "domain": "de Rham cohomology and Betti number constraints",
+  "claim": "Betti numbers are non-negative and satisfy Poincar\u00e9 duality on compact oriented manifolds",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pos_test_1_S2_betti": {
+      "error": "No module named 'cvc5'",
+      "pass": false
+    },
+    "pos_test_2_T2_betti": {
+      "error": "No module named 'cvc5'",
+      "pass": false
+    },
+    "pos_test_3_CP2_betti": {
+      "error": "No module named 'cvc5'",
+      "pass": false
+    }
+  },
+  "negative": {
+    "neg_test_1_negative_betti": {
+      "error": "No module named 'cvc5'",
+      "pass": false
+    },
+    "neg_test_2_poincare_violation": {
+      "error": "No module named 'cvc5'",
+      "pass": false
+    },
+    "neg_test_3_euler_contradiction": {
+      "error": "No module named 'cvc5'",
+      "pass": false
+    }
+  },
+  "boundary": {
+    "bound_test_1_euler_formula": {
+      "manifold": "S2",
+      "betti_numbers": [
+        1,
+        0,
+        1
+      ],
+      "euler_characteristic": 2,
+      "expected_chi": 2,
+      "pass": true,
+      "description": "\u03c7 = \u03a3(-1)^k b_k for S\u00b2 equals 2"
+    },
+    "bound_test_2_torus_euler": {
+      "manifold": "T2",
+      "betti_numbers": [
+        1,
+        2,
+        1
+      ],
+      "euler_characteristic": 0,
+      "expected_chi": 0,
+      "pass": true,
+      "description": "\u03c7 = \u03a3(-1)^k b_k for T\u00b2 equals 0"
+    },
+    "bound_test_3_S4_poincare": {
+      "error": "No module named 'cvc5'",
+      "pass": false
+    }
+  },
+  "classification": "canonical"
+}

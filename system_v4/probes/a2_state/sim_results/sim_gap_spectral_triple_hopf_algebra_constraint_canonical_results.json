@@ -1,0 +1,144 @@
+{
+  "name": "SpectralTripleHopfAlgebraConstraint",
+  "description": "Hopf algebra dimension d divides spectral triple KR-dimension n mod 8",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "divisibility check is arithmetic"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph embedding needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 preferred for QF_LIA divisibility"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: encodes d divides n mod 8 constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: verifies divisibility for boundary d=1"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Hopf algebra structure separate from Clifford algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold optimization"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariance not central"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Hopf structure is abstract, no graph needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph embedding"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "topology emerges post-constraint"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistence not applicable"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pos_d2_n4": {
+      "satisfiable": true,
+      "d": 2,
+      "n": 4,
+      "divisible": true,
+      "expected": true
+    },
+    "pos_d4_n8": {
+      "satisfiable": true,
+      "d": 4,
+      "n": 8,
+      "divisible": true,
+      "expected": true
+    },
+    "pos_d3_n12": {
+      "satisfiable": true,
+      "d": 3,
+      "n": 12,
+      "divisible": true,
+      "expected": true
+    }
+  },
+  "negative": {
+    "neg_d_zero": {
+      "satisfiable": false,
+      "constraint": "d > 0 but d=0",
+      "expected": false
+    },
+    "neg_d_negative": {
+      "satisfiable": false,
+      "constraint": "d > 0 but d=-3",
+      "expected": false
+    },
+    "neg_d2_n5_no_divisor": {
+      "satisfiable": false,
+      "constraint": "d divides n but 2 does not divide 5",
+      "expected": false
+    }
+  },
+  "boundary": {
+    "boundary_d1_trivial": {
+      "satisfiable": true,
+      "d": 1,
+      "n": 7,
+      "description": "d=1 always divides; boundary of Hopf algebra",
+      "expected": true
+    },
+    "boundary_n0": {
+      "satisfiable": true,
+      "d": 2,
+      "n": 0,
+      "description": "n=0 is boundary (trivial spectral triple)",
+      "expected": true
+    },
+    "boundary_large_d_n": {
+      "satisfiable": true,
+      "d": 5,
+      "n": 40,
+      "description": "5 divides 40; mod 8 check: 40 mod 8 = 0",
+      "expected": true
+    }
+  },
+  "classification": "canonical"
+}

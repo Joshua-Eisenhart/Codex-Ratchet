@@ -1,0 +1,39 @@
+{
+  "name": "conditional_entropy_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "log/sum"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "independent_equals_HX": true,
+    "deterministic_Y_given_X_cond_X_zero": true
+  },
+  "negative": {
+    "always_nonneg_classical": true
+  },
+  "boundary": {
+    "chain_rule": true,
+    "bounded_by_HX": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical H(X|Y) >= 0 always; quantum S(A|B) can be negative under entanglement",
+    "no sign structure, so cannot carry coherent-information Axis-0 candidate",
+    "no noncommuting conditioning"
+  ]
+}

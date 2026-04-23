@@ -1,0 +1,111 @@
+{
+  "name": "sim_igt_irrationality_as_admissibility",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "scalar sequence"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SAT witness shows irrational-short-and-admissible-long is nonempty"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 suffices"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic total check for the all-irrational branch"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotors"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sacrifice_admissible": {
+      "short_rational_at_0": false,
+      "long_admissible": true,
+      "ok": true
+    },
+    "z3_witness": {
+      "ok": true
+    },
+    "ok": true
+  },
+  "negative": {
+    "all_irrational_inadmissible": {
+      "ok": true
+    },
+    "sympy_total": {
+      "total": -3,
+      "ok": true
+    },
+    "ok": true
+  },
+  "boundary": {
+    "boundary_equal": {
+      "ok": true
+    },
+    "just_below": {
+      "ok": true
+    },
+    "ok": true
+  },
+  "classification": "classical_baseline",
+  "all_ok": true
+}

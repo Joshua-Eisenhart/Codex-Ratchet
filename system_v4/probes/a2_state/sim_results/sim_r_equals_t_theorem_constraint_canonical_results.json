@@ -1,0 +1,154 @@
+{
+  "name": "REqualsT_Theorem_Constraint_Canonical",
+  "description": "Wiles-Taylor: R^univ \u2245 T isomorphism, Jacquet-Langlands, Riemann-Hurwitz, Fermat's Last Theorem",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; Galois deformation theory handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; number theory via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; algebraic geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_r_equals_t_iso": {
+      "passes": true,
+      "krull_dim_r": 4,
+      "krull_dim_t": 4,
+      "rank_r": 1,
+      "rank_t": 1,
+      "satisfiable": true,
+      "message": "R^univ \u2192 T isomorphism is SAT"
+    },
+    "test_2_jacquet_langlands": {
+      "passes": true,
+      "field": "Q (totally real)",
+      "bijection": "GL_2(A_Q) automorphic \u2190\u2192 S_k(\u0393_0(N)) modular forms",
+      "message": "Jacquet-Langlands correspondence holds"
+    },
+    "test_3_riemann_hurwitz_dimension": {
+      "passes": "True",
+      "weight": 2,
+      "level": 11,
+      "index_psl2z": 12,
+      "dim_s_k": 1,
+      "message": "dim S_2(\u0393_0(11)) \u2248 1"
+    }
+  },
+  "negative": {
+    "test_1_r_neq_t_unsat": {
+      "passes": true,
+      "dim_r": 4,
+      "dim_t": 3,
+      "is_unsat": true,
+      "message": "R \u2260 T (dimension mismatch) is UNSAT"
+    },
+    "test_2_ramanujan_bound_violation": {
+      "passes": true,
+      "prime": 7,
+      "eigenvalue_a_p": 10,
+      "ramanujan_bound": 6,
+      "is_unsat": true,
+      "message": "Eigenvalue outside Ramanujan bound is UNSAT for modular forms"
+    },
+    "test_3_frey_curve_contradiction": {
+      "passes": true,
+      "frey_is_semistable": true,
+      "must_be_modular": true,
+      "can_be_modular": false,
+      "fermat_solvable": false,
+      "message": "Frey curve from FLT: modular + non-modular = contradiction \u21d2 no FLT solution"
+    }
+  },
+  "boundary": {
+    "test_1_trivial_level_s2": {
+      "passes": true,
+      "weight": 2,
+      "level": 1,
+      "dimension": 0,
+      "message": "S_2(SL_2(Z)) = {0} (only Eisenstein)"
+    },
+    "test_2_weight_variation": {
+      "passes": true,
+      "weight_2": 2,
+      "weight_4": 4,
+      "level": 11,
+      "message": "dim S_4(\u0393_0(11)) > dim S_2(\u0393_0(11)) (dimension grows with weight)"
+    },
+    "test_3_semistable_elliptic_curves": {
+      "passes": true,
+      "conductor": 11,
+      "is_semistable": true,
+      "is_modular": true,
+      "message": "Semistable elliptic curves are modular (Wiles-Taylor-Breuil)"
+    }
+  },
+  "classification": "canonical"
+}

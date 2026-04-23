@@ -1,0 +1,139 @@
+{
+  "name": "Secondary Characteristic Class Transgression Constraint via cvc5",
+  "description": "cvc5 proves transgression: secondary class independence requires flatness F_A=0",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; cohomology via constraint solving"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 SMT solver not used; cvc5 handles all constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of secondary characteristic class transgression"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for transgression formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; differential forms via standard algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats differential geometry library not needed for constraint solving"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn equivariant networks not needed; no SO(3) symmetry in this constraint"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx graph library not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi hypergraph library not needed; cohomology via algebraic constraints"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx topological networks not needed; de Rham cohomology via standard methods"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi persistent homology not needed; integer constraint solving sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_flat_connection": {
+      "description": "cvc5 SAT: flat connection F_A = 0 permits secondary class definition",
+      "sat": true,
+      "expected": true,
+      "model": "[(/ 1 2), 0.0]"
+    },
+    "test_positive_flat_connections_same_cohom": {
+      "description": "cvc5 SAT: two flat connections have same secondary class cohomology",
+      "sat": true,
+      "expected": true,
+      "model": "[0.0, 0.0]"
+    },
+    "test_positive_flat_gauge_preserves_secondary": {
+      "description": "cvc5 SAT: gauge transform preserves secondary class on flat connection",
+      "sat": true,
+      "expected": true,
+      "model": "[0.0, 0.0]"
+    }
+  },
+  "negative": {
+    "test_negative_non_flat_independence_claim": {
+      "description": "cvc5 UNSAT: non-flat connection cannot have connection-independent secondary class",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_flat_different_cohom_classes": {
+      "description": "cvc5 UNSAT: flat connections on same bundle have different secondary class cohomology",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_transgression_flatness_violated": {
+      "description": "cvc5 UNSAT: transgression requires F=0 but F\u22600 asserted",
+      "unsat": true,
+      "expected": true
+    }
+  },
+  "boundary": {
+    "test_boundary_zero_secondary_class": {
+      "description": "cvc5 SAT: trivial bundle has zero secondary class",
+      "sat": true,
+      "expected": true,
+      "model": "[0.0]"
+    },
+    "test_boundary_manifold_restriction": {
+      "description": "cvc5 SAT: secondary class vanishes on boundary restriction",
+      "sat": true,
+      "expected": true,
+      "model": "[0.0]"
+    },
+    "test_boundary_symbolic_transgression": {
+      "description": "sympy: transgression formula (secondary characteristic class)",
+      "transgression_form": "A",
+      "flatness_condition": "F = dA + A\u2227A = 0",
+      "expected": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,149 @@
+{
+  "name": "husimi_phase_space_representation",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for Husimi phase-space representation on bounded qubit states, kept separate from sphere geometry, characteristic representations, and broader phase-space geometry surfaces.",
+  "lego_ids": [
+    "husimi_phase_space_representation"
+  ],
+  "primary_lego_ids": [
+    "husimi_phase_space_representation"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this local lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pointwise_nonnegativity_on_grid": {
+      "rho_0_min": 5.967354571526532e-34,
+      "rho_p_min": 1.5776035233860213e-33,
+      "rho_mm_min": 0.07957747154594766,
+      "rho_mix_min": 0.04774648292756859,
+      "pass": true
+    },
+    "normalization_is_approximately_one": {
+      "rho_0": 1.0002570671973015,
+      "rho_p": 1.0002570671973032,
+      "rho_mm": 1.000257067197305,
+      "pass": true
+    },
+    "basis_peak_localization_and_shift": {
+      "peak_0": {
+        "q": 0.15915494309189535,
+        "theta": 0.0,
+        "phi": 0.0
+      },
+      "peak_1": {
+        "q": 0.15915494309189535,
+        "theta": 3.141592653589793,
+        "phi": 0.0
+      },
+      "peak_p": {
+        "q": 0.15915494309189532,
+        "theta": 1.5707963267948966,
+        "phi": 0.0
+      },
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "maximally_mixed_state_is_not_sharply_peaked": {
+      "spread_mm": 2.7755575615628914e-17,
+      "spread_0": 0.15915494309189535,
+      "pass": true
+    },
+    "plus_state_does_not_share_z_pole_peak_with_zero_state": {
+      "theta_zero": 0.0,
+      "theta_plus": 1.5707963267948966,
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "interior_mixed_state_interpolates_between_pure_and_flat": {
+      "spread_0": 0.15915494309189535,
+      "spread_mix": 0.06366197723675815,
+      "spread_mm": 2.7755575615628914e-17,
+      "pass": true
+    },
+    "south_pole_state_peaks_opposite_north_pole_state": {
+      "theta_zero": 0.0,
+      "theta_one": 3.141592653589793,
+      "pass": "True"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local qubit Husimi-Q representation lego on five bounded states and a fixed Bloch-sphere grid."
+  }
+}

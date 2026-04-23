@@ -1,0 +1,154 @@
+{
+  "name": "graph_shell_geometry",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for shell graph geometry using only binary shell relations, kept separate from multi-way hypergraph shell structure.",
+  "lego_ids": [
+    "graph_shell_geometry"
+  ],
+  "primary_lego_ids": [
+    "graph_shell_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "binary shell graph construction, connectivity, path length, and Laplacian checks are load-bearing"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "reserved for hypergraph shell row"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "nested_shell_chain_is_connected_and_acyclic": {
+      "num_nodes": 4,
+      "num_edges": 3,
+      "num_components": 1,
+      "cycle_rank": 0,
+      "laplacian_zero_modes": 1,
+      "degree_sequence": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "diameter": 3,
+      "pass": true
+    },
+    "pairwise_shell_loop_has_single_cycle": {
+      "num_nodes": 4,
+      "num_edges": 4,
+      "num_components": 1,
+      "cycle_rank": 1,
+      "laplacian_zero_modes": 1,
+      "degree_sequence": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "diameter": 2,
+      "pass": true
+    },
+    "laplacian_nullity_matches_component_count": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "disconnected_shell_graph_is_not_single_structure": {
+      "num_nodes": 4,
+      "num_edges": 2,
+      "num_components": 2,
+      "cycle_rank": 0,
+      "laplacian_zero_modes": 2,
+      "degree_sequence": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "diameter": null,
+      "pass": true
+    },
+    "chain_and_cycle_shadow_graphs_are_not_collapsed": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "row_stays_binary_not_multiway": {
+      "pass": true
+    },
+    "pairwise_shell_graph_uses_only_vertex_edge_data": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local shell-graph lego using only binary shell relations and graph-native invariants."
+  }
+}

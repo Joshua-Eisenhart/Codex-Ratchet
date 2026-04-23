@@ -1,0 +1,111 @@
+{
+  "name": "sim_classical_bell_state_partial_trace",
+  "scope_note": "classical_baseline for Bell-state partial trace (ENGINE_MATH_REFERENCE.md density-matrix baseline)",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: classical baseline; numpy sufficient for closed-form check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no graph message passing in this baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no SAT/UNSAT claim; numeric comparison only"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no SMT obligation"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: numeric-only classical check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no Cl(p,q) rotor used in classical baseline"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no manifold geometry in classical baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no equivariant network in classical baseline"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no graph algorithms invoked"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no hypergraph in this baseline"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no cell complex in classical baseline"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no persistent homology in classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "numpy_integration": "load_bearing",
+  "positive": {
+    "reduced_is_I_over_2": {
+      "err": 1.1102230246251565e-16,
+      "pass": true
+    },
+    "vn_entropy_ln2": {
+      "S": 0.6931471805599454,
+      "ln2": 0.6931471805599453,
+      "pass": "True"
+    },
+    "full_trace_unity": {
+      "tr": 0.9999999999999998,
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "product_state_pure_reduced": {
+      "S": 3.453877639491069e-14,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "reduced_hermitian_trace1": {
+      "herm_err": 0.0,
+      "trace": 0.9999999999999998,
+      "pass": "True"
+    }
+  },
+  "overall_pass": true
+}

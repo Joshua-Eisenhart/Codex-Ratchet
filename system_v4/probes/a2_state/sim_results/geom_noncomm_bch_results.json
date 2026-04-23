@@ -1,0 +1,52 @@
+{
+  "name": "sim_geom_noncomm_bch_nonzero_commutator",
+  "classification": "canonical",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Baker-Campbell-Hausdorff must be expanded symbolically to witness the [A,B]/2 second-order term; any float truncation collapses the commutator into roundoff \u2014 sympy exact arithmetic is the only way to prove exp(A)exp(B) - exp(A+B) has nonzero leading term."
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing",
+    "pytorch": null,
+    "clifford": null,
+    "z3": null,
+    "e3nn": null
+  },
+  "positive": {
+    "bch_second_order_equals_half_commutator": true,
+    "bch_leading_term_nonzero": true,
+    "note": "order swap excludes identical-exponent admissibility",
+    "pass": true
+  },
+  "negative": {
+    "self_commutator_zero_control": true,
+    "pass": true
+  },
+  "boundary": {
+    "scalar_generators_commute": true,
+    "pass": true
+  }
+}

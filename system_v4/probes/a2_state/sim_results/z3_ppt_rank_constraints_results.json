@@ -1,0 +1,121 @@
+{
+  "name": "z3-proves-rank-constraints-on-PPT-entangled-states",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no learning"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Real-arithmetic UNSAT for PPT+rank<=3+entangled sub-lemma"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "reserved cross-check"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "closed-form eigenvalue checks"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "ppt_rank3_entangled_unsat": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    },
+    "ppt_rank1_sat": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "no_rank_constraint_sat": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    },
+    "no_trace_still_unsat": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "rank_eq_3_sat": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    },
+    "rank_eq_4_sat": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    }
+  },
+  "ablation_numpy_substitute": {
+    "numpy_sample_contradictions_found": 0,
+    "proves_universal_claim": false,
+    "note": "sampling never hits rank<=3 AND all 9 lam>0 (vacuously), but cannot certify impossibility; z3 closes the UNSAT."
+  },
+  "classification": "canonical"
+}

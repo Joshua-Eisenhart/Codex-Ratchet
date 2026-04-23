@@ -1,0 +1,86 @@
+{
+  "name": "classical_baseline_logistic_bifurcation",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for classical baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not a proof sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not a proof sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy sufficient"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing numeric core for logistic_bifurcation"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "fixed_point_below_3": true,
+    "chaotic_at_3p9": true
+  },
+  "negative": {
+    "chaos_not_fixed": true
+  },
+  "boundary": {
+    "subcritical_to_zero": true
+  },
+  "all_pass": true,
+  "classification": "classical_baseline",
+  "lane": "lane_B"
+}

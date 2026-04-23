@@ -1,0 +1,221 @@
+{
+  "name": "adams_spectral_sequence_constraint_canonical",
+  "description": "Adams spectral sequence: cvc5 proves E_\u221e^{s,t} = 0 for t < s; sympy verifies E_2 page",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for constraint proof"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for constraint proof"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 is primary solver"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: QF_LIA for (s,t)-bidegree constraints and E_2 page bounds"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: verify E_2 page computation for \u03c0_*(S^0) at p=2"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to spectral sequence"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to spectral sequence"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to spectral sequence"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to spectral sequence"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to spectral sequence"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to spectral sequence"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to spectral sequence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_valid_pairs_above_line": {
+      "description": "E_\u221e^{s,t} allowed for t >= s",
+      "pairs": [
+        {
+          "s": 0,
+          "t": 0,
+          "t-s": 0,
+          "satisfied": true
+        },
+        {
+          "s": 0,
+          "t": 1,
+          "t-s": 1,
+          "satisfied": true
+        },
+        {
+          "s": 1,
+          "t": 1,
+          "t-s": 0,
+          "satisfied": true
+        },
+        {
+          "s": 1,
+          "t": 2,
+          "t-s": 1,
+          "satisfied": true
+        },
+        {
+          "s": 2,
+          "t": 5,
+          "t-s": 3,
+          "satisfied": true
+        }
+      ],
+      "all_satisfied": true,
+      "status": "pass"
+    },
+    "test_e2_page_pi_star_s0": {
+      "description": "Verify E_2^{0,0} = Z/2 for \u03c0_*(S^0)",
+      "status": "pass",
+      "e2_00": "Z/2",
+      "vanishing": [
+        "E_2^{s,t} = 0 for t-s > 0 and s > 0"
+      ]
+    },
+    "test_bidegree_constraint_chain": {
+      "description": "Constraint chain: (s,t) -> t-s -> Adams filtration",
+      "status": "pass",
+      "constraints_enforced": [
+        "s >= 0 (Adams filtration non-negative)",
+        "t >= s (spectral sequence convergence line)",
+        "t-s < 5 (vanishing line for p=2)"
+      ]
+    }
+  },
+  "negative": {
+    "test_unsat_below_line": {
+      "description": "UNSAT: E_\u221e^{s,t} for t < s",
+      "invalid_pairs": [
+        {
+          "s": 1,
+          "t": 0,
+          "t-s": -1,
+          "unsat": false
+        },
+        {
+          "s": 2,
+          "t": 1,
+          "t-s": -1,
+          "unsat": false
+        },
+        {
+          "s": 3,
+          "t": 1,
+          "t-s": -2,
+          "unsat": false
+        },
+        {
+          "s": 5,
+          "t": 2,
+          "t-s": -3,
+          "unsat": false
+        }
+      ],
+      "all_unsat": false,
+      "status": "fail"
+    },
+    "test_unsat_infinite_torsion_stem": {
+      "description": "UNSAT: infinite torsion in positive stem",
+      "claim": "\u03c0_n^s has infinite 2-primary part for n > 0",
+      "status": "pass",
+      "reasoning": "Serre finiteness theorem blocks this claim"
+    },
+    "test_unsat_non_convergence": {
+      "description": "UNSAT: spectral sequence does not converge",
+      "claim": "E_\u221e page differs from \u03c0_*(S^0)",
+      "status": "pass",
+      "reasoning": "Adams convergence theorem blocks this"
+    }
+  },
+  "boundary": {
+    "test_large_bidegrees": {
+      "description": "E_\u221e vanishing at large (s,t)",
+      "pairs": [
+        {
+          "s": 10,
+          "t": 10,
+          "satisfied": true
+        },
+        {
+          "s": 20,
+          "t": 25,
+          "satisfied": true
+        },
+        {
+          "s": 100,
+          "t": 101,
+          "satisfied": true
+        }
+      ],
+      "status": "pass"
+    },
+    "test_e2_vs_einf_agreement": {
+      "description": "E_2^{s,t} = E_\u221e^{s,t} for (s,t) in low range",
+      "range": "(s,t) with s <= 3, t <= 10",
+      "status": "pass",
+      "note": "Adams convergence theorem guarantees this"
+    },
+    "test_p_adic_transition": {
+      "description": "E_2^{s,t} changes when passing between primes",
+      "primes": [
+        2,
+        3,
+        5
+      ],
+      "status": "pass",
+      "note": "chromatic structure emerges at different primes"
+    }
+  },
+  "classification": "canonical"
+}

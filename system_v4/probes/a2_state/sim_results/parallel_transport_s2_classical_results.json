@@ -1,0 +1,55 @@
+{
+  "name": "parallel_transport_s2_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "frame rotation on sphere"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric sufficient"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no admissibility"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "supportive",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "octant_holonomy_pi_over_2": true,
+    "round_trip_identity": "True",
+    "norm_preserved": "True"
+  },
+  "negative": {
+    "nonzero_curvature_holonomy": "True",
+    "stays_tangent_after_step": "True",
+    "output_is_3d": true
+  },
+  "boundary": {
+    "equator_geodesic_trivial": "True",
+    "zero_loop_identity": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "Berry phase = Omega/2 for spin-1/2 is null classically",
+    "no U(1) fibre to support a geometric phase",
+    "spinor sign ambiguity around closed loop unrepresentable",
+    "holonomy is a real frame rotation, not a complex phase"
+  ]
+}

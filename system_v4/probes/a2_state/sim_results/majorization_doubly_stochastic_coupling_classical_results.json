@@ -1,0 +1,128 @@
+{
+  "name": "majorization_doubly_stochastic_coupling_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical majorization/doubly-stochastic coupling loses: (1) quantum majorization of eigenvalues of density matrices under unital channels, (2) entanglement-monotone structure that classical majorization cannot see, (3) non-commutative mixing producing fidelity/coherence losses invisible to spectrum-only majorization.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch sorting cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "maj_0": {
+      "majorizes": true,
+      "H_before": 1.3649473174014486,
+      "H_after": 1.599997627187,
+      "pass": true
+    },
+    "maj_1": {
+      "majorizes": true,
+      "H_before": 1.4736516609539823,
+      "H_after": 1.5930028475115796,
+      "pass": true
+    },
+    "maj_2": {
+      "majorizes": true,
+      "H_before": 1.261733573485416,
+      "H_after": 1.571854703850985,
+      "pass": true
+    },
+    "maj_3": {
+      "majorizes": true,
+      "H_before": 1.3903933916279643,
+      "H_after": 1.5948314372527461,
+      "pass": true
+    }
+  },
+  "negative": {
+    "uniform_not_majorize_peaked": {
+      "majorizes_x_y": false,
+      "majorizes_y_x": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "identity_equal": {
+      "pass": true
+    },
+    "uniformizer": {
+      "y_uniform": true,
+      "majorizes": true,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

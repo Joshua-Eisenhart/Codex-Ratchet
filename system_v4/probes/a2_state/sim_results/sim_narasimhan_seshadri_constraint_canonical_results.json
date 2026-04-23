@@ -1,0 +1,126 @@
+{
+  "name": "Narasimhan-Seshadri Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "slope_formula_direct_sum": {
+      "test": "\u03bc(E\u2081\u2295E\u2082) = (deg E\u2081 + deg E\u2082)/(rank E\u2081 + rank E\u2082)",
+      "mu_E1": 1.5,
+      "mu_E2": 1.0,
+      "mu_sum": 1.3333333333333333,
+      "expected": 1.3333333333333333,
+      "passed": true
+    },
+    "stability_constraint_unstable": {
+      "test": "rank_E=2, rank_F=1, deg_E=4, deg_F=3; \u03bc(F)=3 > \u03bc(E)=2",
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    }
+  },
+  "negative": {
+    "unitary_flat_implies_stable": {
+      "test": "Unitary flat connection \u2227 \u03bc(F) \u2265 \u03bc(E) \u2192 UNSAT",
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    },
+    "slope_inequality_unstable": {
+      "test": "deg_E=5, rank_E=2, deg_F=4, rank_F=1; \u03bc(E)=2.5 < \u03bc(F)=4 \u2192 unstable",
+      "mu_E": 2.5,
+      "mu_F": 4.0,
+      "passes_stability": "False",
+      "expected": false,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "non_proper_subbundle": {
+      "test": "rank_F = rank_E contradicts proper subbundle requirement",
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    },
+    "trivial_bundle_stability": {
+      "test": "Trivial bundle (rank=1, deg=0) is vacuously stable",
+      "mu": 0.0,
+      "reason": "no proper subbundles exist",
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

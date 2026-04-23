@@ -1,0 +1,42 @@
+{
+  "name": "leviathan_diversity_preserves_fuel_supply",
+  "classification": "classical_baseline",
+  "positive": {
+    "fuel_after_single_failure": 4.0,
+    "fuel_persists": true,
+    "num_groups": 5,
+    "redundant_edges": true
+  },
+  "negative": {
+    "fuel_after_only_group_dies": 0.0,
+    "no_fuel_without_diversity": true,
+    "fragile_graph_nodes": 1
+  },
+  "boundary": {
+    "fuel_two_groups_one_dead": 1.0,
+    "half_fuel": true,
+    "fuel_symbolic": "a0*f0 + a1*f1 + a2*f2"
+  },
+  "tool_manifest": {
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "diverse group connectivity"
+    },
+    "networkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic redundancy-by-diversity"
+    }
+  },
+  "tool_integration_depth": {
+    "xgi": "load_bearing",
+    "networkx": null,
+    "sympy": "supportive"
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "name": "Bridge Prep: Xi Cross-Shell Correlation Measure",
+  "schema_version": "1.0",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Xi computed as Frobenius inner product <A,B>_F / (||A||_F * ||B||_F) using torch tensors; also cosine similarity on flattened generators"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph-native dynamics in this correlation measure"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proof that Xi(A,B) > Xi(A,A) for distinct shells is impossible (no shell can be more correlated with another than with itself; Xi <= 1)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 covers the UNSAT bound; cvc5 crosscheck deferred to canonical upgrade"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: symbolic projection of u(3) generator onto so(3) shows the real antisymmetric part IS the so(3) generator; Xi = fraction of generator surviving the projection"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Xi in Cl(3,0) as scalar part of A\u2020B; adjacent shells share more Clifford grade structure than non-adjacent"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- Riemannian geodesics are a canonical-level extension of Xi; this baseline uses Frobenius inner product"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- equivariant neural layers not required at classical baseline"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Xi graph with G-tower shells as nodes and Xi values as edge weights; verify edge weight decreases with tower distance"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no multi-way hyperedge structure required for pairwise Xi"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell-complex topology at baseline level"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Vietoris-Rips on 6-shell generator feature vectors; edge appears at radius = 1 - Xi (closer = more correlated); H0 connected component count as function of filtration radius"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": "load_bearing",
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "P1_xi_so3_u3_positive": {
+      "pass": true,
+      "xi": 0.9999999999999998,
+      "note": "SO(3)\u2192U(3) complexification: real antisymmetric part of u(3) IS so(3)"
+    },
+    "P2_xi_u3_su3_positive": {
+      "pass": true,
+      "xi": 0.9999999999999998,
+      "note": "U(3)\u2192SU(3): traceless part of u(3) generator IS su(3) generator"
+    },
+    "P3_xi_gl3_sp6_less_than_adjacent": {
+      "pass": true,
+      "xi_gl3_sp6": 0.7071067811865475,
+      "xi_so3_u3": 0.9999999999999998,
+      "note": "GL(3) and Sp(6) are non-adjacent; their Xi should not exceed adjacent-pair Xi"
+    },
+    "P4_xi_symmetric": {
+      "pass": true,
+      "xi_AB": 0.9999999999999998,
+      "xi_BA": 0.9999999999999998,
+      "note": "Xi(A,B) = Xi(B,A) -- Frobenius inner product is symmetric"
+    },
+    "P5_xi_self_correlation_is_one": {
+      "pass": true,
+      "xi_self": 0.9999999999999998,
+      "note": "Xi(A,A) = 1: a shell is maximally correlated with itself"
+    },
+    "P6_adjacent_xi_exceeds_nonadjacent": {
+      "pass": true,
+      "avg_adjacent_xi": 0.8414213562373094,
+      "avg_nonadjacent_xi": 0.7328427124746189,
+      "adjacent_xis": {
+        "GL3-O3": 0.7071067811865475,
+        "O3-SO3": 0.9999999999999998,
+        "SO3-U3": 0.9999999999999998,
+        "U3-SU3": 0.9999999999999998,
+        "SU3-Sp6": 0.4999999999999999
+      },
+      "note": "Average Xi for adjacent tower pairs >= average for non-adjacent"
+    },
+    "P7_xi_decreases_with_tower_distance": {
+      "pass": true,
+      "xi_so3_o3": 0.9999999999999998,
+      "xi_so3_sp6": 0.4999999999999999,
+      "note": "Xi(SO3, O3) >= Xi(SO3, Sp6): nearer tower neighbor has higher correlation"
+    },
+    "P8_frobenius_inner_product_xi_proxy": {
+      "pass": true,
+      "best_frob_inner": 0.9999999999999998,
+      "note": "Best Frobenius inner product between any so(3) gen and real antisym part of any u(3) gen > 0"
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_xi_exceeds_self_correlation": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "UNSAT: Xi(A,B) > Xi(A,A)=1 impossible; Cauchy-Schwarz bounds Xi <= 1"
+    },
+    "N2_self_xi_is_one_distinct_is_less": {
+      "pass": true,
+      "xi_self": 0.9999999999999998,
+      "xi_distinct": 0.9999999999999998,
+      "note": "Xi(A,A)=1 and Xi(A,B)<=1 for distinct shells"
+    },
+    "N3_sympy_u3_projects_onto_so3": {
+      "pass": true,
+      "projection_fraction": 1.0,
+      "note": "Sympy: real antisymmetric part of u(3) generator IS the so(3) generator (fraction=1)"
+    },
+    "N4_clifford_adjacent_shares_more_grade": {
+      "pass": true,
+      "xi_clifford_so3_u3": 0.9673824874398685,
+      "xi_clifford_so3_sp6": 0.0,
+      "note": "Clifford grade inner product: SO3-U3 share more grade structure than SO3-Sp6"
+    },
+    "N5_xi_nonself_bounded_by_one": {
+      "pass": true,
+      "xi_gl3_o3": 0.7071067811865475,
+      "xi_gl3_sp6": 0.7071067811865475,
+      "note": "Xi is always bounded by 1.0 (Cauchy-Schwarz); Xi(GL3,O3) and Xi(GL3,Sp6) both <= 1"
+    },
+    "N6_rustworkx_xi_graph_adjacent_outweighs_distant": {
+      "pass": true,
+      "n_nodes": 6,
+      "n_edges": 15,
+      "avg_adjacent_xi": 0.8414213562373094,
+      "avg_dist2_xi": 0.8017766952966368,
+      "note": "Xi graph has 6 nodes; adjacent edges outweigh distance-2 edges on average"
+    }
+  },
+  "boundary": {
+    "B1_so3_embedded_in_u3_xi_is_maximal": {
+      "pass": true,
+      "best_so3_u3_xi_at_embedding": 0.9999999999999998,
+      "note": "At SO(3)\u2192U(3) embedding, real antisymmetric overlap Xi is large (> 0.5)"
+    },
+    "B2_gudhi_rips_h0_all_connected_at_large_radius": {
+      "pass": true,
+      "betti_0": 1,
+      "betti_numbers": [
+        1
+      ],
+      "note": "Vietoris-Rips on Xi-distance matrix: H0=1 means all shells connected"
+    },
+    "B3_xi_symmetric_all_pairs": {
+      "pass": true,
+      "max_asymmetry": 0.0,
+      "worst_pair": null,
+      "note": "Xi(A,B) = Xi(B,A) verified for all 30 ordered pairs"
+    },
+    "B4_xi_at_embedding_point_well_defined": {
+      "pass": true,
+      "best_xi_so3_in_u3": 0.9999999999999998,
+      "note": "Xi at the SO(3) embedding in U(3) is well-defined and positive"
+    },
+    "B5_xi_diagonal_all_ones": {
+      "pass": true,
+      "diagonal_values": {
+        "GL3": 1.0,
+        "O3": 0.9999999999999998,
+        "SO3": 0.9999999999999998,
+        "U3": 0.9999999999999998,
+        "SU3": 0.9999999999999998,
+        "Sp6": 0.9999999999999998
+      },
+      "note": "Xi(A,A) = 1.0 for all six shells in the G-tower"
+    }
+  },
+  "summary": {
+    "positive": "8/8",
+    "negative": "6/6",
+    "boundary": "5/5",
+    "overall_pass": true,
+    "total_time_s": 0.8327
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "name": "sim_geometry_drinfeld_double_quasitriangular_constraint_canonical",
+  "domain": "Drinfeld Double / R-Matrix Theory",
+  "constraint": "Quantum Yang-Baxter equation: R_{12}R_{13}R_{23} = R_{23}R_{13}R_{12}",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identity_rmatrix_qybe": {
+      "sat": true,
+      "message": "Identity R-matrix satisfies QYBE"
+    },
+    "permutation_rmatrix_qybe": {
+      "sat": true,
+      "message": "Permutation R-matrix satisfies QYBE"
+    },
+    "hecke_rmatrix_qybe": {
+      "sat": true,
+      "message": "Hecke algebra R-matrix satisfies QYBE"
+    }
+  },
+  "negative": {
+    "asymmetric_rmatrix_violates_qybe_unsat": {
+      "sat": false,
+      "message": "Asymmetric R-matrix (QYBE violation) is UNSAT",
+      "expected_unsat": true
+    },
+    "noncommuting_triple_unsat": {
+      "sat": false,
+      "message": "Non-commuting triple (QYBE violation) is UNSAT",
+      "expected_unsat": true
+    },
+    "triple_tensor_reversal_unsat": {
+      "sat": false,
+      "message": "Tensor reversal (QYBE violation) is UNSAT",
+      "expected_unsat": true
+    }
+  },
+  "boundary": {
+    "classical_commutative_limit": {
+      "sat": true,
+      "message": "Classical commutative limit satisfies QYBE"
+    },
+    "minimal_2d_rmatrix": {
+      "sat": true,
+      "message": "Minimal 2D R-matrix satisfies QYBE"
+    },
+    "near_commutative_deformation": {
+      "sat": true,
+      "message": "Near-commutative deformation maintains QYBE"
+    }
+  },
+  "classification": "canonical"
+}

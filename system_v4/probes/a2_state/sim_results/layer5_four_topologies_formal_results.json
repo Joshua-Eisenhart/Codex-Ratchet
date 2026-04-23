@@ -1,0 +1,101 @@
+{
+  "layer": 5,
+  "name": "Four Topologies",
+  "positive": {
+    "P1_sympy": {
+      "passed": true,
+      "detail": {
+        "generators": [
+          "Se: sigma_+ Lindblad",
+          "Ne: [sigma_z, .]",
+          "Ni: sigma_- Lindblad",
+          "Si: [sigma_x, .]"
+        ],
+        "rank": 4,
+        "linearly_independent": true
+      }
+    },
+    "P2_sympy": {
+      "passed": true,
+      "detail": {
+        "Se": {
+          "trace_preserving": true,
+          "hermiticity_preserving": true,
+          "trace_of_drho": "0"
+        },
+        "Ne": {
+          "trace_preserving": true,
+          "hermiticity_preserving": true,
+          "trace_of_drho": "0"
+        },
+        "Ni": {
+          "trace_preserving": true,
+          "hermiticity_preserving": true,
+          "trace_of_drho": "0"
+        },
+        "Si": {
+          "trace_preserving": true,
+          "hermiticity_preserving": true,
+          "trace_of_drho": "0"
+        }
+      }
+    },
+    "P3_sympy": {
+      "passed": true,
+      "detail": {
+        "su2_dimension": 3,
+        "hamiltonian_generators": 2,
+        "dissipative_generators": 2,
+        "total_distinct_topologies": 4,
+        "explanation": "su(2) dim 3 yields 3 Hamiltonian generators, but only 2 axes (z and x) are topologically distinct for CPTP maps. 2 dissipative (sigma_+/- Lindblad) complete the set to 4."
+      }
+    },
+    "P4_pyg": {
+      "passed": true,
+      "detail": {
+        "type_1": {
+          "n_terrains": 8,
+          "terrains_per_operator": {
+            "Fi": 2,
+            "Te": 2,
+            "Ti": 2,
+            "Fe": 2
+          },
+          "all_operators_have_2": true
+        },
+        "type_2": {
+          "n_terrains": 8,
+          "terrains_per_operator": {
+            "Ti": 2,
+            "Fe": 2,
+            "Fi": 2,
+            "Te": 2
+          },
+          "all_operators_have_2": true
+        }
+      }
+    }
+  },
+  "negative": {
+    "N1_pyg": {
+      "passed": true,
+      "detail": {
+        "removed_operator": "Ti",
+        "removed_terrains": [
+          4,
+          6
+        ],
+        "remaining_edges": 5,
+        "remaining_nodes": 6,
+        "cycle_broken": true
+      }
+    }
+  },
+  "tools_used": [
+    "sympy",
+    "torch_geometric (PyG)"
+  ],
+  "timestamp": "2026-04-06",
+  "all_passed": true,
+  "summary": "Layer 5 (Four Topologies): 5/5 tests passed using sympy, torch_geometric (PyG)"
+}

@@ -1,0 +1,150 @@
+{
+  "name": "CobordismRingThomSpectrumConstraint",
+  "domain": "Unoriented cobordism groups \u03a9^O_n via Thom spectrum MO",
+  "claim": "Cobordism degree is always non-negative; negative degrees are impossible",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "QF_LIA solver for degree \u2265 0 constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Verify \u03a9^O_1 structure and generator order"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_degree_4_cobordism": {
+      "degree": 4,
+      "sat": "True",
+      "expected": "sat",
+      "pass": true
+    },
+    "test_2_circle_cobordism_generator": {
+      "manifold": "S^1 (circle)",
+      "cobordism_degree": 1,
+      "generator_order": 2,
+      "expected": 2,
+      "pass": true
+    },
+    "test_3_degree_2_surface_cobordism": {
+      "degree": 2,
+      "sat": "True",
+      "expected": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "test_1_negative_degree_unsat": {
+      "degree": -1,
+      "constraint": "degree \u2265 0 AND degree < 0",
+      "sat": "False",
+      "expected": "unsat",
+      "pass": true
+    },
+    "test_2_degree_minus_5_unsat": {
+      "degree": -5,
+      "constraint": "degree \u2265 0",
+      "sat": "False",
+      "expected": "unsat",
+      "pass": true
+    },
+    "test_3_degree_minus_2_unsat": {
+      "degree": -2,
+      "constraint": "degree \u2265 0",
+      "sat": "False",
+      "expected": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "test_1_omega_0_is_Z": {
+      "degree": 0,
+      "structure": "Z",
+      "expected": "Z",
+      "pass": true
+    },
+    "test_2_omega_1_is_z2": {
+      "degree": 1,
+      "structure": "Z/2",
+      "generator": "RP^1",
+      "order": 2,
+      "expected": "Z/2",
+      "pass": true
+    },
+    "test_3_omega_2_is_z2": {
+      "degree": 2,
+      "structure": "Z/2",
+      "generator": "RP^2",
+      "order": 2,
+      "expected": "Z/2",
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

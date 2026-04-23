@@ -1,0 +1,154 @@
+{
+  "name": "Higgs Bundles and Hitchin System Constraint Canonicity",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; Higgs bundle structure handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 used for stability constraint QF_NRA and Hitchin base dimension QF_LIA proofs"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy used for characteristic polynomial computation and Prym dimension verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; gauge theory geometry via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; moduli space geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "hitchin_char_poly_rank2": {
+      "characteristic_polynomial": "det_phi + lambda**2 - lambda*tr_phi",
+      "eigenvalues_formula": "[tr_phi/2 - sqrt(-4*det_phi + tr_phi**2)/2, tr_phi/2 + sqrt(-4*det_phi + tr_phi**2)/2]",
+      "test_pass": true,
+      "reason": "characteristic polynomial has 2 roots for rank 2"
+    },
+    "hitchin_base_dim_rank2_genus3": {
+      "formula": "r*(g - 1)",
+      "dimension_r2_g3": 4,
+      "expected": 4,
+      "test_pass": true,
+      "reason": "Hitchin base dimension r(g-1) = 2*2 = 4 for r=2, g=3"
+    },
+    "prym_variety_dim_r2_g2": {
+      "genus_of_spectral_curve": 5,
+      "genus_of_base_curve": 2,
+      "prym_dimension": 3,
+      "expected": 3,
+      "test_pass": true,
+      "reason": "Prym(\u03a3_a/C) dimension = g(\u03a3_a) - g(C) = 5 - 2 = 3"
+    }
+  },
+  "negative": {
+    "stability_violation_destabilizing_subbundle": {
+      "slope_E": 1.0,
+      "slope_F": 2.0,
+      "claimed_stable": true,
+      "actually_stable": false,
+      "test_pass": true,
+      "reason": "Stability violated: subbundle slope >= bundle slope"
+    },
+    "hitchin_dim_constraint_violated": {
+      "claimed_dimension": 10,
+      "correct_dimension": 4,
+      "test_pass": true,
+      "reason": "Claimed dimension 10 violates Hitchin base formula r(g-1)"
+    },
+    "spectral_genus_bound_violated": {
+      "riemann_hurwitz_bound": 9,
+      "claimed_genus": 14,
+      "test_pass": true,
+      "reason": "Claimed spectral curve genus exceeds Riemann-Hurwitz bound"
+    }
+  },
+  "boundary": {
+    "minimal_genus_elliptic_curve": {
+      "base_curve_genus": 1,
+      "rank": 2,
+      "hitchin_base_dimension": 0,
+      "spectral_curve_genus": 1,
+      "test_pass": true,
+      "reason": "At g=1: Hitchin base is 0-dimensional (isolated spectral curves)"
+    },
+    "rank_one_abelian_case": {
+      "rank": 1,
+      "genus": 2,
+      "hitchin_dimension": 1,
+      "spectral_curve_genus": 2,
+      "test_pass": true,
+      "reason": "Rank 1: Hitchin map is Albanese; spectral curves are cover of base"
+    },
+    "high_rank_boundary": {
+      "rank": 10,
+      "genus": 2,
+      "hitchin_dimension": 10,
+      "spectral_curve_genus": 101,
+      "prym_dimension": 99,
+      "test_pass": true,
+      "reason": "High rank r=10 produces genus-101 spectral curve"
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

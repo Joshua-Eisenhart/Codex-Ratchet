@@ -1,0 +1,125 @@
+{
+  "name": "von_neumann_entropy",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for von Neumann entropy on bounded qubit states, kept separate from Shannon entropy, Renyi/Tsallis families, and broad entropy bundles.",
+  "lego_ids": [
+    "von_neumann_entropy"
+  ],
+  "primary_lego_ids": [
+    "von_neumann_entropy"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "timestamp": "2026-04-22T22:50:30.807292+00:00",
+  "positive": {
+    "pure_states_have_zero_von_neumann_entropy": {
+      "rho_0": -0.0,
+      "rho_plus": 3.2034265038149176e-16,
+      "pass": true
+    },
+    "maximally_mixed_qubit_has_one_bit_entropy": {
+      "value": 1.0,
+      "pass": true
+    },
+    "same_spectrum_different_basis_has_same_entropy": {
+      "diag": 0.7219280948873623,
+      "rotated": 0.7219280948873624,
+      "pass": true
+    }
+  },
+  "negative": {
+    "intermediate_mixed_state_is_not_pure_or_maximally_mixed": {
+      "value": 0.7219280948873623,
+      "pass": true
+    },
+    "pure_and_mixed_states_do_not_share_same_entropy": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "entropy_orders_pure_less_than_mixed_less_than_maximally_mixed": {
+      "pass": true
+    },
+    "entropy_depends_only_on_spectrum_not_basis": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local von Neumann entropy lego on bounded qubit pure, intermediate mixed, and maximally mixed states."
+  }
+}

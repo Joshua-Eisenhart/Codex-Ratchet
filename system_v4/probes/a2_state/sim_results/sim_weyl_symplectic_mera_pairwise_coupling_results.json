@@ -1,0 +1,146 @@
+{
+  "name": "sim_weyl_symplectic_mera_pairwise_coupling",
+  "classification": "classical_baseline",
+  "classification_note": "Step 1 pairwise coupling for Weyl\u00d7Symplectic\u00d7MERA (22nd program). H_weyl = log(2), H_symp = log(5), H_mera = log(2). Q_WS, Q_WM, Q_SM all > 0. z3 UNSAT: zero shell entropy kills pairwise product. sympy: symbolic positivity confirmed.",
+  "divergence_log": "Step 1 pairwise coupling for Weyl\u00d7Symplectic\u00d7MERA (22nd program). H_weyl = log(2), H_symp = log(5), H_mera = log(2). Q_WS, Q_WM, Q_SM all > 0. z3 UNSAT: zero shell entropy kills pairwise product. sympy: symbolic positivity confirmed.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pairwise coupling uses numpy entropy arithmetic; pytorch reserved for rho_WSM in bridge step"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning in pairwise coupling step; deferred to coupling matrix"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: pairwise product Q_pair=0 when either shell entropy =0 (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 is sufficient for the UNSAT checks here; cvc5 not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification that H_i*H_j > 0 when both factors positive (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Weyl chirality encoded as log(2); Cl(3,0) rotor reserved for geometry-variant step"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geodesics not invoked in pairwise entropy coupling"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) equivariance not required for scalar entropy product test"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal needed in pairwise H_i\u00d7H_j tests"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure needed; pairwise is 2-body only"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "chain-complex gating deferred to topology-variants step"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not required in pairwise shell coupling"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "H_values": {
+    "H_weyl": 0.6931471805599453,
+    "H_symp": 1.6094379124341003,
+    "H_mera": 0.6931471805599453
+  },
+  "positive": {
+    "P1_WxS_Q_pair": {
+      "H_weyl": 0.6931471805599453,
+      "H_symp": 1.6094379124341003,
+      "Q_pair": 1.1155773512899807,
+      "passed": true
+    },
+    "P2_WxM_Q_pair": {
+      "H_weyl": 0.6931471805599453,
+      "H_mera": 0.6931471805599453,
+      "Q_pair": 0.4804530139182014,
+      "passed": true
+    },
+    "P3_SxM_Q_pair": {
+      "H_symp": 1.6094379124341003,
+      "H_mera": 0.6931471805599453,
+      "Q_pair": 1.1155773512899807,
+      "passed": true
+    },
+    "P4_sympy_pairwise_positive": {
+      "symbolic_Hi_Hj_positive": "True",
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_H_weyl0_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_z3_unsat_H_symp0_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N3_negative_H_collapses_Q_pair": {
+      "Q_pair_with_negative_H": -0.16094379124341004,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_H_weyl_log2": {
+      "H_weyl": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "passed": true
+    },
+    "B2_H_symp_log5": {
+      "H_symp": 1.6094379124341003,
+      "expected": 1.6094379124341003,
+      "passed": true
+    },
+    "B3_H_mera_log2": {
+      "H_mera": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,118 @@
+{
+  "name": "sim_geometry_hyperbolic_volume_constraint_canonical",
+  "description": "Mostow Rigidity: closed hyperbolic 3-manifolds determined by volume + fundamental group",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for hyperbolic volume and geometrization formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; 3-manifold topology constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_dehn_surgery_limit": {
+      "original_volume": 1.3169002532958984,
+      "limit_as_p_infty": 1.3169,
+      "limit_as_q_infty": 1.3169,
+      "matches": false,
+      "reason": "Dehn surgery formula: Vol(M_{p/q}) \u2192 Vol(M) as p,q \u2192 \u221e"
+    }
+  },
+  "positive_pass": 1,
+  "negative": {},
+  "negative_pass": 0,
+  "boundary": {
+    "boundary_weeks_manifold_minimal": {
+      "weeks_volume": 0.9427003860473633,
+      "candidate_volume": 1.5,
+      "candidate_exceeds_minimum": "True",
+      "reason": "Weeks manifold has minimal volume \u2248 0.9427; all others must be larger"
+    },
+    "boundary_figure8_cusp_volume": {
+      "figure8_volume": 1.3169002532958984,
+      "is_cusped": true,
+      "volume_well_defined": true,
+      "reason": "Cusped hyperbolic manifolds (e.g., figure-8 complement) have well-defined finite volume"
+    },
+    "boundary_large_dehn_parameter": {
+      "p": 1000,
+      "q": 1000,
+      "original_volume": 1.3169002532958984,
+      "surgery_volume": 1.3070306488948091,
+      "volume_difference": -0.009869604401089358,
+      "difference_small": true,
+      "reason": "Large p,q parameters make Dehn surgery volume approach original volume"
+    }
+  },
+  "boundary_pass": 3,
+  "all_pass": false,
+  "classification": "canonical"
+}

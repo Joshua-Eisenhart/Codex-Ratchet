@@ -1,0 +1,136 @@
+{
+  "name": "toponetx_gudhi_hodge_betti_cross",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric linalg only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no MP"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric check"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometry"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex not hypergraph"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "builds CellComplex, provides incidence matrices for Hodge Laplacians; load-bearing"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "independently computes Betti via simplicial persistence; load-bearing cross-check"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "torus_4x4": {
+      "hodge_kernels": [
+        1,
+        2,
+        1
+      ],
+      "gudhi_betti": [
+        1,
+        2,
+        1
+      ],
+      "expected": [
+        1,
+        2,
+        1
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "disk_not_torus": {
+      "hodge_kernels": [
+        1,
+        0,
+        0
+      ],
+      "gudhi_betti": [
+        1,
+        0,
+        0
+      ],
+      "pass": true
+    }
+  },
+  "boundary": {
+    "sphere_tetrahedron": {
+      "hodge_kernels": [
+        1,
+        0,
+        1
+      ],
+      "gudhi_betti": [
+        1,
+        0,
+        1
+      ],
+      "expected": [
+        1,
+        0,
+        1
+      ],
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

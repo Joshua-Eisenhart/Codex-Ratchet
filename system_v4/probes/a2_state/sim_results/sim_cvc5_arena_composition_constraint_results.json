@@ -1,0 +1,163 @@
+{
+  "name": "sim_cvc5_arena_composition_constraint",
+  "description": "Arena composition in game semantics: move count constraint via cvc5 SMT, Poincar\u00e9 series via sympy",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; arena composition handled via SMT solver"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of arena composition constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for Poincar\u00e9 series formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; arena composition constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry in this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_simple_composition_lower_bound": {
+      "status": "pass",
+      "satisfiable": true,
+      "plays_A": 2,
+      "plays_B": 3,
+      "plays_A_tensor_B": 5,
+      "lower_bound": 5,
+      "interpretation": "Composition satisfies move count lower bound"
+    },
+    "test_larger_composition": {
+      "status": "pass",
+      "satisfiable": true,
+      "plays_A": 5,
+      "plays_B": 7,
+      "plays_A_tensor_B": 12,
+      "lower_bound": 12,
+      "interpretation": "Larger composition at lower bound constraint"
+    },
+    "test_poincare_series": {
+      "status": "pass",
+      "formula": "P(A\u2297B, t) = P(A, t) * P(B, t)",
+      "P_A": "2*t + 1",
+      "P_B": "3*t + 1",
+      "P_composition": "6*t**2 + 5*t + 1",
+      "expected": "6*t**2 + 5*t + 1",
+      "match": true
+    }
+  },
+  "negative": {
+    "test_insufficient_move_count": {
+      "status": "pass",
+      "satisfiable": false,
+      "plays_A": 3,
+      "plays_B": 4,
+      "plays_A_tensor_B": 5,
+      "lower_bound": 7,
+      "interpretation": "Composition with insufficient moves violates constraint (UNSAT)"
+    },
+    "test_severe_move_deficit": {
+      "status": "pass",
+      "satisfiable": false,
+      "plays_A": 10,
+      "plays_B": 15,
+      "plays_A_tensor_B": 10,
+      "lower_bound": 25,
+      "interpretation": "Large deficit in move count violates constraint (UNSAT)"
+    },
+    "test_poincare_additive_vs_multiplicative": {
+      "status": "pass",
+      "interpretation": "Additive composition formula differs from multiplicative (constraint proof)",
+      "additive": "5*t + 2",
+      "multiplicative": "6*t**2 + 5*t + 1",
+      "are_different": true
+    }
+  },
+  "boundary": {
+    "test_single_move_composition": {
+      "status": "pass",
+      "satisfiable": true,
+      "plays_A": 1,
+      "plays_B": 1,
+      "plays_A_tensor_B": 2,
+      "interpretation": "Single-move arenas compose to at least 2 moves"
+    },
+    "test_trivial_arena_composition": {
+      "status": "pass",
+      "satisfiable": true,
+      "plays_A": 0,
+      "plays_B": 3,
+      "plays_A_tensor_B": 3,
+      "interpretation": "Trivial arena (0 moves) leaves composition unchanged"
+    },
+    "test_maximal_poincare": {
+      "status": "pass",
+      "P_A_degree": 2,
+      "P_B_degree": 3,
+      "composition_degree": 5,
+      "expected_degree": 5,
+      "match": true
+    }
+  },
+  "classification": "canonical"
+}

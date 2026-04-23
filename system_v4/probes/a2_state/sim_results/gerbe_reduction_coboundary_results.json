@@ -1,0 +1,33 @@
+{
+  "name": "gerbe_reduction_coboundary",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix ranks / kernel of d"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "incidence matrices as coboundary maps"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "toponetx": "load_bearing"
+  },
+  "positive": {
+    "dd_zero": true,
+    "B_and_Bp_both_cocycles": true,
+    "gauge_difference_is_coboundary": true
+  },
+  "negative": {
+    "H2_dim_nonnegative": true,
+    "generic_B_not_a_coboundary": true
+  },
+  "boundary": {
+    "zero_B_is_coboundary": true,
+    "rank_bounded_by_min_dim": true
+  },
+  "classification": "canonical"
+}

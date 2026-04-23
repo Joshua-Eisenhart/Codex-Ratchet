@@ -1,0 +1,494 @@
+{
+  "name": "xi_cut_kernel_ranking",
+  "probe": "bridge_family_to_cut_kernel_ranking",
+  "purpose": "Compare Xi_ref-like, Xi_shell-like, and Xi_hist-like bridge families by the cut kernels induced after bipartite state construction.",
+  "classification": "supporting",
+  "tools_used": [
+    "numpy"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph-learning layer needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no satisfiability claim in this bounded ranking"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no synthesis or SMT cross-check needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic derivation needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Bloch-vector density matrices are sufficient"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold statistics needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant learning layer needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph algorithm needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph layer needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell-complex construction needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent topology needed"
+    }
+  },
+  "positive": {
+    "rows": [
+      {
+        "packet_label": "aligned_low_coupling",
+        "packet_kind": "product_like",
+        "family": "Xi_ref",
+        "kernels": {
+          "mutual_information": 2.4211317923183984e-05,
+          "conditional_entropy_a_given_b": 0.9382118531515695,
+          "coherent_information": -0.9382118531515695,
+          "negativity": 0.0,
+          "weighted_cut_functional": 1.0895093065432793e-05,
+          "correlation_tensor_norm": 0.08821829449967462
+        }
+      },
+      {
+        "packet_label": "aligned_low_coupling",
+        "packet_kind": "product_like",
+        "family": "Xi_shell",
+        "kernels": {
+          "mutual_information": 0.07996032307706424,
+          "conditional_entropy_a_given_b": 0.8814205615567905,
+          "coherent_information": -0.8814205615567905,
+          "negativity": 1.1102230246251565e-16,
+          "weighted_cut_functional": 0.035982145384678935,
+          "correlation_tensor_norm": 0.3769062393317347
+        }
+      },
+      {
+        "packet_label": "aligned_low_coupling",
+        "packet_kind": "product_like",
+        "family": "Xi_hist",
+        "kernels": {
+          "mutual_information": 0.03634825433236344,
+          "conditional_entropy_a_given_b": 0.9159816874937823,
+          "coherent_information": -0.9159816874937823,
+          "negativity": 0.0,
+          "weighted_cut_functional": 0.016356714449563547,
+          "correlation_tensor_norm": 0.26816564312237823
+        }
+      },
+      {
+        "packet_label": "reference_split",
+        "packet_kind": "reference_driven",
+        "family": "Xi_ref",
+        "kernels": {
+          "mutual_information": 0.0029293755278296807,
+          "conditional_entropy_a_given_b": 0.8738362440386737,
+          "coherent_information": -0.8738362440386737,
+          "negativity": 2.220446049250313e-16,
+          "weighted_cut_functional": 0.0013182189875234009,
+          "correlation_tensor_norm": 0.18631466474841427
+        }
+      },
+      {
+        "packet_label": "reference_split",
+        "packet_kind": "reference_driven",
+        "family": "Xi_shell",
+        "kernels": {
+          "mutual_information": 0.10709055616325869,
+          "conditional_entropy_a_given_b": 0.795039767646033,
+          "coherent_information": -0.795039767646033,
+          "negativity": 4.440892098500626e-16,
+          "weighted_cut_functional": 0.048190750273466504,
+          "correlation_tensor_norm": 0.4767201753675744
+        }
+      },
+      {
+        "packet_label": "reference_split",
+        "packet_kind": "reference_driven",
+        "family": "Xi_hist",
+        "kernels": {
+          "mutual_information": 0.0556934638140405,
+          "conditional_entropy_a_given_b": 0.8213416394818052,
+          "coherent_information": -0.8213416394818052,
+          "negativity": 3.3306690738754696e-16,
+          "weighted_cut_functional": 0.02506205871631829,
+          "correlation_tensor_norm": 0.38987013952440325
+        }
+      },
+      {
+        "packet_label": "shell_gradient",
+        "packet_kind": "shell_driven",
+        "family": "Xi_ref",
+        "kernels": {
+          "mutual_information": 0.0019167049854551532,
+          "conditional_entropy_a_given_b": 0.7724640800919642,
+          "coherent_information": -0.7724640800919642,
+          "negativity": 0.0,
+          "weighted_cut_functional": 0.000862517243454819,
+          "correlation_tensor_norm": 0.32371026775567074
+        }
+      },
+      {
+        "packet_label": "shell_gradient",
+        "packet_kind": "shell_driven",
+        "family": "Xi_shell",
+        "kernels": {
+          "mutual_information": 0.23537624021875203,
+          "conditional_entropy_a_given_b": 0.6488255462880969,
+          "coherent_information": -0.6488255462880969,
+          "negativity": 0.031196503513759577,
+          "weighted_cut_functional": 0.11215860880119033,
+          "correlation_tensor_norm": 0.6788931541812648
+        }
+      },
+      {
+        "packet_label": "shell_gradient",
+        "packet_kind": "shell_driven",
+        "family": "Xi_hist",
+        "kernels": {
+          "mutual_information": 0.062442900520100375,
+          "conditional_entropy_a_given_b": 0.7672628079390011,
+          "coherent_information": -0.7672628079390011,
+          "negativity": 2.220446049250313e-16,
+          "weighted_cut_functional": 0.028099305234045215,
+          "correlation_tensor_norm": 0.44987727396320903
+        }
+      },
+      {
+        "packet_label": "history_turning",
+        "packet_kind": "history_driven",
+        "family": "Xi_ref",
+        "kernels": {
+          "mutual_information": 0.010916719403426978,
+          "conditional_entropy_a_given_b": 0.8104314211020388,
+          "coherent_information": -0.8104314211020388,
+          "negativity": 2.220446049250313e-16,
+          "weighted_cut_functional": 0.004912523731542185,
+          "correlation_tensor_norm": 0.3069750683779555
+        }
+      },
+      {
+        "packet_label": "history_turning",
+        "packet_kind": "history_driven",
+        "family": "Xi_shell",
+        "kernels": {
+          "mutual_information": 0.17335579320266725,
+          "conditional_entropy_a_given_b": 0.6830666313904645,
+          "coherent_information": -0.6830666313904645,
+          "negativity": 0.0016169644267218786,
+          "weighted_cut_functional": 0.07833349982654464,
+          "correlation_tensor_norm": 0.6158782356220454
+        }
+      },
+      {
+        "packet_label": "history_turning",
+        "packet_kind": "history_driven",
+        "family": "Xi_hist",
+        "kernels": {
+          "mutual_information": 0.15061822479729248,
+          "conditional_entropy_a_given_b": 0.7747838131016918,
+          "coherent_information": -0.7747838131016918,
+          "negativity": 0.0,
+          "weighted_cut_functional": 0.06777820115878162,
+          "correlation_tensor_norm": 0.5259918706641888
+        }
+      },
+      {
+        "packet_label": "mixed_competition",
+        "packet_kind": "mixed_case",
+        "family": "Xi_ref",
+        "kernels": {
+          "mutual_information": 0.006837568816584705,
+          "conditional_entropy_a_given_b": 0.8554588667078171,
+          "coherent_information": -0.8554588667078171,
+          "negativity": 0.0,
+          "weighted_cut_functional": 0.0030769059674631174,
+          "correlation_tensor_norm": 0.23562183368557196
+        }
+      },
+      {
+        "packet_label": "mixed_competition",
+        "packet_kind": "mixed_case",
+        "family": "Xi_shell",
+        "kernels": {
+          "mutual_information": 0.1897684466880447,
+          "conditional_entropy_a_given_b": 0.6954821176403279,
+          "coherent_information": -0.6954821176403279,
+          "negativity": 0.006706627525035258,
+          "weighted_cut_functional": 0.08673712651462717,
+          "correlation_tensor_norm": 0.6193383076107795
+        }
+      },
+      {
+        "packet_label": "mixed_competition",
+        "packet_kind": "mixed_case",
+        "family": "Xi_hist",
+        "kernels": {
+          "mutual_information": 0.13584833563570076,
+          "conditional_entropy_a_given_b": 0.7525193718854907,
+          "coherent_information": -0.7525193718854907,
+          "negativity": 0.0,
+          "weighted_cut_functional": 0.06113175103606534,
+          "correlation_tensor_norm": 0.536128071901404
+        }
+      }
+    ],
+    "family_ranking": [
+      {
+        "family": "Xi_shell",
+        "kernel_scores": {
+          "mutual_information": {
+            "spread": 0.1554159171416878,
+            "kind_mean_gap": 0.1554159171416878,
+            "combined_score": 0.1554159171416878
+          },
+          "conditional_entropy_a_given_b": {
+            "spread": 0.23259501526869364,
+            "kind_mean_gap": 0.23259501526869364,
+            "combined_score": 0.23259501526869364
+          },
+          "coherent_information": {
+            "spread": 0.23259501526869364,
+            "kind_mean_gap": 0.23259501526869364,
+            "combined_score": 0.23259501526869364
+          },
+          "negativity": {
+            "spread": 0.031196503513759466,
+            "kind_mean_gap": 0.031196503513759466,
+            "combined_score": 0.031196503513759466
+          },
+          "weighted_cut_functional": {
+            "spread": 0.0761764634165114,
+            "kind_mean_gap": 0.0761764634165114,
+            "combined_score": 0.0761764634165114
+          },
+          "correlation_tensor_norm": {
+            "spread": 0.3019869148495301,
+            "kind_mean_gap": 0.3019869148495301,
+            "combined_score": 0.3019869148495301
+          }
+        },
+        "aggregate_discrimination_score": 0.17166097157647933
+      },
+      {
+        "family": "Xi_hist",
+        "kernel_scores": {
+          "mutual_information": {
+            "spread": 0.11426997046492904,
+            "kind_mean_gap": 0.11426997046492904,
+            "combined_score": 0.11426997046492904
+          },
+          "conditional_entropy_a_given_b": {
+            "spread": 0.1634623156082916,
+            "kind_mean_gap": 0.1634623156082916,
+            "combined_score": 0.1634623156082916
+          },
+          "coherent_information": {
+            "spread": 0.1634623156082916,
+            "kind_mean_gap": 0.1634623156082916,
+            "combined_score": 0.1634623156082916
+          },
+          "negativity": {
+            "spread": 3.3306690738754696e-16,
+            "kind_mean_gap": 3.3306690738754696e-16,
+            "combined_score": 3.3306690738754696e-16
+          },
+          "weighted_cut_functional": {
+            "spread": 0.051421486709218076,
+            "kind_mean_gap": 0.051421486709218076,
+            "combined_score": 0.051421486709218076
+          },
+          "correlation_tensor_norm": {
+            "spread": 0.26796242877902576,
+            "kind_mean_gap": 0.26796242877902576,
+            "combined_score": 0.26796242877902576
+          }
+        },
+        "aggregate_discrimination_score": 0.1267630861949594
+      },
+      {
+        "family": "Xi_ref",
+        "kernel_scores": {
+          "mutual_information": {
+            "spread": 0.010892508085503794,
+            "kind_mean_gap": 0.010892508085503794,
+            "combined_score": 0.010892508085503794
+          },
+          "conditional_entropy_a_given_b": {
+            "spread": 0.1657477730596053,
+            "kind_mean_gap": 0.1657477730596053,
+            "combined_score": 0.1657477730596053
+          },
+          "coherent_information": {
+            "spread": 0.1657477730596053,
+            "kind_mean_gap": 0.1657477730596053,
+            "combined_score": 0.1657477730596053
+          },
+          "negativity": {
+            "spread": 2.220446049250313e-16,
+            "kind_mean_gap": 2.220446049250313e-16,
+            "combined_score": 2.220446049250313e-16
+          },
+          "weighted_cut_functional": {
+            "spread": 0.004901628638476752,
+            "kind_mean_gap": 0.004901628638476752,
+            "combined_score": 0.004901628638476752
+          },
+          "correlation_tensor_norm": {
+            "spread": 0.23549197325599613,
+            "kind_mean_gap": 0.23549197325599613,
+            "combined_score": 0.23549197325599613
+          }
+        },
+        "aggregate_discrimination_score": 0.09713027601653125
+      }
+    ],
+    "ranking_is_nontrivial": true,
+    "overwhelming_margin": 0.044897885381519925,
+    "promote_final_winner": false,
+    "pass": true
+  },
+  "negative": {
+    "mixed_case_counterfactuals": {
+      "history_scrambling": {
+        "Xi_ref": {
+          "frobenius_distance": 0.0,
+          "mutual_information_shift": 0.0,
+          "coherent_information_shift": 0.0,
+          "weighted_cut_shift": 0.0
+        },
+        "Xi_shell": {
+          "frobenius_distance": 0.0,
+          "mutual_information_shift": 0.0,
+          "coherent_information_shift": 0.0,
+          "weighted_cut_shift": 0.0
+        },
+        "Xi_hist": {
+          "frobenius_distance": 0.6315854704663164,
+          "mutual_information_shift": 1.598276920108381,
+          "coherent_information_shift": 1.4870115392874284,
+          "weighted_cut_shift": 1.0695221151837484
+        }
+      },
+      "shell_ablation": {
+        "Xi_ref": {
+          "frobenius_distance": 0.0,
+          "mutual_information_shift": 0.0,
+          "coherent_information_shift": 0.0,
+          "weighted_cut_shift": 0.0
+        },
+        "Xi_shell": {
+          "frobenius_distance": 0.10983697889235945,
+          "mutual_information_shift": 0.09147066752140498,
+          "coherent_information_shift": 0.05618060648993972,
+          "weighted_cut_shift": 0.04250312588963925
+        },
+        "Xi_hist": {
+          "frobenius_distance": 0.0,
+          "mutual_information_shift": 0.0,
+          "coherent_information_shift": 0.0,
+          "weighted_cut_shift": 0.0
+        }
+      },
+      "reference_freeze": {
+        "Xi_ref": {
+          "frobenius_distance": 0.1200073393641468,
+          "mutual_information_shift": 0.006837568816584705,
+          "coherent_information_shift": 0.07744756316127932,
+          "weighted_cut_shift": 0.0030769059674631174
+        },
+        "Xi_shell": {
+          "frobenius_distance": 0.0,
+          "mutual_information_shift": 0.0,
+          "coherent_information_shift": 0.0,
+          "weighted_cut_shift": 0.0
+        },
+        "Xi_hist": {
+          "frobenius_distance": 0.0,
+          "mutual_information_shift": 0.0,
+          "coherent_information_shift": 0.0,
+          "weighted_cut_shift": 0.0
+        }
+      }
+    },
+    "history_scrambling_hits_history_family": true,
+    "shell_ablation_hits_shell_family": true,
+    "reference_freeze_hits_reference_family": true,
+    "pass": true
+  },
+  "boundary": {
+    "single_history_sample": {
+      "Xi_hist": {
+        "mutual_information": 0.03740764464221824,
+        "conditional_entropy_a_given_b": 0.9193531675987576,
+        "coherent_information": -0.9193531675987576,
+        "negativity": 1.1102230246251565e-16,
+        "weighted_cut_functional": 0.01683344008899823,
+        "correlation_tensor_norm": 0.2703023511003944
+      }
+    },
+    "exact_reference_match": {
+      "Xi_ref": {
+        "mutual_information": 0.0,
+        "conditional_entropy_a_given_b": 0.9340680553754912,
+        "coherent_information": -0.9340680553754912,
+        "negativity": 0.0,
+        "weighted_cut_functional": 0.0,
+        "correlation_tensor_norm": 0.09000000000000023
+      }
+    },
+    "flat_shell_packet": {
+      "Xi_shell": {
+        "mutual_information": 0.07032399628748753,
+        "conditional_entropy_a_given_b": 0.8855716355383597,
+        "coherent_information": -0.8855716355383597,
+        "negativity": 3.3306690738754696e-16,
+        "weighted_cut_functional": 0.03164579832936946,
+        "correlation_tensor_norm": 0.358941246405798
+      }
+    },
+    "pass": true
+  },
+  "summary": {
+    "tests_total": 3,
+    "tests_passed": 3,
+    "all_pass": true,
+    "leader": "Xi_shell",
+    "runner_up": "Xi_hist",
+    "leader_margin": 0.044897885381519925,
+    "promotion_note": "No final winner promoted; the leading family does not clear the overwhelming-margin threshold."
+  }
+}

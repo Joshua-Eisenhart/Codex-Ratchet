@@ -1,0 +1,135 @@
+{
+  "name": "relative_entropy_js",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for Jensen-Shannon-style symmetric entropy comparison on bounded qubit state pairs, kept separate from directional relative entropy and geometry rows.",
+  "lego_ids": [
+    "relative_entropy_js"
+  ],
+  "primary_lego_ids": [
+    "relative_entropy_js"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identical_pair_has_zero_js": {
+      "value": 0.0,
+      "pass": true
+    },
+    "symmetry_holds": {
+      "zero_plus": 0.600876036692856,
+      "plus_zero": 0.600876036692856,
+      "pass": true
+    },
+    "all_nonidentical_pairs_are_positive": {
+      "orthogonal": 1.0,
+      "nonorthogonal": 0.600876036692856,
+      "pure_mixed": 0.31127812445913283,
+      "nearby_mixed": 0.007947308532810338,
+      "pass": true
+    }
+  },
+  "negative": {
+    "orthogonal_pure_pair_exceeds_nonorthogonal_pure_pair": {
+      "orthogonal": 1.0,
+      "nonorthogonal": 0.600876036692856,
+      "pass": true
+    },
+    "nearby_mixed_pair_is_smaller_than_pure_separated_pairs": {
+      "nearby_mixed": 0.007947308532810338,
+      "nonorthogonal": 0.600876036692856,
+      "orthogonal": 1.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bounded_local_ordering_holds": {
+      "identical": 0.0,
+      "nearby_mixed": 0.007947308532810338,
+      "nonorthogonal": 0.600876036692856,
+      "orthogonal": 1.0,
+      "pass": true
+    },
+    "pure_vs_mixed_sits_between_identical_and_orthogonal": {
+      "pure_vs_mixed": 0.31127812445913283,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local symmetric JS-style entropy-comparison lego on bounded qubit state pairs."
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "name": "coupling_holodeck_science_method",
+  "pair": [
+    "holodeck",
+    "science_method"
+  ],
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "KL divergence tracks holodeck cycle convergence; entropy gradient tracks science method sharpening"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no GNN in this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: holodeck fixed point requires KL=0; KL>0 and fixed_point=True is contradictory"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; z3 covers fixed-point SMT proof"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic fixed-point analysis: holodeck W=W self-consistent; science method limit -> h* unique survivor"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "holodeck = closed Cl(3,0) rotor loop (R*R_inv=scalar 1); science method = open ratchet with monotone norm decrease"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; rotor loops handled by Clifford algebra"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no equivariant network in this sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "rustworkx cycle detection: holodeck is non-DAG (cyclic co-specification); science method is DAG (ratchet)"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "3-way hyperedges encode holodeck mutual-update triple and science-method Popperian triple; reflexivity difference confirmed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; cycle structure handled by rustworkx"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "pytorch_kl_and_sharpness": {
+      "pass": true,
+      "holodeck_kl_step0_to_1": 0.02278263121843338,
+      "holodeck_kl_step1_to_2": 0.01805892214179039,
+      "holodeck_kl_decreasing": true,
+      "science_sharpness_gradient_norm": 1.0065385103225708,
+      "claim": "holodeck KL decreases toward mutual fixed point; science method sharpness gradient nonzero (always updating)"
+    },
+    "sympy_fixed_point_analysis": {
+      "pass": true,
+      "holodeck_fixed_point_solution": "[W]",
+      "science_method_surviving_fraction_at_inf": "0",
+      "claim": "holodeck has co-stabilizing fixed point W=W; science method eliminates all but h*"
+    },
+    "clifford_loop_vs_ratchet": {
+      "pass": true,
+      "holodeck_rotor_loop_scalar": 1.0,
+      "ratchet_norm_sequence": [
+        1.7320508075688772,
+        1.4142135623730951,
+        1.0
+      ],
+      "claim": "holodeck rotor loop closes (R*R_inv=1); science method ratchet is open (strictly monotone norm decrease)"
+    },
+    "rustworkx_cycle_vs_dag": {
+      "pass": true,
+      "holodeck_is_dag": false,
+      "science_method_is_dag": true,
+      "claim": "holodeck graph has cycle (mutual co-specification); science method graph is acyclic (one-way ratchet)"
+    },
+    "xgi_holodeck_vs_science_hyperedges": {
+      "pass": true,
+      "all_ternary": true,
+      "holodeck_triple_reflexive": true,
+      "science_triple_irreflexive": true,
+      "claim": "holodeck 3-way hyperedge is reflexive (W->W'); science method triple is irreflexive (pred->update are distinct)"
+    }
+  },
+  "negative": {
+    "z3_kl_fixedpoint_unsat": {
+      "pass": true,
+      "z3_result": "unsat",
+      "claim": "UNSAT: KL(post||prior)>0 and cycle at fixed point are mutually exclusive"
+    },
+    "pytorch_ratchet_irreversible": {
+      "pass": true,
+      "kl_posterior_from_prior": 0.8858919143676758,
+      "claim": "KL(posterior||prior) > 0 after observation; science method cannot return to prior"
+    },
+    "sympy_holodeck_balanced_fixed_point": {
+      "pass": true,
+      "W": "1/2",
+      "W_next": "1/2",
+      "claim": "balanced holodeck (W=0.5, balanced likelihood) is a valid fixed point; not an error state"
+    }
+  },
+  "boundary": {
+    "pytorch_kl_zero_at_fixed_point": {
+      "pass": true,
+      "kl_fixed_point": 0.0,
+      "claim": "KL=0 at holodeck fixed point (prior = posterior); boundary condition satisfied"
+    },
+    "clifford_identity_rotor_boundary": {
+      "pass": true,
+      "scalar": 1.0,
+      "claim": "identity rotor (theta=0) trivially closes; boundary condition of holodeck is no-op"
+    },
+    "rustworkx_trivial_single_node": {
+      "pass": true,
+      "is_dag": true,
+      "claim": "single-node graph is trivially DAG; degenerate case where holodeck and science method coincide"
+    },
+    "xgi_empty_hypergraph_no_update": {
+      "pass": true,
+      "num_edges": 0,
+      "claim": "empty hypergraph: no observation triple, no update; both holodeck and science method are frozen"
+    }
+  },
+  "overall_pass": true,
+  "coupling_claim": "Holodeck (co-generative mutual cycle, KL->0 fixed point W=W) and Science Method (one-way Popperian ratchet, never returns to prior) are structurally distinct: holodeck graph is cyclic; science method graph is acyclic. Both converge but to different fixed-point types (mutual vs. one-way)."
+}

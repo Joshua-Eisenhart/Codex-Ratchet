@@ -1,0 +1,99 @@
+{
+  "name": "loop_vector_fields",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "stokes_rot_R1.0": true,
+    "stokes_rot_R2.0": true,
+    "stokes_rot_R0.5": true,
+    "curl_grad_zero": true,
+    "rot_flux_zero": true,
+    "radial_flux": true
+  },
+  "negative": {
+    "nonconservative_nonzero": true,
+    "radial_nonzero_flux": true
+  },
+  "boundary": {
+    "tiny_loop_small": true,
+    "zero_field_zero_integral": true
+  },
+  "classical_captured": "Stokes theorem, curl/div identities on closed 2D loops",
+  "innately_missing": "nonclassical holonomy / Berry phase on constraint manifold loops",
+  "all_pass": true
+}

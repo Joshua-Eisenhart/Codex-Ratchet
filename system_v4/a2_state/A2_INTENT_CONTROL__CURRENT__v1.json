@@ -1,0 +1,2842 @@
+{
+  "schema": "A2_INTENT_CONTROL_SURFACE_v1",
+  "surface_id": "A2_INTENT_CONTROL__2026-03-21T01:27:27Z",
+  "classification": {
+    "surface_class": "DERIVED_A2",
+    "status": "NONCANONICAL_ACTIVE_CONTROL",
+    "authority_posture": "intent-preserving derived control surface; not doctrine; not earned truth",
+    "scope": "current repo-held runtime and A2 memory surfaces",
+    "ts_utc": "2026-03-21T01:27:27Z"
+  },
+  "provenance": {
+    "graph_json_path": "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+    "witness_corpus_path": "system_v4/a2_state/witness_corpus_v1.json",
+    "graph_node_ids": [
+      "INTENT::REFINED::f2f1489627bd9c3c",
+      "INTENT::REFINED::6aa1cccac71c0129",
+      "INTENT::REFINED::50c7d740cf797b11"
+    ],
+    "witness_entry_refs": [
+      "WITNESS_CORPUS::0",
+      "WITNESS_CORPUS::1",
+      "WITNESS_CORPUS::2",
+      "WITNESS_CORPUS::3"
+    ],
+    "source_count": 7,
+    "surface_hash": "a343a40a6359f4b27957a9bef540d9afe0c38827bb9d2edecd05cc4b22fde5f3"
+  },
+  "maker_intent": {
+    "summary": "All my intent, and the stuff I am writing, are first-class things to be saved and in the very graphs. My intentions. The intent is a first-class thing to refine. And extracting the system and its maker's intent is the most important thing to be refined and preserved. The whole point of the persistent memory and A2 and A1 brains: not losing context, and saving that context continuously as the system runs. | Skills and graphs should be fully integrated and mature. The system should self-heal, self-improve, and self-optimize as a live closed-loop controller, not just a skill library. | The system derives skills from: Lev nonclassical runtime design doc, Z3 constraint solver, Karpathy's design philosophy, lev-os/agents, lev-os/leviathan/workshop, and JP's skill ideas. These are not just references \u2014 they are first-class sources to be continuously refined into operational skills.",
+    "records": [
+      {
+        "witness_ref": "WITNESS_CORPUS::0",
+        "recorded_at": "2026-03-20T21:56:11Z",
+        "source": "maker",
+        "batch": "",
+        "phase": "DESIGN_PRINCIPLE",
+        "priority": "P0",
+        "topic": "intent_preservation",
+        "type": "",
+        "text": "All my intent, and the stuff I am writing, are first-class things to be saved and in the very graphs. My intentions. The intent is a first-class thing to refine. And extracting the system and its maker's intent is the most important thing to be refined and preserved. The whole point of the persistent memory and A2 and A1 brains: not losing context, and saving that context continuously as the system runs."
+      },
+      {
+        "witness_ref": "WITNESS_CORPUS::1",
+        "recorded_at": "2026-03-20T21:56:11Z",
+        "source": "maker",
+        "batch": "",
+        "phase": "DESIGN_PRINCIPLE",
+        "priority": "P0",
+        "topic": "skill_graph_integration",
+        "type": "",
+        "text": "Skills and graphs should be fully integrated and mature. The system should self-heal, self-improve, and self-optimize as a live closed-loop controller, not just a skill library."
+      },
+      {
+        "witness_ref": "WITNESS_CORPUS::2",
+        "recorded_at": "2026-03-20T21:56:11Z",
+        "source": "maker",
+        "batch": "",
+        "phase": "DESIGN_PRINCIPLE",
+        "priority": "P1",
+        "topic": "skill_derivation_sources",
+        "type": "",
+        "text": "The system derives skills from: Lev nonclassical runtime design doc, Z3 constraint solver, Karpathy's design philosophy, lev-os/agents, lev-os/leviathan/workshop, and JP's skill ideas. These are not just references \u2014 they are first-class sources to be continuously refined into operational skills."
+      }
+    ],
+    "queue_notes": [],
+    "priority_order": [
+      "P0",
+      "P0",
+      "P1"
+    ],
+    "constraints": [
+      {
+        "directive_id": "INTENT_FIRST_CLASS",
+        "label": "intent_first_class",
+        "statement": "Keep maker/system intent as first-class preserved memory, not disposable context.",
+        "rationale": "Derived from preserved maker intent statements about first-class intent and preservation.",
+        "execution_binding": "preserve_intent_memory",
+        "source_refs": [
+          "WITNESS_CORPUS::0",
+          "WITNESS_CORPUS::1",
+          "WITNESS_CORPUS::2",
+          "INTENT::REFINED::f2f1489627bd9c3c",
+          "INTENT::REFINED::6aa1cccac71c0129",
+          "INTENT::REFINED::50c7d740cf797b11"
+        ]
+      },
+      {
+        "directive_id": "CONTEXT_CONTINUITY",
+        "label": "context_continuity",
+        "statement": "Continuously preserve runtime context so active intent and reasoning state are not lost.",
+        "rationale": "Derived from maker intent statements about not losing context across runs.",
+        "execution_binding": "preserve_runtime_context",
+        "source_refs": [
+          "WITNESS_CORPUS::0",
+          "WITNESS_CORPUS::1",
+          "WITNESS_CORPUS::2",
+          "INTENT::REFINED::f2f1489627bd9c3c",
+          "INTENT::REFINED::6aa1cccac71c0129",
+          "INTENT::REFINED::50c7d740cf797b11"
+        ]
+      },
+      {
+        "directive_id": "SKILL_GRAPH_CO_DEVELOPMENT",
+        "label": "skill_graph_co_development",
+        "statement": "Develop skills and graphs together, with execution tested against refinery-backed graph surfaces.",
+        "rationale": "Derived from maker intent statements about joint graph/skill maturation.",
+        "execution_binding": "audit_only",
+        "source_refs": [
+          "WITNESS_CORPUS::0",
+          "WITNESS_CORPUS::1",
+          "WITNESS_CORPUS::2",
+          "INTENT::REFINED::f2f1489627bd9c3c",
+          "INTENT::REFINED::6aa1cccac71c0129",
+          "INTENT::REFINED::50c7d740cf797b11"
+        ]
+      },
+      {
+        "directive_id": "GRAPH_NATIVE_MEMORY",
+        "label": "graph_native_memory",
+        "statement": "Persist control-relevant intent and context in graph-native and append-only memory surfaces.",
+        "rationale": "Derived from maker intent statements about graph storage and persistent memory.",
+        "execution_binding": "audit_only",
+        "source_refs": [
+          "WITNESS_CORPUS::0",
+          "WITNESS_CORPUS::1",
+          "WITNESS_CORPUS::2",
+          "INTENT::REFINED::f2f1489627bd9c3c",
+          "INTENT::REFINED::6aa1cccac71c0129",
+          "INTENT::REFINED::50c7d740cf797b11"
+        ]
+      }
+    ]
+  },
+  "refined_intent": {
+    "summary": "Current derived intent for intent preservation: All my intent, and the stuff I am writing, are first-class things to be saved and in the very graphs. My intentions. The intent is a first-class thing to refine. And extracting the system and its maker's intent is the most important thing to be refined and preserved. The whole point of the persistent memory and A2 and A1 brains: not losing context, and saving that context continuously as the system runs. | Current derived intent for skill derivation sources: The system derives skills from: Lev nonclassical runtime design doc, Z3 constraint solver, Karpathy's design philosophy, lev-os/agents, lev-os/leviathan/workshop, and JP's skill ideas. These are not just references \u2014 they are first-class sources to be continuously refined into operational skills. | Current derived intent for skill graph integration: Skills and graphs should be fully integrated and mature. The system should self-heal, self-improve, and self-optimize as a live closed-loop controller, not just a skill library.",
+    "records": [
+      {
+        "node_id": "INTENT::REFINED::f2f1489627bd9c3c",
+        "name": "intent_preservation_intent_contract",
+        "text": "Current derived intent for intent preservation: All my intent, and the stuff I am writing, are first-class things to be saved and in the very graphs. My intentions. The intent is a first-class thing to refine. And extracting the system and its maker's intent is the most important thing to be refined and preserved. The whole point of the persistent memory and A2 and A1 brains: not losing context, and saving that context continuously as the system runs.",
+        "tags": [
+          "intent",
+          "intent-refinement",
+          "intent_preservation",
+          "witness-derived"
+        ],
+        "source_intent_ids": [
+          "INTENT::SIGNAL::MAKER::89a69c55a9e438a9"
+        ],
+        "lineage_refs": [
+          "INTENT::SIGNAL::MAKER::89a69c55a9e438a9"
+        ],
+        "witness_refs": [
+          "WITNESS_CORPUS::0"
+        ]
+      },
+      {
+        "node_id": "INTENT::REFINED::6aa1cccac71c0129",
+        "name": "skill_derivation_sources_intent_contract",
+        "text": "Current derived intent for skill derivation sources: The system derives skills from: Lev nonclassical runtime design doc, Z3 constraint solver, Karpathy's design philosophy, lev-os/agents, lev-os/leviathan/workshop, and JP's skill ideas. These are not just references \u2014 they are first-class sources to be continuously refined into operational skills.",
+        "tags": [
+          "intent",
+          "intent-refinement",
+          "skill_derivation_sources",
+          "witness-derived"
+        ],
+        "source_intent_ids": [
+          "INTENT::SIGNAL::MAKER::7bd3b15f91341b66"
+        ],
+        "lineage_refs": [
+          "INTENT::SIGNAL::MAKER::7bd3b15f91341b66"
+        ],
+        "witness_refs": [
+          "WITNESS_CORPUS::2"
+        ]
+      },
+      {
+        "node_id": "INTENT::REFINED::50c7d740cf797b11",
+        "name": "skill_graph_integration_intent_contract",
+        "text": "Current derived intent for skill graph integration: Skills and graphs should be fully integrated and mature. The system should self-heal, self-improve, and self-optimize as a live closed-loop controller, not just a skill library.",
+        "tags": [
+          "intent",
+          "intent-refinement",
+          "skill_graph_integration",
+          "witness-derived"
+        ],
+        "source_intent_ids": [
+          "INTENT::SIGNAL::MAKER::c0ef6b798385ed42"
+        ],
+        "lineage_refs": [
+          "INTENT::SIGNAL::MAKER::c0ef6b798385ed42"
+        ],
+        "witness_refs": [
+          "WITNESS_CORPUS::1"
+        ]
+      }
+    ],
+    "decision_rule": "Prefer graph-native intent refinements when present; otherwise preserve raw intent witnesses verbatim.",
+    "do_now": [
+      "Keep maker/system intent as first-class preserved memory, not disposable context.",
+      "Continuously preserve runtime context so active intent and reasoning state are not lost.",
+      "Develop skills and graphs together, with execution tested against refinery-backed graph surfaces.",
+      "Persist control-relevant intent and context in graph-native and append-only memory surfaces."
+    ],
+    "do_not_do": [
+      "Do not treat this surface as doctrine or lower-loop truth.",
+      "Do not discard raw maker intent when refining it."
+    ]
+  },
+  "runtime_context": {
+    "summary": "Controller gate=LAUNCH_READY. Controller mode=CONTROLLER_ONLY. A1 queue status=NO_WORK. Dispatch ID=. Target role=. Ready packet=.",
+    "records": [
+      {
+        "witness_ref": "WITNESS_CORPUS::3",
+        "recorded_at": "2026-03-20T22:18:30Z",
+        "source": "system",
+        "batch": "",
+        "phase": "CONTROL_SNAPSHOT",
+        "text": "Controller gate=LAUNCH_READY. Controller mode=CONTROLLER_ONLY. A1 queue status=NO_WORK. Dispatch ID=. Target role=. Ready packet=."
+      }
+    ],
+    "batch_ids": [],
+    "pending_actions": [],
+    "expires_on_refresh": true
+  },
+  "control": {
+    "lane_id": "INTENT_PRESERVING_CURRENT",
+    "focus_terms": [
+      "intent",
+      "system",
+      "context",
+      "continuously",
+      "graphs",
+      "skills",
+      "memory",
+      "graph",
+      "skill",
+      "preserved",
+      "runtime",
+      "agents"
+    ],
+    "steering_focus_terms": [
+      "intent",
+      "system",
+      "context",
+      "graphs",
+      "skills",
+      "memory",
+      "graph",
+      "skill"
+    ],
+    "executable_focus_terms": [
+      "intent",
+      "context",
+      "memory",
+      "graph"
+    ],
+    "executable_non_negotiables": [
+      "intent_first_class",
+      "context_continuity"
+    ],
+    "executable_focus_graph_metrics": {
+      "eligible_concept_node_count": 7182,
+      "max_hit_rate": 0.25,
+      "max_high_intake_share": 0.9,
+      "min_anchored_support": 6,
+      "pruned_terms": [
+        {
+          "term": "system",
+          "eligible_concept_hit_count": 2617,
+          "eligible_concept_hit_rate": 0.364383,
+          "unique_concept_hit_count": 2381,
+          "high_intake_share": 0.808942,
+          "anchored_support_count": 494,
+          "redundant_alias_of": "",
+          "prune_reason": [
+            "too_broad"
+          ]
+        },
+        {
+          "term": "graphs",
+          "eligible_concept_hit_count": 9,
+          "eligible_concept_hit_rate": 0.001253,
+          "unique_concept_hit_count": 0,
+          "high_intake_share": 1.0,
+          "anchored_support_count": 0,
+          "redundant_alias_of": "graph",
+          "prune_reason": [
+            "redundant_alias",
+            "high_intake_dominance"
+          ]
+        },
+        {
+          "term": "skills",
+          "eligible_concept_hit_count": 38,
+          "eligible_concept_hit_rate": 0.005291,
+          "unique_concept_hit_count": 0,
+          "high_intake_share": 0.947368,
+          "anchored_support_count": 0,
+          "redundant_alias_of": "skill",
+          "prune_reason": [
+            "redundant_alias",
+            "high_intake_dominance"
+          ]
+        },
+        {
+          "term": "skill",
+          "eligible_concept_hit_count": 142,
+          "eligible_concept_hit_rate": 0.019772,
+          "unique_concept_hit_count": 59,
+          "high_intake_share": 0.943662,
+          "anchored_support_count": 5,
+          "redundant_alias_of": "",
+          "prune_reason": [
+            "high_intake_dominance"
+          ]
+        }
+      ]
+    },
+    "executable_focus_refinement_candidates": [
+      {
+        "term": "integration",
+        "source_labels": [
+          "maker_topic:skill_graph_integration",
+          "refined_tag:skill_graph_integration"
+        ],
+        "eligible_concept_hit_count": 51,
+        "eligible_concept_hit_rate": 0.007101,
+        "novel_vs_current_executable_count": 41,
+        "current_executable_overlap_count": 10,
+        "candidate_status": "audit_only"
+      },
+      {
+        "term": "preservation",
+        "source_labels": [
+          "maker_topic:intent_preservation",
+          "refined_tag:intent_preservation"
+        ],
+        "eligible_concept_hit_count": 17,
+        "eligible_concept_hit_rate": 0.002367,
+        "novel_vs_current_executable_count": 14,
+        "current_executable_overlap_count": 3,
+        "candidate_status": "audit_only"
+      },
+      {
+        "term": "derivation",
+        "source_labels": [
+          "maker_topic:skill_derivation_sources",
+          "refined_tag:skill_derivation_sources"
+        ],
+        "eligible_concept_hit_count": 15,
+        "eligible_concept_hit_rate": 0.002089,
+        "novel_vs_current_executable_count": 14,
+        "current_executable_overlap_count": 1,
+        "candidate_status": "audit_only"
+      }
+    ],
+    "executable_focus_promotion_readiness": [
+      {
+        "term": "derivation",
+        "candidate_status": "audit_only",
+        "readiness_status": "candidate_for_execution_binding_check",
+        "source_labels": [
+          "maker_topic:skill_derivation_sources",
+          "refined_tag:skill_derivation_sources"
+        ],
+        "eligible_concept_hit_count": 15,
+        "eligible_concept_hit_rate": 0.002089,
+        "novel_vs_current_executable_count": 14,
+        "current_executable_overlap_count": 1,
+        "gate_min_concepts": 2,
+        "scope_band": "narrow",
+        "readiness_flags": {
+          "dual_provenance": true,
+          "solo_gate_ready": true,
+          "novel_gain_ready": true,
+          "bounded_scope": true
+        },
+        "cluster_precision": {
+          "status": "coherent",
+          "min_support": 3,
+          "family_terms": [
+            "skill",
+            "sources"
+          ],
+          "family_term_coverage": 0.066667,
+          "intra_hit_edge_coverage": 0.466667,
+          "top_shared_semantic_tags": [
+            {
+              "tag": "manifold_derivation",
+              "count": 4,
+              "share": 0.266667
+            }
+          ],
+          "top_shared_semantic_tokens": [
+            {
+              "token": "transport",
+              "count": 7,
+              "share": 0.466667
+            },
+            {
+              "token": "tokens",
+              "count": 6,
+              "share": 0.4
+            },
+            {
+              "token": "constraint_manifold_derivation_v1",
+              "count": 5,
+              "share": 0.333333
+            },
+            {
+              "token": "relations",
+              "count": 5,
+              "share": 0.333333
+            },
+            {
+              "token": "obstruction",
+              "count": 5,
+              "share": 0.333333
+            }
+          ]
+        },
+        "missing_proof": [
+          "execution_binding_proof"
+        ],
+        "execution_binding_probe": {
+          "status": "bounded_positive_effect",
+          "current_executable_hit_count": 525,
+          "term_hit_count": 15,
+          "novel_hit_count": 14,
+          "novel_hit_rate": 0.001949,
+          "projected_executable_hit_count": 539,
+          "projected_executable_hit_rate": 0.075049,
+          "projected_focus_term_count": 5,
+          "gate_min_concepts": 2,
+          "sample_new_focus_matches": [
+            {
+              "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_DERIVATION_V1",
+              "name": "CONSTRAINT_MANIFOLD_DERIVATION_V1",
+              "node_type": "REFINED_CONCEPT"
+            },
+            {
+              "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+              "name": "CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+              "node_type": "REFINED_CONCEPT"
+            },
+            {
+              "node_id": "A2_3::ENGINE_PATTERN_PASS::CMD_Compatibility_From_Transport::e079375fe93c8abf",
+              "name": "CMD_Compatibility_From_Transport",
+              "node_type": "EXTRACTED_CONCEPT"
+            },
+            {
+              "node_id": "A2_3::ENGINE_PATTERN_PASS::CMD_Forbidden_Structure::5b063ae72c934f7f",
+              "name": "CMD_Forbidden_Structure",
+              "node_type": "EXTRACTED_CONCEPT"
+            },
+            {
+              "node_id": "A2_3::ENGINE_PATTERN_PASS::CMD_Global_Carrier_As_Token_Registry::75bec525ec4c5022",
+              "name": "CMD_Global_Carrier_As_Token_Registry",
+              "node_type": "EXTRACTED_CONCEPT"
+            }
+          ]
+        }
+      },
+      {
+        "term": "integration",
+        "candidate_status": "audit_only",
+        "readiness_status": "candidate_for_cluster_precision_check",
+        "source_labels": [
+          "maker_topic:skill_graph_integration",
+          "refined_tag:skill_graph_integration"
+        ],
+        "eligible_concept_hit_count": 51,
+        "eligible_concept_hit_rate": 0.007101,
+        "novel_vs_current_executable_count": 41,
+        "current_executable_overlap_count": 10,
+        "gate_min_concepts": 2,
+        "scope_band": "narrow",
+        "readiness_flags": {
+          "dual_provenance": true,
+          "solo_gate_ready": true,
+          "novel_gain_ready": true,
+          "bounded_scope": true
+        },
+        "cluster_precision": {
+          "status": "mixed",
+          "min_support": 8,
+          "family_terms": [
+            "graph",
+            "skill"
+          ],
+          "family_term_coverage": 0.176471,
+          "intra_hit_edge_coverage": 0.431373,
+          "top_shared_semantic_tags": [],
+          "top_shared_semantic_tokens": [
+            {
+              "token": "you",
+              "count": 9,
+              "share": 0.176471
+            },
+            {
+              "token": "ratchet",
+              "count": 9,
+              "share": 0.176471
+            },
+            {
+              "token": "one",
+              "count": 9,
+              "share": 0.176471
+            },
+            {
+              "token": "purpose",
+              "count": 9,
+              "share": 0.176471
+            },
+            {
+              "token": "proposed",
+              "count": 9,
+              "share": 0.176471
+            }
+          ]
+        },
+        "missing_proof": [
+          "cluster_precision_check",
+          "execution_binding_proof"
+        ],
+        "execution_binding_probe": {
+          "status": "blocked_by_cluster_precision",
+          "current_executable_hit_count": 525,
+          "term_hit_count": 51,
+          "novel_hit_count": 41,
+          "novel_hit_rate": 0.005709,
+          "projected_executable_hit_count": 566,
+          "projected_executable_hit_rate": 0.078808,
+          "projected_focus_term_count": 5,
+          "gate_min_concepts": 2,
+          "sample_new_focus_matches": [
+            {
+              "node_id": "A1_STRIPPED::A2_WORKER_INTAKE_WARM_COLD_CONSUMER_INTEGRATION",
+              "name": "A2_WORKER_INTAKE_WARM_COLD_CONSUMER_INTEGRATION",
+              "node_type": "REFINED_CONCEPT"
+            },
+            {
+              "node_id": "A2_3::ENGINE_PATTERN_PASS::DETERMINISTIC_REPLAY_HASH_EQUALITY::bdb42d5287cc4361",
+              "name": "DETERMINISTIC_REPLAY_HASH_EQUALITY",
+              "node_type": "EXTRACTED_CONCEPT"
+            },
+            {
+              "node_id": "A2_3::SOURCE_MAP_PASS::01_system_understanding_integration__2026_03_17__v::bb7e1a59fc22d640",
+              "name": "01_system_understanding_integration__2026_03_17__v",
+              "node_type": "EXTRACTED_CONCEPT"
+            },
+            {
+              "node_id": "A2_3::SOURCE_MAP_PASS::03_plan_execution_integration__2026_03_17__v1::39753fe85970a1cd",
+              "name": "03_plan_execution_integration__2026_03_17__v1",
+              "node_type": "EXTRACTED_CONCEPT"
+            },
+            {
+              "node_id": "A2_3::SOURCE_MAP_PASS::05_overall_recovery_integration__2026_03_17__v1::5157b3f185e3a708",
+              "name": "05_overall_recovery_integration__2026_03_17__v1",
+              "node_type": "EXTRACTED_CONCEPT"
+            }
+          ]
+        }
+      },
+      {
+        "term": "preservation",
+        "candidate_status": "audit_only",
+        "readiness_status": "candidate_for_cluster_precision_check",
+        "source_labels": [
+          "maker_topic:intent_preservation",
+          "refined_tag:intent_preservation"
+        ],
+        "eligible_concept_hit_count": 17,
+        "eligible_concept_hit_rate": 0.002367,
+        "novel_vs_current_executable_count": 14,
+        "current_executable_overlap_count": 3,
+        "gate_min_concepts": 2,
+        "scope_band": "narrow",
+        "readiness_flags": {
+          "dual_provenance": true,
+          "solo_gate_ready": true,
+          "novel_gain_ready": true,
+          "bounded_scope": true
+        },
+        "cluster_precision": {
+          "status": "mixed",
+          "min_support": 3,
+          "family_terms": [
+            "intent"
+          ],
+          "family_term_coverage": 0.0,
+          "intra_hit_edge_coverage": 0.352941,
+          "top_shared_semantic_tags": [],
+          "top_shared_semantic_tokens": [
+            {
+              "token": "entropy",
+              "count": 4,
+              "share": 0.235294
+            },
+            {
+              "token": "source",
+              "count": 4,
+              "share": 0.235294
+            },
+            {
+              "token": "contradiction",
+              "count": 4,
+              "share": 0.235294
+            },
+            {
+              "token": "role",
+              "count": 3,
+              "share": 0.176471
+            },
+            {
+              "token": "high",
+              "count": 3,
+              "share": 0.176471
+            }
+          ]
+        },
+        "missing_proof": [
+          "cluster_precision_check",
+          "execution_binding_proof"
+        ],
+        "execution_binding_probe": {
+          "status": "blocked_by_cluster_precision",
+          "current_executable_hit_count": 525,
+          "term_hit_count": 17,
+          "novel_hit_count": 14,
+          "novel_hit_rate": 0.001949,
+          "projected_executable_hit_count": 539,
+          "projected_executable_hit_rate": 0.075049,
+          "projected_focus_term_count": 5,
+          "gate_min_concepts": 2,
+          "sample_new_focus_matches": [
+            {
+              "node_id": "A1_STRIPPED::V3SURF_CONTRADICTION_PRESERVATION_V1",
+              "name": "V3SURF_CONTRADICTION_PRESERVATION_V1",
+              "node_type": "REFINED_CONCEPT"
+            },
+            {
+              "node_id": "A1_STRIPPED::ZIP_DROPINS_TOPIC_CONTRADICTION_MAP_A2_TOPIC_P",
+              "name": "ZIP_DROPINS_TOPIC_CONTRADICTION_MAP_A2_TOPIC_P",
+              "node_type": "REFINED_CONCEPT"
+            },
+            {
+              "node_id": "A2_2::REFINED::Entropy-First Unified Framework::5c4e1467d2c7dd19",
+              "name": "Entropy-First Unified Framework",
+              "node_type": "REFINED_CONCEPT"
+            },
+            {
+              "node_id": "A2_3::ENGINE_PATTERN_PASS::Engine_Composition_Guarded::b967c9e0c2c07000",
+              "name": "Engine_Composition_Guarded",
+              "node_type": "EXTRACTED_CONCEPT"
+            },
+            {
+              "node_id": "A2_3::ENGINE_PATTERN_PASS::PhysRosetta_Scalars_NOT_Physical_Quantities::41972797508ba5af",
+              "name": "PhysRosetta_Scalars_NOT_Physical_Quantities",
+              "node_type": "EXTRACTED_CONCEPT"
+            }
+          ]
+        }
+      }
+    ],
+    "executable_focus_semantic_comparison": {
+      "scope": "audit_only_nonbinding",
+      "runtime_effect": "none",
+      "comparison_pair": [
+        "derivation",
+        "integration"
+      ],
+      "structural_front_runner": "derivation",
+      "semantic_hygiene_front_runner": "integration",
+      "decision": "keep_audit_only_no_promotion",
+      "manual_review_required": true,
+      "comparison_basis": [
+        "cluster_precision",
+        "execution_binding_probe",
+        "source_label_semantics"
+      ],
+      "observations": [
+        {
+          "term": "derivation",
+          "readiness_status": "candidate_for_execution_binding_check",
+          "cluster_status": "coherent",
+          "execution_binding_probe_status": "bounded_positive_effect",
+          "semantic_notes": [
+            "direct_maker_topic_alignment",
+            "source_or_provenance_lean",
+            "process_or_family_derivation_theme"
+          ],
+          "semantic_hygiene_score": 0
+        },
+        {
+          "term": "integration",
+          "readiness_status": "candidate_for_cluster_precision_check",
+          "cluster_status": "mixed",
+          "execution_binding_probe_status": "blocked_by_cluster_precision",
+          "semantic_notes": [
+            "direct_maker_topic_alignment",
+            "overlaps_current_executable_family",
+            "skill_graph_integration_theme"
+          ],
+          "semantic_hygiene_score": 2
+        }
+      ],
+      "family_audit": {
+        "scope": "audit_only_nonbinding",
+        "runtime_effect": "none",
+        "basis": [
+          "concept_hit_family_distribution",
+          "layer_distribution",
+          "node_type_distribution"
+        ],
+        "observations": [
+          {
+            "term": "derivation",
+            "hit_count": 15,
+            "family_posture": "mixed_clustered",
+            "top_family": "A2_3::SOURCE_MAP_PASS",
+            "top_family_share": 0.466667,
+            "family_distribution": [
+              {
+                "label": "A2_3::SOURCE_MAP_PASS",
+                "count": 7,
+                "share": 0.466667
+              },
+              {
+                "label": "A2_3::ENGINE_PATTERN_PASS",
+                "count": 5,
+                "share": 0.333333
+              },
+              {
+                "label": "A1_STRIPPED",
+                "count": 3,
+                "share": 0.2
+              }
+            ],
+            "layer_distribution": [
+              {
+                "label": "A2_HIGH_INTAKE",
+                "count": 12,
+                "share": 0.8
+              },
+              {
+                "label": "A1_STRIPPED",
+                "count": 3,
+                "share": 0.2
+              }
+            ],
+            "node_type_distribution": [
+              {
+                "label": "EXTRACTED_CONCEPT",
+                "count": 12,
+                "share": 0.8
+              },
+              {
+                "label": "REFINED_CONCEPT",
+                "count": 3,
+                "share": 0.2
+              }
+            ],
+            "family_notes": [
+              "source_map_family_heavy",
+              "stripped_family_present",
+              "engine_pattern_family_present"
+            ]
+          },
+          {
+            "term": "integration",
+            "hit_count": 51,
+            "family_posture": "highly_concentrated",
+            "top_family": "A2_3::SOURCE_MAP_PASS",
+            "top_family_share": 0.960784,
+            "family_distribution": [
+              {
+                "label": "A2_3::SOURCE_MAP_PASS",
+                "count": 49,
+                "share": 0.960784
+              },
+              {
+                "label": "A1_STRIPPED",
+                "count": 1,
+                "share": 0.019608
+              },
+              {
+                "label": "A2_3::ENGINE_PATTERN_PASS",
+                "count": 1,
+                "share": 0.019608
+              }
+            ],
+            "layer_distribution": [
+              {
+                "label": "A2_HIGH_INTAKE",
+                "count": 44,
+                "share": 0.862745
+              },
+              {
+                "label": "A2_2_CANDIDATE",
+                "count": 4,
+                "share": 0.078431
+              },
+              {
+                "label": "GRAVEYARD",
+                "count": 2,
+                "share": 0.039216
+              },
+              {
+                "label": "A1_STRIPPED",
+                "count": 1,
+                "share": 0.019608
+              }
+            ],
+            "node_type_distribution": [
+              {
+                "label": "EXTRACTED_CONCEPT",
+                "count": 46,
+                "share": 0.901961
+              },
+              {
+                "label": "REFINED_CONCEPT",
+                "count": 5,
+                "share": 0.098039
+              }
+            ],
+            "family_notes": [
+              "source_map_family_heavy",
+              "stripped_family_present",
+              "engine_pattern_family_present"
+            ]
+          }
+        ]
+      },
+      "rationale": [
+        "derivation is structurally strongest on the current graph-backed readiness surface.",
+        "integration is currently the least misleading semantic runtime term by source-label posture.",
+        "Signals remain split, so no staged term is promoted from audit-only status."
+      ]
+    },
+    "runtime_policy": {
+      "schema": "INTENT_RUNTIME_POLICY_v1",
+      "focus_terms": [
+        "intent",
+        "system",
+        "context",
+        "continuously",
+        "graphs",
+        "skills",
+        "memory",
+        "graph",
+        "skill",
+        "preserved",
+        "runtime",
+        "agents"
+      ],
+      "steering_focus_terms": [
+        "intent",
+        "system",
+        "context",
+        "graphs",
+        "skills",
+        "memory",
+        "graph",
+        "skill"
+      ],
+      "executable_focus_terms": [
+        "intent",
+        "context",
+        "memory",
+        "graph"
+      ],
+      "executable_non_negotiables": [
+        "intent_first_class",
+        "context_continuity"
+      ],
+      "executable_focus_refinement_candidates": [
+        {
+          "term": "integration",
+          "source_labels": [
+            "maker_topic:skill_graph_integration",
+            "refined_tag:skill_graph_integration"
+          ],
+          "eligible_concept_hit_count": 51,
+          "eligible_concept_hit_rate": 0.007101,
+          "novel_vs_current_executable_count": 41,
+          "current_executable_overlap_count": 10,
+          "candidate_status": "audit_only"
+        },
+        {
+          "term": "preservation",
+          "source_labels": [
+            "maker_topic:intent_preservation",
+            "refined_tag:intent_preservation"
+          ],
+          "eligible_concept_hit_count": 17,
+          "eligible_concept_hit_rate": 0.002367,
+          "novel_vs_current_executable_count": 14,
+          "current_executable_overlap_count": 3,
+          "candidate_status": "audit_only"
+        },
+        {
+          "term": "derivation",
+          "source_labels": [
+            "maker_topic:skill_derivation_sources",
+            "refined_tag:skill_derivation_sources"
+          ],
+          "eligible_concept_hit_count": 15,
+          "eligible_concept_hit_rate": 0.002089,
+          "novel_vs_current_executable_count": 14,
+          "current_executable_overlap_count": 1,
+          "candidate_status": "audit_only"
+        }
+      ],
+      "executable_focus_promotion_readiness": [
+        {
+          "term": "derivation",
+          "candidate_status": "audit_only",
+          "readiness_status": "candidate_for_execution_binding_check",
+          "source_labels": [
+            "maker_topic:skill_derivation_sources",
+            "refined_tag:skill_derivation_sources"
+          ],
+          "eligible_concept_hit_count": 15,
+          "eligible_concept_hit_rate": 0.002089,
+          "novel_vs_current_executable_count": 14,
+          "current_executable_overlap_count": 1,
+          "gate_min_concepts": 2,
+          "scope_band": "narrow",
+          "readiness_flags": {
+            "dual_provenance": true,
+            "solo_gate_ready": true,
+            "novel_gain_ready": true,
+            "bounded_scope": true
+          },
+          "cluster_precision": {
+            "status": "coherent",
+            "min_support": 3,
+            "family_terms": [
+              "skill",
+              "sources"
+            ],
+            "family_term_coverage": 0.066667,
+            "intra_hit_edge_coverage": 0.466667,
+            "top_shared_semantic_tags": [
+              {
+                "tag": "manifold_derivation",
+                "count": 4,
+                "share": 0.266667
+              }
+            ],
+            "top_shared_semantic_tokens": [
+              {
+                "token": "transport",
+                "count": 7,
+                "share": 0.466667
+              },
+              {
+                "token": "tokens",
+                "count": 6,
+                "share": 0.4
+              },
+              {
+                "token": "constraint_manifold_derivation_v1",
+                "count": 5,
+                "share": 0.333333
+              },
+              {
+                "token": "relations",
+                "count": 5,
+                "share": 0.333333
+              },
+              {
+                "token": "obstruction",
+                "count": 5,
+                "share": 0.333333
+              }
+            ]
+          },
+          "missing_proof": [
+            "execution_binding_proof"
+          ],
+          "execution_binding_probe": {
+            "status": "bounded_positive_effect",
+            "current_executable_hit_count": 525,
+            "term_hit_count": 15,
+            "novel_hit_count": 14,
+            "novel_hit_rate": 0.001949,
+            "projected_executable_hit_count": 539,
+            "projected_executable_hit_rate": 0.075049,
+            "projected_focus_term_count": 5,
+            "gate_min_concepts": 2,
+            "sample_new_focus_matches": [
+              {
+                "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_DERIVATION_V1",
+                "name": "CONSTRAINT_MANIFOLD_DERIVATION_V1",
+                "node_type": "REFINED_CONCEPT"
+              },
+              {
+                "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+                "name": "CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+                "node_type": "REFINED_CONCEPT"
+              },
+              {
+                "node_id": "A2_3::ENGINE_PATTERN_PASS::CMD_Compatibility_From_Transport::e079375fe93c8abf",
+                "name": "CMD_Compatibility_From_Transport",
+                "node_type": "EXTRACTED_CONCEPT"
+              },
+              {
+                "node_id": "A2_3::ENGINE_PATTERN_PASS::CMD_Forbidden_Structure::5b063ae72c934f7f",
+                "name": "CMD_Forbidden_Structure",
+                "node_type": "EXTRACTED_CONCEPT"
+              },
+              {
+                "node_id": "A2_3::ENGINE_PATTERN_PASS::CMD_Global_Carrier_As_Token_Registry::75bec525ec4c5022",
+                "name": "CMD_Global_Carrier_As_Token_Registry",
+                "node_type": "EXTRACTED_CONCEPT"
+              }
+            ]
+          }
+        },
+        {
+          "term": "integration",
+          "candidate_status": "audit_only",
+          "readiness_status": "candidate_for_cluster_precision_check",
+          "source_labels": [
+            "maker_topic:skill_graph_integration",
+            "refined_tag:skill_graph_integration"
+          ],
+          "eligible_concept_hit_count": 51,
+          "eligible_concept_hit_rate": 0.007101,
+          "novel_vs_current_executable_count": 41,
+          "current_executable_overlap_count": 10,
+          "gate_min_concepts": 2,
+          "scope_band": "narrow",
+          "readiness_flags": {
+            "dual_provenance": true,
+            "solo_gate_ready": true,
+            "novel_gain_ready": true,
+            "bounded_scope": true
+          },
+          "cluster_precision": {
+            "status": "mixed",
+            "min_support": 8,
+            "family_terms": [
+              "graph",
+              "skill"
+            ],
+            "family_term_coverage": 0.176471,
+            "intra_hit_edge_coverage": 0.431373,
+            "top_shared_semantic_tags": [],
+            "top_shared_semantic_tokens": [
+              {
+                "token": "you",
+                "count": 9,
+                "share": 0.176471
+              },
+              {
+                "token": "ratchet",
+                "count": 9,
+                "share": 0.176471
+              },
+              {
+                "token": "one",
+                "count": 9,
+                "share": 0.176471
+              },
+              {
+                "token": "purpose",
+                "count": 9,
+                "share": 0.176471
+              },
+              {
+                "token": "proposed",
+                "count": 9,
+                "share": 0.176471
+              }
+            ]
+          },
+          "missing_proof": [
+            "cluster_precision_check",
+            "execution_binding_proof"
+          ],
+          "execution_binding_probe": {
+            "status": "blocked_by_cluster_precision",
+            "current_executable_hit_count": 525,
+            "term_hit_count": 51,
+            "novel_hit_count": 41,
+            "novel_hit_rate": 0.005709,
+            "projected_executable_hit_count": 566,
+            "projected_executable_hit_rate": 0.078808,
+            "projected_focus_term_count": 5,
+            "gate_min_concepts": 2,
+            "sample_new_focus_matches": [
+              {
+                "node_id": "A1_STRIPPED::A2_WORKER_INTAKE_WARM_COLD_CONSUMER_INTEGRATION",
+                "name": "A2_WORKER_INTAKE_WARM_COLD_CONSUMER_INTEGRATION",
+                "node_type": "REFINED_CONCEPT"
+              },
+              {
+                "node_id": "A2_3::ENGINE_PATTERN_PASS::DETERMINISTIC_REPLAY_HASH_EQUALITY::bdb42d5287cc4361",
+                "name": "DETERMINISTIC_REPLAY_HASH_EQUALITY",
+                "node_type": "EXTRACTED_CONCEPT"
+              },
+              {
+                "node_id": "A2_3::SOURCE_MAP_PASS::01_system_understanding_integration__2026_03_17__v::bb7e1a59fc22d640",
+                "name": "01_system_understanding_integration__2026_03_17__v",
+                "node_type": "EXTRACTED_CONCEPT"
+              },
+              {
+                "node_id": "A2_3::SOURCE_MAP_PASS::03_plan_execution_integration__2026_03_17__v1::39753fe85970a1cd",
+                "name": "03_plan_execution_integration__2026_03_17__v1",
+                "node_type": "EXTRACTED_CONCEPT"
+              },
+              {
+                "node_id": "A2_3::SOURCE_MAP_PASS::05_overall_recovery_integration__2026_03_17__v1::5157b3f185e3a708",
+                "name": "05_overall_recovery_integration__2026_03_17__v1",
+                "node_type": "EXTRACTED_CONCEPT"
+              }
+            ]
+          }
+        },
+        {
+          "term": "preservation",
+          "candidate_status": "audit_only",
+          "readiness_status": "candidate_for_cluster_precision_check",
+          "source_labels": [
+            "maker_topic:intent_preservation",
+            "refined_tag:intent_preservation"
+          ],
+          "eligible_concept_hit_count": 17,
+          "eligible_concept_hit_rate": 0.002367,
+          "novel_vs_current_executable_count": 14,
+          "current_executable_overlap_count": 3,
+          "gate_min_concepts": 2,
+          "scope_band": "narrow",
+          "readiness_flags": {
+            "dual_provenance": true,
+            "solo_gate_ready": true,
+            "novel_gain_ready": true,
+            "bounded_scope": true
+          },
+          "cluster_precision": {
+            "status": "mixed",
+            "min_support": 3,
+            "family_terms": [
+              "intent"
+            ],
+            "family_term_coverage": 0.0,
+            "intra_hit_edge_coverage": 0.352941,
+            "top_shared_semantic_tags": [],
+            "top_shared_semantic_tokens": [
+              {
+                "token": "entropy",
+                "count": 4,
+                "share": 0.235294
+              },
+              {
+                "token": "source",
+                "count": 4,
+                "share": 0.235294
+              },
+              {
+                "token": "contradiction",
+                "count": 4,
+                "share": 0.235294
+              },
+              {
+                "token": "role",
+                "count": 3,
+                "share": 0.176471
+              },
+              {
+                "token": "high",
+                "count": 3,
+                "share": 0.176471
+              }
+            ]
+          },
+          "missing_proof": [
+            "cluster_precision_check",
+            "execution_binding_proof"
+          ],
+          "execution_binding_probe": {
+            "status": "blocked_by_cluster_precision",
+            "current_executable_hit_count": 525,
+            "term_hit_count": 17,
+            "novel_hit_count": 14,
+            "novel_hit_rate": 0.001949,
+            "projected_executable_hit_count": 539,
+            "projected_executable_hit_rate": 0.075049,
+            "projected_focus_term_count": 5,
+            "gate_min_concepts": 2,
+            "sample_new_focus_matches": [
+              {
+                "node_id": "A1_STRIPPED::V3SURF_CONTRADICTION_PRESERVATION_V1",
+                "name": "V3SURF_CONTRADICTION_PRESERVATION_V1",
+                "node_type": "REFINED_CONCEPT"
+              },
+              {
+                "node_id": "A1_STRIPPED::ZIP_DROPINS_TOPIC_CONTRADICTION_MAP_A2_TOPIC_P",
+                "name": "ZIP_DROPINS_TOPIC_CONTRADICTION_MAP_A2_TOPIC_P",
+                "node_type": "REFINED_CONCEPT"
+              },
+              {
+                "node_id": "A2_2::REFINED::Entropy-First Unified Framework::5c4e1467d2c7dd19",
+                "name": "Entropy-First Unified Framework",
+                "node_type": "REFINED_CONCEPT"
+              },
+              {
+                "node_id": "A2_3::ENGINE_PATTERN_PASS::Engine_Composition_Guarded::b967c9e0c2c07000",
+                "name": "Engine_Composition_Guarded",
+                "node_type": "EXTRACTED_CONCEPT"
+              },
+              {
+                "node_id": "A2_3::ENGINE_PATTERN_PASS::PhysRosetta_Scalars_NOT_Physical_Quantities::41972797508ba5af",
+                "name": "PhysRosetta_Scalars_NOT_Physical_Quantities",
+                "node_type": "EXTRACTED_CONCEPT"
+              }
+            ]
+          }
+        }
+      ],
+      "executable_focus_semantic_comparison": {
+        "scope": "audit_only_nonbinding",
+        "runtime_effect": "none",
+        "comparison_pair": [
+          "derivation",
+          "integration"
+        ],
+        "structural_front_runner": "derivation",
+        "semantic_hygiene_front_runner": "integration",
+        "decision": "keep_audit_only_no_promotion",
+        "manual_review_required": true,
+        "comparison_basis": [
+          "cluster_precision",
+          "execution_binding_probe",
+          "source_label_semantics"
+        ],
+        "observations": [
+          {
+            "term": "derivation",
+            "readiness_status": "candidate_for_execution_binding_check",
+            "cluster_status": "coherent",
+            "execution_binding_probe_status": "bounded_positive_effect",
+            "semantic_notes": [
+              "direct_maker_topic_alignment",
+              "source_or_provenance_lean",
+              "process_or_family_derivation_theme"
+            ],
+            "semantic_hygiene_score": 0
+          },
+          {
+            "term": "integration",
+            "readiness_status": "candidate_for_cluster_precision_check",
+            "cluster_status": "mixed",
+            "execution_binding_probe_status": "blocked_by_cluster_precision",
+            "semantic_notes": [
+              "direct_maker_topic_alignment",
+              "overlaps_current_executable_family",
+              "skill_graph_integration_theme"
+            ],
+            "semantic_hygiene_score": 2
+          }
+        ],
+        "family_audit": {
+          "scope": "audit_only_nonbinding",
+          "runtime_effect": "none",
+          "basis": [
+            "concept_hit_family_distribution",
+            "layer_distribution",
+            "node_type_distribution"
+          ],
+          "observations": [
+            {
+              "term": "derivation",
+              "hit_count": 15,
+              "family_posture": "mixed_clustered",
+              "top_family": "A2_3::SOURCE_MAP_PASS",
+              "top_family_share": 0.466667,
+              "family_distribution": [
+                {
+                  "label": "A2_3::SOURCE_MAP_PASS",
+                  "count": 7,
+                  "share": 0.466667
+                },
+                {
+                  "label": "A2_3::ENGINE_PATTERN_PASS",
+                  "count": 5,
+                  "share": 0.333333
+                },
+                {
+                  "label": "A1_STRIPPED",
+                  "count": 3,
+                  "share": 0.2
+                }
+              ],
+              "layer_distribution": [
+                {
+                  "label": "A2_HIGH_INTAKE",
+                  "count": 12,
+                  "share": 0.8
+                },
+                {
+                  "label": "A1_STRIPPED",
+                  "count": 3,
+                  "share": 0.2
+                }
+              ],
+              "node_type_distribution": [
+                {
+                  "label": "EXTRACTED_CONCEPT",
+                  "count": 12,
+                  "share": 0.8
+                },
+                {
+                  "label": "REFINED_CONCEPT",
+                  "count": 3,
+                  "share": 0.2
+                }
+              ],
+              "family_notes": [
+                "source_map_family_heavy",
+                "stripped_family_present",
+                "engine_pattern_family_present"
+              ]
+            },
+            {
+              "term": "integration",
+              "hit_count": 51,
+              "family_posture": "highly_concentrated",
+              "top_family": "A2_3::SOURCE_MAP_PASS",
+              "top_family_share": 0.960784,
+              "family_distribution": [
+                {
+                  "label": "A2_3::SOURCE_MAP_PASS",
+                  "count": 49,
+                  "share": 0.960784
+                },
+                {
+                  "label": "A1_STRIPPED",
+                  "count": 1,
+                  "share": 0.019608
+                },
+                {
+                  "label": "A2_3::ENGINE_PATTERN_PASS",
+                  "count": 1,
+                  "share": 0.019608
+                }
+              ],
+              "layer_distribution": [
+                {
+                  "label": "A2_HIGH_INTAKE",
+                  "count": 44,
+                  "share": 0.862745
+                },
+                {
+                  "label": "A2_2_CANDIDATE",
+                  "count": 4,
+                  "share": 0.078431
+                },
+                {
+                  "label": "GRAVEYARD",
+                  "count": 2,
+                  "share": 0.039216
+                },
+                {
+                  "label": "A1_STRIPPED",
+                  "count": 1,
+                  "share": 0.019608
+                }
+              ],
+              "node_type_distribution": [
+                {
+                  "label": "EXTRACTED_CONCEPT",
+                  "count": 46,
+                  "share": 0.901961
+                },
+                {
+                  "label": "REFINED_CONCEPT",
+                  "count": 5,
+                  "share": 0.098039
+                }
+              ],
+              "family_notes": [
+                "source_map_family_heavy",
+                "stripped_family_present",
+                "engine_pattern_family_present"
+              ]
+            }
+          ]
+        },
+        "rationale": [
+          "derivation is structurally strongest on the current graph-backed readiness surface.",
+          "integration is currently the least misleading semantic runtime term by source-label posture.",
+          "Signals remain split, so no staged term is promoted from audit-only status."
+        ]
+      },
+      "focus_term_quality": [
+        {
+          "term": "intent",
+          "maker_support": 1,
+          "refined_support": 3,
+          "directive_support": 3,
+          "weighted_score": 17,
+          "steering_safe": true,
+          "eligible_concept_hit_count": 111,
+          "eligible_concept_hit_rate": 0.015455,
+          "unique_concept_hit_count": 30,
+          "redundant_alias_of": "",
+          "executable_safe": true,
+          "high_intake_share": 0.693694,
+          "anchored_support_count": 34
+        },
+        {
+          "term": "system",
+          "maker_support": 3,
+          "refined_support": 3,
+          "directive_support": 1,
+          "weighted_score": 15,
+          "steering_safe": true,
+          "eligible_concept_hit_count": 2617,
+          "eligible_concept_hit_rate": 0.364383,
+          "unique_concept_hit_count": 2381,
+          "redundant_alias_of": "",
+          "executable_safe": false,
+          "high_intake_share": 0.808942,
+          "anchored_support_count": 494
+        },
+        {
+          "term": "context",
+          "maker_support": 1,
+          "refined_support": 1,
+          "directive_support": 3,
+          "weighted_score": 13,
+          "steering_safe": true,
+          "eligible_concept_hit_count": 178,
+          "eligible_concept_hit_rate": 0.024784,
+          "unique_concept_hit_count": 94,
+          "redundant_alias_of": "",
+          "executable_safe": true,
+          "high_intake_share": 0.803371,
+          "anchored_support_count": 35
+        },
+        {
+          "term": "continuously",
+          "maker_support": 2,
+          "refined_support": 2,
+          "directive_support": 1,
+          "weighted_score": 11,
+          "steering_safe": false,
+          "eligible_concept_hit_count": 0,
+          "eligible_concept_hit_rate": 0.0,
+          "unique_concept_hit_count": 0,
+          "redundant_alias_of": "",
+          "executable_safe": false
+        },
+        {
+          "term": "graphs",
+          "maker_support": 2,
+          "refined_support": 2,
+          "directive_support": 1,
+          "weighted_score": 11,
+          "steering_safe": true,
+          "eligible_concept_hit_count": 9,
+          "eligible_concept_hit_rate": 0.001253,
+          "unique_concept_hit_count": 0,
+          "redundant_alias_of": "graph",
+          "executable_safe": false,
+          "high_intake_share": 1.0,
+          "anchored_support_count": 0
+        },
+        {
+          "term": "skills",
+          "maker_support": 2,
+          "refined_support": 2,
+          "directive_support": 1,
+          "weighted_score": 11,
+          "steering_safe": true,
+          "eligible_concept_hit_count": 38,
+          "eligible_concept_hit_rate": 0.005291,
+          "unique_concept_hit_count": 0,
+          "redundant_alias_of": "skill",
+          "executable_safe": false,
+          "high_intake_share": 0.947368,
+          "anchored_support_count": 0
+        },
+        {
+          "term": "memory",
+          "maker_support": 1,
+          "refined_support": 1,
+          "directive_support": 2,
+          "weighted_score": 10,
+          "steering_safe": true,
+          "eligible_concept_hit_count": 91,
+          "eligible_concept_hit_rate": 0.012671,
+          "unique_concept_hit_count": 41,
+          "redundant_alias_of": "",
+          "executable_safe": true,
+          "high_intake_share": 0.747253,
+          "anchored_support_count": 23
+        },
+        {
+          "term": "graph",
+          "maker_support": 0,
+          "refined_support": 1,
+          "directive_support": 2,
+          "weighted_score": 8,
+          "steering_safe": true,
+          "eligible_concept_hit_count": 205,
+          "eligible_concept_hit_rate": 0.028544,
+          "unique_concept_hit_count": 95,
+          "redundant_alias_of": "",
+          "executable_safe": true,
+          "high_intake_share": 0.868293,
+          "anchored_support_count": 26
+        },
+        {
+          "term": "skill",
+          "maker_support": 2,
+          "refined_support": 2,
+          "directive_support": 0,
+          "weighted_score": 8,
+          "steering_safe": true,
+          "eligible_concept_hit_count": 142,
+          "eligible_concept_hit_rate": 0.019772,
+          "unique_concept_hit_count": 59,
+          "redundant_alias_of": "",
+          "executable_safe": false,
+          "high_intake_share": 0.943662,
+          "anchored_support_count": 5
+        },
+        {
+          "term": "preserved",
+          "maker_support": 1,
+          "refined_support": 1,
+          "directive_support": 1,
+          "weighted_score": 7,
+          "steering_safe": true,
+          "eligible_concept_hit_count": 0,
+          "eligible_concept_hit_rate": 0.0,
+          "unique_concept_hit_count": 0,
+          "redundant_alias_of": "",
+          "executable_safe": false
+        },
+        {
+          "term": "runtime",
+          "maker_support": 1,
+          "refined_support": 1,
+          "directive_support": 1,
+          "weighted_score": 7,
+          "steering_safe": true,
+          "eligible_concept_hit_count": 0,
+          "eligible_concept_hit_rate": 0.0,
+          "unique_concept_hit_count": 0,
+          "redundant_alias_of": "",
+          "executable_safe": false
+        },
+        {
+          "term": "agents",
+          "maker_support": 1,
+          "refined_support": 1,
+          "directive_support": 0,
+          "weighted_score": 4,
+          "steering_safe": true,
+          "eligible_concept_hit_count": 0,
+          "eligible_concept_hit_rate": 0.0,
+          "unique_concept_hit_count": 0,
+          "redundant_alias_of": "",
+          "executable_safe": false
+        }
+      ],
+      "steering_quality": {
+        "status": "strong",
+        "downgrade_applied": false,
+        "reasons": [],
+        "descriptive_focus_term_count": 78,
+        "steering_focus_term_count": 4,
+        "top_weak_terms": [
+          "continuously"
+        ]
+      },
+      "concept_selection": {
+        "mode": "focus-term-gate-then-reorder",
+        "focus_terms": [
+          "intent",
+          "system",
+          "context",
+          "continuously",
+          "graphs",
+          "skills",
+          "memory",
+          "graph",
+          "skill",
+          "preserved",
+          "runtime",
+          "agents"
+        ],
+        "gating_focus_terms": [
+          "intent",
+          "context",
+          "memory",
+          "graph"
+        ],
+        "min_focus_score": 1,
+        "gate_min_concepts": 2,
+        "fallback_mode": "reorder_only",
+        "respect_explicit_targets": true
+      },
+      "candidate_policy": {
+        "mode": "suppress-off-focus-term-defs",
+        "apply_on_modes": [
+          "focus-term-gated",
+          "reorder_only"
+        ],
+        "min_focus_score": 1,
+        "suppress_term_defs_without_focus": true,
+        "respect_explicit_targets": true,
+        "fallback_mode": "keep_non_term_candidates"
+      },
+      "alternative_policy": {
+        "mode": "cap_alternatives_per_primary",
+        "apply_on_modes": [
+          "focus-term-gated",
+          "reorder_only"
+        ],
+        "max_alternatives_per_primary": 2,
+        "respect_explicit_targets": false,
+        "rationale": "Keep the mandatory graveyard-seeking fail set bounded while intent steering is active."
+      },
+      "bias_config": {
+        "intent_focus_terms": [
+          "intent",
+          "context",
+          "memory",
+          "graph"
+        ],
+        "intent_non_negotiables": [
+          "intent_first_class",
+          "context_continuity"
+        ],
+        "intent_surface_class": "DERIVED_A2",
+        "max_alternatives_per_primary": 2
+      },
+      "executable_focus_graph_metrics": {
+        "eligible_concept_node_count": 7182,
+        "max_hit_rate": 0.25,
+        "max_high_intake_share": 0.9,
+        "min_anchored_support": 6,
+        "pruned_terms": [
+          {
+            "term": "system",
+            "eligible_concept_hit_count": 2617,
+            "eligible_concept_hit_rate": 0.364383,
+            "unique_concept_hit_count": 2381,
+            "high_intake_share": 0.808942,
+            "anchored_support_count": 494,
+            "redundant_alias_of": "",
+            "prune_reason": [
+              "too_broad"
+            ]
+          },
+          {
+            "term": "graphs",
+            "eligible_concept_hit_count": 9,
+            "eligible_concept_hit_rate": 0.001253,
+            "unique_concept_hit_count": 0,
+            "high_intake_share": 1.0,
+            "anchored_support_count": 0,
+            "redundant_alias_of": "graph",
+            "prune_reason": [
+              "redundant_alias",
+              "high_intake_dominance"
+            ]
+          },
+          {
+            "term": "skills",
+            "eligible_concept_hit_count": 38,
+            "eligible_concept_hit_rate": 0.005291,
+            "unique_concept_hit_count": 0,
+            "high_intake_share": 0.947368,
+            "anchored_support_count": 0,
+            "redundant_alias_of": "skill",
+            "prune_reason": [
+              "redundant_alias",
+              "high_intake_dominance"
+            ]
+          },
+          {
+            "term": "skill",
+            "eligible_concept_hit_count": 142,
+            "eligible_concept_hit_rate": 0.019772,
+            "unique_concept_hit_count": 59,
+            "high_intake_share": 0.943662,
+            "anchored_support_count": 5,
+            "redundant_alias_of": "",
+            "prune_reason": [
+              "high_intake_dominance"
+            ]
+          }
+        ]
+      }
+    },
+    "bias_config": {
+      "intent_focus_terms": [
+        "intent",
+        "context",
+        "memory",
+        "graph"
+      ],
+      "intent_non_negotiables": [
+        "intent_first_class",
+        "context_continuity"
+      ],
+      "intent_surface_class": "DERIVED_A2",
+      "max_alternatives_per_primary": 2
+    },
+    "control_priorities": [
+      "All my intent, and the stuff I am writing, are first-class things to be saved and in the very graphs. My intentions. The intent is a first-class thing to refine. And extracting the system and its maker's intent is the most important thing to be refined and preserved. The whole point of the persistent memory and A2 and A1 brains: not losing context, and saving that context continuously as the system runs.",
+      "Skills and graphs should be fully integrated and mature. The system should self-heal, self-improve, and self-optimize as a live closed-loop controller, not just a skill library.",
+      "The system derives skills from: Lev nonclassical runtime design doc, Z3 constraint solver, Karpathy's design philosophy, lev-os/agents, lev-os/leviathan/workshop, and JP's skill ideas. These are not just references \u2014 they are first-class sources to be continuously refined into operational skills."
+    ],
+    "packet_policy_notes": [
+      "A1 must record consumed intent control explicitly in packet inputs/self_audit.",
+      "Intent control is bounded guidance, not lower-loop truth."
+    ],
+    "concept_selection": {
+      "mode": "focus-term-gate-then-reorder",
+      "focus_terms": [
+        "intent",
+        "system",
+        "context",
+        "continuously",
+        "graphs",
+        "skills",
+        "memory",
+        "graph",
+        "skill",
+        "preserved",
+        "runtime",
+        "agents"
+      ],
+      "gating_focus_terms": [
+        "intent",
+        "context",
+        "memory",
+        "graph"
+      ],
+      "min_focus_score": 1,
+      "gate_min_concepts": 2,
+      "fallback_mode": "reorder_only",
+      "respect_explicit_targets": true
+    },
+    "candidate_policy": {
+      "mode": "suppress-off-focus-term-defs",
+      "apply_on_modes": [
+        "focus-term-gated",
+        "reorder_only"
+      ],
+      "min_focus_score": 1,
+      "suppress_term_defs_without_focus": true,
+      "respect_explicit_targets": true,
+      "fallback_mode": "keep_non_term_candidates"
+    },
+    "alternative_policy": {
+      "mode": "cap_alternatives_per_primary",
+      "apply_on_modes": [
+        "focus-term-gated",
+        "reorder_only"
+      ],
+      "max_alternatives_per_primary": 2,
+      "respect_explicit_targets": false,
+      "rationale": "Keep the mandatory graveyard-seeking fail set bounded while intent steering is active."
+    }
+  },
+  "open_tensions": [
+    "Graph-discrimination pruned 4 broad or redundant steering terms from executable use.",
+    "3 narrower graph-backed intent-term candidates are available for future executable refinement.",
+    "No staged semantic executable term is promoted yet; promotion readiness remains audit-only pending cluster precision and execution-binding proof.",
+    "1 staged semantic term(s) show bounded positive execution-binding probe results but remain audit-only pending manual promotion review.",
+    "Structural and semantic staged-term signals are compared explicitly, but disagreement still resolves to audit-only.",
+    "Derivation staged-term contamination evidence is tracked in self_audit only and remains non-operative.",
+    "Semantic sample comparison between derivation and integration is tracked in self_audit only and remains non-operative.",
+    "Derivation sample provenance strength is tracked in self_audit only and remains non-operative.",
+    "Derivation lineage bridge audit is tracked in self_audit only and remains non-operative.",
+    "Derivation bridge materialization preconditions are tracked in self_audit only and remain non-operative.",
+    "Stripped provenance backfill preconditions are tracked in self_audit only and remain non-operative.",
+    "Stripped provenance annotation admission is tracked in self_audit only and remains non-operative."
+  ],
+  "self_audit": {
+    "maker_intent_count": 3,
+    "runtime_context_count": 1,
+    "refined_intent_count": 3,
+    "queue_note_count": 0,
+    "focus_term_count": 12,
+    "steering_focus_term_count": 8,
+    "executable_focus_term_count": 4,
+    "executable_non_negotiable_count": 2,
+    "executable_focus_refinement_candidate_count": 3,
+    "executable_focus_promotion_ready_count": 3,
+    "executable_focus_cluster_precision_candidate_count": 2,
+    "executable_focus_execution_binding_candidate_count": 1,
+    "executable_focus_execution_binding_positive_probe_count": 1,
+    "steering_quality_status": "strong",
+    "non_negotiable_count": 4,
+    "source_ids": [
+      "WITNESS_CORPUS::0",
+      "WITNESS_CORPUS::1",
+      "WITNESS_CORPUS::2",
+      "INTENT::REFINED::f2f1489627bd9c3c",
+      "INTENT::REFINED::6aa1cccac71c0129",
+      "INTENT::REFINED::50c7d740cf797b11"
+    ],
+    "derivation_family_contamination": {
+      "status": "audit_only_nonoperative",
+      "audit_only": true,
+      "runtime_effect": "none",
+      "intent": "evidence_for_future_term_promotion_review_only",
+      "doctrine_posture": "not executable policy; not steering guidance; not promotion approval",
+      "assessed_term": "derivation",
+      "contamination_risk": "mixed_but_not_pure_source_map_carryover",
+      "risk_flags": [
+        "high_intake_dominance",
+        "provenance_sparse_hits"
+      ],
+      "counter_signals": [
+        "engine_pattern_family_present",
+        "stripped_layer_present",
+        "refined_concepts_present",
+        "shared_semantic_tag_signal"
+      ],
+      "graph_basis": {
+        "hit_count": 15,
+        "source_map_share": 0.466667,
+        "engine_pattern_share": 0.333333,
+        "stripped_share": 0.2,
+        "high_intake_share": 0.8,
+        "extracted_concept_share": 0.8,
+        "refined_concept_share": 0.2,
+        "top_shared_semantic_tag_share": 0.266667,
+        "name_only_share": 0.0,
+        "provenance_sparse_share": 1.0
+      },
+      "sample_hit_refs": [
+        {
+          "node_id": "A1_STRIPPED::A2_PERSISTENT_BRAIN",
+          "name": "A2_PERSISTENT_BRAIN",
+          "node_type": "REFINED_CONCEPT"
+        },
+        {
+          "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_DERIVATION_V1",
+          "name": "CONSTRAINT_MANIFOLD_DERIVATION_V1",
+          "node_type": "REFINED_CONCEPT"
+        },
+        {
+          "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+          "name": "CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+          "node_type": "REFINED_CONCEPT"
+        },
+        {
+          "node_id": "A2_3::ENGINE_PATTERN_PASS::CMD_Compatibility_From_Transport::e079375fe93c8abf",
+          "name": "CMD_Compatibility_From_Transport",
+          "node_type": "EXTRACTED_CONCEPT"
+        },
+        {
+          "node_id": "A2_3::ENGINE_PATTERN_PASS::CMD_Forbidden_Structure::5b063ae72c934f7f",
+          "name": "CMD_Forbidden_Structure",
+          "node_type": "EXTRACTED_CONCEPT"
+        }
+      ],
+      "source_witness_refs": [
+        "WITNESS_CORPUS::2"
+      ],
+      "derived_refined_node_ids": [
+        "INTENT::REFINED::6aa1cccac71c0129"
+      ],
+      "missing_proof": [
+        "execution_binding_proof"
+      ],
+      "rationale": [
+        "derivation hits include SOURCE_MAP carryover at share=0.466667",
+        "engine-pattern family share=0.333333 provides non-source-map counter-signal",
+        "A1_STRIPPED share=0.200000 shows some upper-surface carryover beyond intake mapping",
+        "provenance_sparse_share=1.000000 indicates many derivation hits remain weakly linked to direct witness lineage"
+      ]
+    },
+    "semantic_sample_comparison": {
+      "derivation_vs_integration": {
+        "status": "audit_only_nonoperative",
+        "audit_only": true,
+        "runtime_effect": "none",
+        "intent": "evidence_for_future_term_promotion_review_only",
+        "doctrine_posture": "not executable policy; not steering guidance; not promotion approval",
+        "comparison_basis": "semantic_sample",
+        "comparison_scope": "derivation_vs_integration_sample",
+        "left_family": "derivation",
+        "right_family": "integration",
+        "left_source_labels": [
+          "maker_topic:skill_derivation_sources",
+          "refined_tag:skill_derivation_sources"
+        ],
+        "right_source_labels": [
+          "maker_topic:skill_graph_integration",
+          "refined_tag:skill_graph_integration"
+        ],
+        "left_sample_node_ids": [
+          "A1_STRIPPED::CONSTRAINT_MANIFOLD_DERIVATION_V1",
+          "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+          "A2_3::ENGINE_PATTERN_PASS::CMD_Compatibility_From_Transport::e079375fe93c8abf",
+          "A2_3::SOURCE_MAP_PASS::Pure_QIT_Free_Energy_Principle::63a6e51e1155c939",
+          "A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_update_note__a1_family_slice_track_de::5350a243a392237f",
+          "A2_3::SOURCE_MAP_PASS::cl_constraint_manifold_derivation_v1::f13ebd74ae1262de"
+        ],
+        "right_sample_node_ids": [
+          "A1_STRIPPED::A2_WORKER_INTAKE_WARM_COLD_CONSUMER_INTEGRATION",
+          "A2_3::ENGINE_PATTERN_PASS::DETERMINISTIC_REPLAY_HASH_EQUALITY::bdb42d5287cc4361",
+          "A2_3::SOURCE_MAP_PASS::test_a1_a0_b_sim_integration_py::cbb03ffa74a628fb",
+          "A2_3::SOURCE_MAP_PASS::01_system_understanding_integration__2026_03_17__v::bb7e1a59fc22d640",
+          "A2_3::SOURCE_MAP_PASS::03_plan_execution_integration__2026_03_17__v1::39753fe85970a1cd",
+          "A2_3::SOURCE_MAP_PASS::05_overall_recovery_integration__2026_03_17__v1::5157b3f185e3a708"
+        ],
+        "left": {
+          "term": "derivation",
+          "source_labels": [
+            "maker_topic:skill_derivation_sources",
+            "refined_tag:skill_derivation_sources"
+          ],
+          "sample_scope": "novel_vs_current_executable_hits",
+          "term_hit_count": 15,
+          "novel_hit_count": 14,
+          "sample_size": 6,
+          "sample_node_ids": [
+            "A1_STRIPPED::CONSTRAINT_MANIFOLD_DERIVATION_V1",
+            "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+            "A2_3::ENGINE_PATTERN_PASS::CMD_Compatibility_From_Transport::e079375fe93c8abf",
+            "A2_3::SOURCE_MAP_PASS::Pure_QIT_Free_Energy_Principle::63a6e51e1155c939",
+            "A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_update_note__a1_family_slice_track_de::5350a243a392237f",
+            "A2_3::SOURCE_MAP_PASS::cl_constraint_manifold_derivation_v1::f13ebd74ae1262de"
+          ],
+          "sample_posture": "mixed_sample",
+          "semantic_support_sample_count": 2,
+          "residue_risk_sample_count": 3,
+          "mixed_sample_count": 1,
+          "samples": [
+            {
+              "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_DERIVATION_V1",
+              "name": "CONSTRAINT_MANIFOLD_DERIVATION_V1",
+              "node_type": "REFINED_CONCEPT",
+              "family_label": "A1_STRIPPED",
+              "layer": "A1_STRIPPED",
+              "semantic_support_score": 3,
+              "residue_score": 1,
+              "sample_posture": "semantic_support",
+              "provenance_sparse": true,
+              "signals": {
+                "has_term_tag": false,
+                "has_desc_term": true,
+                "has_family_term": false,
+                "name_only_match": false,
+                "source_map_family": false,
+                "engine_pattern_family": false,
+                "stripped_layer": true,
+                "refined_concept": true
+              }
+            },
+            {
+              "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+              "name": "CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+              "node_type": "REFINED_CONCEPT",
+              "family_label": "A1_STRIPPED",
+              "layer": "A1_STRIPPED",
+              "semantic_support_score": 3,
+              "residue_score": 1,
+              "sample_posture": "semantic_support",
+              "provenance_sparse": true,
+              "signals": {
+                "has_term_tag": false,
+                "has_desc_term": true,
+                "has_family_term": false,
+                "name_only_match": false,
+                "source_map_family": false,
+                "engine_pattern_family": false,
+                "stripped_layer": true,
+                "refined_concept": true
+              }
+            },
+            {
+              "node_id": "A2_3::ENGINE_PATTERN_PASS::CMD_Compatibility_From_Transport::e079375fe93c8abf",
+              "name": "CMD_Compatibility_From_Transport",
+              "node_type": "EXTRACTED_CONCEPT",
+              "family_label": "A2_3::ENGINE_PATTERN_PASS",
+              "layer": "A2_HIGH_INTAKE",
+              "semantic_support_score": 2,
+              "residue_score": 2,
+              "sample_posture": "mixed",
+              "provenance_sparse": true,
+              "signals": {
+                "has_term_tag": true,
+                "has_desc_term": false,
+                "has_family_term": false,
+                "name_only_match": false,
+                "source_map_family": false,
+                "engine_pattern_family": true,
+                "stripped_layer": false,
+                "refined_concept": false
+              }
+            },
+            {
+              "node_id": "A2_3::SOURCE_MAP_PASS::Pure_QIT_Free_Energy_Principle::63a6e51e1155c939",
+              "name": "Pure_QIT_Free_Energy_Principle",
+              "node_type": "EXTRACTED_CONCEPT",
+              "family_label": "A2_3::SOURCE_MAP_PASS",
+              "layer": "A2_HIGH_INTAKE",
+              "semantic_support_score": 1,
+              "residue_score": 3,
+              "sample_posture": "residue_risk",
+              "provenance_sparse": true,
+              "signals": {
+                "has_term_tag": true,
+                "has_desc_term": false,
+                "has_family_term": false,
+                "name_only_match": false,
+                "source_map_family": true,
+                "engine_pattern_family": false,
+                "stripped_layer": false,
+                "refined_concept": false
+              }
+            },
+            {
+              "node_id": "A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_update_note__a1_family_slice_track_de::5350a243a392237f",
+              "name": "a2_state_v3_a2_update_note__a1_family_slice_track_de",
+              "node_type": "EXTRACTED_CONCEPT",
+              "family_label": "A2_3::SOURCE_MAP_PASS",
+              "layer": "A2_HIGH_INTAKE",
+              "semantic_support_score": 1,
+              "residue_score": 3,
+              "sample_posture": "residue_risk",
+              "provenance_sparse": true,
+              "signals": {
+                "has_term_tag": false,
+                "has_desc_term": true,
+                "has_family_term": false,
+                "name_only_match": false,
+                "source_map_family": true,
+                "engine_pattern_family": false,
+                "stripped_layer": false,
+                "refined_concept": false
+              }
+            },
+            {
+              "node_id": "A2_3::SOURCE_MAP_PASS::cl_constraint_manifold_derivation_v1::f13ebd74ae1262de",
+              "name": "cl_constraint_manifold_derivation_v1",
+              "node_type": "EXTRACTED_CONCEPT",
+              "family_label": "A2_3::SOURCE_MAP_PASS",
+              "layer": "A2_HIGH_INTAKE",
+              "semantic_support_score": 1,
+              "residue_score": 3,
+              "sample_posture": "residue_risk",
+              "provenance_sparse": true,
+              "signals": {
+                "has_term_tag": false,
+                "has_desc_term": true,
+                "has_family_term": false,
+                "name_only_match": false,
+                "source_map_family": true,
+                "engine_pattern_family": false,
+                "stripped_layer": false,
+                "refined_concept": false
+              }
+            }
+          ]
+        },
+        "right": {
+          "term": "integration",
+          "source_labels": [
+            "maker_topic:skill_graph_integration",
+            "refined_tag:skill_graph_integration"
+          ],
+          "sample_scope": "novel_vs_current_executable_hits",
+          "term_hit_count": 51,
+          "novel_hit_count": 41,
+          "sample_size": 6,
+          "sample_node_ids": [
+            "A1_STRIPPED::A2_WORKER_INTAKE_WARM_COLD_CONSUMER_INTEGRATION",
+            "A2_3::ENGINE_PATTERN_PASS::DETERMINISTIC_REPLAY_HASH_EQUALITY::bdb42d5287cc4361",
+            "A2_3::SOURCE_MAP_PASS::test_a1_a0_b_sim_integration_py::cbb03ffa74a628fb",
+            "A2_3::SOURCE_MAP_PASS::01_system_understanding_integration__2026_03_17__v::bb7e1a59fc22d640",
+            "A2_3::SOURCE_MAP_PASS::03_plan_execution_integration__2026_03_17__v1::39753fe85970a1cd",
+            "A2_3::SOURCE_MAP_PASS::05_overall_recovery_integration__2026_03_17__v1::5157b3f185e3a708"
+          ],
+          "sample_posture": "source_map_residue_lean",
+          "semantic_support_sample_count": 1,
+          "residue_risk_sample_count": 3,
+          "mixed_sample_count": 2,
+          "samples": [
+            {
+              "node_id": "A1_STRIPPED::A2_WORKER_INTAKE_WARM_COLD_CONSUMER_INTEGRATION",
+              "name": "A2_WORKER_INTAKE_WARM_COLD_CONSUMER_INTEGRATION",
+              "node_type": "REFINED_CONCEPT",
+              "family_label": "A1_STRIPPED",
+              "layer": "A1_STRIPPED",
+              "semantic_support_score": 3,
+              "residue_score": 1,
+              "sample_posture": "semantic_support",
+              "provenance_sparse": true,
+              "signals": {
+                "has_term_tag": false,
+                "has_desc_term": true,
+                "has_family_term": false,
+                "name_only_match": false,
+                "source_map_family": false,
+                "engine_pattern_family": false,
+                "stripped_layer": true,
+                "refined_concept": true
+              }
+            },
+            {
+              "node_id": "A2_3::ENGINE_PATTERN_PASS::DETERMINISTIC_REPLAY_HASH_EQUALITY::bdb42d5287cc4361",
+              "name": "DETERMINISTIC_REPLAY_HASH_EQUALITY",
+              "node_type": "EXTRACTED_CONCEPT",
+              "family_label": "A2_3::ENGINE_PATTERN_PASS",
+              "layer": "A2_HIGH_INTAKE",
+              "semantic_support_score": 2,
+              "residue_score": 2,
+              "sample_posture": "mixed",
+              "provenance_sparse": true,
+              "signals": {
+                "has_term_tag": true,
+                "has_desc_term": false,
+                "has_family_term": false,
+                "name_only_match": false,
+                "source_map_family": false,
+                "engine_pattern_family": true,
+                "stripped_layer": false,
+                "refined_concept": false
+              }
+            },
+            {
+              "node_id": "A2_3::SOURCE_MAP_PASS::test_a1_a0_b_sim_integration_py::cbb03ffa74a628fb",
+              "name": "test_a1_a0_b_sim_integration_py",
+              "node_type": "REFINED_CONCEPT",
+              "family_label": "A2_3::SOURCE_MAP_PASS",
+              "layer": "A2_2_CANDIDATE",
+              "semantic_support_score": 2,
+              "residue_score": 2,
+              "sample_posture": "mixed",
+              "provenance_sparse": true,
+              "signals": {
+                "has_term_tag": false,
+                "has_desc_term": true,
+                "has_family_term": false,
+                "name_only_match": false,
+                "source_map_family": true,
+                "engine_pattern_family": false,
+                "stripped_layer": false,
+                "refined_concept": true
+              }
+            },
+            {
+              "node_id": "A2_3::SOURCE_MAP_PASS::01_system_understanding_integration__2026_03_17__v::bb7e1a59fc22d640",
+              "name": "01_system_understanding_integration__2026_03_17__v",
+              "node_type": "EXTRACTED_CONCEPT",
+              "family_label": "A2_3::SOURCE_MAP_PASS",
+              "layer": "A2_HIGH_INTAKE",
+              "semantic_support_score": 0,
+              "residue_score": 4,
+              "sample_posture": "residue_risk",
+              "provenance_sparse": true,
+              "signals": {
+                "has_term_tag": false,
+                "has_desc_term": false,
+                "has_family_term": false,
+                "name_only_match": true,
+                "source_map_family": true,
+                "engine_pattern_family": false,
+                "stripped_layer": false,
+                "refined_concept": false
+              }
+            },
+            {
+              "node_id": "A2_3::SOURCE_MAP_PASS::03_plan_execution_integration__2026_03_17__v1::39753fe85970a1cd",
+              "name": "03_plan_execution_integration__2026_03_17__v1",
+              "node_type": "EXTRACTED_CONCEPT",
+              "family_label": "A2_3::SOURCE_MAP_PASS",
+              "layer": "A2_HIGH_INTAKE",
+              "semantic_support_score": 0,
+              "residue_score": 4,
+              "sample_posture": "residue_risk",
+              "provenance_sparse": true,
+              "signals": {
+                "has_term_tag": false,
+                "has_desc_term": false,
+                "has_family_term": false,
+                "name_only_match": true,
+                "source_map_family": true,
+                "engine_pattern_family": false,
+                "stripped_layer": false,
+                "refined_concept": false
+              }
+            },
+            {
+              "node_id": "A2_3::SOURCE_MAP_PASS::05_overall_recovery_integration__2026_03_17__v1::5157b3f185e3a708",
+              "name": "05_overall_recovery_integration__2026_03_17__v1",
+              "node_type": "EXTRACTED_CONCEPT",
+              "family_label": "A2_3::SOURCE_MAP_PASS",
+              "layer": "A2_HIGH_INTAKE",
+              "semantic_support_score": 0,
+              "residue_score": 4,
+              "sample_posture": "residue_risk",
+              "provenance_sparse": true,
+              "signals": {
+                "has_term_tag": false,
+                "has_desc_term": false,
+                "has_family_term": false,
+                "name_only_match": true,
+                "source_map_family": true,
+                "engine_pattern_family": false,
+                "stripped_layer": false,
+                "refined_concept": false
+              }
+            }
+          ]
+        },
+        "comparison_result": "inconclusive_audit_only",
+        "confidence": "medium",
+        "missing_proof": [
+          "cluster_precision_check",
+          "execution_binding_proof"
+        ]
+      }
+    },
+    "derivation_sample_provenance_strength": {
+      "status": "audit_only_nonoperative",
+      "audit_only": true,
+      "runtime_effect": "none",
+      "intent": "evidence_for_future_term_review_only",
+      "doctrine_posture": "not executable policy; not steering guidance; not promotion approval",
+      "family": "derivation",
+      "assessment_result": "mixed_provenance",
+      "source_labels": [
+        "maker_topic:skill_derivation_sources",
+        "refined_tag:skill_derivation_sources"
+      ],
+      "source_witness_refs": [
+        "WITNESS_CORPUS::2"
+      ],
+      "derived_refined_node_ids": [
+        "INTENT::REFINED::6aa1cccac71c0129"
+      ],
+      "sample_node_ids": [
+        "A1_STRIPPED::CONSTRAINT_MANIFOLD_DERIVATION_V1",
+        "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+        "A2_3::ENGINE_PATTERN_PASS::CMD_Compatibility_From_Transport::e079375fe93c8abf",
+        "A2_3::SOURCE_MAP_PASS::Pure_QIT_Free_Energy_Principle::63a6e51e1155c939",
+        "A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_update_note__a1_family_slice_track_de::5350a243a392237f",
+        "A2_3::SOURCE_MAP_PASS::cl_constraint_manifold_derivation_v1::f13ebd74ae1262de"
+      ],
+      "provenance_signals": {
+        "dual_provenance": true,
+        "witness_backed": true,
+        "lineage_backed": true,
+        "sample_semantic_support_share": 0.333333,
+        "sample_residue_risk_share": 0.5,
+        "sample_provenance_sparse_share": 1.0,
+        "sample_uplift_ratio": 0.333333,
+        "sample_source_map_share": 0.5,
+        "tag_backed_ratio": 1.0,
+        "name_only_ratio": 0.0
+      },
+      "risk_flags": [
+        "sample_provenance_sparse",
+        "sample_residue_heavy"
+      ],
+      "missing_proof": [
+        "cluster_precision_check",
+        "execution_binding_proof"
+      ]
+    },
+    "derivation_lineage_bridge": {
+      "status": "audit_only_nonoperative",
+      "audit_only": true,
+      "runtime_effect": "none",
+      "intent": "evidence_for_future_term_review_only",
+      "doctrine_posture": "not executable policy; not steering guidance; not promotion approval",
+      "family": "derivation",
+      "source_labels": [
+        "maker_topic:skill_derivation_sources",
+        "refined_tag:skill_derivation_sources"
+      ],
+      "source_witness_refs": [
+        "WITNESS_CORPUS::2"
+      ],
+      "derived_refined_node_ids": [
+        "INTENT::REFINED::6aa1cccac71c0129"
+      ],
+      "lineage_refs": [
+        "INTENT::SIGNAL::MAKER::7bd3b15f91341b66"
+      ],
+      "sample_node_ids": [
+        "A1_STRIPPED::CONSTRAINT_MANIFOLD_DERIVATION_V1",
+        "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+        "A2_3::ENGINE_PATTERN_PASS::CMD_Compatibility_From_Transport::e079375fe93c8abf",
+        "A2_3::SOURCE_MAP_PASS::Pure_QIT_Free_Energy_Principle::63a6e51e1155c939",
+        "A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_update_note__a1_family_slice_track_de::5350a243a392237f",
+        "A2_3::SOURCE_MAP_PASS::cl_constraint_manifold_derivation_v1::f13ebd74ae1262de"
+      ],
+      "bridge_status": "bridgeable_via_upper_surfaces_but_unmaterialized",
+      "bridge_signals": {
+        "direct_intent_bridge_count": 0,
+        "reachable_within_3_hops_count": 0,
+        "upper_surface_neighbor_count": 1,
+        "no_observed_bridge_count": 5
+      },
+      "sample_bridge_reports": [
+        {
+          "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_DERIVATION_V1",
+          "bridge_posture": "no_observed_bridge",
+          "direct_intent_neighbors": [],
+          "shortest_path_to_intent_refinement": null,
+          "upper_surface_neighbors": []
+        },
+        {
+          "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+          "bridge_posture": "no_observed_bridge",
+          "direct_intent_neighbors": [],
+          "shortest_path_to_intent_refinement": null,
+          "upper_surface_neighbors": []
+        },
+        {
+          "node_id": "A2_3::ENGINE_PATTERN_PASS::CMD_Compatibility_From_Transport::e079375fe93c8abf",
+          "bridge_posture": "no_observed_bridge",
+          "direct_intent_neighbors": [],
+          "shortest_path_to_intent_refinement": null,
+          "upper_surface_neighbors": []
+        },
+        {
+          "node_id": "A2_3::SOURCE_MAP_PASS::Pure_QIT_Free_Energy_Principle::63a6e51e1155c939",
+          "bridge_posture": "no_observed_bridge",
+          "direct_intent_neighbors": [],
+          "shortest_path_to_intent_refinement": null,
+          "upper_surface_neighbors": []
+        },
+        {
+          "node_id": "A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_update_note__a1_family_slice_track_de::5350a243a392237f",
+          "bridge_posture": "no_observed_bridge",
+          "direct_intent_neighbors": [],
+          "shortest_path_to_intent_refinement": null,
+          "upper_surface_neighbors": []
+        },
+        {
+          "node_id": "A2_3::SOURCE_MAP_PASS::cl_constraint_manifold_derivation_v1::f13ebd74ae1262de",
+          "bridge_posture": "upper_surface_neighbor_only",
+          "direct_intent_neighbors": [],
+          "shortest_path_to_intent_refinement": null,
+          "upper_surface_neighbors": [
+            "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION"
+          ]
+        }
+      ],
+      "missing_proof": [
+        "cluster_precision_check",
+        "execution_binding_proof"
+      ]
+    },
+    "derivation_bridge_materialization_precondition": {
+      "status": "audit_only_nonoperative",
+      "audit_only": true,
+      "runtime_effect": "none",
+      "intent": "single_bridgeable_path_review_only",
+      "doctrine_posture": "not executable policy; not steering guidance; not promotion approval",
+      "family": "derivation",
+      "path_term": "derivation",
+      "source_labels": [
+        "maker_topic:skill_derivation_sources",
+        "refined_tag:skill_derivation_sources"
+      ],
+      "source_witness_refs": [
+        "WITNESS_CORPUS::2"
+      ],
+      "target_refined_intent_id": "INTENT::REFINED::6aa1cccac71c0129",
+      "single_bridgeable_path": true,
+      "bridge_source_node_ids": [
+        "A2_3::SOURCE_MAP_PASS::cl_constraint_manifold_derivation_v1::f13ebd74ae1262de"
+      ],
+      "candidate_middle_node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+      "candidate_middle_node_name": "CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+      "candidate_middle_node_layer": "A1_STRIPPED",
+      "candidate_middle_node_type": "REFINED_CONCEPT",
+      "candidate_selection_basis": [
+        "observed_upper_surface_bridge_path",
+        "a1_stripped_upper_surface",
+        "refined_concept",
+        "non_archive_semantic_description",
+        "derivation_language_present",
+        "kernel_neighbor_support",
+        "refined_neighbor_support",
+        "source_map_family_linkage"
+      ],
+      "candidate_support": {
+        "semantic_support": {
+          "a1_stripped": true,
+          "refined_concept": true,
+          "semantic_description_present": true,
+          "archive_like": false,
+          "has_derivation_language": true,
+          "kernel_neighbor_count": 1,
+          "refined_neighbor_count": 1,
+          "source_map_neighbor_count": 7
+        },
+        "provenance_support": {
+          "witness_backed": false,
+          "lineage_backed": false
+        },
+        "bridge_support": {
+          "seeded_from_bridge_path": true,
+          "direct_intent_neighbor_count": 0,
+          "shortest_path_to_intent_refinement": null
+        }
+      },
+      "recommended_relation": "RELATED_TO",
+      "relation_option_review": [
+        {
+          "relation": "RELATED_TO",
+          "fit": "weakest_existing_non_overclaiming_label",
+          "selected_if_future_materialization_occurs": true,
+          "admissible_now": false
+        },
+        {
+          "relation": "STRUCTURALLY_RELATED",
+          "fit": "overstates_structure_equivalence_with_intent_surface",
+          "selected_if_future_materialization_occurs": false,
+          "admissible_now": false
+        },
+        {
+          "relation": "REFINES_INTENT",
+          "fit": "invalid_direction_and_overclaims_provenance",
+          "selected_if_future_materialization_occurs": false,
+          "admissible_now": false
+        }
+      ],
+      "materialization_allowed_in_current_surface": false,
+      "decision": "keep_self_audit_only_no_edge_materialization",
+      "hard_blockers": [
+        "missing_direct_candidate_provenance",
+        "no_direct_or_short_graph_bridge_to_intent",
+        "no_existing_relation_label_for_honest_intent_alignment"
+      ],
+      "missing_proof": [
+        "cluster_precision_check",
+        "direct_candidate_provenance",
+        "execution_binding_proof",
+        "materialized_lineage_bridge",
+        "relation_semantics_review"
+      ],
+      "candidate_reviews": [
+        {
+          "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+          "name": "CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+          "layer": "A1_STRIPPED",
+          "node_type": "REFINED_CONCEPT",
+          "score": 17,
+          "selection_basis": [
+            "observed_upper_surface_bridge_path",
+            "a1_stripped_upper_surface",
+            "refined_concept",
+            "non_archive_semantic_description",
+            "derivation_language_present",
+            "kernel_neighbor_support",
+            "refined_neighbor_support",
+            "source_map_family_linkage"
+          ],
+          "semantic_support": {
+            "a1_stripped": true,
+            "refined_concept": true,
+            "semantic_description_present": true,
+            "archive_like": false,
+            "has_derivation_language": true,
+            "kernel_neighbor_count": 1,
+            "refined_neighbor_count": 1,
+            "source_map_neighbor_count": 7
+          },
+          "provenance_support": {
+            "witness_backed": false,
+            "lineage_backed": false
+          },
+          "bridge_support": {
+            "seeded_from_bridge_path": true,
+            "direct_intent_neighbor_count": 0,
+            "shortest_path_to_intent_refinement": null
+          },
+          "hard_blockers": [
+            "missing_direct_candidate_provenance",
+            "no_direct_or_short_graph_bridge_to_intent",
+            "no_existing_relation_label_for_honest_intent_alignment"
+          ],
+          "missing_proof": [
+            "direct_candidate_provenance",
+            "materialized_lineage_bridge",
+            "relation_semantics_review"
+          ]
+        },
+        {
+          "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_DERIVATION_V1",
+          "name": "CONSTRAINT_MANIFOLD_DERIVATION_V1",
+          "layer": "A1_STRIPPED",
+          "node_type": "REFINED_CONCEPT",
+          "score": 4,
+          "selection_basis": [
+            "a1_stripped_upper_surface",
+            "refined_concept",
+            "derivation_language_present",
+            "source_map_family_linkage",
+            "archive_like_description_penalty"
+          ],
+          "semantic_support": {
+            "a1_stripped": true,
+            "refined_concept": true,
+            "semantic_description_present": false,
+            "archive_like": true,
+            "has_derivation_language": true,
+            "kernel_neighbor_count": 0,
+            "refined_neighbor_count": 0,
+            "source_map_neighbor_count": 1
+          },
+          "provenance_support": {
+            "witness_backed": false,
+            "lineage_backed": false
+          },
+          "bridge_support": {
+            "seeded_from_bridge_path": false,
+            "direct_intent_neighbor_count": 0,
+            "shortest_path_to_intent_refinement": null
+          },
+          "hard_blockers": [
+            "candidate_semantics_too_thin",
+            "missing_direct_candidate_provenance",
+            "no_direct_or_short_graph_bridge_to_intent",
+            "no_existing_relation_label_for_honest_intent_alignment"
+          ],
+          "missing_proof": [
+            "direct_candidate_provenance",
+            "materialized_lineage_bridge",
+            "relation_semantics_review",
+            "semantic_middle_surface_proof"
+          ]
+        }
+      ]
+    },
+    "stripped_provenance_backfill_precondition": {
+      "status": "audit_only_nonoperative",
+      "audit_only": true,
+      "runtime_effect": "none",
+      "intent": "audit_overlay_precondition_review_only",
+      "doctrine_posture": "not executable policy; not steering guidance; not admission approval",
+      "target_node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+      "target_node_layer": "A1_STRIPPED",
+      "target_node_type": "REFINED_CONCEPT",
+      "candidate_backfill_source_node_ids": [
+        "A2_2::REFINED::constraint_manifold_formal_derivation::e2a796f27a003a3d",
+        "A2_1::KERNEL::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION::82183474d44c7ead",
+        "A2_3::SOURCE_MAP_PASS::constraint_manifold_formal_derivation::e2a796f27a003a3d"
+      ],
+      "supporting_bridge_target_ids": [
+        "A2_3::SOURCE_MAP_PASS::constraint_manifold_formal_derivation::e2a796f27a003a3d",
+        "A2_1::KERNEL::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION::82183474d44c7ead",
+        "A2_2::REFINED::constraint_manifold_formal_derivation::e2a796f27a003a3d"
+      ],
+      "bridge_source_node_ids": [
+        "A2_3::SOURCE_MAP_PASS::cl_constraint_manifold_derivation_v1::f13ebd74ae1262de"
+      ],
+      "recommended_noncanonical_fields": [
+        "properties.overlay_provenance_audit.status",
+        "properties.overlay_provenance_audit.overlay_kind",
+        "properties.overlay_provenance_audit.primary_donor_chain",
+        "properties.overlay_provenance_audit.basis_edge_relations",
+        "properties.overlay_provenance_audit.supporting_source_doc_ids",
+        "properties.overlay_provenance_audit.disclaimers"
+      ],
+      "do_not_backfill_fields": [
+        "lineage_refs",
+        "witness_refs"
+      ],
+      "precondition_status": "audit_only_precondition",
+      "admissible_now": false,
+      "materialization_allowed_in_current_surface": false,
+      "relation_chain_summary": {
+        "supporting_edge_relations": [
+          "ROSETTA_MAP",
+          "STRIPPED_FROM",
+          "STRUCTURALLY_RELATED"
+        ],
+        "supporting_source_doc_ids": []
+      },
+      "donor_review": {
+        "semantic_donor_candidates": [
+          "A2_3::SOURCE_MAP_PASS::constraint_manifold_formal_derivation::e2a796f27a003a3d",
+          "A2_1::KERNEL::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION::82183474d44c7ead",
+          "A2_2::REFINED::constraint_manifold_formal_derivation::e2a796f27a003a3d",
+          "A2_3::SOURCE_MAP_PASS::cl_constraint_manifold_derivation_v1::f13ebd74ae1262de"
+        ],
+        "hygiene_donor_candidates": [
+          "A2_2::REFINED::constraint_manifold_formal_derivation::e2a796f27a003a3d",
+          "A2_1::KERNEL::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION::82183474d44c7ead",
+          "A2_3::SOURCE_MAP_PASS::constraint_manifold_formal_derivation::e2a796f27a003a3d",
+          "A2_3::SOURCE_MAP_PASS::cl_constraint_manifold_derivation_v1::f13ebd74ae1262de"
+        ],
+        "rows": [
+          {
+            "node_id": "A2_3::SOURCE_MAP_PASS::constraint_manifold_formal_derivation::e2a796f27a003a3d",
+            "name": "constraint_manifold_formal_derivation",
+            "layer": "A1_JARGONED",
+            "node_type": "KERNEL_CONCEPT",
+            "relations_to_target": [
+              "ROSETTA_MAP",
+              "STRIPPED_FROM"
+            ],
+            "semantic_score": 19,
+            "hygiene_score": 4,
+            "shared_tokens": [
+              "canonical",
+              "carrier",
+              "cmd01-cmd20.",
+              "compatibility",
+              "constraint_manifold_formal_derivation",
+              "derivation",
+              "distinguished",
+              "finite"
+            ],
+            "witness_backed": false,
+            "lineage_backed": false
+          },
+          {
+            "node_id": "A2_2::REFINED::constraint_manifold_formal_derivation::e2a796f27a003a3d",
+            "name": "constraint_manifold_formal_derivation",
+            "layer": "A2_MID_REFINEMENT",
+            "node_type": "KERNEL_CONCEPT",
+            "relations_to_target": [
+              "STRUCTURALLY_RELATED"
+            ],
+            "semantic_score": 6,
+            "hygiene_score": 6,
+            "shared_tokens": [
+              "constraint_manifold_formal_derivation",
+              "derivation",
+              "formal",
+              "transport"
+            ],
+            "witness_backed": false,
+            "lineage_backed": false
+          },
+          {
+            "node_id": "A2_1::KERNEL::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION::82183474d44c7ead",
+            "name": "CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+            "layer": "A1_JARGONED",
+            "node_type": "KERNEL_CONCEPT",
+            "relations_to_target": [
+              "STRUCTURALLY_RELATED"
+            ],
+            "semantic_score": 6,
+            "hygiene_score": 5,
+            "shared_tokens": [
+              "constraint_manifold_formal_derivation",
+              "derivation",
+              "formal",
+              "transport"
+            ],
+            "witness_backed": false,
+            "lineage_backed": false
+          },
+          {
+            "node_id": "A2_3::SOURCE_MAP_PASS::cl_constraint_manifold_derivation_v1::f13ebd74ae1262de",
+            "name": "cl_constraint_manifold_derivation_v1",
+            "layer": "A2_HIGH_INTAKE",
+            "node_type": "EXTRACTED_CONCEPT",
+            "relations_to_target": [
+              "STRUCTURALLY_RELATED"
+            ],
+            "semantic_score": 6,
+            "hygiene_score": 3,
+            "shared_tokens": [
+              "carrier",
+              "derivation",
+              "global",
+              "transport"
+            ],
+            "witness_backed": false,
+            "lineage_backed": false
+          },
+          {
+            "node_id": "A2_3::SOURCE_MAP_PASS::zip_dropins_constraint_manifold_derivation_v1::c1bf56e0e80b3204",
+            "name": "zip_dropins_constraint_manifold_derivation_v1",
+            "layer": "A2_2_CANDIDATE",
+            "node_type": "KERNEL_CONCEPT",
+            "relations_to_target": [
+              "STRUCTURALLY_RELATED"
+            ],
+            "semantic_score": 6,
+            "hygiene_score": 3,
+            "shared_tokens": [
+              "carrier",
+              "derivation",
+              "global",
+              "transport"
+            ],
+            "witness_backed": false,
+            "lineage_backed": false
+          },
+          {
+            "node_id": "A2_3::SOURCE_MAP_PASS::sysrepair_v2_constraint_manifold_derivation::4e059f084dd2abc3",
+            "name": "sysrepair_v2_constraint_manifold_derivation",
+            "layer": "A2_HIGH_INTAKE",
+            "node_type": "EXTRACTED_CONCEPT",
+            "relations_to_target": [
+              "STRUCTURALLY_RELATED"
+            ],
+            "semantic_score": 4,
+            "hygiene_score": 3,
+            "shared_tokens": [
+              "derivation",
+              "transport"
+            ],
+            "witness_backed": false,
+            "lineage_backed": false
+          },
+          {
+            "node_id": "A2_3::SOURCE_MAP_PASS::sysrepair_v3_constraint_manifold_derivation::dadfa1daf7875343",
+            "name": "sysrepair_v3_constraint_manifold_derivation",
+            "layer": "A2_HIGH_INTAKE",
+            "node_type": "EXTRACTED_CONCEPT",
+            "relations_to_target": [
+              "STRUCTURALLY_RELATED"
+            ],
+            "semantic_score": 4,
+            "hygiene_score": 3,
+            "shared_tokens": [
+              "derivation",
+              "transport"
+            ],
+            "witness_backed": false,
+            "lineage_backed": false
+          },
+          {
+            "node_id": "A2_3::SOURCE_MAP_PASS::sysrepair_v4_constraint_manifold_derivation::5ea2515a6fef6ab2",
+            "name": "sysrepair_v4_constraint_manifold_derivation",
+            "layer": "A2_HIGH_INTAKE",
+            "node_type": "EXTRACTED_CONCEPT",
+            "relations_to_target": [
+              "STRUCTURALLY_RELATED"
+            ],
+            "semantic_score": 4,
+            "hygiene_score": 3,
+            "shared_tokens": [
+              "derivation",
+              "transport"
+            ],
+            "witness_backed": false,
+            "lineage_backed": false
+          }
+        ]
+      },
+      "decision": "keep_self_audit_only_no_provenance_backfill",
+      "hard_blockers": [
+        "basis_is_indirect_graph_chain_only",
+        "direct_field_backfill_would_overclaim_provenance",
+        "donor_chain_has_no_direct_provenance",
+        "target_has_no_direct_provenance"
+      ],
+      "missing_proof": [
+        "direct_candidate_provenance",
+        "donor_witness_lineage_proof",
+        "noncanonical_field_admission_review",
+        "source_concept_id_backfill_proof"
+      ]
+    },
+    "stripped_provenance_annotation_admission": {
+      "status": "audit_only_nonoperative",
+      "audit_only": true,
+      "runtime_effect": "none",
+      "intent": "namespaced_properties_overlay_review_only",
+      "doctrine_posture": "not executable policy; not steering guidance; not admission approval",
+      "target_node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+      "target_node_layer": "A1_STRIPPED",
+      "annotation_path": "properties.overlay_provenance_audit",
+      "admissible_now": false,
+      "manual_review_required": true,
+      "builder_supports_properties_merge": true,
+      "write_scope": "namespaced_audit_overlay_only_no_provenance_field_mutation",
+      "basis_node_ids": [
+        "A2_2::REFINED::constraint_manifold_formal_derivation::e2a796f27a003a3d",
+        "A2_1::KERNEL::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION::82183474d44c7ead",
+        "A2_3::SOURCE_MAP_PASS::constraint_manifold_formal_derivation::e2a796f27a003a3d"
+      ],
+      "basis_edge_relations": [
+        "ROSETTA_MAP",
+        "STRIPPED_FROM",
+        "STRUCTURALLY_RELATED"
+      ],
+      "safest_annotation_shape": {
+        "field": "properties.overlay_provenance_audit",
+        "allowed_fields": [
+          "status",
+          "overlay_kind",
+          "authority_posture",
+          "manual_review_required",
+          "primary_donor_chain",
+          "secondary_context_node_ids",
+          "basis_edge_relations",
+          "supporting_source_doc_ids",
+          "bridge_source_node_ids",
+          "disclaimers"
+        ]
+      },
+      "forbidden_fields": [
+        "lineage_refs",
+        "witness_refs",
+        "source_class",
+        "trust_zone",
+        "authority",
+        "admissibility_state",
+        "properties.source_concept_id",
+        "properties.target_ref",
+        "properties.candidate_id"
+      ],
+      "decision": "keep_fail_closed_namespaced_overlay_only_manual_review",
+      "hard_blockers": [
+        "basis_is_indirect_graph_chain_only",
+        "direct_field_backfill_would_overclaim_provenance",
+        "donor_chain_has_no_direct_provenance",
+        "no_grounded_trace_anchor",
+        "target_has_no_direct_provenance"
+      ],
+      "missing_proof": [
+        "direct_candidate_provenance",
+        "donor_witness_lineage_proof",
+        "noncanonical_field_admission_review"
+      ]
+    },
+    "surface_hash": "a343a40a6359f4b27957a9bef540d9afe0c38827bb9d2edecd05cc4b22fde5f3",
+    "stripped_provenance_overlay_archive_path": "system_v4/a2_state/audit_logs/STRIPPED_PROVENANCE_OVERLAY__2026_03_20__v1.json"
+  }
+}

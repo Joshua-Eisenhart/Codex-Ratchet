@@ -1,0 +1,124 @@
+{
+  "schema": "A2_STRIPPED_PROVENANCE_OVERLAY_v1",
+  "overlay_id": "STRIPPED_PROVENANCE_OVERLAY__2026-03-21T01:27:27Z",
+  "classification": {
+    "surface_class": "ARCHIVE_ONLY",
+    "status": "NONOWNER_AUDIT_OVERLAY",
+    "authority_posture": "indirect donor-chain preservation only; not owner surface; not active control; not node provenance mutation",
+    "ts_utc": "2026-03-21T01:27:27Z"
+  },
+  "provenance": {
+    "source_surface_path": "system_v4/a2_state/A2_INTENT_CONTROL__CURRENT__v1.json",
+    "source_graph_path": "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+    "source_surface_hash": "a343a40a6359f4b27957a9bef540d9afe0c38827bb9d2edecd05cc4b22fde5f3"
+  },
+  "target": {
+    "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+    "layer": "A1_STRIPPED",
+    "node_type": "REFINED_CONCEPT",
+    "name": "CONSTRAINT_MANIFOLD_FORMAL_DERIVATION"
+  },
+  "overlay_contract": {
+    "purpose": "Preserve the current indirect donor chain for manual review without mutating target-node provenance fields.",
+    "do_not_write_fields": [
+      "lineage_refs",
+      "witness_refs",
+      "source_class",
+      "trust_zone",
+      "authority",
+      "admissibility_state",
+      "properties.source_concept_id",
+      "properties.target_ref",
+      "properties.candidate_id"
+    ],
+    "manual_review_required": true,
+    "runtime_effect": "none"
+  },
+  "donor_chain": {
+    "primary_chain": [
+      {
+        "node_id": "A1_STRIPPED::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+        "role": "target_stripped_node",
+        "layer": "A1_STRIPPED",
+        "node_type": "REFINED_CONCEPT",
+        "name": "CONSTRAINT_MANIFOLD_FORMAL_DERIVATION"
+      },
+      {
+        "node_id": "A2_3::SOURCE_MAP_PASS::constraint_manifold_formal_derivation::e2a796f27a003a3d",
+        "role": "strongest_semantic_donor",
+        "layer": "A1_JARGONED",
+        "node_type": "KERNEL_CONCEPT",
+        "name": "constraint_manifold_formal_derivation",
+        "via_relations": [
+          "STRIPPED_FROM",
+          "ROSETTA_MAP"
+        ]
+      },
+      {
+        "node_id": "A2_3::SOURCE::CONSTRAINT_MANIFOLD_DERIVATION_v1.md::ec1adffbe4396703",
+        "role": "source_document_ancestor",
+        "layer": "INDEX",
+        "node_type": "SOURCE_DOCUMENT",
+        "name": "CONSTRAINT_MANIFOLD_DERIVATION_v1.md",
+        "via_relations": [
+          "SOURCE_MAP_PASS"
+        ]
+      }
+    ],
+    "secondary_context_only": [
+      {
+        "node_id": "A2_2::REFINED::constraint_manifold_formal_derivation::e2a796f27a003a3d",
+        "layer": "A2_MID_REFINEMENT",
+        "node_type": "KERNEL_CONCEPT",
+        "name": "constraint_manifold_formal_derivation",
+        "role": "secondary_context_only"
+      },
+      {
+        "node_id": "A2_1::KERNEL::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION::82183474d44c7ead",
+        "layer": "A1_JARGONED",
+        "node_type": "KERNEL_CONCEPT",
+        "name": "CONSTRAINT_MANIFOLD_FORMAL_DERIVATION",
+        "role": "secondary_context_only"
+      }
+    ],
+    "basis_node_ids": [
+      "A2_2::REFINED::constraint_manifold_formal_derivation::e2a796f27a003a3d",
+      "A2_1::KERNEL::CONSTRAINT_MANIFOLD_FORMAL_DERIVATION::82183474d44c7ead",
+      "A2_3::SOURCE_MAP_PASS::constraint_manifold_formal_derivation::e2a796f27a003a3d"
+    ],
+    "basis_edge_relations": [
+      "ROSETTA_MAP",
+      "STRIPPED_FROM",
+      "STRUCTURALLY_RELATED"
+    ],
+    "bridge_source_node_ids": [
+      "A2_3::SOURCE_MAP_PASS::cl_constraint_manifold_derivation_v1::f13ebd74ae1262de"
+    ],
+    "supporting_source_doc_ids": [
+      "A2_3::SOURCE::CONSTRAINT_MANIFOLD_DERIVATION_v1.md::ec1adffbe4396703"
+    ]
+  },
+  "disclaimers": [
+    "No witness_refs are inherited from this overlay.",
+    "No lineage_refs are inherited from this overlay.",
+    "No intent lineage bridge is claimed from this donor chain to INTENT_REFINEMENT nodes.",
+    "Secondary context nodes are semantic/structural neighbors only, not source-truth donors.",
+    "This overlay is not an owner surface and must not be treated as active control fuel."
+  ],
+  "self_audit": {
+    "admissible_now": false,
+    "decision": "keep_fail_closed_namespaced_overlay_only_manual_review",
+    "hard_blockers": [
+      "basis_is_indirect_graph_chain_only",
+      "direct_field_backfill_would_overclaim_provenance",
+      "donor_chain_has_no_direct_provenance",
+      "no_grounded_trace_anchor",
+      "target_has_no_direct_provenance"
+    ],
+    "missing_proof": [
+      "direct_candidate_provenance",
+      "donor_witness_lineage_proof",
+      "noncanonical_field_admission_review"
+    ]
+  }
+}

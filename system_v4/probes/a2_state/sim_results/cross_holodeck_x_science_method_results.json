@@ -1,0 +1,36 @@
+{
+  "name": "sim_cross_holodeck_x_science_method",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "simulate observation set"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "existence of counterexample within holodeck shell"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "probe_alone_trivially_refutes": true,
+    "coupled_does_not_refute_true_phi": true,
+    "coupled_refutes_false_phi": true,
+    "z3_proves_counterexample_in_substrate": true,
+    "EMERGENT_meaningful_refutation": true
+  },
+  "negative": {
+    "scrambled_substrate_refutes_spuriously": true
+  },
+  "boundary": {
+    "empty_substrate_cannot_refute": true,
+    "singleton_passes_true_phi": true,
+    "singleton_refutes_false_phi": true
+  },
+  "PASS": true
+}

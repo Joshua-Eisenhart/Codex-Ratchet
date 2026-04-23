@@ -1,0 +1,135 @@
+{
+  "name": "VoevodskyMotivicCohomologyBidegree",
+  "domain": "Voevodsky motivic cohomology / bidegree constraints",
+  "claim": "H^{p,q}(X,Z) has bidegree (p,q) with p >= q >= 0; H^{n,n} = K^M_n",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "bidegree inequality SAT checking"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "bidegree constraint p >= q >= 0 (load-bearing)"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "diagonal H^{n,n} = K^M_n identity"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not applicable"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not applicable"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "motivic cohomology action symmetry"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "weight lattice graph"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "bidegree hypergraph"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "motivic space topology"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "weight filtration homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": "supportive",
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": "supportive",
+    "gudhi": "supportive"
+  },
+  "positive": {
+    "test_bidegree_valid_2_1": {
+      "status": "PASS",
+      "sat": true,
+      "description": "Valid bidegree H^{2,1}(X,Z)"
+    },
+    "test_bidegree_diagonal_3_3": {
+      "status": "PASS",
+      "sat": true,
+      "description": "Diagonal term H^{3,3}(X,Z) = K^M_3"
+    },
+    "test_diagonal_k_theory_identity": {
+      "status": "PASS",
+      "valid": true,
+      "description": "H^{n,n}(X,Z) = K^M_n(k) diagonal identification"
+    }
+  },
+  "negative": {
+    "test_bidegree_invalid_1_2": {
+      "status": "PASS",
+      "sat": false,
+      "expected": "UNSAT",
+      "description": "H^{1,2} invalid: p < q violates Beilinson-Soul\u00e9"
+    },
+    "test_bidegree_negative_weight": {
+      "status": "PASS",
+      "sat": false,
+      "expected": "UNSAT",
+      "description": "H^{5,-1} invalid: negative weight q < 0"
+    },
+    "test_diagonal_vanishing_high_weight": {
+      "status": "PASS",
+      "valid": false,
+      "description": "H^{n,n} vanishes for large n (Soul\u00e9 vanishing)"
+    }
+  },
+  "boundary": {
+    "test_bidegree_zero_zero": {
+      "status": "PASS",
+      "sat": true,
+      "description": "Boundary bidegree H^{0,0}(X,Z) = Z"
+    },
+    "test_bidegree_large_codim": {
+      "status": "PASS",
+      "sat": true,
+      "description": "Boundary bidegree H^{100,1}(X,Z)"
+    },
+    "test_bidegree_gap_structure": {
+      "status": "PASS",
+      "valid": true,
+      "description": "Hodge-Lefschetz gap p - q structure"
+    }
+  },
+  "classification": "canonical"
+}

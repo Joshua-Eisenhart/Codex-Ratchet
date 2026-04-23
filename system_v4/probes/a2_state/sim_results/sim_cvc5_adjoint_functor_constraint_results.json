@@ -1,0 +1,134 @@
+{
+  "name": "sim_cvc5_adjoint_functor_constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_identity_adjunction": {
+      "status": "sat",
+      "satisfiable": true,
+      "description": "Identity adjunction (Id \u22a3 Id) always valid"
+    },
+    "test_free_forgetful_adjunction": {
+      "status": "sat",
+      "satisfiable": true,
+      "description": "Free-Forgetful adjunction cardinality constraint consistent"
+    },
+    "test_pi1_loop_space_adjunction": {
+      "status": "sat",
+      "satisfiable": true,
+      "description": "\u03c0\u2081 \u22a3 \u03a9 adjunction consistent for path-connected spaces"
+    }
+  },
+  "negative": {
+    "test_violated_triangle_identity": {
+      "status": "unsat",
+      "satisfiable": false,
+      "description": "Adjunction with violated triangle identity is UNSAT"
+    },
+    "test_non_isomorphic_homs": {
+      "status": "unsat",
+      "satisfiable": false,
+      "description": "Claimed adjunction with non-isomorphic hom-sets is UNSAT"
+    },
+    "test_swapped_adjunction_constraint": {
+      "status": "unsat",
+      "satisfiable": false,
+      "description": "Swapped adjunction without structure is UNSAT"
+    }
+  },
+  "boundary": {
+    "test_empty_category_adjoint": {
+      "status": "sat",
+      "satisfiable": true,
+      "description": "Functor from empty category has unique adjoint"
+    },
+    "test_monoid_adjunction": {
+      "status": "sat",
+      "satisfiable": true,
+      "description": "Adjunction involving one-object category (monoid) is consistent"
+    },
+    "test_free_forgetful_universal_property": {
+      "symbolic_formula": "Eq(U_G**X, Hom_Grp_F_X_G)",
+      "description": "Free-Forgetful universal property: Hom(X, U(G)) = Hom(F(X), G)"
+    },
+    "test_adjunction_unit_injective": {
+      "symbolic_property": "Eq(\u03b7, injection)",
+      "description": "Unit \u03b7: X \u2192 U(F(X)) is injective (characteristic of free adjoint)"
+    }
+  },
+  "classification": "canonical"
+}

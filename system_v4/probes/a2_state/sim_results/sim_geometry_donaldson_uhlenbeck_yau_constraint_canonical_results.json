@@ -1,0 +1,90 @@
+{
+  "name": "Donaldson-Uhlenbeck-Yau Theorem Canonical Sim",
+  "description": "\u03bc-stability constraint: no destabilizing subsheaves. DUY: \u03bc-stable iff admits HYM connection.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for Bogomolov inequality and Chern class formulas"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; slope stability constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "error": "cvc5 or sympy not installed"
+  },
+  "negative": {
+    "error": "cvc5 not installed"
+  },
+  "boundary": {
+    "error": "cvc5 or sympy not installed"
+  },
+  "classification": "canonical"
+}

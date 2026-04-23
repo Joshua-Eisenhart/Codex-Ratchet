@@ -1,0 +1,143 @@
+{
+  "name": "sim_shimura_reciprocity",
+  "description": "Class field theory and Artin reciprocity via cvc5 constraint proofs and sympy verification",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; number theory handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; arithmetic geometry via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; algebraic geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_artin_homomorphism": {
+      "status": "PASS",
+      "is_satisfiable": true,
+      "interpretation": "Artin map rec: A_K* \u2192 Gal(K^ab/K) is a group homomorphism"
+    },
+    "test_frobenius_unramified": {
+      "status": "PASS",
+      "is_satisfiable": true,
+      "interpretation": "Frobenius at unramified primes has order dividing [K:Q]"
+    },
+    "test_class_field_Qi": {
+      "status": "PASS",
+      "field": "Q(i)",
+      "class_number": 1,
+      "hilbert_class_field": "Q(i)",
+      "interpretation": "Class number h(Z[i])=1 means Hilbert class field = base field"
+    }
+  },
+  "negative": {
+    "test_artin_not_homomorphism": {
+      "status": "PASS",
+      "is_unsatisfiable": true,
+      "interpretation": "UNSAT: Artin map cannot violate homomorphism axiom"
+    },
+    "test_frobenius_order_violation": {
+      "status": "ERROR",
+      "error": "Cannot convert int to cvc5.cvc5_python_base.Term"
+    },
+    "test_invalid_reciprocity_character": {
+      "status": "PASS",
+      "claim": "\u03c7 is not a character",
+      "consequence": "Artin reciprocity map fails to be well-defined",
+      "reason": "Reciprocity requires characters on idele group"
+    }
+  },
+  "boundary": {
+    "test_ramified_frobenius": {
+      "status": "PASS",
+      "prime": 2,
+      "field": "Q(i)",
+      "ramification_index": 2,
+      "inertia_degree": 1,
+      "is_satisfiable": true,
+      "interpretation": "Boundary: ramified prime p=2 in Q(i); Frob order = inertia degree"
+    },
+    "test_conductor_discriminant_formula": {
+      "status": "PASS",
+      "discriminant": -4,
+      "conductor_at_2": 4,
+      "conductor_formula": "disc(Q(i)/Q) = -4 = product of ramified prime powers",
+      "interpretation": "Boundary: conductor-discriminant relation holds for Q(i)"
+    },
+    "test_fully_ramified_extension": {
+      "status": "PASS",
+      "degree": 3,
+      "ramification_index": 3,
+      "inertia_degree": 1,
+      "is_satisfiable": true,
+      "interpretation": "Boundary: fully ramified cubic extension has e*f = degree"
+    }
+  },
+  "classification": "canonical"
+}

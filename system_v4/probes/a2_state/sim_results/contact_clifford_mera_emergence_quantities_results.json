@@ -1,0 +1,180 @@
+{
+  "name": "sim_contact_clifford_mera_emergence_quantities",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch tensor density matrix for B2 hermitian check; trace validation (load-bearing)"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph learning not required for emergence quantities baseline; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT: Q_CCM>0 with any shell inactive is structurally impossible (load-bearing)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for Q_CCM emergence constraint; cvc5 excluded"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic Q=a*b*c; zero-factor collapse for all three pairwise cases (load-bearing)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Clifford rotor for H_clifford computation; confirms Clifford shell active (load-bearing)"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian manifold not needed for emergence quantities baseline; excluded"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "E(3) equivariance not needed for emergence quantities; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "emergence DAG: directed edges from single-shell to pairwise to full triple (supportive)"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hyperedge structure for emergence hierarchy not needed here; excluded"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell complex not required for emergence quantities baseline; excluded"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not in scope for emergence quantities; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": null,
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "E1_contact_alone_Q_zero": {
+      "passed": true,
+      "H_contact": 2.833213344056216,
+      "MI": 0.0,
+      "H_clifford": 0.0,
+      "Q_CCM": 0.0,
+      "interpretation": "Contact alone: H_contact>0 but MI=H_clifford=0; Q_CCM=0; no emergence from single shell"
+    },
+    "E2_clifford_alone_Q_zero": {
+      "passed": true,
+      "H_clifford": 0.7071067811865477,
+      "MI": 0.0,
+      "H_contact": 0.0,
+      "Q_CCM": 0.0,
+      "interpretation": "Clifford alone: H_clifford>0 but MI=H_contact=0; Q_CCM=0"
+    },
+    "E3_mera_alone_MI_gt0_Q_zero": {
+      "passed": true,
+      "MI": 0.21166885730683282,
+      "H_contact": 0.0,
+      "H_clifford": 0.0,
+      "Q_CCM": 0.0,
+      "interpretation": "MERA alone: MI>0 but H_contact=H_clifford=0; Q_CCM=0; MI not sufficient for Q"
+    },
+    "E4a_contact_clifford_no_mera_Q_zero": {
+      "passed": true,
+      "H_contact": 2.833213344056216,
+      "H_clifford": 0.7071067811865477,
+      "MI": 0.0,
+      "Q_CCM": 0.0,
+      "interpretation": "Contact\u00d7Clifford pairwise without MERA: Q_CCM=0 (MI=0 kills product)"
+    },
+    "E4b_contact_mera_no_clifford_Q_zero": {
+      "passed": true,
+      "H_contact": 2.833213344056216,
+      "MI": 0.21166885730683282,
+      "H_clifford": 0.0,
+      "Q_CCM": 0.0,
+      "interpretation": "Contact\u00d7MERA pairwise without Clifford: Q_CCM=0 (H_clifford=0 kills product)"
+    },
+    "E4c_clifford_mera_no_contact_Q_zero": {
+      "passed": true,
+      "H_clifford": 0.7071067811865477,
+      "MI": 0.21166885730683282,
+      "H_contact": 0.0,
+      "Q_CCM": 0.0,
+      "interpretation": "Clifford\u00d7MERA pairwise without Contact: Q_CCM=0 (H_contact=0 kills product)"
+    },
+    "E5_full_triple_Q_CCM_emergent": {
+      "passed": true,
+      "Q_CCM": 0.42405407994852584,
+      "MI": 0.21166885730683282,
+      "H_contact": 2.833213344056216,
+      "H_clifford": 0.7071067811865477,
+      "interpretation": "EMERGENT: Q_CCM>0 ONLY when all three shells active; requires triple coexistence"
+    },
+    "RX_emergence_dag": {
+      "passed": true,
+      "n_nodes": 7,
+      "interpretation": "Emergence DAG has 7 nodes: 3 single + 3 pairwise + 1 triple"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_Q_requires_all_three": {
+      "passed": true,
+      "interpretation": "z3 UNSAT for each pairwise case: Q_CCM>0 without all three shells impossible"
+    },
+    "N2_sympy_pairwise_Q_zero": {
+      "passed": true,
+      "interpretation": "sympy: a*b*c=0 when any factor=0; all pairwise cases Q_CCM=0"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_emergent_gap_triple_gt_pairwise": {
+      "passed": true,
+      "Q_CCM_triple": 0.42405407994852584,
+      "partial_products": {
+        "MI*Hc": 0.5997030310428498,
+        "MI*Hcl": 0.14967248436766922,
+        "Hc*Hcl": 2.003384368130366
+      },
+      "interpretation": "Q_CCM>0 only for triple; all pairwise Q_CCM=0; emergent gap confirmed"
+    },
+    "B2_pytorch_rho_hermitian": {
+      "passed": true,
+      "hermitian": true,
+      "trace": 1.0,
+      "interpretation": "MERA density matrix is hermitian and trace=1 via pytorch validation"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 12,
+    "n_pass": 12
+  }
+}

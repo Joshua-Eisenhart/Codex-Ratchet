@@ -1,0 +1,623 @@
+HEARTBEAT 2026-04-13T13:36:29-07:00 | overnight 8h run launched
+TELEGRAM REPORT phase=heartbeat ok=True sent=1 attempted=1
+HEARTBEAT 2026-04-13T13:36:30-07:00 | wave G1 started
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:36:30-07:00 | starting hopf-map
+HEARTBEAT 2026-04-13T13:36:30-07:00 | starting fiber-equivalence
+HEARTBEAT 2026-04-13T13:36:30-07:00 | starting chiral-bookkeeping
+HEARTBEAT 2026-04-13T13:36:30-07:00 | starting weyl-pair
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+Running sim_weyl_nested_shell.py ...
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_nested_shell_results.json
+Summary: 15 pass / 0 fail / 0 error out of 15 tests
+HEARTBEAT 2026-04-13T13:36:34-07:00 | completed chiral-bookkeeping cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_spinor_hopf_results.json
+Elapsed: 1.07s
+HEARTBEAT 2026-04-13T13:36:35-07:00 | completed weyl-pair cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+========================================================================
+SIM: Density Matrices ON the Hopf Torus Geometry
+========================================================================
+
+--- Positive Tests ---
+  [+] Test 1: Bures metric positive definiteness
+    All PD: True
+  [+] Test 2: QFI >= classical FI at all torus points
+  [+] Test 3: Channels cause measurable state change
+    All channels moved state and reduced coherence: True
+  [+] Test 4: I_c landscape structure on torus
+    I_c range: 0.960810, has structure: True
+    e3nn max equivariance error: 8.786079e-09
+
+--- Negative Tests ---
+  [-] Test 1: Bures metric singular at r~0 (pure |R>)
+    Condition number at r=0.01: 147.1
+  [-] Test 2: Bures metric singular at r~1 (pure |L>)
+    Condition number at r=0.99: 150.0
+  [-] Test 3: Product state I_c = 0
+    I_c for near-product state: -0.000000
+
+--- Boundary Tests ---
+  [B] Test 1: Clifford torus eta=pi/4
+    det(g) std/mean at Clifford: 0.0000
+  [B] Test 2: Fidelity self-consistency
+    F(rho, rho) = 1.0000000000
+  [B] Test 3: Maximally mixed at Clifford torus
+    Purity: 0.500000, Entropy: 1.0000 bits
+  [B] Test 4: Frechet mean on torus density matrices
+    Frechet-Euclidean diff: 3.757764e-02
+
+--- Clifford Cross-Check ---
+  Cl(3) rotor-spinor overlap: 0.975119
+
+========================================================================
+RESULTS: 13/13 tests passed
+  [PASS] bures_metric_positive_definite
+  [PASS] qfi_geq_classical_fi
+  [PASS] channel_causes_state_change
+  [PASS] ic_landscape_structure
+  [PASS] e3nn_torus_density_bloch_equivariance
+  [PASS] bures_singular_r0
+  [PASS] bures_singular_r1
+  [PASS] separable_zero_ic
+  [PASS] clifford_torus_symmetry
+  [PASS] fidelity_self
+  [PASS] maximally_mixed_at_clifford
+  [PASS] frechet_mean_on_torus
+  [PASS] clifford_cross_check
+========================================================================
+
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/density_hopf_geometry_results.json
+HEARTBEAT 2026-04-13T13:36:37-07:00 | completed hopf-map cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/hopf_torus_lego_results.json
+Tests passed: 12/12
+GUDHI Betti numbers (long-lived): [1, 2]
+β1=2 confirmed: True
+Clifford Hopf map exact: True
+HEARTBEAT 2026-04-13T13:36:52-07:00 | completed fiber-equivalence cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:36:53-07:00 | wave G1 completed cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:36:53-07:00 | running truth/controller audits
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=864
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT 2026-04-13T13:36:58-07:00 | audits passed
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:36:58-07:00 | wave G2 started
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:36:58-07:00 | starting hopf-connection
+HEARTBEAT 2026-04-13T13:36:58-07:00 | starting pauli-basis
+HEARTBEAT 2026-04-13T13:36:58-07:00 | starting channel-order
+HEARTBEAT 2026-04-13T13:36:58-07:00 | starting partial-trace
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+======================================================================
+PHASE 1: Test known 2-qubit einsum patterns against Bell state
+======================================================================
+  aiaj->ij        [trace_A_correct                    ] -> PASS (expected_correct) OK
+  aibj->ij        [trace_A_WRONG_independent_sum      ] -> FAIL (expected_WRONG) OK
+  ijik->jk        [trace_A_alt_correct                ] -> PASS (expected_correct) OK
+  ijkj->ik        [trace_B_correct                    ] -> PASS (expected_correct) OK
+  iaja->ij        [trace_B_alt_correct                ] -> PASS (expected_correct) OK
+  jiki->jk        [trace_B_via_jiki_correct           ] -> PASS (expected_correct) OK
+
+======================================================================
+PHASE 2: Test 3-qubit einsum patterns against GHZ state
+======================================================================
+  aiaj->ij (2,4,2,4) [trace_A] -> PASS
+  iaja->ij (4,2,4,2) [trace_C] -> PASS
+  aiaj->ij (4,2,4,2) [trace_AB] -> PASS
+  iaja->ij (2,4,2,4) [trace_BC] -> PASS
+
+======================================================================
+PHASE 3: Scan all probe files for einsum patterns
+======================================================================
+  Found 163 einsum partial-trace-shaped patterns across probe files
+  BUG: sim_bridge_z3_kernel_ordering.py:130 -- aibj->ij -- ["index 'a' appears 1 times (need exactly 2)", "index 'b' appears 1 times (need exactly 2)", "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"]
+  BUG: sim_e3nn_relay_equivariance.py:105 -- aiba->ib -- ["index 'a' at positions [0, 3] -- must be (0,2) or (1,3) for valid partial trace"]
+  BUG: sim_e3nn_tensor_product.py:100 -- aiba->ib -- ["index 'a' at positions [0, 3] -- must be (0,2) or (1,3) for valid partial trace"]
+  BUG: sim_e3nn_tensor_product.py:540 -- aiba->ib -- ["index 'a' at positions [0, 3] -- must be (0,2) or (1,3) for valid partial trace"]
+  BUG: sim_e3nn_tensor_product.py:571 -- aiba->ib -- ["index 'a' at positions [0, 3] -- must be (0,2) or (1,3) for valid partial trace"]
+  BUG: sim_gudhi_bloch_sphere_2d.py:147 -- iajb->ab -- ["index 'i' appears 1 times (need exactly 2)", "index 'j' appears 1 times (need exactly 2)", "TWO different contracted indices ['i', 'j'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"]
+  BUG: sim_gudhi_bloch_sphere_2d.py:156 -- ibjd->bd -- ["index 'i' appears 1 times (need exactly 2)", "index 'j' appears 1 times (need exactly 2)", "TWO different contracted indices ['i', 'j'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"]
+  BUG: sim_gudhi_concurrence_filtration.py:148 -- iajb->ab -- ["index 'i' appears 1 times (need exactly 2)", "index 'j' appears 1 times (need exactly 2)", "TWO different contracted indices ['i', 'j'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"]
+  BUG: sim_rustworkx_bridge_dag.py:95 -- aibj->ij -- ["index 'a' appears 1 times (need exactly 2)", "index 'b' appears 1 times (need exactly 2)", "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"]
+  BUG: sim_rustworkx_dag_reduction.py:96 -- aibj->ij -- ["index 'a' appears 1 times (need exactly 2)", "index 'b' appears 1 times (need exactly 2)", "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"]
+  BUG: sim_toponetx_bridge_seam.py:165 -- iajb->ab -- ["index 'i' appears 1 times (need exactly 2)", "index 'j' appears 1 times (need exactly 2)", "TWO different contracted indices ['i', 'j'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"]
+
+======================================================================
+PHASE 4: Verify np.trace(axis1=..., axis2=...) implementations
+======================================================================
+  np.trace(rho.reshape(2,2,2,2), axis1=1, axis2=3) -> PASS
+  np.trace(rho.reshape(2,2,2,2), axis1=0, axis2=2) -> PASS
+
+======================================================================
+PHASE 5: Naming consistency audit (function name vs actual operation)
+======================================================================
+  HIGH -- callers get rho_B labeled as rho_A: sim_torch_ratchet_gnn.py::partial_trace_b -- NAME MISMATCH: function says 'trace B, return rho_A' but einsum traces A, returns rho_B
+  HIGH -- callers get rho_A labeled as rho_B: sim_torch_ratchet_gnn.py::partial_trace_a -- NAME MISMATCH: function says 'trace A, return rho_B' but einsum traces B, returns rho_A
+  MEDIUM -- math is correct (returns rho_A), but naming convention opposite to rest of codebase: holodeck_fep_engine.py::partial_trace_A -- NAME MISLEADING: function named 'partial_trace_A' but traces B. Name convention inconsistent (other files: partial_trace_A means 'trace OUT A').
+
+======================================================================
+PHASE 6: Priority file deep audit
+======================================================================
+  sim_torch_mutual_info.py: CLEAN
+  sim_torch_quantum_discord.py: CLEAN
+  sim_torch_axis0_gradient.py: DEAD CODE BUG (line 210 'aibj->ij' overwritten by correct line 213)
+  sim_torch_axis0_3qubit.py: CLEAN (this file caught the original bug)
+  sim_axis0_through_shells.py: CRITICAL LIVE BUG ('aibj->ij' at lines 115 and 473)
+  sim_torch_cnot.py: CLEAN (uses explicit loops, no einsum)
+
+======================================================================
+PHASE 7: Additional einsum file audit
+======================================================================
+  sim_torch_ratchet_gnn.py: NAMING BUG (partial_trace_a/b swapped)
+  sim_layered_foundation.py: CLEAN
+  sim_phase7_divergence_analysis.py: BUG (torch version swaps A/B vs numpy version)
+  holodeck_fep_engine.py: NAMING INCONSISTENCY (partial_trace_A means 'get rho_A' not 'trace out A')
+
+======================================================================
+SUMMARY
+======================================================================
+  Files scanned: 61
+  Clean: 53
+  With einsum pattern bugs: 8
+  Naming/swap bugs: 2
+  Dead code bugs: 1
+
+  [CRITICAL] sim_axis0_through_shells.py:115, 473 -- LIVE_wrong_einsum
+         FIX: Replace 'aibj->ij' with 'aiaj->ij' at both lines. All results from this file are invalid.
+  [LOW] sim_torch_axis0_gradient.py:210 -- dead_code_wrong_einsum
+         FIX: Remove line 210 (dead code, overwritten by correct line 213)
+  [HIGH] sim_torch_ratchet_gnn.py:253-262 -- naming_swap
+         FIX: Swap function names: partial_trace_b should use 'ijkj->ik' (trace B), partial_trace_a should use 'ijik->jk' (trace A)
+  [HIGH] sim_phase7_divergence_analysis.py:126-131 -- torch_numpy_mismatch
+         FIX: Swap einsum patterns in torch_partial_trace to match numpy: which='B' should use 'ijkj->ik', which='A' should use 'ijik->jk'
+  [MEDIUM] holodeck_fep_engine.py:21 -- naming_inconsistency
+         FIX: Rename to partial_trace_B or trace_out_B to match codebase convention
+
+Results written to: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/partial_trace_audit_results.json
+HEARTBEAT 2026-04-13T13:36:58-07:00 | failed partial-trace (exit=1)
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/torch_channel_composition_results.json
+Tests: 36/36 passed
+ALL TESTS PASSED
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_pauli_algebra_results.json
+
+============================================================
+  PAULI ALGEBRA SIM: 32/32 tests passed
+============================================================
+HEARTBEAT 2026-04-13T13:37:03-07:00 | completed channel-order cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:04-07:00 | completed pauli-basis cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/torch_hopf_connection_results.json
+Tests: 45/45 passed
+ALL TESTS PASSED
+HEARTBEAT 2026-04-13T13:37:05-07:00 | completed hopf-connection cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:05-07:00 | wave G2 worker partial-trace failed
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:05-07:00 | running truth/controller audits
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=864
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT 2026-04-13T13:37:09-07:00 | audits passed
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:09-07:00 | wave G3 started
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:09-07:00 | starting fubini-study
+HEARTBEAT 2026-04-13T13:37:09-07:00 | starting sphere-geometry
+HEARTBEAT 2026-04-13T13:37:09-07:00 | starting nested-torus
+HEARTBEAT 2026-04-13T13:37:09-07:00 | starting bures-geometry
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sphere_geometry_results.json
+ALL PASS: True
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/bures_geometry_results.json
+ALL PASS: True
+HEARTBEAT 2026-04-13T13:37:09-07:00 | completed sphere-geometry cleanly
+HEARTBEAT 2026-04-13T13:37:09-07:00 | completed bures-geometry cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/nested_torus_geometry_results.json
+ALL PASS: True
+HEARTBEAT 2026-04-13T13:37:09-07:00 | completed nested-torus cleanly
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/fubini_study_geometry_results.json
+ALL PASS: True
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:10-07:00 | completed fubini-study cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:10-07:00 | wave G3 completed cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:10-07:00 | running truth/controller audits
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=864
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT 2026-04-13T13:37:14-07:00 | audits passed
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:14-07:00 | wave G4 started
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:14-07:00 | starting persistence
+HEARTBEAT 2026-04-13T13:37:14-07:00 | starting graph-shell
+HEARTBEAT 2026-04-13T13:37:14-07:00 | starting state-class-binding
+HEARTBEAT 2026-04-13T13:37:14-07:00 | starting cell-complex
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/graph_shell_geometry_results.json
+ALL PASS: True
+HEARTBEAT 2026-04-13T13:37:14-07:00 | completed graph-shell cleanly
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/persistence_geometry_results.json
+ALL PASS: True
+HEARTBEAT 2026-04-13T13:37:14-07:00 | completed persistence cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/cell_complex_geometry_results.json
+ALL PASS: True
+HEARTBEAT 2026-04-13T13:37:15-07:00 | completed cell-complex cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/toponetx_state_class_binding_results.json
+
+=== KEY FINDINGS ===
+  Betti numbers: β0=1, β1=0, β2=0
+  QWCI gap creates hole (β1>0): False
+  r*=0.17 is coboundary: True
+  Euler characteristic χ: 1
+  Euler consistent: True
+  z3 L4∩L6=∅ UNSAT: True
+  XGI: r*=0.17 is unique L4/L6 interface: True
+HEARTBEAT 2026-04-13T13:37:16-07:00 | completed state-class-binding cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:16-07:00 | wave G4 completed cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:17-07:00 | running truth/controller audits
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=864
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT 2026-04-13T13:37:21-07:00 | audits passed
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:21-07:00 | wave G5 started
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:21-07:00 | starting fiber-base-transport
+HEARTBEAT 2026-04-13T13:37:21-07:00 | starting xgi-family
+HEARTBEAT 2026-04-13T13:37:21-07:00 | starting pyg-werner
+HEARTBEAT 2026-04-13T13:37:21-07:00 | starting xgi-shell
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+========================================================================
+FIBER / BASE TRANSPORT TEST
+========================================================================
+
+Question: Does Ax2 frame transport V(u) change the Ax0 kernel,
+          or does it belong purely to Ax2?
+
+Design:
+  - Fiber loop (density-stationary): sanity check
+  - Base loop (density-traversing): transport discriminator
+  - V(u) = exp(-i H_s u), H_L = +sigma_z, H_R = -sigma_z
+  - Ax0 kernel = I_c(A>B) = S(B) - S(AB)
+
+  Running torus: inner (eta=0.3927) ...
+    fiber: Ic constant=True, transport invariant=True
+    base:  Ic varies=True, transport invariant=True (gap_max=6.66e-16)
+  Running torus: clifford (eta=0.7854) ...
+    fiber: Ic constant=True, transport invariant=True
+    base:  Ic varies=True, transport invariant=True (gap_max=9.99e-16)
+  Running torus: outer (eta=1.1781) ...
+    fiber: Ic constant=True, transport invariant=True
+    base:  Ic varies=True, transport invariant=True (gap_max=9.99e-16)
+
+========================================================================
+OVERALL VERDICT
+========================================================================
+  Fiber sanity (all constant + invariant): True
+  Base Ic varies (density-traversing):     True
+  Base transport invariant (Ax0/Ax2 sep):  True
+  Verdict: PASS — Ax2 frame transport V(u) does NOT change the Ax0 kernel. Transport geometry belongs purely to Ax2, confirming Ax0/Ax2 separation.
+
+Results saved: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/fiber_base_transport_test_results.json
+
+========================================================================
+PROBE STATUS: PASS
+========================================================================
+HEARTBEAT 2026-04-13T13:37:21-07:00 | completed fiber-base-transport cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Running sim_pyg_dynamic_edge_werner.py ...
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/xgi_family_hypergraph_results.json
+Tests: 18/18 passed
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/xgi_shell_hypergraph_results.json
+
+=== XGI SHELL HYPERGRAPH SUMMARY ===
+Shells: 8  |  Hyperedges: 8
+Max hyperedge size: 3
+
+Shell rankings by node_edge_centrality (hypergraph):
+  L4: 0.16720
+  L6: 0.15711
+  L7: 0.15558
+  L2: 0.14547
+  L3: 0.11755
+  L5: 0.10365
+  L0: 0.07853
+  L1: 0.07490
+
+Shell rankings by node_edge_centrality (pairwise expansion):
+  L2: 0.17652
+  L7: 0.15341
+  L4: 0.14599
+  L3: 0.13313
+  L5: 0.12492
+  L6: 0.11100
+  L0: 0.09082
+  L1: 0.06422
+
+Spearman rho (hyper vs pairwise, node_edge_centrality): 0.6190
+Multi-way structure load-bearing: True
+Kill shells (L4, L6) dominate hypergraph: True
+L4 appears in top-3 across 4 measures
+L6 appears in top-3 across 3 measures
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/pyg_dynamic_edge_werner_results.json
+
+=== SUMMARY ===
+I_c>0 subgraph: 5 nodes, 20 edges
+Quantum bottleneck: node 4 (p=0.2105, centrality=0.0)
+Bifurcation visible: True (deep_neg norm=0.0, boundary norm=0.0, deep_pos norm=1.12565)
+z3 UNSAT (separable => I_c<=0): True
+XGI pos∩sep intersection: [] (should be empty)
+HEARTBEAT 2026-04-13T13:37:25-07:00 | completed xgi-family cleanly
+HEARTBEAT 2026-04-13T13:37:25-07:00 | completed xgi-shell cleanly
+HEARTBEAT 2026-04-13T13:37:25-07:00 | completed pyg-werner cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:25-07:00 | wave G5 completed cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:25-07:00 | running truth/controller audits
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=864
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT 2026-04-13T13:37:29-07:00 | audits passed
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:29-07:00 | wave C1 started
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:29-07:00 | starting carnot-hold-policy
+HEARTBEAT 2026-04-13T13:37:29-07:00 | starting carnot-core
+HEARTBEAT 2026-04-13T13:37:29-07:00 | starting carnot-finite-time
+HEARTBEAT 2026-04-13T13:37:29-07:00 | starting szilard-core
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_hold_policy_companion_results.json
+ALL PASS: True
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_landauer_cycle_results.json
+ALL PASS: True
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_two_bath_cycle_results.json
+ALL PASS: True
+/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_finite_time_companion_results.json
+ALL PASS: True
+HEARTBEAT 2026-04-13T13:37:29-07:00 | completed carnot-hold-policy cleanly
+HEARTBEAT 2026-04-13T13:37:29-07:00 | completed szilard-core cleanly
+HEARTBEAT 2026-04-13T13:37:29-07:00 | completed carnot-core cleanly
+HEARTBEAT 2026-04-13T13:37:29-07:00 | completed carnot-finite-time cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:29-07:00 | wave C1 completed cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:29-07:00 | running truth/controller audits
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=864
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT 2026-04-13T13:37:33-07:00 | audits passed
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:34-07:00 | wave C2 started
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:34-07:00 | starting szilard-record
+HEARTBEAT 2026-04-13T13:37:34-07:00 | starting szilard-substep
+HEARTBEAT 2026-04-13T13:37:34-07:00 | starting szilard-bidirectional
+HEARTBEAT 2026-04-13T13:37:34-07:00 | starting engine-lab-matrix
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+CLEANUP FIRST GUARD PASSED context=sim
+/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/engine_lab_matrix_results.json
+HEARTBEAT 2026-04-13T13:37:34-07:00 | completed engine-lab-matrix cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_bidirectional_protocol_results.json
+ALL PASS: True
+HEARTBEAT 2026-04-13T13:37:34-07:00 | completed szilard-bidirectional cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_companion_results.json
+ALL PASS: True
+HEARTBEAT 2026-04-13T13:37:34-07:00 | completed szilard-record cleanly
+/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_companion_results.json
+ALL PASS: True
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:34-07:00 | completed szilard-substep cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:34-07:00 | wave C2 completed cleanly
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:34-07:00 | running truth/controller audits
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=864
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT 2026-04-13T13:37:38-07:00 | audits passed
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:38-07:00 | overnight controller checkpoint
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:38-07:00 | running truth/controller audits
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=864
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT 2026-04-13T13:37:42-07:00 | audits passed
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:37:42-07:00 | idle maintenance window active
+TELEGRAM REPORT phase=heartbeat ok=skipped reason=rate-limit interval=300s
+HEARTBEAT 2026-04-13T13:42:42-07:00 | idle maintenance window active
+TELEGRAM REPORT phase=heartbeat ok=True sent=1 attempted=1
+HEARTBEAT 2026-04-13T13:47:43-07:00 | idle maintenance window active
+TELEGRAM REPORT phase=heartbeat ok=True sent=1 attempted=1

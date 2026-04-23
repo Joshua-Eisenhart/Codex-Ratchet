@@ -1,0 +1,34 @@
+{
+  "name": "characteristic_representation",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "eigenvalue and matrix-polynomial numerics"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "cayley_hamilton_n2": true,
+    "trace_matches_n2": true,
+    "cayley_hamilton_n3": true,
+    "trace_matches_n3": true,
+    "cayley_hamilton_n5": true,
+    "trace_matches_n5": true
+  },
+  "negative": {
+    "wrong_poly_nonzero": true,
+    "nonsquare_rejected": true
+  },
+  "boundary": {
+    "zero_matrix_poly": true,
+    "identity_poly": true,
+    "repeated_eigs": true
+  },
+  "classical_captured": "characteristic polynomial coefficients and Cayley-Hamilton on commutative numeric matrices",
+  "innately_missing": "operator-algebra / noncommutative characteristic structure, constraint-admissibility of representation choice",
+  "all_pass": true
+}

@@ -1,0 +1,40 @@
+{
+  "name": "syndrome_decoding_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "F_2 linear algebra"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "syndrome_nonzero_on_error": "True",
+    "decoder_finds_correct_leader": true
+  },
+  "negative": {
+    "zero_error_zero_syndrome": "True",
+    "classical_cannot_decode_phase_errors": true
+  },
+  "boundary": {
+    "two_bit_error_leader_may_miscorrect": true,
+    "empty_codeword_zero_syndrome": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "only bit-flip syndromes; no phase-flip / Z-error channel",
+    "no CSS dual-check structure or Pauli degeneracy classes",
+    "no stabilizer-measurement backaction / random outcome"
+  ]
+}

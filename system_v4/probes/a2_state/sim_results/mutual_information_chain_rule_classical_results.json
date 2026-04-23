@@ -1,0 +1,35 @@
+{
+  "name": "mutual_information_chain_rule_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "pmf arithmetic and Shannon entropy evaluation"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "chain_rule_holds_on_random_joints": true,
+    "MI_symmetry": true
+  },
+  "negative": {
+    "chain_rule_broken_without_conditional_term": true
+  },
+  "boundary": {
+    "independence_gives_zero_MI": true,
+    "conditional_nonneg_classical": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": "Classical Shannon chain rule is exact because pmfs factor via Bayes' rule and conditional entropy is always nonneg. Quantum mutual information I(A;B)=S(A)+S(B)-S(AB) satisfies an analogous chain rule but via strong subadditivity, not Bayes. The classical baseline cannot capture that the quantum conditional I(A;B|C) can fail to reduce to a weighted average of projected subsystem MIs (no joint distribution exists over noncommuting observables), so any construction that silently assumes a classical joint over all three parties cannot witness genuinely quantum tripartite correlations."
+}

@@ -1,0 +1,61 @@
+{
+  "name": "gauss_bonnet_triangulated_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "vector angles and sums"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric suffices"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no admissibility"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "classical combinatorics only"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "supportive",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "tetrahedron_chi_is_2": true,
+    "tetrahedron_gauss_bonnet": true,
+    "octahedron_chi_is_2": true,
+    "octahedron_gauss_bonnet": true
+  },
+  "negative": {
+    "open_surface_chi_not_2": true,
+    "flat_vertex_zero_defect": true,
+    "duplicate_face_breaks_chi": true
+  },
+  "boundary": {
+    "scale_invariance": true,
+    "rotation_invariance": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "Euler characteristic survives; spin structure does not",
+    "cannot detect w2 Stiefel-Whitney obstruction to spin lift",
+    "half-integer indices (Atiyah-Singer) invisible",
+    "orientability not distinguished from admissibility of a Pin cover"
+  ]
+}

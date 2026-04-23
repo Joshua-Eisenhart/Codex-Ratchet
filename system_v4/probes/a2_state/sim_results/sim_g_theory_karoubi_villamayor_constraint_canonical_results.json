@@ -1,0 +1,157 @@
+{
+  "name": "G-Theory (Karoubi-Villamayor) Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; K-theory handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; homotopy K-theory via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; algebraic topology handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "G0_K0_isomorphism_smooth": [
+      true,
+      {
+        "variety": "P^1",
+        "rank_K0": 2,
+        "rank_G0": 2,
+        "isomorphic": true
+      }
+    ],
+    "cartan_map_isomorphism_projective": [
+      true,
+      {
+        "variety": "P^1",
+        "K_0_generators": "[O], [O(-1)]",
+        "G_0_generators": "[O], [O(-1)]",
+        "cartan_iso": true
+      }
+    ],
+    "grr_formula_dimension_balance": [
+      true,
+      {
+        "morphism": "f: X \u2192 Y",
+        "dim(X)": 2,
+        "dim(Y)": 1,
+        "formula_balanced": true
+      }
+    ]
+  },
+  "negative": {
+    "G0_K0_rank_mismatch_UNSAT": [
+      false,
+      {
+        "theoretical": "UNSAT: G_0(smooth) \u2260 K_0(smooth) contradicts isomorphism",
+        "status": "UNSAT expected"
+      }
+    ],
+    "cartan_not_iso_UNSAT": [
+      false,
+      {
+        "theoretical": "UNSAT: Cartan must be isomorphism for smooth projective",
+        "status": "UNSAT expected"
+      }
+    ],
+    "grr_dimension_imbalance_UNSAT": [
+      false,
+      {
+        "theoretical": "UNSAT: GRR formula requires dimension balance",
+        "status": "UNSAT expected"
+      }
+    ]
+  },
+  "boundary": {
+    "P1_k_g_structure": [
+      true,
+      {
+        "variety": "P^1",
+        "K_0_generators": 2,
+        "G_0_generators": 2,
+        "ranks_equal": true
+      }
+    ],
+    "smooth_singular_distinction": [
+      true,
+      {
+        "smooth_variety": "G_0 \u2245 K_0",
+        "constraint": "If smooth then G_0_rank = K_0_rank"
+      }
+    ],
+    "resolution_property_theorem": [
+      true,
+      {
+        "resolution_property": "Every coherent sheaf has finite resolution by vector bundles",
+        "consequence": "K_0 \u2245 G_0"
+      }
+    ]
+  },
+  "classification": "canonical"
+}

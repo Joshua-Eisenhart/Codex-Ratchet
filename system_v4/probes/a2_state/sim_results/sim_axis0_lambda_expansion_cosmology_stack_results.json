@@ -1,0 +1,631 @@
+{
+  "name": "sim_axis0_lambda_expansion_cosmology_stack",
+  "timestamp": "2026-04-17T17:55:08.864459+00:00",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical-to-nonclassical bridge baseline: this is a bounded Axis 0 lambda-shell cosmology proxy. It does not claim a finished cosmology law. It tests whether entropy growth, dynamic shells, i-scalar/jk-fuzz, shell ordering, topology closure, solver guards, and manifold aggregation can cohere on one live tool-integrated surface.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "lambda-shell arrays, entropy gradients, expansion history, and serialization arithmetic"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix exponential propagator for the shellwise expansion update"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "open-system witness and shellwise expectation readout on damped states"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "entangling state-preparation witness for the source shell surface"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "QNode preparation witness for the same source shell surface"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "fit and gradient witness coupling dark-energy and gravity proxies to the Hubble proxy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "message-passing witness over the directed lambda-shell graph using cosmology shell features"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "QF_LRA contradiction witness for ordered lambda shells and monotone scale growth"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric carrier witness for the cosmology summary vector"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric algebra roundtrip witness for the cosmology summary vector"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "ordered shell DAG witness for the lambda-shell expansion ladder"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "higher-order shell-coupling witness for triadic shell windows"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex boundary witness for shell-surface closure"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent topology witness for shell complex parity"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic interpolation and derivative witness for scale-factor and dark-energy fields"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "constraint witness enforcing ordered lambda shells and monotone scale growth"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Frechet-mean manifold witness for shell-carrier aggregation on S^2"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "spherical-harmonic parity witness for the cosmology summary vector under shell-axis reflection"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "cvc5": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing"
+  },
+  "positive": {
+    "pass": true,
+    "prep_surface": {
+      "pass": true,
+      "numpy_vs_cirq": 1.2731075198650083e-07,
+      "numpy_vs_pennylane": 0.0,
+      "cirq_cnot_trace": 2.0,
+      "pennylane_state_norm": 1.0
+    },
+    "open_system_surface": {
+      "pass": true,
+      "numpy_vs_qutip": 1.2141417303728348e-07,
+      "reference_trace_gap": 1.1102230246251565e-16
+    },
+    "axis0_lambda_expansion": {
+      "pass": true,
+      "semantic_row_surface": {
+        "lane": "lambda_cosmology",
+        "symbolic_hubble_mid": 0.8469337934524651,
+        "constraint_pass": true,
+        "cvc5_pass": true,
+        "bridge_owner_pass": true,
+        "bridge_owner_gate_fraction": 1.0,
+        "distinguishability_pass": true,
+        "distinguishability_gate_fraction": 1.0,
+        "constraint_family_profile": {
+          "observational": 3.252058665792677,
+          "admissible": 1.0,
+          "stable": 0.9999998726892481,
+          "entropy_conditioned": 5.850485695683674,
+          "topology_conditioned": 1.0
+        },
+        "graph_longest_path_length": 6,
+        "manifold_distance": 0.5230782255041673,
+        "pyg_mean_aggregate_norm": 5.5922342474790145,
+        "distinguishability_surface": {
+          "type": "distinguishability_constraint",
+          "pass": true,
+          "gate_fraction": 1.0,
+          "pass_threshold": 0.8,
+          "gates": {
+            "observational": true,
+            "admissible": true,
+            "stable": true,
+            "entropy_conditioned": true,
+            "topology_conditioned": true
+          },
+          "signals": {
+            "observational_signal": 3.252058665792677,
+            "admissibility_signal": 1.0,
+            "stability_signal": 0.9999998726892481,
+            "entropy_signal": 5.850485695683674,
+            "topology_signal": 1.0,
+            "shell_spread": 0.6379761355184627,
+            "fuzz_level": 2.7757285435255117,
+            "coherent_information_span": 0.43751352572365915
+          },
+          "constraint_profile": {
+            "observational": 3.252058665792677,
+            "admissible": 1.0,
+            "stable": 0.9999998726892481,
+            "entropy_conditioned": 5.850485695683674,
+            "topology_conditioned": 1.0
+          },
+          "note": "Lambda cosmology row distinguishes states through shell-native fuzz separation, entropy span, coherent-information spread, and topology closure."
+        }
+      },
+      "bridge_owner_surface": {
+        "pass": true,
+        "current_bridge_gate": "E10_current_bridge_candidate_is_explicit_and_provisional",
+        "current_bridge_status": "admitted_executable_candidate_not_final_owner_law",
+        "current_bridge_object_status": "admitted_bridge_object_for_downstream_readout_not_final_owner_law",
+        "bridge_owner_alignment_pass": true,
+        "search_handoff_pass": true,
+        "bridge_handoff_pass": true,
+        "search_reservation_pass": true,
+        "bridge_reservation_pass": true,
+        "owner_read_pass": true,
+        "carrier_selection_handoff_matches_search": true,
+        "search_surface": {
+          "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+          "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+          "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "entropy_readout_current_bridge_gate": "E10_current_bridge_candidate_is_explicit_and_provisional"
+        },
+        "bridge_surface": {
+          "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+          "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+          "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "entropy_gate_name": "E10_current_bridge_candidate_is_explicit_and_provisional",
+          "entropy_gate_status": "admitted_executable_candidate_not_final_owner_law"
+        },
+        "gate_passes": {
+          "C1S3_support_chain_is_closed_before_candidate_packaging": true,
+          "C1S4_candidate_stays_provisional_and_does_not_overpromote": true,
+          "C1B1_bridge_object_is_explicit_and_downstream_only": true,
+          "C1B3_bridge_object_is_bound_to_the_existing_support_contract": true,
+          "C1B4_bridge_object_keeps_owner_doctrine_questions_open": true,
+          "P22_c1_signed_bridge_candidate_is_explicit_and_provisional": true,
+          "P23_xi_chiral_entangle_remains_downstream_of_xi_hist_signed_law": true,
+          "P24_carrier_handoff_matches_pre_entropy_downstream_mapping": true,
+          "P25_standalone_c1_bridge_object_matches_pre_entropy_contract": true,
+          "E10_current_bridge_candidate_is_explicit_and_provisional": true,
+          "S5_axis0_ladder_is_mechanically_traversable": true,
+          "S6_xi_chiral_entangle_remains_axis_internal_and_not_owner_law": true,
+          "S7_axis0_stack_explicitly_consumes_named_contract_gates": true,
+          "S9_axis0_stack_consumes_standalone_c1_bridge_object_contract": true
+        },
+        "row_source": "packet_results",
+        "refreshed_missing_artifacts": []
+      },
+      "jk_fuzz_dynamic": 2.7757285435255117,
+      "i_scalar_dynamic": 0.3213960349481271,
+      "i_scalar_frozen": 0.29635486163227354,
+      "dynamic_vs_frozen_gap": 0.025041173315853538,
+      "scale_factors": [
+        1.0,
+        1.3681337478698943,
+        1.6249405998065907,
+        1.8844434681823914,
+        2.1549845566930825,
+        2.4391858899700805,
+        2.747479769547435
+      ],
+      "dark_energy_pressure_mean": 0.7179523301355151,
+      "gravity_response_mean": 1.171973814052416,
+      "hubble_proxy_mean": 1.051643735782322,
+      "graph_surface": {
+        "edge_count": 11,
+        "longest_path_length": 6,
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ]
+      },
+      "hypergraph_surface": {
+        "num_edges": 16,
+        "max_hyperedge_size": 3,
+        "connected_components": 1
+      },
+      "topology_surface": {
+        "betti_numbers": [
+          1,
+          0
+        ],
+        "euler_characteristic": 1,
+        "parity_ok": true
+      },
+      "symbolic_surface": {
+        "scale_factor_polynomial": "-5.60066877220652*lam**6 + 20.479114249385*lam**5 - 29.726296734354*lam**4 + 21.9431264505492*lam**3 - 8.48352819578258*lam**2 + 3.13573277195808*lam + 1.0",
+        "dark_energy_polynomial": "-69.9682671763794*lam**6 + 229.463206691346*lam**5 - 287.305834619117*lam**4 + 168.109545474419*lam**3 - 42.9660255142137*lam**2 + 2.58175348426362*lam + 0.91486813067697",
+        "scale_poly_degree": 6,
+        "dark_poly_degree": 6,
+        "mid_lambda": 0.5,
+        "symbolic_hubble_mid": 0.8469337934524651,
+        "symbolic_acceleration_mid": 0.3799644325957843,
+        "symbolic_dark_energy_mid": 0.5987880493365054
+      },
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "cvc5_surface": {
+        "pass": true,
+        "actual_sat": true,
+        "contradiction_unsat": true,
+        "winner_gap": 1.747479769547435
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          -0.25081640893589485,
+          0.08268813903259245,
+          0.9644966566410839
+        ],
+        "mean_norm": 1.0,
+        "mean_geodesic_distance": 0.5230782255041673,
+        "max_geodesic_distance": 1.3176236599639406
+      },
+      "pyg_surface": {
+        "pass": true,
+        "num_nodes": 7,
+        "num_edges": 22,
+        "mean_aggregate_norm": 5.5922342474790145,
+        "max_aggregate_norm": 8.493333256616241,
+        "edge_weight_mean": 0.7853185032392299
+      },
+      "e3nn_surface": {
+        "pass": true,
+        "l0_gap": 0.0,
+        "l1_norm_gap": 0.0,
+        "x_parity_gap": 0.0,
+        "yz_invariance_gap": 0.0
+      },
+      "torch_fit": {
+        "weights": [
+          -0.8184151364412443,
+          1.4796251945446777
+        ],
+        "bias": -0.09485519241392923,
+        "loss": 0.00028570053183218046,
+        "max_gap": 0.024958434399513063
+      },
+      "clifford_vector": [
+        1.171973814052416,
+        0.7179523301355151,
+        -1.187995439861313
+      ],
+      "torch_ga_vector": [
+        1.1719738245010376,
+        0.717952311038971,
+        -1.187995433807373
+      ]
+    },
+    "crosslane_semantics_surface": {
+      "pass": true,
+      "winner": "through_shells",
+      "min_cosine_similarity": 0.9761013173405317,
+      "max_component_gap": 0.2866504188393949,
+      "graph_longest_path_length": 3,
+      "topology_betti_numbers": [
+        1,
+        0
+      ],
+      "symbolic_hubble_mid": 1.1352075839113305,
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "cvc5_surface": {
+        "pass": true,
+        "actual_sat": true,
+        "contradiction_unsat": true,
+        "winner_gap": 0.05654494249484854
+      },
+      "pyg_surface": {
+        "pass": true,
+        "num_nodes": 4,
+        "num_edges": 6,
+        "mean_aggregate_norm": 2.1504784713535208,
+        "max_aggregate_norm": 2.9431089588067842,
+        "edge_weight_mean": 0.9251938708558969
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          0.007820394790489548,
+          0.0,
+          0.9999694202450997
+        ],
+        "mean_norm": 1.0,
+        "mean_geodesic_distance": 0.028218602737461455,
+        "max_geodesic_distance": 0.054111860710866495
+      },
+      "e3nn_surface": {
+        "pass": true,
+        "l0_gap": 0.0,
+        "l1_norm_gap": 0.0,
+        "x_parity_gap": 0.0,
+        "yz_invariance_gap": 0.0
+      },
+      "torch_fit": {
+        "loss": 0.030431790432692986,
+        "max_gap": 0.2991381755507494
+      },
+      "xi_packet_surface": {
+        "pass": true,
+        "stack_gate_pass": true,
+        "strict_vs_pre_entropy_match": true,
+        "strict_vs_entropy_readout_match": true,
+        "carrier_matches_strict_law": true,
+        "strict_xi_law": {
+          "law_name": "Xi_hist signed law",
+          "owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
+          "placement_label": "8_23",
+          "equivalent_anchor_labels": [
+            "16_31",
+            "8_15"
+          ],
+          "canonical_prefix_drop": "8_15",
+          "canonical_early_width": "0_7",
+          "comparison_width": "0_3",
+          "total_rows": 6,
+          "off_clifford_rows": 4,
+          "clifford_rows": 2,
+          "placement_8_23_equals_16_31": true,
+          "placement_8_23_equals_prefix_8_15_on_mi": true,
+          "placement_8_23_equals_prefix_8_15_on_ic": true,
+          "placement_8_23_equals_prefix_8_15_on_signed_cut": true,
+          "best_prefix_drop_by_ic_is_8_15": true,
+          "best_early_width_by_ic_is_0_7_majority": true,
+          "late_anchor_beats_0_3_globally_on_ic": true,
+          "front_half_signed_cut_preference_all_seats": true,
+          "clifford_mi_0_7_vs_0_15_is_tied": true,
+          "placement_8_23_beats_0_3_on_ic_count": 6,
+          "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
+          "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
+          "best_early_width_by_ic_counts": {
+            "0_3": 1,
+            "0_7": 5,
+            "0_11": 0,
+            "0_15": 0
+          },
+          "best_prefix_drop_by_ic_counts": {
+            "0_15": 0,
+            "1_15": 0,
+            "2_15": 0,
+            "4_15": 0,
+            "8_15": 6
+          }
+        },
+        "carrier_xi_semantics": {
+          "history_nontrivial_while_shell_flat": true,
+          "point_ref_minus_shell_base_std": 0.2992748479986896,
+          "total_rows": 6,
+          "best_window_by_mi_counts": {
+            "0_3": 0,
+            "0_7": 6,
+            "0_11": 0,
+            "0_15": 0
+          },
+          "best_placement_by_mi_counts": {
+            "0_15": 0,
+            "8_23": 6,
+            "16_31": 0
+          },
+          "best_prefix_drop_by_mi_counts": {
+            "0_15": 0,
+            "1_15": 0,
+            "2_15": 0,
+            "4_15": 0,
+            "8_15": 6
+          },
+          "window_0_7_is_global_mi_winner": true,
+          "placement_8_23_is_global_mi_winner": true,
+          "prefix_8_15_is_global_mi_winner": true,
+          "early_window_beats_shifted_count": 0
+        }
+      },
+      "bridge_owner_surface": {
+        "pass": true,
+        "current_bridge_gate": "E10_current_bridge_candidate_is_explicit_and_provisional",
+        "current_bridge_status": "admitted_executable_candidate_not_final_owner_law",
+        "current_bridge_object_status": "admitted_bridge_object_for_downstream_readout_not_final_owner_law",
+        "bridge_owner_alignment_pass": true,
+        "search_handoff_pass": true,
+        "bridge_handoff_pass": true,
+        "search_reservation_pass": true,
+        "bridge_reservation_pass": true,
+        "owner_read_pass": true,
+        "carrier_selection_handoff_matches_search": true,
+        "search_surface": {
+          "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+          "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+          "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "entropy_readout_current_bridge_gate": "E10_current_bridge_candidate_is_explicit_and_provisional"
+        },
+        "bridge_surface": {
+          "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+          "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+          "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "entropy_gate_name": "E10_current_bridge_candidate_is_explicit_and_provisional",
+          "entropy_gate_status": "admitted_executable_candidate_not_final_owner_law"
+        },
+        "gate_passes": {
+          "C1S3_support_chain_is_closed_before_candidate_packaging": true,
+          "C1S4_candidate_stays_provisional_and_does_not_overpromote": true,
+          "C1B1_bridge_object_is_explicit_and_downstream_only": true,
+          "C1B3_bridge_object_is_bound_to_the_existing_support_contract": true,
+          "C1B4_bridge_object_keeps_owner_doctrine_questions_open": true,
+          "P22_c1_signed_bridge_candidate_is_explicit_and_provisional": true,
+          "P23_xi_chiral_entangle_remains_downstream_of_xi_hist_signed_law": true,
+          "P24_carrier_handoff_matches_pre_entropy_downstream_mapping": true,
+          "P25_standalone_c1_bridge_object_matches_pre_entropy_contract": true,
+          "E10_current_bridge_candidate_is_explicit_and_provisional": true,
+          "S5_axis0_ladder_is_mechanically_traversable": true,
+          "S6_xi_chiral_entangle_remains_axis_internal_and_not_owner_law": true,
+          "S7_axis0_stack_explicitly_consumes_named_contract_gates": true,
+          "S9_axis0_stack_consumes_standalone_c1_bridge_object_contract": true
+        },
+        "row_source": "packet_results",
+        "refreshed_missing_artifacts": []
+      }
+    }
+  },
+  "negative": {
+    "pass": true,
+    "reverse_scale_growth_rejected": {
+      "pass": true,
+      "result": "unsat"
+    },
+    "reverse_lambda_order_rejected": {
+      "pass": true,
+      "result": "unsat"
+    },
+    "shell_face_ablation_rejected": {
+      "pass": true,
+      "full_max_hyperedge_size": 3,
+      "ablated_max_hyperedge_size": 2,
+      "full_beta1": 0,
+      "ablated_beta1": 5
+    },
+    "entropy_drive_ablation_reduces_expansion": {
+      "pass": true,
+      "positive_final_scale": 2.747479769547435,
+      "ablated_final_scale": 1.0
+    },
+    "crosslane_semantics_rejects_reflection_and_ablation": {
+      "pass": true,
+      "reflected_cosmology_breaks_alignment": {
+        "pass": true,
+        "min_cosine_similarity": 0.15675326271870288,
+        "max_component_gap": 1.980518005744325
+      },
+      "constraint_ablation_breaks_bridge": {
+        "pass": true,
+        "min_cosine_similarity": 0.7288024062705221,
+        "max_component_gap": 1.0
+      }
+    }
+  },
+  "boundary": {
+    "pass": true,
+    "axis0_lambda_expansion_boundary": {
+      "pass": true,
+      "jk_fuzz_dynamic": 2.807354922057604,
+      "i_scalar_dynamic": -9.965784284662086e-14,
+      "i_scalar_frozen": -9.965784284662085e-14,
+      "dynamic_vs_frozen_gap": 1.262177448353619e-29,
+      "final_scale_factor": 1.0000000000004983,
+      "graph_edge_count": 0,
+      "hypergraph_edge_count": 0,
+      "topology_betti_numbers": [
+        7,
+        0
+      ],
+      "symbolic_hubble_mid": 1.5782930518065625e-12,
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "cvc5_surface": {
+        "pass": true,
+        "actual_sat": true,
+        "contradiction_unsat": true,
+        "winner_gap": 4.982680934517703e-13
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "mean_norm": 1.0,
+        "mean_geodesic_distance": 0.0,
+        "max_geodesic_distance": 0.0
+      },
+      "pyg_surface": {
+        "pass": true,
+        "num_nodes": 7,
+        "num_edges": 0,
+        "mean_aggregate_norm": 0.0,
+        "max_aggregate_norm": 0.0,
+        "edge_weight_mean": 0.0
+      },
+      "e3nn_surface": {
+        "pass": true,
+        "l0_gap": 0.0,
+        "l1_norm_gap": 0.0,
+        "x_parity_gap": 0.0,
+        "yz_invariance_gap": 0.0
+      },
+      "crosslane_boundary_surface": {
+        "pass": true,
+        "graph_edge_count": 0,
+        "pyg_edge_count": 0,
+        "topology_betti_numbers": [
+          4,
+          0
+        ],
+        "symbolic_hubble_mid": 0.0
+      }
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "overall_pass": true,
+  "all_pass": true
+}

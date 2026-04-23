@@ -1,0 +1,1131 @@
+{
+  "timestamp": "2026-04-17T17:54:55.601469+00:00",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical foundation baseline: this tests Axis-0 FEP/compression framing numerically on the trajectory. The legacy framing tests are preserved, and a deep contract now binds those tests to the same shell bridge, ordered graph/topology, symbolic expansion, solver closure, geometric algebra, and manifold witnesses used elsewhere in Axis 0.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "trajectory asymmetry, correlation numerics, and framing aggregates"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix exponential propagator for framing-test expansion updates"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "fit and gradient witness over aggregate framing support features"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric carrier witness for the winning framing vector"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric algebra roundtrip witness for the winning framing vector"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "ordered DAG witness over the ranked framing tests"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "higher-order config-to-framing coupling witness"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex boundary witness for framing-test closure"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent topology witness for the framing complex"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic interpolation and derivative witness for framing expansion trends"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "constraint witness enforcing framing rank order and monotone scale growth"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Frechet-mean manifold witness for aggregate framing geometry"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing"
+  },
+  "results": [
+    {
+      "engine_type": 1,
+      "torus": "inner",
+      "test1_temporal_asymmetry": {
+        "mean_forward_mi": 1.7685312663111474,
+        "mean_backward_mi": 1.807176064342938,
+        "asymmetry_bwd_minus_fwd": 0.03864479803179055,
+        "keep": true,
+        "interpretation": "backward \u2265 forward \u2192 future predicts past (compression-from-future)"
+      },
+      "test2_attractor_vs_drift": {
+        "autocorr_delta_L": 0.5968308166604318,
+        "autocorr_delta_R": -0.3626977868375669,
+        "mean_autocorr": 0.11706651491143244,
+        "keep": false,
+        "interpretation": "positive autocorr \u2192 drift / causal momentum (classical propagation)"
+      },
+      "test3_jk_fuzz_directionality": {
+        "cross_correlations": {
+          "-3": 0.1387,
+          "-2": -0.3944,
+          "-1": -0.8849,
+          "0": -0.8396,
+          "1": -0.602,
+          "2": 0.5052,
+          "3": 0.0354
+        },
+        "peak_lag": -1,
+        "peak_value": -0.8848610602856426,
+        "keep": true,
+        "interpretation": "peak lag=-1 \u2264 0 \u2192 ga0 lags MI (compression is primary, entropy follows structure)"
+      },
+      "test4_trajectory_profile": {
+        "mi_series_mean": 1.7685312663111474,
+        "mi_series_std": 0.3134306372186364,
+        "linear_slope": 0.10820688119181793,
+        "first_half_mean": 1.56756078769007,
+        "second_half_mean": 1.9192591252769557,
+        "second_minus_first": 0.35169833758688585,
+        "early_mi_mean": 1.7685312663111474,
+        "late_mi_mean": 1.7685312663111474,
+        "late_leads": false,
+        "keep": true,
+        "interpretation": "MI increases toward trajectory end \u2192 attractor convergence (compression-from-future)"
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06584523240642737,
+        "jk_fuzz_dynamic": 1.2806899705580403,
+        "lambda_density_mean": 1.8814495059322884,
+        "dark_energy_pressure_mean": 2.3266493269543793,
+        "gravity_response_mean": 2.32664932695438,
+        "final_scale_factor": 6.032341318752867,
+        "mean_hubble_proxy": 1.7036718080709,
+        "mean_acceleration_proxy": -1.3234408619847282,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.09332963082997472,
+          "symbolic_acceleration_mid": 2.879550909754471,
+          "symbolic_dark_energy_mid": 4.791803471156982
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7508667101431425,
+          "max_geodesic_distance": 1.6574064179008405,
+          "mean_norm": 0.9999999999999998
+        },
+        "torch_fit": {
+          "weights": [
+            0.24399717381012648,
+            -0.1035374702245272
+          ],
+          "bias": 1.3768712823888383,
+          "loss": 0.77685672421338,
+          "max_gap": 1.8320695109529126
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 1.0045956111426335e-07,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      },
+      "keep_count": 3,
+      "verdict": "COMPRESSION-FROM-FUTURE"
+    },
+    {
+      "engine_type": 1,
+      "torus": "clifford",
+      "test1_temporal_asymmetry": {
+        "mean_forward_mi": 1.1965900292580616,
+        "mean_backward_mi": 1.2699821592312903,
+        "asymmetry_bwd_minus_fwd": 0.07339212997322875,
+        "keep": true,
+        "interpretation": "backward \u2265 forward \u2192 future predicts past (compression-from-future)"
+      },
+      "test2_attractor_vs_drift": {
+        "autocorr_delta_L": 0.27101281044384967,
+        "autocorr_delta_R": 0.7748759166068453,
+        "mean_autocorr": 0.5229443635253475,
+        "keep": false,
+        "interpretation": "positive autocorr \u2192 drift / causal momentum (classical propagation)"
+      },
+      "test3_jk_fuzz_directionality": {
+        "cross_correlations": {
+          "-3": -0.5153,
+          "-2": -0.8073,
+          "-1": -0.8478,
+          "0": -0.8282,
+          "1": -0.4011,
+          "2": -0.3725,
+          "3": -0.8674
+        },
+        "peak_lag": 3,
+        "peak_value": -0.8673995747292903,
+        "keep": false,
+        "interpretation": "peak lag=3 > 0 \u2192 ga0 leads MI (entropy drives structure, classical causation)"
+      },
+      "test4_trajectory_profile": {
+        "mi_series_mean": 1.1965900292580616,
+        "mi_series_std": 0.3945813793179597,
+        "linear_slope": 0.17917257722919103,
+        "first_half_mean": 0.825082307704952,
+        "second_half_mean": 1.4752208204228938,
+        "second_minus_first": 0.6501385127179419,
+        "early_mi_mean": 1.1965900292580616,
+        "late_mi_mean": 1.1965900292580616,
+        "late_leads": false,
+        "keep": true,
+        "interpretation": "MI increases toward trajectory end \u2192 attractor convergence (compression-from-future)"
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.0,
+        "jk_fuzz_dynamic": 2.999999937788565,
+        "lambda_density_mean": 1.0,
+        "dark_energy_pressure_mean": 1.0,
+        "gravity_response_mean": 1.0,
+        "final_scale_factor": 2.999999999999999,
+        "mean_hubble_proxy": 1.115022328076172,
+        "mean_acceleration_proxy": -1.0208993632849026,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 1.0000000000008598,
+          "symbolic_acceleration_mid": 8.043343768804334e-12,
+          "symbolic_dark_energy_mid": 1.0000000000006184
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.0,
+          "max_geodesic_distance": 0.0,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.5383407760253907,
+            0.5383407760253907
+          ],
+          "bias": 0.038340776025390697,
+          "loss": 0.13623975858108436,
+          "max_gap": 0.6441786698901701
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 2.640228280448298e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      },
+      "keep_count": 2,
+      "verdict": "MIXED"
+    },
+    {
+      "engine_type": 1,
+      "torus": "outer",
+      "test1_temporal_asymmetry": {
+        "mean_forward_mi": 1.7693395611857619,
+        "mean_backward_mi": 1.8062181236613726,
+        "asymmetry_bwd_minus_fwd": 0.03687856247561072,
+        "keep": true,
+        "interpretation": "backward \u2265 forward \u2192 future predicts past (compression-from-future)"
+      },
+      "test2_attractor_vs_drift": {
+        "autocorr_delta_L": -0.13708153134850493,
+        "autocorr_delta_R": 0.16644089938210363,
+        "mean_autocorr": 0.014679684016799352,
+        "keep": false,
+        "interpretation": "positive autocorr \u2192 drift / causal momentum (classical propagation)"
+      },
+      "test3_jk_fuzz_directionality": {
+        "cross_correlations": {
+          "-3": 0.2234,
+          "-2": -0.404,
+          "-1": -0.9007,
+          "0": -0.8236,
+          "1": -0.5824,
+          "2": 0.491,
+          "3": 0.2274
+        },
+        "peak_lag": -1,
+        "peak_value": -0.900671555516678,
+        "keep": true,
+        "interpretation": "peak lag=-1 \u2264 0 \u2192 ga0 lags MI (compression is primary, entropy follows structure)"
+      },
+      "test4_trajectory_profile": {
+        "mi_series_mean": 1.7693395611857619,
+        "mi_series_std": 0.31435061164480155,
+        "linear_slope": 0.108706620334061,
+        "first_half_mean": 1.5675607876900692,
+        "second_half_mean": 1.920673641307531,
+        "second_minus_first": 0.3531128536174617,
+        "early_mi_mean": 1.7693395611857619,
+        "late_mi_mean": 1.7693395611857619,
+        "late_leads": false,
+        "keep": true,
+        "interpretation": "MI increases toward trajectory end \u2192 attractor convergence (compression-from-future)"
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06731448067275725,
+        "jk_fuzz_dynamic": 1.2810930191169831,
+        "lambda_density_mean": 1.9079525240672277,
+        "dark_energy_pressure_mean": 2.366219053788939,
+        "gravity_response_mean": 2.36621905378894,
+        "final_scale_factor": 6.122786408660432,
+        "mean_hubble_proxy": 1.7163724249406735,
+        "mean_acceleration_proxy": -1.3278209636374916,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.0813459926249822,
+          "symbolic_acceleration_mid": 2.7606382897793083,
+          "symbolic_dark_energy_mid": 4.906119305471748
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7531727997365836,
+          "max_geodesic_distance": 1.6625367838305087,
+          "mean_norm": 0.9999999999999999
+        },
+        "torch_fit": {
+          "weights": [
+            0.24401101149261128,
+            -0.10397519660782226
+          ],
+          "bias": 1.3850170073699244,
+          "loss": 0.8026861512808962,
+          "max_gap": 1.8723996409726633
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 5.422076387873176e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      },
+      "keep_count": 3,
+      "verdict": "COMPRESSION-FROM-FUTURE"
+    },
+    {
+      "engine_type": 2,
+      "torus": "inner",
+      "test1_temporal_asymmetry": {
+        "mean_forward_mi": 1.7610128046929552,
+        "mean_backward_mi": 1.7198022529868016,
+        "asymmetry_bwd_minus_fwd": -0.04121055170615362,
+        "keep": false,
+        "interpretation": "forward > backward \u2192 past predicts future (classical causation)"
+      },
+      "test2_attractor_vs_drift": {
+        "autocorr_delta_L": 0.17482243660739966,
+        "autocorr_delta_R": -0.19740845675506222,
+        "mean_autocorr": -0.01129301007383128,
+        "keep": true,
+        "interpretation": "negative autocorr \u2192 mean-reverting attractor (FEP / compression-from-future)"
+      },
+      "test3_jk_fuzz_directionality": {
+        "cross_correlations": {
+          "-3": -0.1954,
+          "-2": 0.4017,
+          "-1": 0.1251,
+          "0": -0.9329,
+          "1": 0.6666,
+          "2": 0.0668,
+          "3": -0.1628
+        },
+        "peak_lag": 0,
+        "peak_value": -0.9328558680557847,
+        "keep": true,
+        "interpretation": "peak lag=0 \u2264 0 \u2192 ga0 lags MI (compression is primary, entropy follows structure)"
+      },
+      "test4_trajectory_profile": {
+        "mi_series_mean": 1.7610128046929552,
+        "mi_series_std": 0.24912853898567078,
+        "linear_slope": 0.024169612992267796,
+        "first_half_mean": 1.8026813100904169,
+        "second_half_mean": 1.7297614256448595,
+        "second_minus_first": -0.07291988444555741,
+        "early_mi_mean": 1.7610128046929552,
+        "late_mi_mean": 1.7610128046929552,
+        "late_leads": false,
+        "keep": true,
+        "interpretation": "MI increases toward trajectory end \u2192 attractor convergence (compression-from-future)"
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06763326530450664,
+        "jk_fuzz_dynamic": 1.2808028297269445,
+        "lambda_density_mean": 1.9073019202537687,
+        "dark_energy_pressure_mean": 2.3654696925304055,
+        "gravity_response_mean": 2.3654696925304064,
+        "final_scale_factor": 6.121073582926641,
+        "mean_hubble_proxy": 1.7161336052799605,
+        "mean_acceleration_proxy": -1.3277392287556,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.07919192018811852,
+          "symbolic_acceleration_mid": 2.906411784613738,
+          "symbolic_dark_energy_mid": 4.903100578531848
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7534037745133855,
+          "max_geodesic_distance": 1.6628845284748983,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.2430247394896452,
+            -0.10305986989596638
+          ],
+          "bias": 1.385050945109927,
+          "loss": 0.8016749634826282,
+          "max_gap": 1.8702178282864368
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 1.0767021052515702e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      },
+      "keep_count": 3,
+      "verdict": "COMPRESSION-FROM-FUTURE"
+    },
+    {
+      "engine_type": 2,
+      "torus": "clifford",
+      "test1_temporal_asymmetry": {
+        "mean_forward_mi": 1.0176804164862925,
+        "mean_backward_mi": 0.9312458839665042,
+        "asymmetry_bwd_minus_fwd": -0.08643453251978828,
+        "keep": false,
+        "interpretation": "forward > backward \u2192 past predicts future (classical causation)"
+      },
+      "test2_attractor_vs_drift": {
+        "autocorr_delta_L": 0.09632624075365476,
+        "autocorr_delta_R": -0.007516869021541699,
+        "mean_autocorr": 0.04440468586605653,
+        "keep": false,
+        "interpretation": "positive autocorr \u2192 drift / causal momentum (classical propagation)"
+      },
+      "test3_jk_fuzz_directionality": {
+        "cross_correlations": {
+          "-3": 0.5321,
+          "-2": 0.2778,
+          "-1": -0.1332,
+          "0": -0.9273,
+          "1": 0.406,
+          "2": 0.3225,
+          "3": 0.2155
+        },
+        "peak_lag": 0,
+        "peak_value": -0.9272984058287342,
+        "keep": true,
+        "interpretation": "peak lag=0 \u2264 0 \u2192 ga0 lags MI (compression is primary, entropy follows structure)"
+      },
+      "test4_trajectory_profile": {
+        "mi_series_mean": 1.0176804164862925,
+        "mi_series_std": 0.23155621541028876,
+        "linear_slope": 0.06203741140957057,
+        "first_half_mean": 0.9915652972207308,
+        "second_half_mean": 1.0372667559354636,
+        "second_minus_first": 0.045701458714732746,
+        "early_mi_mean": 1.0176804164862925,
+        "late_mi_mean": 1.0176804164862925,
+        "late_leads": false,
+        "keep": true,
+        "interpretation": "MI increases toward trajectory end \u2192 attractor convergence (compression-from-future)"
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.0,
+        "jk_fuzz_dynamic": 2.999999937788565,
+        "lambda_density_mean": 1.0,
+        "dark_energy_pressure_mean": 1.0,
+        "gravity_response_mean": 1.0,
+        "final_scale_factor": 2.999999999999999,
+        "mean_hubble_proxy": 1.115022328076172,
+        "mean_acceleration_proxy": -1.0208993632849026,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 1.0000000000008598,
+          "symbolic_acceleration_mid": 8.043343768804334e-12,
+          "symbolic_dark_energy_mid": 1.0000000000006184
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.0,
+          "max_geodesic_distance": 0.0,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.5383407760253907,
+            0.5383407760253907
+          ],
+          "bias": 0.038340776025390697,
+          "loss": 0.13623975858108436,
+          "max_gap": 0.6441786698901701
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 2.640228280448298e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      },
+      "keep_count": 2,
+      "verdict": "MIXED"
+    },
+    {
+      "engine_type": 2,
+      "torus": "outer",
+      "test1_temporal_asymmetry": {
+        "mean_forward_mi": 1.776245202374913,
+        "mean_backward_mi": 1.709395594613847,
+        "asymmetry_bwd_minus_fwd": -0.06684960776106585,
+        "keep": false,
+        "interpretation": "forward > backward \u2192 past predicts future (classical causation)"
+      },
+      "test2_attractor_vs_drift": {
+        "autocorr_delta_L": 0.3439036607252208,
+        "autocorr_delta_R": -0.42582385679400125,
+        "mean_autocorr": -0.04096009803439021,
+        "keep": true,
+        "interpretation": "negative autocorr \u2192 mean-reverting attractor (FEP / compression-from-future)"
+      },
+      "test3_jk_fuzz_directionality": {
+        "cross_correlations": {
+          "-3": -0.1883,
+          "-2": 0.4278,
+          "-1": 0.0914,
+          "0": -0.9254,
+          "1": 0.6697,
+          "2": 0.0805,
+          "3": -0.1721
+        },
+        "peak_lag": 0,
+        "peak_value": -0.9253795999112335,
+        "keep": true,
+        "interpretation": "peak lag=0 \u2264 0 \u2192 ga0 lags MI (compression is primary, entropy follows structure)"
+      },
+      "test4_trajectory_profile": {
+        "mi_series_mean": 1.776245202374913,
+        "mi_series_std": 0.22598581281580782,
+        "linear_slope": 0.02639383199390277,
+        "first_half_mean": 1.8026813100904142,
+        "second_half_mean": 1.7564181215882868,
+        "second_minus_first": -0.046263188502127406,
+        "early_mi_mean": 1.776245202374913,
+        "late_mi_mean": 1.776245202374913,
+        "late_leads": false,
+        "keep": true,
+        "interpretation": "MI increases toward trajectory end \u2192 attractor convergence (compression-from-future)"
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06746887517386846,
+        "jk_fuzz_dynamic": 1.2807414011977087,
+        "lambda_density_mean": 1.9040553745293285,
+        "dark_energy_pressure_mean": 2.36063224132325,
+        "gravity_response_mean": 2.3606322413232506,
+        "final_scale_factor": 6.110016551596,
+        "mean_hubble_proxy": 1.7145903534510465,
+        "mean_acceleration_proxy": -1.3272104810270569,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.08053304608873205,
+          "symbolic_acceleration_mid": 2.9272390695405193,
+          "symbolic_dark_energy_mid": 4.8890878962329225
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7531410953714981,
+          "max_geodesic_distance": 1.6622917353554945,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.24297965304754882,
+            -0.10296501279095542
+          ],
+          "bias": 1.3840672753112442,
+          "loss": 0.7984898093550097,
+          "max_gap": 1.86525114227644
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 6.015564801842288e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      },
+      "keep_count": 3,
+      "verdict": "COMPRESSION-FROM-FUTURE"
+    }
+  ],
+  "summary": {
+    "t1_keep": 3,
+    "t2_keep": 2,
+    "t3_keep": 5,
+    "t4_keep": 6,
+    "compression_verdict": 4,
+    "mixed_verdict": 2,
+    "total": 6,
+    "overall": "PARTIAL COMPRESSION-FROM-FUTURE",
+    "deep_contract_pass": true,
+    "deep_contract_winner": "T3_jk_fuzz_directionality"
+  },
+  "aggregate": {
+    "overall": "PARTIAL COMPRESSION-FROM-FUTURE",
+    "deep_contract": {
+      "pass": true,
+      "winner": "T3_jk_fuzz_directionality",
+      "shell_bridge_pass_fraction": 1.0,
+      "framing_rows": [
+        {
+          "option": "T3_jk_fuzz_directionality",
+          "mean_abs_a0": 1.4506111524781307,
+          "mean_signed_a0": 0.7397443440545605,
+          "doctrine_fit": 0.8333333333333334,
+          "sign_consistency": 0.8333333333333334,
+          "shell_alignment": 0.6982420718472009,
+          "shell_alignment_abs": 0.6982420718472009,
+          "signal_score": 1.0,
+          "composite_score": 0.8646484143694402,
+          "scale_factor": 1.0,
+          "hubble_proxy": 1.2529098922561719
+        },
+        {
+          "option": "T4_trajectory_profile",
+          "mean_abs_a0": 0.13817565959552425,
+          "mean_signed_a0": 0.13817565959552425,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": -0.4169308772164077,
+          "shell_alignment_abs": 0.4169308772164077,
+          "signal_score": 0.09525341050871824,
+          "composite_score": 0.5667248691213329,
+          "scale_factor": 1.5183688456039772,
+          "hubble_proxy": 0.9533728084440611
+        },
+        {
+          "option": "T2_attractor_vs_drift",
+          "mean_abs_a0": 0.12522472607130955,
+          "mean_signed_a0": -0.10780702336856902,
+          "doctrine_fit": 0.3333333333333333,
+          "sign_consistency": 0.3333333333333333,
+          "shell_alignment": 0.6506968044127628,
+          "shell_alignment_abs": 0.6506968044127628,
+          "signal_score": 0.08632549519379035,
+          "composite_score": 0.3103532842003792,
+          "scale_factor": 1.8881204668764457,
+          "hubble_proxy": 0.4718668295282148
+        },
+        {
+          "option": "T1_temporal_mi_asymmetry",
+          "mean_abs_a0": 0.05723503041127296,
+          "mean_signed_a0": -0.007596533584396288,
+          "doctrine_fit": 0.5,
+          "sign_consistency": 0.5,
+          "shell_alignment": -0.017446572311392995,
+          "shell_alignment_abs": 0.017446572311392995,
+          "signal_score": 0.039455804757530175,
+          "composite_score": 0.24229884612741417,
+          "scale_factor": 2.0796810011173346,
+          "hubble_proxy": 0.28989793442447903
+        }
+      ],
+      "graph_surface": {
+        "edge_count": 5,
+        "longest_path_length": 3,
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "hypergraph_surface": {
+        "num_edges": 6,
+        "max_hyperedge_size": 3,
+        "connected_components": 1,
+        "hyperedges": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "topology_surface": {
+        "betti_numbers": [
+          1,
+          0
+        ],
+        "euler_characteristic": 1,
+        "parity_ok": true
+      },
+      "symbolic_surface": {
+        "scale_factor_polynomial": "-0.133082382150324*lam**3 - 0.535695127341455*lam**2 + 1.74845851060912*lam + 1.0",
+        "expansion_drive_polynomial": "-4.81477471178589*lam**3 + 9.23030227712082*lam**2 - 6.82303252027093*lam + 2.98218655765866",
+        "scale_poly_degree": 3,
+        "drive_poly_degree": 3,
+        "mid_lambda": 0.5,
+        "symbolic_hubble_mid": 0.6456870997391819,
+        "symbolic_acceleration_mid": -1.4706374011338816,
+        "symbolic_drive_mid": 1.276399027830169
+      },
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          0.02994629038885237,
+          0.03702041533054992,
+          0.9988657109645421
+        ],
+        "mean_norm": 1.0,
+        "mean_geodesic_distance": 0.531895735003953,
+        "max_geodesic_distance": 0.9359518469730774
+      },
+      "torch_fit": {
+        "weights": [
+          0.23499416791642183,
+          0.8919219756847817,
+          0.496873737287809
+        ],
+        "bias": -0.1781817088106289,
+        "loss": 1.2854814421293694e-15,
+        "max_gap": 6.426375420698349e-08
+      },
+      "winner_vector": [
+        1.4506111524781307,
+        0.8333333333333334,
+        0.6982420718472009
+      ],
+      "clifford_vector_gap": 0.0,
+      "torch_ga_vector_gap": 3.797617753598104e-08,
+      "scale_factors": [
+        1.0,
+        1.5183688456039772,
+        1.8881204668764457,
+        2.0796810011173346
+      ],
+      "hubble_proxy": [
+        1.2529098922561719,
+        0.9533728084440611,
+        0.4718668295282148,
+        0.28989793442447903
+      ],
+      "propagator_traces": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "all_pass": true
+  },
+  "overall_pass": true,
+  "all_pass": true
+}

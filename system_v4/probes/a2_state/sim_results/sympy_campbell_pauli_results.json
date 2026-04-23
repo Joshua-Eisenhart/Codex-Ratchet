@@ -1,0 +1,96 @@
+{
+  "name": "sympy_campbell_pauli",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric expm won't certify closed-form equality"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "trigonometric identities beyond nonlinear SMT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic matrix exponentials + simplify prove rotation-conjugation identity exactly"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "cross-check only; identity is purely algebraic"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "Rx_rotates_sy_to_sy_sz": true,
+    "Rz_rotates_sx_to_sx_sy": true
+  },
+  "negative": {
+    "wrong_coeff_detected": true
+  },
+  "boundary": {
+    "zero_angle_identity": true,
+    "two_pi_returns": true
+  },
+  "ablation": {
+    "numpy_single_point_only": true,
+    "numeric_residual": 1.022802896496509,
+    "note": "numpy evaluates at one angle; cannot certify identity as a function of a"
+  },
+  "classification": "canonical"
+}

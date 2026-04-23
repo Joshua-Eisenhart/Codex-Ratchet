@@ -1,0 +1,137 @@
+{
+  "name": "Borel-Weil Theorem Line Bundle Constraint",
+  "description": "H\u2070(G/B, L_\u03bb) nonzero only for dominant weights \u03bb",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Borel-Weil line bundle constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for weight lattice structure"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_dominant_fundamental": {
+      "satisfiable": true,
+      "weight": 1,
+      "h0_dimension": 2,
+      "expected": "SAT (dominant weights have non-zero H\u2070)"
+    },
+    "positive_sum_dominant_weights": {
+      "satisfiable": true,
+      "sum": 2,
+      "expected": "SAT (sum of dominant weights is dominant)"
+    },
+    "positive_zero_weight": {
+      "satisfiable": true,
+      "weight": 0,
+      "h0_dimension": 1,
+      "expected": "SAT (zero weight has H\u2070 = 1)"
+    }
+  },
+  "negative": {
+    "negative_antidominant_h0_nonzero_unsat": {
+      "satisfiable": false,
+      "expected": "UNSAT (anti-dominant weight cannot have nonzero H\u2070)",
+      "status": "PASS"
+    },
+    "negative_singular_h0_nonzero_unsat": {
+      "satisfiable": true,
+      "expected": "UNSAT (singular weights have vanishing H\u2070)",
+      "status": "FAIL"
+    },
+    "negative_interior_violation_unsat": {
+      "satisfiable": false,
+      "expected": "UNSAT (non-dominant interior weight has H\u2070 = 0)",
+      "status": "PASS"
+    }
+  },
+  "boundary": {
+    "boundary_chamber_wall": {
+      "satisfiable": true,
+      "on_wall": true,
+      "h0_dimension": 0,
+      "expected": "SAT (wall weights may have H\u2070 = 0)"
+    },
+    "boundary_trivial_bundle": {
+      "satisfiable": true,
+      "weight": 0,
+      "h0_dimension": 1,
+      "expected": "SAT (trivial bundle has H\u2070 = 1)"
+    },
+    "boundary_minimal_dominant": {
+      "satisfiable": true,
+      "weight": 1,
+      "h0_dimension": 2,
+      "expected": "SAT (minimal dominant weight \u03c9\u2081 has H\u2070 = dim V_\u03c9\u2081)"
+    }
+  },
+  "classification": "canonical"
+}

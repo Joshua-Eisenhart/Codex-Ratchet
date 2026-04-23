@@ -1,0 +1,127 @@
+{
+  "name": "spectral_decomposition",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "closed_form_2x2_eigs": {
+      "eigs": [
+        1.0,
+        3.0
+      ],
+      "pass": true
+    },
+    "reconstruction": {
+      "err": 4.440892098500626e-16,
+      "pass": true
+    },
+    "orthonormal_V": {
+      "err": 2.220446049250313e-16,
+      "pass": true
+    },
+    "random_sym_recon": {
+      "err": 8.881784197001252e-16,
+      "pass": true
+    }
+  },
+  "negative": {
+    "nonsym_eigh_wrong": {
+      "diff": 1.0,
+      "pass": true
+    },
+    "nonsquare_rejected": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "degenerate_all_equal": {
+      "eigs": [
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "pass": true
+    },
+    "near_zero_eig_recovered": {
+      "min_eig": 9.999333369087311e-13,
+      "pass": "True"
+    }
+  },
+  "all_pass": true,
+  "note": "classical captures: eigh on real sym matrices, reconstruction, orthonormality. Innately fails: non-normal operators, complex Jordan blocks, non-Hermitian effective Hamiltonians."
+}

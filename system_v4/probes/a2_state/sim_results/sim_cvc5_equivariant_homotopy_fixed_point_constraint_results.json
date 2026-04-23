@@ -1,0 +1,148 @@
+{
+  "name": "EquivariantHomotopyFixedPointConstraint",
+  "description": "Proves dim(X^G) \u2264 dim(X) for equivariant fixed point spaces",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "tensor computation not needed for fixed-point arithmetic constraints"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph message passing not needed for equivariant homotopy fixed-point proofs"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 chosen as the primary SMT solver for the fixed-point constraint system"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "QF_LIA solver for fixed point space dimension constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic algebra for boundary case verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "geometric algebra not needed for fixed-point counting constraints"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold computation required for this fixed-point proof"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "equivariant neural components not needed for the symbolic fixed-point argument"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "graph routing not needed for the fixed-point constraint system"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hypergraph structure not needed for this equivariant homotopy check"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell-complex topology not required for the local SMT proof used here"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not required for the bounded fixed-point witness"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_001_sat_fixed_point_subspace": {
+      "status": "sat",
+      "expected": "sat",
+      "dim_X": 2,
+      "dim_fixed": 0,
+      "constraint_satisfied": true
+    },
+    "test_002_sat_trivial_action": {
+      "status": "sat",
+      "expected": "sat",
+      "dim_X": 3,
+      "dim_fixed": 3,
+      "constraint_satisfied": true
+    },
+    "test_003_sat_partial_fixed_point": {
+      "status": "sat",
+      "expected": "sat",
+      "dim_X": 4,
+      "dim_fixed": 1,
+      "constraint_satisfied": true
+    }
+  },
+  "negative": {
+    "test_004_unsat_exceeds_dimension": {
+      "status": "unsat",
+      "expected": "unsat",
+      "dim_X": 2,
+      "dim_fixed": 3,
+      "proof_succeeded": true
+    },
+    "test_005_unsat_negative_dimension": {
+      "status": "unsat",
+      "expected": "unsat",
+      "dim_X": 1,
+      "dim_fixed": 2,
+      "proof_succeeded": true
+    },
+    "test_006_unsat_impossible_excess": {
+      "status": "unsat",
+      "expected": "unsat",
+      "dim_X": 0,
+      "dim_fixed": 1,
+      "proof_succeeded": true
+    }
+  },
+  "boundary": {
+    "test_007_boundary_trivial_action": {
+      "status": "PASS",
+      "dim_X": 5,
+      "dim_fixed": 5,
+      "constraint_satisfied": "True"
+    },
+    "test_008_boundary_zero_dimension": {
+      "status": "PASS",
+      "dim_X": 3,
+      "dim_fixed": 0,
+      "constraint_satisfied": "True"
+    },
+    "test_009_boundary_full_space": {
+      "status": "PASS",
+      "dim_X": 4,
+      "dim_fixed": 4,
+      "constraint_satisfied": "True",
+      "equality_holds": true
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,169 @@
+{
+  "name": "joint_density_matrix",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for bounded two-qubit joint density matrices before derived witness or entropy layers.",
+  "lego_ids": [
+    "joint_density_matrix",
+    "reduced_state_object",
+    "partial_trace_operator"
+  ],
+  "primary_lego_ids": [
+    "joint_density_matrix"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- direct numpy joint-state lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "product_joint_state_is_valid": {
+      "hermitian": true,
+      "trace_one": true,
+      "psd": true,
+      "eigenvalues": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "pass": true
+    },
+    "bell_joint_state_is_valid": {
+      "hermitian": true,
+      "trace_one": true,
+      "psd": true,
+      "eigenvalues": [
+        0.0,
+        0.0,
+        0.0,
+        0.9999999999999998
+      ],
+      "pass": true
+    },
+    "classical_mixture_is_valid": {
+      "hermitian": true,
+      "trace_one": true,
+      "psd": true,
+      "eigenvalues": [
+        0.0,
+        0.0,
+        0.5,
+        0.5
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_eigenvalue_joint_state_is_rejected": {
+      "hermitian": true,
+      "trace_one": true,
+      "psd": false,
+      "eigenvalues": [
+        -0.1,
+        0.0,
+        0.0,
+        1.1
+      ],
+      "pass": true
+    },
+    "wrong_trace_joint_state_is_rejected": {
+      "hermitian": true,
+      "trace_one": false,
+      "psd": true,
+      "eigenvalues": [
+        0.6,
+        0.6,
+        0.6,
+        0.6
+      ],
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bell_and_product_joint_states_are_distinct": {
+      "fro_norm_difference": 1.414213562373095,
+      "pass": true
+    },
+    "product_joint_marginal_is_pure": {
+      "pass": true
+    },
+    "bell_joint_marginal_is_mixed": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local joint-density-state lego on bounded two-qubit examples."
+  }
+}

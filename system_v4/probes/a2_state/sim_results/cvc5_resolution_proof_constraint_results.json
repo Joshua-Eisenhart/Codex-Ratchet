@@ -1,0 +1,114 @@
+{
+  "name": "cvc5_resolution_proof_constraint",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- proof verification does not use autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- clause graph is handled by cvc5 internally"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "alternative proof tool; cvc5 is primary"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT/SAT on resolution completeness constraint (empty clause requirement via QF_LIA)"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: symbolic verification of resolution steps and literal elimination"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no algebraic structure here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold layer"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- clause ordering not graph-critical"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "formula": "{p \u2228 q, \u00acp \u2228 r, \u00acq \u2228 r, \u00acr}",
+    "result": "unsat",
+    "is_unsat": true,
+    "pass": true,
+    "reason": "sympy-verified resolution chain derives empty clause in 3 steps",
+    "steps": 3,
+    "step1_correct": true,
+    "step2_correct": true,
+    "step3_correct": true,
+    "final_clause_is_empty": true
+  },
+  "negative": {
+    "claim": "incomplete refutation (stops at clause {r})",
+    "original_formula_unsat": true,
+    "incomplete_refutation_invalid": true,
+    "pass": true,
+    "reason": "incomplete refutation cannot be valid if original formula is unsat"
+  },
+  "boundary": {
+    "formula": "{p \u2228 q}",
+    "result": "sat",
+    "is_unsat": true,
+    "refutation_trivial": true,
+    "pass": true,
+    "reason": "SAT formula admits no resolution refutation to empty clause",
+    "is_sat": true,
+    "no_refutation_exists": true
+  },
+  "summary": {
+    "all_pass": false,
+    "cvc5_load_bearing": "UNSAT/SAT verdicts on proof completeness",
+    "sympy_supportive": "symbolic resolution step verification"
+  }
+}

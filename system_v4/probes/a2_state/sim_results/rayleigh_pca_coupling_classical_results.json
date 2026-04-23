@@ -1,0 +1,128 @@
+{
+  "name": "rayleigh_pca_coupling_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Rayleigh-PCA coupling loses: (1) non-commuting observables where Rayleigh maximization over states requires SDP, (2) quantum principal subspaces with entanglement-sensitive eigenstructure, (3) variational quantum eigensolver gap to classical PCA on density matrices.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.linalg.eigh cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "match_0": {
+      "lambda_top": 1.3168838284419933,
+      "rayleigh": 1.3168838284419928,
+      "var_pc1": 1.3168838284419935,
+      "pass": true
+    },
+    "match_1": {
+      "lambda_top": 1.3927247606427136,
+      "rayleigh": 1.3927247606427133,
+      "var_pc1": 1.3927247606427162,
+      "pass": true
+    },
+    "match_2": {
+      "lambda_top": 1.2572827855284316,
+      "rayleigh": 1.2572827855284323,
+      "var_pc1": 1.2572827855284319,
+      "pass": true
+    },
+    "match_3": {
+      "lambda_top": 1.241528240810154,
+      "rayleigh": 1.2415282408101547,
+      "var_pc1": 1.2415282408101553,
+      "pass": true
+    }
+  },
+  "negative": {
+    "wrong_eigvec_lt_top": {
+      "lambda_top": 17.103787286048224,
+      "rayleigh": 0.0018383445132614052,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "identity_cov_all_one": {
+      "r": 1.0,
+      "pass": true
+    },
+    "rank1_top": {
+      "r": 3.6999999999999993,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

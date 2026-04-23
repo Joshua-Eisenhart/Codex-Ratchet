@@ -1,0 +1,108 @@
+{
+  "name": "leviathan_deep_authority_gradient_monotone",
+  "classification": "canonical",
+  "scope_note": "OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for symbolic derivative monotonicity"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for symbolic derivative monotonicity"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for symbolic derivative monotonicity"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for symbolic derivative monotonicity"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic differentiation/limit proves monotonic authority form"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for symbolic derivative monotonicity"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for symbolic derivative monotonicity"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for symbolic derivative monotonicity"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for symbolic derivative monotonicity"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for symbolic derivative monotonicity"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for symbolic derivative monotonicity"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for symbolic derivative monotonicity"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "derivative_positive": {
+      "expr": "b*k*exp(-b*h)",
+      "pass": true
+    },
+    "discrete_diff_positive": {
+      "expr": "2**(-n - 1)",
+      "pass": true
+    }
+  },
+  "negative": {
+    "nonmonotone_excluded": {
+      "val": "-2",
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "at_h0_derivative_positive": {
+      "v": "b*k",
+      "pass": true
+    },
+    "bounded_at_infinity": {
+      "lim": "k",
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

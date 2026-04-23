@@ -1,0 +1,130 @@
+{
+  "name": "loop_vector_fields",
+  "classification": "canonical",
+  "classification_note": "Canonical local loop row for tangent vector fields along one bounded phase loop, kept separate from transport law and loop-order bundles.",
+  "lego_ids": [
+    "loop_vector_fields"
+  ],
+  "primary_lego_ids": [
+    "loop_vector_fields"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "tangent_is_orthogonal_to_radius": {
+      "dots": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pass": "True"
+    },
+    "tangent_norm_is_constant_along_loop": {
+      "norms": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "pass": "True"
+    },
+    "field_rotates_continuously_around_loop": {
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "row_does_not_promote_transport_or_history_law": {
+      "pass": true
+    },
+    "row_is_not_collapsed_to_base_loop_closure": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "points_remain_on_unit_loop": {
+      "pass": "True"
+    },
+    "bounded_to_one_local_loop_family": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local tangent-field row on one bounded phase loop."
+  }
+}

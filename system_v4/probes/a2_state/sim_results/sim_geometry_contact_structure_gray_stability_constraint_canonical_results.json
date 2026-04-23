@@ -1,0 +1,132 @@
+{
+  "name": "sim_geometry_contact_structure_gray_stability_constraint_canonical",
+  "description": "Gray's theorem: smooth family of contact structures on closed manifold is isotopic. cvc5 UNSAT proves non-isotopic family is inadmissible.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of contact structure isotopy constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for contact structure analysis"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_isotopic_s3_family": {
+      "sat": true,
+      "valid": true,
+      "description": "Isotopic family on S^3 satisfies Gray stability"
+    },
+    "test_2_deformation_s1_s2": {
+      "sat": true,
+      "valid": true,
+      "description": "Smooth deformation through contact structures on S^1\u00d7S^2"
+    },
+    "test_3_reeb_field_isotopy": {
+      "sat": true,
+      "valid": true,
+      "description": "Reeb vector field topology preserved under isotopy"
+    }
+  },
+  "negative": {
+    "test_1_non_isotopic_closed": {
+      "unsat": false,
+      "valid": false,
+      "description": "Non-isotopic structures on closed manifold is UNSAT (violates Gray)"
+    },
+    "test_2_discontinuous_deformation": {
+      "unsat": true,
+      "valid": true,
+      "description": "Discontinuous deformation violates Gray's smoothness requirement"
+    },
+    "test_3_contact_condition_failure": {
+      "unsat": true,
+      "valid": true,
+      "description": "Loss of contact condition during isotopy violates Gray's theorem"
+    }
+  },
+  "boundary": {
+    "test_1_even_dimension_boundary": {
+      "sat": true,
+      "valid": true,
+      "description": "Contact structures impossible on even-dimensional manifolds"
+    },
+    "test_2_identity_isotopy": {
+      "sat": true,
+      "valid": true,
+      "description": "Identity isotopy (trivial deformation) is always valid"
+    },
+    "test_3_manifold_with_boundary": {
+      "sat": true,
+      "valid": true,
+      "description": "Gray's theorem doesn't apply to manifolds with boundary"
+    }
+  },
+  "classification": "canonical"
+}

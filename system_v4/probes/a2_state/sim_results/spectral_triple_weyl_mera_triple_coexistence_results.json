@@ -1,0 +1,176 @@
+{
+  "name": "sim_spectral_triple_weyl_mera_triple_coexistence",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "build Dirac D at each MERA layer as torch tensor; apply Weyl P_L projector; compute spectral gap via torch.linalg.eigvalsh; compute I_c via torch entropy; full triple pipeline D->P_L->MERA computed in torch"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no heterogeneous graph message-passing needed for triple coexistence at classical baseline; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT: I_c violation (increase under coarse-graining) in triple pipeline excluded; z3 UNSAT: negative spectral gap after triple pipeline excluded; two independent UNSAT proofs gate the triple coexistence claim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 covers both needed UNSAT proofs; cvc5 not needed at triple coexistence level"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification that P_L commutes with chirality-preserving D at each MERA layer; confirm [P_L, D_l] = 0 for block-diagonal D_l symbolically"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "chirality grading gamma is the Cl(1,0) pseudoscalar; P_L = (1-e1)/2 in Cl(1,0); verify P_L^2 = P_L (idempotent) survives through all MERA layers"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian geometry on product space not needed at triple classical baseline; excluded"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "E(3) equivariance not the target in triple; chirality is Z2 grading; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "MERA DAG with Weyl sector labels on each node; verify sector labels persist through coarse-graining (L/R label propagated to coarser nodes)"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "4-way hyperedge {D, P_L, MERA_layer, I_c} represents the irreducibly 4-adic coupling probed in triple coexistence; triple is not reducible to pairwise"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not required for triple coexistence at classical baseline; excluded"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not required for triple pipeline probe; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "P1_spectral_gap_survives_triple_pipeline": {
+      "passed": true,
+      "gap_raw_dirac": 1.0,
+      "gap_after_triple": 1.5,
+      "interpretation": "spectral gap survived triple pipeline D->P_L->MERA; gap<=0 after triple pipeline excluded"
+    },
+    "P2_H_chirality_log2_at_fine_layer_and_nontrivial_in_L_sector": {
+      "passed": true,
+      "H_raw": 0.6931471805599453,
+      "H_L_sector": 1.2798542258336674,
+      "log2": 0.6931471805599453,
+      "interpretation": "chirality entropy = log(2) survived at fine layer; within-L-sector entropy is non-trivial post-projection; H=0 collapse excluded"
+    },
+    "P3_Ic_monotone_in_triple_pipeline": {
+      "passed": true,
+      "ic_values": [
+        1.973001406393613,
+        0.6108643020548935,
+        0.6108643020548935
+      ],
+      "interpretation": "I_c co-varied monotonically decreasing under coarse-graining in triple; DPI violation in triple pipeline excluded"
+    },
+    "sympy_PL_D_commute_in_triple": {
+      "passed": true,
+      "commutator": "Matrix([[0, 0], [0, 0]])",
+      "interpretation": "[P_L, D_l] = 0 survived symbolically for all MERA layers; non-zero commutator excluded"
+    },
+    "clifford_PL_idempotent_in_triple": {
+      "passed": true,
+      "interpretation": "P_L^2 = P_L survived in Cl(1,0) throughout triple; non-idempotent projector excluded"
+    },
+    "rustworkx_mera_dag_with_sector_labels": {
+      "passed": true,
+      "n_nodes": 12,
+      "n_edges": 4,
+      "interpretation": "MERA DAG with Weyl sector labels survived; cross-sector edges excluded after P_L"
+    },
+    "xgi_4way_hyperedge_triple": {
+      "passed": true,
+      "interpretation": "4-adic triple coupling D/P_L/MERA/I_c survived as non-reducible hyperedge"
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_Ic_violation_in_triple_excluded": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "I_c increase under coarse-graining in triple pipeline is excluded by z3 UNSAT; DPI cannot be violated even with Weyl projection active"
+    },
+    "N2_z3_unsat_negative_gap_in_triple_excluded": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "negative spectral gap after triple pipeline is excluded by z3 UNSAT; Hermitian D has real eigenvalues so |eigenvalue| < 0 is structurally impossible"
+    }
+  },
+  "boundary": {
+    "B1_no_mera_gap_equals_raw_dirac_L_sector": {
+      "passed": true,
+      "gap_raw_dirac": 1.0,
+      "gap_weyl_only": 1.0,
+      "expected_L_gap": 1.0,
+      "interpretation": "no-MERA boundary: spectral gap = L-sector gap of raw Dirac; coarse-graining not needed for gap to survive"
+    },
+    "B2_no_weyl_Ic_monotone_control_check": {
+      "passed": true,
+      "ic_values": [
+        1.9367978710680962,
+        1.2798542258336674,
+        0.6365141682948128,
+        -0.0
+      ],
+      "layer_sizes": [
+        8,
+        4,
+        2,
+        1
+      ],
+      "interpretation": "I_c monotone under MERA without Weyl projection survived (control check); DPI holds independently of chirality projection"
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 11,
+    "n_pass": 11
+  },
+  "divergence_log": [
+    "spectral gap survived full triple pipeline D->P_L->MERA; gap<=0 excluded",
+    "chirality entropy = log(2) survived at fine layer; H collapse excluded",
+    "I_c co-varied monotonically in triple pipeline; DPI violation excluded",
+    "z3 UNSAT: I_c increase in triple excluded; negative gap in triple excluded",
+    "no-MERA boundary: gap = L-sector gap of raw Dirac survived",
+    "no-Weyl control: I_c monotone independently confirmed without chirality projection",
+    "[P_L, D_l] = 0 survived symbolically for all MERA layers in triple",
+    "P_L^2 = P_L idempotency survived through entire triple in Cl(1,0)"
+  ]
+}

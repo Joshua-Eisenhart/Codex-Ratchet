@@ -1,0 +1,105 @@
+{
+  "name": "sim_gstack_twistor_line_shell_local",
+  "classification": "canonical",
+  "overall_pass": true,
+  "shell": "twistor_line",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one twistor line and does not invoke cross-shell coupling."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one twistor line and does not invoke cross-shell coupling."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 excludes incompatible unit-sphere constraints for the local twistor parameter."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one twistor line and does not invoke cross-shell coupling."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy verifies the quaternionic relations and the induced complex-structure square J_n^2 = -1."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one twistor line and does not invoke cross-shell coupling."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats provides the S^2 carrier for unit twistor parameters."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one twistor line and does not invoke cross-shell coupling."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one twistor line and does not invoke cross-shell coupling."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one twistor line and does not invoke cross-shell coupling."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one twistor line and does not invoke cross-shell coupling."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one twistor line and does not invoke cross-shell coupling."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "quaternionic_relations_hold": {
+      "pass": true,
+      "detail": "The local quaternionic generators square to minus the identity."
+    },
+    "north_pole_twistor_is_complex_structure": {
+      "pass": true,
+      "detail": "A unit twistor parameter on S^2 yields a complex structure."
+    }
+  },
+  "negative": {
+    "unit_parameter_conflict": {
+      "pass": true,
+      "detail": "The same local twistor parameter cannot lie on two incompatible spheres."
+    }
+  },
+  "boundary": {
+    "boundary_twistor_parameter": {
+      "pass": true,
+      "detail": "The boundary point with coefficient vector (1,0,0) remains admissible."
+    }
+  },
+  "parameter_space": "S2"
+}

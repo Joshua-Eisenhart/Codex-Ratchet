@@ -1,0 +1,215 @@
+{
+  "name": "torch_husimi_q",
+  "description": "HusimiQ module: Q(alpha) = <alpha|rho|alpha>/pi, non-negative quasiprobability",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "HusimiQ module: coherent state overlaps, autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Q function formula verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_substrate_match_grid": {
+      "|0><0|": {
+        "max_diff": 1.723528075814329e-08,
+        "n_points": 64,
+        "pass": true
+      },
+      "|+><+|": {
+        "max_diff": 2.004744953376658e-08,
+        "n_points": 64,
+        "pass": true
+      },
+      "mixed": {
+        "max_diff": 1.0660899774084243e-08,
+        "n_points": 64,
+        "pass": true
+      },
+      "random_0": {
+        "max_diff": 1.6945255476574772e-08,
+        "n_points": 64,
+        "pass": true
+      },
+      "random_1": {
+        "max_diff": 1.74954302156749e-08,
+        "n_points": 64,
+        "pass": true
+      },
+      "random_2": {
+        "max_diff": 1.3693930919767006e-08,
+        "n_points": 64,
+        "pass": true
+      }
+    },
+    "P2_non_negativity": {
+      "|0><0|": {
+        "min_Q": 3.0409501892944048e-16,
+        "non_negative": true,
+        "pass": true
+      },
+      "|+><+|": {
+        "min_Q": 0.00967823714017868,
+        "non_negative": true,
+        "pass": true
+      },
+      "mixed": {
+        "min_Q": 0.07957746088504791,
+        "non_negative": true,
+        "pass": true
+      },
+      "random_0": {
+        "min_Q": 0.06160546839237213,
+        "non_negative": true,
+        "pass": true
+      },
+      "random_1": {
+        "min_Q": 0.025278300046920776,
+        "non_negative": true,
+        "pass": true
+      },
+      "random_2": {
+        "min_Q": 0.051197342574596405,
+        "non_negative": true,
+        "pass": true
+      }
+    },
+    "P3_normalization": {
+      "|0><0|": {
+        "integral": 1.0001645080078294,
+        "pass": "True"
+      },
+      "|+><+|": {
+        "integral": 1.00016449133603,
+        "pass": "True"
+      },
+      "mixed": {
+        "integral": 1.0001644696360978,
+        "pass": "True"
+      }
+    },
+    "P4_gradient_exists": {
+      "|0><0|": {
+        "grad_exists": true,
+        "grad": [
+          0.036447495222091675,
+          0.011274531483650208,
+          0.06983580440282822
+        ],
+        "pass": true
+      },
+      "|+><+|": {
+        "grad_exists": true,
+        "grad": [
+          0.036447495222091675,
+          0.011274531483650208,
+          0.06983580440282822
+        ],
+        "pass": true
+      },
+      "mixed": {
+        "grad_exists": true,
+        "grad": [
+          0.036447495222091675,
+          0.011274531483650208,
+          0.06983580440282822
+        ],
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_invalid_bloch_negative_Q": {
+      "r=2_z": {
+        "Q_at_north": 0.23873241245746613,
+        "Q_at_south": -0.07957746833562851,
+        "south_negative": true,
+        "pass": true
+      }
+    },
+    "N2_analytical_check": {
+      "expected": 0.12732395447351627,
+      "actual": 0.1273239552974701,
+      "diff": 8.239538218379749e-10,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_mixed_uniform_Q": {
+      "expected": 0.07957747154594767,
+      "max_deviation": 1.0660899760206455e-08,
+      "pass": true
+    },
+    "B2_pure_state_peak": {
+      "Q_north": 0.15915493667125702,
+      "Q_south": 3.0409501892944048e-16,
+      "north_is_max": true,
+      "south_near_zero": true,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "Q_formula": "(-2*r_z*sin(theta/2)**2 + r_z + 1)/(4*pi)",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 23,
+    "total_pass": 23,
+    "all_pass": true
+  }
+}

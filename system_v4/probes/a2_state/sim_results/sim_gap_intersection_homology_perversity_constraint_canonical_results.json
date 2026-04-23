@@ -1,0 +1,223 @@
+{
+  "name": "IntersectionHomologyPerversityConstraint",
+  "domain": "Intersection homology and perverse sheaves",
+  "claim": "GM perversity conditions: p\u0304(0)=0, monotone with step \u22641, upper bound p\u0304(k)\u2264k-2",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of perversity constraint (GM conditions)"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for perversity definitions"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test1_middle_perversity": {
+      "name": "middle_perversity",
+      "perversity": [
+        0,
+        0,
+        0,
+        1,
+        2
+      ],
+      "codims": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "sat": false,
+      "valid": false
+    },
+    "test2_lower_middle": {
+      "name": "lower_middle_perversity",
+      "perversity": [
+        0,
+        0,
+        -1,
+        0,
+        1
+      ],
+      "codims": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "sat": false,
+      "valid": false
+    },
+    "test3_constant_neg_one_invalid": {
+      "name": "constant_neg_one",
+      "perversity": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "codims": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "sat": false,
+      "valid": false
+    }
+  },
+  "negative": {
+    "neg1_decreasing": {
+      "name": "decreasing_perversity",
+      "description": "p\u0304(3)=1 < p\u0304(2)=2, violates monotonicity",
+      "perversity": [
+        0,
+        1,
+        2,
+        1,
+        0
+      ],
+      "constraint_violated": "monotonicity: p\u0304(k+1) >= p\u0304(k)",
+      "sat": false,
+      "inadmissible": true
+    },
+    "neg2_large_step": {
+      "name": "large_step_violation",
+      "description": "p\u0304(2)=2 > p\u0304(1)=0 + 1, step > 1 is inadmissible",
+      "perversity": [
+        0,
+        0,
+        2,
+        3,
+        4
+      ],
+      "constraint_violated": "step constraint: p\u0304(k+1) - p\u0304(k) <= 1",
+      "sat": false,
+      "inadmissible": true
+    },
+    "neg3_upper_bound": {
+      "name": "upper_bound_violation",
+      "description": "p\u0304(4)=4 > 4-2=2, violates GM upper bound",
+      "perversity": [
+        0,
+        0,
+        1,
+        2,
+        4
+      ],
+      "constraint_violated": "upper bound: p\u0304(k) <= k - 2",
+      "sat": false,
+      "inadmissible": true
+    }
+  },
+  "boundary": {
+    "bound1_minimal": {
+      "name": "minimal_length_valid",
+      "description": "Minimal valid: [0, 0] at codims [0,1]",
+      "perversity": [
+        0,
+        0
+      ],
+      "sat": false,
+      "valid": false
+    },
+    "bound2_codim0_violation": {
+      "name": "codim_0_nonzero_invalid",
+      "description": "p\u0304(0) = 1 violates p\u0304(0) = 0 requirement",
+      "perversity": [
+        1,
+        1,
+        1
+      ],
+      "must_be_unsat": true,
+      "sat": false,
+      "valid": false
+    },
+    "bound3_maximal_steps": {
+      "name": "maximal_valid_steps",
+      "description": "[0, 1, 2, 3, 4] at codims [0,1,2,3,4], all steps +1",
+      "perversity": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "all_steps_maximal": true,
+      "sat": false,
+      "valid": false
+    }
+  },
+  "classification": "canonical"
+}

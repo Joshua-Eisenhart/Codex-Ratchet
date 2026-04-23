@@ -1,0 +1,150 @@
+{
+  "name": "Geometric Satake Correspondence -- Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of geometric Satake constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for Satake isomorphism and Weyl character formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; representation-theoretic constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "classification": "canonical",
+  "positive_tests": {
+    "sl2_weight1": {
+      "dim_rep": 2,
+      "rank_ic": 2,
+      "satake_consistent": true,
+      "test": "PASS"
+    },
+    "sl3_weight_10": {
+      "dim_rep": 3,
+      "rank_ic": 3,
+      "satake_consistent": true,
+      "test": "PASS"
+    },
+    "weyl_character_sl2": {
+      "character": "exp(mu) + exp(-mu)",
+      "dimension_integral": 4.7008047745752055,
+      "test": "PASS"
+    }
+  },
+  "negative_tests": {
+    "mismatch_2_vs_3": {
+      "rep_rank": 2,
+      "ic_rank": 3,
+      "expected_unsat": true,
+      "actual_unsat": true,
+      "test": "PASS"
+    },
+    "mismatch_3_vs_4": {
+      "rep_rank": 3,
+      "ic_rank": 4,
+      "expected_unsat": true,
+      "actual_unsat": true,
+      "test": "PASS"
+    },
+    "wrong_character": {
+      "character": "exp(2*mu) + exp(-2*mu)",
+      "integral": 7.253720815694037,
+      "expected_dimension": 2,
+      "test": "PASS"
+    }
+  },
+  "boundary_tests": {
+    "trivial_weight": {
+      "weight": "\u03bb=0",
+      "dim_rep": 1,
+      "rank_ic": 1,
+      "satake_consistent": true,
+      "test": "PASS"
+    },
+    "highest_weight_21": {
+      "weight": "(2,1)",
+      "dim_rep": 12,
+      "satake_valid": true,
+      "test": "PASS"
+    },
+    "betti_dimension_consistency": {
+      "weight": "\u03bb=2 (sl(2))",
+      "dimension_from_coeffs": 3,
+      "expected_dimension": 3,
+      "test": "PASS"
+    }
+  },
+  "summary": {
+    "positive_pass": 3,
+    "positive_total": 3,
+    "negative_pass": 3,
+    "negative_total": 3,
+    "boundary_pass": 3,
+    "boundary_total": 3
+  }
+}

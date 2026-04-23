@@ -1,0 +1,138 @@
+{
+  "name": "sim_axis_couple_1_2_curvature_scale",
+  "classification": "canonical",
+  "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 2); conformal geometry coupling",
+  "exclusion_claim": "coupling excludes Axis 1 curvature independence from Axis 2 scale when scale field is position-dependent; uniform scaling leaves curvature invariant; coupling strength = |d^2 Omega / dx^2|",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: metric as differentiable 2x2 tensor field; Riemann-like curvature via autograd second derivatives; verify change under non-uniform Omega(x)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this axis-1x2 curvature-scale lego; deferred"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT \u2014 Omega is position-dependent AND Riemann tensor unchanged; structural impossibility of curvature invariance under non-uniform rescaling"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this axis-1x2 curvature-scale lego; deferred"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: explicit Riemann tensor for g=e^{2phi}*diag(1,1) with phi=x^2; compute curvature correction terms symbolically"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: scale change as grade-0 scalar; position-dependence as grade-1 gradient; coupling Axis1<->Axis2 = |e1 ^ grad(Omega)| bivector magnitude"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this axis-1x2 curvature-scale lego; deferred"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this axis-1x2 curvature-scale lego; deferred"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: coupling graph nodes {Axis1, Axis2, scale_gradient, curvature_correction}; verify Axis1->curvature_correction<-scale_gradient joint structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this axis-1x2 curvature-scale lego; deferred"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this axis-1x2 curvature-scale lego; deferred"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this axis-1x2 curvature-scale lego; deferred"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "P1_nonuniform_scale_generates_curvature": true,
+    "P1_R_at_origin": -8.0,
+    "P1_R_at_x1": -0.1465251110327491,
+    "P2_axis1_axis2_covary": true,
+    "P2_scale_values": [
+      1.0,
+      1.6487212707001282,
+      7.38905609893065,
+      90.01713130052181
+    ],
+    "P2_curvature_values": [
+      -8.0,
+      -2.9430355278224547,
+      -0.1465251110327491,
+      -0.0009872784486152652
+    ],
+    "P3_uniform_scale_curvature_unchanged": true,
+    "P3_R_uniform": -0.0,
+    "P4_coupling_strength_nonzero": true,
+    "P4_coupling_strength": 3.9999999978945766,
+    "P5_metric_changes_nonuniform": true,
+    "P5_metric_diff_norm": 75.79923069498054
+  },
+  "negative": {
+    "N1_uniform_no_curvature_change": true,
+    "N1_R_const": -0.0,
+    "N2_z3_nonuniform_must_change_curvature_UNSAT": true,
+    "N2_z3_result": "unsat",
+    "N3_sympy_constant_phi_R_zero": true,
+    "N3_R_sym": "0",
+    "N4_clifford_uniform_zero_coupling": true,
+    "N4_coupling_bivector_mag": 0.0,
+    "N5_uniform_no_coupling_edges": true,
+    "N5_grad_out_degree": 0
+  },
+  "boundary": {
+    "B1_reference_omega_zero_curvature": true,
+    "B1_R_reference": -0.0,
+    "B2_sympy_R_matches_formula": true,
+    "B2_R_formula": "-4*alpha*exp(-2*alpha*x**2)",
+    "B3_clifford_nonuniform_nonzero_coupling": true,
+    "B3_coupling_bivector_e12": 0.5,
+    "B4_rustworkx_scale_drives_curvature": true,
+    "B4_axis2_successors_count": 2,
+    "B5_z3_nonuniform_generates_curvature_SAT": true,
+    "B5_z3_result": "sat",
+    "B6_coupling_monotone_with_alpha": true,
+    "B6_R_magnitudes": [
+      2.0,
+      4.0,
+      8.0,
+      16.0
+    ]
+  },
+  "overall_pass": true
+}

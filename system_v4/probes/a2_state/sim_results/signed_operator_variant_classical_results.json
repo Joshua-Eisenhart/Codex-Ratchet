@@ -1,0 +1,105 @@
+{
+  "name": "signed_operator_variant",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "spectrum_negates_n2": true,
+    "eigvecs_same_span_n2": true,
+    "compose_neg_square_n2": true,
+    "double_flip_n2": true,
+    "spectrum_negates_n4": true,
+    "eigvecs_same_span_n4": true,
+    "compose_neg_square_n4": true,
+    "double_flip_n4": true,
+    "spectrum_negates_n6": true,
+    "eigvecs_same_span_n6": true,
+    "compose_neg_square_n6": true,
+    "double_flip_n6": true
+  },
+  "negative": {
+    "spectrum_not_equal_under_flip": true,
+    "not_equal_to_self": true
+  },
+  "boundary": {
+    "zero_invariant": true,
+    "symmetric_spectrum_setwise_eq": true
+  },
+  "classical_captured": "spectrum negation, eigenspace preservation, sign-flip involution",
+  "innately_missing": "nonclassical signed-operator admissibility under coupling / charge-like constraints",
+  "all_pass": true
+}

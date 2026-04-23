@@ -1,0 +1,133 @@
+{
+  "name": "sim_gap_associative_3algebra_constraint_canonical",
+  "description": "Ternary bracket [x,y,z] with degree constraint: output_deg = (deg_x + deg_y + deg_z) mod n",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for pure constraint checking"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for algebraic constraint"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "tried but cvc5 preferred for integer constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "binary algebra limit check; verifies [x,y,z\u2192fixed_z] reduces to 2-algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "3-algebra not clifford multivector"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to algebraic constraint"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to algebraic constraint"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "not installed"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell complex of bracket closure: cells=degree classes"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent homology of algebra filtration by degree"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": "supportive",
+    "gudhi": "supportive"
+  },
+  "positive": [
+    {
+      "name": "positive_1_ternary_degrees_mod3",
+      "error": "name 'cvc5' is not defined"
+    },
+    {
+      "name": "positive_2_ternary_larger_modulus",
+      "error": "name 'cvc5' is not defined"
+    },
+    {
+      "name": "positive_3_sympy_mod5_closure",
+      "condition": "deg=(1,1,3), n=5, expected_output=0",
+      "output_mod5": 0,
+      "expected": 0,
+      "passed": true
+    }
+  ],
+  "negative": [
+    {
+      "name": "negative_1_contradiction_unsat",
+      "error": "name 'cvc5' is not defined"
+    },
+    {
+      "name": "negative_2_degree_mismatch",
+      "error": "name 'cvc5' is not defined"
+    },
+    {
+      "name": "negative_3_sympy_algebraic_contradiction",
+      "condition": "x+y=5 AND x+y=6",
+      "solution": [],
+      "expected": [],
+      "passed": true
+    }
+  ],
+  "boundary": [
+    {
+      "name": "boundary_1_binary_limit_reduction",
+      "condition": "z fixed -> [x,y,z_fixed] reduces to [x,y] for bracket",
+      "output_3algebra": 1,
+      "output_2algebra": 2,
+      "note": "z_fixed=2 increases output_3 vs 2-algebra",
+      "passed": true
+    },
+    {
+      "name": "boundary_2_trivial_modulus_n1",
+      "error": "name 'cvc5' is not defined"
+    },
+    {
+      "name": "boundary_3_large_degrees_small_modulus",
+      "error": "name 'cvc5' is not defined"
+    }
+  ],
+  "classification": "canonical"
+}

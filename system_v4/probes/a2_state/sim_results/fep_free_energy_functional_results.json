@@ -1,0 +1,39 @@
+{
+  "name": "sim_fep_free_energy_functional",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "closed-form F for 2-bin distributions"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT on Gibbs lower bound => F>=0 admissibility fence"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "numeric KL evaluation for baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "sympy_matches_numeric": true,
+    "z3_gibbs_lowerbound_unsat": true
+  },
+  "negative": {
+    "all_positive_when_q_neq_p": true,
+    "negative_F_unsat_when_q_neq_p": true
+  },
+  "boundary": {
+    "F_equals_zero_when_q_eq_p": true,
+    "F_degenerate_zero_support_safe": true
+  },
+  "PASS": true
+}

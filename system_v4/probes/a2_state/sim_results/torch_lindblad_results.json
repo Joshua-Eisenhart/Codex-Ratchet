@@ -1,0 +1,402 @@
+{
+  "name": "torch_lindblad",
+  "phase": "Phase 3 sim",
+  "description": "Lindblad master equation as differentiable nn.Module composing Z-dephasing and amplitude damping into continuous-time evolution with Euler integration. Hamiltonian H = h*sigma parameterized by Bloch vector, dissipation rates learnable via autograd.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: LindbladEvolution as nn.Module with Euler integrator, autograd for purity gradients w.r.t. rates and Hamiltonian params"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Parameter constraint: non-negative rates required for physical CPTP evolution"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification: Lindblad dissipators and commutator preserve trace"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_pure_dephasing_matches_channel": {
+      "|0><0|": {
+        "max_diff": 0.0,
+        "p_exact": 0.04758129098202024,
+        "pass": true
+      },
+      "|1><1|": {
+        "max_diff": 0.0,
+        "p_exact": 0.04758129098202024,
+        "pass": true
+      },
+      "|+><+|": {
+        "max_diff": 2.3245811462402344e-06,
+        "p_exact": 0.04758129098202024,
+        "pass": true
+      },
+      "|-><-|": {
+        "max_diff": 2.3245811462402344e-06,
+        "p_exact": 0.04758129098202024,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "max_diff": 0.0,
+        "p_exact": 0.04758129098202024,
+        "pass": true
+      }
+    },
+    "P2_amplitude_damping_to_ground": {
+      "|0><0|": {
+        "diff_from_ground": 0.0,
+        "final_pop_0": 1.0,
+        "final_pop_1": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "diff_from_ground": 0.0024639072362333536,
+        "final_pop_0": 0.997536838054657,
+        "final_pop_1": 0.0024639072362333536,
+        "pass": true
+      },
+      "|+><+|": {
+        "diff_from_ground": 0.024856168776750565,
+        "final_pop_0": 0.9987679719924927,
+        "final_pop_1": 0.0012319536181166768,
+        "pass": true
+      },
+      "|-><-|": {
+        "diff_from_ground": 0.024856168776750565,
+        "final_pop_0": 0.9987679719924927,
+        "final_pop_1": 0.0012319536181166768,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "diff_from_ground": 0.0012320280075073242,
+        "final_pop_0": 0.9987679719924927,
+        "final_pop_1": 0.0012319536181166768,
+        "pass": true
+      }
+    },
+    "P3_unitary_only_matches_exact": {
+      "|0><0|": {
+        "max_diff": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "max_diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "max_diff": 9.97880027053007e-05,
+        "pass": true
+      },
+      "|-><-|": {
+        "max_diff": 9.97880027053007e-05,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "max_diff": 0.0,
+        "pass": true
+      }
+    },
+    "P4_combined_rotation_dissipation": {
+      "competition": {
+        "final_purity": 0.5,
+        "purity_less_than_1": "True",
+        "trace_preserved": "True",
+        "pass": "True"
+      }
+    },
+    "P5_autograd_purity_wrt_rates": {
+      "purity_grad": {
+        "final_purity": 0.6669951677322388,
+        "grad_gamma_z": -0.3181932866573334,
+        "grad_gamma_amp": -0.01935267075896263,
+        "grad_h": [
+          0.0,
+          -0.0654706358909607,
+          0.0
+        ],
+        "rates_grad_exists": true,
+        "h_grad_exists": true,
+        "pass": true
+      }
+    },
+    "P6_substrate_equivalence_torch_vs_numpy": {
+      "|0><0|": {
+        "max_diff": 1.8687223435343014e-08,
+        "pass": true
+      },
+      "|1><1|": {
+        "max_diff": 2.538595623713391e-07,
+        "pass": true
+      },
+      "|+><+|": {
+        "max_diff": 4.882522539606526e-07,
+        "pass": true
+      },
+      "|-><-|": {
+        "max_diff": 2.833618891751044e-07,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "max_diff": 8.778384752439194e-08,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_negative_rates_non_physical": {
+      "neg_dephasing": {
+        "trace": 1.0,
+        "min_eigenvalue": -25.742450714111328,
+        "purity": 1377.8323974609375,
+        "non_physical_detected": true,
+        "pass": true
+      },
+      "neg_amp_damp": {
+        "trace": 1.0000004768371582,
+        "min_eigenvalue": -2.936728000640869,
+        "purity": 24.122201919555664,
+        "non_physical_detected": true,
+        "pass": true
+      },
+      "both_negative": {
+        "trace": 0.9999995827674866,
+        "min_eigenvalue": -5.558330535888672,
+        "purity": 73.90673828125,
+        "non_physical_detected": true,
+        "pass": true
+      }
+    },
+    "N2_output_hermiticity": {
+      "|0><0|": {
+        "hermitian_diff": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "hermitian_diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "hermitian_diff": 0.0,
+        "pass": true
+      },
+      "|-><-|": {
+        "hermitian_diff": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "hermitian_diff": 0.0,
+        "pass": true
+      }
+    },
+    "N3_trace_preservation": {
+      "|0><0|": {
+        "trace": 0.9999998807907104,
+        "trace_diff": 1.1920928955078125e-07,
+        "pass": "True"
+      },
+      "|1><1|": {
+        "trace": 1.0000001192092896,
+        "trace_diff": 1.1920928955078125e-07,
+        "pass": "True"
+      },
+      "|+><+|": {
+        "trace": 1.000000238418579,
+        "trace_diff": 2.384185791015625e-07,
+        "pass": "True"
+      },
+      "|-><-|": {
+        "trace": 0.9999997615814209,
+        "trace_diff": 2.384185791015625e-07,
+        "pass": "True"
+      },
+      "maximally_mixed": {
+        "trace": 1.0000001192092896,
+        "trace_diff": 1.1920928955078125e-07,
+        "pass": "True"
+      }
+    }
+  },
+  "boundary": {
+    "B1_convergence_dt_refinement": {
+      "convergence": {
+        "diff_coarse_fine": 0.0005452048499137163,
+        "diff_fine_finer": 5.421858804766089e-05,
+        "finer_is_more_accurate": true,
+        "fine_finer_diff_small": true,
+        "pass": true
+      }
+    },
+    "B2_steady_state_convergence": {
+      "|0><0|": {
+        "diff_from_reference": 0.0,
+        "final_pop_0": 1.0,
+        "final_pop_1": 0.0
+      },
+      "|1><1|": {
+        "diff_from_reference": 4.369020462036133e-05,
+        "final_pop_0": 0.9999563097953796,
+        "final_pop_1": 4.317124330555089e-05
+      },
+      "|+><+|": {
+        "diff_from_reference": 2.1585621652775444e-05,
+        "final_pop_0": 0.9999787211418152,
+        "final_pop_1": 2.1585621652775444e-05
+      },
+      "|-><-|": {
+        "diff_from_reference": 2.1585621652775444e-05,
+        "final_pop_0": 0.9999787211418152,
+        "final_pop_1": 2.1585621652775444e-05
+      },
+      "maximally_mixed": {
+        "diff_from_reference": 2.1585621652775444e-05,
+        "final_pop_0": 0.9999787211418152,
+        "final_pop_1": 2.1585621652775444e-05
+      },
+      "all_converged": true,
+      "pass": true
+    },
+    "B3_zero_params_identity": {
+      "|0><0|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "|-><-|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      }
+    },
+    "B4_positivity_maintained": {
+      "positivity_over_time": {
+        "n_steps": 200,
+        "min_eigenvalue_overall": 0.005459530744701624,
+        "all_positive": true,
+        "pass": true
+      }
+    }
+  },
+  "falsification": {
+    "F1_autograd_vs_finite_difference": {
+      "gamma_z": {
+        "autograd": -0.4988565146923065,
+        "finite_diff": -0.4988564638513937,
+        "abs_diff": 5.0840912813043815e-08,
+        "pass": "True"
+      },
+      "gamma_amp": {
+        "autograd": -0.08153759688138962,
+        "finite_diff": -0.08153775630903581,
+        "abs_diff": 1.5942764619580885e-07,
+        "pass": "True"
+      }
+    },
+    "F2_discrete_continuous_agreement": {
+      "dephasing_|+><+|": {
+        "max_diff": 9.834766387939453e-07,
+        "total_time": 0.1,
+        "pass": true
+      },
+      "dephasing_|1><1|": {
+        "max_diff": 0.0,
+        "total_time": 0.1,
+        "pass": true
+      },
+      "amp_damp_|+><+|": {
+        "max_diff": 2.086162567138672e-06,
+        "total_time": 0.1,
+        "pass": true
+      },
+      "amp_damp_|1><1|": {
+        "max_diff": 1.6689300537109375e-06,
+        "total_time": 0.1,
+        "pass": true
+      }
+    },
+    "F3_substrate_equivalence_30_random": {
+      "n_states": 30,
+      "overall_max_diff": 1.8066035389896484e-07,
+      "mean_max_diff": 7.206095435775942e-08,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "trace_D_z_is_zero": true,
+    "trace_D_amp_is_zero": true,
+    "trace_commutator_is_zero": true,
+    "lindblad_preserves_trace": true,
+    "pass": true
+  },
+  "z3_check": {
+    "non_negative_rates_satisfiable": "sat",
+    "nontrivial_rates_satisfiable": "sat",
+    "negative_and_non_negative_impossible": "unsat",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 52,
+    "total_pass": 52,
+    "all_pass": true
+  }
+}

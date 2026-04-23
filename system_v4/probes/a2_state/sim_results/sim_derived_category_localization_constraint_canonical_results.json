@@ -1,0 +1,192 @@
+{
+  "name": "sim_derived_category_localization_constraint_canonical",
+  "description": "Localization property: D(A) = K(A)[qis^{-1}]; qis become invertible; cvc5 load-bearing proof",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_positive_qis_homology": {
+      "test": "Quasi-isomorphism: f induces isomorphism on all homology",
+      "H_0_before": 1,
+      "H_0_after": 1,
+      "homology_iso": true,
+      "passed": true,
+      "interpretation": "qis are identified by homology isomorphism",
+      "method": "sympy symbolic homology rank comparison"
+    },
+    "cvc5_positive_qis_invertible": {
+      "error": "cannot get value unless model generation is enabled (try --produce-models)"
+    },
+    "numpy_positive_qis_numerical": {
+      "test": "Quasi-isomorphism with concrete homology ranks",
+      "H0_before": 1,
+      "H1_before": 0,
+      "H2_before": 0,
+      "H0_after": 1,
+      "H1_after": 0,
+      "H2_after": 0,
+      "all_match": true,
+      "is_qis": true,
+      "passed": true,
+      "interpretation": "homology isomorphism defines qis in D(A)",
+      "method": "numpy direct rank comparison"
+    }
+  },
+  "negative": {
+    "cvc5_negative_qis_not_inverted_unsat": {
+      "test": "cvc5 proves UNSAT: qis is NOT invertible in D(A)",
+      "satisfiable": false,
+      "passed": true,
+      "interpretation": "localization property forbids non-inverted qis",
+      "method": "cvc5 QF_LIA proof",
+      "claim": "derived category definition contradicts non-inverted qis"
+    },
+    "sympy_negative_non_qis": {
+      "test": "Non-quasi-isomorphism: homologies do not match",
+      "H0_before": 2,
+      "H0_after": 1,
+      "homologies_match": false,
+      "is_qis": false,
+      "passed": true,
+      "interpretation": "non-matching homology means not qis",
+      "method": "sympy algebraic verification"
+    },
+    "numpy_negative_non_qis_validation": {
+      "test": "Negative cases: non-qis morphisms",
+      "test_cases": [
+        {
+          "H0_before": 2,
+          "H0_after": 1,
+          "is_qis": false
+        },
+        {
+          "H0_before": 1,
+          "H0_after": 2,
+          "is_qis": false
+        },
+        {
+          "H0_before": 0,
+          "H0_after": 1,
+          "is_qis": false
+        }
+      ],
+      "all_correctly_identified": true,
+      "localization_constraint_satisfied": true,
+      "passed": true,
+      "interpretation": "non-qis remain non-invertible in D(A)",
+      "method": "numpy homology rank comparison"
+    }
+  },
+  "boundary": {
+    "sympy_boundary_acyclic_qis": {
+      "test": "Boundary: acyclic complex, map is qis",
+      "H0_rank": 0,
+      "H1_rank": 0,
+      "both_acyclic": true,
+      "is_qis": true,
+      "passed": true,
+      "interpretation": "acyclic complexes have trivial homology; qis if both acyclic",
+      "method": "sympy symbolic"
+    },
+    "cvc5_boundary_universal_property": {
+      "test": "Boundary: universal property Q: K(A) \u2192 D(A)",
+      "constraint": "num_qis = num_inverted_in_d",
+      "satisfiable": true,
+      "passed": true,
+      "interpretation": "universal functor inverts exactly the qis",
+      "method": "cvc5 QF_LIA"
+    },
+    "numpy_boundary_homology_sweep": {
+      "test": "Boundary: homology rank variation near identity",
+      "base_H0": 2,
+      "base_H1": 1,
+      "test_H0_values": [
+        1,
+        2,
+        3
+      ],
+      "is_qis_for_each": [
+        false,
+        true,
+        false
+      ],
+      "only_exact_match": true,
+      "passed": true,
+      "method": "numpy homology sweep"
+    }
+  },
+  "classification": "canonical"
+}

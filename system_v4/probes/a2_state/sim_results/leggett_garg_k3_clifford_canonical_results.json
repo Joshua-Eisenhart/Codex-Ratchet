@@ -1,0 +1,137 @@
+{
+  "name": "leggett_garg_k3_clifford_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no gradient optimization; analytic optimum used"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not a graph task"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "real-valued correlators, not SAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "clifford yields numeric value exactly"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3,0) rotor R(theta)=exp(-theta/2 e2^e3) evolves Bloch vector; sigma_z expectation via grade-0 projection of v*e3; K3 formed from these"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold optimization"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant network"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "clifford_available": {
+      "pass": true
+    },
+    "K3_at_pi_over_3": {
+      "K3": 1.5000000000000002,
+      "C12": 0.5000000000000002,
+      "C23": 0.5000000000000001,
+      "C13": -0.4999999999999998,
+      "expected": 1.5,
+      "pass": true
+    },
+    "exceeds_classical_bound": {
+      "K3": 1.5000000000000002,
+      "classical_bound": 1.0,
+      "pass": true
+    },
+    "gap": {
+      "K3_quantum": 1.5000000000000002,
+      "K3_classical_max": 1.0,
+      "gap": 0.5000000000000002,
+      "pass": true
+    }
+  },
+  "negative": {
+    "classical_max_K3_equals_1": {
+      "value": 1,
+      "pass": true
+    },
+    "fully_dephased_K3": {
+      "K3": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "violation_window_tau_0.9472": {
+      "K3": 1.4859013167027681,
+      "pass": true
+    },
+    "violation_window_tau_1.1472": {
+      "K3": 1.484173591694525,
+      "pass": true
+    },
+    "tau_zero_boundary": {
+      "K3": 1.0,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "load_bearing_tool": "clifford",
+    "gap_classical": 1.0,
+    "gap_quantum": 1.5,
+    "gap_value": 0.5,
+    "gap_kind": "macrorealism_temporal_correlator_bound"
+  }
+}

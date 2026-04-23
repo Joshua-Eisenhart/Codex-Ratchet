@@ -1,0 +1,285 @@
+{
+  "name": "sim_riemannian_connection_holonomy_fiber_assoc_moment_index_chern_yang_mills_ricci_spin_11shell_coupling_canonical",
+  "description": "Coupling Program #88: Riemannian\u00d7Connection\u00d7Holonomy\u00d7Fiber\u00d7Assoc\u00d7Moment\u00d7Chern\u00d7YangMills\u00d7Ricci\u00d7SpinFrame\u00d7Gauge \u2014 11-shell coupling with torch-native MI and eleven entropy shells. Q_RCHFAMCYMSRSG = MI \u00d7 log(3)^2 \u00d7 log(2)^7 \u00d7 log(4); autograd Axis 0 confirmed.",
+  "classification": "classical_baseline",
+  "TOOL_MANIFEST": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Density matrices as float64 tensors; dephasing + MI computation via eigh+matrix_log; autograd gradient dQ/d(eps); 12-factor product with load-bearing MI component"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph topology not required for direct entropy algebra of holonomy and gauge structure"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: Q_RCHFAMCYMSRSG < 0 impossible; Q=0 while MI>0 and all H_i>0 is structurally impossible via zero-product theorem over 12 factors"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for real-valued constraint satisfaction on entropy product"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Q_RCHFAMCYMSRSG = MI \u00d7 H_riemannian \u00d7 ... \u00d7 H_gauge; zero-product over 12 factors; entropy bounds and product structure"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Clifford algebra for spin-frame grading; connection and holonomy categorical layer"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian metric and moment map handled via direct entropy computation"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariance not required for shell-local entropy computation"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Fiber bundle skeleton used for entropy layer count; full graph not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hypergraph structure not needed for associated bundle algebra"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Topological network not required for direct entropy computation"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not needed for shell-local entropy verification"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_mi_primitive_nonzero": {
+      "passed": true,
+      "MI": 0.9394864118290985,
+      "description": "MI primitive: entangled base state has MI > 0 at eps=0"
+    },
+    "P2_h_riemannian_log3": {
+      "passed": true,
+      "H_riemannian": 1.0986122886681098,
+      "expected": 1.0986122886681098,
+      "description": "H_riemannian = log(3) from metric signature structure"
+    },
+    "P3_h_connection_log2": {
+      "passed": true,
+      "H_connection": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_connection = log(2) from connection grading"
+    },
+    "P4_h_holonomy_log2": {
+      "passed": true,
+      "H_holonomy": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_holonomy = log(2) from holonomy group orbits"
+    },
+    "P5_h_fiber_log2": {
+      "passed": true,
+      "H_fiber": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_fiber = log(2) from fiber structure"
+    },
+    "P6_h_assoc_log2": {
+      "passed": true,
+      "H_assoc": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_assoc = log(2) from associated bundle structure"
+    },
+    "P7_h_moment_log2": {
+      "passed": true,
+      "H_moment": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_moment = log(2) from moment map orbits"
+    },
+    "P8_h_chern_log4": {
+      "passed": true,
+      "H_chern": 1.3862943611198906,
+      "expected": 1.3862943611198906,
+      "description": "H_chern = log(4) from characteristic class structure"
+    },
+    "P9_h_yangmills_log2": {
+      "passed": true,
+      "H_yangmills": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_yangmills = log(2) from gauge field"
+    },
+    "P10_h_ricci_log3": {
+      "passed": true,
+      "H_ricci": 1.0986122886681098,
+      "expected": 1.0986122886681098,
+      "description": "H_ricci = log(3) from scalar curvature modes"
+    },
+    "P11_h_spinframe_log2": {
+      "passed": true,
+      "H_spinframe": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_spinframe = log(2) from spin frame bundle"
+    },
+    "P12_h_gauge_log2": {
+      "passed": true,
+      "H_gauge": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_gauge = log(2) from gauge group orbits"
+    },
+    "P13_q_rchfamcymsrsg_full_positive": {
+      "passed": true,
+      "Q_RCHFAMCYMSRSG": 0.0837603634815689,
+      "MI": 0.9394864118290985,
+      "H_riemannian": 1.0986122886681098,
+      "H_connection": 0.6931471805599453,
+      "H_holonomy": 0.6931471805599453,
+      "H_fiber": 0.6931471805599453,
+      "H_assoc": 0.6931471805599453,
+      "H_moment": 0.6931471805599453,
+      "H_chern": 1.3862943611198906,
+      "H_yangmills": 0.6931471805599453,
+      "H_ricci": 1.0986122886681098,
+      "H_spinframe": 0.6931471805599453,
+      "H_gauge": 0.6931471805599453,
+      "description": "Q_RCHFAMCYMSRSG = MI \u00d7 H_riemannian \u00d7 ... \u00d7 H_gauge > 0"
+    },
+    "P14_q_rchfamcymsrsg_monotone_in_mi": {
+      "passed": true,
+      "Q_per_alpha": [
+        0.078596,
+        0.080475,
+        0.082189,
+        0.08376,
+        0.085206
+      ],
+      "description": "Q_RCHFAMCYMSRSG > 0 for 5 entanglement levels"
+    },
+    "P15_emergence_zero_product": {
+      "passed": true,
+      "Q_full": 0.0837603634815689,
+      "zero_combos": {
+        "no_mi": 0.0,
+        "no_riemannian": 0.0,
+        "no_connection": 0.0,
+        "no_gauge": 0.0
+      },
+      "description": "Q_RCHFAMCYMSRSG = 0 iff any H_i = 0; nonzero only in full 12-factor product"
+    },
+    "P16_rho_base_valid_dm": {
+      "passed": true,
+      "trace": 1.0,
+      "min_eval": 0.020000000000000004,
+      "description": "rho_base is valid density matrix (PSD, trace=1)"
+    },
+    "P17_axis0_dq_deps_negative": {
+      "passed": true,
+      "dQ_deps": -0.05672491061485771,
+      "description": "Axis 0: dQ/d(eps) < 0 via pytorch autograd"
+    },
+    "P18_mi_q_pearson_r_high": {
+      "passed": true,
+      "pearson_r": 1.0,
+      "description": "MI co-varies with Q_RCHFAMCYMSRSG across 20 eps sweeps (Pearson r > 0.99)"
+    }
+  },
+  "negative": {
+    "N1_z3_q_nonneg_unsat": {
+      "passed": true,
+      "z3_result": "unsat",
+      "description": "z3 UNSAT: Q_RCHFAMCYMSRSG < 0 impossible"
+    },
+    "N2_z3_q_zero_product_unsat": {
+      "passed": true,
+      "z3_result": "unsat",
+      "description": "z3 UNSAT: Q=0 impossible if MI>0 AND all H_i>0"
+    },
+    "N3_sympy_zero_product_theorem": {
+      "passed": true,
+      "Q_no_mi": "0",
+      "Q_no_riemannian": "0",
+      "Q_no_gauge": "0",
+      "description": "sympy: Q=0 whenever any H_i=0 (zero-product theorem)"
+    },
+    "N4_fully_dephased_mi_nonzero": {
+      "passed": true,
+      "MI_dephased": 0.46688042943420094,
+      "MI_original": 0.9394864118290985,
+      "description": "Fully dephased state retains classical MI"
+    }
+  },
+  "boundary": {
+    "B1_shell_entropies_physical": {
+      "passed": true,
+      "H_riemannian": 1.0986122886681098,
+      "H_connection": 0.6931471805599453,
+      "H_holonomy": 0.6931471805599453,
+      "H_fiber": 0.6931471805599453,
+      "H_assoc": 0.6931471805599453,
+      "H_moment": 0.6931471805599453,
+      "H_chern": 1.3862943611198906,
+      "H_yangmills": 0.6931471805599453,
+      "H_ricci": 1.0986122886681098,
+      "H_spinframe": 0.6931471805599453,
+      "H_gauge": 0.6931471805599453,
+      "description": "All shell entropies positive; H_chern=log(4) > H_riemannian,H_ricci=log(3) > all log(2) shells"
+    },
+    "B2_gradient_finite_nonzero_mid_eps": {
+      "passed": true,
+      "gradient": -0.03701758878315904,
+      "description": "Autograd gradient finite and nonzero at eps=0.5"
+    },
+    "B3_q_scales_with_mi": {
+      "passed": true,
+      "Q_high": 0.08654031668665513,
+      "Q_low": 0.049574763004546385,
+      "description": "Q_RCHFAMCYMSRSG scales monotonically with MI"
+    },
+    "B4_boundary_eps_zero": {
+      "passed": true,
+      "gradient_at_eps_0": -0.11420592516133263,
+      "description": "Gradient well-defined at eps=0 boundary"
+    }
+  },
+  "all_pass": true,
+  "pass_count": 26,
+  "fail_count": 0,
+  "coupling_program_number": 88,
+  "shells": [
+    "Riemannian",
+    "Connection",
+    "Holonomy",
+    "Fiber",
+    "AssocBundle",
+    "MomentMap",
+    "ChernClass",
+    "YangMills",
+    "RicciTensor",
+    "SpinFrame",
+    "Gauge"
+  ],
+  "Q_formula": "MI \u00d7 H_riemannian \u00d7 H_connection \u00d7 H_holonomy \u00d7 H_fiber \u00d7 H_assoc \u00d7 H_moment \u00d7 H_chern \u00d7 H_yangmills \u00d7 H_ricci \u00d7 H_spinframe \u00d7 H_gauge = MI \u00d7 log(3) \u00d7 log(2) \u00d7 log(2) \u00d7 log(2) \u00d7 log(2) \u00d7 log(2) \u00d7 log(4) \u00d7 log(2) \u00d7 log(3) \u00d7 log(2) \u00d7 log(2)"
+}

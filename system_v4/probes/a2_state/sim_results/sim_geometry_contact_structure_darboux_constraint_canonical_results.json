@@ -1,0 +1,169 @@
+{
+  "name": "Contact Structure and Darboux Theorem Canonical Sim",
+  "description": "Contact structures: (M^{2n+1}, \u03be=ker \u03b1) with \u03b1\u2227(d\u03b1)^n \u2260 0; dim(\u03be)=2n constraint via cvc5/sympy",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of contact structure non-degeneracy"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for contact form computation"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; contact topology constraints only"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_standard_contact_r3": {
+      "name": "Standard contact structure on R^3",
+      "manifold_dim": 3,
+      "n": 1,
+      "kernel_dim": 2,
+      "expected_kernel_dim": 2,
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_2_standard_contact_r5": {
+      "name": "Standard contact structure on R^5",
+      "manifold_dim": 5,
+      "n": 2,
+      "kernel_dim": 4,
+      "expected_kernel_dim": 4,
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_3_darboux_form_r3": {
+      "name": "Darboux form on R^3",
+      "n": 1,
+      "total_coords": 3,
+      "kernel_generators": 2,
+      "expected_generators": 2,
+      "pass": true
+    }
+  },
+  "negative": {
+    "test_1_wrong_kernel_dim_r3": {
+      "name": "Invalid: dim(\u03be) = 1 on R^3 (should be 2)",
+      "manifold_dim": 3,
+      "n": 1,
+      "kernel_dim": 1,
+      "expected_kernel_dim": 2,
+      "sat": false,
+      "expected": false,
+      "pass": true
+    },
+    "test_2_wrong_kernel_dim_r5": {
+      "name": "Invalid: dim(\u03be) = 3 on R^5 (should be 4)",
+      "manifold_dim": 5,
+      "n": 2,
+      "kernel_dim": 3,
+      "expected_kernel_dim": 4,
+      "sat": false,
+      "expected": false,
+      "pass": true
+    },
+    "test_3_negative_kernel_dim": {
+      "name": "Invalid: negative kernel dimension",
+      "kernel_dim": -2,
+      "expected_kernel_dim": 2,
+      "sat": false,
+      "expected": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "test_1_minimal_contact_r3": {
+      "name": "Minimal contact structure on R^3",
+      "manifold_dim": 3,
+      "n": 1,
+      "kernel_dim": 2,
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_2_contact_r7": {
+      "name": "Contact structure on R^7",
+      "manifold_dim": 7,
+      "n": 3,
+      "kernel_dim": 6,
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_3_darboux_nondegeneracy": {
+      "name": "Darboux form non-degeneracy constraint",
+      "n": 1,
+      "dalpha_degree": 2,
+      "wedge_product_nonzero": true,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

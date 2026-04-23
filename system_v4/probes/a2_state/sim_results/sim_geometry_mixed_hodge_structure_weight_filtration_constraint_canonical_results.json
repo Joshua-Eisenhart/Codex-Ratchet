@@ -1,0 +1,165 @@
+{
+  "name": "sim_geometry_mixed_hodge_structure_weight_filtration_constraint_canonical",
+  "description": "Mixed Hodge structures: cvc5 validates Deligne compatibility of weight and Hodge filtrations",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_positive_hodge_decomposition": {
+      "test": "Hodge decomposition Gr_k^W = \u2295_{p+q=k} H^{p,q}",
+      "weight_k": 2,
+      "hodge_components": [
+        "H^{0,2}",
+        "H^{1,1}",
+        "H^{2,0}"
+      ],
+      "decomposition_valid": true,
+      "passed": true,
+      "interpretation": "weight grading splits by Hodge type",
+      "method": "sympy symbolic decomposition"
+    },
+    "numpy_positive_mixed_hodge_structure": {
+      "test": "Mixed Hodge structure dimension: sum of h^{p,q}",
+      "weight": 2,
+      "hodge_numbers": {
+        "h^{0,0}": 1,
+        "h^{0,1}": 2,
+        "h^{0,2}": 1,
+        "h^{1,0}": 2,
+        "h^{1,1}": 3,
+        "h^{1,2}": 2,
+        "h^{2,0}": 1,
+        "h^{2,1}": 2,
+        "h^{2,2}": 1
+      },
+      "total_dimension": 15,
+      "pure_symmetry_check": true,
+      "passed": true,
+      "interpretation": "Hodge numbers correctly enumerate mixed structure",
+      "method": "numpy dimension summation"
+    }
+  },
+  "negative": {
+    "sympy_negative_incompatible_filtrations": {
+      "test": "Incompatible filtrations: asserting non-zero intersection at p+q=k+1",
+      "k": 2,
+      "p": 1,
+      "q": 2,
+      "p_plus_q": 3,
+      "k_plus_1": 3,
+      "constraint_should_hold": true,
+      "passed": true,
+      "interpretation": "Deligne constraint is mandatory, not optional",
+      "method": "sympy symbolic identity check"
+    },
+    "numpy_negative_hodge_number_conflict": {
+      "test": "Conflicting Hodge number assignments are excluded",
+      "position": "(1,1)",
+      "weight": 2,
+      "assignment_1": 3,
+      "assignment_2": 5,
+      "conflicting": true,
+      "passed": true,
+      "interpretation": "Hodge numbers must be single-valued",
+      "method": "numpy comparison"
+    }
+  },
+  "boundary": {
+    "sympy_boundary_pure_hodge_structure": {
+      "test": "Pure Hodge structure: all weights equal (boundary case)",
+      "dimension": 3,
+      "weight": 5,
+      "p": 2,
+      "q": 3,
+      "p_plus_q_equals_weight": true,
+      "passed": true,
+      "interpretation": "pure Hodge structure is special case of mixed",
+      "method": "sympy symbolic"
+    },
+    "numpy_boundary_maximal_hodge_number": {
+      "test": "Maximal Hodge number: bounded by variety dimension",
+      "variety_dimension": 3,
+      "weight": 2,
+      "position": "(1,1)",
+      "max_h_11": 3,
+      "h_11_boundary_respected": true,
+      "passed": true,
+      "interpretation": "Hodge numbers are constrained by ambient geometry",
+      "method": "numpy dimension bound"
+    }
+  },
+  "classification": "canonical"
+}

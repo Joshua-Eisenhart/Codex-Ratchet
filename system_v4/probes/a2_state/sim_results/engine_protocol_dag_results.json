@@ -1,0 +1,361 @@
+{
+  "name": "engine_protocol_dag",
+  "classification": "canonical",
+  "classification_note": "Canonical protocol-DAG lego for Carnot and Szilard stage ordering. It keeps the graph/proof layer reusable and separate from stochastic runtime carriers.",
+  "lego_ids": [
+    "engine_protocol_dag",
+    "protocol_schedule_legality"
+  ],
+  "primary_lego_ids": [
+    "engine_protocol_dag"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing precedence impossibility proofs for protocol schedules"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite protocol DAG construction, source/sink checks, and topological ordering"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "rows": [
+    {
+      "family": "carnot",
+      "stages": [
+        "hot_isotherm",
+        "adiabatic_expand",
+        "cold_isotherm",
+        "adiabatic_compress"
+      ],
+      "edges": [
+        "hot_isotherm->adiabatic_expand",
+        "adiabatic_expand->cold_isotherm",
+        "cold_isotherm->adiabatic_compress"
+      ],
+      "negative_control": "closed_cycle_back_edge",
+      "graph": {
+        "node_count": 4,
+        "edge_count": 3,
+        "is_dag": true,
+        "topological_order": [
+          "hot_isotherm",
+          "adiabatic_expand",
+          "cold_isotherm",
+          "adiabatic_compress"
+        ],
+        "longest_path": [
+          "hot_isotherm",
+          "adiabatic_expand",
+          "cold_isotherm",
+          "adiabatic_compress"
+        ],
+        "longest_path_length": 3,
+        "sources": [
+          "hot_isotherm"
+        ],
+        "sinks": [
+          "adiabatic_compress"
+        ]
+      },
+      "proofs": {
+        "order_constraints": {
+          "correct_order_verdict": "sat",
+          "correct_order_sat": true,
+          "reverse_order_verdict": "unsat",
+          "reverse_order_unsat": true
+        },
+        "cycle_control": {
+          "cycle_edge": "adiabatic_compress->hot_isotherm",
+          "z3_verdict": "unsat",
+          "z3_unsat": true,
+          "graph_is_dag": false,
+          "graph_topological_order": null
+        }
+      },
+      "positive": {
+        "dag_is_acyclic_and_orderable": {
+          "node_count": 4,
+          "edge_count": 3,
+          "is_dag": true,
+          "topological_order": [
+            "hot_isotherm",
+            "adiabatic_expand",
+            "cold_isotherm",
+            "adiabatic_compress"
+          ],
+          "longest_path": [
+            "hot_isotherm",
+            "adiabatic_expand",
+            "cold_isotherm",
+            "adiabatic_compress"
+          ],
+          "longest_path_length": 3,
+          "sources": [
+            "hot_isotherm"
+          ],
+          "sinks": [
+            "adiabatic_compress"
+          ],
+          "pass": true
+        },
+        "z3_correct_order_is_sat": {
+          "correct_order_verdict": "sat",
+          "correct_order_sat": true,
+          "reverse_order_verdict": "unsat",
+          "reverse_order_unsat": true,
+          "pass": true
+        }
+      },
+      "negative": {
+        "reverse_order_is_unsat": {
+          "correct_order_verdict": "sat",
+          "correct_order_sat": true,
+          "reverse_order_verdict": "unsat",
+          "reverse_order_unsat": true,
+          "pass": true
+        },
+        "cycle_control_is_unsat": {
+          "cycle_edge": "adiabatic_compress->hot_isotherm",
+          "z3_verdict": "unsat",
+          "z3_unsat": true,
+          "graph_is_dag": false,
+          "graph_topological_order": null,
+          "pass": true
+        }
+      },
+      "boundary": {
+        "source_sink_structure_is_single_entry_single_exit": {
+          "sources": [
+            "hot_isotherm"
+          ],
+          "sinks": [
+            "adiabatic_compress"
+          ],
+          "pass": true
+        },
+        "topological_order_matches_declared_protocol": {
+          "topological_order": [
+            "hot_isotherm",
+            "adiabatic_expand",
+            "cold_isotherm",
+            "adiabatic_compress"
+          ],
+          "pass": true
+        }
+      },
+      "summary": {
+        "all_pass": true,
+        "node_count": 4,
+        "edge_count": 3,
+        "source_count": 1,
+        "sink_count": 1,
+        "longest_path_length": 3,
+        "cycle_control_unsat": true,
+        "scope_note": "Reusable protocol-order lego for engine families. It encodes stage DAGs, source/sink structure, precedence legality, and a small cycle negative control."
+      }
+    },
+    {
+      "family": "szilard",
+      "stages": [
+        "measurement",
+        "feedback",
+        "reset"
+      ],
+      "edges": [
+        "measurement->feedback",
+        "feedback->reset"
+      ],
+      "negative_control": "closed_protocol_back_edge",
+      "graph": {
+        "node_count": 3,
+        "edge_count": 2,
+        "is_dag": true,
+        "topological_order": [
+          "measurement",
+          "feedback",
+          "reset"
+        ],
+        "longest_path": [
+          "measurement",
+          "feedback",
+          "reset"
+        ],
+        "longest_path_length": 2,
+        "sources": [
+          "measurement"
+        ],
+        "sinks": [
+          "reset"
+        ]
+      },
+      "proofs": {
+        "order_constraints": {
+          "correct_order_verdict": "sat",
+          "correct_order_sat": true,
+          "reverse_order_verdict": "unsat",
+          "reverse_order_unsat": true
+        },
+        "cycle_control": {
+          "cycle_edge": "reset->measurement",
+          "z3_verdict": "unsat",
+          "z3_unsat": true,
+          "graph_is_dag": false,
+          "graph_topological_order": null
+        }
+      },
+      "positive": {
+        "dag_is_acyclic_and_orderable": {
+          "node_count": 3,
+          "edge_count": 2,
+          "is_dag": true,
+          "topological_order": [
+            "measurement",
+            "feedback",
+            "reset"
+          ],
+          "longest_path": [
+            "measurement",
+            "feedback",
+            "reset"
+          ],
+          "longest_path_length": 2,
+          "sources": [
+            "measurement"
+          ],
+          "sinks": [
+            "reset"
+          ],
+          "pass": true
+        },
+        "z3_correct_order_is_sat": {
+          "correct_order_verdict": "sat",
+          "correct_order_sat": true,
+          "reverse_order_verdict": "unsat",
+          "reverse_order_unsat": true,
+          "pass": true
+        }
+      },
+      "negative": {
+        "reverse_order_is_unsat": {
+          "correct_order_verdict": "sat",
+          "correct_order_sat": true,
+          "reverse_order_verdict": "unsat",
+          "reverse_order_unsat": true,
+          "pass": true
+        },
+        "cycle_control_is_unsat": {
+          "cycle_edge": "reset->measurement",
+          "z3_verdict": "unsat",
+          "z3_unsat": true,
+          "graph_is_dag": false,
+          "graph_topological_order": null,
+          "pass": true
+        }
+      },
+      "boundary": {
+        "source_sink_structure_is_single_entry_single_exit": {
+          "sources": [
+            "measurement"
+          ],
+          "sinks": [
+            "reset"
+          ],
+          "pass": true
+        },
+        "topological_order_matches_declared_protocol": {
+          "topological_order": [
+            "measurement",
+            "feedback",
+            "reset"
+          ],
+          "pass": true
+        }
+      },
+      "summary": {
+        "all_pass": true,
+        "node_count": 3,
+        "edge_count": 2,
+        "source_count": 1,
+        "sink_count": 1,
+        "longest_path_length": 2,
+        "cycle_control_unsat": true,
+        "scope_note": "Reusable protocol-order lego for engine families. It encodes stage DAGs, source/sink structure, precedence legality, and a small cycle negative control."
+      }
+    }
+  ],
+  "summary": {
+    "all_pass": true,
+    "family_count": 2,
+    "passed_family_count": 2,
+    "graph_tool": "rustworkx",
+    "proof_tool": "z3",
+    "scope_note": "Reusable graph/proof lego for finite protocol schedules. The DAG is the core object, and the solver checks precedence impossibility."
+  }
+}

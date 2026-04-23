@@ -1,0 +1,150 @@
+{
+  "name": "WeylSpinorHopfFibrationConstraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "Spinor manifold structure computed symbolically; numeric optional"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "Graph not primary for Hopf fibration constraint"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "Disjunctive constraint coverage; cvc5 more direct"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Hopf constraint n\u22651 via QF_LIA; solver.mkInteger + Kind.EQUAL"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Check classical Hopf n=1,2,4 fibrations; verify dimension formulas"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Spinor algebra optional; constraint is topological"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Complex projective space CP^n manifold structure; dim verification"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "Equivariance not primary constraint"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "Graph not applicable"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "Hypergraph not applicable"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "Cell complex structure for fibration topology; bundle dimension check"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "Persistent homology not required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": "supportive",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "supportive",
+    "gudhi": null
+  },
+  "positive": {
+    "positive_1_hopf_n1": {
+      "error": "type object 'Kind' has no attribute 'GE'"
+    },
+    "positive_2_hopf_dimensions_n1": {
+      "description": "S^(2n+1) = S\u00b3 has dim 3; CP^n = CP\u00b9 has dim 2",
+      "n": 1,
+      "total_space": "S^3",
+      "base_space": "CP^2",
+      "dimension_correct": true
+    },
+    "positive_3_hopf_n2": {
+      "description": "n=2: S\u2075\u2192CP\u00b2 is valid Hopf fibration",
+      "n": 2,
+      "hopf_sphere": "S^5",
+      "projective_base": "CP^2",
+      "base_dim": 4,
+      "valid": true
+    }
+  },
+  "negative": {
+    "negative_1_hopf_n_less_than_1": {
+      "error": "type object 'Kind' has no attribute 'GE'"
+    },
+    "negative_2_hopf_n0": {
+      "error": "type object 'Kind' has no attribute 'GE'"
+    },
+    "negative_3_classical_hopf_limited": {
+      "description": "Classical Hopf fibrations only for n=1,2,4 (division algebras)",
+      "classical_hopf": [
+        1,
+        2,
+        4
+      ],
+      "invalid_sample": [
+        0,
+        3,
+        5,
+        6,
+        7,
+        8
+      ],
+      "no_overlap": true
+    }
+  },
+  "boundary": {
+    "boundary_1_hopf_n1_minimal": {
+      "error": "type object 'Kind' has no attribute 'GE'"
+    },
+    "boundary_2_classical_hopf_cases": {
+      "description": "Classical Hopf: n=1,2,4 (from R,C,H division algebras)",
+      "cases": {
+        "n=1": {
+          "sphere": "S^3",
+          "projective": "CP^1"
+        },
+        "n=2": {
+          "sphere": "S^5",
+          "projective": "CP^2"
+        },
+        "n=4": {
+          "sphere": "S^9",
+          "projective": "CP^4"
+        }
+      }
+    },
+    "boundary_3_hopf_large_n": {
+      "error": "type object 'Kind' has no attribute 'GE'"
+    }
+  },
+  "classification": "canonical"
+}

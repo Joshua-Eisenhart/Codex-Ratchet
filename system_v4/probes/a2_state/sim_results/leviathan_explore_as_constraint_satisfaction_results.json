@@ -1,0 +1,28 @@
+{
+  "name": "leviathan_explore_as_constraint_satisfaction",
+  "framing_assumption": "admissibility = SAT of diversity + positive-potential constraints",
+  "blind_spot": "discrete, static; no graded admissibility or dynamics",
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SAT/UNSAT for admissibility under centralization"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "diverse_sat": true,
+    "pass": true
+  },
+  "negative": {
+    "mono_sat": false,
+    "pass_unsat": true
+  },
+  "boundary": {
+    "trivial": true,
+    "pass": true
+  },
+  "classification": "canonical"
+}

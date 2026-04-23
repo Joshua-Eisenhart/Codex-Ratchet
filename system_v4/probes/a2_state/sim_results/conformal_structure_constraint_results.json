@@ -1,0 +1,144 @@
+{
+  "name": "conformal_structure_constraint",
+  "probe": "conformal_structure_constraint",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core: metric scaling g\u0303=e^{2f}g computation, Ricci and Weyl tensor extraction from Riemann curvature, conformal invariance verification via eigenvalues"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 Weyl tensor is differential-geometric"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Proof: claim that dim=4 AND Weyl tensor vanishes for non-conformally-flat is UNSAT (only true for dim\u22643)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic: Weyl tensor formula W = R - 1/(n-2)(Ric \u2297 g) (dim-dependent), Cotton tensor algebraic identity, verify W invariance under conformal rescaling"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Cross-check: metric geodesic properties are invariant under conformal scaling, Riemannian structure validation"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "supportive",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_conformal_equivalence": {
+      "pass": true,
+      "scaling_factor": 2.718281828459045,
+      "comment": "Metrics g and e^{2f}g belong to same conformal class [g]"
+    },
+    "P2_weyl_conformal_invariant": {
+      "pass": true,
+      "comment": "Weyl tensor W is conformal invariant (unchanged under g\u2192e^{2f}g) in dim\u22654"
+    },
+    "P3_weyl_vanishes_dim3": {
+      "pass": true,
+      "comment": "Weyl tensor identically vanishes in dim=3 (always conformally flat)"
+    },
+    "P4_dimension_gate": {
+      "pass": true,
+      "comment": "Conformal structure gates on dimension: dim=2 infinite-dimensional, dim\u22653 finite"
+    },
+    "P5_cotton_tensor_dim3": {
+      "pass": true,
+      "comment": "Cotton tensor C_ij vanishes iff metric is conformally flat in dim=3"
+    }
+  },
+  "negative": {
+    "N1_dim4_conformal_not_universal": {
+      "pass": true,
+      "comment": "In dim=4: conformal equivalence is a strict constraint (not all metrics equivalent)"
+    },
+    "N2_weyl_nonzero_not_conformally_flat": {
+      "pass": true,
+      "comment": "W\u22600 implies metric is NOT conformally flat (and vice versa)"
+    },
+    "N3_different_signature_not_conformal": {
+      "pass": true,
+      "comment": "Metrics with different signature cannot be conformally equivalent"
+    },
+    "N4_dim2_weyl_must_vanish": {
+      "pass": true,
+      "comment": "In dim=2, Weyl tensor is always identically zero"
+    }
+  },
+  "boundary": {
+    "B1_dimension_2_always_flat": {
+      "pass": true,
+      "comment": "Every 2D Riemannian metric is conformally equivalent to Euclidean"
+    },
+    "B2_dimension_3_cotton_constraint": {
+      "pass": true,
+      "comment": "In dim=3, conformal flatness iff Cotton tensor vanishes"
+    },
+    "B3_dimension_4plus_weyl_constraint": {
+      "pass": true,
+      "comment": "In dim\u22654, conformal flatness iff Weyl tensor vanishes"
+    },
+    "B4_conformal_rescaling_limit": {
+      "pass": "True",
+      "comment": "Eigenvalues scale correctly under conformal rescaling g\u2192e^{2f}g"
+    },
+    "B5_conformal_equivalence_transitive": {
+      "pass": true,
+      "comment": "Conformal equivalence is transitive (equivalence relation)"
+    }
+  }
+}

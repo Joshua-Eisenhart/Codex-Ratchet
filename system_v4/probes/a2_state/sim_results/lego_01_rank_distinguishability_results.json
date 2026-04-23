@@ -1,0 +1,83 @@
+{
+  "name": "lego_01_rank_distinguishability",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; numeric baseline via numpy"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof that rank-differing states admit equal probes"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic rank check of projector construction"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not rotor-related"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "rank_diff_distinguishable": true,
+    "z3_probe_exists": true
+  },
+  "negative": {
+    "identical_indistinguishable": true,
+    "z3_unsat_for_equal": true
+  },
+  "boundary": {
+    "near_rank_boundary_diff": 1.999999987845058e-08,
+    "distinguishable_at_boundary": "True"
+  },
+  "overall_pass": true
+}

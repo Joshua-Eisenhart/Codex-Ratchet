@@ -1,0 +1,38 @@
+{
+  "name": "gerbe_coupling_nested_hopf",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "pullback cochain arithmetic"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "S^2 base and S^3-total cell complexes"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hypergraph model of Hopf fibre-over-cell incidence"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "toponetx": "load_bearing",
+    "xgi": "supportive"
+  },
+  "positive": {
+    "pullback_matches_base": true,
+    "pullback_linear": true
+  },
+  "negative": {
+    "orientation_reversal_negates": true,
+    "incompatible_carrier_different_dim": true
+  },
+  "boundary": {
+    "zero_pulls_back_to_zero": true,
+    "dim1_fibre_identity_pullback": true
+  },
+  "classification": "canonical"
+}

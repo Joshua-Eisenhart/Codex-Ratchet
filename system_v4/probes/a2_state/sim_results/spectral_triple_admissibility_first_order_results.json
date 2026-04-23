@@ -1,0 +1,33 @@
+{
+  "name": "spectral_triple_admissibility_first_order",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "direct matrix check of [[D,a],b]"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SAT/UNSAT on first-order condition forall diag a,b"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "numeric_first_order_zero": true,
+    "a_commutes_gamma": true,
+    "z3_first_order_unsat_for_graded_algebra": true
+  },
+  "negative": {
+    "ungraded_algebra_breaks_first_order": true,
+    "z3_exists_violation": true
+  },
+  "boundary": {
+    "scalar_algebra_admissible": true,
+    "tiny_grading_violation_bounded": true
+  },
+  "classification": "canonical"
+}

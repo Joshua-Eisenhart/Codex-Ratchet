@@ -1,0 +1,100 @@
+{
+  "name": "fep_atom_1_carrier",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "autograd enters at reduction atom"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph at carrier atom"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no boolean constraint here"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "redundant"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic unit-mass + finite log-expectation on Gaussian carrier"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no multivector carrier"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold yet"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance claim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "structure is atom 2"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "gaussian_carrier": {
+      "total": 1.0,
+      "E_log_q": -1.4189385332046727,
+      "pass": true
+    }
+  },
+  "negative": {
+    "improper_carrier_rejected": {
+      "total": "oo",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_carrier_degenerate": {
+      "total": 0.0,
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

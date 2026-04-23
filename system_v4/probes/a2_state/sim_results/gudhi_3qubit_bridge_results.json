@@ -1,0 +1,406 @@
+{
+  "name": "gudhi_3qubit_bridge",
+  "description": "GUDHI Rips persistent homology on 6 canonical 3-qubit states (|000>, GHZ, W, Fe-bridge, Werner-3q, Product\u2297Bell). Embedded as (tripartite_MI, I_c(A->BC), I_c(AB->C)) triples. Tests whether XX relay creates H1 and is topologically load-bearing.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "3-qubit density matrix construction, partial traces, quantum entropy kernels"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG message passing not needed; geometry handled via tensor operations"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 SMT solver not needed; pytorch autograd handles constraint satisfaction"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 SMT solver not needed; z3 handles all constraint proofs in this sim"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "sympy symbolic math not needed; numerical torch computation is sufficient"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; geometry computed via direct matrix operations"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats differential geometry library not needed for this sim's approach"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn equivariant networks not needed; no SO(3) equivariance required here"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx graph library not needed; no graph structure in this sim"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi hypergraph library not needed; pairwise interactions only in this sim"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Rips complex persistence on 3-qubit kernel embedding -- primary topological analysis"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": "load_bearing",
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "kernel_triples_with_relay": [
+      {
+        "name": "000",
+        "tripartite_MI": 3.9863137138648344e-11,
+        "I_c_A_to_BC": -1.594525485545934e-10,
+        "I_c_AB_to_C": -2.391788228318901e-10,
+        "S_A": 3.986313713864835e-11,
+        "S_B": 3.986313713864835e-11,
+        "S_C": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10,
+        "S_BC": 1.1958941141594506e-10,
+        "S_ABC": 2.7904195997053846e-10
+      },
+      {
+        "name": "GHZ",
+        "tripartite_MI": 3.986360344911745e-11,
+        "I_c_A_to_BC": 0.999999999800684,
+        "I_c_AB_to_C": 0.9999999997209578,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.0000000000797262,
+        "S_BC": 1.0000000000797262,
+        "S_ABC": 2.790422803131888e-10
+      },
+      {
+        "name": "W",
+        "tripartite_MI": 3.986318480842169e-11,
+        "I_c_A_to_BC": 0.9182958338551739,
+        "I_c_AB_to_C": 0.9182958337754477,
+        "S_A": 0.9182958340544893,
+        "S_B": 0.9182958340544893,
+        "S_C": 0.9182958340544893,
+        "S_AB": 0.9182958341342156,
+        "S_BC": 0.9182958341342156,
+        "S_ABC": 2.790416396278881e-10
+      },
+      {
+        "name": "Fe_bridge",
+        "tripartite_MI": 3.986328310646711e-11,
+        "I_c_A_to_BC": -1.594525485545934e-10,
+        "I_c_AB_to_C": 0.999999999720958,
+        "S_A": 3.986313713864835e-11,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.0000000000797262,
+        "S_BC": 1.1958941141594506e-10,
+        "S_ABC": 2.7904195997053846e-10
+      },
+      {
+        "name": "Werner_3q",
+        "tripartite_MI": -0.2620947246055003,
+        "I_c_A_to_BC": 0.04241411517269933,
+        "I_c_AB_to_C": -0.5674261895437012,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.6098403047164005,
+        "S_BC": 1.6098403047164005,
+        "S_ABC": 1.5674261895437012
+      },
+      {
+        "name": "Product_Bell",
+        "tripartite_MI": 3.9863270382210065e-11,
+        "I_c_A_to_BC": -1.5945254855459337e-10,
+        "I_c_AB_to_C": 0.9999999997209578,
+        "S_A": 3.986345748129873e-11,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.0000000000797262,
+        "S_BC": 1.1958973175859543e-10,
+        "S_ABC": 2.790422803131888e-10
+      }
+    ],
+    "point_cloud_with_relay": [
+      [
+        3.9863137138648344e-11,
+        -1.594525485545934e-10,
+        -2.391788228318901e-10
+      ],
+      [
+        3.986360344911745e-11,
+        0.999999999800684,
+        0.9999999997209578
+      ],
+      [
+        3.986318480842169e-11,
+        0.9182958338551739,
+        0.9182958337754477
+      ],
+      [
+        3.986328310646711e-11,
+        -1.594525485545934e-10,
+        0.999999999720958
+      ],
+      [
+        -0.2620947246055003,
+        0.04241411517269933,
+        -0.5674261895437012
+      ],
+      [
+        3.9863270382210065e-11,
+        -1.5945254855459337e-10,
+        0.9999999997209578
+      ]
+    ],
+    "rips_with_relay": {
+      "H0": {
+        "finite_bars": 4,
+        "infinite_bars": 1,
+        "total": 6,
+        "max_persistence": 0.9999999999601366
+      },
+      "H1": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0
+      },
+      "H2": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0
+      }
+    }
+  },
+  "negative": {
+    "kernel_triples_no_relay": [
+      {
+        "name": "000",
+        "tripartite_MI": 3.9863137138648344e-11,
+        "I_c_A_to_BC": -1.594525485545934e-10,
+        "I_c_AB_to_C": -2.391788228318901e-10,
+        "S_A": 3.986313713864835e-11,
+        "S_B": 3.986313713864835e-11,
+        "S_C": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10,
+        "S_BC": 1.1958941141594506e-10,
+        "S_ABC": 2.7904195997053846e-10
+      },
+      {
+        "name": "GHZ",
+        "tripartite_MI": 3.986360344911745e-11,
+        "I_c_A_to_BC": 0.999999999800684,
+        "I_c_AB_to_C": 0.9999999997209578,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.0000000000797262,
+        "S_BC": 1.0000000000797262,
+        "S_ABC": 2.790422803131888e-10
+      },
+      {
+        "name": "W",
+        "tripartite_MI": 3.986318480842169e-11,
+        "I_c_A_to_BC": 0.9182958338551739,
+        "I_c_AB_to_C": 0.9182958337754477,
+        "S_A": 0.9182958340544893,
+        "S_B": 0.9182958340544893,
+        "S_C": 0.9182958340544893,
+        "S_AB": 0.9182958341342156,
+        "S_BC": 0.9182958341342156,
+        "S_ABC": 2.790416396278881e-10
+      },
+      {
+        "name": "Fe_bridge",
+        "tripartite_MI": 3.9863137138648344e-11,
+        "I_c_A_to_BC": -1.594525485545934e-10,
+        "I_c_AB_to_C": -2.391788228318901e-10,
+        "S_A": 3.986313713864835e-11,
+        "S_B": 3.986313713864835e-11,
+        "S_C": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10,
+        "S_BC": 1.1958941141594506e-10,
+        "S_ABC": 2.7904195997053846e-10
+      },
+      {
+        "name": "Werner_3q",
+        "tripartite_MI": -0.2620947246055003,
+        "I_c_A_to_BC": 0.04241411517269933,
+        "I_c_AB_to_C": -0.5674261895437012,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.6098403047164005,
+        "S_BC": 1.6098403047164005,
+        "S_ABC": 1.5674261895437012
+      },
+      {
+        "name": "Product_Bell",
+        "tripartite_MI": 3.9863270382210065e-11,
+        "I_c_A_to_BC": -1.5945254855459337e-10,
+        "I_c_AB_to_C": 0.9999999997209578,
+        "S_A": 3.986345748129873e-11,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.0000000000797262,
+        "S_BC": 1.1958973175859543e-10,
+        "S_ABC": 2.790422803131888e-10
+      }
+    ],
+    "point_cloud_no_relay": [
+      [
+        3.9863137138648344e-11,
+        -1.594525485545934e-10,
+        -2.391788228318901e-10
+      ],
+      [
+        3.986360344911745e-11,
+        0.999999999800684,
+        0.9999999997209578
+      ],
+      [
+        3.986318480842169e-11,
+        0.9182958338551739,
+        0.9182958337754477
+      ],
+      [
+        3.9863137138648344e-11,
+        -1.594525485545934e-10,
+        -2.391788228318901e-10
+      ],
+      [
+        -0.2620947246055003,
+        0.04241411517269933,
+        -0.5674261895437012
+      ],
+      [
+        3.9863270382210065e-11,
+        -1.5945254855459337e-10,
+        0.9999999997209578
+      ]
+    ],
+    "rips_no_relay": {
+      "H0": {
+        "finite_bars": 4,
+        "infinite_bars": 1,
+        "total": 5,
+        "max_persistence": 0.9999999999601366
+      },
+      "H1": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0
+      },
+      "H2": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0
+      }
+    }
+  },
+  "boundary": {
+    "H1_with_relay": 0,
+    "H1_no_relay": 0,
+    "relay_changes_topology": false,
+    "relay_topologically_load_bearing": false,
+    "Fe_bridge_with_relay": {
+      "name": "Fe_bridge_relay",
+      "tripartite_MI": 3.986328310646711e-11,
+      "I_c_A_to_BC": -1.594525485545934e-10,
+      "I_c_AB_to_C": 0.999999999720958,
+      "S_A": 3.986313713864835e-11,
+      "S_B": 1.0,
+      "S_C": 1.0,
+      "S_AB": 1.0000000000797262,
+      "S_BC": 1.1958941141594506e-10,
+      "S_ABC": 2.7904195997053846e-10
+    },
+    "Fe_bridge_no_relay": {
+      "name": "Fe_bridge_no_relay",
+      "tripartite_MI": 3.9863137138648344e-11,
+      "I_c_A_to_BC": -1.594525485545934e-10,
+      "I_c_AB_to_C": -2.391788228318901e-10,
+      "S_A": 3.986313713864835e-11,
+      "S_B": 3.986313713864835e-11,
+      "S_C": 3.986313713864835e-11,
+      "S_AB": 1.1958941141594506e-10,
+      "S_BC": 1.1958941141594506e-10,
+      "S_ABC": 2.7904195997053846e-10
+    },
+    "Fe_bridge_kernel_shifts": {
+      "delta_tripartite_MI": 1.4596781876472101e-16,
+      "delta_I_c_A_to_BC": 0.0,
+      "delta_I_c_AB_to_C": 0.9999999999601368
+    }
+  },
+  "classification": "canonical",
+  "topology_verdict": {
+    "H0_with_relay": {
+      "finite_bars": 4,
+      "infinite_bars": 1,
+      "total": 6,
+      "max_persistence": 0.9999999999601366
+    },
+    "H1_with_relay": {
+      "finite_bars": 0,
+      "infinite_bars": 0,
+      "total": 0,
+      "max_persistence": 0.0
+    },
+    "H2_with_relay": {
+      "finite_bars": 0,
+      "infinite_bars": 0,
+      "total": 0,
+      "max_persistence": 0.0
+    },
+    "H0_no_relay": {
+      "finite_bars": 4,
+      "infinite_bars": 1,
+      "total": 5,
+      "max_persistence": 0.9999999999601366
+    },
+    "H1_no_relay": {
+      "finite_bars": 0,
+      "infinite_bars": 0,
+      "total": 0,
+      "max_persistence": 0.0
+    },
+    "relay_changes_topology": false,
+    "relay_topologically_load_bearing": false
+  }
+}

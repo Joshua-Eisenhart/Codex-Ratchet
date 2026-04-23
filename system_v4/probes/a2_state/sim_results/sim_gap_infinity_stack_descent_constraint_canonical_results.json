@@ -1,0 +1,143 @@
+{
+  "name": "InfinityStackDescent",
+  "domain": "derived algebraic geometry",
+  "claim": "\u010cech descent condition: for a cover {U_i \u2192 X}, sections satisfy cocycle g_ij * g_jk = g_ik",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for cocycle constraints"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for descent algebra"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 used instead for QF_LIA"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification of trivial cocycle"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for descent"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for cocycle algebra"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for cocycle constraints"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this constraint domain"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this constraint domain"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for descent"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for cocycle constraints"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "error": "cvc5 not installed"
+  },
+  "negative": {
+    "error": "cvc5 not installed"
+  },
+  "boundary": {
+    "test_boundary_trivial_cocycle_n2": {
+      "modulus": 2,
+      "all_g_ij": 1,
+      "product": 1,
+      "is_cocycle": true,
+      "expected": true
+    },
+    "test_boundary_trivial_cocycle_n3": {
+      "modulus": 3,
+      "all_g_ij": 1,
+      "product": 1,
+      "is_cocycle": true,
+      "expected": true
+    },
+    "test_boundary_trivial_cocycle_n4": {
+      "modulus": 4,
+      "all_g_ij": 1,
+      "product": 1,
+      "is_cocycle": true,
+      "expected": true
+    },
+    "test_boundary_trivial_cocycle_n5": {
+      "modulus": 5,
+      "all_g_ij": 1,
+      "product": 1,
+      "is_cocycle": true,
+      "expected": true
+    },
+    "test_boundary_abelian_commute_n3": {
+      "modulus": 3,
+      "property": "abelian group Z/nZ",
+      "g + h = h + g mod n": true,
+      "expected": true
+    },
+    "test_boundary_abelian_commute_n5": {
+      "modulus": 5,
+      "property": "abelian group Z/nZ",
+      "g + h = h + g mod n": true,
+      "expected": true
+    },
+    "test_boundary_abelian_commute_n7": {
+      "modulus": 7,
+      "property": "abelian group Z/nZ",
+      "g + h = h + g mod n": true,
+      "expected": true
+    },
+    "test_boundary_trivial_cocycle_properties": {
+      "trivial_cocycle": "all g_ij = 1",
+      "property_1": "1 * 1 = 1",
+      "property_2": "satisfies g_ij * g_jk = g_ik for all i,j,k",
+      "property_3": "always descent-valid",
+      "expected": true
+    }
+  },
+  "classification": "canonical"
+}

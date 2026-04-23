@@ -1,0 +1,103 @@
+{
+  "name": "sci_method_deep_popper_refutation_unsat_for_tautology",
+  "classification": "canonical",
+  "scope_note": "OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for tautology UNSAT"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for tautology UNSAT"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT of negation proves unfalsifiability of tautology"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for tautology UNSAT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for tautology UNSAT"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for tautology UNSAT"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for tautology UNSAT"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for tautology UNSAT"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for tautology UNSAT"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for tautology UNSAT"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for tautology UNSAT"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for tautology UNSAT"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "law_of_excluded_middle_unrefutable": {
+      "pass": true
+    },
+    "modus_ponens_unrefutable": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "contingent_refutable": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "contradiction_has_no_model": {
+      "pass": true
+    },
+    "true_unrefutable": {
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

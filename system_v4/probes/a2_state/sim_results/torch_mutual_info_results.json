@@ -1,0 +1,232 @@
+{
+  "name": "torch_mutual_info",
+  "description": "MutualInformation: I(A:B) = S(A) + S(B) - S(AB) for 2-qubit states",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "MutualInformation module: partial trace + VNE with autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic MI for Bell states"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_bell_state_match": {
+      "phi_plus": {
+        "numpy": 1.3862943611198906,
+        "torch": 1.3862943649291992,
+        "diff": 3.809308646296472e-09,
+        "pass": "True"
+      },
+      "phi_minus": {
+        "numpy": 1.3862943611198906,
+        "torch": 1.3862943649291992,
+        "diff": 3.809308646296472e-09,
+        "pass": "True"
+      },
+      "psi_plus": {
+        "numpy": 1.3862943611198906,
+        "torch": 1.3862943649291992,
+        "diff": 3.809308646296472e-09,
+        "pass": "True"
+      },
+      "psi_minus": {
+        "numpy": 1.3862943611198906,
+        "torch": 1.3862943649291992,
+        "diff": 3.809308646296472e-09,
+        "pass": "True"
+      }
+    },
+    "P2_bell_2log2": {
+      "phi_plus": {
+        "MI": 1.3862943649291992,
+        "expected": 1.3862943611198906,
+        "diff": 3.809308646296472e-09,
+        "pass": "True"
+      },
+      "phi_minus": {
+        "MI": 1.3862943649291992,
+        "expected": 1.3862943611198906,
+        "diff": 3.809308646296472e-09,
+        "pass": "True"
+      },
+      "psi_plus": {
+        "MI": 1.3862943649291992,
+        "expected": 1.3862943611198906,
+        "diff": 3.809308646296472e-09,
+        "pass": "True"
+      },
+      "psi_minus": {
+        "MI": 1.3862943649291992,
+        "expected": 1.3862943611198906,
+        "diff": 3.809308646296472e-09,
+        "pass": "True"
+      }
+    },
+    "P3_product_zero_MI": {
+      "00": {
+        "numpy": 0.0,
+        "torch": -2.7631019000606827e-11,
+        "is_zero": true,
+        "pass": true
+      },
+      "+x": {
+        "numpy": 0.0,
+        "torch": -2.7631019000606827e-11,
+        "is_zero": true,
+        "pass": true
+      },
+      "mixed": {
+        "numpy": 0.0,
+        "torch": 0.0,
+        "is_zero": true,
+        "pass": true
+      }
+    },
+    "P4_werner_match": {
+      "p=0.0": {
+        "numpy": 0.0,
+        "torch": 0.0,
+        "diff": 0.0,
+        "pass": "True"
+      },
+      "p=0.25": {
+        "numpy": 0.08301074146762066,
+        "torch": 0.08301067352294922,
+        "diff": 6.79446714446641e-08,
+        "pass": "True"
+      },
+      "p=0.5": {
+        "numpy": 0.31275151471136753,
+        "torch": 0.31275153160095215,
+        "diff": 1.6889584619761422e-08,
+        "pass": "True"
+      },
+      "p=0.75": {
+        "numpy": 0.697726991817608,
+        "torch": 0.6977269649505615,
+        "diff": 2.686704647647531e-08,
+        "pass": "True"
+      },
+      "p=1.0": {
+        "numpy": 1.3862943611198906,
+        "torch": 1.3862943649291992,
+        "diff": 3.809308646296472e-09,
+        "pass": "True"
+      }
+    },
+    "P5_gradient_exists": {
+      "grad_exists": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_non_negative_random": {
+      "min_MI": 0.20252299308776855,
+      "all_non_negative": true,
+      "pass": true
+    },
+    "N2_bounded_by_2logd": {
+      "max_MI": 1.281144889938803,
+      "bound": 1.3862943611198906,
+      "all_bounded": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_maximally_mixed_zero": {
+      "MI": 0.0,
+      "pass": true
+    },
+    "B2_werner_separability_boundary": {
+      "p": 0.3333333333333333,
+      "MI": 0.14384102821350098,
+      "non_negative": true,
+      "pass": true
+    },
+    "B3_werner_monotone": {
+      "p_values": [
+        0.0,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "MIs": [
+        0.0,
+        0.05411529541015625,
+        0.203779935836792,
+        0.44584643840789795,
+        0.7987935543060303,
+        1.3862943649291992
+      ],
+      "monotone": true,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "MI_bell": "1.3862943611198906",
+    "expected": "1.3862943611198906",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 23,
+    "total_pass": 23,
+    "all_pass": true
+  }
+}

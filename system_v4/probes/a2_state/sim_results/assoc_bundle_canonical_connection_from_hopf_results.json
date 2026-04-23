@@ -1,0 +1,55 @@
+{
+  "name": "assoc_bundle_canonical_connection_from_hopf",
+  "tool_manifest": {
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "closed-form dA computation and Chern integral"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "vector field and numeric integration"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "sympy": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "A_on_fundamental_vertical_eq_half": true,
+    "A_on_horizontal_eq_0": true,
+    "horizontal_still_tangent": true,
+    "chern_number_one_area_check": true,
+    "chern_number_normalised": 1.0,
+    "sympy_dA_xy_component": 1,
+    "sympy_dA_zw_component": 1
+  },
+  "negative": {
+    "wrong_form_not_one_on_V": true,
+    "non_tangent_detected": true
+  },
+  "boundary": {
+    "V_norm_at_pole": 1.0,
+    "basis_horizontal": true
+  },
+  "classification": "canonical"
+}

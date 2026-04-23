@@ -1,0 +1,192 @@
+{
+  "name": "cell_complex_geometry",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for cell-complex carrier geometry using bounded TopoNetX complexes and direct homology checks.",
+  "lego_ids": [
+    "cell_complex_geometry",
+    "graph_geometry"
+  ],
+  "primary_lego_ids": [
+    "cell_complex_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- TopoNetX carries the local topology result"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "CellComplex construction, incidence matrices, and Hodge Laplacians are load-bearing here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "circle_has_one_loop": {
+      "beta0": 1,
+      "beta1": 1,
+      "beta2": 0,
+      "rank_B1": 3,
+      "rank_B2": 0,
+      "B1B2_zero": true,
+      "l1_zero_modes": 1,
+      "pass": true
+    },
+    "sphere_has_one_2_cycle": {
+      "beta0": 1,
+      "beta1": 0,
+      "beta2": 1,
+      "rank_B1": 3,
+      "rank_B2": 3,
+      "B1B2_zero": true,
+      "l2_zero_modes": 1,
+      "pass": true
+    },
+    "torus_has_two_independent_loops": {
+      "beta0": 1,
+      "beta1": 2,
+      "beta2": 1,
+      "rank_B1": 8,
+      "rank_B2": 17,
+      "B1B2_zero": true,
+      "l1_zero_modes": 2,
+      "pass": true
+    }
+  },
+  "negative": {
+    "disconnected_edges_are_not_one_connected_carrier": {
+      "beta0": 2,
+      "beta1": 0,
+      "beta2": 0,
+      "rank_B1": 2,
+      "rank_B2": 0,
+      "B1B2_zero": true,
+      "pass": true
+    },
+    "circle_is_not_torus": {
+      "circle_beta1": 1,
+      "torus_beta1": 2,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "torus_hodge_kernel_matches_beta1": {
+      "pass": true,
+      "torus_l1_eigs": [
+        2.5626609310521582e-17,
+        1.784065819694229e-15,
+        1.2679491924311197,
+        1.2679491924311217,
+        1.2679491924311224,
+        1.2679491924311228,
+        1.2679491924311233,
+        1.2679491924311252,
+        2.999999999999998,
+        2.9999999999999996,
+        3.0,
+        3.0000000000000004,
+        4.732050807568877,
+        4.732050807568877,
+        4.732050807568878,
+        4.732050807568879,
+        4.732050807568879,
+        4.732050807568883,
+        5.999999999999996,
+        5.999999999999997,
+        5.999999999999998,
+        6.0,
+        6.000000000000001,
+        6.000000000000001,
+        6.0000000000000036,
+        8.999999999999998,
+        9.000000000000007
+      ]
+    },
+    "sphere_hodge_kernel_matches_beta2": {
+      "pass": true,
+      "sphere_l2_eigs": [
+        1.1923723214485674e-16,
+        3.9999999999999964,
+        4.0,
+        4.0
+      ]
+    },
+    "circle_hodge_kernel_matches_beta1": {
+      "pass": true,
+      "circle_l1_eigs": [
+        -6.661338147750998e-16,
+        1.9999999999999987,
+        2.0,
+        3.999999999999999
+      ]
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local cell-complex carrier lego on bounded circle, sphere, and torus exemplars."
+  }
+}

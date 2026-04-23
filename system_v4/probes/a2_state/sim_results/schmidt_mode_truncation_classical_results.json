@@ -1,0 +1,138 @@
+{
+  "name": "schmidt_mode_truncation",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "bell_schmidt": {
+      "s": [
+        0.7071067811865475,
+        0.7071067811865475
+      ],
+      "pass": true
+    },
+    "product_one_mode": {
+      "s": [
+        1.0,
+        0.0
+      ],
+      "pass": "True"
+    },
+    "full_reconstruction": {
+      "err": 5.176805499161465e-16,
+      "pass": "True"
+    },
+    "truncation_error_formula": {
+      "err": 0.593589454943024,
+      "expected": 0.593589454943024,
+      "pass": "True"
+    },
+    "sum_s2_is_one": {
+      "sum": 1.0000000000000004,
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "ghz_not_product": {
+      "s": [
+        0.7071067811865475,
+        0.7071067811865475
+      ],
+      "pass": "True"
+    },
+    "trunc_entangled_loses_norm": {
+      "norm": 0.7071067811865475,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "k0_zero": {
+      "norm": 0.0,
+      "pass": true
+    },
+    "k_full": {
+      "err": 5.117875266520903e-16,
+      "pass": true
+    },
+    "asymmetric_bipartition": {
+      "num_modes": 2,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "note": "classical captures: Schmidt via SVD on reshaped bipartition, coefficient normalization, truncation error bound. Innately fails: multi-partite tensor (>2) entanglement structure; no single Schmidt decomp exists for tripartite."
+}

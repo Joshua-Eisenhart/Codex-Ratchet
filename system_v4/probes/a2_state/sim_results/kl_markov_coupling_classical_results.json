@@ -1,0 +1,129 @@
+{
+  "name": "kl_markov_coupling_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical KL-Markov coupling loses: (1) quantum relative entropy monotonicity under CPTP (Lindblad), (2) recoverability gap a la Fawzi-Renner, (3) coherent trajectories where non-diagonal states give strictly different contraction rates.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd cross-check of KL"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "contract_0": {
+      "kl_before": 0.9881246841633922,
+      "kl_after": 0.05454099397436015,
+      "pass": true
+    },
+    "contract_1": {
+      "kl_before": 0.3027707872047408,
+      "kl_after": 0.0214589613574171,
+      "pass": true
+    },
+    "contract_2": {
+      "kl_before": 0.5241000508247706,
+      "kl_after": 0.027346432301785253,
+      "pass": true
+    },
+    "contract_3": {
+      "kl_before": 0.7509498128247246,
+      "kl_after": 0.1491508586489424,
+      "pass": true
+    },
+    "contract_4": {
+      "kl_before": 0.8040794532560304,
+      "kl_after": 0.1250230647924803,
+      "pass": true
+    }
+  },
+  "negative": {
+    "non_stochastic_flagged": {
+      "is_stochastic": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "stationary_zero_kl": {
+      "kl": 0.0,
+      "pass": true
+    },
+    "identity_preserves": {
+      "kl_before": 0.08228287850505173,
+      "kl_after": 0.08228287850505173,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

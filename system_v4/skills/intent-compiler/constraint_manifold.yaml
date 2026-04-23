@@ -1,0 +1,125 @@
+# Constraint Manifold — JP's Tier 1
+# "24 constraints, all in decidable logic, proven via Z3"
+# "C1 through C8 plus 8 cross-cutting properties"
+# "Tier 1 (YAM, real, deterministic, free)"
+#
+# This is the bridge between FlowMind (runtime) and Tau (generator).
+# Z3 reads this → proves properties hold on existing code.
+# Future: Tau reads this → synthesizes code where properties hold by construction.
+
+schema: constraint_manifold_v1
+tier: 1
+properties: [YAM, real, deterministic, free]
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# C1-C8: Core Engine Constraints
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+core_constraints:
+  C1_finitude:
+    statement: "All state representations have finite dimension d < ∞"
+    z3_predicate: "d > 0 AND d < MAX_DIM"
+    engine_map: "F01"
+    testable: true
+    sim_coverage: ["foundations_sim.py"]
+
+  C2_noncommutation:
+    statement: "For any two operators A,B there exists a state where AB ≠ BA"
+    z3_predicate: "EXISTS rho: trace_distance(A(B(rho)), B(A(rho))) > epsilon"
+    engine_map: "N01"
+    testable: true
+    sim_coverage: ["foundations_sim.py", "topology_operator_sim.py"]
+
+  C3_cptp_admissibility:
+    statement: "All operations preserve trace, positivity, and complete positivity"
+    z3_predicate: "trace(E(rho)) == 1 AND eigenvals(E(rho)) >= 0"
+    engine_map: "CPTP contract"
+    testable: true
+    sim_coverage: ["topology_operator_sim.py"]
+
+  C4_operational_equivalence:
+    statement: "Identity is defined by indistinguishability under admissible probes, not by primitive equality"
+    z3_predicate: "a == b IFF forall P in probes: P(a) == P(b)"
+    engine_map: "CAS04"
+    testable: true
+    sim_coverage: ["constraint_gap_sim.py"]
+
+  C5_entropy_monotonicity:
+    statement: "Unitary evolution preserves entropy; non-unitary evolution changes it monotonically per step"
+    z3_predicate: "S(U rho U†) == S(rho) AND S(E(rho)) != S(rho) for non-unitary E"
+    engine_map: "Entropy flow axiom"
+    testable: true
+    sim_coverage: ["foundations_sim.py", "math_foundations_sim.py"]
+
+  C6_dual_loop_requirement:
+    statement: "Sustainable evolution requires both deductive (FeTi) and inductive (TeFi) loops"
+    z3_predicate: "single_loop_stalls(N) AND dual_loop_survives(N) for large N"
+    engine_map: "Dual-loop theorem"
+    testable: true
+    sim_coverage: ["igt_advanced_sim.py"]
+
+  C7_spinor_periodicity:
+    statement: "Full cycle requires 720° (8 stages), not 360° (4 stages)"
+    z3_predicate: "trace_distance(rho_360, rho_init) > epsilon AND trace_distance(rho_720, rho_init) < epsilon"
+    engine_map: "720° cycle"
+    testable: true
+    sim_coverage: ["igt_advanced_sim.py", "full_8stage_engine_sim.py"]
+
+  C8_ratchet_gain:
+    statement: "Net negentropy change ΔΦ ≥ 0 over a full 720° cycle"
+    z3_predicate: "sum(delta_phi[stage]) >= 0 for stages in full_cycle"
+    engine_map: "Net ratchet"
+    testable: true
+    sim_coverage: ["constraint_gap_sim.py"]
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# X1-X8: Cross-Cutting Properties
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+cross_cutting:
+  X1_gt_isolation:
+    statement: "Game theory overlays (Win/Lose labels) do not modify kernel CPTP admissibility"
+    z3_predicate: "E_labeled(rho) == E_unlabeled(rho)"
+    sim_coverage: ["constraint_gap_sim.py"]
+
+  X2_chirality_matters:
+    statement: "T-first and F-first orderings produce measurably different outcomes"
+    z3_predicate: "trace_distance(TF(rho), FT(rho)) > epsilon"
+    sim_coverage: ["igt_game_theory_sim.py"]
+
+  X3_attractor_is_nash:
+    statement: "The engine's attractor state is a Nash equilibrium"
+    z3_predicate: "forall single_op_deviation: trace_distance(deviated, attractor) > 0"
+    sim_coverage: ["igt_game_theory_sim.py"]
+
+  X4_structure_saturation_stalls:
+    statement: "Agents exclusively seeking structure gain stall due to entropic debt accumulation"
+    z3_predicate: "entropy_gradient(sg_only_system, N) -> 0 as N -> large"
+    sim_coverage: ["igt_advanced_sim.py"]
+
+  X5_irrational_escape:
+    statement: "Temporary entropy increase enables escape from local minima"
+    z3_predicate: "EXISTS path: local_min(path[0]) AND NOT local_min(path[-1]) AND entropy(path[1]) > entropy(path[0])"
+    sim_coverage: ["igt_advanced_sim.py"]
+
+  X6_refinement_noncommutative:
+    statement: "Refinement operators do not commute"
+    z3_predicate: "trace_distance(R1(R2(rho)), R2(R1(rho))) > epsilon"
+    sim_coverage: ["constraint_gap_sim.py"]
+
+  X7_finite_stability:
+    statement: "Stability is scoped to finite perturbations; large kicks escape the basin"
+    z3_predicate: "small_kick_returns(rho, attractor) AND large_kick_escapes(rho, attractor)"
+    sim_coverage: ["constraint_gap_sim.py"]
+
+  X8_holodeck_fixed_point:
+    statement: "Self-referential observer converges to a fixed point E(ρ*) = ρ*"
+    z3_predicate: "trace_distance(E(rho_star), rho_star) < epsilon"
+    sim_coverage: ["nlm_batch2_sim.py"]
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Coverage Map
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+coverage:
+  total_constraints: 16
+  with_sim_coverage: 16
+  without_sim_coverage: 0
+  coverage_ratio: 1.0

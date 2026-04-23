@@ -1,0 +1,152 @@
+{
+  "name": "SegalConditionSimplicialNerve -- Segal maps must be equivalences",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; simplicial topology is combinatorial, not tensor network"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; simplicial fiber products not graph-representable"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 more suitable for nonlinear simplicial equivalence constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: cvc5 SMT solver: proves UNSAT for non-equivalent Segal maps"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for product simplicial structures"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; simplicial sets are not geometric algebra"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; simplicial sets have no manifold structure"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no equivariance in abstract simplicial topology"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; simplicial structure is not graph-like"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; simplicial simplices are not hyperedges"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; simplicial sets use abstract combinatorial structure"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; Segal is not computed via persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_segal_map_x1": {
+      "pass": true,
+      "detail": "Segal map X_1 \u2192 X_0 \u00d7 X_1 \u00d7 X_0 is equivalence",
+      "x_1_size": 3,
+      "product_size": 3
+    },
+    "test_segal_maps_all_levels": {
+      "pass": true,
+      "detail": "All Segal maps X_n \u2192 \u00d7X_1 are equivalences",
+      "levels": [
+        2,
+        3,
+        4
+      ],
+      "segal_at_each_level": [
+        true,
+        true,
+        true
+      ]
+    },
+    "test_segal_cardinality_preservation": {
+      "pass": true,
+      "detail": "X_3 and X_1^3_{X_0} have same cardinality",
+      "x_n_cardinality": 10,
+      "product_cardinality": 10
+    }
+  },
+  "negative": {
+    "test_unsat_segal_cardinality_mismatch": {
+      "pass": true,
+      "detail": "UNSAT when Segal-flag=true but cardinalities differ",
+      "solver_result": "UNSAT"
+    },
+    "test_unsat_segal_multilevel_violation": {
+      "pass": true,
+      "detail": "UNSAT when any level violates Segal equivalence",
+      "solver_result": "UNSAT"
+    },
+    "test_sympy_segal_cardinality_equation": {
+      "pass": true,
+      "detail": "Segal cardinality constraint modeled",
+      "equation": "Eq(x_n, x_1_prod)"
+    }
+  },
+  "boundary": {
+    "test_segal_base_case_x0": {
+      "pass": true,
+      "detail": "X_0 is a point (cardinality 1)",
+      "x_0_cardinality": 1
+    },
+    "test_segal_large_dimension": {
+      "pass": true,
+      "detail": "Segal holds in dimension 10",
+      "dimension": 10,
+      "x_n_cardinality": 66,
+      "product_cardinality": 66,
+      "violation_count": 0
+    },
+    "test_segal_nested_consistency": {
+      "pass": true,
+      "detail": "Segal holds consistently across nested fiber products",
+      "dimensions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "all_pass": true
+    }
+  },
+  "classification": "canonical"
+}

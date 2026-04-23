@@ -1,0 +1,138 @@
+{
+  "name": "sim_geometry_c_star_algebra_gelfand_naimark_constraint_canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "numerical sweep of C*-algebra elements for P1, P2, B1; norm computation"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "primary proof form for P3, N1, N2: UNSAT encodes Gelfand-Naimark constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic derivation of Gelfand-Naimark isomorphism for B1"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": "load_bearing",
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": "supportive",
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "P1_c_star_identity_norm": {
+      "pass": true,
+      "n_trials": 20,
+      "violations": [],
+      "note": "C*-identity ||a*a|| = ||a||\u00b2 holds for all random 3x3 matrices"
+    },
+    "P2_commutative_spectrum_rank": {
+      "pass": true,
+      "notes": [
+        {
+          "n": 4,
+          "rank_spectrum": 4,
+          "expected_ge": 3,
+          "pass": true
+        }
+      ],
+      "note": "Diagonal (commutative) subalgebra: spectrum rank = 4 for n=4"
+    },
+    "P3_cvc5_gelfand_naimark_rank_equality": {
+      "pass": false,
+      "cvc5_status": "sat",
+      "note": "Expected UNSAT, got sat"
+    }
+  },
+  "negative": {
+    "N1_cvc5_noncommutative_no_gelfand": {
+      "pass": true,
+      "cvc5_status": "unsat",
+      "note": "cvc5 UNSAT: logical contradiction on commutativity property"
+    },
+    "N2_cvc5_c_star_identity_violation": {
+      "pass": false,
+      "cvc5_status": "sat",
+      "note": "Expected UNSAT, got sat"
+    },
+    "N3_cvc5_gelfand_requires_commutativity": {
+      "pass": false,
+      "cvc5_status": "sat",
+      "note": "Expected UNSAT, got sat"
+    }
+  },
+  "boundary": {
+    "B1_gelfand_diagonal_commutative_subalgebra": {
+      "pass": true,
+      "note": "Diagonal n=5: rank(spectrum)=5, commutative=True, Gelfand homeomorphism applies (spectrum \u2245 maximal ideals)"
+    },
+    "B2_gelfand_m2_diagonal_minimal": {
+      "pass": true,
+      "note": "M_2(C) diagonal: spectrum rank = 2, Gelfand: C({1, 2}) \u2245 diagonal subalgebra"
+    },
+    "B3_c_star_identity_small_elements": {
+      "pass": true,
+      "note": "Small matrix: ||a||=2.56e-02, ||a*a||=6.57e-04, ||a||\u00b2=6.57e-04, error=0.00e+00"
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

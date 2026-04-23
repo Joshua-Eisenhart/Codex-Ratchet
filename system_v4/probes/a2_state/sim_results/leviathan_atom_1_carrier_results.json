@@ -1,0 +1,102 @@
+{
+  "name": "leviathan_atom_1_carrier",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symbolic additivity"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure at carrier atom"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no boolean constraint set here"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "redundant with z3 path at this atom"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic integration + disjoint-union additivity check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no multivector carrier yet"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold metric at carrier atom"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance claim here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "structure atom handles graphs"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "structure atom handles hypergraphs"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "structure atom handles cell complexes"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence claim here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "gaussian_carrier": {
+      "finite_total": true,
+      "additive_disjoint": true,
+      "total": 1.7724146965190424,
+      "pass": true
+    },
+    "numpy_crosscheck_total": 1.7724146962413707
+  },
+  "negative": {
+    "divergent_carrier_rejected": {
+      "total": "oo",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_carrier_degenerate": {
+      "total": 0.0,
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

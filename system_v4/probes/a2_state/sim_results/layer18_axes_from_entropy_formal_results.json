@@ -1,0 +1,39 @@
+{
+  "layer": 18,
+  "name": "Axes from Entropy",
+  "positive": {
+    "numerical_all_cuts": {
+      "description": "I_c for all 3 bipartitions after 10 cycles",
+      "ic_values": {
+        "1vs23": -0.41162799,
+        "12vs3": -0.86459513,
+        "13vs2": -0.43871447
+      }
+    },
+    "P1_pyg_bipartition_graph": {
+      "description": "Bipartition graph: 3 nodes (qubits), 3 edges (cuts) with I_c attributes",
+      "num_nodes": 3,
+      "num_edges": 3,
+      "edge_ic_values": [
+        -0.41162798,
+        -0.86459512,
+        -0.43871447
+      ],
+      "passed": true
+    },
+    "P2_pyg_asymmetry": {
+      "description": "Graph is NOT symmetric: different cuts give different I_c (geometry matters)",
+      "cut1_approx_cut3": false,
+      "cut2_differs_from_others": true,
+      "not_all_equal": true,
+      "passed": true
+    }
+  },
+  "negative": {},
+  "tools_used": [
+    "PyG",
+    "numpy"
+  ],
+  "timestamp": "2026-04-06",
+  "summary": "Axes from entropy: 3 cuts measured, asymmetry confirmed=True, graph built with 3 edges"
+}

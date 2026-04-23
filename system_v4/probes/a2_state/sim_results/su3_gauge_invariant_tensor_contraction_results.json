@@ -1,0 +1,114 @@
+{
+  "name": "su3_gauge_invariant_tensor_contraction",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Construct MPS tensors; apply SU3 gauge on virtual bonds; compute I_c before/after; verify autograd dI_c/dg=0 at g=identity"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "GNN message passing on MPS graph; gauge as node feature rotation; verify aggregated contraction invariant under SU3"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: I_c depends on gauge AND tensor network is SU3-gauge-invariant is impossible; gauge invariance forces all gauge choices to identical I_c"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 z3 UNSAT is sufficient for this bounded integer proof"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Prove symbolically Tr(A\u00b7g\u00b7B\u00b7g\u2020)=Tr(A\u00b7B) for unitary g via cyclic trace; mathematical core of gauge invariance"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "SU3 as subgroup of Spin(6)~Cl(6,0); gauge transformation as grade-1 rotor; verify rotor and reverse cancel in contraction"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 SU3 manifold geometry not required for this classical baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 equivariant network layer not required here"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "MPS as 3-node chain graph; gauge as edge-weight update {g, g\u2020}; verify graph contraction invariant = I_c unchanged"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "Tensor_A, gauge_g, Tensor_B as 3-way hyperedge; gauge invariance = hyperedge value independent of representative of [g]"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 no cell complex structure required"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": "load_bearing",
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "pytorch_gauge_invariance_survived": true,
+    "pytorch_gauge_invariance_trial_count": 5,
+    "pytorch_autograd_su3_proj_grad_zero_at_identity": true,
+    "sympy_cyclic_trace_gauge_invariance_zero": true
+  },
+  "negative": {
+    "pytorch_one_sided_gauge_excluded": true,
+    "pytorch_one_sided_changed_count": 5,
+    "z3_UNSAT_gauge_invariant_and_dependent": true,
+    "sympy_nonunitary_breaks_invariance": "True"
+  },
+  "boundary": {
+    "clifford_rotor_preserves_grade1": true,
+    "clifford_rotor_unit_norm": true,
+    "rustworkx_graph_contraction_gauge_invariant": true,
+    "xgi_hyperedge_gauge_rep_invariant": true,
+    "pyg_gnn_message_passing_runs": true,
+    "pyg_message_passes_through_bond": true,
+    "boundary_identity_gauge_is_base": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "pass_count": 12,
+    "total_count": 12
+  },
+  "divergence_log": [
+    "classical baseline: SU3 gauge invariance verified numerically, not via full Lie algebra proof",
+    "I_c here is a real trace contraction, not the full Axis 0 information quantity",
+    "SU3 rotors constructed via QR decomposition \u2014 not the canonical Haar-measure sampling",
+    "clifford: SU3 embedded in Spin(6) via grade-1 rotor; full SU3 subgroup structure not proven",
+    "one-sided gauge insertion is excluded from gauge orbit \u2014 I_c changes, confirming gauge non-triviality"
+  ]
+}

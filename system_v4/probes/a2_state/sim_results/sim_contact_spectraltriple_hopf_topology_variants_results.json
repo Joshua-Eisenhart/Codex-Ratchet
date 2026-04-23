@@ -1,0 +1,178 @@
+{
+  "name": "sim_contact_spectraltriple_hopf_topology_variants",
+  "classification": "classical_baseline",
+  "classification_note": "Contact\u00d7SpectralTriple\u00d7Hopf topology-variant probe. This remains a classical-baseline comparison surface, not a nonclassical witness.",
+  "divergence_log": "Topology variants: T1 flat torus (H_hopf=log2/2), T2 S\u00b2 (H_hopf=log2), T3 lens (H_hopf=log2/3). DPI: MI decreases under dephasing for each topology. z3 UNSAT: MI=1 AND Q=0 impossible when all H>0. Q ordering follows H_hopf ordering.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute Q per topology as torch tensor; MI and H products via torch ops (load-bearing)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning in topology variants"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: MI=1 AND Q=0 impossible when all H>0 \u2014 entanglement forces positive Q (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for topology UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic DPI: MI monotone under dephasing channel (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford algebra in topology variants"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold needed here"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3) equivariance in topology variants"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal in topology variants"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph in topology variants"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "chain-complex not invoked in topology variants"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistence not in topology variant scope"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "P1_DPI_MI_decreases": {
+      "topologies": {
+        "T1_flat_torus": {
+          "input_MI": 1.3862943611198906,
+          "final_MI": 0.10814930452367744,
+          "dpi_ok": true
+        },
+        "T2_S2": {
+          "input_MI": 1.3862943611198906,
+          "final_MI": 0.10814930452367744,
+          "dpi_ok": true
+        },
+        "T3_lens_space": {
+          "input_MI": 1.3862943611198906,
+          "final_MI": 0.10814930452367744,
+          "dpi_ok": true
+        }
+      },
+      "passed": true
+    },
+    "P2_Q_positive_all_topologies": {
+      "topologies": {
+        "T1_flat_torus": {
+          "MI": 0.10814930452367744,
+          "H_hopf": 0.34657359027997264,
+          "Q": 0.06559349006048167,
+          "ok": true
+        },
+        "T2_S2": {
+          "MI": 0.10814930452367744,
+          "H_hopf": 0.6931471805599453,
+          "Q": 0.13118698012096333,
+          "ok": true
+        },
+        "T3_lens_space": {
+          "MI": 0.10814930452367744,
+          "H_hopf": 0.23104906018664842,
+          "Q": 0.04372899337365445,
+          "ok": true
+        }
+      },
+      "passed": true
+    },
+    "P3_pytorch_Q_per_topology": {
+      "topologies": {
+        "T1_flat_torus": {
+          "Q": 0.06559349006048167,
+          "ok": true
+        },
+        "T2_S2": {
+          "Q": 0.13118698012096333,
+          "ok": true
+        },
+        "T3_lens_space": {
+          "Q": 0.04372899337365445,
+          "ok": true
+        }
+      },
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_MI1_Q0": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_dephasing_info_loss": {
+      "note": "dephasing channel: rho -> (1-eps)*rho + eps*diag(rho); off-diagonal suppressed by (1-eps)",
+      "eps_positive_means_loss": true,
+      "passed": true
+    },
+    "N3_lens_space_smallest_Q": {
+      "Q_T1": 0.06559349006048167,
+      "Q_T3": 0.04372899337365445,
+      "H_hopf_T1": 0.34657359027997264,
+      "H_hopf_T3": 0.23104906018664842,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_hopf_ordering": {
+      "H_hopf_T1": 0.34657359027997264,
+      "H_hopf_T2": 0.6931471805599453,
+      "H_hopf_T3": 0.23104906018664842,
+      "passed": true
+    },
+    "B2_DPI_multi_seed": {
+      "confirmed_5_seeds": 5,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

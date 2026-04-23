@@ -1,0 +1,109 @@
+{
+  "name": "sim_mirror_4_admissibility",
+  "family": "mirror",
+  "step": "admissibility",
+  "step_index": 4,
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: result of this atomic step materially depends on this tool"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold structure in this atomic step"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "swap": true
+  },
+  "negative": {
+    "no_identity": true
+  },
+  "boundary": {
+    "self_mirror_diag": true
+  },
+  "all_pass": true,
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
+}

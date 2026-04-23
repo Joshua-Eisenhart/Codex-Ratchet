@@ -1,0 +1,100 @@
+{
+  "name": "igt_deep_nested_win_lose_irreducibility",
+  "classification": "canonical",
+  "scope_note": "OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for UNSAT irreducibility"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for UNSAT irreducibility"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT of flat reduction proves nested-inversion irreducibility"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for UNSAT irreducibility"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for UNSAT irreducibility"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for UNSAT irreducibility"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for UNSAT irreducibility"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for UNSAT irreducibility"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for UNSAT irreducibility"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for UNSAT irreducibility"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for UNSAT irreducibility"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for UNSAT irreducibility"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "flat_outer_only_unsat": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "non_inverting_admits_lex": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "degenerate_equal_sat": {
+      "pass": true
+    },
+    "single_level_flat_sat": {
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

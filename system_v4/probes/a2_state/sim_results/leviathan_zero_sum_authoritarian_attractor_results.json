@@ -1,0 +1,40 @@
+{
+  "name": "leviathan_zero_sum_authoritarian_attractor",
+  "classification": "canonical",
+  "positive": {
+    "hhi_diverse": 0.25,
+    "not_authoritarian": true,
+    "balanced_degree_max": 3
+  },
+  "negative": {
+    "hhi_collapsed": 0.9033999999999999,
+    "authoritarian_attractor_detected": true,
+    "collapsed_excluded": true
+  },
+  "boundary": {
+    "hhi_at_threshold": 0.5856979999999999,
+    "hhi_uniform_1_over_n": "1/4"
+  },
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic HHI minimum"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "exclude concentrated-narrative admissibility"
+    },
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "narrative balance topology"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "supportive",
+    "z3": "load_bearing",
+    "networkx": "supportive"
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "name": "Adjoint Functor Constraint Canonical",
+  "description": "Adjoint functors F\u22a3G: hom(F(A),B) \u2245 hom(A,G(B)); z3 encodes homset bijection via QF_LIA; rejects cardinality mismatches and triangle identity violations; proves adjoint transpose naturality",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for homset cardinality"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for adjoint structure"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Encodes adjoint functor constraint |hom(F(A),B)| = |hom(A,G(B))| via integer linear arithmetic; proves cardinality mismatches are UNSAT; validates triangle identities \u03b5F\u2218F\u03b7=id_F and G\u03b5\u2218\u03b7G=id_G; identifies adjoint regimes via QF_LIA homset bijection"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for integer linear constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Derives adjoint pair F\u22a3G and unit \u03b7:Id\u2192GF, counit \u03b5:FG\u2192Id; proves triangle identities and natural transpose via symbolic manipulation; validates adjoint transpose naturality in both arguments"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for functor composition"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for adjoint pairs"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for natural bijection"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for categorical adjunction"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for homset structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for adjoint transpose"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for triangle identities"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "adjoint_homset_bijection_basic": {
+      "status": "satisfiable",
+      "interpretation": "Adjoint functors F\u22a3G: |hom(F(A), B)| = |hom(A, G(B))| = 4; natural bijection established via adjoint transpose",
+      "hom_F_A_B": 4,
+      "hom_A_G_B": 4,
+      "adjoint": true
+    },
+    "triangle_identity_unit_counit": {
+      "status": "satisfiable",
+      "interpretation": "Triangle identities for F\u22a3G: (\u03b5F)\u2218(F\u03b7)=id_F and (G\u03b5)\u2218(\u03b7G)=id_G both satisfied; unit \u03b7 and counit \u03b5 coherent",
+      "triangle_1": 1,
+      "triangle_2": 1,
+      "adjoint_coherent": true
+    },
+    "adjoint_transpose_natural": {
+      "status": "satisfiable",
+      "interpretation": "Adjoint transpose hom(F(A), B) \u2192 hom(A, G(B)) is natural in both A and B; commutes with morphisms in domain and codomain",
+      "morphisms_A": 3,
+      "morphisms_B": 2,
+      "transpose_natural": true
+    }
+  },
+  "negative": {
+    "homset_cardinality_mismatch_unsat": {
+      "status": "unsat",
+      "interpretation": "Cardinality mismatch: |hom(F(A), B)| = 5 but |hom(A, G(B))| = 8; adjoint transpose cannot be bijective; F\u22a3G fails"
+    },
+    "triangle_identity_broken_unsat": {
+      "status": "unsat",
+      "interpretation": "Triangle identity violation: (G\u03b5)\u2218(\u03b7G)\u2260id_G; unit and counit incoherent; adjoint structure broken"
+    },
+    "asymmetric_morphisms_unsat": {
+      "status": "unsat",
+      "interpretation": "Morphism count mismatch: F provides 7 morphisms but G accounts for only 3; adjoint transpose impossible; not a true adjoint pair"
+    }
+  },
+  "boundary": {
+    "adjoint_trivial_functor": {
+      "status": "satisfiable",
+      "interpretation": "Adjoint boundary case: both hom sets have 0 morphisms; trivial adjoint (terminal/initial object case)",
+      "hom_F": 0,
+      "hom_G": 0,
+      "boundary_case": true
+    },
+    "adjoint_identity": {
+      "status": "satisfiable",
+      "interpretation": "Identity adjoint: id\u22a3id with |hom(A,B)| = |hom(A,B)| = 2; adjoint holds trivially for identity functors",
+      "hom_count": 2,
+      "identity_adjoint": true
+    },
+    "adjoint_scaling_invariance": {
+      "status": "satisfiable",
+      "interpretation": "Adjoint relation persists under scaling: if |hom(F(A),B)| = |hom(A,G(B))|=n, then scaled copies maintain equality; bijection is stable",
+      "scale_factor": 3,
+      "base_hom": 2,
+      "scaled_hom": 6,
+      "stable_under_scaling": true
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

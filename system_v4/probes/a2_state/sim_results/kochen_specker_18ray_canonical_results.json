@@ -1,0 +1,125 @@
+{
+  "name": "kochen_specker_18ray_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for boolean UNSAT proof"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not a graph ML task"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "boolean SAT/UNSAT on NCHV assignment system; UNSAT = KS contextuality proof"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 suffices; cvc5 optional cross-check"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "booleans, not symbolic algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "projector algebra already encoded as 18 rays"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not a manifold task"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not a representation task"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "orthogonality graph small; direct encoding clearer"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "9 contexts small; direct encoding"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "contexts_orthogonal": {
+      "bad_pairs": 0,
+      "pass": true
+    },
+    "full_system_unsat": {
+      "z3_status": "unsat",
+      "pass": true
+    },
+    "gap": {
+      "classical_nchv_assignments": 0,
+      "quantum_projector_assignments": 1,
+      "gap": 1,
+      "pass": true
+    }
+  },
+  "negative": {
+    "drop_last_context_sat": {
+      "z3_status": "sat",
+      "pass": true
+    },
+    "drop_first_context_sat": {
+      "z3_status": "sat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "single_context_sat": {
+      "z3_status": "sat",
+      "pass": true
+    },
+    "two_contexts_sat": {
+      "z3_status": "sat",
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "load_bearing_tool": "z3",
+    "gap_classical": 0,
+    "gap_quantum": 1,
+    "gap_value": 1,
+    "gap_kind": "structural_unsat"
+  }
+}

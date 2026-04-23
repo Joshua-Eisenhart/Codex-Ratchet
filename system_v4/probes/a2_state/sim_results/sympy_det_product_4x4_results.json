@@ -1,0 +1,95 @@
+{
+  "name": "sympy_det_product_4x4",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric determinants float; cannot certify polynomial identity"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "polynomial identity of 32 free vars; sympy handles exactly"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic determinant expansion; expand(det(AB)-det(A)det(B)) simplifies to 0"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "det_product_identity_4x4": true
+  },
+  "negative": {
+    "det_sum_identity_false": true
+  },
+  "boundary": {
+    "identity_case": true,
+    "zero_case": true
+  },
+  "ablation": {
+    "numpy_single_draw": true,
+    "abs_residual": 1.3322676295501878e-15,
+    "note": "numeric agreement per-draw; cannot certify polynomial identity over all entries"
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,219 @@
+{
+  "name": "IntersectionCohomologyPoincareDualityConstraint",
+  "domain": "Intersection cohomology, pseudomanifolds, duality",
+  "claim": "IH^k(X) \u2245 IH^{n-k}(X) for compact n-dim pseudomanifold; dim(IH^k) = dim(IH^{n-k}) is mandatory",
+  "theorem_reference": "Poincar\u00e9 duality for intersection cohomology",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Poincar\u00e9 duality constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for cohomology dimensions"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test1_n4_symmetric": {
+      "name": "n4_symmetric_dims",
+      "dimension": 4,
+      "ih_dimensions": [
+        1,
+        2,
+        3,
+        2,
+        1
+      ],
+      "description": "4-dimensional pseudomanifold with symmetric IH",
+      "sat": true,
+      "valid": true
+    },
+    "test2_n3_symmetric": {
+      "name": "n3_symmetric_dims",
+      "dimension": 3,
+      "ih_dimensions": [
+        1,
+        3,
+        3,
+        1
+      ],
+      "description": "3-dimensional pseudomanifold",
+      "sat": true,
+      "valid": true
+    },
+    "test3_n5_zeros": {
+      "name": "n5_with_zero_dims",
+      "dimension": 5,
+      "ih_dimensions": [
+        1,
+        0,
+        2,
+        2,
+        0,
+        1
+      ],
+      "description": "5-dimensional with vanishing IH in middle degrees",
+      "sat": true,
+      "valid": true
+    }
+  },
+  "negative": {
+    "neg1_asymmetric_endpoints": {
+      "name": "n4_asymmetric_endpoints",
+      "dimension": 4,
+      "ih_dimensions": [
+        1,
+        2,
+        3,
+        2,
+        2
+      ],
+      "description": "IH^0=1 but IH^4=2, violates duality",
+      "violation": "IH^0 != IH^4",
+      "must_be_unsat": true,
+      "sat": false,
+      "inadmissible": true
+    },
+    "neg2_middle_mismatch": {
+      "name": "n4_middle_degree_mismatch",
+      "dimension": 4,
+      "ih_dimensions": [
+        1,
+        2,
+        3,
+        3,
+        1
+      ],
+      "description": "IH^1=2 but IH^3=3, middle degrees don't match",
+      "violation": "IH^1 != IH^3",
+      "must_be_unsat": true,
+      "sat": false,
+      "inadmissible": true
+    },
+    "neg3_odd_asymmetric": {
+      "name": "n3_asymmetric",
+      "dimension": 3,
+      "ih_dimensions": [
+        1,
+        3,
+        3,
+        2
+      ],
+      "description": "IH^0=1 but IH^3=2, odd dimensional case",
+      "violation": "IH^0 != IH^3",
+      "must_be_unsat": true,
+      "sat": false,
+      "inadmissible": true
+    }
+  },
+  "boundary": {
+    "bound1_n0": {
+      "name": "n0_point",
+      "dimension": 0,
+      "ih_dimensions": [
+        1
+      ],
+      "description": "0-dimensional pseudomanifold (point)",
+      "sat": true,
+      "valid": true
+    },
+    "bound2_n1": {
+      "name": "n1_circle",
+      "dimension": 1,
+      "ih_dimensions": [
+        1,
+        1
+      ],
+      "description": "1-dimensional (e.g., circle)",
+      "sat": true,
+      "valid": true
+    },
+    "bound3_n10": {
+      "name": "n10_homology_sphere",
+      "dimension": 10,
+      "ih_dimensions": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "description": "10-dimensional (like homology sphere)",
+      "sat": true,
+      "valid": true
+    }
+  },
+  "classification": "canonical"
+}

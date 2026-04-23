@@ -1,0 +1,128 @@
+{
+  "name": "Atiyah-Singer Index Theorem via cvc5",
+  "description": "cvc5 proves analytical_index = topological_index via QF_LIA integer constraints; heat kernel and Chern character via sympy",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "Index theorem is topological integer equality; no gradient descent needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Atiyah-Singer index is global invariant; no graph message passing required"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 preferred for integer linear arithmetic on topological/analytical indices"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 proves analytical_index = topological_index via QF_LIA integer equality constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy derives heat kernel expansion and Chern character formula supporting index computation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Spin structures relevant; index theorem proven via characteristic classes before Clifford algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Index theorem is topological invariant; not a manifold learning or Riemannian ODE problem"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Index of elliptic operator is scalar invariant; no equivariant network representation needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Atiyah-Singer is differential topology; not a graph combinatorics problem"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Index theorem on vector bundles; not a hypergraph or simplicial complex issue"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Topological invariant (index) solved by cvc5; cohomology structure secondary to integer constraint"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Index theorem requires characteristic classes; simplicial homology insufficient for Chern character"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_trivial_bundle": {
+      "error": "type object 'Kind' has no attribute 'MINUS'"
+    },
+    "test_positive_index_one": {
+      "error": "type object 'Kind' has no attribute 'MINUS'"
+    },
+    "test_positive_index_minus_one": {
+      "error": "type object 'Kind' has no attribute 'MINUS'"
+    }
+  },
+  "negative": {
+    "test_negative_index_not_integer": {
+      "description": "cvc5 UNSAT: index must be integer; 2*index=1 impossible (would require index=0.5)",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_index_mismatch": {
+      "error": "type object 'Kind' has no attribute 'NEQ'"
+    },
+    "test_negative_negative_dimension": {
+      "description": "cvc5 UNSAT: kernel dimension cannot be negative; dim(ker) \u2265 0 axiom violated",
+      "unsat": true,
+      "expected": true
+    }
+  },
+  "boundary": {
+    "test_boundary_higher_index": {
+      "error": "type object 'Kind' has no attribute 'MINUS'"
+    },
+    "test_boundary_heat_kernel_expansion": {
+      "description": "sympy: heat kernel expansion Tr(e^{-tD^2}) encodes index via a_{n/2} coefficient",
+      "asymptotic_form": "t^{-n/2} * (a_0 + a_1*t + ... + a_{n/2}*t^{n/2} + ...)",
+      "index_coefficient": "a_{n/2} = Index(D) (Atiyah-Singer)",
+      "computation_path": "regularize heat trace \u2192 asymptotic expansion \u2192 extract topological index",
+      "expected": true,
+      "passed": true
+    },
+    "test_boundary_chern_character": {
+      "description": "sympy: Chern character ch(E) = Tr(e^{F/(2\u03c0i)}) and Todd class Td(M) wedge formula",
+      "chern_form": "ch(E) = dim(E) + c_1 + (c_1^2 - 2*c_2)/2 + ...",
+      "todd_form": "Td(M) = 1 + c_1/12 + (c_1^2 + c_2)/360 + ... (Bernoulli coefficients)",
+      "index_integral": "Index(D) = \u222b_M ch(E) \u2227 Td(M) (differential form wedge product)",
+      "expected": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,234 @@
+{
+  "name": "BBDGDecompositionTheoremConstraint",
+  "domain": "Intersection cohomology, perverse sheaves, derived categories",
+  "claim": "Rf_*IC_X decomposes into shifted simple perverse sheaves; indecomposable non-simple summands are inadmissible",
+  "theorem_reference": "Beilinson-Bernstein-Deligne-Gabber",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of BBDG decomposition constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for sheaf decomposition"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test1_single_simple": {
+      "name": "single_simple_summand",
+      "num_summands": 1,
+      "summand_properties": [
+        {
+          "id": 0,
+          "is_simple": true,
+          "has_decomposition": false,
+          "is_indecomposable": true
+        }
+      ],
+      "sat": true,
+      "valid": true
+    },
+    "test2_two_simple": {
+      "name": "two_simple_summands",
+      "num_summands": 2,
+      "summand_properties": [
+        {
+          "id": 0,
+          "is_simple": true,
+          "has_decomposition": false,
+          "is_indecomposable": true
+        },
+        {
+          "id": 1,
+          "is_simple": true,
+          "has_decomposition": false,
+          "is_indecomposable": true
+        }
+      ],
+      "sat": true,
+      "valid": true
+    },
+    "test3_mixed": {
+      "name": "mixed_simple_and_decomposed",
+      "num_summands": 2,
+      "summand_properties": [
+        {
+          "id": 0,
+          "is_simple": true,
+          "has_decomposition": false
+        },
+        {
+          "id": 1,
+          "is_simple": false,
+          "has_decomposition": true,
+          "description": "Decomposable into S_2 + S_3"
+        }
+      ],
+      "sat": true,
+      "valid": true
+    }
+  },
+  "negative": {
+    "neg1_indecomp_nonsimple": {
+      "name": "indecomposable_nonsimple_summand",
+      "description": "Summand is indecomposable but non-simple",
+      "num_summands": 1,
+      "summand_properties": [
+        {
+          "id": 0,
+          "is_simple": false,
+          "has_decomposition": false,
+          "is_indecomposable": true
+        }
+      ],
+      "must_be_unsat": true,
+      "sat": false,
+      "inadmissible": true
+    },
+    "neg2_mixed_invalid": {
+      "name": "mixed_valid_and_invalid",
+      "description": "One valid (simple), one invalid (indecomp non-simple)",
+      "num_summands": 2,
+      "summand_properties": [
+        {
+          "id": 0,
+          "is_simple": true,
+          "has_decomposition": false
+        },
+        {
+          "id": 1,
+          "is_simple": false,
+          "has_decomposition": false,
+          "is_indecomposable": true
+        }
+      ],
+      "must_be_unsat": true,
+      "sat": false,
+      "inadmissible": true
+    },
+    "neg3_three_summands": {
+      "name": "three_summands_middle_invalid",
+      "description": "S_1 (simple), S_2 (indecomp non-simple), S_3 (simple)",
+      "num_summands": 3,
+      "summand_properties": [
+        {
+          "id": 0,
+          "is_simple": true,
+          "has_decomposition": false
+        },
+        {
+          "id": 1,
+          "is_simple": false,
+          "has_decomposition": false
+        },
+        {
+          "id": 2,
+          "is_simple": true,
+          "has_decomposition": false
+        }
+      ],
+      "must_be_unsat": true,
+      "sat": false,
+      "inadmissible": true
+    }
+  },
+  "boundary": {
+    "bound1_empty": {
+      "name": "empty_decomposition",
+      "description": "Zero summands (Rf_*IC_X = 0)",
+      "num_summands": 0,
+      "valid_interpretation": "Vacuously true",
+      "sat": true,
+      "valid": true
+    },
+    "bound2_strict_simple": {
+      "name": "strict_simple_only",
+      "description": "Force is_simple=True and has_decomposition=False for all summands",
+      "num_summands": 1,
+      "summand_properties": [
+        {
+          "id": 0,
+          "is_simple": true,
+          "has_decomposition": false
+        }
+      ],
+      "sat": true,
+      "valid": true
+    },
+    "bound3_many_simple": {
+      "name": "many_simple_summands",
+      "description": "10 simple summands",
+      "num_summands": 10,
+      "all_simple": true,
+      "sat": true,
+      "valid": true
+    }
+  },
+  "classification": "canonical"
+}

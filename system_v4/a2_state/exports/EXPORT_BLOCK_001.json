@@ -1,0 +1,64 @@
+{
+  "item_class": "A1_STRATEGY_v1",
+  "compile_target": "A0_COMPILER",
+  "strategy_canonical": [
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S_ACTION_PRECEDENCE_NONCOLLAPSE",
+      "kind": "MATH_DEF",
+      "requires": [
+        "F01_FINITUDE",
+        "N01_NONCOMMUTATION"
+      ],
+      "def_fields": {
+        "OBJECTS": "density_matrix_rho operator_A operator_B",
+        "OPERATIONS": "left_pre_composition right_post_composition",
+        "DOMAIN": "finite_dimensional_density_matrices",
+        "CODOMAIN": "finite_dimensional_density_matrices",
+        "INVARIANTS": "non_commutation_preserved",
+        "FORMULA": "Tr(O*(A*rho)) != Tr(O*(rho*A)) under condition [A,rho] != 0"
+      },
+      "asserts": {
+        "EXISTS": "MATH_TOKEN ACTION_PRECEDENCE"
+      }
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S_GENERATOR_ALGEBRA_FGA",
+      "kind": "MATH_DEF",
+      "requires": [
+        "F01_FINITUDE"
+      ],
+      "def_fields": {
+        "OBJECTS": "density_matrix_rho monotone_scalar_m generator_G",
+        "OPERATIONS": "update_map composition",
+        "DOMAIN": "finite_dimensional_density_matrices",
+        "CODOMAIN": "finite_dimensional_density_matrices",
+        "INVARIANTS": "inv_fga_m inv_fga_comp",
+        "FORMULA": "GENERATOR_ALGEBRA_FGA update_map_G monotone_scalar_m (Lindbladian completely positive trace-preserving dissipative flow)"
+      },
+      "asserts": {
+        "EXISTS": "MATH_TOKEN GENERATOR_ALGEBRA_FGA"
+      }
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S_GENERATOR_ALGEBRA_FSA",
+      "kind": "MATH_DEF",
+      "requires": [
+        "F01_FINITUDE"
+      ],
+      "def_fields": {
+        "OBJECTS": "density_matrix_rho monotone_scalar_m hamiltonian_H",
+        "OPERATIONS": "commutator_update composition",
+        "DOMAIN": "finite_dimensional_density_matrices",
+        "CODOMAIN": "finite_dimensional_density_matrices",
+        "INVARIANTS": "inv_fsa_m inv_fsa_comp",
+        "FORMULA": "GENERATOR_ALGEBRA_FSA commutator_update_H monotone_scalar_m (Hamiltonian unitary entropy-preserving coherent flow)"
+      },
+      "asserts": {
+        "EXISTS": "MATH_TOKEN GENERATOR_ALGEBRA_FSA"
+      }
+    }
+  ]
+}

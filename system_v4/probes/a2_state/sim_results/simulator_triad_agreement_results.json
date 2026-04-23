@@ -1,0 +1,198 @@
+{
+  "name": "simulator_triad_agreement",
+  "classification": "classical_baseline",
+  "divergence_log": "Compound tool assembly baseline: consume the earned pairwise simulator bridges (Cirq\u2194PennyLane, Cirq\u2194QuTiP, PennyLane\u2194QuTiP) and require a coherent three-tool agreement surface before reusing this simulator cluster in larger lego work.",
+  "tool_manifest": {
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "simulator vertex in the triad agreement assembly"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "simulator vertex in the triad agreement assembly"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "simulator vertex in the triad agreement assembly"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "bounded numeric comparison of agreement gaps and entanglement witnesses"
+    }
+  },
+  "tool_integration_depth": {
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
+    "qutip": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "pass": true,
+    "cases": {
+      "triad_case_1": {
+        "theta": 1.127,
+        "phi": -0.713,
+        "density_gap_max": 1.2731075198650083e-07,
+        "zz_gap_max": 1.2178827601960762e-07,
+        "concurrence_values": [
+          0.6831288043875756,
+          0.6831288043875756,
+          0.6831288043875756
+        ],
+        "entropy_values": [
+          0.57059366287055,
+          0.57059366287055,
+          0.57059366287055
+        ],
+        "pass": true
+      },
+      "triad_case_2": {
+        "theta": 0.889,
+        "phi": 0.531,
+        "density_gap_max": 3.527198209248436e-08,
+        "zz_gap_max": 2.5441974305095982e-08,
+        "concurrence_values": [
+          0.6695267495895421,
+          0.6695267495895421,
+          0.6695267495895421
+        ],
+        "entropy_values": [
+          0.5536027785748449,
+          0.5536027785748449,
+          0.5536027785748449
+        ],
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "pass": true,
+    "reversed_entangler_consensus": {
+      "cirq_pennylane": {
+        "theta": 1.127,
+        "phi": -0.713,
+        "reversed_entangler": true,
+        "density_gap_cirq": 1.2688220272244237,
+        "density_gap_pennylane": 1.2688219669858536,
+        "state_overlap_cirq": 0.19504545082729313,
+        "state_overlap_pennylane": 0.19504540804707463,
+        "zz_gap_cirq": 0.32703175829725006,
+        "zz_gap_pennylane": 0.32703184452406675,
+        "concurrence": 0.6831288043875756,
+        "entropy": 0.57059366287055,
+        "pass": true
+      },
+      "cirq_qutip": {
+        "theta": 1.127,
+        "phi": -0.713,
+        "reversed_entangler": true,
+        "density_gap_cirq": 1.2688220272244237,
+        "density_gap_qutip": 1.2688219669858536,
+        "state_overlap_cirq": 0.19504545082729313,
+        "state_overlap_qutip": 0.19504540804707463,
+        "zz_gap_cirq": 0.32703175829725006,
+        "zz_gap_qutip": 0.32703184452406675,
+        "concurrence": 0.6831288043875756,
+        "entropy": 0.57059366287055,
+        "pass": true
+      },
+      "pennylane_qutip": {
+        "theta": 1.127,
+        "phi": -0.713,
+        "reversed_entangler": true,
+        "density_gap_pennylane": 1.2688219669858536,
+        "density_gap_qutip": 1.2688219669858536,
+        "state_overlap_pennylane": 0.19504540804707463,
+        "state_overlap_qutip": 0.19504540804707463,
+        "zz_gap_pennylane": 0.32703184452406675,
+        "zz_gap_qutip": 0.32703184452406675,
+        "concurrence": 0.6831288043875756,
+        "entropy": 0.57059366287055,
+        "pass": true
+      },
+      "pass": true
+    }
+  },
+  "boundary": {
+    "pass": true,
+    "separable_boundary_consensus": {
+      "cirq_pennylane": {
+        "pass": true,
+        "separable_axis_boundary": {
+          "theta": 0.0,
+          "phi": 1.231,
+          "reversed_entangler": false,
+          "density_gap_cirq": 1.2391938170879215e-08,
+          "density_gap_pennylane": 1.9229626863835638e-16,
+          "state_overlap_cirq": 0.9999999956680234,
+          "state_overlap_pennylane": 1.0,
+          "zz_gap_cirq": 1.4036511064574597e-08,
+          "zz_gap_pennylane": 1.1102230246251565e-16,
+          "concurrence": 0.0,
+          "entropy": 4.9828921423310435e-14,
+          "pass": true
+        },
+        "tiny_rotation_boundary": {
+          "theta": 1e-08,
+          "phi": -1e-08,
+          "reversed_entangler": false,
+          "density_gap_cirq": 6.077470991844712e-17,
+          "density_gap_pennylane": 0.0,
+          "state_overlap_cirq": 1.0,
+          "state_overlap_pennylane": 1.0,
+          "zz_gap_cirq": 0.0,
+          "zz_gap_pennylane": 0.0,
+          "concurrence": 1e-08,
+          "entropy": 4.9828921423310435e-14,
+          "pass": true
+        }
+      },
+      "cirq_qutip": {
+        "pass": true,
+        "separable_case": {
+          "theta": 0.0,
+          "phi": 1.231,
+          "reversed_entangler": false,
+          "density_gap_cirq": 1.2391938170879215e-08,
+          "density_gap_qutip": 0.0,
+          "state_overlap_cirq": 0.9999999956680234,
+          "state_overlap_qutip": 1.0,
+          "zz_gap_cirq": 1.4036511064574597e-08,
+          "zz_gap_qutip": 0.0,
+          "concurrence": 0.0,
+          "entropy": 4.9828921423310435e-14,
+          "pass": true
+        }
+      },
+      "pennylane_qutip": {
+        "pass": true,
+        "separable_case": {
+          "theta": 0.0,
+          "phi": 1.231,
+          "reversed_entangler": false,
+          "density_gap_pennylane": 1.9229626863835638e-16,
+          "density_gap_qutip": 0.0,
+          "state_overlap_pennylane": 1.0,
+          "state_overlap_qutip": 1.0,
+          "zz_gap_pennylane": 1.1102230246251565e-16,
+          "zz_gap_qutip": 0.0,
+          "concurrence": 0.0,
+          "entropy": 4.9828921423310435e-14,
+          "pass": true
+        }
+      },
+      "pass": true
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true
+}

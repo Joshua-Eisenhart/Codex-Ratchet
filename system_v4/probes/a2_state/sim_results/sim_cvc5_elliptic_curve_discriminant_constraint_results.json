@@ -1,0 +1,162 @@
+{
+  "name": "sim_cvc5_elliptic_curve_discriminant_constraint",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of elliptic curve discriminant constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for discriminant and j-invariant"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_a0b1_sat": {
+      "satisfiable": "True",
+      "expected": true,
+      "params": {
+        "a": 0,
+        "b": 1,
+        "delta": -432
+      }
+    },
+    "test_2_a1b1_sat": {
+      "satisfiable": "True",
+      "expected": true,
+      "params": {
+        "a": 1,
+        "b": 1,
+        "delta": -496
+      }
+    },
+    "test_3_a2b0_sat": {
+      "satisfiable": "True",
+      "expected": true,
+      "params": {
+        "a": 2,
+        "b": 0,
+        "delta": -512
+      }
+    }
+  },
+  "negative": {
+    "test_neg_1_delta_zero_and_nonsingular": {
+      "satisfiable": "False",
+      "expected": false,
+      "description": "\u0394=0 AND \u0394\u22600 is unsatisfiable"
+    },
+    "test_neg_2_a0b0_nonsingular": {
+      "satisfiable": "False",
+      "expected": false,
+      "description": "y\u00b2=x\u00b3 has \u0394=0; claiming non-singular is unsatisfiable",
+      "params": {
+        "a": 0,
+        "b": 0
+      }
+    },
+    "test_neg_3_j_defined_with_delta_zero": {
+      "satisfiable": "True",
+      "expected": false,
+      "description": "j-invariant cannot be defined when \u0394=0"
+    }
+  },
+  "boundary": {
+    "boundary_1_small_nonzero_delta": {
+      "satisfiable": "True",
+      "expected": true,
+      "description": "Smallest non-zero \u0394 for a=0,b=1",
+      "params": {
+        "a": 0,
+        "b": 1,
+        "delta": -432
+      }
+    },
+    "boundary_2_large_params": {
+      "satisfiable": "False",
+      "expected": true,
+      "description": "Large parameters a=10, b=10",
+      "params": {
+        "a": 10,
+        "b": 10,
+        "delta": -496000
+      }
+    },
+    "boundary_3_negative_params": {
+      "satisfiable": "True",
+      "expected": true,
+      "description": "Negative parameters a=-1, b=-1",
+      "params": {
+        "a": -1,
+        "b": -1,
+        "delta": -368
+      }
+    }
+  }
+}

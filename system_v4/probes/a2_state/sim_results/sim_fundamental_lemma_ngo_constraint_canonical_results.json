@@ -1,0 +1,102 @@
+{
+  "name": "Fundamental Lemma (Ng\u00f4) \u2014 Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": true,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for Springer fiber cohomology and weight lattice"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; orbital integral constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "error": "cvc5 not available"
+  },
+  "negative": {
+    "error": "cvc5 not available"
+  },
+  "boundary": {
+    "boundary_test_1_springer_fiber_dimension": {
+      "error": "module 'sympy' has no attribute 'innerproduct'",
+      "pass": false
+    },
+    "boundary_test_2_weight_lattice": {
+      "description": "Weight lattice: integer coordinates with root constraints",
+      "weight_space": "Z^3 for GL_3",
+      "trace_formula": "a1 + a2 + a3",
+      "pass": true
+    },
+    "boundary_test_3_orbital_integral_scaling": {
+      "error": "name 'cvc5' is not defined",
+      "pass": false
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,123 @@
+{
+  "name": "FundamentalInfinityGroupoidVanKampen",
+  "description": "Fundamental \u221e-groupoid / van Kampen theorem: \u03c0_\u221e(X) = \u03c0_\u221e(U) \u222a_\u03c0_\u221e(U\u2229V) \u03c0_\u221e(V)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; no graph message passing in this constraint sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of van Kampen colimit constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for dimension-0 (fundamental group)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; purely algebraic constraint sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry computation"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology computation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": [
+    {
+      "test": "valid_overlapping_subspaces",
+      "sat": true,
+      "status": "pass",
+      "reason": "valid van Kampen decomposition with non-empty intersection should be SAT"
+    },
+    {
+      "test": "sympy_fundamental_group_colimit",
+      "structure": "amalgamated_free_product",
+      "status": "pass",
+      "reason": "dimension-0: \u03c0\u2081(X) = \u03c0\u2081(U) *_\u03c0\u2081(U\u2229V) \u03c0\u2081(V) is the van Kampen colimit"
+    }
+  ],
+  "negative": [
+    {
+      "test": "empty_intersection_violation",
+      "sat": false,
+      "status": "pass",
+      "reason": "empty intersection violates van Kampen connectedness requirement (UNSAT)"
+    }
+  ],
+  "boundary": [
+    {
+      "test": "boundary_dimension_0_intersection",
+      "sat": true,
+      "status": "pass",
+      "reason": "dimension-0 intersection (single point) is the boundary case for van Kampen"
+    },
+    {
+      "test": "boundary_trivial_decomposition",
+      "sat": true,
+      "status": "pass",
+      "reason": "trivial decomposition U = V = X should be SAT"
+    },
+    {
+      "test": "sympy_fundamental_group_circle",
+      "structure": "circle_pi1_integer",
+      "status": "pass",
+      "reason": "boundary: fundamental group of circle is \u2124 via van Kampen decomposition"
+    }
+  ],
+  "classification": "canonical"
+}

@@ -1,0 +1,106 @@
+{
+  "name": "sci_method_atom_5_distinguishability",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing disjunctive SAT over probe-separation flags"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic probe extension possible but not required here"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "parity_and_mag": {
+      "distinguishable_pairs": 6,
+      "total_pairs": 6,
+      "z3_confirms_all_separated_pairs": true,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "negative": {
+    "constant_probe": {
+      "d": 0,
+      "n": 6,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "singleton": {
+      "d": 0,
+      "n": 0,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,195 @@
+{
+  "name": "E_n Algebra Little Disks Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure algebraic E_n computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; little disks operad handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; E_n constraints via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; little disks combinatorial structure"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance in disk operations"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; operadic structure is algebraic"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; disk operations via sympy"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "e_1_algebra_associative": {
+      "error": "No module named 'cvc5'"
+    },
+    "e_infinity_algebra_commutative": {
+      "error": "No module named 'cvc5'"
+    },
+    "e_n_commutativity_level": {
+      "error": "No module named 'cvc5'"
+    },
+    "dunn_additivity": {
+      "test": "Dunn additivity: E_m \u2297 E_n \u2243 E_{m+n}",
+      "examples": [
+        {
+          "m": 1,
+          "n": 1,
+          "result": 2,
+          "formula": "E_1 \u2297 E_1 \u2243 E_2"
+        },
+        {
+          "m": 1,
+          "n": 2,
+          "result": 3,
+          "formula": "E_1 \u2297 E_2 \u2243 E_3"
+        },
+        {
+          "m": 2,
+          "n": 1,
+          "result": 3,
+          "formula": "E_2 \u2297 E_1 \u2243 E_3"
+        },
+        {
+          "m": 2,
+          "n": 2,
+          "result": 4,
+          "formula": "E_2 \u2297 E_2 \u2243 E_4"
+        }
+      ],
+      "functorial": true,
+      "interpretation": "Tensor product preserves E-structure additively"
+    },
+    "e_2_disk_configuration": {
+      "error": "No module named 'cvc5'"
+    }
+  },
+  "negative": {
+    "e_1_noncommutative_violation": {
+      "error": "No module named 'cvc5'"
+    },
+    "dunn_additivity_violation": {
+      "error": "No module named 'cvc5'"
+    },
+    "e_n_commutativity_overflow": {
+      "error": "No module named 'cvc5'"
+    },
+    "e_infinity_commutativity_violation": {
+      "error": "No module named 'cvc5'"
+    }
+  },
+  "boundary": {
+    "boundary_e_min": {
+      "error": "No module named 'cvc5'"
+    },
+    "boundary_e_limit_to_infinity": {
+      "test": "lim_{n\u2192\u221e} E_n = E_\u221e (commutative operad)",
+      "sequence": {
+        "n_sequence": [
+          1,
+          2,
+          3,
+          5,
+          10,
+          100
+        ],
+        "commutativity_levels": [
+          1,
+          2,
+          3,
+          5,
+          10,
+          100
+        ],
+        "limit": "E_\u221e (full commutativity)"
+      },
+      "convergence": "commutativity level increases unboundedly",
+      "limiting_structure": "fully commutative"
+    },
+    "boundary_e1_e2_gap": {
+      "error": "No module named 'cvc5'"
+    },
+    "boundary_dunn_with_e1": {
+      "test": "Dunn additivity with E_1: E_1 \u2297 E_n = E_{n+1}",
+      "cases": [
+        {
+          "m": 1,
+          "n": 1,
+          "result": 2,
+          "formula": "E_1 \u2297 E_1 \u2243 E_2"
+        },
+        {
+          "m": 1,
+          "n": 5,
+          "result": 6,
+          "formula": "E_1 \u2297 E_5 \u2243 E_6"
+        },
+        {
+          "m": 1,
+          "n": 100,
+          "result": 101,
+          "formula": "E_1 \u2297 E_100 \u2243 E_101"
+        }
+      ],
+      "property": "E_1 acts additively in Dunn sense"
+    }
+  },
+  "classification": "canonical"
+}

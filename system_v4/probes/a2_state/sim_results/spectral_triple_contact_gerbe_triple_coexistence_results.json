@@ -1,0 +1,154 @@
+{
+  "name": "sim_spectral_triple_contact_gerbe_triple_coexistence",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch tensor rho construction; trace and PSD checks for triple coexistence density matrix (load-bearing)"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph learning not required for triple coexistence baseline; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT: Q_SCG>0 with H_st=0 is structurally impossible; spectral triple required for emergence (load-bearing)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for triple coexistence constraint; cvc5 excluded"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic Q=MI*H_st*H_contact*H_gerbe; product factorization confirmed (supportive)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Clifford Cl(3,0) vol element for SpectralTriple Dirac operator; chirality gate (load-bearing)"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian manifold not required for triple coexistence baseline; excluded"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "E(3) equivariance not needed in triple coexistence baseline; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "triple coexistence DAG: three-shell node graph in rustworkx (supportive)"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hyperedge {H_st, H_contact, H_gerbe, MI} four-way coupling (supportive)"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell complex for contact + gerbe coexistence topology verification (supportive)"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not required for triple coexistence baseline; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": null,
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "TC1_all_shells_active_simultaneously": {
+      "passed": true,
+      "H_st": 0.33678336703714473,
+      "H_contact": 2.833213344056216,
+      "H_gerbe": 2.833213344056216,
+      "MI": 0.21166885730683282,
+      "interpretation": "All four factors active simultaneously; full triple coexistence admitted"
+    },
+    "TC2_Q_SCG_gt0_all_active": {
+      "passed": true,
+      "Q_SCG": 0.5722241161464569,
+      "MI": 0.21166885730683282,
+      "H_st": 0.33678336703714473,
+      "H_contact": 2.833213344056216,
+      "H_gerbe": 2.833213344056216,
+      "interpretation": "Q_SCG=MI*H_st*H_contact*H_gerbe>0; triple coexistence emergence admitted"
+    },
+    "TC3_Q_SCG_zero_H_st_inactive": {
+      "passed": true,
+      "Q_SCG": 0.0,
+      "interpretation": "Q_SCG=0 when H_st=0 (SpectralTriple inactive); four-factor product collapses"
+    },
+    "TC4_Q_SCG_zero_H_contact_inactive": {
+      "passed": true,
+      "Q_SCG": 0.0,
+      "interpretation": "Q_SCG=0 when H_contact=0 (Contact inactive); four-factor product collapses"
+    },
+    "TC5_Q_SCG_zero_H_gerbe_inactive": {
+      "passed": true,
+      "Q_SCG": 0.0,
+      "interpretation": "Q_SCG=0 when H_gerbe=0 (Gerbe inactive); four-factor product collapses"
+    },
+    "TC6_Q_SCG_zero_MI_inactive": {
+      "passed": true,
+      "Q_SCG": 0.0,
+      "interpretation": "Q_SCG=0 when MI=0 (MERA inactive); four-factor product collapses"
+    },
+    "XGI_four_shell_hyperedge": {
+      "passed": true,
+      "n_nodes": 4,
+      "n_edges": 1,
+      "interpretation": "Four-shell hyperedge {H_st, H_contact, H_gerbe, MI} encodes irreducible triple coexistence"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_H_st_zero_Q_nonzero": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "H_st=0 AND Q_SCG>0 is z3 UNSAT; SpectralTriple required for triple coexistence"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_seed_sweep_Q_SCG_all_positive": {
+      "passed": true,
+      "Q_vals": [
+        0.5722241161464569,
+        0.8568350437279735,
+        0.9631682009541903,
+        0.39924265935383063,
+        1.4693437112897045
+      ],
+      "interpretation": "Q_SCG>0 for seeds 0-4; triple coexistence stable across seeds"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 9,
+    "n_pass": 9
+  }
+}

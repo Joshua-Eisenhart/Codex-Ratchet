@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "execution_ladder": [
+    "A_local",
+    "B_pairwise_coupling",
+    "C_multi_shell_coexistence",
+    "D_topology_variant",
+    "E_emergence"
+  ],
+  "status_terms": [
+    "exists",
+    "runs",
+    "passes local rerun",
+    "canonical by process"
+  ],
+  "claim_tool_map": {
+    "impossibility_forced": {
+      "required": "z3",
+      "cross_check": "cvc5"
+    },
+    "shell_metrics": {
+      "required": "geomstats",
+      "cross_check": "numpy"
+    },
+    "multi_way_interaction": {
+      "required": "XGI",
+      "cross_check": "rustworkx"
+    },
+    "cell_complex": {
+      "required": "TopoNetX",
+      "cross_check": "GUDHI"
+    },
+    "dag_ordering": {
+      "required": "rustworkx",
+      "cross_check": "topological_sort"
+    },
+    "persistence": {
+      "required": "GUDHI",
+      "cross_check": "Betti_check"
+    },
+    "geometric_algebra": {
+      "required": "clifford",
+      "cross_check": "numpy_roundtrip"
+    },
+    "gradient_flow": {
+      "required": "PyTorch",
+      "cross_check": "finite_difference"
+    }
+  },
+  "families": [
+    {
+      "family": "density_matrices",
+      "cells": {
+        "A_local": "DONE",
+        "B_pairwise_coupling": "GAP",
+        "C_multi_shell_coexistence": "GAP",
+        "D_topology_variant": "GAP",
+        "E_emergence": "GAP"
+      },
+      "evidence": [
+        {
+          "class": "A_local",
+          "file": "sim_density_hopf_geometry.py",
+          "result": "system_v4/probes/a2_state/sim_results/density_hopf_geometry_results.json",
+          "status": "canonical by process",
+          "label": "density_matrices",
+          "closeout": "system_v4/probes/a2_state/sim_results/density_hopf_geometry_closeout.json"
+        }
+      ]
+    },
+    {
+      "family": "quantum_channels",
+      "cells": {
+        "A_local": "DONE",
+        "B_pairwise_coupling": "GAP",
+        "C_multi_shell_coexistence": "GAP",
+        "D_topology_variant": "GAP",
+        "E_emergence": "GAP"
+      },
+      "evidence": [
+        {
+          "class": "A_local",
+          "file": "sim_pure_lego_channels_choi_lindblad.py",
+          "result": "system_v4/probes/a2_state/sim_results/pure_lego_channels_choi_lindblad_results.json",
+          "status": "canonical by process",
+          "label": "quantum_channels"
+        }
+      ]
+    },
+    {
+      "family": "distinguishability_metrics",
+      "cells": {
+        "A_local": "DONE",
+        "B_pairwise_coupling": "GAP",
+        "C_multi_shell_coexistence": "GAP",
+        "D_topology_variant": "GAP",
+        "E_emergence": "GAP"
+      },
+      "evidence": [
+        {
+          "class": "A_local",
+          "file": "sim_edge_state_writeback.py",
+          "result": "system_v4/probes/a2_state/sim_results/edge_state_writeback_results.json",
+          "status": "passes local rerun",
+          "label": "distinguishability_metrics"
+        }
+      ]
+    },
+    {
+      "family": "information_geometry",
+      "cells": {
+        "A_local": "DONE",
+        "B_pairwise_coupling": "GAP",
+        "C_multi_shell_coexistence": "GAP",
+        "D_topology_variant": "GAP",
+        "E_emergence": "GAP"
+      },
+      "evidence": [
+        {
+          "class": "A_local",
+          "file": "sim_foundation_hopf_torus_geomstats_clifford.py",
+          "result": "system_v4/probes/a2_state/sim_results/foundation_hopf_torus_geomstats_clifford_results.json",
+          "status": "canonical by process",
+          "label": "information_geometry"
+        }
+      ]
+    },
+    {
+      "family": "fiber_bundle_spin_geometry",
+      "cells": {
+        "A_local": "DONE",
+        "B_pairwise_coupling": "GAP",
+        "C_multi_shell_coexistence": "GAP",
+        "D_topology_variant": "GAP",
+        "E_emergence": "GAP"
+      },
+      "evidence": [
+        {
+          "class": "A_local",
+          "file": "sim_weyl_spinor_hopf.py",
+          "result": "system_v4/probes/a2_state/sim_results/weyl_spinor_hopf_results.json",
+          "status": "canonical by process",
+          "label": "fiber_bundle_spin_geometry"
+        }
+      ]
+    },
+    {
+      "family": "process_philosophy_support",
+      "cells": {
+        "A_local": "DONE",
+        "B_pairwise_coupling": "GAP",
+        "C_multi_shell_coexistence": "GAP",
+        "D_topology_variant": "GAP",
+        "E_emergence": "GAP"
+      },
+      "evidence": [
+        {
+          "class": "A_local",
+          "file": "sim_science_method_theory_laden_observation_probe.py",
+          "result": "system_v4/probes/a2_state/sim_results/sim_science_method_theory_laden_observation_probe_results.json",
+          "status": "passes local rerun",
+          "label": "process_philosophy_support"
+        }
+      ]
+    },
+    {
+      "family": "llm_controller_enforcement",
+      "cells": {
+        "A_local": "DONE",
+        "B_pairwise_coupling": "GAP",
+        "C_multi_shell_coexistence": "GAP",
+        "D_topology_variant": "GAP",
+        "E_emergence": "GAP"
+      },
+      "evidence": [
+        {
+          "class": "A_local",
+          "file": "controller_alignment_audit.py",
+          "result": "system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json",
+          "status": "passes local rerun",
+          "label": "llm_controller_enforcement"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Initial matrix seeded from llm-research-enforcement; all cells start GAP.",
+    "No claim should be promoted without a result file and fresh rerun flag.",
+    "Decorative tool use is disallowed; load_bearing_tools must be used: true in worker outputs."
+  ]
+}

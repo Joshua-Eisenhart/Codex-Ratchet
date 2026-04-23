@@ -1,0 +1,33 @@
+{
+  "name": "sim_cvc5_deep_distinguishability_bounds_quantifier_free",
+  "scope_note": "cvc5 QF_LRA; excludes pairs that are simultaneously indistinguishable (|p0-p1|<eps) and fence-separated (|p0-p1|>=delta) when delta>=eps.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing SMT UNSAT proof of joint admissibility exclusion"
+    }
+  },
+  "tool_integration_depth": {
+    "cvc5": "load_bearing"
+  },
+  "positive": {
+    "fence_equal_eps_unsat": {
+      "pass": true
+    },
+    "fence_gt_eps_unsat": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "fence_lt_eps_sat": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "tiny_equal_unsat": {
+      "pass": true
+    }
+  }
+}

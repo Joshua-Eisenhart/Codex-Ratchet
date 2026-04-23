@@ -1,0 +1,80 @@
+{
+  "name": "f01n01_couple_clifford_rotor_identity_under_finite_probes",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor sandwich exclusion under finite probe family; load-bearing"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing"
+  },
+  "positive": {
+    "all_probes_coincide_on_R_and_negR": true
+  },
+  "negative": {
+    "distinct_angles_separated": true
+  },
+  "boundary": {
+    "identity_rotor_pair_indistinguishable": true
+  },
+  "overall_pass": true,
+  "exclusion_statement": "F01+N01 jointly exclude separating R from -R under Cl(3) rotor-sandwich probe family."
+}

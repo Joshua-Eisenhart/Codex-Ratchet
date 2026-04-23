@@ -1,0 +1,34 @@
+{
+  "name": "leviathan_explore_as_topological_data_analysis",
+  "framing_assumption": "group-value clusters = persistent H0; collapse = persistent single component",
+  "blind_spot": "value-space embedding arbitrary; scale-dependent",
+  "tool_manifest": {
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Rips persistence for H0 cluster count"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "point cloud generation"
+    }
+  },
+  "tool_integration_depth": {
+    "gudhi": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "persistent_H0": 4,
+    "pass_multi_cluster": true
+  },
+  "negative": {
+    "persistent_H0": 1,
+    "pass_single_cluster": true
+  },
+  "boundary": {
+    "pair_H0": 2,
+    "pass": true
+  },
+  "classification": "classical_baseline"
+}

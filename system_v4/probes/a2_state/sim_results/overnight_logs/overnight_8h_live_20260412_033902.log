@@ -1,0 +1,441 @@
+HEARTBEAT Sun Apr 12 03:39:02 PDT 2026 | LIVE overnight 8h controller launched. log=/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/overnight_logs/overnight_8h_live_20260412_033902.log
+HEARTBEAT Sun Apr 12 03:39:02 PDT 2026 | Authority root=/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs ; queue=/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/sim_backlog_matrix.md ; truth=/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/sim_truth_audit.md
+HEARTBEAT Sun Apr 12 03:39:02 PDT 2026 | Geometry-first, bottom-up lego work only. No axis/bridge widening. Carnot/Szilard separate lane.
+HEARTBEAT Sun Apr 12 03:39:02 PDT 2026 | WAVE 1 START health=healthy
+HEARTBEAT Sun Apr 12 03:39:02 PDT 2026 | START hopf-map :: sim_density_hopf_geometry.py
+CLEANUP FIRST GUARD PASSED context=sim
+========================================================================
+SIM: Density Matrices ON the Hopf Torus Geometry
+========================================================================
+
+--- Positive Tests ---
+  [+] Test 1: Bures metric positive definiteness
+    All PD: True
+  [+] Test 2: QFI >= classical FI at all torus points
+  [+] Test 3: Channels cause measurable state change
+    All channels moved state and reduced coherence: True
+  [+] Test 4: I_c landscape structure on torus
+    I_c range: 0.960810, has structure: True
+    e3nn max equivariance error: 1.215189e-08
+
+--- Negative Tests ---
+  [-] Test 1: Bures metric singular at r~0 (pure |R>)
+    Condition number at r=0.01: 147.1
+  [-] Test 2: Bures metric singular at r~1 (pure |L>)
+    Condition number at r=0.99: 150.0
+  [-] Test 3: Product state I_c = 0
+    I_c for near-product state: -0.000000
+
+--- Boundary Tests ---
+  [B] Test 1: Clifford torus eta=pi/4
+    det(g) std/mean at Clifford: 0.0000
+  [B] Test 2: Fidelity self-consistency
+    F(rho, rho) = 1.0000000000
+  [B] Test 3: Maximally mixed at Clifford torus
+    Purity: 0.500000, Entropy: 1.0000 bits
+  [B] Test 4: Frechet mean on torus density matrices
+    Frechet-Euclidean diff: 3.757764e-02
+
+--- Clifford Cross-Check ---
+  Cl(3) rotor-spinor overlap: 0.975119
+
+========================================================================
+RESULTS: 13/13 tests passed
+  [PASS] bures_metric_positive_definite
+  [PASS] qfi_geq_classical_fi
+  [PASS] channel_causes_state_change
+  [PASS] ic_landscape_structure
+  [PASS] e3nn_torus_density_bloch_equivariance
+  [PASS] bures_singular_r0
+  [PASS] bures_singular_r1
+  [PASS] separable_zero_ic
+  [PASS] clifford_torus_symmetry
+  [PASS] fidelity_self
+  [PASS] maximally_mixed_at_clifford
+  [PASS] frechet_mean_on_torus
+  [PASS] clifford_cross_check
+========================================================================
+
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/density_hopf_geometry_results.json
+HEARTBEAT Sun Apr 12 03:39:08 PDT 2026 | END hopf-map exit=0
+HEARTBEAT Sun Apr 12 03:39:08 PDT 2026 | START fiber-equivalence :: sim_hopf_torus_lego.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/hopf_torus_lego_results.json
+Tests passed: 12/12
+GUDHI Betti numbers (long-lived): [1, 2]
+β1=2 confirmed: True
+Clifford Hopf map exact: True
+HEARTBEAT Sun Apr 12 03:39:27 PDT 2026 | END fiber-equivalence exit=0
+HEARTBEAT Sun Apr 12 03:39:27 PDT 2026 | START weyl-pair :: sim_weyl_spinor_hopf.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_spinor_hopf_results.json
+Elapsed: 0.75s
+HEARTBEAT Sun Apr 12 03:39:31 PDT 2026 | END weyl-pair exit=0
+HEARTBEAT Sun Apr 12 03:39:31 PDT 2026 | START chiral-bookkeeping-anchor :: sim_weyl_nested_shell.py
+CLEANUP FIRST GUARD PASSED context=sim
+Running sim_weyl_nested_shell.py ...
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_nested_shell_results.json
+Summary: 15 pass / 0 fail / 0 error out of 15 tests
+HEARTBEAT Sun Apr 12 03:39:33 PDT 2026 | END chiral-bookkeeping-anchor exit=0
+HEARTBEAT Sun Apr 12 03:39:33 PDT 2026 | AUDIT START
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=849
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT Sun Apr 12 03:39:37 PDT 2026 | AUDIT END truth=0 controller=0
+HEARTBEAT Sun Apr 12 03:39:37 PDT 2026 | START pauli-basis :: sim_pauli_generator_basis.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/pauli_generator_basis_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:39:38 PDT 2026 | END pauli-basis exit=0
+HEARTBEAT Sun Apr 12 03:39:38 PDT 2026 | START hopf-connection :: sim_torch_hopf_connection.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/torch_hopf_connection_results.json
+Tests: 45/45 passed
+ALL TESTS PASSED
+HEARTBEAT Sun Apr 12 03:39:43 PDT 2026 | END hopf-connection exit=0
+HEARTBEAT Sun Apr 12 03:39:43 PDT 2026 | START cell-complex :: sim_cell_complex_geometry.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/cell_complex_geometry_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:39:44 PDT 2026 | END cell-complex exit=0
+HEARTBEAT Sun Apr 12 03:39:44 PDT 2026 | START persistence :: sim_persistence_geometry.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/persistence_geometry_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:39:44 PDT 2026 | END persistence exit=0
+HEARTBEAT Sun Apr 12 03:39:44 PDT 2026 | AUDIT START
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=849
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT Sun Apr 12 03:39:48 PDT 2026 | AUDIT END truth=0 controller=0
+HEARTBEAT Sun Apr 12 03:39:48 PDT 2026 | START toponetx-binding :: sim_toponetx_state_class_binding.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/toponetx_state_class_binding_results.json
+
+=== KEY FINDINGS ===
+  Betti numbers: β0=1, β1=0, β2=0
+  QWCI gap creates hole (β1>0): False
+  r*=0.17 is coboundary: True
+  Euler characteristic χ: 1
+  Euler consistent: True
+  z3 L4∩L6=∅ UNSAT: True
+  XGI: r*=0.17 is unique L4/L6 interface: True
+HEARTBEAT Sun Apr 12 03:39:51 PDT 2026 | END toponetx-binding exit=0
+HEARTBEAT Sun Apr 12 03:39:51 PDT 2026 | START pyg-werner :: sim_pyg_dynamic_edge_werner.py
+CLEANUP FIRST GUARD PASSED context=sim
+Running sim_pyg_dynamic_edge_werner.py ...
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/pyg_dynamic_edge_werner_results.json
+
+=== SUMMARY ===
+I_c>0 subgraph: 5 nodes, 20 edges
+Quantum bottleneck: node 4 (p=0.2105, centrality=0.0)
+Bifurcation visible: True (deep_neg norm=0.0, boundary norm=0.0, deep_pos norm=1.12565)
+z3 UNSAT (separable => I_c<=0): True
+XGI pos∩sep intersection: [] (should be empty)
+HEARTBEAT Sun Apr 12 03:39:55 PDT 2026 | END pyg-werner exit=0
+HEARTBEAT Sun Apr 12 03:39:55 PDT 2026 | AUDIT START
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=849
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT Sun Apr 12 03:39:59 PDT 2026 | AUDIT END truth=0 controller=0
+HEARTBEAT Sun Apr 12 03:39:59 PDT 2026 | START carnot-finite-time :: sim_qit_carnot_finite_time_companion.py
+CLEANUP FIRST GUARD PASSED context=sim
+/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_finite_time_companion_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:39:59 PDT 2026 | END carnot-finite-time exit=0
+HEARTBEAT Sun Apr 12 03:39:59 PDT 2026 | START carnot-hold-policy :: sim_qit_carnot_hold_policy_companion.py
+CLEANUP FIRST GUARD PASSED context=sim
+/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_hold_policy_companion_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:39:59 PDT 2026 | END carnot-hold-policy exit=0
+HEARTBEAT Sun Apr 12 03:39:59 PDT 2026 | START szilard-record :: sim_qit_szilard_record_companion.py
+CLEANUP FIRST GUARD PASSED context=sim
+/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_companion_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:40:00 PDT 2026 | END szilard-record exit=0
+HEARTBEAT Sun Apr 12 03:40:00 PDT 2026 | START szilard-substep :: sim_qit_szilard_substep_companion.py
+CLEANUP FIRST GUARD PASSED context=sim
+/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_companion_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:40:00 PDT 2026 | END szilard-substep exit=0
+HEARTBEAT Sun Apr 12 03:40:00 PDT 2026 | AUDIT START
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=849
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT Sun Apr 12 03:40:04 PDT 2026 | AUDIT END truth=0 controller=0
+HEARTBEAT Sun Apr 12 03:40:04 PDT 2026 | WAVE 1 END health=healthy next_sleep=300s
+HEARTBEAT Sun Apr 12 03:45:04 PDT 2026 | WAVE 2 START health=healthy
+HEARTBEAT Sun Apr 12 03:45:04 PDT 2026 | START hopf-map :: sim_density_hopf_geometry.py
+CLEANUP FIRST GUARD PASSED context=sim
+========================================================================
+SIM: Density Matrices ON the Hopf Torus Geometry
+========================================================================
+
+--- Positive Tests ---
+  [+] Test 1: Bures metric positive definiteness
+    All PD: True
+  [+] Test 2: QFI >= classical FI at all torus points
+  [+] Test 3: Channels cause measurable state change
+    All channels moved state and reduced coherence: True
+  [+] Test 4: I_c landscape structure on torus
+    I_c range: 0.960810, has structure: True
+    e3nn max equivariance error: 1.053671e-08
+
+--- Negative Tests ---
+  [-] Test 1: Bures metric singular at r~0 (pure |R>)
+    Condition number at r=0.01: 147.1
+  [-] Test 2: Bures metric singular at r~1 (pure |L>)
+    Condition number at r=0.99: 150.0
+  [-] Test 3: Product state I_c = 0
+    I_c for near-product state: -0.000000
+
+--- Boundary Tests ---
+  [B] Test 1: Clifford torus eta=pi/4
+    det(g) std/mean at Clifford: 0.0000
+  [B] Test 2: Fidelity self-consistency
+    F(rho, rho) = 1.0000000000
+  [B] Test 3: Maximally mixed at Clifford torus
+    Purity: 0.500000, Entropy: 1.0000 bits
+  [B] Test 4: Frechet mean on torus density matrices
+    Frechet-Euclidean diff: 3.757764e-02
+
+--- Clifford Cross-Check ---
+  Cl(3) rotor-spinor overlap: 0.975119
+
+========================================================================
+RESULTS: 13/13 tests passed
+  [PASS] bures_metric_positive_definite
+  [PASS] qfi_geq_classical_fi
+  [PASS] channel_causes_state_change
+  [PASS] ic_landscape_structure
+  [PASS] e3nn_torus_density_bloch_equivariance
+  [PASS] bures_singular_r0
+  [PASS] bures_singular_r1
+  [PASS] separable_zero_ic
+  [PASS] clifford_torus_symmetry
+  [PASS] fidelity_self
+  [PASS] maximally_mixed_at_clifford
+  [PASS] frechet_mean_on_torus
+  [PASS] clifford_cross_check
+========================================================================
+
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/density_hopf_geometry_results.json
+HEARTBEAT Sun Apr 12 03:45:10 PDT 2026 | END hopf-map exit=0
+HEARTBEAT Sun Apr 12 03:45:10 PDT 2026 | START fiber-equivalence :: sim_hopf_torus_lego.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/hopf_torus_lego_results.json
+Tests passed: 12/12
+GUDHI Betti numbers (long-lived): [1, 2]
+β1=2 confirmed: True
+Clifford Hopf map exact: True
+HEARTBEAT Sun Apr 12 03:45:30 PDT 2026 | END fiber-equivalence exit=0
+HEARTBEAT Sun Apr 12 03:45:30 PDT 2026 | START weyl-pair :: sim_weyl_spinor_hopf.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_spinor_hopf_results.json
+Elapsed: 0.73s
+HEARTBEAT Sun Apr 12 03:45:33 PDT 2026 | END weyl-pair exit=0
+HEARTBEAT Sun Apr 12 03:45:33 PDT 2026 | START chiral-bookkeeping-anchor :: sim_weyl_nested_shell.py
+CLEANUP FIRST GUARD PASSED context=sim
+Running sim_weyl_nested_shell.py ...
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_nested_shell_results.json
+Summary: 15 pass / 0 fail / 0 error out of 15 tests
+HEARTBEAT Sun Apr 12 03:45:35 PDT 2026 | END chiral-bookkeeping-anchor exit=0
+HEARTBEAT Sun Apr 12 03:45:35 PDT 2026 | AUDIT START
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=849
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT Sun Apr 12 03:45:40 PDT 2026 | AUDIT END truth=0 controller=0
+HEARTBEAT Sun Apr 12 03:45:40 PDT 2026 | START pauli-basis :: sim_pauli_generator_basis.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/pauli_generator_basis_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:45:40 PDT 2026 | END pauli-basis exit=0
+HEARTBEAT Sun Apr 12 03:45:40 PDT 2026 | START hopf-connection :: sim_torch_hopf_connection.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/torch_hopf_connection_results.json
+Tests: 45/45 passed
+ALL TESTS PASSED
+HEARTBEAT Sun Apr 12 03:45:45 PDT 2026 | END hopf-connection exit=0
+HEARTBEAT Sun Apr 12 03:45:45 PDT 2026 | START cell-complex :: sim_cell_complex_geometry.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/cell_complex_geometry_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:45:46 PDT 2026 | END cell-complex exit=0
+HEARTBEAT Sun Apr 12 03:45:46 PDT 2026 | START persistence :: sim_persistence_geometry.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/persistence_geometry_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:45:46 PDT 2026 | END persistence exit=0
+HEARTBEAT Sun Apr 12 03:45:46 PDT 2026 | AUDIT START
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=849
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT Sun Apr 12 03:45:50 PDT 2026 | AUDIT END truth=0 controller=0
+HEARTBEAT Sun Apr 12 03:45:50 PDT 2026 | START toponetx-binding :: sim_toponetx_state_class_binding.py
+CLEANUP FIRST GUARD PASSED context=sim
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/toponetx_state_class_binding_results.json
+
+=== KEY FINDINGS ===
+  Betti numbers: β0=1, β1=0, β2=0
+  QWCI gap creates hole (β1>0): False
+  r*=0.17 is coboundary: True
+  Euler characteristic χ: 1
+  Euler consistent: True
+  z3 L4∩L6=∅ UNSAT: True
+  XGI: r*=0.17 is unique L4/L6 interface: True
+HEARTBEAT Sun Apr 12 03:45:53 PDT 2026 | END toponetx-binding exit=0
+HEARTBEAT Sun Apr 12 03:45:53 PDT 2026 | START pyg-werner :: sim_pyg_dynamic_edge_werner.py
+CLEANUP FIRST GUARD PASSED context=sim
+Running sim_pyg_dynamic_edge_werner.py ...
+Results written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/pyg_dynamic_edge_werner_results.json
+
+=== SUMMARY ===
+I_c>0 subgraph: 5 nodes, 20 edges
+Quantum bottleneck: node 4 (p=0.2105, centrality=0.0)
+Bifurcation visible: True (deep_neg norm=0.0, boundary norm=0.0, deep_pos norm=1.12565)
+z3 UNSAT (separable => I_c<=0): True
+XGI pos∩sep intersection: [] (should be empty)
+HEARTBEAT Sun Apr 12 03:45:57 PDT 2026 | END pyg-werner exit=0
+HEARTBEAT Sun Apr 12 03:45:57 PDT 2026 | AUDIT START
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=849
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT Sun Apr 12 03:46:01 PDT 2026 | AUDIT END truth=0 controller=0
+HEARTBEAT Sun Apr 12 03:46:01 PDT 2026 | START carnot-finite-time :: sim_qit_carnot_finite_time_companion.py
+CLEANUP FIRST GUARD PASSED context=sim
+/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_finite_time_companion_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:46:01 PDT 2026 | END carnot-finite-time exit=0
+HEARTBEAT Sun Apr 12 03:46:01 PDT 2026 | START carnot-hold-policy :: sim_qit_carnot_hold_policy_companion.py
+CLEANUP FIRST GUARD PASSED context=sim
+/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_hold_policy_companion_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:46:01 PDT 2026 | END carnot-hold-policy exit=0
+HEARTBEAT Sun Apr 12 03:46:01 PDT 2026 | START szilard-record :: sim_qit_szilard_record_companion.py
+CLEANUP FIRST GUARD PASSED context=sim
+/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_companion_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:46:01 PDT 2026 | END szilard-record exit=0
+HEARTBEAT Sun Apr 12 03:46:01 PDT 2026 | START szilard-substep :: sim_qit_szilard_substep_companion.py
+CLEANUP FIRST GUARD PASSED context=sim
+/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_companion_results.json
+ALL PASS: True
+HEARTBEAT Sun Apr 12 03:46:02 PDT 2026 | END szilard-substep exit=0
+HEARTBEAT Sun Apr 12 03:46:02 PDT 2026 | AUDIT START
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json
+files_scanned=849
+hard_finding_count=0
+warning_finding_count=0
+PROBE TRUTH AUDIT PASSED
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/controller_doc_drift_inventory.json
+Wrote /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/live_anchor_spine.json
+doc_drift_count=0
+phase7_c2_surface_consistent=True
+phase7_source_has_legacy_subset_branch=False
+trusted_spine_risky_entries=0
+shallow_tool_count=0
+code_process_green=True
+docs_current=True
+controller_contract_current=True
+CONTROLLER ALIGNMENT AUDIT PASSED
+HEARTBEAT Sun Apr 12 03:46:06 PDT 2026 | AUDIT END truth=0 controller=0
+HEARTBEAT Sun Apr 12 03:46:06 PDT 2026 | WAVE 2 END health=healthy next_sleep=300s

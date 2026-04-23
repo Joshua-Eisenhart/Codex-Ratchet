@@ -1,0 +1,144 @@
+{
+  "name": "sim_carnot_constraint_admissibility_fence",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no tensor computation needed for symbolic proof"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph transport in this bridge"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT-refuted super-Carnot violators, Kelvin single-bath violators, and non-Carnot W under reversible equality; SAT-witnessed a reversible tuple."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 chosen as primary SMT; cvc5 reserved for cross-check in later sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolically derived eta <= 1 - Tc/Th from first-law + Clausius and closed the distinguishability-transfer identity W/T_ref = Delta D."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "thermodynamic variables are scalar, no rotor algebra required"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold learning"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "bridge_claims": {
+    "efficiency_bound_as_admissibility_fence": "eta <= 1 - Tc/Th is the exclusion fence of dS_total >= 0 (sympy-derived, z3-UNSAT on violators).",
+    "reversibility_as_F01_symmetry": "Reversible equality Qc*Th = Qh*Tc is the forward/backward fixed point; z3-UNSAT shows this equality forces W = Qh*(1 - Tc/Th).",
+    "work_extraction_as_distinguishability_transfer": "W/T_ref = Delta D under the Landauer-like bath linearization; sympy closes the identity under the first law."
+  },
+  "positive": {
+    "efficiency_derivation": {
+      "first_law": "Eq(Qh, Qc + W)",
+      "clausius_inequality": "Qc/Tc - Qh/Th >= 0",
+      "ineq_after_substitution": "-Qh/Th + Qh/Tc - W/Tc",
+      "bound_equivalence_residual (must be 0)": "0",
+      "bound_equivalence_is_zero": true,
+      "W_reversible": "Qh*(-Tc + Th)/Th",
+      "eta_reversible": "(-Tc + Th)/Th",
+      "eta_reversible_minus_carnot (must be 0)": "0",
+      "eta_reversible_is_carnot": true
+    },
+    "distinguishability_transfer": {
+      "Delta_D_minus_first_law_residual (must be 0)": "0",
+      "identity_under_first_law (must be 0)": "0",
+      "distinguishability_transfer_closed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "z3_verdicts": {
+      "reversible_witness_sat": true,
+      "super_carnot_unsat": true,
+      "kelvin_single_bath_unsat": true,
+      "reversible_forces_carnot_W_unsat": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "cases": [
+      {
+        "Tc_to_Th_eta_limit": "0",
+        "expected": "0"
+      },
+      {
+        "Tc_to_0_eta_limit": "1",
+        "expected": "1"
+      }
+    ],
+    "spot_checks": [
+      {
+        "Th": "400",
+        "Tc": "300",
+        "eta_carnot": "1/4"
+      },
+      {
+        "Th": "500",
+        "Tc": "250",
+        "eta_carnot": "1/2"
+      },
+      {
+        "Th": "100",
+        "Tc": "99",
+        "eta_carnot": "1/100"
+      }
+    ],
+    "pass": true
+  },
+  "overall_pass": true
+}

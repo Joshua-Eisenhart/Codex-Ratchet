@@ -1,0 +1,262 @@
+{
+  "name": "sim_geometry_real_spectral_triple_kr_dimension_constraint_canonical",
+  "domain": "Real spectral triple KR-dimension and sign constraints",
+  "kr_table": {
+    "0": [
+      1,
+      1,
+      1
+    ],
+    "1": [
+      1,
+      1,
+      -1
+    ],
+    "2": [
+      -1,
+      1,
+      -1
+    ],
+    "3": [
+      -1,
+      1,
+      1
+    ],
+    "4": [
+      -1,
+      -1,
+      1
+    ],
+    "5": [
+      -1,
+      -1,
+      -1
+    ],
+    "6": [
+      1,
+      -1,
+      -1
+    ],
+    "7": [
+      1,
+      -1,
+      1
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing for KR-dimension sign constraint proofs via SAT/UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive for KR-dimension table enumeration and parity analysis"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pos_1": {
+      "test": "kr_dim_0_mod_8",
+      "n_mod_8": 0,
+      "epsilon": 1,
+      "epsilon_prime": 1,
+      "epsilon_double_prime": 1,
+      "result": "SAT",
+      "status": "PASS"
+    },
+    "pos_2": {
+      "test": "kr_dim_4_mod_8",
+      "n_mod_8": 4,
+      "epsilon": -1,
+      "epsilon_prime": -1,
+      "epsilon_double_prime": 1,
+      "result": "SAT",
+      "status": "PASS"
+    },
+    "pos_3": {
+      "test": "kr_dim_6_mod_8",
+      "n_mod_8": 6,
+      "epsilon": 1,
+      "epsilon_prime": -1,
+      "epsilon_double_prime": -1,
+      "result": "SAT",
+      "status": "PASS"
+    }
+  },
+  "negative": {
+    "neg_1": {
+      "test": "kr_dim_0_wrong_sign",
+      "constraint": "n mod 8 = 0 requires \u03b5=1, but \u03b5=-1",
+      "result": "UNSAT",
+      "status": "PASS"
+    },
+    "neg_2": {
+      "test": "invalid_sign_value",
+      "constraint": "\u03b5 \u2208 {-1, 1} but \u03b5 = 0",
+      "result": "UNSAT",
+      "status": "PASS"
+    },
+    "neg_3": {
+      "test": "kr_dim_4_wrong_sign",
+      "constraint": "n mod 8 = 4 requires \u03b5=-1, but \u03b5=1",
+      "result": "UNSAT",
+      "status": "PASS"
+    }
+  },
+  "boundary": {
+    "bnd_1": {
+      "test": "all_kr_dimensions",
+      "kr_table": {
+        "n=0": {
+          "epsilon": 1,
+          "epsilon_prime": 1,
+          "epsilon_double_prime": 1,
+          "product": 1
+        },
+        "n=1": {
+          "epsilon": 1,
+          "epsilon_prime": 1,
+          "epsilon_double_prime": -1,
+          "product": -1
+        },
+        "n=2": {
+          "epsilon": -1,
+          "epsilon_prime": 1,
+          "epsilon_double_prime": -1,
+          "product": 1
+        },
+        "n=3": {
+          "epsilon": -1,
+          "epsilon_prime": 1,
+          "epsilon_double_prime": 1,
+          "product": -1
+        },
+        "n=4": {
+          "epsilon": -1,
+          "epsilon_prime": -1,
+          "epsilon_double_prime": 1,
+          "product": 1
+        },
+        "n=5": {
+          "epsilon": -1,
+          "epsilon_prime": -1,
+          "epsilon_double_prime": -1,
+          "product": -1
+        },
+        "n=6": {
+          "epsilon": 1,
+          "epsilon_prime": -1,
+          "epsilon_double_prime": -1,
+          "product": 1
+        },
+        "n=7": {
+          "epsilon": 1,
+          "epsilon_prime": -1,
+          "epsilon_double_prime": 1,
+          "product": -1
+        }
+      },
+      "all_valid": true,
+      "status": "PASS"
+    },
+    "bnd_2": {
+      "test": "sign_structure_consistency",
+      "product_pattern": {
+        "0": 1,
+        "1": -1,
+        "2": 1,
+        "3": -1,
+        "4": 1,
+        "5": -1,
+        "6": 1,
+        "7": -1
+      },
+      "all_products_valid": true,
+      "status": "PASS"
+    },
+    "bnd_3": {
+      "test": "sign_product_patterns",
+      "products": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1
+      ],
+      "unique_products": [
+        1,
+        -1
+      ],
+      "status": "PASS"
+    }
+  },
+  "classification": "canonical"
+}

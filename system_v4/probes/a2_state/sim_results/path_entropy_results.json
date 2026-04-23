@@ -1,0 +1,118 @@
+{
+  "name": "path_entropy",
+  "classification": "canonical",
+  "classification_note": "Canonical local path-entropy row on one bounded finite path distribution.",
+  "lego_ids": [
+    "path_entropy"
+  ],
+  "primary_lego_ids": [
+    "path_entropy"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "path_entropy_is_nonnegative": {
+      "pass": true
+    },
+    "more_diffuse_path_distribution_has_higher_entropy": {
+      "pass": true
+    },
+    "finite_path_entropy_is_bounded_by_log_path_count": {
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "row_does_not_collapse_to_branch_weight": {
+      "pass": true
+    },
+    "row_does_not_collapse_to_history_window_entropy": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bounded_to_one_local_path_family": {
+      "pass": true
+    },
+    "probabilities_sum_to_one": {
+      "pass": "True"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local path-entropy row on one bounded finite path distribution."
+  }
+}

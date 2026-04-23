@@ -1,0 +1,124 @@
+{
+  "name": "ReductiveGroupRootDatum_Constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for root datum verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "A1_valid": {
+      "name": "A1_root_datum",
+      "rank": 1,
+      "roots": "[[ 2]\n [-2]]",
+      "coroots": "[[ 1]\n [-1]]",
+      "pairings": [
+        2,
+        2
+      ],
+      "pairing_valid": true
+    },
+    "A2_valid": {
+      "name": "A2_root_datum",
+      "rank": 2,
+      "roots": "[[ 2  0]\n [-1  1]\n [-1 -1]]",
+      "coroots": "[[ 1 -1]\n [-1  0]\n [ 0  1]]",
+      "pairings": [
+        2,
+        2,
+        2
+      ],
+      "pairing_valid": true
+    },
+    "B2_valid": {
+      "name": "B2_root_datum",
+      "rank": 2,
+      "roots": "[[ 2  0]\n [ 0  2]\n [ 1  1]\n [ 1 -1]]",
+      "coroots": "[[ 1 -1]\n [ 0  1]\n [ 1  1]\n [ 1 -1]]",
+      "pairings": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "pairing_valid": true
+    }
+  },
+  "negative": {
+    "cvc5_error": "No module named 'cvc5'"
+  },
+  "boundary": {
+    "boundary_cvc5_error": "No module named 'cvc5'"
+  },
+  "classification": "canonical"
+}

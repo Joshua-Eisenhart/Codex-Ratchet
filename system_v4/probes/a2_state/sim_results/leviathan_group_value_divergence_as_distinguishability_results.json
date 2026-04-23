@@ -1,0 +1,34 @@
+{
+  "name": "leviathan_group_value_divergence_as_distinguishability",
+  "classification": "classical_baseline",
+  "positive": {
+    "kl_divergent": 1.1675460894331877,
+    "distinguishable": true,
+    "symbolic_term": "p0*log(p0/q0)"
+  },
+  "negative": {
+    "kl_identical": 0.0,
+    "indistinguishable": true,
+    "identical_excluded": true
+  },
+  "boundary": {
+    "kl_near_zero": 7.999934048965007e-12,
+    "near_degenerate": true
+  },
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic KL divergence term"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "exclude indistinguishable groups"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "supportive",
+    "z3": "load_bearing"
+  }
+}

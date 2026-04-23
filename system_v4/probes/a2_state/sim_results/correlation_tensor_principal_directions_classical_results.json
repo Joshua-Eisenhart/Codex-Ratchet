@@ -1,0 +1,67 @@
+{
+  "name": "correlation_tensor_principal_directions",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor unfoldings and SVD-based principal-direction numerics"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this numeric baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "sympy": null
+  },
+  "positive": {
+    "mode_0_orthonormal": {
+      "err": 8.881784197001252e-16,
+      "pass": true
+    },
+    "mode_1_orthonormal": {
+      "err": 7.771561172376096e-16,
+      "pass": true
+    },
+    "mode_2_orthonormal": {
+      "err": 6.661338147750939e-16,
+      "pass": true
+    },
+    "mode_0_matches_eigh": {
+      "min_inner": 0.9999999999999999,
+      "pass": "True"
+    },
+    "tucker_mode_recovered": {
+      "residual": 3.787898901196402e-16,
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "random_not_orthonormal": {
+      "err": 7.836401576399984,
+      "pass": true
+    },
+    "factors_differ_across_modes": {
+      "diff": 2.2841014009123155,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_tensor_factor_shape": {
+      "shape": [
+        3,
+        3
+      ],
+      "pass": true
+    },
+    "rank1_first_factor_aligned": {
+      "cos": 1.0,
+      "pass": "True"
+    }
+  },
+  "all_pass": true,
+  "note": "classical captures: HOSVD per-mode orthonormal factors, Tucker-rank recovery. Innately fails: no tensor Eckart-Young (truncated HOSVD is only quasi-optimal); ill-posed best rank-r tensor approx in general."
+}

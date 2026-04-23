@@ -1,0 +1,100 @@
+{
+  "name": "sympy_gaussian_integral",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic integration"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "transcendental integrals outside SMT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy.integrate returns sqrt(pi) exactly; equality tested symbolically"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "gaussian_integral_exact": true,
+    "value": "sqrt(pi)"
+  },
+  "negative": {
+    "not_equal_to_pi": true,
+    "not_equal_to_2sqrtpi": true
+  },
+  "boundary": {
+    "scaled": true,
+    "shifted": true,
+    "half_line": true
+  },
+  "ablation": {
+    "numpy_scipy_numeric_only": true,
+    "numeric_value": 1.7724538509055159,
+    "residual_vs_sqrt_pi": 0.0,
+    "reported_error_estimate": 1.4202637059452923e-08,
+    "note": "quad returns float approximation; cannot certify exact sqrt(pi) identity"
+  },
+  "classification": "canonical"
+}

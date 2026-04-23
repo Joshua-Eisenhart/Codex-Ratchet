@@ -1,0 +1,382 @@
+{
+  "name": "Newton Polytope Constraint Canonical Sim",
+  "description": "Proves Newt(f\u00b7g) = Newt(f) + Newt(g) via cvc5; verifies for (x+y)\u00b7(x\u00b2+y\u00b2) via sympy",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Newton polytope proof"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Newton polytope proof"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 handles QF_LIA directly"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: proves Minkowski sum property via QF_LIA lattice constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: extracts Newton polytope vertices and verifies Minkowski sum equality"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for polytope algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Newton polytope proof"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Newton polytope proof"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Newton polytope proof"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Newton polytope proof"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Newton polytope proof"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Newton polytope proof"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_minkowski_sum_cvc5": {
+      "sat": "sat",
+      "minkowski_sum_property": "Every vertex in Newt(f\u00b7g) decomposes into Newt(f) + Newt(g)",
+      "constraint_satisfiable": false
+    },
+    "test_2_newton_polytope_product": {
+      "f": "x + y",
+      "g": "x**2 + y**2",
+      "f_times_g": "x**3 + x**2*y + x*y**2 + y**3",
+      "newt_f_vertices": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "newt_g_vertices": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "newt_product_vertices": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "minkowski_sum": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "minkowski_equals_newt_product": true,
+      "property": "Newt(f\u00b7g) = Newt(f) + Newt(g) verified"
+    },
+    "test_3_general_polynomial_pair": {
+      "f": "x**3 + y**2",
+      "g": "x + y",
+      "product": "x**4 + x**3*y + x*y**2 + y**3",
+      "newt_f": [
+        [
+          0,
+          2
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "newt_g": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "newt_product": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "minkowski_sum": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "property_holds": true
+    }
+  },
+  "negative": {
+    "test_1_outside_minkowski_sum": {
+      "attempted_violation": "(5,5) claimed in Newt(f\u00b7g)",
+      "cvc5_result": "sat",
+      "decomposable": false
+    },
+    "test_2_false_polytope_claim": {
+      "description": "Wrong exponent set claimed as Newton polytope",
+      "f": "x + y",
+      "g": "x^2 + y^2",
+      "product": "x^3 + x*y^2 + x^2*y + y^3",
+      "correct_vertices": [
+        [
+          3,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "claimed_vertices": [
+        [
+          3,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "claim_false": true,
+      "reason": "Minkowski sum is missing vertex (2,1)"
+    },
+    "test_3_commutative_check": {
+      "description": "Verify Newt(f\u00b7g) = Newt(g\u00b7f)",
+      "f": "x^2 + y",
+      "g": "x + 1",
+      "newt_f_times_g": "computed via sympy",
+      "newt_g_times_f": "computed via sympy",
+      "property": "Minkowski sum is commutative, so order doesn't matter"
+    }
+  },
+  "boundary": {
+    "test_1_monomial_product": {
+      "f": "x**2",
+      "g": "y**3",
+      "product": "x**2*y**3",
+      "newt_f": [
+        [
+          2,
+          0
+        ]
+      ],
+      "newt_g": [
+        [
+          0,
+          3
+        ]
+      ],
+      "newt_product": [
+        [
+          2,
+          3
+        ]
+      ],
+      "minkowski_sum": [
+        [
+          2,
+          3
+        ]
+      ],
+      "property": "Single monomials: vertices are just exponent vectors"
+    },
+    "test_2_constant_polynomial": {
+      "description": "Newton polytope with constant term",
+      "f": "x^2 + 1",
+      "constant_support": "includes (0, 0) vertex",
+      "property": "Constants add (0,0) to Newton polytope"
+    },
+    "test_3_homogeneous_polynomials": {
+      "f": "x**2 + x*y + y**2",
+      "f_degree": 2,
+      "g": "x**2 + y**2",
+      "g_degree": 2,
+      "product_degree": 4,
+      "newt_f_vertices": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "newt_g_vertices": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "newt_product_vertices": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "minkowski_sum": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "property": "Homogeneous: Minkowski sum also homogeneous (all vertices sum to degree 4)"
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,192 @@
+{
+  "name": "sim_geometry_hecke_operator_algebra_constraint_canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "algebraic constraints need symbolic proof"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in operator algebra"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 more suitable for nonlinear integer arithmetic in recursion"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "nonlinear recursion T(p^{r+1})=T(p)T(p^r)-p^{k-1}T(p^{r-1})"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification of Hecke operator multiplication rules"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no clifford algebra in modular form theory"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "operator algebra is not a Riemannian manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance symmetry in Hecke operators"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph topology"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "operator relations are algebraic, not topological"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_multiplicativity_2_3": {
+      "m": 2,
+      "n": 3,
+      "gcd_m_n": 1,
+      "product": 6,
+      "coprime": true,
+      "pass": true
+    },
+    "positive_commutativity_2_5": {
+      "m": 2,
+      "n": 5,
+      "T_m_T_n_equals_T_n_T_m": true,
+      "pass": true
+    },
+    "positive_recursion_p2_r2": {
+      "prime": 2,
+      "exponent": 2,
+      "weight": 12,
+      "formula": "T(p^{r+1}) = T(p)T(p^r) - p^{k-1}T(p^{r-1})",
+      "instance": "T(2^3) = T(2)T(2^2) - 2^11T(2)",
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_multiplicativity_violation": {
+      "m": 2,
+      "n": 3,
+      "gcd_m_n": 1,
+      "claim": "T(2)T(3) != T(6)",
+      "cvc5_status": "unsat",
+      "pass": true
+    },
+    "negative_commutativity_violation": {
+      "m": 3,
+      "n": 5,
+      "claim": "T(3)T(5) \u2260 T(5)T(3)",
+      "cvc5_status": "unsat",
+      "pass": true
+    },
+    "negative_recursion_violation": {
+      "p": 2,
+      "r": 1,
+      "weight": 12,
+      "formula": "T(2^2) = T(2)T(2) - 2^{11}T(1)",
+      "claimed_T4": 5,
+      "correct_T4": -2044,
+      "cvc5_status": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_non_coprime": {
+      "m": 4,
+      "n": 6,
+      "gcd_m_n": 2,
+      "note": "gcd > 1: multiplicativity formula does not apply directly",
+      "pass": true
+    },
+    "boundary_weight_k2": {
+      "weight": 2,
+      "prime": 2,
+      "recursion_coefficient": "2^1 = 2",
+      "pass": true
+    },
+    "boundary_weight_k4": {
+      "weight": 4,
+      "prime": 2,
+      "recursion_coefficient": "2^3 = 8",
+      "pass": true
+    },
+    "boundary_weight_k12": {
+      "weight": 12,
+      "prime": 2,
+      "recursion_coefficient": "2^11 = 2048",
+      "pass": true
+    },
+    "boundary_weight_k24": {
+      "weight": 24,
+      "prime": 2,
+      "recursion_coefficient": "2^23 = 8388608",
+      "pass": true
+    },
+    "boundary_T1_identity": {
+      "operator": "T(1)",
+      "property": "T(1) acts as identity on modular forms",
+      "eigenvalue": "all forms are eigenvectors with eigenvalue 1",
+      "pass": true
+    },
+    "boundary_prime_p2": {
+      "prime": 2,
+      "base_operator": "T(2)",
+      "recursion_defined": true,
+      "pass": true
+    },
+    "boundary_prime_p3": {
+      "prime": 3,
+      "base_operator": "T(3)",
+      "recursion_defined": true,
+      "pass": true
+    },
+    "boundary_prime_p5": {
+      "prime": 5,
+      "base_operator": "T(5)",
+      "recursion_defined": true,
+      "pass": true
+    }
+  },
+  "positive_pass": true,
+  "negative_pass": true,
+  "boundary_pass": true,
+  "overall_pass": true,
+  "classification": "canonical"
+}

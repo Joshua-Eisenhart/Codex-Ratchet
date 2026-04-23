@@ -1,0 +1,146 @@
+{
+  "name": "OperadCompositionAssociativity",
+  "domain": "Operads / composition associativity",
+  "claim": "O(n) \u2218_i O(m) produces O(n+m-1)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for constraint verification"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for constraint verification"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 selected for QF_LIA integer arithmetic"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: encodes operad arity composition constraint via SAT/UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: validates symbolic unit law O(1) \u2218_1 O(n) = O(n)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for operad arity"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for operad arity"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for operad arity"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for operad arity"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for operad arity"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for operad arity"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for operad arity"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_1_O3_compose_O2_equals_O4": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "n": 3,
+      "m": 2,
+      "splice_pos": 1,
+      "out_arity": 4
+    },
+    "positive_2_O5_compose_O3_equals_O7": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "n": 5,
+      "m": 3,
+      "out_arity": 7
+    },
+    "positive_3_O2_compose_O4_equals_O5": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "n": 2,
+      "m": 4,
+      "out_arity": 5
+    }
+  },
+  "negative": {
+    "negative_1_arity_4_and_3_unsat": {
+      "error": "'cvc5.cvc5_python_base.Solver' object has no attribute 'mkVariable'",
+      "pass": false
+    },
+    "negative_2_arity_7_and_5_unsat": {
+      "error": "'cvc5.cvc5_python_base.Solver' object has no attribute 'mkVariable'",
+      "pass": false
+    },
+    "negative_3_arity_less_than_formula_unsat": {
+      "error": "'cvc5.cvc5_python_base.Solver' object has no attribute 'mkVariable'",
+      "pass": false
+    }
+  },
+  "boundary": {
+    "boundary_1_unit_left_identity": {
+      "formula": "1 + n - 1 = n",
+      "simplified": "n",
+      "equals_n": true,
+      "pass": true
+    },
+    "boundary_2_unit_right_identity": {
+      "formula": "n + 1 - 1 = n",
+      "simplified": "n",
+      "equals_n": true,
+      "pass": true
+    },
+    "boundary_3_chain_associativity": {
+      "first_arity": "a + b - 1",
+      "second_arity": "a + b + c - 2",
+      "expected": "a + b + c - 2",
+      "matches": true,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

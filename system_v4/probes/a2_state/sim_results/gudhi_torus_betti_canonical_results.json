@@ -1,0 +1,142 @@
+{
+  "name": "gudhi_torus_betti_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for PH on point cloud"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph MP in this test"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic constraint"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric persistence only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotor algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance test"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cross-checked in sim2"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Rips filtration + persistence computes Betti from point cloud; load-bearing"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "torus_seed0": {
+      "betti": [
+        1,
+        2,
+        1
+      ],
+      "expected": [
+        1,
+        2,
+        1
+      ],
+      "pass": true
+    },
+    "torus_seed1": {
+      "betti": [
+        1,
+        2,
+        1
+      ],
+      "expected": [
+        1,
+        2,
+        1
+      ],
+      "pass": true
+    },
+    "torus_seed2": {
+      "betti": [
+        1,
+        2,
+        1
+      ],
+      "expected": [
+        1,
+        2,
+        1
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "sphere_not_torus": {
+      "betti": [
+        1,
+        0,
+        1
+      ],
+      "pass": true
+    }
+  },
+  "boundary": {
+    "undersampled_torus_fails": {
+      "betti": [
+        1,
+        1,
+        0
+      ],
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

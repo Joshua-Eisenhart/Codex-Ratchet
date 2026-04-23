@@ -1,0 +1,487 @@
+{
+  "generated_at": "2026-04-20T09:57:30.181925+00:00",
+  "strict": false,
+  "overall_green": false,
+  "repair_queue_count": 5,
+  "safe_auto_repair_count": 0,
+  "manual_repair_count": 3,
+  "truth_green": false,
+  "controller_green": false,
+  "migration_green": true,
+  "repo_hygiene_green": false,
+  "runtime_hygiene_green": true,
+  "state_dir_ownership_green": true,
+  "lego_tool_reporting_green": true,
+  "active_actionable_lane": {
+    "group_id": "probe_source__sim_family_axis0",
+    "file_count": 1,
+    "untracked_count": 1,
+    "tracked_dirty_count": 0,
+    "safe_next_action": "manual_split_required",
+    "source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
+    "result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
+  },
+  "summary": {
+    "missing_surface_count": 0,
+    "repair_queue_count": 5,
+    "safe_auto_repair_count": 0,
+    "manual_repair_count": 3,
+    "truth_green": false,
+    "controller_green": false,
+    "migration_green": true,
+    "repo_hygiene_green": false,
+    "runtime_hygiene_green": true,
+    "state_dir_ownership_green": true,
+    "lego_tool_reporting_green": true,
+    "overall_green": false
+  },
+  "process_model": {
+    "name": "closed_loop_maintenance",
+    "phases": [
+      "detect",
+      "classify",
+      "plan",
+      "remediate",
+      "verify",
+      "gate"
+    ]
+  },
+  "surface_catalog": {
+    "truth": "integrity_verification",
+    "controller": "contract_compliance",
+    "migration": "migration_compliance",
+    "repo_hygiene": "repository_hygiene",
+    "runtime_hygiene": "runtime_environment",
+    "state_dir_ownership": "state_dir_governance",
+    "lego_tool_reporting": "tool_reporting_compliance"
+  },
+  "lego_tool_reporting_surface": {
+    "present": true,
+    "path": "system_v4/probes/a2_state/sim_results/lego_tool_reporting_audit_results.json",
+    "status": "current",
+    "blocker_count": 0,
+    "advisory_count": 9,
+    "registry_linked_result_count": 117,
+    "issue_kind_counts": {
+      "blank_unused_reason": 9
+    },
+    "ok": true
+  },
+  "state_dir_ownership_surface": {
+    "present": true,
+    "path": "system_v4/probes/a2_state/sim_results/state_dir_ownership_audit_results.json",
+    "status": "current",
+    "blocker_count": 0,
+    "advisory_count": 0,
+    "ok": true
+  },
+  "source_dirty_surface": {
+    "source_dirty_count": 146,
+    "dirty_source_bucket_count": 4,
+    "dirty_source_buckets": [
+      {
+        "label": "probe_source",
+        "count": 97
+      },
+      {
+        "label": "next_gen_system",
+        "count": 39
+      },
+      {
+        "label": "other_source",
+        "count": 9
+      },
+      {
+        "label": "docs_and_specs",
+        "count": 1
+      }
+    ],
+    "top_dirty_prefixes": [
+      {
+        "prefix": "system_v4",
+        "count": 161
+      },
+      {
+        "prefix": "system_v5",
+        "count": 39
+      },
+      {
+        "prefix": "CLAUDE.md",
+        "count": 1
+      },
+      {
+        "prefix": "scripts",
+        "count": 1
+      },
+      {
+        "prefix": "visualizer",
+        "count": 1
+      }
+    ],
+    "checkpoint_recommended": true
+  },
+  "source_dirty_checkpoint": {
+    "present": true,
+    "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
+    "status": "current",
+    "dirty_source_checkpoint_required": true,
+    "plan_group_count": 39,
+    "largest_group_id": "legacy_runtime__legacy_runtime",
+    "next_code_only_manual": {
+      "group_id": "probe_source__sim_family_axis0",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
+    },
+    "recommended_code_only_order": [
+      {
+        "group_id": "probe_source__sim_family_axis0",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
+      },
+      {
+        "group_id": "probe_source__sim_family_a1",
+        "file_count": 1,
+        "untracked_count": 0,
+        "tracked_dirty_count": 1,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_a1_homotopy_3_reduction.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/a1_homotopy_3_reduction_results.json"
+      },
+      {
+        "group_id": "probe_source__sim_family_carrier",
+        "file_count": 1,
+        "untracked_count": 0,
+        "tracked_dirty_count": 1,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_carrier_probe_support.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/carrier_probe_support_results.json"
+      },
+      {
+        "group_id": "probe_source__sim_family_compound",
+        "file_count": 1,
+        "untracked_count": 0,
+        "tracked_dirty_count": 1,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_compound_operator_geometry.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/compound_operator_geometry_results.json"
+      },
+      {
+        "group_id": "probe_source__sim_family_dirac",
+        "file_count": 1,
+        "untracked_count": 0,
+        "tracked_dirty_count": 1,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_dirac_contact_mera_topology_variants.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/dirac_contact_mera_topology_variants_results.json"
+      }
+    ]
+  },
+  "source_dirty_lane_manifest": {
+    "present": true,
+    "path": "system_v4/probes/a2_state/sim_results/source_dirty_lane_manifest.json",
+    "status": "current",
+    "required": true,
+    "selected_group_id": "docs_and_specs__docs_and_specs",
+    "file_count": 1,
+    "docs_opt_in_required": true,
+    "code_only_fallback_group_id": "probe_source__sim_family_axis0",
+    "active_actionable_lane_group_id": "probe_source__sim_family_axis0"
+  },
+  "maintenance_lanes": [
+    {
+      "lane": "build",
+      "standard_name": "feature_delivery",
+      "purpose": "Main feature, sim, or migration work."
+    },
+    {
+      "lane": "truth",
+      "standard_name": "integrity_verification",
+      "purpose": "Rerun touched sims and preserve result/source honesty."
+    },
+    {
+      "lane": "hygiene",
+      "standard_name": "repository_maintenance",
+      "purpose": "Keep repo placement, state surfaces, and runtime organization bounded."
+    },
+    {
+      "lane": "contract",
+      "standard_name": "contract_governance",
+      "purpose": "Keep controller, docs, and process surfaces enforceable."
+    }
+  ],
+  "missing_surfaces": [],
+  "repair_queue": [
+    {
+      "kind": "dirty_source_pressure",
+      "action_class": "human_scoped_checkpoint",
+      "safe_auto": false,
+      "recommendation": "Source/config residue must be checkpointed, archived, or quarantined before the repo is considered clean enough for new sim execution.",
+      "dirty_source_buckets": [
+        {
+          "label": "probe_source",
+          "count": 97
+        },
+        {
+          "label": "next_gen_system",
+          "count": 39
+        },
+        {
+          "label": "other_source",
+          "count": 9
+        },
+        {
+          "label": "docs_and_specs",
+          "count": 1
+        }
+      ],
+      "source_surface": "repo_hygiene"
+    },
+    {
+      "kind": "duplicate_result_basenames",
+      "action_class": "manual_result_routing",
+      "safe_auto": false,
+      "recommendation": "Resolve duplicate result basenames between canonical and legacy result roots.",
+      "files": [
+        "lego_pauli_algebra_results.json"
+      ],
+      "source_surface": "repo_hygiene"
+    },
+    {
+      "kind": "secondary_result_directory_populated",
+      "action_class": "quarantine_secondary_unique_results",
+      "safe_auto": false,
+      "opt_in_only": true,
+      "recommendation": "Only the unique legacy results are candidates for bounded quarantine; duplicate basenames still require manual routing.",
+      "path": "system_v4/probes/sim_results",
+      "safe_unique_files": [
+        "engine_4_operators_results.json",
+        "engine_terrain_couplings_results.json",
+        "geom_2qubit_s7_cp3_results.json",
+        "geom_metric_layers_results.json",
+        "geom_symplectic_kahler_contact_results.json",
+        "lego_adiabatic_theorem_results.json",
+        "lego_dirac_gamma_results.json",
+        "lego_dynamical_decoupling_results.json",
+        "lego_fiber_bundles_results.json",
+        "lego_flux_candidates_results.json",
+        "lego_gksl_kossakowski_results.json",
+        "lego_info_geometry_results.json",
+        "lego_lindblad_spectral_results.json",
+        "lego_positive_maps_results.json",
+        "lego_ppt_witnesses_results.json",
+        "lego_qit_batch_results.json",
+        "lego_quantum_capacities_results.json",
+        "lego_quantum_thermo_results.json",
+        "lego_quantum_trajectories_results.json",
+        "lego_stagewise_deltas_results.json",
+        "lego_stinespring_complementary_results.json",
+        "lego_toric_code_results.json",
+        "lego_unitary_generators_results.json",
+        "lego_wilczek_zee_results.json",
+        "meta_learning_results.json",
+        "qec_ratchet_results.json",
+        "temporal_cascade_flipped_results.json",
+        "vqe_ratchet_results.json"
+      ],
+      "blocked_duplicate_files": [
+        "lego_pauli_algebra_results.json"
+      ],
+      "suggested_quarantine_root": "work/hygiene_quarantine/secondary_unique_results",
+      "source_surface": "repo_hygiene"
+    },
+    {
+      "source_surface": "truth",
+      "kind": "truth_audit_failed",
+      "action_class": "repair_truth_surface",
+      "safe_auto": false,
+      "recommendation": "Resolve hard truth-audit findings before further promotion."
+    },
+    {
+      "source_surface": "controller",
+      "kind": "controller_contract_not_current",
+      "action_class": "repair_controller_surface",
+      "safe_auto": false,
+      "recommendation": "Bring docs/process/controller back to a green state before unattended loops."
+    }
+  ],
+  "safe_auto_queue": [],
+  "manual_queue": [
+    {
+      "kind": "dirty_source_pressure",
+      "action_class": "human_scoped_checkpoint",
+      "safe_auto": false,
+      "recommendation": "Source/config residue must be checkpointed, archived, or quarantined before the repo is considered clean enough for new sim execution.",
+      "dirty_source_buckets": [
+        {
+          "label": "probe_source",
+          "count": 97
+        },
+        {
+          "label": "next_gen_system",
+          "count": 39
+        },
+        {
+          "label": "other_source",
+          "count": 9
+        },
+        {
+          "label": "docs_and_specs",
+          "count": 1
+        }
+      ],
+      "source_surface": "repo_hygiene"
+    },
+    {
+      "kind": "duplicate_result_basenames",
+      "action_class": "manual_result_routing",
+      "safe_auto": false,
+      "recommendation": "Resolve duplicate result basenames between canonical and legacy result roots.",
+      "files": [
+        "lego_pauli_algebra_results.json"
+      ],
+      "source_surface": "repo_hygiene"
+    },
+    {
+      "kind": "secondary_result_directory_populated",
+      "action_class": "quarantine_secondary_unique_results",
+      "safe_auto": false,
+      "opt_in_only": true,
+      "recommendation": "Only the unique legacy results are candidates for bounded quarantine; duplicate basenames still require manual routing.",
+      "path": "system_v4/probes/sim_results",
+      "safe_unique_files": [
+        "engine_4_operators_results.json",
+        "engine_terrain_couplings_results.json",
+        "geom_2qubit_s7_cp3_results.json",
+        "geom_metric_layers_results.json",
+        "geom_symplectic_kahler_contact_results.json",
+        "lego_adiabatic_theorem_results.json",
+        "lego_dirac_gamma_results.json",
+        "lego_dynamical_decoupling_results.json",
+        "lego_fiber_bundles_results.json",
+        "lego_flux_candidates_results.json",
+        "lego_gksl_kossakowski_results.json",
+        "lego_info_geometry_results.json",
+        "lego_lindblad_spectral_results.json",
+        "lego_positive_maps_results.json",
+        "lego_ppt_witnesses_results.json",
+        "lego_qit_batch_results.json",
+        "lego_quantum_capacities_results.json",
+        "lego_quantum_thermo_results.json",
+        "lego_quantum_trajectories_results.json",
+        "lego_stagewise_deltas_results.json",
+        "lego_stinespring_complementary_results.json",
+        "lego_toric_code_results.json",
+        "lego_unitary_generators_results.json",
+        "lego_wilczek_zee_results.json",
+        "meta_learning_results.json",
+        "qec_ratchet_results.json",
+        "temporal_cascade_flipped_results.json",
+        "vqe_ratchet_results.json"
+      ],
+      "blocked_duplicate_files": [
+        "lego_pauli_algebra_results.json"
+      ],
+      "suggested_quarantine_root": "work/hygiene_quarantine/secondary_unique_results",
+      "source_surface": "repo_hygiene"
+    }
+  ],
+  "surface_status": {
+    "truth": {
+      "hard_finding_count": 226,
+      "warning_finding_count": 47,
+      "ok": false
+    },
+    "controller": {
+      "doc_drift_count": 0,
+      "interpreter_aligned": true,
+      "phase7_c2_surface_consistent": true,
+      "phase7_source_has_legacy_subset_branch": false,
+      "trusted_spine_risky_entries": 1,
+      "truth_audit_ok": false,
+      "shallow_tool_count": 0,
+      "code_process_green": false,
+      "docs_current": true,
+      "controller_contract_current": false
+    },
+    "migration": {
+      "extracted_family_count": 5,
+      "promoted_result_count": 5,
+      "advisory_finding_count": 0,
+      "ok": true
+    },
+    "repo_hygiene": {
+      "blocker_count": 3,
+      "advisory_count": 3,
+      "repair_candidate_count": 3,
+      "primary_result_count": 4412,
+      "secondary_result_count": 29,
+      "secondary_unique_result_count": 28,
+      "secondary_duplicate_result_count": 1,
+      "root_result_orphan_count": 0,
+      "duplicate_result_basename_count": 1,
+      "source_dirty_count": 146,
+      "generated_dirty_count": 57,
+      "dirty_worktree_count": 203,
+      "dirty_source_bucket_count": 4,
+      "ok": false
+    },
+    "runtime_hygiene": {
+      "blocker_count": 0,
+      "advisory_count": 0,
+      "repair_candidate_count": 0,
+      "requirements_package_count": 20,
+      "ok": true
+    },
+    "state_dir_ownership": {
+      "blocker_count": 0,
+      "advisory_count": 0,
+      "repair_candidate_count": 0,
+      "ok": true
+    },
+    "lego_tool_reporting": {
+      "registry_row_count": 150,
+      "registry_linked_result_count": 117,
+      "registry_linked_lego_count": 148,
+      "blocker_count": 0,
+      "advisory_count": 9,
+      "blocker_result_count": 0,
+      "advisory_result_count": 9,
+      "issue_kind_counts": {
+        "blank_unused_reason": 9
+      },
+      "ok": true
+    },
+    "source_dirty_checkpoint": {
+      "dirty_source_count": 146,
+      "plan_group_count": 39,
+      "checkpoint_candidate_count": 1,
+      "quarantine_candidate_count": 0,
+      "manual_only_count": 38,
+      "code_only_manual_count": 38,
+      "largest_group_id": "legacy_runtime__legacy_runtime",
+      "next_code_only_manual_group_id": "probe_source__sim_family_axis0",
+      "next_code_only_manual_file_count": 1,
+      "next_code_only_manual_source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
+      "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json",
+      "ok": true
+    },
+    "source_dirty_lane_manifest": {
+      "selected_group_id": "docs_and_specs__docs_and_specs",
+      "file_count": 1,
+      "safe_next_action": "checkpoint",
+      "docs_opt_in_required": true,
+      "code_only_fallback_group_id": "probe_source__sim_family_axis0",
+      "active_actionable_lane_group_id": "probe_source__sim_family_axis0",
+      "executable_lane_group_id": "probe_source__sim_family_axis0",
+      "ok": true
+    }
+  }
+}

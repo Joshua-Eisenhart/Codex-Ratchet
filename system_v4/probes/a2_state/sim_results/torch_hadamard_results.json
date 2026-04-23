@@ -1,0 +1,257 @@
+{
+  "name": "torch_hadamard",
+  "phase": "Phase 3 sim",
+  "description": "Hadamard gate as differentiable nn.Module -- Z-to-X basis transform",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: Hadamard as nn.Module, autograd for Bloch expectations"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Normalization constraint verification"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic unitarity, self-inverse, hermiticity, basis mapping"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_0_to_plus": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P2_1_to_minus": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P3_plus_to_0": {
+      "max_diff": 3.3306690738754696e-16,
+      "pass": true
+    },
+    "P4_minus_to_1": {
+      "max_diff": 3.3306690738754696e-16,
+      "pass": true
+    },
+    "P5_self_inverse": {
+      "max_diff": 3.3306690738754696e-16,
+      "pass": true
+    },
+    "P6_substrate_match": {
+      "|0>": {
+        "max_abs_diff": 2.980232227667301e-08,
+        "pass": true
+      },
+      "|1>": {
+        "max_abs_diff": 2.980232227667301e-08,
+        "pass": true
+      },
+      "|+>": {
+        "max_abs_diff": 5.960464444232372e-08,
+        "pass": true
+      },
+      "|->": {
+        "max_abs_diff": 5.960464444232372e-08,
+        "pass": true
+      }
+    },
+    "P7_trace_preservation": {
+      "|0>": {
+        "trace": 0.9999999999999998,
+        "pass": true
+      },
+      "|1>": {
+        "trace": 0.9999999999999998,
+        "pass": true
+      },
+      "|+>": {
+        "trace": 0.9999999999999997,
+        "pass": true
+      },
+      "|->": {
+        "trace": 0.9999999999999997,
+        "pass": true
+      }
+    },
+    "P8_unitarity": {
+      "is_unitary": true,
+      "pass": true
+    },
+    "P9_hermitian": {
+      "max_diff": 0.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_non_unitary_detected": {
+      "is_unitary": false,
+      "pass": true
+    },
+    "N2_trace_violation": {
+      "trace": 0.6249999999999999,
+      "pass": true
+    },
+    "N3_not_0_to_1": {
+      "diff": 0.5000000000000001,
+      "pass": true
+    },
+    "N4_hermiticity_|0>": {
+      "diff": 0.0,
+      "pass": true
+    },
+    "N4_hermiticity_|+i>": {
+      "diff": 1.2688051498344066e-08,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_mixed_invariant": {
+      "max_diff": 1.1102230246251565e-16,
+      "pass": true
+    },
+    "B2_purity_preserved": {
+      "state_0": {
+        "purity_in": 0.9999999999999998,
+        "purity_out": 0.9999999999999993,
+        "pass": true
+      },
+      "state_1": {
+        "purity_in": 1.0,
+        "purity_out": 0.9999999999999998,
+        "pass": true
+      },
+      "state_2": {
+        "purity_in": 1.0000000000000004,
+        "purity_out": 1.0000000000000002,
+        "pass": true
+      },
+      "state_3": {
+        "purity_in": 1.0,
+        "purity_out": 0.9999999999999996,
+        "pass": true
+      },
+      "state_4": {
+        "purity_in": 1.0000000000000004,
+        "purity_out": 1.0,
+        "pass": true
+      }
+    },
+    "B3_XZ_swap": {
+      "exp_X_after_H": 0.9999999999999998,
+      "exp_Z_after_H": 0.0,
+      "X_is_1": true,
+      "Z_is_0": true,
+      "pass": true
+    }
+  },
+  "falsification": {
+    "F1_bloch_gradient": {
+      "theta=0.10": {
+        "theta": 0.1,
+        "exp_Z": 0.19866931438446045,
+        "grad": 1.9601330757141113,
+        "pass": true
+      },
+      "theta=0.50": {
+        "theta": 0.5,
+        "exp_Z": 0.8414710164070129,
+        "grad": 1.0806044340133667,
+        "pass": true
+      },
+      "theta=0.79": {
+        "theta": 0.7853981633974483,
+        "exp_Z": 0.9999998807907104,
+        "grad": 0.0,
+        "pass": true
+      },
+      "theta=1.00": {
+        "theta": 1.0,
+        "exp_Z": 0.9092974662780762,
+        "grad": -0.8322934508323669,
+        "pass": true
+      },
+      "theta=1.30": {
+        "theta": 1.3,
+        "exp_Z": 0.5155014395713806,
+        "grad": -1.7137773036956787,
+        "pass": true
+      }
+    },
+    "F2_autograd_vs_fd": {
+      "autograd": 1.0806044340133667,
+      "finite_diff": 1.0806046045325202,
+      "abs_diff": 1.7051915346399937e-07,
+      "pass": true
+    },
+    "F3_random_match": {
+      "n": 20,
+      "max_diff": 9.099738522575207e-08,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "is_unitary": true,
+    "is_self_inverse": true,
+    "is_hermitian": true,
+    "maps_0_to_plus": true,
+    "pass": true
+  },
+  "z3_check": {
+    "normalization_forced": "unsat",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 36,
+    "total_pass": 36,
+    "all_pass": true
+  }
+}

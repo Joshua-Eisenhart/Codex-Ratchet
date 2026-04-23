@@ -1,0 +1,229 @@
+{
+  "name": "qpca_spectral_extraction",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for QPCA-style spectral extraction on bounded density operators, including dominant-mode recovery and comparison to a classical correlation surrogate.",
+  "lego_ids": [
+    "qpca_spectral_extraction",
+    "principal_subspace",
+    "spectral_truncation"
+  ],
+  "primary_lego_ids": [
+    "qpca_spectral_extraction"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure numpy/scipy spectral lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph-native computation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no SMT proof layer here"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no second-solver layer here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no symbolic derivation here"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold-statistics layer"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency DAG"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell-complex topology"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "rank_2_mixed": {
+      "levels": [
+        {
+          "k": 1,
+          "top_eigenvalues": [
+            0.6502580845776997
+          ],
+          "qpca_fidelity": 0.6502581017245762,
+          "cpca_fidelity": 0.39687475629051505,
+          "qpca_trace_distance": 0.3497419154223002,
+          "qpca_entropy_ratio": -2.372951195046919e-16
+        },
+        {
+          "k": 2,
+          "top_eigenvalues": [
+            0.6502580845776997,
+            0.2314888594195621
+          ],
+          "qpca_fidelity": 0.8817469606368967,
+          "cpca_fidelity": 0.5716389537107581,
+          "qpca_trace_distance": 0.11825305600273811,
+          "qpca_entropy_ratio": 0.6152308479708543
+        },
+        {
+          "k": 3,
+          "top_eigenvalues": [
+            0.6502580845776997,
+            0.2314888594195621,
+            0.0902842036124016
+          ],
+          "qpca_fidelity": 0.9720311602476088,
+          "cpca_fidelity": 0.7825070336501917,
+          "qpca_trace_distance": 0.0279688523903365,
+          "qpca_entropy_ratio": 0.8884759627831977
+        }
+      ],
+      "qpca_fidelity_monotone_in_k": true,
+      "qpca_beats_cpca_at_k1": true,
+      "qpca_exact_by_k3_or_k4": true,
+      "pass": true
+    },
+    "rank_3_mixed": {
+      "levels": [
+        {
+          "k": 1,
+          "top_eigenvalues": [
+            0.4947580978833068
+          ],
+          "qpca_fidelity": 0.49475811166950123,
+          "cpca_fidelity": 0.341969618051265,
+          "qpca_trace_distance": 0.505241902116694,
+          "qpca_entropy_ratio": -0.0
+        },
+        {
+          "k": 2,
+          "top_eigenvalues": [
+            0.4947580978833068,
+            0.34408761368453383
+          ],
+          "qpca_fidelity": 0.8388457123770278,
+          "cpca_fidelity": 0.622851141288865,
+          "qpca_trace_distance": 0.16115428843215934,
+          "qpca_entropy_ratio": 0.6504824767497971
+        },
+        {
+          "k": 3,
+          "top_eigenvalues": [
+            0.4947580978833068,
+            0.34408761368453383,
+            0.15335096405088858
+          ],
+          "qpca_fidelity": 0.9921966842830483,
+          "cpca_fidelity": 0.8472936548653665,
+          "qpca_trace_distance": 0.007803324381270734,
+          "qpca_entropy_ratio": 0.9636589961549075
+        }
+      ],
+      "qpca_fidelity_monotone_in_k": true,
+      "qpca_beats_cpca_at_k1": true,
+      "qpca_exact_by_k3_or_k4": true,
+      "pass": true
+    },
+    "rank_4_mixed": {
+      "levels": [
+        {
+          "k": 1,
+          "top_eigenvalues": [
+            0.6713349640217997
+          ],
+          "qpca_fidelity": 0.6713350135542033,
+          "cpca_fidelity": 0.3895876445493858,
+          "qpca_trace_distance": 0.32866503597820046,
+          "qpca_entropy_ratio": -2.410633517796932e-16
+        },
+        {
+          "k": 2,
+          "top_eigenvalues": [
+            0.6713349640217997,
+            0.21454568487342843
+          ],
+          "qpca_fidelity": 0.8858806658697237,
+          "cpca_fidelity": 0.5963533599142996,
+          "qpca_trace_distance": 0.11411935110477195,
+          "qpca_entropy_ratio": 0.600999784687616
+        },
+        {
+          "k": 3,
+          "top_eigenvalues": [
+            0.6713349640217997,
+            0.21454568487342843,
+            0.07101499919312328
+          ],
+          "qpca_fidelity": 0.9568956602421264,
+          "cpca_fidelity": 0.6979737742447608,
+          "qpca_trace_distance": 0.0431043519116487,
+          "qpca_entropy_ratio": 0.8434494510519561
+        }
+      ],
+      "qpca_fidelity_monotone_in_k": true,
+      "qpca_beats_cpca_at_k1": true,
+      "qpca_exact_by_k3_or_k4": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "rank_one_qpca_not_exact_for_generic_mixed_states": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "qpca_fidelity_improves_with_k": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "state_count": 3,
+    "scope_note": "Direct local QPCA lego on bounded density operators with classical surrogate comparison."
+  }
+}

@@ -1,0 +1,171 @@
+# Codex Ratchet Engine DNA
+# Version: v1.0
+# The seed configuration that defines the engine's identity.
+# This file is the single source of truth for:
+#   - What constraints must hold (the manifold)
+#   - What probes run (the evidence suite)
+#   - What operators are available (the skill dispatch)
+#   - What the engine's current state is
+
+schema: codex_ratchet_dna_v1
+version: "1.0"
+created: "2026-03-23T12:54:00Z"
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# AXIOMS (F01, N01) — the non-negotiable foundation
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+axioms:
+  F01_finitude: "All systems have finite capacity d < ∞"
+  N01_noncommutation: "Operations do not commute: AB ≠ BA"
+  CAS04_operational_equivalence: "No primitive identity a=a; equivalence is operational"
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# CONSTRAINTS — what must hold (Z3/SAT verifiable)
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+constraints:
+  phase_period_positive: "phase_period > 0"
+  phase_index_nonneg: "phase_index >= 0"
+  phase_index_bounded: "phase_index < phase_period"
+  region_nonempty: "region is non-empty"
+  no_blocked_admissible_conflict: "BLOCKED and ADMISSIBLE cannot coexist"
+  no_degenerate_stable_conflict: "DEGENERATE and STABLE cannot coexist"
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# OPERATORS — the 4 kernel operators
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+operators:
+  Ti:
+    name: "Projective/Constraint"
+    cptp: "ρ → Σ P_k ρ P_k (projection)"
+    role: "Measurement, dephasing, rank reduction"
+    sign_minus: "Sink/Absorb (quantize)"
+    sign_plus: "Source/Emit (regularize)"
+  Te:
+    name: "Gradient/Variational"
+    cptp: "ρ → U(θ)ρU†(θ) (Hamiltonian flow)"
+    role: "Directed motion, optimization"
+    sign_minus: "Gradient descent (minimize loss)"
+    sign_plus: "Gradient ascent (maximize)"
+  Fi:
+    name: "Memory/Spectral"
+    cptp: "ρ → F ρ F† / Tr(F ρ F†) (filtering)"
+    role: "Selective retention, spectral matching"
+    sign_minus: "Matched filtering (absorption)"
+    sign_plus: "Spectral synthesis (emission)"
+  Fe:
+    name: "Dissipative/Coupling"
+    cptp: "Lindblad: L ρ L† - ½{L†L, ρ}"
+    role: "Entropy export, environmental coupling"
+    sign_minus: "Diffusive damping (smoothing)"
+    sign_plus: "Entrainment drive (phase-lock)"
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# ENGINE TYPES
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+engines:
+  type_1:
+    description: "Engine A outer (deductive/cooling), Engine B inner (inductive/heating)"
+    major_loop: "FeTi"
+    minor_loop: "TeFi"
+    stages: 8
+    substages_per_stage: 4
+    total_microstates: 32
+  type_2:
+    description: "Engine B outer (inductive/heating), Engine A inner (deductive/cooling)"
+    major_loop: "TeFi"
+    minor_loop: "FeTi"
+    stages: 8
+    substages_per_stage: 4
+    total_microstates: 32
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# PROBE SUITE — what SIMs to run
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+probes:
+  - abiogenesis_v2_sim.py
+  - alignment_sim.py
+  - arithmetic_gravity_sim.py
+  - chemistry_sim.py
+  - complexity_gap_v2_sim.py
+  - consciousness_sim.py
+  - constraint_gap_sim.py
+  - deep_math_foundations_sim.py
+  - demon_fixed_sim.py
+  - dual_weyl_spinor_engine_sim.py
+  - engine_terrain_sim.py
+  - foundations_sim.py
+  - full_8stage_engine_sim.py
+  - gain_calibration_v2_sim.py
+  - godel_stall_sim.py
+  - math_foundations_sim.py
+  - navier_stokes_complexity_sim.py
+  - navier_stokes_formal_sim.py
+  - navier_stokes_qit_sim.py
+  - nlm_batch2_sim.py
+  - p_vs_np_sim.py
+  - proof_cost_sim.py
+  - quantum_gravity_sim.py
+  - riemann_zeta_sim.py
+  - rock_falsifier_enhanced_sim.py
+  - rock_falsifier_sim.py
+  - scale_testing_sim.py
+  - scientific_method_sim.py
+  - szilard_64stage_v2_sim.py
+  - topology_operator_sim.py
+  - type2_engine_sim.py
+  - tier_3_mega_sim.py
+  - sim_moloch_trap_field.py
+  - world_model_sim.py
+  - yang_mills_sim.py
+  - axis_6_precedence_sim.py
+  - i_scalar_filtration_sim.py
+  - axis3_orthogonality_sim.py
+  - axis0_correlation_sim.py
+  - axis0_path_integral_sim.py
+  - axis_relations_sim.py
+  - qit_topology_parity_sim.py
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# HEARTBEAT — self-reflection config
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+heartbeat:
+  interval_seconds: 1800
+  triage_every_n_ticks: 6
+  self_kill_conditions:
+    - "3 consecutive runs with increasing KILL count"
+    - "any AXIOM-layer token goes KILL"
+    - "total PASS count drops below 50"
+  reflection_checks:
+    - "compare PASS/KILL counts to previous run"
+    - "flag any new KILLs"
+    - "flag any recovered PASSes"
+    - "compute ΔΦ trend across runs"
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# GRAVEYARD — KILL tracking
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+graveyard:
+  current_kills: []
+
+  # Known open KILLs — heartbeat uses this to distinguish expected failures
+  # from new regressions. A new KILL not in this list triggers DEGRADED status.
+  known_open_kills: []
+
+  resolved_kills:
+    - token: "E_SIM_GAP_SCALES_V2_OK"
+      fixed_by: "complexity_gap_v2_sim.py — formally implemented O(d log d) evaluation"
+    - token: "E_SIM_DUAL_SZILARD_OK"
+      fixed_by: "szilard_64stage_v2_sim.py — Berry phase alignment"
+    - token: "E_SIM_GAIN_CALIBRATION_V2_OK"
+      fixed_by: "gain_calibration_v2_sim.py — min 2w bounds"
+    - token: "E_SIM_LANDAUER_BOUND_OK"
+      fixed_by: "gain_calibration_v2_sim.py — critical damping applied"
+    - token: "E_SIM_DIRECTIONAL_ACCUMULATOR_ABIOGENESIS_OK"
+      fixed_by: "abiogenesis_v2_sim.py — dual loop structural accumulator proved"
+    - token: "E_SIM_DEMON_FIX_VALIDATED_OK"
+      fixed_by: "demon_fixed_sim.py — basis-matched measurement"
+    - token: "E_SIM_WORLD_MODEL_STRUCTURE_OK"
+      fixed_by: "Random init + adaptive step + FEP blend"
+    - token: "E_SIM_FRACTAL_NESTING_V1_OK"
+      fixed_by: "Random init (I/d → make_random_density_matrix)"
+

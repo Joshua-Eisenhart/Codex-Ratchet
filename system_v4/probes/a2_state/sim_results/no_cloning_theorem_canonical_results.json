@@ -1,0 +1,105 @@
+{
+  "name": "no_cloning_theorem_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Exact symbolic solve of c == c**2 for inner-product preservation (unitarity) vs cloning; load-bearing for no-cloning contradiction."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "nonorthogonal_c_half_gap": 0.25,
+    "allowed_values": [
+      "0j",
+      "(1+0j)"
+    ],
+    "cloning_forbidden": true
+  },
+  "negative": {
+    "orthogonal_gap": 0.0,
+    "orthogonal_allowed": true
+  },
+  "boundary": {
+    "identical_gap": 0.0,
+    "identical_allowed": true,
+    "c_inv_sqrt2_gap": 0.20710678118654752,
+    "c_inv_sqrt2_forbidden": true
+  },
+  "quantum_classical_gap": {
+    "metric": "|c - c^2| for <a|b>=1/2",
+    "gap": 0.25
+  },
+  "summary": {
+    "all_pass": true
+  }
+}

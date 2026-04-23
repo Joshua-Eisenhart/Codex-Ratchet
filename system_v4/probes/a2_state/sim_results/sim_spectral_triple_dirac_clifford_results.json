@@ -1,0 +1,195 @@
+{
+  "name": "sim_spectral_triple_dirac_clifford",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "shell": "Spectral triple (A=C(S^1), H=L^2(S^1,C^2), D=Dirac)",
+  "capability_summary": {
+    "CAN": [
+      "verify Dirac spectrum is symmetric about 0 via pytorch eigenvalues",
+      "prove [D,f]g = D(f)*g Leibniz rule via sympy",
+      "exclude D^2 < 0 via z3 UNSAT on integer squares",
+      "encode D as grade-1 and D^2 as grade-0 in Cl(1,0) via clifford",
+      "verify perfect \u00b1n matching in eigenvalue graph via rustworkx",
+      "encode spectral triple as irreducible 3-hyperedge via xgi"
+    ],
+    "CANNOT": [
+      "admit negative eigenvalues of D^2 (excluded by z3 UNSAT)",
+      "have asymmetric spectrum (excluded by chiral symmetry constraint)",
+      "decompose (A,H,D) triple into pairwise relations (excluded by xgi triadic structure)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: eigenvalues of finite-dimensional truncation of D are \u00b1n; torch.linalg.eigh verifies spectrum is symmetric about 0"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this shell-local spectral triple probe"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 Int UNSAT proves D^2 < 0 is impossible since n^2 >= 0 for all integers n"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this shell-local spectral triple probe"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy proves [D,f]g = (df/dtheta)*g symbolically for f,g in C(S^1) via Fourier modes"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Dirac operator as grade-1 element of Cl(1,0); D^2 as grade-0 scalar (Laplacian) via Clifford product"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this shell-local spectral triple probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this shell-local spectral triple probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: eigenvalue graph with nodes=eigenvalues, edges between \u00b1n pairs; perfect matching verifies spectral symmetry"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: (A,H,D) encoded as 3-way hyperedge in xgi; triadic irreducibility verified by hyperedge membership"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this shell-local spectral triple probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this shell-local spectral triple probe"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "dirac_spectrum_symmetric_about_zero": {
+      "pass": true,
+      "N": 6,
+      "n_eigenvalues": 26,
+      "detail": "Eigenvalues of truncated Dirac operator on S^1 are symmetric about 0: survived \u00b1n pairing"
+    },
+    "dirac_squared_nonneg_spectrum": {
+      "pass": true,
+      "min_eigenvalue_D2": 0.0,
+      "detail": "D^2 has non-negative spectrum: Laplacian survived admissibility as grade-0 operator"
+    },
+    "dirac_has_zero_mode": {
+      "pass": true,
+      "detail": "D has zero eigenvalue from n=0 mode: boundary of spectrum"
+    },
+    "sympy_commutator_leibniz": {
+      "pass": true,
+      "detail": "[D,f]g = D(f)*g = (-i df/dtheta)*g: Leibniz rule survived symbolic proof"
+    },
+    "sympy_commutator_numeric_check": {
+      "pass": true,
+      "detail": "Commutator Leibniz holds numerically for n=2, m=3, theta=0"
+    },
+    "clifford_D_grade1": {
+      "pass": true,
+      "detail": "Dirac operator D = e1 is a grade-1 element of Cl(1,0): survived as geometric object"
+    },
+    "clifford_D2_is_scalar": {
+      "pass": true,
+      "D2_scalar": 1.0,
+      "detail": "D^2 = e1*e1 = +1 (scalar, grade-0) in Cl(1,0): Laplacian survived as grade-0 object"
+    },
+    "rustworkx_eigenvalue_perfect_matching": {
+      "pass": true,
+      "n_nodes": 9,
+      "n_edges": 4,
+      "detail": "Eigenvalue graph: 9 nodes, 4 \u00b1n pairs matched: spectral symmetry survived as graph structure"
+    },
+    "rustworkx_zero_mode_unpaired": {
+      "pass": true,
+      "zero_degree": 0,
+      "detail": "n=0 eigenvalue node has degree 0: zero mode is unpaired, survived as boundary case"
+    },
+    "xgi_spectral_triple_triadic": {
+      "pass": true,
+      "hyperedge": [
+        "A",
+        "D",
+        "H"
+      ],
+      "detail": "(A,H,D) survived as irreducibly triadic 3-way hyperedge: cannot be decomposed into pairwise relations"
+    }
+  },
+  "negative": {
+    "z3_D2_cannot_be_negative": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: n^2 < 0 has no integer solution; Dirac spectrum squared is excluded from being negative"
+    },
+    "z3_D2_not_minus_one": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: n^2 = -1 has no integer solution; excluded from Dirac spectrum"
+    },
+    "pytorch_asymmetric_spectrum_excluded": {
+      "pass": true,
+      "detail": "Asymmetric spectrum {1,2,3} does not survive spectral triple chirality constraint"
+    },
+    "sympy_commutator_nonzero_for_nonconstant_f": {
+      "pass": true,
+      "detail": "[D, f] != 0 for nonconstant f=exp(in*theta): nonconstant functions excluded from commutant of D"
+    }
+  },
+  "boundary": {
+    "boundary_n0_zero_eigenvalue": {
+      "pass": true,
+      "eigenvalues": [
+        0.0,
+        0.0
+      ],
+      "detail": "N=0 truncation: all eigenvalues are 0; boundary case where spectrum collapses"
+    },
+    "sympy_constant_commutes_with_D": {
+      "pass": true,
+      "detail": "Constant f=1 commutes with D: [D,1]=0; constants survive in commutant of D"
+    },
+    "clifford_signature_boundary": {
+      "pass": true,
+      "Cl10_D2": 1.0,
+      "Cl01_D2": -1.0,
+      "detail": "Cl(1,0): D^2=+1; Cl(0,1): D^2=-1; signature boundary determines Laplacian sign"
+    },
+    "xgi_pairwise_not_triadic": {
+      "pass": true,
+      "detail": "Three pairwise edges {A,H},{H,D},{A,D} do not produce a 3-hyperedge: triadic structure excluded from pairwise decomposition"
+    }
+  }
+}

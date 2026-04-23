@@ -1,0 +1,156 @@
+{
+  "audit_only": true,
+  "cluster_id": "SKILL_CLUSTER::karpathy-meta-research-runtime",
+  "do_not_promote": true,
+  "generated_utc": "2026-03-22T03:26:58Z",
+  "imported_member_disposition": {
+    "autoresearch": {
+      "adapt_away_from": [
+        "GPU training loop ownership",
+        "branch-per-run experiment workflow",
+        "overnight autonomous experiment loop",
+        "train.py mutation ownership",
+        "cache/bootstrap requirements"
+      ],
+      "classification": "adapt",
+      "keep": "seeded search-space exploration, fixed-scope improvement loop, and programmatic research framing"
+    },
+    "llm-council": {
+      "adapt_away_from": [
+        "OpenRouter or API-backed model calls",
+        "frontend/backend web app ownership",
+        "chairman model service assumptions",
+        "hosted council runtime claims"
+      ],
+      "classification": "adapt",
+      "keep": "multi-perspective review, ranking, and synthesis discipline"
+    },
+    "llm.c": {
+      "adapt_away_from": [
+        "current slice scope"
+      ],
+      "classification": "defer",
+      "keep": "later low-level runtime/minimal-core pattern source only"
+    },
+    "minbpe": {
+      "adapt_away_from": [
+        "current slice scope"
+      ],
+      "classification": "defer",
+      "keep": "later tokenizer/boundary/compression pattern source only"
+    },
+    "nanoGPT": {
+      "adapt_away_from": [
+        "model-training integration claims",
+        "full repo-family port claims"
+      ],
+      "classification": "mine",
+      "keep": "minimal-core runtime and training-pattern source pressure only"
+    },
+    "nanochat": {
+      "adapt_away_from": [
+        "training runtime ownership",
+        "chat-shell or model-host claims"
+      ],
+      "classification": "mine",
+      "keep": "small-runtime shape and minimal local experimentation pressure"
+    }
+  },
+  "issues": [],
+  "local_sources": {
+    "autoresearch": {
+      "exists": true,
+      "is_dir": true,
+      "path": "work/reference_repos/karpathy/autoresearch"
+    },
+    "llm-council": {
+      "exists": true,
+      "is_dir": true,
+      "path": "work/reference_repos/karpathy/llm-council"
+    },
+    "llm.c": {
+      "exists": true,
+      "is_dir": true,
+      "path": "work/reference_repos/karpathy/llm.c"
+    },
+    "minbpe": {
+      "exists": true,
+      "is_dir": true,
+      "path": "work/reference_repos/karpathy/minbpe"
+    },
+    "nanoGPT": {
+      "exists": true,
+      "is_dir": true,
+      "path": "work/reference_repos/karpathy/nanoGPT"
+    },
+    "nanochat": {
+      "exists": true,
+      "is_dir": true,
+      "path": "work/reference_repos/karpathy/nanochat"
+    }
+  },
+  "non_goals": [
+    "No external search, OpenRouter, or hosted-model calls.",
+    "No GPU training loop, data preparation, or overnight experiment run.",
+    "No git branch, reset, or branch-advance workflow import.",
+    "No web app, dashboard, or chairman service bootstrap.",
+    "No claim that the full Karpathy family is ported or runtime-real."
+  ],
+  "proof_mode": "seeded_local_runtime_proof",
+  "proof_only": true,
+  "recommended_actions": [
+    "Keep this first slice as a bounded local runtime proof only, not a claim that the Karpathy runtime family is fully ported.",
+    "Use the current local autoresearch plus llm-council seam as the proof subject instead of widening to external backends, training loops, or branch experiments.",
+    "If this family continues, choose one explicit follow-on only after reselection instead of widening multiple Karpathy repos at once."
+  ],
+  "recommended_next_step": "hold_first_slice_as_runtime_proof_only",
+  "runtime_proof": {
+    "accepted_count": 1,
+    "accepted_regions": [
+      "karpathy_candidate_balanced"
+    ],
+    "autoresearch": {
+      "best_hash": "0b432f27c5b45f29",
+      "best_region": "karpathy_candidate_balanced",
+      "best_score": 0.6215,
+      "improved": true,
+      "trace_tail": [
+        "Depth 1: Evaluated karpathy_candidate_simple -> 0.62",
+        "Depth 1: Evaluated karpathy_candidate_risky -> 0.57",
+        "Depth 1: Evaluated karpathy_candidate_balanced -> 0.58",
+        "Depth 1: Evaluated karpathy_candidate_simple -> 0.57",
+        "Depth 1: Evaluated karpathy_candidate_risky -> 0.53"
+      ]
+    },
+    "candidate_count": 4,
+    "candidate_summary": [
+      {
+        "hash": "0b432f27c5b45f29",
+        "region": "karpathy_candidate_balanced",
+        "score_hint": 0.6215
+      },
+      {
+        "hash": "944168ea7481b677",
+        "region": "karpathy_candidate_balanced",
+        "score_hint": 0.514
+      },
+      {
+        "hash": "2382b2ae33452256",
+        "region": "karpathy_candidate_simple",
+        "score_hint": 0.511
+      },
+      {
+        "hash": "b2794c373a1f13f3",
+        "region": "karpathy_candidate_risky",
+        "score_hint": 0.4685
+      }
+    ],
+    "proof_subject": "local autoresearch plus llm-council composition through a2-research-deliberation-operator",
+    "route": "local-autoresearch-then-council",
+    "used_autoresearch": true,
+    "used_llm_council": true
+  },
+  "schema": "A2_AUTORESEARCH_COUNCIL_RUNTIME_PROOF_REPORT_v1",
+  "slice_id": "a2-autoresearch-council-runtime-proof-operator",
+  "status": "ok"
+}

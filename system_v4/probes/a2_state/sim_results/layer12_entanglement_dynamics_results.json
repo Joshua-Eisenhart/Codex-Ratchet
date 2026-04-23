@@ -1,0 +1,69 @@
+{
+  "layer": 12,
+  "name": "entanglement_dynamics",
+  "positive": {
+    "P1_Fi_builds_entanglement": {
+      "pass": true,
+      "Fi_delta_concurrence": -7.771561172376096e-16,
+      "Fi_avg_delta_over_trace": 0.0,
+      "note": "Fi (U_xz) increases concurrence \u2014 entanglement builder"
+    },
+    "P2_Te_destroys_vs_Fi": {
+      "pass": true,
+      "Te_delta_concurrence": -0.22283790761863134,
+      "Fi_delta_concurrence": -7.771561172376096e-16,
+      "Te_avg_delta_over_trace": -0.004935969155573923,
+      "note": "Te dephasing does not build entanglement like Fi"
+    }
+  },
+  "negative": {
+    "N1_remove_Fi_kills_concurrence": {
+      "pass": true,
+      "concurrence_with_Fi": 0.4172289817728478,
+      "concurrence_without_Fi": 0.0,
+      "note": "Without Fi, concurrence stays low or zero"
+    }
+  },
+  "operator_effects": {
+    "Ti": {
+      "concurrence_before": 0.4143912195066617,
+      "concurrence_after": 0.03948775324459234,
+      "delta_concurrence": -0.37490346626206933
+    },
+    "Fe": {
+      "concurrence_before": 0.4143912195066617,
+      "concurrence_after": 0.41439121950666136,
+      "delta_concurrence": -3.3306690738754696e-16
+    },
+    "Te": {
+      "concurrence_before": 0.4143912195066617,
+      "concurrence_after": 0.19155331188803035,
+      "delta_concurrence": -0.22283790761863134
+    },
+    "Fi": {
+      "concurrence_before": 0.4143912195066617,
+      "concurrence_after": 0.4143912195066609,
+      "delta_concurrence": -7.771561172376096e-16
+    }
+  },
+  "trace_log_summary": {
+    "Fi_avg_delta": 0.0,
+    "Te_avg_delta": -0.004935969155573923,
+    "Ti_avg_delta": -0.046862933282758666,
+    "Fe_avg_delta": -1.196959198423997e-16
+  },
+  "tools_used": [
+    "apply_Ti_4x4",
+    "apply_Fe_4x4",
+    "apply_Te_4x4",
+    "apply_Fi_4x4",
+    "concurrence_4x4",
+    "GeometricEngine"
+  ],
+  "timestamp": "2026-04-05",
+  "summary": {
+    "passed": 3,
+    "total": 3,
+    "all_pass": true
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "name": "igt_deep_ring_topology_chirality",
+  "classification": "canonical",
+  "scope_note": "OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Cl(3) pseudoscalar discriminator"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Cl(3) pseudoscalar discriminator"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Cl(3) pseudoscalar discriminator"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Cl(3) pseudoscalar discriminator"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Cl(3) pseudoscalar discriminator"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) pseudoscalar sign separates CW/CCW ring orientation"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Cl(3) pseudoscalar discriminator"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Cl(3) pseudoscalar discriminator"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Cl(3) pseudoscalar discriminator"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Cl(3) pseudoscalar discriminator"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Cl(3) pseudoscalar discriminator"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Cl(3) pseudoscalar discriminator"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "cw_pseudoscalar_positive": {
+      "v": 1.0,
+      "pass": true
+    },
+    "ccw_pseudoscalar_negative": {
+      "v": -1.0,
+      "pass": true
+    },
+    "cw_ne_ccw": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "degenerate_no_chirality": {
+      "v": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "cyclic_shift_preserves": {
+      "s1": 1.0,
+      "s2": 1.0,
+      "pass": true
+    },
+    "swap_flips_sign": {
+      "sw": -1.0,
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

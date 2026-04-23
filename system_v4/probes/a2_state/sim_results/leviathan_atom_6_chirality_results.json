@@ -1,0 +1,100 @@
+{
+  "name": "leviathan_atom_6_chirality",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "orientation-invariance UNSAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "scalar chirality here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "signed directed-cycle sum"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "cw_vs_ccw_distinct": {
+      "cw_sum": 4.0,
+      "ccw_sum": 4.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "no_scalar_potential": {
+      "z3": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "achiral_edge_case": {
+      "net": 0.0,
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,33 @@
+{
+  "name": "gerbe_distinguishability_holonomy",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "integrate B over 2-cells"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "carrier complex for Sigma as sum of 2-cells"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "toponetx": "supportive"
+  },
+  "positive": {
+    "different_classes_different_holonomy": true,
+    "gauge_invariant_mod_2pi": false,
+    "zero_B_trivial_holonomy": true
+  },
+  "negative": {
+    "same_class_same_holonomy": true,
+    "null_surface_trivial": true
+  },
+  "boundary": {
+    "2pi_periodic_in_B": true,
+    "linear_in_sigma": true
+  },
+  "classification": "canonical"
+}

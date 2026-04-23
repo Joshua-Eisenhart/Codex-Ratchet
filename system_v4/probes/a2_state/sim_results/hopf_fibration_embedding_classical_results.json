@@ -1,0 +1,55 @@
+{
+  "name": "hopf_fibration_embedding_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "real coordinate embedding"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline only"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric suffices"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no admissibility"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "supportive",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "image_on_S2": true,
+    "fibre_invariance": true,
+    "standard_fibre_collapses": true
+  },
+  "negative": {
+    "antipodes_same_image": true,
+    "non_S3_bad_image_norm": "True",
+    "not_injective": true
+  },
+  "boundary": {
+    "north_south_antipodal_on_S2": true,
+    "fibre_stays_on_S3": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "U(1) fibre coordinate (global phase) discarded",
+    "map is many-to-one; no section recovers the phase",
+    "Chern number of Hopf bundle not computable from real embedding alone",
+    "quantum ray vs point distinction invisible classically"
+  ]
+}

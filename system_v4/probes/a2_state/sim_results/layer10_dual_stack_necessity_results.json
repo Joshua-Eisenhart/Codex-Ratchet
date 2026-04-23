@@ -1,0 +1,36 @@
+{
+  "layer": 10,
+  "name": "dual_stack_necessity",
+  "positive": {
+    "P1_interleaved_diversity": {
+      "pass": true,
+      "entropy_variance_type1": 3.496590877755241e-05,
+      "entropy_variance_type2": 0.004499450987645074,
+      "entropy_variance_interleaved": 0.0135231060290536,
+      "entropy_range_type1": 0.017453586389240883,
+      "entropy_range_type2": 0.19642377579218617,
+      "entropy_range_interleaved": 0.3219175903719542,
+      "note": "Interleaved T1/T2 produces different dynamics than either alone"
+    }
+  },
+  "negative": {
+    "N1_single_type_insufficient": {
+      "pass": true,
+      "var_t1": 3.496590877755241e-05,
+      "var_t2": 0.004499450987645074,
+      "var_interleaved": 0.0135231060290536,
+      "note": "Single engine type alone differs from interleaved"
+    }
+  },
+  "tools_used": [
+    "GeometricEngine(type=1)",
+    "GeometricEngine(type=2)",
+    "entropy_4x4"
+  ],
+  "timestamp": "2026-04-05",
+  "summary": {
+    "passed": 2,
+    "total": 2,
+    "all_pass": true
+  }
+}

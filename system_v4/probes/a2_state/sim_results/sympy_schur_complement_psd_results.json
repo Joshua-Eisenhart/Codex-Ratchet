@@ -1,0 +1,95 @@
+{
+  "name": "sympy_schur_complement_psd",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric eigenvalues can't certify symbolic identity"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "rational-matrix identity simpler in sympy"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "block LDL factorization simplify-to-zero certifies identity exactly"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "block_LDL_factorization_exact": true
+  },
+  "negative": {
+    "wrong_sign_breaks_factorization": true
+  },
+  "boundary": {
+    "B_zero_schur_equals_C": true
+  },
+  "ablation": {
+    "numpy_only_verifies_this_instance": true,
+    "min_eig_M": 1.1899305194956074,
+    "schur_scalar": 2.7733882974893476,
+    "note": "numeric can confirm one instance; cannot certify symbolic LDL identity"
+  },
+  "classification": "canonical"
+}

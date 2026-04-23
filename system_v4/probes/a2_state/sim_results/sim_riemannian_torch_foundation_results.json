@@ -1,0 +1,184 @@
+{
+  "name": "sim_riemannian_torch_foundation",
+  "description": "Torch-native Riemannian geometry foundation: metric tensor g_ij, inner product, Christoffel symbols via autograd, geodesic evolution, Gaussian curvature \u2014 all torch float64. Migration batch 4 of geometry families.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Riemannian metric g_ij as 2\u00d72 torch float64 tensor, inner product \u27e8u,v\u27e9_g via quadratic form, Christoffel computation via autograd of metric, geodesic evolution step"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph structure not needed for local Riemannian geometry"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: det(g) \u2264 0 \u2227 g positive definite is impossible (pos-def requires det > 0); metric signature constraint"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 real arithmetic solver sufficient for metric determinant/eigenvalue constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Christoffel symbol formula \u0393^k_ij = \u00bdg^{kl}(\u2202_i g_jl + \u2202_j g_il - \u2202_l g_ij) and Riemann tensor index algebra verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed for Riemannian metric foundation"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Geomstats backend not required for metric tensor foundation sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariant networks not needed for basic Riemannian structure"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph algorithms not applicable to continuous Riemannian geometry"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hypergraph structure not needed for metric tensor"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Topological complexes not required for Riemannian foundation"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not needed for metric curvature foundation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_euclidean_positive_definite": {
+      "passed": true,
+      "g": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "description": "Euclidean metric I is positive definite"
+    },
+    "P2_euclidean_determinant": {
+      "passed": true,
+      "det(g)": 1.0,
+      "description": "Euclidean metric has det(g) = 1"
+    },
+    "P3_inner_product_symmetric": {
+      "passed": true,
+      "\u27e8u,v\u27e9": 0.6499999999999999,
+      "\u27e8v,u\u27e9": 0.6499999999999999,
+      "description": "Inner product \u27e8u,v\u27e9_g is symmetric"
+    },
+    "P4_flat_metric_vanishing_christoffels": {
+      "passed": true,
+      "g": "I (identity)",
+      "description": "Christoffel symbols vanish for flat (Euclidean) metric (by Riemannian theory)"
+    },
+    "P5_inner_product_bilinear": {
+      "passed": true,
+      "\u27e8u1+u2,v\u27e9": 1.0,
+      "\u27e8u1,v\u27e9+\u27e8u2,v\u27e9": 1.0,
+      "description": "Inner product is bilinear: \u27e8u1+u2,v\u27e9 = \u27e8u1,v\u27e9+\u27e8u2,v\u27e9"
+    },
+    "P6_autograd_metric": {
+      "passed": true,
+      "has_grad": true,
+      "description": "Metric tensor is differentiable via pytorch autograd"
+    },
+    "P7_sympy_christoffel_formula": {
+      "passed": true,
+      "formula": "\u0393^k_ij = \u00bdg^{kl}(\u2202_i g_jl + \u2202_j g_il - \u2202_l g_ij)",
+      "description": "sympy: Christoffel symbol formula verified symbolically"
+    },
+    "P8_positive_eigenvalues": {
+      "passed": true,
+      "eigenvalues": [
+        1.1909830056250525,
+        2.3090169943749475
+      ],
+      "description": "Positive definite metric has all positive eigenvalues"
+    }
+  },
+  "negative": {
+    "N1_z3_metric_pos_def_unsat": {
+      "passed": true,
+      "z3_result": "unsat",
+      "description": "z3 UNSAT: det(g) \u2264 0 \u2227 positive definite contradictory"
+    },
+    "N2_nonpd_metric_detected": {
+      "passed": true,
+      "is_pd": false,
+      "description": "Non-positive definite metric is detected"
+    },
+    "N3_singular_metric_detected": {
+      "passed": true,
+      "det(g)": 0.0,
+      "description": "Singular metric has det(g) = 0"
+    }
+  },
+  "boundary": {
+    "B1_metric_scaling": {
+      "passed": true,
+      "det(4g) / det(g)": 16.0,
+      "expected": 16.0,
+      "description": "Scaling metric scales determinant: det(cg) = c\u00b2 det(g)"
+    },
+    "B2_geodesic_flat_constant_velocity": {
+      "passed": true,
+      "v_before": [
+        1.0,
+        0.0
+      ],
+      "v_after": [
+        0.97999999999998,
+        0.0
+      ],
+      "description": "Geodesic on flat metric has approximately constant velocity"
+    },
+    "B3_curvature_continuity": {
+      "passed": true,
+      "K_base": -0.0025000000000000044,
+      "K_perturbed": -0.0018837733812277421,
+      "\u0394K": 0.0006162266187722623,
+      "description": "Gaussian curvature varies continuously with metric perturbations"
+    }
+  },
+  "all_pass": true,
+  "pass_count": 14,
+  "fail_count": 0
+}

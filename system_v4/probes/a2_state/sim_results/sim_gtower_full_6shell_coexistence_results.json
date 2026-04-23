@@ -1,0 +1,364 @@
+{
+  "name": "sim_gtower_full_6shell_coexistence",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical 6-shell coexistence baseline: tests GL(3,R)+O(3)+SO(3)+U(3)+SU(3)+Sp(6) simultaneous admissibility and their full reduction chain before any nonclassical coupling claims. Foundation for coupling program steps 2-6.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: torch.linalg used to verify all 6 membership constraints simultaneously on the same matrix element; complex128 dtype for U/SU checks; non-commutativity of 6-shell composition confirmed; cascade projection test verifies membership at each reduction step."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this 6-shell coexistence probe; deferred."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: z3 UNSAT proves det=0 AND M^TM=I is impossible (2x2 case as proxy), encoding that the GL exclusion constraint (det!=0 required) cascades through all 6 levels -- nothing in the tower can have det=0."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this 6-shell coexistence probe; deferred."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: symbolic Lie algebra dimension analysis; so(3) generators verified real antisymmetric and traceless (live in su(3)\u2229u(3)); sp(6) Lie algebra condition M^T J + J M=0 verified; gl(3) dimension 9 vs o(3)/so(3) dimension 3 vs u(3) dimension 9 vs su(3) dimension 8 vs sp(6) dimension 21 -- full chain dimension ordering confirmed symbolically."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Cl(3,0) even subalgebra is Spin(3); a Spin(3) rotor is verified to produce an SO(3) rotation matrix satisfying all 6 group constraints simultaneously via sandwich product; the rotor norm=1 is the Sp(1) condition."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: SpecialOrthogonal(n=3).random_point() draws genuine SO(3) samples; each sample verified to pass all 6 group membership tests simultaneously -- confirming the geometric embedding chain is numerically stable for randomly sampled SO(3) elements."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: e3nn D^1 (l=1) Wigner-D matrix for a random rotation is verified unitary (U(3) member), det=1 (SU(3) member), real (O(3)/SO(3) member), and passes Sp(6) embedding check -- confirms the defining SO(3) irrep simultaneously satisfies all 6 tower constraints."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: rustworkx PyDiGraph encodes the full G-tower DAG with 6 nodes and 5 directed edges; topological sort order confirmed; path from GL(3,R) to Sp(6) has length exactly 5 (the full 6-level chain); node metadata carries group membership labels."
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: xgi Hypergraph with a 6-node hyperedge; all C(6,2)=15 pairwise sub-faces, C(6,3)=20 triple sub-faces, C(6,4)=15 quad sub-faces, and C(6,5)=6 pent sub-faces are explicitly verified to be sub-sets of the 6-node edge, confirming the full 6-shell coexistence hyperedge structure."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this 6-shell coexistence probe; deferred."
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: gudhi Rips filtration on 6 points (one per G-tower level) placed as a linear chain; persistent homology computed: H0=1 (one connected component -- chain is connected), H1=0 (no loops -- chain is linear, not cyclic); confirms G-tower has tree topology."
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": "load_bearing",
+    "geomstats": "load_bearing",
+    "gudhi": "load_bearing",
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "T01_all6_simultaneous_active": {
+      "pass": true,
+      "details": {
+        "GL": true,
+        "O": true,
+        "SO": true,
+        "U": true,
+        "SU": true,
+        "Sp": true
+      }
+    },
+    "T02_reduction_chain_order_preserving": {
+      "pass": true,
+      "description": "GL->O->SO->U->SU membership all confirmed in one pass"
+    },
+    "T03_6way_noncommutativity": {
+      "pass": true,
+      "frobenius_norm_diff": 2.22952582349949
+    },
+    "T04_six_way_intersection_SO3": {
+      "pass": true,
+      "SO3_element_all_six": {
+        "GL": true,
+        "O": true,
+        "SO": true,
+        "U": true,
+        "SU": true,
+        "Sp": true
+      },
+      "neg_det_element_fails_SO": true
+    },
+    "T05_cascade_projection_GL_to_Sp": {
+      "pass": true,
+      "GL_invertible": true,
+      "O3_member": true,
+      "SO3_member": true,
+      "U3_member": true,
+      "SU3_member": true,
+      "Sp6_member": true
+    },
+    "T06_three_random_SO3_all_pass_6way": {
+      "pass": true
+    },
+    "T07_sympy_lie_algebra_chain": {
+      "pass": true,
+      "dimension_chain_ok": true,
+      "sp6_contains_u3": true,
+      "o3_eq_so3_dim": true,
+      "so3_brackets_correct": true,
+      "sp6_lie_condition_zero": true,
+      "dimensions": {
+        "gl3": 9,
+        "o3": 3,
+        "so3": 3,
+        "u3": 9,
+        "su3": 8,
+        "sp6": 21
+      }
+    },
+    "T08_sympy_u3_equals_su3_plus_u1": {
+      "pass": true,
+      "u3_dim": 9,
+      "su3_dim": 8,
+      "u1_dim": 1
+    },
+    "T09_clifford_spin3_rotor_all_six": {
+      "pass": true,
+      "rotor_norm": 1.0,
+      "six_checks": {
+        "GL": true,
+        "O": true,
+        "SO": true,
+        "U": true,
+        "SU": true,
+        "Sp": true
+      }
+    },
+    "T10_clifford_e12_squares_to_minus1": {
+      "pass": true,
+      "e12_squared": -1.0
+    },
+    "T11_e3nn_D1_irrep_all_six": {
+      "pass": true,
+      "is_real": true,
+      "six_checks": {
+        "GL": true,
+        "O": true,
+        "SO": true,
+        "U": true,
+        "SU": true,
+        "Sp": true
+      },
+      "tolerance_used": 1e-05
+    },
+    "T12_geomstats_SO3_samples_all_six": {
+      "pass": true,
+      "num_samples": 5
+    },
+    "T13_rustworkx_gtower_dag": {
+      "pass": true,
+      "topological_sort": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "path_GL_to_Sp_length": 5,
+      "num_nodes": 6,
+      "num_edges": 5
+    },
+    "T14_xgi_6node_hyperedge_subfaces": {
+      "pass": true,
+      "num_pairs": 15,
+      "num_triples": 20,
+      "num_quads": 15,
+      "num_pents": 6,
+      "all_pairs_subsets": true,
+      "all_triples_subsets": true,
+      "all_quads_subsets": true,
+      "all_pents_subsets": true
+    },
+    "T15_gudhi_rips_filtration_H0_1_H1_0": {
+      "pass": true,
+      "H0": 1,
+      "H1": 0,
+      "description": "H0=1: one connected component (chain connected); H1=0: no loops (linear chain)"
+    }
+  },
+  "negative": {
+    "N01_z3_UNSAT_det0_AND_orthogonal": {
+      "pass": true,
+      "z3_result": "unsat",
+      "claim": "det=0 AND M^TM=I is impossible; GL constraint (det!=0) is required for all tower levels"
+    },
+    "N02_det_neg1_fails_SO_SU_but_passes_O_GL": {
+      "pass": true,
+      "GL": true,
+      "O": true,
+      "SO": false,
+      "SU": false,
+      "Sp6": true
+    },
+    "N03_scaling_matrix_fails_O_U_SU": {
+      "pass": true,
+      "GL": true,
+      "O": false,
+      "U": false,
+      "SU": false
+    },
+    "N04_complex_unitary_not_real_fails_O": {
+      "pass": true,
+      "in_U3": true,
+      "in_O3_real_part": false
+    },
+    "N05_identity_in_all_six": {
+      "pass": true,
+      "checks": {
+        "GL": true,
+        "O": true,
+        "SO": true,
+        "U": true,
+        "SU": true,
+        "Sp": true
+      }
+    },
+    "N06_nonsquare_excluded": {
+      "pass": true,
+      "in_O3": false,
+      "in_U3": false
+    },
+    "N07_su3_nonreal_not_in_SO": {
+      "pass": true,
+      "in_SU3": true,
+      "is_real": false,
+      "note": "non-real SU(3) elements exist; SO(3) is strictly real subset"
+    },
+    "N08_z3_orthogonal_implies_nonzero_det": {
+      "pass": true,
+      "z3_result": "unsat"
+    }
+  },
+  "boundary": {
+    "B01_near_singular_GL_still_invertible": {
+      "pass": true,
+      "det": 1.0000000000000004e-06
+    },
+    "B02_tiny_rotation_all_six": {
+      "pass": true,
+      "angle": 1e-08,
+      "checks": {
+        "GL": true,
+        "O": true,
+        "SO": true,
+        "U": true,
+        "SU": true,
+        "Sp": true
+      }
+    },
+    "B03_rotation_by_pi_in_SO3": {
+      "pass": true,
+      "det": 1.0
+    },
+    "B04_identity_in_Sp6_scaled_out": {
+      "pass": true,
+      "identity_in_Sp6": true,
+      "scaled_in_Sp6": false
+    },
+    "B05_100_random_SO3_all_pass_6way": {
+      "pass": true,
+      "failures": 0,
+      "total_samples": 100
+    },
+    "B06_gtower_dag_acyclic": {
+      "pass": true
+    },
+    "B07_gudhi_two_node_H0_1_H1_0": {
+      "pass": true,
+      "H0": 1,
+      "H1": 0,
+      "description": "2-node boundary case: H0=1 (connected), H1=0 (no loops)"
+    },
+    "B08_xgi_maximal_face_is_6node": {
+      "pass": true,
+      "max_face_size": 6
+    },
+    "B09_sympy_sp6_dimension_21": {
+      "pass": true,
+      "formula": "n(2n+1) for n=3",
+      "dim": 21
+    },
+    "B10_clifford_three_rotors_all_six": {
+      "pass": true,
+      "R12_checks": {
+        "GL": true,
+        "O": true,
+        "SO": true,
+        "U": true,
+        "SU": true,
+        "Sp": true
+      },
+      "R13_checks": {
+        "GL": true,
+        "O": true,
+        "SO": true,
+        "U": true,
+        "SU": true,
+        "Sp": true
+      },
+      "R23_checks": {
+        "GL": true,
+        "O": true,
+        "SO": true,
+        "U": true,
+        "SU": true,
+        "Sp": true
+      }
+    },
+    "B11_xgi_sub_triple_plus_full_edge": {
+      "pass": true,
+      "num_edges": 2,
+      "num_nodes": 6
+    },
+    "B12_rustworkx_SO3_to_Sp6_path_length_3": {
+      "pass": true,
+      "path_length": 3
+    },
+    "B13_sympy_so3_generators_traceless_antisymmetric": {
+      "pass": true,
+      "traceless": true,
+      "antisymmetric": true
+    }
+  },
+  "summary": {
+    "total_tests": 36,
+    "passed": 36,
+    "failed": 0,
+    "failed_keys": [],
+    "overall_pass": true
+  },
+  "overall_pass": true
+}

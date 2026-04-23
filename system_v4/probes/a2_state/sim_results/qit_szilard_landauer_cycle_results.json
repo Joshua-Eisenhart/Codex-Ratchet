@@ -1,0 +1,165 @@
+{
+  "name": "qit_szilard_landauer_cycle",
+  "classification": "classical_baseline",
+  "classification_note": "Canonical finite QIT information-engine row: a one-bit measurement on a bounded system-memory carrier creates correlation, ordered conditional feedback converts that correlation into a one-bit free-energy gain for the system in a degenerate model, and memory erasure closes the bookkeeping at the same kT ln 2 scale.",
+  "divergence_log": "Finite two-qubit Szilard-Landauer cycle: numpy carries the bookkeeping, qutip/cirq/pennylane witness the same bounded two-qubit carrier, and z3 certifies the Landauer floor as an UNSAT exclusion of the forbidden region. No reservoir-runtime or universal-demon claim is being made.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing two-qubit bookkeeping, entropy, and validation algebra"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing density-operator witness on the same bounded carrier"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing density-matrix simulator witness on the same carrier"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing mixed-state witness on the same bounded carrier"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing arithmetic proof of the Landauer floor and forbidden-region UNSAT"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "bridge_witnesses": {
+    "qutip": {
+      "measurement_gap": 0.0,
+      "feedback_gap": 0.0,
+      "erasure_gap": 0.0,
+      "pass": true
+    },
+    "cirq": {
+      "measurement_gap": 0.0,
+      "feedback_gap": 0.0,
+      "erasure_gap": 0.0,
+      "pass": true
+    },
+    "pennylane": {
+      "measurement_gap": 0.0,
+      "feedback_gap": 0.0,
+      "erasure_gap": 0.0,
+      "pass": true
+    }
+  },
+  "positive": {
+    "measurement_creates_one_bit_of_system_memory_correlation": {
+      "system_entropy_after_measurement": 0.6931471805599453,
+      "memory_entropy_after_measurement": 0.6931471805599453,
+      "mutual_information": 0.6931471805599453,
+      "pass": true
+    },
+    "conditional_feedback_converts_information_into_one_bit_of_system_free_energy": {
+      "system_entropy_before_feedback": 0.6931471805599453,
+      "system_entropy_after_feedback": -0.0,
+      "system_free_energy_gain": 0.6931471805599453,
+      "pass": true
+    },
+    "qutip_cirq_pennylane_witness_the_same_two_qubit_cycle": {
+      "qutip": {
+        "measurement_gap": 0.0,
+        "feedback_gap": 0.0,
+        "erasure_gap": 0.0,
+        "pass": true
+      },
+      "cirq": {
+        "measurement_gap": 0.0,
+        "feedback_gap": 0.0,
+        "erasure_gap": 0.0,
+        "pass": true
+      },
+      "pennylane": {
+        "measurement_gap": 0.0,
+        "feedback_gap": 0.0,
+        "erasure_gap": 0.0,
+        "pass": true
+      },
+      "pass": true
+    },
+    "memory_erasure_closes_the_cycle_at_the_same_kT_ln2_scale": {
+      "memory_entropy_before_erasure": 0.6931471805599453,
+      "memory_entropy_after_erasure": -0.0,
+      "erasure_cost": 0.6931471805599453,
+      "pass": true
+    }
+  },
+  "negative": {
+    "feedback_before_measurement_does_not_extract_the_same_ordered_gain": {
+      "system_entropy_after_wrong_order": 0.6931471805599453,
+      "wrong_order_free_energy_gain": 0.0,
+      "pass": true
+    },
+    "reset_without_feedback_destroys_memory_record_without_purifying_the_system": {
+      "system_entropy_after_blind_reset": 0.6931471805599453,
+      "memory_entropy_after_blind_reset": -0.0,
+      "pass": true
+    },
+    "cycle_does_not_claim_free_work_beyond_landauer_balance": {
+      "information_gain": 0.6931471805599453,
+      "system_free_energy_gain": 0.6931471805599453,
+      "erasure_cost": 0.6931471805599453,
+      "net_after_erasure": 0.0,
+      "pass": true
+    },
+    "landauer_floor_forbidden_region_unsat_under_z3": {
+      "positive_sat": true,
+      "negative_unsat": true,
+      "counterfactual_free_erasure_unsat": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_cycle_states_remain_valid_density_operators": {
+      "pass": true
+    },
+    "cycle_uses_only_finite_two_qubit_carrier_and_admissible_maps": {
+      "carrier_dimension": 4,
+      "ordered_steps": [
+        "system_to_memory_measurement_unitary",
+        "memory_conditioned_feedback_unitary",
+        "memory_reset_cptp_map"
+      ],
+      "pass": true
+    }
+  },
+  "z3_landauer_proof": {
+    "positive_sat": true,
+    "positive_result": "sat",
+    "negative_unsat": true,
+    "negative_result": "unsat",
+    "counterfactual_free_erasure_unsat": true,
+    "counterfactual_result": "unsat",
+    "pass": true,
+    "note": "z3 is load-bearing: the claim 'this cycle respects Landauer' is certified by UNSAT of (measured-row AND forbidden-violation). Numeric pass alone would be a coincidence of one tuple; UNSAT rules out an entire forbidden region around the measured tuple."
+  },
+  "summary": {
+    "all_pass": true,
+    "temperature": 1.0,
+    "information_gain": 0.6931471805599453,
+    "system_free_energy_gain": 0.6931471805599453,
+    "erasure_cost": 0.6931471805599453,
+    "scope_note": "Finite two-qubit bookkeeping row for a Szilard/Landauer cycle; no engine-runtime, reservoir, or universal demon claims."
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "name": "leviathan_authority_entropy_operator",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no autograd needed; numpy iteration sufficient here"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "pairwise graph; authority gradient is operator on simplex"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "AM-GM encoding: p0*p1*p2 > (1/3)^3 UNSAT given sum=1"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; z3 handles the SAT check"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic G eigenvalue: det=0 for any distribution"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no spinor structure in power-distribution operator"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian manifold not the target here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant NN not required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hyperedge structure not the target here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex not required"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistence topology reserved for stability sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "P1_antisymmetry": {
+      "n_agents": 5,
+      "alpha": 1.5,
+      "max_antisymmetry_error": 0.0,
+      "pass": true
+    },
+    "P2_entropy_stability_anticorrelation": {
+      "n_samples": 100,
+      "pearson_correlation_entropy_vs_maxp": -0.94551,
+      "interpretation": "negative correlation: high entropy <-> low concentration",
+      "pass": true
+    },
+    "P3_equalization_rate_depends_on_alpha": {
+      "initial_max_p": 0.4,
+      "alpha_gt1_final_max_p": 0.293985,
+      "alpha_lt1_final_max_p": 0.257144,
+      "both_equalize": true,
+      "alpha_lt1_equalizes_more": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_entropy_bound_unsat": {
+      "z3_result": "unsat",
+      "claim_refuted": "product > (1/n)^n is impossible when sum=1 (AM-GM)",
+      "entropy_proxy": "p*q*r > (1/3)^3 iff S(p) > log(3) (by AM-GM)",
+      "pass": true
+    },
+    "N2_zero_eigenvalue_sympy": {
+      "det_G": "0",
+      "eigenvalues": {
+        "-sqrt(2)*sqrt(-p0**2 + p0*p1 + p0*p2 - p1**2 + p1*p2 - p2**2)": 1,
+        "sqrt(2)*sqrt(-p0**2 + p0*p1 + p0*p2 - p1**2 + p1*p2 - p2**2)": 1,
+        "0": 1
+      },
+      "det_is_identically_zero": true,
+      "zero_eigenvalue_present": true,
+      "interpretation": "antisymmetric 3x3 matrix has zero eigenvalue for all distributions",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_alpha1_conservative": {
+      "entropy_start": 1.279854,
+      "entropy_end_alpha1": 1.386294,
+      "entropy_end_alpha2": 1.377327,
+      "alpha1_less_concentrated_than_alpha2": true,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "status": "PASS"
+}

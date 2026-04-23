@@ -1,0 +1,143 @@
+{
+  "name": "Galois cohomology Tate local duality constraint canonical sim",
+  "description": "Proves Tate local duality constraint: pairing non-degeneracy via cvc5",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 solver for Tate duality pairing non-degeneracy constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy for algebraic verification of duality and pairing properties in cohomology"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_nonzero_element_nonzero_pairing": {
+      "description": "Valid: x \u2260 0 \u27f9 \u2203y \u27e8x,y\u27e9 \u2260 0 (perfect pairing)",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": false
+    },
+    "test_2_zero_element_zero_pairing": {
+      "description": "Valid: x = 0 \u27f9 \u2200y \u27e8x,y\u27e9 = 0",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": false
+    },
+    "test_3_bilinearity_pairing": {
+      "description": "Valid: pairing is bilinear \u27e8a+b,y\u27e9 = \u27e8a,y\u27e9 + \u27e8b,y\u27e9",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": false
+    }
+  },
+  "negative": {
+    "test_1_nonzero_kernel_unsat": {
+      "description": "UNSAT: x \u2260 0, \u2200y \u27e8x,y\u27e9 = 0, but Tate duality requires \u2203y \u27e8x,y\u27e9 \u2260 0",
+      "sat": "unsat",
+      "expected": "UNSAT",
+      "pass": false
+    },
+    "test_2_non_bilinear_unsat": {
+      "description": "UNSAT: pairing is bilinear but \u27e81+1,y\u27e9 = 2 AND \u27e81+1,y\u27e9 = 3",
+      "sat": "unsat",
+      "expected": "UNSAT",
+      "pass": false
+    },
+    "test_3_asymmetric_duality_unsat": {
+      "description": "UNSAT: \u27e8x,y\u27e9 = 1 AND \u27e8x,y\u27e9 = 2 (incompatible with duality)",
+      "sat": "unsat",
+      "expected": "UNSAT",
+      "pass": false
+    }
+  },
+  "boundary": {
+    "test_1_trivial_cohomology": {
+      "description": "Boundary: H^1 = 0 (trivial), pairing vacuously perfect",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": false
+    },
+    "test_2_rank_one_cohomology": {
+      "description": "Boundary: H^1 rank 1 (cyclic), perfect pairing",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": false
+    },
+    "test_3_torsion_module_pairing": {
+      "description": "Boundary: p-torsion module, pairing values in Q/Z",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": false
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

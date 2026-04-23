@@ -1,0 +1,34 @@
+{
+  "name": "f01_finitude_constraint_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "dimension/cardinality checks"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline (no UNSAT proof)"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "carrier_finite": true,
+    "povm_finite": true
+  },
+  "negative": {
+    "oversized_rejected": true,
+    "empty_povm_rejected": true
+  },
+  "boundary": {
+    "d1_carrier_finite": true,
+    "k1_povm_finite": true
+  },
+  "summary": {
+    "all_pass": true
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "name": "no_chirality_search_validation",
+  "timestamp": "2026-04-17T09:12:05.110353+00:00",
+  "passed_gates": 3,
+  "total_gates": 3,
+  "score": 1.0,
+  "constraint_family_profile": {
+    "observational": 1.0,
+    "admissible": 1.0,
+    "stable": 1.0,
+    "entropy_conditioned": 1.0,
+    "topology_conditioned": 1.0
+  },
+  "gates": [
+    {
+      "name": "N1_no_chirality_kill_is_real_but_not_total",
+      "pass": true,
+      "detail": {
+        "d_chiral": 0.7107370477323017,
+        "d_flat": 0.5450291097571088,
+        "chirality_matters": true,
+        "token_status": "KILL"
+      }
+    },
+    {
+      "name": "N2_no_chirality_residual_is_explicitly_nontrivial",
+      "pass": true,
+      "detail": {
+        "final_residual_ratio": 0.7668505694139549,
+        "flat_history": {
+          "rows": 32,
+          "min_trace_gap": 0.21002097951697107,
+          "max_trace_gap": 0.801648017188063,
+          "mean_trace_gap": 0.5546809875894149,
+          "min_bloch_gap": 0.4200419590339421,
+          "max_bloch_gap": 1.603296034376126,
+          "mean_bloch_gap": 1.1093619751788297
+        }
+      }
+    },
+    {
+      "name": "N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run",
+      "pass": true,
+      "detail": {
+        "chiral_history": {
+          "rows": 8,
+          "min_trace_gap": 0.35,
+          "max_trace_gap": 0.8537066375279587,
+          "mean_trace_gap": 0.6895907978888609,
+          "min_bloch_gap": 0.7,
+          "max_bloch_gap": 1.7074132750559174,
+          "mean_bloch_gap": 1.3791815957777218
+        },
+        "flat_history": {
+          "rows": 32,
+          "min_trace_gap": 0.21002097951697107,
+          "max_trace_gap": 0.801648017188063,
+          "mean_trace_gap": 0.5546809875894149,
+          "min_bloch_gap": 0.4200419590339421,
+          "max_bloch_gap": 1.603296034376126,
+          "mean_bloch_gap": 1.1093619751788297
+        }
+      }
+    }
+  ]
+}

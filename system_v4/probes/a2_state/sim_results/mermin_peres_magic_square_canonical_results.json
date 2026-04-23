@@ -1,0 +1,98 @@
+{
+  "name": "mermin_peres_magic_square_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Proves structural UNSAT of classical +/-1 assignment on 3x3 magic square (6 parity constraints: 3 rows = +1, 2 cols = +1, 1 col = -1)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "z3_unsat_on_quantum_parity": true,
+    "classical_gap_structural_unsat": true
+  },
+  "negative": {
+    "z3_sat_when_all_cols_plus_one": true
+  },
+  "boundary": {
+    "flipped_row_parity_sat": true
+  },
+  "quantum_classical_gap": {
+    "type": "structural_unsat",
+    "classical_satisfiable": false,
+    "quantum_satisfiable": true
+  },
+  "summary": {
+    "all_pass": true
+  }
+}

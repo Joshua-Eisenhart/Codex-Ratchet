@@ -1,0 +1,51 @@
+{
+  "name": "assoc_bundle_parallel_transport_admissibility",
+  "tool_manifest": {
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "S^2 geodesic segments for transport loop edges"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "numerical transport and holonomy"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "sympy": null,
+    "numpy": "supportive"
+  },
+  "positive": {
+    "solid_angle": 0.0457,
+    "holonomy_phase": 0.0114,
+    "berry_ratio_abs_in_expected_range": true,
+    "trivial_loop_zero": true
+  },
+  "negative": {
+    "bad_connection_mismatch": true
+  },
+  "boundary": {
+    "tiny_loop_small_holonomy": true,
+    "norm_preserved_under_phase": true
+  },
+  "classification": "canonical"
+}

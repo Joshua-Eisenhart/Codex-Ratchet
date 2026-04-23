@@ -1,0 +1,156 @@
+{
+  "name": "svd_factorization",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for singular-value factorization on bounded coefficient and operator matrices with exact reconstruction and rank-sensitive summaries.",
+  "lego_ids": [
+    "svd_factorization",
+    "principal_subspace"
+  ],
+  "primary_lego_ids": [
+    "svd_factorization"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure numpy linear algebra lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph-native computation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no SMT proof layer here"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no second-solver layer here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no symbolic derivation here"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold-statistics layer"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency DAG"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell-complex topology"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "product_state_factorization": {
+      "bond_dim": 1,
+      "singular_values": [
+        1.0,
+        0.0
+      ],
+      "reconstruction_error": 0.0,
+      "pass": true,
+      "expected_bond_dim": 1
+    },
+    "bell_state_factorization": {
+      "bond_dim": 2,
+      "singular_values": [
+        0.7071067811865475,
+        0.7071067811865475
+      ],
+      "reconstruction_error": 0.0,
+      "pass": true,
+      "expected_bond_dim": 2
+    },
+    "product_operator_svd": {
+      "rank": 1,
+      "singular_values": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reconstruction_error": 0.0,
+      "pass": true
+    },
+    "bell_operator_svd": {
+      "rank": 1,
+      "singular_values": [
+        0.9999999999999998,
+        6.452067656379112e-17,
+        0.0,
+        0.0
+      ],
+      "reconstruction_error": 2.4196749845665633e-16,
+      "pass": true
+    }
+  },
+  "negative": {
+    "product_not_rank_two": {
+      "bond_dim": 1,
+      "pass": true
+    },
+    "bell_not_rank_one": {
+      "bond_dim": 2,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "product_operator_rank_one": {
+      "rank": 1,
+      "pass": true
+    },
+    "bell_operator_rank_one_or_more": {
+      "rank": 1,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local SVD lego on coefficient and operator matrices."
+  }
+}

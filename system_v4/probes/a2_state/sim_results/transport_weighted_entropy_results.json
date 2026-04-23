@@ -1,0 +1,128 @@
+{
+  "name": "transport_weighted_entropy",
+  "classification": "canonical",
+  "classification_note": "Canonical local transport-weighted entropy row on one bounded channel path, kept separate from shell weighting and operator-order bundles.",
+  "lego_ids": [
+    "transport_weighted_entropy"
+  ],
+  "primary_lego_ids": [
+    "transport_weighted_entropy"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "weighted_change_is_well_defined_on_bounded_transport_path": {
+      "deltas": [
+        1.6017132519074586e-16,
+        0.09055586976262436,
+        0.17806886383657294,
+        0.013625891084135366
+      ],
+      "weighted": 0.07698218953715091,
+      "pass": "True"
+    },
+    "weighted_transport_change_is_nontrivial": {
+      "weighted": 0.07698218953715091,
+      "pass": true
+    },
+    "changing_weights_changes_reported_transport_score": {
+      "uniform": 0.07056265617083321,
+      "weighted": 0.07698218953715091,
+      "pass": true
+    }
+  },
+  "negative": {
+    "row_does_not_collapse_to_history_window_only": {
+      "pass": true
+    },
+    "row_does_not_collapse_to_operator_order_only": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_transport_outputs_remain_density_operators": {
+      "pass": true
+    },
+    "bounded_to_one_local_transport_family": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local weighted entropy-change row on one bounded transport path."
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "geometry_preserving_basis_change",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "basis-change invariance, norms, and eigenspectrum numerics"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this numeric baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "sympy": null
+  },
+  "positive": {
+    "inner_product_n3": true,
+    "norm_n3": true,
+    "eigs_n3": true,
+    "det_unit_n3": true,
+    "inner_product_n5": true,
+    "norm_n5": true,
+    "eigs_n5": true,
+    "det_unit_n5": true,
+    "inner_product_n7": true,
+    "norm_n7": true,
+    "eigs_n7": true,
+    "det_unit_n7": true
+  },
+  "negative": {
+    "nonortho_breaks_ip": true,
+    "nonortho_breaks_eigs": true
+  },
+  "boundary": {
+    "identity_preserves": true,
+    "reflection_det_neg": true,
+    "reflection_preserves_norm": true
+  },
+  "classical_captured": "O(n)/U(n) preservation of inner product, norms, spectrum",
+  "innately_missing": "basis-change constraints imposed by coupling / probe-admissible frames",
+  "all_pass": true
+}

@@ -1,0 +1,84 @@
+{
+  "name": "f01_cross_09_z3_cvc5_parity_probe_bound",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "primary UNSAT on N=4,k=1; load-bearing"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check UNSAT on same formula"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing",
+    "cvc5": "supportive"
+  },
+  "positive": {
+    "z3_sat_N4_k2": true,
+    "cvc5_sat_N4_k2": true
+  },
+  "negative": {
+    "z3_unsat_N4_k1": true,
+    "cvc5_unsat_N4_k1": true,
+    "parity": true
+  },
+  "boundary": {
+    "z3_unsat_N8_k2": true,
+    "cvc5_unsat_N8_k2": true
+  },
+  "overall_pass": true
+}

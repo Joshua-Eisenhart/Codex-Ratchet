@@ -1,0 +1,133 @@
+{
+  "name": "Topological K-Theory Bott Periodicity Constraint Canonical Sim",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_bott_period_s0": {
+      "satisfiable": "sat",
+      "claim": "K^0(S^0) = 2, K^1(S^0) = 0 (Bott period 2n)",
+      "pass": true
+    },
+    "test_bott_period_s1": {
+      "satisfiable": "sat",
+      "claim": "K^0(S^1) = 1, K^1(S^1) = 1 (Bott period 2n+1)",
+      "pass": true
+    },
+    "test_suspension_isomorphism": {
+      "satisfiable": "sat",
+      "claim": "K\u0303(\u03a3\u00b2X) \u2245 K\u0303(X) suspension isomorphism",
+      "pass": true
+    }
+  },
+  "negative": {
+    "test_bott_even_sphere_rank_violation_unsat": {
+      "satisfiable": "unsat",
+      "claim": "K^0(S^{2n}) \u2260 2 is UNSAT (Bott periodicity)",
+      "pass": true
+    },
+    "test_bott_even_sphere_k1_violation_unsat": {
+      "satisfiable": "unsat",
+      "claim": "K^1(S^{2n}) \u2260 0 is UNSAT",
+      "pass": true
+    },
+    "test_suspension_period_violation_unsat": {
+      "satisfiable": "unsat",
+      "claim": "K\u0303(\u03a3\u00b2X) \u2260 K\u0303(X) is UNSAT (period 2 violation)",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "test_bott_map_periodicity": {
+      "claim": "Bott map has period 2: S^{2n} \u2248 S^0, S^{2n+1} \u2248 S^1 in K-theory",
+      "even_sphere_pattern": "[(2, 0), (2, 0), (2, 0)]",
+      "odd_sphere_pattern": "[(1, 1), (1, 1), (1, 1)]",
+      "pass": true
+    },
+    "test_thom_isomorphism": {
+      "claim": "Thom isomorphism: K^*(S^{2n}) \u2245 K^*(pt) via Bott element",
+      "bott_element_dimension": "2",
+      "pass": true
+    },
+    "test_reduced_k_theory_spheres": {
+      "claim": "Reduced K-theory K\u0303(S^n) on spheres",
+      "k_tilde_s0": "\u2124",
+      "k_tilde_s1": "\u2124",
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,132 @@
+{
+  "name": "FrobeniusTheoremInvolutivityConstraint",
+  "description": "Frobenius theorem: integrability iff involutivity. cvc5 proves non-involutive distributions cannot be integrable.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 SMT solver: load_bearing proof of Frobenius involutivity constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "sympy: supportive symbolic computation for Lie bracket algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "supportive",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1d_distribution": {
+      "description": "1D distribution (automatically involutive)",
+      "sat": true,
+      "expected": true
+    },
+    "test_2d_commuting_fields": {
+      "description": "2D distribution with [X,Y]=0 (commuting, involutive)",
+      "sat": true,
+      "expected": true
+    },
+    "test_3d_involutive": {
+      "description": "3D integrable distribution (involutive condition satisfied)",
+      "sat": true,
+      "expected": true
+    }
+  },
+  "negative": {
+    "test_contact_structure_non_involutive": {
+      "description": "Contact structure in R^3: integrable + non-involutive is contradictory",
+      "sat": false,
+      "expected": false
+    },
+    "test_reeb_non_integrable": {
+      "description": "Reeb structure: distribution cannot be simultaneously integrable and non-involutive",
+      "sat": false,
+      "expected": false
+    },
+    "test_explicit_bracket_violation": {
+      "description": "Explicit bracket coefficient contradiction: integrable requires all brackets in D",
+      "sat": false,
+      "expected": false
+    }
+  },
+  "boundary": {
+    "test_full_rank_distribution": {
+      "description": "Full-rank distribution (d=n): always integrable and involutive",
+      "sat": true,
+      "expected": true
+    },
+    "test_codimension_one": {
+      "description": "Codimension-1 distribution: always involutive (Frobenius theorem)",
+      "sat": true,
+      "expected": true
+    },
+    "test_zero_dimension": {
+      "description": "Zero-dimensional distribution (empty): vacuously involutive",
+      "sat": true,
+      "expected": true
+    }
+  },
+  "classification": "canonical"
+}

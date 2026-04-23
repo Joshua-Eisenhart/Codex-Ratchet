@@ -1,0 +1,66 @@
+{
+  "name": "stinespring_isometric_equivalence_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "numeric cross-check"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "exact algebraic validation of V^dag V = I and channel equivalence Tr_E[V_A rho V_A^dag] = Tr_E[V_B rho V_B^dag] under environment isometry"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; sympy exact"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "sympy": "load_bearing",
+    "pytorch": null,
+    "z3": null
+  },
+  "positive": {
+    "V_A_is_isometry": true,
+    "V_B_is_isometry": true,
+    "channel_diff_matrix_zero_symbolic": true,
+    "E_A_on_ket0ket0": "Matrix([[5/6, 0], [0, 1/6]])",
+    "E_A_matches_analytic": true
+  },
+  "negative": {
+    "V_bad_not_isometry": true,
+    "non_isometric_gauge_breaks_channel": true,
+    "classical_gauge_forbidden": true
+  },
+  "boundary": {
+    "stinespring_diff_by_p": {
+      "0": "Matrix([[0, 0], [0, 0]])",
+      "1/2": "Matrix([[0, 0], [0, 0]])",
+      "1": "Matrix([[0, 0], [0, 0]])"
+    },
+    "zero_diff_all_p": true,
+    "numpy_max_Stinespring_diff_over_p": 5.551115123125783e-16,
+    "numpy_stinespring_diff_is_zero": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "gap": {
+      "classical_baseline": "hidden-variable gauges are observable; env relabels would change statistics",
+      "Stinespring_diff_at_p_half": 0.0,
+      "Stinespring_diff_numerical_max_over_p": 5.551115123125783e-16,
+      "environment_unitary_tested": "U_env = H (x) H (Hadamard tensor)"
+    },
+    "classical_baseline_cited": "classical readouts expose hidden-variable labels; Stinespring env-unitary gauge has no classical analog",
+    "measured_quantum_value": 5.551115123125783e-16
+  }
+}

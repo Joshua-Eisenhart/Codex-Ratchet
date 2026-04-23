@@ -1,0 +1,130 @@
+{
+  "layer": 3,
+  "name": "Connection + Loop Geometry -- formal tools",
+  "positive": {
+    "P1_toponetx_cycle_mapping": {
+      "pass": true,
+      "details": {
+        "type1": {
+          "fiber_maps_to_inner": true,
+          "base_maps_to_outer": true,
+          "layers": [
+            2,
+            2,
+            2,
+            2,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "type2": {
+          "fiber_maps_to_inner": true,
+          "base_maps_to_outer": true,
+          "layers": [
+            0,
+            0,
+            0,
+            0,
+            2,
+            2,
+            2,
+            2
+          ]
+        }
+      }
+    },
+    "P2_toponetx_path_traversal": {
+      "pass": true,
+      "details": {
+        "type1": {
+          "unique_layers": [
+            0,
+            2
+          ],
+          "visits_inner_and_outer": true
+        },
+        "type2": {
+          "unique_layers": [
+            0,
+            2
+          ],
+          "visits_inner_and_outer": true
+        }
+      }
+    },
+    "P3_toponetx_shell_structure": {
+      "pass": true,
+      "n_shells": 2,
+      "shells": [
+        {
+          "inner_layer": 0,
+          "outer_layer": 1,
+          "inner_eta": 0.39269908169872414,
+          "outer_eta": 0.7853981633974483,
+          "delta_eta": 0.39269908169872414,
+          "n_faces": 8
+        },
+        {
+          "inner_layer": 1,
+          "outer_layer": 2,
+          "inner_eta": 0.7853981633974483,
+          "outer_eta": 1.1780972450961724,
+          "delta_eta": 0.39269908169872414,
+          "n_faces": 8
+        }
+      ]
+    },
+    "P4_berry_phase_levels": {
+      "pass": true,
+      "all_nontrivial": true,
+      "all_different": true,
+      "phases": {
+        "inner": {
+          "eta": 0.39269908169872414,
+          "berry_phase": 0.9199246144610609,
+          "nontrivial": true
+        },
+        "clifford": {
+          "eta": 0.7853981633974483,
+          "berry_phase": 3.141592653589793,
+          "nontrivial": true
+        },
+        "outer": {
+          "eta": 1.1780972450961724,
+          "berry_phase": -0.919924614461061,
+          "nontrivial": true
+        }
+      }
+    },
+    "P5_clifford_fiber_rotor": {
+      "pass": true,
+      "composed_scalar": -1.0000000000000009,
+      "expected_scalar": -1.0,
+      "residual": 8.965815651950638e-16,
+      "note": "Full 2pi fiber loop -> spinor sign flip (rotor = -1)"
+    }
+  },
+  "negative": {
+    "N1_berry_constant_path": {
+      "pass": true,
+      "berry_phase": -0.0,
+      "expected": 0.0
+    },
+    "N2_toponetx_cut_transport": {
+      "pass": true,
+      "faces_remaining": 0,
+      "edges_remaining": 24,
+      "cross_layer_adjacency": 0,
+      "note": "Without between-ring edges: no faces, no cross-layer transport"
+    }
+  },
+  "tools_used": [
+    "toponetx.CellComplex",
+    "clifford.Cl(3)",
+    "hopf_manifold.berry_phase"
+  ],
+  "timestamp": "2026-04-06",
+  "summary": "P1-P5 all PASS. N1-N2 all PASS. Engine cycles correctly map fiber->inner, base->outer. Berry phases nontrivial and differ across torus levels. Rotor composition matches spinor sign-flip. Cutting between-ring edges kills shell structure and transport."
+}

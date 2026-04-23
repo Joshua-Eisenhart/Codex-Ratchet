@@ -1,0 +1,57 @@
+{
+  "name": "principal_bundle_connection_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "discrete loop integration"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no admissibility claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "supportive",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "zero_connection_zero_holonomy": true,
+    "pure_gauge_zero_holonomy": true,
+    "const_connection_2pi_alpha": true
+  },
+  "negative": {
+    "const_holonomy_nonzero": true,
+    "no_2form_on_S1": true,
+    "gauge_invariance_mod_0": true
+  },
+  "boundary": {
+    "convergence_N_64": true,
+    "convergence_N_256": true,
+    "convergence_N_1024": true,
+    "path_independence_trivial_bundle": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "trivialized bundle: no Chern class, no twist",
+    "cannot encode Berry / Wilczek-Zee non-abelian holonomy",
+    "curvature of connection is identically zero",
+    "holonomy values here are gauge-additive but not topologically meaningful"
+  ]
+}

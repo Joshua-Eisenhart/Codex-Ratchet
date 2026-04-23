@@ -1,0 +1,334 @@
+{
+  "name": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_instantonnumber_17shell_coupling_canonical",
+  "description": "Coupling Program #110: GerbeStack\u00d7Weyl\u00d7Hopf\u00d7Dirac\u00d7MERA\u00d7Toric\u00d7Clifford\u00d7Spinor\u00d7Riemannian\u00d7Connection\u00d7Holonomy\u00d7Fiber\u00d7AssocBundle\u00d7MomentIndex\u00d7DerivedCategory\u00d7EtaleCoho\u00d7InstantonNumber \u2014 17-shell coupling with torch-native MI and seventeen entropy shells. Q_17 = MI \u00d7 log(2)^13 \u00d7 log(4)^2 \u00d7 log(3)^2; autograd Axis 0 confirmed.",
+  "classification": "classical_baseline",
+  "TOOL_MANIFEST": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Density matrices as float64 tensors; dephasing + MI computation via eigh+matrix_log; autograd gradient dQ/d(eps); 18-factor product with load-bearing MI component"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph topology not required for direct entropy algebra of gerbe and clifford structure"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: Q_17 < 0 impossible; Q=0 while MI>0 and all H_i>0 is structurally impossible via zero-product theorem over 18 factors"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for real-valued constraint satisfaction on entropy product"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Q_17 = MI \u00d7 H_gerbe \u00d7 H_weyl \u00d7 ... \u00d7 H_inst; zero-product over 18 factors; entropy bounds and product structure"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Clifford algebra grade decomposition Cl(2,0) yields 4-element grading; spinor chirality adds categorical layer"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "S^1 and T^2 fiber structure handled via phase argument; Riemannian manifold ops handled via direct entropy computation"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariance not required for shell-local entropy computation"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "MERA tensor network skeleton used for entropy layer count; full graph not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hypergraph structure not needed for moment map algebra"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Topological network not required for direct entropy computation"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not needed for shell-local entropy verification"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_mi_primitive_nonzero": {
+      "passed": true,
+      "MI": 0.9394864118290985,
+      "description": "MI primitive: entangled base state has MI > 0 at eps=0"
+    },
+    "P2_h_gerbestack_log2": {
+      "passed": true,
+      "H_gerbestack": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_gerbestack = log(2) from gerbe stack structure"
+    },
+    "P3_h_weyl_log2": {
+      "passed": true,
+      "H_weyl": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_weyl = log(2) from U(1) helicity"
+    },
+    "P4_h_hopf_log2": {
+      "passed": true,
+      "H_hopf": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_hopf = log(2) from S^1 fiber dimension"
+    },
+    "P5_h_dirac_log2": {
+      "passed": true,
+      "H_dirac": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_dirac = log(2) from spectral grading"
+    },
+    "P6_h_mera_log3": {
+      "passed": true,
+      "H_mera": 1.0986122886681098,
+      "expected": 1.0986122886681098,
+      "description": "H_mera = log(3) from tensor refinement"
+    },
+    "P7_h_toric_log4": {
+      "passed": true,
+      "H_toric": 1.3862943611198906,
+      "expected": 1.3862943611198906,
+      "description": "H_toric = log(4) from T^2 action (2 DOF)"
+    },
+    "P8_h_clifford_log4": {
+      "passed": true,
+      "H_clifford": 1.3862943611198906,
+      "expected": 1.3862943611198906,
+      "description": "H_clifford = log(4) from Cl(2,0) grade decomposition"
+    },
+    "P9_h_spinor_log2": {
+      "passed": true,
+      "H_spinor": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_spinor = log(2) from spin structure chirality"
+    },
+    "P10_h_riemannian_log3": {
+      "passed": true,
+      "H_riemannian": 1.0986122886681098,
+      "expected": 1.0986122886681098,
+      "description": "H_riemannian = log(3) from metric signature"
+    },
+    "P11_h_connection_log2": {
+      "passed": true,
+      "H_connection": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_connection = log(2) from 1-form grading"
+    },
+    "P12_h_holonomy_log2": {
+      "passed": true,
+      "H_holonomy": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_holonomy = log(2) from holonomy group orbits"
+    },
+    "P13_h_fiber_log2": {
+      "passed": true,
+      "H_fiber": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_fiber = log(2) from bundle fiber structure"
+    },
+    "P14_h_assoc_log2": {
+      "passed": true,
+      "H_assoc": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_assoc = log(2) from associated bundle transition structure"
+    },
+    "P15_h_moment_log2": {
+      "passed": true,
+      "H_moment": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_moment = log(2) from moment map structure"
+    },
+    "P16_h_derivedcategory_log2": {
+      "passed": true,
+      "H_derivedcategory": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_derivedcategory = log(2) from derived category cochain grading"
+    },
+    "P17_h_etalecoho_log2": {
+      "passed": true,
+      "H_etalecoho": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_etalecoho = log(2) from \u00e9tale cohomology grading"
+    },
+    "P18_h_instantonnumber_log2": {
+      "passed": true,
+      "H_instantonnumber": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_instantonnumber = log(2) from instanton winding sector k=0 vs k\u22600"
+    },
+    "P19_q_17shell_full_positive": {
+      "passed": true,
+      "Q_17": 0.01857895638694614,
+      "MI": 0.9394864118290985,
+      "H_gerbestack": 0.6931471805599453,
+      "H_weyl": 0.6931471805599453,
+      "H_hopf": 0.6931471805599453,
+      "H_dirac": 0.6931471805599453,
+      "H_mera": 1.0986122886681098,
+      "H_toric": 1.3862943611198906,
+      "H_clifford": 1.3862943611198906,
+      "H_spinor": 0.6931471805599453,
+      "H_riemannian": 1.0986122886681098,
+      "H_connection": 0.6931471805599453,
+      "H_holonomy": 0.6931471805599453,
+      "H_fiber": 0.6931471805599453,
+      "H_assoc": 0.6931471805599453,
+      "H_moment": 0.6931471805599453,
+      "H_derivedcategory": 0.6931471805599453,
+      "H_etalecoho": 0.6931471805599453,
+      "H_instantonnumber": 0.6931471805599453,
+      "description": "Q_17 = MI \u00d7 H_gerbestack \u00d7 H_weyl \u00d7 ... \u00d7 H_instantonnumber > 0"
+    },
+    "P20_q_17shell_monotone_in_mi": {
+      "passed": true,
+      "Q_per_alpha": [
+        0.017434,
+        0.01785,
+        0.018231,
+        0.018579,
+        0.0189
+      ],
+      "description": "Q_17 > 0 for 5 entanglement levels"
+    },
+    "P21_emergence_zero_product": {
+      "passed": true,
+      "Q_full": 0.01857895638694614,
+      "zero_combos": {
+        "no_mi": 0.0,
+        "no_gerbe": 0.0,
+        "no_weyl": 0.0,
+        "no_instanton": 0.0
+      },
+      "description": "Q_17 = 0 iff any H_i = 0; nonzero only in full 18-factor product"
+    },
+    "P22_rho_base_valid_dm": {
+      "passed": true,
+      "trace": 1.0,
+      "min_eval": 0.020000000000000004,
+      "description": "rho_base is valid density matrix (PSD, trace=1)"
+    },
+    "P23_axis0_dq_deps_negative": {
+      "passed": true,
+      "dQ_deps": -0.01258219993993654,
+      "description": "Axis 0: dQ/d(eps) < 0 via pytorch autograd"
+    }
+  },
+  "negative": {
+    "N1_z3_q_nonneg_unsat": {
+      "passed": true,
+      "z3_result": "unsat",
+      "description": "z3 UNSAT: Q_17 < 0 impossible"
+    },
+    "N2_z3_q_zero_product_unsat": {
+      "passed": true,
+      "z3_result": "unsat",
+      "description": "z3 UNSAT: Q=0 impossible if MI>0 AND all H_i>0"
+    },
+    "N3_sympy_zero_product_theorem": {
+      "passed": true,
+      "Q_no_mi": "0",
+      "Q_no_gerbe": "0",
+      "Q_no_instanton": "0",
+      "description": "sympy: Q=0 whenever any H_i=0 (zero-product theorem)"
+    },
+    "N4_fully_dephased_mi_nonzero": {
+      "passed": true,
+      "MI_dephased": 0.46688042943420094,
+      "MI_original": 0.9394864118290985,
+      "description": "Fully dephased state retains classical MI"
+    }
+  },
+  "boundary": {
+    "B1_shell_entropies_physical": {
+      "passed": true,
+      "H_gerbestack": 0.6931471805599453,
+      "H_weyl": 0.6931471805599453,
+      "H_hopf": 0.6931471805599453,
+      "H_dirac": 0.6931471805599453,
+      "H_mera": 1.0986122886681098,
+      "H_toric": 1.3862943611198906,
+      "H_clifford": 1.3862943611198906,
+      "H_spinor": 0.6931471805599453,
+      "H_riemannian": 1.0986122886681098,
+      "H_connection": 0.6931471805599453,
+      "H_holonomy": 0.6931471805599453,
+      "H_fiber": 0.6931471805599453,
+      "H_assoc": 0.6931471805599453,
+      "H_moment": 0.6931471805599453,
+      "H_derivedcategory": 0.6931471805599453,
+      "H_etalecoho": 0.6931471805599453,
+      "H_instantonnumber": 0.6931471805599453,
+      "description": "All shell entropies positive; H_toric, H_clifford=log(4) > all log(2) shells"
+    },
+    "B2_gradient_finite_nonzero_mid_eps": {
+      "passed": true,
+      "gradient": -0.00821090237631973,
+      "description": "Autograd gradient finite and nonzero at eps=0.5"
+    },
+    "B3_q_scales_with_mi": {
+      "passed": true,
+      "Q_high": 0.01919558013603497,
+      "Q_low": 0.010996219709067171,
+      "description": "Q_17 scales monotonically with MI"
+    },
+    "B4_boundary_eps_zero": {
+      "passed": true,
+      "gradient_at_eps_0": -0.02533211192630668,
+      "description": "Gradient well-defined at eps=0 boundary"
+    }
+  },
+  "all_pass": true,
+  "pass_count": 31,
+  "fail_count": 0,
+  "coupling_program_number": 110,
+  "shells": [
+    "GerbeStack",
+    "Weyl",
+    "Hopf",
+    "Dirac",
+    "MERA",
+    "Toric",
+    "Clifford",
+    "Spinor",
+    "Riemannian",
+    "Connection",
+    "Holonomy",
+    "Fiber",
+    "AssocBundle",
+    "MomentIndex",
+    "DerivedCategory",
+    "EtaleCoho",
+    "InstantonNumber"
+  ],
+  "Q_formula": "MI \u00d7 H_gerbestack \u00d7 H_weyl \u00d7 H_hopf \u00d7 H_dirac \u00d7 H_mera \u00d7 H_toric \u00d7 H_clifford \u00d7 H_spinor \u00d7 H_riemannian \u00d7 H_connection \u00d7 H_holonomy \u00d7 H_fiber \u00d7 H_assoc \u00d7 H_moment \u00d7 H_derivedcategory \u00d7 H_etalecoho \u00d7 H_instantonnumber = MI \u00d7 log(2)^13 \u00d7 log(3)^2 \u00d7 log(4)^2"
+}

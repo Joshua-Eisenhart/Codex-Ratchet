@@ -1,0 +1,36 @@
+{
+  "name": "leviathan_explore_as_hypergraph_potential",
+  "framing_assumption": "multi-way hyperedges as potential pathways; degree-entropy = decentralization",
+  "blind_spot": "no temporal dynamics, no signed power asymmetry",
+  "tool_manifest": {
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "degree + entropy stats"
+    }
+  },
+  "tool_integration_depth": {
+    "xgi": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "decentralized_entropy": 2.062069541300165,
+    "pass": true,
+    "n_edges": 6
+  },
+  "negative": {
+    "centralized_entropy": 1.9072839993213793,
+    "decentralized_entropy": 2.062069541300165,
+    "pass_centralized_lower": true
+  },
+  "boundary": {
+    "tiny_entropy": 0.6931471805599453,
+    "pass": true
+  },
+  "classification": "classical_baseline"
+}

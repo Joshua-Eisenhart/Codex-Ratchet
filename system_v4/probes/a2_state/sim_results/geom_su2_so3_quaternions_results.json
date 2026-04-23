@@ -1,0 +1,367 @@
+{
+  "name": "SU(2) / SO(3) / Quaternion Relationships",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core computation: SU(2) matrices via autograd, SO(3) Rodrigues, density matrix rotation rho->U rho U\u2020, group closure verification"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for SU(2)/SO(3)/quaternion sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for SU(2)/SO(3)/quaternion sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for SU(2)/SO(3)/quaternion sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification of Lie algebra commutation relations and quaternion multiplication table"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) even subalgebra ~ quaternions, rotor construction, cross-validation of rotation v->RvR~ against SU(2) and SO(3)"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for SU(2)/SO(3)/quaternion sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for SU(2)/SO(3)/quaternion sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for SU(2)/SO(3)/quaternion sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for SU(2)/SO(3)/quaternion sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for SU(2)/SO(3)/quaternion sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for SU(2)/SO(3)/quaternion sim"
+    }
+  },
+  "positive": {
+    "P1_su2_det_unitary": {
+      "pass": true,
+      "n_tested": 20,
+      "details": [
+        {
+          "axis": "x",
+          "theta": 0.523599,
+          "det_1": true,
+          "unitary": true
+        },
+        {
+          "axis": "x",
+          "theta": 1.047198,
+          "det_1": true,
+          "unitary": true
+        },
+        {
+          "axis": "x",
+          "theta": 1.570796,
+          "det_1": true,
+          "unitary": true
+        },
+        {
+          "axis": "x",
+          "theta": 3.141593,
+          "det_1": true,
+          "unitary": true
+        }
+      ]
+    },
+    "P2_su2_group_closure": {
+      "pass": true,
+      "n_tested": 16
+    },
+    "P3_lie_algebra_commutators": {
+      "pass": true,
+      "n_tested": 9
+    },
+    "P4_sympy_lie_algebra": {
+      "pass": true,
+      "n_tested": 9
+    },
+    "P5_double_cover_U_neg_U": {
+      "pass": true,
+      "n_tested": 12,
+      "details": [
+        {
+          "axis": "x",
+          "theta": 0.7854,
+          "same_rotation": true,
+          "neg_U_det_1": true
+        },
+        {
+          "axis": "x",
+          "theta": 1.5708,
+          "same_rotation": true,
+          "neg_U_det_1": true
+        },
+        {
+          "axis": "x",
+          "theta": 3.1416,
+          "same_rotation": true,
+          "neg_U_det_1": true
+        }
+      ]
+    },
+    "P6_360deg_minus_identity": {
+      "pass": true,
+      "n_tested": 4,
+      "details": [
+        {
+          "axis": "x",
+          "su2_neg_identity": true,
+          "so3_identity": true
+        },
+        {
+          "axis": "y",
+          "su2_neg_identity": true,
+          "so3_identity": true
+        },
+        {
+          "axis": "z",
+          "su2_neg_identity": true,
+          "so3_identity": true
+        },
+        {
+          "axis": "111",
+          "su2_neg_identity": true,
+          "so3_identity": true
+        }
+      ]
+    },
+    "P7_three_reps_same_rotation": {
+      "pass": true,
+      "n_tested": 16,
+      "details": [
+        {
+          "axis": "x",
+          "theta": 0.5236,
+          "su2_eq_so3": true,
+          "su2_eq_quat": true
+        },
+        {
+          "axis": "x",
+          "theta": 1.0472,
+          "su2_eq_so3": true,
+          "su2_eq_quat": true
+        },
+        {
+          "axis": "x",
+          "theta": 1.5708,
+          "su2_eq_so3": true,
+          "su2_eq_quat": true
+        },
+        {
+          "axis": "x",
+          "theta": 2.5,
+          "su2_eq_so3": true,
+          "su2_eq_quat": true
+        }
+      ]
+    },
+    "P8_quaternion_multiplication_table": {
+      "pass": true,
+      "i2_eq_neg1": true,
+      "j2_eq_neg1": true,
+      "k2_eq_neg1": true,
+      "ijk_eq_neg1": true,
+      "ij_eq_k": true,
+      "jk_eq_i": true,
+      "ki_eq_j": true
+    },
+    "P9_clifford_even_sub_isomorphism": {
+      "pass": true,
+      "e12_sq_neg1": "True",
+      "e13_sq_neg1": "True",
+      "e23_sq_neg1": "True",
+      "rotor_matches_quaternion": true,
+      "max_diff": 1.1102230246251565e-16
+    },
+    "P10_density_rotation_rho_UdagU": {
+      "pass": true,
+      "n_tested": 2,
+      "details": [
+        {
+          "axis": "x",
+          "match": true,
+          "bloch_su2": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "bloch_so3": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "axis": "y",
+          "match": true,
+          "bloch_su2": [
+            0.5000000000000002,
+            0.0,
+            -0.8660254037844386
+          ],
+          "bloch_so3": [
+            0.5000000000000001,
+            0.0,
+            -0.8660254037844386
+          ]
+        }
+      ]
+    },
+    "P11_quaternion_norm_preserved": {
+      "pass": true,
+      "n_tested": 20
+    }
+  },
+  "negative": {
+    "N1_non_su2_matrix_rejected": {
+      "pass": true,
+      "det": 1.0,
+      "unitary": false,
+      "note": "det=1 but not unitary => not in SU(2)"
+    },
+    "N2_non_unit_quaternion_wrong_rotation": {
+      "pass": true,
+      "input": [
+        2.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "output": [
+        4.0,
+        0.0,
+        0.0
+      ],
+      "expected_if_correct": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "N3_su2_non_abelian": {
+      "pass": true,
+      "commutator_norm": 1.4142135623730947
+    },
+    "N4_reflection_not_rotation": {
+      "pass": "True",
+      "orthogonal": true,
+      "det": -1.0,
+      "note": "det=-1 => O(3) not SO(3)"
+    },
+    "N5_720_vs_360_spinor_sign": {
+      "pass": true,
+      "720_is_identity": true,
+      "360_is_NOT_identity": true
+    },
+    "N6_u2_not_su2": {
+      "pass": true,
+      "is_unitary": true,
+      "det": "0.9999999657714582j",
+      "note": "U(2) element with det != 1"
+    }
+  },
+  "boundary": {
+    "B1_theta_0_identity_x": {
+      "pass": true,
+      "su2": true,
+      "so3": true,
+      "quat": true
+    },
+    "B1_theta_0_identity_y": {
+      "pass": true,
+      "su2": true,
+      "so3": true,
+      "quat": true
+    },
+    "B1_theta_0_identity_z": {
+      "pass": true,
+      "su2": true,
+      "so3": true,
+      "quat": true
+    },
+    "B2_pi_rotation_squared": {
+      "pass": true,
+      "U_pi_squared_is_neg_I": true
+    },
+    "B3_near_zero_angle_precision": {
+      "pass": true,
+      "diff_from_identity": 7.071067811865475e-15
+    },
+    "B4_large_angle_wrapping": {
+      "pass": true,
+      "theta": 314.1592653589793,
+      "wraps_to_identity": true
+    },
+    "B5_antipodal_quaternion_same_rotation": {
+      "pass": true,
+      "v_from_q": [
+        0.0,
+        0.5000000000000002,
+        0.8660254037844386
+      ],
+      "v_from_neg_q": [
+        0.0,
+        0.5000000000000002,
+        0.8660254037844386
+      ]
+    },
+    "B6_composed_90deg_all_match": {
+      "pass": true,
+      "su2": [
+        2.465190328815662e-32,
+        3.14018491736755e-16,
+        0.9999999999999998
+      ],
+      "so3": [
+        1.232595164407831e-32,
+        2.220446049250313e-16,
+        1.0
+      ],
+      "quat": [
+        -3.0814879110195774e-33,
+        3.14018491736755e-16,
+        0.9999999999999998
+      ]
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true,
+  "summary": {
+    "positive_tests": 11,
+    "negative_tests": 6,
+    "boundary_tests": 8,
+    "positive_pass": 11,
+    "negative_pass": 6,
+    "boundary_pass": 8
+  }
+}

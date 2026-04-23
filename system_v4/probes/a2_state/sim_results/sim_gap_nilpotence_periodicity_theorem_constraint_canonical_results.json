@@ -1,0 +1,177 @@
+{
+  "name": "NilpotencePeriodicityTheoremConstraint",
+  "domain": "Algebraic topology \u2014 Devinatz-Hopkins-Smith theorem",
+  "claim": "Type n complex (mod p) has periodic self-map degree 2(p^n - 1)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "torch available; not used for type constraint"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "torch_geometric available; no graph structure needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 available; cvc5 chosen for QF_LIA"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "SMT solver for type-to-periodicity constraint; core proof engine for degree = 2(p^n - 1)"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic computation and validation of periodicity degrees"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra available; type constraint is pre-geometric"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Geomstats available; manifold structure not needed"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn available; symmetry not directly relevant"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx available; graph not needed"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi available; hypergraph not applicable"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx available; simplicial structure not needed"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi available; persistent homology not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_type0_prime2_degree0": {
+      "cvc5_sat": true,
+      "cvc5_model": {
+        "type": 0,
+        "periodicity_degree": 0,
+        "prime": 2
+      },
+      "sympy_degree": 0,
+      "pass": true,
+      "note": "Type 0 = rational complex, no periodicity needed"
+    },
+    "positive_type1_prime2_degree2": {
+      "cvc5_sat": true,
+      "cvc5_model": {
+        "type": 1,
+        "periodicity_degree": 2,
+        "prime": 2
+      },
+      "sympy_degree": 2,
+      "pass": true,
+      "note": "Type 1 complex has v_1-periodicity degree 2"
+    },
+    "positive_type2_prime2_degree6": {
+      "cvc5_sat": true,
+      "cvc5_model": {
+        "type": 2,
+        "periodicity_degree": 6,
+        "prime": 2
+      },
+      "sympy_degree": 6,
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_type1_prime2_wrong_degree": {
+      "cvc5_sat": false,
+      "cvc5_model": null,
+      "expected_unsat": true,
+      "pass": true
+    },
+    "negative_type0_nonzero_degree": {
+      "cvc5_sat": false,
+      "cvc5_model": null,
+      "expected_unsat": true,
+      "pass": true
+    },
+    "negative_type2_prime2_wrong_degree": {
+      "cvc5_sat": false,
+      "cvc5_model": null,
+      "expected_unsat": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_type3_prime2_degree14": {
+      "cvc5_sat": true,
+      "cvc5_model": {
+        "type": 3,
+        "periodicity_degree": 14,
+        "prime": 2
+      },
+      "sympy_degree": 14,
+      "pass": true
+    },
+    "boundary_type1_prime3_degree4": {
+      "cvc5_sat": true,
+      "cvc5_model": {
+        "type": 1,
+        "periodicity_degree": 4,
+        "prime": 3
+      },
+      "sympy_degree": 4,
+      "pass": true
+    },
+    "boundary_type4_prime2_degree30": {
+      "cvc5_sat": true,
+      "cvc5_model": {
+        "type": 4,
+        "periodicity_degree": 30,
+        "prime": 2
+      },
+      "sympy_degree": 30,
+      "pass": true
+    }
+  },
+  "summary": {
+    "positive_pass": 3,
+    "positive_total": 3,
+    "negative_pass": 3,
+    "negative_total": 3,
+    "boundary_pass": 3,
+    "boundary_total": 3,
+    "all_pass": true
+  },
+  "classification": "canonical"
+}

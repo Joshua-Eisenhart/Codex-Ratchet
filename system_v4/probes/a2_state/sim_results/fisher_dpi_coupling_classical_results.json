@@ -1,0 +1,128 @@
+{
+  "name": "fisher_dpi_coupling_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Fisher-DPI coupling loses: (1) quantum Fisher info (SLD) with Petz-Hasegawa family multiplicity, (2) non-commutative monotone metrics on the state manifold, (3) strict inequality gaps from quantum channel non-classicality (e.g. coherence-protected information).",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check Fisher via autograd of log-likelihood"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric inequality, not SAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "closed-form not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "manual Fisher sufficient"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "contraction_0": {
+      "theta": 0.2,
+      "I0": 6.249999999999999,
+      "I1": 0.9885661388398681,
+      "pass": true
+    },
+    "contraction_1": {
+      "theta": 0.4,
+      "I0": 4.166666666666667,
+      "I1": 0.21370022667710065,
+      "pass": true
+    },
+    "contraction_2": {
+      "theta": 0.6,
+      "I0": 4.166666666666667,
+      "I1": 2.3434909594782045,
+      "pass": true
+    },
+    "contraction_3": {
+      "theta": 0.8,
+      "I0": 6.250000000000001,
+      "I1": 0.7350224372984927,
+      "pass": true
+    }
+  },
+  "negative": {
+    "non_stochastic_rejected": {
+      "is_stochastic": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "identity_channel_preserves": {
+      "I0": 4.0,
+      "I1": 4.0,
+      "pass": true
+    },
+    "deterministic_collapse_zero_fisher": {
+      "I_collapsed": 0.0,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

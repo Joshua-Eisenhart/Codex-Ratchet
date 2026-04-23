@@ -1,0 +1,40 @@
+{
+  "name": "sim_fep_precision_weighting_probe",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic posterior precision"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "posterior precision strictly exceeds both inputs"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Gaussian posterior"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "precision_additive": true,
+    "mean_weighted": true,
+    "F_linear_in_precision": true,
+    "sympy_posterior_symbolic": true,
+    "z3_additive_strict": true
+  },
+  "negative": {
+    "zero_pi_lik_posterior_equals_prior": true
+  },
+  "boundary": {
+    "infinite_pi_collapses_to_observation": true
+  },
+  "PASS": true
+}

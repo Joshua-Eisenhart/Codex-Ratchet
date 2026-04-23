@@ -1,0 +1,159 @@
+{
+  "name": "sim_gudhi_capability",
+  "purpose": "tool-capability isolation probe for GUDHI persistent homology",
+  "contract": "~/wiki/concepts/tool-capability-sim-program.md",
+  "witness_load_bearing_uses": [
+    "system_v4/probes/sim_gudhi_concurrence_filtration.py",
+    "system_v4/probes/sim_hopf_torus_lego.py",
+    "system_v4/probes/sim_persistence_geometry.py"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for tool-capability isolation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for tool-capability isolation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof obligation in a capability probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof obligation in a capability probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic derivation required"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold/geodesic needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy CC baseline suffices"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no multi-way interaction in probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not the tool under test"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "tool under capability test; persistence decisive"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "rips_circle_homology": {
+      "b0": 1,
+      "b1": 1,
+      "expected_b0": 1,
+      "expected_b1": 1,
+      "pass": true,
+      "n_features": 25
+    },
+    "alpha_matches_rips": {
+      "alpha_b0": 1,
+      "alpha_b1": 1,
+      "rips_b0": 1,
+      "rips_b1": 1,
+      "pass": true
+    },
+    "barcode_extraction": {
+      "h1_intervals": 1,
+      "longest_h1_lifetime": 1.4246988347222618,
+      "pass": true
+    },
+    "betti_api": {
+      "persistent_betti_at_mid": [
+        1,
+        1
+      ],
+      "probe_filtration": 0.998989494382484,
+      "expected": [
+        1,
+        1
+      ],
+      "pass": true
+    }
+  },
+  "comparison": {
+    "h0_vs_numpy_cc": {
+      "numpy_cc_count": 2,
+      "gudhi_h0_alive": 2,
+      "expected": 2,
+      "pass": true
+    }
+  },
+  "negative": {
+    "noise_has_no_robust_h1": {
+      "b1_at_high_threshold": 0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "empty_cloud": {
+      "ran": true,
+      "n_features": 0,
+      "err": null,
+      "pass": true
+    },
+    "single_point": {
+      "b0": 0,
+      "b1": 0,
+      "diag_len": 0,
+      "num_vertices": 1,
+      "capability_limit": "GUDHI does not emit essential H0 for a lone 0-simplex; callers must guard against empty diagrams on degenerate inputs",
+      "pass": true
+    },
+    "duplicate_points": {
+      "b0": 1,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "classification": "canonical",
+  "summary": {
+    "all_pass": true
+  }
+}

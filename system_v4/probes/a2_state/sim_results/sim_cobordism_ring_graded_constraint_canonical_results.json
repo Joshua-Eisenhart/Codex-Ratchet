@@ -1,0 +1,164 @@
+{
+  "name": "Cobordism Ring Graded Constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; ring grading is discrete algebraic structure"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no graph topology in cobordism ring"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 handles degree constraints and rank matching"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: proves UNSAT for generators in forbidden degrees"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: verifies polynomial ring structure and grading axioms"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; cobordism ring is not Clifford algebra"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; cobordism classes are not manifolds"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no spatial equivariance in cobordism"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no directed graph structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no hypergraph topology"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; cobordism ring is algebraic, not topological"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_mu_even_degree_generators": {
+      "pass": true,
+      "detail": "MU^{2n} has generators in even degrees 0,2,4,6,...",
+      "degrees": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14
+      ],
+      "parity_check": "all even"
+    },
+    "test_mu_odd_vanishes": {
+      "pass": true,
+      "detail": "MU^{odd} = 0 (no generators in odd degrees)",
+      "odd_degrees_found": false
+    },
+    "test_thom_pontryagin_correspondence": {
+      "pass": true,
+      "detail": "Framed cobordism \u03a9^fr_n \u2245 \u03c0_n^s holds for n=0,1,2,3",
+      "dimensions_verified": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "test_ring_grading_axiom": {
+      "pass": true,
+      "detail": "Generator in degree 2 times generator in degree 4 lands in degree 6",
+      "degrees_present": [
+        2,
+        4,
+        6
+      ]
+    }
+  },
+  "negative": {
+    "test_unsat_odd_degree_mu": {
+      "pass": true,
+      "detail": "UNSAT when asserting generator in degree 3 (odd) while constraining MU to even degrees only",
+      "solver_result": "UNSAT"
+    },
+    "test_unsat_rank_mismatch_tp": {
+      "pass": true,
+      "detail": "UNSAT when cobordism rank=2 \u2260 stable stem rank=1 (violates Thom-Pontryagin)",
+      "solver_result": "UNSAT"
+    },
+    "test_grading_consistency_sympy": {
+      "pass": true,
+      "detail": "Sympy verification: MU^{odd} = 0 by grading structure"
+    }
+  },
+  "boundary": {
+    "test_boundary_degree_0_generator": {
+      "pass": true,
+      "detail": "Degree 0 generator x_0 is unit in MU^0",
+      "generator_name": "x_{0}"
+    },
+    "test_boundary_degree_2_first_nontrivial": {
+      "pass": true,
+      "detail": "MU^2 has generator x_1; MU^1 = 0",
+      "degree_1_exists": false,
+      "degree_2_exists": true
+    },
+    "test_boundary_high_degree_grading": {
+      "pass": true,
+      "detail": "High-degree generators also respect even grading",
+      "degrees_tested": [
+        12,
+        14
+      ]
+    },
+    "test_boundary_thom_pontryagin_dim_0": {
+      "pass": true,
+      "detail": "At dimension 0: \u03a9^fr_0 = Z \u2245 \u03c0_0^s = Z",
+      "cobordism": "\u03a9^fr_0 = Z",
+      "stable_stem": "\u03c0_0^s = Z"
+    }
+  },
+  "classification": "canonical"
+}

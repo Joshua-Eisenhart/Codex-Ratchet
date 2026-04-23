@@ -1,0 +1,223 @@
+{
+  "name": "sim_ratchet_noncommutative_constraint_ordering",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: forward/reverse projection chains; Frobenius residual; autograd dNC/dA (ratchet sensitivity)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this ratchet probe; deferred"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this ratchet probe; deferred"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: symbolic 2x2 GS-then-det-norm vs det-norm-then-GS; show generic difference in output"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Cl(3,0) versor ratchet; normalize-then-even != even-then-normalize; odd-grade components change the normalization scale"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this ratchet probe; deferred"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this ratchet probe; deferred"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: ratchet DAG GL->O->SO with residual annotations; forward path has positive cost (constraint tightening)"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: hyperedge {GL, O, SO, direction} encodes ratchet as 4-way relation; two distinct hyperedges for forward vs reverse ordering"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this ratchet probe; deferred"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Rips persistence on GS-vs-SVD residual point cloud; H0=1 confirms ratchet is globally consistent across the GL(3) manifold"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": "load_bearing",
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": "load_bearing",
+    "z3": null
+  },
+  "positive": {
+    "P1_forward_chain_lands_in_SO3": {
+      "det": 1.0000000000000007,
+      "orth_err": 1.2305681212121459e-15,
+      "pass": true
+    },
+    "P2_gs_chain_vs_svd_chain_differ": {
+      "diff_frobenius": 1.287542161186035,
+      "det_A": -5.353950468802596,
+      "det_R_gs": 1.0000000000000002,
+      "det_R_svd": 1.0000000000000002,
+      "pass": true
+    },
+    "P3_NC_positive_gs_vs_svd_chain": {
+      "nc_values": [
+        0.801307947354284,
+        0.5405917794520494,
+        1.6381450269271465,
+        0.9412409900016482,
+        0.5040699805197173,
+        0.935042438168492,
+        0.30823755790222956,
+        0.7180950445901197,
+        1.5740302395715913,
+        1.3695488379499157
+      ],
+      "all_positive": true,
+      "pass": true
+    },
+    "P4_idempotent_forward_chain": {
+      "idempotency_error": 9.18873053048877e-16,
+      "pass": true
+    },
+    "P5_autograd_ratchet_sensitivity": {
+      "grad_norm": 0.22609562986694,
+      "pass": true
+    },
+    "P6_sympy_2x2_ordering_differs": {
+      "diff_00_is_zero": false,
+      "pass": true
+    },
+    "P7_clifford_versor_ordering_differs": {
+      "V_mag": 1.1575836902790226,
+      "V_even_mag": 0.58309518948453,
+      "diff_magnitude": 0.4962824766959344,
+      "pass": true
+    },
+    "P8_rustworkx_ratchet_dag": {
+      "is_dag": true,
+      "avg_residual_GL_to_O": 2.90477296386774,
+      "avg_residual_O_to_SO": 0.39999999999999997,
+      "pass": true
+    },
+    "P9_xgi_ratchet_hyperedge": {
+      "n_hyperedges": 2,
+      "n_nodes": 4,
+      "pass": true
+    },
+    "P10_gudhi_ratchet_persistence": {
+      "betti_numbers": [
+        1
+      ],
+      "H0": 1,
+      "n_samples": 30,
+      "all_positive_residuals": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_already_SO3_ratchet_zero": {
+      "det": 1.0,
+      "orth_err": 0.0,
+      "diff_from_self": 0.0,
+      "pass": true
+    },
+    "N2_z3_unsat_forward_equals_reverse_off_diagonal": {
+      "z3_result": "unsat",
+      "pass": true
+    },
+    "N3_singular_matrix_ratchet_undefined": {
+      "det": 0.0,
+      "has_zero_pivot": true,
+      "pass": true
+    },
+    "N4_O3_already_orthogonal_gs_no_cost": {
+      "samples": [
+        {
+          "det": 0.9999999999999999,
+          "diff": 4.1932970789410407e-16,
+          "no_gs_cost": true
+        },
+        {
+          "det": 0.9999999999999999,
+          "diff": 2.92505449144803e-16,
+          "no_gs_cost": true
+        },
+        {
+          "det": 0.9999999999999994,
+          "diff": 4.783309287441108e-16,
+          "no_gs_cost": true
+        },
+        {
+          "det": 0.9999999999999998,
+          "diff": 2.4873781269328544e-16,
+          "no_gs_cost": true
+        },
+        {
+          "det": 0.9999999999999999,
+          "diff": 1.5700924586837752e-16,
+          "no_gs_cost": true
+        }
+      ],
+      "pass": true
+    },
+    "N5_sympy_diagonal_commute": {
+      "commutator_zero": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_identity_invariant": {
+      "diff": 0.0,
+      "pass": true
+    },
+    "B2_scalar_identity_collapses_to_SO3": {
+      "diff": 0.0,
+      "pass": true
+    },
+    "B3_near_singular_boundary": {
+      "det": 1.0,
+      "orth_err": 0.0,
+      "pass": true
+    },
+    "B4_near_reflection_det_boundary": {
+      "det_result": 1.0,
+      "pass": true
+    },
+    "B5_clifford_pure_even_ordering_equivalent": {
+      "diff": 0.0,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

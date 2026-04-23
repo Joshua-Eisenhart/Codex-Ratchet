@@ -1,0 +1,207 @@
+{
+  "name": "gudhi_cascade_persistence",
+  "description": "Persistent homology over L0-L7 constraint cascade. Detects topological features in family survival/death patterns.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "tried for tensor ops; numpy sufficient for distance matrices"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph neural nets not needed for persistence computation"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant: no SMT constraints in persistence homology"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant: no SMT constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant: no symbolic algebra needed"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant: no Clifford algebra ops"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant: Riemannian geometry not needed"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant: no equivariant NN"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant: GUDHI handles complex construction"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant: no hypergraph needed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "tried for cell complex comparison; GUDHI simplex tree is better fit"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "primary tool: Rips complex, Alpha complex, persistence diagrams, Betti numbers"
+    }
+  },
+  "positive": {
+    "rips_H0_total_pairs": 3,
+    "rips_H0_long_lived": 3,
+    "rips_H0_infinite": 1,
+    "rips_H0_pass": true,
+    "rips_H0_detail": "At least 2 long-lived H0 components expected (survivors vs killed groups)",
+    "rips_L4_topological_event": true,
+    "rips_H0_death_values": [
+      2.0,
+      2.0
+    ],
+    "rips_L4_pass": true,
+    "rips_L4_detail": "Kill events create 3 distinct clusters that merge at filtration 2.0. The existence of multiple merge events proves kills created topological structure.",
+    "L4_cluster_max_internal_dist": 0.0,
+    "L4_cluster_pass": "True",
+    "L4_cluster_detail": "All 18 L4-killed families have identical survival vectors -> distance 0",
+    "L6_cluster_max_internal_dist": 0.0,
+    "L4_L6_cross_distance": 2.0,
+    "L6_separate_from_L4_pass": "True",
+    "L6_separate_detail": "L6-killed should be closer to each other than to L4-killed",
+    "alpha_H0_pairs": 3,
+    "alpha_H1_pairs": 0,
+    "alpha_H2_pairs": 0,
+    "alpha_persistence_computed": true,
+    "betti_numbers_rips": {
+      "threshold_0.0": {
+        "H0": 3,
+        "H1": 0,
+        "H2": 0
+      },
+      "threshold_0.5": {
+        "H0": 3,
+        "H1": 0,
+        "H2": 0
+      },
+      "threshold_1.0": {
+        "H0": 3,
+        "H1": 0,
+        "H2": 0
+      },
+      "threshold_2.0": {
+        "H0": 1,
+        "H1": 0,
+        "H2": 0
+      },
+      "threshold_3.0": {
+        "H0": 1,
+        "H1": 0,
+        "H2": 0
+      },
+      "threshold_4.0": {
+        "H0": 1,
+        "H1": 0,
+        "H2": 0
+      },
+      "threshold_5.0": {
+        "H0": 1,
+        "H1": 0,
+        "H2": 0
+      },
+      "threshold_8.0": {
+        "H0": 1,
+        "H1": 0,
+        "H2": 0
+      }
+    },
+    "betti_H0_at_0_pass": true,
+    "betti_H0_at_0_detail": "3 distinct survival profiles = 3 connected components at threshold 0",
+    "rips_persistence_by_dim": {
+      "0": [
+        {
+          "birth": 0.0,
+          "death": Infinity,
+          "lifetime": Infinity
+        },
+        {
+          "birth": 0.0,
+          "death": 2.0,
+          "lifetime": 2.0
+        },
+        {
+          "birth": 0.0,
+          "death": 2.0,
+          "lifetime": 2.0
+        }
+      ]
+    },
+    "alpha_persistence_by_dim": {
+      "0": [
+        {
+          "birth": 0.0,
+          "death": Infinity,
+          "lifetime": Infinity
+        },
+        {
+          "birth": 0.0,
+          "death": 0.5,
+          "lifetime": 0.5
+        },
+        {
+          "birth": 0.0,
+          "death": 0.5,
+          "lifetime": 0.5
+        }
+      ]
+    }
+  },
+  "negative": {
+    "random_unique_H0_death_values": 2,
+    "real_unique_H0_death_values": 1,
+    "random_more_spread_pass": true,
+    "random_spread_detail": "Real cascade has 1 unique death values, random has 2. Random should be more spread.",
+    "trivial_H0_total": 1,
+    "trivial_H0_finite_lived": 0,
+    "trivial_H1_total": 0,
+    "trivial_pass": true,
+    "trivial_detail": "All-survive cascade: exactly 1 eternal H0 component, no merges, no loops. This is trivial persistence -- no topological events."
+  },
+  "boundary": {
+    "L8_no_kill_orig_H0_count": 3,
+    "L8_no_kill_l8_H0_count": 3,
+    "L8_no_kill_pass": true,
+    "L8_no_kill_detail": "Adding L8 that kills nobody preserves the number of H0 persistence pairs. The topological structure (3 clusters merging) is unchanged, though filtration values shift slightly.",
+    "moved_H0_death_values": [
+      2.0,
+      4.0
+    ],
+    "orig_H0_death_values": [
+      2.0,
+      2.0
+    ],
+    "move_changes_topology_pass": true,
+    "move_detail": "Moving L4 kills to L2 changes Hamming distances between clusters, producing different filtration merge values. This proves layer ordering matters for the topological structure.",
+    "two_family_H0_count": 2,
+    "two_family_merge_at": [
+      6.0
+    ],
+    "two_family_pass": true,
+    "two_family_detail": "Two families with Hamming distance 6: should see 2 H0 pairs, one merging at filtration 6.0"
+  },
+  "classification": "canonical"
+}

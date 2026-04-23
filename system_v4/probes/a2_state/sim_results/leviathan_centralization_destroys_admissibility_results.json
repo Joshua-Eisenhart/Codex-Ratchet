@@ -1,0 +1,46 @@
+{
+  "name": "leviathan_centralization_destroys_admissibility",
+  "classification": "canonical",
+  "positive": {
+    "three_authorities": "sat",
+    "two_authorities": "sat",
+    "pluralism_admissible": true,
+    "authority_graph_nodes": 3,
+    "not_single_hub": true
+  },
+  "negative": {
+    "one_authority_check": "unsat",
+    "zero_authority_check": "unsat",
+    "centralization_excluded": true,
+    "star_hub_degree": 5,
+    "single_hub_detected": true
+  },
+  "boundary": {
+    "boundary_two": true,
+    "boundary_one_fails": true,
+    "adm_at_1": 0,
+    "adm_at_2": 1
+  },
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "encode admissibility >=2 authorities"
+    },
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "authority topology non-star check"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "piecewise admissibility indicator"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing",
+    "networkx": "supportive",
+    "sympy": "supportive"
+  }
+}

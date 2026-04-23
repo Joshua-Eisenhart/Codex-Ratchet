@@ -1,0 +1,111 @@
+{
+  "name": "baseline_dephasing_channel",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "numpy_role": "load_bearing",
+  "positive": {
+    "half_dephase_kills_coh": {
+      "pass": "True"
+    },
+    "p0_identity": {
+      "pass": true
+    },
+    "trace_preserved": {
+      "pass": "True"
+    },
+    "diag_invariant": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "invalid_p_detected": {
+      "pass": "True"
+    },
+    "wrong_op_not_dephasing": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "p1_full": {
+      "pass": "True"
+    },
+    "monotone_decay": {
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline"
+}

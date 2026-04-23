@@ -1,0 +1,132 @@
+{
+  "name": "rao_parallel_transport_coupling_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Rao/parallel-transport coupling loses: (1) quantum Bogoliubov-Kubo-Mori or SLD metrics with non-flat connections, (2) holonomy in the space of density matrices (Uhlmann phase), (3) non-commuting tangent directions that cannot be flat-transported.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor evaluation of Fisher metric / geodesic norms"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "closed-form derived by hand"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "manual"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "iso_0": {
+      "rao_d": 2.2242459580254916,
+      "norm_before": 0.40599343049342984,
+      "norm_after": 0.40599343049342984,
+      "pass": true
+    },
+    "iso_1": {
+      "rao_d": 0.7154224572330681,
+      "norm_before": 1.712844091841478,
+      "norm_after": 1.712844091841478,
+      "pass": true
+    },
+    "iso_2": {
+      "rao_d": 0.35612023947060667,
+      "norm_before": 1.7933138131671003,
+      "norm_after": 1.7933138131671003,
+      "pass": true
+    },
+    "iso_3": {
+      "rao_d": 1.517342814399551,
+      "norm_before": 0.045560087213050604,
+      "norm_after": 0.045560087213050604,
+      "pass": true
+    },
+    "iso_4": {
+      "rao_d": 2.3252048205340197,
+      "norm_before": 1.4481277085321786,
+      "norm_after": 1.4481277085321786,
+      "pass": true
+    }
+  },
+  "negative": {
+    "naive_euclid_transport_not_isometry": {
+      "norm1": 1.0,
+      "norm2": 0.5,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_geodesic": {
+      "pass": true
+    },
+    "symmetry": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

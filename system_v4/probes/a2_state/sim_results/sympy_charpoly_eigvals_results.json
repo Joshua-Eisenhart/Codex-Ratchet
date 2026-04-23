@@ -1,0 +1,96 @@
+{
+  "name": "sympy_charpoly_eigvals",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric eigvals float only; cannot equate to exact radicals"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "algebraic-number equality native to sympy"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "charpoly.roots and Matrix.eigenvals produce identical exact algebraic multisets"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "charpoly_roots_equal_eigenvalues": true,
+    "eigenvalues_satisfy_charpoly": true,
+    "n_roots": 3
+  },
+  "negative": {
+    "perturbed_charpoly_not_vanishing_on_original_eigs": true
+  },
+  "boundary": {
+    "diagonal_eigs_equal_diag": true
+  },
+  "ablation": {
+    "numpy_charpoly_vs_eig_numeric_only": true,
+    "max_residual": 1.7763568394002505e-15,
+    "note": "numeric residuals nonzero at ~1e-13; only sympy proves exact equality"
+  },
+  "classification": "canonical"
+}

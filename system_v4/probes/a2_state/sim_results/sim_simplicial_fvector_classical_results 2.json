@@ -1,0 +1,102 @@
+{
+  "name": "sim_simplicial_fvector_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: tensor summation cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SAT/SMT needed for this fvector sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric computation only, no algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "hand-rolled simplicial complex suffices here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no filtration or persistence in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Classical f-vector counts ignore constraint-admissibility of simplices under probe coupling.",
+    "Euler characteristic alternating-sum treated as complete invariant; nonclassical probes excluded."
+  ],
+  "positive": {
+    "tet_fvector": true,
+    "tet_euler_1": true,
+    "tri_fvector": true,
+    "torch_sum_match": true
+  },
+  "negative": {
+    "detects_non_closed": true,
+    "empty_fvector": true
+  },
+  "boundary": {
+    "single_vertex": true,
+    "two_edges": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "name": "Gr\u00f6bner Basis Constraint Canonical Sim",
+  "description": "Proves Buchberger criterion via cvc5; computes Gr\u00f6bner basis for {x\u00b2-y, xy-1} and verifies S-polynomial reduction via sympy",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Gr\u00f6bner proof"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Gr\u00f6bner proof"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 handles QF_LIA directly"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: proves Buchberger criterion via QF_LIA degree constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: computes Gr\u00f6bner basis and verifies S-polynomial reduction"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for polynomial algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Gr\u00f6bner proof"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Gr\u00f6bner proof"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Gr\u00f6bner proof"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Gr\u00f6bner proof"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Gr\u00f6bner proof"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Gr\u00f6bner proof"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_buchberger_cvc5": {
+      "sat": "sat",
+      "buchberger_constraint": "deg(S(f,g)) < max(deg(f), deg(g))",
+      "constraint_satisfiable": false
+    },
+    "test_2_groebner_basis_sympy": {
+      "error": "div(x - y**2, [x - y**2, y**3 - 1]) failed without generators",
+      "sympy_available": false
+    },
+    "test_3_unique_normal_form": {
+      "error": "div(x**3 + x*y, [x - y**2, y**3 - 1]) failed without generators"
+    }
+  },
+  "negative": {
+    "test_1_violate_buchberger": {
+      "attempted_violation": "deg(S(f,g)) >= max(deg(f), deg(g))",
+      "cvc5_result": "sat",
+      "constraint_violated": false
+    },
+    "test_2_false_groebner_claim": {
+      "description": "Check that wrong basis is rejected",
+      "polynomials": [
+        "x^2 - y",
+        "xy - 1"
+      ],
+      "claimed_basis": [
+        "x^2 - y",
+        "xy - 1",
+        "y - x^3"
+      ],
+      "note": "This is NOT a Gr\u00f6bner basis; it contains a linear dependent element",
+      "buchberger_satisfied": false
+    },
+    "test_3_nonreducing_s_poly": {
+      "polynomials": [
+        "x**2 + 1",
+        "y**2 + 1"
+      ],
+      "s_polynomial": "x**2 - y**2",
+      "reduces_to_zero": false,
+      "reason": "f1, f2 don't form Gr\u00f6bner basis; disjoint variable support"
+    }
+  },
+  "boundary": {
+    "test_1_single_element_basis": {
+      "polynomial": "x**2 + y**2 + 1",
+      "groebner_basis": [
+        "x**2 + y**2 + 1"
+      ],
+      "trivially_groebner": true,
+      "property": "Single polynomial is always a Gr\u00f6bner basis"
+    },
+    "test_2_constant_basis": {
+      "description": "Gr\u00f6bner basis containing a constant",
+      "polynomials": [
+        "1",
+        "x + y"
+      ],
+      "groebner_basis": [
+        "1"
+      ],
+      "property": "Basis containing 1 spans entire polynomial ring",
+      "reduced_form": "trivial"
+    },
+    "test_3_homogeneous_polynomials": {
+      "polynomials": [
+        "x*y - z**2",
+        "x*z - y**2",
+        "-x**2 + y*z"
+      ],
+      "groebner_basis_size": 4,
+      "property": "Homogeneous polynomials preserve degree structure in Gr\u00f6bner basis"
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,188 @@
+{
+  "name": "szilard_graph_proof_alignment",
+  "classification": "research_support",
+  "classification_note": "Graph/proof alignment bridge for the bounded Szilard family. It adds protocol-order graph structure, z3 bookkeeping proofs, and Helstrom-style record distinguishability around the finite two-qubit lane.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "helstrom_guess_bound",
+    "graph_shell_geometry"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics",
+    "helstrom_guess_bound"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing bookkeeping proof surface for ideal measurement/erasure and ordering identities"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing protocol DAG construction and precedence checks for measurement/feedback/reset ordering"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "protocol_graph_is_a_single_valid_measurement_feedback_reset_chain": {
+      "node_count": 4,
+      "edge_count": 3,
+      "topological_order": [
+        "initial_mixed_system_blank_memory",
+        "measurement_record_written",
+        "feedback_applied",
+        "memory_erased"
+      ],
+      "longest_path": [
+        "initial_mixed_system_blank_memory",
+        "measurement_record_written",
+        "feedback_applied",
+        "memory_erased"
+      ],
+      "longest_path_length": 3,
+      "is_dag": true,
+      "source_count": 1,
+      "sink_count": 1,
+      "pass": true
+    },
+    "z3_forces_ideal_forward_ktln2_balance": {
+      "verdict": "unsat",
+      "pass": true,
+      "claim": "Ideal forward bookkeeping forces zero net after erasure at the same kT ln 2 scale."
+    },
+    "z3_forces_measurement_before_feedback_in_the_protocol_dag": {
+      "verdict": "unsat",
+      "pass": true,
+      "claim": "Feedback cannot precede measurement once the protocol precedence constraints are enforced."
+    },
+    "helstrom_record_guessing_improves_after_measurement_and_collapses_after_erasure": {
+      "blank_vs_measured_guess_probability": 0.75,
+      "blank_vs_erased_guess_probability": 0.5,
+      "pass": true
+    }
+  },
+  "negative": {
+    "wrong_order_does_not_match_the_purified_feedback_state_operationally": {
+      "wrong_order_vs_feedback_guess_probability": 0.75,
+      "pass": true
+    },
+    "graph_alignment_row_is_not_a_runtime_demon_claim": {
+      "scope_note": "This row adds graph/proof and operational distinguishability around the exact finite Szilard bookkeeping lane; it does not claim a reservoir-runtime demon.",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "graph_topological_order_matches_the_protocol_chain": {
+      "topological_order": [
+        "initial_mixed_system_blank_memory",
+        "measurement_record_written",
+        "feedback_applied",
+        "memory_erased"
+      ],
+      "pass": true
+    },
+    "ideal_forward_and_reverse_rows_still_close_cleanly": {
+      "ideal_forward_information_gain": 0.6931471805599453,
+      "ideal_forward_erasure_cost": 0.6931471805599453,
+      "ideal_reverse_restoration_trace_distance": 0.0,
+      "pass": true
+    }
+  },
+  "graph_summary": {
+    "node_count": 4,
+    "edge_count": 3,
+    "topological_order": [
+      "initial_mixed_system_blank_memory",
+      "measurement_record_written",
+      "feedback_applied",
+      "memory_erased"
+    ],
+    "longest_path": [
+      "initial_mixed_system_blank_memory",
+      "measurement_record_written",
+      "feedback_applied",
+      "memory_erased"
+    ],
+    "longest_path_length": 3,
+    "is_dag": true,
+    "source_count": 1,
+    "sink_count": 1
+  },
+  "summary": {
+    "all_pass": true,
+    "graph_path_length": 3,
+    "protocol_schedule_valid": true,
+    "ktln2_balance_unsat": true,
+    "ordering_precedence_unsat": true,
+    "helstrom_measurement_guess_probability": 0.75,
+    "helstrom_erased_guess_probability": 0.5,
+    "wrong_order_vs_feedback_guess_probability": 0.75,
+    "ideal_forward_information_gain": 0.6931471805599453,
+    "ideal_forward_erasure_cost": 0.6931471805599453,
+    "scope_note": "Graph/proof bridge around the exact Szilard row. Useful as a pre-constraint alignment surface before graph-native or proof-pressure runtime carriers."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "stabilizer_formalism_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "bit tableau arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "X_block_zero_classically": "True",
+    "Z_block_identity": true,
+    "flip_deterministic": true
+  },
+  "negative": {
+    "classical_cannot_produce_X_stabilizer": "True",
+    "no_Y_generator_possible": true
+  },
+  "boundary": {
+    "empty_tableau_valid": true,
+    "single_bit_tableau_ok": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "X and Y generators absent; only Z-diagonal tableau",
+    "no symplectic inner product structure over F_2^{2n}",
+    "measurement outcomes deterministic, no Born-rule branching"
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "name": "sim_classical_leviathan_coalition_formation",
+  "scope_note": "classical_baseline mirror of Leviathan coalition self-similar governance (OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md)",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: classical baseline; numpy sufficient for closed-form check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no graph message passing in this baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no SAT/UNSAT claim; numeric comparison only"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no SMT obligation"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: numeric-only classical check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no Cl(p,q) rotor used in classical baseline"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no manifold geometry in classical baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no equivariant network in classical baseline"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no graph algorithms invoked"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no hypergraph in this baseline"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no cell complex in classical baseline"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no persistent homology in classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "numpy_integration": "load_bearing",
+  "positive": {
+    "seed0": {
+      "coalition": [
+        0,
+        3,
+        4,
+        6
+      ],
+      "weight": 21.59444827773237,
+      "threshold": 21.134534988664424,
+      "minimal": true,
+      "pass": true
+    },
+    "seed1": {
+      "coalition": [
+        0,
+        1
+      ],
+      "weight": 12.236118483302588,
+      "threshold": 11.893166641508744,
+      "minimal": true,
+      "pass": true
+    },
+    "seed2": {
+      "coalition": [
+        0,
+        3,
+        4
+      ],
+      "weight": 14.625165871629926,
+      "threshold": 14.310157677182392,
+      "minimal": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "no_singleton_dominance": {
+      "threshold": 2.5,
+      "any_singleton_wins": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "dictator_singleton": {
+      "coalition": [
+        0
+      ],
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

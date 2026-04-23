@@ -1,0 +1,119 @@
+{
+  "name": "loop_order_family",
+  "classification": "canonical",
+  "classification_note": "Canonical local row for loop-order family behavior on one bounded carrier, showing that swapping step order changes the terminal state.",
+  "lego_ids": [
+    "loop_order_family"
+  ],
+  "primary_lego_ids": [
+    "loop_order_family"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "swapping_loop_step_order_changes_terminal_state": {
+      "distance": 0.3314135740355918,
+      "pass": true
+    },
+    "repeating_same_order_is_stable": {
+      "pass": true
+    },
+    "all_terminal_states_remain_valid_density_operators": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "row_does_not_collapse_to_joint_operator_action": {
+      "pass": true
+    },
+    "row_does_not_promote_global_engine_order_claim": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bounded_to_one_local_loop_step_family": {
+      "pass": true
+    },
+    "initial_state_is_preserved_under_empty_sequence_only": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local loop-order row on one bounded carrier with two noncommuting steps."
+  }
+}

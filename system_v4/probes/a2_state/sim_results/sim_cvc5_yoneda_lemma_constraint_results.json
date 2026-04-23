@@ -1,0 +1,134 @@
+{
+  "name": "Yoneda Lemma Constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure symbolic constraint via cvc5"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "categorical structure encoded as constraints"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 is primary"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Primary solver for Yoneda bijection proofs"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_forward": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Forward direction well-defined"
+    },
+    "test_2_inverse": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Inverse direction well-defined"
+    },
+    "test_3_bijection": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Bijection inverts correctly"
+    }
+  },
+  "negative": {
+    "test_neg_1_forward_fail": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Forward outside F(A) impossible"
+    },
+    "test_neg_2_naturality_fail": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Non-natural transformation impossible"
+    },
+    "test_neg_3_composition_fail": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Failed bijection impossible"
+    }
+  },
+  "boundary": {
+    "test_boundary_1_identity_functor": {
+      "status": "PASS",
+      "reason": "Yoneda with identity functor"
+    },
+    "test_boundary_2_trivial_hom": {
+      "status": "PASS",
+      "reason": "Single morphism Hom set"
+    },
+    "test_boundary_3_multiple": {
+      "status": "PASS",
+      "reason": "Multiple morphisms from A"
+    }
+  },
+  "classification": "canonical"
+}

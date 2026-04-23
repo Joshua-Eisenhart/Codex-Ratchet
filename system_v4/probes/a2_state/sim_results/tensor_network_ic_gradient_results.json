@@ -1,0 +1,120 @@
+{
+  "name": "tensor_network_ic_gradient",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "MPS tensor contraction with autograd; rho_AB from left-half contraction; I_c = S(B) - S(AB) computed via eigenvalues; gradient dI_c/dchi verified positive across chi in {1,2,4}"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- MPS is linear chain, no message passing"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: chi=1 (product MPS) AND I_c > 0 is impossible; product state has separable structure so I_c is excluded from being strictly positive by construction"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 sufficient for bounded int proof"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic proof: for bipartite pure state |psi_AB>, I_c = S(B) - S(AB) = S(B) since S(AB)=0; Schmidt rank = bond rank of bipartition matrix"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "MPS bond index as grade-1 element in Cl(3,0); contracting two grade-1 elements yields grade-0 (scalar) + grade-2; grade-2 component represents entanglement content of bond"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no Riemannian manifold structure required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant layers"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "MPS as linear chain graph with bond-weight chi; verify bond cut partitions graph into exactly two connected components"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hyperedge {left_tensors, right_tensors, bond_cut} as 3-way hyperedge; I_c is a property of the hyperedge, not either component alone -- verifies irreducible triadic structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- simplicial structure not required"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "bond dimension filtration: insert bonds at chi=1,2,4; persistent H0 shows connected components; at chi>1 the entanglement topology changes (new H0 feature born)"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": "load_bearing",
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "ic_chi1_leq_ic_chi2": true,
+    "ic_chi2_leq_ic_chi4": true,
+    "ic_chi4_positive": true,
+    "ic_values_recorded": {
+      "1": 8.881784197001256e-16,
+      "2": 0.6931471805599461,
+      "4": 1.3862943611198908
+    },
+    "sympy_ic_pure_equals_S_B": true,
+    "chi1_rho_AB_rank_leq_1": true,
+    "clifford_grade2_nonzero_for_nonparallel_bonds": true,
+    "clifford_grade0_exists": true
+  },
+  "negative": {
+    "z3_unsat_chi1_ic_positive": true,
+    "chi1_ic_leq_zero_numerically": true,
+    "clifford_parallel_bonds_grade2_zero": true,
+    "rustworkx_bond_cut_disconnects_graph": true
+  },
+  "boundary": {
+    "chi1_S_AB_near_zero": true,
+    "chi1_S_B_nonneg": true,
+    "xgi_bond_cut_node_in_both_hyperedges": true,
+    "gudhi_h0_features_present": true,
+    "gudhi_filtration_values_increasing": true,
+    "rustworkx_two_components_after_cut": true
+  },
+  "all_pass": true,
+  "errors": [],
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical MPS baseline: chi increase raises mixed entropy but not entanglement-as-resource",
+    "product state (chi=1) excluded from I_c > 0 by construction -- not a quantum proof",
+    "grade-2 Clifford component co-varies with bond entanglement but does not cause it",
+    "gudhi filtration topology change at chi > 1 is a classical combinatorial artifact",
+    "no genuine quantum nonlocality: higher chi = more correlations, not Bell-inequality violation"
+  ]
+}

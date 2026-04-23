@@ -1,0 +1,230 @@
+{
+  "name": "matched_marginal_packet_validation",
+  "timestamp": "2026-04-16T20:37:46.850855+00:00",
+  "passed_gates": 9,
+  "total_gates": 9,
+  "score": 1.0,
+  "constraint_family_profile": {
+    "observational": 1.0,
+    "admissible": 1.0,
+    "stable": 1.0,
+    "entropy_conditioned": 1.0,
+    "topology_conditioned": 1.0
+  },
+  "gates": [
+    {
+      "name": "M1_phase4_and_phase5a_execute_cleanly",
+      "pass": true,
+      "detail": {
+        "all_ok": true,
+        "steps": [
+          {
+            "label": "phase4_bridge_landscape",
+            "ok": true,
+            "returncode": 0
+          },
+          {
+            "label": "phase5a_marginal_preserving",
+            "ok": true,
+            "returncode": 0
+          },
+          {
+            "label": "phase6_point_reference",
+            "ok": true,
+            "returncode": 0
+          },
+          {
+            "label": "fe_indexed_history",
+            "ok": true,
+            "returncode": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "M2_phase4_winner_fails_matched_marginal_filter",
+      "pass": true,
+      "detail": {
+        "winner": "20_cross_s1_symmetric_retro",
+        "winner_preserves_marginals": false,
+        "matched_marginal_winner": null,
+        "matched_marginal_tolerance": 0.001
+      }
+    },
+    {
+      "name": "M3_phase5a_certifies_marginal_preserving_family",
+      "pass": true,
+      "detail": {
+        "certified_blocks": 12,
+        "total_blocks": 12,
+        "failed_blocks": 0,
+        "max_final_dev_A": 2.7894008272968645e-16,
+        "max_final_dev_B": 4.0221650305342743e-16,
+        "max_hist_dev_A": 2.847483988694276e-16,
+        "max_hist_dev_B": 3.3306690738754696e-16
+      }
+    },
+    {
+      "name": "M4_preserving_mi_collapses_while_chiral_mi_stays_large",
+      "pass": true,
+      "detail": {
+        "mean_preserving": 2.590520390792032e-16,
+        "mean_chiral": 1.3086226003995745,
+        "max_ratio_preserving_to_chiral": 5.367767999330256e-16
+      }
+    },
+    {
+      "name": "M5_optimizer_finds_no_nonproduct_preserving_advantage",
+      "pass": true,
+      "detail": {
+        "best_sources": [
+          "product_seed"
+        ],
+        "max_preserving_MI": 7.771561172376096e-16
+      }
+    },
+    {
+      "name": "M6_exact_preserving_point_reference_stays_discriminator_only",
+      "pass": true,
+      "detail": {
+        "mean_best_exact_I_AB": 5.921189464667501e-16,
+        "mean_best_tol_1e3_I_AB": 5.921189464667501e-16,
+        "base_exact_nontrivial_count": 0,
+        "fiber_exact_nontrivial_count": 0,
+        "controller_read": "point_reference_remains_discriminator_only"
+      }
+    },
+    {
+      "name": "M7_fe_indexed_pairs_remain_the_strongest_structured_refinement_candidate",
+      "pass": true,
+      "detail": {
+        "best_new_bridge": "C_fe_pairs_only",
+        "best_gain": -0.06118899331325358,
+        "mean_fe_advantage": 0.1541156399753626,
+        "mean_mi": {
+          "A_phase4_winner": 1.534040613809445,
+          "B_fe_indexed": 1.3179309343057353,
+          "C_fe_pairs_only": 1.472851620496191,
+          "D_lag7_pairs": 1.3027503051475369
+        },
+        "mean_ic": {
+          "A_phase4_winner": 0.5428860255643033,
+          "B_fe_indexed": 0.338606597341697,
+          "C_fe_pairs_only": 0.4896489122831466,
+          "D_lag7_pairs": 0.3207794681721909
+        },
+        "winner_counts": {
+          "A_phase4_winner": 6,
+          "B_fe_indexed": 0,
+          "C_fe_pairs_only": 0,
+          "D_lag7_pairs": 0
+        },
+        "fe_pairs_only_beats_phase4_on_ic_count": 0
+      }
+    },
+    {
+      "name": "M8_matched_marginal_layer_preserves_xi_downstream_handoff_contract",
+      "pass": true,
+      "detail": {
+        "signed_bridge_handoff": {
+          "candidate": "Xi_chiral_entangle",
+          "status": "provisional_handoff_ready",
+          "placement_contract": "downstream_axis_internal_bridge_candidate_only",
+          "owner_dependency": "must_bind_under_xi_hist_signed_law",
+          "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+          "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+          "bridge_owner_alignment": {
+            "pass": true,
+            "status": "axis_internal_candidate_not_final_owner_law",
+            "placement_relation": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            "owner_dependency": "must_bind_under_xi_hist_signed_law",
+            "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+            "strict_owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
+            "canonical_anchor_label": "8_23",
+            "canonical_prefix_drop": "8_15",
+            "canonical_early_width": "0_7",
+            "winner": "Xi_chiral_entangle",
+            "runner_up": "Xi_chiral_hist_entangle",
+            "winner_mean_mi": 0.8232542855942899,
+            "runner_up_mean_mi": 0.5126433115412764,
+            "winner_mean_i_c": 0.028504810872339026,
+            "runner_up_mean_i_c": -0.07773004558064106,
+            "deep_contract_winner": "Xi_chiral_entangle"
+          },
+          "object": "c1_signed_bridge_candidate_handoff",
+          "origin_surface": "sim_c1_signed_bridge_candidate_search",
+          "support_chain_gate": "C1S3_support_chain_is_closed_before_candidate_packaging",
+          "signed_metric": "I_c",
+          "read": "Xi_chiral_entangle remains the current downstream signed bridge candidate handoff for readout use, but it is not a final owner law."
+        },
+        "phase4_winner": "20_cross_s1_symmetric_retro",
+        "phase4_winner_preserves_marginals": false,
+        "phase4_matched_marginal_winner": null,
+        "phase6_point_reference_earned_bridge_survives": false,
+        "phase6_point_reference_discriminator_survives": true
+      }
+    },
+    {
+      "name": "M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping",
+      "pass": true,
+      "detail": {
+        "signed_bridge_handoff": {
+          "candidate": "Xi_chiral_entangle",
+          "status": "provisional_handoff_ready",
+          "placement_contract": "downstream_axis_internal_bridge_candidate_only",
+          "owner_dependency": "must_bind_under_xi_hist_signed_law",
+          "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+          "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+          "bridge_owner_alignment": {
+            "pass": true,
+            "status": "axis_internal_candidate_not_final_owner_law",
+            "placement_relation": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            "owner_dependency": "must_bind_under_xi_hist_signed_law",
+            "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+            "strict_owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
+            "canonical_anchor_label": "8_23",
+            "canonical_prefix_drop": "8_15",
+            "canonical_early_width": "0_7",
+            "winner": "Xi_chiral_entangle",
+            "runner_up": "Xi_chiral_hist_entangle",
+            "winner_mean_mi": 0.8232542855942899,
+            "runner_up_mean_mi": 0.5126433115412764,
+            "winner_mean_i_c": 0.028504810872339026,
+            "runner_up_mean_i_c": -0.07773004558064106,
+            "deep_contract_winner": "Xi_chiral_entangle"
+          },
+          "object": "c1_signed_bridge_candidate_handoff",
+          "origin_surface": "sim_c1_signed_bridge_candidate_search",
+          "support_chain_gate": "C1S3_support_chain_is_closed_before_candidate_packaging",
+          "signed_metric": "I_c",
+          "read": "Xi_chiral_entangle remains the current downstream signed bridge candidate handoff for readout use, but it is not a final owner law."
+        },
+        "pre_entropy_axis_internal_readout": {
+          "I_c_A_to_B": "readout",
+          "S_A_given_B": "readout",
+          "Xi_chiral_entangle": "current_bridge_candidate",
+          "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+        },
+        "pre_entropy_current_mapping": {
+          "hopf_carrier_point": "qit_grounded",
+          "nested_torus_seat": "qit_grounded",
+          "weyl_sheet_pair": "sim_live",
+          "loop_sensitive_transport_surface": "sim_live_candidate",
+          "chirality_differential_surface": "sim_live_candidate",
+          "bloch_differential_surface": "sim_live_candidate",
+          "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
+          "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
+          "xi_hist_signed_law": "axis_eligible_owner_derived"
+        },
+        "pre_entropy_placement_relations": {
+          "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff"
+        },
+        "phase4_winner_preserves_marginals": false,
+        "phase4_matched_marginal_winner": null,
+        "phase6_point_reference_earned_bridge_survives": false,
+        "phase6_point_reference_discriminator_survives": true
+      }
+    }
+  ]
+}

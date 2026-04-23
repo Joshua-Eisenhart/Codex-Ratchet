@@ -1,0 +1,114 @@
+{
+  "name": "sim_cvc5_algebraic_effect_handler_constraint",
+  "description": "cvc5 proves algebraic effect handler composition laws: identity handler, handler composition (h1\u2218h2=h_combined), associativity, and monad laws via QF_LIA effect count and handler index constraints",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "Handler composition is algebraic; no gradient descent on handler semantics"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Handler laws are not graph structure"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 preferred for algebraic handler composition constraints"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "sympy derives algebraic monad laws and effect operation structure for supportive verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Handler composition is algebraic type level; Clifford algebra secondary"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Handler laws are discrete algebraic; not Riemannian"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Handler composition not equivariant network problem"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Handler algebraic laws not graph combinatorics"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Handler composition not hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 constraints drive handler laws; topology secondary"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Handler composition not topological"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_identity_handler": {
+      "error": "No module named 'cvc5'"
+    },
+    "test_positive_handler_composition": {
+      "error": "No module named 'cvc5'"
+    },
+    "test_positive_handler_associativity": {
+      "error": "No module named 'cvc5'"
+    }
+  },
+  "negative": {
+    "test_negative_identity_law_violated": {
+      "error": "No module named 'cvc5'"
+    },
+    "test_negative_composition_law_violated": {
+      "error": "No module named 'cvc5'"
+    },
+    "test_negative_associativity_violated": {
+      "error": "No module named 'cvc5'"
+    }
+  },
+  "boundary": {
+    "test_boundary_single_handler": {
+      "error": "No module named 'cvc5'"
+    },
+    "test_boundary_two_sequential_handlers": {
+      "error": "No module named 'cvc5'"
+    },
+    "test_boundary_nested_three_handlers": {
+      "error": "No module named 'cvc5'"
+    }
+  }
+}

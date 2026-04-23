@@ -1,0 +1,112 @@
+{
+  "name": "sim_spectral_triple_weyl_hopf_coupling",
+  "classification": "canonical",
+  "claim": "D-spectrum splits into L/R eigenspaces under Cl(3) chirality grading AND reversed Hopf\u2218Weyl ordering shifts spectrum vs Weyl\u2218Hopf (non-commutativity witnessed by sympy charpoly inequality).",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy sufficient for finite-dim spectral computation here"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph message-passing needed; this is a spectral algebra test"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "sympy charpoly comparison is the decisive tool; z3 not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; sympy handles symbolic polynomial inequality"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Constructs symbolic characteristic polynomials from eigenvalue sets and compares them to prove the two operator orderings (Weyl\u2218Hopf vs Hopf\u2218Weyl) produce distinct D-spectra; charpoly inequality is the load-bearing claim, not a numeric tolerance check."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) pseudoscalar I_3=e1*e2*e3 realizes the Weyl chirality grading (gamma5 analogue); confirms I_3^2=-1 (anti-involution) and anti-commutation with grade-1 vectors, which grounds the L/R eigenspace split in geometric algebra rather than ad-hoc labels."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Hopf fibration realized algebraically via Cl(3); geomstats redundant"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) equivariance not the claim here; Weyl chirality is Cl(3)-native"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure required for spectral triple"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hyperedges in this construction"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not load-bearing here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not relevant to spectral splitting"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "clifford_I3_squared": -1.0,
+    "clifford_I3_sq_is_minus1": true,
+    "clifford_chiral_eigenvalues": [
+      "1j",
+      "-1j"
+    ],
+    "D_WH_L_eigenspace_size": 3,
+    "D_WH_R_eigenspace_size": 3,
+    "D_WH_LR_split_nonempty": true,
+    "sympy_charpolys_WH_HW_differ": true,
+    "max_eigenvalue_shift_WH_vs_HW": 0.665067674236338,
+    "eigenvalue_ordering_matters": true,
+    "pass": true
+  },
+  "negative": {
+    "control_no_weyl_spectrum_identical": true,
+    "diagonal_D_ordering_also_differs": true,
+    "diagonal_D_diff": 0.5,
+    "pass": true
+  },
+  "boundary": {
+    "N2_ordering_diff": 0.7847006554165616,
+    "N2_pass": true,
+    "N12_L_size": 6,
+    "N12_R_size": 6,
+    "N12_LR_balanced": true,
+    "clifford_I3_anticommutes_with_e1": true,
+    "pass": true
+  },
+  "overall_pass": true
+}

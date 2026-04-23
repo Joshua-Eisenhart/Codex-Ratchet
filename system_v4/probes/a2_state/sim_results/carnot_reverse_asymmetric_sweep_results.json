@@ -1,0 +1,434 @@
+{
+  "name": "carnot_reverse_asymmetric_sweep",
+  "classification": "exploratory",
+  "classification_note": "Asymmetric hot/cold isotherm sweep for the reverse stochastic Carnot lane. It maps refrigerator COP and return mismatch as hot and cold thermalization budgets vary independently.",
+  "parent_scope_note": "Operational finite-time stochastic Carnot sidecar on a 1D harmonic working substance. It exposes explicit hot/cold isothermal legs, adiabatic jumps, forward and reverse modes, and fast-vs-slow dissipation without claiming a runtime-engine realization.",
+  "lego_ids": [
+    "stochastic_thermodynamics",
+    "carnot_cycle"
+  ],
+  "primary_lego_ids": [
+    "stochastic_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "some_asymmetric_setting_improves_reverse_closure_over_balanced_baseline": {
+      "best_closure_setting": {
+        "cold_steps": 2500,
+        "hot_steps": 2500
+      },
+      "best_closure_variance_mismatch_abs": 0.0044596912592960725,
+      "best_balanced_variance_mismatch_abs": 0.0044596912592960725,
+      "pass": false
+    },
+    "some_high_budget_setting_moves_close_to_carnot_cop": {
+      "best_cop_setting": {
+        "cold_steps": 5000,
+        "hot_steps": 5000
+      },
+      "best_cop_distance_to_carnot": 0.09570592873213313,
+      "pass": false
+    },
+    "cold_heavy_budget_beats_hot_heavy_budget_on_average_for_reverse_closure": {
+      "cold_heavy_mean_variance_mismatch": 0.022799850197799315,
+      "hot_heavy_mean_variance_mismatch": 0.02131833828759856,
+      "pass": false
+    }
+  },
+  "negative": {
+    "even_the_best_reverse_row_still_has_nonzero_cycle_return_error": {
+      "cycle_delta_u": -8.09542095921989e-05,
+      "pass": false
+    },
+    "hot_leg_budget_alone_is_not_sufficient_to_optimize_reverse_closure": {
+      "best_hot_heavy_variance_mismatch_abs": 0.0068756012626213225,
+      "best_cold_heavy_variance_mismatch_abs": 0.008507886240086027,
+      "pass": false
+    }
+  },
+  "boundary": {
+    "all_rows_are_finite": {
+      "pass": true
+    },
+    "all_rows_operate_on_the_same_temperature_pair": {
+      "t_hot": 2.0,
+      "t_cold": 1.0,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": false,
+    "cold_step_grid": [
+      520,
+      1000,
+      2500,
+      5000
+    ],
+    "hot_step_grid": [
+      520,
+      1000,
+      2500,
+      5000
+    ],
+    "best_closure_setting": {
+      "cold_steps": 2500,
+      "hot_steps": 2500
+    },
+    "best_closure_variance_mismatch_abs": 0.0044596912592960725,
+    "best_cop_setting": {
+      "cold_steps": 5000,
+      "hot_steps": 5000
+    },
+    "best_cop_distance_to_carnot": 0.09570592873213313,
+    "scope_note": "Asymmetric hot/cold isotherm sweep for the reverse stochastic Carnot lane. It maps how refrigerator quality and return mismatch depend on thermalization budget."
+  },
+  "rows": [
+    {
+      "cold_steps": 520,
+      "hot_steps": 520,
+      "q_cold_absorbed": 0.2663993769694663,
+      "q_hot_released": -0.6907185818501227,
+      "work_input": 0.47973603060807823,
+      "cop": 0.5553040838558613,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.4446959161441387,
+      "initial_variance": 0.5029212693416519,
+      "final_variance": 0.5305175307289599,
+      "variance_mismatch_abs": 0.030517530728959907,
+      "initial_internal_energy": 1.0058427364449496,
+      "final_internal_energy": 1.0612595621723717,
+      "internal_energy_mismatch_abs": 0.06125956217237172,
+      "cycle_delta_u": 0.055416825727422125
+    },
+    {
+      "cold_steps": 520,
+      "hot_steps": 1000,
+      "q_cold_absorbed": 0.23829176852866835,
+      "q_hot_released": -0.6699934470933826,
+      "work_input": 0.4563852520143947,
+      "cop": 0.5221285470485634,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.4778714529514366,
+      "initial_variance": 0.5106832094324669,
+      "final_variance": 0.5230009927073358,
+      "variance_mismatch_abs": 0.0230009927073358,
+      "initial_internal_energy": 1.0217987765037413,
+      "final_internal_energy": 1.0464823499534217,
+      "internal_energy_mismatch_abs": 0.04648234995342171,
+      "cycle_delta_u": 0.024683573449680363
+    },
+    {
+      "cold_steps": 520,
+      "hot_steps": 2500,
+      "q_cold_absorbed": 0.22534688133278977,
+      "q_hot_released": -0.6900554576939191,
+      "work_input": 0.40973717848706226,
+      "cop": 0.5499790918775638,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.4500209081224362,
+      "initial_variance": 0.5202397882325687,
+      "final_variance": 0.4931243987373787,
+      "variance_mismatch_abs": 0.0068756012626213225,
+      "initial_internal_energy": 1.041220790847963,
+      "final_internal_energy": 0.9862493929738957,
+      "internal_energy_mismatch_abs": 0.013750607026104311,
+      "cycle_delta_u": -0.05497139787406724
+    },
+    {
+      "cold_steps": 520,
+      "hot_steps": 5000,
+      "q_cold_absorbed": 0.2747808326782549,
+      "q_hot_released": -0.7167720106627288,
+      "work_input": 0.43207882588907454,
+      "cop": 0.6359507020804533,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.36404929791954665,
+      "initial_variance": 0.4901672304889822,
+      "final_variance": 0.48449801388604324,
+      "variance_mismatch_abs": 0.015501986113956756,
+      "initial_internal_energy": 0.9803508056062193,
+      "final_internal_energy": 0.9704384535108199,
+      "internal_energy_mismatch_abs": 0.02956154648918008,
+      "cycle_delta_u": -0.009912352095399313
+    },
+    {
+      "cold_steps": 1000,
+      "hot_steps": 520,
+      "q_cold_absorbed": 0.34820917996990064,
+      "q_hot_released": -0.7950823631645695,
+      "work_input": 0.517899330028847,
+      "cop": 0.672349160889058,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.32765083911094195,
+      "initial_variance": 0.49682610560738727,
+      "final_variance": 0.5325848454815285,
+      "variance_mismatch_abs": 0.03258484548152851,
+      "initial_internal_energy": 0.9941774182206157,
+      "final_internal_energy": 1.065203565054794,
+      "internal_energy_mismatch_abs": 0.06520356505479397,
+      "cycle_delta_u": 0.0710261468341783
+    },
+    {
+      "cold_steps": 1000,
+      "hot_steps": 1000,
+      "q_cold_absorbed": 0.3635191631027869,
+      "q_hot_released": -0.7404662880822735,
+      "work_input": 0.4899576124672338,
+      "cop": 0.7419400247140715,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.2580599752859285,
+      "initial_variance": 0.4705918085100008,
+      "final_variance": 0.5269634989335066,
+      "variance_mismatch_abs": 0.02696349893350658,
+      "initial_internal_energy": 0.9411838258745043,
+      "final_internal_energy": 1.0541943133622516,
+      "internal_energy_mismatch_abs": 0.054194313362251556,
+      "cycle_delta_u": 0.11301048748774711
+    },
+    {
+      "cold_steps": 1000,
+      "hot_steps": 2500,
+      "q_cold_absorbed": 0.3321255824373824,
+      "q_hot_released": -0.7395482242083569,
+      "work_input": 0.4500159929267624,
+      "cop": 0.7380306203727163,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.2619693796272837,
+      "initial_variance": 0.5086306839967301,
+      "final_variance": 0.5299993810567227,
+      "variance_mismatch_abs": 0.02999938105672273,
+      "initial_internal_energy": 1.0178390780796047,
+      "final_internal_energy": 1.0604324292353926,
+      "internal_energy_mismatch_abs": 0.060432429235392604,
+      "cycle_delta_u": 0.04259335115578794
+    },
+    {
+      "cold_steps": 1000,
+      "hot_steps": 5000,
+      "q_cold_absorbed": 0.32686230442533454,
+      "q_hot_released": -0.7592031939644254,
+      "work_input": 0.4371480615311961,
+      "cop": 0.7477153239120762,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.2522846760879238,
+      "initial_variance": 0.5133758581504926,
+      "final_variance": 0.5158902708319418,
+      "variance_mismatch_abs": 0.015890270831941833,
+      "initial_internal_energy": 1.027229853964894,
+      "final_internal_energy": 1.0320370259569993,
+      "internal_energy_mismatch_abs": 0.03203702595699931,
+      "cycle_delta_u": 0.0048071719921050915
+    },
+    {
+      "cold_steps": 2500,
+      "hot_steps": 520,
+      "q_cold_absorbed": 0.408227803237505,
+      "q_hot_released": -0.926506096046722,
+      "work_input": 0.5446508327192634,
+      "cop": 0.7495220400184778,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.2504779599815222,
+      "initial_variance": 0.5035386953805162,
+      "final_variance": 0.5170981542901959,
+      "variance_mismatch_abs": 0.0170981542901959,
+      "initial_internal_energy": 1.0078322674877873,
+      "final_internal_energy": 1.0342048073978338,
+      "internal_energy_mismatch_abs": 0.034204807397833825,
+      "cycle_delta_u": 0.02637253991004665
+    },
+    {
+      "cold_steps": 2500,
+      "hot_steps": 1000,
+      "q_cold_absorbed": 0.42290142290473665,
+      "q_hot_released": -0.918280528293005,
+      "work_input": 0.5134523854261023,
+      "cop": 0.8236429217361226,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.17635707826387736,
+      "initial_variance": 0.499432023835462,
+      "final_variance": 0.508507886240086,
+      "variance_mismatch_abs": 0.008507886240086027,
+      "initial_internal_energy": 0.9990397369094236,
+      "final_internal_energy": 1.0171130169472578,
+      "internal_energy_mismatch_abs": 0.017113016947257753,
+      "cycle_delta_u": 0.018073280037834122
+    },
+    {
+      "cold_steps": 2500,
+      "hot_steps": 2500,
+      "q_cold_absorbed": 0.4181475714560254,
+      "q_hot_released": -0.9097437535847762,
+      "work_input": 0.49151522791915847,
+      "cop": 0.8507316715827161,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.14926832841728388,
+      "initial_variance": 0.4956218947947904,
+      "final_variance": 0.4955403087407039,
+      "variance_mismatch_abs": 0.0044596912592960725,
+      "initial_internal_energy": 0.9915112416683332,
+      "final_internal_energy": 0.991430287458741,
+      "internal_energy_mismatch_abs": 0.008569712541259045,
+      "cycle_delta_u": -8.09542095921989e-05
+    },
+    {
+      "cold_steps": 2500,
+      "hot_steps": 5000,
+      "q_cold_absorbed": 0.42017496531520093,
+      "q_hot_released": -0.8279354338307494,
+      "work_input": 0.4799928344816655,
+      "cop": 0.8753775788526912,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.12462242114730882,
+      "initial_variance": 0.5006668671971658,
+      "final_variance": 0.5366417977530129,
+      "variance_mismatch_abs": 0.036641797753012906,
+      "initial_internal_energy": 1.0018398036287428,
+      "final_internal_energy": 1.07407216959486,
+      "internal_energy_mismatch_abs": 0.07407216959486007,
+      "cycle_delta_u": 0.07223236596611712
+    },
+    {
+      "cold_steps": 5000,
+      "hot_steps": 520,
+      "q_cold_absorbed": 0.452138087064231,
+      "q_hot_released": -0.9710227354395052,
+      "work_input": 0.6088882933234498,
+      "cop": 0.7425632780626462,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.2574367219373538,
+      "initial_variance": 0.4910585824652675,
+      "final_variance": 0.5360203415110478,
+      "variance_mismatch_abs": 0.036020341511047826,
+      "initial_internal_energy": 0.982150996295055,
+      "final_internal_energy": 1.0721546412432306,
+      "internal_energy_mismatch_abs": 0.07215464124323057,
+      "cycle_delta_u": 0.09000364494817578
+    },
+    {
+      "cold_steps": 5000,
+      "hot_steps": 1000,
+      "q_cold_absorbed": 0.4594617051762461,
+      "q_hot_released": -0.9127626470842781,
+      "work_input": 0.5392655467585052,
+      "cop": 0.8520138324023192,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.1479861675976808,
+      "initial_variance": 0.4902890107444443,
+      "final_variance": 0.5332451306736817,
+      "variance_mismatch_abs": 0.03324513067368173,
+      "initial_internal_energy": 0.9805780977737675,
+      "final_internal_energy": 1.0665427026242407,
+      "internal_energy_mismatch_abs": 0.06654270262424067,
+      "cycle_delta_u": 0.08596460485047333
+    },
+    {
+      "cold_steps": 5000,
+      "hot_steps": 2500,
+      "q_cold_absorbed": 0.46064604521110086,
+      "q_hot_released": -0.9538639051516752,
+      "work_input": 0.5102923663845131,
+      "cop": 0.9027100453703377,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.09728995462966228,
+      "initial_variance": 0.48213780951913277,
+      "final_variance": 0.4906572570097441,
+      "variance_mismatch_abs": 0.009342742990255892,
+      "initial_internal_energy": 0.9642758772717958,
+      "final_internal_energy": 0.9813503837157345,
+      "internal_energy_mismatch_abs": 0.018649616284265536,
+      "cycle_delta_u": 0.017074506443938813
+    },
+    {
+      "cold_steps": 5000,
+      "hot_steps": 5000,
+      "q_cold_absorbed": 0.4651858341897317,
+      "q_hot_released": -0.9065696815049913,
+      "work_input": 0.5144187593063805,
+      "cop": 0.9042940712678669,
+      "cop_carnot": 1.0,
+      "cop_distance_to_carnot": 0.09570592873213313,
+      "initial_variance": 0.4936721436711282,
+      "final_variance": 0.5302488459667154,
+      "variance_mismatch_abs": 0.0302488459667154,
+      "initial_internal_energy": 0.9879340533936476,
+      "final_internal_energy": 1.0609689653847683,
+      "internal_energy_mismatch_abs": 0.06096896538476826,
+      "cycle_delta_u": 0.07303491199112075
+    }
+  ]
+}

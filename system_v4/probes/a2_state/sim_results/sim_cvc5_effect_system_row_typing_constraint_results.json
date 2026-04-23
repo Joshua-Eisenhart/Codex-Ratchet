@@ -1,0 +1,155 @@
+{
+  "name": "sim_cvc5_effect_system_row_typing_constraint",
+  "description": "cvc5 proves effect system row typing constraints: effect membership eff\u2208\u03c1, row subset \u03c1\u2081\u2286\u03c1\u2082, closure under polymorphic abstraction, preventing effect leakage via QF_LIA set membership and cardinality constraints",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "Effect row types are type-level constraints; no gradient descent on row membership"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Effect rows are algebraic row constraints; not graph structure"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 preferred for set membership and subset constraints on effect rows"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 proves row closure and polymorphic abstraction constraints via QF_LIA set membership and cardinality"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "sympy derives effect algebra (composition, identity) for supportive cross-check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Effect rows are type-level; Clifford algebra secondary to row constraints"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Effect row constraints are discrete algebraic; not Riemannian geometry"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Effect row typing not equivariant network problem; effects are unordered set operations"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Effect rows handled via set algebra; not graph combinatorics"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Effect row constraints not hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 set constraints drive row typing; topology secondary"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Effect rows not topological; set membership is primary"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_effect_membership": {
+      "description": "cvc5 SAT: effect read \u2208 row \u03c1={read, write}",
+      "sat": true,
+      "row": "{read, write}",
+      "effect": "read",
+      "expected": true,
+      "interpretation": "Effect membership is decidable via row type constraint",
+      "model": "[1, 1, 0]"
+    },
+    "test_positive_row_subset": {
+      "description": "cvc5 SAT: row \u03c1\u2081={read, write} \u2286 \u03c1\u2082={read, write, throw}",
+      "sat": true,
+      "rho1": "{read, write}",
+      "rho2": "{read, write, throw}",
+      "expected": true,
+      "interpretation": "Row subtyping allows substitution of rows in polymorphic type context",
+      "model": "[1, 1, 1, 1]"
+    },
+    "test_positive_closure_polymorphic": {
+      "description": "cvc5 SAT: polymorphic function \u2200\u03b1.(T[\u03b1]\u2192T[\u03b1]) with \u03b1={read,write} closed under abstraction",
+      "sat": true,
+      "row_type": "{read, write}",
+      "expected": true,
+      "interpretation": "Polymorphic functions are closed under their declared row type; no effect leakage",
+      "model": "[1, 1, 0]"
+    }
+  },
+  "negative": {
+    "test_negative_effect_membership_contradiction": {
+      "description": "cvc5 UNSAT: read \u2208 \u03c1 AND read \u2209 \u03c1 is impossible (effect membership is decidable)",
+      "unsat": true,
+      "expected": true,
+      "reason": "Effect membership in a row type is either true or false; contradiction is unsatisfiable"
+    },
+    "test_negative_row_subset_violated": {
+      "description": "cvc5 UNSAT: \u03c1\u2081\u2286\u03c1\u2082 AND read\u2208\u03c1\u2081 AND read\u2209\u03c1\u2082 is impossible (subset transitivity)",
+      "unsat": true,
+      "expected": true,
+      "reason": "Row subset constraint forbids effect membership to decrease"
+    },
+    "test_negative_effect_leakage": {
+      "description": "cvc5 UNSAT: throw\u2209\u03b1 AND throw performed is impossible (effect leakage prevented)",
+      "unsat": true,
+      "expected": true,
+      "reason": "Polymorphic function cannot perform effects outside declared row type"
+    }
+  },
+  "boundary": {
+    "test_boundary_single_effect_row": {
+      "description": "cvc5 SAT: single-effect row \u03c1={read}",
+      "sat": true,
+      "row": "{read}",
+      "expected": true,
+      "interpretation": "Single-effect rows are valid row types (pure read-only computation)",
+      "model": "[1, 0, 0]"
+    },
+    "test_boundary_multi_effect_row": {
+      "description": "cvc5 SAT: multi-effect row \u03c1={read, write, throw}",
+      "sat": true,
+      "row": "{read, write, throw}",
+      "expected": true,
+      "interpretation": "Multi-effect rows constrain computation to finite declared set of operations",
+      "model": "[1, 1, 1]"
+    },
+    "test_boundary_empty_row": {
+      "description": "cvc5 SAT: empty row \u03c1={} (pure computation, no effects)",
+      "sat": true,
+      "row": "{}",
+      "expected": true,
+      "interpretation": "Empty row represents pure computation with no observable effects",
+      "model": "[0, 0]"
+    }
+  }
+}

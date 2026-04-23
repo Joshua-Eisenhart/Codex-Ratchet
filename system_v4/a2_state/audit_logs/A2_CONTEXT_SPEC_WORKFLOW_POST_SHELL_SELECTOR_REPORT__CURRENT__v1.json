@@ -1,0 +1,107 @@
+{
+  "append_safe_alignment": {
+    "append_safe_ok": true,
+    "prior_selector_aligned": true
+  },
+  "audit_only": true,
+  "cluster_id": "SKILL_CLUSTER::context-spec-workflow-memory",
+  "do_not_promote": true,
+  "generated_utc": "2026-03-22T02:55:25Z",
+  "issues": [],
+  "non_goals": [
+    "Do not directly land another pattern family from this selector.",
+    "Do not widen into multiple pattern families at once.",
+    "Do not claim runtime-live, service, training, or migration authority.",
+    "Do not claim canonical A2/A1 brain replacement.",
+    "Do not claim graph-substrate replacement.",
+    "Do not claim memory-platform ownership."
+  ],
+  "nonoperative": true,
+  "recommended_actions": [
+    "Keep the context/spec/workflow cluster held after the append-safe landing unless a future explicit reselection reopens it.",
+    "If this cluster is reopened later, take executable-spec-coupling next before workflow-review discipline or scoped-memory-sidecar.",
+    "Keep scoped-memory-sidecar blocked while EverMem/backend reachability is not green."
+  ],
+  "recommended_next_slice_id": "",
+  "recommended_next_step": "hold_cluster_after_append_safe_shell",
+  "schema": "A2_CONTEXT_SPEC_WORKFLOW_POST_SHELL_SELECTOR_REPORT_v1",
+  "selected_option": {
+    "blocking_reasons": [],
+    "label": "hold after append-safe shell",
+    "option_id": "hold_after_append_safe_shell",
+    "pattern_id": "",
+    "reasons": [
+      "the landed append-safe slice explicitly ended in a hold state",
+      "continuing by momentum would skip the current audit-only fence"
+    ],
+    "recommended_next_slice_id": "",
+    "score": 10,
+    "status": "selected"
+  },
+  "selected_option_id": "hold_after_append_safe_shell",
+  "selected_pattern_id": "",
+  "selection_options": [
+    {
+      "blocking_reasons": [],
+      "label": "hold after append-safe shell",
+      "option_id": "hold_after_append_safe_shell",
+      "pattern_id": "",
+      "reasons": [
+        "the landed append-safe slice explicitly ended in a hold state",
+        "continuing by momentum would skip the current audit-only fence"
+      ],
+      "recommended_next_slice_id": "",
+      "score": 10,
+      "status": "selected"
+    },
+    {
+      "blocking_reasons": [
+        "requires future explicit reselection after the current post-shell hold"
+      ],
+      "label": "executable spec coupling",
+      "option_id": "standby_executable_spec_coupling",
+      "pattern_id": "executable_spec_coupling",
+      "reasons": [
+        "it was already the strongest non-selected pattern in the earlier follow-on selector",
+        "it best matches the repeated repo/user pressure about keeping specs live and coupled"
+      ],
+      "recommended_next_slice_id": "a2-executable-spec-coupling-audit-operator",
+      "score": 8,
+      "status": "standby"
+    },
+    {
+      "blocking_reasons": [
+        "lower leverage than executable-spec-coupling once the append-safe shell is landed"
+      ],
+      "label": "workflow review discipline",
+      "option_id": "standby_workflow_review_discipline",
+      "pattern_id": "workflow_review_discipline",
+      "reasons": [
+        "still useful as a later bounded cluster seam"
+      ],
+      "recommended_next_slice_id": "a2-workflow-review-discipline-audit-operator",
+      "score": 6,
+      "status": "standby"
+    },
+    {
+      "blocking_reasons": [
+        "EverMem/backend reachability is not currently green"
+      ],
+      "label": "scoped memory sidecar",
+      "option_id": "blocked_scoped_memory_sidecar",
+      "pattern_id": "scoped_memory_sidecar",
+      "reasons": [
+        "memory-sidecar pressure remains relevant later"
+      ],
+      "recommended_next_slice_id": "a2-scoped-memory-sidecar-compat-audit-operator",
+      "score": 0,
+      "status": "blocked"
+    }
+  ],
+  "selection_scope": "bounded_post_shell_selection",
+  "selector_only": true,
+  "slice_id": "a2-context-spec-workflow-post-shell-selector-operator",
+  "standby_next_slice_id": "a2-executable-spec-coupling-audit-operator",
+  "standby_pattern_id": "executable_spec_coupling",
+  "status": "ok"
+}

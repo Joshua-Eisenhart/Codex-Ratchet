@@ -1,0 +1,170 @@
+{
+  "name": "sim_contact_symplectic_mera_pairwise_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "density matrix and MERA dephasing layers via torch tensors; I_c via partial trace"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "contact structure constraint graph not required at pairwise level; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 UNSAT: degenerate contact form (alpha^d\u03b1=0) cannot support Reeb orbit \u2014 structurally excluded"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for contact degeneracy exclusion; cvc5 not needed at pairwise"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "symbolic check that degenerate contact form forces H_contact=0; product formula Q_CSM"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford grade structure not the primary coupling target at pairwise level; excluded"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian manifold structure not needed for pairwise coupling baseline; excluded"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "E(3) equivariance not relevant to contact/symplectic/MERA pairwise; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "MERA layer DAG encoded as rustworkx directed graph; verifies tree structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "triadic hyperedge {H_contact, H_symp, I_c} encodes irreducible pairwise coupling"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell complex for contact structure topology; verifies pairwise shell adjacency"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not required for pairwise baseline coupling; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "P1_contact_symplectic_joint_fewer_than_either_alone": {
+      "passed": true,
+      "n_reeb": 20,
+      "n_lagrangian": 12,
+      "n_joint_admissible": 7,
+      "H_contact": 3.044522437723423,
+      "H_symp": 2.5649493574615367,
+      "interpretation": "Contact Reeb orbits constrain symplectic Lagrangians: joint-admissible count survived as strictly fewer than either alone"
+    },
+    "P2_contact_mera_both_positive_non_degenerate": {
+      "passed": true,
+      "H_contact": 3.044522437723423,
+      "n_reeb": 20,
+      "input_Ic": 1.3862943611198906,
+      "final_Ic": 0.1449416212505401,
+      "interpretation": "Reeb admissibility and I_c co-varied as both positive under non-degenerate contact form; one positive with other zero is excluded under this coupling"
+    },
+    "P3_symplectic_mera_both_finite_positive": {
+      "passed": true,
+      "H_symp": 2.5649493574615367,
+      "n_lagrangian": 12,
+      "input_Ic": 1.3862943611198906,
+      "final_Ic": 0.19195454538754597,
+      "interpretation": "Lagrangian count and I_c survived as both finite positive under symplectic \u00d7 MERA coupling"
+    },
+    "P4_mera_dag_structure": {
+      "passed": true,
+      "n_nodes": 7,
+      "n_edges": 6,
+      "interpretation": "MERA DAG structure survived; isolated nodes excluded"
+    },
+    "P5_xgi_triadic_hyperedge": {
+      "passed": true,
+      "interpretation": "Contact/Symplectic/MERA triadic coupling survived as non-reducible hyperedge"
+    },
+    "P6_toponetx_contact_cell_complex": {
+      "passed": true,
+      "n_nodes": 3,
+      "interpretation": "Contact structure topology survived as valid cell complex"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_degenerate_contact_no_reeb_orbit": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "Degenerate contact form with H_contact>0 is z3 UNSAT; zero Reeb orbits cannot produce positive H_contact"
+    },
+    "N2_degenerate_contact_H_contact_zero": {
+      "passed": true,
+      "H_contact": 0.0,
+      "n_reeb": 0,
+      "interpretation": "Degenerate contact form gives H_contact=0; non-zero H_contact for degenerate form excluded"
+    },
+    "N3_sympy_degenerate_H_contact_zero": {
+      "passed": true,
+      "H_at_n_zero": "0",
+      "interpretation": "log(1+0)=0 confirmed symbolically; H_contact=0 for degenerate contact form"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_trivial_contact_R1_H_contact_zero": {
+      "passed": true,
+      "H_contact": 0.0,
+      "n_reeb": 0,
+      "interpretation": "Trivial R^1 contact form has H_contact=0; positive H_contact for trivial form excluded"
+    },
+    "B2_Ic_monotone_input_gt_final": {
+      "passed": true,
+      "input_Ic": 1.3862943611198906,
+      "final_Ic": 0.08755803456496136,
+      "interpretation": "I_c survived as monotone decreasing across MERA layers; I_c increase excluded"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 11,
+    "n_pass": 11
+  },
+  "divergence_log": [
+    "Contact Reeb orbits constrain symplectic Lagrangians: joint-admissible fewer than either alone",
+    "Contact \u00d7 MERA: both H_contact and I_c positive under non-degenerate form",
+    "Symplectic \u00d7 MERA: both finite positive",
+    "z3 UNSAT: degenerate contact form with H_contact>0 excluded",
+    "sympy: log(1+0)=0 confirms degenerate boundary"
+  ]
+}

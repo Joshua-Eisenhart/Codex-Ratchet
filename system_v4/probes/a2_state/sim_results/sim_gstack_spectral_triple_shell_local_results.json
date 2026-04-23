@@ -1,0 +1,106 @@
+{
+  "name": "sim_gstack_spectral_triple_shell_local",
+  "classification": "canonical",
+  "overall_pass": true,
+  "shell": "spectral_triple",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one finite spectral triple and does not invoke cross-shell coupling."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one finite spectral triple and does not invoke cross-shell coupling."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 excludes a commutator norm bound that is simultaneously satisfied and violated in the same local chart."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one finite spectral triple and does not invoke cross-shell coupling."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy verifies bounded commutators and grading anticommutation for an explicit finite Dirac operator."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one finite spectral triple and does not invoke cross-shell coupling."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one finite spectral triple and does not invoke cross-shell coupling."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one finite spectral triple and does not invoke cross-shell coupling."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one finite spectral triple and does not invoke cross-shell coupling."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one finite spectral triple and does not invoke cross-shell coupling."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one finite spectral triple and does not invoke cross-shell coupling."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one finite spectral triple and does not invoke cross-shell coupling."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "bounded_commutator": {
+      "pass": true,
+      "commutator": "Matrix([[0, -3], [3, 0]])",
+      "detail": "The commutator [D,a] is finite and exactly computable."
+    },
+    "grading_anticommutes_with_dirac": {
+      "pass": true,
+      "detail": "The grading operator anticommutes with the local Dirac operator."
+    }
+  },
+  "negative": {
+    "commutator_norm_cannot_be_both_bounded_and_unbounded": {
+      "pass": true,
+      "detail": "A single local norm cannot satisfy incompatible bounds."
+    }
+  },
+  "boundary": {
+    "scalar_algebra_element_has_zero_commutator": {
+      "pass": true,
+      "detail": "The unit element gives the boundary case with vanishing commutator."
+    }
+  },
+  "hilbert_space_dimension": 2
+}

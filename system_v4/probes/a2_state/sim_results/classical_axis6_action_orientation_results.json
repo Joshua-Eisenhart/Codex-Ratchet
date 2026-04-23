@@ -1,0 +1,110 @@
+{
+  "name": "classical_axis6_action_orientation",
+  "classification": "classical_baseline",
+  "scope_note": "AXIS_AND_ENTROPY_REFERENCE.md Axis 6; LADDERS_FENCES_ADMISSION_REFERENCE.md orientation",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "signed volume / det"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "right_handed_positive": {
+      "pass": true,
+      "val": 1.0
+    },
+    "left_handed_negative": {
+      "pass": true,
+      "val": -1.0
+    }
+  },
+  "negative": {
+    "degenerate_zero": {
+      "pass": true,
+      "val": 0.0
+    }
+  },
+  "boundary": {
+    "small_rotation_preserves_orientation": {
+      "pass": true,
+      "val": 1.0
+    }
+  },
+  "pass": true
+}

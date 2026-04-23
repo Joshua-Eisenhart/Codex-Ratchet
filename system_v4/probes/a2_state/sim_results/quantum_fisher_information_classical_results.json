@@ -1,0 +1,42 @@
+{
+  "name": "quantum_fisher_information_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "finite-difference Fisher computation on pmfs"
+    },
+    "scipy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; numpy gradient suffices"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline; no autograd required"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "gaussian_location_fisher_near_one": true,
+    "translation_invariance": true,
+    "fisher_nonneg": true
+  },
+  "negative": {
+    "constant_family_zero_fisher": true,
+    "no_offdiagonal_quantum_term": true
+  },
+  "boundary": {
+    "bernoulli_at_half_equals_four": true,
+    "fisher_diverges_near_boundary": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": "Classical Fisher information cannot express the symmetric-logarithmic-derivative (SLD) term that raises QFI above classical Fisher for noncommuting parametric quantum families. The baseline captures only diagonal (commuting) eigenvalue variation under theta; for parametric families whose eigenbasis rotates with theta (e.g., rotated qubit Bloch states), the basis-rotation contribution is innately absent, so the classical sim cannot detect the 4x QFI enhancement for pure-state estimation nor the Heisenberg-scaling metrology regime."
+}

@@ -1,0 +1,120 @@
+{
+  "name": "coarse_grained_operator_algebra",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for coarse-grained operator algebra via bounded two-qubit to one-qubit partial-trace coarse-graining, kept separate from broad ML analogy bundles.",
+  "lego_ids": [
+    "coarse_grained_operator_algebra"
+  ],
+  "primary_lego_ids": [
+    "coarse_grained_operator_algebra"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "lifted_local_generators_survive_coarse_graining": {
+      "pass": true
+    },
+    "identity_is_preserved": {
+      "pass": true
+    },
+    "linearity_holds": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "purely_b_side_or_entangling_term_can_collapse": {
+      "pass": true
+    },
+    "coarse_graining_is_not_multiplicative_in_general": {
+      "lhs": "[[0.+1.j 0.+0.j]\n [0.+0.j 0.-1.j]]",
+      "rhs": "[[0.+1.j 0.+0.j]\n [0.+0.j 0.-1.j]]",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "commutator_of_lifted_local_terms_is_preserved": {
+      "pass": true
+    },
+    "coarse_grained_local_pauli_algebra_remains_traceless": {
+      "pass": "True"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local coarse-grained operator-algebra lego from two-qubit operators to one-qubit effective operators by partial-trace coarse-graining."
+  }
+}

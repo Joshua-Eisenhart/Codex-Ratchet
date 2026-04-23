@@ -1,0 +1,113 @@
+{
+  "name": "Rational Homotopy: Sullivan Minimal Model Constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not installed: No module named 'cvc5'"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for Sullivan algebra degree/decomposability"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sullivan_trivial_algebra_gen0": {
+      "error": "name 'cvc5' is not defined"
+    },
+    "sullivan_minimal_gen1_quadratic": {
+      "error": "name 'cvc5' is not defined"
+    },
+    "sullivan_minimal_gen2_cubic": {
+      "error": "name 'cvc5' is not defined"
+    }
+  },
+  "negative": {
+    "sullivan_not_minimal_gen0_linear": {
+      "error": "name 'cvc5' is not defined"
+    },
+    "sullivan_not_minimal_gen1_linear_map": {
+      "error": "name 'cvc5' is not defined"
+    },
+    "sullivan_not_minimal_gen2_degree0": {
+      "error": "name 'cvc5' is not defined"
+    }
+  },
+  "boundary": {
+    "sullivan_boundary_trivial_gen0_deg2": {
+      "error": "name 'cvc5' is not defined"
+    },
+    "sullivan_boundary_high_degree_gen5_deg10": {
+      "error": "name 'cvc5' is not defined"
+    },
+    "sullivan_boundary_zero_differential": {
+      "error": "name 'cvc5' is not defined"
+    }
+  },
+  "classification": "canonical"
+}

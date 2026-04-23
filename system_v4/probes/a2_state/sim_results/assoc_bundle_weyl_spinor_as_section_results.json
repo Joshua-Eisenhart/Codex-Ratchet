@@ -1,0 +1,53 @@
+{
+  "name": "assoc_bundle_weyl_spinor_as_section",
+  "tool_manifest": {
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) realises the spinor / Pauli algebra for S^3"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "reference for j=1/2 irrep behaviour under SO(3)"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Pauli matrix computation"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": "supportive",
+    "sympy": null,
+    "numpy": "supportive"
+  },
+  "positive": {
+    "up_spinor_bloch_z": true,
+    "equal_sup_bloch_x": true,
+    "double_cover_equivariance": true,
+    "clifford_bivector_rotation": true
+  },
+  "negative": {
+    "2pi_flips_spinor_sign": true,
+    "2pi_fixes_bloch": true,
+    "unnormalised_bloch_length_off": true
+  },
+  "boundary": {
+    "4pi_identity_on_spinor": true,
+    "orthogonal_antipodal": true
+  },
+  "classification": "canonical"
+}

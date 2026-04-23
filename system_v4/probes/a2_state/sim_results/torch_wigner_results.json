@@ -1,0 +1,222 @@
+{
+  "name": "torch_wigner",
+  "description": "WignerNegativity: qubit Wigner function on Bloch sphere, negative volume measure",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "WignerNegativity module: Wigner function + negative volume with autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Wigner function formula and zero-angle derivation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_wigner_substrate_match": {
+      "|0><0|": {
+        "max_diff": 1.0660899760206455e-08,
+        "pass": "True"
+      },
+      "|+><+|": {
+        "max_diff": 5.9386185413679016e-09,
+        "pass": "True"
+      },
+      "maximally_mixed": {
+        "max_diff": 3.2103191632826267e-09,
+        "pass": "True"
+      },
+      "random_0": {
+        "max_diff": 3.426334840850309e-09,
+        "pass": "True"
+      },
+      "random_1": {
+        "max_diff": 5.184253919356769e-09,
+        "pass": "True"
+      },
+      "random_2": {
+        "max_diff": 5.0889776212481586e-09,
+        "pass": "True"
+      }
+    },
+    "P2_negative_volume_match": {
+      "|0><0|": {
+        "numpy": 0.077455774269766,
+        "torch": 0.07745613902807236,
+        "diff": 3.647583063509652e-07,
+        "pass": "True"
+      },
+      "|+><+|": {
+        "numpy": 0.07727544224964368,
+        "torch": 0.07727546244859695,
+        "diff": 2.0198953273875553e-08,
+        "pass": "True"
+      },
+      "maximally_mixed": {
+        "numpy": 0.0,
+        "torch": 0.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "random_0": {
+        "numpy": 0.0,
+        "torch": 0.0,
+        "diff": 0.0,
+        "pass": true
+      }
+    },
+    "P3_normalization": {
+      "|0><0|": {
+        "integral": 1.0001645123492984,
+        "pass": "True"
+      },
+      "|+><+|": {
+        "integral": 1.0001645123493101,
+        "pass": "True"
+      },
+      "maximally_mixed": {
+        "integral": 1.000164512349314,
+        "pass": "True"
+      }
+    },
+    "P4_gradient_exists": {
+      "pure_z": {
+        "neg_vol": 0.0782599002122879,
+        "grad_exists": true,
+        "pass": true
+      },
+      "random_0": {
+        "neg_vol": 0.0,
+        "grad_exists": true,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_mixed_zero_negativity": {
+      "negative_volume": 0.0,
+      "is_zero": true,
+      "pass": true
+    },
+    "N2_pure_states_have_negativity": {
+      "z": {
+        "negative_volume": 0.077455774269766,
+        "has_negativity": "True",
+        "pass": "True"
+      },
+      "x": {
+        "negative_volume": 0.07727544224964368,
+        "has_negativity": "True",
+        "pass": "True"
+      },
+      "y": {
+        "negative_volume": 0.07741155790229941,
+        "has_negativity": "True",
+        "pass": "True"
+      }
+    },
+    "N3_invalid_more_negativity": {
+      "valid_neg_vol": 0.077455774269766,
+      "invalid_neg_vol": 0.24587895510849628,
+      "invalid_exceeds": "True",
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "B1_critical_radius": {
+      "r_critical": 0.5773502691896258,
+      "negative_volume": 0.0,
+      "near_zero": true,
+      "pass": true
+    },
+    "B2_below_critical_no_negativity": {
+      "r": 0.5,
+      "negative_volume": 0.0,
+      "is_zero": true,
+      "pass": true
+    },
+    "B3_monotone_above_critical": {
+      "radii": [
+        0.6,
+        0.7,
+        0.8,
+        0.9,
+        1.0
+      ],
+      "neg_vols": [
+        0.00036780728485173876,
+        0.009283269800367968,
+        0.02689832116516914,
+        0.0502025110121999,
+        0.077455774269766
+      ],
+      "monotone": true,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "W_formula": "(sqrt(3)*r*cos(theta) + 1)/(4*pi)",
+    "zero_angles": [
+      "-acos(-sqrt(3)/(3*r)) + 2*pi",
+      "acos(-sqrt(3)/(3*r))"
+    ],
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 24,
+    "total_pass": 24,
+    "all_pass": true
+  }
+}

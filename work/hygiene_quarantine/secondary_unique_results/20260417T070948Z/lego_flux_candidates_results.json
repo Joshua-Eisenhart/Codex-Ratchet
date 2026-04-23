@@ -1,0 +1,1208 @@
+{
+  "name": "lego_flux_candidates -- 7 independent flux candidates",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "All density matrix ops, Lindblad, unitaries, entropy, coherent info"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "D[sigma_z]": {
+      "J1_geometric": {
+        "value": [
+          -2.220446049250313e-16,
+          3.141592653589793,
+          -3.141592653589793
+        ],
+        "nonzero": true
+      },
+      "J2_chirality_separation": {
+        "value": 1.0,
+        "nonzero": true
+      },
+      "J3_differential_bloch": {
+        "value": [
+          0.0,
+          0.0,
+          -3.9998004908170515e-12
+        ],
+        "nonzero": true
+      },
+      "J4_entropic_asymmetry": {
+        "value": 1.6017132518507244e-16,
+        "nonzero": false
+      },
+      "J5_joint_state_flux": {
+        "value": -0.11354058051389704,
+        "nonzero": true
+      },
+      "J6_phase_winding": {
+        "value": 0.0,
+        "nonzero": "False"
+      },
+      "J7_cross_axis": {
+        "value": 1.6017132518507244e-16,
+        "nonzero": false
+      }
+    },
+    "D[sigma_x]": {
+      "J1_geometric": {
+        "value": [
+          0.0,
+          3.141592653589793,
+          -3.2431276304045387
+        ],
+        "nonzero": true
+      },
+      "J2_chirality_separation": {
+        "value": 0.8,
+        "nonzero": true
+      },
+      "J3_differential_bloch": {
+        "value": [
+          0.0,
+          0.0,
+          0.399999999996
+        ],
+        "nonzero": true
+      },
+      "J4_entropic_asymmetry": {
+        "value": 5.551115123125783e-17,
+        "nonzero": false
+      },
+      "J5_joint_state_flux": {
+        "value": -0.6800770456485535,
+        "nonzero": true
+      },
+      "J6_phase_winding": {
+        "value": -0.1015349768147451,
+        "nonzero": "True"
+      },
+      "J7_cross_axis": {
+        "value": 4.4408920985006264e-17,
+        "nonzero": false
+      }
+    },
+    "D[sigma_-]": {
+      "J1_geometric": {
+        "value": [
+          0.05243846936511698,
+          3.141592653589793,
+          -3.141592653589793
+        ],
+        "nonzero": true
+      },
+      "J2_chirality_separation": {
+        "value": 0.9,
+        "nonzero": true
+      },
+      "J3_differential_bloch": {
+        "value": [
+          0.0,
+          0.0,
+          0.19999999999600016
+        ],
+        "nonzero": true
+      },
+      "J4_entropic_asymmetry": {
+        "value": -0.46899559354941794,
+        "nonzero": true
+      },
+      "J5_joint_state_flux": {
+        "value": -0.39410105473441404,
+        "nonzero": true
+      },
+      "J6_phase_winding": {
+        "value": 0.0,
+        "nonzero": "False"
+      },
+      "J7_cross_axis": {
+        "value": -0.42209603419447617,
+        "nonzero": true
+      }
+    },
+    "exp(-i*sigma_x*t/2)": {
+      "J1_geometric": {
+        "value": [
+          -0.04328317599274012,
+          -0.023976960321808197,
+          -0.02614835275136329
+        ],
+        "nonzero": true
+      },
+      "J2_chirality_separation": {
+        "value": 0.999999999998,
+        "nonzero": true
+      },
+      "J3_differential_bloch": {
+        "value": [
+          0.0,
+          0.19966683329325702,
+          0.009991669443928375
+        ],
+        "nonzero": true
+      },
+      "J4_entropic_asymmetry": {
+        "value": 0.0,
+        "nonzero": false
+      },
+      "J5_joint_state_flux": {
+        "value": -0.011634085445621278,
+        "nonzero": true
+      },
+      "J6_phase_winding": {
+        "value": -0.0021713924295550698,
+        "nonzero": "True"
+      },
+      "J7_cross_axis": {
+        "value": 0.0,
+        "nonzero": false
+      }
+    },
+    "exp(-i*sigma_z*t/2)": {
+      "J1_geometric": {
+        "value": [
+          1.1102230246251565e-16,
+          -0.049999999999999996,
+          0.050000000000000044
+        ],
+        "nonzero": true
+      },
+      "J2_chirality_separation": {
+        "value": 0.9999999999980005,
+        "nonzero": true
+      },
+      "J3_differential_bloch": {
+        "value": [
+          0.0,
+          0.0,
+          -6.661338147750939e-16
+        ],
+        "nonzero": false
+      },
+      "J4_entropic_asymmetry": {
+        "value": -6.462348535570529e-27,
+        "nonzero": false
+      },
+      "J5_joint_state_flux": {
+        "value": 1.1102230246251565e-16,
+        "nonzero": false
+      },
+      "J6_phase_winding": {
+        "value": 0.09999999999999992,
+        "nonzero": "True"
+      },
+      "J7_cross_axis": {
+        "value": -6.462348535557607e-27,
+        "nonzero": false
+      }
+    },
+    "sensitivity_matrix": {
+      "D[sigma_z]": {
+        "J1_geometric": true,
+        "J2_chirality_separation": true,
+        "J3_differential_bloch": true,
+        "J4_entropic_asymmetry": false,
+        "J5_joint_state_flux": true,
+        "J6_phase_winding": "False",
+        "J7_cross_axis": false
+      },
+      "D[sigma_x]": {
+        "J1_geometric": true,
+        "J2_chirality_separation": true,
+        "J3_differential_bloch": true,
+        "J4_entropic_asymmetry": false,
+        "J5_joint_state_flux": true,
+        "J6_phase_winding": "True",
+        "J7_cross_axis": false
+      },
+      "D[sigma_-]": {
+        "J1_geometric": true,
+        "J2_chirality_separation": true,
+        "J3_differential_bloch": true,
+        "J4_entropic_asymmetry": true,
+        "J5_joint_state_flux": true,
+        "J6_phase_winding": "False",
+        "J7_cross_axis": true
+      },
+      "exp(-i*sigma_x*t/2)": {
+        "J1_geometric": true,
+        "J2_chirality_separation": true,
+        "J3_differential_bloch": true,
+        "J4_entropic_asymmetry": false,
+        "J5_joint_state_flux": true,
+        "J6_phase_winding": "True",
+        "J7_cross_axis": false
+      },
+      "exp(-i*sigma_z*t/2)": {
+        "J1_geometric": true,
+        "J2_chirality_separation": true,
+        "J3_differential_bloch": false,
+        "J4_entropic_asymmetry": false,
+        "J5_joint_state_flux": false,
+        "J6_phase_winding": "True",
+        "J7_cross_axis": false
+      }
+    }
+  },
+  "negative": {
+    "neg1_remove_chirality": {
+      "description": "Set rho_L = rho_R (no chiral split). Does each J collapse?",
+      "per_evolution": {
+        "D[sigma_z]": {
+          "J1_geometric": {
+            "nonzero": true,
+            "value": [
+              0.0,
+              -3.141592653589793,
+              -3.141592653589793
+            ]
+          },
+          "J2_chirality_separation": {
+            "nonzero": false,
+            "value": 0.0
+          },
+          "J3_differential_bloch": {
+            "nonzero": false,
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "J4_entropic_asymmetry": {
+            "nonzero": false,
+            "value": 0.0
+          },
+          "J5_joint_state_flux": {
+            "nonzero": false,
+            "value": 0.0
+          },
+          "J6_phase_winding": {
+            "nonzero": "False",
+            "value": 0.0
+          },
+          "J7_cross_axis": {
+            "nonzero": false,
+            "value": 0.0
+          }
+        },
+        "D[sigma_x]": {
+          "J1_geometric": {
+            "nonzero": true,
+            "value": [
+              0.0,
+              -3.141592653589793,
+              -3.141592653589793
+            ]
+          },
+          "J2_chirality_separation": {
+            "nonzero": false,
+            "value": 0.0
+          },
+          "J3_differential_bloch": {
+            "nonzero": false,
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "J4_entropic_asymmetry": {
+            "nonzero": false,
+            "value": 0.0
+          },
+          "J5_joint_state_flux": {
+            "nonzero": false,
+            "value": 0.0
+          },
+          "J6_phase_winding": {
+            "nonzero": "False",
+            "value": 0.0
+          },
+          "J7_cross_axis": {
+            "nonzero": false,
+            "value": 0.0
+          }
+        },
+        "D[sigma_-]": {
+          "J1_geometric": {
+            "nonzero": true,
+            "value": [
+              0.05243846936511698,
+              0.0,
+              0.0
+            ]
+          },
+          "J2_chirality_separation": {
+            "nonzero": false,
+            "value": 0.0
+          },
+          "J3_differential_bloch": {
+            "nonzero": false,
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "J4_entropic_asymmetry": {
+            "nonzero": false,
+            "value": 0.0
+          },
+          "J5_joint_state_flux": {
+            "nonzero": true,
+            "value": 0.007225546012191719
+          },
+          "J6_phase_winding": {
+            "nonzero": "False",
+            "value": 0.0
+          },
+          "J7_cross_axis": {
+            "nonzero": false,
+            "value": 0.0
+          }
+        },
+        "exp(-i*sigma_x*t/2)": {
+          "J1_geometric": {
+            "nonzero": true,
+            "value": [
+              0.0,
+              -0.049999999999999996,
+              -0.05000000000000002
+            ]
+          },
+          "J2_chirality_separation": {
+            "nonzero": false,
+            "value": 0.0
+          },
+          "J3_differential_bloch": {
+            "nonzero": false,
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "J4_entropic_asymmetry": {
+            "nonzero": false,
+            "value": 0.0
+          },
+          "J5_joint_state_flux": {
+            "nonzero": false,
+            "value": 0.0
+          },
+          "J6_phase_winding": {
+            "nonzero": "False",
+            "value": -1.3877787807814457e-17
+          },
+          "J7_cross_axis": {
+            "nonzero": false,
+            "value": 0.0
+          }
+        },
+        "exp(-i*sigma_z*t/2)": {
+          "J1_geometric": {
+            "nonzero": true,
+            "value": [
+              1.1102230246251565e-16,
+              -0.049999999999999996,
+              0.049999999999999996
+            ]
+          },
+          "J2_chirality_separation": {
+            "nonzero": false,
+            "value": 0.0
+          },
+          "J3_differential_bloch": {
+            "nonzero": false,
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "J4_entropic_asymmetry": {
+            "nonzero": false,
+            "value": 0.0
+          },
+          "J5_joint_state_flux": {
+            "nonzero": false,
+            "value": -2.220446049250313e-16
+          },
+          "J6_phase_winding": {
+            "nonzero": "True",
+            "value": 0.09999999999999999
+          },
+          "J7_cross_axis": {
+            "nonzero": false,
+            "value": 0.0
+          }
+        }
+      },
+      "collapse_summary": {
+        "J1_geometric": {
+          "collapsed_all_evolutions": false,
+          "collapsed_some_evolutions": false
+        },
+        "J2_chirality_separation": {
+          "collapsed_all_evolutions": true,
+          "collapsed_some_evolutions": true
+        },
+        "J3_differential_bloch": {
+          "collapsed_all_evolutions": true,
+          "collapsed_some_evolutions": true
+        },
+        "J4_entropic_asymmetry": {
+          "collapsed_all_evolutions": true,
+          "collapsed_some_evolutions": true
+        },
+        "J5_joint_state_flux": {
+          "collapsed_all_evolutions": false,
+          "collapsed_some_evolutions": true
+        },
+        "J6_phase_winding": {
+          "collapsed_all_evolutions": false,
+          "collapsed_some_evolutions": true
+        },
+        "J7_cross_axis": {
+          "collapsed_all_evolutions": true,
+          "collapsed_some_evolutions": true
+        }
+      }
+    },
+    "neg2_swap_loop_law": {
+      "description": "Swap fiber <-> base (theta1 <-> theta2). Does each J survive?",
+      "per_evolution": {
+        "D[sigma_z]": {
+          "J1_geometric": {
+            "original": [
+              -2.220446049250313e-16,
+              3.141592653589793,
+              -3.141592653589793
+            ],
+            "swapped": [
+              0.0,
+              2.0943951023931957,
+              2.0943951023931957
+            ],
+            "difference": 5.235987755982989,
+            "survived_swap": "True"
+          },
+          "J2_chirality_separation": {
+            "original": 1.0,
+            "swapped": 1.0,
+            "difference": 0.0,
+            "survived_swap": false
+          },
+          "J3_differential_bloch": {
+            "original": [
+              0.0,
+              0.0,
+              -3.9998004908170515e-12
+            ],
+            "swapped": [
+              0.0,
+              0.0,
+              -3.999911513119514e-12
+            ],
+            "difference": 1.1102230246251565e-16,
+            "survived_swap": false
+          },
+          "J4_entropic_asymmetry": {
+            "original": 1.6017132518507244e-16,
+            "swapped": 0.0,
+            "difference": 1.6017132518507244e-16,
+            "survived_swap": false
+          },
+          "J5_joint_state_flux": {
+            "original": -0.11354058051389704,
+            "swapped": -0.11354058051389715,
+            "difference": 1.1102230246251565e-16,
+            "survived_swap": false
+          },
+          "J6_phase_winding": {
+            "original": 0.0,
+            "swapped": 0.0,
+            "difference": 0.0,
+            "survived_swap": "False"
+          },
+          "J7_cross_axis": {
+            "original": 1.6017132518507244e-16,
+            "swapped": 0.0,
+            "difference": 1.6017132518507244e-16,
+            "survived_swap": false
+          }
+        },
+        "D[sigma_x]": {
+          "J1_geometric": {
+            "original": [
+              0.0,
+              3.141592653589793,
+              -3.2431276304045387
+            ],
+            "swapped": [
+              0.0,
+              2.0943951023931957,
+              2.195930079207941
+            ],
+            "difference": 5.439057709612479,
+            "survived_swap": "True"
+          },
+          "J2_chirality_separation": {
+            "original": 0.8,
+            "swapped": 0.8,
+            "difference": 0.0,
+            "survived_swap": false
+          },
+          "J3_differential_bloch": {
+            "original": [
+              0.0,
+              0.0,
+              0.399999999996
+            ],
+            "swapped": [
+              0.0,
+              0.0,
+              0.399999999996
+            ],
+            "difference": 0.0,
+            "survived_swap": false
+          },
+          "J4_entropic_asymmetry": {
+            "original": 5.551115123125783e-17,
+            "swapped": 0.0,
+            "difference": 5.551115123125783e-17,
+            "survived_swap": false
+          },
+          "J5_joint_state_flux": {
+            "original": -0.6800770456485535,
+            "swapped": -0.6800770456485535,
+            "difference": 0.0,
+            "survived_swap": false
+          },
+          "J6_phase_winding": {
+            "original": -0.1015349768147451,
+            "swapped": 0.1015349768147451,
+            "difference": 0.2030699536294902,
+            "survived_swap": "True"
+          },
+          "J7_cross_axis": {
+            "original": 4.4408920985006264e-17,
+            "swapped": 0.0,
+            "difference": 4.4408920985006264e-17,
+            "survived_swap": false
+          }
+        },
+        "D[sigma_-]": {
+          "J1_geometric": {
+            "original": [
+              0.05243846936511698,
+              3.141592653589793,
+              -3.141592653589793
+            ],
+            "swapped": [
+              0.05243846936511698,
+              2.0943951023931957,
+              2.0943951023931957
+            ],
+            "difference": 5.235987755982989,
+            "survived_swap": "True"
+          },
+          "J2_chirality_separation": {
+            "original": 0.9,
+            "swapped": 0.9,
+            "difference": 0.0,
+            "survived_swap": false
+          },
+          "J3_differential_bloch": {
+            "original": [
+              0.0,
+              0.0,
+              0.19999999999600016
+            ],
+            "swapped": [
+              0.0,
+              0.0,
+              0.19999999999600004
+            ],
+            "difference": 1.1102230246251565e-16,
+            "survived_swap": false
+          },
+          "J4_entropic_asymmetry": {
+            "original": -0.46899559354941794,
+            "swapped": -0.46899559354941806,
+            "difference": 1.1102230246251565e-16,
+            "survived_swap": false
+          },
+          "J5_joint_state_flux": {
+            "original": -0.39410105473441404,
+            "swapped": -0.39410105473441404,
+            "difference": 0.0,
+            "survived_swap": false
+          },
+          "J6_phase_winding": {
+            "original": 0.0,
+            "swapped": 0.0,
+            "difference": 0.0,
+            "survived_swap": "False"
+          },
+          "J7_cross_axis": {
+            "original": -0.42209603419447617,
+            "swapped": -0.4220960341944763,
+            "difference": 1.1102230246251565e-16,
+            "survived_swap": false
+          }
+        },
+        "exp(-i*sigma_x*t/2)": {
+          "J1_geometric": {
+            "original": [
+              -0.04328317599274012,
+              -0.023976960321808197,
+              -0.02614835275136329
+            ],
+            "swapped": [
+              0.04328317599274023,
+              -0.02614835275136307,
+              -0.0239769603218082
+            ],
+            "difference": 0.08656635198548035,
+            "survived_swap": "True"
+          },
+          "J2_chirality_separation": {
+            "original": 0.999999999998,
+            "swapped": 0.999999999998,
+            "difference": 0.0,
+            "survived_swap": false
+          },
+          "J3_differential_bloch": {
+            "original": [
+              0.0,
+              0.19966683329325702,
+              0.009991669443928375
+            ],
+            "swapped": [
+              0.0,
+              0.19966683329325702,
+              0.009991669443928375
+            ],
+            "difference": 0.0,
+            "survived_swap": false
+          },
+          "J4_entropic_asymmetry": {
+            "original": 0.0,
+            "swapped": 0.0,
+            "difference": 0.0,
+            "survived_swap": false
+          },
+          "J5_joint_state_flux": {
+            "original": -0.011634085445621278,
+            "swapped": -0.01163408544562139,
+            "difference": 1.1102230246251565e-16,
+            "survived_swap": false
+          },
+          "J6_phase_winding": {
+            "original": -0.0021713924295550698,
+            "swapped": 0.00217139242955499,
+            "difference": 0.00434278485911006,
+            "survived_swap": "True"
+          },
+          "J7_cross_axis": {
+            "original": 0.0,
+            "swapped": 0.0,
+            "difference": 0.0,
+            "survived_swap": false
+          }
+        },
+        "exp(-i*sigma_z*t/2)": {
+          "J1_geometric": {
+            "original": [
+              1.1102230246251565e-16,
+              -0.049999999999999996,
+              0.050000000000000044
+            ],
+            "swapped": [
+              1.1102230246251565e-16,
+              -0.04999999999999993,
+              0.049999999999999996
+            ],
+            "difference": 6.245004513516506e-17,
+            "survived_swap": "False"
+          },
+          "J2_chirality_separation": {
+            "original": 0.9999999999980005,
+            "swapped": 0.9999999999980004,
+            "difference": 1.1102230246251565e-16,
+            "survived_swap": false
+          },
+          "J3_differential_bloch": {
+            "original": [
+              0.0,
+              0.0,
+              -6.661338147750939e-16
+            ],
+            "swapped": [
+              0.0,
+              0.0,
+              -6.661338147750939e-16
+            ],
+            "difference": 0.0,
+            "survived_swap": false
+          },
+          "J4_entropic_asymmetry": {
+            "original": -6.462348535570529e-27,
+            "swapped": 0.0,
+            "difference": 6.462348535570529e-27,
+            "survived_swap": false
+          },
+          "J5_joint_state_flux": {
+            "original": 1.1102230246251565e-16,
+            "swapped": 1.1102230246251565e-16,
+            "difference": 0.0,
+            "survived_swap": false
+          },
+          "J6_phase_winding": {
+            "original": 0.09999999999999992,
+            "swapped": 0.09999999999999995,
+            "difference": 2.7755575615628914e-17,
+            "survived_swap": "False"
+          },
+          "J7_cross_axis": {
+            "original": -6.462348535557607e-27,
+            "swapped": 0.0,
+            "difference": 6.462348535557607e-27,
+            "survived_swap": false
+          }
+        }
+      },
+      "survival_summary": {
+        "J1_geometric": {
+          "survived_all_evolutions": false,
+          "survived_some_evolutions": true
+        },
+        "J2_chirality_separation": {
+          "survived_all_evolutions": false,
+          "survived_some_evolutions": false
+        },
+        "J3_differential_bloch": {
+          "survived_all_evolutions": false,
+          "survived_some_evolutions": false
+        },
+        "J4_entropic_asymmetry": {
+          "survived_all_evolutions": false,
+          "survived_some_evolutions": false
+        },
+        "J5_joint_state_flux": {
+          "survived_all_evolutions": false,
+          "survived_some_evolutions": false
+        },
+        "J6_phase_winding": {
+          "survived_all_evolutions": false,
+          "survived_some_evolutions": true
+        },
+        "J7_cross_axis": {
+          "survived_all_evolutions": false,
+          "survived_some_evolutions": false
+        }
+      }
+    },
+    "neg3_flatten_transport": {
+      "description": "Zero all deltas (dt=0). Does each J persist? (Should not, except static measures.)",
+      "per_evolution": {
+        "D[sigma_z]": {
+          "J1_geometric": {
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "persisted": false
+          },
+          "J2_chirality_separation": {
+            "value": 0.999999999998,
+            "persisted": true
+          },
+          "J3_differential_bloch": {
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "persisted": false
+          },
+          "J4_entropic_asymmetry": {
+            "value": 0.0,
+            "persisted": false
+          },
+          "J5_joint_state_flux": {
+            "value": 0.0,
+            "persisted": false
+          },
+          "J6_phase_winding": {
+            "value": 0.0,
+            "persisted": "False"
+          },
+          "J7_cross_axis": {
+            "value": 0.0,
+            "persisted": false
+          }
+        },
+        "D[sigma_x]": {
+          "J1_geometric": {
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "persisted": false
+          },
+          "J2_chirality_separation": {
+            "value": 0.999999999998,
+            "persisted": true
+          },
+          "J3_differential_bloch": {
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "persisted": false
+          },
+          "J4_entropic_asymmetry": {
+            "value": 0.0,
+            "persisted": false
+          },
+          "J5_joint_state_flux": {
+            "value": 0.0,
+            "persisted": false
+          },
+          "J6_phase_winding": {
+            "value": 0.0,
+            "persisted": "False"
+          },
+          "J7_cross_axis": {
+            "value": 0.0,
+            "persisted": false
+          }
+        },
+        "D[sigma_-]": {
+          "J1_geometric": {
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "persisted": false
+          },
+          "J2_chirality_separation": {
+            "value": 0.999999999998,
+            "persisted": true
+          },
+          "J3_differential_bloch": {
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "persisted": false
+          },
+          "J4_entropic_asymmetry": {
+            "value": 0.0,
+            "persisted": false
+          },
+          "J5_joint_state_flux": {
+            "value": 0.0,
+            "persisted": false
+          },
+          "J6_phase_winding": {
+            "value": 0.0,
+            "persisted": "False"
+          },
+          "J7_cross_axis": {
+            "value": 0.0,
+            "persisted": false
+          }
+        },
+        "exp(-i*sigma_x*t/2)": {
+          "J1_geometric": {
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "persisted": false
+          },
+          "J2_chirality_separation": {
+            "value": 0.999999999998,
+            "persisted": true
+          },
+          "J3_differential_bloch": {
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "persisted": false
+          },
+          "J4_entropic_asymmetry": {
+            "value": 0.0,
+            "persisted": false
+          },
+          "J5_joint_state_flux": {
+            "value": 0.0,
+            "persisted": false
+          },
+          "J6_phase_winding": {
+            "value": 0.0,
+            "persisted": "False"
+          },
+          "J7_cross_axis": {
+            "value": 0.0,
+            "persisted": false
+          }
+        },
+        "exp(-i*sigma_z*t/2)": {
+          "J1_geometric": {
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "persisted": false
+          },
+          "J2_chirality_separation": {
+            "value": 0.999999999998,
+            "persisted": true
+          },
+          "J3_differential_bloch": {
+            "value": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "persisted": false
+          },
+          "J4_entropic_asymmetry": {
+            "value": 0.0,
+            "persisted": false
+          },
+          "J5_joint_state_flux": {
+            "value": 0.0,
+            "persisted": false
+          },
+          "J6_phase_winding": {
+            "value": 0.0,
+            "persisted": "False"
+          },
+          "J7_cross_axis": {
+            "value": 0.0,
+            "persisted": false
+          }
+        }
+      },
+      "persistence_summary": {
+        "J1_geometric": {
+          "persisted_with_zero_transport": false,
+          "note": ""
+        },
+        "J2_chirality_separation": {
+          "persisted_with_zero_transport": true,
+          "note": "J2 is static distance, expected nonzero even without transport"
+        },
+        "J3_differential_bloch": {
+          "persisted_with_zero_transport": false,
+          "note": ""
+        },
+        "J4_entropic_asymmetry": {
+          "persisted_with_zero_transport": false,
+          "note": ""
+        },
+        "J5_joint_state_flux": {
+          "persisted_with_zero_transport": false,
+          "note": ""
+        },
+        "J6_phase_winding": {
+          "persisted_with_zero_transport": false,
+          "note": ""
+        },
+        "J7_cross_axis": {
+          "persisted_with_zero_transport": false,
+          "note": ""
+        }
+      }
+    }
+  },
+  "boundary": {
+    "eta_near_zero": {
+      "description": "eta~0: one chirality dominates",
+      "norm_L": 0.009999833334166664,
+      "norm_R": 0.9999500004166653,
+      "ratio": 0.010000333346657207
+    },
+    "eta_near_pi_over_2": {
+      "description": "eta~pi/2: other chirality dominates",
+      "norm_L": 0.9999500004166653,
+      "norm_R": 0.009999833334166736,
+      "ratio": 0.010000333346657278
+    },
+    "large_dt": {
+      "description": "dt=1.0 (10x). Check numerical stability.",
+      "per_evolution": {
+        "D[sigma_z]": {
+          "J1_geometric": [
+            0.0,
+            -3.141592653589793,
+            2.220446049250313e-16
+          ],
+          "J2_chirality_separation": 1.0,
+          "J4_entropic_asymmetry": 1.6017132518507244e-16
+        },
+        "D[sigma_x]": {
+          "J1_geometric": [
+            2.220446049250313e-16,
+            3.141592653589793,
+            1.047197551196598
+          ],
+          "J2_chirality_separation": 1.0,
+          "J4_entropic_asymmetry": 1.6017132518507244e-16
+        },
+        "D[sigma_-]": {
+          "J1_geometric": [
+            0.5535743588970453,
+            3.141592653589793,
+            -3.141592653589793
+          ],
+          "J2_chirality_separation": 1.0009755300205987e-34,
+          "J4_entropic_asymmetry": 1.6017132518507244e-16
+        },
+        "exp(-i*sigma_x*t/2)": {
+          "J1_geometric": [
+            -0.40823661426540603,
+            -0.18334233143021583,
+            -0.4782776004199607
+          ],
+          "J2_chirality_separation": 0.9999999999980002,
+          "J4_entropic_asymmetry": 2.220446049250313e-16
+        },
+        "exp(-i*sigma_z*t/2)": {
+          "J1_geometric": [
+            0.0,
+            -0.5,
+            0.5
+          ],
+          "J2_chirality_separation": 0.9999999999980002,
+          "J4_entropic_asymmetry": -1.601713251915348e-16
+        }
+      }
+    },
+    "maximally_mixed": {
+      "D[sigma_z]": {
+        "J2": 0.0,
+        "J3": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "J4": 0.0,
+        "note": "From maximally mixed: L=R, so J3 and J4 should be zero"
+      },
+      "D[sigma_x]": {
+        "J2": 0.0,
+        "J3": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "J4": 0.0,
+        "note": "From maximally mixed: L=R, so J3 and J4 should be zero"
+      },
+      "D[sigma_-]": {
+        "J2": 0.0,
+        "J3": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "J4": 0.0,
+        "note": "From maximally mixed: L=R, so J3 and J4 should be zero"
+      },
+      "exp(-i*sigma_x*t/2)": {
+        "J2": 0.0,
+        "J3": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "J4": 0.0,
+        "note": "From maximally mixed: L=R, so J3 and J4 should be zero"
+      },
+      "exp(-i*sigma_z*t/2)": {
+        "J2": 0.0,
+        "J3": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "J4": 0.0,
+        "note": "From maximally mixed: L=R, so J3 and J4 should be zero"
+      }
+    }
+  },
+  "classification": "canonical"
+}

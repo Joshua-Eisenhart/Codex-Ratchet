@@ -1,0 +1,141 @@
+{
+  "name": "Spin7ManifoldCayleyConstraint",
+  "description": "Spin(7) manifold: holonomy exactly Spin(7) \u2282 SO(8) (21-dim). Cayley 4-form must be self-dual.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Spin(7) Cayley constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_standard_spin7": {
+      "test": "Standard Spin(7) manifold (holonomy=21, Cayley self-dual)",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "P2_spin7_dim8": {
+      "test": "Spin(7) manifold dimension consistency (dim=8, holonomy_dim=21)",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "P3_cayley_self_dual": {
+      "test": "Self-dual Cayley form with Spin(7) holonomy",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_holonomy_dim_wrong": {
+      "test": "Spin(7) manifold with contradictory holonomy dimension (holonomy_dim=21 and holonomy_dim=14)",
+      "sat": false,
+      "expected": false,
+      "pass": true
+    },
+    "N2_cayley_not_self_dual": {
+      "test": "Spin(7) manifold with contradictory self-duality requirement",
+      "sat": false,
+      "expected": false,
+      "pass": true
+    },
+    "N3_manifold_dim_wrong": {
+      "test": "Spin(7) manifold with contradictory dimension requirement (dim=8 and dim=7)",
+      "sat": false,
+      "expected": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_holonomy_bounds": {
+      "test": "Holonomy dimension in valid SO(8) range [1,28], Spin(7)=21",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "B2_minimal_spin7": {
+      "test": "Minimal Spin(7) structure (holonomy_dim=21 only)",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "B3_maximal_constraints": {
+      "test": "Maximal Spin(7) constraints (all three conditions)",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

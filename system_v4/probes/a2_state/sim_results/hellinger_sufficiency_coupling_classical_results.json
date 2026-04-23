@@ -1,0 +1,126 @@
+{
+  "name": "hellinger_sufficiency_coupling_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Hellinger-sufficiency coupling loses: (1) quantum Bures/fidelity sensitivity to non-commuting sufficient statistics, (2) Petz sufficiency (recoverability) structure distinct from classical, (3) coherence-dependent distinguishability terms absent from diagonal case.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor broadcasting cross-check of Hellinger sums"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "manual"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "preserved_0": {
+      "h_before": 0.07622729170054059,
+      "h_after": 0.07622729170054057,
+      "pass": true
+    },
+    "preserved_1": {
+      "h_before": 0.23722386058565686,
+      "h_after": 0.23722386058565684,
+      "pass": true
+    },
+    "preserved_2": {
+      "h_before": 0.004175290654148219,
+      "h_after": 0.004175290654148219,
+      "pass": true
+    },
+    "preserved_3": {
+      "h_before": 0.06023675236021029,
+      "h_after": 0.06023675236021028,
+      "pass": true
+    }
+  },
+  "negative": {
+    "non_sufficient_contracts": {
+      "h_before": 0.2708497377870818,
+      "h_after": 0.09734448877278798,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "identical_dists": {
+      "h_before": 0.0,
+      "h_after": 0.0,
+      "pass": true
+    },
+    "disjoint_bijection": {
+      "h_before": 1.0,
+      "h_after": 1.0,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

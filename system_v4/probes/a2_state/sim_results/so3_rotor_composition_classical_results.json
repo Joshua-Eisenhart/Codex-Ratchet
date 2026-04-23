@@ -1,0 +1,62 @@
+{
+  "name": "so3_rotor_composition_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "3x3 rotation matrix algebra"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline only"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric composition suffices"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no admissibility claim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "would lift to Cl(3); deliberately excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "supportive",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "composition_in_SO3": "True",
+    "associativity": true,
+    "inverse_is_transpose": true,
+    "2pi_returns_identity": true
+  },
+  "negative": {
+    "reject_non_orthogonal": true,
+    "reject_reflection": true,
+    "noncommutative": true
+  },
+  "boundary": {
+    "small_angle_linearization": true,
+    "4pi_equals_2pi_classically": true,
+    "rodrigues_2pi_identity": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical SO(3) rotor misses spin-1/2 double cover",
+    "2pi rotation collapses to identity (should yield -1 on spinors)",
+    "no half-angle representation available on 3x3 matrices",
+    "cannot distinguish a state from itself after odd multiples of 2pi"
+  ]
+}

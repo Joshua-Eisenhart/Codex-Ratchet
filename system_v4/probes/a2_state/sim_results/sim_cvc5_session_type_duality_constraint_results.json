@@ -1,0 +1,140 @@
+{
+  "name": "sim_cvc5_session_type_duality_constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/logical computation via cvc5"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; session type structure encoded as constraint variables"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: cvc5 SMT solver proves session type duality properties and protocol sequencing constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: symbolic verification of duality involution"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; session types are purely logical"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; session types are protocol constraints, not graphs"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard logical computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_output_input_duality": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Output session type dual is input session type"
+    },
+    "test_2_duality_involution": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Duality is involutive: dual(dual(S)) = S for all types"
+    },
+    "test_3_sequential_protocol": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Sequential protocol ordering correctly enforced"
+    }
+  },
+  "negative": {
+    "test_1_self_dual_output": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Output type cannot be self-dual (structural contradiction)"
+    },
+    "test_2_self_dual_input": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Input type cannot be self-dual (structural contradiction)"
+    },
+    "test_3_interleaved_incompatible": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Interleaved incompatible actions violate protocol ordering"
+    }
+  },
+  "boundary": {
+    "boundary_test_1_end_type_self_dual": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "End type correctly identified as self-dual"
+    },
+    "boundary_test_2_multiple_sequence_chain": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Multi-step sequencing chain correctly enforced"
+    },
+    "boundary_test_3_nested_sessions": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Nested session duality correctly computed"
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,38 @@
+{
+  "layer": 16,
+  "name": "3q vs 2q Advantage",
+  "positive": {
+    "P1_sympy_dimension_advantage": {
+      "description": "3q partial trace has more room for negative conditional entropy",
+      "dim_2q_B": 2,
+      "dim_3q_B_cut1": 4,
+      "max_S_2q_bits": 1.0,
+      "max_S_3q_bits": 2.0,
+      "advantage_factor": 2.0,
+      "passed": true
+    },
+    "P2_z3_advantage_ratio": {
+      "description": "advantage_ratio = max_ic_3q / max_ic_2q > 1",
+      "max_ic_3q": 0.41087431,
+      "max_ic_2q": 0.28060299,
+      "ratio": 1.4643,
+      "sat_result": "sat",
+      "passed": true
+    }
+  },
+  "negative": {
+    "N1_z3_2q_no_sustained": {
+      "description": "2q system cannot sustain I_c > 0 for 20+ cycles",
+      "pos_cycles_2q": 3,
+      "result": "unsat",
+      "passed": true
+    }
+  },
+  "tools_used": [
+    "z3",
+    "sympy",
+    "numpy"
+  ],
+  "timestamp": "2026-04-06",
+  "summary": "3q vs 2q: ratio=1.4643, dimension advantage 2.0/1.0 bits, 2q sustained UNSAT=unsat"
+}

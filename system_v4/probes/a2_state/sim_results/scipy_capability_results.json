@@ -1,0 +1,55 @@
+{
+  "name": "sim_scipy_capability",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive array surface for scipy capability checks"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- matrix exponential and linear solve"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing"
+  },
+  "positive": {
+    "rotation_orthogonal": {
+      "pass": true
+    },
+    "rotation_norm_preserved": {
+      "pass": true,
+      "rotated": [
+        0.9210609940028851,
+        0.3894183423086506
+      ]
+    },
+    "solve_residual": {
+      "pass": true,
+      "residual": 4.440892098500626e-16
+    }
+  },
+  "negative": {
+    "singular_solve_raises": {
+      "pass": true,
+      "error_type": "LinAlgError"
+    }
+  },
+  "boundary": {
+    "small_rotation_finite": {
+      "pass": true,
+      "trace": 2.0
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true
+}

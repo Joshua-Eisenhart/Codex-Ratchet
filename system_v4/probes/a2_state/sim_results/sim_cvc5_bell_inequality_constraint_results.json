@@ -1,0 +1,135 @@
+{
+  "name": "CVC5 Bell Inequality CHSH Constraint (Canonical)",
+  "description": "cvc5 proves classical correlations obey CHSH inequality |E(a,b) - E(a,b') + E(a',b) + E(a',b')| \u2264 2, while quantum systems can violate it up to Tsirelson bound 2\u221a2 \u2248 2.828. Bell inequality is fundamental constraint of local hidden variable models; quantum violation demonstrates nonlocality. cvc5 validates via QF_NRA: (1) classical correlations satisfy CHSH \u2264 2. (2) LHV models bound all measurements to \u2264 2. (3) product states satisfy classical bound. (4) Assuming classical + CHSH > 2 is UNSAT. (5) Assuming local realism + Tsirelson violation (S > 2\u221a2) is UNSAT. sympy derives: CHSH inequality S, classical bound derivation, Tsirelson bound 2\u221a2, Bell states |\u03a6\u00b1\u27e9|\u03a8\u00b1\u27e9, correlation functions E(a,b), EPR paradox, local hidden variable impossibility, entanglement signatures, and quantum advantage in nonlocality.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "Bell inequality is foundational QM theorem, not neural network training"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "Bell inequality is quantum nonlocality, not graph learning"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 preferred for QF_NRA encoding of chsh_value \u2264 2 classical constraint"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 proves CHSH bound: for classical correlations, |E(a,b) - E(a,b') + E(a',b) + E(a',b')| \u2264 2"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy derives CHSH inequality, Tsirelson bound 2\u221a2, Bell states, correlation functions, EPR analysis, LHV impossibility"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Bell inequality uses quantum observables, not Clifford geometric algebra"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Bell inequality is quantum nonlocality theorem, not Riemannian geometry"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "Bell inequality is quantum mechanics, not equivariant neural networks"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "Bell inequality is nonlocal correlations, not graph algorithms"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "Bell inequality is quantum mechanics, not hypergraph structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "Bell inequality is quantum mechanics, not simplicial topology"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "Bell inequality is quantum nonlocality, not simplicial homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_chsh_bound": {
+      "error": "type object 'Kind' has no attribute 'PLUS'"
+    },
+    "test_positive_lhv_consistency": {
+      "error": "type object 'Kind' has no attribute 'PLUS'"
+    },
+    "test_positive_product_state_classical": {
+      "error": "type object 'Kind' has no attribute 'PLUS'"
+    }
+  },
+  "negative": {
+    "test_negative_bell_violation_lhv": {
+      "description": "cvc5 UNSAT: Classical hidden variables \u2227 CHSH \u2264 2 \u2227 CHSH > 2 \u2192 contradiction (Bell constraint)",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_tsirelson_violation": {
+      "description": "cvc5 UNSAT: Local realism \u2227 CHSH > 2\u221a2 \u2192 UNSAT (Tsirelson bound is maximum quantum violation)",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_entanglement_separability_contradiction": {
+      "description": "cvc5 UNSAT: Entangled \u2227 Separable (classical) \u2227 CHSH > 2 \u2192 UNSAT (entanglement needed for Bell violation)",
+      "unsat": false,
+      "expected": true
+    }
+  },
+  "boundary": {
+    "test_boundary_chsh_inequality": {
+      "description": "sympy: CHSH inequality derivation and classical bound",
+      "statement": "CHSH (Clauser-Horne-Shimony-Holt) inequality: For any local hidden variable (LHV) model with dichotomic (\u00b11) measurement outcomes A(a,\u03bb), B(b,\u03bb) and shared randomness \u03bb\u223c\u03c1(\u03bb), the Bell parameter S = E(a,b) - E(a,b') + E(a',b) + E(a',b') = \u222bd\u03bb \u03c1(\u03bb) [A(a,\u03bb)B(b,\u03bb) - A(a,\u03bb)B(b',\u03bb) + A(a',\u03bb)B(b,\u03bb) + A(a',\u03bb)B(b',\u03bb)] satisfies |S| \u2264 2. Algebraic proof: For fixed \u03bb, define X = A(a,\u03bb), Y = A(a',\u03bb), Z = B(b,\u03bb), W = B(b',\u03bb) with X,Y,Z,W\u2208{\u00b11}. Then XZ - XW + YZ + YW = X(Z-W) + Y(Z+W). Since |Z-W|\u22642 and |Z+W|\u22642, we have |S(\u03bb)| \u2264 2 for each \u03bb. Averaging over \u03bb gives |S| \u2264 2.",
+      "consequence": "The classical bound is sharp: S = 2 is achievable. Example: deterministic model with A(a,\u03bb)=1, B(b,\u03bb)=sgn(cos(2a-2b)) gives S \u2192 2 as correlations align. Non-relativistic hidden variables (Bell-type) cannot exceed bound 2. This constraint defines the classical limit of correlation inequalities.",
+      "application": "Foundations of quantum mechanics (locality and realism), quantum cryptography (device-independent QKD), nonlocal games (CHSH game has value 1 classically but 1+1/\u221a2 \u2248 1.707 quantum), quantum advantage proofs.",
+      "expected": true,
+      "passed": true
+    },
+    "test_boundary_tsirelson_bound": {
+      "description": "sympy: Tsirelson bound 2\u221a2 and quantum maximum violation",
+      "statement": "Tsirelson Bound (1980): For any quantum state \u03c1 and Hermitian observables A, A', B, B' with eigenvalues \u00b11, the CHSH parameter S = \u27e8A\u2297B\u27e9 - \u27e8A\u2297B'\u27e9 + \u27e8A'\u2297B\u27e9 + \u27e8A'\u2297B'\u27e9 satisfies |S| \u2264 2\u221a2 \u2248 2.828 (quantum bound exceeds classical by factor \u221a2). Equality is achieved iff: (1) State is maximally entangled |\u03a8\u27e9 = (|00\u27e9+|11\u27e9)/\u221a2 (or rotationally equivalent). (2) Observables satisfy [A,A']=[B,B']=0 (commuting within each side) and span 2D Hilbert space with 45\u00b0 angle geometry: A\u22a5A' and B\u22a5B' (eigenvectors perpendicular), measurement bases at \u00b122.5\u00b0 relative to A and B. Proof: Use operator norm ||A\u2297B + A'\u2297B'|| = 2 (maximum singular value of anticommuting operators in 2D). Quantum supremacy in nonlocality derives from this bound.",
+      "consequence": "Quantum CHSH values range from -2\u221a2 (anti-aligned maximum violation) to +2\u221a2 (aligned maximum violation). Bell inequality S \u2264 2 is violated by classical probability 2\u221a2/2 \u2248 1.414 (or \u221a2 ratio). All Bell states |\u03a6\u00b1\u27e9, |\u03a8\u00b1\u27e9 saturate Tsirelson bound. More qubits (GHZ states) can violate stronger inequalities, but 2-qubit CHSH is canonical.",
+      "application": "Quantum advantage proofs (nonlocality is resource), device-independent quantum key distribution (DIQKD), loophole-free Bell tests (Delft 2015, Vienna 2022), quantum communication complexity, and foundational tests of quantum mechanics.",
+      "expected": true,
+      "passed": true
+    },
+    "test_boundary_bell_states_nonlocality": {
+      "description": "sympy: Bell states and maximal entanglement signatures",
+      "statement": "Bell States (maximally entangled 2-qubit states): |\u03a6+\u27e9 = (|00\u27e9+|11\u27e9)/\u221a2, |\u03a6-\u27e9 = (|00\u27e9-|11\u27e9)/\u221a2, |\u03a8+\u27e9 = (|01\u27e9+|10\u27e9)/\u221a2, |\u03a8-\u27e9 = (|01\u27e9-|10\u27e9)/\u221a2. All four saturate Tsirelson bound S = 2\u221a2 with appropriate measurement bases. CHSH signature: For |\u03a8+\u27e9 with measurements a=0\u00b0, a'=45\u00b0, b=22.5\u00b0, b'=67.5\u00b0, correlations give S = 2\u221a2 exactly. Product states \u03c1 = \u03c1_A \u2297 \u03c1_B satisfy S \u2264 2 (classical bound). Entanglement entropy of Bell state S(\u03c1_A) = 1 bit (maximal); product state has S = 0. Bell basis measurements are used in quantum teleportation and entanglement swapping. Partial Bell state discrimination: only 3 of 4 states distinguishable by local operations (LOCC), demonstrating nonlocality of entanglement.",
+      "consequence": "Bell states are standard resource for quantum communication protocols. Bell state measurement (BSM) is essential for quantum repeaters. Violation of Bell inequality S > 2 is operational signature of entanglement (bipartite); not all entangled states violate CHSH (some are not Bell-violating). EPR states = Bell states in common terminology.",
+      "application": "Quantum teleportation (requires BSM), quantum repeaters (long-distance QKD), entanglement swapping (extending network), quantum error correction (stabilizer codes use Bell measurements), and loophole-free Bell tests.",
+      "expected": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

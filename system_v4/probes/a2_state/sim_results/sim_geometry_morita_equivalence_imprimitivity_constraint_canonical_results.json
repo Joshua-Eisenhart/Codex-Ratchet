@@ -1,0 +1,166 @@
+{
+  "name": "sim_geometry_morita_equivalence_imprimitivity_constraint_canonical",
+  "description": "Morita equivalence of C*-algebras A,B iff imprimitivity bimodule exists. cvc5 proves rank mismatch is UNSAT.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Morita equivalence imprimitivity constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for rank and corner calculus"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_case_1_same_rank_corners": {
+      "algebra_A": "M_3(C)",
+      "algebra_B": "M_3(C)",
+      "rank_A": 3,
+      "rank_B": 3,
+      "ranks_equal": true,
+      "corner_A": "M_3(C) with full projection",
+      "corner_B": "M_3(C) with full projection",
+      "status": "PASS",
+      "reason": "Equal ranks admit Morita equivalence via identity imprimitivity bimodule"
+    },
+    "positive_case_2_full_matrix_algebras": {
+      "algebra_A": "M_2(C)",
+      "algebra_B": "M_4(C)",
+      "rank_A": 2,
+      "rank_B": 4,
+      "K0_invariant_A": "Z (additive identity)",
+      "K0_invariant_B": "Z (additive identity)",
+      "morita_equivalent": true,
+      "reason": "K_0-group is invariant under Morita equivalence",
+      "status": "PASS"
+    },
+    "positive_case_3_corner_isomorphism": {
+      "projection_p_rank": 5,
+      "projection_q_rank": 5,
+      "corner_algebra_A": "M_5(C)",
+      "corner_algebra_B": "M_5(C)",
+      "corner_ranks_equal": true,
+      "isomorphism_exists": true,
+      "status": "PASS",
+      "reason": "Equal-rank corners are C*-algebra isomorphic"
+    }
+  },
+  "negative": {
+    "negative_case_1_rank_mismatch_unsat": {
+      "constraint": "rank_A = 2, rank_B = 3, rank_A = rank_B",
+      "expected": "UNSAT",
+      "cvc5_result": "unsat",
+      "status": "PASS",
+      "reason": "Rank mismatch makes Morita equivalence impossible"
+    },
+    "negative_case_2_corner_isomorphism_impossible": {
+      "constraint": "rank_p = 3, rank_q = 5, pAp \u2245 qBq",
+      "expected": "UNSAT",
+      "cvc5_result": "unsat",
+      "status": "PASS",
+      "reason": "Unequal-rank projections cannot have isomorphic corners"
+    },
+    "negative_case_3_bimodule_nonexistence": {
+      "constraint": "bimodule_exists AND rank_A=4 AND rank_B=7 AND (bimodule\u2192Morita) AND (Morita\u2192rank_equal)",
+      "expected": "UNSAT (bimodule with unequal ranks is impossible)",
+      "cvc5_result": "unsat",
+      "status": "PASS",
+      "reason": "Imprimitivity bimodule cannot exist with rank mismatch"
+    }
+  },
+  "boundary": {
+    "boundary_case_1_rank_one": {
+      "algebra": "M_1(C) = C (scalars)",
+      "rank": 1,
+      "morita_equivalent_to": "only C itself",
+      "full_corner_rank": 1,
+      "status": "PASS",
+      "reason": "Rank-1 matrices are scalars; Morita equivalence is trivial"
+    },
+    "boundary_case_2_large_rank_scalability": {
+      "algebra_1": "M_1000(C)",
+      "algebra_2": "M_2000(C)",
+      "K0_invariant_1": "Z",
+      "K0_invariant_2": "Z",
+      "morita_equivalent": true,
+      "scalability": "K-theory is invariant regardless of rank",
+      "status": "PASS",
+      "reason": "All matrix algebras M_n(\u2102) have K_0 = Z; Morita equivalence is universal"
+    },
+    "boundary_case_3_compact_operators": {
+      "algebra": "K(H) - compact operators on separable Hilbert space",
+      "morita_equivalent_to": "M_\u221e(C)",
+      "tensor_invariance": "K(H) \u2297 M_n \u2245 K(H) for all n",
+      "bimodule_type": "canonical imprimitivity bimodule",
+      "status": "PASS",
+      "reason": "K(H) exhibits universal Morita equivalence via tensoring"
+    }
+  },
+  "classification": "canonical"
+}

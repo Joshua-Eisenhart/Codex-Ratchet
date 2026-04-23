@@ -1,0 +1,146 @@
+{
+  "name": "kahler_geometry_constraint",
+  "probe": "kahler_geometry_constraint",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core: J matrix algebra on complex tangent space, metric g tensor contraction \u03c9 = g(J\u00b7,\u00b7), eigenvalue checks for J\u00b2=-I, covariant derivative \u2207_v J via finite difference"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 K\u00e4hler metric is differential-geometric"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Proof: claim that J\u00b2=-I AND \u03c9 degenerate simultaneously is UNSAT (K\u00e4hler structure eliminates degenerate metrics)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic: K\u00e4hler identity verification \u2202\u0304K = g_\u012b (Fubini-Study on CP\u00b9), verify \u03c9 = \u2202\u2202\u0304K algebraically, Cotton tensor identity"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Cross-check: Riemannian metric g via geomstats, verify K\u00e4hler structure via symplectic form"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "supportive",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_J_squared_minus_I": {
+      "pass": true,
+      "comment": "Complex structure satisfies J\u00b2 = -I"
+    },
+    "P2_kahler_form_compatible": {
+      "pass": "True",
+      "omega_uv": -0.13,
+      "omega_JuJv": -0.13,
+      "comment": "K\u00e4hler form satisfies \u03c9(Ju,Jv) = \u03c9(u,v)"
+    },
+    "P3_covariant_derivative_J_zero": {
+      "pass": true,
+      "comment": "\u2207J = 0 verified on Euclidean tangent space (constant J matrix)"
+    },
+    "P4_kahler_potential_metric": {
+      "pass": true,
+      "z_evaluated": "(1+1j)",
+      "K_value": 1.0986122886681098,
+      "metric_value": 0.11111111111111109,
+      "comment": "K\u00e4hler potential K=log(1+|z|\u00b2) generates positive-definite Fubini-Study metric"
+    },
+    "P5_kahler_identity": {
+      "pass": true,
+      "comment": "K\u00e4hler identity \u03c1 = -\u2202\u2202\u0304 log det(g) verified (Ricci = K\u00e4hler form)"
+    }
+  },
+  "negative": {
+    "N1_J_squared_consistency": {
+      "pass": true,
+      "comment": "J\u00b2=-I AND J\u00b2=I simultaneously is UNSAT"
+    },
+    "N2_degenerate_omega_excluded": {
+      "pass": "True",
+      "comment": "Degenerate form cannot be K\u00e4hler (K\u00e4hler requires non-degenerate \u03c9)"
+    },
+    "N3_non_integrable_almost_complex": {
+      "pass": true,
+      "comment": "Non-integrable J (Nijenhuis N\u22600) is excluded by K\u00e4hler integrability"
+    },
+    "N4_metric_incompatible_with_J": {
+      "pass": true,
+      "comment": "Non-symmetric metric is incompatible with K\u00e4hler structure"
+    }
+  },
+  "boundary": {
+    "B1_fubini_study_cp1": {
+      "pass": true,
+      "metric_at_z0": "1",
+      "comment": "Fubini-Study metric on CP\u00b9: g(0)=1, g\u21920 as |z|\u2192\u221e"
+    },
+    "B2_dimension_constraint": {
+      "pass": true,
+      "comment": "K\u00e4hler structure exists in any complex dimension \u22651"
+    },
+    "B3_symplectic_form_nondegenerate": {
+      "pass": true,
+      "det_omega": 1.0,
+      "comment": "K\u00e4hler form is non-degenerate symplectic 2-form"
+    },
+    "B4_hermitian_structure_triple": {
+      "pass": true,
+      "comment": "Hermitian (g, J, \u03c9) forms closed algebraic structure satisfying J\u00b2=-I"
+    }
+  }
+}

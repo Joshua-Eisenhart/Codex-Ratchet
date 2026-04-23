@@ -1,0 +1,193 @@
+{
+  "name": "sim_assoc_bundle_constraint_canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_positive_so3_associativity": {
+      "error": "'NoneType' object is not iterable"
+    },
+    "z3_positive_associativity_constraint": {
+      "error": "cannot import name 'implies' from 'z3' (/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/z3/__init__.py)"
+    },
+    "numpy_positive_so3_numerical": {
+      "test": "Numerical SO(3) on R^3: (R_x\u00b7R_y)\u00b7f = R_x\u00b7(R_y\u00b7f)",
+      "rotation_angle": "45 degrees",
+      "g_hf": [
+        0.7071067811865476,
+        0.4999999999999999,
+        -0.5
+      ],
+      "gh_f": [
+        0.7071067811865476,
+        0.4999999999999999,
+        -0.5
+      ],
+      "difference_norm": 0.0,
+      "associative": "True",
+      "passed": "True",
+      "interpretation": "matrix action is associative",
+      "method": "numpy matrix multiplication"
+    }
+  },
+  "negative": {
+    "z3_negative_associativity_violation_unsat": {
+      "test": "z3 proves UNSAT: g\u00b7(h\u00b7f)\u2260(gh)\u00b7f AND SO(3)",
+      "unsatisfiable": false,
+      "passed": false,
+      "interpretation": "SO(3) structure forces associativity; violation excluded",
+      "method": "z3 proof by contradiction"
+    },
+    "sympy_negative_non_associative_contradiction": {
+      "test": "Sympy: non-associativity contradicts group action",
+      "example": "a\u00b7(b\u00b7c) vs (a\u00b7b)\u00b7c with a,b,c real",
+      "difference": "0",
+      "contradicts_group": true,
+      "passed": true,
+      "interpretation": "group elements force associativity",
+      "method": "sympy symbolic algebra"
+    },
+    "numpy_negative_permutation_associativity": {
+      "test": "Permutation group: composition always associative",
+      "permutation_a": [
+        1,
+        2,
+        0
+      ],
+      "permutation_b": [
+        1,
+        2,
+        0
+      ],
+      "permutation_c": [
+        1,
+        2,
+        0
+      ],
+      "ab_c": [
+        0,
+        1,
+        2
+      ],
+      "a_bc": [
+        0,
+        1,
+        2
+      ],
+      "associative": true,
+      "passed": true,
+      "interpretation": "cannot construct non-associative group action",
+      "method": "numpy permutation composition"
+    }
+  },
+  "boundary": {
+    "sympy_boundary_identity_associativity": {
+      "test": "Boundary: e\u00b7(g\u00b7f) = (e\u00b7g)\u00b7f where e=identity",
+      "element": "SO(3) element at \u03c0/6",
+      "identity_preserved": true,
+      "passed": true,
+      "interpretation": "identity element maintains associativity",
+      "method": "sympy symbolic identity test"
+    },
+    "z3_boundary_near_identity": {
+      "test": "Boundary: associativity for near-identity elements",
+      "satisfiable": true,
+      "passed": true,
+      "interpretation": "associativity preserved in continuous deformation",
+      "method": "z3 near-identity constraint"
+    },
+    "numpy_boundary_lie_exponential": {
+      "test": "Boundary: exp(X)\u00b7exp(X)\u00b7f associativity (Lie algebra)",
+      "epsilon": 0.01,
+      "g_hf": [
+        0.9998000066665778,
+        0.01999866669333308,
+        0.0
+      ],
+      "gh_f": [
+        0.9998000066665778,
+        0.01999866669333308,
+        0.0
+      ],
+      "difference_norm": 0.0,
+      "associative": "True",
+      "passed": "True",
+      "interpretation": "associativity preserved in exponential map",
+      "method": "numpy Lie algebra exponentiation"
+    }
+  },
+  "classification": "canonical"
+}

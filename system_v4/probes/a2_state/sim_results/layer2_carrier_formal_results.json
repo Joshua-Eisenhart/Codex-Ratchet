@@ -1,0 +1,116 @@
+{
+  "layer": 2,
+  "name": "Carrier Realization (C^2, S^3, Hopf) -- formal tools",
+  "positive": {
+    "P1_toponetx_cell_counts": {
+      "pass": true,
+      "vertices": 24,
+      "edges": 40,
+      "faces": 16,
+      "shells": 2,
+      "expected": {
+        "vertices": 24,
+        "edges": 40,
+        "faces": 16,
+        "shells": 2
+      }
+    },
+    "P2_toponetx_adjacency": {
+      "pass": true,
+      "symmetric": true,
+      "degree_match": true,
+      "degrees_sample": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "expected_sample": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ]
+    },
+    "P3_toponetx_boundary_sq_zero": {
+      "pass": true,
+      "B1_shape": [
+        24,
+        40
+      ],
+      "B2_shape": [
+        40,
+        16
+      ],
+      "max_abs_B1_B2": 0.0
+    },
+    "P4_clifford_roundtrip": {
+      "pass": true,
+      "distance": 1.5588816324933219e-16,
+      "angles": {
+        "z": 0.7,
+        "x": 0.4
+      }
+    },
+    "P5_clifford_SU2": {
+      "pass": true,
+      "tests": [
+        {
+          "phi": 0.3,
+          "Rz_Rz_inv_residual": 1.1102230246251565e-16,
+          "Rz_Rz_rev_residual": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "phi": 0.7,
+          "Rz_Rz_inv_residual": 0.0,
+          "Rz_Rz_rev_residual": 0.0,
+          "pass": true
+        },
+        {
+          "phi": 1.0,
+          "Rz_Rz_inv_residual": 0.0,
+          "Rz_Rz_rev_residual": 0.0,
+          "pass": true
+        },
+        {
+          "phi": 1.0471975511965976,
+          "Rz_Rz_inv_residual": 0.0,
+          "Rz_Rz_rev_residual": 0.0,
+          "pass": true
+        },
+        {
+          "phi": 3.141592653589793,
+          "Rz_Rz_inv_residual": 0.0,
+          "Rz_Rz_rev_residual": 0.0,
+          "pass": true
+        }
+      ]
+    }
+  },
+  "negative": {
+    "N1_toponetx_degenerate": {
+      "pass": true,
+      "crashed": true,
+      "error": "ValueError: Invalid cycle condition for cell [(0, 0), (0, 0), (1, 0), (1, 0)]. This input cell is not inserted, check if cell is irregular or if boundary edges of the cell are in the complex.",
+      "vertices": 0,
+      "edges": 0,
+      "faces": 0,
+      "note": "n_per_ring=1 produces degenerate cells that TopoNetX rejects"
+    },
+    "N2_clifford_no_3qubit": {
+      "pass": true,
+      "reason": "Correctly rejected 8-dim input: ValueError"
+    }
+  },
+  "tools_used": [
+    "toponetx.CellComplex",
+    "clifford.Cl(3)"
+  ],
+  "timestamp": "2026-04-06",
+  "summary": "P1-P5 all PASS. N1-N2 all PASS. CellComplex: 24V/40E/16F/2S. boundary^2=0 verified. Clifford SU(2) roundtrip at machine eps. Cl(3) correctly sized for C^2 carrier only."
+}

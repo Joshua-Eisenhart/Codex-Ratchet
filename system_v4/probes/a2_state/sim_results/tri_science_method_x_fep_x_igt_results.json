@@ -1,0 +1,46 @@
+{
+  "name": "sim_tri_science_method_x_fep_x_igt",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "descent + selection"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "tri UNSAT on single-shell drop"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "F_descended": true,
+    "F_mass_on_survivors": true,
+    "SM_pick_survives": true,
+    "I_pick_has_payoff": true,
+    "EMERGENT_3way_rejects_refuted_naive_best": true,
+    "z3_drop_SM_unsat": true,
+    "z3_drop_F_unsat": true,
+    "z3_drop_I_unsat": true,
+    "z3_all_three_sat": true
+  },
+  "negative": {
+    "drop_SM_picks_refuted": true,
+    "drop_F_no_belief_concentration": true,
+    "drop_I_ties_likely": true,
+    "z3_drop_SM_unsat": true,
+    "z3_drop_F_unsat": true,
+    "z3_drop_I_unsat": true
+  },
+  "boundary": {
+    "min_descent": true,
+    "min_pick_survives": true,
+    "min_rejects_refuted_best": true
+  },
+  "three_way_note": "3-way ADDS: descent toward refuted-survivor target breaks IGT ties; pairwise cannot.",
+  "PASS": true
+}

@@ -1,0 +1,131 @@
+{
+  "name": "holevo_quantity",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for Holevo quantity on bounded qubit ensembles, kept separate from mutual information and full channel-capacity rows.",
+  "lego_ids": [
+    "holevo_quantity"
+  ],
+  "primary_lego_ids": [
+    "holevo_quantity"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "orthogonal_two_state_ensemble_has_one_bit_holevo": {
+      "value": 1.0,
+      "pass": true
+    },
+    "identical_states_have_zero_holevo": {
+      "value": -0.0,
+      "pass": true
+    },
+    "nonorthogonal_ensemble_has_intermediate_holevo": {
+      "value": 0.600876036692856,
+      "pass": true
+    }
+  },
+  "negative": {
+    "holevo_is_bounded_by_entropy_of_average_state": {
+      "holevo": 0.600876036692856,
+      "entropy_avg": 0.6008760366928562,
+      "pass": true
+    },
+    "dephasing_does_not_increase_holevo_for_this_ensemble": {
+      "before": 0.600876036692856,
+      "after": 0.35542489546179834,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "mixed_state_ensemble_sits_between_identical_and_orthogonal_cases": {
+      "chi_ident": -0.0,
+      "chi_mixed": 0.16919485510105403,
+      "chi_orth": 1.0,
+      "pass": true
+    },
+    "average_state_entropy_tracks_accessible_information_ordering": {
+      "orth_entropy": 1.0,
+      "nonorth_entropy": 0.6008760366928562,
+      "ident_entropy": -0.0,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local Holevo-quantity lego on bounded two-state qubit ensembles."
+  }
+}

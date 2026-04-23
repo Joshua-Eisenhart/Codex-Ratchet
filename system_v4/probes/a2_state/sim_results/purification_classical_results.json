@@ -1,0 +1,41 @@
+{
+  "name": "purification_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "pmf arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "marginal_recovers_pA": true,
+    "joint_normalized": "True",
+    "joint_nonneg": "True"
+  },
+  "negative": {
+    "alternate_lift_has_same_marginal": true,
+    "no_unitary_equivalence_on_classical_lifts": true
+  },
+  "boundary": {
+    "deterministic_lift_valid": "True",
+    "uniform_lift_marginal_ok": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "no canonical purification; only ad hoc copy-map lifts",
+    "no Schmidt decomposition or rank invariant",
+    "no Uhlmann theorem / unitary equivalence on environment"
+  ]
+}

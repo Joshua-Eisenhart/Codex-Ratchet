@@ -1,0 +1,36 @@
+{
+  "name": "operator_coordinate_representation_classical",
+  "classification": "classical_baseline",
+  "classification_note": "classical baseline operator-coordinate representation; numeric numpy matrix basis-change witnesses only, with no nonclassical rotor/gauge surface",
+  "divergence_log": "classical baseline operator-coordinate representation; numeric numpy matrix basis-change witnesses only, with no nonclassical rotor/gauge surface",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix basis change"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "trace_invariant": "True",
+    "det_invariant": "True",
+    "spectrum_invariant": true
+  },
+  "negative": {
+    "non_unitary_breaks_trace": "True"
+  },
+  "boundary": {
+    "identity_basis_noop": true,
+    "diag_spectrum_preserved": true
+  },
+  "summary": {
+    "all_pass": true
+  }
+}

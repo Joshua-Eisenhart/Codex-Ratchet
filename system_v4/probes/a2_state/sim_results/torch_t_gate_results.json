@@ -1,0 +1,278 @@
+{
+  "name": "torch_t_gate",
+  "phase": "Phase 3 sim",
+  "description": "T gate (non-Clifford) as differentiable nn.Module",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: T gate as nn.Module, autograd for Bloch gradients"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Diagonal unitarity constraint verification"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic unitarity, T^8=I, T^4=S verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_0_unchanged": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P2_1_phase_only": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P3_T8_is_identity": {
+      "max_diff": 3.0531133177191805e-16,
+      "pass": true
+    },
+    "P4_plus_rotation": {
+      "bloch_x": 0.7071067811865475,
+      "bloch_y": 0.7071067811865474,
+      "bloch_z": 0.0,
+      "x_matches": "True",
+      "y_matches": "True",
+      "z_zero": true,
+      "pass": true
+    },
+    "P5_substrate_match": {
+      "|0>": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "|1>": {
+        "max_abs_diff": 5.960464477539063e-08,
+        "pass": true
+      },
+      "|+>": {
+        "max_abs_diff": 2.980232227667301e-08,
+        "pass": true
+      },
+      "|->": {
+        "max_abs_diff": 2.980232227667301e-08,
+        "pass": true
+      }
+    },
+    "P6_trace_preservation": {
+      "|0>": {
+        "trace": 1.0,
+        "pass": true
+      },
+      "|1>": {
+        "trace": 1.0,
+        "pass": true
+      },
+      "|+>": {
+        "trace": 0.9999999999999998,
+        "pass": true
+      },
+      "|->": {
+        "trace": 0.9999999999999998,
+        "pass": true
+      }
+    },
+    "P7_unitarity": {
+      "is_unitary": true,
+      "pass": true
+    },
+    "P8_T2_is_S_and_T4_is_Z": {
+      "T2_diff_from_S": 2.220446049250313e-16,
+      "T4_diff_from_Z": 4.440892098500626e-16,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_non_unitary_detected": {
+      "is_unitary": false,
+      "pass": true
+    },
+    "N2_not_self_inverse": {
+      "max_diff": 0.7071067811865474,
+      "pass": true
+    },
+    "N3_hermiticity_|0>": {
+      "diff": 0.0,
+      "pass": true
+    },
+    "N3_hermiticity_|+>": {
+      "diff": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_mixed_invariant": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "B2_purity_preserved": {
+      "state_0": {
+        "purity_in": 1.0,
+        "purity_out": 1.0,
+        "pass": true
+      },
+      "state_1": {
+        "purity_in": 1.0,
+        "purity_out": 1.0000000000000002,
+        "pass": true
+      },
+      "state_2": {
+        "purity_in": 1.0000000000000002,
+        "purity_out": 1.0000000000000004,
+        "pass": true
+      },
+      "state_3": {
+        "purity_in": 1.0000000000000002,
+        "purity_out": 1.0000000000000002,
+        "pass": true
+      },
+      "state_4": {
+        "purity_in": 1.0,
+        "purity_out": 0.9999999999999998,
+        "pass": true
+      }
+    },
+    "B3_bloch_radius_preserved": {
+      "state_0": {
+        "r_in": 0.9999999999999999,
+        "r_out": 0.9999999999999998,
+        "pass": "True"
+      },
+      "state_1": {
+        "r_in": 1.0,
+        "r_out": 1.0,
+        "pass": "True"
+      },
+      "state_2": {
+        "r_in": 1.0000000000000002,
+        "r_out": 1.0000000000000002,
+        "pass": "True"
+      },
+      "state_3": {
+        "r_in": 1.0,
+        "r_out": 1.0,
+        "pass": "True"
+      },
+      "state_4": {
+        "r_in": 0.9999999999999998,
+        "r_out": 0.9999999999999998,
+        "pass": "True"
+      }
+    },
+    "B4_T8_random_state": {
+      "max_diff": 3.5135752366389115e-16,
+      "pass": true
+    }
+  },
+  "falsification": {
+    "F1_bloch_Y_gradient": {
+      "theta=0.10": {
+        "theta": 0.1,
+        "exp_Y": 0.14048044383525848,
+        "grad": 1.3860234022140503,
+        "pass": true
+      },
+      "theta=0.30": {
+        "theta": 0.3,
+        "exp_Y": 0.39926251769065857,
+        "grad": 1.1672008037567139,
+        "pass": true
+      },
+      "theta=0.79": {
+        "theta": 0.7853981633974483,
+        "exp_Y": 0.7071067094802856,
+        "grad": 0.0,
+        "pass": true
+      },
+      "theta=0.70": {
+        "theta": 0.7,
+        "exp_Y": 0.6968181729316711,
+        "grad": 0.240369975566864,
+        "pass": true
+      },
+      "theta=1.20": {
+        "theta": 1.2,
+        "exp_Y": 0.4776245057582855,
+        "grad": -1.0428321361541748,
+        "pass": true
+      }
+    },
+    "F2_autograd_vs_fd": {
+      "autograd": 0.7641028165817261,
+      "finite_diff": 0.7641028436461417,
+      "abs_diff": 2.706441559752193e-08,
+      "pass": true
+    },
+    "F3_non_clifford": {
+      "TXT_is_pauli": false,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "is_unitary": true,
+    "T8_is_identity": true,
+    "T2_is_S": true,
+    "T4_is_Z": true,
+    "pass": true
+  },
+  "z3_check": {
+    "diagonal_unitarity_forced": "unsat",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 39,
+    "total_pass": 39,
+    "all_pass": true
+  }
+}

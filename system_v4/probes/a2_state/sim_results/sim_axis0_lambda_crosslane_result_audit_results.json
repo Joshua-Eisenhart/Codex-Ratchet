@@ -1,0 +1,1212 @@
+{
+  "name": "sim_axis0_lambda_crosslane_result_audit",
+  "timestamp": "2026-04-17T17:55:01.720081+00:00",
+  "classification": "classical_baseline",
+  "divergence_log": "Persisted-result Axis 0 cross-lane semantic audit. This does not claim a finished cosmology law. It checks whether the lane-owned semantic rows already written by the lambda cosmology, seam, through-shells, and PyG witnesses still satisfy the shared semantic bridge when read back from result artifacts.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "persisted semantic vectors and cross-lane aggregation arithmetic"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "semantic propagator witness over persisted lane rows"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "open-system source witness reused by the persisted semantic bridge"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "entangling source witness reused by the persisted semantic bridge"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "QNode source witness reused by the persisted semantic bridge"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "consensus frontier fit witness over persisted lane rows"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "message-passing witness over the persisted semantic graph"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "QF_LRA contradiction witness over persisted semantic rows"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric carrier witness for the persisted consensus vector"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric algebra roundtrip witness for the persisted consensus vector"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "spherical-harmonic parity witness for persisted semantic rows"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "ordered DAG witness over the persisted semantic frontier"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "higher-order coupling witness across persisted lane triplets"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex boundary witness for persisted cross-lane closure"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent topology witness for persisted semantic parity"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic interpolation and derivative witness for persisted semantic rows"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "constraint witness over the persisted semantic frontier"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Frechet-mean manifold witness for the persisted semantic carrier"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "cvc5": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing"
+  },
+  "audit_mode": "persisted_results",
+  "positive": {
+    "pass": true,
+    "crosslane_bridge": {
+      "pass": true,
+      "source_surface": {
+        "pass": true,
+        "prep_surface": {
+          "numpy_vs_cirq": 1.2731075198650083e-07,
+          "numpy_vs_pennylane": 0.0,
+          "cirq_cnot_trace": 2.0,
+          "pennylane_state_norm": 1.0
+        },
+        "open_system_surface": {
+          "numpy_vs_qutip": 1.2141417303728348e-07,
+          "reference_trace_gap": 1.1102230246251565e-16
+        }
+      },
+      "alignment_surface": {
+        "rows": [
+          {
+            "lhs": "lambda_cosmology",
+            "rhs": "axis6_seam",
+            "cosine_similarity": 0.9936621524539407,
+            "max_component_gap": 0.15932485565494192
+          },
+          {
+            "lhs": "lambda_cosmology",
+            "rhs": "through_shells",
+            "cosine_similarity": 0.996888480476549,
+            "max_component_gap": 0.15910208041792873
+          },
+          {
+            "lhs": "lambda_cosmology",
+            "rhs": "pyg_proxy",
+            "cosine_similarity": 0.9761013173405317,
+            "max_component_gap": 0.2866504188393949
+          },
+          {
+            "lhs": "axis6_seam",
+            "rhs": "through_shells",
+            "cosine_similarity": 0.9980899374062978,
+            "max_component_gap": 0.10609531509113534
+          },
+          {
+            "lhs": "axis6_seam",
+            "rhs": "pyg_proxy",
+            "cosine_similarity": 0.9942411202920859,
+            "max_component_gap": 0.12732556318445298
+          },
+          {
+            "lhs": "through_shells",
+            "rhs": "pyg_proxy",
+            "cosine_similarity": 0.9867145527878664,
+            "max_component_gap": 0.22463749087435347
+          }
+        ],
+        "min_cosine_similarity": 0.9761013173405317,
+        "max_component_gap": 0.2866504188393949,
+        "consensus_vector": [
+          0.9982031321805315,
+          1.0,
+          0.6160651044266022
+        ],
+        "distinguishability_alignment": {
+          "rows": [
+            {
+              "lhs": "lambda_cosmology",
+              "rhs": "axis6_seam",
+              "gate_agreement": 1.0,
+              "max_gate_disagreement": 0.0,
+              "surface_cosine_similarity": 1.0000000000000002,
+              "constraint_profile_cosine_similarity": 0.9294519378762097,
+              "signal_keys": [
+                "admissibility_signal",
+                "entropy_signal",
+                "observational_signal",
+                "stability_signal",
+                "topology_signal"
+              ],
+              "signal_cosine_similarity": 0.9294519378762095
+            },
+            {
+              "lhs": "lambda_cosmology",
+              "rhs": "through_shells",
+              "gate_agreement": 1.0,
+              "max_gate_disagreement": 0.0,
+              "surface_cosine_similarity": 1.0000000000000002,
+              "constraint_profile_cosine_similarity": 0.9940824938185845,
+              "signal_keys": [
+                "admissibility_signal",
+                "entropy_signal",
+                "observational_signal",
+                "stability_signal",
+                "topology_signal"
+              ],
+              "signal_cosine_similarity": 0.9940824938185847
+            },
+            {
+              "lhs": "lambda_cosmology",
+              "rhs": "pyg_proxy",
+              "gate_agreement": 1.0,
+              "max_gate_disagreement": 0.0,
+              "surface_cosine_similarity": 1.0000000000000002,
+              "constraint_profile_cosine_similarity": 0.9585296596164552,
+              "signal_keys": [
+                "admissibility_signal",
+                "entropy_signal",
+                "observational_signal",
+                "stability_signal",
+                "topology_signal"
+              ],
+              "signal_cosine_similarity": 0.9585296596164552
+            },
+            {
+              "lhs": "axis6_seam",
+              "rhs": "through_shells",
+              "gate_agreement": 1.0,
+              "max_gate_disagreement": 0.0,
+              "surface_cosine_similarity": 1.0000000000000002,
+              "constraint_profile_cosine_similarity": 0.9197447702974479,
+              "signal_keys": [
+                "admissibility_signal",
+                "entropy_signal",
+                "observational_signal",
+                "stability_signal",
+                "topology_signal"
+              ],
+              "signal_cosine_similarity": 0.9197447702974479
+            },
+            {
+              "lhs": "axis6_seam",
+              "rhs": "pyg_proxy",
+              "gate_agreement": 1.0,
+              "max_gate_disagreement": 0.0,
+              "surface_cosine_similarity": 1.0000000000000002,
+              "constraint_profile_cosine_similarity": 0.9029584661570553,
+              "signal_keys": [
+                "admissibility_signal",
+                "entropy_signal",
+                "observational_signal",
+                "stability_signal",
+                "topology_signal"
+              ],
+              "signal_cosine_similarity": 0.9029584661570553
+            },
+            {
+              "lhs": "through_shells",
+              "rhs": "pyg_proxy",
+              "gate_agreement": 1.0,
+              "max_gate_disagreement": 0.0,
+              "surface_cosine_similarity": 1.0000000000000002,
+              "constraint_profile_cosine_similarity": 0.9736914312417136,
+              "signal_keys": [
+                "admissibility_signal",
+                "entropy_signal",
+                "observational_signal",
+                "stability_signal",
+                "topology_signal"
+              ],
+              "signal_cosine_similarity": 0.9736914312417136
+            }
+          ],
+          "min_gate_agreement": 1.0,
+          "max_gate_disagreement": 0.0,
+          "min_surface_cosine_similarity": 1.0,
+          "min_constraint_profile_cosine_similarity": 0.9029584661570553,
+          "min_signal_cosine_similarity": 0.9029584661570553,
+          "min_shared_signal_count": 5
+        }
+      },
+      "ranked_rows": [
+        {
+          "lane": "through_shells",
+          "semantic_vector": [
+            1.0060358738703938,
+            1.0,
+            0.7039727344407902
+          ],
+          "symbolic_hubble_mid": 1.0060358738703938,
+          "constraint_pass": true,
+          "cvc5_pass": true,
+          "bridge_owner_pass": true,
+          "bridge_owner_gate_fraction": 1.0,
+          "distinguishability_pass": true,
+          "distinguishability_gate_fraction": 1.0,
+          "distinguishability_surface": {
+            "type": "distinguishability_constraint",
+            "pass": true,
+            "gate_fraction": 1.0,
+            "pass_threshold": 0.8,
+            "gates": {
+              "observational": true,
+              "admissible": true,
+              "stable": true,
+              "entropy_conditioned": true,
+              "topology_conditioned": true
+            },
+            "signals": {
+              "observational_signal": 1.0,
+              "admissibility_signal": 1.0,
+              "stability_signal": 1.0060358738703938,
+              "entropy_signal": 1.3717928188714463,
+              "topology_signal": 1.0,
+              "mean_gradient_norm": 1.2717928188714471,
+              "mean_bare_match_diff": 7.771561172376096e-16,
+              "symbolic_hubble_mid": 1.0060358738703938
+            },
+            "constraint_profile": {
+              "observational": 1.0,
+              "admissible": 1.0,
+              "stable": 1.0060358738703938,
+              "entropy_conditioned": 1.3717928188714463,
+              "topology_conditioned": 1.0
+            },
+            "note": "Through-shells distinguishability is load-bearing only when shell transport remains admissible and topology-supported."
+          },
+          "constraint_family_profile": {
+            "observational": 1.0,
+            "admissible": 1.0,
+            "stable": 1.0060358738703938,
+            "entropy_conditioned": 1.3717928188714463,
+            "topology_conditioned": 1.0
+          },
+          "graph_longest_path_length": 7,
+          "manifold_distance": 0.5538809589025677,
+          "pyg_mean_aggregate_norm": 1.3589480460718129,
+          "option": "through_shells",
+          "mean_abs_a0": 1.0060358738703938,
+          "mean_signed_a0": 1.0060358738703938,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.7039727344407902,
+          "shell_alignment_abs": 0.7039727344407902,
+          "signal_score": 0.8874822558055998,
+          "composite_score": 0.96061878953196,
+          "mean_signal": 1.710008608311184,
+          "scale_factor": 1.0,
+          "hubble_proxy": 1.8746778603220815
+        },
+        {
+          "lane": "axis6_seam",
+          "semantic_vector": [
+            1.006258649107407,
+            1.0,
+            0.5978774193496549
+          ],
+          "symbolic_hubble_mid": 1.006258649107407,
+          "constraint_pass": true,
+          "cvc5_pass": true,
+          "bridge_owner_pass": true,
+          "bridge_owner_gate_fraction": 1.0,
+          "distinguishability_pass": true,
+          "distinguishability_gate_fraction": 1.0,
+          "distinguishability_surface": {
+            "type": "distinguishability_constraint",
+            "pass": true,
+            "gate_fraction": 1.0,
+            "pass_threshold": 0.8,
+            "gates": {
+              "observational": true,
+              "admissible": true,
+              "stable": true,
+              "entropy_conditioned": true,
+              "topology_conditioned": true
+            },
+            "signals": {
+              "observational_signal": 1.06240787978184,
+              "admissibility_signal": 1.0,
+              "stability_signal": 0.09752836764047723,
+              "entropy_signal": 0.79314718,
+              "topology_signal": 1.0,
+              "chirality_entropy_cost": 0.69314718,
+              "bell_invariance_gap": 0.0,
+              "gradient_orthogonality_gap": 0.0,
+              "manifold_distance": 0.44421904933712186
+            },
+            "constraint_profile": {
+              "observational": 1.06240787978184,
+              "admissible": 1.0,
+              "stable": 0.09752836764047723,
+              "entropy_conditioned": 0.79314718,
+              "topology_conditioned": 1.0
+            },
+            "note": "Axis6 seam distinguishability only counts when chirality separation remains admissible without changing Axis 0 content."
+          },
+          "constraint_family_profile": {
+            "observational": 1.06240787978184,
+            "admissible": 1.0,
+            "stable": 0.09752836764047723,
+            "entropy_conditioned": 0.79314718,
+            "topology_conditioned": 1.0
+          },
+          "graph_longest_path_length": 5,
+          "manifold_distance": 0.44421904933712186,
+          "pyg_mean_aggregate_norm": 1.5943946251503018,
+          "option": "axis6_seam",
+          "mean_abs_a0": 1.006258649107407,
+          "mean_signed_a0": 1.006258649107407,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.5978774193496549,
+          "shell_alignment_abs": 0.5978774193496549,
+          "signal_score": 0.8876787786881501,
+          "composite_score": 0.9230102201731456,
+          "mean_signal": 1.6041360684570618,
+          "scale_factor": 1.8680453561523538,
+          "hubble_proxy": 1.5113994712607257
+        },
+        {
+          "lane": "pyg_proxy",
+          "semantic_vector": [
+            1.13358421229186,
+            1.0,
+            0.47933524356643675
+          ],
+          "symbolic_hubble_mid": 1.13358421229186,
+          "constraint_pass": true,
+          "cvc5_pass": true,
+          "bridge_owner_pass": true,
+          "bridge_owner_gate_fraction": 1.0,
+          "distinguishability_pass": true,
+          "distinguishability_gate_fraction": 1.0,
+          "distinguishability_surface": {
+            "type": "distinguishability_constraint",
+            "pass": true,
+            "gate_fraction": 1.0,
+            "pass_threshold": 0.8,
+            "gates": {
+              "observational": true,
+              "admissible": true,
+              "stable": true,
+              "entropy_conditioned": true,
+              "topology_conditioned": true
+            },
+            "signals": {
+              "observational_signal": 1.0,
+              "admissibility_signal": 1.0,
+              "stability_signal": 1.13358421229186,
+              "entropy_signal": 0.6004746993306572,
+              "topology_signal": 2.0644750322074197,
+              "graph_operator_separation": 0.5576084198854776,
+              "perturbation_gap": 0.03601474986189801,
+              "grad_std": 0.0068515295832816455,
+              "theta_star_grad_ratio": 2.0
+            },
+            "constraint_profile": {
+              "observational": 1.0,
+              "admissible": 1.0,
+              "stable": 1.13358421229186,
+              "entropy_conditioned": 0.6004746993306572,
+              "topology_conditioned": 2.0644750322074197
+            },
+            "note": "PyG proxy distinguishability is only load-bearing when perturbation-driven graph separation survives across the admissible activation profile."
+          },
+          "constraint_family_profile": {
+            "observational": 1.0,
+            "admissible": 1.0,
+            "stable": 1.13358421229186,
+            "entropy_conditioned": 0.6004746993306572,
+            "topology_conditioned": 2.0644750322074197
+          },
+          "graph_longest_path_length": 5,
+          "manifold_distance": 0.3193425096622258,
+          "pyg_mean_aggregate_norm": 9.0,
+          "option": "pyg_proxy",
+          "mean_abs_a0": 1.13358421229186,
+          "mean_signed_a0": 1.13358421229186,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.47933524356643675,
+          "shell_alignment_abs": 0.47933524356643675,
+          "signal_score": 1.0,
+          "composite_score": 0.920225074110009,
+          "mean_signal": 1.6129194558582967,
+          "scale_factor": 2.739018508105119,
+          "hubble_proxy": 0.9766915855161861
+        },
+        {
+          "lane": "lambda_cosmology",
+          "semantic_vector": [
+            0.8469337934524651,
+            1.0,
+            0.683075020349527
+          ],
+          "symbolic_hubble_mid": 0.8469337934524651,
+          "constraint_pass": true,
+          "cvc5_pass": true,
+          "bridge_owner_pass": true,
+          "bridge_owner_gate_fraction": 1.0,
+          "distinguishability_pass": true,
+          "distinguishability_gate_fraction": 1.0,
+          "distinguishability_surface": {
+            "type": "distinguishability_constraint",
+            "pass": true,
+            "gate_fraction": 1.0,
+            "pass_threshold": 0.8,
+            "gates": {
+              "observational": true,
+              "admissible": true,
+              "stable": true,
+              "entropy_conditioned": true,
+              "topology_conditioned": true
+            },
+            "signals": {
+              "observational_signal": 3.252058665792677,
+              "admissibility_signal": 1.0,
+              "stability_signal": 0.9999998726892481,
+              "entropy_signal": 5.850485695683674,
+              "topology_signal": 1.0,
+              "shell_spread": 0.6379761355184627,
+              "fuzz_level": 2.7757285435255117,
+              "coherent_information_span": 0.43751352572365915
+            },
+            "constraint_profile": {
+              "observational": 3.252058665792677,
+              "admissible": 1.0,
+              "stable": 0.9999998726892481,
+              "entropy_conditioned": 5.850485695683674,
+              "topology_conditioned": 1.0
+            },
+            "note": "Lambda cosmology row distinguishes states through shell-native fuzz separation, entropy span, coherent-information spread, and topology closure."
+          },
+          "constraint_family_profile": {
+            "observational": 3.252058665792677,
+            "admissible": 1.0,
+            "stable": 0.9999998726892481,
+            "entropy_conditioned": 5.850485695683674,
+            "topology_conditioned": 1.0
+          },
+          "graph_longest_path_length": 6,
+          "manifold_distance": 0.5230782255041673,
+          "pyg_mean_aggregate_norm": 5.5922342474790145,
+          "option": "lambda_cosmology",
+          "mean_abs_a0": 0.8469337934524651,
+          "mean_signed_a0": 0.8469337934524651,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.683075020349527,
+          "shell_alignment_abs": 0.683075020349527,
+          "signal_score": 0.7471291362995871,
+          "composite_score": 0.9040738470371115,
+          "mean_signal": 1.530008813801992,
+          "scale_factor": 3.5823547793724497,
+          "hubble_proxy": 0.8052620888330021
+        }
+      ],
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.02406583923353245,
+        "jk_fuzz_dynamic": 2.0853974231633376,
+        "lambda_density_mean": 0.941391450792942,
+        "dark_energy_pressure_mean": 0.9452069066062643,
+        "gravity_response_mean": 0.9452069066062645,
+        "final_scale_factor": 2.8747586436714614,
+        "mean_hubble_proxy": 1.0511266870506981,
+        "mean_acceleration_proxy": -0.6166932193653477,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 1.3181234881185158,
+          "symbolic_acceleration_mid": 4.875887141399858,
+          "symbolic_dark_energy_mid": 0.816369312475814
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.4232137067383067,
+          "max_geodesic_distance": 1.391947830749101,
+          "mean_norm": 0.9999999999999999
+        },
+        "torch_fit": {
+          "weights": [
+            -1.110150256462268,
+            0.10273834494097668
+          ],
+          "bias": 2.0033393836195486,
+          "loss": 0.031906818702787776,
+          "max_gap": 0.30577822309020775
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 3.1470420047696734e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      },
+      "graph_surface": {
+        "node_count": 4,
+        "edge_count": 5,
+        "pair_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "topological_order": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "longest_path_length": 3,
+        "acyclic": true,
+        "edge_signal_sum": 5.875498162101007
+      },
+      "hypergraph_surface": {
+        "num_nodes": 4,
+        "num_edges": 2,
+        "edge_sizes": [
+          3,
+          3
+        ],
+        "incidence_rank": 2,
+        "connected_components": 1,
+        "max_hyperedge_size": 3,
+        "pair_edges": [],
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "hyperedges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "cell_complex_surface": {
+        "shape": [
+          4,
+          5,
+          2
+        ],
+        "boundary_rank_1": 3,
+        "boundary_rank_2": 2,
+        "boundary_composes_to_zero": true,
+        "euler_characteristic": 1
+      },
+      "topology_surface": {
+        "betti_numbers": [
+          1,
+          0
+        ],
+        "beta0": 1,
+        "beta1": 0,
+        "beta2": 0,
+        "euler_characteristic": 1,
+        "parity_ok": true
+      },
+      "symbolic_surface": {
+        "scale_factor_polynomial": "-0.137541044186307*lam**3 + 0.150716125288156*lam**2 + 2.5691796982706*lam + 1.0",
+        "expansion_drive_polynomial": "-0.928574805208033*lam**3 + 1.44452647785715*lam**2 - 0.6959514671583*lam + 2.71000860831118",
+        "scale_poly_degree": 3,
+        "drive_poly_degree": 3,
+        "mid_lambda": 0.5,
+        "symbolic_hubble_mid": 1.1352075839113305,
+        "symbolic_acceleration_mid": -0.1111908819826084,
+        "symbolic_drive_mid": 2.6070926435453177
+      },
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "cvc5_surface": {
+        "pass": true,
+        "actual_sat": true,
+        "contradiction_unsat": true,
+        "winner_gap": 0.05654494249484854
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          0.007820394790489548,
+          0.0,
+          0.9999694202450997
+        ],
+        "mean_norm": 1.0,
+        "mean_geodesic_distance": 0.028218602737461455,
+        "max_geodesic_distance": 0.054111860710866495
+      },
+      "pyg_surface": {
+        "pass": true,
+        "num_nodes": 4,
+        "num_edges": 6,
+        "mean_aggregate_norm": 2.1504784713535208,
+        "max_aggregate_norm": 2.9431089588067842,
+        "edge_weight_mean": 0.9251938708558969
+      },
+      "e3nn_surface": {
+        "pass": true,
+        "l0_gap": 0.0,
+        "l1_norm_gap": 0.0,
+        "x_parity_gap": 0.0,
+        "yz_invariance_gap": 0.0
+      },
+      "torch_fit": {
+        "weights": [
+          5.55595572405301,
+          -3.9855980557864,
+          6.845431477155502
+        ],
+        "bias": -4.4855980557864,
+        "predicted": [
+          1.937291775860304,
+          1.2122612957099763,
+          1.108204145825968,
+          0.9102737916126413
+        ],
+        "loss": 0.030431790432692986,
+        "max_gap": 0.2991381755507494,
+        "history_tail": [
+          0.05469954327472042,
+          0.03051677855123474,
+          0.030431793207887362,
+          0.030431790445779695,
+          0.030431790432692986
+        ]
+      },
+      "consensus_vector": [
+        0.9982031321805315,
+        1.0,
+        0.6160651044266022
+      ],
+      "clifford_vector_gap": 0.0,
+      "torch_ga_vector_gap": 2.6198069602578755e-08,
+      "scale_factors": [
+        1.0,
+        1.8680453561523538,
+        2.739018508105119,
+        3.5823547793724497
+      ],
+      "hubble_proxy": [
+        1.8746778603220815,
+        1.5113994712607257,
+        0.9766915855161861,
+        0.8052620888330021
+      ],
+      "propagator_traces": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "xi_packet_surface": {
+      "pass": true,
+      "stack_gate_pass": true,
+      "strict_vs_pre_entropy_match": true,
+      "strict_vs_entropy_readout_match": true,
+      "carrier_matches_strict_law": true,
+      "strict_xi_law": {
+        "law_name": "Xi_hist signed law",
+        "owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
+        "placement_label": "8_23",
+        "equivalent_anchor_labels": [
+          "16_31",
+          "8_15"
+        ],
+        "canonical_prefix_drop": "8_15",
+        "canonical_early_width": "0_7",
+        "comparison_width": "0_3",
+        "total_rows": 6,
+        "off_clifford_rows": 4,
+        "clifford_rows": 2,
+        "placement_8_23_equals_16_31": true,
+        "placement_8_23_equals_prefix_8_15_on_mi": true,
+        "placement_8_23_equals_prefix_8_15_on_ic": true,
+        "placement_8_23_equals_prefix_8_15_on_signed_cut": true,
+        "best_prefix_drop_by_ic_is_8_15": true,
+        "best_early_width_by_ic_is_0_7_majority": true,
+        "late_anchor_beats_0_3_globally_on_ic": true,
+        "front_half_signed_cut_preference_all_seats": true,
+        "clifford_mi_0_7_vs_0_15_is_tied": true,
+        "placement_8_23_beats_0_3_on_ic_count": 6,
+        "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
+        "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
+        "best_early_width_by_ic_counts": {
+          "0_3": 1,
+          "0_7": 5,
+          "0_11": 0,
+          "0_15": 0
+        },
+        "best_prefix_drop_by_ic_counts": {
+          "0_15": 0,
+          "1_15": 0,
+          "2_15": 0,
+          "4_15": 0,
+          "8_15": 6
+        }
+      },
+      "carrier_xi_semantics": {
+        "history_nontrivial_while_shell_flat": true,
+        "point_ref_minus_shell_base_std": 0.2992748479986896,
+        "total_rows": 6,
+        "best_window_by_mi_counts": {
+          "0_3": 0,
+          "0_7": 6,
+          "0_11": 0,
+          "0_15": 0
+        },
+        "best_placement_by_mi_counts": {
+          "0_15": 0,
+          "8_23": 6,
+          "16_31": 0
+        },
+        "best_prefix_drop_by_mi_counts": {
+          "0_15": 0,
+          "1_15": 0,
+          "2_15": 0,
+          "4_15": 0,
+          "8_15": 6
+        },
+        "window_0_7_is_global_mi_winner": true,
+        "placement_8_23_is_global_mi_winner": true,
+        "prefix_8_15_is_global_mi_winner": true,
+        "early_window_beats_shifted_count": 0
+      }
+    },
+    "bridge_owner_surface": {
+      "pass": true,
+      "current_bridge_gate": "E10_current_bridge_candidate_is_explicit_and_provisional",
+      "current_bridge_status": "admitted_executable_candidate_not_final_owner_law",
+      "current_bridge_object_status": "admitted_bridge_object_for_downstream_readout_not_final_owner_law",
+      "bridge_owner_alignment_pass": true,
+      "search_handoff_pass": true,
+      "bridge_handoff_pass": true,
+      "search_reservation_pass": true,
+      "bridge_reservation_pass": true,
+      "owner_read_pass": true,
+      "carrier_selection_handoff_matches_search": true,
+      "search_surface": {
+        "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+        "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+        "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+        "entropy_readout_current_bridge_gate": "E10_current_bridge_candidate_is_explicit_and_provisional"
+      },
+      "bridge_surface": {
+        "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+        "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+        "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+        "entropy_gate_name": "E10_current_bridge_candidate_is_explicit_and_provisional",
+        "entropy_gate_status": "admitted_executable_candidate_not_final_owner_law"
+      },
+      "gate_passes": {
+        "C1S3_support_chain_is_closed_before_candidate_packaging": true,
+        "C1S4_candidate_stays_provisional_and_does_not_overpromote": true,
+        "C1B1_bridge_object_is_explicit_and_downstream_only": true,
+        "C1B3_bridge_object_is_bound_to_the_existing_support_contract": true,
+        "C1B4_bridge_object_keeps_owner_doctrine_questions_open": true,
+        "P22_c1_signed_bridge_candidate_is_explicit_and_provisional": true,
+        "P23_xi_chiral_entangle_remains_downstream_of_xi_hist_signed_law": true,
+        "P24_carrier_handoff_matches_pre_entropy_downstream_mapping": true,
+        "P25_standalone_c1_bridge_object_matches_pre_entropy_contract": true,
+        "E10_current_bridge_candidate_is_explicit_and_provisional": true,
+        "S5_axis0_ladder_is_mechanically_traversable": true,
+        "S6_xi_chiral_entangle_remains_axis_internal_and_not_owner_law": true,
+        "S7_axis0_stack_explicitly_consumes_named_contract_gates": true,
+        "S9_axis0_stack_consumes_standalone_c1_bridge_object_contract": true
+      },
+      "row_source": "packet_results",
+      "refreshed_missing_artifacts": []
+    },
+    "lane_rows": [
+      {
+        "lane": "lambda_cosmology",
+        "semantic_vector": [
+          0.8469337934524651,
+          1.0,
+          0.683075020349527
+        ],
+        "symbolic_hubble_mid": 0.8469337934524651,
+        "constraint_pass": true,
+        "cvc5_pass": true,
+        "bridge_owner_pass": true,
+        "bridge_owner_gate_fraction": 1.0,
+        "distinguishability_pass": true,
+        "distinguishability_gate_fraction": 1.0,
+        "distinguishability_surface": {
+          "type": "distinguishability_constraint",
+          "pass": true,
+          "gate_fraction": 1.0,
+          "pass_threshold": 0.8,
+          "gates": {
+            "observational": true,
+            "admissible": true,
+            "stable": true,
+            "entropy_conditioned": true,
+            "topology_conditioned": true
+          },
+          "signals": {
+            "observational_signal": 3.252058665792677,
+            "admissibility_signal": 1.0,
+            "stability_signal": 0.9999998726892481,
+            "entropy_signal": 5.850485695683674,
+            "topology_signal": 1.0,
+            "shell_spread": 0.6379761355184627,
+            "fuzz_level": 2.7757285435255117,
+            "coherent_information_span": 0.43751352572365915
+          },
+          "constraint_profile": {
+            "observational": 3.252058665792677,
+            "admissible": 1.0,
+            "stable": 0.9999998726892481,
+            "entropy_conditioned": 5.850485695683674,
+            "topology_conditioned": 1.0
+          },
+          "note": "Lambda cosmology row distinguishes states through shell-native fuzz separation, entropy span, coherent-information spread, and topology closure."
+        },
+        "constraint_family_profile": {
+          "observational": 3.252058665792677,
+          "admissible": 1.0,
+          "stable": 0.9999998726892481,
+          "entropy_conditioned": 5.850485695683674,
+          "topology_conditioned": 1.0
+        },
+        "graph_longest_path_length": 6,
+        "manifold_distance": 0.5230782255041673,
+        "pyg_mean_aggregate_norm": 5.5922342474790145
+      },
+      {
+        "lane": "axis6_seam",
+        "semantic_vector": [
+          1.006258649107407,
+          1.0,
+          0.5978774193496549
+        ],
+        "symbolic_hubble_mid": 1.006258649107407,
+        "constraint_pass": true,
+        "cvc5_pass": true,
+        "bridge_owner_pass": true,
+        "bridge_owner_gate_fraction": 1.0,
+        "distinguishability_pass": true,
+        "distinguishability_gate_fraction": 1.0,
+        "distinguishability_surface": {
+          "type": "distinguishability_constraint",
+          "pass": true,
+          "gate_fraction": 1.0,
+          "pass_threshold": 0.8,
+          "gates": {
+            "observational": true,
+            "admissible": true,
+            "stable": true,
+            "entropy_conditioned": true,
+            "topology_conditioned": true
+          },
+          "signals": {
+            "observational_signal": 1.06240787978184,
+            "admissibility_signal": 1.0,
+            "stability_signal": 0.09752836764047723,
+            "entropy_signal": 0.79314718,
+            "topology_signal": 1.0,
+            "chirality_entropy_cost": 0.69314718,
+            "bell_invariance_gap": 0.0,
+            "gradient_orthogonality_gap": 0.0,
+            "manifold_distance": 0.44421904933712186
+          },
+          "constraint_profile": {
+            "observational": 1.06240787978184,
+            "admissible": 1.0,
+            "stable": 0.09752836764047723,
+            "entropy_conditioned": 0.79314718,
+            "topology_conditioned": 1.0
+          },
+          "note": "Axis6 seam distinguishability only counts when chirality separation remains admissible without changing Axis 0 content."
+        },
+        "constraint_family_profile": {
+          "observational": 1.06240787978184,
+          "admissible": 1.0,
+          "stable": 0.09752836764047723,
+          "entropy_conditioned": 0.79314718,
+          "topology_conditioned": 1.0
+        },
+        "graph_longest_path_length": 5,
+        "manifold_distance": 0.44421904933712186,
+        "pyg_mean_aggregate_norm": 1.5943946251503018
+      },
+      {
+        "lane": "through_shells",
+        "semantic_vector": [
+          1.0060358738703938,
+          1.0,
+          0.7039727344407902
+        ],
+        "symbolic_hubble_mid": 1.0060358738703938,
+        "constraint_pass": true,
+        "cvc5_pass": true,
+        "bridge_owner_pass": true,
+        "bridge_owner_gate_fraction": 1.0,
+        "distinguishability_pass": true,
+        "distinguishability_gate_fraction": 1.0,
+        "distinguishability_surface": {
+          "type": "distinguishability_constraint",
+          "pass": true,
+          "gate_fraction": 1.0,
+          "pass_threshold": 0.8,
+          "gates": {
+            "observational": true,
+            "admissible": true,
+            "stable": true,
+            "entropy_conditioned": true,
+            "topology_conditioned": true
+          },
+          "signals": {
+            "observational_signal": 1.0,
+            "admissibility_signal": 1.0,
+            "stability_signal": 1.0060358738703938,
+            "entropy_signal": 1.3717928188714463,
+            "topology_signal": 1.0,
+            "mean_gradient_norm": 1.2717928188714471,
+            "mean_bare_match_diff": 7.771561172376096e-16,
+            "symbolic_hubble_mid": 1.0060358738703938
+          },
+          "constraint_profile": {
+            "observational": 1.0,
+            "admissible": 1.0,
+            "stable": 1.0060358738703938,
+            "entropy_conditioned": 1.3717928188714463,
+            "topology_conditioned": 1.0
+          },
+          "note": "Through-shells distinguishability is load-bearing only when shell transport remains admissible and topology-supported."
+        },
+        "constraint_family_profile": {
+          "observational": 1.0,
+          "admissible": 1.0,
+          "stable": 1.0060358738703938,
+          "entropy_conditioned": 1.3717928188714463,
+          "topology_conditioned": 1.0
+        },
+        "graph_longest_path_length": 7,
+        "manifold_distance": 0.5538809589025677,
+        "pyg_mean_aggregate_norm": 1.3589480460718129
+      },
+      {
+        "lane": "pyg_proxy",
+        "semantic_vector": [
+          1.13358421229186,
+          1.0,
+          0.47933524356643675
+        ],
+        "symbolic_hubble_mid": 1.13358421229186,
+        "constraint_pass": true,
+        "cvc5_pass": true,
+        "bridge_owner_pass": true,
+        "bridge_owner_gate_fraction": 1.0,
+        "distinguishability_pass": true,
+        "distinguishability_gate_fraction": 1.0,
+        "distinguishability_surface": {
+          "type": "distinguishability_constraint",
+          "pass": true,
+          "gate_fraction": 1.0,
+          "pass_threshold": 0.8,
+          "gates": {
+            "observational": true,
+            "admissible": true,
+            "stable": true,
+            "entropy_conditioned": true,
+            "topology_conditioned": true
+          },
+          "signals": {
+            "observational_signal": 1.0,
+            "admissibility_signal": 1.0,
+            "stability_signal": 1.13358421229186,
+            "entropy_signal": 0.6004746993306572,
+            "topology_signal": 2.0644750322074197,
+            "graph_operator_separation": 0.5576084198854776,
+            "perturbation_gap": 0.03601474986189801,
+            "grad_std": 0.0068515295832816455,
+            "theta_star_grad_ratio": 2.0
+          },
+          "constraint_profile": {
+            "observational": 1.0,
+            "admissible": 1.0,
+            "stable": 1.13358421229186,
+            "entropy_conditioned": 0.6004746993306572,
+            "topology_conditioned": 2.0644750322074197
+          },
+          "note": "PyG proxy distinguishability is only load-bearing when perturbation-driven graph separation survives across the admissible activation profile."
+        },
+        "constraint_family_profile": {
+          "observational": 1.0,
+          "admissible": 1.0,
+          "stable": 1.13358421229186,
+          "entropy_conditioned": 0.6004746993306572,
+          "topology_conditioned": 2.0644750322074197
+        },
+        "graph_longest_path_length": 5,
+        "manifold_distance": 0.3193425096622258,
+        "pyg_mean_aggregate_norm": 9.0
+      }
+    ],
+    "row_source": "persisted_results",
+    "refreshed_missing_artifacts": []
+  },
+  "summary": {
+    "persisted_positive_all_pass": true,
+    "all_pass": true
+  },
+  "overall_pass": true,
+  "all_pass": true
+}

@@ -1,0 +1,132 @@
+{
+  "name": "negativity_measure",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for negativity and logarithmic negativity on bounded two-qubit states, separated from topology or filtration successors.",
+  "lego_ids": [
+    "negativity_measure",
+    "logarithmic_negativity"
+  ],
+  "primary_lego_ids": [
+    "negativity_measure"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "saved for later filtration successor"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "product_state_has_zero_negativity": {
+      "value": 0.0,
+      "pass": true
+    },
+    "bell_state_has_positive_negativity": {
+      "negativity": 0.4999999999999999,
+      "log_negativity": 0.9999999999999999,
+      "pass": true
+    },
+    "werner_negativity_is_monotone_in_r": {
+      "values": {
+        "r_0_2": 0.0,
+        "r_0_5": 0.12499999999999996,
+        "r_0_9": 0.42499999999999993
+      },
+      "pass": true
+    }
+  },
+  "negative": {
+    "low_werner_state_is_not_entangled_by_negativity": {
+      "value": 0.0,
+      "pass": true
+    },
+    "product_and_bell_do_not_share_same_negativity": {
+      "product": 0.0,
+      "bell": 0.4999999999999999,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "werner_above_one_third_has_positive_negativity": {
+      "value_mid": 0.12499999999999996,
+      "value_high": 0.42499999999999993,
+      "pass": true
+    },
+    "log_negativity_tracks_negativity_order": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local negativity lego on bounded two-qubit product, Bell, and Werner states."
+  }
+}

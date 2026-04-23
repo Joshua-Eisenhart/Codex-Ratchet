@@ -1,0 +1,113 @@
+{
+  "name": "classical_jarzynski_equality_small_system",
+  "scope_note": "Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (Landauer section): Jarzynski equality as identity linking fluctuating work to free-energy difference.",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "load_bearing_tool": "numpy",
+  "positive": {
+    "dF_0.0": {
+      "dF_est": 0.00035892180009086916,
+      "dF_true": 0.0,
+      "abs_err": 0.00035892180009086916,
+      "ok": true
+    },
+    "dF_0.5": {
+      "dF_est": 0.500215307686896,
+      "dF_true": 0.5,
+      "abs_err": 0.00021530768689603796,
+      "ok": true
+    },
+    "dF_1.2": {
+      "dF_est": 1.200838133133512,
+      "dF_true": 1.2,
+      "abs_err": 0.0008381331335121089,
+      "ok": true
+    }
+  },
+  "negative": {
+    "naive_biased_above_dF": true,
+    "naive": 0.8203475080802234,
+    "dF_true": 0.5
+  },
+  "boundary": {
+    "zero_work": {
+      "dF_est": -0.0
+    }
+  },
+  "pass": true
+}

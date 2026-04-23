@@ -1,0 +1,460 @@
+{
+  "name": "c2_topology_expansion",
+  "timestamp": "2026-04-22T23:39:58.283949+00:00",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: all 10 family modules use torch autograd; gradient norms are the C2 criterion measurement"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: builds chain/star/skip_connect DAG topologies; topological sort order determines which module runs when"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "z_measurement": {
+      "family": "z_measurement",
+      "topologies": {
+        "chain": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.04169883929551741,
+          "std_grad_norm": 0.018562621765867485,
+          "n_valid_grads": 8
+        },
+        "star": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.04169883929551741,
+          "std_grad_norm": 0.018562621765867485,
+          "n_valid_grads": 8
+        },
+        "skip_connect": {
+          "n_edges": 4,
+          "n_trials": 8,
+          "mean_grad_norm": 0.03158073858410511,
+          "std_grad_norm": 0.014058456190326103,
+          "n_valid_grads": 8
+        }
+      },
+      "grad_range_across_topologies": 0.010118100711412302,
+      "threshold": 1e-06,
+      "topology_load_bearing": true,
+      "verdict": "LOAD_BEARING",
+      "elapsed_s": 0.0518
+    },
+    "hadamard": {
+      "family": "hadamard",
+      "topologies": {
+        "chain": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.03330126301700134,
+          "std_grad_norm": 0.025135323817709745,
+          "n_valid_grads": 8
+        },
+        "star": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.03330126301700134,
+          "std_grad_norm": 0.025135323817709745,
+          "n_valid_grads": 8
+        },
+        "skip_connect": {
+          "n_edges": 4,
+          "n_trials": 8,
+          "mean_grad_norm": 0.025220809490817196,
+          "std_grad_norm": 0.019036311420765485,
+          "n_valid_grads": 8
+        }
+      },
+      "grad_range_across_topologies": 0.008080453526184146,
+      "threshold": 1e-06,
+      "topology_load_bearing": true,
+      "verdict": "LOAD_BEARING",
+      "elapsed_s": 0.0167
+    },
+    "t_gate": {
+      "family": "t_gate",
+      "topologies": {
+        "chain": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 1.7102339408816262e-17,
+          "std_grad_norm": 1.6494263567032345e-17,
+          "n_valid_grads": 8
+        },
+        "star": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 1.7102339408816262e-17,
+          "std_grad_norm": 1.6494263567032345e-17,
+          "n_valid_grads": 8
+        },
+        "skip_connect": {
+          "n_edges": 4,
+          "n_trials": 8,
+          "mean_grad_norm": 1.3304973284265818e-17,
+          "std_grad_norm": 8.211094193164713e-18,
+          "n_valid_grads": 8
+        }
+      },
+      "grad_range_across_topologies": 3.797366124550443e-18,
+      "threshold": 1e-06,
+      "topology_load_bearing": false,
+      "verdict": "TOPOLOGY_INDEPENDENT",
+      "elapsed_s": 0.0221
+    },
+    "purification": {
+      "family": "purification",
+      "topologies": {
+        "chain": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.09319542912352644,
+          "std_grad_norm": 0.03108176970269765,
+          "n_valid_grads": 8
+        },
+        "star": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.09319542912352644,
+          "std_grad_norm": 0.03108176970269765,
+          "n_valid_grads": 8
+        },
+        "skip_connect": {
+          "n_edges": 4,
+          "n_trials": 8,
+          "mean_grad_norm": 0.07058183235090604,
+          "std_grad_norm": 0.023539869701307767,
+          "n_valid_grads": 8
+        }
+      },
+      "grad_range_across_topologies": 0.022613596772620398,
+      "threshold": 1e-06,
+      "topology_load_bearing": true,
+      "verdict": "LOAD_BEARING",
+      "elapsed_s": 0.0149
+    },
+    "eigenvalue_decomposition": {
+      "family": "eigenvalue_decomposition",
+      "topologies": {
+        "chain": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.0128340634926529,
+          "std_grad_norm": 0.0075604475476338485,
+          "n_valid_grads": 8
+        },
+        "star": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.0128340634926529,
+          "std_grad_norm": 0.0075604475476338485,
+          "n_valid_grads": 8
+        },
+        "skip_connect": {
+          "n_edges": 4,
+          "n_trials": 8,
+          "mean_grad_norm": 0.009719915733406241,
+          "std_grad_norm": 0.005725927186810929,
+          "n_valid_grads": 8
+        }
+      },
+      "grad_range_across_topologies": 0.0031141477592466597,
+      "threshold": 1e-06,
+      "topology_load_bearing": true,
+      "verdict": "LOAD_BEARING",
+      "elapsed_s": 0.0195
+    },
+    "l1_coherence": {
+      "family": "l1_coherence",
+      "topologies": {
+        "chain": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.05878224047263832,
+          "std_grad_norm": 0.04610166367622145,
+          "n_valid_grads": 8
+        },
+        "star": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.05878224047263832,
+          "std_grad_norm": 0.04610166367622145,
+          "n_valid_grads": 8
+        },
+        "skip_connect": {
+          "n_edges": 4,
+          "n_trials": 8,
+          "mean_grad_norm": 0.0445189027108952,
+          "std_grad_norm": 0.034915230578314776,
+          "n_valid_grads": 8
+        }
+      },
+      "grad_range_across_topologies": 0.014263337761743114,
+      "threshold": 1e-06,
+      "topology_load_bearing": true,
+      "verdict": "LOAD_BEARING",
+      "elapsed_s": 0.0181
+    },
+    "relative_entropy_coherence": {
+      "family": "relative_entropy_coherence",
+      "topologies": {
+        "chain": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.04902603752586253,
+          "std_grad_norm": 0.015919190669675502,
+          "n_valid_grads": 8
+        },
+        "star": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.04902603752586253,
+          "std_grad_norm": 0.015919190669675502,
+          "n_valid_grads": 8
+        },
+        "skip_connect": {
+          "n_edges": 4,
+          "n_trials": 8,
+          "mean_grad_norm": 0.03713001371444001,
+          "std_grad_norm": 0.012056445874827768,
+          "n_valid_grads": 8
+        }
+      },
+      "grad_range_across_topologies": 0.011896023811422518,
+      "threshold": 1e-06,
+      "topology_load_bearing": true,
+      "verdict": "LOAD_BEARING",
+      "elapsed_s": 0.0172
+    },
+    "wigner_negativity": {
+      "family": "wigner_negativity",
+      "topologies": {
+        "chain": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 4.150461441546072e-21,
+          "std_grad_norm": 1.098108880049355e-20,
+          "n_valid_grads": 8
+        },
+        "star": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 4.150461441546072e-21,
+          "std_grad_norm": 1.098108880049355e-20,
+          "n_valid_grads": 8
+        },
+        "skip_connect": {
+          "n_edges": 4,
+          "n_trials": 8,
+          "mean_grad_norm": 5.2410163611359845e-22,
+          "std_grad_norm": 1.339266220124468e-21,
+          "n_valid_grads": 8
+        }
+      },
+      "grad_range_across_topologies": 3.626359805432473e-21,
+      "threshold": 1e-06,
+      "topology_load_bearing": false,
+      "verdict": "TOPOLOGY_INDEPENDENT",
+      "elapsed_s": 0.0191
+    },
+    "hopf_connection": {
+      "family": "hopf_connection",
+      "topologies": {
+        "chain": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 9.85220667040036e-17,
+          "std_grad_norm": 6.435401172403783e-17,
+          "n_valid_grads": 8
+        },
+        "star": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 9.85220667040036e-17,
+          "std_grad_norm": 6.435401172403783e-17,
+          "n_valid_grads": 8
+        },
+        "skip_connect": {
+          "n_edges": 4,
+          "n_trials": 8,
+          "mean_grad_norm": 6.953810088345456e-17,
+          "std_grad_norm": 6.32759702598924e-17,
+          "n_valid_grads": 8
+        }
+      },
+      "grad_range_across_topologies": 2.8983965820549034e-17,
+      "threshold": 1e-06,
+      "topology_load_bearing": false,
+      "verdict": "TOPOLOGY_INDEPENDENT",
+      "elapsed_s": 0.0225
+    },
+    "chiral_overlap": {
+      "family": "chiral_overlap",
+      "topologies": {
+        "chain": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.16196527934630306,
+          "std_grad_norm": 0.09666312426502291,
+          "n_valid_grads": 8
+        },
+        "star": {
+          "n_edges": 3,
+          "n_trials": 8,
+          "mean_grad_norm": 0.16196527934630306,
+          "std_grad_norm": 0.09666312426502291,
+          "n_valid_grads": 8
+        },
+        "skip_connect": {
+          "n_edges": 4,
+          "n_trials": 8,
+          "mean_grad_norm": 0.12266488068139131,
+          "std_grad_norm": 0.07320810146542175,
+          "n_valid_grads": 8
+        }
+      },
+      "grad_range_across_topologies": 0.03930039866491175,
+      "threshold": 1e-06,
+      "topology_load_bearing": true,
+      "verdict": "LOAD_BEARING",
+      "elapsed_s": 0.0268
+    }
+  },
+  "negative": {
+    "null_constant_not_load_bearing": {
+      "family": "null_constant_baseline",
+      "grad_range": 0.0,
+      "expected_verdict": "TOPOLOGY_INDEPENDENT",
+      "actual_verdict": "TOPOLOGY_INDEPENDENT",
+      "status": "PASS"
+    }
+  },
+  "boundary": {
+    "z_measurement_boundary_p_zero": {
+      "param": 0.0,
+      "grad_norms": {
+        "chain": 0.8713202178412203,
+        "star": 0.8713202178412203,
+        "skip_connect": 0.8713202178412203
+      },
+      "grad_range": 0.0
+    },
+    "z_measurement_boundary_p_one": {
+      "param": 1.0,
+      "grad_norms": {
+        "chain": 0.8713202178412203,
+        "star": 0.8713202178412203,
+        "skip_connect": 0.8713202178412203
+      },
+      "grad_range": 0.0
+    }
+  },
+  "summary": {
+    "families_tested": [
+      "z_measurement",
+      "hadamard",
+      "t_gate",
+      "purification",
+      "eigenvalue_decomposition",
+      "l1_coherence",
+      "relative_entropy_coherence",
+      "wigner_negativity",
+      "hopf_connection",
+      "chiral_overlap"
+    ],
+    "n_tested": 10,
+    "topology_load_bearing": [
+      "z_measurement",
+      "hadamard",
+      "purification",
+      "eigenvalue_decomposition",
+      "l1_coherence",
+      "relative_entropy_coherence",
+      "chiral_overlap"
+    ],
+    "topology_independent": [
+      "t_gate",
+      "wigner_negativity",
+      "hopf_connection"
+    ],
+    "n_load_bearing": 7,
+    "n_topology_independent": 3,
+    "sensitivity_threshold": 1e-06,
+    "topologies_tested": [
+      "chain",
+      "star",
+      "skip_connect"
+    ],
+    "total_elapsed_s": 0.238
+  },
+  "classification": "canonical"
+}

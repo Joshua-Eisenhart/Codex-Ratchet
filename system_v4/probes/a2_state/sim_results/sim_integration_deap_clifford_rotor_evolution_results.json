@@ -1,0 +1,188 @@
+{
+  "name": "sim_integration_deap_clifford_rotor_evolution",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not used: the search is evolutionary over plain Python genomes, with no torch tensors or autograd"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not used: rotor evolution does not involve graph message-passing or edge-index structure"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not used: this sim optimizes a continuous rotor fit, not a SAT/SMT proof obligation"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not used: same reason as z3; there is no solver-driven constraint proof here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not used: rotor fitness is evaluated numerically through clifford operations, not symbolic algebra"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: clifford provides the Cl(3) multivector basis, rotor sandwich product, and residual norm that define the optimization target"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not used: the search space is handled directly as rotor coefficients, not as a Riemannian manifold problem"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not used: there is no equivariant neural architecture in the rotor-evolution loop"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not used: no graph routing or reduction structure is present in this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not used: the search problem has no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not used: no cell-complex topology is computed in the rotor GA"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not used: persistent homology is unrelated to the rotor residual objective"
+    },
+    "deap": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: DEAP supplies the evolutionary loop, mutation, crossover, and selection that actually drives convergence of the rotor genome"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "deap": "load_bearing",
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": null,
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "e1_to_e2_convergence": {
+      "final_distance": 0.0036275583240047947,
+      "pass": true,
+      "history_last5": [
+        0.019179433982564203,
+        0.006003973004580191,
+        0.006003973004580191,
+        0.0036275583240047947,
+        0.0036275583240047947
+      ],
+      "n_gen": 20
+    },
+    "e1_to_e3_convergence": {
+      "final_distance": 0.007304354735916863,
+      "pass": true,
+      "history_last5": [
+        0.02262567663890337,
+        0.007304354735916863,
+        0.007304354735916863,
+        0.007304354735916863,
+        0.007304354735916863
+      ]
+    },
+    "e2_to_e3_convergence": {
+      "final_distance": 0.022049663804025867,
+      "pass": true,
+      "history_last5": [
+        0.028067716291867554,
+        0.022049663804025867,
+        0.018459720235481626,
+        0.02015998363131365,
+        0.022049663804025867
+      ]
+    },
+    "known_optimal_e1_to_e2": {
+      "clifford_distance": 2.220446049250313e-16,
+      "pass": true,
+      "rationale": "Known analytical rotor must achieve machine-epsilon clifford distance"
+    },
+    "known_optimal_e1_to_e3": {
+      "clifford_distance": 2.220446049250313e-16,
+      "pass": true,
+      "rationale": "Known analytical rotor must achieve machine-epsilon clifford distance"
+    },
+    "known_optimal_e2_to_e3": {
+      "clifford_distance": 2.220446049250313e-16,
+      "pass": true,
+      "rationale": "Known analytical rotor must achieve machine-epsilon clifford distance"
+    }
+  },
+  "negative": {
+    "identity_rotor_e1_vs_e2_far": {
+      "clifford_distance": 1.4142135623730951,
+      "pass": true,
+      "rationale": "Identity rotor leaves e1 unchanged; clifford distance from e2 equals ||e1-e2||=sqrt(2)~=1.414 (perpendicular basis vectors), must exceed 1.0"
+    },
+    "zero_genome_treated_as_identity": {
+      "clifford_distance": 1.4142135623730951,
+      "pass": true,
+      "rationale": "Degenerate zero-norm genome falls back to scalar identity; result equals ||e1-e2||=sqrt(2)~=1.414, must exceed 1.0 confirming fallback"
+    },
+    "random_genome_mean_distance_high": {
+      "mean_distance": 1.330766637939567,
+      "pass": true,
+      "rationale": "Random rotor parameters should not accidentally approach target; mean clifford distance over 50 random genomes must exceed 0.5"
+    }
+  },
+  "boundary": {
+    "self_rotation_zero_distance": {
+      "clifford_distance": 0.0,
+      "pass": true,
+      "rationale": "Identity rotor applied to self-target must yield exactly zero clifford distance"
+    },
+    "ga_beats_random_baseline": {
+      "final_distance": 0.0038908063760026666,
+      "random_mean_baseline": 1.35,
+      "pass": true,
+      "rationale": "GA with 80 individuals and 25 generations on e1->e2 task must achieve clifford distance < 0.05, well below random baseline ~1.35"
+    },
+    "rotor_normalization_unit_constraint": {
+      "max_norm_error": 2.220446049250313e-16,
+      "pass": true,
+      "rationale": "Normalized rotor R must satisfy R*~R = 1 (unit rotor constraint in Cl(3))"
+    }
+  },
+  "all_checks": {
+    "positive.e1_to_e2_convergence": true,
+    "positive.e1_to_e3_convergence": true,
+    "positive.e2_to_e3_convergence": true,
+    "positive.known_optimal_e1_to_e2": true,
+    "positive.known_optimal_e1_to_e3": true,
+    "positive.known_optimal_e2_to_e3": true,
+    "negative.identity_rotor_e1_vs_e2_far": true,
+    "negative.zero_genome_treated_as_identity": true,
+    "negative.random_genome_mean_distance_high": true,
+    "boundary.self_rotation_zero_distance": true,
+    "boundary.ga_beats_random_baseline": true,
+    "boundary.rotor_normalization_unit_constraint": true
+  },
+  "all_pass": true,
+  "overall_pass": true,
+  "classification": "canonical"
+}

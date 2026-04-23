@@ -1,0 +1,352 @@
+{
+  "layer_4": {
+    "section_4_1_chirality_hamiltonian": {
+      "H0_form": "a*sigma_x + b*sigma_y + c*sigma_z",
+      "H_L": "+H0",
+      "H_R": "-H0",
+      "free_params_in_H0": 3,
+      "U_R_equals_U_L_neg_theta": true,
+      "hamiltonian_space": "R^3 (Bloch sphere of generators)"
+    },
+    "section_4_2_chirality_kills": {
+      "regimes": {
+        "no_chirality_L_eq_R": {
+          "constraint": "L = R",
+          "free_params": 0,
+          "description": "No distinction at all -- 0D chirality space"
+        },
+        "uncorrelated_L_R_independent": {
+          "constraint": "L and R independent",
+          "free_params": 6,
+          "description": "3+3 = 6 params -- no chirality lock"
+        },
+        "chirality_L_eq_neg_R": {
+          "constraint": "L = -R (anti-aligned)",
+          "free_params": 3,
+          "description": "Exactly 3 dims -- chirality locks anti-aligned"
+        }
+      },
+      "z3_L_free_test": "sat",
+      "z3_R_independent_contradiction": "unsat",
+      "chiral_free_params": 3,
+      "killed_params": 3,
+      "explanation": "Chirality kills 3 of 6 possible params by locking R = -L"
+    },
+    "section_4_3_pyg_chirality_graph": {
+      "n_nodes": 2,
+      "node_types": [
+        "L_sector",
+        "R_sector"
+      ],
+      "n_edges": 2,
+      "edge_sign": -1,
+      "anti_alignment_check_sum_zero": [
+        0.0,
+        0.0
+      ],
+      "graph_constrains_system": true
+    }
+  },
+  "layer_5": {
+    "section_5_4_cptp_restriction": {
+      "full_cptp_params": 12,
+      "topology_classes": {
+        "Se": {
+          "operator": "sigma_plus Lindblad (emission)",
+          "generator": "L = sigma_+ = |1><0|",
+          "params": {
+            "strength": 1,
+            "phase": 1
+          },
+          "total_params": 2,
+          "type": "dissipative"
+        },
+        "Ne": {
+          "operator": "[H0, .] commutator (coherent evolution)",
+          "generator": "H = a*sx + b*sy + c*sz",
+          "params": {
+            "direction_theta": 1,
+            "direction_phi": 1,
+            "magnitude": 1
+          },
+          "total_params": 3,
+          "type": "unitary"
+        },
+        "Ni": {
+          "operator": "sigma_minus Lindblad (absorption)",
+          "generator": "L = sigma_- = |0><1|",
+          "params": {
+            "strength": 1,
+            "phase": 1
+          },
+          "total_params": 2,
+          "type": "dissipative"
+        },
+        "Si": {
+          "operator": "[H_comm, .] commutator (coherent selection)",
+          "generator": "H = a'*sx + b'*sy + c'*sz",
+          "params": {
+            "direction_theta": 1,
+            "direction_phi": 1,
+            "magnitude": 1
+          },
+          "total_params": 3,
+          "type": "unitary"
+        }
+      },
+      "within_class_params": 10,
+      "killed_by_topology": 2,
+      "engine_final_params": 4
+    },
+    "section_5_5_overlap_matrix": {
+      "overlap_matrix": [
+        [
+          2.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          2.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          2.0
+        ]
+      ],
+      "rank": 4,
+      "generators_independent": true,
+      "generator_names": [
+        "Ti (Z-deph)",
+        "Fe (Z-rot)",
+        "Te (X-deph)",
+        "Fi (X-rot)"
+      ]
+    },
+    "section_5_6_z3_topology_coverage": {
+      "total_orderings_z3": 24,
+      "expected_4_factorial": 24,
+      "match": true,
+      "fence_constrained_orderings": 2,
+      "fence_orders": [
+        [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ]
+      ],
+      "reduction_factor": 12.0
+    }
+  },
+  "layer_6": {
+    "section_6_7_su2_algebra": {
+      "commutation_relations_verified": {
+        "[Jx,Jy]=iJz": true,
+        "[Jy,Jz]=iJx": true,
+        "[Jz,Jx]=iJy": true
+      },
+      "casimir_3_4_I": true,
+      "representation": "j=1/2 (fundamental, d=2)",
+      "su2_continuous_params": 3,
+      "operator_param_analysis": {
+        "Ti": {
+          "type": "Z-dephasing",
+          "axis": "z",
+          "free_params": 1,
+          "param_names": [
+            "strength"
+          ]
+        },
+        "Fe": {
+          "type": "Z-rotation",
+          "axis": "z",
+          "free_params": 2,
+          "param_names": [
+            "strength",
+            "phi"
+          ]
+        },
+        "Te": {
+          "type": "X-dephasing",
+          "axis": "x",
+          "free_params": 1,
+          "param_names": [
+            "strength"
+          ]
+        },
+        "Fi": {
+          "type": "X-rotation",
+          "axis": "x",
+          "free_params": 2,
+          "param_names": [
+            "strength",
+            "theta"
+          ]
+        }
+      },
+      "total_operator_params": 6,
+      "engine_fixed_params": 4,
+      "commuting_pairs": [
+        [
+          "Ti",
+          "Fe"
+        ],
+        [
+          "Ti",
+          "Te"
+        ],
+        [
+          "Te",
+          "Fi"
+        ]
+      ],
+      "noncommuting_pairs": [
+        [
+          "Ti",
+          "Fi"
+        ],
+        [
+          "Fe",
+          "Te"
+        ],
+        [
+          "Fe",
+          "Fi"
+        ]
+      ]
+    },
+    "section_6_8_clifford_rotor_space": {
+      "rotor_form": "R = a + b*e12 + c*e13 + d*e23, a^2+b^2+c^2+d^2=1",
+      "topology": "S^3 (3-sphere)",
+      "spin3_iso_su2": true,
+      "hopf_connection_confirmed": true,
+      "n_rotor_samples": 1000,
+      "all_unit_rotors": true,
+      "Fe_rotor_curve": {
+        "plane": "(1, e12)",
+        "lies_in_plane": true,
+        "type": "great_circle_S3"
+      },
+      "Fi_rotor_curve": {
+        "plane": "(1, e23)",
+        "lies_in_plane": true,
+        "type": "great_circle_S3"
+      },
+      "orthogonal_circles": true,
+      "Ti_dissipative_shrinks_bloch": true,
+      "Te_dissipative_shrinks_bloch": true
+    },
+    "section_6_9_pyg_operator_graph": {
+      "n_operator_nodes": 4,
+      "operator_names": [
+        "Ti",
+        "Fe",
+        "Te",
+        "Fi"
+      ],
+      "node_features": [
+        "is_dissipative",
+        "is_z_axis",
+        "strength"
+      ],
+      "commuting_pairs": [
+        [
+          "Ti",
+          "Fe"
+        ],
+        [
+          "Ti",
+          "Te"
+        ],
+        [
+          "Te",
+          "Fi"
+        ]
+      ],
+      "noncommuting_pairs": [
+        [
+          "Ti",
+          "Fi"
+        ],
+        [
+          "Fe",
+          "Te"
+        ],
+        [
+          "Fe",
+          "Fi"
+        ]
+      ],
+      "adjacency_matrix": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.4142135623730951
+        ],
+        [
+          0.0,
+          0.0,
+          1.4142135623730951,
+          1.4142135623730951
+        ],
+        [
+          0.0,
+          1.4142135623730951,
+          0.0,
+          0.0
+        ],
+        [
+          1.4142135623730951,
+          1.4142135623730951,
+          0.0,
+          0.0
+        ]
+      ],
+      "n_noncommutation_edges": 6
+    }
+  },
+  "summary": {
+    "layer_4_chirality": {
+      "input_space": "6D (independent L/R Hamiltonians)",
+      "constraint": "L = -R (anti-alignment)",
+      "output_space": "3D (R^3, one H0 determines both)",
+      "params_killed": 3
+    },
+    "layer_5_topology": {
+      "input_space": "12D (full CPTP on C^2)",
+      "constraint": "4 topology classes {Se,Ne,Ni,Si}",
+      "output_space": "10D -> 4D (engine fixes axes)",
+      "params_killed": "8 (12 -> 4)"
+    },
+    "layer_6_algebra": {
+      "input_space": "3D continuous (su(2) rotations)",
+      "constraint": "4 discrete operators on 2 axes",
+      "output_space": "4 strength params (2 rotors + 2 dephasing channels)",
+      "commuting_structure": "3 commuting + 3 non-commuting pairs"
+    },
+    "total_reduction": {
+      "from": "12D CPTP space",
+      "to": "4 operators x 1 strength = 4D",
+      "factor": "3x reduction (12 -> 4)"
+    }
+  }
+}

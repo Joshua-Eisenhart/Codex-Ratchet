@@ -1,0 +1,126 @@
+{
+  "name": "sim_lurie_straightening_unstraightening_constraint_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "primary proof: straightening/unstraightening equivalence constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification of St \u2218 UnSt \u2245 id and UnSt \u2218 St \u2245 id"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": "load_bearing",
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": null,
+    "rustworkx": null,
+    "sympy": "supportive",
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "P1_cvc5_lfib_induces_functor": {
+      "pass": true,
+      "cvc5_status": "sat",
+      "note": "SAT: left fibration p:X\u2192C induces functor to Spaces",
+      "induces": "true"
+    },
+    "P2_cvc5_functor_lifts_to_lfib": {
+      "pass": true,
+      "cvc5_status": "sat",
+      "note": "SAT: every functor C\u2192Spaces lifts to a left fibration",
+      "lifts": "true"
+    },
+    "P3_sympy_st_unst_inverses": {
+      "pass": true,
+      "note": "sympy: straightening and unstraightening form a categorical equivalence",
+      "st_unst_comp": "St(UnSt(F)) \u2245 F",
+      "unst_st_comp": "UnSt(St(X)) \u2245 X"
+    }
+  },
+  "negative": {
+    "N1_cvc5_lfib_no_functor_impossible": {
+      "pass": true,
+      "cvc5_status": "unsat",
+      "note": "UNSAT: every left fibration must induce a functor to Spaces"
+    },
+    "N2_cvc5_functor_no_lift_impossible": {
+      "pass": true,
+      "cvc5_status": "unsat",
+      "note": "UNSAT: every functor C\u2192Spaces lifts to a left fibration over C"
+    }
+  },
+  "boundary": {
+    "B1_identity_functor_trivial_fibration": {
+      "pass": true,
+      "note": "id_C straightens to the trivial fibration C\u00d7Spaces \u2192 C (boundary case)",
+      "is_id": "true",
+      "is_proj": "true"
+    },
+    "B2_one_object_category_lfib_is_spaces": {
+      "pass": true,
+      "note": "Boundary: for 1-object category, every left fibration is a space",
+      "num_obj": "1"
+    }
+  },
+  "all_pass": true
+}

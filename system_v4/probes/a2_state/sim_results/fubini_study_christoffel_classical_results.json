@@ -1,0 +1,59 @@
+{
+  "name": "fubini_study_christoffel_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "metric inverse and derivatives"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "closed form verified numerically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no admissibility"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "supportive",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "Gamma_theta_phi_phi": "True",
+    "Gamma_phi_theta_phi": "True",
+    "Gamma_phi_phi_theta": "True",
+    "symmetric_lower_indices": true
+  },
+  "negative": {
+    "S2_not_flat": true,
+    "Gamma_theta_theta_theta_zero": "True",
+    "Gamma_theta_theta_phi_zero": "True",
+    "metric_not_euclidean": true
+  },
+  "boundary": {
+    "equator_Gamma_theta_phi_phi": "True",
+    "equator_Gamma_phi_theta_phi": "True",
+    "pole_divergence": "True",
+    "det_metric": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "CP^1 U(1) fibre phase invisible after real projection",
+    "Kahler 2-form omega_FS not representable in (theta, phi) alone",
+    "Hermitian connection demoted to real Levi-Civita connection",
+    "cannot recover geometric phase of projective quantum states"
+  ]
+}

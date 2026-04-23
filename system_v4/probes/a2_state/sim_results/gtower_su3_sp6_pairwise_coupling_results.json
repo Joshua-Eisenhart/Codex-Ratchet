@@ -1,0 +1,113 @@
+{
+  "name": "gtower_su3_sp6_pairwise_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "embed A2 roots into C3 space; compute reflection matrices; measure non-commutativity norm via tensor ops"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph ops covered by rustworkx; PyG not needed for root geometry"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: no rank-2 sub-diagram of C3 with Cartan product A21*A12=3 (that would be G2, impossible in C3)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for bounded integer Cartan constraint; cvc5 not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "extract A2 Cartan sub-matrix from C3; verify A2 sits in C3 as first two Dynkin nodes"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "SU3 roots as grade-1 in Cl(2,0) subspace; Sp6 roots in Cl(3,0); verify grade-preserving embedding"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "root system geometry handled directly via numpy/pytorch; geomstats not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariance not the target here; root system coupling tested directly"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "build C3 Dynkin diagram; find 2-node connected subgraph with bond-1 to confirm A2 is a sub-diagram"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "3-way hyperedge {A2_roots, C3_roots, shared_subspace} confirms coupling is irreducibly triadic"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "simplicial topology not required for Dynkin/root coupling test"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not needed for root system coupling at this stage"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "pytorch_noncommutativity_norm_positive": true,
+    "pytorch_noncommutativity_norm_value": 2.449489742783177,
+    "pytorch_A2_reflection_involution": true,
+    "pytorch_C3_reflection_involution": true,
+    "sympy_A2_submatrix_of_C3": true,
+    "rustworkx_A2_single_bond_subgraph_exists": true,
+    "xgi_triadic_hyperedge_exists": true
+  },
+  "negative": {
+    "pytorch_same_root_reflections_commute": true,
+    "pytorch_A2_reflection_excludes_z_axis": "True",
+    "z3_unsat_G2_impossible_in_C3": true,
+    "sympy_wrong_submatrix_excluded_from_A2": true,
+    "rustworkx_C3_not_all_single_bonds": true
+  },
+  "boundary": {
+    "pytorch_near_parallel_roots_near_commutative": true,
+    "clifford_A2_root_grade1_in_Cl20": "True",
+    "clifford_C3_root_grade1_in_Cl30": "True",
+    "pytorch_WA2_fixes_z_axis": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "A2 and C3 Weyl reflections survived as non-commutative pair on shared subspace",
+    "G2 Cartan condition excluded from C3 by z3 UNSAT (A21*A12=3 impossible with C3 bond constraints)",
+    "A2 sub-diagram survived as 2-node single-bond subgraph of C3 Dynkin diagram",
+    "Grade-preserving embedding survived: A2 roots remain grade-1 in Cl(2,0) subspace of Cl(3,0)",
+    "classical baseline: spinor phases and half-angle structure excluded from this sim"
+  ]
+}

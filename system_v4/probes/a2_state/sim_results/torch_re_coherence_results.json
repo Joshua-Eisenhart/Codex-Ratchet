@@ -1,0 +1,263 @@
+{
+  "name": "torch_re_coherence",
+  "description": "RelativeEntropyCoherence: C_RE(rho) = S(rho_diag) - S(rho), >= 0",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "RelativeEntropyCoherence module with autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic C_RE formula"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_substrate_match": {
+      "|0><0|": {
+        "numpy": 0.0,
+        "torch": 0.0,
+        "diff": 0.0,
+        "pass": "True"
+      },
+      "|+><+|": {
+        "numpy": 0.6931471805599453,
+        "torch": 0.6931471824645996,
+        "diff": 1.904654323148236e-09,
+        "pass": "True"
+      },
+      "maximally_mixed": {
+        "numpy": 0.0,
+        "torch": 0.0,
+        "diff": 0.0,
+        "pass": "True"
+      },
+      "|+i>": {
+        "numpy": 0.6931471805599453,
+        "torch": 0.6931471824645996,
+        "diff": 1.904654323148236e-09,
+        "pass": "True"
+      },
+      "random_0": {
+        "numpy": 0.0106513488337312,
+        "torch": 0.010651350021362305,
+        "diff": 1.1876311045710963e-09,
+        "pass": "True"
+      },
+      "random_1": {
+        "numpy": 0.196565369365309,
+        "torch": 0.19656535983085632,
+        "diff": 9.53445267182218e-09,
+        "pass": "True"
+      },
+      "random_2": {
+        "numpy": 0.04670415136703565,
+        "torch": 0.04670417308807373,
+        "diff": 2.1721038079292043e-08,
+        "pass": "True"
+      }
+    },
+    "P2_non_negative": {
+      "|0><0|": {
+        "C_RE": 0.0,
+        "non_negative": true,
+        "pass": true
+      },
+      "|+><+|": {
+        "C_RE": 0.6931471824645996,
+        "non_negative": true,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "C_RE": 0.0,
+        "non_negative": true,
+        "pass": true
+      },
+      "|+i>": {
+        "C_RE": 0.6931471824645996,
+        "non_negative": true,
+        "pass": true
+      },
+      "random_0": {
+        "C_RE": 0.010651350021362305,
+        "non_negative": true,
+        "pass": true
+      },
+      "random_1": {
+        "C_RE": 0.19656535983085632,
+        "non_negative": true,
+        "pass": true
+      },
+      "random_2": {
+        "C_RE": 0.04670417308807373,
+        "non_negative": true,
+        "pass": true
+      }
+    },
+    "P3_zero_for_diagonal": {
+      "|0>": {
+        "C_RE": 0.0,
+        "is_zero": true,
+        "pass": true
+      },
+      "|1>": {
+        "C_RE": 0.0,
+        "is_zero": true,
+        "pass": true
+      },
+      "mixed": {
+        "C_RE": 0.0,
+        "is_zero": true,
+        "pass": true
+      }
+    },
+    "P4_gradient_exists": {
+      "|0><0|": {
+        "grad_exists": true,
+        "pass": true
+      },
+      "|+><+|": {
+        "grad_exists": true,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "grad_exists": true,
+        "pass": true
+      },
+      "|+i>": {
+        "grad_exists": true,
+        "pass": true
+      }
+    },
+    "P5_autograd_vs_fd": {
+      "random_0": {
+        "cosine_sim": 1.000000010896769,
+        "pass": true
+      },
+      "|+><+|": {
+        "cosine_sim": 1.0,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_plus_state_log2": {
+      "C_RE": 0.6931471824645996,
+      "expected": 0.6931471805599453,
+      "diff": 1.904654323148236e-09,
+      "pass": "True"
+    },
+    "N2_diag_state_zero_coherence": {
+      "state_0": {
+        "C_RE_of_diag": 0.0,
+        "pass": "True"
+      },
+      "state_1": {
+        "C_RE_of_diag": 0.0,
+        "pass": "True"
+      },
+      "state_2": {
+        "C_RE_of_diag": 0.0,
+        "pass": "True"
+      },
+      "state_3": {
+        "C_RE_of_diag": 0.0,
+        "pass": "True"
+      },
+      "state_4": {
+        "C_RE_of_diag": 0.0,
+        "pass": "True"
+      }
+    }
+  },
+  "boundary": {
+    "B1_near_diagonal": {
+      "C_RE": 0.0,
+      "near_zero": true,
+      "pass": true
+    },
+    "B2_monotone_with_off_diag": {
+      "rx_values": [
+        0.0,
+        0.1,
+        0.3,
+        0.5,
+        0.7,
+        0.9,
+        1.0
+      ],
+      "coherences": [
+        0.0,
+        0.005008339881896973,
+        0.0457005500793457,
+        0.13081204891204834,
+        0.27043813467025757,
+        0.49463188648223877,
+        0.6931471824645996
+      ],
+      "monotone": true,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "C_RE_formula": "-r*log(1 - r)/2 + r*log(r + 1)/2 + log(1 - r)/2 + log(r + 1)/2",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 32,
+    "total_pass": 32,
+    "all_pass": true
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "name": "sim_integration_quantum_ga_bridge_stack",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical-to-nonclassical bridge baseline: the same one-qubit state must agree across dense linear algebra, torch Bloch geometry, Clifford/GA carriers, and quantum simulators instead of being re-glued per sim.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing dense state and density algebra"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing matrix exponential state construction"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing Bloch vector carrier and analytic gradient"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing Clifford multivector embedding of the Bloch vector"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing torch geometric algebra roundtrip for the Bloch vector"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing ket and density witness on the same qubit state"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing circuit/statevector witness on the same qubit state"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing qnode state and gradient witness on the same qubit state"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing"
+  },
+  "positive": {
+    "theta": 1.1,
+    "phi": -0.7,
+    "density_errors": {
+      "numpy_vs_scipy": 9.750716581686082e-17,
+      "numpy_vs_qutip": 9.750716581686082e-17,
+      "numpy_vs_cirq": 6.335021028652017e-08,
+      "numpy_vs_pennylane": 1.116434042496681e-16
+    },
+    "manual_bloch": [
+      0.681632986593423,
+      -0.5741315443479861,
+      0.45359612142557726
+    ],
+    "qutip_bloch": [
+      0.6816329865934231,
+      -0.5741315443479862,
+      0.45359612142557715
+    ],
+    "torch_bloch": [
+      0.681632986593423,
+      -0.5741315443479861,
+      0.4535961214255773
+    ],
+    "clifford_bloch": [
+      0.681632986593423,
+      -0.5741315443479861,
+      0.45359612142557726
+    ],
+    "torch_ga_bloch": [
+      0.6816329956054688,
+      -0.5741315484046936,
+      0.4535961151123047
+    ],
+    "torch_grad": -0.8912073600614354,
+    "pennylane_grad": -0.8912073600614354,
+    "checks": {
+      "numpy_scipy_density_match": true,
+      "numpy_qutip_density_match": true,
+      "numpy_cirq_density_match": true,
+      "numpy_pennylane_density_match": true,
+      "qutip_bloch_matches_torch": true,
+      "clifford_matches_torch": true,
+      "torch_ga_roundtrip_matches": true,
+      "pennylane_grad_matches_torch": true
+    },
+    "all_pass": true
+  },
+  "negative": {
+    "theta": 1.1,
+    "phi": -0.7,
+    "density_errors": {
+      "numpy_vs_scipy": 9.750716581686082e-17,
+      "numpy_vs_qutip": 9.750716581686082e-17,
+      "numpy_vs_cirq": 1.2603575838203207,
+      "numpy_vs_pennylane": 1.116434042496681e-16
+    },
+    "manual_bloch": [
+      0.681632986593423,
+      -0.5741315443479861,
+      0.45359612142557726
+    ],
+    "qutip_bloch": [
+      0.6816329865934231,
+      -0.5741315443479862,
+      0.45359612142557715
+    ],
+    "torch_bloch": [
+      0.681632986593423,
+      -0.5741315443479861,
+      0.4535961214255773
+    ],
+    "clifford_bloch": [
+      0.681632986593423,
+      -0.5741315443479861,
+      0.45359612142557726
+    ],
+    "torch_ga_bloch": [
+      0.6816329956054688,
+      -0.5741315484046936,
+      0.4535961151123047
+    ],
+    "torch_grad": -0.8912073600614354,
+    "pennylane_grad": -0.8912073600614354,
+    "checks": {
+      "mismatch_detected": true,
+      "classical_surfaces_still_match": true,
+      "gradient_still_matches": true
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "theta": 1e-06,
+    "phi": 3.141591653589793,
+    "density_errors": {
+      "numpy_vs_scipy": 1.5314329977850751e-22,
+      "numpy_vs_qutip": 1.5314329977850751e-22,
+      "numpy_vs_cirq": 5.000476361458278e-13,
+      "numpy_vs_pennylane": 1.5314329977850751e-22
+    },
+    "manual_bloch": [
+      -9.999999999993333e-07,
+      1.0000000002619093e-12,
+      0.9999999999995
+    ],
+    "qutip_bloch": [
+      -9.999999999993331e-07,
+      1.000000000261909e-12,
+      0.9999999999995
+    ],
+    "torch_bloch": [
+      -9.999999999993333e-07,
+      1.0000000002619093e-12,
+      0.9999999999995
+    ],
+    "clifford_bloch": [
+      -9.999999999993333e-07,
+      1.0000000002619093e-12,
+      0.9999999999995
+    ],
+    "torch_ga_bloch": [
+      -9.999999974752427e-07,
+      9.999999960041972e-13,
+      1.0
+    ],
+    "torch_grad": -9.999999999998333e-07,
+    "pennylane_grad": -9.999999999998333e-07,
+    "checks": {
+      "numpy_scipy_density_match": true,
+      "numpy_qutip_density_match": true,
+      "numpy_cirq_density_match": true,
+      "numpy_pennylane_density_match": true,
+      "qutip_bloch_matches_torch": true,
+      "clifford_matches_torch": true,
+      "torch_ga_roundtrip_matches": true,
+      "pennylane_grad_matches_torch": true
+    },
+    "all_pass": true
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true
+}

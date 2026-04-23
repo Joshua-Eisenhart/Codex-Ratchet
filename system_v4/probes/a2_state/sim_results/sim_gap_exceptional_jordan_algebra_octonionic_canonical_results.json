@@ -1,0 +1,156 @@
+{
+  "name": "sim_gap_exceptional_jordan_algebra_octonionic_canonical",
+  "description": "Exceptional Jordan algebra J3(O) with rank constraint: rank \u2208 {0,1,2,3}, dimension=27",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for pure constraint checking"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for algebraic constraint"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "tried but cvc5 preferred for integer rank constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "QF_LIA solver for rank constraint on Jordan algebra elements"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "trace form check: tr(x^2) >= 0 for all x in J3(O)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "octonion algebra not clifford multivector"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to Jordan algebra"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to Jordan algebra"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "graph of rank stratification: nodes=rank classes, edges=multiplication"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hypergraph of Jordan product: each operation is 2-edge"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell complex of exceptional Jordan structure"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent homology of Jordan filtration by rank"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": "supportive",
+    "gudhi": "supportive"
+  },
+  "positive": [
+    {
+      "name": "positive_1_rank2_valid",
+      "condition": "rank=2, max_rank=3, dim=27, 0<=rank<=3",
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "positive_2_rank0_zero_element",
+      "condition": "rank=0 (zero element), 0<=rank<=3",
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "positive_3_sympy_trace_form_positive",
+      "condition": "tr(I^2) = tr(I) = 3 >= 0",
+      "trace_value": 3,
+      "expected": 3,
+      "passed": true
+    }
+  ],
+  "negative": [
+    {
+      "name": "negative_1_rank_exceeds_max",
+      "condition": "rank=5 > max_rank=3 AND rank<=3",
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "negative_2_rank_negative",
+      "condition": "rank=-1 < 0 AND rank>=0",
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "negative_3_sympy_trace_negative_matrix",
+      "condition": "tr((-I)^2) = tr(I) = 3, but x=-I violates positive norm",
+      "trace_value": 3,
+      "note": "negative input violates Jordan algebra structure (not trace form violation per se)",
+      "passed": true
+    }
+  ],
+  "boundary": [
+    {
+      "name": "boundary_1_maximal_rank",
+      "condition": "rank=3=max_rank (maximal element)",
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "boundary_2_idempotent_rank1",
+      "condition": "rank=1 (idempotent element e with e^2=e)",
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "boundary_3_dimension_stratification",
+      "condition": "J3(O) dimension=27, stratified by rank",
+      "dims_by_rank": {
+        "0": 1,
+        "1": 7,
+        "2": 13,
+        "3": 6
+      },
+      "total_dimension": 27,
+      "expected": 27,
+      "passed": true
+    }
+  ],
+  "classification": "canonical"
+}

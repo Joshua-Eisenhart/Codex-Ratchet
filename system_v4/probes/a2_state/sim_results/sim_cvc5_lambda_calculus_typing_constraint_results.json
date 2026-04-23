@@ -1,0 +1,151 @@
+{
+  "name": "Simply-Typed Lambda Calculus Typing Constraint",
+  "description": "Tests STLC as CCC internal language: typing rules and beta reduction",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; symbolic lambda calculus"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; type derivation tree is DAG not graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 chosen for better linear arithmetic on ranks"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: proves application typing rule UNSAT when domain mismatch; proves beta substitution preserves type UNSAT for type change"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: validates context rank formulas for typing validity"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no geometric structure"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; typing tree is symbolic"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no topology"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_application_typing_consistent": {
+      "sat": "True",
+      "rule": "\u0393\u22a2f:A\u2192B, \u0393\u22a2a:A \u27f9 \u0393\u22a2f(a):B",
+      "valid": true
+    },
+    "test_beta_reduction_type_preserve": {
+      "sat": "True",
+      "rule": "(\u03bbx:A.t)s \u2192 t[s/x] preserves type",
+      "before_beta_type": "B",
+      "after_beta_type": "B",
+      "valid": true
+    },
+    "test_context_rank_validity": {
+      "sat": "True",
+      "rank_gamma": 4,
+      "rank_A": 2,
+      "rank_B": 3,
+      "rank_AB": 9,
+      "valid": true
+    }
+  },
+  "negative": {
+    "test_domain_mismatch_unsat": {
+      "sat": "False",
+      "expected": "unsat",
+      "violation": "f:A\u2192B, a:C, A\u2260C \u27f9 f(a) is a type error",
+      "A_type": 1,
+      "C_type": 2
+    },
+    "test_type_change_beta_unsat": {
+      "sat": "False",
+      "expected": "unsat",
+      "violation": "beta reduction cannot change term type",
+      "type_before": 2,
+      "type_after_claimed": 3
+    },
+    "test_context_overflow_unsat": {
+      "sat": "False",
+      "expected": "unsat",
+      "violation": "context rank too small for large function types",
+      "rank_gamma": 2,
+      "rank_A": 10,
+      "max_representable": 4,
+      "rank_AB_required": 1024
+    }
+  },
+  "boundary": {
+    "test_identity_function": {
+      "sat": "True",
+      "A_type": 2,
+      "identity_type": "2\u21922",
+      "valid": true
+    },
+    "test_constant_function": {
+      "sat": "True",
+      "A_type": 3,
+      "B_type": 2,
+      "constant_type": "3\u21922",
+      "valid": true
+    },
+    "test_higher_order_function": {
+      "sat": "True",
+      "A_type": 2,
+      "B_type": 3,
+      "AB_rank": 9,
+      "higher_order_type": "(A\u2192B)\u2192(A\u2192B)",
+      "valid": true
+    }
+  },
+  "classification": "canonical"
+}

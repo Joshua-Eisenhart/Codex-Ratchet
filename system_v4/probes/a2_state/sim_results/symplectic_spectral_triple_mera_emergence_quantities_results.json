@@ -1,0 +1,193 @@
+{
+  "name": "sim_symplectic_spectral_triple_mera_emergence_quantities",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Q_SSM computed as pytorch tensor product; gradient of Q_SSM wrt MI via autograd (load-bearing)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "emergence graph structure not needed at baseline level; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 UNSAT: H_symp=0 AND Q_SSM>0 is structurally impossible (load-bearing negative test)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for product-zero exclusion; excluded"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "symbolic: a*b*c with any factor=0 forces product=0 (load-bearing proof of emergence zero-in-subshell)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed for Q_SSM emergence quantity; excluded"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian manifold not needed for product emergence quantity; excluded"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "E(3) equivariance not relevant to Q_SSM; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "emergence DAG: shell nodes with Q_SSM edge activated only in full triple"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hyperedge gating: Q_SSM only non-zero for 3-edge (MI + 2 shells); sub-combos give Q=0"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell complex rank check: Q_SSM is rank-3 observable; lower-rank gives 0"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not needed for Q_SSM baseline; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "E1_symplectic_alone_Q_zero": {
+      "passed": true,
+      "Q_SSM": 0.0,
+      "H_symp": 1.3862943611198906,
+      "H_st": 0.0,
+      "MI": 0.0,
+      "interpretation": "Symplectic alone (H_st=0, MI=0): Q_SSM=0; single shell cannot support emergence"
+    },
+    "E2_spectral_triple_alone_Q_zero": {
+      "passed": true,
+      "Q_SSM": 0.0,
+      "H_symp": 0.0,
+      "H_st": 0.33678336703714473,
+      "MI": 0.0,
+      "interpretation": "SpectralTriple alone (H_symp=0, MI=0): Q_SSM=0"
+    },
+    "E3_mera_alone_Q_zero": {
+      "passed": true,
+      "Q_SSM": 0.0,
+      "H_symp": 0.0,
+      "H_st": 0.0,
+      "MI": 0.21166885730683282,
+      "interpretation": "MERA alone (H_symp=0, H_st=0): Q_SSM=0"
+    },
+    "E4a_symplectic_spectral_triple_no_mera_Q_zero": {
+      "passed": true,
+      "Q_SSM": 0.0,
+      "H_symp": 1.3862943611198906,
+      "H_st": 0.33678336703714473,
+      "MI": 0.0,
+      "interpretation": "Symplectic\u00d7SpectralTriple without MERA (MI=0): Q_SSM=0"
+    },
+    "E4b_symplectic_mera_no_spectral_Q_zero": {
+      "passed": true,
+      "Q_SSM": 0.0,
+      "H_symp": 1.3862943611198906,
+      "H_st": 0.0,
+      "MI": 0.21166885730683282,
+      "interpretation": "Symplectic\u00d7MERA without SpectralTriple (H_st=0): Q_SSM=0"
+    },
+    "E4c_spectral_triple_mera_no_symplectic_Q_zero": {
+      "passed": true,
+      "Q_SSM": 0.0,
+      "H_symp": 0.0,
+      "H_st": 0.33678336703714473,
+      "MI": 0.21166885730683282,
+      "interpretation": "SpectralTriple\u00d7MERA without Symplectic (H_symp=0): Q_SSM=0"
+    },
+    "E5_full_triple_Q_nonzero_3_seeds": {
+      "passed": true,
+      "n_pass": 3,
+      "n_total": 3,
+      "interpretation": "Q_SSM > 0 in full triple coexistence for 3/3 seeds; emergence only in full triple"
+    },
+    "E_pytorch_Q_SSM_autograd": {
+      "passed": true,
+      "grad_MI": 0.46688088264256417,
+      "expected": 0.46688088264256417,
+      "interpretation": "pytorch autograd: dQ_SSM/dMI = H_symp * H_st (load-bearing)"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_H_symp_zero_Q_nonzero": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "H_symp=0 AND Q_SSM>0 is z3 UNSAT; inactive Symplectic cannot support emergence"
+    },
+    "N2_sympy_product_zero_any_factor": {
+      "passed": true,
+      "Q_a0": "0",
+      "Q_b0": "0",
+      "Q_c0": "0",
+      "interpretation": "a*b*c with any factor=0 gives product=0 \u2014 3-factor zero-in-subshell invariant proved"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_all_inactive_Q_SSM_zero": {
+      "passed": true,
+      "Q_SSM": 0.0,
+      "H_symp": 0.0,
+      "H_st": 0.0,
+      "interpretation": "All inactive shells: Q_SSM=0 and H_symp=H_st=0"
+    },
+    "B2_Q_SSM_stable_5_seeds": {
+      "passed": true,
+      "Q_SSM_vals": [
+        0.09882414292735708,
+        0.14797696643192376,
+        0.1663408955833321,
+        0.06894993153448796,
+        0.2537583244686989
+      ],
+      "interpretation": "Q_SSM > 0 for all 5 seeds in full triple; stable positive emergence"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 12,
+    "n_pass": 12
+  },
+  "divergence_log": [
+    "E1-E3: Single shell alone gives Q_SSM=0",
+    "E4a-E4c: Pairwise without third shell gives Q_SSM=0",
+    "E5: Full triple (3 seeds) all give Q_SSM>0",
+    "pytorch autograd: dQ_SSM/dMI = H_symp * H_st (load-bearing)",
+    "z3 UNSAT: H_symp=0 AND Q_SSM>0 excluded",
+    "sympy: a*b*c zero-factor collapse for 3 factors proved"
+  ]
+}

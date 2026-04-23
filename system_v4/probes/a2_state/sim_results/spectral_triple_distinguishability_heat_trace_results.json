@@ -1,0 +1,27 @@
+{
+  "name": "spectral_triple_distinguishability_heat_trace",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "eigh + exp(-t w^2) trace"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "distinguishable_at_some_t": true,
+    "identical_triples_indistinguishable": true,
+    "unitary_equivalent_indistinguishable": true
+  },
+  "negative": {
+    "zero_vs_nonzero_distinguished": true,
+    "random_H_distinguished_from_chiral": true
+  },
+  "boundary": {
+    "t_to_zero_trace_dim": true,
+    "t_to_inf_trace_kernel": true
+  },
+  "classification": "canonical"
+}

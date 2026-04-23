@@ -1,0 +1,40 @@
+{
+  "name": "contextuality_witness_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "expectation arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "chsh_classical_bound_respected_pure": true,
+    "chsh_classical_bound_respected_mixed": "True"
+  },
+  "negative": {
+    "classical_cannot_reach_tsirelson": "True",
+    "classical_always_noncontextual_by_construction": true
+  },
+  "boundary": {
+    "boundary_value_at_two": true,
+    "zero_mixture_is_zero": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "context-independent assignments bound CHSH by 2 (never reach Tsirelson)",
+    "no Kochen-Specker obstruction; every observable has a global value",
+    "KCBS and similar witnesses saturated only by quantum contextual models"
+  ]
+}

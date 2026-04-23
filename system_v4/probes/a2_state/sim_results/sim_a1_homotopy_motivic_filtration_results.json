@@ -1,0 +1,108 @@
+{
+  "name": "sim_a1_homotopy_motivic_filtration",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for filtration / quotient-connectivity sketch"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for filtration / quotient-connectivity sketch"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for filtration / quotient-connectivity sketch"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for filtration / quotient-connectivity sketch"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "strict proper-subset symbolic check for filtration monotonicity"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for filtration / quotient-connectivity sketch"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for filtration / quotient-connectivity sketch"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for filtration / quotient-connectivity sketch"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "quotient graph A^1-connectivity via connected components"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for filtration / quotient-connectivity sketch"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for filtration / quotient-connectivity sketch"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for filtration / quotient-connectivity sketch"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "strict_chain_admissible": {
+      "pass": true
+    },
+    "all_quotients_A1_connected": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "nonstrict_chain_excluded": {
+      "pass": true
+    },
+    "disconnected_quotient_excluded": {
+      "pass": true,
+      "components": 2
+    }
+  },
+  "boundary": {
+    "empty_quotient_boundary": {
+      "pass": true
+    },
+    "singleton_quotient_boundary": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "classification": "classical_baseline",
+  "honest_demotion_reason": "Full A^1/motivic cohomology requires machinery beyond symbolic simplicial-set sketch; tools are load_bearing for the sketch but the sketch itself is a classical baseline, not a canonical motivic proof.",
+  "language_discipline": "admissibility/exclusion only"
+}

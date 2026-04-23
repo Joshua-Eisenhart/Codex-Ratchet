@@ -1,0 +1,52 @@
+{
+  "name": "sim_qutip_capability",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive numeric checks for qutip capability"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- ket, density matrix, expectation"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "qutip": "load_bearing"
+  },
+  "positive": {
+    "density_shape": {
+      "pass": true
+    },
+    "z_expectation_zero": {
+      "pass": true,
+      "value": 1.0
+    },
+    "x_expectation_plus": {
+      "pass": true,
+      "value": 0.9999999999999998
+    }
+  },
+  "negative": {
+    "z_expectation_one_not_plus_one": {
+      "pass": true,
+      "value": -1.0
+    }
+  },
+  "boundary": {
+    "small_rotation_stable": {
+      "pass": true,
+      "fidelity": 1.0
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true
+}

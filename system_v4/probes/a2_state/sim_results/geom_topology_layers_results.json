@@ -1,0 +1,209 @@
+{
+  "name": "geom_topology_layers",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Differentiable curvature computation, autograd for Berry connection, GPU-ready triangulation integrals"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "available but not needed for this probe"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "available but topology invariants are numerical"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "available but not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "available but numerical approach preferred"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "available but not needed for this probe"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "available but direct computation preferred"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "available but not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "available but not needed"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "available but not needed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "available but not needed"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Persistent homology cross-check of S2 triangulation topology"
+    }
+  },
+  "positive": {
+    "chern_number_numerical": {
+      "value": 0.9999999999999695,
+      "expected": 1.0,
+      "error": 3.0531133177191805e-14,
+      "pass": "True",
+      "method": "centroid integration on icosphere subdiv=4"
+    },
+    "chern_number_torch": {
+      "value": 0.9999999999999988,
+      "expected": 1.0,
+      "error": 1.2212453270876722e-15,
+      "pass": true,
+      "method": "discrete plaquette Berry phase (PyTorch)"
+    },
+    "hopf_linking_number": {
+      "value": -1.0000170931510721,
+      "expected_abs": 1.0,
+      "error": 1.7093151072122836e-05,
+      "pass": "True",
+      "method": "Gauss linking integral, 512 pts/fiber"
+    },
+    "equatorial_holonomy": {
+      "holonomy_real": -1.0,
+      "holonomy_imag": -1.2246467991473532e-16,
+      "berry_phase": -3.141592653589793,
+      "expected_holonomy": -1.0,
+      "expected_phase": 3.141592653589793,
+      "error": 0.0,
+      "pass": true,
+      "method": "Pancharatnam connection, 1024 pts"
+    },
+    "equatorial_holonomy_torch": {
+      "holonomy_real": -0.9999999999999998,
+      "holonomy_imag": 0.0,
+      "berry_phase": 3.141592653589793,
+      "pass": true,
+      "method": "PyTorch vdot parallel transport"
+    },
+    "dirac_quantization": {
+      "monopole_charge": 0.5,
+      "dirac_product_2g": 1.0,
+      "is_integer": true,
+      "quantization_satisfied": true,
+      "pass": true
+    },
+    "monopole_total_flux": {
+      "analytic": 6.283185307179586,
+      "numerical": 6.2831956426169695,
+      "error": 1.0335437383268697e-05,
+      "pass": "True"
+    },
+    "gudhi_s2_homology": {
+      "euler_characteristic": 2,
+      "expected_chi": 2,
+      "V": 642,
+      "E": 1920,
+      "F": 1280,
+      "betti_0": 1,
+      "betti_1": 0,
+      "betti_2_from_chi": 1,
+      "expected": {
+        "b0": 1,
+        "b1": 0,
+        "b2": 1
+      },
+      "match": true
+    },
+    "bundle_consistency": {
+      "c1_rounds_to_1": true,
+      "linking_abs_rounds_to_1": true,
+      "holonomy_is_minus_1": true,
+      "monopole_charge_is_half": true,
+      "c1_equals_abs_linking": true,
+      "c1_equals_2g": "True",
+      "all_consistent": true
+    }
+  },
+  "negative": {
+    "trivial_bundle_c1_zero": {
+      "value": -0.0,
+      "expected": 0.0,
+      "pass": "True",
+      "description": "Trivial bundle has c1=0"
+    },
+    "small_cap_holonomy_not_minus_1": {
+      "holonomy_real": 0.9998768624790219,
+      "berry_phase": -0.015693313748387647,
+      "expected_solid_angle": 0.031389755322205774,
+      "pass": true,
+      "description": "Small cap gives holonomy near +1, not -1"
+    },
+    "non_quantized_monopole": {
+      "charge": 0.3,
+      "dirac_product": 0.6,
+      "is_integer": false,
+      "pass": true,
+      "description": "Non-half-integer charge violates Dirac quantization"
+    },
+    "unlinked_curves_zero": {
+      "value": 2.327654192980425e-19,
+      "expected": 0.0,
+      "pass": "True",
+      "description": "Separated coplanar circles have linking number 0"
+    }
+  },
+  "boundary": {
+    "chern_convergence": {
+      "values": {
+        "subdiv_2": 0.9999999999999968,
+        "subdiv_3": 1.0000000000000002,
+        "subdiv_4": 0.9999999999999695,
+        "subdiv_5": 0.9999999999999243
+      },
+      "errors_monotonic_or_small": true,
+      "finest_error": 7.571721027943568e-14,
+      "pass": "True"
+    },
+    "4pi_periodicity": {
+      "holonomy_real": 1.0,
+      "holonomy_imag": 0.0,
+      "berry_phase": -0.0,
+      "expected_holonomy": 1.0,
+      "pass": true,
+      "description": "Two equatorial loops (4pi) return holonomy to +1"
+    },
+    "curvature_at_poles": {
+      "F_north": 0.0004999999166666708,
+      "F_equator": 0.5,
+      "F_south": 0.000499999916666677,
+      "north_near_zero": "True",
+      "equator_is_half": "True",
+      "south_near_zero": "True",
+      "pass": "True"
+    },
+    "curvature_field_agreement": {
+      "max_error": 1.0268865049956055e-08,
+      "mean_error": 1.667979299003336e-09,
+      "pass": "True",
+      "description": "Numerical Berry curvature matches analytic (1/2)sin(theta)"
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

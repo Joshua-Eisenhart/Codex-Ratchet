@@ -1,0 +1,131 @@
+{
+  "name": "bures_geometry",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for Bures geometry on bounded qubit states, kept separate from trace-distance and fidelity readout rows.",
+  "lego_ids": [
+    "bures_geometry"
+  ],
+  "primary_lego_ids": [
+    "bures_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for the smallest direct local metric row"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identity_pair_has_zero_bures_distance": {
+      "value": 0.0,
+      "pass": true
+    },
+    "symmetry_holds": {
+      "lhs": 0.7653668647301797,
+      "rhs": 0.76536686473018,
+      "pass": true
+    },
+    "unitary_invariance_holds": {
+      "original": 0.7653668647301795,
+      "rotated": 0.76536686473018,
+      "pass": true
+    }
+  },
+  "negative": {
+    "orthogonal_pure_pair_is_not_zero": {
+      "value": 1.4142135623730951,
+      "pass": true
+    },
+    "pure_vs_mixed_is_not_maximal": {
+      "mixed": 0.7653668647301795,
+      "orthogonal": 1.4142135623730951,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "intermediate_ordering_is_stable": {
+      "same": 0.0,
+      "mid": 0.5715592243432424,
+      "mix": 0.7653668647301795,
+      "orth": 1.4142135623730951,
+      "pass": true
+    },
+    "near_boundary_state_is_finite": {
+      "value": 0.5715592243432424,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local Bures-distance lego on bounded qubit states."
+  }
+}

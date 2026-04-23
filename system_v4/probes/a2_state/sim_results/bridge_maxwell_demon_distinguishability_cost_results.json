@@ -1,0 +1,258 @@
+{
+  "name": "bridge_maxwell_demon_distinguishability_cost",
+  "scope_note": "Bridge: z3 UNSAT that a demon extracts W>0 at F01=0 (no distinguishability cost) while maintaining non-negative net dissipation. Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md.",
+  "classification": "canonical",
+  "divergence_log": "Maxwell-demon distinguishability bridge: the theorem stays z3-UNSAT for W>0 at zero distinguishability cost, while qutip/cirq/pennylane witness the same one-bit carrier entropy floor (ln2 at p=1/2) on a supportive surface rather than adding a new theorem.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "binary entropy and bounded one-bit carrier bookkeeping"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive one-bit density witness for the distinguishability floor"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive one-bit density witness for the same carrier surface"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive one-bit density witness for the same carrier surface"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing UNSAT proof for zero-cost demon with W>0"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "qutip": "supportive",
+    "cirq": "supportive",
+    "pennylane": "supportive",
+    "z3": "load_bearing",
+    "pytorch": null,
+    "pyg": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "load_bearing_tool": "z3",
+  "positive": {
+    "zero_cost_demon": "unsat",
+    "unsat_as_expected": true,
+    "witness_floor": {
+      "p_half": 0.6931471805599453,
+      "qutip": {
+        "entropy_nats": 0.6931471805599453,
+        "expected_entropy_nats": 0.6931471805599453,
+        "carrier_density": [
+          [
+            "(0.5+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "(0.5+0j)"
+          ]
+        ]
+      },
+      "cirq": {
+        "entropy_nats": 0.6931471805599453,
+        "expected_entropy_nats": 0.6931471805599453,
+        "carrier_density": [
+          [
+            "(0.5+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "(0.5+0j)"
+          ]
+        ]
+      },
+      "pennylane": {
+        "entropy_nats": 0.6931471805599453,
+        "expected_entropy_nats": 0.6931471805599453,
+        "carrier_density": [
+          [
+            "(0.5+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "(0.5+0j)"
+          ]
+        ]
+      }
+    },
+    "witness_floor_matches_ln2": true,
+    "witnesses_ok": true
+  },
+  "negative": {
+    "honest_demon": "sat",
+    "sat_as_expected": true,
+    "distinguishability_cost_nats": 0.6931471805599453
+  },
+  "boundary": {
+    "saturated_fence": "sat",
+    "sat_as_expected": true,
+    "boundary_floor": {
+      "p_zero": {
+        "qutip": {
+          "entropy_nats": 3.914394658089878e-16,
+          "expected_entropy_nats": -0.0,
+          "carrier_density": [
+            [
+              "(1+0j)",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j"
+            ]
+          ]
+        },
+        "cirq": {
+          "entropy_nats": -0.0,
+          "expected_entropy_nats": -0.0,
+          "carrier_density": [
+            [
+              "(1+0j)",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j"
+            ]
+          ]
+        },
+        "pennylane": {
+          "entropy_nats": -0.0,
+          "expected_entropy_nats": -0.0,
+          "carrier_density": [
+            [
+              "(1+0j)",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j"
+            ]
+          ]
+        }
+      },
+      "p_one": {
+        "qutip": {
+          "entropy_nats": 3.914394658089878e-16,
+          "expected_entropy_nats": -0.0,
+          "carrier_density": [
+            [
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "(1+0j)"
+            ]
+          ]
+        },
+        "cirq": {
+          "entropy_nats": -0.0,
+          "expected_entropy_nats": -0.0,
+          "carrier_density": [
+            [
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "(1+0j)"
+            ]
+          ]
+        },
+        "pennylane": {
+          "entropy_nats": -0.0,
+          "expected_entropy_nats": -0.0,
+          "carrier_density": [
+            [
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "(1+0j)"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "pass": true
+}

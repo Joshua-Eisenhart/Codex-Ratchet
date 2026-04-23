@@ -1,0 +1,128 @@
+{
+  "name": "measurement_instrument",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for finite qubit measurement instruments with explicit readout/update consistency.",
+  "lego_ids": [
+    "measurement_instrument",
+    "povm_measurement_family"
+  ],
+  "primary_lego_ids": [
+    "measurement_instrument"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "exactly certifies completeness of the induced effect family on bounded diagonal instruments"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "projective_instrument_matches_readout_and_update": {
+      "probability": 1.0,
+      "effect_probability": 1.0,
+      "pass": true
+    },
+    "weak_instrument_probabilities_sum_to_one": {
+      "p0": 0.49999999999999983,
+      "p1": 0.49999999999999983,
+      "pass": true
+    },
+    "weak_instrument_poststates_are_valid": {
+      "pass": "True"
+    },
+    "cvc5_certifies_induced_effect_completeness": {
+      "projective_complete": true,
+      "weak_complete": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "fake_incomplete_effect_family_is_not_complete": {
+      "pass": true
+    },
+    "weak_instrument_changes_plus_state_conditionally": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "projective_readout_and_update_agree_on_eigenstate": {
+      "pass": true
+    },
+    "weak_branch_weights_match_induced_effects": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local instrument lego on projective and weak qubit measurements."
+  }
+}

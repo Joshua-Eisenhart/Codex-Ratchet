@@ -1,0 +1,99 @@
+{
+  "name": "sim_spectral_triple_chirality_grading",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "symbolic/rotor work only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "algebraic identities handled by sympy/clifford directly"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: constructs gamma5 = kron(sz,I) grading operator and symbolically verifies {gamma5, D} = 0 and gamma5^2 = I"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Cl(3) rotor carries the chirality pseudoscalar I3 whose anti-commutation with odd-grade Dirac elements is the algebraic chirality; matrix realization alone would elide grading structure"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "gamma5_anti_commutes_D": true,
+    "gamma5_squared_I": true,
+    "plus_minus_eigenspaces_balanced": true,
+    "Cl3_pseudoscalar_central": true,
+    "Cl3_chirality_projector_consistent": true,
+    "pass": true,
+    "note": "gamma5 admissible on Hopf spectral triple; non-grading configurations excluded algebraically"
+  },
+  "negative": {
+    "identity_excluded_as_grading": true,
+    "sx_tensor_I_excluded_as_grading": true,
+    "pass": true
+  },
+  "boundary": {
+    "N2_anti": true,
+    "N2_sq": true,
+    "pass": true
+  }
+}

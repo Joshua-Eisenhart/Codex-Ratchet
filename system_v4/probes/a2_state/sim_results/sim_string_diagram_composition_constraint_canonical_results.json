@@ -1,0 +1,89 @@
+{
+  "name": "sim_string_diagram_composition_constraint_canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 chosen for string diagram constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic composition and rank arithmetic in string diagrams"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_tests_error": "No module named 'cvc5'"
+  },
+  "negative": {
+    "negative_tests_error": "No module named 'cvc5'"
+  },
+  "boundary": {
+    "boundary_tests_error": "No module named 'cvc5'"
+  },
+  "classification": "canonical"
+}

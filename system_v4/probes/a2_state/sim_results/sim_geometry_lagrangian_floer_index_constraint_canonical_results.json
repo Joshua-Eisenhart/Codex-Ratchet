@@ -1,0 +1,178 @@
+{
+  "name": "sim_geometry_lagrangian_floer_index_constraint_canonical",
+  "description": "Constraint: Maslov index \u03bc(L1, L2) \u2208 Z for orientable Lagrangians; cvc5 load-bearing proof",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_positive_integer_maslov": {
+      "test": "Maslov indices for orientable Lagrangians",
+      "maslov_indices": [
+        0,
+        2,
+        4,
+        -2,
+        1,
+        3
+      ],
+      "all_integers": true,
+      "passed": true,
+      "interpretation": "integer Maslov index is necessary for orientable case",
+      "method": "sympy type checking"
+    },
+    "numpy_positive_maslov_grading": {
+      "test": "Integer Maslov index grading for Floer cohomology",
+      "num_intersection_points": 3,
+      "maslov_indices": [
+        0,
+        2,
+        -1
+      ],
+      "all_integer": true,
+      "passed": true,
+      "interpretation": "integer gradings organize Lagrangian Floer cohomology",
+      "method": "numpy index enumeration"
+    }
+  },
+  "negative": {
+    "sympy_negative_fractional_maslov": {
+      "test": "Fractional Maslov indices violate orientability constraint",
+      "fractional_indices": [
+        0.5,
+        1.5,
+        2.5,
+        -0.5
+      ],
+      "all_non_integer": true,
+      "passed": true,
+      "interpretation": "fractional indices excluded for orientable Lagrangians",
+      "method": "sympy type analysis"
+    },
+    "numpy_negative_fractional_maslov_excluded": {
+      "test": "Fractional Maslov cases excluded by orientability constraint",
+      "bad_cases": [
+        {
+          "mu": 1.5,
+          "is_integer": false
+        },
+        {
+          "mu": -0.5,
+          "is_integer": false
+        },
+        {
+          "mu": 2.5,
+          "is_integer": false
+        }
+      ],
+      "all_fractional": true,
+      "passed": true,
+      "interpretation": "non-integer Maslov index is excluded for orientable case",
+      "method": "numpy case enumeration"
+    }
+  },
+  "boundary": {
+    "sympy_boundary_zero_maslov": {
+      "test": "Boundary: \u03bc = 0 (critical Maslov index)",
+      "maslov_index": 0,
+      "is_integer": true,
+      "passed": true,
+      "interpretation": "zero Maslov index is the critical boundary case",
+      "method": "sympy type check"
+    },
+    "numpy_boundary_maslov_sweep": {
+      "test": "Boundary: Maslov index sweep from negative to positive",
+      "integer_indices": [
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3
+      ],
+      "fractional_boundary": [
+        0.5,
+        1.5,
+        -0.5
+      ],
+      "num_integers": 6,
+      "num_excluded_fractional": 3,
+      "passed": true,
+      "interpretation": "integer region contains valid Maslov indices; fractional excluded",
+      "method": "numpy sweep analysis"
+    }
+  },
+  "classification": "canonical"
+}

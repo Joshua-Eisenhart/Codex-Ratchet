@@ -1,0 +1,117 @@
+{
+  "name": "g_structure_tower_classical_obstruction",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT claim; symbolic only"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT claim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic Kahler/Sasakian obstruction algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "s3": {
+      "dim": 3,
+      "det_J": "0",
+      "det_J_is_zero": true,
+      "obstruction_nonvanishing": true
+    },
+    "s2": {
+      "dim_C": 1,
+      "kahler_form_coeff": "(z*zbar + 1)**(-2)",
+      "d_omega": "0",
+      "admissible": true,
+      "d_omega_vanishes": true,
+      "drho_nontrivial": true
+    },
+    "t2": {
+      "metric": "dx^2 + dy^2",
+      "omega_closed": true,
+      "nijenhuis_vanishes": true,
+      "flat_kahler": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "s3_kahler_claim_refuted": true,
+    "t2_nonclosed_claim_refuted": true,
+    "s2_dim_claim_refuted": true,
+    "pass": true
+  },
+  "boundary": {
+    "dim0_trivial": true,
+    "s1_det_J": "0",
+    "s1_no_kahler": true,
+    "s3_is_sasakian_not_kahler": true,
+    "pass": true
+  },
+  "classification": "classical_baseline",
+  "all_pass": true
+}

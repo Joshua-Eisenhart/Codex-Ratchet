@@ -1,0 +1,118 @@
+{
+  "name": "pauli_algebra_relations",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for Pauli multiplication and commutation relations on the qubit carrier, kept separate from basis rows, local operator action, and broader operator bundles.",
+  "lego_ids": [
+    "pauli_algebra_relations"
+  ],
+  "primary_lego_ids": [
+    "pauli_algebra_relations"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "cyclic_multiplication_relations_hold": {
+      "pass": true
+    },
+    "generator_squares_equal_identity": {
+      "pass": true
+    },
+    "commutator_relations_match_pauli_algebra": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "anticommutators_of_distinct_generators_vanish": {
+      "pass": true
+    },
+    "wrong_sign_relation_is_rejected": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "identity_is_two_sided_multiplicative_neutral": {
+      "pass": true
+    },
+    "generator_products_close_in_pauli_set_up_to_phase": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local Pauli-algebra lego covering multiplication and commutation identities on the qubit carrier."
+  }
+}

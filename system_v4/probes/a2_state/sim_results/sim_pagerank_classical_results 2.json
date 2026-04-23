@@ -1,0 +1,135 @@
+{
+  "name": "sim_pagerank_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "no automatic differentiation or tensor computation required in this probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic computation or algebraic proof required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive"
+  },
+  "divergence_log": [
+    "negative-case: raw adjacency isn't stochastic as expected",
+    "boundary: dangling handled via uniform teleport row"
+  ],
+  "positive": {
+    "cycle3_uniform": {
+      "pr": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "sum": 1.0,
+      "uniform": true,
+      "pass": true
+    },
+    "star_center_highest": {
+      "pr": [
+        0.47567567569792446,
+        0.1310810810755189,
+        0.1310810810755189,
+        0.1310810810755189,
+        0.1310810810755189
+      ],
+      "center_max": true,
+      "pass": true
+    },
+    "torch_eig_agrees": {
+      "diff": 4.44974335156445e-11,
+      "pass": true
+    }
+  },
+  "negative": {
+    "adj_not_row_stochastic": {
+      "row_sums": [
+        2.0,
+        1.0,
+        2.0
+      ],
+      "pass": true
+    },
+    "empty_graph_nonuniform_fails": {
+      "uniform": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "n1": {
+      "pr": [
+        1.0
+      ],
+      "pass": true
+    },
+    "dangling": {
+      "pr": [
+        0.1844167819178897,
+        0.3411710465671739,
+        0.4744121715149363
+      ],
+      "sum": 0.9999999999999999,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true
+  },
+  "all_pass": true
+}

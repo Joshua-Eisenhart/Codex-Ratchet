@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WorldState Cross-Repo Exchange Payload",
+  "description": "The standardized JSON payload binding the Sofia Holodeck (Agent/Observation) to the Codex Ratchet (Physics Engine). Defines the exact shape of data sent from Sofia for validation, and the response from the Ratchet containing Free Energy penalties.",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version (e.g. 1.0.0)"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC ISO-8601 timestamp of the state transition."
+    },
+    "holodeck_origin": {
+      "type": "string",
+      "description": "The specific Sofia environment (e.g., 'X-Plane-Agent-01' or 'Gym-CartPole')."
+    },
+    "agent_state": {
+      "type": "object",
+      "description": "The proposed movement/state change by the RL Agent.",
+      "properties": {
+        "observation_vector": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "The n-dimensional sensor array passed into the QIT Ratchet."
+        },
+        "proposed_action": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "The agent's intended action delta."
+        },
+        "markov_blanket_integrity": {
+          "type": "number",
+          "description": "The agent's current internal confidence/negentropy tracker.",
+          "default": 1.0
+        }
+      },
+      "required": ["observation_vector", "proposed_action"]
+    },
+    "ratchet_validation": {
+      "type": "object",
+      "description": "The response payload from the Codex Ratchet physics engine.",
+      "properties": {
+        "admitted": {
+          "type": "boolean",
+          "description": "TRUE if the action passed all geometric constraint axes. FALSE if it attempted a conflation (synthetic collapse)."
+        },
+        "kill_reasons": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of specific Graveyard violations (e.g. ['SYNTHETIC_CONFLATION_TRIPLET', 'INFINITE_D_DIVERGENCE'])."
+        },
+        "free_energy_delta": {
+          "type": "number",
+          "description": "The scalar Variational Free Energy calculated by fep_ratchet_bridge.py."
+        },
+        "reward_signal": {
+          "type": "number",
+          "description": "The strict RL reward mapping (-F). A KILL returns an infinite penalty (-1000.0)."
+        }
+      },
+      "required": ["admitted", "free_energy_delta", "reward_signal"]
+    }
+  },
+  "required": ["version", "timestamp", "holodeck_origin", "agent_state", "ratchet_validation"]
+}

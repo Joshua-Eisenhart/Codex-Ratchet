@@ -1,0 +1,910 @@
+{
+  "name": "geometry_families_L0",
+  "distance_metrics": {
+    "all_pairs": {
+      "pure_0_vs_1": {
+        "description": "antipodal z",
+        "trace_distance": 1.0,
+        "fidelity": 0.0,
+        "bures_distance": 1.4142135623730951,
+        "hilbert_schmidt_distance": 1.4142135623730951,
+        "relative_entropy": 34.538776394910684,
+        "fubini_study_distance": 1.5707963267948966
+      },
+      "pure_plus_vs_minus": {
+        "description": "antipodal x",
+        "trace_distance": 1.0000000000000002,
+        "fidelity": 2.6192647243666435e-32,
+        "bures_distance": 1.414213562373095,
+        "hilbert_schmidt_distance": 1.4142135623730954,
+        "relative_entropy": 34.538776394910684,
+        "fubini_study_distance": 1.5707963267948966
+      },
+      "pure_plusI_vs_minusI": {
+        "description": "antipodal y",
+        "trace_distance": 1.0000000000000002,
+        "fidelity": 5.403911814176266e-32,
+        "bures_distance": 1.414213562373095,
+        "hilbert_schmidt_distance": 1.4142135623730954,
+        "relative_entropy": 34.538776394910684,
+        "fubini_study_distance": 1.5707963267948966
+      },
+      "pure_0_vs_plus": {
+        "description": "45 deg z-x",
+        "trace_distance": 0.7071067811865477,
+        "fidelity": 0.5000000000000001,
+        "bures_distance": 0.7653668647301795,
+        "hilbert_schmidt_distance": 1.0,
+        "relative_entropy": 17.26938819745534,
+        "fubini_study_distance": 0.7853981633974484
+      },
+      "pure_0_vs_plusI": {
+        "description": "45 deg z-y",
+        "trace_distance": 0.7071067811865477,
+        "fidelity": 0.5000000000000001,
+        "bures_distance": 0.7653668647301795,
+        "hilbert_schmidt_distance": 1.0,
+        "relative_entropy": 17.26938819745534,
+        "fubini_study_distance": 0.7853981633974484
+      },
+      "pure_plus_vs_plusI": {
+        "description": "45 deg x-y",
+        "trace_distance": 0.7071067811865477,
+        "fidelity": 0.5000000062651659,
+        "bures_distance": 0.7653668589419209,
+        "hilbert_schmidt_distance": 1.0000000000000002,
+        "relative_entropy": 17.269388197455342,
+        "fubini_study_distance": 0.7853981633974485
+      },
+      "mixed_z_vs_x": {
+        "description": "mixed interior",
+        "trace_distance": 0.3535533905932738,
+        "fidelity": 0.8750000000000004,
+        "bures_distance": 0.35940409932696776,
+        "hilbert_schmidt_distance": 0.5,
+        "relative_entropy": 0.2746530721670273,
+        "fubini_study_distance": null
+      },
+      "mixed_z_vs_y": {
+        "description": "mixed interior",
+        "trace_distance": 0.3535533905932738,
+        "fidelity": 0.8750000000000006,
+        "bures_distance": 0.35940409932696743,
+        "hilbert_schmidt_distance": 0.5,
+        "relative_entropy": 0.2746530721670273,
+        "fubini_study_distance": null
+      },
+      "maxmixed_vs_pure0": {
+        "description": "center to pole",
+        "trace_distance": 0.5,
+        "fidelity": 0.5000000000000001,
+        "bures_distance": 0.7653668647301795,
+        "hilbert_schmidt_distance": 0.7071067811865476,
+        "relative_entropy": 16.576241016895395,
+        "fubini_study_distance": null
+      },
+      "maxmixed_vs_mixedz": {
+        "description": "center to interior",
+        "trace_distance": 0.25,
+        "fidelity": 0.9330127018922196,
+        "bures_distance": 0.26105238444010265,
+        "hilbert_schmidt_distance": 0.3535533905932738,
+        "relative_entropy": 0.14384103622589045,
+        "fubini_study_distance": null
+      }
+    },
+    "triangle_inequality": {
+      "trace_distance": {
+        "passes": 336,
+        "fails": 0,
+        "total_triples": 336,
+        "worst_violation": 0.0,
+        "is_metric": true
+      },
+      "bures_distance": {
+        "passes": 336,
+        "fails": 0,
+        "total_triples": 336,
+        "worst_violation": 0.0,
+        "is_metric": true
+      },
+      "hilbert_schmidt_distance": {
+        "passes": 336,
+        "fails": 0,
+        "total_triples": 336,
+        "worst_violation": 0.0,
+        "is_metric": true
+      },
+      "one_minus_fidelity": {
+        "passes": 306,
+        "fails": 30,
+        "total_triples": 336,
+        "worst_violation": 0.18301270189221974,
+        "is_metric": false
+      },
+      "sqrt_relative_entropy": {
+        "passes": 310,
+        "fails": 26,
+        "total_triples": 336,
+        "worst_violation": 1.8583702711580594,
+        "is_metric": false
+      }
+    },
+    "operator_sensitivity": {
+      "per_operator_state": {
+        "Ti": {
+          "|0>": {
+            "trace_distance": 0.0,
+            "bures_distance": 0.0,
+            "hilbert_schmidt_distance": 0.0,
+            "relative_entropy": 0.0
+          },
+          "|+>": {
+            "trace_distance": 0.5000000000000001,
+            "bures_distance": 0.7653668647301802,
+            "hilbert_schmidt_distance": 0.7071067811865477,
+            "relative_entropy": 0.6931471805599437
+          },
+          "|+i>": {
+            "trace_distance": 0.5000000000000001,
+            "bures_distance": 0.7653668565443447,
+            "hilbert_schmidt_distance": 0.7071067811865477,
+            "relative_entropy": 0.6931471805599436
+          },
+          "mix_z": {
+            "trace_distance": 0.0,
+            "bures_distance": 0.0,
+            "hilbert_schmidt_distance": 0.0,
+            "relative_entropy": 0.0
+          },
+          "max_mix": {
+            "trace_distance": 0.0,
+            "bures_distance": 0.0,
+            "hilbert_schmidt_distance": 0.0,
+            "relative_entropy": 0.0
+          }
+        },
+        "Fe": {
+          "|0>": {
+            "trace_distance": 0.0,
+            "bures_distance": 0.0,
+            "hilbert_schmidt_distance": 0.0,
+            "relative_entropy": 0.0
+          },
+          "|+>": {
+            "trace_distance": 0.19866933079506124,
+            "bures_distance": 0.19966683329366022,
+            "hilbert_schmidt_distance": 0.2809608620379624,
+            "relative_entropy": 1.3632283384854322
+          },
+          "|+i>": {
+            "trace_distance": 0.1986693307950613,
+            "bures_distance": 0.19966682396488797,
+            "hilbert_schmidt_distance": 0.2809608620379625,
+            "relative_entropy": 1.3632283384854358
+          },
+          "mix_z": {
+            "trace_distance": 0.0,
+            "bures_distance": 0.0,
+            "hilbert_schmidt_distance": 0.0,
+            "relative_entropy": 0.0
+          },
+          "max_mix": {
+            "trace_distance": 0.0,
+            "bures_distance": 0.0,
+            "hilbert_schmidt_distance": 0.0,
+            "relative_entropy": 0.0
+          }
+        },
+        "Te": {
+          "|0>": {
+            "trace_distance": 0.35,
+            "bures_distance": 0.6225338949328703,
+            "hilbert_schmidt_distance": 0.49497474683058323,
+            "relative_entropy": 0.4307829160924542
+          },
+          "|+>": {
+            "trace_distance": 1.1102230246251565e-16,
+            "bures_distance": 3.650024149988857e-08,
+            "hilbert_schmidt_distance": 2.220446049250313e-16,
+            "relative_entropy": 0.0
+          },
+          "|+i>": {
+            "trace_distance": 0.3500000000000001,
+            "bures_distance": 0.6225338949328697,
+            "hilbert_schmidt_distance": 0.4949747468305834,
+            "relative_entropy": 0.4307829160924541
+          },
+          "mix_z": {
+            "trace_distance": 0.17500000000000002,
+            "bures_distance": 0.1862450155664994,
+            "hilbert_schmidt_distance": 0.24748737341529167,
+            "relative_entropy": 0.06662031153421175
+          },
+          "max_mix": {
+            "trace_distance": 0.0,
+            "bures_distance": 0.0,
+            "hilbert_schmidt_distance": 0.0,
+            "relative_entropy": 0.0
+          }
+        },
+        "Fi": {
+          "|0>": {
+            "trace_distance": 0.19866933079506116,
+            "bures_distance": 0.19966683329365634,
+            "hilbert_schmidt_distance": 0.2809608620379623,
+            "relative_entropy": 1.3632283384854325
+          },
+          "|+>": {
+            "trace_distance": 1.1102230246251565e-16,
+            "bures_distance": 3.650024149988857e-08,
+            "hilbert_schmidt_distance": 2.220446049250313e-16,
+            "relative_entropy": 0.0
+          },
+          "|+i>": {
+            "trace_distance": 0.19866933079506133,
+            "bures_distance": 0.19966680184163435,
+            "hilbert_schmidt_distance": 0.2809608620379625,
+            "relative_entropy": 1.3632283384854338
+          },
+          "mix_z": {
+            "trace_distance": 0.0993346653975306,
+            "bures_distance": 0.09945771897504906,
+            "hilbert_schmidt_distance": 0.1404804310189812,
+            "relative_entropy": 0.02168084051091891
+          },
+          "max_mix": {
+            "trace_distance": 0.0,
+            "bures_distance": 0.0,
+            "hilbert_schmidt_distance": 0.0,
+            "relative_entropy": 0.0
+          }
+        }
+      },
+      "sensitivity_ranking": {
+        "trace_distance": {
+          "Ti": 1.0000000000000002,
+          "Te": 0.8750000000000002,
+          "Fi": 0.4966733269876532,
+          "Fe": 0.39733866159012254
+        },
+        "bures_distance": {
+          "Ti": 1.530733721274525,
+          "Te": 1.431312841932481,
+          "Fi": 0.49879139061058125,
+          "Fe": 0.3993336572585482
+        },
+        "hilbert_schmidt_distance": {
+          "Ti": 1.4142135623730954,
+          "Te": 1.2374368670764584,
+          "Fi": 0.7024021550949062,
+          "Fe": 0.5619217240759249
+        },
+        "relative_entropy": {
+          "Fi": 2.7481375174817853,
+          "Fe": 2.726456676970868,
+          "Ti": 1.3862943611198872,
+          "Te": 0.9281861437191201
+        }
+      }
+    }
+  },
+  "geometric_structures": {
+    "qfi_landscape": {
+      "north_pole": {
+        "bloch_theta": 0.0,
+        "bloch_phi": 0.0,
+        "bloch_r": 1.0,
+        "QFI_sigma_x": 4.0,
+        "QFI_sigma_y": 4.0,
+        "QFI_sigma_z": 0.0
+      },
+      "south_pole": {
+        "bloch_theta": 3.141592653589793,
+        "bloch_phi": 0.0,
+        "bloch_r": 1.0,
+        "QFI_sigma_x": 4.0,
+        "QFI_sigma_y": 4.0,
+        "QFI_sigma_z": 0.0
+      },
+      "equator_x": {
+        "bloch_theta": 1.5707963267948966,
+        "bloch_phi": 0.0,
+        "bloch_r": 1.0000000000000002,
+        "QFI_sigma_x": 2.0018721870660988e-33,
+        "QFI_sigma_y": 3.999999999999999,
+        "QFI_sigma_z": 3.999999999999999
+      },
+      "equator_neg_x": {
+        "bloch_theta": 1.5707963267948966,
+        "bloch_phi": 3.141592653589793,
+        "bloch_r": 1.0000000000000002,
+        "QFI_sigma_x": 2.0018721870660988e-33,
+        "QFI_sigma_y": 3.999999999999999,
+        "QFI_sigma_z": 3.999999999999999
+      },
+      "equator_y": {
+        "bloch_theta": 1.5707963267948966,
+        "bloch_phi": 1.5707963267948966,
+        "bloch_r": 1.0000000000000002,
+        "QFI_sigma_x": 3.999999999999999,
+        "QFI_sigma_y": 0.0,
+        "QFI_sigma_z": 3.999999999999999
+      },
+      "equator_neg_y": {
+        "bloch_theta": 1.5707963267948966,
+        "bloch_phi": -1.5707963267948966,
+        "bloch_r": 1.0000000000000002,
+        "QFI_sigma_x": 3.999999999999999,
+        "QFI_sigma_y": 0.0,
+        "QFI_sigma_z": 3.999999999999999
+      },
+      "mixed_r05_z": {
+        "bloch_theta": 0.0,
+        "bloch_phi": 0.0,
+        "bloch_r": 0.5,
+        "QFI_sigma_x": 1.0,
+        "QFI_sigma_y": 1.0,
+        "QFI_sigma_z": 0.0
+      },
+      "mixed_r05_x": {
+        "bloch_theta": 1.5707963267948966,
+        "bloch_phi": 0.0,
+        "bloch_r": 0.5,
+        "QFI_sigma_x": 5.004680467665246e-34,
+        "QFI_sigma_y": 0.9999999999999996,
+        "QFI_sigma_z": 0.9999999999999996
+      },
+      "maximally_mixed": {
+        "bloch_theta": 1.5707963267948966,
+        "bloch_phi": 0.0,
+        "bloch_r": 0.0,
+        "QFI_sigma_x": 0.0,
+        "QFI_sigma_y": 0.0,
+        "QFI_sigma_z": 0.0
+      }
+    },
+    "qgt_components": {
+      "north_pole": {
+        "metric_tensor_real": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.25,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "berry_curvature_imag": [
+          [
+            0.0,
+            0.25,
+            0.0
+          ],
+          [
+            -0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "metric_frobenius_norm": 0.3535533905932738,
+        "berry_frobenius_norm": 0.3535533905932738,
+        "has_curvature": true
+      },
+      "equator_x": {
+        "metric_tensor_real": [
+          [
+            -5.551115123125783e-17,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.25000000000000006,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.25000000000000006
+          ]
+        ],
+        "berry_curvature_imag": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.25000000000000006
+          ],
+          [
+            0.0,
+            -0.25000000000000006,
+            0.0
+          ]
+        ],
+        "metric_frobenius_norm": 0.35355339059327384,
+        "berry_frobenius_norm": 0.35355339059327384,
+        "has_curvature": true
+      },
+      "equator_y": {
+        "metric_tensor_real": [
+          [
+            0.25000000000000006,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -5.551115123125783e-17,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.25000000000000006
+          ]
+        ],
+        "berry_curvature_imag": [
+          [
+            0.0,
+            0.0,
+            -0.25000000000000006
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.25000000000000006,
+            0.0,
+            0.0
+          ]
+        ],
+        "metric_frobenius_norm": 0.35355339059327384,
+        "berry_frobenius_norm": 0.35355339059327384,
+        "has_curvature": true
+      },
+      "mixed_r05_z": {
+        "metric_tensor_real": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.25,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.1875
+          ]
+        ],
+        "berry_curvature_imag": [
+          [
+            0.0,
+            0.125,
+            0.0
+          ],
+          [
+            -0.125,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "metric_frobenius_norm": 0.40019526483955303,
+        "berry_frobenius_norm": 0.1767766952966369,
+        "has_curvature": true
+      },
+      "maximally_mixed": {
+        "metric_tensor_real": [
+          [
+            0.25,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.25,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.25
+          ]
+        ],
+        "berry_curvature_imag": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "metric_frobenius_norm": 0.4330127018922193,
+        "berry_frobenius_norm": 0.0,
+        "has_curvature": false
+      }
+    },
+    "berry_phase": {
+      "fe_z_rotation_loop": {
+        "n_steps": 24,
+        "berry_phase": 3.1415917608946016,
+        "start_state": "|+>"
+      },
+      "fi_x_rotation_loop": {
+        "n_steps": 24,
+        "berry_phase": 3.1415922631184756,
+        "start_state": "|0>"
+      },
+      "mixed_operator_loop": {
+        "n_steps": 8,
+        "berry_phase": 0.7723348013901352,
+        "start_state": "|+>"
+      }
+    }
+  },
+  "negative_tests": {
+    "flat_vs_curved": {
+      "reference_state": "|+i>",
+      "orderings": {
+        "hilbert_schmidt": {
+          "distances": {
+            "|0>": 1.0,
+            "|1>": 1.0,
+            "|+>": 1.0000000000000002,
+            "|->": 1.0000000000000002,
+            "mix_z": 0.790569415042095,
+            "mix_x": 0.790569415042095,
+            "max_mix": 0.7071067811865477
+          },
+          "ranking": [
+            "max_mix",
+            "mix_z",
+            "mix_x",
+            "|0>",
+            "|1>",
+            "|+>",
+            "|->"
+          ]
+        },
+        "bures": {
+          "distances": {
+            "|0>": 0.7653668612884597,
+            "|1>": 0.7653668647301802,
+            "|+>": 0.7653668633045722,
+            "|->": 0.7653668633045722,
+            "mix_z": 0.7653668622965161,
+            "mix_x": 0.7653668565126759,
+            "max_mix": 0.7653668565443447
+          },
+          "ranking": [
+            "mix_x",
+            "max_mix",
+            "|0>",
+            "mix_z",
+            "|+>",
+            "|->",
+            "|1>"
+          ]
+        },
+        "trace": {
+          "distances": {
+            "|0>": 0.7071067811865477,
+            "|1>": 0.7071067811865477,
+            "|+>": 0.7071067811865477,
+            "|->": 0.7071067811865477,
+            "mix_z": 0.5590169943749475,
+            "mix_x": 0.5590169943749476,
+            "max_mix": 0.5000000000000001
+          },
+          "ranking": [
+            "max_mix",
+            "mix_z",
+            "mix_x",
+            "|0>",
+            "|1>",
+            "|+>",
+            "|->"
+          ]
+        }
+      },
+      "hs_vs_bures_same_order": false,
+      "hs_vs_trace_same_order": true,
+      "bures_vs_trace_same_order": false,
+      "kendall_hs_bures": 5,
+      "kendall_hs_trace": 0,
+      "kendall_bures_trace": 5,
+      "geometry_matters": true
+    },
+    "real_only": {
+      "distance_metrics_survive": {
+        "trace_distance": {
+          "works": true,
+          "sample_distances": [
+            1.0,
+            0.7071067811865477,
+            0.7071067811865477,
+            1.0000000000000002,
+            0.7071067811865477,
+            0.7071067811865477,
+            0.25,
+            0.75,
+            0.5590169943749475,
+            0.5590169943749475,
+            0.5590169943749475,
+            0.5590169943749475,
+            0.2500000000000001,
+            0.7500000000000001,
+            0.3535533905932738
+          ],
+          "min": 0.25,
+          "max": 1.0000000000000002
+        },
+        "bures_distance": {
+          "works": true,
+          "sample_distances": [
+            1.4142135623730951,
+            0.7653668565443456,
+            0.7653668589419209,
+            1.414213562373095,
+            0.7653668565443458,
+            0.7653668589419207,
+            0.5176380902050416,
+            1.0,
+            0.7653668605656967,
+            0.7653668605656967,
+            0.7653668647301793,
+            0.7653668647301799,
+            0.5176380902050429,
+            0.9999999968674167,
+            0.35940409932696926
+          ],
+          "min": 0.35940409932696926,
+          "max": 1.4142135623730951
+        },
+        "hilbert_schmidt_distance": {
+          "works": true,
+          "sample_distances": [
+            1.4142135623730951,
+            1.0,
+            1.0,
+            1.4142135623730954,
+            1.0,
+            1.0,
+            0.3535533905932738,
+            1.0606601717798212,
+            0.790569415042095,
+            0.790569415042095,
+            0.7905694150420949,
+            0.7905694150420949,
+            0.3535533905932739,
+            1.0606601717798214,
+            0.5
+          ],
+          "min": 0.3535533905932738,
+          "max": 1.4142135623730954
+        },
+        "relative_entropy": {
+          "works": true,
+          "sample_distances": [
+            34.538776394910684,
+            17.269388197455346,
+            17.269388197455346,
+            34.538776394910684,
+            17.269388197455346,
+            17.269388197455346,
+            8.072358954108864,
+            25.341747151564206,
+            16.70705305283653,
+            16.70705305283653,
+            16.707053052836535,
+            16.707053052836535,
+            8.072358954108859,
+            25.3417471515642,
+            0.27465307216702756
+          ],
+          "min": 0.27465307216702756,
+          "max": 34.538776394910684
+        },
+        "fubini_study": {
+          "works": true,
+          "note": "FS works on real states but the state space is RP^1 not CP^1 -- reduced manifold",
+          "sample_distances": [
+            1.5707963267948966,
+            0.7853981633974484,
+            0.7853981633974484,
+            1.5707963267948966,
+            0.7853981633974484,
+            0.7853981633974484
+          ]
+        }
+      },
+      "geometric_structures": {
+        "berry_phase": {
+          "real_loop_berry_phase": 3.6500241499888574e-08,
+          "complex_loop_berry_phase": 3.1415917608946016,
+          "berry_requires_complex": true,
+          "note": "Berry phase requires complex Hilbert space; real restriction kills it"
+        },
+        "qgt": {
+          "real_generators_berry_norm": 0.0,
+          "full_generators_berry_norm": 0.35355339059327384,
+          "curvature_killed_by_real": true,
+          "note": "sigma_y is the source of Berry curvature; removing it kills curvature"
+        },
+        "qfi_real": {
+          "QFI_sx_at_plus": 2.0018721870660988e-33,
+          "QFI_sz_at_plus": 3.999999999999999,
+          "QFI_sy_at_plus": 3.999999999999999,
+          "note": "QFI itself survives reals, but sensitivity to sigma_y disappears from the accessible state space"
+        }
+      },
+      "summary": {
+        "survives_real_restriction": [
+          "trace_distance",
+          "bures_distance",
+          "hilbert_schmidt_distance",
+          "relative_entropy",
+          "fubini_study (on RP^1)",
+          "QFI"
+        ],
+        "killed_by_real_restriction": [
+          "Berry_phase (vanishes)",
+          "Berry_curvature_component_of_QGT",
+          "sigma_y_direction (inaccessible)"
+        ],
+        "reduced_but_not_killed": [
+          "fubini_study (CP^1 -> RP^1, dimension halved)",
+          "QGT (3x3 -> 2x2, curvature component vanishes)"
+        ]
+      }
+    }
+  },
+  "noncommutativity_verification": {
+    "test_strength": 0.5,
+    "Ti_Fi_commutator_distances": {
+      "trace_distance": 0.03180261018121063,
+      "bures_distance": 0.03614471165085332,
+      "hilbert_schmidt_distance": 0.044975682637132745,
+      "relative_entropy_forward": 0.002777887706207273,
+      "relative_entropy_reverse": 0.002702250773038588
+    },
+    "Ti_Fi_noncommuting": true,
+    "Te_Fe_commutator_distances": {
+      "trace_distance": 0.01738356644456801,
+      "bures_distance": 0.018867636083507593,
+      "hilbert_schmidt_distance": 0.024584075428321923
+    },
+    "Te_Fe_noncommuting": true,
+    "strength_sweep_Ti_Fi": {
+      "0.1": {
+        "trace_distance": 0.0012802833748459985,
+        "note": "zero at s=1.0 because full dephasing erases coherence before rotation"
+      },
+      "0.3": {
+        "trace_distance": 0.011497982040123951,
+        "note": "zero at s=1.0 because full dephasing erases coherence before rotation"
+      },
+      "0.5": {
+        "trace_distance": 0.03180261018121063,
+        "note": "zero at s=1.0 because full dephasing erases coherence before rotation"
+      },
+      "0.7": {
+        "trace_distance": 0.0619338843015324,
+        "note": "zero at s=1.0 because full dephasing erases coherence before rotation"
+      },
+      "0.9": {
+        "trace_distance": 0.1015045056588063,
+        "note": "zero at s=1.0 because full dephasing erases coherence before rotation"
+      },
+      "1.0": {
+        "trace_distance": 0.12467470130687197,
+        "note": "zero at s=1.0 because full dephasing erases coherence before rotation"
+      }
+    },
+    "verdict": "ALL geometries detect noncommutativity",
+    "note": "At full strength=1.0, Ti fully dephases so commutator vanishes. Noncommutativity is structural and visible at all partial strengths."
+  },
+  "ranking": {
+    "by_triangle_inequality": [
+      {
+        "metric": "trace_distance",
+        "is_true_metric": true,
+        "pass_rate": 1.0
+      },
+      {
+        "metric": "bures_distance",
+        "is_true_metric": true,
+        "pass_rate": 1.0
+      },
+      {
+        "metric": "hilbert_schmidt_distance",
+        "is_true_metric": true,
+        "pass_rate": 1.0
+      },
+      {
+        "metric": "sqrt_relative_entropy",
+        "is_true_metric": false,
+        "pass_rate": 0.9226190476190477
+      },
+      {
+        "metric": "one_minus_fidelity",
+        "is_true_metric": false,
+        "pass_rate": 0.9107142857142857
+      }
+    ],
+    "by_operator_sensitivity": [
+      {
+        "metric": "relative_entropy",
+        "total_sensitivity": 7.78907469929166
+      },
+      {
+        "metric": "hilbert_schmidt_distance",
+        "total_sensitivity": 3.9159743086203846
+      },
+      {
+        "metric": "bures_distance",
+        "total_sensitivity": 3.8601716110761353
+      },
+      {
+        "metric": "trace_distance",
+        "total_sensitivity": 2.769011988577776
+      }
+    ],
+    "requires_complex": [
+      "Berry_phase",
+      "Berry_curvature_in_QGT",
+      "sigma_y_Pauli_direction",
+      "full_CP1_Fubini_Study_manifold"
+    ],
+    "survives_all_constraints": [
+      "trace_distance (true metric, operational, survives reals but gains from complex)",
+      "bures_distance (true metric, curved, information-geometric, requires fidelity)",
+      "fubini_study (true metric on pure states, curved, requires complex for full CP^1)",
+      "QFI (survives both, but landscape richer with complex)",
+      "QGT_metric_part (survives, real symmetric tensor)"
+    ],
+    "killed_at_L0": [
+      "hilbert_schmidt as sole geometry (flat, misses curvature of state space)",
+      "relative_entropy as metric (not symmetric, no triangle inequality)",
+      "real-only restriction (kills Berry phase, halves state space, removes curvature)",
+      "commutative operators (kills all nontrivial geometry -- operators must not commute)"
+    ]
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "all_candidate_clusters_accounted_for": true,
+  "audit_only": true,
+  "candidate_clusters": [
+    {
+      "already_landed": true,
+      "bounded_role": "audit placement, prior-art, and promotion path for one candidate Ratchet skill or cluster before any broader formalization or migration claim",
+      "cluster_id": "SKILL_CLUSTER::lev-formalization-placement",
+      "cluster_role": "promotion_path",
+      "eligible_for_next_promotion": false,
+      "external_runtime_dependency": "low",
+      "import_label": "lev-os/agents formalize / placement / migrate cluster",
+      "members": [
+        {
+          "exists": true,
+          "imported_skill_id": "lev-builder",
+          "path": "work/reference_repos/lev-os/agents/skills/lev-builder/SKILL.md",
+          "reason": "High leverage for turning candidate skills into placed, prior-art-checked Ratchet-native assets.",
+          "treatment": "adapt"
+        },
+        {
+          "exists": true,
+          "imported_skill_id": "arch",
+          "path": "work/reference_repos/lev-os/agents/skills/arch/SKILL.md",
+          "reason": "Useful source of fitness/tradeoff framing, but too generic to import directly as runtime behavior.",
+          "treatment": "mine"
+        },
+        {
+          "exists": true,
+          "imported_skill_id": "work",
+          "path": "work/reference_repos/lev-os/agents/skills/work/SKILL.md",
+          "reason": "Useful for bounded handoff and reporting discipline without forcing imported runtime ownership.",
+          "treatment": "mine"
+        }
+      ],
+      "parked_at_disposition": true,
+      "present_member_count": 3,
+      "recommended_first_slice_id": "a2-lev-builder-placement-audit-operator",
+      "risk_level": "moderate",
+      "score": 90,
+      "selection_reasons": [
+        "Directly supports the user goal of turning corpus material into real Ratchet skills.",
+        "Keeps the next lev-os/agents step bounded to audit/placement instead of importing an external runtime whole.",
+        "Builds a bridge between corpus discovery and disciplined Ratchet-native promotion."
+      ]
+    },
+    {
+      "already_landed": true,
+      "bounded_role": "audit the heartbeat and validation loop shape before claiming any recurring execution or autonomous run loop",
+      "cluster_id": "SKILL_CLUSTER::lev-autodev-exec-validation",
+      "cluster_role": "execution_loop",
+      "eligible_for_next_promotion": false,
+      "external_runtime_dependency": "high",
+      "import_label": "lev-os/agents autodev / execution / validation cluster",
+      "members": [
+        {
+          "exists": true,
+          "imported_skill_id": "autodev-loop",
+          "path": "work/reference_repos/lev-os/agents/skills/autodev-loop/SKILL.md",
+          "reason": "Interesting execution/validation loop shape, but coupled to cron, bd, and lev stack runtime.",
+          "treatment": "adapt"
+        },
+        {
+          "exists": true,
+          "imported_skill_id": "autodev-lev",
+          "path": "work/reference_repos/lev-os/agents/skills/autodev-lev/SKILL.md",
+          "reason": "Provides heartbeat continuity ideas, but depends on in-process lev runtime continuity.",
+          "treatment": "mine"
+        },
+        {
+          "exists": true,
+          "imported_skill_id": "lev-plan",
+          "path": "work/reference_repos/lev-os/agents/skills/lev-plan/SKILL.md",
+          "reason": "Useful entity lifecycle structure, but Ratchet should not import the `.lev/pm` surface wholesale.",
+          "treatment": "mine"
+        },
+        {
+          "exists": true,
+          "imported_skill_id": "stack",
+          "path": "work/reference_repos/lev-os/agents/skills/stack/SKILL.md",
+          "reason": "Prompt-stack ideas are useful, but the runtime path is external and should stay decoupled.",
+          "treatment": "mine"
+        }
+      ],
+      "parked_at_disposition": false,
+      "present_member_count": 4,
+      "recommended_first_slice_id": "a2-lev-autodev-loop-audit-operator",
+      "risk_level": "high",
+      "score": 74,
+      "selection_reasons": [
+        "Potentially high value for future execution loops.",
+        "Too runtime-coupled to be the first post-proof import tranche."
+      ]
+    },
+    {
+      "already_landed": true,
+      "bounded_role": "audit architecture and fitness guidance for candidate Ratchet changes without importing generic review behavior wholesale",
+      "cluster_id": "SKILL_CLUSTER::lev-architecture-fitness-review",
+      "cluster_role": "analysis_support",
+      "eligible_for_next_promotion": false,
+      "external_runtime_dependency": "low",
+      "import_label": "lev-os/agents architecture / fitness / review cluster",
+      "members": [
+        {
+          "exists": true,
+          "imported_skill_id": "arch",
+          "path": "work/reference_repos/lev-os/agents/skills/arch/SKILL.md",
+          "reason": "Useful quality-attribute and tradeoff analysis frame for system work.",
+          "treatment": "adapt"
+        },
+        {
+          "exists": true,
+          "imported_skill_id": "lev-builder",
+          "path": "work/reference_repos/lev-os/agents/skills/lev-builder/SKILL.md",
+          "reason": "Provides placement/migration context, but not enough by itself for a first slice.",
+          "treatment": "mine"
+        }
+      ],
+      "parked_at_disposition": false,
+      "present_member_count": 2,
+      "recommended_first_slice_id": "a2-lev-architecture-fitness-operator",
+      "risk_level": "moderate",
+      "score": 68,
+      "selection_reasons": [
+        "Good support lane, but less central than formalization/promotion for current Ratchet goals."
+      ]
+    }
+  ],
+  "cluster_id": "SKILL_CLUSTER::skill-source-intake",
+  "curated_skill_count": 61,
+  "do_not_promote": true,
+  "generated_utc": "2026-03-22T00:29:09Z",
+  "has_current_unopened_cluster": false,
+  "issues": [],
+  "landed_lev_cluster_count": 7,
+  "landed_lev_cluster_ids": [
+    "SKILL_CLUSTER::skill-source-intake",
+    "SKILL_CLUSTER::tracked-work-planning",
+    "SKILL_CLUSTER::research-deliberation",
+    "SKILL_CLUSTER::workshop-analysis-gating",
+    "SKILL_CLUSTER::lev-formalization-placement",
+    "SKILL_CLUSTER::lev-autodev-exec-validation",
+    "SKILL_CLUSTER::lev-architecture-fitness-review"
+  ],
+  "lev_agents_root": "work/reference_repos/lev-os/agents",
+  "library_skill_count": 574,
+  "parked_lev_cluster_count": 1,
+  "parked_lev_cluster_ids": [
+    "SKILL_CLUSTER::lev-formalization-placement"
+  ],
+  "recommended_actions": [
+    "Hold the lev-os/agents promotion lane at no current unopened cluster until a new bounded candidate is admitted.",
+    "Keep the landed lev slices bounded; do not widen them into runtime or migration claims by absence of a next candidate.",
+    "Open a different source-family lane or add a new bounded lev candidate only after explicit audit."
+  ],
+  "recommended_next_cluster": {},
+  "schema": "a2_lev_agents_promotion_report_v1",
+  "slice_id": "a2-lev-agents-promotion-operator",
+  "source_family": "lev_os_agents_curated",
+  "status": "ok",
+  "total_skill_count": 635
+}

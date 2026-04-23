@@ -1,0 +1,36 @@
+{
+  "allow_build": false,
+  "allow_migration": false,
+  "allow_patch_application": false,
+  "allow_proposal_emission": true,
+  "allow_runtime_claims": false,
+  "blocking_issues": [],
+  "cluster_id": "SKILL_CLUSTER::lev-formalization-placement",
+  "generated_utc": "2026-03-21T13:52:02Z",
+  "next_step": "a2-lev-builder-formalization-skeleton-operator",
+  "proposal_only": true,
+  "proposal_target_id": "a2-lev-builder-formalization-skeleton-operator",
+  "proposal_target_paths": {
+    "operator_source": "system_v4/skills/a2_lev_builder_formalization_skeleton_operator.py",
+    "report_json": "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_FORMALIZATION_SKELETON_REPORT__CURRENT__v1.json",
+    "skill_spec": "system_v4/skill_specs/a2-lev-builder-formalization-skeleton-operator/SKILL.md",
+    "smoke_test": "system_v4/skills/test_a2_lev_builder_formalization_skeleton_operator_smoke.py"
+  },
+  "recommended_actions": [
+    "Keep this slice proposal-only and repo-held.",
+    "Use the emitted proposal packet to decide whether the future skeleton slice should be built at all.",
+    "Keep migration, patching, and runtime-import claims explicitly false in the follow-on build lane."
+  ],
+  "recommended_source_skill_id": "lev-builder",
+  "required_files": [
+    "system_v4/skill_specs/a2-lev-builder-formalization-skeleton-operator/SKILL.md",
+    "system_v4/skills/a2_lev_builder_formalization_skeleton_operator.py",
+    "system_v4/skills/test_a2_lev_builder_formalization_skeleton_operator_smoke.py"
+  ],
+  "required_smokes": [
+    "system_v4/skills/test_a2_lev_builder_formalization_skeleton_operator_smoke.py"
+  ],
+  "schema": "a2_lev_builder_formalization_proposal_packet_v1",
+  "slice_id": "a2-lev-builder-formalization-proposal-operator",
+  "status": "ok"
+}

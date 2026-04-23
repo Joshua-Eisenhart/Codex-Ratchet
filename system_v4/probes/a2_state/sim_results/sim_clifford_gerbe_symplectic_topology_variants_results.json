@@ -1,0 +1,151 @@
+{
+  "name": "sim_clifford_gerbe_symplectic_topology_variants",
+  "classification": "classical_baseline",
+  "classification_note": "Clifford\u00d7Gerbe\u00d7Symplectic topology-variant probe. This remains a classical-baseline comparison surface, not a nonclassical witness.",
+  "divergence_log": "Step 3 topology variants for Clifford\u00d7Gerbe\u00d7Symplectic (20th program). T1 flat \u03b8=\u03c0/2, T2 S\u00b2 \u03b8=\u03c0, T3 lens \u03b8=\u03c0/3. H_gerbe topology-stable (DD_count=3 fixed). H_clifford topology-variant (varies with \u03b8 via Cl(3,0) rotor). DPI confirmed: MI_input > MI_final. z3 UNSAT: MI=1 AND Q=0 impossible.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for topology variant tests"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: MI=1 AND Q=0 impossible \u2014 MI drives Q (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic product zero-collapse under MI=0 (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3,0) rotor at varied \u03b8 gives topology-variant H_clifford (load-bearing)."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not invoked"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not invoked"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not invoked"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not invoked"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_gerbe_topology_stable": {
+      "values": {
+        "T1_flat": 1.3862943611198906,
+        "T2_S2": 1.3862943611198906,
+        "T3_lens": 1.3862943611198906
+      },
+      "passed": true
+    },
+    "P2_clifford_topology_variant": {
+      "values": {
+        "T1_flat": 0.9999999999999998,
+        "T2_S2": 2.0,
+        "T3_lens": 0.4999999999999998
+      },
+      "passed": true,
+      "all_differ": true
+    },
+    "P3_DPI_MI_decreases": {
+      "MI_input": 1.3862943611198906,
+      "MI_final": 0.10814930452367744,
+      "passed": true
+    },
+    "P4_Q_positive_T1_flat": {
+      "theta": 1.5707963267948966,
+      "H_clifford": 0.9999999999999998,
+      "Q": 0.24129782936875516,
+      "passed": true
+    },
+    "P4_Q_positive_T2_S2": {
+      "theta": 3.141592653589793,
+      "H_clifford": 2.0,
+      "Q": 0.4825956587375104,
+      "passed": true
+    },
+    "P4_Q_positive_T3_lens": {
+      "theta": 1.0471975511965976,
+      "H_clifford": 0.4999999999999998,
+      "Q": 0.12064891468437756,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_MI1_Q0": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_product_zero_collapse": {
+      "passed": true
+    },
+    "N3_theta0_Hc_near_zero": {
+      "H_clifford_theta0": 0.0,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_gerbe_same_all_topologies": {
+      "H_gerbe": 1.3862943611198906,
+      "passed": true
+    },
+    "B2_Hc_bounded": {
+      "max_H_clifford": 2.0,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

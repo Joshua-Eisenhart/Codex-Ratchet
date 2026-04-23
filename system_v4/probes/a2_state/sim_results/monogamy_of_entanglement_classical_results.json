@@ -1,0 +1,35 @@
+{
+  "name": "monogamy_of_entanglement_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "classical joint sampling and MI evaluation"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "classical_monogamy_trivially_satisfied": true
+  },
+  "negative": {
+    "MI_violates_monogamy_on_classical_GHZ": true,
+    "MI_is_not_a_valid_entanglement_monotone": true
+  },
+  "boundary": {
+    "product_state_all_zero": true,
+    "classical_entanglement_zero_on_product": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": "Classical monogamy is vacuous: every classical joint is separable under any entanglement monotone, so the inequality reduces to 0 >= 0. The baseline cannot express the quantitative trade-off (e.g., concurrence-squared CKW) that constrains how much a single qubit A can be entangled with B vs C when the tripartite state is genuinely nonclassical. Worse, swapping the entanglement measure for mutual information produces a classical inequality that is actively violated (GHZ-style joints), showing MI is not an entanglement monotone and cannot substitute for a quantum monogamy witness."
+}

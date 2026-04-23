@@ -1,0 +1,90 @@
+{
+  "name": "Connes Classification Injective Constraint Canonical",
+  "description": "Injectivity, hyperfiniteness (4^n rank growth), all injective II_1 ~ R via cvc5",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for rank convergence proof"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for rank convergence proof"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 chosen for injectivity and hyperfinite constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic rank sequences and hyperfinite tower constructions"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Connes classification"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Connes classification"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Connes classification"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Connes classification"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Connes classification"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Connes classification"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Connes classification"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_tests_error": "No module named 'cvc5'"
+  },
+  "negative": {
+    "negative_tests_error": "No module named 'cvc5'"
+  },
+  "boundary": {
+    "boundary_tests_error": "No module named 'cvc5'"
+  },
+  "classification": "canonical"
+}

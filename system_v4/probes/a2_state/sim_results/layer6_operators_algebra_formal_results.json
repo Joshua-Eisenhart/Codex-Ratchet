@@ -1,0 +1,127 @@
+{
+  "layer": 6,
+  "name": "Operators + su(2) Algebra",
+  "positive": {
+    "P1_sympy": {
+      "passed": true,
+      "detail": {
+        "[sx,sy]": "Matrix([[2*I, 0], [0, -2*I]])",
+        "expected_2i_sz": "Matrix([[2*I, 0], [0, -2*I]])",
+        "match_xy": true,
+        "[sy,sz]": "Matrix([[0, 2*I], [2*I, 0]])",
+        "expected_2i_sx": "Matrix([[0, 2*I], [2*I, 0]])",
+        "match_yz": true,
+        "[sz,sx]": "Matrix([[0, 2], [-2, 0]])",
+        "expected_2i_sy": "Matrix([[0, 2], [-2, 0]])",
+        "match_zx": true
+      }
+    },
+    "P2_sympy": {
+      "passed": true,
+      "detail": {
+        "killing_form": "Matrix([[-2, 0, 0], [0, -2, 0], [0, 0, -2]])",
+        "eigenvalues": [
+          "-2"
+        ],
+        "negative_definite": true
+      }
+    },
+    "P3_sympy": {
+      "passed": true,
+      "detail": {
+        "casimir": "Matrix([[3, 0], [0, 3]])",
+        "expected": "Matrix([[3, 0], [0, 3]])",
+        "match": true
+      }
+    },
+    "P4_clifford": {
+      "passed": true,
+      "detail": {
+        "Ti": {
+          "dist": 7.211110073938365e-17,
+          "match": true
+        },
+        "Fe": {
+          "dist": 1.5202354861220294e-16,
+          "match": true
+        },
+        "Te": {
+          "dist": 2.152175995649822e-16,
+          "match": true
+        },
+        "Fi": {
+          "dist": 2.8031757299712627e-16,
+          "match": true
+        }
+      }
+    },
+    "P5_clifford": {
+      "passed": true,
+      "detail": {
+        "Rz*Rx": {
+          "is_even_grade": true,
+          "is_normalized": true,
+          "is_rotor": true,
+          "grade1_norm": 0.0,
+          "grade3_norm": 0.0,
+          "RR_tilde_scalar": 0.9999999999999999
+        },
+        "Rx*Rz": {
+          "is_even_grade": true,
+          "is_normalized": true,
+          "is_rotor": true,
+          "grade1_norm": 0.0,
+          "grade3_norm": 0.0,
+          "RR_tilde_scalar": 0.9999999999999999
+        },
+        "Rz*Rx*Rz": {
+          "is_even_grade": true,
+          "is_normalized": true,
+          "is_rotor": true,
+          "grade1_norm": 0.0,
+          "grade3_norm": 0.0,
+          "RR_tilde_scalar": 0.9999999999999999
+        },
+        "Rz*Rz": {
+          "is_even_grade": true,
+          "is_normalized": true,
+          "is_rotor": true,
+          "grade1_norm": 0.0,
+          "grade3_norm": 0.0,
+          "RR_tilde_scalar": 1.0000000000000002
+        }
+      }
+    },
+    "P6_pyg": {
+      "passed": true,
+      "detail": {
+        "noncommuting_pairs": [
+          "Ti<->Fi",
+          "Fe<->Te",
+          "Fe<->Fi"
+        ],
+        "n_edges": 3,
+        "connected": true
+      }
+    }
+  },
+  "negative": {
+    "N1_pyg": {
+      "passed": true,
+      "detail": {
+        "all_same_axis": true,
+        "n_edges": 0,
+        "disconnected": true,
+        "algebra_killed": true
+      }
+    }
+  },
+  "tools_used": [
+    "sympy",
+    "clifford (Cl(3))",
+    "torch_geometric (PyG)"
+  ],
+  "timestamp": "2026-04-06",
+  "all_passed": true,
+  "summary": "Layer 6 (Operators + su(2) Algebra): 7/7 tests passed using sympy, clifford (Cl(3)), torch_geometric (PyG)"
+}

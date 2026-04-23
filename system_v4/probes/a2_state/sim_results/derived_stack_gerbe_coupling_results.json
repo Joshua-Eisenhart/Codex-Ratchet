@@ -1,0 +1,118 @@
+{
+  "name": "derived_stack_gerbe_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "compute gerbe holonomy integer and simplicial H3 Betti number; verify they agree for standard S3 triangulation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "simplicial topology handled by gudhi and numpy; PyG message passing not needed here"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: gerbe holonomy=0 (trivial) AND H3 Betti=1 (nontrivial S3) simultaneously impossible"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 handles bounded integer constraint; cvc5 not needed for this gerbe coupling"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "prove chi(S3)=0 via Euler formula V-E+F-T=0 for standard S3 triangulation symbolically"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "grade-3 pseudoscalar in Cl(3,0) as H=dB curvature; integer coefficient = Dixmier-Douady class"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian geometry on S3 not needed; topological invariants only at this stage"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "E3 equivariance not the target; grade-3 structure tested via clifford directly"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "simplicial S3 graph: verify 5 vertices, 10 edges structure and Euler characteristic check"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hyperedge coupling covered in other sims; gudhi provides richer simplicial structure here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi handles the S3 triangulation persistence directly; toponetx not needed"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent H3 class on S3 triangulation confirms nontrivial 3-cycle and Betti number"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": "load_bearing",
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "pytorch_gerbe_holonomy_agrees_H3_betti": true,
+    "pytorch_euler_char_S3_is_zero": true,
+    "sympy_euler_char_S3_zero": true,
+    "sympy_S3_betti_numbers_correct": true,
+    "gudhi_H3_betti_equals_1": true,
+    "gudhi_H3_betti_value": 1,
+    "rustworkx_S3_5_vertices": true,
+    "rustworkx_S3_10_edges": true,
+    "clifford_grade3_H_flux_coefficient_equals_n": true
+  },
+  "negative": {
+    "pytorch_trivial_gerbe_excluded_with_nontrivial_H3": true,
+    "z3_unsat_trivial_gerbe_nontrivial_S3_impossible": true,
+    "sympy_chi_S3_not_1_excluded": true,
+    "gudhi_solid_ball_has_no_H3": true,
+    "rustworkx_S2_skeleton_excluded_not_5_vertices": true,
+    "clifford_bivec_has_no_grade3_component": true
+  },
+  "boundary": {
+    "pytorch_n0_holonomy_is_zero": true,
+    "pytorch_large_n_holonomy_exact": true,
+    "sympy_euler_char_topological_invariant_zero": true,
+    "clifford_e123_is_pure_grade3": true,
+    "gudhi_S3_has_5_tetrahedra": true,
+    "rustworkx_S3_skeleton_is_K5": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "gerbe holonomy (DD class) and simplicial H3 Betti survived as co-admissible for S3 (both = 1)",
+    "trivial gerbe (n=0) excluded as incompatible with nontrivial H3=1 by z3 UNSAT",
+    "grade-3 pseudoscalar in Cl(3,0) survived as the correct carrier of H-flux integer",
+    "chi(S3)=0 survived via Euler formula; confirmed by sympy symbolic computation",
+    "classical baseline: higher stack structure, infinity-gerbes, spectral sequence excluded from this sim"
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "name": "z3-proves-KCBS-inequality-non-contextual-impossible",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no gradient"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph learning required"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT certificate over all {0,1} assignments on 5-cycle"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient; cvc5 reserved for cross-check"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "exact bound sqrt(5)-4 computed symbolically"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "5-cycle hardcoded"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "kcbs_classical_bound_unsat": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    },
+    "quantum_exceeds_classical": {
+      "value": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "classical_assignments_exist": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    },
+    "unconstrained_saturates": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "sum_eq_2": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    },
+    "sum_eq_3": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    }
+  },
+  "ablation_numpy_substitute": {
+    "numpy_brute_force_max": 2,
+    "covers_binary_domain_only": true,
+    "generalizes_to_real_valued_weights": false,
+    "certifies_structural_impossibility": false,
+    "note": "z3 proves UNSAT over the declared theory; numpy only enumerates binary."
+  },
+  "classification": "canonical"
+}

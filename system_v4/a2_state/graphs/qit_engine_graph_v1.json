@@ -1,0 +1,4489 @@
+{
+  "schema": "QIT_ENGINE_GRAPH_v2",
+  "generated_utc": "2026-04-01T11:00:11Z",
+  "owner_layer": "QIT_ENGINE",
+  "materialized": true,
+  "build_status": "MATERIALIZED",
+  "derived_from": {
+    "builder_program": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_engine_graph_builder.py",
+    "owner_schemas": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_owner_schemas.py"
+  },
+  "selection_contract": {
+    "included_node_rule": "Materialize only the explicit QIT owner structures enumerated in this builder: engine types, macro-stages, fixed operators, torus identities, Weyl branches, proven axes, negative witnesses, and 64 subcycle steps. Do not infer runtime state, history/evidence, or sidecar payloads.",
+    "edge_rule": "Materialize only the explicitly constructed edges in this builder: structural topology edges between emitted owner nodes plus bounded NEGATIVE_PROVES witness edges. Do not infer extra relations from simulations, sidecars, or documentation.",
+    "validation_gate": "Each emitted node must pass its owner-schema Pydantic model before the graph is materialized. Validation failures fail the build rather than emitting partial owner truth.",
+    "bridge_policy": "public_id/public_id_index are stable join handles only. Cross-layer integration requires explicit bridge admission outside this owner builder."
+  },
+  "description": "Owner graph encoding of the Geometric Engine's structural topology plus bounded negative-witness nodes/edges: 8 macro-stages \u00d7 2 engine types, 4 fixed subcycle operators, 64 subcycle steps (16\u00d74 runtime grain), 3 nested Hopf tori, 2 Weyl branches, 7 proven axes, and 9 negative witnesses. All nodes carry stable public_id for cross-layer joining.",
+  "nodes": {
+    "a75ac4befa5e56b2": {
+      "public_id": "qit::ENGINE::type1",
+      "node_type": "ENGINE",
+      "label": "type1",
+      "description": "Type-1: Left Weyl spinor, H_L = +n\u00b7\u03c3, Bloch law \u1e59_L = +2n\u00d7r_L",
+      "admissibility_state": "ADMITTED"
+    },
+    "01df452782c169e2": {
+      "public_id": "qit::ENGINE::type2",
+      "node_type": "ENGINE",
+      "label": "type2",
+      "description": "Type-2: Right Weyl spinor, H_R = \u2212n\u00b7\u03c3, Bloch law \u1e59_R = \u22122n\u00d7r_R",
+      "admissibility_state": "ADMITTED"
+    },
+    "42389006d046291e": {
+      "public_id": "qit::MACRO_STAGE::type1_Se_f",
+      "node_type": "MACRO_STAGE",
+      "label": "type1::Se_f",
+      "engine_type": "type1",
+      "terrain": "Se_f",
+      "terrain_family": "Se",
+      "terrain_name": "Funnel",
+      "loop": "fiber",
+      "loop_order": "inductive",
+      "loop_label": "Type-1 Engine Inductive Inner Loop",
+      "mode": "expand",
+      "boundary": "open",
+      "stage_index": 0,
+      "spinor_type": "L",
+      "hamiltonian_sign": 1,
+      "generator": "X_F^L",
+      "admissibility_state": "ADMITTED"
+    },
+    "8c9ea472ee53a917": {
+      "public_id": "qit::MACRO_STAGE::type1_Si_f",
+      "node_type": "MACRO_STAGE",
+      "label": "type1::Si_f",
+      "engine_type": "type1",
+      "terrain": "Si_f",
+      "terrain_family": "Si",
+      "terrain_name": "Hill",
+      "loop": "fiber",
+      "loop_order": "inductive",
+      "loop_label": "Type-1 Engine Inductive Inner Loop",
+      "mode": "compress",
+      "boundary": "closed",
+      "stage_index": 1,
+      "spinor_type": "L",
+      "hamiltonian_sign": 1,
+      "generator": "X_H^L",
+      "admissibility_state": "ADMITTED"
+    },
+    "4d515f9be3b50abb": {
+      "public_id": "qit::MACRO_STAGE::type1_Ni_f",
+      "node_type": "MACRO_STAGE",
+      "label": "type1::Ni_f",
+      "engine_type": "type1",
+      "terrain": "Ni_f",
+      "terrain_family": "Ni",
+      "terrain_name": "Pit",
+      "loop": "fiber",
+      "loop_order": "inductive",
+      "loop_label": "Type-1 Engine Inductive Inner Loop",
+      "mode": "compress",
+      "boundary": "open",
+      "stage_index": 2,
+      "spinor_type": "L",
+      "hamiltonian_sign": 1,
+      "generator": "X_P^L",
+      "admissibility_state": "ADMITTED"
+    },
+    "2f1d40dfb725c1c6": {
+      "public_id": "qit::MACRO_STAGE::type1_Ne_f",
+      "node_type": "MACRO_STAGE",
+      "label": "type1::Ne_f",
+      "engine_type": "type1",
+      "terrain": "Ne_f",
+      "terrain_family": "Ne",
+      "terrain_name": "Vortex",
+      "loop": "fiber",
+      "loop_order": "inductive",
+      "loop_label": "Type-1 Engine Inductive Inner Loop",
+      "mode": "expand",
+      "boundary": "closed",
+      "stage_index": 3,
+      "spinor_type": "L",
+      "hamiltonian_sign": 1,
+      "generator": "X_V^L",
+      "admissibility_state": "ADMITTED"
+    },
+    "45f25443ec43f55c": {
+      "public_id": "qit::MACRO_STAGE::type1_Se_b",
+      "node_type": "MACRO_STAGE",
+      "label": "type1::Se_b",
+      "engine_type": "type1",
+      "terrain": "Se_b",
+      "terrain_family": "Se",
+      "terrain_name": "Funnel",
+      "loop": "base",
+      "loop_order": "deductive",
+      "loop_label": "Type-1 Engine Deductive Outer Loop",
+      "mode": "expand",
+      "boundary": "open",
+      "stage_index": 4,
+      "spinor_type": "L",
+      "hamiltonian_sign": 1,
+      "generator": "X_F^L",
+      "admissibility_state": "ADMITTED"
+    },
+    "dbb8672ea7eb573b": {
+      "public_id": "qit::MACRO_STAGE::type1_Ne_b",
+      "node_type": "MACRO_STAGE",
+      "label": "type1::Ne_b",
+      "engine_type": "type1",
+      "terrain": "Ne_b",
+      "terrain_family": "Ne",
+      "terrain_name": "Vortex",
+      "loop": "base",
+      "loop_order": "deductive",
+      "loop_label": "Type-1 Engine Deductive Outer Loop",
+      "mode": "expand",
+      "boundary": "closed",
+      "stage_index": 5,
+      "spinor_type": "L",
+      "hamiltonian_sign": 1,
+      "generator": "X_V^L",
+      "admissibility_state": "ADMITTED"
+    },
+    "2e130310b13bb263": {
+      "public_id": "qit::MACRO_STAGE::type1_Ni_b",
+      "node_type": "MACRO_STAGE",
+      "label": "type1::Ni_b",
+      "engine_type": "type1",
+      "terrain": "Ni_b",
+      "terrain_family": "Ni",
+      "terrain_name": "Pit",
+      "loop": "base",
+      "loop_order": "deductive",
+      "loop_label": "Type-1 Engine Deductive Outer Loop",
+      "mode": "compress",
+      "boundary": "open",
+      "stage_index": 6,
+      "spinor_type": "L",
+      "hamiltonian_sign": 1,
+      "generator": "X_P^L",
+      "admissibility_state": "ADMITTED"
+    },
+    "00dee71465366b1c": {
+      "public_id": "qit::MACRO_STAGE::type1_Si_b",
+      "node_type": "MACRO_STAGE",
+      "label": "type1::Si_b",
+      "engine_type": "type1",
+      "terrain": "Si_b",
+      "terrain_family": "Si",
+      "terrain_name": "Hill",
+      "loop": "base",
+      "loop_order": "deductive",
+      "loop_label": "Type-1 Engine Deductive Outer Loop",
+      "mode": "compress",
+      "boundary": "closed",
+      "stage_index": 7,
+      "spinor_type": "L",
+      "hamiltonian_sign": 1,
+      "generator": "X_H^L",
+      "admissibility_state": "ADMITTED"
+    },
+    "34d8c413c38c70cd": {
+      "public_id": "qit::MACRO_STAGE::type2_Se_f",
+      "node_type": "MACRO_STAGE",
+      "label": "type2::Se_f",
+      "engine_type": "type2",
+      "terrain": "Se_f",
+      "terrain_family": "Se",
+      "terrain_name": "Cannon",
+      "loop": "fiber",
+      "loop_order": "deductive",
+      "loop_label": "Type-2 Engine Deductive Inner Loop",
+      "mode": "expand",
+      "boundary": "open",
+      "stage_index": 0,
+      "spinor_type": "R",
+      "hamiltonian_sign": -1,
+      "generator": "X_C^R",
+      "admissibility_state": "ADMITTED"
+    },
+    "35e4ae3b51a3b15b": {
+      "public_id": "qit::MACRO_STAGE::type2_Ne_f",
+      "node_type": "MACRO_STAGE",
+      "label": "type2::Ne_f",
+      "engine_type": "type2",
+      "terrain": "Ne_f",
+      "terrain_family": "Ne",
+      "terrain_name": "Spiral",
+      "loop": "fiber",
+      "loop_order": "deductive",
+      "loop_label": "Type-2 Engine Deductive Inner Loop",
+      "mode": "expand",
+      "boundary": "closed",
+      "stage_index": 1,
+      "spinor_type": "R",
+      "hamiltonian_sign": -1,
+      "generator": "X_S^R",
+      "admissibility_state": "ADMITTED"
+    },
+    "385e6868bc9985c2": {
+      "public_id": "qit::MACRO_STAGE::type2_Ni_f",
+      "node_type": "MACRO_STAGE",
+      "label": "type2::Ni_f",
+      "engine_type": "type2",
+      "terrain": "Ni_f",
+      "terrain_family": "Ni",
+      "terrain_name": "Source",
+      "loop": "fiber",
+      "loop_order": "deductive",
+      "loop_label": "Type-2 Engine Deductive Inner Loop",
+      "mode": "compress",
+      "boundary": "open",
+      "stage_index": 2,
+      "spinor_type": "R",
+      "hamiltonian_sign": -1,
+      "generator": "X_{So}^R",
+      "admissibility_state": "ADMITTED"
+    },
+    "fe174eef524d19aa": {
+      "public_id": "qit::MACRO_STAGE::type2_Si_f",
+      "node_type": "MACRO_STAGE",
+      "label": "type2::Si_f",
+      "engine_type": "type2",
+      "terrain": "Si_f",
+      "terrain_family": "Si",
+      "terrain_name": "Citadel",
+      "loop": "fiber",
+      "loop_order": "deductive",
+      "loop_label": "Type-2 Engine Deductive Inner Loop",
+      "mode": "compress",
+      "boundary": "closed",
+      "stage_index": 3,
+      "spinor_type": "R",
+      "hamiltonian_sign": -1,
+      "generator": "X_{Ci}^R",
+      "admissibility_state": "ADMITTED"
+    },
+    "aa67394b43e3a9d4": {
+      "public_id": "qit::MACRO_STAGE::type2_Se_b",
+      "node_type": "MACRO_STAGE",
+      "label": "type2::Se_b",
+      "engine_type": "type2",
+      "terrain": "Se_b",
+      "terrain_family": "Se",
+      "terrain_name": "Cannon",
+      "loop": "base",
+      "loop_order": "inductive",
+      "loop_label": "Type-2 Engine Inductive Outer Loop",
+      "mode": "expand",
+      "boundary": "open",
+      "stage_index": 4,
+      "spinor_type": "R",
+      "hamiltonian_sign": -1,
+      "generator": "X_C^R",
+      "admissibility_state": "ADMITTED"
+    },
+    "9ce8d76d78ef500c": {
+      "public_id": "qit::MACRO_STAGE::type2_Si_b",
+      "node_type": "MACRO_STAGE",
+      "label": "type2::Si_b",
+      "engine_type": "type2",
+      "terrain": "Si_b",
+      "terrain_family": "Si",
+      "terrain_name": "Citadel",
+      "loop": "base",
+      "loop_order": "inductive",
+      "loop_label": "Type-2 Engine Inductive Outer Loop",
+      "mode": "compress",
+      "boundary": "closed",
+      "stage_index": 5,
+      "spinor_type": "R",
+      "hamiltonian_sign": -1,
+      "generator": "X_{Ci}^R",
+      "admissibility_state": "ADMITTED"
+    },
+    "e7d7773150a39ef6": {
+      "public_id": "qit::MACRO_STAGE::type2_Ni_b",
+      "node_type": "MACRO_STAGE",
+      "label": "type2::Ni_b",
+      "engine_type": "type2",
+      "terrain": "Ni_b",
+      "terrain_family": "Ni",
+      "terrain_name": "Source",
+      "loop": "base",
+      "loop_order": "inductive",
+      "loop_label": "Type-2 Engine Inductive Outer Loop",
+      "mode": "compress",
+      "boundary": "open",
+      "stage_index": 6,
+      "spinor_type": "R",
+      "hamiltonian_sign": -1,
+      "generator": "X_{So}^R",
+      "admissibility_state": "ADMITTED"
+    },
+    "179dc41cdc8b9f57": {
+      "public_id": "qit::MACRO_STAGE::type2_Ne_b",
+      "node_type": "MACRO_STAGE",
+      "label": "type2::Ne_b",
+      "engine_type": "type2",
+      "terrain": "Ne_b",
+      "terrain_family": "Ne",
+      "terrain_name": "Spiral",
+      "loop": "base",
+      "loop_order": "inductive",
+      "loop_label": "Type-2 Engine Inductive Outer Loop",
+      "mode": "expand",
+      "boundary": "closed",
+      "stage_index": 7,
+      "spinor_type": "R",
+      "hamiltonian_sign": -1,
+      "generator": "X_S^R",
+      "admissibility_state": "ADMITTED"
+    },
+    "f09832c90802915c": {
+      "public_id": "qit::OPERATOR::Ti",
+      "node_type": "OPERATOR",
+      "label": "Ti",
+      "action": "constrain",
+      "description": "Thinking introvert",
+      "admissibility_state": "ADMITTED"
+    },
+    "b09fd41e36e58cf7": {
+      "public_id": "qit::OPERATOR::Fe",
+      "node_type": "OPERATOR",
+      "label": "Fe",
+      "action": "release",
+      "description": "Feeling extrovert",
+      "admissibility_state": "ADMITTED"
+    },
+    "af34d825f3db0db2": {
+      "public_id": "qit::OPERATOR::Te",
+      "node_type": "OPERATOR",
+      "label": "Te",
+      "action": "explore",
+      "description": "Thinking extrovert",
+      "admissibility_state": "ADMITTED"
+    },
+    "51ce70ad0cb0e67e": {
+      "public_id": "qit::OPERATOR::Fi",
+      "node_type": "OPERATOR",
+      "label": "Fi",
+      "action": "filter",
+      "description": "Feeling introvert",
+      "admissibility_state": "ADMITTED"
+    },
+    "19b85b6cae8c1a90": {
+      "public_id": "qit::TORUS::inner",
+      "node_type": "TORUS",
+      "label": "inner",
+      "nesting_rank": 0,
+      "description": "Innermost torus \u2014 highest curvature",
+      "admissibility_state": "ADMITTED"
+    },
+    "e48112a947938934": {
+      "public_id": "qit::TORUS::clifford",
+      "node_type": "TORUS",
+      "label": "clifford",
+      "nesting_rank": 1,
+      "description": "Clifford torus \u2014 equal radii, flat",
+      "admissibility_state": "ADMITTED"
+    },
+    "b03a3a6e42889795": {
+      "public_id": "qit::TORUS::outer",
+      "node_type": "TORUS",
+      "label": "outer",
+      "nesting_rank": 2,
+      "description": "Outermost torus \u2014 lowest curvature",
+      "admissibility_state": "ADMITTED"
+    },
+    "e4540b8ff8445ba1": {
+      "public_id": "qit::WEYL_BRANCH::left",
+      "node_type": "WEYL_BRANCH",
+      "label": "left",
+      "description": "Left Weyl spinor branch carried by the Type-1 engine family.",
+      "engine_type": "type1",
+      "spinor_type": "L",
+      "hamiltonian_sign": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "e7c59b9f74128ec7": {
+      "public_id": "qit::WEYL_BRANCH::right",
+      "node_type": "WEYL_BRANCH",
+      "label": "right",
+      "description": "Right Weyl spinor branch carried by the Type-2 engine family.",
+      "engine_type": "type2",
+      "spinor_type": "R",
+      "hamiltonian_sign": -1,
+      "admissibility_state": "ADMITTED"
+    },
+    "1504af1f377932d9": {
+      "public_id": "qit::AXIS::axis_0",
+      "node_type": "AXIS",
+      "label": "axis_0",
+      "description": "Polarity: base state moderator \u2014 admissible/non-admissible subsets (gradient_up / gradient_down)",
+      "proven": true,
+      "negative_witness": "sim_neg_axis0_frozen.py",
+      "admissibility_state": "ADMITTED"
+    },
+    "d5f161a324a94f20": {
+      "public_id": "qit::AXIS::axis_1",
+      "node_type": "AXIS",
+      "label": "axis_1",
+      "description": "Topology4 boundary openness: open system (CPTP/Lindblad families) vs closed system (unitary families)",
+      "proven": true,
+      "negative_witness": null,
+      "admissibility_state": "ADMITTED"
+    },
+    "2cee085667f098e2": {
+      "public_id": "qit::AXIS::axis_2",
+      "node_type": "AXIS",
+      "label": "axis_2",
+      "description": "Topology4 radial accessibility: expand (larger equivalence classes) vs compress (smaller equivalence classes)",
+      "proven": true,
+      "negative_witness": null,
+      "admissibility_state": "ADMITTED"
+    },
+    "7905294e7f427080": {
+      "public_id": "qit::AXIS::axis_3",
+      "node_type": "AXIS",
+      "label": "axis_3",
+      "description": "Engine-family split: Type-1 (inward, Left Weyl H_L=+n\u00b7\u03c3) vs Type-2 (outward, Right Weyl H_R=\u2212n\u00b7\u03c3). Physical chirality overlays noncanon \u2014 see AXIS3_HYPOTHESES.md",
+      "proven": true,
+      "negative_witness": null,
+      "admissibility_state": "ADMITTED"
+    },
+    "f3b9b9d197c66e28": {
+      "public_id": "qit::AXIS::axis_4",
+      "node_type": "AXIS",
+      "label": "axis_4",
+      "description": "Thermodynamic path: Deductive (FeTi \u2014 S\u21920, sequence constraint) vs Inductive (TeFi \u2014 \u0394W\u2192max, sequence drive)",
+      "proven": true,
+      "negative_witness": null,
+      "admissibility_state": "ADMITTED"
+    },
+    "52f4e85e1b321b25": {
+      "public_id": "qit::AXIS::axis_5",
+      "node_type": "AXIS",
+      "label": "axis_5",
+      "description": "Generator algebra: Line/TeTi (differentiation, Gradient+DiracDelta, discrete boundary) vs Wave/FeFi (integration, Laplacian+Fourier, continuous field)",
+      "proven": true,
+      "negative_witness": null,
+      "admissibility_state": "ADMITTED"
+    },
+    "dd53789b2e1978a4": {
+      "public_id": "qit::AXIS::axis_6",
+      "node_type": "AXIS",
+      "label": "axis_6",
+      "description": "Precedence / composition sidedness: UP vs DOWN (left-action A\u03c1 vs right-action \u03c1A)",
+      "proven": true,
+      "negative_witness": "neg_axis6_shared_stage_matrix_sim.py",
+      "admissibility_state": "ADMITTED"
+    },
+    "ec7e5d0fffedff62": {
+      "public_id": "qit::NEG_WITNESS::neg_no_torus_transport",
+      "node_type": "NEG_WITNESS",
+      "label": "neg_no_torus_transport",
+      "description": "Removing torus transport kills the engine",
+      "target_structure": "TORUS",
+      "specific_targets": [],
+      "owner_edge_emission": "suppressed_pending_owner_concept",
+      "proves_label": "torus_transport_regime_is_necessary",
+      "admissibility_state": "ADMITTED"
+    },
+    "299773621576935a": {
+      "public_id": "qit::NEG_WITNESS::neg_axis0_frozen",
+      "node_type": "NEG_WITNESS",
+      "label": "neg_axis0_frozen",
+      "description": "Freezing Axis 0 kills entropy gradients",
+      "target_structure": "AXIS",
+      "specific_targets": [
+        "axis_0"
+      ],
+      "owner_edge_emission": "specific_targets",
+      "proves_label": "axis_0_entropy_gradient_is_load_bearing",
+      "admissibility_state": "ADMITTED"
+    },
+    "9b1c490d0bf89816": {
+      "public_id": "qit::NEG_WITNESS::neg_no_chirality",
+      "node_type": "NEG_WITNESS",
+      "label": "neg_no_chirality",
+      "description": "Removing engine type distinction kills asymmetry",
+      "target_structure": "CHIRALITY",
+      "specific_targets": [
+        "type1",
+        "type2"
+      ],
+      "owner_edge_emission": "specific_targets",
+      "proves_label": "engine_type_asymmetry_is_necessary",
+      "admissibility_state": "ADMITTED"
+    },
+    "0b9e7ab8f5ca415f": {
+      "public_id": "qit::NEG_WITNESS::neg_torus_scrambled",
+      "node_type": "NEG_WITNESS",
+      "label": "neg_torus_scrambled",
+      "description": "Scrambling torus assignment kills coherence",
+      "target_structure": "TORUS",
+      "specific_targets": [],
+      "owner_edge_emission": "suppressed_pending_owner_concept",
+      "proves_label": "torus_assignment_coherence_is_necessary",
+      "admissibility_state": "ADMITTED"
+    },
+    "dc48a34a8312f716": {
+      "public_id": "qit::NEG_WITNESS::neg_axis6_shared",
+      "node_type": "NEG_WITNESS",
+      "label": "neg_axis6_shared",
+      "description": "Sharing Axis 6 polarity across types kills separation",
+      "target_structure": "AXIS",
+      "specific_targets": [
+        "axis_6"
+      ],
+      "owner_edge_emission": "specific_targets",
+      "proves_label": "axis_6_polarity_is_load_bearing",
+      "admissibility_state": "ADMITTED"
+    },
+    "a40e26b21e02fe7e": {
+      "public_id": "qit::NEG_WITNESS::neg_missing_fe",
+      "node_type": "NEG_WITNESS",
+      "label": "neg_missing_fe",
+      "description": "Removing Fe operator kills the subcycle",
+      "target_structure": "OPERATOR",
+      "specific_targets": [
+        "Fe"
+      ],
+      "owner_edge_emission": "specific_targets",
+      "proves_label": "fe_member_is_load_bearing",
+      "admissibility_state": "ADMITTED"
+    },
+    "b7d42cb39def8b33": {
+      "public_id": "qit::NEG_WITNESS::neg_missing_operator",
+      "node_type": "NEG_WITNESS",
+      "label": "neg_missing_operator",
+      "description": "Removing any single operator kills the subcycle",
+      "target_structure": "OPERATOR",
+      "specific_targets": [
+        "Ti",
+        "Fe",
+        "Te",
+        "Fi"
+      ],
+      "owner_edge_emission": "per_member_sweep",
+      "proves_label": "operator_member_is_load_bearing",
+      "admissibility_state": "ADMITTED"
+    },
+    "447fa9ed3f9486ba": {
+      "public_id": "qit::NEG_WITNESS::neg_native_only",
+      "node_type": "NEG_WITNESS",
+      "label": "neg_native_only",
+      "description": "Using only native operators kills type distinction",
+      "target_structure": "OPERATOR",
+      "specific_targets": [],
+      "owner_edge_emission": "suppressed_pending_owner_concept",
+      "proves_label": "mixed_operator_regime_is_necessary",
+      "admissibility_state": "ADMITTED"
+    },
+    "6d64f684ea4c42ac": {
+      "public_id": "qit::NEG_WITNESS::neg_type_flatten",
+      "node_type": "NEG_WITNESS",
+      "label": "neg_type_flatten",
+      "description": "Flattening engine types kills chirality separation",
+      "target_structure": "CHIRALITY",
+      "specific_targets": [
+        "type1",
+        "type2"
+      ],
+      "owner_edge_emission": "specific_targets",
+      "proves_label": "type_specific_weighting_is_necessary",
+      "admissibility_state": "ADMITTED"
+    },
+    "7f7d7c5e8dd38601": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Se_f::Ti",
+      "engine_type": "type1",
+      "terrain": "Se_f",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "4cab98d64a93efcf": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Se_f::Fe",
+      "engine_type": "type1",
+      "terrain": "Se_f",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "c229c7c6d3f016ac": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Se_f::Te",
+      "engine_type": "type1",
+      "terrain": "Se_f",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "14698c7da0c4fe88": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Se_f::Fi",
+      "engine_type": "type1",
+      "terrain": "Se_f",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "e8b177df8c5c4caf": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Si_f::Ti",
+      "engine_type": "type1",
+      "terrain": "Si_f",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "ce7e4f41e3f95b8c": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Si_f::Fe",
+      "engine_type": "type1",
+      "terrain": "Si_f",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "4694cbd03f95ea2f": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Si_f::Te",
+      "engine_type": "type1",
+      "terrain": "Si_f",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "e0a24dedd299375e": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Si_f::Fi",
+      "engine_type": "type1",
+      "terrain": "Si_f",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "56d6b760e03ec9c9": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ni_f::Ti",
+      "engine_type": "type1",
+      "terrain": "Ni_f",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "73f7eebfc85d9b8a": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ni_f::Fe",
+      "engine_type": "type1",
+      "terrain": "Ni_f",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "1cb2cd6700337e66": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ni_f::Te",
+      "engine_type": "type1",
+      "terrain": "Ni_f",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "362d419b183d7a4c": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ni_f::Fi",
+      "engine_type": "type1",
+      "terrain": "Ni_f",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "37f6a5d1cffecf9a": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ne_f::Ti",
+      "engine_type": "type1",
+      "terrain": "Ne_f",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "289bbd9e8a2e620c": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ne_f::Fe",
+      "engine_type": "type1",
+      "terrain": "Ne_f",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "925a8fc5306701f8": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ne_f::Te",
+      "engine_type": "type1",
+      "terrain": "Ne_f",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "6eb49efdc3b158ab": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ne_f::Fi",
+      "engine_type": "type1",
+      "terrain": "Ne_f",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "34490aa94af650b7": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Se_b::Ti",
+      "engine_type": "type1",
+      "terrain": "Se_b",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "6ac3fc7ff0083635": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Se_b::Fe",
+      "engine_type": "type1",
+      "terrain": "Se_b",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "a3c7e06384c3b61d": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Se_b::Te",
+      "engine_type": "type1",
+      "terrain": "Se_b",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "26a04171bf592b89": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Se_b::Fi",
+      "engine_type": "type1",
+      "terrain": "Se_b",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "cbad16977652bcf1": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ne_b::Ti",
+      "engine_type": "type1",
+      "terrain": "Ne_b",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "c0eac1d7ec75cf24": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ne_b::Fe",
+      "engine_type": "type1",
+      "terrain": "Ne_b",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "4bf38ddc61867356": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ne_b::Te",
+      "engine_type": "type1",
+      "terrain": "Ne_b",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "2d596e2426c1efbb": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ne_b::Fi",
+      "engine_type": "type1",
+      "terrain": "Ne_b",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "20ddc8e1cf409639": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ni_b::Ti",
+      "engine_type": "type1",
+      "terrain": "Ni_b",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "3c71646ff6b3ef2e": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ni_b::Fe",
+      "engine_type": "type1",
+      "terrain": "Ni_b",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "0afc7ea76f769a72": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ni_b::Te",
+      "engine_type": "type1",
+      "terrain": "Ni_b",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "6014f86cab364932": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Ni_b::Fi",
+      "engine_type": "type1",
+      "terrain": "Ni_b",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "657b2289254b9a93": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Si_b::Ti",
+      "engine_type": "type1",
+      "terrain": "Si_b",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "82517e7bd9c3558e": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Si_b::Fe",
+      "engine_type": "type1",
+      "terrain": "Si_b",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "c93df49e3ba8bd33": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Si_b::Te",
+      "engine_type": "type1",
+      "terrain": "Si_b",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "868260ae099fe531": {
+      "public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type1::Si_b::Fi",
+      "engine_type": "type1",
+      "terrain": "Si_b",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "2d3aae1128c5bdc6": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Se_f::Ti",
+      "engine_type": "type2",
+      "terrain": "Se_f",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "159a9b803d4a1700": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Se_f::Fe",
+      "engine_type": "type2",
+      "terrain": "Se_f",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "bd5ccd76779c7e0d": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Se_f::Te",
+      "engine_type": "type2",
+      "terrain": "Se_f",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "3e66c763705ae01f": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Se_f::Fi",
+      "engine_type": "type2",
+      "terrain": "Se_f",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "bdff3f657435da4f": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ne_f::Ti",
+      "engine_type": "type2",
+      "terrain": "Ne_f",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "3de7f6c55e6683d3": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ne_f::Fe",
+      "engine_type": "type2",
+      "terrain": "Ne_f",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "ce801a89032b0dc0": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ne_f::Te",
+      "engine_type": "type2",
+      "terrain": "Ne_f",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "8bbfd38b2a85feb0": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ne_f::Fi",
+      "engine_type": "type2",
+      "terrain": "Ne_f",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "0c05dd931e7dbf20": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ni_f::Ti",
+      "engine_type": "type2",
+      "terrain": "Ni_f",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "5d689191257402be": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ni_f::Fe",
+      "engine_type": "type2",
+      "terrain": "Ni_f",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "3839cf5582f53e33": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ni_f::Te",
+      "engine_type": "type2",
+      "terrain": "Ni_f",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "d28602d1b99cf592": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ni_f::Fi",
+      "engine_type": "type2",
+      "terrain": "Ni_f",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "4842995a13860036": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Si_f::Ti",
+      "engine_type": "type2",
+      "terrain": "Si_f",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "76944af8e803625b": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Si_f::Fe",
+      "engine_type": "type2",
+      "terrain": "Si_f",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "5592f06d8a9d12a2": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Si_f::Te",
+      "engine_type": "type2",
+      "terrain": "Si_f",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "55291f7b1de030ef": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Si_f::Fi",
+      "engine_type": "type2",
+      "terrain": "Si_f",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "46347dee9d3b2bb7": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Se_b::Ti",
+      "engine_type": "type2",
+      "terrain": "Se_b",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "31030c795941fb96": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Se_b::Fe",
+      "engine_type": "type2",
+      "terrain": "Se_b",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "af275bd07551b210": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Se_b::Te",
+      "engine_type": "type2",
+      "terrain": "Se_b",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "66a077c41296c568": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Se_b::Fi",
+      "engine_type": "type2",
+      "terrain": "Se_b",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "e177dcf11934e238": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Si_b::Ti",
+      "engine_type": "type2",
+      "terrain": "Si_b",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "b9e15ea0979dcca9": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Si_b::Fe",
+      "engine_type": "type2",
+      "terrain": "Si_b",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "47f53a7d0f45a916": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Si_b::Te",
+      "engine_type": "type2",
+      "terrain": "Si_b",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "bfa209615a805c12": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Si_b::Fi",
+      "engine_type": "type2",
+      "terrain": "Si_b",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "034b16d45773ed92": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ni_b::Ti",
+      "engine_type": "type2",
+      "terrain": "Ni_b",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "748e5c2b663e4398": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ni_b::Fe",
+      "engine_type": "type2",
+      "terrain": "Ni_b",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "06381e4ba9a57916": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ni_b::Te",
+      "engine_type": "type2",
+      "terrain": "Ni_b",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "ac4070c285df9f71": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ni_b::Fi",
+      "engine_type": "type2",
+      "terrain": "Ni_b",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    },
+    "294bf662f0438fef": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Ti",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ne_b::Ti",
+      "engine_type": "type2",
+      "terrain": "Ne_b",
+      "operator": "Ti",
+      "position_in_subcycle": 0,
+      "admissibility_state": "ADMITTED"
+    },
+    "c67747ebf582fd14": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Fe",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ne_b::Fe",
+      "engine_type": "type2",
+      "terrain": "Ne_b",
+      "operator": "Fe",
+      "position_in_subcycle": 1,
+      "admissibility_state": "ADMITTED"
+    },
+    "1888010dc7fae6d2": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Te",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ne_b::Te",
+      "engine_type": "type2",
+      "terrain": "Ne_b",
+      "operator": "Te",
+      "position_in_subcycle": 2,
+      "admissibility_state": "ADMITTED"
+    },
+    "04b1c1831899ba22": {
+      "public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Fi",
+      "node_type": "SUBCYCLE_STEP",
+      "label": "type2::Ne_b::Fi",
+      "engine_type": "type2",
+      "terrain": "Ne_b",
+      "operator": "Fi",
+      "position_in_subcycle": 3,
+      "admissibility_state": "ADMITTED"
+    }
+  },
+  "edges": [
+    {
+      "edge_id": "90c76039f71c7b6c3df1",
+      "source_id": "a75ac4befa5e56b2",
+      "target_id": "e4540b8ff8445ba1",
+      "source_public_id": "qit::ENGINE::type1",
+      "target_public_id": "qit::WEYL_BRANCH::left",
+      "relation": "ENGINE_REALIZES_WEYL_BRANCH",
+      "attributes": {
+        "engine_type": "type1",
+        "branch": "left"
+      }
+    },
+    {
+      "edge_id": "07579b905fbfe0c79acc",
+      "source_id": "01df452782c169e2",
+      "target_id": "e7c59b9f74128ec7",
+      "source_public_id": "qit::ENGINE::type2",
+      "target_public_id": "qit::WEYL_BRANCH::right",
+      "relation": "ENGINE_REALIZES_WEYL_BRANCH",
+      "attributes": {
+        "engine_type": "type2",
+        "branch": "right"
+      }
+    },
+    {
+      "edge_id": "786e63e6fb5f0976d1e1",
+      "source_id": "f09832c90802915c",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::OPERATOR::Ti",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "SUBCYCLE_ORDER",
+      "attributes": {
+        "position": 0,
+        "closes_cycle": false,
+        "proven": true
+      }
+    },
+    {
+      "edge_id": "130e83569f100b2ce8f3",
+      "source_id": "b09fd41e36e58cf7",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::OPERATOR::Fe",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "SUBCYCLE_ORDER",
+      "attributes": {
+        "position": 1,
+        "closes_cycle": false,
+        "proven": true
+      }
+    },
+    {
+      "edge_id": "451b0894e593a0d90522",
+      "source_id": "af34d825f3db0db2",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::OPERATOR::Te",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "SUBCYCLE_ORDER",
+      "attributes": {
+        "position": 2,
+        "closes_cycle": false,
+        "proven": true
+      }
+    },
+    {
+      "edge_id": "5da96dd8adbde140b184",
+      "source_id": "51ce70ad0cb0e67e",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::OPERATOR::Fi",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "SUBCYCLE_ORDER",
+      "attributes": {
+        "position": 3,
+        "closes_cycle": true,
+        "proven": true
+      }
+    },
+    {
+      "edge_id": "a149805ff848cc115e3f",
+      "source_id": "42389006d046291e",
+      "target_id": "8c9ea472ee53a917",
+      "source_public_id": "qit::MACRO_STAGE::type1_Se_f",
+      "target_public_id": "qit::MACRO_STAGE::type1_Si_f",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type1",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "537cf9c76dcb978859ff",
+      "source_id": "8c9ea472ee53a917",
+      "target_id": "4d515f9be3b50abb",
+      "source_public_id": "qit::MACRO_STAGE::type1_Si_f",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ni_f",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type1",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "a06dc21e0d2f66e8df6b",
+      "source_id": "4d515f9be3b50abb",
+      "target_id": "2f1d40dfb725c1c6",
+      "source_public_id": "qit::MACRO_STAGE::type1_Ni_f",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ne_f",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type1",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "c38ee2bc5bf8ff1ebdf2",
+      "source_id": "2f1d40dfb725c1c6",
+      "target_id": "45f25443ec43f55c",
+      "source_public_id": "qit::MACRO_STAGE::type1_Ne_f",
+      "target_public_id": "qit::MACRO_STAGE::type1_Se_b",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type1",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "dc00d6048c373042b013",
+      "source_id": "45f25443ec43f55c",
+      "target_id": "dbb8672ea7eb573b",
+      "source_public_id": "qit::MACRO_STAGE::type1_Se_b",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ne_b",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type1",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "679cf4bb73b41f7fa2c9",
+      "source_id": "dbb8672ea7eb573b",
+      "target_id": "2e130310b13bb263",
+      "source_public_id": "qit::MACRO_STAGE::type1_Ne_b",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ni_b",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type1",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "7153d7e216ffe90826af",
+      "source_id": "2e130310b13bb263",
+      "target_id": "00dee71465366b1c",
+      "source_public_id": "qit::MACRO_STAGE::type1_Ni_b",
+      "target_public_id": "qit::MACRO_STAGE::type1_Si_b",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type1",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "e04addf8c0c933f1296f",
+      "source_id": "00dee71465366b1c",
+      "target_id": "42389006d046291e",
+      "source_public_id": "qit::MACRO_STAGE::type1_Si_b",
+      "target_public_id": "qit::MACRO_STAGE::type1_Se_f",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type1",
+        "closes_cycle": true
+      }
+    },
+    {
+      "edge_id": "00350e276e57dc60283d",
+      "source_id": "34d8c413c38c70cd",
+      "target_id": "35e4ae3b51a3b15b",
+      "source_public_id": "qit::MACRO_STAGE::type2_Se_f",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ne_f",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type2",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "9688bb79ec94f79c7bcf",
+      "source_id": "35e4ae3b51a3b15b",
+      "target_id": "385e6868bc9985c2",
+      "source_public_id": "qit::MACRO_STAGE::type2_Ne_f",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ni_f",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type2",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "58607ef6a48367643ce2",
+      "source_id": "385e6868bc9985c2",
+      "target_id": "fe174eef524d19aa",
+      "source_public_id": "qit::MACRO_STAGE::type2_Ni_f",
+      "target_public_id": "qit::MACRO_STAGE::type2_Si_f",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type2",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "02a99c9aa4771a2264bd",
+      "source_id": "fe174eef524d19aa",
+      "target_id": "aa67394b43e3a9d4",
+      "source_public_id": "qit::MACRO_STAGE::type2_Si_f",
+      "target_public_id": "qit::MACRO_STAGE::type2_Se_b",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type2",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "543e053f44d8e66ae2ea",
+      "source_id": "aa67394b43e3a9d4",
+      "target_id": "9ce8d76d78ef500c",
+      "source_public_id": "qit::MACRO_STAGE::type2_Se_b",
+      "target_public_id": "qit::MACRO_STAGE::type2_Si_b",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type2",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "3378b4736e2b1825534e",
+      "source_id": "9ce8d76d78ef500c",
+      "target_id": "e7d7773150a39ef6",
+      "source_public_id": "qit::MACRO_STAGE::type2_Si_b",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ni_b",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type2",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "bd25a1754f049ecd1179",
+      "source_id": "e7d7773150a39ef6",
+      "target_id": "179dc41cdc8b9f57",
+      "source_public_id": "qit::MACRO_STAGE::type2_Ni_b",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ne_b",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type2",
+        "closes_cycle": false
+      }
+    },
+    {
+      "edge_id": "d240b379f0f84b518016",
+      "source_id": "179dc41cdc8b9f57",
+      "target_id": "34d8c413c38c70cd",
+      "source_public_id": "qit::MACRO_STAGE::type2_Ne_b",
+      "target_public_id": "qit::MACRO_STAGE::type2_Se_f",
+      "relation": "STAGE_SEQUENCE",
+      "attributes": {
+        "engine_type": "type2",
+        "closes_cycle": true
+      }
+    },
+    {
+      "edge_id": "d979e449522a16a11b6c",
+      "source_id": "19b85b6cae8c1a90",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::TORUS::inner",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "TORUS_NESTING",
+      "attributes": {
+        "direction": "outward"
+      }
+    },
+    {
+      "edge_id": "dc8a8ead9faa4677a0ef",
+      "source_id": "e48112a947938934",
+      "target_id": "b03a3a6e42889795",
+      "source_public_id": "qit::TORUS::clifford",
+      "target_public_id": "qit::TORUS::outer",
+      "relation": "TORUS_NESTING",
+      "attributes": {
+        "direction": "outward"
+      }
+    },
+    {
+      "edge_id": "774172e759837c2bef56",
+      "source_id": "a75ac4befa5e56b2",
+      "target_id": "42389006d046291e",
+      "source_public_id": "qit::ENGINE::type1",
+      "target_public_id": "qit::MACRO_STAGE::type1_Se_f",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "28ffeafdc53e47cb6b24",
+      "source_id": "a75ac4befa5e56b2",
+      "target_id": "8c9ea472ee53a917",
+      "source_public_id": "qit::ENGINE::type1",
+      "target_public_id": "qit::MACRO_STAGE::type1_Si_f",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "a22a6ce25d0b02b874f5",
+      "source_id": "a75ac4befa5e56b2",
+      "target_id": "4d515f9be3b50abb",
+      "source_public_id": "qit::ENGINE::type1",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ni_f",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "5261a84b565373ec9522",
+      "source_id": "a75ac4befa5e56b2",
+      "target_id": "2f1d40dfb725c1c6",
+      "source_public_id": "qit::ENGINE::type1",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ne_f",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "5af1a5633561e908466a",
+      "source_id": "a75ac4befa5e56b2",
+      "target_id": "45f25443ec43f55c",
+      "source_public_id": "qit::ENGINE::type1",
+      "target_public_id": "qit::MACRO_STAGE::type1_Se_b",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "bff6b235d90a52800b71",
+      "source_id": "a75ac4befa5e56b2",
+      "target_id": "dbb8672ea7eb573b",
+      "source_public_id": "qit::ENGINE::type1",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ne_b",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "54bbf8edc6eb55a7f67f",
+      "source_id": "a75ac4befa5e56b2",
+      "target_id": "2e130310b13bb263",
+      "source_public_id": "qit::ENGINE::type1",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ni_b",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "a13819421d803f751168",
+      "source_id": "a75ac4befa5e56b2",
+      "target_id": "00dee71465366b1c",
+      "source_public_id": "qit::ENGINE::type1",
+      "target_public_id": "qit::MACRO_STAGE::type1_Si_b",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "1fd5b418330836e0bfa8",
+      "source_id": "01df452782c169e2",
+      "target_id": "34d8c413c38c70cd",
+      "source_public_id": "qit::ENGINE::type2",
+      "target_public_id": "qit::MACRO_STAGE::type2_Se_f",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "9f9d89b057c3c4863fd2",
+      "source_id": "01df452782c169e2",
+      "target_id": "35e4ae3b51a3b15b",
+      "source_public_id": "qit::ENGINE::type2",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ne_f",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "bb25178ad1fd8d35b677",
+      "source_id": "01df452782c169e2",
+      "target_id": "385e6868bc9985c2",
+      "source_public_id": "qit::ENGINE::type2",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ni_f",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "ec0e74e509d6cf8d51f7",
+      "source_id": "01df452782c169e2",
+      "target_id": "fe174eef524d19aa",
+      "source_public_id": "qit::ENGINE::type2",
+      "target_public_id": "qit::MACRO_STAGE::type2_Si_f",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "9d10f31f868b85818377",
+      "source_id": "01df452782c169e2",
+      "target_id": "aa67394b43e3a9d4",
+      "source_public_id": "qit::ENGINE::type2",
+      "target_public_id": "qit::MACRO_STAGE::type2_Se_b",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "ca0a0125db260f611a7d",
+      "source_id": "01df452782c169e2",
+      "target_id": "9ce8d76d78ef500c",
+      "source_public_id": "qit::ENGINE::type2",
+      "target_public_id": "qit::MACRO_STAGE::type2_Si_b",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "2a942980bc8a9defc5f2",
+      "source_id": "01df452782c169e2",
+      "target_id": "e7d7773150a39ef6",
+      "source_public_id": "qit::ENGINE::type2",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ni_b",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "b18369e3472b007ceb6d",
+      "source_id": "01df452782c169e2",
+      "target_id": "179dc41cdc8b9f57",
+      "source_public_id": "qit::ENGINE::type2",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ne_b",
+      "relation": "ENGINE_OWNS_STAGE",
+      "attributes": {}
+    },
+    {
+      "edge_id": "e3ba2df145a9d14d636e",
+      "source_id": "a75ac4befa5e56b2",
+      "target_id": "01df452782c169e2",
+      "source_public_id": "qit::ENGINE::type1",
+      "target_public_id": "qit::ENGINE::type2",
+      "relation": "CHIRALITY_COUPLING",
+      "attributes": {
+        "coupling_type": "complementary_dominance"
+      }
+    },
+    {
+      "edge_id": "397101ca0667f67d186e",
+      "source_id": "7f7d7c5e8dd38601",
+      "target_id": "42389006d046291e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type1_Se_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "885030f909feaec8dc65",
+      "source_id": "4cab98d64a93efcf",
+      "target_id": "42389006d046291e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type1_Se_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "62045cfc0c7d971bc76f",
+      "source_id": "c229c7c6d3f016ac",
+      "target_id": "42389006d046291e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Te",
+      "target_public_id": "qit::MACRO_STAGE::type1_Se_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "64a21fe3d6e5ed0bacea",
+      "source_id": "14698c7da0c4fe88",
+      "target_id": "42389006d046291e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type1_Se_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "88284e30ad18ae339aa0",
+      "source_id": "e8b177df8c5c4caf",
+      "target_id": "8c9ea472ee53a917",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type1_Si_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "099cc26f536a6ec5fd70",
+      "source_id": "ce7e4f41e3f95b8c",
+      "target_id": "8c9ea472ee53a917",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type1_Si_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "611c2643c1633293fad0",
+      "source_id": "4694cbd03f95ea2f",
+      "target_id": "8c9ea472ee53a917",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Te",
+      "target_public_id": "qit::MACRO_STAGE::type1_Si_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "debe29ce9a487b46e544",
+      "source_id": "e0a24dedd299375e",
+      "target_id": "8c9ea472ee53a917",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type1_Si_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "ebbc425154432246df15",
+      "source_id": "56d6b760e03ec9c9",
+      "target_id": "4d515f9be3b50abb",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ni_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "41496a578a2586678b1a",
+      "source_id": "73f7eebfc85d9b8a",
+      "target_id": "4d515f9be3b50abb",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ni_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "6e88dcb0fbbab9d190bb",
+      "source_id": "1cb2cd6700337e66",
+      "target_id": "4d515f9be3b50abb",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Te",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ni_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "a0e479330a9701cca0e1",
+      "source_id": "362d419b183d7a4c",
+      "target_id": "4d515f9be3b50abb",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ni_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "14cef1324f795ff46c04",
+      "source_id": "37f6a5d1cffecf9a",
+      "target_id": "2f1d40dfb725c1c6",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ne_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "5ba76c9dfbbfa0e928ca",
+      "source_id": "289bbd9e8a2e620c",
+      "target_id": "2f1d40dfb725c1c6",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ne_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "6d28626b66e9e392c7da",
+      "source_id": "925a8fc5306701f8",
+      "target_id": "2f1d40dfb725c1c6",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Te",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ne_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "43d158276bec549f89be",
+      "source_id": "6eb49efdc3b158ab",
+      "target_id": "2f1d40dfb725c1c6",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ne_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "28f528e2a15c3081a439",
+      "source_id": "34490aa94af650b7",
+      "target_id": "45f25443ec43f55c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type1_Se_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "95be2ea27b1131c9310d",
+      "source_id": "6ac3fc7ff0083635",
+      "target_id": "45f25443ec43f55c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type1_Se_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "308189d542f39243864a",
+      "source_id": "a3c7e06384c3b61d",
+      "target_id": "45f25443ec43f55c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Te",
+      "target_public_id": "qit::MACRO_STAGE::type1_Se_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "0b9c7537734dc5eaded9",
+      "source_id": "26a04171bf592b89",
+      "target_id": "45f25443ec43f55c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type1_Se_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "9bb0639c220383ce4366",
+      "source_id": "cbad16977652bcf1",
+      "target_id": "dbb8672ea7eb573b",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ne_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "3bed18553f32dd78b296",
+      "source_id": "c0eac1d7ec75cf24",
+      "target_id": "dbb8672ea7eb573b",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ne_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "a9b84e07880960d8f7ab",
+      "source_id": "4bf38ddc61867356",
+      "target_id": "dbb8672ea7eb573b",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Te",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ne_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "8e1b98b99ff243e8c075",
+      "source_id": "2d596e2426c1efbb",
+      "target_id": "dbb8672ea7eb573b",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ne_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "183b24a9005de2ffc425",
+      "source_id": "20ddc8e1cf409639",
+      "target_id": "2e130310b13bb263",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ni_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "648998045031e8e4d616",
+      "source_id": "3c71646ff6b3ef2e",
+      "target_id": "2e130310b13bb263",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ni_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "72c0049be76453122404",
+      "source_id": "0afc7ea76f769a72",
+      "target_id": "2e130310b13bb263",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Te",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ni_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "2316a32301bce50c661a",
+      "source_id": "6014f86cab364932",
+      "target_id": "2e130310b13bb263",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type1_Ni_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "54b525e097640bd7fb73",
+      "source_id": "657b2289254b9a93",
+      "target_id": "00dee71465366b1c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type1_Si_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "44ab5c41fc394bd36289",
+      "source_id": "82517e7bd9c3558e",
+      "target_id": "00dee71465366b1c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type1_Si_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "51d0f66dcf887bb68a78",
+      "source_id": "c93df49e3ba8bd33",
+      "target_id": "00dee71465366b1c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Te",
+      "target_public_id": "qit::MACRO_STAGE::type1_Si_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "8c041019aec772dae083",
+      "source_id": "868260ae099fe531",
+      "target_id": "00dee71465366b1c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type1_Si_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "b6b7cd7b6968445f08c1",
+      "source_id": "2d3aae1128c5bdc6",
+      "target_id": "34d8c413c38c70cd",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type2_Se_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "08fe59fa32c9abb02d45",
+      "source_id": "159a9b803d4a1700",
+      "target_id": "34d8c413c38c70cd",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type2_Se_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "97e1341798c1b4f45872",
+      "source_id": "bd5ccd76779c7e0d",
+      "target_id": "34d8c413c38c70cd",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Te",
+      "target_public_id": "qit::MACRO_STAGE::type2_Se_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "86776b0635ef93a13dc4",
+      "source_id": "3e66c763705ae01f",
+      "target_id": "34d8c413c38c70cd",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type2_Se_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "4b261303a0f700c66e8b",
+      "source_id": "bdff3f657435da4f",
+      "target_id": "35e4ae3b51a3b15b",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ne_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "6979d7272d2ce8200c72",
+      "source_id": "3de7f6c55e6683d3",
+      "target_id": "35e4ae3b51a3b15b",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ne_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "9ae4ec4b5f32cf2aaa2d",
+      "source_id": "ce801a89032b0dc0",
+      "target_id": "35e4ae3b51a3b15b",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Te",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ne_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "299627295dd42e134017",
+      "source_id": "8bbfd38b2a85feb0",
+      "target_id": "35e4ae3b51a3b15b",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ne_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "85ee719fed4836e669ae",
+      "source_id": "0c05dd931e7dbf20",
+      "target_id": "385e6868bc9985c2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ni_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "4fd4a982ba4bc1d4718b",
+      "source_id": "5d689191257402be",
+      "target_id": "385e6868bc9985c2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ni_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "ac2abeab7a8f4fc8205a",
+      "source_id": "3839cf5582f53e33",
+      "target_id": "385e6868bc9985c2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Te",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ni_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "fa758d869c855e1d1a44",
+      "source_id": "d28602d1b99cf592",
+      "target_id": "385e6868bc9985c2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ni_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "13fe23cfcddc7ebab373",
+      "source_id": "4842995a13860036",
+      "target_id": "fe174eef524d19aa",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type2_Si_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "2f408c2827893a72d7d5",
+      "source_id": "76944af8e803625b",
+      "target_id": "fe174eef524d19aa",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type2_Si_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "d1b2e335c2127696209f",
+      "source_id": "5592f06d8a9d12a2",
+      "target_id": "fe174eef524d19aa",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Te",
+      "target_public_id": "qit::MACRO_STAGE::type2_Si_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "798b810df8456df65c38",
+      "source_id": "55291f7b1de030ef",
+      "target_id": "fe174eef524d19aa",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type2_Si_f",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "1b6f28850fa0006a0422",
+      "source_id": "46347dee9d3b2bb7",
+      "target_id": "aa67394b43e3a9d4",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type2_Se_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "7325bcdef8b0d1e88bc7",
+      "source_id": "31030c795941fb96",
+      "target_id": "aa67394b43e3a9d4",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type2_Se_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "2421ef255960838581e5",
+      "source_id": "af275bd07551b210",
+      "target_id": "aa67394b43e3a9d4",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Te",
+      "target_public_id": "qit::MACRO_STAGE::type2_Se_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "a602daf05c8e48da74c1",
+      "source_id": "66a077c41296c568",
+      "target_id": "aa67394b43e3a9d4",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type2_Se_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "455e8bdcb7869dbbbe16",
+      "source_id": "e177dcf11934e238",
+      "target_id": "9ce8d76d78ef500c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type2_Si_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "9d69a4ab4fd4d3441926",
+      "source_id": "b9e15ea0979dcca9",
+      "target_id": "9ce8d76d78ef500c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type2_Si_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "e4685e638e1355963367",
+      "source_id": "47f53a7d0f45a916",
+      "target_id": "9ce8d76d78ef500c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Te",
+      "target_public_id": "qit::MACRO_STAGE::type2_Si_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "2cd585f1467b2edc4b6d",
+      "source_id": "bfa209615a805c12",
+      "target_id": "9ce8d76d78ef500c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type2_Si_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "5b0fcda9b8bec59c8c17",
+      "source_id": "034b16d45773ed92",
+      "target_id": "e7d7773150a39ef6",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ni_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "4d7062c7a8f678fb8bc2",
+      "source_id": "748e5c2b663e4398",
+      "target_id": "e7d7773150a39ef6",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ni_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "427d3562ebca3f49c13b",
+      "source_id": "06381e4ba9a57916",
+      "target_id": "e7d7773150a39ef6",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Te",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ni_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "3aa579d19f05c016589f",
+      "source_id": "ac4070c285df9f71",
+      "target_id": "e7d7773150a39ef6",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ni_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "9fdbccae0bd57c30d99e",
+      "source_id": "294bf662f0438fef",
+      "target_id": "179dc41cdc8b9f57",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Ti",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ne_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Ti"
+      }
+    },
+    {
+      "edge_id": "9e964d281e547a36186f",
+      "source_id": "c67747ebf582fd14",
+      "target_id": "179dc41cdc8b9f57",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Fe",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ne_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fe"
+      }
+    },
+    {
+      "edge_id": "ff5d79488a5a567f0a08",
+      "source_id": "1888010dc7fae6d2",
+      "target_id": "179dc41cdc8b9f57",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Te",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ne_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Te"
+      }
+    },
+    {
+      "edge_id": "0951f40634243d5198ff",
+      "source_id": "04b1c1831899ba22",
+      "target_id": "179dc41cdc8b9f57",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Fi",
+      "target_public_id": "qit::MACRO_STAGE::type2_Ne_b",
+      "relation": "STEP_IN_STAGE",
+      "attributes": {
+        "operator": "Fi"
+      }
+    },
+    {
+      "edge_id": "a3a0a80c05b7dda66d66",
+      "source_id": "7f7d7c5e8dd38601",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "c867dce5e43a04bb1b33",
+      "source_id": "4cab98d64a93efcf",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "b668990fc70791b416a5",
+      "source_id": "c229c7c6d3f016ac",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "b5ed0f5ed8dce7befb86",
+      "source_id": "14698c7da0c4fe88",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "c207c5cceb72185ab2e4",
+      "source_id": "e8b177df8c5c4caf",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "02746f2f85a25e2897e2",
+      "source_id": "ce7e4f41e3f95b8c",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "904247d208c1232266b7",
+      "source_id": "4694cbd03f95ea2f",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "56d85b36d56feeaa6375",
+      "source_id": "e0a24dedd299375e",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "848a1610fd93746269b5",
+      "source_id": "56d6b760e03ec9c9",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "b044c8cb7509e779077f",
+      "source_id": "73f7eebfc85d9b8a",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "a95200d0556bbb3d3646",
+      "source_id": "1cb2cd6700337e66",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "eeea7b6b60ebeeaedf0f",
+      "source_id": "362d419b183d7a4c",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "672c04a765260cb36bc5",
+      "source_id": "37f6a5d1cffecf9a",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "035a3e5d7e1d813522a2",
+      "source_id": "289bbd9e8a2e620c",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "304af21d617e25a320b2",
+      "source_id": "925a8fc5306701f8",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "2bdae645727d51c62b60",
+      "source_id": "6eb49efdc3b158ab",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "53386711e72b39d8d7d0",
+      "source_id": "34490aa94af650b7",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "4e2f745383f07674ca88",
+      "source_id": "6ac3fc7ff0083635",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "be46ca791a91b9b9c2f8",
+      "source_id": "a3c7e06384c3b61d",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "a1413e9a12a5b6e3a894",
+      "source_id": "26a04171bf592b89",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "42b56b283511ad1330a9",
+      "source_id": "cbad16977652bcf1",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "89f05e107d1030241acb",
+      "source_id": "c0eac1d7ec75cf24",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "77fdb61c1196dc03551b",
+      "source_id": "4bf38ddc61867356",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "3cd83b749ea1085a2328",
+      "source_id": "2d596e2426c1efbb",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "b3df26cc2158d2cf7e21",
+      "source_id": "20ddc8e1cf409639",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "0bcce2c7656efcbf2c26",
+      "source_id": "3c71646ff6b3ef2e",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "a5ac09ab60876e0afa28",
+      "source_id": "0afc7ea76f769a72",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "796c2cd777e4e50b151c",
+      "source_id": "6014f86cab364932",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "13804969e04077dc8fd0",
+      "source_id": "657b2289254b9a93",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "375f1d7d000c80dbdb83",
+      "source_id": "82517e7bd9c3558e",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "3b65279776fbc2ee5133",
+      "source_id": "c93df49e3ba8bd33",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "a065c5c259acfce354c2",
+      "source_id": "868260ae099fe531",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "d0ac231e17d59abee50e",
+      "source_id": "2d3aae1128c5bdc6",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "852d58f10227359a1d25",
+      "source_id": "159a9b803d4a1700",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "f7787ba82d644e7c174f",
+      "source_id": "bd5ccd76779c7e0d",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "444dc8803508a4b9bd49",
+      "source_id": "3e66c763705ae01f",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "350f91fbbd3274457b79",
+      "source_id": "bdff3f657435da4f",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "13793ed7d6e2481671f5",
+      "source_id": "3de7f6c55e6683d3",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "fdeebe47e208b68e4393",
+      "source_id": "ce801a89032b0dc0",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "7a5a8f06d9fdc48a2399",
+      "source_id": "8bbfd38b2a85feb0",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "5ee263723399aba2752f",
+      "source_id": "0c05dd931e7dbf20",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "ea09de626cf827007336",
+      "source_id": "5d689191257402be",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "97199c37b2fa99ed6f6d",
+      "source_id": "3839cf5582f53e33",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "9feebe3fbbd54e57f2b3",
+      "source_id": "d28602d1b99cf592",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "302f83f108d7a2ac630b",
+      "source_id": "4842995a13860036",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "06545604550f77344fd5",
+      "source_id": "76944af8e803625b",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "49e5da5d93abc2c0e910",
+      "source_id": "5592f06d8a9d12a2",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "a4b531b3b54f3cd2940f",
+      "source_id": "55291f7b1de030ef",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "d59ebb552bc53a513fde",
+      "source_id": "46347dee9d3b2bb7",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "29cffcfbf60cc7da3180",
+      "source_id": "31030c795941fb96",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "0fa2437f638541a71b02",
+      "source_id": "af275bd07551b210",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "a76a73fe9b8ca4c681b4",
+      "source_id": "66a077c41296c568",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "a3a936c213df12918e3f",
+      "source_id": "e177dcf11934e238",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "3553c8d9fe438dc30362",
+      "source_id": "b9e15ea0979dcca9",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "238e15524e28ba5e0cf4",
+      "source_id": "47f53a7d0f45a916",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "398165c97dc79b4a9500",
+      "source_id": "bfa209615a805c12",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "f9c45b8a24c8cba04ba3",
+      "source_id": "034b16d45773ed92",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "c774c9d0e9555b6c99ca",
+      "source_id": "748e5c2b663e4398",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "6e9344d0fbb214c4cc40",
+      "source_id": "06381e4ba9a57916",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "6382feed89d55c20c2c9",
+      "source_id": "ac4070c285df9f71",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "eda5dfb0b769a7fc1e15",
+      "source_id": "294bf662f0438fef",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Ti",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "e2bf06dee0f747d02d0f",
+      "source_id": "c67747ebf582fd14",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "9582eaad73933aa45a71",
+      "source_id": "1888010dc7fae6d2",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Te",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "ed3ea70b2cc37cc87926",
+      "source_id": "04b1c1831899ba22",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Fi",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "STEP_USES_OPERATOR",
+      "attributes": {}
+    },
+    {
+      "edge_id": "cb89571ea9ef1a08b75b",
+      "source_id": "7f7d7c5e8dd38601",
+      "target_id": "4cab98d64a93efcf",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "a084596157daefc85db5",
+      "source_id": "4cab98d64a93efcf",
+      "target_id": "c229c7c6d3f016ac",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "3425f23cef62bdd1c664",
+      "source_id": "c229c7c6d3f016ac",
+      "target_id": "14698c7da0c4fe88",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "9a69bfcd85118ab63cfb",
+      "source_id": "14698c7da0c4fe88",
+      "target_id": "e8b177df8c5c4caf",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "f08e2954e698cc996ae0",
+      "source_id": "e8b177df8c5c4caf",
+      "target_id": "ce7e4f41e3f95b8c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "d6795c93b129c40a3dc5",
+      "source_id": "ce7e4f41e3f95b8c",
+      "target_id": "4694cbd03f95ea2f",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "078019989eae271e31aa",
+      "source_id": "4694cbd03f95ea2f",
+      "target_id": "e0a24dedd299375e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "bfd0f1621615f9afccbd",
+      "source_id": "e0a24dedd299375e",
+      "target_id": "56d6b760e03ec9c9",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "45e6b58ed4263f8e0073",
+      "source_id": "56d6b760e03ec9c9",
+      "target_id": "73f7eebfc85d9b8a",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "6089dc9f65ea25e0fc79",
+      "source_id": "73f7eebfc85d9b8a",
+      "target_id": "1cb2cd6700337e66",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "038f6073547ddd0dd0f8",
+      "source_id": "1cb2cd6700337e66",
+      "target_id": "362d419b183d7a4c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "673a84ff4ec2b26b4ca0",
+      "source_id": "362d419b183d7a4c",
+      "target_id": "37f6a5d1cffecf9a",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "d4b6964c3d6b7e25db5d",
+      "source_id": "37f6a5d1cffecf9a",
+      "target_id": "289bbd9e8a2e620c",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "414ed0da228896189c43",
+      "source_id": "289bbd9e8a2e620c",
+      "target_id": "925a8fc5306701f8",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "c04b53a37cc07c7d1c6e",
+      "source_id": "925a8fc5306701f8",
+      "target_id": "6eb49efdc3b158ab",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "99ee714fcbf2276b6565",
+      "source_id": "6eb49efdc3b158ab",
+      "target_id": "34490aa94af650b7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "4630a8a0ad7b067d29e8",
+      "source_id": "34490aa94af650b7",
+      "target_id": "6ac3fc7ff0083635",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "d8d71583d4819b62142f",
+      "source_id": "6ac3fc7ff0083635",
+      "target_id": "a3c7e06384c3b61d",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "6d7e895c7b23efda99f0",
+      "source_id": "a3c7e06384c3b61d",
+      "target_id": "26a04171bf592b89",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "d5a8e037a85e560e987c",
+      "source_id": "26a04171bf592b89",
+      "target_id": "cbad16977652bcf1",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "a4b78cc74fa8260f18ff",
+      "source_id": "cbad16977652bcf1",
+      "target_id": "c0eac1d7ec75cf24",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "650bcbf678ed71fcddeb",
+      "source_id": "c0eac1d7ec75cf24",
+      "target_id": "4bf38ddc61867356",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "454c9b08cfa7b5c7f784",
+      "source_id": "4bf38ddc61867356",
+      "target_id": "2d596e2426c1efbb",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "429c8ac051b5c7463eb7",
+      "source_id": "2d596e2426c1efbb",
+      "target_id": "20ddc8e1cf409639",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "ee68dd56e2ffca04c0a9",
+      "source_id": "20ddc8e1cf409639",
+      "target_id": "3c71646ff6b3ef2e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "8ec0c134204f9bd3a0eb",
+      "source_id": "3c71646ff6b3ef2e",
+      "target_id": "0afc7ea76f769a72",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "99fe5442829c86505870",
+      "source_id": "0afc7ea76f769a72",
+      "target_id": "6014f86cab364932",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "96c8b9bc0e0d7796c941",
+      "source_id": "6014f86cab364932",
+      "target_id": "657b2289254b9a93",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "5f3fbbc2d72a896f48e7",
+      "source_id": "657b2289254b9a93",
+      "target_id": "82517e7bd9c3558e",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "2550838b7c87ded205a8",
+      "source_id": "82517e7bd9c3558e",
+      "target_id": "c93df49e3ba8bd33",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "b27f33afa5c8d295eed1",
+      "source_id": "c93df49e3ba8bd33",
+      "target_id": "868260ae099fe531",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "db8d1b60986b457eec87",
+      "source_id": "868260ae099fe531",
+      "target_id": "7f7d7c5e8dd38601",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "ae8d0ac6f48fdcd2e2ff",
+      "source_id": "2d3aae1128c5bdc6",
+      "target_id": "159a9b803d4a1700",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "724ebc050f47ecd656f4",
+      "source_id": "159a9b803d4a1700",
+      "target_id": "bd5ccd76779c7e0d",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "ab65b4464934e5939483",
+      "source_id": "bd5ccd76779c7e0d",
+      "target_id": "3e66c763705ae01f",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "112f8361c4aa8b691338",
+      "source_id": "3e66c763705ae01f",
+      "target_id": "bdff3f657435da4f",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "ca6b35b3630ac8636d65",
+      "source_id": "bdff3f657435da4f",
+      "target_id": "3de7f6c55e6683d3",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "fe3eab90262a51aa99a5",
+      "source_id": "3de7f6c55e6683d3",
+      "target_id": "ce801a89032b0dc0",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "f95477a6dd7156e6daa5",
+      "source_id": "ce801a89032b0dc0",
+      "target_id": "8bbfd38b2a85feb0",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "3904e82057eba28a57df",
+      "source_id": "8bbfd38b2a85feb0",
+      "target_id": "0c05dd931e7dbf20",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "3ebcb35c592bdfdbb625",
+      "source_id": "0c05dd931e7dbf20",
+      "target_id": "5d689191257402be",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "c674660d2eda4e8880d1",
+      "source_id": "5d689191257402be",
+      "target_id": "3839cf5582f53e33",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "8c60eeddc29a5057db02",
+      "source_id": "3839cf5582f53e33",
+      "target_id": "d28602d1b99cf592",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "d5a6d720db6373c16278",
+      "source_id": "d28602d1b99cf592",
+      "target_id": "4842995a13860036",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "00fd9ff933f6c59aa1f0",
+      "source_id": "4842995a13860036",
+      "target_id": "76944af8e803625b",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "403e95a711dedd93ac18",
+      "source_id": "76944af8e803625b",
+      "target_id": "5592f06d8a9d12a2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "5e9f9125a9b2108d8667",
+      "source_id": "5592f06d8a9d12a2",
+      "target_id": "55291f7b1de030ef",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "91240c5a5fa196bf154f",
+      "source_id": "55291f7b1de030ef",
+      "target_id": "46347dee9d3b2bb7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "4853f3d6353d63f66739",
+      "source_id": "46347dee9d3b2bb7",
+      "target_id": "31030c795941fb96",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "e59221eb1f63fc522893",
+      "source_id": "31030c795941fb96",
+      "target_id": "af275bd07551b210",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "d294affa2f207c927061",
+      "source_id": "af275bd07551b210",
+      "target_id": "66a077c41296c568",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "204a59504f86a130e2b9",
+      "source_id": "66a077c41296c568",
+      "target_id": "e177dcf11934e238",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "bbee69f9727fbbd60eac",
+      "source_id": "e177dcf11934e238",
+      "target_id": "b9e15ea0979dcca9",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "4821279bd25934ca86ef",
+      "source_id": "b9e15ea0979dcca9",
+      "target_id": "47f53a7d0f45a916",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "8cccf178d2c7e3e81918",
+      "source_id": "47f53a7d0f45a916",
+      "target_id": "bfa209615a805c12",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "8e13839029b72405028e",
+      "source_id": "bfa209615a805c12",
+      "target_id": "034b16d45773ed92",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "a38515fc5771827e0a42",
+      "source_id": "034b16d45773ed92",
+      "target_id": "748e5c2b663e4398",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "f7de3444f98536fff290",
+      "source_id": "748e5c2b663e4398",
+      "target_id": "06381e4ba9a57916",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "9abdc48ca4050a2fe18e",
+      "source_id": "06381e4ba9a57916",
+      "target_id": "ac4070c285df9f71",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "1ab356c89086f511e936",
+      "source_id": "ac4070c285df9f71",
+      "target_id": "294bf662f0438fef",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "2b957c9c8d27bce95518",
+      "source_id": "294bf662f0438fef",
+      "target_id": "c67747ebf582fd14",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Ti",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Fe",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 0
+      }
+    },
+    {
+      "edge_id": "0b74c95d5328c35c07fd",
+      "source_id": "c67747ebf582fd14",
+      "target_id": "1888010dc7fae6d2",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Fe",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Te",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 1
+      }
+    },
+    {
+      "edge_id": "7f826bdb5d8d0debb93a",
+      "source_id": "1888010dc7fae6d2",
+      "target_id": "04b1c1831899ba22",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Te",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Fi",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 2
+      }
+    },
+    {
+      "edge_id": "c28ed3ee9fe8e9f53980",
+      "source_id": "04b1c1831899ba22",
+      "target_id": "2d3aae1128c5bdc6",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
+      "edge_id": "100aa5483cf1f5b970cc",
+      "source_id": "42389006d046291e",
+      "target_id": "19b85b6cae8c1a90",
+      "source_public_id": "qit::MACRO_STAGE::type1_Se_f",
+      "target_public_id": "qit::TORUS::inner",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "fiber",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "73eddd4418742359ba37",
+      "source_id": "42389006d046291e",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type1_Se_f",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "b67ba7336992abfea6ef",
+      "source_id": "8c9ea472ee53a917",
+      "target_id": "19b85b6cae8c1a90",
+      "source_public_id": "qit::MACRO_STAGE::type1_Si_f",
+      "target_public_id": "qit::TORUS::inner",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "fiber",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "04bcd5c3f02176ded808",
+      "source_id": "8c9ea472ee53a917",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type1_Si_f",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "a6e2dd8a70f8c6dc8b11",
+      "source_id": "4d515f9be3b50abb",
+      "target_id": "19b85b6cae8c1a90",
+      "source_public_id": "qit::MACRO_STAGE::type1_Ni_f",
+      "target_public_id": "qit::TORUS::inner",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "fiber",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "3c7f0f31605e6b97845a",
+      "source_id": "4d515f9be3b50abb",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type1_Ni_f",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "27030d429f59a01804bd",
+      "source_id": "2f1d40dfb725c1c6",
+      "target_id": "19b85b6cae8c1a90",
+      "source_public_id": "qit::MACRO_STAGE::type1_Ne_f",
+      "target_public_id": "qit::TORUS::inner",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "fiber",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "141f820601467eeeabe1",
+      "source_id": "2f1d40dfb725c1c6",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type1_Ne_f",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "aab206e216cb666bc433",
+      "source_id": "45f25443ec43f55c",
+      "target_id": "b03a3a6e42889795",
+      "source_public_id": "qit::MACRO_STAGE::type1_Se_b",
+      "target_public_id": "qit::TORUS::outer",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "base",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "a65596bb35c9b8cbde57",
+      "source_id": "45f25443ec43f55c",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type1_Se_b",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "f106a506134d7b148a2b",
+      "source_id": "dbb8672ea7eb573b",
+      "target_id": "b03a3a6e42889795",
+      "source_public_id": "qit::MACRO_STAGE::type1_Ne_b",
+      "target_public_id": "qit::TORUS::outer",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "base",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "b5b6f9be0862e92b3b9b",
+      "source_id": "dbb8672ea7eb573b",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type1_Ne_b",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "941eb77c085c43421014",
+      "source_id": "2e130310b13bb263",
+      "target_id": "b03a3a6e42889795",
+      "source_public_id": "qit::MACRO_STAGE::type1_Ni_b",
+      "target_public_id": "qit::TORUS::outer",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "base",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "3473614271359a433721",
+      "source_id": "2e130310b13bb263",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type1_Ni_b",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "6212ab589652283cf67f",
+      "source_id": "00dee71465366b1c",
+      "target_id": "b03a3a6e42889795",
+      "source_public_id": "qit::MACRO_STAGE::type1_Si_b",
+      "target_public_id": "qit::TORUS::outer",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "base",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "99e2d64285882ed77b0c",
+      "source_id": "00dee71465366b1c",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type1_Si_b",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "5c428ff7f13e55c19f86",
+      "source_id": "34d8c413c38c70cd",
+      "target_id": "19b85b6cae8c1a90",
+      "source_public_id": "qit::MACRO_STAGE::type2_Se_f",
+      "target_public_id": "qit::TORUS::inner",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "fiber",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "fdcd43572861da00ac63",
+      "source_id": "34d8c413c38c70cd",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type2_Se_f",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "f074d7dc0b97c71ae1a0",
+      "source_id": "35e4ae3b51a3b15b",
+      "target_id": "19b85b6cae8c1a90",
+      "source_public_id": "qit::MACRO_STAGE::type2_Ne_f",
+      "target_public_id": "qit::TORUS::inner",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "fiber",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "de96e49362cb7186b3a0",
+      "source_id": "35e4ae3b51a3b15b",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type2_Ne_f",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "ef0fd701f2bcd38d749a",
+      "source_id": "385e6868bc9985c2",
+      "target_id": "19b85b6cae8c1a90",
+      "source_public_id": "qit::MACRO_STAGE::type2_Ni_f",
+      "target_public_id": "qit::TORUS::inner",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "fiber",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "e380a58c0a56a871a327",
+      "source_id": "385e6868bc9985c2",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type2_Ni_f",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "d731f59eba9f2e271a03",
+      "source_id": "fe174eef524d19aa",
+      "target_id": "19b85b6cae8c1a90",
+      "source_public_id": "qit::MACRO_STAGE::type2_Si_f",
+      "target_public_id": "qit::TORUS::inner",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "fiber",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "414442ab14a497176da0",
+      "source_id": "fe174eef524d19aa",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type2_Si_f",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "fa7427f52fe0c0c9e5ed",
+      "source_id": "aa67394b43e3a9d4",
+      "target_id": "b03a3a6e42889795",
+      "source_public_id": "qit::MACRO_STAGE::type2_Se_b",
+      "target_public_id": "qit::TORUS::outer",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "base",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "55dc3d5acc277d8152c3",
+      "source_id": "aa67394b43e3a9d4",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type2_Se_b",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "f143726c8ce5e52a459a",
+      "source_id": "9ce8d76d78ef500c",
+      "target_id": "b03a3a6e42889795",
+      "source_public_id": "qit::MACRO_STAGE::type2_Si_b",
+      "target_public_id": "qit::TORUS::outer",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "base",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "8396916e74c7fb921898",
+      "source_id": "9ce8d76d78ef500c",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type2_Si_b",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "b0ecc1ce4d03fba8b362",
+      "source_id": "e7d7773150a39ef6",
+      "target_id": "b03a3a6e42889795",
+      "source_public_id": "qit::MACRO_STAGE::type2_Ni_b",
+      "target_public_id": "qit::TORUS::outer",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "base",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "660ee3eb1b48cb9a1cdf",
+      "source_id": "e7d7773150a39ef6",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type2_Ni_b",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "e3abeb2545844e1ad985",
+      "source_id": "179dc41cdc8b9f57",
+      "target_id": "b03a3a6e42889795",
+      "source_public_id": "qit::MACRO_STAGE::type2_Ne_b",
+      "target_public_id": "qit::TORUS::outer",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "loop": "base",
+        "primary": true
+      }
+    },
+    {
+      "edge_id": "cd657ffa8bd0b089f65e",
+      "source_id": "179dc41cdc8b9f57",
+      "target_id": "e48112a947938934",
+      "source_public_id": "qit::MACRO_STAGE::type2_Ne_b",
+      "target_public_id": "qit::TORUS::clifford",
+      "relation": "STAGE_ON_TORUS",
+      "attributes": {
+        "shared": true,
+        "primary": false
+      }
+    },
+    {
+      "edge_id": "23b223b9eaf5b7e1223e",
+      "source_id": "1504af1f377932d9",
+      "target_id": "a75ac4befa5e56b2",
+      "source_public_id": "qit::AXIS::axis_0",
+      "target_public_id": "qit::ENGINE::type1",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_0"
+      }
+    },
+    {
+      "edge_id": "ca642eb9b99f64d30201",
+      "source_id": "1504af1f377932d9",
+      "target_id": "01df452782c169e2",
+      "source_public_id": "qit::AXIS::axis_0",
+      "target_public_id": "qit::ENGINE::type2",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_0"
+      }
+    },
+    {
+      "edge_id": "b12fa2e497a75826fec5",
+      "source_id": "d5f161a324a94f20",
+      "target_id": "a75ac4befa5e56b2",
+      "source_public_id": "qit::AXIS::axis_1",
+      "target_public_id": "qit::ENGINE::type1",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_1"
+      }
+    },
+    {
+      "edge_id": "8c79fc8ca5dbf750508b",
+      "source_id": "d5f161a324a94f20",
+      "target_id": "01df452782c169e2",
+      "source_public_id": "qit::AXIS::axis_1",
+      "target_public_id": "qit::ENGINE::type2",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_1"
+      }
+    },
+    {
+      "edge_id": "f2ed88752735aab77a86",
+      "source_id": "2cee085667f098e2",
+      "target_id": "a75ac4befa5e56b2",
+      "source_public_id": "qit::AXIS::axis_2",
+      "target_public_id": "qit::ENGINE::type1",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_2"
+      }
+    },
+    {
+      "edge_id": "a5118846ea83f5c2769a",
+      "source_id": "2cee085667f098e2",
+      "target_id": "01df452782c169e2",
+      "source_public_id": "qit::AXIS::axis_2",
+      "target_public_id": "qit::ENGINE::type2",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_2"
+      }
+    },
+    {
+      "edge_id": "5971c3f11816dbebc779",
+      "source_id": "7905294e7f427080",
+      "target_id": "a75ac4befa5e56b2",
+      "source_public_id": "qit::AXIS::axis_3",
+      "target_public_id": "qit::ENGINE::type1",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_3"
+      }
+    },
+    {
+      "edge_id": "69c7ebf89bf7e25f68a5",
+      "source_id": "7905294e7f427080",
+      "target_id": "01df452782c169e2",
+      "source_public_id": "qit::AXIS::axis_3",
+      "target_public_id": "qit::ENGINE::type2",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_3"
+      }
+    },
+    {
+      "edge_id": "6f4adb4c969030b878b5",
+      "source_id": "f3b9b9d197c66e28",
+      "target_id": "a75ac4befa5e56b2",
+      "source_public_id": "qit::AXIS::axis_4",
+      "target_public_id": "qit::ENGINE::type1",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_4"
+      }
+    },
+    {
+      "edge_id": "2ece64b21a14024a303f",
+      "source_id": "f3b9b9d197c66e28",
+      "target_id": "01df452782c169e2",
+      "source_public_id": "qit::AXIS::axis_4",
+      "target_public_id": "qit::ENGINE::type2",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_4"
+      }
+    },
+    {
+      "edge_id": "611db150888857f8685e",
+      "source_id": "52f4e85e1b321b25",
+      "target_id": "a75ac4befa5e56b2",
+      "source_public_id": "qit::AXIS::axis_5",
+      "target_public_id": "qit::ENGINE::type1",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_5"
+      }
+    },
+    {
+      "edge_id": "543685cacc6b32019f73",
+      "source_id": "52f4e85e1b321b25",
+      "target_id": "01df452782c169e2",
+      "source_public_id": "qit::AXIS::axis_5",
+      "target_public_id": "qit::ENGINE::type2",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_5"
+      }
+    },
+    {
+      "edge_id": "ea0a53ff0385c42e7494",
+      "source_id": "dd53789b2e1978a4",
+      "target_id": "a75ac4befa5e56b2",
+      "source_public_id": "qit::AXIS::axis_6",
+      "target_public_id": "qit::ENGINE::type1",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_6"
+      }
+    },
+    {
+      "edge_id": "7256b90a99dc8cbcd1c6",
+      "source_id": "dd53789b2e1978a4",
+      "target_id": "01df452782c169e2",
+      "source_public_id": "qit::AXIS::axis_6",
+      "target_public_id": "qit::ENGINE::type2",
+      "relation": "AXIS_GOVERNS",
+      "attributes": {
+        "axis": "axis_6"
+      }
+    },
+    {
+      "edge_id": "41911b049340e8ab9de1",
+      "source_id": "299773621576935a",
+      "target_id": "1504af1f377932d9",
+      "source_public_id": "qit::NEG_WITNESS::neg_axis0_frozen",
+      "target_public_id": "qit::AXIS::axis_0",
+      "relation": "NEGATIVE_PROVES",
+      "attributes": {
+        "proves": "axis_0_entropy_gradient_is_load_bearing",
+        "scope": "specific_targets"
+      }
+    },
+    {
+      "edge_id": "942f717139691e48885e",
+      "source_id": "9b1c490d0bf89816",
+      "target_id": "a75ac4befa5e56b2",
+      "source_public_id": "qit::NEG_WITNESS::neg_no_chirality",
+      "target_public_id": "qit::ENGINE::type1",
+      "relation": "NEGATIVE_PROVES",
+      "attributes": {
+        "proves": "engine_type_asymmetry_is_necessary",
+        "scope": "specific_targets"
+      }
+    },
+    {
+      "edge_id": "58af20de02e9664c568d",
+      "source_id": "9b1c490d0bf89816",
+      "target_id": "01df452782c169e2",
+      "source_public_id": "qit::NEG_WITNESS::neg_no_chirality",
+      "target_public_id": "qit::ENGINE::type2",
+      "relation": "NEGATIVE_PROVES",
+      "attributes": {
+        "proves": "engine_type_asymmetry_is_necessary",
+        "scope": "specific_targets"
+      }
+    },
+    {
+      "edge_id": "6ae4de53fb9e98c99c78",
+      "source_id": "dc48a34a8312f716",
+      "target_id": "dd53789b2e1978a4",
+      "source_public_id": "qit::NEG_WITNESS::neg_axis6_shared",
+      "target_public_id": "qit::AXIS::axis_6",
+      "relation": "NEGATIVE_PROVES",
+      "attributes": {
+        "proves": "axis_6_polarity_is_load_bearing",
+        "scope": "specific_targets"
+      }
+    },
+    {
+      "edge_id": "f4b835e4a2c7aca014e1",
+      "source_id": "a40e26b21e02fe7e",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::NEG_WITNESS::neg_missing_fe",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "NEGATIVE_PROVES",
+      "attributes": {
+        "proves": "fe_member_is_load_bearing",
+        "scope": "specific_targets"
+      }
+    },
+    {
+      "edge_id": "0fe0c5a9ecfaf0456395",
+      "source_id": "b7d42cb39def8b33",
+      "target_id": "f09832c90802915c",
+      "source_public_id": "qit::NEG_WITNESS::neg_missing_operator",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "NEGATIVE_PROVES",
+      "attributes": {
+        "proves": "operator_member_is_load_bearing",
+        "scope": "per_member_sweep"
+      }
+    },
+    {
+      "edge_id": "0b7bb2fbd62527064e71",
+      "source_id": "b7d42cb39def8b33",
+      "target_id": "b09fd41e36e58cf7",
+      "source_public_id": "qit::NEG_WITNESS::neg_missing_operator",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "NEGATIVE_PROVES",
+      "attributes": {
+        "proves": "operator_member_is_load_bearing",
+        "scope": "per_member_sweep"
+      }
+    },
+    {
+      "edge_id": "39f9abd19a0981e7c1b7",
+      "source_id": "b7d42cb39def8b33",
+      "target_id": "af34d825f3db0db2",
+      "source_public_id": "qit::NEG_WITNESS::neg_missing_operator",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "NEGATIVE_PROVES",
+      "attributes": {
+        "proves": "operator_member_is_load_bearing",
+        "scope": "per_member_sweep"
+      }
+    },
+    {
+      "edge_id": "900be05c94990ed4c325",
+      "source_id": "b7d42cb39def8b33",
+      "target_id": "51ce70ad0cb0e67e",
+      "source_public_id": "qit::NEG_WITNESS::neg_missing_operator",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "NEGATIVE_PROVES",
+      "attributes": {
+        "proves": "operator_member_is_load_bearing",
+        "scope": "per_member_sweep"
+      }
+    },
+    {
+      "edge_id": "b3927160de2ae8459f1e",
+      "source_id": "6d64f684ea4c42ac",
+      "target_id": "a75ac4befa5e56b2",
+      "source_public_id": "qit::NEG_WITNESS::neg_type_flatten",
+      "target_public_id": "qit::ENGINE::type1",
+      "relation": "NEGATIVE_PROVES",
+      "attributes": {
+        "proves": "type_specific_weighting_is_necessary",
+        "scope": "specific_targets"
+      }
+    },
+    {
+      "edge_id": "1fd3878ece58dd426634",
+      "source_id": "6d64f684ea4c42ac",
+      "target_id": "01df452782c169e2",
+      "source_public_id": "qit::NEG_WITNESS::neg_type_flatten",
+      "target_public_id": "qit::ENGINE::type2",
+      "relation": "NEGATIVE_PROVES",
+      "attributes": {
+        "proves": "type_specific_weighting_is_necessary",
+        "scope": "specific_targets"
+      }
+    }
+  ],
+  "public_id_index": {
+    "qit::ENGINE::type1": "a75ac4befa5e56b2",
+    "qit::ENGINE::type2": "01df452782c169e2",
+    "qit::MACRO_STAGE::type1_Se_f": "42389006d046291e",
+    "qit::MACRO_STAGE::type1_Si_f": "8c9ea472ee53a917",
+    "qit::MACRO_STAGE::type1_Ni_f": "4d515f9be3b50abb",
+    "qit::MACRO_STAGE::type1_Ne_f": "2f1d40dfb725c1c6",
+    "qit::MACRO_STAGE::type1_Se_b": "45f25443ec43f55c",
+    "qit::MACRO_STAGE::type1_Ne_b": "dbb8672ea7eb573b",
+    "qit::MACRO_STAGE::type1_Ni_b": "2e130310b13bb263",
+    "qit::MACRO_STAGE::type1_Si_b": "00dee71465366b1c",
+    "qit::MACRO_STAGE::type2_Se_f": "34d8c413c38c70cd",
+    "qit::MACRO_STAGE::type2_Ne_f": "35e4ae3b51a3b15b",
+    "qit::MACRO_STAGE::type2_Ni_f": "385e6868bc9985c2",
+    "qit::MACRO_STAGE::type2_Si_f": "fe174eef524d19aa",
+    "qit::MACRO_STAGE::type2_Se_b": "aa67394b43e3a9d4",
+    "qit::MACRO_STAGE::type2_Si_b": "9ce8d76d78ef500c",
+    "qit::MACRO_STAGE::type2_Ni_b": "e7d7773150a39ef6",
+    "qit::MACRO_STAGE::type2_Ne_b": "179dc41cdc8b9f57",
+    "qit::OPERATOR::Ti": "f09832c90802915c",
+    "qit::OPERATOR::Fe": "b09fd41e36e58cf7",
+    "qit::OPERATOR::Te": "af34d825f3db0db2",
+    "qit::OPERATOR::Fi": "51ce70ad0cb0e67e",
+    "qit::TORUS::inner": "19b85b6cae8c1a90",
+    "qit::TORUS::clifford": "e48112a947938934",
+    "qit::TORUS::outer": "b03a3a6e42889795",
+    "qit::WEYL_BRANCH::left": "e4540b8ff8445ba1",
+    "qit::WEYL_BRANCH::right": "e7c59b9f74128ec7",
+    "qit::AXIS::axis_0": "1504af1f377932d9",
+    "qit::AXIS::axis_1": "d5f161a324a94f20",
+    "qit::AXIS::axis_2": "2cee085667f098e2",
+    "qit::AXIS::axis_3": "7905294e7f427080",
+    "qit::AXIS::axis_4": "f3b9b9d197c66e28",
+    "qit::AXIS::axis_5": "52f4e85e1b321b25",
+    "qit::AXIS::axis_6": "dd53789b2e1978a4",
+    "qit::NEG_WITNESS::neg_no_torus_transport": "ec7e5d0fffedff62",
+    "qit::NEG_WITNESS::neg_axis0_frozen": "299773621576935a",
+    "qit::NEG_WITNESS::neg_no_chirality": "9b1c490d0bf89816",
+    "qit::NEG_WITNESS::neg_torus_scrambled": "0b9e7ab8f5ca415f",
+    "qit::NEG_WITNESS::neg_axis6_shared": "dc48a34a8312f716",
+    "qit::NEG_WITNESS::neg_missing_fe": "a40e26b21e02fe7e",
+    "qit::NEG_WITNESS::neg_missing_operator": "b7d42cb39def8b33",
+    "qit::NEG_WITNESS::neg_native_only": "447fa9ed3f9486ba",
+    "qit::NEG_WITNESS::neg_type_flatten": "6d64f684ea4c42ac",
+    "qit::SUBCYCLE_STEP::type1_Se_f_Ti": "7f7d7c5e8dd38601",
+    "qit::SUBCYCLE_STEP::type1_Se_f_Fe": "4cab98d64a93efcf",
+    "qit::SUBCYCLE_STEP::type1_Se_f_Te": "c229c7c6d3f016ac",
+    "qit::SUBCYCLE_STEP::type1_Se_f_Fi": "14698c7da0c4fe88",
+    "qit::SUBCYCLE_STEP::type1_Si_f_Ti": "e8b177df8c5c4caf",
+    "qit::SUBCYCLE_STEP::type1_Si_f_Fe": "ce7e4f41e3f95b8c",
+    "qit::SUBCYCLE_STEP::type1_Si_f_Te": "4694cbd03f95ea2f",
+    "qit::SUBCYCLE_STEP::type1_Si_f_Fi": "e0a24dedd299375e",
+    "qit::SUBCYCLE_STEP::type1_Ni_f_Ti": "56d6b760e03ec9c9",
+    "qit::SUBCYCLE_STEP::type1_Ni_f_Fe": "73f7eebfc85d9b8a",
+    "qit::SUBCYCLE_STEP::type1_Ni_f_Te": "1cb2cd6700337e66",
+    "qit::SUBCYCLE_STEP::type1_Ni_f_Fi": "362d419b183d7a4c",
+    "qit::SUBCYCLE_STEP::type1_Ne_f_Ti": "37f6a5d1cffecf9a",
+    "qit::SUBCYCLE_STEP::type1_Ne_f_Fe": "289bbd9e8a2e620c",
+    "qit::SUBCYCLE_STEP::type1_Ne_f_Te": "925a8fc5306701f8",
+    "qit::SUBCYCLE_STEP::type1_Ne_f_Fi": "6eb49efdc3b158ab",
+    "qit::SUBCYCLE_STEP::type1_Se_b_Ti": "34490aa94af650b7",
+    "qit::SUBCYCLE_STEP::type1_Se_b_Fe": "6ac3fc7ff0083635",
+    "qit::SUBCYCLE_STEP::type1_Se_b_Te": "a3c7e06384c3b61d",
+    "qit::SUBCYCLE_STEP::type1_Se_b_Fi": "26a04171bf592b89",
+    "qit::SUBCYCLE_STEP::type1_Ne_b_Ti": "cbad16977652bcf1",
+    "qit::SUBCYCLE_STEP::type1_Ne_b_Fe": "c0eac1d7ec75cf24",
+    "qit::SUBCYCLE_STEP::type1_Ne_b_Te": "4bf38ddc61867356",
+    "qit::SUBCYCLE_STEP::type1_Ne_b_Fi": "2d596e2426c1efbb",
+    "qit::SUBCYCLE_STEP::type1_Ni_b_Ti": "20ddc8e1cf409639",
+    "qit::SUBCYCLE_STEP::type1_Ni_b_Fe": "3c71646ff6b3ef2e",
+    "qit::SUBCYCLE_STEP::type1_Ni_b_Te": "0afc7ea76f769a72",
+    "qit::SUBCYCLE_STEP::type1_Ni_b_Fi": "6014f86cab364932",
+    "qit::SUBCYCLE_STEP::type1_Si_b_Ti": "657b2289254b9a93",
+    "qit::SUBCYCLE_STEP::type1_Si_b_Fe": "82517e7bd9c3558e",
+    "qit::SUBCYCLE_STEP::type1_Si_b_Te": "c93df49e3ba8bd33",
+    "qit::SUBCYCLE_STEP::type1_Si_b_Fi": "868260ae099fe531",
+    "qit::SUBCYCLE_STEP::type2_Se_f_Ti": "2d3aae1128c5bdc6",
+    "qit::SUBCYCLE_STEP::type2_Se_f_Fe": "159a9b803d4a1700",
+    "qit::SUBCYCLE_STEP::type2_Se_f_Te": "bd5ccd76779c7e0d",
+    "qit::SUBCYCLE_STEP::type2_Se_f_Fi": "3e66c763705ae01f",
+    "qit::SUBCYCLE_STEP::type2_Ne_f_Ti": "bdff3f657435da4f",
+    "qit::SUBCYCLE_STEP::type2_Ne_f_Fe": "3de7f6c55e6683d3",
+    "qit::SUBCYCLE_STEP::type2_Ne_f_Te": "ce801a89032b0dc0",
+    "qit::SUBCYCLE_STEP::type2_Ne_f_Fi": "8bbfd38b2a85feb0",
+    "qit::SUBCYCLE_STEP::type2_Ni_f_Ti": "0c05dd931e7dbf20",
+    "qit::SUBCYCLE_STEP::type2_Ni_f_Fe": "5d689191257402be",
+    "qit::SUBCYCLE_STEP::type2_Ni_f_Te": "3839cf5582f53e33",
+    "qit::SUBCYCLE_STEP::type2_Ni_f_Fi": "d28602d1b99cf592",
+    "qit::SUBCYCLE_STEP::type2_Si_f_Ti": "4842995a13860036",
+    "qit::SUBCYCLE_STEP::type2_Si_f_Fe": "76944af8e803625b",
+    "qit::SUBCYCLE_STEP::type2_Si_f_Te": "5592f06d8a9d12a2",
+    "qit::SUBCYCLE_STEP::type2_Si_f_Fi": "55291f7b1de030ef",
+    "qit::SUBCYCLE_STEP::type2_Se_b_Ti": "46347dee9d3b2bb7",
+    "qit::SUBCYCLE_STEP::type2_Se_b_Fe": "31030c795941fb96",
+    "qit::SUBCYCLE_STEP::type2_Se_b_Te": "af275bd07551b210",
+    "qit::SUBCYCLE_STEP::type2_Se_b_Fi": "66a077c41296c568",
+    "qit::SUBCYCLE_STEP::type2_Si_b_Ti": "e177dcf11934e238",
+    "qit::SUBCYCLE_STEP::type2_Si_b_Fe": "b9e15ea0979dcca9",
+    "qit::SUBCYCLE_STEP::type2_Si_b_Te": "47f53a7d0f45a916",
+    "qit::SUBCYCLE_STEP::type2_Si_b_Fi": "bfa209615a805c12",
+    "qit::SUBCYCLE_STEP::type2_Ni_b_Ti": "034b16d45773ed92",
+    "qit::SUBCYCLE_STEP::type2_Ni_b_Fe": "748e5c2b663e4398",
+    "qit::SUBCYCLE_STEP::type2_Ni_b_Te": "06381e4ba9a57916",
+    "qit::SUBCYCLE_STEP::type2_Ni_b_Fi": "ac4070c285df9f71",
+    "qit::SUBCYCLE_STEP::type2_Ne_b_Ti": "294bf662f0438fef",
+    "qit::SUBCYCLE_STEP::type2_Ne_b_Fe": "c67747ebf582fd14",
+    "qit::SUBCYCLE_STEP::type2_Ne_b_Te": "1888010dc7fae6d2",
+    "qit::SUBCYCLE_STEP::type2_Ne_b_Fi": "04b1c1831899ba22"
+  },
+  "summary": {
+    "node_count": 107,
+    "edge_count": 290,
+    "node_types": {
+      "ENGINE": 2,
+      "MACRO_STAGE": 16,
+      "OPERATOR": 4,
+      "TORUS": 3,
+      "WEYL_BRANCH": 2,
+      "AXIS": 7,
+      "NEG_WITNESS": 9,
+      "SUBCYCLE_STEP": 64
+    },
+    "relation_types": {
+      "ENGINE_REALIZES_WEYL_BRANCH": 2,
+      "SUBCYCLE_ORDER": 4,
+      "STAGE_SEQUENCE": 16,
+      "TORUS_NESTING": 2,
+      "ENGINE_OWNS_STAGE": 16,
+      "CHIRALITY_COUPLING": 1,
+      "STEP_IN_STAGE": 64,
+      "STEP_USES_OPERATOR": 64,
+      "STEP_SEQUENCE": 64,
+      "STAGE_ON_TORUS": 32,
+      "AXIS_GOVERNS": 14,
+      "NEGATIVE_PROVES": 11
+    },
+    "validation_errors": []
+  },
+  "content_hash": "965d5add46bbe8bf747763faea7c432157f14278644e9644bd726ca2928c0105"
+}

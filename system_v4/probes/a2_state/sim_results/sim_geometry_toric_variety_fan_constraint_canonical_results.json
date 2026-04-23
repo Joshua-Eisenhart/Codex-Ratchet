@@ -1,0 +1,113 @@
+{
+  "name": "sim_geometry_toric_variety_fan_constraint_canonical",
+  "description": "Toric variety fan smoothness via primitive lattice basis (det=\u00b11)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for constraint proofs"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for constraint proofs"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for constraint proofs"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for fan constraints"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for fan constraints"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not required for fan constraints"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "error": "cvc5 not installed"
+  },
+  "negative": {
+    "error": "cvc5 not installed"
+  },
+  "boundary": {
+    "test_1": {
+      "name": "identity_matrix_boundary",
+      "description": "Identity matrix is trivially unimodular (det=1)",
+      "matrix": "Matrix([[1, 0], [0, 1]])",
+      "det": 1,
+      "is_unimodular": true,
+      "passed": true
+    },
+    "test_2": {
+      "name": "rotation_90_boundary",
+      "description": "90-degree rotation has det=-1 (unimodular)",
+      "matrix": "Matrix([[0, -1], [1, 0]])",
+      "det": 1,
+      "is_unimodular": false,
+      "passed": false
+    },
+    "test_3": {
+      "name": "large_integer_boundary",
+      "description": "Large integer matrix can still be unimodular",
+      "matrix": "Matrix([[8, 3], [3, 1]])",
+      "det": -1,
+      "is_unimodular": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

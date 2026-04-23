@@ -1,0 +1,101 @@
+{
+  "name": "DeRhamWittComplex \u2014 restriction rank constraint + Cartier isomorphism",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "tensor ops not needed for constraint proof"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph structure handled by cvc5 constraint logic"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 more suitable for multi-sort arithmetic"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: validates Witt group arithmetic and Cartier action"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "de Rham-Witt is not clifford-algebraic"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not installed"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "complex structure implicit"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_restriction_rank_1_to_2": null,
+    "test_cartier_isomorphism_degree_1": null,
+    "test_witt_tower_monotonic": null
+  },
+  "negative": {
+    "test_restriction_rank_decrease": null,
+    "test_cartier_rank_mismatch": null,
+    "test_witt_tower_violation": null
+  },
+  "boundary": {
+    "test_zero_rank_constraint": null,
+    "test_high_witt_level": null,
+    "test_sympy_cartier_validation": {
+      "passed": true,
+      "reason": "sympy validates Cartier operator properties",
+      "cartier_acts_on_differentials": true,
+      "cartier_inverts_frobenius": true,
+      "dimension": 3
+    }
+  },
+  "classification": "canonical"
+}

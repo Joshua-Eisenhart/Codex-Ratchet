@@ -1,0 +1,188 @@
+{
+  "name": "sim_gtower_triple_su2_u1_spin_ordering",
+  "classification": "canonical",
+  "claim": "Of 6 orderings of (SU2, U1, Spin), only valid reduction chains are z3-SAT; at least 2 reversed orderings are z3-UNSAT; the canonical chain admits a Clifford rotor witness probe.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy sufficient for 3x3 rotor matrices here"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph message-passing in this ordering test"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Encodes subgroup containment axioms as z3 Boolean constraints; proves UNSAT for all orderings that violate the reduction chain predicate (a->b requires b is a subgroup of a). UNSAT is the primary proof form: structural impossibility of reversed ordering."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 covers UNSAT proof; cvc5 would be redundant"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric rotor comparison is sufficient; sympy not needed"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotors physically realize Spin, SU2, and U1 group actions; fence checks (even-grade, unit-norm, e12-plane confinement) are computed directly from rotor multivector structure, not from labels. The witness probe existence depends entirely on these Clifford checks."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Lie group reductions realized in Cl(3); geomstats redundant"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) equivariance not the focus; Spin reductions are Cl(3)-native"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in this algebraic ordering test"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hyperedges needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex not needed for group ordering"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not relevant to group chain"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "ordering_results": {
+      "Spin->SU2->U1": {
+        "z3_chain_sat": "sat",
+        "rotor_admitted": true,
+        "chain_structurally_valid": true,
+        "fence_detail": {
+          "Spin": true,
+          "SU2": true,
+          "U1": true
+        }
+      },
+      "Spin->U1->SU2": {
+        "z3_chain_sat": "unsat",
+        "rotor_admitted": true,
+        "chain_structurally_valid": false,
+        "fence_detail": {
+          "Spin": true,
+          "U1": true,
+          "SU2": true
+        }
+      },
+      "SU2->Spin->U1": {
+        "z3_chain_sat": "unsat",
+        "rotor_admitted": true,
+        "chain_structurally_valid": false,
+        "fence_detail": {
+          "SU2": true,
+          "Spin": true,
+          "U1": true
+        }
+      },
+      "SU2->U1->Spin": {
+        "z3_chain_sat": "unsat",
+        "rotor_admitted": true,
+        "chain_structurally_valid": false,
+        "fence_detail": {
+          "SU2": true,
+          "U1": true,
+          "Spin": true
+        }
+      },
+      "U1->Spin->SU2": {
+        "z3_chain_sat": "unsat",
+        "rotor_admitted": true,
+        "chain_structurally_valid": false,
+        "fence_detail": {
+          "U1": true,
+          "Spin": true,
+          "SU2": true
+        }
+      },
+      "U1->SU2->Spin": {
+        "z3_chain_sat": "unsat",
+        "rotor_admitted": true,
+        "chain_structurally_valid": false,
+        "fence_detail": {
+          "U1": true,
+          "SU2": true,
+          "Spin": true
+        }
+      }
+    },
+    "sat_orderings": [
+      "Spin->SU2->U1"
+    ],
+    "unsat_orderings": [
+      "Spin->U1->SU2",
+      "SU2->Spin->U1",
+      "SU2->U1->Spin",
+      "U1->Spin->SU2",
+      "U1->SU2->Spin"
+    ],
+    "num_sat": 1,
+    "num_unsat": 5,
+    "at_least_2_unsat": true,
+    "canonical_ordering_sat": true,
+    "at_least_1_rotor_admitted": true,
+    "pass": true
+  },
+  "negative": {
+    "reversed_ordering_exclusions": {
+      "U1->SU2->Spin": {
+        "z3_result": "unsat",
+        "excluded_by_unsat": true
+      },
+      "U1->Spin->SU2": {
+        "z3_result": "unsat",
+        "excluded_by_unsat": true
+      },
+      "SU2->U1->Spin": {
+        "z3_result": "unsat",
+        "excluded_by_unsat": true
+      }
+    },
+    "unsat_count_reversed": 3,
+    "pass": true
+  },
+  "boundary": {
+    "identity_rotor_spin_fence": true,
+    "identity_rotor_su2_fence": true,
+    "identity_rotor_u1_fence": true,
+    "trivial_z3_sat": "sat",
+    "trivial_sat_expected": true,
+    "pass": true
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,114 @@
+{
+  "name": "baseline_partial_trace_2x2",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "baseline uses numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "numpy_role": "load_bearing",
+  "positive": {
+    "bell_reduced_A_maxmixed": {
+      "pass": true
+    },
+    "bell_reduced_B_maxmixed": {
+      "pass": true
+    },
+    "product_recover_A": {
+      "pass": true
+    },
+    "product_recover_B": {
+      "pass": true
+    },
+    "trace_preserved": {
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "wrong_axis_differs": {
+      "pass": true
+    },
+    "shape_check": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "pure_prod_A_pure": {
+      "pass": true
+    },
+    "maxmixed_reduced_A": {
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline"
+}

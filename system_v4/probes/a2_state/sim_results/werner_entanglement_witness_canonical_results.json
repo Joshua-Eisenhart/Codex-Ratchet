@@ -1,0 +1,84 @@
+{
+  "name": "werner_entanglement_witness_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "numeric cross-check of Tr(W rho)"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "exact symbolic eigendecomposition of witness W and closed-form symbolic evaluation of Tr(W rho_W(p)) = 1/4 - 3p/4"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; sympy gives exact values"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "sympy": "load_bearing",
+    "pytorch": null,
+    "z3": null
+  },
+  "positive": {
+    "symbolic_expr_tr_W_rho": "1/4 - 3*p/4",
+    "tr_W_rho_at_p1": -0.5,
+    "witness_fires_on_phi_plus": true,
+    "tr_W_rho_at_p09": -0.425,
+    "witness_fires_on_strong_werner": true,
+    "witness_eigvals": [
+      -0.5,
+      0.5
+    ],
+    "witness_has_one_neg_eigval": true
+  },
+  "negative": {
+    "tr_W_rho_at_p0": 0.25,
+    "witness_nonneg_on_maxmixed": true,
+    "tr_W_rho_product_00": 0.0,
+    "witness_nonneg_on_product_state": true,
+    "tr_W_rho_product_01": 0.5,
+    "witness_strict_pos_on_01": true
+  },
+  "boundary": {
+    "tr_W_rho_at_p_third": 0.0,
+    "witness_zero_at_threshold": true,
+    "scan_tr_W_rho": {
+      "p=0.0": 0.25,
+      "p=0.1": 0.175,
+      "p=0.2": 0.1,
+      "p=0.3": 0.025,
+      "p=0.4": -0.05,
+      "p=0.5": -0.125,
+      "p=0.6": -0.2,
+      "p=0.7": -0.275,
+      "p=0.8": -0.35,
+      "p=0.9": -0.425,
+      "p=1.0": -0.5
+    },
+    "scan_has_neg_and_pos": true,
+    "numpy_cross_check_tr_W_rho_p09": -0.42499999999999966,
+    "cross_check_matches_sympy": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "gap": {
+      "classical_separable_bound": "Tr(W rho_sep) >= 0 for all separable rho",
+      "measured_tr_W_phi_plus": -0.5,
+      "witness_expectation_gap": 0.5,
+      "werner_detection_threshold_p": 0.3333333333333333
+    },
+    "classical_baseline_cited": "separable/LHV states satisfy Tr(W rho)>=0 (witness)",
+    "measured_quantum_value": -0.5
+  }
+}

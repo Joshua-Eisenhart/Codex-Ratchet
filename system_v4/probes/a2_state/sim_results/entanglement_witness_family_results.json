@@ -1,0 +1,126 @@
+{
+  "name": "entanglement_witness_family",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for bounded two-qubit entanglement witnesses, kept separate from scalar entanglement summaries like concurrence or negativity.",
+  "lego_ids": [
+    "entanglement_witness_family"
+  ],
+  "primary_lego_ids": [
+    "entanglement_witness_family"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "witness_is_nonnegative_on_product_state": {
+      "value": 1.1102230246251565e-16,
+      "pass": true
+    },
+    "witness_detects_bell_state": {
+      "value": -0.49999999999999967,
+      "pass": true
+    },
+    "witness_detects_high_werner_entanglement": {
+      "value": -0.34999999999999976,
+      "pass": true
+    }
+  },
+  "negative": {
+    "low_werner_state_is_not_falsely_detected": {
+      "value": 0.10000000000000012,
+      "pass": true
+    },
+    "witness_row_is_not_scalar_summary_row": {
+      "product_value": 1.1102230246251565e-16,
+      "bell_value": -0.49999999999999967,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "werner_detection_changes_across_threshold": {
+      "low_r": 0.10000000000000012,
+      "high_r": -0.34999999999999976,
+      "pass": true
+    },
+    "witness_operator_is_hermitian": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local entanglement-witness lego on product, Bell, and Werner states."
+  }
+}

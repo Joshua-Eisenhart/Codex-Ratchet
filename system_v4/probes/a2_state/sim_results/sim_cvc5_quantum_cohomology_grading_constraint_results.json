@@ -1,0 +1,124 @@
+{
+  "name": "sim_cvc5_quantum_cohomology_grading_constraint",
+  "domain": "Quantum Cohomology / Degree Grading",
+  "claim": "Quantum product degree: |a*b| = |a| + |b| - 2c_1(\u03b2)",
+  "special_case_cy": "Calabi-Yau (c_1=0): |a*b| = |a| + |b|",
+  "classical_limit": "\u03b2=0: quantum product recovers cup product",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed: No module named 'cvc5'"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Quantum cohomology classical limit verified"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "error": "cvc5 not installed"
+  },
+  "negative": {
+    "error": "cvc5 not installed"
+  },
+  "boundary": {
+    "test_1_classical_limit": {
+      "name": "classical_limit_cup_product",
+      "description": "Classical limit \u03b2=0: quantum product = cup product",
+      "expected": "valid",
+      "deg_a": 2,
+      "deg_b": 3,
+      "c1_beta": 0,
+      "deg_product": 5,
+      "pass": true,
+      "reason": "|a\u222ab| = 2 + 3 - 0 = 5"
+    },
+    "test_2_cy_quantum_classical": {
+      "name": "calabi_yau_quantum_equals_classical",
+      "description": "CY case (c_1=0): quantum = classical product",
+      "expected": "valid",
+      "deg_a": 1,
+      "deg_b": 2,
+      "classical": 3,
+      "quantum": 3,
+      "pass": true,
+      "reason": "CY: classical = quantum = 3"
+    },
+    "test_3_unit_element": {
+      "name": "unit_element_product",
+      "description": "Unit element (degree 0) in quantum product",
+      "expected": "valid",
+      "deg_a": 0,
+      "deg_b": 5,
+      "deg_product": 5,
+      "pass": true,
+      "reason": "|1*x| = 0 + 5 - 0 = 5"
+    }
+  },
+  "classification": "canonical"
+}

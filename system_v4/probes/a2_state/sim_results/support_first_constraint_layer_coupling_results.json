@@ -1,0 +1,179 @@
+{
+  "name": "support_first_constraint_layer_coupling",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "excluded; classical baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT claim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT claim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic fence expression for cross-check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "L1_to_L4": {
+      "F1_nonzero": {
+        "fence_size": 80,
+        "coupled_size": 70,
+        "survives": true,
+        "proper_restriction": true,
+        "nonempty": true
+      },
+      "F2_sum_bounded": {
+        "fence_size": 71,
+        "coupled_size": 70,
+        "survives": true,
+        "proper_restriction": true,
+        "nonempty": true
+      },
+      "F3_no_flip_adjacent": {
+        "fence_size": 55,
+        "coupled_size": 44,
+        "survives": true,
+        "proper_restriction": true,
+        "nonempty": true
+      },
+      "F4_has_zero": {
+        "fence_size": 65,
+        "coupled_size": 56,
+        "survives": true,
+        "proper_restriction": true,
+        "nonempty": true
+      }
+    },
+    "L6_to_L10": {
+      "G1_first_plus": {
+        "fence_size": 27,
+        "coupled_size": 3,
+        "survives": true,
+        "proper_restriction": true,
+        "nonempty": true
+      },
+      "G2_last_minus": {
+        "fence_size": 27,
+        "coupled_size": 3,
+        "survives": true,
+        "proper_restriction": true,
+        "nonempty": true
+      },
+      "G3_middle_zero": {
+        "fence_size": 27,
+        "coupled_size": 7,
+        "survives": true,
+        "proper_restriction": true,
+        "nonempty": true
+      },
+      "G4_balanced": {
+        "fence_size": 19,
+        "coupled_size": 13,
+        "survives": true,
+        "proper_restriction": true,
+        "nonempty": true
+      }
+    },
+    "n_l1_survivors": 4,
+    "n_l6_survivors": 4,
+    "pass": true
+  },
+  "negative": {
+    "impossible_fence": {
+      "fence_size": 0,
+      "coupled_size": 0,
+      "survives": false,
+      "proper_restriction": false,
+      "nonempty": false
+    },
+    "impossible_fence_empty": true,
+    "bad_gate": {
+      "fence_size": 1,
+      "coupled_size": 0,
+      "survives": false,
+      "proper_restriction": false,
+      "nonempty": false
+    },
+    "bad_gate_fails_l10": true,
+    "pass": true
+  },
+  "boundary": {
+    "u2_size": 9,
+    "vacuous_fence_coupling": {
+      "fence_size": 9,
+      "coupled_size": 8,
+      "survives": true,
+      "proper_restriction": true,
+      "nonempty": true
+    },
+    "sympy_fence_expr": "Abs(a + b) <= 2",
+    "sympy_fence_is_relational": true,
+    "canonical_survives_l10": true,
+    "pass": true
+  },
+  "classification": "classical_baseline",
+  "all_pass": true
+}

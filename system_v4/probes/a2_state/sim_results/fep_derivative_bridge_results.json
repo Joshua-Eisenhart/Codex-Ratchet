@@ -1,0 +1,126 @@
+{
+  "name": "fep_derivative_bridge",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical baseline: derivative correlation is not a nonclassical witness; self-contained synthetic trajectories replace missing external file dependency.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "trajectory generation, derivative computation, Pearson correlation"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; correlation numerics are 1D numpy operations"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph structure in trajectory correlation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no UNSAT proof required for correlation threshold test"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; numpy sufficient for derivative bridge"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no symbolic computation required"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no Clifford algebra in FEP trajectory analysis"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; trajectories are 1D time series, not Riemannian manifold paths"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no SO(3) equivariance in FEP bridge"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph structure in derivative correlation"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no hypergraph in FEP-GA0 bridge"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; topological methods not invoked for 1D trajectory correlation"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; persistent homology not relevant to derivative bridge"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "high_coupling_abs_r": {
+      "r": 0.5469168373523857,
+      "passed": true
+    },
+    "high_coupling_deriv_r": {
+      "r": 0.2590009200496549,
+      "passed": true
+    },
+    "deriv_r_nonzero": {
+      "r": 0.2590009200496549,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "zero_coupling_abs_r": {
+      "r": -0.04311239365855986,
+      "passed": true
+    },
+    "zero_coupling_deriv_r": {
+      "r": 0.10270142814665698,
+      "passed": true
+    },
+    "interpretation": "uncoupled FEP trajectory excluded from GA0 bridge (|r|<0.3 for both absolute and derivative)",
+    "pass": true
+  },
+  "boundary": {
+    "constant_trajectory_deriv_r_is_zero": {
+      "r": 0.0,
+      "passed": true
+    },
+    "high_coupling_stable_across_3_seeds": {
+      "all_pass": true,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

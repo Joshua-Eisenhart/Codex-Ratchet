@@ -1,0 +1,124 @@
+{
+  "name": "trace_distance_geometry",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for trace-distance geometry on bounded qubit state pairs.",
+  "lego_ids": [
+    "trace_distance_geometry"
+  ],
+  "primary_lego_ids": [
+    "trace_distance_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identity_pair_zero_distance": {
+      "pass": true
+    },
+    "symmetry_of_distance": {
+      "pass": true
+    },
+    "basis_pair_max_separation": {
+      "value": 1.0,
+      "pass": true
+    },
+    "unitary_invariance": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "mixed_state_contraction_relative_to_pure": {
+      "pure_distance": 1.0,
+      "mixed_distance": 0.85,
+      "pass": true
+    },
+    "nonorthogonal_pair_not_maximal": {
+      "value": 0.7071067811865475,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "triangle_inequality_spot_check": {
+      "lhs": 0.5,
+      "rhs": 1.2071067811865475,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local trace-distance lego on bounded qubit states."
+  }
+}

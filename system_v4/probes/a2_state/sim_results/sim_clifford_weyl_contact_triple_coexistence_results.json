@@ -1,0 +1,148 @@
+{
+  "name": "sim_clifford_weyl_contact_triple_coexistence",
+  "classification": "classical_baseline",
+  "classification_note": "Triple coexistence for Clifford\u00d7Weyl\u00d7Contact (26th program). H_clifford=0.5, H_weyl=log(2), H_contact=log(17). Normalized h/(1+h) values all in (0,1). Joint product <= pairwise product (DPI-like inequality). Q_CWC = MI \u00d7 H_clifford \u00d7 H_weyl \u00d7 H_contact > 0. z3 UNSAT: normalized joint > 1 impossible. sympy: h/(1+h) is monotone in h. pytorch: normalized tensor positivity validated.",
+  "divergence_log": "Triple coexistence for Clifford\u00d7Weyl\u00d7Contact (26th program). H_clifford=0.5, H_weyl=log(2), H_contact=log(17). Normalized h/(1+h) values all in (0,1). Joint product <= pairwise product (DPI-like inequality). Q_CWC = MI \u00d7 H_clifford \u00d7 H_weyl \u00d7 H_contact > 0. z3 UNSAT: normalized joint > 1 impossible. sympy: h/(1+h) is monotone in h. pytorch: normalized tensor positivity validated.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute normalized CWC shell entropies h/(1+h) as float64 torch tensors; validate joint product <= pairwise products and Q_CWC > 0 (load-bearing)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph structure in CWC triple coexistence scalar normalization tests; PyG not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: normalized joint product > product of all pairwise products is impossible given normalization to [0,1) \u2014 monotonicity constraint for CWC (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 UNSAT covers the monotonicity impossibility proof for CWC coexistence; cvc5 not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification: h/(1+h) is monotone increasing in h>=0 and bounded in [0,1); encodes normalization correctness for CWC algebraically (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Construct Cl(3,0) rotor e1*e2 and compute norm as H_clifford for CWC triple coexistence normalization tests (load-bearing)."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geometry not invoked in scalar normalization CWC coexistence test"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) equivariant networks not needed for scalar CWC shell-entropy normalization tests"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal required for CWC triple coexistence normalized entropy products"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure needed for CWC triple coexistence scalar entropy tests"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "CellComplex topology deferred to topology-variants step; not needed in CWC coexistence"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not needed for CWC triple scalar normalization coexistence tests"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
+  },
+  "H_values": {
+    "H_clifford": 1.4142135623730951,
+    "H_weyl": 0.6931471805599453,
+    "H_contact": 2.833213344056216
+  },
+  "positive": {
+    "P1_normalized_values_in_01": {
+      "n_clifford": 0.5857864376269051,
+      "n_weyl": 0.4093838908503587,
+      "n_contact": 0.7391222689051209,
+      "passed": true
+    },
+    "P2_joint_leq_min_pairwise": {
+      "joint": 0.1772500429341672,
+      "min_pairwise": 0.23981153104307337,
+      "passed": true
+    },
+    "P3_Q_CWC_positive": {
+      "MI": 0.10814930452367744,
+      "Q_CWC": 0.3003609494261532,
+      "passed": true
+    },
+    "P4_pytorch_normalized_all_positive": {
+      "normalized": [
+        0.5857864376269051,
+        0.4093838908503587,
+        0.7391222689051209
+      ],
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_joint_gt1_impossible": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_normalization_monotone": {
+      "derivative": "(h + 1)**(-2)",
+      "is_positive_symbolic": "True",
+      "passed": true
+    },
+    "N3_zero_MI_gives_zero_Q": {
+      "Q_CWC": 0.0,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_norm_near_zero": {
+      "h": 1e-08,
+      "norm_h": 9.999999900000002e-09,
+      "passed": true
+    },
+    "B2_norm_large_h": {
+      "h": 1000000.0,
+      "norm_h": 0.999999000001,
+      "passed": true
+    },
+    "B3_joint_product_positive": {
+      "joint": 0.1772500429341672,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

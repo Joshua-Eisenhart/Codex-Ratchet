@@ -1,0 +1,356 @@
+{
+  "name": "szilard_ordering_sensitivity_sweep",
+  "classification": "exploratory",
+  "classification_note": "Ordering-sensitivity sweep over the explicit Szilard substep lane. It tracks when the correct measurement -> feedback -> reset order separates from scrambled alternatives as measurement noise and feedback strength vary.",
+  "lego_ids": [
+    "stochastic_thermodynamics",
+    "landauer_erasure",
+    "measurement_feedback"
+  ],
+  "primary_lego_ids": [
+    "stochastic_thermodynamics",
+    "measurement_feedback"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "some_settings_make_the_correct_order_materially_better_than_scrambled_orders": {
+      "best_margin": 0.014425363812428649,
+      "best_setting": {
+        "measurement_flip_prob": 0.08,
+        "feedback_strong_tilt": 2.35
+      },
+      "pass": true
+    },
+    "lower_measurement_noise_improves_ordering_margin_on_average": {
+      "low_noise_mean_margin": 0.0010640926375621678,
+      "high_noise_mean_margin": 0.008202762313267368,
+      "pass": false
+    },
+    "stronger_feedback_improves_ordering_margin_on_average": {
+      "strong_feedback_mean_margin": 0.00882531915942339,
+      "weak_feedback_mean_margin": 0.0035267253004765686,
+      "pass": true
+    }
+  },
+  "negative": {
+    "high_noise_settings_do_not_give_clean_ordering_separation": {
+      "high_noise_best_margin": 0.01174236655720784,
+      "pass": false
+    },
+    "not_every_setting_yields_ordered_beats_all_scrambled": {
+      "success_count": 11,
+      "total_settings": 12,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_rows_have_closed_bookkeeping": {
+      "max_closure_error": 2.220446049250313e-16,
+      "pass": true
+    },
+    "all_rows_have_finite_statistics": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": false,
+    "measurement_flip_grid": [
+      0.02,
+      0.08,
+      0.16,
+      0.3
+    ],
+    "feedback_strong_tilt_grid": [
+      1.35,
+      1.85,
+      2.35
+    ],
+    "best_margin": 0.014425363812428649,
+    "best_setting": {
+      "measurement_flip_prob": 0.08,
+      "feedback_strong_tilt": 2.35
+    },
+    "scope_note": "Ordering-sensitivity sweep over the explicit Szilard substep lane. It is a parameter map for ordering separation, not a canonical engine result."
+  },
+  "rows": [
+    {
+      "measurement_flip_prob": 0.02,
+      "feedback_strong_tilt": 1.35,
+      "feedback_weak_tilt": 0.18225000000000002,
+      "ordered_final_entropy": 0.6682986722607167,
+      "ordered_final_left_fraction": 0.389,
+      "ordered_measurement_accuracy": 0.9223333333333333,
+      "ordered_measurement_mi": 0.42017260346716834,
+      "feedback_first_final_entropy": 0.6740781033715242,
+      "reset_first_final_entropy": 0.6669251684863668,
+      "measurement_reset_feedback_final_entropy": 0.6754961921913943,
+      "best_scrambled_name": "reset_first",
+      "best_scrambled_entropy": 0.6669251684863668,
+      "ordering_margin": -0.0013735037743498602,
+      "ordered_beats_all_scrambled": false,
+      "closure_error_max": 1.1102230246251565e-16
+    },
+    {
+      "measurement_flip_prob": 0.02,
+      "feedback_strong_tilt": 1.85,
+      "feedback_weak_tilt": 0.24975000000000003,
+      "ordered_final_entropy": 0.6577021529158017,
+      "ordered_final_left_fraction": 0.36766666666666664,
+      "ordered_measurement_accuracy": 0.922,
+      "ordered_measurement_mi": 0.4192593158220192,
+      "feedback_first_final_entropy": 0.6738142684948127,
+      "reset_first_final_entropy": 0.6603596871946064,
+      "measurement_reset_feedback_final_entropy": 0.678968036741767,
+      "best_scrambled_name": "reset_first",
+      "best_scrambled_entropy": 0.6603596871946064,
+      "ordering_margin": 0.002657534278804663,
+      "ordered_beats_all_scrambled": true,
+      "closure_error_max": 1.6653345369377348e-16
+    },
+    {
+      "measurement_flip_prob": 0.02,
+      "feedback_strong_tilt": 2.35,
+      "feedback_weak_tilt": 0.31725000000000003,
+      "ordered_final_entropy": 0.6528406596286955,
+      "ordered_final_left_fraction": 0.359,
+      "ordered_measurement_accuracy": 0.932,
+      "ordered_measurement_mi": 0.4448508815933343,
+      "feedback_first_final_entropy": 0.674600230714884,
+      "reset_first_final_entropy": 0.6547489070369272,
+      "measurement_reset_feedback_final_entropy": 0.6788547361402703,
+      "best_scrambled_name": "reset_first",
+      "best_scrambled_entropy": 0.6547489070369272,
+      "ordering_margin": 0.0019082474082317002,
+      "ordered_beats_all_scrambled": true,
+      "closure_error_max": 0.0
+    },
+    {
+      "measurement_flip_prob": 0.08,
+      "feedback_strong_tilt": 1.35,
+      "feedback_weak_tilt": 0.18225000000000002,
+      "ordered_final_entropy": 0.6640641265641081,
+      "ordered_final_left_fraction": 0.38,
+      "ordered_measurement_accuracy": 0.8776666666666667,
+      "ordered_measurement_mi": 0.32160934917363543,
+      "feedback_first_final_entropy": 0.6749869805043389,
+      "reset_first_final_entropy": 0.6691932979925317,
+      "measurement_reset_feedback_final_entropy": 0.6752425080449801,
+      "best_scrambled_name": "reset_first",
+      "best_scrambled_entropy": 0.6691932979925317,
+      "ordering_margin": 0.005129171428423618,
+      "ordered_beats_all_scrambled": true,
+      "closure_error_max": 1.1102230246251565e-16
+    },
+    {
+      "measurement_flip_prob": 0.08,
+      "feedback_strong_tilt": 1.85,
+      "feedback_weak_tilt": 0.24975000000000003,
+      "ordered_final_entropy": 0.6627435593778077,
+      "ordered_final_left_fraction": 0.37733333333333335,
+      "ordered_measurement_accuracy": 0.8666666666666667,
+      "ordered_measurement_mi": 0.30092201096851473,
+      "feedback_first_final_entropy": 0.6756223432913728,
+      "reset_first_final_entropy": 0.6658306395590199,
+      "measurement_reset_feedback_final_entropy": 0.6758732641398308,
+      "best_scrambled_name": "reset_first",
+      "best_scrambled_entropy": 0.6658306395590199,
+      "ordering_margin": 0.003087080181212176,
+      "ordered_beats_all_scrambled": true,
+      "closure_error_max": 1.1102230246251565e-16
+    },
+    {
+      "measurement_flip_prob": 0.08,
+      "feedback_strong_tilt": 2.35,
+      "feedback_weak_tilt": 0.31725000000000003,
+      "ordered_final_entropy": 0.6502877225479805,
+      "ordered_final_left_fraction": 0.3546666666666667,
+      "ordered_measurement_accuracy": 0.8783333333333333,
+      "ordered_measurement_mi": 0.3231226492656329,
+      "feedback_first_final_entropy": 0.6749869805043389,
+      "reset_first_final_entropy": 0.6647130863604092,
+      "measurement_reset_feedback_final_entropy": 0.677931853850138,
+      "best_scrambled_name": "reset_first",
+      "best_scrambled_entropy": 0.6647130863604092,
+      "ordering_margin": 0.014425363812428649,
+      "ordered_beats_all_scrambled": true,
+      "closure_error_max": 2.220446049250313e-16
+    },
+    {
+      "measurement_flip_prob": 0.16,
+      "feedback_strong_tilt": 1.35,
+      "feedback_weak_tilt": 0.18225000000000002,
+      "ordered_final_entropy": 0.6672336694282288,
+      "ordered_final_left_fraction": 0.38666666666666666,
+      "ordered_measurement_accuracy": 0.808,
+      "ordered_measurement_mi": 0.20417698519605373,
+      "feedback_first_final_entropy": 0.6739464169706721,
+      "reset_first_final_entropy": 0.6732810513265373,
+      "measurement_reset_feedback_final_entropy": 0.6774594164752061,
+      "best_scrambled_name": "reset_first",
+      "best_scrambled_entropy": 0.6732810513265373,
+      "ordering_margin": 0.006047381898308446,
+      "ordered_beats_all_scrambled": true,
+      "closure_error_max": 1.1102230246251565e-16
+    },
+    {
+      "measurement_flip_prob": 0.16,
+      "feedback_strong_tilt": 1.85,
+      "feedback_weak_tilt": 0.24975000000000003,
+      "ordered_final_entropy": 0.6543711109253678,
+      "ordered_final_left_fraction": 0.3616666666666667,
+      "ordered_measurement_accuracy": 0.8006666666666666,
+      "ordered_measurement_mi": 0.1938018169776824,
+      "feedback_first_final_entropy": 0.6752425080449801,
+      "reset_first_final_entropy": 0.6630765353541633,
+      "measurement_reset_feedback_final_entropy": 0.6798579856298621,
+      "best_scrambled_name": "reset_first",
+      "best_scrambled_entropy": 0.6630765353541633,
+      "ordering_margin": 0.008705424428795516,
+      "ordered_beats_all_scrambled": true,
+      "closure_error_max": 2.220446049250313e-16
+    },
+    {
+      "measurement_flip_prob": 0.16,
+      "feedback_strong_tilt": 2.35,
+      "feedback_weak_tilt": 0.31725000000000003,
+      "ordered_final_entropy": 0.6556849848780457,
+      "ordered_final_left_fraction": 0.364,
+      "ordered_measurement_accuracy": 0.8096666666666666,
+      "ordered_measurement_mi": 0.20641973503336714,
+      "feedback_first_final_entropy": 0.6771002718180847,
+      "reset_first_final_entropy": 0.6629102837378711,
+      "measurement_reset_feedback_final_entropy": 0.6810339688022373,
+      "best_scrambled_name": "reset_first",
+      "best_scrambled_entropy": 0.6629102837378711,
+      "ordering_margin": 0.007225298859825369,
+      "ordered_beats_all_scrambled": true,
+      "closure_error_max": 1.1102230246251565e-16
+    },
+    {
+      "measurement_flip_prob": 0.3,
+      "feedback_strong_tilt": 1.35,
+      "feedback_weak_tilt": 0.18225000000000002,
+      "ordered_final_entropy": 0.6667702148673906,
+      "ordered_final_left_fraction": 0.38566666666666666,
+      "ordered_measurement_accuracy": 0.6773333333333333,
+      "ordered_measurement_mi": 0.06431584619164465,
+      "feedback_first_final_entropy": 0.6710740665169147,
+      "reset_first_final_entropy": 0.6728762804702846,
+      "measurement_reset_feedback_final_entropy": 0.67661498434467,
+      "best_scrambled_name": "feedback_first",
+      "best_scrambled_entropy": 0.6710740665169147,
+      "ordering_margin": 0.004303851649524071,
+      "ordered_beats_all_scrambled": true,
+      "closure_error_max": 1.1102230246251565e-16
+    },
+    {
+      "measurement_flip_prob": 0.3,
+      "feedback_strong_tilt": 1.85,
+      "feedback_weak_tilt": 0.24975000000000003,
+      "ordered_final_entropy": 0.6567924418440357,
+      "ordered_final_left_fraction": 0.366,
+      "ordered_measurement_accuracy": 0.6766666666666666,
+      "ordered_measurement_mi": 0.06407937910398964,
+      "feedback_first_final_entropy": 0.671496923519513,
+      "reset_first_final_entropy": 0.6653545105771059,
+      "measurement_reset_feedback_final_entropy": 0.6752425080449801,
+      "best_scrambled_name": "reset_first",
+      "best_scrambled_entropy": 0.6653545105771059,
+      "ordering_margin": 0.008562068733070194,
+      "ordered_beats_all_scrambled": true,
+      "closure_error_max": 1.1102230246251565e-16
+    },
+    {
+      "measurement_flip_prob": 0.3,
+      "feedback_strong_tilt": 2.35,
+      "feedback_weak_tilt": 0.31725000000000003,
+      "ordered_final_entropy": 0.652647182485335,
+      "ordered_final_left_fraction": 0.3586666666666667,
+      "ordered_measurement_accuracy": 0.686,
+      "ordered_measurement_mi": 0.07091809507340278,
+      "feedback_first_final_entropy": 0.6756223432913728,
+      "reset_first_final_entropy": 0.6643895490425429,
+      "measurement_reset_feedback_final_entropy": 0.674600230714884,
+      "best_scrambled_name": "reset_first",
+      "best_scrambled_entropy": 0.6643895490425429,
+      "ordering_margin": 0.01174236655720784,
+      "ordered_beats_all_scrambled": true,
+      "closure_error_max": 5.551115123125783e-17
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "name": "DAGCotangentComplexConstraint",
+  "description": "cvc5 proof of transitivity triangle exactness for cotangent complexes in ring towers",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of DAG cotangent complex transitivity exactness constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for ring relation verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": [
+    {
+      "test": "exact_tower",
+      "A_dim": 2,
+      "B_dim": 3,
+      "C_dim": 5,
+      "L_BA": 1,
+      "L_CA": 3,
+      "L_CB": 2,
+      "theoretical_exact": true,
+      "cvc5_sat": true,
+      "pass": true
+    },
+    {
+      "test": "trivial_extension",
+      "A_dim": 3,
+      "B_dim": 3,
+      "C_dim": 5,
+      "L_BA": 0,
+      "L_CA": 2,
+      "L_CB": 2,
+      "theoretical_exact": true,
+      "cvc5_sat": true,
+      "pass": true
+    },
+    {
+      "test": "long_tower",
+      "A_dim": 1,
+      "B_dim": 3,
+      "C_dim": 5,
+      "L_BA": 2,
+      "L_CA": 4,
+      "L_CB": 2,
+      "theoretical_exact": true,
+      "cvc5_sat": true,
+      "pass": true
+    }
+  ],
+  "negative": [
+    {
+      "test": "broken_exactness",
+      "A_dim": 2,
+      "B_dim": 3,
+      "C_dim": 5,
+      "L_BA": 1,
+      "L_CA": 3,
+      "L_CB": 2,
+      "theoretical_exact": false,
+      "cvc5_unsat": true,
+      "pass": true
+    },
+    {
+      "test": "dimension_mismatch",
+      "L_BA": 1,
+      "L_CA": 5,
+      "L_CB": 3,
+      "expected_sum": 4,
+      "actual": 5,
+      "cvc5_unsat": true,
+      "pass": true
+    },
+    {
+      "test": "negative_dimension",
+      "L_BA": -1,
+      "L_CA": 2,
+      "L_CB": 3,
+      "theoretical_valid": false,
+      "cvc5_unsat": true,
+      "pass": true
+    }
+  ],
+  "boundary": [
+    {
+      "test": "zero_dimensions",
+      "A_dim": 0,
+      "B_dim": 0,
+      "C_dim": 0,
+      "L_BA": 0,
+      "L_CA": 0,
+      "L_CB": 0,
+      "theoretical_exact": true,
+      "cvc5_sat": true,
+      "pass": true
+    },
+    {
+      "test": "large_dimensions",
+      "A_dim": 100,
+      "B_dim": 200,
+      "C_dim": 300,
+      "L_BA": 100,
+      "L_CA": 200,
+      "L_CB": 100,
+      "theoretical_exact": true,
+      "cvc5_sat": true,
+      "pass": true
+    },
+    {
+      "test": "maximal_chain",
+      "A_dim": 2,
+      "B_dim": 4,
+      "C_dim": 6,
+      "L_BA": 2,
+      "L_CA": 4,
+      "L_CB": 2,
+      "constraint_symbolic": "-a + 2*b - c",
+      "theoretical_exact": true,
+      "cvc5_sat": true,
+      "pass": true
+    }
+  ],
+  "classification": "canonical"
+}

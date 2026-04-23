@@ -1,0 +1,136 @@
+{
+  "name": "geometry_griffiths_group_non_torsion_constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Non-torsion order constraint via SMT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Group structure and order calculations"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_nontorsion_element_exists": {
+      "order": "0 (infinite)",
+      "is_torsion": "false",
+      "sat": "True",
+      "result": "PASS"
+    },
+    "test_ho_trivial_alg_nontrivial": {
+      "homologically_trivial": "true",
+      "algebraically_trivial": "false",
+      "in_griffiths_group": "True",
+      "result": "PASS"
+    },
+    "test_unbounded_cycles_nontorsion": {
+      "order": "0 (infinite)",
+      "cycle_dimension": "2",
+      "unbounded_allowed": "True",
+      "result": "PASS"
+    }
+  },
+  "negative": {
+    "test_unsat_dual_order": {
+      "unsat_expected": true,
+      "sat_result": "False",
+      "result": "PASS"
+    },
+    "test_unsat_griffiths_alg_trivial": {
+      "unsat_expected": true,
+      "sat_result": "False",
+      "result": "PASS"
+    },
+    "test_unsat_torsion_order_zero": {
+      "unsat_expected": true,
+      "sat_result": "False",
+      "result": "PASS"
+    }
+  },
+  "boundary": {
+    "test_boundary_trivial_group": {
+      "element": "identity",
+      "order": "1",
+      "is_torsion": "true",
+      "result": "PASS"
+    },
+    "test_boundary_large_torsion": {
+      "order": "1000",
+      "is_torsion": "true",
+      "is_nontorsion": "false",
+      "result": "PASS"
+    },
+    "test_boundary_minimal_griffiths": {
+      "elements": "['identity', 'nontorsion_gen']",
+      "has_nontorsion": "True",
+      "result": "PASS"
+    }
+  },
+  "classification": "canonical"
+}

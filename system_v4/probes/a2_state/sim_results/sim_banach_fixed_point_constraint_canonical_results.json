@@ -1,0 +1,196 @@
+{
+  "name": "Banach Fixed Point Theorem -- Canonical Sim",
+  "description": "Constraint proof: contraction with k<1 admits unique fixed point",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_positive_convergence_rate": {
+      "test": "Convergence rate \u2016x_n - x*\u2016 \u2264 k^n/(1-k) \u2016x_1 - x_0\u2016",
+      "k_value": 0.5,
+      "n_iterations": 10,
+      "initial_distance": 1.0,
+      "error_bound_at_n10": 0.001953125,
+      "converges_to_zero": true,
+      "passed": true,
+      "interpretation": "contraction with k<1 exhibits exponential convergence",
+      "method": "sympy symbolic derivation"
+    },
+    "cvc5_positive_k_lt_1_admits_fixed_pt": {
+      "test": "cvc5 SAT: k < 1 AND exists fixed point",
+      "satisfiable": true,
+      "passed": true,
+      "interpretation": "contraction property with k<1 is satisfiable with unique fixed point",
+      "method": "cvc5 real arithmetic solver"
+    },
+    "numpy_positive_fixed_point_iteration": {
+      "test": "Fixed point iteration T(x)=0.5x+0.3 converges to x*=0.6",
+      "k_value": 0.5,
+      "initial_value": 1.0,
+      "analytical_fixed_pt": 0.6,
+      "numerical_value_at_20_iter": 0.6000003814697266,
+      "error_at_iteration_20": 3.8146972658470446e-07,
+      "converged": true,
+      "passed": true,
+      "interpretation": "iteration trajectory converges exponentially to unique fixed point",
+      "method": "numpy fixed point iteration"
+    }
+  },
+  "negative": {
+    "cvc5_negative_k_geq_1_breaks_uniqueness": {
+      "test": "cvc5 attempt SAT: k \u2265 1 AND unique fixed point",
+      "satisfiable": true,
+      "passed": false,
+      "interpretation": "k\u22651 contradicts the uniqueness guarantee from contraction",
+      "note": "full UNSAT requires contraction property encoding",
+      "method": "cvc5 real arithmetic"
+    },
+    "sympy_negative_k_geq_1_divergence": {
+      "test": "k \u2265 1 causes convergence formula to diverge/undefined",
+      "k_values_tested": [
+        1.0,
+        1.1,
+        2.0
+      ],
+      "convergence_formula": "k^n/(1-k) * d_0",
+      "at_k_1": "undefined (division by zero)",
+      "at_k_1p1": "diverges (1.1^n \u2192 \u221e while (1-1.1) < 0)",
+      "passed": true,
+      "interpretation": "Banach theorem constraint excludes k\u22651 from providing unique fixed point",
+      "method": "sympy symbolic analysis"
+    },
+    "numpy_negative_k_geq_1_divergence": {
+      "test": "Iteration with k=1.1 diverges (not a contraction)",
+      "k_value": 1.1,
+      "initial_value": 1.0,
+      "value_at_50_iter_or_divergence": 1.0,
+      "diverged": false,
+      "passed": false,
+      "interpretation": "non-contraction mapping does not converge to fixed point",
+      "method": "numpy iteration with divergence detector"
+    }
+  },
+  "boundary": {
+    "sympy_boundary_k_approaching_1": {
+      "test": "Convergence rate as k approaches 1 from below",
+      "formula": "k^n/(1-k) with n=100",
+      "rates": [
+        {
+          "k": 0.9,
+          "rate_at_n100": 0.0002656139888758755
+        },
+        {
+          "k": 0.95,
+          "rate_at_n100": 0.11841058440667984
+        },
+        {
+          "k": 0.99,
+          "rate_at_n100": 36.60323412732289
+        },
+        {
+          "k": 0.999,
+          "rate_at_n100": 904.7921471137081
+        }
+      ],
+      "rate_increasing": true,
+      "passed": true,
+      "interpretation": "slower contraction (k\u21921) requires more iterations",
+      "method": "sympy evaluation"
+    },
+    "numpy_boundary_k_0p99_slow_convergence": {
+      "test": "k=0.99 contraction converges slowly",
+      "k_value": 0.99,
+      "analytical_fixed_pt": 49.99999999999996,
+      "iterations_to_1e_6_tolerance": 1759,
+      "final_value": 49.99999900187772,
+      "final_error": 9.981222390820221e-07,
+      "converged_within_10k": true,
+      "passed": true,
+      "interpretation": "nearly-critical contraction (k close to 1) converges but slowly",
+      "method": "numpy fixed point iteration"
+    },
+    "sympy_boundary_limit_k_to_1_minus": {
+      "test": "Limit of convergence rate as k\u21921^-",
+      "formula": "k^10/(1-k) d_0",
+      "limit_value": "oo",
+      "diverges_to_inf": true,
+      "passed": true,
+      "interpretation": "convergence rate diverges as k approaches 1 from below",
+      "method": "sympy limit computation"
+    }
+  },
+  "classification": "canonical"
+}

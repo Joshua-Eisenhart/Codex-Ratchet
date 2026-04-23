@@ -1,0 +1,169 @@
+{
+  "name": "coupling_science_method_igt",
+  "pair": [
+    "science_method",
+    "igt"
+  ],
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "posterior tensor for hypothesis elimination and payoff tensor for IESDS narrowing"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no graph neural ops in this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: Nash equilibrium and strict domination are mutually exclusive by definition"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; z3 covers SMT obligations"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic irreversibility proof: both processes reduce set by fraction f/i, structurally identical"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "hypothesis space as grade-1 Cl(3,0) vectors; falsification = subspace projection reducing norm"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; geometry handled via Clifford algebra"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no equivariant network in this sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "dual DAG: hypothesis lattice mirrors dominance DAG; topological sort confirms isomorphic convergence"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "3-way hyperedges encode science-method update triple and IGT best-response triple; structural parity confirmed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; hypergraph structure handled by xgi"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "pytorch_narrowing_isomorphism": {
+      "pass": true,
+      "surviving_H": 2,
+      "surviving_S": 1,
+      "posterior": [
+        0.0,
+        0.0,
+        0.699999988079071,
+        0.30000001192092896
+      ],
+      "entropy_gradient_norm": 1.0065385103225708,
+      "claim": "falsification and IESDS both strictly narrow admissible sets"
+    },
+    "sympy_irreversibility_proof": {
+      "pass": true,
+      "irreversibility_falsification_expr": "H*f",
+      "irreversibility_iesds_expr": "S*i",
+      "structural_identity_residual": "0",
+      "claim": "both falsification and IESDS reduce admissible set by H*f and S*i respectively"
+    },
+    "clifford_hypothesis_projection": {
+      "pass": true,
+      "norm_before_falsification": 1.7320508075688772,
+      "norm_after_falsification": 1.0,
+      "scalar_part_grade0": 0.0,
+      "claim": "grade-1 hypotheses; falsification projection strictly reduces multivector norm"
+    },
+    "rustworkx_dual_dag_convergence": {
+      "pass": true,
+      "hyp_dag_depth": 4,
+      "dom_dag_depth": 4,
+      "reduced_depth_match": true,
+      "claim": "hypothesis lattice and dominance DAG are structurally isomorphic; elimination converges both"
+    },
+    "xgi_hyperedge_isomorphism": {
+      "pass": true,
+      "num_hyperedges": 2,
+      "all_ternary": true,
+      "claim": "3-way hyperedges {prior,obs,posterior} and {profile,payoff,best_response} are structurally identical"
+    }
+  },
+  "negative": {
+    "z3_nash_dominated_unsat": {
+      "pass": true,
+      "z3_result": "unsat",
+      "claim": "UNSAT: no strategy can simultaneously be Nash AND strictly dominated"
+    },
+    "pytorch_falsification_irreversible": {
+      "pass": true,
+      "posterior_h0": 0.0,
+      "claim": "falsified hypothesis has zero posterior; cannot be restored"
+    },
+    "sympy_empty_set_boundary": {
+      "pass": true,
+      "residual": "0",
+      "claim": "empty hypothesis set stays empty under any fraction; consistent with IGT empty strategy set"
+    }
+  },
+  "boundary": {
+    "pytorch_singleton_no_narrowing": {
+      "pass": true,
+      "posterior": 1.0,
+      "claim": "singleton hypothesis space: posterior stays 1.0; IESDS on singleton strategy is fixed point"
+    },
+    "rustworkx_singleton_dag_fixed_point": {
+      "pass": true,
+      "topo_length": 1,
+      "claim": "singleton DAG is the fixed point; convergence terminates at 1 node for both frameworks"
+    },
+    "clifford_zero_mv_boundary": {
+      "pass": true,
+      "zero_norm": 0.0,
+      "claim": "zero multivector (no surviving hypotheses) has norm 0; boundary condition of complete falsification"
+    },
+    "xgi_singleton_hyperedge_degenerate": {
+      "pass": true,
+      "edge_sizes": [
+        1
+      ],
+      "claim": "singleton hyperedge = no update triple; coupling structure collapses to isolated node"
+    }
+  },
+  "overall_pass": true,
+  "coupling_claim": "falsification (science method) and IESDS (IGT) are structurally isomorphic constraint-narrowing processes: both irreversibly reduce admissible sets, converge to singletons, and are incompatible with restoration (Nash/dominated exclusion)"
+}

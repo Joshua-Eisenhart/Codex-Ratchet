@@ -1,0 +1,1015 @@
+{
+  "name": "szilard_measurement_feedback_substeps",
+  "classification": "exploratory",
+  "classification_note": "Explicit stochastic substep probe for Szilard-style memory mechanics. The lane separates measurement, feedback, reset, and ordering tests on a finite double-well carrier, with trajectory bookkeeping and blind controls, but it does not promote the result to a canonical engine theorem.",
+  "lego_ids": [
+    "stochastic_thermodynamics",
+    "landauer_erasure",
+    "measurement_feedback"
+  ],
+  "primary_lego_ids": [
+    "stochastic_thermodynamics",
+    "measurement_feedback"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "measurement_stage_produces_informative_readout": {
+      "accuracy": 0.8746666666666667,
+      "mutual_information": 0.3152387664274231,
+      "pass": true
+    },
+    "measurement_then_feedback_then_reset_improves_order_over_blind_control": {
+      "ordered_final_entropy": 0.6562408706276686,
+      "blind_feedback_final_entropy": 0.6914253031566651,
+      "pass": true
+    },
+    "reset_stage_clears_the_record_after_feedback": {
+      "ordered_record_present_at_end": false,
+      "pass": true
+    },
+    "correct_order_beats_scrambled_orders": {
+      "ordered_final_entropy": 0.6562408706276686,
+      "feedback_first_final_entropy": 0.6767369952602285,
+      "reset_first_final_entropy": 0.6651948604321934,
+      "measurement_then_reset_then_feedback_final_entropy": 0.6828394932228317,
+      "pass": true
+    }
+  },
+  "negative": {
+    "measurement_only_does_not_erase_memory": {
+      "measurement_only_final_entropy": 0.6918966592050799,
+      "pass": true
+    },
+    "feedback_before_measurement_falls_back_to_blind_guess": {
+      "feedback_first_final_entropy": 0.6767369952602285,
+      "ordered_final_entropy": 0.6562408706276686,
+      "pass": true
+    },
+    "reset_before_feedback_erases_the_record_and_weakens_control": {
+      "measurement_then_reset_then_feedback_final_entropy": 0.6828394932228317,
+      "ordered_final_entropy": 0.6562408706276686,
+      "pass": true
+    },
+    "reset_only_does_not_create_measurement_information": {
+      "reset_only_record_present_at_end": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_protocols_close_work_heat_bookkeeping": {
+      "ordered_closure_error": 0.0,
+      "feedback_first_closure_error": 2.220446049250313e-16,
+      "reset_first_closure_error": 5.551115123125783e-17,
+      "measurement_then_reset_then_feedback_closure_error": 0.0,
+      "measurement_only_closure_error": 1.1102230246251565e-16,
+      "feedback_only_closure_error": 1.1102230246251565e-16,
+      "reset_only_closure_error": 6.938893903907228e-18,
+      "pass": true
+    },
+    "all_protocols_produce_finite_summary_statistics": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "temperature": 1.0,
+    "n_trajectories": 3000,
+    "measurement_steps": 90,
+    "feedback_steps": 120,
+    "reset_steps": 120,
+    "hold_steps": 60,
+    "ordered": {
+      "label": "ordered",
+      "final_left_fraction": 0.365,
+      "final_entropy": 0.6562408706276686,
+      "measurement_accuracy": 0.8746666666666667,
+      "measurement_mutual_information": 0.3152387664274231,
+      "mean_work": 0.7495573524765898,
+      "closure_error": 0.0,
+      "record_present_at_end": false
+    },
+    "feedback_first": {
+      "label": "feedback_first",
+      "final_left_fraction": 0.4096666666666667,
+      "final_entropy": 0.6767369952602285,
+      "measurement_accuracy": 0.7773333333333333,
+      "measurement_mutual_information": 0.16386182591450413,
+      "mean_work": -0.2731270257331214,
+      "closure_error": 2.220446049250313e-16,
+      "record_present_at_end": false
+    },
+    "reset_first": {
+      "label": "reset_first",
+      "final_left_fraction": 0.38233333333333336,
+      "final_entropy": 0.6651948604321934,
+      "measurement_accuracy": 0.7886666666666666,
+      "measurement_mutual_information": 0.18114035831788067,
+      "mean_work": 0.6547264712822342,
+      "closure_error": 5.551115123125783e-17,
+      "record_present_at_end": true
+    },
+    "measurement_then_reset_then_feedback": {
+      "label": "measurement_then_reset_then_feedback",
+      "final_left_fraction": 0.42833333333333334,
+      "final_entropy": 0.6828394932228317,
+      "measurement_accuracy": 0.872,
+      "measurement_mutual_information": 0.30992521282542035,
+      "mean_work": -0.15644394599647857,
+      "closure_error": 0.0,
+      "record_present_at_end": false
+    },
+    "measurement_only": {
+      "label": "measurement_only",
+      "final_left_fraction": 0.475,
+      "final_entropy": 0.6918966592050799,
+      "measurement_accuracy": 0.8636666666666667,
+      "measurement_mutual_information": 0.29432251795747116,
+      "mean_work": -0.5522497442644262,
+      "closure_error": 1.1102230246251565e-16,
+      "record_present_at_end": true
+    },
+    "feedback_only": {
+      "label": "feedback_only",
+      "final_left_fraction": 0.4706666666666667,
+      "final_entropy": 0.6914253031566651,
+      "measurement_accuracy": null,
+      "measurement_mutual_information": null,
+      "mean_work": 0.45738409350897,
+      "closure_error": 1.1102230246251565e-16,
+      "record_present_at_end": false
+    },
+    "reset_only": {
+      "label": "reset_only",
+      "final_left_fraction": 0.431,
+      "final_entropy": 0.6835947251295394,
+      "measurement_accuracy": null,
+      "measurement_mutual_information": null,
+      "mean_work": -0.023443468650472983,
+      "closure_error": 6.938893903907228e-18,
+      "record_present_at_end": false
+    },
+    "scope_note": "Exploratory stochastic double-well lane that decomposes the Szilard cycle into measurement, feedback, reset, and ordering tests."
+  },
+  "protocols": {
+    "ordered": {
+      "order": [
+        "measurement",
+        "feedback",
+        "reset",
+        "hold"
+      ],
+      "initial_left_fraction": 0.4796666666666667,
+      "final_left_fraction": 0.365,
+      "measurement_record_present_at_end": false,
+      "initial_entropy": 0.6923200636050763,
+      "final_entropy": 0.6562408706276686,
+      "measured_entropy": 0.6926562113155287,
+      "mean_work": 0.7495573524765898,
+      "mean_heat": -0.49670159748374954,
+      "mean_delta_u": 0.2528557549928403,
+      "closure_error": 0.0,
+      "stage_logs": [
+        {
+          "name": "measurement_window",
+          "kind": "measurement",
+          "steps": 90,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 0.1,
+          "tilt_start": 0.0,
+          "tilt_end": 0.0,
+          "mean_work": -0.5554751491952172,
+          "mean_heat": 0.4254927066656143,
+          "mean_delta_u": -0.12998244252960298,
+          "mean_barrier_work": -0.5554751491952172,
+          "mean_tilt_work": 0.0,
+          "measurement": {
+            "p_true_right": 0.5203333333333333,
+            "p_obs_right": 0.5156666666666667,
+            "accuracy": 0.8746666666666667,
+            "false_positive_rate": 0.12578179291174427,
+            "false_negative_rate": 0.12491992312620116,
+            "mutual_information": 0.3152387664274231,
+            "joint_right_right": 0.4553333333333333,
+            "joint_right_left": 0.065,
+            "joint_left_right": 0.060333333333333336,
+            "joint_left_left": 0.41933333333333334,
+            "n": 3000.0,
+            "side_flip_rate": 0.055
+          },
+          "record_after_stage": "present"
+        },
+        {
+          "name": "feedback_drive",
+          "kind": "feedback",
+          "branch_logs": [
+            {
+              "branch": "right",
+              "steps": 120,
+              "temperature": 1.0,
+              "barrier_start": 0.1,
+              "barrier_end": 1.55,
+              "tilt_start": 0.0,
+              "tilt_end": 2.35,
+              "mean_work": 2.24015252857605,
+              "mean_heat": -0.9205221161346462,
+              "mean_delta_u": 1.319630412441404,
+              "mean_barrier_work": 0.8284900387394063,
+              "mean_tilt_work": 1.411662489836644,
+              "count": 1547
+            },
+            {
+              "branch": "left",
+              "steps": 120,
+              "temperature": 1.0,
+              "barrier_start": 0.1,
+              "barrier_end": 1.55,
+              "tilt_start": 0.0,
+              "tilt_end": 0.31725,
+              "mean_work": 0.6555266503656065,
+              "mean_heat": -0.3449207726488361,
+              "mean_delta_u": 0.31060587771677045,
+              "mean_barrier_work": 0.8729642642461184,
+              "mean_tilt_work": -0.21743761388051203,
+              "count": 1453
+            }
+          ],
+          "control_mode": "measured_record",
+          "branch_metrics": {
+            "right_branch": {
+              "mean_work": 2.24015252857605,
+              "mean_heat": -0.9205221161346462,
+              "mean_delta_u": 1.319630412441404,
+              "closure_error": 0.0,
+              "count": 1547,
+              "final_left_fraction": 0.2766645119586296
+            },
+            "left_branch": {
+              "mean_work": 0.6555266503656065,
+              "mean_heat": -0.3449207726488361,
+              "mean_delta_u": 0.31060587771677045,
+              "closure_error": 0.0,
+              "count": 1453,
+              "final_left_fraction": 0.817618719889883
+            }
+          },
+          "mean_work": 1.4726653948961255,
+          "mean_heat": -0.6417391987730188,
+          "mean_delta_u": 0.8309261961231064,
+          "record_after_stage": "present"
+        },
+        {
+          "name": "reset_lock",
+          "kind": "reset",
+          "steps": 120,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 1.55,
+          "tilt_start": 0.31725,
+          "tilt_end": 1.4,
+          "mean_work": -0.1676328932243181,
+          "mean_heat": -0.18398656502596047,
+          "mean_delta_u": -0.3516194582502785,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": -0.1676328932243181,
+          "record_after_stage": "cleared"
+        },
+        {
+          "name": "left_hold",
+          "kind": "hold",
+          "steps": 60,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 1.55,
+          "tilt_start": 1.4,
+          "tilt_end": 1.4,
+          "mean_work": 0.0,
+          "mean_heat": -0.09646854035038467,
+          "mean_delta_u": -0.09646854035038467,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 0.0,
+          "record_after_stage": "unchanged"
+        }
+      ],
+      "measurement_accuracy": 0.8746666666666667,
+      "measurement_mutual_information": 0.3152387664274231
+    },
+    "feedback_first": {
+      "order": [
+        "feedback",
+        "measurement",
+        "reset",
+        "hold"
+      ],
+      "initial_left_fraction": 0.4796666666666667,
+      "final_left_fraction": 0.4096666666666667,
+      "measurement_record_present_at_end": false,
+      "initial_entropy": 0.6923200636050763,
+      "final_entropy": 0.6767369952602285,
+      "measured_entropy": 0.6930082852403007,
+      "mean_work": -0.2731270257331214,
+      "mean_heat": -1.0565697198859765,
+      "mean_delta_u": -1.3296967456190978,
+      "closure_error": 2.220446049250313e-16,
+      "stage_logs": [
+        {
+          "name": "feedback_drive",
+          "kind": "feedback",
+          "branch_logs": [
+            {
+              "branch": "right",
+              "steps": 120,
+              "temperature": 1.0,
+              "barrier_start": 0.1,
+              "barrier_end": 1.55,
+              "tilt_start": 0.0,
+              "tilt_end": 2.35,
+              "mean_work": 0.48469368684020775,
+              "mean_heat": -0.3858780287886703,
+              "mean_delta_u": 0.0988156580515375,
+              "mean_barrier_work": 0.6477032934715092,
+              "mean_tilt_work": -0.16300960663130137,
+              "count": 1496
+            },
+            {
+              "branch": "left",
+              "steps": 120,
+              "temperature": 1.0,
+              "barrier_start": 0.1,
+              "barrier_end": 1.55,
+              "tilt_start": 0.0,
+              "tilt_end": -2.35,
+              "mean_work": 0.37624928679759445,
+              "mean_heat": -0.3628247369000548,
+              "mean_delta_u": 0.013424549897539705,
+              "mean_barrier_work": 0.6618741502288816,
+              "mean_tilt_work": -0.28562486343128723,
+              "count": 1504
+            }
+          ],
+          "control_mode": "blind_guess",
+          "branch_metrics": {
+            "right_branch": {
+              "mean_work": 0.48469368684020775,
+              "mean_heat": -0.3858780287886703,
+              "mean_delta_u": 0.0988156580515375,
+              "closure_error": 0.0,
+              "count": 1496,
+              "final_left_fraction": 0.5594919786096256
+            },
+            "left_branch": {
+              "mean_work": 0.37624928679759445,
+              "mean_heat": -0.3628247369000548,
+              "mean_delta_u": 0.013424549897539705,
+              "closure_error": 5.551115123125783e-17,
+              "count": 1504,
+              "final_left_fraction": 0.4175531914893617
+            }
+          },
+          "mean_work": 0.43032689428551096,
+          "mean_heat": -0.3743206451218443,
+          "mean_delta_u": 0.056006249163666616,
+          "record_after_stage": "absent"
+        },
+        {
+          "name": "measurement_window",
+          "kind": "measurement",
+          "steps": 90,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 0.1,
+          "tilt_start": 0.0,
+          "tilt_end": 0.0,
+          "mean_work": -0.6388764237181318,
+          "mean_heat": 0.10675391385953711,
+          "mean_delta_u": -0.5321225098585947,
+          "mean_barrier_work": -0.6388764237181318,
+          "mean_tilt_work": 0.0,
+          "measurement": {
+            "p_true_right": 0.5116666666666667,
+            "p_obs_right": 0.49166666666666664,
+            "accuracy": 0.8146666666666667,
+            "false_positive_rate": 0.16928327645051197,
+            "false_negative_rate": 0.2006514657980456,
+            "mutual_information": 0.21443905056437843,
+            "joint_right_right": 0.409,
+            "joint_right_left": 0.10266666666666667,
+            "joint_left_right": 0.08266666666666667,
+            "joint_left_left": 0.4056666666666667,
+            "n": 3000.0,
+            "side_flip_rate": 0.11433333333333333
+          },
+          "record_after_stage": "present"
+        },
+        {
+          "name": "reset_lock",
+          "kind": "reset",
+          "steps": 120,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 1.55,
+          "tilt_start": 0.31725,
+          "tilt_end": 1.4,
+          "mean_work": -0.06457749630050054,
+          "mean_heat": -0.6785817345436612,
+          "mean_delta_u": -0.7431592308441617,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": -0.06457749630050054,
+          "record_after_stage": "cleared"
+        },
+        {
+          "name": "left_hold",
+          "kind": "hold",
+          "steps": 60,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 1.55,
+          "tilt_start": 1.4,
+          "tilt_end": 1.4,
+          "mean_work": 0.0,
+          "mean_heat": -0.11042125408000804,
+          "mean_delta_u": -0.11042125408000804,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 0.0,
+          "record_after_stage": "unchanged"
+        }
+      ],
+      "measurement_accuracy": 0.7773333333333333,
+      "measurement_mutual_information": 0.16386182591450413
+    },
+    "reset_first": {
+      "order": [
+        "reset",
+        "measurement",
+        "feedback",
+        "hold"
+      ],
+      "initial_left_fraction": 0.4796666666666667,
+      "final_left_fraction": 0.38233333333333336,
+      "measurement_record_present_at_end": true,
+      "initial_entropy": 0.6923200636050763,
+      "final_entropy": 0.6651948604321934,
+      "measured_entropy": 0.6911402820975664,
+      "mean_work": 0.6547264712822342,
+      "mean_heat": -0.3985632823463167,
+      "mean_delta_u": 0.2561631889359175,
+      "closure_error": 5.551115123125783e-17,
+      "stage_logs": [
+        {
+          "name": "reset_lock",
+          "kind": "reset",
+          "steps": 120,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 1.55,
+          "tilt_start": 0.31725,
+          "tilt_end": 1.4,
+          "mean_work": -0.0255984862715603,
+          "mean_heat": 0.18930905319270658,
+          "mean_delta_u": 0.1637105669211463,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": -0.0255984862715603,
+          "record_after_stage": "cleared"
+        },
+        {
+          "name": "measurement_window",
+          "kind": "measurement",
+          "steps": 90,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 0.1,
+          "tilt_start": 0.0,
+          "tilt_end": 0.0,
+          "mean_work": -0.6294616107447711,
+          "mean_heat": 0.16922562594775184,
+          "mean_delta_u": -0.4602359847970192,
+          "mean_barrier_work": -0.6294616107447711,
+          "mean_tilt_work": 0.0,
+          "measurement": {
+            "p_true_right": 0.4746666666666667,
+            "p_obs_right": 0.4683333333333333,
+            "accuracy": 0.8243333333333334,
+            "false_positive_rate": 0.16116751269035534,
+            "false_negative_rate": 0.1917134831460674,
+            "mutual_information": 0.22718399282581941,
+            "joint_right_right": 0.38366666666666666,
+            "joint_right_left": 0.091,
+            "joint_left_right": 0.08466666666666667,
+            "joint_left_left": 0.44066666666666665,
+            "n": 3000.0,
+            "side_flip_rate": 0.11066666666666666
+          },
+          "record_after_stage": "present"
+        },
+        {
+          "name": "feedback_drive",
+          "kind": "feedback",
+          "branch_logs": [
+            {
+              "branch": "right",
+              "steps": 120,
+              "temperature": 1.0,
+              "barrier_start": 0.1,
+              "barrier_end": 1.55,
+              "tilt_start": 0.0,
+              "tilt_end": 2.35,
+              "mean_work": 2.072062763397425,
+              "mean_heat": -0.8540180840538596,
+              "mean_delta_u": 1.2180446793435653,
+              "mean_barrier_work": 0.8445632195234962,
+              "mean_tilt_work": 1.227499543873929,
+              "count": 1405
+            },
+            {
+              "branch": "left",
+              "steps": 120,
+              "temperature": 1.0,
+              "barrier_start": 0.1,
+              "barrier_end": 1.55,
+              "tilt_start": 0.0,
+              "tilt_end": 0.31725,
+              "mean_work": 0.6383144340578774,
+              "mean_heat": -0.3314628908904564,
+              "mean_delta_u": 0.30685154316742097,
+              "mean_barrier_work": 0.848597187409154,
+              "mean_tilt_work": -0.2102827533512767,
+              "count": 1595
+            }
+          ],
+          "control_mode": "measured_record",
+          "branch_metrics": {
+            "right_branch": {
+              "mean_work": 2.072062763397425,
+              "mean_heat": -0.8540180840538596,
+              "mean_delta_u": 1.2180446793435653,
+              "closure_error": 2.220446049250313e-16,
+              "count": 1405,
+              "final_left_fraction": 0.31530249110320285
+            },
+            "left_branch": {
+              "mean_work": 0.6383144340578774,
+              "mean_heat": -0.3314628908904564,
+              "mean_delta_u": 0.30685154316742097,
+              "closure_error": 0.0,
+              "count": 1595,
+              "final_left_fraction": 0.8225705329153605
+            }
+          },
+          "mean_work": 1.3097865682985654,
+          "mean_heat": -0.576192906355317,
+          "mean_delta_u": 0.7335936619432487,
+          "record_after_stage": "present"
+        },
+        {
+          "name": "left_hold",
+          "kind": "hold",
+          "steps": 60,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 1.55,
+          "tilt_start": 1.4,
+          "tilt_end": 1.4,
+          "mean_work": 0.0,
+          "mean_heat": -0.18090505513145816,
+          "mean_delta_u": -0.18090505513145816,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 0.0,
+          "record_after_stage": "unchanged"
+        }
+      ],
+      "measurement_accuracy": 0.7886666666666666,
+      "measurement_mutual_information": 0.18114035831788067
+    },
+    "measurement_then_reset_then_feedback": {
+      "order": [
+        "measurement",
+        "reset",
+        "feedback",
+        "hold"
+      ],
+      "initial_left_fraction": 0.4796666666666667,
+      "final_left_fraction": 0.42833333333333334,
+      "measurement_record_present_at_end": false,
+      "initial_entropy": 0.6923200636050763,
+      "final_entropy": 0.6828394932228317,
+      "measured_entropy": 0.6924250066981698,
+      "mean_work": -0.15644394599647857,
+      "mean_heat": -0.9947966653255198,
+      "mean_delta_u": -1.1512406113219984,
+      "closure_error": 0.0,
+      "stage_logs": [
+        {
+          "name": "measurement_window",
+          "kind": "measurement",
+          "steps": 90,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 0.1,
+          "tilt_start": 0.0,
+          "tilt_end": 0.0,
+          "mean_work": -0.5598828817121585,
+          "mean_heat": 0.42925618798467635,
+          "mean_delta_u": -0.13062669372748215,
+          "mean_barrier_work": -0.5598828817121585,
+          "mean_tilt_work": 0.0,
+          "measurement": {
+            "p_true_right": 0.5203333333333333,
+            "p_obs_right": 0.519,
+            "accuracy": 0.872,
+            "false_positive_rate": 0.1320361362056984,
+            "false_negative_rate": 0.12427930813581038,
+            "mutual_information": 0.30992521282542035,
+            "joint_right_right": 0.45566666666666666,
+            "joint_right_left": 0.06466666666666666,
+            "joint_left_right": 0.06333333333333334,
+            "joint_left_left": 0.41633333333333333,
+            "n": 3000.0,
+            "side_flip_rate": 0.058333333333333334
+          },
+          "record_after_stage": "present"
+        },
+        {
+          "name": "reset_lock",
+          "kind": "reset",
+          "steps": 120,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 1.55,
+          "tilt_start": 0.31725,
+          "tilt_end": 1.4,
+          "mean_work": -0.02635122813904717,
+          "mean_heat": -0.7098510389291293,
+          "mean_delta_u": -0.7362022670681765,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": -0.02635122813904717,
+          "record_after_stage": "cleared"
+        },
+        {
+          "name": "feedback_drive",
+          "kind": "feedback",
+          "branch_logs": [
+            {
+              "branch": "right",
+              "steps": 120,
+              "temperature": 1.0,
+              "barrier_start": 0.1,
+              "barrier_end": 1.55,
+              "tilt_start": 0.0,
+              "tilt_end": 2.35,
+              "mean_work": 0.19935355387289172,
+              "mean_heat": -0.4743760423741679,
+              "mean_delta_u": -0.2750224885012762,
+              "mean_barrier_work": 0.7131328223232359,
+              "mean_tilt_work": -0.5137792684503442,
+              "count": 1490
+            },
+            {
+              "branch": "left",
+              "steps": 120,
+              "temperature": 1.0,
+              "barrier_start": 0.1,
+              "barrier_end": 1.55,
+              "tilt_start": 0.0,
+              "tilt_end": -2.35,
+              "mean_work": 0.6571746333070019,
+              "mean_heat": -0.4773490869969174,
+              "mean_delta_u": 0.17982554631008443,
+              "mean_barrier_work": 0.7083948817008049,
+              "mean_tilt_work": -0.05122024839380298,
+              "count": 1510
+            }
+          ],
+          "control_mode": "blind_guess",
+          "branch_metrics": {
+            "right_branch": {
+              "mean_work": 0.19935355387289172,
+              "mean_heat": -0.4743760423741679,
+              "mean_delta_u": -0.2750224885012762,
+              "closure_error": 0.0,
+              "count": 1490,
+              "final_left_fraction": 0.6382550335570469
+            },
+            "left_branch": {
+              "mean_work": 0.6571746333070019,
+              "mean_heat": -0.4773490869969174,
+              "mean_delta_u": 0.17982554631008443,
+              "closure_error": 5.551115123125783e-17,
+              "count": 1510,
+              "final_left_fraction": 0.44370860927152317
+            }
+          },
+          "mean_work": 0.4297901638547272,
+          "mean_heat": -0.4758724748342852,
+          "mean_delta_u": -0.04608231097955801,
+          "record_after_stage": "absent"
+        },
+        {
+          "name": "left_hold",
+          "kind": "hold",
+          "steps": 60,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 1.55,
+          "tilt_start": 1.4,
+          "tilt_end": 1.4,
+          "mean_work": 0.0,
+          "mean_heat": -0.2383293395467819,
+          "mean_delta_u": -0.2383293395467819,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 0.0,
+          "record_after_stage": "unchanged"
+        }
+      ],
+      "measurement_accuracy": 0.872,
+      "measurement_mutual_information": 0.30992521282542035
+    },
+    "measurement_only": {
+      "order": [
+        "measurement",
+        "hold"
+      ],
+      "initial_left_fraction": 0.4796666666666667,
+      "final_left_fraction": 0.475,
+      "measurement_record_present_at_end": true,
+      "initial_entropy": 0.6923200636050763,
+      "final_entropy": 0.6918966592050799,
+      "measured_entropy": 0.6925461712573439,
+      "mean_work": -0.5522497442644262,
+      "mean_heat": -0.28360531092694563,
+      "mean_delta_u": -0.8358550551913719,
+      "closure_error": 1.1102230246251565e-16,
+      "stage_logs": [
+        {
+          "name": "measurement_window",
+          "kind": "measurement",
+          "steps": 90,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 0.1,
+          "tilt_start": 0.0,
+          "tilt_end": 0.0,
+          "mean_work": -0.5522497442644262,
+          "mean_heat": 0.4186430631666568,
+          "mean_delta_u": -0.1336066810977694,
+          "mean_barrier_work": -0.5522497442644262,
+          "mean_tilt_work": 0.0,
+          "measurement": {
+            "p_true_right": 0.5203333333333333,
+            "p_obs_right": 0.5173333333333333,
+            "accuracy": 0.8636666666666667,
+            "false_positive_rate": 0.1389854065323141,
+            "false_negative_rate": 0.13388853299167203,
+            "mutual_information": 0.29432251795747116,
+            "joint_right_right": 0.45066666666666666,
+            "joint_right_left": 0.06966666666666667,
+            "joint_left_right": 0.06666666666666667,
+            "joint_left_left": 0.413,
+            "n": 3000.0,
+            "side_flip_rate": 0.059
+          },
+          "record_after_stage": "present"
+        },
+        {
+          "name": "left_hold",
+          "kind": "hold",
+          "steps": 60,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 1.55,
+          "tilt_start": 1.4,
+          "tilt_end": 1.4,
+          "mean_work": 0.0,
+          "mean_heat": -0.7022483740936024,
+          "mean_delta_u": -0.7022483740936024,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 0.0,
+          "record_after_stage": "unchanged"
+        }
+      ],
+      "measurement_accuracy": 0.8636666666666667,
+      "measurement_mutual_information": 0.29432251795747116
+    },
+    "feedback_only": {
+      "order": [
+        "feedback",
+        "hold"
+      ],
+      "initial_left_fraction": 0.4796666666666667,
+      "final_left_fraction": 0.4706666666666667,
+      "measurement_record_present_at_end": false,
+      "initial_entropy": 0.6923200636050763,
+      "final_entropy": 0.6914253031566651,
+      "measured_entropy": null,
+      "mean_work": 0.45738409350897,
+      "mean_heat": -0.6419545506952665,
+      "mean_delta_u": -0.18457045718629644,
+      "closure_error": 1.1102230246251565e-16,
+      "stage_logs": [
+        {
+          "name": "feedback_drive",
+          "kind": "feedback",
+          "branch_logs": [
+            {
+              "branch": "right",
+              "steps": 120,
+              "temperature": 1.0,
+              "barrier_start": 0.1,
+              "barrier_end": 1.55,
+              "tilt_start": 0.0,
+              "tilt_end": 2.35,
+              "mean_work": 0.5345150725914696,
+              "mean_heat": -0.4064272667583291,
+              "mean_delta_u": 0.1280878058331405,
+              "mean_barrier_work": 0.6409357174353609,
+              "mean_tilt_work": -0.10642064484389137,
+              "count": 1523
+            },
+            {
+              "branch": "left",
+              "steps": 120,
+              "temperature": 1.0,
+              "barrier_start": 0.1,
+              "barrier_end": 1.55,
+              "tilt_start": 0.0,
+              "tilt_end": -2.35,
+              "mean_work": 0.3778509309208543,
+              "mean_heat": -0.3787249969450261,
+              "mean_delta_u": -0.0008740660241717592,
+              "mean_barrier_work": 0.6553216938430084,
+              "mean_tilt_work": -0.277470762922154,
+              "count": 1477
+            }
+          ],
+          "control_mode": "blind_guess",
+          "branch_metrics": {
+            "right_branch": {
+              "mean_work": 0.5345150725914696,
+              "mean_heat": -0.4064272667583291,
+              "mean_delta_u": 0.1280878058331405,
+              "closure_error": 0.0,
+              "count": 1523,
+              "final_left_fraction": 0.5587655942219304
+            },
+            "left_branch": {
+              "mean_work": 0.3778509309208543,
+              "mean_heat": -0.3787249969450261,
+              "mean_delta_u": -0.0008740660241717592,
+              "closure_error": 0.0,
+              "count": 1477,
+              "final_left_fraction": 0.42383209207853756
+            }
+          },
+          "mean_work": 0.45738409350897,
+          "mean_heat": -0.39278851592024616,
+          "mean_delta_u": 0.06459557758872375,
+          "record_after_stage": "absent"
+        },
+        {
+          "name": "left_hold",
+          "kind": "hold",
+          "steps": 60,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 1.55,
+          "tilt_start": 1.4,
+          "tilt_end": 1.4,
+          "mean_work": 0.0,
+          "mean_heat": -0.24916603477502022,
+          "mean_delta_u": -0.24916603477502022,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 0.0,
+          "record_after_stage": "unchanged"
+        }
+      ],
+      "measurement_accuracy": null,
+      "measurement_mutual_information": null
+    },
+    "reset_only": {
+      "order": [
+        "reset",
+        "hold"
+      ],
+      "initial_left_fraction": 0.4796666666666667,
+      "final_left_fraction": 0.431,
+      "measurement_record_present_at_end": false,
+      "initial_entropy": 0.6923200636050763,
+      "final_entropy": 0.6835947251295394,
+      "measured_entropy": null,
+      "mean_work": -0.023443468650472983,
+      "mean_heat": 0.03618747253892721,
+      "mean_delta_u": 0.01274400388845423,
+      "closure_error": 6.938893903907228e-18,
+      "stage_logs": [
+        {
+          "name": "reset_lock",
+          "kind": "reset",
+          "steps": 120,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 1.55,
+          "tilt_start": 0.31725,
+          "tilt_end": 1.4,
+          "mean_work": -0.023443468650472983,
+          "mean_heat": 0.1883333245387799,
+          "mean_delta_u": 0.16488985588830693,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": -0.023443468650472983,
+          "record_after_stage": "cleared"
+        },
+        {
+          "name": "left_hold",
+          "kind": "hold",
+          "steps": 60,
+          "temperature": 1.0,
+          "barrier_start": 1.55,
+          "barrier_end": 1.55,
+          "tilt_start": 1.4,
+          "tilt_end": 1.4,
+          "mean_work": 0.0,
+          "mean_heat": -0.1521458519998527,
+          "mean_delta_u": -0.1521458519998527,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 0.0,
+          "record_after_stage": "unchanged"
+        }
+      ],
+      "measurement_accuracy": null,
+      "measurement_mutual_information": null
+    }
+  }
+}

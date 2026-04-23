@@ -1,0 +1,166 @@
+{
+  "classification": "canonical",
+  "sim_name": "Spin7Manifold",
+  "timestamp": "2026-04-16T14:38:21",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Cayley 4-fold dimension constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for Spin(7) structure forms"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; Spin(7) structure constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "tests": {
+    "positive": [
+      {
+        "test": "positive_spin7_structure_form",
+        "spin7_components": [
+          "\u03c6\u2227dx_8",
+          "*_7 \u03c6"
+        ],
+        "num_components": 2,
+        "is_4form": true,
+        "status": "pass"
+      },
+      {
+        "test": "positive_cayley_dimension",
+        "dim_cayley": 4,
+        "dim_manifold": 8,
+        "codimension": 4,
+        "valid": true,
+        "status": "pass"
+      },
+      {
+        "test": "positive_cayley_volume_calibration",
+        "calibrated_by_spin7_form": true,
+        "volume_equals_psi_restriction": true,
+        "status": "pass"
+      }
+    ],
+    "negative": [
+      {
+        "test": "negative_cayley_dimension_not_4",
+        "claim": "dim(Cayley) = 3",
+        "constraint": "dim(Cayley) = 4",
+        "expected": "unsat",
+        "actual": "unsat",
+        "passed": true,
+        "status": "pass"
+      },
+      {
+        "test": "negative_cayley_dimension_5",
+        "claim": "dim(Cayley) = 5",
+        "constraint": "dim(Cayley) = 4",
+        "expected": "unsat",
+        "actual": "unsat",
+        "passed": true,
+        "status": "pass"
+      },
+      {
+        "test": "negative_cayley_exceeds_manifold",
+        "claim": "dim(Cayley) = 9",
+        "manifold_dim": 8,
+        "constraint": "dim(Cayley) <= 8",
+        "expected": "unsat",
+        "actual": "unsat",
+        "passed": true,
+        "status": "pass"
+      }
+    ],
+    "boundary": [
+      {
+        "test": "boundary_cayley_codimension",
+        "dim_cayley": 4,
+        "dim_manifold": 8,
+        "expected_codimension": 4,
+        "expected": "sat",
+        "actual": "sat",
+        "passed": true,
+        "status": "pass"
+      },
+      {
+        "test": "boundary_spin7_structure_symmetry",
+        "component_1": "\u03c6\u2227dx_8",
+        "component_2": "*_7 \u03c6",
+        "degree": 4,
+        "num_components": 2,
+        "hodge_related": true,
+        "status": "pass"
+      }
+    ]
+  },
+  "summary": {
+    "total_tests": 8,
+    "passed": 8,
+    "failed": 0,
+    "all_pass": true
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "admissibility_manifold_mc",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Monte Carlo sampling over the classical admissibility region"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "nonempty_d2": true,
+    "bounded_d2": true,
+    "monotone_tighten_d2": true,
+    "nonempty_d3": true,
+    "bounded_d3": true,
+    "monotone_tighten_d3": true,
+    "nonempty_d5": true,
+    "bounded_d5": true,
+    "monotone_tighten_d5": true
+  },
+  "negative": {
+    "infeasible_empty": true,
+    "outside_rejected": true
+  },
+  "boundary": {
+    "boundary_point_in": true,
+    "origin_in": true
+  },
+  "classical_captured": "deterministic MC feasibility fraction on linear+L1 constraints",
+  "innately_missing": "probe-relative admissibility, nonclassical exclusion under coupling",
+  "divergence_log": {
+    "note": "classical substrate cannot encode probe-relative indistinguishability",
+    "missing_axes": [
+      "context-dependent admissibility",
+      "coupling-induced exclusion",
+      "nonclassical constraint interference"
+    ]
+  },
+  "all_pass": true
+}

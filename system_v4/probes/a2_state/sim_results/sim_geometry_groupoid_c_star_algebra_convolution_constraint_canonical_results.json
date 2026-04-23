@@ -1,0 +1,142 @@
+{
+  "name": "Groupoid C*-Algebra Convolution Constraint",
+  "description": "cvc5 UNSAT proof that non-associative convolution is inadmissible",
+  "domain": "Groupoid C*-algebras",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of groupoid C*-algebra convolution constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for convolution associativity"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_1_associativity_pointwise": {
+      "test": "(f\u2605g)\u2605h = f\u2605(g\u2605h) for point-wise sums",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "positive_2_associativity_multiplicative": {
+      "test": "Associativity: (f\u00b7g)\u00b7h = f\u00b7(g\u00b7h)",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "positive_3_sympy_groupoid_law": {
+      "test": "Groupoid composition law is associative",
+      "algebraic": true,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_1_explicit_non_associativity": {
+      "test": "(f\u2605g)\u2605h \u2260 f\u2605(g\u2605h) contradicts convolution law",
+      "sat": false,
+      "expected": false,
+      "pass": true
+    },
+    "negative_2_incompatible_arrows": {
+      "test": "Incompatible arrow composition (UNSAT)",
+      "sat": false,
+      "expected": false,
+      "pass": true
+    },
+    "negative_3_non_associative_structure": {
+      "test": "Non-associative operation contradicts C*-algebra structure",
+      "sat": false,
+      "expected": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_1_identity_element": {
+      "test": "f\u2605e = f (identity element)",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "boundary_2_zero_element": {
+      "test": "f\u26050 = 0 (zero element)",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "boundary_3_trivial_groupoid": {
+      "test": "Associativity in trivial (single-arrow) groupoid",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

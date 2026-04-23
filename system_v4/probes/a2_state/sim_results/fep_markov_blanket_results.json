@@ -1,0 +1,39 @@
+{
+  "name": "sim_fep_markov_blanket_on_constraint_manifold",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic CI identity"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "CI factorization admissible set is sat"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "CI test via marginal products"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "supportive",
+    "z3": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "factorized_CI_holds": true,
+    "sympy_CI_identity": true,
+    "z3_CI_constraint_sat": true
+  },
+  "negative": {
+    "non_factorized_violates_CI": true,
+    "z3_non_factorized_unsat": true
+  },
+  "boundary": {
+    "degenerate_blanket_still_CI": true
+  },
+  "PASS": true
+}

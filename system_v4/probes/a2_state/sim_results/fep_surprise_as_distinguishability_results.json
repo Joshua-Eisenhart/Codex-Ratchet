@@ -1,0 +1,39 @@
+{
+  "name": "sim_fep_surprise_as_distinguishability",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "derivative sign of surprise"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "monotone surrogate of surprise ordering"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "ranking + entropy integration"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "supportive",
+    "z3": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "rank_matches": true,
+    "entropy_integration": true,
+    "sympy_deriv_neg": true,
+    "z3_surprise_monotone": true
+  },
+  "negative": {
+    "probe_relative_ranks_differ": true
+  },
+  "boundary": {
+    "uniform_all_equal_surprise": true
+  },
+  "PASS": true
+}

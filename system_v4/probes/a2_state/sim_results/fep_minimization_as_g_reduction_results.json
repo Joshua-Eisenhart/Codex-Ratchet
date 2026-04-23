@@ -1,0 +1,41 @@
+{
+  "name": "sim_fep_minimization_as_g_reduction",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "F critical point = G stabilizer element"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT certifies F has G-reduced minimum at p"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "iterate simplex step"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "F_monotonic_nonincreasing": true,
+    "stabilizer_overlap_nondecreasing": true,
+    "final_overlap_full": true,
+    "sympy_critical_point_at_p": true,
+    "z3_no_F_below_zero": true
+  },
+  "negative": {
+    "random_drift_has_violations": true
+  },
+  "boundary": {
+    "q_eq_p_full_stabilizer": true,
+    "q_eq_p_F_zero": true
+  },
+  "PASS": true
+}

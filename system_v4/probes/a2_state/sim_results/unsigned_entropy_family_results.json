@@ -1,0 +1,136 @@
+{
+  "name": "unsigned_entropy_family",
+  "classification": "canonical",
+  "classification_note": "Canonical late-layer lego for an unsigned entropy family {S, I} on one bounded point-bridge packet family, kept separate from signed Phi0 work and final selector claims.",
+  "lego_ids": [
+    "unsigned_entropy_family"
+  ],
+  "primary_lego_ids": [
+    "unsigned_entropy_family"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "unsigned_scalars_are_nonnegative": {
+      "values": {
+        "S_same": 0.45223976883701245,
+        "S_forward": 0.6329759317718914,
+        "S_mid": 0.5487617315980314,
+        "MI_same": 0.5475921474920434,
+        "MI_forward": 0.3668559845571647,
+        "MI_mid": 0.45107018473102467
+      },
+      "pass": true
+    },
+    "unsigned_scalars_are_reversal_invariant": {
+      "entropy_forward": 0.6329759317718914,
+      "entropy_reverse": 0.6329759317718919,
+      "mi_forward": 0.3668559845571647,
+      "mi_reverse": 0.3668559845571645,
+      "pass": true
+    },
+    "unsigned_family_changes_across_packet_choices": {
+      "reference_entropy": 0.45223976883701245,
+      "forward_entropy": 0.6329759317718914,
+      "mid_entropy": 0.5487617315980314,
+      "reference_mi": 0.5475921474920434,
+      "forward_mi": 0.3668559845571647,
+      "mid_mi": 0.45107018473102467,
+      "pass": true
+    }
+  },
+  "negative": {
+    "unsigned_family_does_not_collapse_to_signed_phi0": {
+      "pass": true
+    },
+    "unsigned_family_does_not_promote_final_winner": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bridge_outputs_remain_valid_density_operators": {
+      "pass": true
+    },
+    "family_is_bounded_to_one_point_bridge_construction": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct late-layer unsigned scalar family {S, I} on one bounded point-bridge family."
+  }
+}

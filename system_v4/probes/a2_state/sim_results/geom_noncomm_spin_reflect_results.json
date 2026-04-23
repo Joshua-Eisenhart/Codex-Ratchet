@@ -1,0 +1,51 @@
+{
+  "name": "sim_geom_noncomm_spin_double_cover_then_reflection",
+  "classification": "canonical",
+  "tool_manifest": {
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Pin(3) reflection is an odd-grade versor; its non-commutativity with an even-grade Spin(3) rotor depends on the double-cover sign which is only present in the Cl(3) versor algebra \u2014 matrix SO(3) collapses the \u00b11 ambiguity and misses the sign witness."
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "pytorch": null,
+    "z3": null,
+    "sympy": null,
+    "e3nn": null
+  },
+  "positive": {
+    "spin_pin_noncommute": true,
+    "note": "order swap excludes sign-coherent witness",
+    "pass": true
+  },
+  "negative": {
+    "orthogonal_axis_commutes_control": true,
+    "pass": true
+  },
+  "boundary": {
+    "identity_equal": true,
+    "pass": true
+  }
+}

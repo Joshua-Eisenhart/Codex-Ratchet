@@ -1,0 +1,46 @@
+{
+  "name": "leviathan_igt_coupling_stub",
+  "classification": "classical_baseline",
+  "positive": {
+    "group_strategy_entropies": [
+      0.6931471805599453,
+      0.6730116670092565,
+      0.6108643020548935
+    ],
+    "all_positive": true,
+    "shared_admissibility": "sat",
+    "shared_sat": true
+  },
+  "negative": {
+    "pure_strategy_excluded": true,
+    "leviathan_monoculture_excluded": true
+  },
+  "boundary": {
+    "phi_symbolic": "Min(D, M)",
+    "phi_at_equal": "1/2",
+    "shared_overlap_size": 2,
+    "shells_share_nodes": true
+  },
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "coupling-object symbolic form"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "joint admissibility of shared object"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "shell overlap topology"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "supportive",
+    "z3": "load_bearing",
+    "xgi": "supportive"
+  }
+}

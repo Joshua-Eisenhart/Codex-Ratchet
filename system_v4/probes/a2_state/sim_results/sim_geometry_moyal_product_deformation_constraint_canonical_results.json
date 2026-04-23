@@ -1,0 +1,165 @@
+{
+  "name": "Moyal Product Deformation Constraint",
+  "description": "Moyal product associativity: ((f*g)*h) = (f*(g*h)); deformation via Poisson bracket; \u210f\u21920 limit \u2192 pointwise multiplication; verified via cvc5 coefficient constraints and sympy Poisson bracket verification",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "coefficient algebra handled by cvc5/sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph structure in deformation quantization"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 superior for polynomial coefficient constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 solver for associativity constraint satisfaction; UNSAT proofs on Moyal product violations"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy for Poisson bracket expansion and symbolic associativity verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "deformation quantization uses associative structure, not clifford algebra"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Moyal product is algebraic, not differential geometric"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no equivariance structure in Moyal deformation"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph topology in associativity proof"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "Moyal product is algebraic, not topological"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not relevant to deformation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_moyal_constant_linear_associative": {
+      "polynomials": "f=1, g=2, h=x",
+      "left_expr": "(1 *_\u210f 2) *_\u210f x = 2x",
+      "right_expr": "1 *_\u210f (2 *_\u210f x) = 2x",
+      "at_x": 1,
+      "left_value": 2.0,
+      "right_value": 2.0,
+      "cvc5_status": "sat",
+      "pass": true
+    },
+    "positive_moyal_linear_poisson_bracket": {
+      "polynomials": "f=x, g=y, h=xy",
+      "poisson_bracket": "{x,y} = 1",
+      "note": "Associativity follows from Poisson bracket properties",
+      "cvc5_status": "sat",
+      "pass": true
+    },
+    "positive_moyal_higher_order_associative": {
+      "order": "O(\u210f\u00b2)",
+      "constraint": "Jacobi identity of Poisson bracket",
+      "jacobi_identity": "{f, {g,h}} + {g, {h,f}} + {h, {f,g}} = 0",
+      "cvc5_status": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_moyal_wrong_bracket_coefficient": {
+      "correct_coefficient": 0.5,
+      "claimed_coefficient": 1.0,
+      "reason": "violates Poisson bracket structure and breaks associativity",
+      "cvc5_status": "unsat",
+      "pass": true
+    },
+    "negative_moyal_false_commutativity": {
+      "hbar": "nonzero",
+      "poisson_bracket": 1,
+      "claim": "Moyal product is commutative",
+      "truth": "i\u210f{f,g} \u2260 0 for nonzero \u210f and {f,g}",
+      "cvc5_status": "unsat",
+      "pass": true
+    },
+    "negative_moyal_wrong_deformation_limit": {
+      "claimed_limit": "\u210f \u2192 \u221e",
+      "correct_limit": "\u210f \u2192 0",
+      "reason": "Moyal product reduces to classical product only as \u210f \u2192 0",
+      "cvc5_status": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_classical_limit": {
+      "moyal_expansion": "f *_\u210f g = f\u00b7g + (i\u210f/2){f,g} + O(\u210f\u00b2)",
+      "classical_limit_\u210f\u21920": "f\u00b7g",
+      "note": "Moyal product reduces to pointwise multiplication"
+    },
+    "boundary_canonical_poisson_brackets": {
+      "{q,p}": 1,
+      "{q,q}": 0,
+      "{p,p}": 0,
+      "note": "Standard Poisson bracket on phase space"
+    },
+    "boundary_zero_hbar_classical_product": {
+      "hbar": 0,
+      "moyal_product": "f *_0 g = f\u00b7g (pointwise multiplication)",
+      "associativity": "inherited from associativity of multiplication",
+      "commutativity": "f *_0 g = g *_0 f (commutative)"
+    },
+    "boundary_weyl_ordering": {
+      "note": "Moyal product respects Weyl (symmetric) ordering",
+      "alternatives": {
+        "Weyl": "symmetric in all monomials",
+        "normal": "operator ordering with annihilation right",
+        "anti_normal": "operator ordering with creation right"
+      }
+    },
+    "boundary_moyal_algebra_properties": {
+      "associativity": "((f *_\u210f g) *_\u210f h) = (f *_\u210f (g *_\u210f h))",
+      "unit_element": "1 *_\u210f f = f *_\u210f 1 = f",
+      "algebra_type": "associative deformation quantization algebra",
+      "dimension": "infinite (polynomial functions)"
+    }
+  },
+  "classification": "canonical",
+  "overall_pass": true
+}

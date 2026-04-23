@@ -1,0 +1,50 @@
+{
+  "name": "sim_numpy_capability",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- dense array algebra"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "matvec_shape": {
+      "pass": true
+    },
+    "solve_residual": {
+      "pass": true,
+      "residual": 4.440892098500626e-16
+    },
+    "eigenvalues_real": {
+      "pass": true,
+      "eigenvalues": [
+        1.4679111137620438,
+        2.6527036446661394,
+        4.879385241571816
+      ]
+    }
+  },
+  "negative": {
+    "shape_mismatch_raises": {
+      "pass": true,
+      "error_type": "ValueError"
+    }
+  },
+  "boundary": {
+    "small_norm_stable": {
+      "pass": true,
+      "norm": 2.449489742783178e-12
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true
+}

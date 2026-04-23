@@ -144,7 +144,7 @@
       "example_Q": "1/2",
       "example_Ic": "1",
       "interpretation": "Non-degradable channel with Q < I_c is SAT (gap exists). This matches the Shor-Smolin code result: non-degradable channels can have Q < I_c (the single-letter formula is not tight). Regularization (block coding) can be needed to achieve true capacity.",
-      "elapsed_s": 0.0007
+      "elapsed_s": 0.0009
     },
     "proof5_superadditivity": {
       "name": "superadditivity_sat",
@@ -153,7 +153,7 @@
       "example_Ic_single": "2/3",
       "example_Ic_double": "2",
       "interpretation": "Superadditivity I_c(T^\u22972) > 2*I_c(T) is SAT. This is the hallmark of non-degradable channels. The true quantum capacity Q = lim_n I_c(T^\u2297n)/n can exceed I_c(T). Computing Q exactly requires regularization over all block lengths.",
-      "elapsed_s": 0.0017
+      "elapsed_s": 0.0041
     }
   },
   "boundary": {
@@ -184,6 +184,6 @@
     "status": "PASS",
     "synthesized_Q_bound": "(lambda ((Ic Real)) (ite (<= (/ 1 2) Ic) Ic 0.0))",
     "interpretation": "cvc5 synthesized Q_bound(I_c) = (lambda ((Ic Real)) (ite (<= (/ 1 2) Ic) Ic 0.0)). This confirms the hashing bound is a function of I_c alone. For I_c > 0: Q_bound = I_c (linear). For I_c <= 0: Q_bound = 0.",
-    "elapsed_s": 0.1101
+    "elapsed_s": 0.1233
   }
 }

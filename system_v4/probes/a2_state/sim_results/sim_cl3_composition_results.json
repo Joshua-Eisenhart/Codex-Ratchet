@@ -1,0 +1,91 @@
+{
+  "name": "sim_cl3_composition",
+  "classification": "canonical",
+  "positive": {
+    "two_reflections_equal_rotation": true
+  },
+  "negative": {
+    "same_plane_is_identity": true,
+    "wrong_angle_mismatch": true
+  },
+  "boundary": {
+    "orthogonal_gives_pi_rotation": true
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for geometric algebra reflection composition"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph computation required"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric geometric algebra identity, no SMT constraint needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric geometric algebra identity, no SMT constraint needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this numeric Clifford identity"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: reflection chain equals rotor action in Cl(3)"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold metric computation required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant neural network required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph computation required"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph computation required"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell-complex computation required"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence computation required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "pass": true
+}

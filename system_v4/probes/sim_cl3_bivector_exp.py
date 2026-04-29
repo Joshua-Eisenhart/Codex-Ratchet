@@ -2,29 +2,44 @@
 """sim_cl3_bivector_exp -- exp(theta/2 * B) for unit bivector B^2=-1 yields cos + sin*B."""
 import json, os, numpy as np
 
-classification = "classical_baseline"
-DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": r} for k,r in {
-    "pytorch":"numeric algebra only",
-    "pyg":"no graph",
-    "z3":"numeric identity",
-    "cvc5":"numeric identity",
-    "sympy":"symbolic series verification",
-    "clifford":"load_bearing: Cl(3) exp of bivector",
-    "geomstats":"not used",
-    "e3nn":"not used",
-    "rustworkx":"no graph",
-    "xgi":"no hypergraph",
-    "toponetx":"no cells",
-    "gudhi":"no persistence",
-}.items()}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+classification = "canonical"
 
-from clifford import Cl
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "Clifford multivector exponential is evaluated directly; tensor autograd is not required"},
+    "pyg": {"tried": False, "used": False, "reason": "no graph computation required"},
+    "z3": {"tried": False, "used": False, "reason": "numeric identity, no SMT constraint needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "numeric identity, no SMT constraint needed"},
+    "sympy": {"tried": True, "used": True, "reason": "supportive symbolic series cross-check"},
+    "clifford": {"tried": True, "used": True, "reason": "load-bearing: Cl(3) bivector exponential identity"},
+    "geomstats": {"tried": False, "used": False, "reason": "no manifold metric computation required"},
+    "e3nn": {"tried": False, "used": False, "reason": "no equivariant neural network required"},
+    "rustworkx": {"tried": False, "used": False, "reason": "no graph computation required"},
+    "xgi": {"tried": False, "used": False, "reason": "no hypergraph computation required"},
+    "toponetx": {"tried": False, "used": False, "reason": "no cell-complex computation required"},
+    "gudhi": {"tried": False, "used": False, "reason": "no persistence computation required"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": "supportive",
+    "clifford": "load_bearing",
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 import sympy as sp
-TOOL_MANIFEST["clifford"].update(tried=True, used=True); TOOL_INTEGRATION_DEPTH["clifford"] = "load_bearing"
-TOOL_MANIFEST["sympy"].update(tried=True, used=True); TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
+from clifford import Cl
 
 layout, blades = Cl(3)
 e1, e2, e3 = blades['e1'], blades['e2'], blades['e3']
@@ -80,7 +95,7 @@ def main():
                "tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH}
     ok = all(v for s in ("positive","negative","boundary") for v in results[s].values())
     results["pass"] = bool(ok)
-    out = os.path.join(os.path.dirname(__file__),"results","sim_cl3_bivector_exp.json")
+    out = os.path.join(os.path.dirname(__file__),"a2_state","sim_results","sim_cl3_bivector_exp_results.json")
     os.makedirs(os.path.dirname(out),exist_ok=True)
     with open(out,"w") as f: json.dump(results,f,indent=2,default=str)
     print(json.dumps({"pass":results["pass"],"out":out}))

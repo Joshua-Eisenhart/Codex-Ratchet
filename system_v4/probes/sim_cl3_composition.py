@@ -2,18 +2,38 @@
 """sim_cl3_composition -- Composition of two reflections = rotation by twice the angle between normals."""
 import json, os, numpy as np
 
-classification = "classical_baseline"
-DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+classification = "canonical"
 
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": r} for k,r in {
-    "pytorch":"not needed","pyg":"no graph","z3":"numeric","cvc5":"numeric",
-    "sympy":"not used","clifford":"load_bearing: rotor == reflection chain","geomstats":"not used",
-    "e3nn":"not used","rustworkx":"no graph","xgi":"no hypergraph","toponetx":"no cells","gudhi":"no persistence",
-}.items()}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed for geometric algebra reflection composition"},
+    "pyg": {"tried": False, "used": False, "reason": "no graph computation required"},
+    "z3": {"tried": False, "used": False, "reason": "numeric geometric algebra identity, no SMT constraint needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "numeric geometric algebra identity, no SMT constraint needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed for this numeric Clifford identity"},
+    "clifford": {"tried": True, "used": True, "reason": "load-bearing: reflection chain equals rotor action in Cl(3)"},
+    "geomstats": {"tried": False, "used": False, "reason": "no manifold metric computation required"},
+    "e3nn": {"tried": False, "used": False, "reason": "no equivariant neural network required"},
+    "rustworkx": {"tried": False, "used": False, "reason": "no graph computation required"},
+    "xgi": {"tried": False, "used": False, "reason": "no hypergraph computation required"},
+    "toponetx": {"tried": False, "used": False, "reason": "no cell-complex computation required"},
+    "gudhi": {"tried": False, "used": False, "reason": "no persistence computation required"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": "load_bearing",
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 from clifford import Cl
-TOOL_MANIFEST["clifford"].update(tried=True, used=True); TOOL_INTEGRATION_DEPTH["clifford"] = "load_bearing"
 
 layout, blades = Cl(3)
 e1, e2, e3 = blades['e1'], blades['e2'], blades['e3']
@@ -72,7 +92,7 @@ def main():
                "tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH}
     ok = all(v for s in ("positive","negative","boundary") for v in results[s].values())
     results["pass"] = bool(ok)
-    out = os.path.join(os.path.dirname(__file__),"results","sim_cl3_composition.json")
+    out = os.path.join(os.path.dirname(__file__),"a2_state","sim_results","sim_cl3_composition_results.json")
     os.makedirs(os.path.dirname(out),exist_ok=True)
     with open(out,"w") as f: json.dump(results,f,indent=2,default=str)
     print(json.dumps({"pass":results["pass"],"out":out}))

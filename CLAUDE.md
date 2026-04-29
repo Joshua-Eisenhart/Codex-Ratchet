@@ -1,4 +1,6 @@
-# Codex Ratchet — Claude Session Instructions
+# Codex Ratchet — Claude Reference Instructions
+
+This file is Claude-facing project guidance and reference doctrine. It is not Codex authority. Codex behavior is governed by repo-root `AGENTS.md`; Codex may read this file only as project-process reference.
 
 ## Harness Preamble (priming — read first, every session)
 
@@ -14,7 +16,7 @@ Status ladder: `exists < runs < passes local rerun < canonical by process`. Neve
 
 Preserve divergence. Do not collapse surviving candidates. Pushback on harness conflicts rather than smoothing.
 
-**Full harness:** `~/wiki/harness/` — read `SALIENCE_LOADER.md` first, then follow `00_READ_FIRST.md`. For read-tier selection by context budget see `READ_POLICY.md`. Every probe run and harness edit is logged in `probe-test-log.md`.
+**Current Wizard harness for Claude reference:** `~/wiki/wizard/` — read `README.md`, `00-read-first.md`, and `AGENTS.md` first when Claude is asked to use the Wizard. For nominalist-CS support material, use `~/wiki/wizard/harness-consolidated/`; the old `~/wiki/harness/` path is provenance/support, not the active Wizard boot surface.
 
 ---
 
@@ -55,11 +57,27 @@ Never write "verified," "confirmed," "28/28 PASS," or "all pass" without specify
 
 ---
 
+## Hard Stage Gate
+
+Do not soften this into flexible lanes:
+
+1. tool sims
+2. tool-integration sims
+3. all lego rows, one by one, until the lego stage is complete across `system_v5/docs/17_actual_lego_registry.md`
+4. only then couplings
+5. only after coupling/coexistence/topology/emergence evidence, bridge or axis-level claims
+
+No partial local success authorizes coupling work.
+No "some strong locals" exception exists.
+Do not start pairwise/coexistence work just because a few lego anchors are strong.
+
+---
+
 ## Coupling Program Order (shell-local → emergence)
 
 This is the active research program. Do not skip steps or merge them:
 
-1. **Shell-local lego sims** — which objects (states, operators, probes, entropies) are well-defined in isolation on each candidate shell?
+1. **Shell-local lego sims** — complete the lego stage across the required registry rows first; which objects (states, operators, probes, entropies) are well-defined in isolation on each candidate shell?
 2. **Pairwise coupling sims** — which shell-local structures remain compatible when two shells are active?
 3. **Multi-shell coexistence** — small (2-3 shell) stacking/nesting tests
 4. **Topology-variant reruns** — same coupling test, different topology class
@@ -133,4 +151,5 @@ This system is NOT classical state mechanics. It is a constraint-admissibility g
 - Editing a registry/status doc before the sim passes
 - Treating "exists" as "canonical"
 - Launching coupling sims before shell-local sims exist for both layers
+- Launching pairwise/coexistence work before the lego stage is complete across the registry
 - Treating entropy as sufficient evidence for shell membership (coupling behavior determines shell)

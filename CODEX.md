@@ -1,0 +1,25 @@
+# Codex Overlay
+
+This file is a Codex-specific overlay/reference. The durable repo authority is `AGENTS.md`.
+
+## Purpose
+
+Use this file for Codex-only operating preferences that should not be copied into Claude, Hermes, or project canon docs.
+
+## Wizard Use
+
+Wizard is additive. It routes, compresses, remembers, and audits the existing repo process. It does not replace sim/proof/tool work.
+
+Use Full Wizard only when the user asks for Wizard/plurality/council/collapse-resistance, or when the task is about the Wizard system itself. Ordinary sim and repo cleanup turns should stay compact and task-focused.
+
+## Codex Memory Boundary
+
+Codex may write Codex process memory under `/Users/joshuaeisenhart/wiki/codex-memory/` only when explicitly doing memory work. A2 state, Claude memory, and Hermes memory are not Codex memory targets.
+
+## Claude Boundary
+
+`CLAUDE.md` is reference-only for Codex. It may be mined for project doctrine and language discipline, but it is not Codex behavior law.
+
+## Return-To-Sims Gate
+
+Wizard, voice, council, and MMM work exists to stabilize reasoning and improve Codex Ratchet execution. Once the operating process is stable enough, return to concrete project work: sim readiness, queue movement, proof/tool checks, and bounded evidence production.

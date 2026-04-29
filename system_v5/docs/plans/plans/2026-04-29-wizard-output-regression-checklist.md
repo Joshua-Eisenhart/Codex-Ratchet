@@ -13,6 +13,8 @@ Reject a Wizard output if any of these are true:
 - A visible voice was controller-written instead of produced by a real subagent loaded with that exact voice mini-MMM.
 - A pending, slow, or old-context worker is counted as an executed route before it returns a usable receipt.
 - The controller waits idly on one route while independent routes could be run or rerouted through other Codex/Claude/tool lanes.
+- A blocked or slow route is allowed to stall the critical path instead of being rerun on a different model/runtime and debugged separately.
+- Duplicate/rerouted workers return conflicting receipts without the controller marking which receipt was accepted, superseded, or left supplemental.
 - Follow-up is mostly receipt inspection, route proof, contradiction listing, or orchestration debugging.
 - A controller-local route is presented as spawned.
 - A visible voice, lane, check, council, composition, or preworked follow-up option is claimed without a real subagent/tool/check receipt or an explicit blocked/deferred/future-only marker.
@@ -29,6 +31,7 @@ Accept only when:
 
 - Route truth is compactly stated in the header or Results boundary.
 - Pending, blocked, deferred, and not-run routes are distinguished from completed spawned routes.
+- Blocked or slow routes are rerouted to another model/runtime when doing so can continue the work safely.
 - The leader uses the positive main MMM, while spawned routes use only their exact mini-MMM.
 - Each visible voice has a distinct useful contribution from a real voice subagent when a voice wave ran.
 - Council truth states whether a real multi-subagent council wave ran, was blocked, or was deferred.

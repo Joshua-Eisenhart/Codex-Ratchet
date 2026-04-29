@@ -56,10 +56,11 @@ Use real subagents by default for independent repo lookup, verification, voice/l
 Parallelism and reroute rule:
 
 - Do not wait on a slow or stuck worker when independent routes remain available. Continue with other Codex subagents, Claude Bridge workers, tools, or local checks.
+- If a worker blocks, stalls, or shows model-specific failure, spawn an equivalent bounded lane on a different model/runtime and continue. Keep the original worker as side-debug work; do not let it hold the critical path.
 - Reboot/restart Codex subagent lanes when a fresh route-local mini-MMM load is needed or when old thread state could contaminate the lane.
 - Use available model capacity aggressively for Full Wizard and other explicitly multi-route work, while keeping each worker bounded and receipt-producing.
 - Large Claude/Sonnet fanout may be used for independent advisory or scout lanes, but only completed Task/Agent receipts count as executed routes.
-- Pending workers are not results. Count them as pending, blocked, deferred, or not-run until they return usable receipts.
+- Pending workers are not results. Count them as pending, blocked, deferred, or not-run until they return usable receipts. If duplicate/rerouted workers return, accept the first valid receipt and mark later returns as supplemental or superseded.
 
 Route truth:
 

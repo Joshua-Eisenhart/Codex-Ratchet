@@ -53,6 +53,14 @@ Do not use Wizard to:
 
 Use real subagents by default for independent repo lookup, verification, voice/lane/check passes, and follow-up scouting when the task is substantive enough for parallel work. Do not invent a visible route from controller synthesis alone.
 
+Parallelism and reroute rule:
+
+- Do not wait on a slow or stuck worker when independent routes remain available. Continue with other Codex subagents, Claude Bridge workers, tools, or local checks.
+- Reboot/restart Codex subagent lanes when a fresh route-local mini-MMM load is needed or when old thread state could contaminate the lane.
+- Use available model capacity aggressively for Full Wizard and other explicitly multi-route work, while keeping each worker bounded and receipt-producing.
+- Large Claude/Sonnet fanout may be used for independent advisory or scout lanes, but only completed Task/Agent receipts count as executed routes.
+- Pending workers are not results. Count them as pending, blocked, deferred, or not-run until they return usable receipts.
+
 Route truth:
 
 - A visible voice counts as `spawned` only if a real subagent ran that exact voice with its exact voice mini-MMM. Controller-local voice text is not a voice; it is synthesis or a blocked/deferred placeholder.

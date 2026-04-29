@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-04-24T21:14:42.904074+00:00",
+  "generated_at": "2026-04-29T23:11:57.316045+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
-  "dirty_source_count": 146,
+  "dirty_source_count": 178,
   "plan_group_count": 39,
   "checkpoint_candidate_count": 1,
   "quarantine_candidate_count": 0,
@@ -15,7 +15,7 @@
   "next_code_only_manual_source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
   "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json",
   "summary": {
-    "dirty_source_count": 146,
+    "dirty_source_count": 178,
     "plan_group_count": 39,
     "checkpoint_candidate_count": 1,
     "quarantine_candidate_count": 0,
@@ -44,7 +44,7 @@
   "recommended_manual_split_order": [
     {
       "group_id": "legacy_runtime__legacy_runtime",
-      "file_count": 46,
+      "file_count": 53,
       "safe_next_action": "archive_review"
     },
     {
@@ -54,7 +54,7 @@
     },
     {
       "group_id": "other_source__other_source",
-      "file_count": 17,
+      "file_count": 26,
       "safe_next_action": "manual_split_required"
     },
     {
@@ -256,11 +256,13 @@
         "system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md",
         "system_v5/docs/LLM_CONTROLLER_CONTRACT.md",
         "system_v5/docs/plans",
+        "system_v5/ops/HERMES_RULES.md",
         "system_v5/ops/OVERNIGHT.md",
         "system_v5/ops/SIM_RUNNER.md",
         "system_v5/ops/TIER_A.md",
         "system_v5/ops/TIER_D.md",
         "system_v5/ops/TOOL_STAGE_ROUTING_AND_SKIP_AHEAD.md",
+        "system_v5/ops/WIKI_STEWARD.md",
         "system_v5/ops/cli_worker_scale_probe.py",
         "system_v5/ops/drafts",
         "system_v5/ops/generate_queue.py",
@@ -273,11 +275,16 @@
         "system_v5/ops/sim_runner.sh",
         "system_v5/ops/stage_gate.json",
         "system_v5/ops/tier_d_gate_poller.py",
-        "system_v5/ops/tier_d_launch_prompt.md"
+        "system_v5/ops/tier_d_launch_prompt.md",
+        "system_v5/tests/test_codex_harness_adapter.py",
+        "system_v5/tests/test_package_wizard_candidate.py",
+        "system_v5/tests/test_run_wizard_proof_manifest.py",
+        "system_v5/tests/test_run_wizard_system.py",
+        "system_v5/tests/test_wizard_behavior_harness.py"
       ],
-      "file_count": 46,
-      "tracked_dirty_count": 26,
-      "untracked_count": 20,
+      "file_count": 53,
+      "tracked_dirty_count": 28,
+      "untracked_count": 25,
       "sample_paths": [
         "system_v5/docs/16_lego_build_catalog.md",
         "system_v5/docs/17_actual_lego_registry.md",
@@ -305,20 +312,29 @@
       "path_prefixes": [
         ".hermes/",
         ".lev/",
-        ".omx/",
+        "CODEX.md",
+        "MMM_WIZARD_CLEAN_SYSTEM_PACKET_v3_3/",
+        "MMM_WIZARD_CLEAN_SYSTEM_PACKET_v3_3_DOWNLOADABLE.zip.sha256",
         "process-centric-opportunities.md",
         "runtime_registry.json",
         "scripts/claim_lane.py",
+        "scripts/claude_terminal_bridge.py",
         "scripts/codex_harness_adapter.py",
+        "scripts/package_wizard_candidate.py",
+        "scripts/refine_wizard_mmm_language.py",
+        "scripts/run_wizard_general_bakeoff.py",
+        "scripts/run_wizard_proof_manifest.py",
+        "scripts/run_wizard_system.py",
+        "scripts/wizard_behavior_harness.py",
         "summary.json",
         "system_v4/a2_state/audit_logs",
         "system_v4/a2_state/graphs",
         "system_v4/tests/test_live_queue_controller.py",
         "visualizer/"
       ],
-      "file_count": 17,
+      "file_count": 26,
       "tracked_dirty_count": 9,
-      "untracked_count": 8,
+      "untracked_count": 17,
       "sample_paths": [
         "scripts/claim_lane.py",
         "system_v4/a2_state/audit_logs/AXIS_INTERACTION_MATRIX__CURRENT__v1.json",
@@ -330,8 +346,8 @@
         "system_v4/a2_state/graphs/evidence_graph.json"
       ],
       "dominant_kinds": [
-        "modified",
-        "untracked"
+        "untracked",
+        "modified"
       ],
       "safe_next_action": "manual_split_required",
       "safe_auto": false,

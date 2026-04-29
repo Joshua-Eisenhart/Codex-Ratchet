@@ -19,16 +19,26 @@ This file is the durable Codex authority surface for this repository.
 
 Codex Ratchet is a nonclassical constraint-admissibility research system. The main product is working sims, proof/tool checks, clean queue movement, and bounded evidence. Wizard exists to improve that work; it must not become the work.
 
-## Wizard Role
+## Wizard Runtime Default
 
-Wizard is a thin routing, preflight, receipt, and collapse-resistance layer around normal repo work.
+Wizard is the default routing, preflight, receipt, and collapse-resistance layer around normal repo work. Run Wizard alignment at the start of every substantive Codex Ratchet turn, even when the visible answer remains compact. The point is better repo execution, not more visible orchestration.
+
+Default boot/load rule:
+
+- Main Codex thread loads exactly one positive main MMM before repo work, preferably from `MMM_WIZARD_CLEAN_SYSTEM_PACKET_v3_3/mmm/main/{full,compact}/md/`.
+- Main Codex thread does not bulk-load all voice or lane mini-MMMs.
+- Each spawned subagent loads only the exact route mini-MMM for its assigned voice, lane, check/guard, system route, composition, or controller act under `MMM_WIZARD_CLEAN_SYSTEM_PACKET_v3_3/mmm/mini/{full,compact}/...`.
+- Subagents do not load the main MMM as their active boot surface.
+- Subsubagents inherit the positive parent context plus their exact child mini-MMM.
+- Negative, banned, contrast, archive, and reference-only material never enters boot MMMs.
 
 Use Wizard to:
 
 - choose the lane shape;
+- decide which subagents and mini-MMMs are required;
 - prevent fake plurality;
 - keep spawned/blocked/deferred truth;
-- preserve real voice differences when the user asks for Full Wizard, plurality, council, or collapse-resistance;
+- preserve real voice differences when voices, lanes, council, compositions, or Full Wizard are visible;
 - audit follow-up prompts so they are useful next actions.
 
 Do not use Wizard to:
@@ -39,16 +49,28 @@ Do not use Wizard to:
 - claim a route ran unless a real worker, tool, or declared check ran;
 - use `CLAUDE.md` as Codex behavior law.
 
+## Subagent And Mini-MMM Rule
+
+Use real subagents by default for independent repo lookup, verification, voice/lane/check passes, and follow-up scouting when the task is substantive enough for parallel work. Do not invent a visible route from controller synthesis alone.
+
+Route truth:
+
+- A visible voice/lane/check/council/composition counts as `spawned` only if a real subagent, tool run, or explicit check performed that route.
+- If runtime, budget, context, or task shape prevents running the route, mark it `blocked`, `deferred`, or `future-only`.
+- Controller synthesis may combine results, but it is not itself route execution.
+- Voice waves, council waves, checks/guards, and follow-up scouting are separate waves when Full Wizard or a visible multi-route answer is used.
+- Follow-up options claimed as preworked must be scouted by a subagent/tool or marked future-only.
+
 ## Output Contract
 
-For ordinary repo work, keep output compact:
+For ordinary repo work, still keep output readable. Use Wizard internally, and expose only the compact truth needed for the user:
 
 1. Main answer.
 2. Results: changed files, commands/checks, blockers.
 3. Follow-up: useful next prompts or next steps.
 4. Hygiene/security: relevant boundaries and risks.
 
-For explicit Full Wizard, plurality, council, or Wizard-output testing, preserve this shape:
+For Full Wizard, plurality, council, Wizard-output testing, or any response that visibly claims voices/lanes/compositions, preserve this shape:
 
 ```text
 Wizard: {FULL|COMPACT} | subagents: spawned {n} / blocked {n} / deferred {n} | subsubagents: spawned {n} / blocked {n} / deferred {n} | waves: worker {n} / controller {n} / not-run {n}
@@ -122,4 +144,3 @@ Do not bulk-stage the dirty repo. Split source, generated results, runtime state
 Never stage `.hermes/`, `.lev/`, runtime logs, or generated result estates unless the commit is explicitly an evidence snapshot. Do not stage v3.3 Wizard packets or visualizer work as part of sim cleanup.
 
 Commit messages should use the Lore protocol when making commits.
-

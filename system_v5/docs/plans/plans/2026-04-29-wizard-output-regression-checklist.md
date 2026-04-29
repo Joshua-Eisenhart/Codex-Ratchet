@@ -26,6 +26,7 @@ Accept only when:
 - The leader uses the positive main MMM, while spawned routes use only their exact mini-MMM.
 - Each visible voice has a distinct useful contribution when a voice wave ran.
 - Council and follow-up scout truth are stated when those waves are visible.
+- Live Wizard validation uses `scripts/codex_harness_adapter.py validate --require-live-execution` when the output claims live spawned routes or preworked follow-up scouts.
 - Council appears only if it materially changes the answer.
 - Results state artifacts, blockers, checks, and accepted receipts without dumping logs.
 - Follow-up is an audited useful prompt menu, mostly lanes and compositions.

@@ -55,11 +55,14 @@ Use real subagents by default for independent repo lookup, verification, voice/l
 
 Route truth:
 
-- A visible voice/lane/check/council/composition counts as `spawned` only if a real subagent, tool run, or explicit check performed that route.
+- A visible voice counts as `spawned` only if a real subagent ran that exact voice with its exact voice mini-MMM. Controller-local voice text is not a voice; it is synthesis or a blocked/deferred placeholder.
+- A visible lane/check/composition counts as `spawned` only if a real subagent, tool run, or explicit check performed that exact route with the exact route mini-MMM or tool contract.
+- LLM Council counts as `spawned` only if its own council wave ran with multiple real council subagents; when runtime supports it, council should include nested rounds/subsubagents. A controller summary, single model opinion, or Claude Bridge final answer without Task/Agent evidence is advisory only, not council execution.
+- Follow-up options count as preworked only when all three follow-up waves ran for that option: Make/Assembly, Run/Scout, and Audit/Improve. If any wave did not run in a real subagent/tool space, mark the option `future-only`, `blocked`, or `deferred`.
 - If runtime, budget, context, or task shape prevents running the route, mark it `blocked`, `deferred`, or `future-only`.
 - Controller synthesis may combine results, but it is not itself route execution.
 - Voice waves, council waves, checks/guards, and follow-up scouting are separate waves when Full Wizard or a visible multi-route answer is used.
-- Follow-up options claimed as preworked must be scouted by a subagent/tool or marked future-only.
+- Follow-up options claimed as preworked must include receipts for their Make, Run/Scout, and Audit/Improve waves or be marked future-only.
 
 ## Output Contract
 
@@ -81,7 +84,7 @@ Then provide useful content, not a log:
 
 1. Main Answer.
 2. Voices / Wave Results, with distinct visible voice contributions when voices ran.
-3. Council, only if it ran and materially changed the answer.
+3. Council, only if a real multi-subagent council wave ran and materially changed the answer.
 4. Results, artifacts, blockers, and accepted receipts.
 5. Follow-up, audited useful next prompts.
 

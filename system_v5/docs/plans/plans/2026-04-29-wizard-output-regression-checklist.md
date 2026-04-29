@@ -10,9 +10,12 @@ Reject a Wizard output if any of these are true:
 
 - It claims voices ran but gives only one blended voice summary.
 - Voice labels appear, but the sentences are interchangeable.
+- A visible voice was controller-written instead of produced by a real subagent loaded with that exact voice mini-MMM.
 - Follow-up is mostly receipt inspection, route proof, contradiction listing, or orchestration debugging.
 - A controller-local route is presented as spawned.
 - A visible voice, lane, check, council, composition, or preworked follow-up option is claimed without a real subagent/tool/check receipt or an explicit blocked/deferred/future-only marker.
+- LLM Council appears as executed without its own multi-subagent council wave and nested rounds/subsubagents when supported.
+- A follow-up option is shown as valid/preworked without receipts for all three waves: Make/Assembly, Run/Scout, and Audit/Improve.
 - A spawned subagent route lacks the exact lane-local mini-MMM scope for that route.
 - The leader claims to run all voice or lane mini-MMMs in the main thread.
 - The answer spends more space proving workers ran than giving useful content.
@@ -24,8 +27,9 @@ Accept only when:
 
 - Route truth is compactly stated in the header or Results boundary.
 - The leader uses the positive main MMM, while spawned routes use only their exact mini-MMM.
-- Each visible voice has a distinct useful contribution when a voice wave ran.
-- Council and follow-up scout truth are stated when those waves are visible.
+- Each visible voice has a distinct useful contribution from a real voice subagent when a voice wave ran.
+- Council truth states whether a real multi-subagent council wave ran, was blocked, or was deferred.
+- Follow-up truth states Make/Assembly, Run/Scout, and Audit/Improve status for every visible preworked option.
 - Live Wizard validation uses `scripts/codex_harness_adapter.py validate --require-live-execution` when the output claims live spawned routes or preworked follow-up scouts.
 - Council appears only if it materially changes the answer.
 - Results state artifacts, blockers, checks, and accepted receipts without dumping logs.

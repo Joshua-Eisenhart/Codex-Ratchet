@@ -187,6 +187,14 @@ def _lane_row_for(
 
     worker_id = _as_text(record.get("worker_id", record.get("agent_id")), f"behavior-harness:{slug}")
     evidence = receipt["evidence"]
+    runtime_registry = _as_text(record.get("runtime_registry"))
+    if not runtime_registry:
+        runtime_registry = (
+            f"spawned worker receipt normalized by wizard_behavior_harness at {generated_at}"
+            if state in SPAWNED_STATES
+            else "not spawned; behavior harness normalization only"
+        )
+
     row = {
         "lane": lane,
         "emoji": _as_text(record.get("emoji")),
@@ -209,7 +217,7 @@ def _lane_row_for(
         "task_card": _as_text(record.get("task_card"), "Normalize collected wizard behavior probe output into adapter-valid receipts."),
         "task_card_after_mini_mmm": True,
         "lane_resolution": "lane_resolution.jsonl",
-        "runtime_registry": "not spawned; behavior harness normalization only",
+        "runtime_registry": runtime_registry,
         "worker_receipt": receipt_name,
         "audit": "receipt fields and lane-local body written by wizard_behavior_harness",
         "final_output_check": "ready for scripts/codex_harness_adapter.py validate",

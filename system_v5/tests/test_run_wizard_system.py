@@ -113,6 +113,146 @@ def test_run_wizard_system_strict_live_validation_rejects_local_receipts(tmp_pat
     assert "visible_lane_not_live" in finding_codes
 
 
+def test_run_wizard_system_strict_live_validation_accepts_spawn_receipt_overlay(tmp_path: Path):
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+    live_receipts = []
+    for index, spec in enumerate(
+        [spec for spec in mod.LANES if mod._category(spec["lane"]) != "composition"],
+        start=1,
+    ):
+        mini_mmm_path = spec["path_template"].format(size="standard", upper="STANDARD")
+        live_receipts.append(
+            {
+                "lane": spec["lane"],
+                "status": "spawned_completed",
+                "agent_id": f"019-live-{index:02d}",
+                "worker_id": f"codex-live-{index:02d}",
+                "mini_mmm_path": mini_mmm_path,
+                "mini_mmm_scope": "voice_local" if mod._category(spec["lane"]) == "voice" else "lane_local",
+                "runtime_registry": "codex native subagent spawned with route-local mini-MMM",
+                "source_tool": "codex_app_spawn_agent",
+                "spawn_timestamp": "2026-04-30T00:00:00+00:00",
+                "checked": f"spawned {spec['lane']} with {mini_mmm_path}",
+                "concluded": f"{spec['lane']} returned a usable live receipt",
+                "open": "none for strict live overlay test",
+                "evidence": f"spawn_agent receipt 019-live-{index:02d}",
+                "output": f"{spec['lane']} live worker output",
+            }
+        )
+    direct_mini = "mini_mmms/standard/lanes/md/MMM_LANE_DIRECT_STANDARD_v2_7.md"
+    for offset, option_id in enumerate(("L1", "L2", "L3", "L4", "L5", "L6", "C5", "C6", "C7", "C8", "C9"), start=100):
+        live_receipts.append(
+            {
+                "lane": f"Follow-up Scout {option_id}",
+                "status": "spawned_completed",
+                "agent_id": f"019-live-{offset}",
+                "worker_id": f"codex-live-{offset}",
+                "mini_mmm_path": direct_mini,
+                "mini_mmm_scope": "lane_local",
+                "runtime_registry": "codex native subagent spawned with route-local mini-MMM",
+                "source_tool": "codex_app_spawn_agent",
+                "spawn_timestamp": "2026-04-30T00:00:00+00:00",
+                "checked": f"spawned follow-up scout {option_id}",
+                "concluded": f"{option_id} returned a usable live scout receipt",
+                "open": "none for strict live overlay test",
+                "evidence": f"spawn_agent receipt 019-live-{offset}",
+                "output": f"{option_id} live scout worker output",
+            }
+        )
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(json.dumps(live_receipts), encoding="utf-8")
+
+    result = mod.run_wizard(
+        candidate,
+        tmp_path / "out",
+        "test strict live overlay",
+        general_size="standard",
+        live_receipts_path=live_receipts_path,
+        require_live_execution=True,
+    )
+
+    assert result["ok"], result["findings"]
+    assert "Direct" in result["live_routes"]
+    assert "All-D" not in result["live_routes"]
+    assert "Follow-up Scout C9" in result["live_routes"]
+    validation = json.loads(Path(result["final_validation_path"]).read_text(encoding="utf-8"))
+    assert validation["ok"] is True
+    assert validation["findings"] == []
+    first_row = json.loads(Path(result["lane_resolution_path"]).read_text(encoding="utf-8").splitlines()[0])
+    assert first_row["status"] == "spawned_completed"
+    assert first_row["agent_id"] == "019-live-01"
+    assert "not spawned" not in first_row["runtime_registry"]
+
+
+def test_run_wizard_system_live_overlay_requires_worker_identity(tmp_path: Path):
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(
+        json.dumps(
+            [
+                {
+                    "lane": "Direct",
+                    "status": "spawned_completed",
+                    "mini_mmm_path": "mini_mmms/standard/lanes/md/MMM_LANE_DIRECT_STANDARD_v2_7.md",
+                    "checked": "spawn attempted",
+                    "concluded": "missing identity should fail",
+                    "open": "identity missing",
+                    "evidence": "no agent id",
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="requires agent_id or worker_id"):
+        mod.run_wizard(
+            candidate,
+            tmp_path / "out",
+            "test invalid live overlay",
+            general_size="standard",
+            live_receipts_path=live_receipts_path,
+            require_live_execution=True,
+        )
+
+
+def test_run_wizard_system_live_overlay_requires_provenance(tmp_path: Path):
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(
+        json.dumps(
+            [
+                {
+                    "lane": "Direct",
+                    "status": "spawned_completed",
+                    "agent_id": "019-live-direct",
+                    "mini_mmm_path": "mini_mmms/standard/lanes/md/MMM_LANE_DIRECT_STANDARD_v2_7.md",
+                    "checked": "spawn attempted",
+                    "concluded": "missing provenance should fail",
+                    "open": "provenance missing",
+                    "evidence": "no source tool",
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="requires source_tool"):
+        mod.run_wizard(
+            candidate,
+            tmp_path / "out",
+            "test missing live provenance",
+            general_size="standard",
+            live_receipts_path=live_receipts_path,
+            require_live_execution=True,
+        )
+
+
 def test_run_wizard_system_supports_selected_size_without_lane_collapse(tmp_path: Path):
     mod = load_module()
     candidate = tmp_path / "candidate"

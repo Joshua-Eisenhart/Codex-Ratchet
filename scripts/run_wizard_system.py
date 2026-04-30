@@ -320,6 +320,12 @@ LANE_WAVES = {
     "All-H": 9,
 }
 
+ALL_D_CHILD_ROWS = tuple(f"Follow-up {index}" for index in range(1, 18)) + (
+    "All-D self-check",
+    "Follow-up Audit/Improve",
+)
+FOLLOWUP_SCOUT_ROWS = tuple(f"Follow-up Scout {option}" for option in ("L1", "L2", "L3", "L4", "L5", "L6", "C5", "C6", "C7", "C8", "C9"))
+
 
 def _load_module(path: Path, name: str):
     spec = importlib.util.spec_from_file_location(name, path)
@@ -371,6 +377,8 @@ def _human_version(version: str) -> str:
 
 
 def _path_for(spec: dict[str, str], size: str, version: str) -> str:
+    if "path" in spec:
+        return spec["path"]
     rel_path = spec["path_template"].format(size=size, upper=size.upper())
     if version != "v2_7":
         rel_path = rel_path.replace("_v2_7.", f"_{version}.")
@@ -378,6 +386,13 @@ def _path_for(spec: dict[str, str], size: str, version: str) -> str:
 
 
 def _general_path(candidate_root: Path, size: str, version: str) -> Path:
+    if version == "v3_3":
+        v3_paths = {
+            "full": "universal_core/WIZARD_UNIVERSAL_CORE_FULL_v3_3.md",
+            "compact": "universal_core/WIZARD_UNIVERSAL_CORE_COMPACT_v3_3.md",
+        }
+        if size in v3_paths:
+            return candidate_root / v3_paths[size]
     try:
         patterns = GENERAL_FILE_PATTERNS[size]
     except KeyError as exc:
@@ -515,9 +530,53 @@ def _category(lane: str) -> str:
         return "system"
     if lane in {"All-A", "All-B", "All-C", "All-D", "All-E", "All-F", "All-H"}:
         return "composition"
+    if lane == "Full Wizard":
+        return "composition"
     if lane == "Synthesis":
         return "controller"
     return "voice"
+
+
+def _default_wave_for(lane: str, category: str) -> int:
+    if lane in LANE_WAVES:
+        return LANE_WAVES[lane]
+    if category == "voices":
+        return 1
+    if category == "checks_guards":
+        return 2
+    if category == "system_routes":
+        return 4
+    if category == "lanes":
+        return 8
+    if category == "compositions":
+        return 9
+    return 11
+
+
+def _lanes_for(candidate_root: Path, size: str, version: str) -> list[dict[str, str]]:
+    if version != "v3_3":
+        return LANES
+    registry_path = candidate_root / "universal_core" / "WIZARD_ROUTE_REGISTRY_v3_3.json"
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    lanes: list[dict[str, str]] = []
+    for unit in registry.get("units", []):
+        paths = unit.get("paths", {}).get(size, {})
+        md_path = paths.get("md")
+        if not md_path:
+            continue
+        name = str(unit["name"])
+        category = str(unit.get("category", ""))
+        lanes.append(
+            {
+                "lane": name,
+                "emoji": str(unit.get("emoji", "")),
+                "path": str(md_path),
+                "wave": str(_default_wave_for(name, category)),
+                "category": category,
+                "output": f"{name} route completed with assigned v3.3 mini-MMM receipt truth.",
+            }
+        )
+    return lanes
 
 
 def _record_for(spec: dict[str, str], candidate_root: Path, task: str, size: str, version: str) -> dict[str, Any]:
@@ -528,7 +587,7 @@ def _record_for(spec: dict[str, str], candidate_root: Path, task: str, size: str
     terms = _read_terms(mmm_path)
     term_text = ", ".join(terms[:8]) if terms else "language body missing"
     evidence = f"{rel_path} terms: {term_text}"
-    wave = LANE_WAVES[spec["lane"]]
+    wave = int(spec.get("wave") or LANE_WAVES[spec["lane"]])
     wave_def = WAVE_DEFINITIONS[wave]
     return {
         "lane": spec["lane"],
@@ -554,6 +613,230 @@ def _record_for(spec: dict[str, str], candidate_root: Path, task: str, size: str
     }
 
 
+def _load_json_or_jsonl(path: Path) -> Any:
+    text = path.read_text(encoding="utf-8")
+    stripped = text.strip()
+    if not stripped:
+        return []
+    try:
+        return json.loads(stripped)
+    except json.JSONDecodeError:
+        records: list[dict[str, Any]] = []
+        for line_no, raw in enumerate(text.splitlines(), start=1):
+            line = raw.strip()
+            if not line:
+                continue
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError as exc:
+                raise ValueError(f"{path}:{line_no}: invalid JSONL: {exc}") from exc
+            if not isinstance(row, dict):
+                raise ValueError(f"{path}:{line_no}: record must be an object")
+            records.append(row)
+        return records
+
+
+def _load_live_receipts(path: Path | None) -> dict[str, dict[str, Any]]:
+    if path is None:
+        return {}
+    payload = _load_json_or_jsonl(path)
+    if isinstance(payload, dict):
+        if isinstance(payload.get("receipts"), list):
+            records = payload["receipts"]
+        elif isinstance(payload.get("routes"), list):
+            records = payload["routes"]
+        else:
+            records = [payload]
+    elif isinstance(payload, list):
+        records = payload
+    else:
+        raise ValueError(f"{path}: live receipts must be an object, array, or JSONL objects")
+
+    overlays: dict[str, dict[str, Any]] = {}
+    for index, record in enumerate(records, start=1):
+        if not isinstance(record, dict):
+            raise ValueError(f"{path}: live receipt {index} must be an object")
+        lane = str(record.get("lane") or record.get("route") or "").strip()
+        if not lane:
+            raise ValueError(f"{path}: live receipt {index} is missing lane/route")
+        if lane in overlays:
+            raise ValueError(f"{path}: duplicate live receipt for {lane}")
+        overlays[lane] = record
+    return overlays
+
+
+def _apply_live_overlay(record: dict[str, Any], overlay: dict[str, Any]) -> dict[str, Any]:
+    lane = record["lane"]
+    state = str(overlay.get("state") or overlay.get("status") or overlay.get("resolution") or "spawned_completed").strip().lower()
+    if state not in {"spawned", "spawned_completed", "completed", "ran"}:
+        raise ValueError(f"{lane}: live receipt status must be spawned/completed/ran, got {state!r}")
+
+    agent_id = str(overlay.get("agent_id") or "").strip()
+    worker_id = str(overlay.get("worker_id") or agent_id or "").strip()
+    if not (agent_id or worker_id):
+        raise ValueError(f"{lane}: live receipt requires agent_id or worker_id")
+
+    mini_mmm_path = str(overlay.get("mini_mmm_path") or record.get("mini_mmm_path") or "").strip()
+    if not mini_mmm_path:
+        raise ValueError(f"{lane}: live receipt requires mini_mmm_path")
+
+    source_tool = str(overlay.get("source_tool") or "").strip()
+    if not source_tool:
+        raise ValueError(f"{lane}: live receipt requires source_tool")
+
+    spawn_timestamp = str(overlay.get("spawn_timestamp") or "").strip()
+    if not spawn_timestamp:
+        raise ValueError(f"{lane}: live receipt requires spawn_timestamp")
+    try:
+        datetime.fromisoformat(spawn_timestamp.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError(f"{lane}: live receipt spawn_timestamp must be ISO-8601") from exc
+
+    runtime_registry = str(overlay.get("runtime_registry") or "").strip()
+    if not runtime_registry:
+        runtime_registry = "codex native subagent spawned with route-local mini-MMM"
+
+    updated = dict(record)
+    updated.update(
+        {
+            "status": state,
+            "state": state,
+            "role": str(overlay.get("role") or "live_wizard_route"),
+            "worker_id": worker_id,
+            "agent_id": agent_id,
+            "checked": overlay.get("checked") or record.get("checked"),
+            "concluded": overlay.get("concluded") or record.get("concluded"),
+            "open": overlay.get("open") or "live route returned usable receipt",
+            "evidence": overlay.get("evidence") or f"live receipt for {lane}: {agent_id or worker_id}",
+            "output": overlay.get("output") or overlay.get("concluded") or record.get("output"),
+            "mini_mmm_path": mini_mmm_path,
+            "mini_mmm_scope": overlay.get("mini_mmm_scope") or record.get("mini_mmm_scope"),
+            "task_card": overlay.get("task_card") or record.get("task_card"),
+            "runtime_registry": runtime_registry,
+            "receipt_kind": overlay.get("receipt_kind") or "codex_spawn_live",
+            "source_tool": source_tool,
+            "spawn_timestamp": spawn_timestamp,
+        }
+    )
+    return updated
+
+
+def _overlay_live_receipts(
+    records: list[dict[str, Any]], live_receipts_path: Path | None
+) -> tuple[list[dict[str, Any]], list[str]]:
+    overlays = _load_live_receipts(live_receipts_path)
+    if not overlays:
+        return records, []
+    known = {record["lane"] for record in records}
+    unknown = sorted(
+        lane
+        for lane in set(overlays) - known
+        if not (
+            lane.startswith("Follow-up ")
+            or lane.endswith(" Scout")
+            or lane == "All-D self-check"
+        )
+    )
+    if unknown:
+        raise ValueError(f"live receipt route not in Wizard lane set: {', '.join(unknown)}")
+
+    live_routes: list[str] = []
+    updated_records: list[dict[str, Any]] = []
+    for record in records:
+        overlay = overlays.get(record["lane"])
+        if overlay is None:
+            updated_records.append(record)
+            continue
+        updated_records.append(_apply_live_overlay(record, overlay))
+        live_routes.append(record["lane"])
+    for lane, overlay in overlays.items():
+        if lane in known:
+            continue
+        updated_records.append(_apply_live_overlay({"lane": lane, "emoji": "", "wave": 8}, overlay))
+        live_routes.append(lane)
+    return updated_records, live_routes
+
+
+def _block_unproven_live_records(records: list[dict[str, Any]], live_routes: list[str]) -> list[dict[str, Any]]:
+    live_route_set = set(live_routes)
+    blocked: list[dict[str, Any]] = []
+    all_d_blocked = False
+    for record in records:
+        if record["lane"] in live_route_set:
+            blocked.append(record)
+            continue
+        updated = dict(record)
+        updated.update(
+            {
+                "status": "blocked",
+                "state": "blocked",
+                "worker_id": None,
+                "agent_id": "",
+                "open": "live receipt not supplied for strict live run",
+                "reason": "live receipt not supplied for strict live run",
+                "blocker_or_defer_reason": "live receipt not supplied for strict live run",
+                "runtime_registry": "blocked because no live spawn receipt was supplied",
+            }
+        )
+        if updated["lane"] == "All-D":
+            all_d_blocked = True
+        blocked.append(updated)
+    if all_d_blocked:
+        existing = {record["lane"] for record in blocked}
+        for lane in ALL_D_CHILD_ROWS:
+            if lane in existing:
+                continue
+            blocked.append(
+                {
+                    "lane": lane,
+                    "emoji": "",
+                    "role": "blocked_all_d_child",
+                    "wave": 9,
+                    "status": "blocked",
+                    "state": "blocked",
+                    "worker_id": None,
+                    "agent_id": "",
+                    "checked": "Full Wizard child route was not spawned in strict live run",
+                    "concluded": "blocked until live child receipt is supplied",
+                    "open": "live child receipt not supplied",
+                    "evidence": "blocked child row emitted to preserve All-D route truth",
+                    "reason": "live child receipt not supplied for strict live run",
+                    "blocker_or_defer_reason": "live child receipt not supplied for strict live run",
+                    "runtime_registry": "blocked because no live child spawn receipt was supplied",
+                    "output": "Blocked Full Wizard child row; no execution claimed.",
+                    "mini_mmm_scope": "lane_local",
+                    "task_card": "Blocked Full Wizard child route; do not claim execution.",
+                }
+            )
+    existing = {record["lane"] for record in blocked}
+    for lane in FOLLOWUP_SCOUT_ROWS:
+        if lane in existing:
+            continue
+        blocked.append(
+            {
+                "lane": lane,
+                "emoji": "",
+                "role": "blocked_followup_scout",
+                "wave": 8,
+                "status": "blocked",
+                "state": "blocked",
+                "worker_id": None,
+                "agent_id": "",
+                "checked": "Follow-up scout route was not spawned in strict live run",
+                "concluded": "blocked until live follow-up scout receipt is supplied",
+                "open": "live follow-up scout receipt not supplied",
+                "evidence": "blocked scout row emitted to preserve follow-up route truth",
+                "reason": "live follow-up scout receipt not supplied for strict live run",
+                "blocker_or_defer_reason": "live follow-up scout receipt not supplied for strict live run",
+                "runtime_registry": "blocked because no live follow-up scout receipt was supplied",
+                "output": "Blocked follow-up scout row; no execution claimed.",
+                "mini_mmm_scope": "lane_local",
+                "task_card": "Blocked follow-up scout route; do not claim execution.",
+            }
+        )
+    return blocked
+
+
 def _final_answer(
     *,
     task: str,
@@ -566,6 +849,7 @@ def _final_answer(
     feedback: list[str],
     version: str,
     external_summary_path: Path | None = None,
+    live_routes: list[str] | None = None,
     final_validation_ok: bool | None = None,
     final_findings: list[dict[str, Any]] | None = None,
 ) -> str:
@@ -578,6 +862,8 @@ def _final_answer(
     general_rel = general_path.relative_to(general_path.parents[1])
     validation_display = validation_path
     external = _external_worker_summary(external_summary_path)
+    live_routes = live_routes or []
+    receipt_kind = "live spawned receipts" if live_routes else "local receipts"
 
     voice_lines = [
         "🦉 Hume: loaded full mini-MMM; keeps evidence, confidence, and humane restraint attached to receipts instead of claims.",
@@ -646,9 +932,9 @@ def _final_answer(
             f"🧙 Wizard {_human_version(version)} {size} | {external['label']} | quality {quality_score}/100",
             "",
             "🧙 Main Answer",
-            f"The Wizard ran in {size} mode and the local validator {status}. The useful result is narrower than the old report shape: keep the MMM reservoirs large, boot only the full main MMM before task text, prove voice shaping with mini-MMM-loaded subagents, and use behavior comparisons before claiming salience effects.",
+            f"The Wizard ran in {size} mode and the validator {status}. The useful result is narrower than the old report shape: keep the MMM reservoirs large, boot only the full main MMM before task text, prove voice shaping with mini-MMM-loaded subagents, and use behavior comparisons before claiming salience effects.",
             f"Feedback applied: {feedback_line}.",
-            f"Evidence: {len(records)} local receipts, {external['live_waves']}/12 live mixed-model waves, {general_words} words in {general_rel}, and final validation findings {len(findings)}.",
+            f"Evidence: {len(records)} {receipt_kind}, live routes {len(live_routes)}, {external['live_waves']}/12 live mixed-model waves, {general_words} words in {general_rel}, and final validation findings {len(findings)}.",
             f"Load proof: {external['voice_load_proof'] or 'not supplied'}.",
             f"Behavior probe: {external['behavior_probe'] or 'not supplied'}.",
             "",
@@ -670,7 +956,7 @@ def _final_answer(
             *quality_lines,
             "",
             "🔎 Audit",
-            f"Visible routes have local receipts. local receipts: {len(records)}. File loading is confirmed for the behavior arms; the remaining behavior gate is stronger divergence testing across more tasks.",
+            f"Visible routes have {receipt_kind}. Route receipts: {len(records)}. File loading is confirmed for the behavior arms; the remaining behavior gate is stronger divergence testing across more tasks.",
             "",
             "🪄 Follow-up",
             *followup_lines,
@@ -687,6 +973,7 @@ def run_wizard(
     general_size: str = "full",
     feedback: list[str] | None = None,
     external_summary_path: Path | None = None,
+    live_receipts_path: Path | None = None,
     require_live_execution: bool = False,
 ) -> dict[str, Any]:
     candidate_root = candidate_root.resolve()
@@ -702,7 +989,11 @@ def run_wizard(
     harness = _load_module(_tool_path("wizard_behavior_harness.py"), "wizard_behavior_harness_runtime")
     adapter = _load_module(_tool_path("codex_harness_adapter.py"), "codex_harness_adapter_runtime")
 
-    records = [_record_for(spec, candidate_root, task, general_size, version) for spec in LANES]
+    lane_specs = _lanes_for(candidate_root, general_size, version)
+    records = [_record_for(spec, candidate_root, task, general_size, version) for spec in lane_specs]
+    records, live_routes = _overlay_live_receipts(records, live_receipts_path)
+    if require_live_execution and live_receipts_path is not None:
+        records = _block_unproven_live_records(records, live_routes)
     harness_result = harness.run_harness(candidate_root, out_dir, records)
 
     validation_path = out_dir / "validation_before_final.json"
@@ -729,6 +1020,7 @@ def run_wizard(
             feedback=feedback,
             version=version,
             external_summary_path=external_summary_path,
+            live_routes=live_routes,
         ),
         encoding="utf-8",
     )
@@ -755,6 +1047,7 @@ def run_wizard(
                 feedback=feedback,
                 version=version,
                 external_summary_path=external_summary_path,
+                live_routes=live_routes,
                 final_validation_ok=final_ok,
                 final_findings=final_validation.get("findings", []),
             ),
@@ -782,6 +1075,8 @@ def run_wizard(
         "packet_version": version,
         "general_words": general_words,
         "feedback": feedback,
+        "live_receipts_path": str(live_receipts_path) if live_receipts_path else None,
+        "live_routes": live_routes,
         "require_live_execution": require_live_execution,
         "candidate_root": str(candidate_root),
         "out_dir": str(out_dir),
@@ -790,7 +1085,7 @@ def run_wizard(
         "final_answer_path": str(final_answer_path),
         "validation_path": str(validation_path),
         "final_validation_path": str(final_validation_path),
-        "lanes": [spec["lane"] for spec in LANES],
+        "lanes": [spec["lane"] for spec in lane_specs],
         "waves": WAVE_DEFINITIONS,
         "findings": final_validation.get("findings", []),
     }
@@ -809,6 +1104,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--feedback", action="append", default=[])
     parser.add_argument("--external-summary-path", type=Path)
     parser.add_argument(
+        "--live-receipts-path",
+        type=Path,
+        help="JSON/JSONL parent-collected live spawn receipts to overlay by lane before validation",
+    )
+    parser.add_argument(
         "--require-live-execution",
         action="store_true",
         help="fail local receipts when live spawned-agent execution is required",
@@ -825,6 +1125,7 @@ def main(argv: list[str] | None = None) -> int:
         general_size=args.general_size,
         feedback=args.feedback,
         external_summary_path=args.external_summary_path,
+        live_receipts_path=args.live_receipts_path,
         require_live_execution=args.require_live_execution,
     )
     print(json.dumps(result, indent=2, sort_keys=True))

@@ -71,6 +71,17 @@ Parallelism and reroute rule:
 - Large Claude/Sonnet fanout may be used for independent advisory or scout lanes, but only completed Task/Agent receipts count as executed routes.
 - Pending workers are not results. Count them as pending, blocked, deferred, or not-run until they return usable receipts. If duplicate/rerouted workers return, accept the first valid receipt and mark later returns as supplemental or superseded.
 
+Worker pool truth:
+
+- Keep Codex native subagents, Claude Bridge Task/Agent workers, Gemini CLI/OMX workers, and tmux/OMX team panes as separate pools. Do not count one pool as another.
+- Codex native subagents are the primary repo-edit and route-truth surface. They require the `spawn_agent` tool receipt, not a shell transcript or worker self-report.
+- Claude Bridge may run Opus/Sonnet/Haiku fanout for advisory, scout, audit, or external worker lanes. Count only stream-mode Task/Agent evidence with completed task notifications, receipt paths, model/cost metadata, and a usable returned artifact. Treat Claude output as external worker evidence, not Codex-native subagent evidence.
+- Gemini may be used directly or through `omx ask gemini` for bounded scout, compare, and liveness lanes. Count it only when the command returns a durable receipt or artifact containing prompt hash/route, model, exit status, stdout/stderr or JSON output, and conclusion/open fields.
+- OMX `ask` and `sparkshell` are valid worker/tool surfaces from the Codex App shell when they return artifacts or bounded command output. OMX `team` is valid only inside a tmux leader pane with a running tmux server/session; outside that environment, mark the team wave `blocked` and use another honest pool for independent work.
+- Tmux presence alone is not team execution. A tmux/OMX route counts only when a pane/session id, command, exit state, and output/receipt artifact are recorded.
+- Header counts must split pool types when a response relies on more than one pool: `codex-native`, `claude-bridge`, `gemini`, `omx/tmux`, and `tools`. The total `subagents` count may aggregate them only after the split is visible.
+- A rerouted duplicate can keep the work moving, but the original stalled route remains pending/blocked until its own receipt resolves or it is explicitly abandoned.
+
 Route truth:
 
 - A visible voice counts as `spawned` only if a real subagent ran that exact voice with its exact voice mini-MMM. Controller-local voice text is not a voice; it is synthesis or a blocked/deferred placeholder.
@@ -95,6 +106,7 @@ For Full Wizard, plurality, council, Wizard-output testing, or any response that
 
 ```text
 Wizard: {FULL|COMPACT} | subagents: spawned {n} / blocked {n} / deferred {n} | subsubagents: spawned {n} / blocked {n} / deferred {n} | waves: worker {n} / controller {n} / not-run {n}
+Pools: codex-native {spawned}/{blocked}/{deferred}; claude-bridge {spawned}/{blocked}/{deferred}; gemini {spawned}/{blocked}/{deferred}; omx/tmux {spawned}/{blocked}/{deferred}; tools {ran}/{blocked}
 Routes: voices {spawned}/{blocked}/{deferred}; lanes {spawned}/{blocked}/{deferred|future-only}; council {status}; checks {spawned}/{blocked}/{deferred}; compositions {spawned}/{blocked}/{deferred|future-only}; follow-up scout {spawned|blocked|deferred|not-run}
 ```
 

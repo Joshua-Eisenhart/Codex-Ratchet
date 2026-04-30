@@ -18,6 +18,11 @@ Reject a Wizard output if any of these are true:
 - A blocked or slow route is allowed to stall the critical path instead of being rerun on a different model/runtime and debugged separately.
 - A Codex runtime/subagent-health failure is routed around with another model instead of being fixed first.
 - A Codex subagent is counted as spawned without a spawn-agent tool receipt containing agent id, route-local mini-MMM path, assigned route, completion status, and usable output.
+- Claude Bridge, Gemini, OMX, tmux, or plain tool output is counted as Codex-native subagent evidence.
+- A Claude Bridge worker is counted without stream-mode Task/Agent evidence, completed task notification, receipt/artifact path, and usable output.
+- A Gemini worker is counted without a durable command/OMX artifact containing route/prompt hash, model, exit status, output, conclusion, and open fields.
+- An OMX team wave is claimed outside a live tmux leader pane/session, or tmux presence alone is treated as team execution.
+- Header counts aggregate Codex, Claude, Gemini, OMX/tmux, and tools without showing the pool split.
 - Duplicate/rerouted workers return conflicting receipts without the controller marking which receipt was accepted, superseded, or left supplemental.
 - Follow-up is mostly receipt inspection, route proof, contradiction listing, or orchestration debugging.
 - A controller-local route is presented as spawned.
@@ -38,6 +43,10 @@ Accept only when:
 - Pending, blocked, deferred, and not-run routes are distinguished from completed spawned routes.
 - Blocked or slow routes are rerouted to another model/runtime when doing so can continue the work safely.
 - Codex spawn/reset/receipt health is verified before cross-model reroutes are used as substitutes.
+- Worker pools are named separately in the header or Results boundary: Codex native, Claude Bridge, Gemini, OMX/tmux, and tools.
+- Claude Bridge routes count only from stream-mode Task/Agent receipts; final prose alone is advisory.
+- Gemini routes count only from direct CLI or `omx ask gemini` artifacts with route, model, exit/output, conclusion, and open fields.
+- OMX team routes are either backed by live tmux leader/pane receipts or marked blocked; `omx ask` and `omx sparkshell` are counted as their own non-team surfaces.
 - The leader uses the positive main MMM, while spawned routes use only their exact mini-MMM.
 - Each visible voice has a distinct useful contribution from a real voice subagent when a voice wave ran.
 - Council truth states whether a real multi-subagent council wave ran, was blocked, or was deferred.

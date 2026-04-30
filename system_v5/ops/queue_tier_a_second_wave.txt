@@ -1,0 +1,25 @@
+# Tier A second-wave queue — bounded tool-stage batch per TOOL_STAGE_ROUTING_AND_SKIP_AHEAD.md.
+# Priority order: capability reruns, missing capability probes, missing integration probes, manifest repair.
+# Every row requires ledger loopback to TOOL_CAPABILITY_AND_INTEGRATION_LEDGER.md on DONE.
+# Do not merge into queue_tier_a.txt until first wave's DONE rows have been reconciled.
+
+# --- Stage 2: capability reruns (ledger "exists-unverified" on 2026-04-17 baseline) ---
+# DONE 2026-04-19_12:39 cap_rerun_rustworkx — all_pass=True, ledger stamped passes-local-rerun
+# DONE 2026-04-19_12:39 cap_rerun_geomstats — all_pass=True (7/7), ledger stamped passes-local-rerun
+# DONE 2026-04-19_12:39 cap_rerun_xgi — all_pass=True, ledger stamped passes-local-rerun
+# DONE 2026-04-19_12:39 cap_rerun_e3nn — all_pass=True (e3nn UserWarning noted, not failing), ledger stamped passes-local-rerun
+
+# --- Stage 2: missing capability probes ---
+cap_hdbscan_density_cluster_invariants
+cap_umap_embedding_determinism
+
+# --- Stage 3: missing integration probes (zero dedicated today) ---
+int_cvc5_x_z3_UNSAT_agreement
+int_e3nn_x_pyg_equivariance_under_mp
+int_xgi_x_toponetx_higher_order_incidence
+int_networkx_x_pyg_graph_roundtrip
+
+# --- Stage 1: manifest debt repair (empty/absent `reason` field) ---
+manifest_repair_deap
+manifest_repair_evotorch
+manifest_repair_pymoo

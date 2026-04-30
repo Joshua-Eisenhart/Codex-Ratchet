@@ -20,7 +20,8 @@ Pure Python + shell. No LLM in the loop. Drains tier queues in priority order, p
 
 - Tier A queue drained before B, B before D. Foundation first.
 - Within a queue, top-to-bottom order (Hermes terminals append).
-- `queue_default.txt` = fallback. Auto-populated from "canonical missing `tool_integration_depth`" when all tier queues empty.
+- `queue_default.txt` = fail-closed fallback only. It should contain only controller-approved tool/tool-integration/local-lego entries, and it is allowed to stay empty.
+- `queue_default.txt` must not auto-queue pairwise/coexistence/bridge/axis/engine-style probes.
 
 ## Thermal safety
 
@@ -82,3 +83,5 @@ touch system_v5/ops/.stop_sim_runner
 4. Unhandled probe exception → log, move on, don't retry.
 5. 5 consecutive failures → pause 30 min, telegram L3 once.
 6. Runner obeys `system_v5/ops/.stop_sim_runner` sentinel file between sims.
+7. The hard stage gate wins over stale queue contents: no pairwise/coexistence/bridge/axis/engine probe may run from `queue_default.txt`.
+8. If all tier queues are empty and no safe default queue exists, the runner stays idle rather than generating a generic never-run pile.

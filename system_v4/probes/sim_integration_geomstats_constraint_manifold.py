@@ -18,6 +18,11 @@ import json
 import os
 import numpy as np
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -360,6 +365,10 @@ if __name__ == "__main__":
     results = {
         "name": "sim_integration_geomstats_constraint_manifold",
         "classification": "classical_baseline",
+        "divergence_log": (
+            "Classical baseline: geomstats, z3, and sympy cross-check an S^2 "
+            "constraint manifold without claiming a canonical nonclassical witness."
+        ),
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

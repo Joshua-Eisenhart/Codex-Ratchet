@@ -3,13 +3,23 @@
 SIM TEMPLATE -- All new sims must start from this template.
 See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 
+Harness framing (nominalist constraint-admissibility):
+  This sim is a probe, not a proof. It tests which configurations survive
+  under constraint set C and probe family M. Survivors remain candidates;
+  they are not confirmed. What is excluded under C is the primary signal.
+
+  Status ladder: exists < runs < passes local rerun < canonical by process
+  Never report "all pass" without naming which criteria were checked.
+  At least one tool outside the numeric baseline must be load-bearing.
+
 Usage:
   1. Copy this file to sim_<your_name>.py
   2. Rename "TEMPLATE" throughout
-  3. Implement positive, negative, and boundary tests
-  4. Update TOOL_MANIFEST entries with used=True and reason for each tool
-  5. Record which tools were actually load-bearing for the claim
-  5. Run and commit the result JSON
+  3. Name the probe family M and constraint set C for this sim
+  4. Implement admission tests, exclusion tests, and boundary probes
+  5. Update TOOL_MANIFEST: tried=True for every tool attempted, reason non-empty
+  6. Record which tools are load-bearing for the actual admissibility claim
+  7. Run locally, confirm exit 0, write result JSON, then report status label
 """
 
 import json
@@ -136,37 +146,74 @@ except ImportError:
 
 
 # =====================================================================
-# POSITIVE TESTS
+# ADMISSION TESTS
+# Probe family M: [name the probes used here]
+# Constraint set C: [name the constraints being tested]
+#
+# Which configurations survive under C? State these results as:
+#   "candidate X survived probe M under constraint C"
+#   "candidate X is admissible under C" (not "test passes")
+#
+# Each admission test requires:
+#   - Multiple candidate states (not just one)
+#   - Expected admissibility value from theory or prior constraint analysis
+#   - Cross-check against a second probe or method
+#   - A surviving-alternatives note: what else could be admitted?
 # =====================================================================
 
 def run_positive_tests():
     results = {}
-    # TODO: implement positive tests
-    # Each test needs:
-    # - Multiple test states
-    # - Theoretical value comparison
-    # - Cross-validation against different method
+    # Under probe family M, which states are admitted by constraint C?
+    # Record: candidate, probe output, admissibility status, surviving alternatives
+    # Preferred language: "survived", "admitted", "indistinguishable under M"
+    # Avoid: "passes", "works", "confirms", "proves"
     return results
 
 
 # =====================================================================
-# NEGATIVE TESTS (mandatory)
+# EXCLUSION TESTS (mandatory — primary signal)
+# Constraint set C: [same as above]
+#
+# What does C exclude? Exclusion is the primary proof form here.
+# Use z3 UNSAT where possible: structural impossibility is stronger
+# than empirical absence.
+#
+# Each exclusion test requires:
+#   - A configuration that should be excluded under C
+#   - Evidence of exclusion (UNSAT, failed probe, boundary violation)
+#   - Why this exclusion matters for the admissibility claim
+#   - Whether the exclusion is formal (z3/cvc5 UNSAT) or empirical
 # =====================================================================
 
 def run_negative_tests():
     results = {}
-    # TODO: implement negative/failure tests
-    # Each positive test needs a corresponding negative
+    # Under constraint set C, which configurations are excluded?
+    # Record: candidate, exclusion evidence, exclusion type (formal/empirical)
+    # Preferred language: "excluded under C", "UNSAT under C", "inadmissible"
+    # Avoid: "fails", "wrong", "broken", "negative"
     return results
 
 
 # =====================================================================
-# BOUNDARY TESTS
+# BOUNDARY PROBES
+# Probe family M: [same as above]
+#
+# Where does probe family M fail to distinguish candidates?
+# These are the edges of the admissibility region — where the
+# constraint surface becomes thin and the probe loses resolution.
+#
+# Each boundary probe requires:
+#   - A configuration near the boundary of admissibility under C
+#   - What M returns at this boundary
+#   - Whether the boundary is sharp (formal) or gradient (empirical)
+#   - Numerical precision analysis if relevant
 # =====================================================================
 
 def run_boundary_tests():
     results = {}
-    # TODO: edge cases, numerical precision limits
+    # Where does M fail to distinguish? Where does C become ambiguous?
+    # Record: configuration, probe output at boundary, boundary type
+    # Note: boundary indistinguishability is a result, not a failure
     return results
 
 
@@ -175,18 +222,42 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    # Harness status discipline:
+    #   classification "classical_baseline" = numpy-era, not canonical by process
+    #   classification "canonical" = torch-native + template-compliant + load-bearing tool
+    #   Never set "canonical" without: SIM_TEMPLATE conformance + tool manifest with
+    #   non-empty reasons + at least one load-bearing non-baseline tool + passes local rerun
+    #
+    # Result keys use existing names for parser compatibility.
+    # Nominalist framing: "positive" = admitted configurations under C
+    #                     "negative" = excluded configurations under C
+    #                     "boundary" = boundary probes where M loses resolution
     results = {
         "name": "TEMPLATE -- RENAME THIS",
+        # probe_family: name the active probe family M for this sim
+        "probe_family": "M_UNNAMED",
+        # constraint_set: name the active constraint set C for this sim
+        "constraint_set": "C_UNNAMED",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
-        "classification": "classical_baseline",  # or "canonical" if torch-native
+        "positive": run_positive_tests(),   # admitted configurations under C
+        "negative": run_negative_tests(),   # excluded configurations under C
+        "boundary": run_boundary_tests(),   # boundary probes (M indistinguishable)
+        "classification": "classical_baseline",  # or "canonical" — see rules above
+        # surviving_alternatives: what other candidates remain admissible?
+        # Do not leave empty if any alternatives exist.
+        "surviving_alternatives": [],
+        # all_pass: True only if all admission tests survived AND
+        #           all exclusion tests confirmed exclusion AND
+        #           criteria are named explicitly below
+        "all_pass": False,
+        "criteria_checked": [],  # list exactly which criteria C1/C2/etc were checked
     }
 
-    # Mark tools as used based on what was actually called
-    # (update TOOL_MANIFEST entries with used=True and reason)
+    # Update TOOL_MANIFEST entries: tried=True for each tool attempted; used=True
+    # only for tools that actually affect the result. Every tried/used tool needs
+    # a non-empty reason.
+    # Update TOOL_INTEGRATION_DEPTH: "load_bearing" / "supportive" / None
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

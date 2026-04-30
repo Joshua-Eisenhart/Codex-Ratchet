@@ -229,6 +229,9 @@ def main():
         "negative": negative,
         "boundary": boundary,
         "summary": {
+            "positive": f"{sum(1 for v in positive.values() if v['pass'])}/{len(positive)}",
+            "negative": f"{sum(1 for v in negative.values() if v['pass'])}/{len(negative)}",
+            "boundary": f"{sum(1 for v in boundary.values() if v['pass'])}/{len(boundary)}",
             "all_pass": all_pass,
             "scope_note": "Direct local admissible-probe lego on bounded qubit effect families.",
         },

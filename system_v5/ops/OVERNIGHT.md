@@ -22,7 +22,7 @@ These are answered in advance so no terminal freezes overnight waiting for owner
 
 6. **Tier A gate passes** → Tier B poller auto-launches workers per `system_v5/ops/TIER_B.md`. No prompt needed.
 
-7. **Tier B gate passes** → Tier D poller auto-launches boundary workers per `system_v5/ops/TIER_D.md`.
+7. **Tier B gate passes** → Tier D poller may auto-launch boundary workers per `system_v5/ops/TIER_D.md` only if `system_v5/ops/stage_gate.json` explicitly allows Tier D launch.
 
 8. **If a worker can't decide**: append question to `_steward_questions.md`, continue with default-action OR skip that sub-task and log deferred. Never block the whole tier.
 
@@ -55,14 +55,14 @@ Per active reality (2026-04-17 00:45 PDT):
 - Each enqueues probes to `system_v5/ops/queue_tier_b.txt`
 - Target minimum N per layer per `system_v5/ops/TIER_B.md`
 
-**Tier D on B gate pass:**
+**Tier D on B gate pass plus explicit stage permission:**
 - Spawn 4 boundary workers
 - Target 2+ UNSAT certificates each
 - Enqueue to `system_v5/ops/queue_tier_d.txt`
 
 **Runner autonomous:**
 - Keep draining queues in priority order A > B > D > default
-- 2614 default-queue probes remaining (never-run pile)
+- default queue is stage-gated fallback only, not a generic never-run pile
 - Regenerate default queue when empty
 
 ## Morning briefing for owner

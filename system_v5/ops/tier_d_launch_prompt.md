@@ -23,13 +23,17 @@ Read in order:
 20. /Users/joshuaeisenhart/wiki/harness/07_z3_unsat_primacy.md
 21. /Users/joshuaeisenhart/wiki/harness/08_anti_patterns.md
 22. system_v4/probes/SIM_TEMPLATE.py
+23. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/stage_gate.json
 
 Goal
 Execute Tier D only if the gate is honestly open. Keep overnight polling/launch behavior autonomous. Be silent unless Tier D is actually launched or blocked by a concrete prerequisite during this execution.
 
 Hard gate before any Tier D launch work:
+- `system_v5/ops/stage_gate.json` must explicitly allow Tier D launch
 - /Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_b.md must honestly declare Tier B green/pass state; accept explicit green/pass language such as `Status: GREEN`, `Gate: GREEN`, or `Tier B gate PASSES`
-- tier_b layer evidence must be sufficient for the four Tier D boundaries; if `tier_b.md` is green/pass by authority override, do not block solely on a missing fifth `tier_b_<layer>.md` filename
+- tier_b layer evidence must be sufficient for the four Tier D boundaries
+- do not accept a green/pass summary by authority override alone
+- require zero pending and zero unresolved FAIL on the relevant lower-layer Tier B lego surfaces before any Tier D launch work
 - runner must be live, not just a stale log path
 - no active conflicting Tier D controller session is already in progress; partial prior Tier D artifacts or DONE queue entries for some boundaries are not blockers and should be treated as resumable progress
 

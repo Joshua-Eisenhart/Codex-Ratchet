@@ -21,7 +21,14 @@ Codex Ratchet is a nonclassical constraint-admissibility research system. The ma
 
 ## Wizard Runtime Default
 
-Wizard is the default routing, preflight, receipt, and collapse-resistance layer around normal repo work. Run Wizard alignment at the start of every substantive Codex Ratchet turn, even when the visible answer remains compact. The point is better repo execution, not more visible orchestration.
+Wizard is the default routing, preflight, receipt, and collapse-resistance layer around normal repo work. Run Full Wizard by default at the start of every substantive Codex Ratchet turn. The point is better repo execution, not more visible orchestration.
+
+Full Wizard default means:
+
+- Run the real Full Wizard wave plan by default: preflight/registry, voice wave, voice audit/improvement when needed, LLM Council wave, checks/guards, follow-up Make/Assembly, follow-up Run/Scout, follow-up Audit/Improve, final receipt boundary, and controller synthesis.
+- Do not silently downgrade to compact Wizard. If runtime capacity, context, or task shape prevents a complete Full Wizard run, state the blocked/deferred/not-run waves in the header and continue with the maximum honest subset.
+- Keep visible output compact when the user needs work product more than route detail, but keep the internal route truth complete.
+- Do not call an incomplete subset "Full Wizard." It is a partial Full Wizard attempt unless the required waves actually ran or were explicitly blocked/deferred.
 
 Default boot/load rule:
 
@@ -57,6 +64,8 @@ Parallelism and reroute rule:
 
 - Do not wait on a slow or stuck worker when independent routes remain available. Continue with other Codex subagents, Claude Bridge workers, tools, or local checks.
 - If a worker blocks, stalls, or shows model-specific failure, spawn an equivalent bounded lane on a different model/runtime and continue. Keep the original worker as side-debug work; do not let it hold the critical path.
+- Do not reroute around a Codex runtime failure. If Codex itself cannot spawn, reset, identify, or return trustworthy subagent receipts, stop using other models as substitutes and fix the Codex subagent health/receipt path first.
+- Codex subagent health requires a spawn-agent tool receipt with agent id, route-local mini-MMM path, assigned route, completion status, and usable output. Worker self-description alone is not proof of spawn; absence or contradiction is a Codex health blocker.
 - Reboot/restart Codex subagent lanes when a fresh route-local mini-MMM load is needed or when old thread state could contaminate the lane.
 - Use available model capacity aggressively for Full Wizard and other explicitly multi-route work, while keeping each worker bounded and receipt-producing.
 - Large Claude/Sonnet fanout may be used for independent advisory or scout lanes, but only completed Task/Agent receipts count as executed routes.
@@ -75,7 +84,7 @@ Route truth:
 
 ## Output Contract
 
-For ordinary repo work, still keep output readable. Use Wizard internally, and expose only the compact truth needed for the user:
+For ordinary repo work, still keep output readable. Use Full Wizard internally by default, and expose only the compact truth needed for the user:
 
 1. Main answer.
 2. Results: changed files, commands/checks, blockers.

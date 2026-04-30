@@ -18,6 +18,18 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 PROBES = REPO / "system_v4" / "probes"
 RESULTS = PROBES / "a2_state" / "sim_results"
+LANES_MD = REPO / "system_v5" / "docs" / "plans" / "lanes.md"
+
+T_ROW_MAP: dict[str, str] = {
+    "T-01": "sim_z3_capability.py",
+    "T-02": "sim_cvc5_capability.py",
+    "T-03": "sim_clifford_capability.py",
+    "T-04": "sim_clifford_capability.py",
+    "T-05": "sim_toponetx_capability.py",
+    "T-06": "sim_pyg_capability.py",
+    "T-07": "sim_pytorch_capability.py",
+    "T-08": "sim_sympy_capability.py",
+}
 PYTHON = "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
 MPLCONFIGDIR = "/tmp/codex-mpl"
 NUMBA_CACHE_DIR = "/tmp/codex-numba"
@@ -52,6 +64,37 @@ def env() -> dict[str, str]:
 def read_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as fh:
         return json.load(fh)
+
+def first_open_t_row() -> str | None:
+    """Return the id of the first T-row with status 'open' in lanes.md, or None."""
+    if not LANES_MD.exists():
+        return None
+    in_t_section = False
+    for line in LANES_MD.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if stripped.startswith("## Lane T"):
+            in_t_section = True
+            continue
+        if in_t_section and stripped.startswith("## Lane"):
+            break
+        if in_t_section and stripped.startswith("|"):
+            parts = [p.strip() for p in stripped.split("|")]
+            # table row: | id | tool | owner | status | result_path |
+            # parts[0] is empty (before first |), parts[1]=id, parts[4]=status
+            if len(parts) >= 5 and parts[1].startswith("T-") and parts[4] == "open":
+                return parts[1]
+    return None
+
+
+def batch_for_t_row(t_id: str) -> list[Step]:
+    probe_file = T_ROW_MAP[t_id]
+    step_name = probe_file.replace(".py", "").replace("sim_", "")
+    return [
+        Step(step_name, [PYTHON, str(PROBES / probe_file)]),
+        Step("truth_audit", [PYTHON, str(PROBES / "probe_truth_audit.py")]),
+        Step("controller_alignment", [PYTHON, str(PROBES / "controller_alignment_audit.py")]),
+    ]
+
 
 def audit_green() -> tuple[bool, bool]:
     truth_ok = False
@@ -271,6 +314,9 @@ def choose_audit_targets(max_sims: int = 20) -> tuple[str, list[Step]]:
 def choose_batch(previous: str | None = None) -> tuple[str, list[Step]]:
     truth_ok, controller_ok = audit_green()
     if not (truth_ok and controller_ok):
+        t_id = first_open_t_row()
+        if t_id is not None:
+            return t_id, batch_for_t_row(t_id)
         return "batch1", batch1()
 
     if previous is None:

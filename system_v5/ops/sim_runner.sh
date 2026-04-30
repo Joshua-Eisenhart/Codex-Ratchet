@@ -18,6 +18,8 @@ QUEUES=(
   "$OPS/queue_default.txt"
 )
 
+LATE_STAGE_PATTERN='pairwise|coupling|coexistence|triple|bridge|axis|phi0|rho_ab|kernel|emergence|stacking|carnot|szilard|jarzynski|landauer|engine|ladder|bakeoff'
+
 # Apple Silicon thermal: CPU_Speed_Limit from `pmset -g therm`.
 # 100 = no throttle; drops below when hot.
 THERMAL_PAUSE_BELOW=85     # pause if speed limit drops below this
@@ -77,11 +79,22 @@ pick_next() {
   return 1
 }
 
+default_queue_forbidden() {
+  local basename="$1"
+  echo "$basename" | grep -Eiq "$LATE_STAGE_PATTERN"
+}
+
 regen_default_queue() {
   local q="${QUEUES[3]}"
-  log "Regenerating default queue via system_v5/ops/generate_queue.py"
-  "$PYTHON" "$OPS/generate_queue.py" > "$q"
-  log "Default queue: $(grep -cv '^#\|^$' "$q") pending"
+  log "Default queue is fail-closed. Leaving queue_default.txt empty until controller writes allowed stage-gated entries."
+  cat > "$q" <<'EOF'
+# Default queue — fail-closed placeholder.
+# This file is not a generic never-run pile.
+# It may only hold tool sims, tool-integration sims, or local lego-stage work.
+# Do not place pairwise/coexistence/bridge/axis/engine-style probes here.
+# If the tier queues are empty and no controller-supplied safe default queue exists,
+# the runner should stay idle rather than widen scope.
+EOF
 }
 
 mark_line() {
@@ -120,7 +133,7 @@ while :; do
   if [ -z "$pick" ]; then
     regen_default_queue
     if ! pick=$(pick_next); then
-      log "All queues empty. Sleeping 600s."
+      log "All queues empty after fail-closed default queue check. Sleeping 600s."
       sleep 600
       continue
     fi
@@ -132,6 +145,12 @@ while :; do
 
   if [ ! -f "$probe" ]; then
     log "Missing probe: $probe — marking SKIPPED"
+    mark_line "$queue_file" "$basename" "SKIPPED" "0"
+    continue
+  fi
+
+  if [ "$queue_file" = "$OPS/queue_default.txt" ] && default_queue_forbidden "$basename"; then
+    log "SKIP (hard stage gate): $basename is late-stage and cannot run from queue_default.txt"
     mark_line "$queue_file" "$basename" "SKIPPED" "0"
     continue
   fi

@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import importlib.util
 import sys
+import textwrap
 from pathlib import Path
+from unittest.mock import patch
 
 import pytest
 
@@ -104,6 +106,56 @@ def test_run_batch_closure_invokes_only_targeted_steps_after_green_audits():
             "--dry-run",
         ]
     ]
+
+
+LANES_T01_OPEN = textwrap.dedent("""\
+    ## Lane T — Tool sims (isolation)
+
+    | id | tool | owner | status | result_path |
+    |---|---|---|---|---|
+    | T-01 | z3 |  | open |  |
+    | T-02 | cvc5 | | open | |
+""")
+
+LANES_NO_OPEN = textwrap.dedent("""\
+    ## Lane T — Tool sims (isolation)
+
+    | id | tool | owner | status | result_path |
+    |---|---|---|---|---|
+    | T-01 | z3 | hermes | in_progress |  |
+    | T-02 | cvc5 | hermes | in_progress | |
+""")
+
+
+def test_choose_batch_prefers_live_t_lane_when_audits_are_red(tmp_path):
+    lqc = load_module()
+    lanes_file = tmp_path / "lanes.md"
+    lanes_file.write_text(LANES_T01_OPEN)
+
+    with patch.object(lqc, "audit_green", return_value=(False, False)), \
+         patch.object(lqc, "LANES_MD", lanes_file):
+        name, steps = lqc.choose_batch(previous=None)
+
+    assert name == "T-01"
+    step_names = [s.name for s in steps]
+    assert step_names[0] == "z3_capability"
+    assert "truth_audit" in step_names
+    assert "controller_alignment" in step_names
+    assert len(steps) == 3
+
+
+def test_choose_batch_falls_back_to_batch1_when_no_open_t_row(tmp_path):
+    lqc = load_module()
+    lanes_file = tmp_path / "lanes.md"
+    lanes_file.write_text(LANES_NO_OPEN)
+
+    with patch.object(lqc, "audit_green", return_value=(False, False)), \
+         patch.object(lqc, "LANES_MD", lanes_file):
+        name, steps = lqc.choose_batch(previous=None)
+
+    assert name == "batch1"
+    step_names = [s.name for s in steps]
+    assert "truth_audit" in step_names
 
 
 def test_run_batch_closure_skips_when_audits_are_not_green():

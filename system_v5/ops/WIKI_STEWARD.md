@@ -8,11 +8,11 @@ Preconditions: read `system_v5/ops/HERMES_RULES.md`.
 
 ## One-time bootstrap
 
-1. Verify harness at `~/wiki/harness/` (12 files, `00_READ_FIRST.md` entry point).
+1. Verify the live Wizard harness at `~/wiki/wizard/` (`README.md`, `00-read-first.md`, `AGENTS.md` entry points).
 2. Create `~/wiki/projects/codex-ratchet/` if missing.
 3. Move any prior `~/wiki/projects/2026-04-16/harness_*.md` artifacts into `~/wiki/projects/codex-ratchet/`.
 4. Initialize `~/wiki/projects/codex-ratchet/_steward_log.md` with `"Steward cron online: <timestamp>"`.
-5. Append one line to `~/wiki/current/active-intentions.md`: `"Codex-Ratchet wiki steward cron active — maintains ~/wiki/harness/ and ~/wiki/projects/codex-ratchet/"`.
+5. Append one line to `~/wiki/current/active-intentions.md`: `"Codex-Ratchet wiki steward cron active — maintains ~/wiki/wizard/ and ~/wiki/projects/codex-ratchet/"`.
 6. Telegram L3 once: `"Wiki steward cron installed. Interval 30m. First tick at <timestamp+30m>."`
 
 ## Cron cycle (every 30 minutes)
@@ -28,7 +28,7 @@ Append findings to `~/wiki/projects/codex-ratchet/_steward_log.md`.
 ### Step 2 — Digest new content
 
 For each new/modified memory file:
-- Changes durable doctrine → update relevant harness primer (01–10). Keep each ≤500 words.
+- Changes durable doctrine → update the relevant live Wizard or consolidated-harness primer. Keep each ≤500 words unless the active Wizard packet explicitly requires a fuller operating manual.
 - Project status → create/update `~/wiki/projects/codex-ratchet/<slug>.md`.
 - Never touch `~/wiki/current/` (owner spine).
 
@@ -38,8 +38,8 @@ For each new repo commit:
 
 ### Step 3 — Audit wiki health
 
-- Language discipline: `grep -rE "causes|creates|drives|produces|generates|forces|determines|makes" ~/wiki/harness/ ~/wiki/projects/codex-ratchet/` (exempt `03_language_discipline.md` BAD column and `_steward_log.md`). Zero hits required; flag violations.
-- All cross-refs in harness resolve.
+- Language discipline: `grep -rE "causes|creates|drives|produces|generates|forces|determines|makes" ~/wiki/wizard/harness-consolidated/ ~/wiki/projects/codex-ratchet/` (exempt `03_language_discipline.md` BAD column and `_steward_log.md`). Zero hits required; flag violations.
+- All cross-refs in the live Wizard harness resolve.
 - All absolute paths in `10_owner_doctrine_index.md` still exist.
 - No primer >500 words (`00_READ_FIRST.md` >300).
 

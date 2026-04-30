@@ -253,6 +253,84 @@ def test_run_wizard_system_live_overlay_requires_provenance(tmp_path: Path):
         )
 
 
+def full_scale_receipts(count: int = 151) -> list[dict]:
+    receipts = []
+    direct_mini = "mini_mmms/standard/lanes/md/MMM_LANE_DIRECT_STANDARD_v2_7.md"
+    remaining = count
+    for wave in range(1, 12):
+        slots = min(14, remaining)
+        for slot in range(1, slots + 1):
+            receipts.append(
+                {
+                    "lane": f"Wizard Wave {wave:02d} Slot {slot:02d}",
+                    "status": "spawned_completed",
+                    "agent_id": f"019-live-wave-{wave:02d}-{slot:02d}",
+                    "worker_id": f"codex-live-wave-{wave:02d}-{slot:02d}",
+                    "mini_mmm_path": direct_mini,
+                    "mini_mmm_scope": "lane_local",
+                    "runtime_registry": "codex native subagent spawned with route-local mini-MMM",
+                    "source_tool": "codex_app_spawn_agent",
+                    "spawn_timestamp": "2026-04-30T00:00:00+00:00",
+                    "wizard_wave": wave,
+                    "wave_slot": slot,
+                    "checked": f"spawned wave {wave} slot {slot}",
+                    "concluded": f"wave {wave} slot {slot} returned usable live receipt",
+                    "open": "none for full-scale validation fixture",
+                    "evidence": f"spawn_agent receipt 019-live-wave-{wave:02d}-{slot:02d}",
+                    "output": f"wave {wave} slot {slot} live worker output",
+                }
+            )
+        remaining -= slots
+        if remaining <= 0:
+            break
+    return receipts
+
+
+def test_run_wizard_system_full_scale_requires_151_live_receipts(tmp_path: Path):
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(json.dumps(full_scale_receipts()), encoding="utf-8")
+
+    result = mod.run_wizard(
+        candidate,
+        tmp_path / "out",
+        "test full wizard scale",
+        general_size="standard",
+        live_receipts_path=live_receipts_path,
+        require_live_execution=True,
+        require_full_wizard_scale=True,
+    )
+
+    assert result["ok"], result["findings"]
+    assert result["full_wizard_scale"]["required_waves"] == 11
+    assert result["full_wizard_scale"]["max_subagents_per_wave"] == 14
+    assert result["full_wizard_scale"]["min_live_subagents"] == 151
+    assert result["full_wizard_scale"]["live_subagents"] == 151
+    assert result["full_wizard_scale"]["wave_counts"][1] == 14
+    assert result["full_wizard_scale"]["wave_counts"][11] == 11
+
+
+def test_run_wizard_system_full_scale_rejects_under_151_live_receipts(tmp_path: Path):
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(json.dumps(full_scale_receipts(150)), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="at least 151 live receipts"):
+        mod.run_wizard(
+            candidate,
+            tmp_path / "out",
+            "test full wizard under scale",
+            general_size="standard",
+            live_receipts_path=live_receipts_path,
+            require_live_execution=True,
+            require_full_wizard_scale=True,
+        )
+
+
 def test_run_wizard_system_supports_selected_size_without_lane_collapse(tmp_path: Path):
     mod = load_module()
     candidate = tmp_path / "candidate"

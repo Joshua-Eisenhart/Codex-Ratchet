@@ -325,6 +325,9 @@ ALL_D_CHILD_ROWS = tuple(f"Follow-up {index}" for index in range(1, 18)) + (
     "Follow-up Audit/Improve",
 )
 FOLLOWUP_SCOUT_ROWS = tuple(f"Follow-up Scout {option}" for option in ("L1", "L2", "L3", "L4", "L5", "L6", "C5", "C6", "C7", "C8", "C9"))
+FULL_WIZARD_WAVE_COUNT = 11
+FULL_WIZARD_MAX_SUBAGENTS_PER_WAVE = 14
+FULL_WIZARD_MIN_LIVE_SUBAGENTS = 151
 
 
 def _load_module(path: Path, name: str):
@@ -665,6 +668,54 @@ def _load_live_receipts(path: Path | None) -> dict[str, dict[str, Any]]:
     return overlays
 
 
+def _live_receipt_wave(overlay: dict[str, Any]) -> int:
+    raw_wave = overlay.get("wizard_wave", overlay.get("wave"))
+    if raw_wave in (None, ""):
+        return 0
+    try:
+        wave = int(raw_wave)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{overlay.get('lane') or overlay.get('route')}: live receipt wave must be an integer") from exc
+    if wave < 1 or wave > FULL_WIZARD_WAVE_COUNT:
+        raise ValueError(
+            f"{overlay.get('lane') or overlay.get('route')}: live receipt wave must be 1..{FULL_WIZARD_WAVE_COUNT}"
+        )
+    return wave
+
+
+def _validate_full_wizard_scale(overlays: dict[str, dict[str, Any]]) -> dict[str, Any]:
+    waves: dict[int, int] = {wave: 0 for wave in range(1, FULL_WIZARD_WAVE_COUNT + 1)}
+    for overlay in overlays.values():
+        wave = _live_receipt_wave(overlay)
+        if wave == 0:
+            raise ValueError("full-scale Wizard validation requires wizard_wave/wave on every live receipt")
+        waves[wave] += 1
+    total = sum(waves.values())
+    if total < FULL_WIZARD_MIN_LIVE_SUBAGENTS:
+        raise ValueError(
+            f"full-scale Wizard requires at least {FULL_WIZARD_MIN_LIVE_SUBAGENTS} live receipts; got {total}"
+        )
+    missing_waves = [wave for wave, count in waves.items() if count == 0]
+    if missing_waves:
+        raise ValueError(f"full-scale Wizard requires receipts for all {FULL_WIZARD_WAVE_COUNT} waves; missing {missing_waves}")
+    overfull_waves = {
+        wave: count
+        for wave, count in waves.items()
+        if count > FULL_WIZARD_MAX_SUBAGENTS_PER_WAVE
+    }
+    if overfull_waves:
+        raise ValueError(
+            f"full-scale Wizard allows at most {FULL_WIZARD_MAX_SUBAGENTS_PER_WAVE} live receipts per wave; got {overfull_waves}"
+        )
+    return {
+        "required_waves": FULL_WIZARD_WAVE_COUNT,
+        "max_subagents_per_wave": FULL_WIZARD_MAX_SUBAGENTS_PER_WAVE,
+        "min_live_subagents": FULL_WIZARD_MIN_LIVE_SUBAGENTS,
+        "live_subagents": total,
+        "wave_counts": waves,
+    }
+
+
 def _apply_live_overlay(record: dict[str, Any], overlay: dict[str, Any]) -> dict[str, Any]:
     lane = record["lane"]
     state = str(overlay.get("state") or overlay.get("status") or overlay.get("resolution") or "spawned_completed").strip().lower()
@@ -722,11 +773,17 @@ def _apply_live_overlay(record: dict[str, Any], overlay: dict[str, Any]) -> dict
 
 
 def _overlay_live_receipts(
-    records: list[dict[str, Any]], live_receipts_path: Path | None
-) -> tuple[list[dict[str, Any]], list[str]]:
+    records: list[dict[str, Any]],
+    live_receipts_path: Path | None,
+    *,
+    require_full_wizard_scale: bool = False,
+) -> tuple[list[dict[str, Any]], list[str], dict[str, Any] | None]:
     overlays = _load_live_receipts(live_receipts_path)
     if not overlays:
-        return records, []
+        if require_full_wizard_scale:
+            raise ValueError("full-scale Wizard validation requires --live-receipts-path")
+        return records, [], None
+    scale_report = _validate_full_wizard_scale(overlays) if require_full_wizard_scale else None
     known = {record["lane"] for record in records}
     unknown = sorted(
         lane
@@ -735,6 +792,7 @@ def _overlay_live_receipts(
             lane.startswith("Follow-up ")
             or lane.endswith(" Scout")
             or lane == "All-D self-check"
+            or lane.startswith("Wizard Wave ")
         )
     )
     if unknown:
@@ -754,7 +812,7 @@ def _overlay_live_receipts(
             continue
         updated_records.append(_apply_live_overlay({"lane": lane, "emoji": "", "wave": 8}, overlay))
         live_routes.append(lane)
-    return updated_records, live_routes
+    return updated_records, live_routes, scale_report
 
 
 def _block_unproven_live_records(records: list[dict[str, Any]], live_routes: list[str]) -> list[dict[str, Any]]:
@@ -975,6 +1033,7 @@ def run_wizard(
     external_summary_path: Path | None = None,
     live_receipts_path: Path | None = None,
     require_live_execution: bool = False,
+    require_full_wizard_scale: bool = False,
 ) -> dict[str, Any]:
     candidate_root = candidate_root.resolve()
     out_dir = out_dir.resolve()
@@ -991,7 +1050,11 @@ def run_wizard(
 
     lane_specs = _lanes_for(candidate_root, general_size, version)
     records = [_record_for(spec, candidate_root, task, general_size, version) for spec in lane_specs]
-    records, live_routes = _overlay_live_receipts(records, live_receipts_path)
+    records, live_routes, scale_report = _overlay_live_receipts(
+        records,
+        live_receipts_path,
+        require_full_wizard_scale=require_full_wizard_scale,
+    )
     if require_live_execution and live_receipts_path is not None:
         records = _block_unproven_live_records(records, live_routes)
     harness_result = harness.run_harness(candidate_root, out_dir, records)
@@ -1077,6 +1140,8 @@ def run_wizard(
         "feedback": feedback,
         "live_receipts_path": str(live_receipts_path) if live_receipts_path else None,
         "live_routes": live_routes,
+        "full_wizard_scale": scale_report,
+        "require_full_wizard_scale": require_full_wizard_scale,
         "require_live_execution": require_live_execution,
         "candidate_root": str(candidate_root),
         "out_dir": str(out_dir),
@@ -1114,6 +1179,11 @@ def main(argv: list[str] | None = None) -> int:
         help="fail local receipts when live spawned-agent execution is required",
     )
     parser.add_argument(
+        "--require-full-wizard-scale",
+        action="store_true",
+        help="require 11 waves and at least 151 live spawn receipts in --live-receipts-path",
+    )
+    parser.add_argument(
         "--task",
         default="Improve and locally run the repaired MMM Wizard packet without live wiring.",
     )
@@ -1127,6 +1197,7 @@ def main(argv: list[str] | None = None) -> int:
         external_summary_path=args.external_summary_path,
         live_receipts_path=args.live_receipts_path,
         require_live_execution=args.require_live_execution,
+        require_full_wizard_scale=args.require_full_wizard_scale,
     )
     print(json.dumps(result, indent=2, sort_keys=True))
     return 0 if result["ok"] else 1

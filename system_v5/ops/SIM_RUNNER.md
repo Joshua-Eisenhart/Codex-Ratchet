@@ -2,6 +2,8 @@
 
 Pure Python + shell. No LLM in the loop. Drains tier queues in priority order, pauses when the machine gets hot.
 
+Status: this document describes the live v1 runner. The v2 admission-gate contract is not live yet; its routing law lives in `system_v5/ops/TOOL_STAGE_ROUTING_AND_SKIP_AHEAD.md`, and the draft implementation sketch lives in `system_v5/ops/drafts/sim_runner_v2_stub.sh`.
+
 ## Role separation
 
 - **Hermes terminals** (Tier A / B / D) — write probes, enqueue them, monitor the runner's log. They do NOT execute sims.
@@ -22,6 +24,7 @@ Pure Python + shell. No LLM in the loop. Drains tier queues in priority order, p
 - Within a queue, top-to-bottom order (Hermes terminals append).
 - `queue_default.txt` = fail-closed fallback only. It should contain only controller-approved tool/tool-integration/local-lego entries, and it is allowed to stay empty.
 - `queue_default.txt` must not auto-queue pairwise/coexistence/bridge/axis/engine-style probes.
+- `queue_lego_backlog.txt` and `queue_offlane.txt` are v2 partition surfaces. The live v1 runner does not auto-drain them; `queue_offlane.txt` is never auto-drained.
 
 ## Thermal safety
 

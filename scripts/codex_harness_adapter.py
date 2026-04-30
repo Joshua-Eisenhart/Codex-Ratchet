@@ -62,7 +62,7 @@ ALL_D_CHILD_ROWS = tuple(f"Follow-up {index}" for index in range(1, 18)) + (
 )
 
 SPAWNED_STATES = {"spawned", "spawned_completed", "completed", "ran"}
-BLOCKED_STATES = {"blocked", "deferred", "shutdown"}
+BLOCKED_STATES = {"blocked", "deferred", "shutdown", "queued", "batched", "reset_pending", "deferred_by_ceiling"}
 OPTIONAL_LOCAL_STATES = {"controller_local", "not_spawned"}
 LOCAL_RECEIPT_STATES = {"local_receipt"}
 CODEX_VISIBLE_STATES = SPAWNED_STATES | BLOCKED_STATES
@@ -74,6 +74,18 @@ LIVE_RUNTIME_LOCAL_MARKERS = (
     "scaffold",
     "offline",
 )
+LIVE_PROVENANCE_PATH_FIELDS = (
+    "spawn_receipt_path",
+    "agent_receipt_path",
+    "live_receipt_path",
+)
+LIVE_PROVENANCE_SOURCES = {
+    "spawn_agent",
+    "codex_app_spawn_agent",
+    "codex_spawn_agent",
+    "spawn_agent_tool",
+    "codex_native_spawn_agent",
+}
 
 REQUIRED_REGISTRY_FIELDS = {
     "lane",
@@ -239,10 +251,14 @@ def _visible_units(text: str) -> set[str]:
 def _output_contract_findings(text: str) -> list[Finding]:
     findings: list[Finding] = []
     first_nonblank = next((line.strip() for line in text.splitlines() if line.strip()), "")
-    is_wizard_chat = first_nonblank.startswith("🧙 Wizard ") or first_nonblank.startswith("Wizard ")
+    is_wizard_chat = (
+        first_nonblank.startswith("🧙 Wizard ")
+        or first_nonblank.startswith("Wizard ")
+        or first_nonblank.startswith("Wizard:")
+    )
     execution_text = _execution_text(text)
     if is_wizard_chat:
-        for expected in ("🧙 Main Answer", "🗣️ Voices", "📊 Quality Audit", "🪄 Follow-up"):
+        for expected in ("🧙 Main Answer", "📌 Results", "🪄 Follow-up"):
             if expected not in text:
                 findings.append(Finding("wizard_chat_missing_section", expected))
         if re.search(r"(?m)^\s*\|.*\|\s*$", execution_text):
@@ -253,8 +269,10 @@ def _output_contract_findings(text: str) -> list[Finding]:
             findings.append(Finding("body_compositions_section", "compositions belong in Follow-up only"))
         if re.search(r"(?m)^\s*C(?:[5-9]|1[0-9]|2[0-5])\.", execution_text):
             findings.append(Finding("body_composition_option", "composition IDs belong in Follow-up only"))
-        if "Quality Audit Score:" not in text:
-            findings.append(Finding("missing_quality_score", "Quality Audit Score:"))
+        if re.search(r"(?m)^(?:📊\s*)?Quality Audit\b|^🔎\s*Audit\b", execution_text):
+            findings.append(Finding("audit_section_default_output", "Audit/Quality Audit should fix the answer; score belongs in footer"))
+        if not re.search(r"(?m)^🧙🏽‍♂️ .+ \| .+ \| q:(?:100|[1-9]?\d)/100 \| 🪄 .+$", text):
+            findings.append(Finding("missing_footer_quality_score", "footer q:{score}/100"))
     if re.search(r"(?m)^\s*19\.\s", text):
         findings.append(
             Finding(
@@ -629,7 +647,68 @@ def _spine_findings(lane: str, record: dict[str, Any]) -> list[Finding]:
     return findings
 
 
-def _live_execution_findings(lane: str, record: dict[str, Any]) -> list[Finding]:
+def _live_provenance_path(record: dict[str, Any]) -> Any:
+    for field in LIVE_PROVENANCE_PATH_FIELDS:
+        if record.get(field):
+            return record[field]
+    return None
+
+
+def _inline_live_provenance_findings(lane: str, record: dict[str, Any]) -> list[Finding]:
+    source = str(record.get("source_tool", record.get("source", ""))).strip().lower()
+    timestamp = str(record.get("spawn_timestamp", "")).strip()
+    if not source and not timestamp:
+        return [Finding("missing_live_provenance_receipt", lane)]
+
+    findings: list[Finding] = []
+    if source not in LIVE_PROVENANCE_SOURCES:
+        findings.append(Finding("missing_live_provenance_source", lane))
+    if not timestamp:
+        findings.append(Finding("missing_live_spawn_timestamp", lane))
+    else:
+        try:
+            datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
+        except ValueError:
+            findings.append(Finding("invalid_live_spawn_timestamp", lane))
+    return findings
+
+
+def _live_provenance_findings(lane: str, record: dict[str, Any], base_dir: Path) -> list[Finding]:
+    agent_id = str(record.get("agent_id", "")).strip()
+    raw_path = _live_provenance_path(record)
+    if raw_path in (None, ""):
+        return _inline_live_provenance_findings(lane, record)
+
+    path = _resolve_receipt_path(base_dir, raw_path)
+    if path is None:
+        return [Finding("missing_live_provenance_receipt", lane)]
+    if not path.exists():
+        return [Finding("missing_live_provenance_file", f"{lane}: {path}")]
+
+    try:
+        payload = _load_json(path)
+    except Exception as exc:  # noqa: BLE001
+        return [Finding("invalid_live_provenance_json", f"{lane}: {path}: {exc}")]
+    if not isinstance(payload, dict):
+        return [Finding("invalid_live_provenance_shape", f"{lane}: receipt must be an object")]
+
+    findings: list[Finding] = []
+    source = str(payload.get("source", payload.get("receipt_source", payload.get("tool", "")))).strip().lower()
+    if source not in LIVE_PROVENANCE_SOURCES:
+        findings.append(Finding("missing_live_provenance_source", lane))
+
+    receipt_agent_id = str(payload.get("agent_id", payload.get("agent_path", payload.get("id", "")))).strip()
+    if agent_id and receipt_agent_id != agent_id:
+        findings.append(Finding("live_agent_id_mismatch", f"{lane}: row={agent_id} receipt={receipt_agent_id or '<empty>'}"))
+
+    status = str(payload.get("status", payload.get("state", ""))).strip().lower()
+    if status and status not in SPAWNED_STATES:
+        findings.append(Finding("live_provenance_not_spawned", f"{lane}: {status}"))
+
+    return findings
+
+
+def _live_execution_findings(lane: str, record: dict[str, Any], base_dir: Path) -> list[Finding]:
     findings: list[Finding] = []
     state = _normalize_state(record)
     if state in LOCAL_RECEIPT_STATES:
@@ -647,10 +726,12 @@ def _live_execution_findings(lane: str, record: dict[str, Any]) -> list[Finding]
     elif any(marker in runtime_registry for marker in LIVE_RUNTIME_LOCAL_MARKERS):
         findings.append(Finding("live_execution_contradicts_runtime_registry", lane))
 
+    findings.extend(_live_provenance_findings(lane, record, base_dir))
+
     return findings
 
 
-def _followup_scout_findings(claims: set[str], by_lane: dict[str, dict[str, Any]]) -> list[Finding]:
+def _followup_scout_findings(claims: set[str], by_lane: dict[str, dict[str, Any]], base_dir: Path) -> list[Finding]:
     findings: list[Finding] = []
     for option_id in sorted(claims):
         candidate_names = (
@@ -668,7 +749,7 @@ def _followup_scout_findings(claims: set[str], by_lane: dict[str, dict[str, Any]
         if state not in SPAWNED_STATES:
             findings.append(Finding("followup_scout_not_live", f"{option_id}: {state or '<empty>'}"))
             continue
-        findings.extend(_live_execution_findings(option_id, record))
+        findings.extend(_live_execution_findings(option_id, record, base_dir))
     return findings
 
 
@@ -735,7 +816,7 @@ def validate(
             else:
                 findings.extend(_receipt_findings(lane, receipt_path))
             if require_live_execution:
-                findings.extend(_live_execution_findings(lane, record))
+                findings.extend(_live_execution_findings(lane, record, lane_resolution_path.parent))
 
         if state in BLOCKED_STATES and not (record.get("reason") or record.get("blocker_or_defer_reason")):
             findings.append(Finding("missing_block_or_defer_reason", lane))
@@ -783,9 +864,9 @@ def validate(
             if require_live_execution and state in LOCAL_RECEIPT_STATES:
                 findings.append(Finding("visible_lane_not_live", f"{lane}: {state}"))
             if require_live_execution and state in SPAWNED_STATES:
-                findings.extend(_live_execution_findings(lane, by_lane[lane]))
+                findings.extend(_live_execution_findings(lane, by_lane[lane], lane_resolution_path.parent))
         if require_live_execution:
-            findings.extend(_followup_scout_findings(followup_scout_claims, by_lane))
+            findings.extend(_followup_scout_findings(followup_scout_claims, by_lane, lane_resolution_path.parent))
 
     report = {
         "generated_at": datetime.now(UTC).isoformat(),

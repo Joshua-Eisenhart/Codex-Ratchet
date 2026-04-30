@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Run the repaired Wizard packet as a local receipt-producing system.
+"""Run the repaired Wizard packet as a receipt-producing system.
 
-This runner is deliberately honest about scope: it does not claim live model or
-subagent execution. It loads the packet language bodies, creates lane-local
-records, runs the existing receipt harness, writes a final answer, and validates
-that visible lane names have receipts.
+The runner is honest about scope: local records are local, live spawned-agent
+claims require live receipts, and Full Wizard scale adapts to the runtime
+ceiling by planning rolling/reset batches instead of treating an approximate
+target count as a hard failure.
 """
 
 from __future__ import annotations
@@ -335,6 +335,7 @@ DEFAULT_RUNTIME_PLAN = {
     "batching": "rolling",
     "reroute_policy": "blocked_or_slow_routes_may_use_other_receipted_pools",
 }
+DEFAULT_RUNTIME_REGISTRY_PATH = REPO_ROOT / "runtime_registry.json"
 
 
 def _load_module(path: Path, name: str):
@@ -675,9 +676,34 @@ def _load_live_receipts(path: Path | None) -> dict[str, dict[str, Any]]:
     return overlays
 
 
-def _runtime_plan(path: Path | None) -> dict[str, Any]:
+def _runtime_plan(path: Path | None, registry_path: Path | None = None) -> dict[str, Any]:
+    registry_path = registry_path or DEFAULT_RUNTIME_REGISTRY_PATH
+    registry_payload: dict[str, Any] = {}
+    if registry_path.exists():
+        payload = _load_json_or_jsonl(registry_path)
+        if isinstance(payload, dict):
+            registry_payload = payload
     if path is None:
-        return dict(DEFAULT_RUNTIME_PLAN)
+        plan = dict(DEFAULT_RUNTIME_PLAN)
+        configured = registry_payload.get("configured", {}) if isinstance(registry_payload.get("configured"), dict) else {}
+        observed = registry_payload.get("observed", {}) if isinstance(registry_payload.get("observed"), dict) else {}
+        active_ceiling = (
+            observed.get("active_child_agent_ceiling")
+            or observed.get("top_level_lane_workers_spawned_this_session")
+            or configured.get("max_threads")
+        )
+        if active_ceiling:
+            plan["max_concurrent_subagents"] = active_ceiling
+        plan["runtime"] = registry_payload.get("runtime", plan["runtime"])
+        plan["pool"] = "codex-native"
+        plan["batching"] = registry_payload.get("batching_strategy", registry_payload.get("runtime_reset_strategy", plan["batching"]))
+        if registry_payload:
+            plan["runtime_registry_path"] = str(registry_path)
+        max_concurrent = int(plan.get("max_concurrent_subagents") or 0)
+        if max_concurrent < 1:
+            max_concurrent = 1
+        plan["max_concurrent_subagents"] = max_concurrent
+        return plan
     payload = _load_json_or_jsonl(path)
     if not isinstance(payload, dict):
         raise ValueError(f"{path}: runtime plan must be a JSON object")
@@ -688,6 +714,25 @@ def _runtime_plan(path: Path | None) -> dict[str, Any]:
         raise ValueError(f"{path}: max_concurrent_subagents must be >= 1")
     plan["max_concurrent_subagents"] = max_concurrent
     return plan
+
+
+def _status_counts(records: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {"spawned": 0, "blocked": 0, "deferred": 0, "local": 0}
+    for record in records:
+        state = str(record.get("state") or record.get("status") or "").lower()
+        if state in {"spawned", "spawned_completed", "completed", "ran"}:
+            counts["spawned"] += 1
+        elif state in {"blocked", "shutdown"}:
+            counts["blocked"] += 1
+        elif state in {"deferred", "queued", "batched", "reset_pending", "deferred_by_ceiling"}:
+            counts["deferred"] += 1
+        else:
+            counts["local"] += 1
+    return counts
+
+
+def _category_counts(records: list[dict[str, Any]], names: set[str]) -> dict[str, int]:
+    return _status_counts([record for record in records if str(record.get("lane")) in names])
 
 
 def _live_receipt_wave(overlay: dict[str, Any]) -> int:
@@ -945,6 +990,8 @@ def _final_answer(
     version: str,
     external_summary_path: Path | None = None,
     live_routes: list[str] | None = None,
+    runtime_plan: dict[str, Any] | None = None,
+    scale_report: dict[str, Any] | None = None,
     final_validation_ok: bool | None = None,
     final_findings: list[dict[str, Any]] | None = None,
 ) -> str:
@@ -959,6 +1006,31 @@ def _final_answer(
     external = _external_worker_summary(external_summary_path)
     live_routes = live_routes or []
     receipt_kind = "live spawned receipts" if live_routes else "local receipts"
+    runtime_plan = runtime_plan or dict(DEFAULT_RUNTIME_PLAN)
+    counts = _status_counts(records)
+    spawned_total = counts["spawned"] + (0 if live_routes else 0)
+    blocked_total = counts["blocked"]
+    deferred_total = counts["deferred"]
+    local_total = counts["local"]
+    active_waves = {
+        int(record.get("wave"))
+        for record in records
+        if str(record.get("status") or record.get("state") or "").lower() not in {"blocked", "deferred", "queued", "batched", "reset_pending", "deferred_by_ceiling", "shutdown"}
+        and str(record.get("wave") or "").isdigit()
+    }
+    controller_waves = 1 if 11 in active_waves else 0
+    worker_waves = len(active_waves - {11})
+    not_run_waves = max(0, FULL_WIZARD_WAVE_COUNT - worker_waves - controller_waves)
+    voice_names = {"Hume", "Zhuangzi", "Feynman", "Orwell", "Popper", "Pushback", "Factory", "Strategy", "Systems"}
+    lane_names = {"Direct", "Alternative", "Reframe", "Wildcard", "Back"}
+    check_names = {"Audit", "Hygiene", "Security"}
+    composition_names = {"All-A", "All-B", "All-C", "Full Wizard", "All-D", "All-E", "All-F", "All-H"}
+    voice_counts = _category_counts(records, voice_names)
+    lane_counts = _category_counts(records, lane_names)
+    check_counts = _category_counts(records, check_names)
+    composition_counts = _category_counts(records, composition_names)
+    council_state = next((str(record.get("status") or record.get("state")) for record in records if record.get("lane") == "LLM Council"), "not-run")
+    followup_state = "spawned" if any(str(record.get("lane", "")).startswith("Follow-up Scout") and str(record.get("status") or record.get("state")).lower() in {"spawned", "spawned_completed", "completed", "ran"} for record in records) else ("deferred" if scale_report else "not-run")
 
     voice_lines = [
         "🦉 Hume: loaded full mini-MMM; keeps evidence, confidence, and humane restraint attached to receipts instead of claims.",
@@ -971,6 +1043,14 @@ def _final_answer(
         "♟️ Strategy: loaded full mini-MMM; keeps the Wizard aimed at QIT/sim building, not endless self-audit.",
         "🔁 Systems: loaded full mini-MMM; watches feedback loops such as overcompression, fake plurality, and frozen workflows.",
     ]
+    if voice_counts["spawned"] == 0:
+        voice_section = [
+            "🌊 Wave Results",
+            "Voice wave did not run as live spawned voice subagents in this controller-local run, so no voice contributions are claimed as executed.",
+            "The mini-MMM language bodies were loaded into local receipt rows for validation only; a real Full Wizard run must replace this with spawned voice receipts.",
+        ]
+    else:
+        voice_section = ["🗣️ Voices", *voice_lines]
 
     lane_lines = [
         "🎯 Direct: make the next input small enough to execute.",
@@ -980,11 +1060,6 @@ def _final_answer(
         "⬅️ Back: return to packet-level repair when runtime claims outrun source truth.",
         "🧼 Hygiene: clean drift, bloat, duplicate surfaces, and receipt confusion without deleting substance.",
         "🛡️ Security: check unsafe claims, permission confusion, prompt leakage, fake execution, and unearned certainty.",
-    ]
-
-    check_lines = [
-        "🧠 LLM Council: external model work is advisory until Codex audits and accepts it.",
-        "🔎 Audit: verify receipt truth, visible-route claims, follow-up prework, and quality score.",
     ]
 
     followup_lines = [
@@ -1009,27 +1084,27 @@ def _final_answer(
     quality_dimensions = _quality_dimensions(effective_ok, findings)
     quality_score = _quality_score(quality_dimensions)
     quality_grade = "pass" if quality_score >= 85 else "fail"
-    quality_lines = [
-        f"Quality Audit Score: {quality_score}/100 ({quality_grade})",
-        f"Quality Audit Findings: {len(findings)}",
-        f"Drift: {quality_dimensions['drift']}/5. The answer stays on the Wizard contract and names the live-runtime boundary.",
-        f"Sycophancy: {quality_dimensions['sycophancy']}/5. It applies the feedback without treating every requested direction as already proven.",
-        f"Hallucination: {quality_dimensions['hallucination']}/5. Claims are limited to local files and receipts.",
-        f"Fake execution / lying: {quality_dimensions['fake_execution']}/5. Local receipts are named as local receipts; live subagents are not claimed by this runner.",
-        f"Filler / fluff: {quality_dimensions['filler_fluff']}/5. The body is shorter and the follow-ups carry only prompt, pre-run score, and audit fields.",
-        f"Receipt grounding: {quality_dimensions['receipt_grounding']}/5. Visible body routes have local receipt rows.",
-        f"Useful density: {quality_dimensions['useful_density']}/5. The output says what changed, what is open, and what each follow-up would do.",
-        f"Format collapse: {quality_dimensions['format_collapse']}/5. Compositions are follow-up-only; no body composition catalog is rendered.",
-    ]
+    wave_truth = (
+        f"Runtime plan: {runtime_plan.get('runtime')} / {runtime_plan.get('pool')} / "
+        f"ceiling {runtime_plan.get('max_concurrent_subagents')} / {runtime_plan.get('batching')}."
+    )
+    if scale_report:
+        wave_truth += (
+            f" Full Wizard scale covered {scale_report['live_subagents']} live receipts across "
+            f"{scale_report['required_waves']} waves; rolling batches by wave: {scale_report['planned_batches_by_wave']}."
+        )
 
     return "\n".join(
         [
-            f"🧙 Wizard {_human_version(version)} {size} | {external['label']} | quality {quality_score}/100",
+            f"Wizard: {size.upper()} | subagents: spawned {spawned_total} / blocked {blocked_total} / deferred {deferred_total} | subsubagents: spawned 0 / blocked 0 / deferred 0 | waves: worker {worker_waves} / controller {controller_waves} / not-run {not_run_waves}",
+            f"Pools: codex-native {spawned_total}/{blocked_total}/{deferred_total}; claude-bridge {external['claude_total']}/0/0; gemini {external['gemini_total']}/0/0; omx/tmux 0/0/0; tools ran/0",
+            f"Routes: voices {voice_counts['spawned']}/{voice_counts['blocked']}/{voice_counts['deferred']}; lanes {lane_counts['spawned']}/{lane_counts['blocked']}/{lane_counts['deferred']}; council {council_state}; checks {check_counts['spawned']}/{check_counts['blocked']}/{check_counts['deferred']}; compositions {composition_counts['spawned']}/{composition_counts['blocked']}/{composition_counts['deferred']}; follow-up scout {followup_state}",
             "",
             "🧙 Main Answer",
             f"The Wizard ran in {size} mode and the validator {status}. The useful result is narrower than the old report shape: keep the MMM reservoirs large, boot only the full main MMM before task text, prove voice shaping with mini-MMM-loaded subagents, and use behavior comparisons before claiming salience effects.",
             f"Feedback applied: {feedback_line}.",
             f"Evidence: {len(records)} {receipt_kind}, live routes {len(live_routes)}, {external['live_waves']}/12 live mixed-model waves, {general_words} words in {general_rel}, and final validation findings {len(findings)}.",
+            wave_truth,
             f"Load proof: {external['voice_load_proof'] or 'not supplied'}.",
             f"Behavior probe: {external['behavior_probe'] or 'not supplied'}.",
             "",
@@ -1038,8 +1113,7 @@ def _final_answer(
             "Falsifier: if loaded MMMs do not measurably change output, or if the answer falls back into log text, the claim fails.",
             f"Status: {'open, not wired-ready' if effective_ok else 'killed by validation'}; validator {status}.",
             "",
-            "🗣️ Voices",
-            *voice_lines,
+            *voice_section,
             "",
             "➡️ Current Lanes",
             *lane_lines,
@@ -1047,15 +1121,14 @@ def _final_answer(
             "🧠 LLM Council",
             "Council advice stays advisory until Codex accepts it against receipts, behavior probes, and packet gates.",
             "",
-            "📊 Quality Audit",
-            *quality_lines,
-            "",
-            "🔎 Audit",
-            f"Visible routes have {receipt_kind}. Route receipts: {len(records)}. File loading is confirmed for the behavior arms; the remaining behavior gate is stronger divergence testing across more tasks.",
+            "📌 Results",
+            f"Visible routes have {receipt_kind}. Route receipts: {len(records)}. Validator: {validation_path}.",
+            "Audit fixed the answer shape instead of printing a separate audit report.",
             "",
             "🪄 Follow-up",
             *followup_lines,
             "",
+            f"🧙🏽‍♂️ Wizard {_human_version(version)} {size} | {status} | q:{quality_score}/100 | 🪄 {followup_lines[1].splitlines()[0]}",
         ]
     )
 
@@ -1070,6 +1143,7 @@ def run_wizard(
     external_summary_path: Path | None = None,
     live_receipts_path: Path | None = None,
     runtime_plan_path: Path | None = None,
+    runtime_registry_path: Path | None = None,
     require_live_execution: bool = False,
     require_full_wizard_scale: bool = False,
     full_wizard_min_live_subagents: int = FULL_WIZARD_DEFAULT_MIN_LIVE_SUBAGENTS,
@@ -1086,7 +1160,7 @@ def run_wizard(
 
     harness = _load_module(_tool_path("wizard_behavior_harness.py"), "wizard_behavior_harness_runtime")
     adapter = _load_module(_tool_path("codex_harness_adapter.py"), "codex_harness_adapter_runtime")
-    runtime_plan = _runtime_plan(runtime_plan_path)
+    runtime_plan = _runtime_plan(runtime_plan_path, runtime_registry_path)
 
     lane_specs = _lanes_for(candidate_root, general_size, version)
     records = [_record_for(spec, candidate_root, task, general_size, version) for spec in lane_specs]
@@ -1126,6 +1200,8 @@ def run_wizard(
             version=version,
             external_summary_path=external_summary_path,
             live_routes=live_routes,
+            runtime_plan=runtime_plan,
+            scale_report=scale_report,
         ),
         encoding="utf-8",
     )
@@ -1153,6 +1229,8 @@ def run_wizard(
                 version=version,
                 external_summary_path=external_summary_path,
                 live_routes=live_routes,
+                runtime_plan=runtime_plan,
+                scale_report=scale_report,
                 final_validation_ok=final_ok,
                 final_findings=final_validation.get("findings", []),
             ),
@@ -1182,6 +1260,7 @@ def run_wizard(
         "feedback": feedback,
         "live_receipts_path": str(live_receipts_path) if live_receipts_path else None,
         "runtime_plan_path": str(runtime_plan_path) if runtime_plan_path else None,
+        "runtime_registry_path": str(runtime_registry_path) if runtime_registry_path else str(DEFAULT_RUNTIME_REGISTRY_PATH),
         "runtime_plan": runtime_plan,
         "live_routes": live_routes,
         "full_wizard_scale": scale_report,
@@ -1224,6 +1303,11 @@ def main(argv: list[str] | None = None) -> int:
         help="JSON runtime plan describing pool limits and batching strategy",
     )
     parser.add_argument(
+        "--runtime-registry-path",
+        type=Path,
+        help="JSON runtime registry to derive pool ceilings when --runtime-plan-path is omitted",
+    )
+    parser.add_argument(
         "--require-live-execution",
         action="store_true",
         help="fail local receipts when live spawned-agent execution is required",
@@ -1253,6 +1337,7 @@ def main(argv: list[str] | None = None) -> int:
         external_summary_path=args.external_summary_path,
         live_receipts_path=args.live_receipts_path,
         runtime_plan_path=args.runtime_plan_path,
+        runtime_registry_path=args.runtime_registry_path,
         require_live_execution=args.require_live_execution,
         require_full_wizard_scale=args.require_full_wizard_scale,
         full_wizard_min_live_subagents=args.full_wizard_min_live_subagents,

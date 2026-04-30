@@ -20,7 +20,7 @@ from typing import Any
 
 
 SPAWNED_STATES = {"spawned", "spawned_completed", "completed", "ran"}
-BLOCKED_STATES = {"blocked", "deferred", "shutdown"}
+BLOCKED_STATES = {"blocked", "deferred", "shutdown", "queued", "batched", "reset_pending", "deferred_by_ceiling"}
 LOCAL_STATES = {"controller_local", "not_spawned", "local_receipt"}
 VALID_STATES = SPAWNED_STATES | BLOCKED_STATES | LOCAL_STATES
 
@@ -160,6 +160,17 @@ def _receipt_for(
         "output_sha256": hashlib.sha256(output_text.encode("utf-8")).hexdigest(),
         "output_excerpt": output_text[:1000],
     }
+    for key in (
+        "batch_id",
+        "batch_index",
+        "batch_total",
+        "runtime_ceiling",
+        "reset_id",
+        "attempt",
+        "planned_not_failed_reason",
+    ):
+        if key in record:
+            receipt[key] = record[key]
     missing = [field for field in REQUIRED_RECEIPT_FIELDS if not receipt.get(field)]
     if missing:
         raise ValueError(f"{lane}: missing receipt fields after normalization: {', '.join(missing)}")
@@ -225,6 +236,24 @@ def _lane_row_for(
         "output_path": output_path,
         "generated_at": generated_at,
     }
+    for key in (
+        "batch_id",
+        "batch_index",
+        "batch_total",
+        "runtime_ceiling",
+        "reset_id",
+        "attempt",
+        "planned_not_failed_reason",
+        "receipt_kind",
+        "source",
+        "source_tool",
+        "spawn_timestamp",
+        "spawn_receipt_path",
+        "agent_receipt_path",
+        "live_receipt_path",
+    ):
+        if key in record:
+            row[key] = record[key]
     if state in LOCAL_STATES:
         row["worker_id"] = None
     return row

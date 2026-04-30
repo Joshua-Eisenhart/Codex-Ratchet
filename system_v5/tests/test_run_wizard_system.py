@@ -59,21 +59,24 @@ def test_run_wizard_system_writes_valid_receipt_spine(tmp_path: Path):
     validation = json.loads(Path(result["final_validation_path"]).read_text(encoding="utf-8"))
     assert validation["ok"] is True
     assert validation["findings"] == []
-    assert "Hume" in validation["visible_lanes"]
+    assert "Hume" not in validation["visible_lanes"]
     assert "LLM Council" in validation["visible_lanes"]
 
     final_answer = Path(result["final_answer_path"]).read_text(encoding="utf-8")
-    assert final_answer.startswith("🧙 Wizard ")
+    assert final_answer.startswith("Wizard: ")
+    assert "Pools:" in final_answer.splitlines()[1]
+    assert "Routes:" in final_answer.splitlines()[2]
     assert "local receipts" in final_answer
-    assert "Subagents:" in final_answer.splitlines()[0]
+    assert "subagents:" in final_answer.splitlines()[0]
     assert "Claude Agent" not in final_answer.splitlines()[0]
     assert "OMX workers" not in final_answer.splitlines()[0]
     assert "140+" not in final_answer.splitlines()[0]
     assert "🧙 Main Answer" in final_answer
-    assert "🗣️ Voices" in final_answer
-    assert "📊 Quality Audit" in final_answer
-    assert "Quality Audit Score:" in final_answer
-    assert "Quality Audit Findings: 0" in final_answer
+    assert "🌊 Wave Results" in final_answer
+    assert "Voice wave did not run as live spawned voice subagents" in final_answer
+    assert "📊 Quality Audit" not in final_answer
+    assert "\n🔎 Audit\n" not in final_answer
+    assert "q:" in final_answer.splitlines()[-1]
     assert "🪄 Follow-up" in final_answer
     assert "Lane follow-ups" in final_answer
     assert "Composition follow-ups" in final_answer
@@ -306,12 +309,12 @@ def test_run_wizard_system_full_scale_requires_each_wave_not_magic_number(tmp_pa
     assert result["ok"], result["findings"]
     assert result["full_wizard_scale"]["required_waves"] == 11
     assert result["full_wizard_scale"]["design_max_subagents_per_wave"] == 14
-    assert result["full_wizard_scale"]["runtime_max_concurrent_subagents"] == 1
+    assert result["full_wizard_scale"]["runtime_max_concurrent_subagents"] >= 1
     assert result["full_wizard_scale"]["min_live_subagents"] == 1
     assert result["full_wizard_scale"]["live_subagents"] == 154
     assert result["full_wizard_scale"]["wave_counts"][1] == 14
     assert result["full_wizard_scale"]["wave_counts"][11] == 14
-    assert result["full_wizard_scale"]["planned_batches_by_wave"][1] == 14
+    assert result["full_wizard_scale"]["planned_batches_by_wave"][1] >= 1
 
 
 def test_run_wizard_system_full_scale_uses_runtime_plan_for_batches(tmp_path: Path):

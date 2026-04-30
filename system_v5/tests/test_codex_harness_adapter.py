@@ -225,13 +225,15 @@ def test_wizard_chat_contract_accepts_plain_text_followup_prework(tmp_path: Path
     ok, report = validate(
         tmp_path,
         [deferred_row("Audit")],
-        "🧙 Wizard 2.8 full: 12 wave slots scaffolded; true 12-wave run not executed; 0 live subagents; quality 91/100; local harness passed\n\n"
+        "Wizard: FULL | subagents: spawned 0 / blocked 0 / deferred 1 | subsubagents: spawned 0 / blocked 0 / deferred 0 | waves: worker 1 / controller 0 / not-run 10\n"
+        "Pools: codex-native 0/0/1; claude-bridge 0/0/0; gemini 0/0/0; omx/tmux 0/0/0; tools ran/0\n"
+        "Routes: voices 0/0/0; lanes 0/0/0; council not-run; checks 0/0/1; compositions 0/0/0; follow-up scout not-run\n\n"
         "🧙 Main Answer\n"
         "The current answer is a chat output, not a report.\n\n"
         "🗣️ Voices\n"
         "The voices contribute without turning the body into a menu.\n\n"
-        "📊 Quality Audit\n"
-        "Quality Audit Score: 91/100 (pass)\n\n"
+        "📌 Results\n"
+        "Audit fixed the answer shape instead of printing a separate audit report.\n\n"
         "🪄 Follow-up\n"
         "Lane follow-ups\n"
         "L1. Direct\n"
@@ -278,7 +280,8 @@ def test_wizard_chat_contract_accepts_plain_text_followup_prework(tmp_path: Path
         "C9. Full Wizard pass\n"
         "   🪄 Follow-up: \"Integrate the useful composition work.\"\n"
         "   Pre-run status/score: scouted, not executed as current work; 92/100.\n"
-        "   Audit: passes only if body and follow-up stay separate.\n",
+        "   Audit: passes only if body and follow-up stay separate.\n\n"
+        "🧙🏽‍♂️ Wizard 2.8 full | passed | q:91/100 | 🪄 L1. Direct\n",
     )
 
     assert ok, report["findings"]
@@ -526,6 +529,55 @@ def test_require_live_execution_requires_live_agent_id(tmp_path: Path):
     assert not ok
     assert "missing_live_agent_id" in finding_codes(report)
     assert "live_execution_contradicts_runtime_registry" in finding_codes(report)
+    assert "missing_live_provenance_receipt" in finding_codes(report)
+
+
+def test_require_live_execution_rejects_spawned_row_without_spawn_tool_receipt(tmp_path: Path):
+    mini = tmp_path / "council.md"
+    mini_mmm(mini)
+    receipts_dir = tmp_path / "receipts"
+    receipts_dir.mkdir()
+    write_json(receipts_dir / "council.json", receipt("LLM Council"))
+    row = live_spawned_row("LLM Council", mini, "council.json")
+    lane_resolution = tmp_path / "lanes.jsonl"
+    write_jsonl(lane_resolution, [row])
+
+    mod = load_module()
+    ok, report = mod.validate(
+        lane_resolution_path=lane_resolution,
+        receipts_dir=receipts_dir,
+        final_answer_path=None,
+        allow_controller_local=False,
+        require_live_execution=True,
+    )
+
+    assert not ok
+    assert "missing_live_provenance_receipt" in finding_codes(report)
+
+
+def test_require_live_execution_rejects_fake_spawned_council_without_live_provenance(tmp_path: Path):
+    mini = tmp_path / "council.md"
+    mini_mmm(mini)
+    receipts_dir = tmp_path / "receipts"
+    receipts_dir.mkdir()
+    write_json(receipts_dir / "council.json", receipt("LLM Council"))
+    row = spawned_row("LLM Council", mini, "council.json")
+    row["agent_id"] = "019-plausible-council"
+    row["runtime_registry"] = "codex native subagent spawned with route-local mini-MMM"
+    lane_resolution = tmp_path / "lanes.jsonl"
+    write_jsonl(lane_resolution, [row])
+
+    mod = load_module()
+    ok, report = mod.validate(
+        lane_resolution_path=lane_resolution,
+        receipts_dir=receipts_dir,
+        final_answer_path=None,
+        allow_controller_local=False,
+        require_live_execution=True,
+    )
+
+    assert not ok
+    assert "missing_live_provenance_receipt" in finding_codes(report)
 
 
 def test_require_live_execution_accepts_live_spawned_row(tmp_path: Path):
@@ -535,6 +587,11 @@ def test_require_live_execution_accepts_live_spawned_row(tmp_path: Path):
     receipts_dir.mkdir()
     write_json(receipts_dir / "direct.json", receipt("Direct"))
     row = live_spawned_row("Direct", mini, "direct.json")
+    write_json(
+        tmp_path / "direct.spawn.json",
+        {"source": "spawn_agent", "agent_id": row["agent_id"], "status": "completed"},
+    )
+    row["spawn_receipt_path"] = "direct.spawn.json"
     lane_resolution = tmp_path / "lanes.jsonl"
     write_jsonl(lane_resolution, [row])
 

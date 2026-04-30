@@ -14,7 +14,7 @@ import re
 import sys
 from pathlib import Path
 
-LANES = Path(__file__).resolve().parents[1] / "docs" / "plans" / "lanes.md"
+LANES = Path(__file__).resolve().parents[1] / "system_v5" / "docs" / "plans" / "lanes.md"
 VALID_STATUS = {
     "open", "in_progress", "runs",
     "passes local rerun", "canonical by process", "blocked",

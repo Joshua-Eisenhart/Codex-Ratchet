@@ -124,3 +124,43 @@ def test_harness_cli_accepts_json_string_and_jsonl_file_records(tmp_path: Path):
     assert rows[0]["status"] == "local_receipt"
     assert rows[1]["status"] == "blocked"
     assert rows[1]["blocker_or_defer_reason"] == "fixture unavailable"
+
+
+def test_harness_preserves_runtime_ceiling_batch_states(tmp_path: Path):
+    harness = load_module(SCRIPT_PATH, "wizard_behavior_harness_ceiling")
+    adapter = load_module(ADAPTER_PATH, "codex_harness_adapter_ceiling")
+    candidate = tmp_path / "candidate"
+    candidate.mkdir()
+    record = {
+        "lane": "Follow-up Scout L1",
+        "status": "deferred_by_ceiling",
+        "output": "Planned as rolling batch slot after active child-agent ceiling resets.",
+        "reason": "active Codex child-agent ceiling reached; queued for rolling reset",
+        "checked": "runtime ceiling plan",
+        "concluded": "not failed; deferred by concurrency ceiling",
+        "open": "spawn after prior batch closes",
+        "evidence": "runtime registry ceiling",
+        "batch_id": "wave-8-batch-2",
+        "batch_index": 2,
+        "batch_total": 2,
+        "runtime_ceiling": 13,
+        "reset_id": "codex-child-reset-1",
+        "attempt": 1,
+        "planned_not_failed_reason": "rolling reset batch",
+    }
+
+    result = harness.run_harness(candidate, tmp_path / "out", [record])
+    ok, report = adapter.validate(
+        lane_resolution_path=Path(result["lane_resolution_path"]),
+        receipts_dir=Path(result["receipts_dir"]),
+        final_answer_path=None,
+        allow_controller_local=False,
+        allow_local_receipt=True,
+    )
+
+    assert ok, report["findings"]
+    row = json.loads(Path(result["lane_resolution_path"]).read_text(encoding="utf-8").strip())
+    receipt = json.loads((Path(result["receipts_dir"]) / "follow_up_scout_l1.json").read_text(encoding="utf-8"))
+    assert row["status"] == "deferred_by_ceiling"
+    assert row["runtime_ceiling"] == 13
+    assert receipt["batch_id"] == "wave-8-batch-2"

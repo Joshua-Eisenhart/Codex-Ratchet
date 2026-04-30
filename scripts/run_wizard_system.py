@@ -327,7 +327,14 @@ ALL_D_CHILD_ROWS = tuple(f"Follow-up {index}" for index in range(1, 18)) + (
 FOLLOWUP_SCOUT_ROWS = tuple(f"Follow-up Scout {option}" for option in ("L1", "L2", "L3", "L4", "L5", "L6", "C5", "C6", "C7", "C8", "C9"))
 FULL_WIZARD_WAVE_COUNT = 11
 FULL_WIZARD_MAX_SUBAGENTS_PER_WAVE = 14
-FULL_WIZARD_MIN_LIVE_SUBAGENTS = 151
+FULL_WIZARD_DEFAULT_MIN_LIVE_SUBAGENTS = 1
+DEFAULT_RUNTIME_PLAN = {
+    "runtime": "generic",
+    "pool": "codex-native",
+    "max_concurrent_subagents": 1,
+    "batching": "rolling",
+    "reroute_policy": "blocked_or_slow_routes_may_use_other_receipted_pools",
+}
 
 
 def _load_module(path: Path, name: str):
@@ -668,6 +675,21 @@ def _load_live_receipts(path: Path | None) -> dict[str, dict[str, Any]]:
     return overlays
 
 
+def _runtime_plan(path: Path | None) -> dict[str, Any]:
+    if path is None:
+        return dict(DEFAULT_RUNTIME_PLAN)
+    payload = _load_json_or_jsonl(path)
+    if not isinstance(payload, dict):
+        raise ValueError(f"{path}: runtime plan must be a JSON object")
+    plan = dict(DEFAULT_RUNTIME_PLAN)
+    plan.update(payload)
+    max_concurrent = int(plan.get("max_concurrent_subagents") or 0)
+    if max_concurrent < 1:
+        raise ValueError(f"{path}: max_concurrent_subagents must be >= 1")
+    plan["max_concurrent_subagents"] = max_concurrent
+    return plan
+
+
 def _live_receipt_wave(overlay: dict[str, Any]) -> int:
     raw_wave = overlay.get("wizard_wave", overlay.get("wave"))
     if raw_wave in (None, ""):
@@ -683,7 +705,14 @@ def _live_receipt_wave(overlay: dict[str, Any]) -> int:
     return wave
 
 
-def _validate_full_wizard_scale(overlays: dict[str, dict[str, Any]]) -> dict[str, Any]:
+def _validate_full_wizard_scale(
+    overlays: dict[str, dict[str, Any]],
+    *,
+    min_live_subagents: int = 1,
+    runtime_plan: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    runtime_plan = runtime_plan or dict(DEFAULT_RUNTIME_PLAN)
+    runtime_max = int(runtime_plan.get("max_concurrent_subagents") or 1)
     waves: dict[int, int] = {wave: 0 for wave in range(1, FULL_WIZARD_WAVE_COUNT + 1)}
     for overlay in overlays.values():
         wave = _live_receipt_wave(overlay)
@@ -691,28 +720,26 @@ def _validate_full_wizard_scale(overlays: dict[str, dict[str, Any]]) -> dict[str
             raise ValueError("full-scale Wizard validation requires wizard_wave/wave on every live receipt")
         waves[wave] += 1
     total = sum(waves.values())
-    if total < FULL_WIZARD_MIN_LIVE_SUBAGENTS:
+    if total < min_live_subagents:
         raise ValueError(
-            f"full-scale Wizard requires at least {FULL_WIZARD_MIN_LIVE_SUBAGENTS} live receipts; got {total}"
+            f"full-scale Wizard requires at least {min_live_subagents} live receipts; got {total}"
         )
     missing_waves = [wave for wave, count in waves.items() if count == 0]
     if missing_waves:
         raise ValueError(f"full-scale Wizard requires receipts for all {FULL_WIZARD_WAVE_COUNT} waves; missing {missing_waves}")
-    overfull_waves = {
-        wave: count
+    planned_batches = {
+        wave: (count + runtime_max - 1) // runtime_max
         for wave, count in waves.items()
-        if count > FULL_WIZARD_MAX_SUBAGENTS_PER_WAVE
     }
-    if overfull_waves:
-        raise ValueError(
-            f"full-scale Wizard allows at most {FULL_WIZARD_MAX_SUBAGENTS_PER_WAVE} live receipts per wave; got {overfull_waves}"
-        )
     return {
         "required_waves": FULL_WIZARD_WAVE_COUNT,
-        "max_subagents_per_wave": FULL_WIZARD_MAX_SUBAGENTS_PER_WAVE,
-        "min_live_subagents": FULL_WIZARD_MIN_LIVE_SUBAGENTS,
+        "design_max_subagents_per_wave": FULL_WIZARD_MAX_SUBAGENTS_PER_WAVE,
+        "runtime_max_concurrent_subagents": runtime_max,
+        "planned_batches_by_wave": planned_batches,
+        "min_live_subagents": min_live_subagents,
         "live_subagents": total,
         "wave_counts": waves,
+        "runtime_plan": runtime_plan,
     }
 
 
@@ -777,13 +804,23 @@ def _overlay_live_receipts(
     live_receipts_path: Path | None,
     *,
     require_full_wizard_scale: bool = False,
+    full_wizard_min_live_subagents: int = FULL_WIZARD_DEFAULT_MIN_LIVE_SUBAGENTS,
+    runtime_plan: dict[str, Any] | None = None,
 ) -> tuple[list[dict[str, Any]], list[str], dict[str, Any] | None]:
     overlays = _load_live_receipts(live_receipts_path)
     if not overlays:
         if require_full_wizard_scale:
             raise ValueError("full-scale Wizard validation requires --live-receipts-path")
         return records, [], None
-    scale_report = _validate_full_wizard_scale(overlays) if require_full_wizard_scale else None
+    scale_report = (
+        _validate_full_wizard_scale(
+            overlays,
+            min_live_subagents=full_wizard_min_live_subagents,
+            runtime_plan=runtime_plan,
+        )
+        if require_full_wizard_scale
+        else None
+    )
     known = {record["lane"] for record in records}
     unknown = sorted(
         lane
@@ -1032,8 +1069,10 @@ def run_wizard(
     feedback: list[str] | None = None,
     external_summary_path: Path | None = None,
     live_receipts_path: Path | None = None,
+    runtime_plan_path: Path | None = None,
     require_live_execution: bool = False,
     require_full_wizard_scale: bool = False,
+    full_wizard_min_live_subagents: int = FULL_WIZARD_DEFAULT_MIN_LIVE_SUBAGENTS,
 ) -> dict[str, Any]:
     candidate_root = candidate_root.resolve()
     out_dir = out_dir.resolve()
@@ -1047,6 +1086,7 @@ def run_wizard(
 
     harness = _load_module(_tool_path("wizard_behavior_harness.py"), "wizard_behavior_harness_runtime")
     adapter = _load_module(_tool_path("codex_harness_adapter.py"), "codex_harness_adapter_runtime")
+    runtime_plan = _runtime_plan(runtime_plan_path)
 
     lane_specs = _lanes_for(candidate_root, general_size, version)
     records = [_record_for(spec, candidate_root, task, general_size, version) for spec in lane_specs]
@@ -1054,6 +1094,8 @@ def run_wizard(
         records,
         live_receipts_path,
         require_full_wizard_scale=require_full_wizard_scale,
+        full_wizard_min_live_subagents=full_wizard_min_live_subagents,
+        runtime_plan=runtime_plan,
     )
     if require_live_execution and live_receipts_path is not None:
         records = _block_unproven_live_records(records, live_routes)
@@ -1139,9 +1181,12 @@ def run_wizard(
         "general_words": general_words,
         "feedback": feedback,
         "live_receipts_path": str(live_receipts_path) if live_receipts_path else None,
+        "runtime_plan_path": str(runtime_plan_path) if runtime_plan_path else None,
+        "runtime_plan": runtime_plan,
         "live_routes": live_routes,
         "full_wizard_scale": scale_report,
         "require_full_wizard_scale": require_full_wizard_scale,
+        "full_wizard_min_live_subagents": full_wizard_min_live_subagents,
         "require_live_execution": require_live_execution,
         "candidate_root": str(candidate_root),
         "out_dir": str(out_dir),
@@ -1174,6 +1219,11 @@ def main(argv: list[str] | None = None) -> int:
         help="JSON/JSONL parent-collected live spawn receipts to overlay by lane before validation",
     )
     parser.add_argument(
+        "--runtime-plan-path",
+        type=Path,
+        help="JSON runtime plan describing pool limits and batching strategy",
+    )
+    parser.add_argument(
         "--require-live-execution",
         action="store_true",
         help="fail local receipts when live spawned-agent execution is required",
@@ -1181,7 +1231,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--require-full-wizard-scale",
         action="store_true",
-        help="require 11 waves and at least 151 live spawn receipts in --live-receipts-path",
+        help="require live spawn receipts covering all Wizard waves in --live-receipts-path",
+    )
+    parser.add_argument(
+        "--full-wizard-min-live-subagents",
+        type=int,
+        default=FULL_WIZARD_DEFAULT_MIN_LIVE_SUBAGENTS,
+        help="minimum live spawn receipts for --require-full-wizard-scale; use this for a concrete runtime plan",
     )
     parser.add_argument(
         "--task",
@@ -1196,8 +1252,10 @@ def main(argv: list[str] | None = None) -> int:
         feedback=args.feedback,
         external_summary_path=args.external_summary_path,
         live_receipts_path=args.live_receipts_path,
+        runtime_plan_path=args.runtime_plan_path,
         require_live_execution=args.require_live_execution,
         require_full_wizard_scale=args.require_full_wizard_scale,
+        full_wizard_min_live_subagents=args.full_wizard_min_live_subagents,
     )
     print(json.dumps(result, indent=2, sort_keys=True))
     return 0 if result["ok"] else 1

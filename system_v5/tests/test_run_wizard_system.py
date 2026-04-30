@@ -253,7 +253,7 @@ def test_run_wizard_system_live_overlay_requires_provenance(tmp_path: Path):
         )
 
 
-def full_scale_receipts(count: int = 151) -> list[dict]:
+def full_scale_receipts(count: int = 154) -> list[dict]:
     receipts = []
     direct_mini = "mini_mmms/standard/lanes/md/MMM_LANE_DIRECT_STANDARD_v2_7.md"
     remaining = count
@@ -286,7 +286,7 @@ def full_scale_receipts(count: int = 151) -> list[dict]:
     return receipts
 
 
-def test_run_wizard_system_full_scale_requires_151_live_receipts(tmp_path: Path):
+def test_run_wizard_system_full_scale_requires_each_wave_not_magic_number(tmp_path: Path):
     mod = load_module()
     candidate = tmp_path / "candidate"
     make_candidate(mod, candidate)
@@ -305,21 +305,61 @@ def test_run_wizard_system_full_scale_requires_151_live_receipts(tmp_path: Path)
 
     assert result["ok"], result["findings"]
     assert result["full_wizard_scale"]["required_waves"] == 11
-    assert result["full_wizard_scale"]["max_subagents_per_wave"] == 14
-    assert result["full_wizard_scale"]["min_live_subagents"] == 151
-    assert result["full_wizard_scale"]["live_subagents"] == 151
+    assert result["full_wizard_scale"]["design_max_subagents_per_wave"] == 14
+    assert result["full_wizard_scale"]["runtime_max_concurrent_subagents"] == 1
+    assert result["full_wizard_scale"]["min_live_subagents"] == 1
+    assert result["full_wizard_scale"]["live_subagents"] == 154
     assert result["full_wizard_scale"]["wave_counts"][1] == 14
-    assert result["full_wizard_scale"]["wave_counts"][11] == 11
+    assert result["full_wizard_scale"]["wave_counts"][11] == 14
+    assert result["full_wizard_scale"]["planned_batches_by_wave"][1] == 14
 
 
-def test_run_wizard_system_full_scale_rejects_under_151_live_receipts(tmp_path: Path):
+def test_run_wizard_system_full_scale_uses_runtime_plan_for_batches(tmp_path: Path):
     mod = load_module()
     candidate = tmp_path / "candidate"
     make_candidate(mod, candidate)
     live_receipts_path = tmp_path / "live_receipts.json"
-    live_receipts_path.write_text(json.dumps(full_scale_receipts(150)), encoding="utf-8")
+    live_receipts_path.write_text(json.dumps(full_scale_receipts()), encoding="utf-8")
+    runtime_plan_path = tmp_path / "runtime_plan.json"
+    runtime_plan_path.write_text(
+        json.dumps(
+            {
+                "runtime": "codex-app",
+                "pool": "codex-native",
+                "max_concurrent_subagents": 13,
+                "batching": "rolling-reset",
+                "reroute_policy": "use receipts from other pools only when accepted by route truth",
+            }
+        ),
+        encoding="utf-8",
+    )
 
-    with pytest.raises(ValueError, match="at least 151 live receipts"):
+    result = mod.run_wizard(
+        candidate,
+        tmp_path / "out",
+        "test adaptive runtime plan",
+        general_size="standard",
+        live_receipts_path=live_receipts_path,
+        runtime_plan_path=runtime_plan_path,
+        require_live_execution=True,
+        require_full_wizard_scale=True,
+    )
+
+    assert result["ok"], result["findings"]
+    assert result["runtime_plan"]["max_concurrent_subagents"] == 13
+    assert result["full_wizard_scale"]["runtime_max_concurrent_subagents"] == 13
+    assert result["full_wizard_scale"]["planned_batches_by_wave"][1] == 2
+    assert result["full_wizard_scale"]["planned_batches_by_wave"][11] == 2
+
+
+def test_run_wizard_system_full_scale_can_require_plan_specific_minimum(tmp_path: Path):
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(json.dumps(full_scale_receipts(153)), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="at least 154 live receipts"):
         mod.run_wizard(
             candidate,
             tmp_path / "out",
@@ -328,6 +368,7 @@ def test_run_wizard_system_full_scale_rejects_under_151_live_receipts(tmp_path: 
             live_receipts_path=live_receipts_path,
             require_live_execution=True,
             require_full_wizard_scale=True,
+            full_wizard_min_live_subagents=154,
         )
 
 

@@ -25,15 +25,15 @@ import time
 from datetime import datetime
 
 # ── Config ────────────────────────────────────────────────────────────
-DB_PATH        = os.path.expanduser("~/Library/Messages/chat.db")
-PHONE_HANDLE   = "+17078673323"
-EMAIL_HANDLE   = "joshua.eisenhart@gmail.com"
-REPLY_HANDLE   = EMAIL_HANDLE
+DB_PATH        = os.path.expanduser(os.environ.get("CODEX_RATCHET_IMESSAGE_DB_PATH", "~/Library/Messages/chat.db"))
+PHONE_HANDLE   = os.environ.get("CODEX_RATCHET_IMESSAGE_PHONE_HANDLE", "")
+EMAIL_HANDLE   = os.environ.get("CODEX_RATCHET_IMESSAGE_EMAIL_HANDLE", "")
+REPLY_HANDLE   = os.environ.get("CODEX_RATCHET_IMESSAGE_REPLY_HANDLE", EMAIL_HANDLE or PHONE_HANDLE)
 POLL_INTERVAL  = 10        # seconds between polls
 CLAUDE_TIMEOUT = 240       # seconds for Claude summarization
 SIM_TIMEOUT    = 300       # seconds for a sim run
 CLAUDE_MODEL   = "sonnet"
-PROJECT_DIR    = "/Users/joshuaeisenhart/Desktop/Codex Ratchet"
+PROJECT_DIR    = os.environ.get("CODEX_RATCHET_PROJECT_DIR", os.path.dirname(os.path.abspath(__file__)))
 RESULTS_DIR    = os.path.join(PROJECT_DIR, "system_v4/probes/a2_state/sim_results")
 PROBES_DIR     = os.path.join(PROJECT_DIR, "system_v4/probes")
 LIVE_SPINE_PATH = os.path.join(RESULTS_DIR, "live_anchor_spine.json")
@@ -42,10 +42,10 @@ LEGO_COUPLING_PATH = os.path.join(RESULTS_DIR, "lego_coupling_candidates.json")
 LEGO_QUEUE_PATH = os.path.join(RESULTS_DIR, "lego_batch_queue.json")
 MAX_MSG_LEN    = 1500      # iMessage safe chunk size
 
-# Correct Python — codex-ratchet env (torch 2.11.0, not homebrew 2.8.0)
-PYTHON_BIN = "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
-MPLCONFIGDIR = "/tmp/codex-mpl"
-NUMBA_CACHE_DIR = "/tmp/codex-numba"
+# Correct Python for sims can be pinned by env; default to the active interpreter.
+PYTHON_BIN = os.environ.get("CODEX_RATCHET_PYTHON_BIN", sys.executable)
+MPLCONFIGDIR = os.environ.get("MPLCONFIGDIR", "/tmp/codex-mpl")
+NUMBA_CACHE_DIR = os.environ.get("NUMBA_CACHE_DIR", "/tmp/codex-numba")
 
 # Tag every outgoing message so we never process our own replies
 BOT_TAG = "\u200b"  # zero-width space — invisible but detectable
@@ -62,18 +62,18 @@ Summarize it for a phone screen. Rules:
 - No follow-up lists. No status bars. No emoji menus. No "FOLLOW-UPS:".
 - Do not say "I ran" — you did not run it. Report what the output shows."""
 
-FREEFORM_PROMPT = """You are the Codex Ratchet project assistant, reachable via iMessage.
+FREEFORM_PROMPT = f"""You are the Codex Ratchet project assistant, reachable via iMessage.
 You can read files, run bash commands, edit files, and execute sims.
-Project dir: /Users/joshuaeisenhart/Desktop/Codex Ratchet
+Project dir: {PROJECT_DIR}
 Results: system_v4/probes/a2_state/sim_results/
 Sims: system_v4/probes/sim_*.py
-Correct Python: /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3
+Correct Python: {PYTHON_BIN}
 
 Rules:
 - Plain text only. Short lines. Dashes for structure.
 - No markdown, no **, no ##, no follow-up templates, no status bars.
 - When user asks to run something, JUST RUN IT via Bash — don't ask permission.
-- Use the codex-ratchet python for sims: /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3
+- Use the configured codex-ratchet python for sims: {PYTHON_BIN}
 - Report what you actually did and what the output was.
 - Never ask for clarification — make a reasonable choice and act.
 - Keep replies under 1400 chars (iMessage limit)."""
@@ -704,6 +704,14 @@ def main():
     print(f"  Handlers: {', '.join(HANDLERS)}")
     print("  Ctrl+C to stop")
     print("=" * 60)
+
+    if not (PHONE_HANDLE or EMAIL_HANDLE):
+        print("\n  [!] Set CODEX_RATCHET_IMESSAGE_PHONE_HANDLE or CODEX_RATCHET_IMESSAGE_EMAIL_HANDLE.")
+        sys.exit(1)
+
+    if not REPLY_HANDLE:
+        print("\n  [!] Set CODEX_RATCHET_IMESSAGE_REPLY_HANDLE or an inbound handle.")
+        sys.exit(1)
 
     if not os.path.exists(DB_PATH):
         print(f"\n  [!] Messages DB not found: {DB_PATH}")

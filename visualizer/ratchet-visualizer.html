@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Codex Ratchet · Visualizer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #0b0d10; height: 100%; overflow: hidden; }
+  * { box-sizing: border-box; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb { background: #262b33; }
+  ::-webkit-scrollbar-track { background: transparent; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="atoms.jsx"></script>
+<script type="text/babel" src="views.jsx"></script>
+<script type="text/babel" src="animations.jsx"></script>
+<script type="text/babel" src="cycle.jsx"></script>
+<script type="text/babel" src="gstack.jsx"></script>
+<script type="text/babel" src="gstack_live.jsx"></script>
+<script type="text/babel" src="layer_sims.jsx"></script>
+<script type="text/babel" src="schedule_sim.jsx"></script>
+<script type="text/babel" src="fiber_bundle_atlas.jsx"></script>
+<script type="text/babel" src="lie_structure.jsx"></script>
+<script type="text/babel" src="mc_levelset.jsx"></script>
+<script type="text/babel" src="connes_triple.jsx"></script>
+<script type="text/babel" src="rosetta_panel.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "tone": "terminal"
+}/*EDITMODE-END*/;
+
+function Root() {
+  const [tweaks, setTweaks] = React.useState(() => {
+    try {
+      const saved = localStorage.getItem('ratchet_tweaks');
+      return saved ? { ...TWEAK_DEFAULTS, ...JSON.parse(saved) } : TWEAK_DEFAULTS;
+    } catch (e) { return TWEAK_DEFAULTS; }
+  });
+  React.useEffect(() => {
+    try { localStorage.setItem('ratchet_tweaks', JSON.stringify(tweaks)); } catch (e) {}
+  }, [tweaks]);
+  return <App tweaks={tweaks} setTweaks={setTweaks} />;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Root />);
+</script>
+</body>
+</html>

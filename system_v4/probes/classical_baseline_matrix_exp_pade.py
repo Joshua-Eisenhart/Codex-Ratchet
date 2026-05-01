@@ -19,6 +19,8 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "no persistence"},
     "numpy": {"tried": True, "used": True, "reason": "load-bearing numeric core for matrix_exp_pade"},
 }
+
+divergence_log = "Classical baseline: matrix exponential via Pade approximation, not a canonical nonclassical witness."
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
 

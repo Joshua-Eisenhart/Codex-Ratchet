@@ -23,6 +23,8 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
+divergence_log = "Classical baseline: Robinson tile edge-matching toy on a small tile set, not a canonical nonclassical witness."
+
 def run_positive_tests():
     tiles = np.array([[0,1,0,1],[1,0,1,0],[0,1,1,0],[1,0,0,1]])
     def match(a,b,dr):

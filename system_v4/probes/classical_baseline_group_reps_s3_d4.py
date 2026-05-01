@@ -19,6 +19,8 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "no persistence"},
     "numpy": {"tried": True, "used": True, "reason": "load-bearing numeric core for group_reps_s3_d4"},
 }
+
+divergence_log = "Classical baseline: classical_baseline_group_reps_s3_d4.py -- non-canon, lane_B-eligible, not a canonical nonclassical witness."
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
 

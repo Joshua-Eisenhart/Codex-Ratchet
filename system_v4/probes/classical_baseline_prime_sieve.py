@@ -22,6 +22,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+divergence_log = "Classical baseline: Sieve of Eratosthenes prime enumeration, not a canonical nonclassical witness."
 
 def run_positive_tests():
     N=1000

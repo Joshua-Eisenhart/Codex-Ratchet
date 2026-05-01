@@ -19,6 +19,8 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "no persistence"},
     "numpy": {"tried": True, "used": True, "reason": "load-bearing numeric core for cellular_automaton"},
 }
+
+divergence_log = "Classical baseline: elementary cellular automaton, not a canonical nonclassical witness."
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
 

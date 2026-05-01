@@ -21,6 +21,7 @@ TOOL_MANIFEST = {
     "toponetx": {"tried": False, "used": False, "reason": "no cell complex in this sim"},
     "gudhi":    {"tried": False, "used": False, "reason": "no persistent homology in this sim"},
 }
+divergence_log = "Classical baseline: classical baseline sci method modus tollens, not a canonical nonclassical witness."
 
 TOOL_INTEGRATION_DEPTH = {
     "numpy": "load_bearing",

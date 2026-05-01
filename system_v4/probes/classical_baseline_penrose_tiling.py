@@ -22,6 +22,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+divergence_log = "Classical baseline: Penrose substitution golden ratio sequence, not a canonical nonclassical witness."
 
 def run_positive_tests():
     phi=(1+np.sqrt(5))/2

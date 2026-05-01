@@ -29,6 +29,8 @@ TOOL_INTEGRATION_DEPTH = {
     "xgi": None, "toponetx": None, "gudhi": None,
 }
 
+divergence_log = "Classical baseline: Leviathan-style monotone aggregation of agent preferences, not a canonical nonclassical witness."
+
 NAME = "classical_baseline_leviathan_monotone_aggregation"
 
 # Simple monotone aggregation: majority rule on {0,1}^n

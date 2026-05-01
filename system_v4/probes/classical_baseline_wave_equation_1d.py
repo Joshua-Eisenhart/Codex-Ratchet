@@ -19,6 +19,8 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "no persistence"},
     "numpy": {"tried": True, "used": True, "reason": "load-bearing numeric core for wave_equation_1d"},
 }
+
+divergence_log = "Classical baseline: classical_baseline_wave_equation_1d.py -- non-canon, lane_B-eligible, not a canonical nonclassical witness."
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
 

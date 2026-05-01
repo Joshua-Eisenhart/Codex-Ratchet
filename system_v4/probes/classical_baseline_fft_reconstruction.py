@@ -19,6 +19,7 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "no persistence"},
     "numpy": {"tried": True, "used": True, "reason": "load-bearing numeric core for fft_reconstruction"},
 }
+divergence_log = "Classical baseline: FFT round-trip reconstruction, not a canonical nonclassical witness."
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
 

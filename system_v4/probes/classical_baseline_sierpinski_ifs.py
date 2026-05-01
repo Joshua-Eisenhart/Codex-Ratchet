@@ -22,6 +22,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+divergence_log = "Classical baseline: Sierpinski IFS chaos game, not a canonical nonclassical witness."
 
 def run_positive_tests():
     rng=np.random.default_rng(14)

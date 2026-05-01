@@ -29,6 +29,8 @@ TOOL_INTEGRATION_DEPTH = {
     "xgi": None, "toponetx": None, "gudhi": None,
 }
 
+divergence_log = "Classical baseline: Szilard one-bit engine, not a canonical nonclassical witness."
+
 NAME = "classical_baseline_szilard_onebit"
 
 def szilard_work(kT=1.0):

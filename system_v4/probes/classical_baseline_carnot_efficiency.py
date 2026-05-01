@@ -29,6 +29,8 @@ TOOL_INTEGRATION_DEPTH = {
     "xgi": None, "toponetx": None, "gudhi": None,
 }
 
+divergence_log = "Classical baseline: Carnot heat-engine efficiency 1 - T_c/T_h identity check, not a canonical nonclassical witness."
+
 NAME = "classical_baseline_carnot_efficiency"
 
 def carnot_eta(Tc, Th):

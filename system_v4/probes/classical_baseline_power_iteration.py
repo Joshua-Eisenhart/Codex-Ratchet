@@ -20,6 +20,7 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "load-bearing numeric core for power_iteration"},
 }
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+divergence_log = "Classical baseline: power iteration dominant eigenvalue, not a canonical nonclassical witness."
 
 
 def _power(A, iters=500):

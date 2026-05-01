@@ -22,6 +22,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+divergence_log = "Classical baseline: Conway Game of Life, not a canonical nonclassical witness."
 
 def run_positive_tests():
     g2 = np.zeros((5,5),dtype=int); g2[2,1:4]=1

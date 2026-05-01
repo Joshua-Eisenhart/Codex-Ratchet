@@ -19,6 +19,8 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "no persistence"},
     "numpy": {"tried": True, "used": True, "reason": "load-bearing numeric core for newton_root"},
 }
+
+divergence_log = "Classical baseline: classical_baseline_newton_root.py -- non-canon, lane_B-eligible, not a canonical nonclassical witness."
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
 

@@ -23,6 +23,8 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
+divergence_log = "Classical baseline: Boids flocking model with separation/alignment/cohesion rules, not a canonical nonclassical witness."
+
 def run_positive_tests():
     rng=np.random.default_rng(10); N=30
     pos = rng.uniform(0,10,(N,2)); vel=rng.uniform(-1,1,(N,2))

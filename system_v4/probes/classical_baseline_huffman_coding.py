@@ -22,6 +22,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+divergence_log = "Classical baseline: Huffman prefix-free coding, not a canonical nonclassical witness."
 
 def run_positive_tests():
     import heapq

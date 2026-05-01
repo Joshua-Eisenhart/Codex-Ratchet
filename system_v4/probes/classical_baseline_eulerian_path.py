@@ -20,6 +20,7 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "load-bearing numeric core for eulerian_path"},
 }
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+divergence_log = "Classical baseline: Eulerian circuit existence on small graphs, not a canonical nonclassical witness."
 
 
 def _has_eulerian(adj):

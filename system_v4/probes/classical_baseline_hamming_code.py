@@ -23,6 +23,8 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
+divergence_log = "Classical baseline: Hamming(7,4) linear error-correcting code encode/decode, not a canonical nonclassical witness."
+
 def run_positive_tests():
     G = np.array([[1,0,0,0,1,1,0],[0,1,0,0,1,0,1],[0,0,1,0,0,1,1],[0,0,0,1,1,1,1]])
     H = np.array([[1,1,0,1,1,0,0],[1,0,1,1,0,1,0],[0,1,1,1,0,0,1]])

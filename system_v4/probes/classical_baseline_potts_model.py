@@ -22,6 +22,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+divergence_log = "Classical baseline: q-state Potts model Metropolis sampler, not a canonical nonclassical witness."
 
 def run_positive_tests():
     rng=np.random.default_rng(6); L=10; q=3; beta=1.0

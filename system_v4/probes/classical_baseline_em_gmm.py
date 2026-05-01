@@ -20,6 +20,7 @@ TOOL_MANIFEST = {
     "toponetx": {"tried": False, "used": False, "reason": "no cell complex needed"},
     "gudhi": {"tried": False, "used": False, "reason": "no persistent homology needed"},
 }
+divergence_log = "Classical baseline: EM algorithm fit of a 1D 2-component Gaussian mixture via numpy, not a canonical nonclassical witness."
 
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 

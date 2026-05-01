@@ -21,6 +21,8 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "no persistent homology needed"},
 }
 
+divergence_log = "Classical baseline: classical_baseline: Fibonacci spiral, not a canonical nonclassical witness."
+
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
 def run_positive_tests():

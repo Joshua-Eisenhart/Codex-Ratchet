@@ -19,6 +19,8 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "no persistence"},
     "numpy": {"tried": True, "used": True, "reason": "load-bearing numeric core for ising2d_metropolis"},
 }
+
+divergence_log = "Classical baseline: classical_baseline_ising2d_metropolis.py -- non-canon, lane_B-eligible, not a canonical nonclassical witness."
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
 

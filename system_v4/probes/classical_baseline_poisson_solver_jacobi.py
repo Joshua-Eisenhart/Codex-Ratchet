@@ -23,6 +23,8 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
+divergence_log = "Classical baseline: 2D discrete Poisson equation solved by Jacobi iteration, not a canonical nonclassical witness."
+
 def run_positive_tests():
     rng = np.random.default_rng(0)
     N = 20

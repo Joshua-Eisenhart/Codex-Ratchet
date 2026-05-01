@@ -21,6 +21,8 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
+divergence_log = "Classical baseline: simplicial Euler characteristic V-E+F on small complexes, not a canonical nonclassical witness."
+
 
 def _euler_char(V, E, F):
     return V - E + F

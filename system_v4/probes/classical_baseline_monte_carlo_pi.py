@@ -20,6 +20,7 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "load-bearing numeric core for monte_carlo_pi"},
 }
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+divergence_log = "Classical baseline: Monte Carlo pi estimator, not a canonical nonclassical witness."
 
 
 def run_positive_tests():

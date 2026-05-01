@@ -22,6 +22,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+divergence_log = "Classical baseline: Hofstadter butterfly tight-binding spectrum at one phi, not a canonical nonclassical witness."
 
 def run_positive_tests():
     def spec(phi,N=40):

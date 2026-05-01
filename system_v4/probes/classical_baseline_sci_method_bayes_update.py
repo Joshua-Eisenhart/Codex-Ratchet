@@ -29,6 +29,8 @@ TOOL_INTEGRATION_DEPTH = {
     "xgi": None, "toponetx": None, "gudhi": None,
 }
 
+divergence_log = "Classical baseline: scientific-method Bayes posterior update on a single hypothesis, not a canonical nonclassical witness."
+
 NAME = "classical_baseline_sci_method_bayes_update"
 
 def posterior(prior, lik_H, lik_notH):

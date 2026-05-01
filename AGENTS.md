@@ -29,10 +29,11 @@ Full Wizard default means:
 - Do not silently downgrade to compact Wizard. If runtime capacity, context, or task shape prevents a complete Full Wizard run, state the blocked/deferred/not-run waves in the header and continue with the maximum honest subset.
 - Keep visible output compact when the user needs work product more than route detail, but keep the internal route truth complete.
 - Do not call an incomplete subset "Full Wizard." It is a partial Full Wizard attempt unless the required waves actually ran or were explicitly blocked/deferred.
+- Do not confuse route phases with completed worker waves. `waves:n` means actual receipt-boundary passes. One lateral wave with many parent subagents and child subsubagents is still one wave.
 
 Default boot/load rule (v3.5 two-doc):
 
-- Main Codex thread loads `WIZARD_UNIVERSAL_TWO_DOC_SIMPLE_v3_5/WIZARD_UNIVERSAL_FULL_v3_5_SIMPLE.md` for full work or the COMPACT sibling for narrow tasks.
+- Main Codex thread loads `~/wiki/wizard/packet-v3-5-current/WIZARD_UNIVERSAL_FULL_v3_5_SIMPLE.md` for full work or the COMPACT sibling for narrow tasks.
 - Subagents load shared task summary + their assigned route definition (from inside the same v3.5 doc) + task card + source slice + receipt format.
 - Subsubagents load parent route summary + child route definition + child task card + source slice + receipt format. Narrower than parent.
 - v3.5 has no separate main-MMM or mini-MMM tree; route definitions live at the end of the FULL doc.
@@ -65,14 +66,20 @@ Parallelism and reroute rule:
 - "Max subagents" is adaptive, not a fixed magic number. Use the most useful bounded parallelism available for the task and runtime, up to current configured/observed capacity, then continue in rolling waves after workers finish or are closed.
 - Numeric targets in prompts, configs, or packet docs are capacity hints and planning ceilings. They are not pass/fail law unless a specific validation command explicitly asks for that exact minimum.
 - Prefer useful lane coverage over raw count inflation. Do not spawn duplicate, vague, or unbounded workers just to raise the number.
+- Use explicit topology: `outer receipt-boundary waves x parent subagents x child subsubagents`. Parent and child counts do not multiply the wave count.
+- For hierarchy-required work, the main Codex thread spawns Codex parent subagents; those parent subagents spawn Claude/Gemini/tool children. Direct Claude/Gemini calls from the main thread are advisory or tool routes, not proof of subsubagent hierarchy.
+- Count completed children only. Claude `Agent` tool calls, `task_started`, pending children, budget-cut streams, and stalled streams are starts/blocked attempts, not completed `subsubagents`.
 - Do not wait on a slow or stuck worker when independent routes remain available. Continue with other Codex subagents, Claude Bridge workers, tools, or local checks.
 - If a worker blocks, stalls, or shows model-specific failure, spawn an equivalent bounded lane on a different model/runtime and continue. Keep the original worker as side-debug work; do not let it hold the critical path.
+- Use fail-fast reroute gates. If a Codex parent has no useful receipt/progress in the chosen short window, close it and spawn a smaller duplicate. If Claude emits no stream/receipt promptly, kill and reroute. If Claude children start but do not complete before budget pressure, shrink the batch or raise budget. If Gemini cannot read paths, switch to inline facts or mark blocked.
+- Preflight must set concrete liveness deadlines for parent and child batches. A worker past deadline becomes `timed_out`, `rerouted`, `superseded`, or `blocked`; do not leave it as invisible pending work.
 - Do not reroute around a Codex runtime failure. If Codex itself cannot spawn, reset, identify, or return trustworthy subagent receipts, stop using other models as substitutes and fix the Codex subagent health/receipt path first.
 - Codex subagent health requires a spawn-agent tool receipt with agent id, route-local mini-MMM path, assigned route, completion status, and usable output. Worker self-description alone is not proof of spawn; absence or contradiction is a Codex health blocker.
 - Reboot/restart Codex subagent lanes when a fresh route-local mini-MMM load is needed or when old thread state could contaminate the lane.
 - Use available model capacity aggressively for Full Wizard and other explicitly multi-route work, while keeping each worker bounded and receipt-producing.
 - Large Claude/Sonnet fanout may be used for independent advisory or scout lanes, but only completed Task/Agent receipts count as executed routes.
 - Pending workers are not results. Count them as pending, blocked, deferred, or not-run until they return usable receipts. If duplicate/rerouted workers return, accept the first valid receipt and mark later returns as supplemental or superseded.
+- Git index repair, staging, committing, pushing, lockfile changes, and shared result rewrites are serial controller work. Do not run competing Git/index mutations in parallel fanout. Parallel workers may inspect or advise, but the controller owns the single shared-state lane.
 
 Worker pool truth:
 
@@ -84,6 +91,14 @@ Worker pool truth:
 - Tmux presence alone is not team execution. A tmux/OMX route counts only when a pane/session id, command, exit state, and output/receipt artifact are recorded.
 - Header counts must split pool types when a response relies on more than one pool: `codex-native`, `claude-bridge`, `gemini`, `omx/tmux`, and `tools`. The total `subagents` count may aggregate them only after the split is visible.
 - A rerouted duplicate can keep the work moving, but the original stalled route remains pending/blocked until its own receipt resolves or it is explicitly abandoned.
+
+Parent/child authority:
+
+- The main Codex thread owns synthesis, repo edits, verification, staging, commits, pushes, and user-facing claims.
+- Codex parent subagents own their assigned route and may launch narrower Claude/Gemini/tool children only inside that route.
+- Claude/Gemini children are advisory/scout/external-worker lanes unless explicitly delegated a bounded artifact. They cannot count as Codex-native subagents and cannot override local Codex verification.
+- Direct Claude/Gemini calls from the main thread can count as external subagents/tools, but never as subsubagents. Subsubagents require proof that a parent subagent spawned them.
+- Hierarchy proof requires parent receipt id, parent route, child launch surface, child receipt id, child terminal status, and usable child conclusion.
 
 Route truth:
 
@@ -176,5 +191,14 @@ Do not relaunch broad sim queues when contract lint or queue safety is red. Use 
 Do not bulk-stage the dirty repo. Split source, generated results, runtime state, packets, and docs into separate checkpoints.
 
 Never stage `.hermes/`, `.lev/`, runtime logs, or generated result estates unless the commit is explicitly an evidence snapshot. Do not stage Wizard packets or visualizer work as part of sim cleanup.
+
+Git/index serial rules:
+
+- Run one Git/index mutation at a time: no competing `git read-tree`, staging, commit, push, lockfile, or broad status/diff process during mutation.
+- Before staging, repair/verify index trust, confirm no tracked deletes, and inspect the intended file list.
+- Stage only named paths. Do not bulk-stage the dirty repo.
+- Do not stage while workers may still edit those paths.
+- Re-check staged diff before commit.
+- Split source, generated evidence, runtime state, docs, and packet changes into separate checkpoints.
 
 Commit messages should use the Lore protocol when making commits.

@@ -1,95 +1,30 @@
 {
-  "generated_at": "2026-04-25T04:10:43.387791+00:00",
-  "lane_id": "source_dirty__docs_and_specs__docs_and_specs",
+  "generated_at": "2026-05-01T22:51:49.078310+00:00",
+  "lane_id": "source_dirty__no_actionable_lanes",
   "source_plan_path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
-  "selection_mode": "default_docs_blocked_requires_opt_in",
+  "selection_mode": "no_checkpoint_ready_groups",
   "allow_docs": false,
-  "docs_opt_in_required": true,
-  "code_only_fallback": {
-    "group_id": "probe_source__sim_family_axis0",
-    "file_count": 1,
-    "untracked_count": 1,
-    "tracked_dirty_count": 0,
-    "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
-  },
-  "code_only_fallback_group_id": "probe_source__sim_family_axis0",
-  "active_actionable_lane": {
-    "group_id": "probe_source__sim_family_axis0",
-    "file_count": 1,
-    "untracked_count": 1,
-    "tracked_dirty_count": 0,
-    "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
-  },
-  "selected_group_id": "docs_and_specs__docs_and_specs",
-  "file_count": 1,
-  "safe_next_action": "checkpoint",
-  "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
+  "docs_opt_in_required": false,
+  "code_only_fallback": null,
+  "active_actionable_lane": null,
+  "selected_group_id": null,
+  "file_count": 0,
+  "safe_next_action": null,
+  "stop_condition": "No checkpoint-ready lanes remain; manual-only residue must be audited separately.",
+  "code_only_fallback_group_id": null,
+  "active_actionable_lane_group_id": null,
   "summary": {
-    "selected_group_id": "docs_and_specs__docs_and_specs",
-    "file_count": 1,
-    "safe_next_action": "checkpoint",
-    "docs_opt_in_required": true,
-    "code_only_fallback_group_id": "probe_source__sim_family_axis0",
-    "active_actionable_lane_group_id": "probe_source__sim_family_axis0",
-    "executable_lane_group_id": "probe_source__sim_family_axis0",
-    "ok": true
+    "selected_group_id": null,
+    "file_count": 0,
+    "safe_next_action": null,
+    "docs_opt_in_required": false,
+    "code_only_fallback_group_id": null,
+    "active_actionable_lane_group_id": null,
+    "executable_lane_group_id": null,
+    "ok": true,
+    "status": "no_actionable_lanes",
+    "note": "No checkpoint-ready groups; all remaining source pressure is manual-only or clean."
   },
-  "lane": {
-    "group_id": "docs_and_specs__docs_and_specs",
-    "display_name": "Docs and specs",
-    "bucket": "docs_and_specs",
-    "notes": "Docs/specs are bounded and can be checkpointed separately.",
-    "blocking_reason": "bounded_human_checkpoint",
-    "goal": "Reduce dirty source pressure by resolving one bounded checkpoint-ready lane without widening scope.",
-    "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
-    "verification_commands": [
-      "make source-dirty-checkpoint-plan",
-      "make maintenance-report"
-    ],
-    "result_companions": [],
-    "required_git_paths_clean": [
-      "CLAUDE.md"
-    ],
-    "docs_opt_in_required": true,
-    "code_only_fallback": {
-      "group_id": "probe_source__sim_family_axis0",
-      "file_count": 1,
-      "untracked_count": 1,
-      "tracked_dirty_count": 0,
-      "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
-    },
-    "active_actionable_lane": {
-      "group_id": "probe_source__sim_family_axis0",
-      "file_count": 1,
-      "untracked_count": 1,
-      "tracked_dirty_count": 0,
-      "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
-    },
-    "files": [
-      "CLAUDE.md"
-    ]
-  },
-  "executable_lane": {
-    "group_id": "probe_source__sim_family_axis0",
-    "files": [
-      "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py"
-    ],
-    "result_companions": [
-      "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
-    ],
-    "required_git_paths_clean": [
-      "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
-      "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
-    ],
-    "goal": "Execute the currently actionable bounded lane without widening scope.",
-    "stop_condition": "All files in this executable lane are either checkpointed together or intentionally reclassified in the checkpoint plan."
-  }
+  "lane": null,
+  "executable_lane": null
 }

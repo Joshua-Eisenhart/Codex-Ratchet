@@ -1,12 +1,12 @@
 {
   "name": "controller_alignment_audit",
-  "generated_at": "2026-04-20T09:57:13.578464+00:00",
+  "generated_at": "2026-05-01T22:51:16.267590+00:00",
   "classification": "audit",
   "interpreter_authority": {
     "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "makefile_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
-    "imessage_bot_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
-    "makefile_and_bot_agree": true
+    "imessage_bot_python": null,
+    "makefile_and_bot_agree": false
   },
   "env_requirements": {
     "torch": {
@@ -160,633 +160,10 @@
   },
   "probe_truth_audit": {
     "available": true,
-    "ok": false,
-    "hard_finding_count": 226,
-    "warning_finding_count": 47,
-    "blocked_results": {
-      "bridge_fep_admissibility_autograd_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "bridge_holodeck_z3_admission_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "bridge_igt_chirality_clifford_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "bridge_leviathan_admissibility_z3_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "bridge_sci_z3_inadmissible_unfalsifiable_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "cvc5_frege_system_constraint_results.json": [
-        "canonical_summary_false"
-      ],
-      "cvc5_proof_complexity_size_constraint_results.json": [
-        "canonical_summary_false"
-      ],
-      "cvc5_resolution_proof_constraint_results.json": [
-        "canonical_summary_false"
-      ],
-      "heat_equation_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "hopf_horizontal_projector_constraint_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "hopf_s15_connection_parallel_transport_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "hopf_torus_rank_stratification_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "layer_coupling_matrix_v3_results.json": [
-        "load_bearing_without_used"
-      ],
-      "leviathan_authority_entropy_operator_results.json": [
-        "load_bearing_without_used"
-      ],
-      "leviathan_explore_as_hypergraph_potential_results.json": [
-        "load_bearing_without_used"
-      ],
-      "leviathan_gudhi_stability_persistence_results.json": [
-        "load_bearing_without_used"
-      ],
-      "pure_lego_steane_surface_results.json": [
-        "used_without_tried"
-      ],
-      "pure_lego_stokes_mueller_results.json": [
-        "used_without_tried"
-      ],
-      "pure_lego_symplectic_kahler_weyl_results.json": [
-        "used_without_tried",
-        "used_without_tried"
-      ],
-      "qit_engine_companion_array_results.json": [
-        "canonical_summary_false",
-        "canonical_has_failed_checks"
-      ],
-      "qit_szilard_record_reconciled_translation_lane_results.json": [
-        "canonical_summary_false",
-        "canonical_has_failed_checks"
-      ],
-      "qit_szilard_record_translation_lane_results.json": [
-        "canonical_summary_false",
-        "canonical_has_failed_checks"
-      ],
-      "qit_szilard_substep_promotion_translation_lane_results.json": [
-        "canonical_summary_false",
-        "canonical_has_failed_checks"
-      ],
-      "qit_szilard_substep_refinement_translation_lane_results.json": [
-        "canonical_summary_false",
-        "canonical_has_failed_checks"
-      ],
-      "qit_szilard_substep_structural_translation_lane_results.json": [
-        "canonical_summary_false",
-        "canonical_has_failed_checks"
-      ],
-      "rustworkx_apsp_constraint_skeleton_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_L13_entangling_operator_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_L9_loop_laws_fiber_base_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_a_infinity_algebra_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_aep_typical_set_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_affine_grassmannian_schubert_cell_constraint_canonical_results.json": [
-        "load_bearing_without_used",
-        "stale_source_newer_than_result"
-      ],
-      "sim_araki_lieb_z3_canonical_results.json": [
-        "canonical_has_failed_checks",
-        "load_bearing_without_used"
-      ],
-      "sim_arthur_packet_multiplicity_formula_constraint_canonical_results.json": [
-        "canonical_has_failed_checks",
-        "used_without_tried"
-      ],
-      "sim_axis_couple_1_2_curvature_scale_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_berkovich_space_analytic_domain_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_bicategory_coherence_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_bishop_gromov_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_brown_representability_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_central_limit_theorem_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_chromatic_convergence_theorem_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_clifford_chirality_admissible_generators_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_clifford_holo_dirac_bridge_claims_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_cobordism_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_communication_complexity_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_condition_number_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cotangent_complex_obstruction_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_crystalline_cohomology_berthelot_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cstar_algebra_constraint_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_cvc5_abstract_interpretation_lattice_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_adjunction_unit_counit_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_applicative_functor_laws_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_arrow_calculus_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_assume_guarantee_composition_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_braided_monoidal_hexagon_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_chern_weil_naturality_constraint_results.json": [
-        "used_without_tried"
-      ],
-      "sim_cvc5_cohft_axioms_splitting_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_cubical_path_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_cut_elimination_normalization_results.json": [
-        "load_bearing_without_used",
-        "stale_source_newer_than_result"
-      ],
-      "sim_cvc5_d_module_holonomic_characteristic_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_descent_data_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_gromov_witten_genus_virtual_dimension_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_identity_type_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_linear_logic_resource_constraint_results.json": [
-        "load_bearing_without_used",
-        "stale_source_newer_than_result"
-      ],
-      "sim_cvc5_linear_type_use_count_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_modal_mu_calculus_constraint_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_cvc5_monad_laws_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_permission_accounting_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_perverse_sheaf_support_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_prime_number_theorem_constraint_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_cvc5_proof_net_correctness_criterion_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_cvc5_quantum_cohomology_grading_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_quantum_weakest_precondition_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_resource_invariant_ownership_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_cvc5_riemann_zeta_functional_equation_constraint_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_cvc5_seiberg_witten_invariant_constraint_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_cvc5_spectral_sequence_convergence_constraint_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_cvc5_uniqueness_type_alias_constraint_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_de_rham_witt_complex_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_deformation_quantization_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_deformation_theory_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_derived_deformation_theory_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_derived_intersection_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_dilworth_theorem_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_dirichlet_lfunction_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_discrete_log_hardness_constraint_canonical_results.json": [
-        "used_without_tried"
-      ],
-      "sim_endoscopy_transfer_constraint_canonical_results.json": [
-        "canonical_has_failed_checks",
-        "used_without_tried"
-      ],
-      "sim_enriched_category_hom_object_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_field_extension_degree_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_formality_theorem_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_fundamental_lemma_ngo_constraint_canonical_results.json": [
-        "canonical_has_failed_checks",
-        "used_without_tried"
-      ],
-      "sim_gap_dendroidal_set_segal_condition_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_gap_milnor_k_theory_symbol_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_gap_motivic_homotopy_a1_invariance_constraint_canonical_results.json": [
-        "load_bearing_without_used",
-        "stale_source_newer_than_result"
-      ],
-      "sim_gap_operadic_algebra_associativity_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_gap_rational_homotopy_sullivan_minimal_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_gap_t_structure_truncation_constraint_canonical_results.json": [
-        "used_without_tried"
-      ],
-      "sim_gap_voevodsky_motivic_cohomology_bidegree_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_geom_noncomm_weyl_then_hopf_vs_hopf_then_weyl_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_geometric_langlands_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometric_satake_correspondence_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_geometry_castelnuovo_mumford_regularity_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_characteristic_variety_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_cheeger_inequality_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_class_field_theory_artin_map_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_connes_distance_formula_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_crystalline_cohomology_frobenius_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_geometry_de_rham_cohomology_betti_number_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_de_rham_witt_complex_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_geometry_dolbeault_cohomology_hodge_numbers_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_donaldson_uhlenbeck_yau_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_etale_cohomology_comparison_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_geometry_formal_group_law_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_hyperbolic_volume_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_k3_surface_hodge_numbers_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_l_adic_sheaf_perversity_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_geometry_legendrian_knot_tb_framing_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_microlocal_sheaf_singular_support_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_open_book_decomposition_contact_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_p_adic_hodge_cst_functor_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_geometry_pss_isomorphism_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_quantum_cohomology_frobenius_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_geometry_stability_manifold_wall_crossing_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_geometry_weil_conjectures_zeta_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_geomstats_deep_so3_exp_log_consistency_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_gerbe_derived_stack_cohomology_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_group_lagrange_theorem_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_gtower_deep_gl_invariant_volume_form_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_gtower_e8_root_system_240_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_gtower_e_class_cartan_admissibility_shell_local_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_gtower_o_to_so_orientation_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_gudhi_deep_persistence_diagram_stability_under_probe_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_gudhi_deep_persistent_h1_excludes_trivial_homology_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_hecke_eigenvalue_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_hochschild_cohomology_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_homological_algebra_ext_injectivity_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_hopf_deep_berry_phase_admissibility_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_hopf_deep_fiber_winding_number_bound_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_hopf_deep_linking_number_topology_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_hopf_deep_s3_to_s2_partial_trace_consistency_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_hopf_deep_u1_holonomy_equivariance_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_infinity_stack_descent_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_infinity_topos_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_information_complexity_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_ktheory_cstar_constraint_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_ladder_couple_L0_L17_spectral_to_entropy_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_ladder_couple_L0_L1_spectral_to_geometric_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_ladder_couple_L11_L12_placement_to_entanglement_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_ladder_couple_L13_L14_entangling_op_to_joint_state_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_ladder_couple_L15_L16_bridge_family_to_shell_support_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_ladder_couple_L17_L18_signed_entropy_to_axis0_kernel_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_ladder_couple_L4_L12_fence_to_entanglement_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_ladder_couple_L6_L11_engine_to_placement_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_ladder_couple_L6_L7_engine_to_operator_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_ladder_couple_L8_L9_chiral_to_loop_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_lattice_distributive_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_law_of_large_numbers_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_martingale_convergence_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_mirkovic_vilonen_cycle_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_morse_theory_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_motivic_filtration_tc_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_newton_method_convergence_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_omega_category_globular_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_p_adic_comparison_crystalline_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_p_adic_l_function_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_prime_number_theorem_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_pyg_deep_oversmoothing_bound_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_quantum_group_uq_sl2_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_rectangle_bound_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_reflexive_banach_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_ribbon_hopf_algebra_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_riemannian_connection_holonomy_fiber_assoc_moment_index_chern_8shell_coupling_canonical_results.json": [
-        "load_bearing_without_used",
-        "load_bearing_without_used"
-      ],
-      "sim_ring_ideal_quotient_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_rosetta_su2_so3_double_cover_invariant_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_runge_kutta_stability_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "sim_schauder_basis_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_toponetx_deep_cell_complex_boundary_consistency_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_toponetx_deep_hodge_laplacian_kernel_excludes_nontrivial_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_toponetx_deep_simplicial_vs_cell_distinguishability_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_torch_clifford_ga_bridge_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_tricategory_gray_tensor_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_ultraproduct_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_uniform_convexity_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_virtual_fundamental_class_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_von_neumann_algebra_constraint_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_weyl_deep_chirality_flip_requires_even_rotor_count_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_weyl_deep_cross_cl3_vs_sympy_pauli_decomp_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_weyl_deep_left_right_projector_unsat_mix_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_weyl_deep_pauli_joint_commute_unsat_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_weyl_hopf_couple_chirality_x_fiber_winding_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_yang_baxter_equation_r_matrix_constraint_canonical_results.json": [
-        "canonical_has_failed_checks"
-      ],
-      "sim_zero_free_region_constraint_canonical_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_zorns_lemma_constraint_canonical_results.json": [
-        "load_bearing_without_used"
-      ],
-      "stage_family_order_identifiability_results.json": [
-        "used_without_tried",
-        "used_without_tried"
-      ],
-      "stage_order_identifiability_results.json": [
-        "used_without_tried",
-        "used_without_tried"
-      ],
-      "tool_integration_cvc5_sympy_results.json": [
-        "load_bearing_without_used",
-        "load_bearing_without_used"
-      ],
-      "tool_integration_manim_results.json": [
-        "load_bearing_without_used"
-      ],
-      "unified_engine_tuning_results.json": [
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried"
-      ],
-      "weyl_ambient_vs_engine_overlay_results.json": [
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried",
-        "used_without_tried"
-      ]
-    }
+    "ok": true,
+    "hard_finding_count": 0,
+    "warning_finding_count": 147,
+    "blocked_results": {}
   },
   "stale_doc_hits": [],
   "stale_doc_summary": {
@@ -860,13 +237,13 @@
     ]
   },
   "tool_stack_summary": {
-    "files_with_manifest_or_depth": 3866,
+    "files_with_manifest_or_depth": 3876,
     "per_tool": {
       "pytorch": {
         "tried_count": 2015,
         "used_count": 1306,
-        "load_bearing_count": 1042,
-        "depth_present_count": 1195,
+        "load_bearing_count": 1041,
+        "depth_present_count": 1194,
         "anchor_stage_coverage": [
           "lego",
           "topology",
@@ -1721,7 +1098,6 @@
           "sim_ratchet_noncommutative_constraint_ordering_results 2.json",
           "sim_ratchet_noncommutative_constraint_ordering_results.json",
           "sim_ricci_flow_torch_foundation_results.json",
-          "sim_riemannian_connection_holonomy_fiber_assoc_moment_index_chern_8shell_coupling_canonical_results.json",
           "sim_riemannian_torch_foundation_results.json",
           "sim_rosetta_cartan_a21_ladder_results 2.json",
           "sim_rosetta_cartan_a21_ladder_results.json",
@@ -1984,10 +1360,10 @@
         ]
       },
       "z3": {
-        "tried_count": 2016,
-        "used_count": 1414,
-        "load_bearing_count": 1253,
-        "depth_present_count": 1346,
+        "tried_count": 2019,
+        "used_count": 1417,
+        "load_bearing_count": 1255,
+        "depth_present_count": 1348,
         "anchor_stage_coverage": [
           "boundary",
           "coupling",
@@ -2027,10 +1403,13 @@
           "axis7_12_orthogonal_closure_results.json",
           "axis_couple_6_1_action_x_curvature_results.json",
           "berry_qfi_entangled_path_results.json",
+          "boundary_flux_to_pauli_admissibility_results 2.json",
           "boundary_flux_to_pauli_admissibility_results.json",
           "boundary_g_to_hopf_admissibility_results 2.json",
           "boundary_g_to_hopf_admissibility_results.json",
+          "boundary_hopf_to_weyl_admissibility_results 2.json",
           "boundary_hopf_to_weyl_admissibility_results.json",
+          "boundary_weyl_to_flux_admissibility_results 2.json",
           "boundary_weyl_to_flux_admissibility_results.json",
           "bridge_carnot_admissibility_fence_results.json",
           "bridge_chain_integration_results.json",
@@ -2967,7 +2346,6 @@
           "sim_riemann_mapping_constraint_canonical_results.json",
           "sim_riemann_roch_constraint_canonical_results.json",
           "sim_riemann_zeta_constraint_canonical_results.json",
-          "sim_riemannian_connection_holonomy_fiber_assoc_moment_index_chern_8shell_coupling_canonical_results.json",
           "sim_riemannian_torch_foundation_results.json",
           "sim_rosetta_cartan_a21_ladder_results 2.json",
           "sim_rosetta_cartan_a21_ladder_results.json",
@@ -3252,10 +2630,10 @@
         ]
       },
       "cvc5": {
-        "tried_count": 1352,
-        "used_count": 828,
-        "load_bearing_count": 868,
-        "depth_present_count": 886,
+        "tried_count": 1358,
+        "used_count": 825,
+        "load_bearing_count": 804,
+        "depth_present_count": 825,
         "anchor_stage_coverage": [
           "boundary"
         ],
@@ -3297,16 +2675,11 @@
           "rsk_correspondence_results.json",
           "sci_method_deep_probe_set_determines_falsifiability_results.json",
           "sim_2_category_strict_coherence_constraint_canonical_results.json",
-          "sim_a_infinity_algebra_constraint_canonical_results.json",
           "sim_a_theory_stable_homotopy_constraint_canonical_results.json",
           "sim_adic_space_huber_pair_constraint_canonical_results.json",
-          "sim_aep_typical_set_constraint_canonical_results.json",
-          "sim_affine_grassmannian_schubert_cell_constraint_canonical_results.json",
           "sim_alexander_polynomial_constraint_canonical_results.json",
           "sim_analytic_geometry_clausen_scholze_constraint_canonical_results.json",
           "sim_araki_lieb_z3_canonical_results 2.json",
-          "sim_araki_lieb_z3_canonical_results.json",
-          "sim_arthur_packet_multiplicity_formula_constraint_canonical_results.json",
           "sim_automorphic_l_function_constraint_canonical_results.json",
           "sim_axis0_axis6_coupling_seam_results 2.json",
           "sim_axis0_axis6_coupling_seam_results.json",
@@ -3317,7 +2690,6 @@
           "sim_axis6_seam_probe_results.json",
           "sim_banach_fixed_point_constraint_canonical_results.json",
           "sim_bbd_decomposition_constraint_canonical_results.json",
-          "sim_berkovich_space_analytic_domain_constraint_canonical_results.json",
           "sim_bhatt_morrow_scholze_motivic_constraint_canonical_results.json",
           "sim_bicategory_coherence_constraint_canonical_results.json",
           "sim_bicategory_horizontal_vertical_composition_constraint_canonical_results.json",
@@ -3337,10 +2709,8 @@
           "sim_channel_coding_theorem_constraint_canonical_results.json",
           "sim_cheeger_gromoll_constraint_canonical_results.json",
           "sim_chow_group_constraint_canonical_results.json",
-          "sim_chromatic_convergence_theorem_constraint_canonical_results.json",
           "sim_chromatic_filtration_nilpotence_constraint_canonical_results.json",
           "sim_chromatic_homotopy_morava_k_theory_constraint_canonical_results.json",
-          "sim_cobordism_constraint_canonical_results.json",
           "sim_cobordism_ring_graded_constraint_canonical_results.json",
           "sim_cofibration_lifting_constraint_canonical_results.json",
           "sim_cohen_macaulay_constraint_canonical_results.json",
@@ -3357,25 +2727,17 @@
           "sim_compound_z3_cvc5_kcbs_parity_results 2.json",
           "sim_compound_z3_cvc5_kcbs_parity_results.json",
           "sim_condensed_set_sheaf_constraint_canonical_results.json",
-          "sim_condition_number_constraint_canonical_results.json",
           "sim_conformal_block_constraint_canonical_results.json",
           "sim_convex_conjugate_constraint_canonical_results.json",
-          "sim_cotangent_complex_obstruction_constraint_canonical_results.json",
-          "sim_crystalline_cohomology_berthelot_constraint_canonical_results.json",
           "sim_crystalline_cohomology_constraint_canonical_results.json",
           "sim_cstar_algebra_constraint_results.json",
-          "sim_cvc5_abstract_interpretation_lattice_results.json",
           "sim_cvc5_adams_spectral_sequence_ext_constraint_results.json",
           "sim_cvc5_adem_relation_composition_constraint_results.json",
           "sim_cvc5_adjoint_functor_constraint_results.json",
-          "sim_cvc5_adjunction_unit_counit_constraint_results.json",
           "sim_cvc5_affine_logic_weakening_constraint_results.json",
           "sim_cvc5_algebraic_k_theory_constraint_results.json",
           "sim_cvc5_algebraic_k_theory_devissage_constraint_results.json",
-          "sim_cvc5_applicative_functor_laws_constraint_results.json",
           "sim_cvc5_arena_composition_constraint_results.json",
-          "sim_cvc5_arrow_calculus_constraint_results.json",
-          "sim_cvc5_assume_guarantee_composition_results.json",
           "sim_cvc5_atiyah_singer_index_constraint_results.json",
           "sim_cvc5_atiyah_singer_index_formula_constraint_results.json",
           "sim_cvc5_bcs_gap_equation_constraint_results.json",
@@ -3386,7 +2748,6 @@
           "sim_cvc5_bisimulation_equivalence_constraint_results.json",
           "sim_cvc5_bloch_kato_norm_residue_constraint_results.json",
           "sim_cvc5_bounded_quantification_constraint_results.json",
-          "sim_cvc5_braided_monoidal_hexagon_constraint_results.json",
           "sim_cvc5_brownian_motion_constraint_results.json",
           "sim_cvc5_bunched_implications_bi_logic_results.json",
           "sim_cvc5_calabi_yau_holonomy_constraint_results.json",
@@ -3403,7 +2764,6 @@
           "sim_cvc5_clifford_rotor_constraint_results.json",
           "sim_cvc5_cobordism_constraint_results.json",
           "sim_cvc5_coherent_sheaf_constraint_results.json",
-          "sim_cvc5_cohft_axioms_splitting_constraint_results.json",
           "sim_cvc5_cohomology_ring_constraint_results.json",
           "sim_cvc5_colimit_cocone_pushout_constraint.json",
           "sim_cvc5_colored_operad_arity_color_constraint_results.json",
@@ -3419,16 +2779,13 @@
           "sim_cvc5_cstar_algebra_constraint_results.json",
           "sim_cvc5_ctl_constraint_results.json",
           "sim_cvc5_ctl_until_constraint_results.json",
-          "sim_cvc5_cubical_path_constraint_results.json",
           "sim_cvc5_cubical_type_theory_path_constraint_results.json",
           "sim_cvc5_curry_howard_constraint_results.json",
           "sim_cvc5_curry_howard_isomorphism_constraint_results.json",
           "sim_cvc5_cut_elimination_constraint_results.json",
-          "sim_cvc5_cut_elimination_normalization_results.json",
           "sim_cvc5_cyclic_homology_connes_operator_constraint_results.json",
           "sim_cvc5_d_brane_stability_constraint_results.json",
           "sim_cvc5_d_module_constraint_results.json",
-          "sim_cvc5_d_module_holonomic_characteristic_constraint_results.json",
           "sim_cvc5_dag_cotangent_complex_constraint_results.json",
           "sim_cvc5_deadlock_freedom_constraint_results.json",
           "sim_cvc5_deep_bc04_identity_fence_results 2.json",
@@ -3462,7 +2819,6 @@
           "sim_cvc5_dependent_type_pi_sigma_constraint_results.json",
           "sim_cvc5_derived_algebraic_geometry_constraint_results.json",
           "sim_cvc5_derived_category_constraint_results.json",
-          "sim_cvc5_descent_data_constraint_results.json",
           "sim_cvc5_dialogue_game_constraint_results.json",
           "sim_cvc5_dialogue_game_lorenzen_constraint_results.json",
           "sim_cvc5_dirac_operator_spectrum_constraint_results.json",
@@ -3497,7 +2853,6 @@
           "sim_cvc5_geodesic_constraint_results.json",
           "sim_cvc5_gopakumar_vafa_constraint_results.json",
           "sim_cvc5_gradual_typing_consistency_constraint_results.json",
-          "sim_cvc5_gromov_witten_genus_virtual_dimension_constraint_results.json",
           "sim_cvc5_gromov_witten_invariant_constraint_results.json",
           "sim_cvc5_grothendieck_topology_coverage_constraint_results.json",
           "sim_cvc5_hahn_banach_constraint_results.json",
@@ -3515,7 +2870,6 @@
           "sim_cvc5_homotopy_type_theory_truncation_results.json",
           "sim_cvc5_hopf_fiber_constraint_results.json",
           "sim_cvc5_hurewicz_theorem_constraint_results.json",
-          "sim_cvc5_identity_type_constraint_results.json",
           "sim_cvc5_induced_representation_constraint_results.json",
           "sim_cvc5_infinity_category_horn_filling_constraint_results.json",
           "sim_cvc5_infinity_stack_descent_constraint_results.json",
@@ -3537,8 +2891,6 @@
           "sim_cvc5_lawvere_tierney_topology_constraint_results.json",
           "sim_cvc5_limit_universal_cone_constraint.json",
           "sim_cvc5_limits_colimits_constraint_results.json",
-          "sim_cvc5_linear_logic_resource_constraint_results.json",
-          "sim_cvc5_linear_type_use_count_constraint_results.json",
           "sim_cvc5_loop_quantum_gravity_area_constraint_results.json",
           "sim_cvc5_lorentz_boost_constraint_results.json",
           "sim_cvc5_ltl_constraint_results.json",
@@ -3558,7 +2910,6 @@
           "sim_cvc5_modular_invariance_constraint_results.json",
           "sim_cvc5_moduli_space_dimension_constraint_results.json",
           "sim_cvc5_moment_polytope_constraint_results.json",
-          "sim_cvc5_monad_laws_constraint_results.json",
           "sim_cvc5_monoidal_category_pentagon_constraint_results.json",
           "sim_cvc5_morse_critical_point_constraint_results.json",
           "sim_cvc5_motivic_cohomology_constraint_results.json",
@@ -3576,9 +2927,7 @@
           "sim_cvc5_partition_function_constraint_results.json",
           "sim_cvc5_payoff_matrix_constraint_results.json",
           "sim_cvc5_penrose_singularity_constraint_results.json",
-          "sim_cvc5_permission_accounting_constraint_results.json",
           "sim_cvc5_perverse_sheaf_constraint_results.json",
-          "sim_cvc5_perverse_sheaf_support_constraint_results.json",
           "sim_cvc5_peter_weyl_theorem_constraint_results.json",
           "sim_cvc5_pi_type_constraint_results.json",
           "sim_cvc5_polymorphic_subtyping_constraint_results.json",
@@ -3590,13 +2939,11 @@
           "sim_cvc5_provability_logic_gl_lob_results.json",
           "sim_cvc5_quantum_channel_constraint_results.json",
           "sim_cvc5_quantum_circuit_depth_constraint_results.json",
-          "sim_cvc5_quantum_cohomology_grading_constraint_results.json",
           "sim_cvc5_quantum_cohomology_ring_constraint_results.json",
           "sim_cvc5_quantum_error_correction_constraint_results.json",
           "sim_cvc5_quantum_hoare_logic_precondition_results.json",
           "sim_cvc5_quantum_teleportation_constraint_results.json",
           "sim_cvc5_quantum_teleportation_protocol_constraint_results.json",
-          "sim_cvc5_quantum_weakest_precondition_results.json",
           "sim_cvc5_ramification_index_residue_degree_constraint_results.json",
           "sim_cvc5_ramsey_theorem_constraint_results.json",
           "sim_cvc5_reciprocity_law_quadratic_legendre_constraint_results.json",
@@ -3604,7 +2951,6 @@
           "sim_cvc5_relevant_logic_variable_sharing_results.json",
           "sim_cvc5_rely_guarantee_reasoning_constraint_results.json",
           "sim_cvc5_renormalization_group_constraint_results.json",
-          "sim_cvc5_resource_invariant_ownership_results.json",
           "sim_cvc5_ribbon_category_twist_constraint_results.json",
           "sim_cvc5_ricci_curvature_constraint_results.json",
           "sim_cvc5_riemann_hilbert_constraint_results.json",
@@ -3666,7 +3012,6 @@
           "sim_cvc5_tqft_constraint_results.json",
           "sim_cvc5_type_inference_hindley_milner_results.json",
           "sim_cvc5_union_type_join_constraint_results.json",
-          "sim_cvc5_uniqueness_type_alias_constraint_results.json",
           "sim_cvc5_universe_hierarchy_constraint_results.json",
           "sim_cvc5_virasoro_central_charge_constraint_results.json",
           "sim_cvc5_wall_crossing_constraint_results.json",
@@ -3683,27 +3028,20 @@
           "sim_data_processing_inequality_canonical_results 2.json",
           "sim_data_processing_inequality_canonical_results.json",
           "sim_de_rham_crystalline_comparison_constraint_canonical_results.json",
-          "sim_de_rham_witt_complex_constraint_canonical_results.json",
           "sim_dedekind_domain_ideal_constraint_canonical_results.json",
           "sim_deformation_quantization_constraint_canonical_results.json",
           "sim_deformation_theory_constraint_canonical_results.json",
           "sim_dehn_surgery_constraint_canonical_results.json",
           "sim_derived_algebraic_geometry_lurie_constraint_canonical_results.json",
           "sim_derived_category_localization_constraint_canonical_results.json",
-          "sim_derived_deformation_theory_constraint_canonical_results.json",
-          "sim_derived_intersection_constraint_canonical_results.json",
           "sim_diamond_scholze_constraint_canonical_results.json",
-          "sim_dilworth_theorem_constraint_canonical_results.json",
           "sim_dirichlet_lfunction_constraint_canonical_results.json",
           "sim_dirichlet_principle_constraint_canonical_results.json",
-          "sim_discrete_log_hardness_constraint_canonical_results.json",
           "sim_discrete_series_representation_constraint_canonical_results.json",
           "sim_dominated_convergence_constraint_canonical_results.json",
           "sim_donaldson_thomas_constraint_canonical_results.json",
           "sim_donaldson_thomas_invariant_constraint_canonical_results.json",
           "sim_elliptic_regularity_constraint_canonical_results.json",
-          "sim_endoscopy_transfer_constraint_canonical_results.json",
-          "sim_enriched_category_hom_object_constraint_canonical_results.json",
           "sim_ergodic_theorem_constraint_canonical_results.json",
           "sim_essential_spectrum_constraint_canonical_results.json",
           "sim_etale_fundamental_group_constraint_canonical_results.json",
@@ -3730,7 +3068,6 @@
           "sim_fredholm_operator_constraint_canonical_results.json",
           "sim_free_probability_constraint_canonical_results.json",
           "sim_fukaya_category_constraint_canonical_results.json",
-          "sim_fundamental_lemma_ngo_constraint_canonical_results.json",
           "sim_g_theory_karoubi_villamayor_constraint_canonical_results.json",
           "sim_galois_deformation_ring_constraint_canonical_results.json",
           "sim_gap_algebraic_k_theory_quillen_plus_constraint_canonical_results.json",
@@ -3776,11 +3113,9 @@
           "sim_gap_koszul_duality_quadratic_algebra_constraint_canonical_results.json",
           "sim_gap_l_infinity_algebra_maurer_cartan_constraint_canonical_results.json",
           "sim_gap_milnor_k_theory_symbol_constraint_canonical_results.json",
-          "sim_gap_motivic_homotopy_a1_invariance_constraint_canonical_results.json",
           "sim_gap_nilpotence_periodicity_theorem_constraint_canonical_results.json",
           "sim_gap_operadic_algebra_associativity_canonical_results.json",
           "sim_gap_postnikov_tower_k_invariant_constraint_canonical_results.json",
-          "sim_gap_rational_homotopy_sullivan_minimal_constraint_canonical_results.json",
           "sim_gap_segal_condition_simplicial_nerve_canonical_results.json",
           "sim_gap_spectral_triple_gerbe_pairwise_constraint_canonical_results.json",
           "sim_gap_spectral_triple_hopf_algebra_constraint_canonical_results.json",
@@ -3812,13 +3147,8 @@
           "sim_geometry_calibrated_geometry_harvey_lawson_constraint_canonical_results.json",
           "sim_geometry_canonical_class_kodaira_dimension_constraint_canonical_results.json",
           "sim_geometry_casson_invariant_constraint_canonical_results.json",
-          "sim_geometry_castelnuovo_mumford_regularity_constraint_canonical_results.json",
-          "sim_geometry_characteristic_variety_constraint_canonical_results.json",
-          "sim_geometry_cheeger_inequality_constraint_canonical_results.json",
-          "sim_geometry_class_field_theory_artin_map_constraint_canonical_results.json",
           "sim_geometry_connes_classification_injective_constraint_canonical_results.json",
           "sim_geometry_connes_cyclic_homology_SBI_constraint_canonical_results.json",
-          "sim_geometry_connes_distance_formula_constraint_canonical_results.json",
           "sim_geometry_contact_homology_differential_graded_constraint_canonical_results.json",
           "sim_geometry_contact_structure_darboux_constraint_canonical_results.json",
           "sim_geometry_contact_structure_gray_stability_constraint_canonical_results.json",
@@ -3832,7 +3162,6 @@
           "sim_geometry_derived_functor_cohomological_dimension_constraint_canonical_results.json",
           "sim_geometry_dirac_operator_lichnerowicz_constraint_canonical_results.json",
           "sim_geometry_donaldson_invariant_dimension_constraint_canonical_results.json",
-          "sim_geometry_donaldson_uhlenbeck_yau_constraint_canonical_results.json",
           "sim_geometry_drinfeld_double_quasitriangular_constraint_canonical_results.json",
           "sim_geometry_e8_lattice_self_dual_constraint_canonical_results.json",
           "sim_geometry_eichler_shimura_relation_constraint_canonical_results.json",
@@ -3860,12 +3189,10 @@
           "sim_geometry_homfly_pt_polynomial_constraint_canonical_results.json",
           "sim_geometry_homological_mirror_symmetry_fukaya_constraint_canonical_results.json",
           "sim_geometry_hopf_algebroid_source_target_constraint_canonical_results.json",
-          "sim_geometry_hyperbolic_volume_constraint_canonical_results.json",
           "sim_geometry_instanton_floer_homology_atiyah_floer_constraint_canonical_results.json",
           "sim_geometry_integral_current_boundary_operator_constraint_canonical_results.json",
           "sim_geometry_intersection_cohomology_constraint_canonical_results.json",
           "sim_geometry_intersection_cohomology_ic_sheaf_constraint_canonical_results.json",
-          "sim_geometry_k3_surface_hodge_numbers_constraint_canonical_results.json",
           "sim_geometry_k_theory_localization_sequence_constraint_results.json",
           "sim_geometry_khovanov_homology_constraint_canonical_results.json",
           "sim_geometry_knot_floer_homology_genus_constraint_canonical_results.json",
@@ -3875,9 +3202,7 @@
           "sim_geometry_langlands_dual_group_constraint_canonical_results.json",
           "sim_geometry_langlands_functoriality_constraint_results.json",
           "sim_geometry_legendrian_knot_tb_constraint_canonical_results.json",
-          "sim_geometry_legendrian_knot_tb_framing_constraint_canonical_results.json",
           "sim_geometry_mean_curvature_flow_convexity_constraint_canonical_results.json",
-          "sim_geometry_microlocal_sheaf_singular_support_constraint_canonical_results.json",
           "sim_geometry_mirror_symmetry_hodge_number_constraint_canonical_results.json",
           "sim_geometry_mirror_symmetry_syz_constraint_canonical_results.json",
           "sim_geometry_mmp_flip_flop_negativity_constraint_canonical_results.json",
@@ -3891,7 +3216,6 @@
           "sim_geometry_moyal_product_deformation_constraint_canonical_results.json",
           "sim_geometry_nonabelian_hodge_constraint_canonical_results.json",
           "sim_geometry_noncommutative_torus_rotation_constraint_canonical_results.json",
-          "sim_geometry_open_book_decomposition_contact_constraint_canonical_results.json",
           "sim_geometry_p_adic_hodge_cst_functor_constraint_canonical_results.json",
           "sim_geometry_p_adic_valuation_ultrametric_constraint_results.json",
           "sim_geometry_p_divisible_group_constraint_canonical_results.json",
@@ -3900,8 +3224,6 @@
           "sim_geometry_perverse_sheaf_t_structure_constraint_canonical_results.json",
           "sim_geometry_plateau_problem_area_minimizing_constraint_canonical_results.json",
           "sim_geometry_poincare_conjecture_constraint_canonical_results.json",
-          "sim_geometry_pss_isomorphism_constraint_canonical_results.json",
-          "sim_geometry_quantum_cohomology_frobenius_constraint_canonical_results.json",
           "sim_geometry_quantum_group_hopf_algebra_constraint_canonical_results.json",
           "sim_geometry_quantum_group_representation_weight_constraint_canonical_results.json",
           "sim_geometry_real_spectral_triple_kr_dimension_constraint_canonical_results.json",
@@ -3994,7 +3316,6 @@
           "sim_ktheory_cstar_constraint_results.json",
           "sim_lagrangian_floer_homology_canonical_results.json",
           "sim_lagrangian_intersection_constraint_canonical_results.json",
-          "sim_lattice_distributive_constraint_canonical_results.json",
           "sim_law_of_large_numbers_constraint_canonical_results.json",
           "sim_lego_constraint_admissibility_fence_z3_results.json",
           "sim_lego_probe_guard_admissibility_cvc5_results.json",
@@ -4019,9 +3340,7 @@
           "sim_moduli_stable_bundles_constraint_canonical_results.json",
           "sim_moonshine_conjecture_constraint_canonical_results.json",
           "sim_morava_stabilizer_group_action_constraint_canonical_results.json",
-          "sim_morse_theory_constraint_canonical_results.json",
           "sim_motivic_cohomology_constraint_canonical_results.json",
-          "sim_motivic_filtration_tc_constraint_canonical_results.json",
           "sim_mu_zero_conjecture_kato_constraint_canonical_results.json",
           "sim_mutual_information_monotone_canonical_results 2.json",
           "sim_mutual_information_monotone_canonical_results.json",
@@ -4029,13 +3348,10 @@
           "sim_n01_cross_z3_cvc5_parity_on_equivalence_closure_results.json",
           "sim_narasimhan_seshadri_constraint_canonical_results.json",
           "sim_nash_equilibrium_existence_constraint_canonical_results.json",
-          "sim_newton_method_convergence_constraint_canonical_results.json",
           "sim_newton_polygon_constraint_canonical_results.json",
           "sim_omega_category_globular_constraint_canonical_results.json",
           "sim_open_mapping_theorem_constraint_canonical_results.json",
           "sim_operad_associahedra_constraint_canonical_results.json",
-          "sim_p_adic_comparison_crystalline_constraint_canonical_results.json",
-          "sim_p_adic_l_function_constraint_canonical_results.json",
           "sim_p_adic_local_langlands_gl2_constraint_canonical_results.json",
           "sim_p_adic_ultrametric_constraint_canonical_results.json",
           "sim_pandharipande_thomas_stable_pair_constraint_canonical_results.json",
@@ -4065,7 +3381,6 @@
           "sim_ricci_flow_constraint_canonical_results.json",
           "sim_rice_theorem_constraint_canonical_results.json",
           "sim_ring_ideal_quotient_constraint_canonical_results.json",
-          "sim_runge_kutta_stability_constraint_canonical_results.json",
           "sim_schauder_basis_constraint_canonical_results.json",
           "sim_schubert_calculus_constraint_canonical_results.json",
           "sim_schur_weyl_duality_constraint_canonical_results.json",
@@ -4120,7 +3435,6 @@
           "sim_yang_baxter_equation_r_matrix_constraint_canonical_results.json",
           "sim_zero_free_region_constraint_canonical_results.json",
           "sim_zero_knowledge_proof_constraint_canonical_results.json",
-          "sim_zorns_lemma_constraint_canonical_results.json",
           "stable_stems_constraint_canonical_results.json",
           "tool_capability_cvc5_results.json",
           "tool_integration_cvc5_sympy_results.json",
@@ -4131,10 +3445,10 @@
         ]
       },
       "sympy": {
-        "tried_count": 2302,
-        "used_count": 1987,
-        "load_bearing_count": 838,
-        "depth_present_count": 1995,
+        "tried_count": 2306,
+        "used_count": 1992,
+        "load_bearing_count": 841,
+        "depth_present_count": 1999,
         "anchor_stage_coverage": [
           "coupling",
           "topology",
@@ -4179,10 +3493,13 @@
           "berry_phase_u1_abelian_results.json",
           "berry_qfi_entangled_path_results.json",
           "berry_qfi_shell_paths_results.json",
+          "boundary_flux_to_pauli_admissibility_results 2.json",
           "boundary_flux_to_pauli_admissibility_results.json",
           "boundary_g_to_hopf_admissibility_results 2.json",
           "boundary_g_to_hopf_admissibility_results.json",
+          "boundary_hopf_to_weyl_admissibility_results 2.json",
           "boundary_hopf_to_weyl_admissibility_results.json",
+          "boundary_weyl_to_flux_admissibility_results 2.json",
           "boundary_weyl_to_flux_admissibility_results.json",
           "bridge_jarzynski_probe_relative_results.json",
           "bridge_landauer_erasure_bit_distinguishability_results.json",
@@ -4983,12 +4300,11 @@
         ]
       },
       "clifford": {
-        "tried_count": 1449,
-        "used_count": 517,
-        "load_bearing_count": 463,
-        "depth_present_count": 499,
+        "tried_count": 1457,
+        "used_count": 524,
+        "load_bearing_count": 467,
+        "depth_present_count": 505,
         "anchor_stage_coverage": [
-          "coupling",
           "coexistence"
         ],
         "anchor_result_files": [
@@ -5061,6 +4377,7 @@
           "geom_noncomm_so3_u1_results.json",
           "geom_noncomm_spin_reflect_results.json",
           "geom_noncomm_weyl_then_hopf_results.json",
+          "geometric_engine_results.json",
           "gtower_order_o_to_so_then_u_vs_reverse_results.json",
           "gtower_order_u1_gauge_then_chirality_vs_reverse_results.json",
           "gtower_sp6_f4_pairwise_coupling_results.json",
@@ -5072,7 +4389,6 @@
           "igt_deep_ring_topology_chirality_results.json",
           "layer_coupling_matrix_results.json",
           "layer_coupling_matrix_v2_results.json",
-          "layer_coupling_matrix_v3_results.json",
           "layer_triple_catalog_results.json",
           "leggett_garg_k3_clifford_canonical_results.json",
           "lego_05_cl_rotor_pair_results.json",
@@ -5152,8 +4468,12 @@
           "sim_carnot_szilard_axis_correlation_matrix_results.json",
           "sim_cl3_bivector_entropy_results 2.json",
           "sim_cl3_bivector_entropy_results.json",
+          "sim_cl3_bivector_exp_results.json",
+          "sim_cl3_composition_results.json",
           "sim_cl3_e3nn_rotor_vs_wignerD_vector_results 2.json",
           "sim_cl3_e3nn_rotor_vs_wignerD_vector_results.json",
+          "sim_cl3_invariants_results.json",
+          "sim_cl3_reflection_results.json",
           "sim_cl3_rotor_associativity_results 2.json",
           "sim_cl3_rotor_associativity_results.json",
           "sim_cl6_even_subalgebra_closure_results 2.json",
@@ -6153,8 +5473,8 @@
       "xgi": {
         "tried_count": 1124,
         "used_count": 288,
-        "load_bearing_count": 253,
-        "depth_present_count": 282,
+        "load_bearing_count": 252,
+        "depth_present_count": 281,
         "anchor_stage_coverage": [
           "assembly",
           "topology",
@@ -6201,7 +5521,6 @@
           "hypergraph_geometry_results.json",
           "lego_weyl_hypergraph_local_results.json",
           "leviathan_diversity_preserves_fuel_supply_results.json",
-          "leviathan_explore_as_hypergraph_potential_results.json",
           "leviathan_potential_mining_probe_results.json",
           "leviathan_xgi_coalition_hypergraph_results.json",
           "mera_shell_axis0_results.json",
@@ -6418,10 +5737,10 @@
         ]
       },
       "toponetx": {
-        "tried_count": 1030,
-        "used_count": 147,
-        "load_bearing_count": 119,
-        "depth_present_count": 145,
+        "tried_count": 1034,
+        "used_count": 150,
+        "load_bearing_count": 118,
+        "depth_present_count": 147,
         "anchor_stage_coverage": [
           "topology",
           "assembly"
@@ -6500,7 +5819,6 @@
           "sim_flux_boundary_orientation_shell_canonical_results.json",
           "sim_flux_stokes_cell_shell_canonical_results.json",
           "sim_g2_f4_e6_triple_cartan_coupling_canonical_results.json",
-          "sim_gerbe_derived_stack_cohomology_results.json",
           "sim_gerbe_derived_stack_holonomy_canonical_results.json",
           "sim_gstack_associated_bundle_shell_local_results.json",
           "sim_gstack_higgs_bundle_shell_local_results.json",
@@ -6916,11 +6234,11 @@
   ],
   "summary": {
     "doc_drift_count": 0,
-    "interpreter_aligned": true,
+    "interpreter_aligned": false,
     "phase7_c2_surface_consistent": true,
     "phase7_source_has_legacy_subset_branch": false,
-    "trusted_spine_risky_entries": 1,
-    "truth_audit_ok": false,
+    "trusted_spine_risky_entries": 0,
+    "truth_audit_ok": true,
     "shallow_tool_count": 0,
     "code_process_green": false,
     "docs_current": true,
@@ -6929,7 +6247,7 @@
   "doc_drift_count": 0,
   "phase7_c2_surface_consistent": true,
   "phase7_source_has_legacy_subset_branch": false,
-  "trusted_spine_risky_entries": 1,
+  "trusted_spine_risky_entries": 0,
   "shallow_tools": [],
   "shallow_tool_count": 0,
   "doc_drift_by_kind": {},

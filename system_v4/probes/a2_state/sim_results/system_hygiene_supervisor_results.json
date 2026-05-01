@@ -1,32 +1,24 @@
 {
-  "generated_at": "2026-05-01T20:52:46.337282+00:00",
+  "generated_at": "2026-05-01T22:51:49.380714+00:00",
   "strict": false,
   "overall_green": false,
-  "repair_queue_count": 2,
+  "repair_queue_count": 1,
   "safe_auto_repair_count": 0,
   "manual_repair_count": 0,
-  "truth_green": false,
+  "truth_green": true,
   "controller_green": false,
   "migration_green": true,
   "repo_hygiene_green": true,
   "runtime_hygiene_green": true,
   "state_dir_ownership_green": true,
   "lego_tool_reporting_green": true,
-  "active_actionable_lane": {
-    "group_id": "probe_source__sim_family_axis0",
-    "file_count": 1,
-    "untracked_count": 1,
-    "tracked_dirty_count": 0,
-    "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
-  },
+  "active_actionable_lane": null,
   "summary": {
     "missing_surface_count": 0,
-    "repair_queue_count": 2,
+    "repair_queue_count": 1,
     "safe_auto_repair_count": 0,
     "manual_repair_count": 0,
-    "truth_green": false,
+    "truth_green": true,
     "controller_green": false,
     "migration_green": true,
     "repo_hygiene_green": true,
@@ -60,10 +52,10 @@
     "path": "system_v4/probes/a2_state/sim_results/lego_tool_reporting_audit_results.json",
     "status": "current",
     "blocker_count": 0,
-    "advisory_count": 9,
+    "advisory_count": 8,
     "registry_linked_result_count": 117,
     "issue_kind_counts": {
-      "blank_unused_reason": 9
+      "blank_unused_reason": 8
     },
     "ok": true
   },
@@ -79,7 +71,12 @@
     "source_dirty_count": 0,
     "dirty_source_bucket_count": 0,
     "dirty_source_buckets": [],
-    "top_dirty_prefixes": [],
+    "top_dirty_prefixes": [
+      {
+        "prefix": "system_v4",
+        "count": 14
+      }
+    ],
     "checkpoint_recommended": false
   },
   "source_dirty_checkpoint": {
@@ -87,75 +84,21 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
     "status": "current",
     "dirty_source_checkpoint_required": false,
-    "plan_group_count": 39,
-    "largest_group_id": "legacy_runtime__legacy_runtime",
-    "next_code_only_manual": {
-      "group_id": "probe_source__sim_family_axis0",
-      "file_count": 1,
-      "untracked_count": 1,
-      "tracked_dirty_count": 0,
-      "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
-    },
-    "recommended_code_only_order": [
-      {
-        "group_id": "probe_source__sim_family_axis0",
-        "file_count": 1,
-        "untracked_count": 1,
-        "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json"
-      },
-      {
-        "group_id": "probe_source__sim_family_a1",
-        "file_count": 1,
-        "untracked_count": 0,
-        "tracked_dirty_count": 1,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_a1_homotopy_3_reduction.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/a1_homotopy_3_reduction_results.json"
-      },
-      {
-        "group_id": "probe_source__sim_family_carrier",
-        "file_count": 1,
-        "untracked_count": 0,
-        "tracked_dirty_count": 1,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_carrier_probe_support.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/carrier_probe_support_results.json"
-      },
-      {
-        "group_id": "probe_source__sim_family_compound",
-        "file_count": 1,
-        "untracked_count": 0,
-        "tracked_dirty_count": 1,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_compound_operator_geometry.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/compound_operator_geometry_results.json"
-      },
-      {
-        "group_id": "probe_source__sim_family_dirac",
-        "file_count": 1,
-        "untracked_count": 0,
-        "tracked_dirty_count": 1,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_dirac_contact_mera_topology_variants.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/dirac_contact_mera_topology_variants_results.json"
-      }
-    ]
+    "plan_group_count": 0,
+    "largest_group_id": null,
+    "next_code_only_manual": null,
+    "recommended_code_only_order": []
   },
   "source_dirty_lane_manifest": {
     "present": true,
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_lane_manifest.json",
     "status": "current",
     "required": false,
-    "selected_group_id": "docs_and_specs__docs_and_specs",
-    "file_count": 1,
-    "docs_opt_in_required": true,
-    "code_only_fallback_group_id": "probe_source__sim_family_axis0",
-    "active_actionable_lane_group_id": "probe_source__sim_family_axis0"
+    "selected_group_id": null,
+    "file_count": 0,
+    "docs_opt_in_required": false,
+    "code_only_fallback_group_id": null,
+    "active_actionable_lane_group_id": null
   },
   "maintenance_lanes": [
     {
@@ -182,13 +125,6 @@
   "missing_surfaces": [],
   "repair_queue": [
     {
-      "source_surface": "truth",
-      "kind": "truth_audit_failed",
-      "action_class": "repair_truth_surface",
-      "safe_auto": false,
-      "recommendation": "Resolve hard truth-audit findings before further promotion."
-    },
-    {
       "source_surface": "controller",
       "kind": "controller_contract_not_current",
       "action_class": "repair_controller_surface",
@@ -200,17 +136,17 @@
   "manual_queue": [],
   "surface_status": {
     "truth": {
-      "hard_finding_count": 233,
-      "warning_finding_count": 150,
-      "ok": false
+      "hard_finding_count": 0,
+      "warning_finding_count": 147,
+      "ok": true
     },
     "controller": {
       "doc_drift_count": 0,
-      "interpreter_aligned": true,
+      "interpreter_aligned": false,
       "phase7_c2_surface_consistent": true,
       "phase7_source_has_legacy_subset_branch": false,
-      "trusted_spine_risky_entries": 1,
-      "truth_audit_ok": false,
+      "trusted_spine_risky_entries": 0,
+      "truth_audit_ok": true,
       "shallow_tool_count": 0,
       "code_process_green": false,
       "docs_current": true,
@@ -233,8 +169,8 @@
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 0,
       "source_dirty_count": 0,
-      "generated_dirty_count": 0,
-      "dirty_worktree_count": 0,
+      "generated_dirty_count": 14,
+      "dirty_worktree_count": 14,
       "dirty_source_bucket_count": 0,
       "ok": true
     },
@@ -256,37 +192,39 @@
       "registry_linked_result_count": 117,
       "registry_linked_lego_count": 148,
       "blocker_count": 0,
-      "advisory_count": 9,
+      "advisory_count": 8,
       "blocker_result_count": 0,
-      "advisory_result_count": 9,
+      "advisory_result_count": 8,
       "issue_kind_counts": {
-        "blank_unused_reason": 9
+        "blank_unused_reason": 8
       },
       "ok": true
     },
     "source_dirty_checkpoint": {
-      "dirty_source_count": 178,
-      "plan_group_count": 39,
-      "checkpoint_candidate_count": 1,
+      "dirty_source_count": 0,
+      "plan_group_count": 0,
+      "checkpoint_candidate_count": 0,
       "quarantine_candidate_count": 0,
-      "manual_only_count": 38,
-      "code_only_manual_count": 38,
-      "largest_group_id": "legacy_runtime__legacy_runtime",
-      "next_code_only_manual_group_id": "probe_source__sim_family_axis0",
-      "next_code_only_manual_file_count": 1,
-      "next_code_only_manual_source_path": "system_v4/probes/sim_axis0_gtower_gradient_cascade 2.py",
-      "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/axis0_gtower_gradient_cascade 2_results.json",
+      "manual_only_count": 0,
+      "code_only_manual_count": 0,
+      "largest_group_id": null,
+      "next_code_only_manual_group_id": null,
+      "next_code_only_manual_file_count": 0,
+      "next_code_only_manual_source_path": null,
+      "next_code_only_manual_result_path": null,
       "ok": true
     },
     "source_dirty_lane_manifest": {
-      "selected_group_id": "docs_and_specs__docs_and_specs",
-      "file_count": 1,
-      "safe_next_action": "checkpoint",
-      "docs_opt_in_required": true,
-      "code_only_fallback_group_id": "probe_source__sim_family_axis0",
-      "active_actionable_lane_group_id": "probe_source__sim_family_axis0",
-      "executable_lane_group_id": "probe_source__sim_family_axis0",
-      "ok": true
+      "selected_group_id": null,
+      "file_count": 0,
+      "safe_next_action": null,
+      "docs_opt_in_required": false,
+      "code_only_fallback_group_id": null,
+      "active_actionable_lane_group_id": null,
+      "executable_lane_group_id": null,
+      "ok": true,
+      "status": "no_actionable_lanes",
+      "note": "No checkpoint-ready groups; all remaining source pressure is manual-only or clean."
     }
   }
 }

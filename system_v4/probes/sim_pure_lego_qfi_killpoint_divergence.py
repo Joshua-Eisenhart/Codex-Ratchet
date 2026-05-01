@@ -30,6 +30,11 @@ import os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -107,8 +112,8 @@ for _tool, _pkg in [
         TOOL_MANIFEST[_tool]["reason"] = (
             "tried; not used — no graph/spinor/topology structure in this probe"
         )
-    except ImportError:
-        TOOL_MANIFEST[_tool]["reason"] = "not installed"
+    except Exception as exc:
+        TOOL_MANIFEST[_tool]["reason"] = f"optional import unavailable: {exc}"
 
 # =====================================================================
 # CLASSIFICATION

@@ -25,6 +25,12 @@ from pathlib import Path
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+import os
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -102,8 +108,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as e:
+    TOOL_MANIFEST["clifford"]["reason"] = f"unavailable at import time: {type(e).__name__}: {e}"
 
 _geomstats = None
 try:
@@ -835,6 +841,15 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
+        "summary": {
+            "positive_pass": sum(1 for v in positive.values() if isinstance(v, dict) and v.get("pass")),
+            "positive_total": sum(1 for v in positive.values() if isinstance(v, dict) and "pass" in v),
+            "negative_pass": sum(1 for v in negative.values() if isinstance(v, dict) and v.get("pass")),
+            "negative_total": sum(1 for v in negative.values() if isinstance(v, dict) and "pass" in v),
+            "boundary_pass": sum(1 for v in boundary.values() if isinstance(v, dict) and v.get("pass")),
+            "boundary_total": sum(1 for v in boundary.values() if isinstance(v, dict) and "pass" in v),
+            "all_pass": overall_pass,
+        },
     }
 
     out_dir = Path(__file__).resolve().parent / "a2_state" / "sim_results"

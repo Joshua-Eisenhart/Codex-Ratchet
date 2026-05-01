@@ -19,6 +19,11 @@ import datetime
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical baseline: full torus spinor dynamics is represented here by direct spinor/rotor numerics on bounded torus loops, not a canonical nonclassical witness."
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "spinor evolution, Bloch summaries, and trajectory numerics"},
     "clifford": {"tried": True, "used": True, "reason": "Cl(3) rotors and multivector transport on torus loops"},
@@ -30,7 +35,10 @@ TOOL_INTEGRATION_DEPTH = {
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from clifford import Cl
+try:
+    from clifford import Cl
+except Exception as exc:
+    raise SystemExit(f"optional clifford import unavailable: {type(exc).__name__}")
 
 from hopf_manifold import (
     torus_coordinates, torus_radii, berry_phase,
@@ -623,6 +631,8 @@ def main():
     # ── Compile output ──
     output = {
         "name": "full_torus_spinor_dynamics",
+        "classification": classification,
+        "divergence_log": divergence_log,
         "torus_levels_tested": ["inner", "clifford", "outer"],
         "cycles": N_CYCLES,
         "stages_per_cycle": STAGES_PER_CYCLE,

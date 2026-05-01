@@ -21,6 +21,26 @@ import json, pathlib, time
 import numpy as np
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "Classical baseline: this pure lego probe verifies no-go theorems with "
+    "numpy numerics and z3 structural checks without claiming a stronger witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric linear algebra and randomized unitary/state checks for the classical baseline",
+    },
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "structural UNSAT/SAT checks for cloning and deleting overlap constraints",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "z3": "supportive",
+}
 from z3 import (
     RealSort, Real, Solver, unsat, And, Or, Not,
     ForAll, Exists, Implies, sat,
@@ -551,6 +571,15 @@ summary = {
 all_pass = all(summary.values())
 RESULTS["summary"] = summary
 RESULTS["ALL_PASS"] = all_pass
+RESULTS["classification"] = classification
+RESULTS["tool_manifest"] = TOOL_MANIFEST
+RESULTS["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
+RESULTS["demote_reason"] = DEMOTE_REASON
+RESULTS["divergence_log"] = divergence_log
+RESULTS["summary_normalized"] = {
+    "sections": f"{sum(1 for v in summary.values() if v)}/{len(summary)}",
+    "all_pass": all_pass,
+}
 
 print(f"\n{'=' * 60}")
 print(f"PURE LEGO NO-GO THEOREMS -- ALL PASS: {all_pass}")

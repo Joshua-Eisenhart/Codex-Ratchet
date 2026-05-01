@@ -886,6 +886,15 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
+        "summary": {
+            "positive_total": sum(1 for v in positive.values() if isinstance(v, dict)),
+            "positive_pass": sum(1 for v in positive.values() if isinstance(v, dict) and _ok(v)),
+            "negative_total": sum(1 for v in negative.values() if isinstance(v, dict)),
+            "negative_pass": sum(1 for v in negative.values() if isinstance(v, dict) and _ok(v)),
+            "boundary_total": sum(1 for v in boundary.values() if isinstance(v, dict)),
+            "boundary_pass": sum(1 for v in boundary.values() if isinstance(v, dict) and _ok(v)),
+            "all_pass": overall_pass,
+        },
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

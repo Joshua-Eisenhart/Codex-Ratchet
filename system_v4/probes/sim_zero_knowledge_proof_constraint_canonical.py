@@ -99,49 +99,50 @@ def run_positive_tests():
     solver.setLogic("QF_LIA")
 
     # Public parameters
-    g = solver.mkConst(solver.mkIntegerSort(), "g")
-    p = solver.mkConst(solver.mkIntegerSort(), "p")  # modulus
-    order = solver.mkConst(solver.mkIntegerSort(), "order")  # group order
+    int_sort = solver.getIntegerSort()
+    g = solver.mkConst(int_sort, "g")
+    p = solver.mkConst(int_sort, "p")  # modulus
+    order = solver.mkConst(int_sort, "order")  # group order
 
     # Statement: y = g^x in Z_p
-    y = solver.mkConst(solver.mkIntegerSort(), "y")
-    x = solver.mkConst(solver.mkIntegerSort(), "x")  # witness (secret)
+    y = solver.mkConst(int_sort, "y")
+    x = solver.mkConst(int_sort, "x")  # witness (secret)
 
     # Honest prover chooses random r
-    r = solver.mkConst(solver.mkIntegerSort(), "r")
+    r = solver.mkConst(int_sort, "r")
     # Computes commitment
-    t = solver.mkConst(solver.mkIntegerSort(), "t")  # t = g^r mod p
+    t = solver.mkConst(int_sort, "t")  # t = g^r mod p
 
     # Verifier chooses challenge
-    c = solver.mkConst(solver.mkIntegerSort(), "c")
+    c = solver.mkConst(int_sort, "c")
 
     # Prover responds
-    z = solver.mkConst(solver.mkIntegerSort(), "z")  # z = r + c*x
+    z = solver.mkConst(int_sort, "z")  # z = r + c*x
 
     # Concrete instance: p=23, g=5, order=11
-    solver.assertFormula(solver.mkTerm(Kind.Equal, g, solver.mkInteger(5)))
-    solver.assertFormula(solver.mkTerm(Kind.Equal, p, solver.mkInteger(23)))
-    solver.assertFormula(solver.mkTerm(Kind.Equal, order, solver.mkInteger(11)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, g, solver.mkInteger(5)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, p, solver.mkInteger(23)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, order, solver.mkInteger(11)))
 
     # Witness: x=3
-    solver.assertFormula(solver.mkTerm(Kind.Equal, x, solver.mkInteger(3)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, x, solver.mkInteger(3)))
 
     # Statement: y = g^x = 5^3 = 125 = 10 (mod 23)
-    solver.assertFormula(solver.mkTerm(Kind.Equal, y, solver.mkInteger(10)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, y, solver.mkInteger(10)))
 
     # Prover chooses r=2
-    solver.assertFormula(solver.mkTerm(Kind.Equal, r, solver.mkInteger(2)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, r, solver.mkInteger(2)))
 
     # Commitment: t = g^r = 5^2 = 25 = 2 (mod 23)
-    solver.assertFormula(solver.mkTerm(Kind.Equal, t, solver.mkInteger(2)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, t, solver.mkInteger(2)))
 
     # Verifier challenge: c=4
-    solver.assertFormula(solver.mkTerm(Kind.Equal, c, solver.mkInteger(4)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, c, solver.mkInteger(4)))
 
     # Response: z = r + c*x = 2 + 4*3 = 14
-    solver.assertFormula(solver.mkTerm(Kind.Equal, z,
-        solver.mkTerm(Kind.Add, r,
-            solver.mkTerm(Kind.Mult, c, x))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, z,
+        solver.mkTerm(Kind.ADD, r,
+            solver.mkTerm(Kind.MULT, c, x))
     ))
 
     # Verification: g^z = t * y^c (in exponent, mod order)
@@ -155,13 +156,13 @@ def run_positive_tests():
     # And t * y^c = g^r * (g^x)^c = g^(r+c*x) = g^3 = 10 (mod 23) ✓
 
     # Verification check: z_exponent = (r + c*x) mod order
-    z_exponent = solver.mkConst(solver.mkIntegerSort(), "z_exponent")
-    solver.assertFormula(solver.mkTerm(Kind.Equal, z_exponent, solver.mkInteger(3)))
+    z_exponent = solver.mkConst(int_sort, "z_exponent")
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, z_exponent, solver.mkInteger(3)))
 
     # This is the honest case, so verification should pass
     result = solver.checkSat()
     results["test_1_schnorr_honest_prover"] = {
-        "status": "SAT" if result.isTrue() else "UNSAT",
+        "status": "SAT" if result.isSat() else "UNSAT",
         "claim": "Honest Schnorr prover is accepted (completeness)",
         "params": {
             "g": 5, "p": 23, "order": 11,
@@ -175,27 +176,28 @@ def run_positive_tests():
     solver2 = Solver()
     solver2.setLogic("QF_LIA")
 
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, solver2.mkConst(solver2.mkIntegerSort(), "g"), solver2.mkInteger(5)))
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, solver2.mkConst(solver2.mkIntegerSort(), "p"), solver2.mkInteger(23)))
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, solver2.mkConst(solver2.mkIntegerSort(), "order"), solver2.mkInteger(11)))
+    int_sort2 = solver2.getIntegerSort()
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, solver2.mkConst(int_sort2, "g"), solver2.mkInteger(5)))
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, solver2.mkConst(int_sort2, "p"), solver2.mkInteger(23)))
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, solver2.mkConst(int_sort2, "order"), solver2.mkInteger(11)))
 
-    x2 = solver2.mkConst(solver2.mkIntegerSort(), "x")
-    r2 = solver2.mkConst(solver2.mkIntegerSort(), "r")
-    c2 = solver2.mkConst(solver2.mkIntegerSort(), "c")
-    z2 = solver2.mkConst(solver2.mkIntegerSort(), "z")
+    x2 = solver2.mkConst(int_sort2, "x")
+    r2 = solver2.mkConst(int_sort2, "r")
+    c2 = solver2.mkConst(int_sort2, "c")
+    z2 = solver2.mkConst(int_sort2, "z")
 
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, x2, solver2.mkInteger(5)))
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, r2, solver2.mkInteger(1)))
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, c2, solver2.mkInteger(3)))
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, x2, solver2.mkInteger(5)))
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, r2, solver2.mkInteger(1)))
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, c2, solver2.mkInteger(3)))
 
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, z2,
-        solver2.mkTerm(Kind.Add, r2,
-            solver2.mkTerm(Kind.Mult, c2, x2))
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, z2,
+        solver2.mkTerm(Kind.ADD, r2,
+            solver2.mkTerm(Kind.MULT, c2, x2))
     ))
 
     result2 = solver2.checkSat()
     results["test_2_different_challenge"] = {
-        "status": "SAT" if result2.isTrue() else "UNSAT",
+        "status": "SAT" if result2.isSat() else "UNSAT",
         "claim": "Completeness holds for different challenges",
         "z_calculation": "z = r + c*x = 1 + 3*5 = 16",
     }
@@ -204,28 +206,29 @@ def run_positive_tests():
     solver3 = Solver()
     solver3.setLogic("QF_LIA")
 
-    x3 = solver3.mkConst(solver3.mkIntegerSort(), "x")
-    r3 = solver3.mkConst(solver3.mkIntegerSort(), "r")
-    c3 = solver3.mkConst(solver3.mkIntegerSort(), "c")
-    z3 = solver3.mkConst(solver3.mkIntegerSort(), "z")
+    int_sort3 = solver3.getIntegerSort()
+    x3 = solver3.mkConst(int_sort3, "x")
+    r3 = solver3.mkConst(int_sort3, "r")
+    c3 = solver3.mkConst(int_sort3, "c")
+    z3 = solver3.mkConst(int_sort3, "z")
 
     # Witness and randomness
-    solver3.assertFormula(solver3.mkTerm(Kind.Equal, x3, solver3.mkInteger(7)))
-    solver3.assertFormula(solver3.mkTerm(Kind.Equal, r3, solver3.mkInteger(4)))
+    solver3.assertFormula(solver3.mkTerm(Kind.EQUAL, x3, solver3.mkInteger(7)))
+    solver3.assertFormula(solver3.mkTerm(Kind.EQUAL, r3, solver3.mkInteger(4)))
 
     # Challenge in range [0, 10]
-    solver3.assertFormula(solver3.mkTerm(Kind.GEq, c3, solver3.mkInteger(0)))
-    solver3.assertFormula(solver3.mkTerm(Kind.LEq, c3, solver3.mkInteger(10)))
+    solver3.assertFormula(solver3.mkTerm(Kind.GEQ, c3, solver3.mkInteger(0)))
+    solver3.assertFormula(solver3.mkTerm(Kind.LEQ, c3, solver3.mkInteger(10)))
 
     # Response computation
-    solver3.assertFormula(solver3.mkTerm(Kind.Equal, z3,
-        solver3.mkTerm(Kind.Add, r3,
-            solver3.mkTerm(Kind.Mult, c3, x3))
+    solver3.assertFormula(solver3.mkTerm(Kind.EQUAL, z3,
+        solver3.mkTerm(Kind.ADD, r3,
+            solver3.mkTerm(Kind.MULT, c3, x3))
     ))
 
     result3 = solver3.checkSat()
     results["test_3_arbitrary_challenge"] = {
-        "status": "SAT" if result3.isTrue() else "UNSAT",
+        "status": "SAT" if result3.isSat() else "UNSAT",
         "claim": "Completeness for any challenge in range",
     }
 
@@ -254,42 +257,43 @@ def run_negative_tests():
     solver = Solver()
     solver.setLogic("QF_LIA")
 
-    x = solver.mkConst(solver.mkIntegerSort(), "x")  # cheater doesn't know this
-    r = solver.mkConst(solver.mkIntegerSort(), "r")  # cheater's randomness
-    c1 = solver.mkConst(solver.mkIntegerSort(), "c1")  # first challenge
-    c2 = solver.mkConst(solver.mkIntegerSort(), "c2")  # second challenge
-    z1 = solver.mkConst(solver.mkIntegerSort(), "z1")  # response to c1
-    z2 = solver.mkConst(solver.mkIntegerSort(), "z2")  # response to c2
+    int_sort = solver.getIntegerSort()
+    x = solver.mkConst(int_sort, "x")  # cheater doesn't know this
+    r = solver.mkConst(int_sort, "r")  # cheater's randomness
+    c1 = solver.mkConst(int_sort, "c1")  # first challenge
+    c2 = solver.mkConst(int_sort, "c2")  # second challenge
+    z1 = solver.mkConst(int_sort, "z1")  # response to c1
+    z2 = solver.mkConst(int_sort, "z2")  # response to c2
 
-    order = solver.mkConst(solver.mkIntegerSort(), "order")
-    solver.assertFormula(solver.mkTerm(Kind.Equal, order, solver.mkInteger(11)))
+    order = solver.mkConst(int_sort, "order")
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, order, solver.mkInteger(11)))
 
     # Cheater's responses
-    solver.assertFormula(solver.mkTerm(Kind.Equal, r, solver.mkInteger(2)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, r, solver.mkInteger(2)))
 
     # Two different challenges
-    solver.assertFormula(solver.mkTerm(Kind.Equal, c1, solver.mkInteger(4)))
-    solver.assertFormula(solver.mkTerm(Kind.Equal, c2, solver.mkInteger(7)))
-    solver.assertFormula(solver.mkTerm(Kind.Not,
-        solver.mkTerm(Kind.Equal, c1, c2)
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, c1, solver.mkInteger(4)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, c2, solver.mkInteger(7)))
+    solver.assertFormula(solver.mkTerm(Kind.NOT,
+        solver.mkTerm(Kind.EQUAL, c1, c2)
     ))
 
     # Cheater responds correctly (allegedly)
-    z1_expected = solver.mkConst(solver.mkIntegerSort(), "z1_expected")
-    z2_expected = solver.mkConst(solver.mkIntegerSort(), "z2_expected")
+    z1_expected = solver.mkConst(int_sort, "z1_expected")
+    z2_expected = solver.mkConst(int_sort, "z2_expected")
 
-    solver.assertFormula(solver.mkTerm(Kind.Equal, z1_expected,
-        solver.mkTerm(Kind.Add, r,
-            solver.mkTerm(Kind.Mult, c1, x))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, z1_expected,
+        solver.mkTerm(Kind.ADD, r,
+            solver.mkTerm(Kind.MULT, c1, x))
     ))
 
-    solver.assertFormula(solver.mkTerm(Kind.Equal, z2_expected,
-        solver.mkTerm(Kind.Add, r,
-            solver.mkTerm(Kind.Mult, c2, x))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, z2_expected,
+        solver.mkTerm(Kind.ADD, r,
+            solver.mkTerm(Kind.MULT, c2, x))
     ))
 
-    solver.assertFormula(solver.mkTerm(Kind.Equal, z1, z1_expected))
-    solver.assertFormula(solver.mkTerm(Kind.Equal, z2, z2_expected))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, z1, z1_expected))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, z2, z2_expected))
 
     # But cheater doesn't know x!
     # So if both responses are valid, we can extract x from:
@@ -301,7 +305,7 @@ def run_negative_tests():
 
     result = solver.checkSat()
     results["test_1_cheater_forking_lemma"] = {
-        "status": "SAT" if result.isTrue() else "UNSAT",
+        "status": "SAT" if result.isSat() else "UNSAT",
         "claim": "If cheater answers two challenges consistently, cheater knows log",
         "soundness_principle": "Forking lemma: consistent dual responses => witness extraction",
     }
@@ -312,43 +316,44 @@ def run_negative_tests():
     solver2 = Solver()
     solver2.setLogic("QF_LIA")
 
-    g2 = solver2.mkConst(solver2.mkIntegerSort(), "g")
-    p2 = solver2.mkConst(solver2.mkIntegerSort(), "p")
-    order2 = solver2.mkConst(solver2.mkIntegerSort(), "order")
-    x2 = solver2.mkConst(solver2.mkIntegerSort(), "x")
-    y2 = solver2.mkConst(solver2.mkIntegerSort(), "y")
-    r2 = solver2.mkConst(solver2.mkIntegerSort(), "r")
-    c2 = solver2.mkConst(solver2.mkIntegerSort(), "c")
-    z2 = solver2.mkConst(solver2.mkIntegerSort(), "z")
+    int_sort2 = solver2.getIntegerSort()
+    g2 = solver2.mkConst(int_sort2, "g")
+    p2 = solver2.mkConst(int_sort2, "p")
+    order2 = solver2.mkConst(int_sort2, "order")
+    x2 = solver2.mkConst(int_sort2, "x")
+    y2 = solver2.mkConst(int_sort2, "y")
+    r2 = solver2.mkConst(int_sort2, "r")
+    c2 = solver2.mkConst(int_sort2, "c")
+    z2 = solver2.mkConst(int_sort2, "z")
 
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, g2, solver2.mkInteger(5)))
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, p2, solver2.mkInteger(23)))
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, order2, solver2.mkInteger(11)))
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, g2, solver2.mkInteger(5)))
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, p2, solver2.mkInteger(23)))
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, order2, solver2.mkInteger(11)))
 
     # True statement: y = g^3 = 10
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, x2, solver2.mkInteger(3)))
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, y2, solver2.mkInteger(10)))
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, x2, solver2.mkInteger(3)))
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, y2, solver2.mkInteger(10)))
 
     # Cheater tries wrong response
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, r2, solver2.mkInteger(2)))
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, c2, solver2.mkInteger(4)))
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, z2, solver2.mkInteger(99)))  # Wrong!
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, r2, solver2.mkInteger(2)))
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, c2, solver2.mkInteger(4)))
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, z2, solver2.mkInteger(99)))  # Wrong!
 
     # Correct response should be z = r + c*x = 2 + 4*3 = 14
     # Force contradiction
-    z2_correct = solver2.mkConst(solver2.mkIntegerSort(), "z_correct")
-    solver2.assertFormula(solver2.mkTerm(Kind.Equal, z2_correct,
-        solver2.mkTerm(Kind.Add, r2,
-            solver2.mkTerm(Kind.Mult, c2, x2))
+    z2_correct = solver2.mkConst(int_sort2, "z_correct")
+    solver2.assertFormula(solver2.mkTerm(Kind.EQUAL, z2_correct,
+        solver2.mkTerm(Kind.ADD, r2,
+            solver2.mkTerm(Kind.MULT, c2, x2))
     ))
 
-    solver2.assertFormula(solver2.mkTerm(Kind.Not,
-        solver2.mkTerm(Kind.Equal, z2, z2_correct)
+    solver2.assertFormula(solver2.mkTerm(Kind.NOT,
+        solver2.mkTerm(Kind.EQUAL, z2, z2_correct)
     ))
 
     result2 = solver2.checkSat()
     results["test_2_wrong_response_rejected"] = {
-        "status": "UNSAT" if result2.isFalse() else "SAT",
+        "status": "UNSAT" if result2.isUnsat() else "SAT",
         "claim": "Wrong response contradicts correct response",
         "expected": "UNSAT",
     }
@@ -361,37 +366,38 @@ def run_negative_tests():
     # Cheater tries to respond to two different challenges with same commitment
     # This should fail (soundness error < 1)
 
-    r3 = solver3.mkConst(solver3.mkIntegerSort(), "r")
-    c1_3 = solver3.mkConst(solver3.mkIntegerSort(), "c1")
-    c2_3 = solver3.mkConst(solver3.mkIntegerSort(), "c2")
-    z1_3 = solver3.mkConst(solver3.mkIntegerSort(), "z1")
-    z2_3 = solver3.mkConst(solver3.mkIntegerSort(), "z2")
-    x_3 = solver3.mkConst(solver3.mkIntegerSort(), "x")
+    int_sort3 = solver3.getIntegerSort()
+    r3 = solver3.mkConst(int_sort3, "r")
+    c1_3 = solver3.mkConst(int_sort3, "c1")
+    c2_3 = solver3.mkConst(int_sort3, "c2")
+    z1_3 = solver3.mkConst(int_sort3, "z1")
+    z2_3 = solver3.mkConst(int_sort3, "z2")
+    x_3 = solver3.mkConst(int_sort3, "x")
 
-    order3 = solver3.mkConst(solver3.mkIntegerSort(), "order")
-    solver3.assertFormula(solver3.mkTerm(Kind.Equal, order3, solver3.mkInteger(11)))
+    order3 = solver3.mkConst(int_sort3, "order")
+    solver3.assertFormula(solver3.mkTerm(Kind.EQUAL, order3, solver3.mkInteger(11)))
 
-    solver3.assertFormula(solver3.mkTerm(Kind.Equal, r3, solver3.mkInteger(5)))
-    solver3.assertFormula(solver3.mkTerm(Kind.Equal, c1_3, solver3.mkInteger(2)))
-    solver3.assertFormula(solver3.mkTerm(Kind.Equal, c2_3, solver3.mkInteger(6)))
+    solver3.assertFormula(solver3.mkTerm(Kind.EQUAL, r3, solver3.mkInteger(5)))
+    solver3.assertFormula(solver3.mkTerm(Kind.EQUAL, c1_3, solver3.mkInteger(2)))
+    solver3.assertFormula(solver3.mkTerm(Kind.EQUAL, c2_3, solver3.mkInteger(6)))
 
     # Both responses claim to be valid
-    solver3.assertFormula(solver3.mkTerm(Kind.Equal, z1_3,
-        solver3.mkTerm(Kind.Add, r3,
-            solver3.mkTerm(Kind.Mult, c1_3, x_3))
+    solver3.assertFormula(solver3.mkTerm(Kind.EQUAL, z1_3,
+        solver3.mkTerm(Kind.ADD, r3,
+            solver3.mkTerm(Kind.MULT, c1_3, x_3))
     ))
-    solver3.assertFormula(solver3.mkTerm(Kind.Equal, z2_3,
-        solver3.mkTerm(Kind.Add, r3,
-            solver3.mkTerm(Kind.Mult, c2_3, x_3))
+    solver3.assertFormula(solver3.mkTerm(Kind.EQUAL, z2_3,
+        solver3.mkTerm(Kind.ADD, r3,
+            solver3.mkTerm(Kind.MULT, c2_3, x_3))
     ))
 
     # But cheater claims soundness error = 0 (always passes)
     # This forces x to have a unique value
-    solver3.assertFormula(solver3.mkTerm(Kind.Equal, x_3, solver3.mkInteger(1)))
+    solver3.assertFormula(solver3.mkTerm(Kind.EQUAL, x_3, solver3.mkInteger(1)))
 
     result3 = solver3.checkSat()
     results["test_3_soundness_error_positive"] = {
-        "status": "SAT" if result3.isTrue() else "UNSAT",
+        "status": "SAT" if result3.isSat() else "UNSAT",
         "claim": "Soundness error is positive; false statement can be detected",
     }
 
@@ -443,7 +449,7 @@ def run_boundary_tests():
 
     p_size_bits = 2048  # RSA-like prime
     p = 2**p_size_bits
-    sqrt_p = sp.Integer(p).root(2)
+    sqrt_p = sp.sqrt(sp.Integer(p))
     dlog_ops = sp.log(sqrt_p, 2)
 
     schnorr_challenge_bits = 128  # 128-bit challenges

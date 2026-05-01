@@ -24,6 +24,11 @@ import math
 import os
 import time
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
@@ -97,8 +102,10 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "curvature is a u(2)-valued form, not a Clifford multivector"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = (
+        f"optional import unavailable: {exc}; curvature is a u(2)-valued form, not a Clifford multivector"
+    )
 
 try:
     import geomstats  # noqa: F401

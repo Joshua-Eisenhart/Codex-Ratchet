@@ -35,7 +35,16 @@ from datetime import UTC, datetime
 
 import numpy as np
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this probe checks finite bipartite chirality structure "
+    "as a comparison/control; it is not a canonical nonclassical claim."
+)
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 
 # =====================================================================
 # TOOL MANIFEST
@@ -108,8 +117,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {type(exc).__name__}"
 
 try:
     import geomstats  # noqa: F401
@@ -731,6 +740,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_weyl_chirality_bipartite",
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "timestamp": datetime.now(UTC).isoformat(),
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

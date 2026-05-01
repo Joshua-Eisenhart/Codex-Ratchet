@@ -3,6 +3,12 @@
 clifford load-bearing: rotor algebra supplies the probe structure.
 """
 import json, os
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 from clifford import Cl
 
 TOOL_MANIFEST = {t:{"tried":False,"used":False,"reason":"n/a"} for t in

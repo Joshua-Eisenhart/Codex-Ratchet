@@ -24,6 +24,11 @@ import numpy as np
 from scipy.linalg import expm
 classification = "canonical"
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed -- numpy/scipy state evolution"},
     "pyg": {"tried": False, "used": False, "reason": "not needed -- no graph message passing"},
@@ -53,6 +58,20 @@ TOOL_INTEGRATION_DEPTH = {
     "toponetx": None,
     "gudhi": None,
 }
+
+CLIFFORD_OK = True
+CLIFFORD_IMPORT_ERROR = None
+try:
+    from clifford import Cl as _Cl
+except Exception as exc:
+    CLIFFORD_OK = False
+    CLIFFORD_IMPORT_ERROR = str(exc)
+    TOOL_MANIFEST["clifford"]["used"] = False
+    TOOL_MANIFEST["clifford"]["reason"] = (
+        f"optional import failed: {exc}; using analytic SO(3) fallback for the exploratory "
+        "compound-operator map, so do not count clifford as load_bearing in this run"
+    )
+    TOOL_INTEGRATION_DEPTH["clifford"] = None
 
 # ─── Pauli matrices ──────────────────────────────────────────────────────────
 
@@ -223,8 +242,14 @@ def mutual_information(rho_AB):
 
 def run_cl3_crosscheck(pair_results):
     """For each 2-op pair, compare matrix result to Cl(3) rotor result."""
-    from clifford import Cl
-    layout, blades = Cl(3)
+    if not CLIFFORD_OK:
+        return [{
+            "pair": f"{pr['op_A']}->{pr['op_B']}",
+            "agreement_frac": None,
+            "note": f"skipped: clifford import unavailable ({CLIFFORD_IMPORT_ERROR})",
+        } for pr in pair_results]
+
+    layout, blades = _Cl(3)
     e1, e2, e3 = blades['e1'], blades['e2'], blades['e3']
 
     def cl3_z_rotate(v, phi=0.4):
@@ -563,7 +588,11 @@ def main():
     for cr in cl3_results:
         cr["pass"] = cr["agreement_frac"] == 1.0
     for cr in cl3_results:
-        print(f"  {cr['pair']:10s}: agreement={cr['agreement_frac']:.0%}  {cr['note']}")
+        if cr["agreement_frac"] is None:
+            agreement_text = "n/a"
+        else:
+            agreement_text = f"{cr['agreement_frac']:.0%}"
+        print(f"  {cr['pair']:10s}: agreement={agreement_text}  {cr['note']}")
     results["tests"]["cl3_crosscheck"] = cl3_results
 
     # ═══════════════════════════════════════════════════════════════════════
@@ -763,7 +792,11 @@ def main():
         "engine_reverse_attractor": cycle_results["reverse_FiTeFeTi"]["cycles"]["20"]["attractor"],
         "forward_reverse_same": cycle_results["forward_vs_reverse"]["same_attractor"],
         "cl3_exact_agreement_count": sum(1 for cr in cl3_results if cr["agreement_frac"] == 1.0),
-        "cl3_partial_agreement_count": sum(1 for cr in cl3_results if 0 < cr["agreement_frac"] < 1.0),
+        "cl3_partial_agreement_count": sum(
+            1 for cr in cl3_results
+            if cr["agreement_frac"] is not None and 0 < cr["agreement_frac"] < 1.0
+        ),
+        "cl3_skipped_count": sum(1 for cr in cl3_results if cr["agreement_frac"] is None),
     }
     positive = {
         "all_operator_pairs_covered": {

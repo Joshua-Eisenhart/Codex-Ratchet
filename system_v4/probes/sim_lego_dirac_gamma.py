@@ -25,6 +25,11 @@ import os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -76,10 +81,10 @@ try:
     TOOL_MANIFEST["clifford"]["tried"] = True
     TOOL_MANIFEST["clifford"]["used"] = True
     TOOL_MANIFEST["clifford"]["reason"] = "Cl(1,3) Clifford algebra cross-check of anticommutation relations"
-except ImportError:
+except Exception as e:
     TOOL_MANIFEST["clifford"]["tried"] = True
     TOOL_MANIFEST["clifford"]["used"] = False
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed -- skipping Cl(1,3) cross-check"
+    TOOL_MANIFEST["clifford"]["reason"] = f"unavailable at import time: {type(e).__name__}: {e}"
 
 CLIFFORD_AVAILABLE = TOOL_MANIFEST["clifford"]["used"]
 
@@ -832,6 +837,19 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "classification": "canonical",
+        "summary": {
+            "positive_pass": positive["_summary"]["passes"],
+            "positive_total": positive["_summary"]["total"],
+            "negative_pass": negative["_summary"]["passes"],
+            "negative_total": negative["_summary"]["total"],
+            "boundary_pass": boundary["_summary"]["passes"],
+            "boundary_total": boundary["_summary"]["total"],
+            "all_pass": (
+                positive["_summary"]["fails"] == 0
+                and negative["_summary"]["fails"] == 0
+                and boundary["_summary"]["fails"] == 0
+            ),
+        },
         "connections": {
             "sim_weyl_hopf_tori": "L/R Weyl spinors from Hopf parameterization embed as chiral components of 4-spinor",
             "dual_weyl_spinor_engine_sim": "Type1/Type2 engines correspond to L/R chirality sectors of Dirac algebra",

@@ -24,6 +24,11 @@ from clifford import Cl
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 np.random.seed(42)
 EPS = 1e-12
 
@@ -56,6 +61,7 @@ CLASSIFICATION_NOTE = (
     "Classical baseline for fixed-reference chiral overlap on Weyl spinors, including "
     "orthogonality, completeness, and Cl(3) projector cross-checks."
 )
+divergence_log = CLASSIFICATION_NOTE
 LEGO_IDS = ["chiral_overlap"]
 PRIMARY_LEGO_IDS = ["chiral_overlap"]
 
@@ -468,6 +474,7 @@ if __name__ == "__main__":
         "description": "Chiral overlap <L|R> for Weyl spinors: orthogonality, completeness, Cl(3) projectors",
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

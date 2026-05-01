@@ -2,7 +2,16 @@
 """sim_cl3_rotor_product -- Product of rotors in Cl(3,0) is a rotor; R~R = 1."""
 import json, os, numpy as np
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this probe uses bounded algebraic/numeric checks as "
+    "a comparison control; it is not a canonical nonclassical claim."
+)
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {
@@ -75,6 +84,7 @@ def main():
     results = {
         "name": "sim_cl3_rotor_product",
         "classification": classification,
+        "divergence_log": divergence_log,
         "positive": run_positive_tests(),
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),

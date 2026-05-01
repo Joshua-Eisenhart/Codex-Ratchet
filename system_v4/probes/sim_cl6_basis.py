@@ -3,7 +3,16 @@
 import json, os, numpy as np
 from math import comb
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this probe uses bounded algebraic/numeric checks as "
+    "a comparison control; it is not a canonical nonclassical claim."
+)
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": r} for k,r in {
@@ -52,6 +61,7 @@ def run_boundary_tests():
 
 def main():
     results = {"name":"sim_cl6_basis","classification":classification,
+               "divergence_log":divergence_log,
                "positive":run_positive_tests(),"negative":run_negative_tests(),"boundary":run_boundary_tests(),
                "tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH}
     ok = all(v for s in ("positive","negative","boundary") for v in results[s].values())

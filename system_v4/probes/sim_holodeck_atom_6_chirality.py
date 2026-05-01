@@ -13,6 +13,11 @@ clifford library is load-bearing.
 
 import json, os
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in [
     "pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn",
     "rustworkx","xgi","toponetx","gudhi"]}

@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 """Non-commutativity: Spin(3) rotor then Pin(3) reflection — double cover matters for order."""
 import json, os, numpy as np
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 from clifford import Cl
 layout, blades = Cl(3)
 e1, e2, e3 = blades['e1'], blades['e2'], blades['e3']

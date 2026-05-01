@@ -13,6 +13,11 @@ from typing import Any, Dict
 
 import numpy as np
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 classification = "canonical"
 
 TOOL_MANIFEST = {
@@ -66,9 +71,10 @@ try:
     TOOL_MANIFEST["clifford"]["reason"] = (
         "Builds Cl(3) rotors directly, applies sandwich action, and checks plane-local invariants on vectors and bivectors."
     )
-except ImportError:
+except Exception as exc:
     Cl = None
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+    TOOL_MANIFEST["clifford"]["tried"] = True
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
     TOOL_INTEGRATION_DEPTH["clifford"] = None
 
 EPS = 1e-10

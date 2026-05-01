@@ -74,7 +74,7 @@ def _make_cvc5_solver():
     import cvc5
     slv = cvc5.Solver()
     slv.setOption("produce-models", "true")
-    slv.setLogicAndOptions("QF_LRA")
+    slv.setLogic("QF_LRA")
     return slv
 
 
@@ -130,10 +130,12 @@ def run_positive_tests():
 
     # Test 2: L(1,χ) in range (0.7, 0.8)
     slv2 = _make_cvc5_solver()
+    real_sort = slv2.getRealSort()
     s2 = slv2.mkConst(real_sort, "s2")
     l_s_chi2 = slv2.mkConst(real_sort, "l_s_chi2")
+    one2 = slv2.mkReal(1)
 
-    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.EQUAL, s2, one))
+    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.EQUAL, s2, one2))
     slv2.assertFormula(slv2.mkTerm(cvc5.Kind.GT, l_s_chi2, slv2.mkReal("0.7")))
     slv2.assertFormula(slv2.mkTerm(cvc5.Kind.LT, l_s_chi2, slv2.mkReal("0.8")))
 
@@ -146,10 +148,12 @@ def run_positive_tests():
 
     # Test 3: Generic nontrivial character, L(1,χ) > 0.5
     slv3 = _make_cvc5_solver()
+    real_sort = slv3.getRealSort()
     s3 = slv3.mkConst(real_sort, "s3")
     l_s_chi3 = slv3.mkConst(real_sort, "l_s_chi3")
+    one3 = slv3.mkReal(1)
 
-    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.EQUAL, s3, one))
+    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.EQUAL, s3, one3))
     slv3.assertFormula(slv3.mkTerm(cvc5.Kind.GT, l_s_chi3, slv3.mkReal("0.5")))
     slv3.assertFormula(slv3.mkTerm(cvc5.Kind.LT, l_s_chi3, slv3.mkReal("1.0")))
 
@@ -201,11 +205,14 @@ def run_negative_tests():
 
     # Test 2: L(1,χ) < 0 AND L(1,χ) > 0.7 is UNSAT
     slv2 = _make_cvc5_solver()
+    real_sort = slv2.getRealSort()
     s2 = slv2.mkConst(real_sort, "s2")
     l_s_chi2 = slv2.mkConst(real_sort, "l_s_chi2")
+    one2 = slv2.mkReal(1)
+    zero2 = slv2.mkReal(0)
 
-    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.EQUAL, s2, one))
-    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.LT, l_s_chi2, zero))  # L < 0
+    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.EQUAL, s2, one2))
+    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.LT, l_s_chi2, zero2))  # L < 0
     slv2.assertFormula(slv2.mkTerm(cvc5.Kind.GT, l_s_chi2, slv2.mkReal("0.7")))  # L > 0.7
 
     res2 = slv2.checkSat()
@@ -217,14 +224,17 @@ def run_negative_tests():
 
     # Test 3: L(1,χ) = -0.5 is UNSAT (L-functions for nontrivial characters are positive at s=1)
     slv3 = _make_cvc5_solver()
+    real_sort = slv3.getRealSort()
     s3 = slv3.mkConst(real_sort, "s3")
     l_s_chi3 = slv3.mkConst(real_sort, "l_s_chi3")
+    one3 = slv3.mkReal(1)
+    zero3 = slv3.mkReal(0)
 
     neg_half = slv3.mkReal("-0.5")
 
-    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.EQUAL, s3, one))
+    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.EQUAL, s3, one3))
     slv3.assertFormula(slv3.mkTerm(cvc5.Kind.EQUAL, l_s_chi3, neg_half))
-    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.GE, l_s_chi3, zero))  # contradicts
+    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.GEQ, l_s_chi3, zero3))  # contradicts
 
     res3 = slv3.checkSat()
     results["dirichlet_unsat_negative_value"] = {
@@ -296,6 +306,7 @@ def run_boundary_tests():
     # Test 3: cvc5 approaching s from right of 1
     if CVC5_OK:
         slv3 = _make_cvc5_solver()
+        real_sort = slv3.getRealSort()
         s3 = slv3.mkConst(real_sort, "s3")
         l_s_chi3 = slv3.mkConst(real_sort, "l_s_chi3")
 

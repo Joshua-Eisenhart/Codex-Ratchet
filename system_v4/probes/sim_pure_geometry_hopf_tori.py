@@ -16,6 +16,11 @@ divergence_log = (
     "numeric scipy plus Clifford and TopoNetX geometry helpers to verify "
     "nested torus structure, not a canonical nonclassical witness."
 )
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 TOOL_MANIFEST = {
     "numpy": {
         "tried": True,
@@ -566,6 +571,7 @@ print(f"  Mean |τ_fiber| = {fib_arr.mean():.6f},  Mean |τ_base| = {bas_arr.mea
 results = {
     "name": "pure_geometry_hopf_tori",
     "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S"),
+    "classification": "canonical",
     "hopf_map": hopf_results,
     "nested_tori": tori_results,
     "cell_complex": cell_results,
@@ -595,6 +601,11 @@ all_pass = all(checks)
 results["verdict"] = "YES" if all_pass else "NO"
 results["checks_passed"] = sum(checks)
 results["checks_total"] = len(checks)
+results["summary"] = {
+    "all_pass": all_pass,
+    "checks_passed": int(sum(checks)),
+    "checks_total": len(checks),
+}
 
 out_path = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),

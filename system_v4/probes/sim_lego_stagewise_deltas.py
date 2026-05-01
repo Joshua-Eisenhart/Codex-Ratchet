@@ -47,6 +47,11 @@ import numpy as np
 import traceback
 classification = "classical_baseline"  # auto-backfill
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -123,8 +128,8 @@ try:
     TOOL_MANIFEST["clifford"]["tried"] = True
     TOOL_MANIFEST["clifford"]["used"] = True
     TOOL_MANIFEST["clifford"]["reason"] = "Cl(3) rotor representation of Bloch rotations"
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa: F401

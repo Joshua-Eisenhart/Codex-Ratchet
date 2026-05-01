@@ -25,6 +25,54 @@ import json
 import datetime
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this probe performs direct spinor transport on nested "
+    "Hopf tori as a bounded comparison/control, not a canonical nonclassical "
+    "claim."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing numerical array layer for spinor vectors, Bloch coordinates, phase scans, and tolerance checks",
+    },
+    "clifford": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing Cl(3) rotor construction and transport check through clifford_engine_bridge helpers",
+    },
+    "pytorch": {"tried": False, "used": False, "reason": "not required for this direct numerical baseline"},
+    "pyg": {"tried": False, "used": False, "reason": "not required for this direct numerical baseline"},
+    "z3": {"tried": False, "used": False, "reason": "not required; no SMT boundary certificate is claimed here"},
+    "cvc5": {"tried": False, "used": False, "reason": "not required; no SMT boundary certificate is claimed here"},
+    "sympy": {"tried": False, "used": False, "reason": "not required; this file uses sampled numeric transport"},
+    "geomstats": {"tried": False, "used": False, "reason": "not required for this direct Hopf-torus baseline"},
+    "e3nn": {"tried": False, "used": False, "reason": "not required for this direct Hopf-torus baseline"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not required for this direct Hopf-torus baseline"},
+    "xgi": {"tried": False, "used": False, "reason": "not required for this direct Hopf-torus baseline"},
+    "toponetx": {"tried": False, "used": False, "reason": "not imported in this implementation; cell-complex checks are local bookkeeping only"},
+    "gudhi": {"tried": False, "used": False, "reason": "not required for this direct Hopf-torus baseline"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "clifford": "load_bearing",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -896,6 +944,10 @@ def main():
         json.dump({
             "timestamp": datetime.datetime.now().isoformat(),
             "sim": "sim_pure_spinor_transport",
+            "classification": classification,
+            "divergence_log": divergence_log,
+            "tool_manifest": TOOL_MANIFEST,
+            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "description": "Pure spinor parallel transport on nested Hopf tori",
             "n_steps": N_STEPS,
             "n_eta_samples": N_ETA_SAMPLES,

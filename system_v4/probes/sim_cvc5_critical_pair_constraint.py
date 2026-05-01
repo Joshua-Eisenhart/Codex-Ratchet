@@ -83,8 +83,8 @@ def encode_critical_pair_constraint(all_pairs_joinable, local_confluence_claimed
     join_val = 1 if all_pairs_joinable else 0
     conf_val = 1 if local_confluence_claimed else 0
 
-    solver.assertFormula(solver.mkTerm(Kind.Equal, joinable, solver.mkInteger(join_val)))
-    solver.assertFormula(solver.mkTerm(Kind.Equal, confluent, solver.mkInteger(conf_val)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, joinable, solver.mkInteger(join_val)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, confluent, solver.mkInteger(conf_val)))
 
     # KEY CONSTRAINT: local confluence theorem
     # Local confluence is true iff all critical pairs are joinable
@@ -94,21 +94,28 @@ def encode_critical_pair_constraint(all_pairs_joinable, local_confluence_claimed
     
     # Direction 1: if local confluence claimed, all pairs must be joinable
     dir1 = solver.mkTerm(
-        Kind.Implies,
-        solver.mkTerm(Kind.Equal, confluent, solver.mkInteger(1)),
-        solver.mkTerm(Kind.Equal, joinable, solver.mkInteger(1))
+        Kind.IMPLIES,
+        solver.mkTerm(Kind.EQUAL, confluent, solver.mkInteger(1)),
+        solver.mkTerm(Kind.EQUAL, joinable, solver.mkInteger(1))
     )
     solver.assertFormula(dir1)
 
     # Direction 2: if all pairs joinable, local confluence must hold
     dir2 = solver.mkTerm(
-        Kind.Implies,
-        solver.mkTerm(Kind.Equal, joinable, solver.mkInteger(1)),
-        solver.mkTerm(Kind.Equal, confluent, solver.mkInteger(1))
+        Kind.IMPLIES,
+        solver.mkTerm(Kind.EQUAL, joinable, solver.mkInteger(1)),
+        solver.mkTerm(Kind.EQUAL, confluent, solver.mkInteger(1))
     )
     solver.assertFormula(dir2)
 
     return solver
+
+
+def _constraint_kwargs(case):
+    return {
+        "all_pairs_joinable": case["all_pairs_joinable"],
+        "local_confluence_claimed": case["local_confluence_claimed"],
+    }
 
 def verify_constraint_with_sympy(all_pairs_joinable, local_confluence_claimed):
     """
@@ -136,9 +143,9 @@ def run_positive_tests():
         "local_confluence_claimed": True,
     }
 
-    solver1 = encode_critical_pair_constraint(**test1)
+    solver1 = encode_critical_pair_constraint(**_constraint_kwargs(test1))
     result1 = solver1.checkSat()
-    sympy_ok1 = verify_constraint_with_sympy(**test1)
+    sympy_ok1 = verify_constraint_with_sympy(**_constraint_kwargs(test1))
 
     results["test1_joinable_confluent"] = {
         "cvc5_result": str(result1),
@@ -154,9 +161,9 @@ def run_positive_tests():
         "local_confluence_claimed": False,
     }
 
-    solver2 = encode_critical_pair_constraint(**test2)
+    solver2 = encode_critical_pair_constraint(**_constraint_kwargs(test2))
     result2 = solver2.checkSat()
-    sympy_ok2 = verify_constraint_with_sympy(**test2)
+    sympy_ok2 = verify_constraint_with_sympy(**_constraint_kwargs(test2))
 
     results["test2_non_joinable"] = {
         "cvc5_result": str(result2),
@@ -172,9 +179,9 @@ def run_positive_tests():
         "local_confluence_claimed": True,
     }
 
-    solver3 = encode_critical_pair_constraint(**test3)
+    solver3 = encode_critical_pair_constraint(**_constraint_kwargs(test3))
     result3 = solver3.checkSat()
-    sympy_ok3 = verify_constraint_with_sympy(**test3)
+    sympy_ok3 = verify_constraint_with_sympy(**_constraint_kwargs(test3))
 
     results["test3_no_pairs"] = {
         "cvc5_result": str(result3),
@@ -202,9 +209,9 @@ def run_negative_tests():
         "local_confluence_claimed": True,
     }
 
-    solver1 = encode_critical_pair_constraint(**test1)
+    solver1 = encode_critical_pair_constraint(**_constraint_kwargs(test1))
     result1 = solver1.checkSat()
-    sympy_ok1 = not verify_constraint_with_sympy(**test1)
+    sympy_ok1 = not verify_constraint_with_sympy(**_constraint_kwargs(test1))
 
     results["test1_confluence_violation"] = {
         "cvc5_result": str(result1),
@@ -220,9 +227,9 @@ def run_negative_tests():
         "local_confluence_claimed": False,
     }
 
-    solver2 = encode_critical_pair_constraint(**test2)
+    solver2 = encode_critical_pair_constraint(**_constraint_kwargs(test2))
     result2 = solver2.checkSat()
-    sympy_ok2 = not verify_constraint_with_sympy(**test2)
+    sympy_ok2 = not verify_constraint_with_sympy(**_constraint_kwargs(test2))
 
     results["test2_joinable_claim_mismatch"] = {
         "cvc5_result": str(result2),
@@ -250,9 +257,9 @@ def run_boundary_tests():
         "local_confluence_claimed": True,
     }
 
-    solver1 = encode_critical_pair_constraint(**test1)
+    solver1 = encode_critical_pair_constraint(**_constraint_kwargs(test1))
     result1 = solver1.checkSat()
-    sympy_ok1 = verify_constraint_with_sympy(**test1)
+    sympy_ok1 = verify_constraint_with_sympy(**_constraint_kwargs(test1))
 
     results["test1_single_rule"] = {
         "cvc5_result": str(result1),
@@ -268,9 +275,9 @@ def run_boundary_tests():
         "local_confluence_claimed": True,
     }
 
-    solver2 = encode_critical_pair_constraint(**test2)
+    solver2 = encode_critical_pair_constraint(**_constraint_kwargs(test2))
     result2 = solver2.checkSat()
-    sympy_ok2 = verify_constraint_with_sympy(**test2)
+    sympy_ok2 = verify_constraint_with_sympy(**_constraint_kwargs(test2))
 
     results["test2_overlapping_joinable"] = {
         "cvc5_result": str(result2),
@@ -286,9 +293,9 @@ def run_boundary_tests():
         "local_confluence_claimed": True,
     }
 
-    solver3 = encode_critical_pair_constraint(**test3)
+    solver3 = encode_critical_pair_constraint(**_constraint_kwargs(test3))
     result3 = solver3.checkSat()
-    sympy_ok3 = verify_constraint_with_sympy(**test3)
+    sympy_ok3 = verify_constraint_with_sympy(**_constraint_kwargs(test3))
 
     results["test3_non_overlapping"] = {
         "cvc5_result": str(result3),

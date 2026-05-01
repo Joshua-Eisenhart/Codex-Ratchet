@@ -16,6 +16,11 @@ import os
 import math
 import numpy as np
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -68,10 +73,10 @@ try:
     TOOL_MANIFEST["clifford"]["tried"] = True
     TOOL_MANIFEST["clifford"]["used"] = True
     TOOL_MANIFEST["clifford"]["reason"] = "Cl(3) cross-check: Bloch vector via Pauli expansion"
-except ImportError:
+except Exception as exc:
     TOOL_MANIFEST["clifford"]["tried"] = True
     TOOL_MANIFEST["clifford"]["used"] = False
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed -- skipping Cl(3) cross-check"
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 CLIFFORD_AVAILABLE = TOOL_MANIFEST["clifford"]["used"]
 

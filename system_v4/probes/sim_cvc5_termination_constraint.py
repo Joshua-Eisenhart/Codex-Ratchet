@@ -56,7 +56,7 @@ TOOL_INTEGRATION_DEPTH = {
 # CONSTRAINT ENCODING
 # =====================================================================
 
-def encode_termination_constraint(has_cycle, has_well_founded_order):
+def encode_termination_constraint(has_cycle, has_well_founded_order, name=None):
     """
     Encode termination constraint: no cycle can exist if a well-founded order exists.
 
@@ -81,23 +81,23 @@ def encode_termination_constraint(has_cycle, has_well_founded_order):
     cycle_val = 1 if has_cycle else 0
     order_val = 1 if has_well_founded_order else 0
 
-    solver.assertFormula(solver.mkTerm(Kind.Equal, cycle, solver.mkInteger(cycle_val)))
-    solver.assertFormula(solver.mkTerm(Kind.Equal, order, solver.mkInteger(order_val)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, cycle, solver.mkInteger(cycle_val)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, order, solver.mkInteger(order_val)))
 
     # KEY CONSTRAINT: termination rule
     # If well-founded order exists, no cycle can exist
     # forall: order => NOT cycle
     # Equivalently: if order == 1 then cycle == 0
     constraint = solver.mkTerm(
-        Kind.Implies,
-        solver.mkTerm(Kind.Equal, order, solver.mkInteger(1)),
-        solver.mkTerm(Kind.Equal, cycle, solver.mkInteger(0))
+        Kind.IMPLIES,
+        solver.mkTerm(Kind.EQUAL, order, solver.mkInteger(1)),
+        solver.mkTerm(Kind.EQUAL, cycle, solver.mkInteger(0))
     )
     solver.assertFormula(constraint)
 
     return solver
 
-def verify_constraint_with_sympy(has_cycle, has_well_founded_order):
+def verify_constraint_with_sympy(has_cycle, has_well_founded_order, name=None):
     """
     Use sympy to verify termination property.
     """

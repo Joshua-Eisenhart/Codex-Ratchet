@@ -29,6 +29,11 @@ import numpy as np
 from scipy.linalg import expm, eigvals
 classification = "canonical"
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -108,8 +113,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as e:
+    TOOL_MANIFEST["clifford"]["reason"] = f"unavailable at import time: {type(e).__name__}: {e}"
 
 try:
     import geomstats  # noqa: F401
@@ -793,6 +798,33 @@ def run_boundary_tests():
     return results
 
 
+def summarize_negative_tests(negative):
+    total = 0
+    passed = 0
+    for key, value in negative.items():
+        if key.startswith("bad_trace_rho_"):
+            total += 1
+            passed += int(bool(value.get("still_zero")))
+        elif key.startswith("zero_operator_") or key.startswith("identity_operator_"):
+            total += 1
+            passed += int(bool(value.get("is_zero")))
+    return passed, total
+
+
+def summarize_boundary_tests(boundary):
+    total = 0
+    passed = 0
+    for key, value in boundary.items():
+        if key.startswith("pure_evolution_"):
+            total += 1
+            passed += int(bool(value.get("positive")) and bool(value.get("trace_one")))
+        elif key.startswith("maximally_mixed_"):
+            total += 1
+            expect_zero = ("sigma_minus" not in key) and ("sigma_plus" not in key)
+            passed += int(bool(value.get("is_zero")) == expect_zero)
+    return passed, total
+
+
 # =====================================================================
 # MAIN
 # =====================================================================
@@ -804,6 +836,10 @@ if __name__ == "__main__":
     positive = run_positive_tests()
     negative = run_negative_tests()
     boundary = run_boundary_tests()
+    pos_pass = sum(1 for v in positive.values() if isinstance(v, dict) and v.get("pass"))
+    pos_total = sum(1 for v in positive.values() if isinstance(v, dict) and "pass" in v)
+    neg_pass, neg_total = summarize_negative_tests(negative)
+    bnd_pass, bnd_total = summarize_boundary_tests(boundary)
 
     results = {
         "name": "PURE LEGO: Lindblad Dissipator D[L](rho)",
@@ -816,6 +852,10 @@ if __name__ == "__main__":
         "boundary": boundary,
         "classification": "canonical",
         "summary": {
+            "positive": f"{pos_pass}/{pos_total}",
+            "negative": f"{neg_pass}/{neg_total}",
+            "boundary": f"{bnd_pass}/{bnd_total}",
+            "all_pass": pos_pass == pos_total and neg_pass == neg_total and bnd_pass == bnd_total,
             "scope_note": (
                 "Local open-system dynamics lego for infinitesimal Lindblad evolution, "
                 "steady states, and dissipator spectra on bounded carriers."
@@ -833,8 +873,7 @@ if __name__ == "__main__":
 
     # Summary
     pos_tests = [k for k in positive if isinstance(positive[k], dict) and "pass" in positive[k]]
-    pos_pass = sum(1 for k in pos_tests if positive[k]["pass"])
     print(f"\nPositive tests: {pos_pass}/{len(pos_tests)} passed")
-    print(f"Negative tests: {len(negative)} run")
-    print(f"Boundary tests: {len(boundary)} run")
+    print(f"Negative tests: {neg_pass}/{neg_total} passed")
+    print(f"Boundary tests: {bnd_pass}/{bnd_total} passed")
     print(f"Total time: {results['total_time_s']:.3f}s")

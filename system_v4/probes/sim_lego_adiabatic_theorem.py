@@ -17,6 +17,11 @@ Tests:
 import json
 import os
 import numpy as np
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
@@ -96,8 +101,8 @@ try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
     TOOL_MANIFEST["clifford"]["reason"] = "not needed for Pauli-basis Hamiltonian interpolation"
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}; not needed for Pauli-basis Hamiltonian interpolation"
 
 try:
     import geomstats  # noqa: F401
@@ -521,6 +526,12 @@ if __name__ == "__main__":
         "boundary": bnd,
         "classification": "canonical",
         "all_passed": all_passed,
+        "summary": {
+            "positive": f"{sum(1 for v in pos.values() if v.get('passed'))}/{len(pos)}",
+            "negative": f"{sum(1 for v in neg.values() if v.get('passed'))}/{len(neg)}",
+            "boundary": f"{sum(1 for v in bnd.values() if v.get('passed'))}/{len(bnd)}",
+            "all_pass": all_passed,
+        },
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "sim_results")

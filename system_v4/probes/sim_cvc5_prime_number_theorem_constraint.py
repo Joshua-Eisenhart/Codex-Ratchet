@@ -74,7 +74,7 @@ def _make_cvc5_solver():
     import cvc5
     slv = cvc5.Solver()
     slv.setOption("produce-models", "true")
-    slv.setLogicAndOptions("QF_LRA")
+    slv.setLogic("QF_LRA")
     return slv
 
 
@@ -116,7 +116,7 @@ def run_positive_tests():
 
     slv1.assertFormula(slv1.mkTerm(cvc5.Kind.EQUAL, x1, two))
     slv1.assertFormula(slv1.mkTerm(cvc5.Kind.EQUAL, pi_x1, one))
-    slv1.assertFormula(slv1.mkTerm(cvc5.Kind.GE, x1, two))
+    slv1.assertFormula(slv1.mkTerm(cvc5.Kind.GEQ, x1, two))
 
     res1 = slv1.checkSat()
     results["pnt_sat_x2_pi_1"] = {
@@ -127,15 +127,17 @@ def run_positive_tests():
 
     # Test 2: π(10) = 4 (primes: 2,3,5,7)
     slv2 = _make_cvc5_solver()
+    real_sort = slv2.getRealSort()
     x2 = slv2.mkConst(real_sort, "x2")
     pi_x2 = slv2.mkConst(real_sort, "pi_x2")
 
     ten = slv2.mkReal(10)
     four = slv2.mkReal(4)
+    two2 = slv2.mkReal(2)
 
     slv2.assertFormula(slv2.mkTerm(cvc5.Kind.EQUAL, x2, ten))
     slv2.assertFormula(slv2.mkTerm(cvc5.Kind.EQUAL, pi_x2, four))
-    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.GE, x2, two))
+    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.GEQ, x2, two2))
 
     res2 = slv2.checkSat()
     results["pnt_sat_x10_pi_4"] = {
@@ -146,14 +148,17 @@ def run_positive_tests():
 
     # Test 3: Generic x ≥ 2, π(x) ≥ 1
     slv3 = _make_cvc5_solver()
+    real_sort = slv3.getRealSort()
     x3 = slv3.mkConst(real_sort, "x3")
     pi_x3 = slv3.mkConst(real_sort, "pi_x3")
 
     hundred = slv3.mkReal(100)
+    two3 = slv3.mkReal(2)
+    one3 = slv3.mkReal(1)
 
-    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.GE, x3, two))
-    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.LE, x3, hundred))
-    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.GE, pi_x3, one))
+    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.GEQ, x3, two3))
+    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.LEQ, x3, hundred))
+    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.GEQ, pi_x3, one3))
 
     res3 = slv3.checkSat()
     results["pnt_sat_interval_2_100"] = {
@@ -190,10 +195,10 @@ def run_negative_tests():
     one = slv1.mkReal(1)
     zero = slv1.mkReal(0)
 
-    slv1.assertFormula(slv1.mkTerm(cvc5.Kind.GE, x1, two))
+    slv1.assertFormula(slv1.mkTerm(cvc5.Kind.GEQ, x1, two))
     slv1.assertFormula(slv1.mkTerm(cvc5.Kind.LT, pi_x1, one))  # π < 1
-    slv1.assertFormula(slv1.mkTerm(cvc5.Kind.GE, pi_x1, zero))  # π ≥ 0
-    slv1.assertFormula(slv1.mkTerm(cvc5.Kind.GE, pi_x1, one))  # contradiction: π ≥ 1
+    slv1.assertFormula(slv1.mkTerm(cvc5.Kind.GEQ, pi_x1, zero))  # π ≥ 0
+    slv1.assertFormula(slv1.mkTerm(cvc5.Kind.GEQ, pi_x1, one))  # contradiction: π ≥ 1
 
     res1 = slv1.checkSat()
     results["pnt_unsat_pi_less_1_and_ge_1"] = {
@@ -204,15 +209,17 @@ def run_negative_tests():
 
     # Test 2: π(100) = 0 is UNSAT (actually π(100)=25)
     slv2 = _make_cvc5_solver()
+    real_sort = slv2.getRealSort()
     x2 = slv2.mkConst(real_sort, "x2")
     pi_x2 = slv2.mkConst(real_sort, "pi_x2")
 
     hundred = slv2.mkReal(100)
     twentyfive = slv2.mkReal(25)
+    zero2 = slv2.mkReal(0)
 
     slv2.assertFormula(slv2.mkTerm(cvc5.Kind.EQUAL, x2, hundred))
     slv2.assertFormula(slv2.mkTerm(cvc5.Kind.EQUAL, pi_x2, twentyfive))
-    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.EQUAL, pi_x2, zero))  # contradicts known value
+    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.EQUAL, pi_x2, zero2))  # contradicts known value
 
     res2 = slv2.checkSat()
     results["pnt_unsat_pi_100_zero"] = {
@@ -223,14 +230,17 @@ def run_negative_tests():
 
     # Test 3: π(x) < 0 AND x ≥ 2 is UNSAT (primes count is non-negative)
     slv3 = _make_cvc5_solver()
+    real_sort = slv3.getRealSort()
     x3 = slv3.mkConst(real_sort, "x3")
     pi_x3 = slv3.mkConst(real_sort, "pi_x3")
 
     neg_one = slv3.mkReal("-1")
+    two3 = slv3.mkReal(2)
+    zero3 = slv3.mkReal(0)
 
-    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.GE, x3, two))
+    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.GEQ, x3, two3))
     slv3.assertFormula(slv3.mkTerm(cvc5.Kind.EQUAL, pi_x3, neg_one))  # π < 0
-    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.GE, pi_x3, zero))  # π ≥ 0
+    slv3.assertFormula(slv3.mkTerm(cvc5.Kind.GEQ, pi_x3, zero3))  # π ≥ 0
 
     res3 = slv3.checkSat()
     results["pnt_unsat_negative"] = {
@@ -299,6 +309,7 @@ def run_boundary_tests():
     # Test 3: cvc5 asymptotic ratio x/ln(x) approx
     if CVC5_OK:
         slv3 = _make_cvc5_solver()
+        real_sort = slv3.getRealSort()
         x3 = slv3.mkConst(real_sort, "x3")
         pi_x3 = slv3.mkConst(real_sort, "pi_x3")
 

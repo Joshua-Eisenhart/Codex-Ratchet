@@ -54,7 +54,7 @@ TOOL_INTEGRATION_DEPTH = {
 # CONSTRAINT ENCODING
 # =====================================================================
 
-def encode_dialogue_game_constraint(target_formula_is_contradiction, player_claimed_winning):
+def encode_dialogue_game_constraint(target_formula_is_contradiction, player_claimed_winning, name=None):
     """
     Encode dialogue game constraint.
 
@@ -83,22 +83,22 @@ def encode_dialogue_game_constraint(target_formula_is_contradiction, player_clai
     target_val = 1 if target_formula_is_contradiction else 0
     claimed_val = 1 if player_claimed_winning else 0
 
-    solver.assertFormula(solver.mkTerm(Kind.Equal, target_contr, solver.mkInteger(target_val)))
-    solver.assertFormula(solver.mkTerm(Kind.Equal, player_wins, solver.mkInteger(claimed_val)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, target_contr, solver.mkInteger(target_val)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, player_wins, solver.mkInteger(claimed_val)))
 
     # KEY CONSTRAINT: cannot win contradiction
     # forall: target_is_contradiction => NOT player_wins
     # Equivalently: if target_contr == 1 then player_wins == 0
     constraint = solver.mkTerm(
-        Kind.Implies,
-        solver.mkTerm(Kind.Equal, target_contr, solver.mkInteger(1)),
-        solver.mkTerm(Kind.Equal, player_wins, solver.mkInteger(0))
+        Kind.IMPLIES,
+        solver.mkTerm(Kind.EQUAL, target_contr, solver.mkInteger(1)),
+        solver.mkTerm(Kind.EQUAL, player_wins, solver.mkInteger(0))
     )
     solver.assertFormula(constraint)
 
     return solver
 
-def verify_constraint_with_sympy(target_formula_is_contradiction, player_claimed_winning):
+def verify_constraint_with_sympy(target_formula_is_contradiction, player_claimed_winning, name=None):
     """
     Use sympy to verify contradiction detection.
     """

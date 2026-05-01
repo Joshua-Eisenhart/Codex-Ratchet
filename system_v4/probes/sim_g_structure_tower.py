@@ -30,6 +30,16 @@ import traceback
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: numpy computes frame bundle geometry while z3 checks "
+    "G-level ordering; the canonical geomstats/sympy obstruction proof remains "
+    "to be built."
+)
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 
 # =====================================================================
 # TOOL MANIFEST
@@ -135,8 +145,8 @@ try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
     TOOL_MANIFEST["clifford"]["reason"] = "not needed; z3/sympy cover structural claims"
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {type(exc).__name__}"
 
 try:
     import geomstats  # noqa: F401
@@ -982,7 +992,8 @@ if __name__ == "__main__":
         "name": "sim_g_structure_tower",
         "date": datetime.datetime.utcnow().isoformat() + "Z",
         "classification": "classical_baseline",
-        "classification_note": "numpy computes frame bundle geometry; z3 checks G-level ordering. Canonical counterpart (geomstats/sympy obstruction proofs) to be built.",
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

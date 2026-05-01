@@ -7,6 +7,11 @@ Part of the G-tower math backlog (families 7-12). Atomization pattern step
 No strong load-bearing tool per G-tower cut list; sympy used for polynomial A^1 contractibility checks as best-available.
 """
 import json, os, numpy as np
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 classification = "canonical"
 
 TOOL_MANIFEST = {
@@ -39,8 +44,8 @@ except ImportError:
 try:
     from clifford import Cl
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 
 def run_step():

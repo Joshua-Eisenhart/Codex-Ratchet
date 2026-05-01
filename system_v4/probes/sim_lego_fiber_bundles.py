@@ -23,6 +23,11 @@ import os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -115,8 +120,8 @@ try:
         "Cl(3) rotor representation of S^3 -> S^2 Hopf map, "
         "connection as bivector-valued form"
     )
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as e:
+    TOOL_MANIFEST["clifford"]["reason"] = f"unavailable at import time: {type(e).__name__}: {e}"
 
 try:
     import geomstats
@@ -127,8 +132,8 @@ try:
         "Geodesics on S^2, tangent space operations, "
         "metric for parallel transport cross-validation"
     )
-except ImportError:
-    TOOL_MANIFEST["geomstats"]["reason"] = "not installed"
+except Exception as e:
+    TOOL_MANIFEST["geomstats"]["reason"] = f"unavailable at import time: {type(e).__name__}: {e}"
 
 try:
     import e3nn  # noqa: F401

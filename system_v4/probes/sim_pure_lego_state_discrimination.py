@@ -588,13 +588,24 @@ def main():
     output = {
         "probe": "sim_pure_lego_state_discrimination",
         "timestamp": datetime.now(UTC).isoformat(),
+        "classification": classification,
         "verdict": verdict,
         "total_tests": total_tests,
         "pass_count": pass_count,
+        "summary": {
+            "helstrom": f"{sum(1 for r in helstrom_results if r['formula_povm_match'])}/{len(helstrom_results)}",
+            "boundary": f"{sum(1 for c in boundary if c['PASS'])}/{len(boundary)}",
+            "pgm": f"{sum(1 for r in pgm_results if r['PASS'])}/{len(pgm_results)}",
+            "min_error": f"{sum(1 for r in me_results if r['PASS'])}/{len(me_results)}",
+            "all_pass": all_pass,
+        },
         "helstrom_binary_tests": helstrom_results,
         "boundary_checks": boundary,
         "pgm_tests": pgm_results,
         "min_error_tests": me_results,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "divergence_log": divergence_log,
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

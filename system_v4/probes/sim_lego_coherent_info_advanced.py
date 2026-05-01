@@ -1160,6 +1160,14 @@ if __name__ == "__main__":
         "sympy_verification": sym,
         "z3_proofs": z3p,
         "runtime_seconds": round(elapsed, 3),
+        "summary": {
+            "negative_pass": sum(1 for v in neg.values() if isinstance(v, dict) and v.get("pass")),
+            "negative_total": sum(1 for v in neg.values() if isinstance(v, dict) and "pass" in v),
+            "sympy_pass": sum(1 for v in sym.values() if isinstance(v, dict) and v.get("pass")),
+            "sympy_total": sum(1 for v in sym.values() if isinstance(v, dict) and "pass" in v),
+            "z3_proved": sum(1 for v in z3p.values() if isinstance(v, dict) and v.get("proved")),
+            "z3_total": sum(1 for v in z3p.values() if isinstance(v, dict) and "proved" in v),
+        },
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

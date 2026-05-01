@@ -26,6 +26,11 @@ import time
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -96,8 +101,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "holonomy is a U(2) matrix product, not a Clifford algebra rotor"
+except Exception as e:
+    TOOL_MANIFEST["clifford"]["reason"] = f"holonomy is a U(2) matrix product, not a Clifford algebra rotor ({type(e).__name__})"
 
 try:
     import geomstats  # noqa: F401

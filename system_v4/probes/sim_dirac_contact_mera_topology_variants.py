@@ -15,7 +15,13 @@ Classification: canonical
 """
 
 import json, math
+import os
 import numpy as np
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 
 classification = "classical_baseline"
 divergence_log = (
@@ -67,9 +73,9 @@ for _mod, _key, _reason in [
         __import__(_mod)
         if not TOOL_MANIFEST[_key]["tried"]:
             TOOL_MANIFEST[_key].update(tried=True, used=False, reason=_reason)
-    except ImportError:
+    except Exception as exc:
         if not TOOL_MANIFEST[_key]["tried"]:
-            TOOL_MANIFEST[_key]["reason"] = "not installed"
+            TOOL_MANIFEST[_key].update(tried=True, used=False, reason=f"optional import unavailable: {exc}")
 
 # =====================================================================
 # Shell entropy constants

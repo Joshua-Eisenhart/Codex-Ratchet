@@ -82,20 +82,27 @@ def encode_confluence_constraint(has_common_reduct, b_and_c_are_equivalent):
     reduct_val = 1 if has_common_reduct else 0
     equiv_val = 1 if b_and_c_are_equivalent else 0
 
-    solver.assertFormula(solver.mkTerm(Kind.Equal, has_reduct, solver.mkInteger(reduct_val)))
-    solver.assertFormula(solver.mkTerm(Kind.Equal, equivalent, solver.mkInteger(equiv_val)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, has_reduct, solver.mkInteger(reduct_val)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, equivalent, solver.mkInteger(equiv_val)))
 
     # KEY CONSTRAINT: confluence rule
     # If equivalence is claimed, common reduct must exist
     # forall: equivalent => has_reduct
     constraint = solver.mkTerm(
-        Kind.Implies,
-        solver.mkTerm(Kind.Equal, equivalent, solver.mkInteger(1)),
-        solver.mkTerm(Kind.Equal, has_reduct, solver.mkInteger(1))
+        Kind.IMPLIES,
+        solver.mkTerm(Kind.EQUAL, equivalent, solver.mkInteger(1)),
+        solver.mkTerm(Kind.EQUAL, has_reduct, solver.mkInteger(1))
     )
     solver.assertFormula(constraint)
 
     return solver
+
+
+def _constraint_kwargs(case):
+    return {
+        "has_common_reduct": case["has_common_reduct"],
+        "b_and_c_are_equivalent": case["b_and_c_are_equivalent"],
+    }
 
 def verify_constraint_with_sympy(has_common_reduct, b_and_c_are_equivalent):
     """
@@ -123,9 +130,9 @@ def run_positive_tests():
         "b_and_c_are_equivalent": True,
     }
 
-    solver1 = encode_confluence_constraint(**test1)
+    solver1 = encode_confluence_constraint(**_constraint_kwargs(test1))
     result1 = solver1.checkSat()
-    sympy_ok1 = verify_constraint_with_sympy(**test1)
+    sympy_ok1 = verify_constraint_with_sympy(**_constraint_kwargs(test1))
 
     results["test1_reduct_exists"] = {
         "cvc5_result": str(result1),
@@ -141,9 +148,9 @@ def run_positive_tests():
         "b_and_c_are_equivalent": False,
     }
 
-    solver2 = encode_confluence_constraint(**test2)
+    solver2 = encode_confluence_constraint(**_constraint_kwargs(test2))
     result2 = solver2.checkSat()
-    sympy_ok2 = verify_constraint_with_sympy(**test2)
+    sympy_ok2 = verify_constraint_with_sympy(**_constraint_kwargs(test2))
 
     results["test2_non_equiv"] = {
         "cvc5_result": str(result2),
@@ -159,9 +166,9 @@ def run_positive_tests():
         "b_and_c_are_equivalent": False,
     }
 
-    solver3 = encode_confluence_constraint(**test3)
+    solver3 = encode_confluence_constraint(**_constraint_kwargs(test3))
     result3 = solver3.checkSat()
-    sympy_ok3 = verify_constraint_with_sympy(**test3)
+    sympy_ok3 = verify_constraint_with_sympy(**_constraint_kwargs(test3))
 
     results["test3_reduct_unclaimed"] = {
         "cvc5_result": str(result3),
@@ -189,9 +196,9 @@ def run_negative_tests():
         "b_and_c_are_equivalent": True,
     }
 
-    solver1 = encode_confluence_constraint(**test1)
+    solver1 = encode_confluence_constraint(**_constraint_kwargs(test1))
     result1 = solver1.checkSat()
-    sympy_ok1 = not verify_constraint_with_sympy(**test1)
+    sympy_ok1 = not verify_constraint_with_sympy(**_constraint_kwargs(test1))
 
     results["test1_nonconfluent"] = {
         "cvc5_result": str(result1),
@@ -219,9 +226,9 @@ def run_boundary_tests():
         "b_and_c_are_equivalent": True,
     }
 
-    solver1 = encode_confluence_constraint(**test1)
+    solver1 = encode_confluence_constraint(**_constraint_kwargs(test1))
     result1 = solver1.checkSat()
-    sympy_ok1 = verify_constraint_with_sympy(**test1)
+    sympy_ok1 = verify_constraint_with_sympy(**_constraint_kwargs(test1))
 
     results["test1_single_term"] = {
         "cvc5_result": str(result1),
@@ -237,9 +244,9 @@ def run_boundary_tests():
         "b_and_c_are_equivalent": True,
     }
 
-    solver2 = encode_confluence_constraint(**test2)
+    solver2 = encode_confluence_constraint(**_constraint_kwargs(test2))
     result2 = solver2.checkSat()
-    sympy_ok2 = verify_constraint_with_sympy(**test2)
+    sympy_ok2 = verify_constraint_with_sympy(**_constraint_kwargs(test2))
 
     results["test2_diamond"] = {
         "cvc5_result": str(result2),

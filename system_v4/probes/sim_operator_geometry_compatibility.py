@@ -18,6 +18,10 @@ from scipy.linalg import expm
 classification = "canonical"
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed — numpy/scipy compatibility map"},
@@ -48,6 +52,20 @@ TOOL_INTEGRATION_DEPTH = {
     "toponetx": None,
     "gudhi": None,
 }
+
+CLIFFORD_OK = True
+CLIFFORD_IMPORT_ERROR = None
+try:
+    from clifford import Cl as _Cl
+except Exception as exc:
+    CLIFFORD_OK = False
+    CLIFFORD_IMPORT_ERROR = str(exc)
+    TOOL_MANIFEST["clifford"]["used"] = False
+    TOOL_MANIFEST["clifford"]["reason"] = (
+        f"optional import failed: {exc}; using analytic SO(3) fallback for the exploratory "
+        "compatibility map, so do not count clifford as load_bearing in this run"
+    )
+    TOOL_INTEGRATION_DEPTH["clifford"] = None
 
 # ─── Pauli matrices ──────────────────────────────────────────────────────────
 
@@ -100,17 +118,29 @@ def amplitude_damping(rho, gamma):
 
 def cl3_rotor_action(bloch, angle, plane):
     """Cl(3) rotor action on Bloch vector (geometric algebra native)."""
-    from clifford import Cl
-    layout, blades = Cl(3)
-    e1, e2, e3 = blades['e1'], blades['e2'], blades['e3']
-    planes = {'xy': e1 * e2, 'xz': e1 * e3, 'yz': e2 * e3}
-    B = planes[plane]
-    R = np.cos(angle / 2) + (-np.sin(angle / 2)) * B
-    v = bloch[0] * e1 + bloch[1] * e2 + bloch[2] * e3
-    v_rot = R * v * ~R
-    return np.array([float(v_rot[blades['e1']]),
-                     float(v_rot[blades['e2']]),
-                     float(v_rot[blades['e3']])])
+    if CLIFFORD_OK:
+        layout, blades = _Cl(3)
+        e1, e2, e3 = blades['e1'], blades['e2'], blades['e3']
+        planes = {'xy': e1 * e2, 'xz': e1 * e3, 'yz': e2 * e3}
+        B = planes[plane]
+        R = np.cos(angle / 2) + (-np.sin(angle / 2)) * B
+        v = bloch[0] * e1 + bloch[1] * e2 + bloch[2] * e3
+        v_rot = R * v * ~R
+        return np.array([float(v_rot[blades['e1']]),
+                         float(v_rot[blades['e2']]),
+                         float(v_rot[blades['e3']])])
+
+    c = np.cos(angle)
+    s = np.sin(angle)
+    if plane == 'xy':
+        rot = np.array([[c, -s, 0], [s, c, 0], [0, 0, 1]], dtype=float)
+    elif plane == 'xz':
+        rot = np.array([[c, 0, s], [0, 1, 0], [-s, 0, c]], dtype=float)
+    elif plane == 'yz':
+        rot = np.array([[1, 0, 0], [0, c, -s], [0, s, c]], dtype=float)
+    else:
+        raise ValueError(f"unknown plane {plane}")
+    return rot @ np.asarray(bloch, dtype=float)
 
 # ─── Helpers: state <-> Bloch ─────────────────────────────────────────────────
 

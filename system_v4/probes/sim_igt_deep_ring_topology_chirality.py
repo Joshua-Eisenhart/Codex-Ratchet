@@ -8,6 +8,12 @@ pseudoscalar (grade-3 element in Cl(3)) of the cyclic product of player
 'position vectors'. Sign of the pseudoscalar separates chirality classes.
 """
 import json, os
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 from clifford import Cl
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in

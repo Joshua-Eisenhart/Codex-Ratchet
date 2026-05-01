@@ -20,6 +20,11 @@ import json
 import os
 import numpy as np
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -88,8 +93,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as e:
+    TOOL_MANIFEST["clifford"]["reason"] = f"unavailable at import time: {type(e).__name__}: {e}"
 
 try:
     import geomstats  # noqa: F401
@@ -466,6 +471,27 @@ if __name__ == "__main__":
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
         "classification": "canonical",
+    }
+
+    def _passed(v):
+        flag = v.get("passed", True)
+        if isinstance(flag, str):
+            return flag.lower() == "true"
+        return bool(flag)
+
+    results["summary"] = {
+        "positive_pass": sum(1 for v in results["positive"].values() if isinstance(v, dict) and _passed(v)),
+        "positive_total": sum(1 for v in results["positive"].values() if isinstance(v, dict) and "passed" in v),
+        "negative_pass": sum(1 for v in results["negative"].values() if isinstance(v, dict) and _passed(v)),
+        "negative_total": sum(1 for v in results["negative"].values() if isinstance(v, dict) and "passed" in v),
+        "boundary_pass": sum(1 for v in results["boundary"].values() if isinstance(v, dict) and _passed(v)),
+        "boundary_total": sum(1 for v in results["boundary"].values() if isinstance(v, dict) and "passed" in v),
+        "all_pass": all(
+            _passed(v)
+            for section in (results["positive"], results["negative"], results["boundary"])
+            for v in section.values()
+            if isinstance(v, dict) and "passed" in v
+        ),
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

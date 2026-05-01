@@ -22,6 +22,11 @@ import os
 import sys
 import math
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -109,8 +114,10 @@ try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
     TOOL_MANIFEST["clifford"]["reason"] = "tried but not needed; no Clifford algebra structure in admissibility fence"
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed; Clifford algebra not needed for density matrix predicates"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = (
+        f"optional import unavailable: {exc}; Clifford algebra not needed for density matrix predicates"
+    )
 
 try:
     import geomstats  # noqa: F401

@@ -21,6 +21,11 @@ import os
 import sys
 import math
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -108,8 +113,10 @@ try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
     TOOL_MANIFEST["clifford"]["reason"] = "tried but not needed; Clifford algebra not required for POVM admissibility"
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed; Clifford algebra structure not needed for POVM guard proofs"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = (
+        f"optional import unavailable: {exc}; Clifford algebra structure not needed for POVM guard proofs"
+    )
 
 try:
     import geomstats  # noqa: F401

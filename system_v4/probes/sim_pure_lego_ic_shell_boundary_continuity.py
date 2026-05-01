@@ -35,6 +35,11 @@ import datetime
 import json
 import os
 import numpy as np
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
@@ -112,8 +117,8 @@ try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
     TOOL_MANIFEST["clifford"]["reason"] = "tried; not used — no spinor geometry in this probe"
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}; no spinor geometry in this probe"
 
 try:
     import geomstats  # noqa: F401

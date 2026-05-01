@@ -83,14 +83,21 @@ def encode_payoff_matrix_constraint(maximin_value, minimax_value):
     minimax_rat = solver.mkReal(int(minimax_value * 100), 100)
 
     # Assert the actual values
-    solver.assertFormula(solver.mkTerm(Kind.Equal, maximin, maximin_rat))
-    solver.assertFormula(solver.mkTerm(Kind.Equal, minimax, minimax_rat))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, maximin, maximin_rat))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, minimax, minimax_rat))
 
     # KEY CONSTRAINT: maximin <= minimax
-    constraint = solver.mkTerm(Kind.Leq, maximin, minimax)
+    constraint = solver.mkTerm(Kind.LEQ, maximin, minimax)
     solver.assertFormula(constraint)
 
     return solver
+
+
+def _constraint_kwargs(case):
+    return {
+        "maximin_value": case["maximin_value"],
+        "minimax_value": case["minimax_value"],
+    }
 
 def verify_constraint_with_sympy(maximin_value, minimax_value):
     """
@@ -117,9 +124,9 @@ def run_positive_tests():
         "minimax_value": 0.0,
     }
 
-    solver1 = encode_payoff_matrix_constraint(**test1)
+    solver1 = encode_payoff_matrix_constraint(**_constraint_kwargs(test1))
     result1 = solver1.checkSat()
-    sympy_ok1 = verify_constraint_with_sympy(**test1)
+    sympy_ok1 = verify_constraint_with_sympy(**_constraint_kwargs(test1))
 
     results["test1_matching_pennies"] = {
         "cvc5_result": str(result1),
@@ -135,9 +142,9 @@ def run_positive_tests():
         "minimax_value": 0.5,
     }
 
-    solver2 = encode_payoff_matrix_constraint(**test2)
+    solver2 = encode_payoff_matrix_constraint(**_constraint_kwargs(test2))
     result2 = solver2.checkSat()
-    sympy_ok2 = verify_constraint_with_sympy(**test2)
+    sympy_ok2 = verify_constraint_with_sympy(**_constraint_kwargs(test2))
 
     results["test2_strict_inequality"] = {
         "cvc5_result": str(result2),
@@ -153,9 +160,9 @@ def run_positive_tests():
         "minimax_value": 1.0,
     }
 
-    solver3 = encode_payoff_matrix_constraint(**test3)
+    solver3 = encode_payoff_matrix_constraint(**_constraint_kwargs(test3))
     result3 = solver3.checkSat()
-    sympy_ok3 = verify_constraint_with_sympy(**test3)
+    sympy_ok3 = verify_constraint_with_sympy(**_constraint_kwargs(test3))
 
     results["test3_zero_sum"] = {
         "cvc5_result": str(result3),
@@ -183,9 +190,9 @@ def run_negative_tests():
         "minimax_value": 0.5,
     }
 
-    solver1 = encode_payoff_matrix_constraint(**test1)
+    solver1 = encode_payoff_matrix_constraint(**_constraint_kwargs(test1))
     result1 = solver1.checkSat()
-    sympy_ok1 = not verify_constraint_with_sympy(**test1)
+    sympy_ok1 = not verify_constraint_with_sympy(**_constraint_kwargs(test1))
 
     results["test1_violation_maximin_gt"] = {
         "cvc5_result": str(result1),
@@ -201,9 +208,9 @@ def run_negative_tests():
         "minimax_value": -5.0,
     }
 
-    solver2 = encode_payoff_matrix_constraint(**test2)
+    solver2 = encode_payoff_matrix_constraint(**_constraint_kwargs(test2))
     result2 = solver2.checkSat()
-    sympy_ok2 = not verify_constraint_with_sympy(**test2)
+    sympy_ok2 = not verify_constraint_with_sympy(**_constraint_kwargs(test2))
 
     results["test2_extreme_violation"] = {
         "cvc5_result": str(result2),
@@ -231,9 +238,9 @@ def run_boundary_tests():
         "minimax_value": -0.5,
     }
 
-    solver1 = encode_payoff_matrix_constraint(**test1)
+    solver1 = encode_payoff_matrix_constraint(**_constraint_kwargs(test1))
     result1 = solver1.checkSat()
-    sympy_ok1 = verify_constraint_with_sympy(**test1)
+    sympy_ok1 = verify_constraint_with_sympy(**_constraint_kwargs(test1))
 
     results["test1_negative_valid"] = {
         "cvc5_result": str(result1),
@@ -249,9 +256,9 @@ def run_boundary_tests():
         "minimax_value": 0.01,
     }
 
-    solver2 = encode_payoff_matrix_constraint(**test2)
+    solver2 = encode_payoff_matrix_constraint(**_constraint_kwargs(test2))
     result2 = solver2.checkSat()
-    sympy_ok2 = verify_constraint_with_sympy(**test2)
+    sympy_ok2 = verify_constraint_with_sympy(**_constraint_kwargs(test2))
 
     results["test2_near_equal"] = {
         "cvc5_result": str(result2),
@@ -267,9 +274,9 @@ def run_boundary_tests():
         "minimax_value": 0.0,
     }
 
-    solver3 = encode_payoff_matrix_constraint(**test3)
+    solver3 = encode_payoff_matrix_constraint(**_constraint_kwargs(test3))
     result3 = solver3.checkSat()
-    sympy_ok3 = verify_constraint_with_sympy(**test3)
+    sympy_ok3 = verify_constraint_with_sympy(**_constraint_kwargs(test3))
 
     results["test3_zero_payoffs"] = {
         "cvc5_result": str(result3),

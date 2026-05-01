@@ -89,7 +89,7 @@ Worker pool truth:
 - Gemini may be used directly or through `omx ask gemini` for bounded scout, compare, and liveness lanes. Count it only when the command returns a durable receipt or artifact containing prompt hash/route, model, exit status, stdout/stderr or JSON output, and conclusion/open fields.
 - OMX `ask` and `sparkshell` are valid worker/tool surfaces from the Codex App shell when they return artifacts or bounded command output. OMX `team` is valid only inside a tmux leader pane with a running tmux server/session; outside that environment, mark the team wave `blocked` and use another honest pool for independent work.
 - Tmux presence alone is not team execution. A tmux/OMX route counts only when a pane/session id, command, exit state, and output/receipt artifact are recorded.
-- Header counts must split pool types when a response relies on more than one pool: `codex-native`, `claude-bridge`, `gemini`, `omx/tmux`, and `tools`. The total `subagents` count may aggregate them only after the split is visible.
+- Header counts must always show total completed parent subagents and total completed child subsubagents: `subagents:total={n}` and `subsubagents:total={n}`. When a response relies on more than one pool, put the pool split in Results or an optional diagnostic line: `codex-native`, `claude-bridge`, `gemini`, `omx/tmux`, and `tools`.
 - A rerouted duplicate can keep the work moving, but the original stalled route remains pending/blocked until its own receipt resolves or it is explicitly abandoned.
 
 Parent/child authority:
@@ -123,7 +123,7 @@ For ordinary repo work, still keep output readable. Use Full Wizard internally b
 For Full Wizard, plurality, council, Wizard-output testing, or any response that visibly claims voices/lanes/compositions, use the v3.5 header shape:
 
 ```text
-🧙🏽‍♂️ {FULL|COMPACT} | waves:{n|sim|blocked} | subagents:{n} | subsubagents:{n} | models:{actual_models}
+🧙🏽‍♂️ {FULL|COMPACT} | waves:{n|sim|blocked} | subagents:total={n} | subsubagents:total={n} | models:{actual_models}
 ```
 
 Then provide useful content, not a log:

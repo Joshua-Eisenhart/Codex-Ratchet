@@ -82,11 +82,11 @@ Goal: keep each on-demand Hermes-controlled run healthy, bounded, and aligned wh
 
 ## Maintenance closure surfaces
 Check whether this run requires updates to:
-- `system_v5/docs/plans/sim_backlog_matrix.md`
-- `system_v5/docs/plans/sim_truth_audit.md`
-- `system_v5/docs/plans/tool_integration_maintenance_matrix.md`
-- `system_v5/docs/plans/controller_maintenance_checklist.md`
-- `system_v5/docs/plans/on-demand-telegram-runner.md`
+- `system_v5/docs/plans/plans/sim_backlog_matrix.md`
+- `system_v5/docs/plans/plans/sim_truth_audit.md`
+- `system_v5/docs/plans/plans/tool_integration_maintenance_matrix.md`
+- `system_v5/docs/plans/plans/controller_maintenance_checklist.md`
+- `system_v5/docs/plans/plans/on-demand-telegram-runner.md`
 - `system_v5/docs/16_lego_build_catalog.md`
 - `system_v5/docs/17_actual_lego_registry.md`
 - wiki concept pages under `/Users/joshuaeisenhart/wiki/concepts/`

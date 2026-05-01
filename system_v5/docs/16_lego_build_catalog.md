@@ -16,8 +16,15 @@ It exists to answer:
 - which already have a usable local anchor
 - which still need deeper lego work
 - which tool surfaces should be load-bearing for each lego
-- which pairwise or coexistence successor each lego should feed next
+- which future downstream successor each lego may feed after lego-stage completion
 - which legos are blocked from assembly even if they are useful
+
+Build guardrail:
+- this file may name downstream successors
+- successor columns are routing hints, not automatic permission
+- bounded exploratory pairwise/coexistence work may run off already-strong local parents
+- broad upward promotion is still blocked while the lego stage remains materially incomplete
+- the active loop is: tool sims, tool integrations, lego rows, bounded coupling exploration, then feedback into the same layers
 
 ## Plain-English Notes
 
@@ -73,24 +80,28 @@ Use these surfaces in this order:
 - Root-killed or rejected sims are useful. Keep them as evidence surfaces.
 - A lego does not promote because it exists. It promotes only if the result is clear, scoped, and tool-honest.
 - A tool only counts if it is load-bearing or clearly supportive in the real execution path.
-- Pairwise and coexistence work come after the lego is real.
+- Pairwise and coexistence work do not become broad promotion just because a locally real row exists.
+- Bounded exploratory pairwise/coexistence work may still be useful off strong local parents and may feed back into lego/tool refinement.
 - Assembly does not consume a lego just because the lego passed once.
 
 ## Label Systems
+
+Successor-facing labels below describe deferred downstream routing only.
+They are not current execution permission while the lego stage is still open.
 
 ### Lego Status
 
 - `covered`: there is at least one good current lego probe
 - `partial`: there is real lego work, but the lego is still thinner than it should be
 - `needs_deeper_lego_work`: current candidates exist, but the lego is not strong enough yet
-- `ready_for_pairwise`: there is already a real successor path
+- `ready_for_pairwise`: legacy wording for "future successor identified after lego-stage completion"
 - `blocked_from_assembly`: useful lego, but not allowed to feed assembly yet
 
-### Queue State
+### Stage-Gate Status
 
-- `ready_now`: safe to run next
-- `ready_but_supporting_only`: queueable, but current successor is still only supporting
-- `blocked_on_lego`: do not move upward yet
+- `lego_stage_only`: legacy `ready_now` rows renamed so they stop sounding runnable above the current stage
+- `lego_stage_support_only`: legacy `ready_but_supporting_only` rows renamed so they stop sounding launchable
+- `lego_stage_incomplete`: legacy `blocked_on_lego`; do not move upward yet
 - `blocked_from_assembly`: do not move upward at all
 
 ### Result Truth
@@ -105,17 +116,17 @@ Use these surfaces in this order:
 This is the widest operator-facing table in the doc.
 Use it when deciding what lego to build next, what math it contains, and how to simulate it without jumping upward too early.
 
-| Lego ID | Lego Name | Build Stage | Core Math Object | Full Math | Source Docs | Why It Matters | Useful If Rejected | How To Sim It | Best Current Local Anchor | Tools To Try | Preferred Load-Bearing Tools | Shallow Tool Pressure To Force Early | Best Next Successor | Queue State |
+| Lego ID | Lego Name | Build Stage | Core Math Object | Full Math | Source Docs | Why It Matters | Useful If Rejected | How To Sim It | Best Current Local Anchor | Tools To Try | Preferred Load-Bearing Tools | Shallow Tool Pressure To Force Early | Deferred Successor After Stage Completion | Stage-Gate Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `constraint_probe_admissibility` | Constraint and probe admissibility | lego | admissibility fences and root-constraint boundary | admissible probe families, guard conditions, fence pressure, lower-shell exclusion surfaces | `07`, `08`, `LEGO_SIM_CONTRACT` | stops illegal legos from polluting the stack | yes | build small guard/fence probes and prove boundary kills before richer shells | `sim_lego_constraint_admissibility_fence_z3.py`, `sim_lego_probe_guard_admissibility_cvc5.py` | `z3`, `cvc5`, `sympy`, `pytorch` | `z3`, `cvc5`, `sympy` | none | `sim_constraint_shells_binding_crosscheck.py` | `ready_now` |
-| `carrier_admission_density_matrix` | Carrier admission and density-matrix representability | lego | density matrices on finite carriers | positivity, trace-one normalization, representability, admissible carrier choice | `07`, `08` | everything above this assumes the carrier is real | yes | start with finite density carriers, vary admissible forms, keep trace/positivity exact | `density_hopf_geometry_results.json` | `pytorch`, `sympy`, `z3` | `pytorch`, `sympy` | none | `sim_integrated_dependency_chain.py` and `sim_operator_geometry_compatibility.py` | `ready_now` |
-| `g_structure_tower` | G-structure tower | lego | support-manifold admissibility tower | smooth/Riemannian/oriented/spin and even-vs-odd branch structure across candidate support manifolds | `07` | makes support-first geometry explicit before operator placement by testing what richer structures candidate manifolds can honestly host | yes | compare a small candidate manifold set under one explicit G-structure tower with obstruction proofs and branch checks | `g_structure_tower_results.json` | `z3`, `sympy`, `pytorch`, `geomstats` | `z3`, `sympy` | none | `sim_gstructure_compatibility_coupling.py` and `sim_density_hopf_geometry.py` | `ready_now` |
-| `geometry_crosschecks_same_carrier` | Geometry cross-checks on the same carrier | lego | multiple geometries on one admitted carrier | Hopf, torus, Berry phase, QFI, QGT, holonomy, same-carrier metric comparisons | `07`, `08` | kills geometry smuggling and flat-only shortcuts | yes | hold the carrier fixed and compare geometric invariants under multiple geometry choices | `foundation_hopf_torus_geomstats_clifford_results.json` | `geomstats`, `clifford`, `sympy`, `pytorch`, `z3`, `gudhi` | `geomstats`, `clifford` | `e3nn` | `sim_operator_geometry_compatibility.py` and `sim_compound_operator_geometry.py` | `ready_now` |
-| `operator_family_admission` | Operator admission lego | lego | local operator and channel legos before assembly | Pauli, Clifford, commutator, chirality, channel-local operator action | `07`, `08`, `FALSIFICATION_SIM_DESIGNS` | prevents later operator stories from skipping local admission | yes | apply local operators and local channels to admitted carriers/geometries and kill collapsed or symmetric-only cases | `sim_lego_clifford_commutator_algebra.py`, `sim_lego_cptp_channel_family.py` | `clifford`, `sympy`, `z3`, `pytorch`, `e3nn` | `clifford`, `sympy`, `z3`, `pytorch` | none | `sim_operator_geometry_compatibility.py` | `ready_now` |
-| `graph_cell_complex_geometry` | Graph and cell-complex carrier geometry | lego | graph, hypergraph, cell-complex, persistence views | graph, hypergraph, cell-complex, topology and differentiable graph views on the same carrier | `07`, `08` | gives multi-view local structure before late integration | yes | map one admitted carrier into graph, hypergraph, and cell-complex forms and compare what survives | `xgi_family_hypergraph_results.json`, `foundation_equivariant_graph_backprop_results.json`, and `persistence_geometry_results.json` | `xgi`, `toponetx`, `pyg`, `gudhi`, `pytorch`, `rustworkx` | `xgi`, `pytorch`, `gudhi` | `pyg`, `toponetx` | `sim_xgi_indirect_pathway.py`, `sim_toponetx_state_class_binding.py`, `sim_pyg_dynamic_edge_werner.py`, and `sim_persistence_geometry.py` | `ready_now` |
-| `bipartite_structure_local` | Bipartite structure lego set | lego | local bipartite reductions and witnesses | partial trace, reduced states, concurrence, negativity, Werner and Schmidt-style local structure | `07`, `08` | gives local entanglement structure without seam claims | yes | stay local to bipartite reductions and witness families before wider bridge or entropy promotion | `gudhi_concurrence_filtration_results.json` | `gudhi`, `pyg`, `sympy`, `pytorch`, `z3` | `gudhi` | `pyg` | `sim_pyg_dynamic_edge_werner.py` and `sim_lego_entropy_bipartite_cut.py` | `ready_now` |
-| `entropy_family_crosschecks` | Entropy cross-check lego | lego | local entropy and information summaries | von Neumann, mutual, coherent, conditional, Renyi/Tsallis/min-max style comparisons | `07`, `08` | keeps entropy later and subordinate to stronger local structure | yes | compare entropy summaries locally and reject any summary that tries to dominate before lower-lego support exists | `sim_lego_entropy_family_crosscheck.py` | `sympy`, `pytorch`, `z3` | `pytorch`, `z3`, `sympy` | none | none yet | `ready_but_supporting_only` |
-| `SpectralTriple` | Spectral triple lego | lego | noncommutative geometry spectral triple structure | Dirac operator, eigenspace geometry, heat kernel, Fredholm index, metric reconstruction | `07`, `08` | supports noncommutative geometry anchors and metric reconstruction without QFI dominance | yes | build small spectral-triple carriers and test heat-kernel geometry and Dirac metric consistency | `sim_lego_spectral_triple_carrier.py`, `sim_lego_spectral_triple_heat_kernel.py` | `pytorch`, `z3`, `sympy`, `geomstats` | `pytorch`, `z3`, `sympy` | none | none yet | `ready_now` |
+| `constraint_probe_admissibility` | Constraint and probe admissibility | lego | admissibility fences and root-constraint boundary | admissible probe families, guard conditions, fence pressure, lower-shell exclusion surfaces | `07`, `08`, `LEGO_SIM_CONTRACT` | stops illegal legos from polluting the stack | yes | build small guard/fence probes and prove boundary kills before richer shells | `sim_lego_constraint_admissibility_fence_z3.py`, `sim_lego_probe_guard_admissibility_cvc5.py` | `z3`, `cvc5`, `sympy`, `pytorch` | `z3`, `cvc5`, `sympy` | none | `sim_constraint_shells_binding_crosscheck.py` | `lego_stage_only` |
+| `carrier_admission_density_matrix` | Carrier admission and density-matrix representability | lego | density matrices on finite carriers | positivity, trace-one normalization, representability, admissible carrier choice | `07`, `08` | everything above this assumes the carrier is real | yes | start with finite density carriers, vary admissible forms, keep trace/positivity exact | `density_hopf_geometry_results.json` | `pytorch`, `sympy`, `z3` | `pytorch`, `sympy` | none | `sim_integrated_dependency_chain.py` and `sim_operator_geometry_compatibility.py` | `lego_stage_only` |
+| `g_structure_tower` | G-structure tower | lego | support-manifold admissibility tower | smooth/Riemannian/oriented/spin and even-vs-odd branch structure across candidate support manifolds | `07` | makes support-first geometry explicit before operator placement by testing what richer structures candidate manifolds can honestly host | yes | compare a small candidate manifold set under one explicit G-structure tower with obstruction proofs and branch checks | `g_structure_tower_results.json` | `z3`, `sympy`, `pytorch`, `geomstats` | `z3`, `sympy` | none | `sim_gstructure_compatibility_coupling.py` and `sim_density_hopf_geometry.py` | `lego_stage_only` |
+| `geometry_crosschecks_same_carrier` | Geometry cross-checks on the same carrier | lego | multiple geometries on one admitted carrier | Hopf, torus, Berry phase, QFI, QGT, holonomy, same-carrier metric comparisons | `07`, `08` | kills geometry smuggling and flat-only shortcuts | yes | hold the carrier fixed and compare geometric invariants under multiple geometry choices | `foundation_hopf_torus_geomstats_clifford_results.json` | `geomstats`, `clifford`, `sympy`, `pytorch`, `z3`, `gudhi` | `geomstats`, `clifford` | `e3nn` | `sim_operator_geometry_compatibility.py` and `sim_compound_operator_geometry.py` | `lego_stage_only` |
+| `operator_family_admission` | Operator admission lego | lego | local operator and channel legos before assembly | Pauli, Clifford, commutator, chirality, channel-local operator action | `07`, `08`, `FALSIFICATION_SIM_DESIGNS` | prevents later operator stories from skipping local admission | yes | apply local operators and local channels to admitted carriers/geometries and kill collapsed or symmetric-only cases | `sim_lego_clifford_commutator_algebra.py`, `sim_lego_cptp_channel_family.py` | `clifford`, `sympy`, `z3`, `pytorch`, `e3nn` | `clifford`, `sympy`, `z3`, `pytorch` | none | `sim_operator_geometry_compatibility.py` | `lego_stage_only` |
+| `graph_cell_complex_geometry` | Graph and cell-complex carrier geometry | lego | graph, hypergraph, cell-complex, persistence views | graph, hypergraph, cell-complex, topology and differentiable graph views on the same carrier | `07`, `08` | gives multi-view local structure before late integration | yes | map one admitted carrier into graph, hypergraph, and cell-complex forms and compare what survives | `xgi_family_hypergraph_results.json`, `foundation_equivariant_graph_backprop_results.json`, and `persistence_geometry_results.json` | `xgi`, `toponetx`, `pyg`, `gudhi`, `pytorch`, `rustworkx` | `xgi`, `pytorch`, `gudhi` | `pyg`, `toponetx` | `sim_xgi_indirect_pathway.py`, `sim_toponetx_state_class_binding.py`, `sim_pyg_dynamic_edge_werner.py`, and `sim_persistence_geometry.py` | `lego_stage_only` |
+| `bipartite_structure_local` | Bipartite structure lego set | lego | local bipartite reductions and witnesses | partial trace, reduced states, concurrence, negativity, Werner and Schmidt-style local structure | `07`, `08` | gives local entanglement structure without seam claims | yes | stay local to bipartite reductions and witness families before wider bridge or entropy promotion | `gudhi_concurrence_filtration_results.json` | `gudhi`, `pyg`, `sympy`, `pytorch`, `z3` | `gudhi` | `pyg` | `sim_pyg_dynamic_edge_werner.py` and `sim_lego_entropy_bipartite_cut.py` | `lego_stage_only` |
+| `entropy_family_crosschecks` | Entropy cross-check lego | lego | local entropy and information summaries | von Neumann, mutual, coherent, conditional, Renyi/Tsallis/min-max style comparisons | `07`, `08` | keeps entropy later and subordinate to stronger local structure | yes | compare entropy summaries locally and reject any summary that tries to dominate before lower-lego support exists | `sim_lego_entropy_family_crosscheck.py` | `sympy`, `pytorch`, `z3` | `pytorch`, `z3`, `sympy` | none | none yet | `lego_stage_support_only` |
+| `SpectralTriple` | Spectral triple lego | lego | noncommutative geometry spectral triple structure | Dirac operator, eigenspace geometry, heat kernel, Fredholm index, metric reconstruction | `07`, `08` | supports noncommutative geometry anchors and metric reconstruction without QFI dominance | yes | build small spectral-triple carriers and test heat-kernel geometry and Dirac metric consistency | `sim_lego_spectral_triple_carrier.py`, `sim_lego_spectral_triple_heat_kernel.py` | `pytorch`, `z3`, `sympy`, `geomstats` | `pytorch`, `z3`, `sympy` | none | none yet | `lego_stage_only` |
 | `gauge_group_falsifier` | Gauge-group correspondence falsifier | boundary lego | symmetry/gauge kill surface | Lie algebra, commutator, projective/group geometry falsifier against over-strong correspondence claims | `FALSIFICATION_SIM_DESIGNS` | useful because a clean kill is stronger than vague symbolic similarity | yes | build small algebra/geometry falsifiers and keep the negative result as the product | `geom_cp1_u1_projective_results.json` | `sympy`, `pytorch`, geometry stack | `sympy` | none | none | `blocked_from_assembly` |
 | `quantum_metric_nonuniqueness` | Quantum metric nonuniqueness lego | boundary lego | metric-choice pressure surface | compare alternative quantum metrics and phase-space views without assuming one primitive | `FALSIFICATION_SIM_DESIGNS`, `08` | forces the system to admit metric choice is structure, not doctrine | yes | run the same state set through multiple metric choices and keep disagreement as evidence | `geomstats_shell_metrics_results.json` | `geomstats`, `sympy`, `pytorch` | `geomstats` | none | none | `blocked_from_assembly` |
 
@@ -153,31 +164,31 @@ They are separate legos that are still incorrectly bundled together in the curre
 
 ### Core Local Legos
 
-| Lego ID | Build Stage | Math Object | Source Docs | Useful If Rejected | Best Current Anchor | Lego Status | Queue State | Assembly Gate | Primary Tool Pressure | Best Next Successor | Main Blocker |
+| Lego ID | Build Stage | Math Object | Source Docs | Useful If Rejected | Best Current Anchor | Lego Status | Stage-Gate Status | Post-Stage Routing | Primary Tool Pressure | Deferred Successor Candidate | Main Blocker |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `constraint_probe_admissibility` | lego | admissibility fences, probe guards, root-constraint boundary | `07`, `08`, `LEGO_SIM_CONTRACT` | yes | `sim_lego_constraint_admissibility_fence_z3.py`, `sim_lego_probe_guard_admissibility_cvc5.py` | `covered` | `ready_now` | `pairwise_only` | `z3`, `cvc5`, `sympy` | `sim_constraint_shells_binding_crosscheck.py` | fence and guard lego now complete with load-bearing z3/cvc5/sympy sims |
-| `carrier_admission_density_matrix` | lego | density matrices, positivity, trace, normalization, carrier admission | `07`, `08` | yes | `density_hopf_geometry_results.json` | `partial` | `ready_now` | `pairwise_only` | `pytorch`, `sympy` | `sim_integrated_dependency_chain.py`, `sim_operator_geometry_compatibility.py` | only one strong default lego anchor so far |
-| `geometry_crosschecks_same_carrier` | lego | Hopf, Berry, QFI, QGT, holonomy, same-carrier metric comparisons | `07`, `08` | yes | `foundation_hopf_torus_geomstats_clifford_results.json` and `lego_weyl_hopf_spinor_bridge_results.json` | `covered` | `ready_now` | `safe_for_coexistence` | `geomstats`, `clifford`, `sympy` | `sim_operator_geometry_compatibility.py`, `sim_compound_operator_geometry.py` | one successor is still only supporting; `lego_weyl_hopf_spinor_bridge_results.json` (exists, self-declared canonical) adds spinor/nested-torus geometry to the same-carrier anchor set |
-| `operator_family_admission` | lego | Pauli, Clifford, commutator, channel, chirality operator behavior before assembly | `07`, `08`, `FALSIFICATION_SIM_DESIGNS` | yes | `sim_lego_clifford_commutator_algebra.py`, `sim_lego_cptp_channel_family.py` | `covered` | `ready_now` | `pairwise_only` | `clifford`, `sympy`, `z3`, `pytorch` | `sim_operator_geometry_compatibility.py` | commutator algebra and CPTP channel lego now complete with load-bearing clifford/sympy/z3/pytorch sims |
+| `carrier_admission_density_matrix` | lego | density matrices, positivity, trace, normalization, carrier admission | `07`, `08` | yes | `density_hopf_geometry_results.json` | `partial` | `lego_stage_only` | `pairwise_after_stage_complete` | `pytorch`, `sympy` | `sim_integrated_dependency_chain.py`, `sim_operator_geometry_compatibility.py` | only one strong default lego anchor so far |
+| `geometry_crosschecks_same_carrier` | lego | Hopf, Berry, QFI, QGT, holonomy, same-carrier metric comparisons | `07`, `08` | yes | `foundation_hopf_torus_geomstats_clifford_results.json` and `lego_weyl_hopf_spinor_bridge_results.json` | `covered` | `lego_stage_only` | `coexistence_after_stage_complete` | `geomstats`, `clifford`, `sympy` | `sim_operator_geometry_compatibility.py`, `sim_compound_operator_geometry.py` | one successor is still only supporting; `lego_weyl_hopf_spinor_bridge_results.json` (exists, self-declared canonical) adds spinor/nested-torus geometry to the same-carrier anchor set |
+| `operator_family_admission` | lego | Pauli, Clifford, commutator, channel, chirality operator behavior before assembly | `07`, `08`, `FALSIFICATION_SIM_DESIGNS` | yes | `sim_lego_clifford_commutator_algebra.py`, `sim_lego_cptp_channel_family.py` | `covered` | `lego_stage_only` | `pairwise_after_stage_complete` | `clifford`, `sympy`, `z3`, `pytorch` | `sim_operator_geometry_compatibility.py` | commutator algebra and CPTP channel lego now complete with load-bearing clifford/sympy/z3/pytorch sims |
 
 ### Graph / Topology Legos
 
-| Lego ID | Build Stage | Math Object | Source Docs | Useful If Rejected | Best Current Anchor | Lego Status | Queue State | Assembly Gate | Primary Tool Pressure | Best Next Successor | Main Blocker |
+| Lego ID | Build Stage | Math Object | Source Docs | Useful If Rejected | Best Current Anchor | Lego Status | Stage-Gate Status | Post-Stage Routing | Primary Tool Pressure | Deferred Successor Candidate | Main Blocker |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `graph_cell_complex_geometry` | lego | graph, hypergraph, cell-complex, persistence views on the same carrier | `07`, `08` | yes | `xgi_family_hypergraph_results.json`, `toponetx_state_class_binding_results.json`, and `foundation_equivariant_graph_backprop_results.json` | `covered` | `ready_now` | `safe_for_coexistence` | `pyg`, `toponetx` | `sim_xgi_indirect_pathway.py`, `sim_toponetx_state_class_binding.py`, `sim_pyg_dynamic_edge_werner.py` | shallow tool pressure is still concentrated in `pyg` and `toponetx`, but `toponetx_state_class_binding` is now a canonical-by-process current TopoNetX anchor |
+| `graph_cell_complex_geometry` | lego | graph, hypergraph, cell-complex, persistence views on the same carrier | `07`, `08` | yes | `xgi_family_hypergraph_results.json`, `toponetx_state_class_binding_results.json`, and `foundation_equivariant_graph_backprop_results.json` | `covered` | `lego_stage_only` | `coexistence_after_stage_complete` | `pyg`, `toponetx` | `sim_xgi_indirect_pathway.py`, `sim_toponetx_state_class_binding.py`, `sim_pyg_dynamic_edge_werner.py` | shallow tool pressure is still concentrated in `pyg` and `toponetx`, but `toponetx_state_class_binding` is now a canonical-by-process current TopoNetX anchor |
 
 ### Spectral / Noncommutative Geometry Legos
 
-| Lego ID | Build Stage | Math Object | Source Docs | Useful If Rejected | Best Current Anchor | Lego Status | Queue State | Assembly Gate | Primary Tool Pressure | Best Next Successor | Main Blocker |
+| Lego ID | Build Stage | Math Object | Source Docs | Useful If Rejected | Best Current Anchor | Lego Status | Stage-Gate Status | Post-Stage Routing | Primary Tool Pressure | Deferred Successor Candidate | Main Blocker |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `SpectralTriple` | lego | Dirac operator, spectral triple structure, heat kernel, Fredholm index | `07`, `08` | yes | `sim_lego_spectral_triple_carrier.py`, `sim_lego_spectral_triple_heat_kernel.py` | `covered` | `ready_now` | `safe_for_coexistence` | `pytorch`, `z3`, `sympy` | none yet | noncommutative geometry metric reconstruction and Dirac spectral structure now anchored with load-bearing pytorch/z3/sympy |
+| `SpectralTriple` | lego | Dirac operator, spectral triple structure, heat kernel, Fredholm index | `07`, `08` | yes | `sim_lego_spectral_triple_carrier.py`, `sim_lego_spectral_triple_heat_kernel.py` | `covered` | `lego_stage_only` | `coexistence_after_stage_complete` | `pytorch`, `z3`, `sympy` | none yet | noncommutative geometry metric reconstruction and Dirac spectral structure now anchored with load-bearing pytorch/z3/sympy |
 
 ### Bipartite / Information Legos
 
-| Lego ID | Build Stage | Math Object | Source Docs | Useful If Rejected | Best Current Anchor | Lego Status | Queue State | Assembly Gate | Primary Tool Pressure | Best Next Successor | Main Blocker |
+| Lego ID | Build Stage | Math Object | Source Docs | Useful If Rejected | Best Current Anchor | Lego Status | Stage-Gate Status | Post-Stage Routing | Primary Tool Pressure | Deferred Successor Candidate | Main Blocker |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `bipartite_structure_local` | lego | partial trace, concurrence, negativity, Schmidt/Werner local structure | `07`, `08` | yes | `gudhi_concurrence_filtration_results.json` and `pyg_dynamic_edge_werner_results.json` | `covered` | `ready_now` | `safe_for_coexistence` | `pyg`, `gudhi`, `sympy` | `sim_pyg_dynamic_edge_werner.py`, `sim_lego_entropy_bipartite_cut.py` | local lego is strong, and `pyg_dynamic_edge_werner` is now a stronger current PyG/Werner anchor, but PyG still needs more mid-ladder depth beyond this row |
-| `entropy_family_crosschecks` | lego | local entropy cross-check before bridge or axis promotion | `07`, `08` | yes | `sim_lego_entropy_family_crosscheck.py` | `covered` | `ready_but_supporting_only` | blocked_from_assembly until geometry-subordinate status verified | `pytorch`, `z3`, `sympy` | none yet | entropy is now subordinate to carrier/geometry/operator; keep as supporting-only anchor |
+| `bipartite_structure_local` | lego | partial trace, concurrence, negativity, Schmidt/Werner local structure | `07`, `08` | yes | `gudhi_concurrence_filtration_results.json` and `pyg_dynamic_edge_werner_results.json` | `covered` | `lego_stage_only` | `coexistence_after_stage_complete` | `pyg`, `gudhi`, `sympy` | `sim_pyg_dynamic_edge_werner.py`, `sim_lego_entropy_bipartite_cut.py` | local lego is strong, and `pyg_dynamic_edge_werner` is now a stronger current PyG/Werner anchor, but PyG still needs more mid-ladder depth beyond this row |
+| `entropy_family_crosschecks` | lego | local entropy cross-check before bridge or axis promotion | `07`, `08` | yes | `sim_lego_entropy_family_crosscheck.py` | `covered` | `lego_stage_support_only` | blocked_from_assembly until geometry-subordinate status verified | `pytorch`, `z3`, `sympy` | none yet | entropy is now subordinate to carrier/geometry/operator; keep as supporting-only anchor |
 
 ### Boundary / Falsifier Legos
 
@@ -249,6 +260,9 @@ These legos appear clearly in `new docs`, but they are not yet cleanly represent
 
 ## Successor Routing
 
+Planning only. This section records deferred downstream possibilities.
+Nothing here is executable until the registry lego stage is complete.
+
 | Lego ID | Current Best Lego Probe | Best Existing Successor | Evidence State | Safe Next Stage | Tool Pressure | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | `carrier_admission_density_matrix` | `sim_density_hopf_geometry.py` | `sim_integrated_dependency_chain.py` | `promotion_ready` | `coupling` | none | stronger than the operator-compatibility path right now |
@@ -285,34 +299,36 @@ These legos appear clearly in `new docs`, but they are not yet cleanly represent
 | `e3nn` | shallow but real | `density_hopf_geometry_results.json` and `e3nn_hopf_spinor_equivariance_results.json` | lego and pairwise | geometry/operator legos | future richer local equivariance lego |
 | `toponetx` | shallow topology specialist with one strong anchor | `toponetx_state_class_binding_results.json` | lego and pairwise | `graph_cell_complex_geometry` | broader cell-complex packet beyond the current binding anchor |
 
-## Queue Ledger
+## Bounded Exploration And Deferred Successor Queue
 
-### Ready Now
+### Bounded Exploration Candidates Now
 
-| Queue Rank | Task ID | Lego | Target Stage | Recommended Sim | Depends On | Queue State | Tool Pressure | Stop Rule |
+These rows may be used for bounded exploration when the named parent locals are already strong; they are not broad stage-promotion permission.
+
+| Queue Rank | Task ID | Lego | Deferred Target Stage | Recommended Sim | Depends On | Stage-Gate Status | Tool Pressure | Stop Rule |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `p2` | `lego-batch-007` | `graph_cell_complex_geometry` | `coexistence` | `sim_pyg_dynamic_edge_werner.py` | `sim_foundation_equivariant_graph_backprop.py` | `ready_now` | `pyg`, `toponetx` | stop if shallow-tool pressure is not increased at the target stage |
-| `p2` | `lego-batch-008` | `bipartite_structure_local` | `coexistence` | `sim_pyg_dynamic_edge_werner.py` | `sim_gudhi_concurrence_filtration.py` | `ready_now` | `pyg` | stop if shallow-tool pressure is not increased at the target stage |
-| `p2` | `lego-batch-009` | `bipartite_structure_local` | `coexistence` | `sim_lego_entropy_bipartite_cut.py` | `sim_gudhi_bipartite_entangled.py` | `ready_now` | `pyg` | stop if shallow-tool pressure is not increased at the target stage |
-| `p4` | `lego-batch-005` | `graph_cell_complex_geometry` | `coexistence` | `sim_xgi_indirect_pathway.py` | `sim_xgi_family_hypergraph.py` | `ready_now` | `toponetx` | stop if shallow-tool pressure is not increased at the target stage |
-| `p4` | `lego-batch-006` | `graph_cell_complex_geometry` | `coexistence` | `sim_toponetx_state_class_binding.py` | `sim_foundation_shell_graph_topology.py` | `ready_now` | `toponetx` | stop if shallow-tool pressure is not increased at the target stage |
-| `p7` | `lego-batch-001` | `carrier_admission_density_matrix` | `coexistence` | `sim_operator_geometry_compatibility.py` | `sim_density_hopf_geometry.py` | `ready_now` | none | stop if no new pairwise/coexistence evidence is produced |
-| `p7` | `lego-batch-002` | `carrier_admission_density_matrix` | `coexistence` | `sim_integrated_dependency_chain.py` | `sim_density_hopf_geometry.py` | `ready_now` | none | stop if no new pairwise/coexistence evidence is produced |
-| `p7` | `lego-batch-003` | `geometry_crosschecks_same_carrier` | `topology` | `sim_operator_geometry_compatibility.py` | `sim_foundation_hopf_torus_geomstats_clifford.py` | `ready_now` | none | stop if no new pairwise/coexistence evidence is produced |
+| `p2` | `lego-batch-007` | `graph_cell_complex_geometry` | `coexistence` | `sim_pyg_dynamic_edge_werner.py` | `sim_foundation_equivariant_graph_backprop.py` | `lego_stage_only` | `pyg`, `toponetx` | stop if shallow-tool pressure is not increased at the target stage |
+| `p2` | `lego-batch-008` | `bipartite_structure_local` | `coexistence` | `sim_pyg_dynamic_edge_werner.py` | `sim_gudhi_concurrence_filtration.py` | `lego_stage_only` | `pyg` | stop if shallow-tool pressure is not increased at the target stage |
+| `p2` | `lego-batch-009` | `bipartite_structure_local` | `coexistence` | `sim_lego_entropy_bipartite_cut.py` | `sim_gudhi_bipartite_entangled.py` | `lego_stage_only` | `pyg` | stop if shallow-tool pressure is not increased at the target stage |
+| `p4` | `lego-batch-005` | `graph_cell_complex_geometry` | `coexistence` | `sim_xgi_indirect_pathway.py` | `sim_xgi_family_hypergraph.py` | `lego_stage_only` | `toponetx` | stop if shallow-tool pressure is not increased at the target stage |
+| `p4` | `lego-batch-006` | `graph_cell_complex_geometry` | `coexistence` | `sim_toponetx_state_class_binding.py` | `sim_foundation_shell_graph_topology.py` | `lego_stage_only` | `toponetx` | stop if shallow-tool pressure is not increased at the target stage |
+| `p7` | `lego-batch-001` | `carrier_admission_density_matrix` | `coexistence` | `sim_operator_geometry_compatibility.py` | `sim_density_hopf_geometry.py` | `lego_stage_only` | none | stop if no new pairwise/coexistence evidence is produced |
+| `p7` | `lego-batch-002` | `carrier_admission_density_matrix` | `coexistence` | `sim_integrated_dependency_chain.py` | `sim_density_hopf_geometry.py` | `lego_stage_only` | none | stop if no new pairwise/coexistence evidence is produced |
+| `p7` | `lego-batch-003` | `geometry_crosschecks_same_carrier` | `topology` | `sim_operator_geometry_compatibility.py` | `sim_foundation_hopf_torus_geomstats_clifford.py` | `lego_stage_only` | none | stop if no new pairwise/coexistence evidence is produced |
 
-### Ready But Supporting Only
+### Deferred and Supporting Only
 
-| Queue Rank | Task ID | Lego | Target Stage | Recommended Sim | Depends On | Queue State | Blocked By | Stop Rule |
+| Queue Rank | Task ID | Lego | Deferred Target Stage | Recommended Sim | Depends On | Stage-Gate Status | Blocked By | Stop Rule |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `p6` | `lego-batch-004` | `geometry_crosschecks_same_carrier` | `coupling` | `sim_compound_operator_geometry.py` | `sim_berry_qfi_shell_paths.py` | `ready_but_supporting_only` | `successor_only_supporting` | stop if successor remains supporting-only after schema/truth hardening |
+| `p6` | `lego-batch-004` | `geometry_crosschecks_same_carrier` | `coupling` | `sim_compound_operator_geometry.py` | `sim_berry_qfi_shell_paths.py` | `lego_stage_support_only` | `successor_only_supporting` | stop if successor remains supporting-only after schema/truth hardening |
 
 ### Blocked On Lego
 
-| Queue Rank | Task ID | Lego | Target Stage | Recommended Sim | Queue State | Blocked By | Stop Rule |
+| Queue Rank | Task ID | Lego | Deferred Target Stage | Recommended Sim | Stage-Gate Status | Blocked By | Stop Rule |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `p6` | `lego-batch-011` | `operator_family_admission` | `coupling` | `sim_operator_geometry_compatibility.py` | `blocked_on_lego` | `deeper_lego_work_needed`, `successor_only_supporting` | stop if successor remains supporting-only after schema/truth hardening |
-| `p7` | `lego-batch-010` | `constraint_probe_admissibility` | `coupling` | `sim_constraint_shells_binding_crosscheck.py` | `blocked_on_lego` | `deeper_lego_work_needed` | stop if no new pairwise/coexistence evidence is produced |
-| `p9` | `lego-batch-012` | `entropy_family_crosschecks` | `coupling` | none | `blocked_on_lego` | `deeper_lego_work_needed`, `blocked_until_better_lego` | stop here; do not feed assembly until blocking lego condition is resolved |
+| `p6` | `lego-batch-011` | `operator_family_admission` | `coupling` | `sim_operator_geometry_compatibility.py` | `lego_stage_incomplete` | `deeper_lego_work_needed`, `successor_only_supporting` | stop if successor remains supporting-only after schema/truth hardening |
+| `p7` | `lego-batch-010` | `constraint_probe_admissibility` | `coupling` | `sim_constraint_shells_binding_crosscheck.py` | `lego_stage_incomplete` | `deeper_lego_work_needed` | stop if no new pairwise/coexistence evidence is produced |
+| `p9` | `lego-batch-012` | `entropy_family_crosschecks` | `coupling` | none | `lego_stage_incomplete` | `deeper_lego_work_needed`, `blocked_until_better_lego` | stop here; do not feed assembly until blocking lego condition is resolved |
 
 ### Blocked From Assembly
 
@@ -329,13 +345,13 @@ These legos appear clearly in `new docs`, but they are not yet cleanly represent
 - `entropy_family_crosschecks`
 - `carrier_admission_density_matrix`
 
-2. deepen the shallow tools at lego and pairwise stages:
+2. deepen the shallow tools inside the tool/tool-integration/lego stages:
 - `pyg`
 - `cvc5`
 - `e3nn`
 - `toponetx`
 
-3. run the ready-now queue before new bridge or axis work
+3. keep expanding registry lego coverage while using only bounded exploratory successors from already-strong local parents
 
 4. keep root-killed legos and falsifiers as retained evidence, not as discarded failures
 
@@ -357,5 +373,5 @@ The current program should be:
 
 1. build or strengthen all local legos
 2. force honest tool integration per lego
-3. run the queued pairwise and coexistence successors
-4. only then widen into topology reruns, seam work, and assembly
+3. finish the lego registry before any pairwise or coexistence successor is allowed to run
+4. only then widen into pairwise work, topology reruns, seam work, and assembly

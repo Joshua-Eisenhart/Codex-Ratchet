@@ -42,6 +42,13 @@ It IS:
    - Do not widen scope just to touch more tools.
    - Do not accept decorative tool presence.
 
+6. No coupling stage before lego-stage completion.
+   - Tools first.
+   - Tool integrations next.
+   - Then all legos, one by one.
+   - Only then couplings.
+   - A few strong local anchors do not authorize leaving the lego stage.
+
 ## 3. Current preferred research/build program
 
 ### Current reset before the next relaunch
@@ -50,7 +57,7 @@ Before the next automated relaunch, the controller should treat the repo as bein
 
 That means the next launch should default to:
 - tool-capability foundation / counterpart-forging work first
-- scientific successor-hardening second
+- direct lego-completion / lego-normalization work second
 
 Reason:
 - we can simulate nearly everything with numpy/classical machinery
@@ -83,7 +90,7 @@ Intent:
 
 ### Phase B — Layer connection tests
 
-Only after Phase A legos are complete enough:
+Only after the lego stage is complete:
 - one bounded connection at a time
 - test which geometry legos can run on which
 - test compatibility / layering / coexistence
@@ -214,13 +221,13 @@ The next honest default active layer is:
 - tool-capability foundation / counterpart-forging layer
 
 The next honest secondary layer is:
-- successor-hardening / first pairwise-coupling layer
+- direct lego-completion / lego-normalization layer only
 
 Recommended bounded packet sequence:
 1. one bounded tool-capability packet or tiny wave on non-overlapping files
 2. its direct baseline / canonical counterpart / comparison-note closure if that trio is not yet explicit
 3. maintenance-only truth/tool/registry/wiki patches tied directly to those outcomes
-4. only if the tool-capability lane is honestly blocked, use `operator_geometry_compatibility` and `compound_operator_geometry` as the bounded scientific successor-hardening fallback
+4. only if the tool-capability lane is honestly blocked, use direct lego-completion / lego-normalization packets as the bounded fallback
 5. stop if the best honest outcome remains baseline-only or supporting-only after rerun and audit; do not reopen already-canonical base geometry anchors just to stay busy
 
 Recommended seed examples for the tool-capability lane:

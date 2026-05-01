@@ -47,7 +47,8 @@ Current machine constraint:
 3. One worker = one bounded packet.
 4. Geometry-first on the constrained side.
 5. Tool integration must happen inside the order.
-6. Out-of-order or out-of-scope work counts as failure.
+6. No coupling/successor fallback before the lego stage is complete across the registry.
+7. Out-of-order or out-of-scope work counts as failure.
 
 ## 4. Active layer for the next automated run
 
@@ -58,7 +59,7 @@ Recommended default for the next relaunch:
 - tool-capability foundation / counterpart-forging layer
 
 Secondary fallback layer:
-- successor-hardening / first pairwise-coupling layer
+- direct lego-completion or lego-normalization work only
 
 Meaning:
 - stay inside bounded per-tool capability probes, bounded tool-native counterpart packets, or bounded baseline-vs-canonical comparison closures when the default tool-capability layer is chosen
@@ -77,8 +78,7 @@ Primary packet classes for the recommended relaunch:
 5. one bounded baseline-vs-canonical comparison packet when the pair already exists
 
 Secondary scientific fallback packets:
-6. `operator_geometry_compatibility`
-7. `compound_operator_geometry`
+6. direct lego-stage packets only
 
 Allowed maintenance-only packets:
 8. direct truth-surface patch tied to just-finished packet
@@ -98,6 +98,7 @@ Forbidden by default:
 - Carnot/Szilard broad engine packets
 - extracted Carnot/Szilard lego packets
 - graph/cell/persistence deepeners beyond this active layer
+- pairwise/coexistence fallback before lego-stage completion
 - bipartite/bridge packets
 - axis packets
 - flux packets
@@ -224,7 +225,7 @@ Before the next actual automated launch, fill these exact values:
 - run_duration = <value>
 - transport = <value>
 - active_layer = <fill from live queue; recommended default = tool-capability foundation / counterpart-forging>
-- allowed_packets = <fill exact bounded packet list at launch; use the tool-capability lane by default and successor-hardening only as fallback>
+- allowed_packets = <fill exact bounded packet list at launch; use the tool-capability lane by default and direct lego-completion / lego-normalization only as fallback>
 - forbidden_packets = [reopening exhausted local-forging anchors without named defect, Carnot/Szilard packets, bridge/axis/flux, broad sweeps, open-ended autoresearch, and any packet outside the declared active layer]
 - advancement_gate = all allowed packets canonical-by-process or honestly blocked, with audits green and maintenance caught up
 - concurrency_cap = <fill from live machine facts and file-set isolation>

@@ -21,13 +21,13 @@ Read first:
 4. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md
 5. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/16_lego_build_catalog.md
 6. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/17_actual_lego_registry.md
-7. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/sim_backlog_matrix.md
-8. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/sim_truth_audit.md
-9. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/tool_integration_maintenance_matrix.md
-10. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/controller_maintenance_checklist.md
-11. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/corrected-bounded-automation-plan.md
-12. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/launch-ready-claude-worker-orchestration-spec.md
-13. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/launch-ready-automated-run-manifest.md
+7. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/plans/sim_backlog_matrix.md
+8. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/plans/sim_truth_audit.md
+9. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/plans/tool_integration_maintenance_matrix.md
+10. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/plans/controller_maintenance_checklist.md
+11. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/plans/corrected-bounded-automation-plan.md
+12. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/plans/launch-ready-claude-worker-orchestration-spec.md
+13. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/plans/launch-ready-automated-run-manifest.md
 14. /Users/joshuaeisenhart/Desktop/Codex Ratchet/Makefile
 
 Transport:
@@ -52,13 +52,13 @@ Hard process rules:
 Active layer for this run:
 - <fill from live queue at launch>
 - recommended default: tool-capability foundation / counterpart-forging layer
-- secondary fallback: successor-hardening / first pairwise-coupling layer
+- secondary fallback: direct lego-completion / lego-normalization layer only
 
 Allowed packet list for this run, in order:
 1. <fill exact bounded tool-capability packet list from live authority surfaces>
 2. <fill direct baseline-vs-canonical comparison closures if the pair exists>
-3. if the tool-capability lane is honestly blocked, `operator_geometry_compatibility`
-4. if the tool-capability lane is honestly blocked, `compound_operator_geometry`
+3. if the tool-capability lane is honestly blocked, fill a direct lego-completion / lego-normalization packet from the live authority surfaces
+4. do not substitute pairwise/coexistence successor hardening before the lego stage is complete
 5. direct truth-surface patch tied to a just-finished packet
 6. direct tool-depth/manifest coherence patch tied to a just-finished packet
 7. direct registry/wiki patch tied to a just-finished packet
@@ -80,7 +80,8 @@ Forbidden packet classes for this run:
 - reopening exhausted local-forging anchors without a named defect
 - Carnot/Szilard broad engine packets
 - extracted Carnot/Szilard lego packets
-- graph/cell/persistence deepeners beyond the active successor-hardening layer
+- graph/cell/persistence deepeners beyond the active tool/lego layer
+- pairwise/coexistence successor hardening before lego-stage completion
 - bipartite/bridge packets
 - axis packets
 - flux packets
@@ -89,7 +90,8 @@ Forbidden packet classes for this run:
 - workers choosing alternate targets because they look useful
 
 Concurrency:
-- maximum active workers = 3
+- choose the maximum active worker count from live machine facts + file isolation
+- keep the cap low enough that Hermes can still reread every touched artifact/doc before promotion
 - use parallel workers only when file sets do not overlap
 - maintenance worker may run only on non-overlapping maintenance surfaces tied to just-finished packets
 

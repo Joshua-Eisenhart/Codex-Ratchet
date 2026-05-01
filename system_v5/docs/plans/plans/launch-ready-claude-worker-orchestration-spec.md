@@ -193,7 +193,7 @@ Time remaining is not a gate.
 ## 13. Launch template for the next automated run
 
 Worker orchestration at launch should explicitly say:
-- active layer: tool-capability foundation / counterpart-forging OR successor-hardening / first pairwise-coupling
+- active layer: tool-capability foundation / counterpart-forging OR direct lego-completion / lego-normalization
 - worker model: bounded Claude Code print-mode workers
 - concurrency cap: machine-grounded and file-isolation-grounded
 - allowed packet list: exact list from section 6

@@ -13,26 +13,27 @@ Use this checklist immediately before starting a real automated run.
 - [ ] `docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md`
 - [ ] `docs/16_lego_build_catalog.md`
 - [ ] `docs/17_actual_lego_registry.md`
-- [ ] `docs/plans/sim_backlog_matrix.md`
-- [ ] `docs/plans/sim_truth_audit.md`
-- [ ] `docs/plans/tool_integration_maintenance_matrix.md`
-- [ ] `docs/plans/controller_maintenance_checklist.md`
-- [ ] `docs/plans/corrected-bounded-automation-plan.md`
-- [ ] `docs/plans/launch-ready-claude-worker-orchestration-spec.md`
-- [ ] `docs/plans/launch-ready-automated-run-manifest.md`
-- [ ] `docs/plans/launch-prompt-bounded-geometry-first-automated-run.md`
+- [ ] `docs/plans/plans/sim_backlog_matrix.md`
+- [ ] `docs/plans/plans/sim_truth_audit.md`
+- [ ] `docs/plans/plans/tool_integration_maintenance_matrix.md`
+- [ ] `docs/plans/plans/controller_maintenance_checklist.md`
+- [ ] `docs/plans/plans/corrected-bounded-automation-plan.md`
+- [ ] `docs/plans/plans/launch-ready-claude-worker-orchestration-spec.md`
+- [ ] `docs/plans/plans/launch-ready-automated-run-manifest.md`
+- [ ] `docs/plans/plans/launch-prompt-bounded-geometry-first-automated-run.md`
 - [ ] `Makefile`
 
 ## Confirm active layer
 - [ ] active layer is explicitly chosen from the live queue before launch
 - [ ] recommended default = tool-capability foundation / counterpart-forging
-- [ ] if a scientific fallback layer is chosen instead, the reason it beat the tool-capability lane is explicit
+- [ ] if a fallback layer is chosen instead, it is direct lego-completion / lego-normalization only and the reason it beat the tool-capability lane is explicit
 - [ ] no widening beyond this layer is implicitly queued
 
 ## Confirm allowed packet list
 - [ ] exact bounded packet list is filled from live authority surfaces before launch
 - [ ] if using the recommended default, the list primarily contains tool-capability packets and/or baseline-vs-canonical comparison closures
-- [ ] if using the scientific fallback, the list stays bounded to `operator_geometry_compatibility`, `compound_operator_geometry`, or direct maintenance tied to them
+- [ ] if using the fallback, the list stays bounded to direct lego-completion / lego-normalization packets only
+- [ ] no pairwise/coexistence successor hardening is being used as fallback before lego-stage completion
 - [ ] maintenance-only packets are tied directly to just-finished work
 
 ## Confirm forbidden packet classes
@@ -40,6 +41,7 @@ Use this checklist immediately before starting a real automated run.
 - [ ] Carnot/Szilard broad engine packets
 - [ ] extracted Carnot/Szilard lego packets
 - [ ] graph/cell/persistence deepeners beyond this active layer
+- [ ] pairwise/coexistence successor hardening before lego-stage completion
 - [ ] bipartite/bridge packets
 - [ ] axis packets
 - [ ] flux packets
@@ -51,7 +53,7 @@ Use this checklist immediately before starting a real automated run.
 - [ ] Hermes = controller only
 - [ ] Claude Code print-mode workers only (`claude -p`)
 - [ ] no tmux/interactive swarm assumptions
-- [ ] concurrency cap = 3
+- [ ] concurrency cap is chosen from live machine facts + file isolation, and stays low enough that Hermes can still reread every touched artifact/doc before promotion
 - [ ] file sets for parallel workers are non-overlapping
 
 ## Confirm canonical interpreter
@@ -76,4 +78,4 @@ Use this checklist immediately before starting a real automated run.
 
 ## Final go/no-go
 - [ ] If any box above is not checked, do not launch
-- [ ] If all boxes are checked, launch from `launch-prompt-bounded-geometry-first-automated-run.md`
+- [ ] If all boxes are checked, launch from `docs/plans/plans/launch-prompt-bounded-geometry-first-automated-run.md`

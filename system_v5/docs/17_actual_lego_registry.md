@@ -16,6 +16,13 @@ If one concrete math object deserves its own local simulation, it should get its
 
 This file is intended to become exhaustive. It is materially closer now, but it should still be treated as an active registry rather than a finished canon list.
 
+Build guardrail:
+- this registry is still the main lego completion surface
+- tool sims, tool integrations, and lego rows remain the main ongoing work
+- bounded coupling exploration may run from already-strong local parents during this process
+- exploratory coupling does not mean the broader coupling stage is earned
+- bridge / axis / engine claims remain later and gated
+
 ## Source Keys
 
 - `01` = `docs/01_pca_qpca_alignment.md`
@@ -216,6 +223,8 @@ This file is intended to become exhaustive. It is materially closer now, but it 
 | `bridge_weighted_entropy` | Bridge-weighted entropy | entropy | shell-weighted or bridge-weighted entropy | late local candidate only after lower entropy legos are clean | `07` | `sim_lego_entropy_shell_history_weighted.py` | `sim_lego_entropy_shell_history_weighted_results.json` | `blocked_as_late_surface` | yes | keep listed, but not as an early default lego |
 
 ## Bridge, Axis, And Support Legos
+
+Registry listing only: these late-surface rows are not current-stage queue permission while the tool/tool-integration/lego stages are still open.
 
 | Lego ID | Lego Name | Lego Type | Concrete Math | Minimal Honest Sim | Source Docs | Suggested First Probe | Best Existing Result | Current Coverage | Useful If Rejected | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |

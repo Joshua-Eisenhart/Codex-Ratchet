@@ -1,6 +1,6 @@
 {
   "name": "sim_cvc5_bcs_gap_equation_constraint",
-  "description": "BCS superconductivity gap equation; cvc5 proves \u0394 > 0; UNSAT for \u0394 < 0",
+  "description": "BCS superconductivity gap equation; cvc5 proves Δ > 0; UNSAT for Δ < 0",
   "tool_manifest": {
     "pytorch": {
       "tried": false,
@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "core tool: proves gap \u0394 > 0 from BCS constraint; UNSAT for \u0394 < 0"
+      "reason": "core tool: proves gap Δ > 0 from BCS constraint; UNSAT for Δ < 0"
     },
     "sympy": {
       "tried": true,
@@ -110,7 +110,7 @@
     "test_1_sympy_bcs_gap": {
       "bcs_gap_equation": "Eq(Delta, 2*omega_D*exp(-1/(N_0*g)))",
       "rhs_positive": "-Delta + 2*omega_D*exp(-1/(N_0*g))",
-      "gap_form": "\u0394 = 2\u03c9_D exp(-1/(gN_0))",
+      "gap_form": "Δ = 2ω_D exp(-1/(gN_0))",
       "status": "PASS"
     },
     "test_2_zero_temperature_limit": {
@@ -124,5 +124,7 @@
       "status": "PASS"
     }
   },
-  "classification": "canonical"
+  "classification": "classical_baseline",
+  "original_classification": "canonical",
+  "downgrade_reason": "overclassification_fail_status_2026-05-01"
 }

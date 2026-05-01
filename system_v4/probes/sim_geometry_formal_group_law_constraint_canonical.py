@@ -428,7 +428,9 @@ if __name__ == "__main__":
         "positive": run_positive_tests(),
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
-        "classification": "canonical",
+        "classification": "classical_baseline",
+        "original_classification": "canonical",
+        "downgrade_reason": "canonical_failed_checks_2026-05-01",
     }
 
     # Mark tools as used based on what was actually called

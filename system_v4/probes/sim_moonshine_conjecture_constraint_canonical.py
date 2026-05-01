@@ -369,7 +369,9 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "classification": "canonical",
+        "classification": "classical_baseline",
+        "original_classification": "canonical",
+        "downgrade_reason": "overclassification_fail_status_2026-05-01",
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

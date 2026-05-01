@@ -83,35 +83,35 @@
     "test_2_coaugmentation": {
       "status": "PASS",
       "description": "Coaugmentation counit formula verified",
-      "formula": "\u03b5: L_E X \u2192 X with \u03b5 \u2218 \u03b7 = Id",
+      "formula": "ε: L_E X → X with ε ∘ η = Id",
       "satisfies_counit_law": true,
       "interpretation": "Coaugmentation counit satisfies naturality"
     },
     "test_3_homology_invariance": {
       "status": "PASS",
       "description": "E-homology invariance constraint is satisfiable",
-      "formula": "E_*(L_E X) \u2245 E_*(X)",
+      "formula": "E_*(L_E X) ≅ E_*(X)",
       "interpretation": "Localized space preserves E-homology"
     }
   },
   "negative": {
     "test_1_non_idempotence_unsat": {
       "status": "PASS",
-      "description": "L\u00b2 \u2260 L constraint is UNSAT (proves idempotence necessity)",
+      "description": "L² ≠ L constraint is UNSAT (proves idempotence necessity)",
       "satisfiable": false,
       "interpretation": "Non-idempotent operator cannot be a valid localization functor"
     },
     "test_2_homology_mismatch_unsat": {
       "status": "FAIL",
-      "description": "Homology mismatch (E_*(X) \u2260 E_*(L_E X)) is UNSAT",
+      "description": "Homology mismatch (E_*(X) ≠ E_*(L_E X)) is UNSAT",
       "satisfiable": true,
       "interpretation": "Localization must preserve homology"
     },
     "test_3_non_natural_coaugmentation_unsat": {
       "status": "FAIL",
-      "description": "Non-natural coaugmentation (\u03b5 \u2218 \u03b7 \u2260 id) is UNSAT",
+      "description": "Non-natural coaugmentation (ε ∘ η ≠ id) is UNSAT",
       "satisfiable": true,
-      "interpretation": "Coaugmentation must be natural; \u03b5 \u2218 \u03b7 = id is mandatory"
+      "interpretation": "Coaugmentation must be natural; ε ∘ η = id is mandatory"
     }
   },
   "boundary": {
@@ -119,20 +119,22 @@
       "status": "PASS",
       "description": "Zero matrix is trivially idempotent",
       "satisfiable": true,
-      "interpretation": "L = 0 satisfies L\u00b2 = L"
+      "interpretation": "L = 0 satisfies L² = L"
     },
     "test_2_identity_localization": {
       "status": "PASS",
       "description": "Identity matrix is idempotent",
       "satisfiable": true,
-      "interpretation": "L = Id satisfies L\u00b2 = L (no localization needed)"
+      "interpretation": "L = Id satisfies L² = L (no localization needed)"
     },
     "test_3_projection_idempotent": {
       "status": "PASS",
       "description": "Projection matrix is idempotent",
       "satisfiable": true,
-      "interpretation": "L = [[1,0],[0,0]] satisfies L\u00b2 = L"
+      "interpretation": "L = [[1,0],[0,0]] satisfies L² = L"
     }
   },
-  "classification": "canonical"
+  "classification": "classical_baseline",
+  "original_classification": "canonical",
+  "downgrade_reason": "overclassification_fail_status_2026-05-01"
 }

@@ -23,7 +23,7 @@ import torch
 os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
 from clifford import Cl
 
-classification = "canonical"
+classification = "classical_baseline"
 divergence_log = (
     "Bridge probe: torch fits a classical rotation parameter while clifford "
     "witnesses the corresponding geometric-algebra rotor action; this is a "
@@ -210,6 +210,8 @@ def main() -> int:
         "name": "sim_torch_clifford_ga_bridge",
         "timestamp": __import__("datetime").datetime.now(__import__("datetime").UTC).isoformat(),
         "classification": classification,
+        "original_classification": "canonical",
+        "downgrade_reason": "canonical_failed_checks_2026-05-01",
         "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

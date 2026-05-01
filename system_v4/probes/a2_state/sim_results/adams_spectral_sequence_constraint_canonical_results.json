@@ -1,6 +1,6 @@
 {
   "name": "adams_spectral_sequence_constraint_canonical",
-  "description": "Adams spectral sequence: cvc5 proves E_\u221e^{s,t} = 0 for t < s; sympy verifies E_2 page",
+  "description": "Adams spectral sequence: cvc5 proves E_∞^{s,t} = 0 for t < s; sympy verifies E_2 page",
   "tool_manifest": {
     "pytorch": {
       "tried": false,
@@ -25,7 +25,7 @@
     "sympy": {
       "tried": true,
       "used": true,
-      "reason": "supportive: verify E_2 page computation for \u03c0_*(S^0) at p=2"
+      "reason": "supportive: verify E_2 page computation for π_*(S^0) at p=2"
     },
     "clifford": {
       "tried": false,
@@ -79,7 +79,7 @@
   },
   "positive": {
     "test_valid_pairs_above_line": {
-      "description": "E_\u221e^{s,t} allowed for t >= s",
+      "description": "E_∞^{s,t} allowed for t >= s",
       "pairs": [
         {
           "s": 0,
@@ -116,7 +116,7 @@
       "status": "pass"
     },
     "test_e2_page_pi_star_s0": {
-      "description": "Verify E_2^{0,0} = Z/2 for \u03c0_*(S^0)",
+      "description": "Verify E_2^{0,0} = Z/2 for π_*(S^0)",
       "status": "pass",
       "e2_00": "Z/2",
       "vanishing": [
@@ -135,7 +135,7 @@
   },
   "negative": {
     "test_unsat_below_line": {
-      "description": "UNSAT: E_\u221e^{s,t} for t < s",
+      "description": "UNSAT: E_∞^{s,t} for t < s",
       "invalid_pairs": [
         {
           "s": 1,
@@ -167,20 +167,20 @@
     },
     "test_unsat_infinite_torsion_stem": {
       "description": "UNSAT: infinite torsion in positive stem",
-      "claim": "\u03c0_n^s has infinite 2-primary part for n > 0",
+      "claim": "π_n^s has infinite 2-primary part for n > 0",
       "status": "pass",
       "reasoning": "Serre finiteness theorem blocks this claim"
     },
     "test_unsat_non_convergence": {
       "description": "UNSAT: spectral sequence does not converge",
-      "claim": "E_\u221e page differs from \u03c0_*(S^0)",
+      "claim": "E_∞ page differs from π_*(S^0)",
       "status": "pass",
       "reasoning": "Adams convergence theorem blocks this"
     }
   },
   "boundary": {
     "test_large_bidegrees": {
-      "description": "E_\u221e vanishing at large (s,t)",
+      "description": "E_∞ vanishing at large (s,t)",
       "pairs": [
         {
           "s": 10,
@@ -201,7 +201,7 @@
       "status": "pass"
     },
     "test_e2_vs_einf_agreement": {
-      "description": "E_2^{s,t} = E_\u221e^{s,t} for (s,t) in low range",
+      "description": "E_2^{s,t} = E_∞^{s,t} for (s,t) in low range",
       "range": "(s,t) with s <= 3, t <= 10",
       "status": "pass",
       "note": "Adams convergence theorem guarantees this"
@@ -217,5 +217,7 @@
       "note": "chromatic structure emerges at different primes"
     }
   },
-  "classification": "canonical"
+  "classification": "classical_baseline",
+  "original_classification": "canonical",
+  "downgrade_reason": "overclassification_fail_status_2026-05-01"
 }

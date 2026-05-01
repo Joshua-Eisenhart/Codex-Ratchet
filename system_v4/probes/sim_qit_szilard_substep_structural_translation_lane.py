@@ -105,7 +105,9 @@ def main() -> None:
 
     out = {
         "name": "qit_szilard_substep_structural_translation_lane",
-        "classification": CLASSIFICATION,
+        "classification": CLASSIFICATION if all_pass else "classical_baseline",
+        "original_classification": CLASSIFICATION,
+        "downgrade_reason": None if all_pass else "summary_all_pass_false_2026-05-01",
         "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,

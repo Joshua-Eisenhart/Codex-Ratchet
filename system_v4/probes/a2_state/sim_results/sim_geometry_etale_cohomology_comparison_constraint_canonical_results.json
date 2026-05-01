@@ -1,5 +1,5 @@
 {
-  "name": "EtaleCohomologyComparison \u2014 rank(H^i_et) = rank(H^i_Betti)",
+  "name": "EtaleCohomologyComparison — rank(H^i_et) = rank(H^i_Betti)",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "load_bearing: proves rank equality constraint via integer linear arithmetic; UNSAT when \u00e9tale_rank != betti_rank"
+      "reason": "load_bearing: proves rank equality constraint via integer linear arithmetic; UNSAT when étale_rank != betti_rank"
     },
     "sympy": {
       "tried": true,
@@ -134,5 +134,8 @@
       ]
     }
   },
-  "classification": "canonical"
+  "classification": "classical_baseline",
+  "original_classification": "canonical",
+  "downgrade_reason": "stale_source_newer_than_result_2026-05-01",
+  "stale_source": "sim_geometry_etale_cohomology_comparison_constraint_canonical.py"
 }

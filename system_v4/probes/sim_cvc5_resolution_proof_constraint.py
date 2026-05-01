@@ -33,8 +33,8 @@ classification = "canonical"
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed -- proof verification does not use autograd"},
-    "pyg": {"tried": False, "used": False, "reason": "not needed -- clause graph is handled by cvc5 internally"},
-    "z3": {"tried": False, "used": False, "reason": "alternative proof tool; cvc5 is primary"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed -- clause graph is handled by cvc5 internally and no graph neural computation is used"},
+    "z3": {"tried": False, "used": False, "reason": "alternative proof tool; cvc5 is primary for the resolution completeness evidence path"},
     "cvc5": {"tried": True, "used": True, "reason": "load_bearing: UNSAT/SAT on resolution completeness constraint (empty clause requirement via QF_LIA)"},
     "sympy": {"tried": True, "used": True, "reason": "supportive: symbolic verification of resolution steps and literal elimination"},
     "clifford": {"tried": False, "used": False, "reason": "not needed -- no algebraic structure here"},
@@ -305,16 +305,13 @@ if __name__ == "__main__":
     neg = run_negative_tests()
     bnd = run_boundary_tests()
 
-    all_pass = (
-        pos.get("pass", False)
-        and any(v.get("pass", False) for k, v in pos.items() if isinstance(v, dict) and "pass" in v)
-        and any(v.get("pass", False) for k, v in neg.items() if isinstance(v, dict) and "pass" in v)
-        and any(v.get("pass", False) for k, v in bnd.items() if isinstance(v, dict) and "pass" in v)
-    )
+    all_pass = bool(pos.get("pass")) and bool(neg.get("pass")) and bool(bnd.get("pass"))
 
     results = {
         "name": "cvc5_resolution_proof_constraint",
-        "classification": classification,
+        "classification": classification if all_pass else "classical_baseline",
+        "original_classification": classification,
+        "downgrade_reason": None if all_pass else "summary_all_pass_false_2026-05-01",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

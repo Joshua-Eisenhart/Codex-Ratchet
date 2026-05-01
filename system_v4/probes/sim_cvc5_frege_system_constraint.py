@@ -38,7 +38,7 @@ classification = "canonical"
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed -- proof logic is symbolic"},
     "pyg": {"tried": False, "used": False, "reason": "not needed -- no graph learning layer"},
-    "z3": {"tried": False, "used": False, "reason": "alternative solver; cvc5 is primary"},
+    "z3": {"tried": False, "used": False, "reason": "alternative solver; cvc5 is primary; this check relies on cvc5 QF_LRA verdicts rather than z3"},
     "cvc5": {"tried": True, "used": True, "reason": "load_bearing: UNSAT / SAT verdicts on modus ponens soundness constraint via QF_LRA"},
     "sympy": {"tried": True, "used": True, "reason": "supportive: symbolic truth tables and implication verification"},
     "clifford": {"tried": False, "used": False, "reason": "not needed -- no algebraic structure"},
@@ -392,15 +392,13 @@ if __name__ == "__main__":
     neg = run_negative_tests()
     bnd = run_boundary_tests()
 
-    all_pass = (
-        any(v.get("pass", False) for k, v in pos.items() if isinstance(v, dict) and "pass" in v)
-        and any(v.get("pass", False) for k, v in neg.items() if isinstance(v, dict) and "pass" in v)
-        and any(v.get("pass", False) for k, v in bnd.items() if isinstance(v, dict) and "pass" in v)
-    )
+    all_pass = bool(pos.get("pass")) and bool(neg.get("pass")) and bool(bnd.get("pass"))
 
     results = {
         "name": "cvc5_frege_system_constraint",
-        "classification": classification,
+        "classification": classification if all_pass else "classical_baseline",
+        "original_classification": classification,
+        "downgrade_reason": None if all_pass else "summary_all_pass_false_2026-05-01",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

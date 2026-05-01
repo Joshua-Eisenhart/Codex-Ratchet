@@ -19,7 +19,7 @@ from datetime import UTC, datetime
 
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
 PROBE_DIR = os.path.dirname(os.path.abspath(__file__))
 if PROBE_DIR not in sys.path:
     sys.path.insert(0, PROBE_DIR)
@@ -193,6 +193,8 @@ if __name__ == "__main__":
         "name": "hopf_torus_rank_stratification",
         "generated_at": datetime.now(UTC).isoformat(),
         "classification": classification,
+        "original_classification": "canonical",
+        "downgrade_reason": "canonical_failed_checks_2026-05-01",
         "classification_note": "Nested Hopf torus leaves survive with rank 2 in the interior and collapse to circles on the eta-boundaries.",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

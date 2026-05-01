@@ -14,7 +14,7 @@ import json
 import os
 import sys
 
-classification = "canonical"
+classification = "classical_baseline"
 
 # =====================================================================
 # TOOL MANIFEST
@@ -468,6 +468,8 @@ if __name__ == "__main__":
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
         "classification": classification,
+        "original_classification": "canonical",
+        "downgrade_reason": "overclassification_fail_status_2026-05-01",
     }
 
     # Mark tools as used

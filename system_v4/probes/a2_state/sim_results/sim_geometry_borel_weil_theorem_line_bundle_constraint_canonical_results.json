@@ -1,6 +1,6 @@
 {
   "name": "Borel-Weil Theorem Line Bundle Constraint",
-  "description": "H\u2070(G/B, L_\u03bb) nonzero only for dominant weights \u03bb",
+  "description": "H⁰(G/B, L_λ) nonzero only for dominant weights λ",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -82,7 +82,7 @@
       "satisfiable": true,
       "weight": 1,
       "h0_dimension": 2,
-      "expected": "SAT (dominant weights have non-zero H\u2070)"
+      "expected": "SAT (dominant weights have non-zero H⁰)"
     },
     "positive_sum_dominant_weights": {
       "satisfiable": true,
@@ -93,23 +93,23 @@
       "satisfiable": true,
       "weight": 0,
       "h0_dimension": 1,
-      "expected": "SAT (zero weight has H\u2070 = 1)"
+      "expected": "SAT (zero weight has H⁰ = 1)"
     }
   },
   "negative": {
     "negative_antidominant_h0_nonzero_unsat": {
       "satisfiable": false,
-      "expected": "UNSAT (anti-dominant weight cannot have nonzero H\u2070)",
+      "expected": "UNSAT (anti-dominant weight cannot have nonzero H⁰)",
       "status": "PASS"
     },
     "negative_singular_h0_nonzero_unsat": {
       "satisfiable": true,
-      "expected": "UNSAT (singular weights have vanishing H\u2070)",
+      "expected": "UNSAT (singular weights have vanishing H⁰)",
       "status": "FAIL"
     },
     "negative_interior_violation_unsat": {
       "satisfiable": false,
-      "expected": "UNSAT (non-dominant interior weight has H\u2070 = 0)",
+      "expected": "UNSAT (non-dominant interior weight has H⁰ = 0)",
       "status": "PASS"
     }
   },
@@ -118,20 +118,22 @@
       "satisfiable": true,
       "on_wall": true,
       "h0_dimension": 0,
-      "expected": "SAT (wall weights may have H\u2070 = 0)"
+      "expected": "SAT (wall weights may have H⁰ = 0)"
     },
     "boundary_trivial_bundle": {
       "satisfiable": true,
       "weight": 0,
       "h0_dimension": 1,
-      "expected": "SAT (trivial bundle has H\u2070 = 1)"
+      "expected": "SAT (trivial bundle has H⁰ = 1)"
     },
     "boundary_minimal_dominant": {
       "satisfiable": true,
       "weight": 1,
       "h0_dimension": 2,
-      "expected": "SAT (minimal dominant weight \u03c9\u2081 has H\u2070 = dim V_\u03c9\u2081)"
+      "expected": "SAT (minimal dominant weight ω₁ has H⁰ = dim V_ω₁)"
     }
   },
-  "classification": "canonical"
+  "classification": "classical_baseline",
+  "original_classification": "canonical",
+  "downgrade_reason": "overclassification_fail_status_2026-05-01"
 }

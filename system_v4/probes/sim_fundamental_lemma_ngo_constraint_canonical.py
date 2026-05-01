@@ -37,7 +37,7 @@ TOOL_INTEGRATION_DEPTH = {
     "pytorch": None,
     "pyg": None,
     "z3": None,
-    "cvc5": "load_bearing",
+    "cvc5": None,
     "sympy": "supportive",
     "clifford": None,
     "geomstats": None,
@@ -70,6 +70,7 @@ except ImportError:
 try:
     import cvc5
     TOOL_MANIFEST["cvc5"]["tried"] = True
+    TOOL_INTEGRATION_DEPTH["cvc5"] = "load_bearing"
 except ImportError:
     TOOL_MANIFEST["cvc5"]["reason"] = "not installed"
 
@@ -422,6 +423,11 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    if TOOL_MANIFEST["cvc5"]["tried"]:
+        TOOL_MANIFEST["cvc5"]["used"] = True
+    if TOOL_MANIFEST["sympy"]["tried"]:
+        TOOL_MANIFEST["sympy"]["used"] = True
+
     results = {
         "name": "Fundamental Lemma (Ngô) — Constraint Canonical",
         "tool_manifest": TOOL_MANIFEST,
@@ -429,12 +435,10 @@ if __name__ == "__main__":
         "positive": run_positive_tests(),
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
-        "classification": "canonical",
+        "classification": "classical_baseline",
+        "original_classification": "canonical",
+        "downgrade_reason": "canonical_failed_checks_2026-05-01",
     }
-
-    # Mark tools as used
-    TOOL_MANIFEST["cvc5"]["used"] = True
-    TOOL_MANIFEST["sympy"]["used"] = True
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

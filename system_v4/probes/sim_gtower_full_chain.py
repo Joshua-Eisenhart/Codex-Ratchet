@@ -154,7 +154,9 @@ if __name__ == "__main__":
                 and _t(bnd.get("z3_chain_monotone_ok")))
     results = {
         "name": "sim_gtower_full_chain",
-        "classification": "canonical",
+        "classification": "classical_baseline",
+        "original_classification": "canonical",
+        "downgrade_reason": "overclassification_fail_status_2026-05-01",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

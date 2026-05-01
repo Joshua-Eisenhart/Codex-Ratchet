@@ -1,6 +1,6 @@
 {
   "name": "sim_axis_couple_1_2_curvature_scale",
-  "classification": "canonical",
+  "classification": "classical_baseline",
   "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 2); conformal geometry coupling",
   "exclusion_claim": "coupling excludes Axis 1 curvature independence from Axis 2 scale when scale field is position-dependent; uniform scaling leaves curvature invariant; coupling strength = |d^2 Omega / dx^2|",
   "tool_manifest": {
@@ -17,7 +17,7 @@
     "z3": {
       "tried": true,
       "used": true,
-      "reason": "load_bearing: UNSAT \u2014 Omega is position-dependent AND Riemann tensor unchanged; structural impossibility of curvature invariance under non-uniform rescaling"
+      "reason": "load_bearing: UNSAT — Omega is position-dependent AND Riemann tensor unchanged; structural impossibility of curvature invariance under non-uniform rescaling"
     },
     "cvc5": {
       "tried": false,
@@ -134,5 +134,8 @@
       16.0
     ]
   },
-  "overall_pass": true
+  "overall_pass": true,
+  "original_classification": "canonical",
+  "downgrade_reason": "stale_source_newer_than_result_2026-05-01",
+  "stale_source": "sim_axis_couple_1_2_curvature_scale.py"
 }

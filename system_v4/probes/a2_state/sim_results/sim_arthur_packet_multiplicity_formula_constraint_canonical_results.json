@@ -1,5 +1,5 @@
 {
-  "name": "Arthur Packet Multiplicity Formula \u2014 Constraint Canonical",
+  "name": "Arthur Packet Multiplicity Formula — Constraint Canonical",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -18,7 +18,7 @@
     },
     "cvc5": {
       "tried": false,
-      "used": true,
+      "used": false,
       "reason": "not installed"
     },
     "sympy": {
@@ -66,7 +66,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -84,7 +84,7 @@
   },
   "boundary": {
     "boundary_test_1_trace_formula": {
-      "description": "Arthur trace formula: \u03a3 m(\u03c0) \u00b7 tr(\u03c0(f)) structure",
+      "description": "Arthur trace formula: Σ m(π) · tr(π(f)) structure",
       "formula": "m_pi1*tr_pi1 + m_pi2*tr_pi2",
       "is_linear": "True",
       "pass": true
@@ -98,5 +98,7 @@
       "pass": false
     }
   },
-  "classification": "canonical"
+  "classification": "classical_baseline",
+  "original_classification": "canonical",
+  "downgrade_reason": "canonical_failed_checks_2026-05-01"
 }

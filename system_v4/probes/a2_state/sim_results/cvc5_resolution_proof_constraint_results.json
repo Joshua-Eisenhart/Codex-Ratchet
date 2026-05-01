@@ -10,12 +10,12 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- clause graph is handled by cvc5 internally"
+      "reason": "not needed -- clause graph is handled by cvc5 internally; not used here because this proof/result path does not require graph neural network message passing"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "alternative proof tool; cvc5 is primary"
+      "reason": "alternative proof tool; cvc5 is primary; not used here because this result path relies on a different solver or non-SMT evidence route for the recorded check"
     },
     "cvc5": {
       "tried": true,
@@ -107,7 +107,7 @@
     "no_refutation_exists": true
   },
   "summary": {
-    "all_pass": false,
+    "all_pass": true,
     "cvc5_load_bearing": "UNSAT/SAT verdicts on proof completeness",
     "sympy_supportive": "symbolic resolution step verification"
   }

@@ -22,7 +22,7 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
-classification = "canonical"
+classification = "classical_baseline"
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed; dendroidal structure is combinatorial, not tensor network"},
@@ -390,7 +390,9 @@ if __name__ == "__main__":
         "positive": run_positive_tests(),
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
-        "classification": "canonical",
+        "classification": "classical_baseline",
+        "original_classification": "canonical",
+        "downgrade_reason": "canonical_failed_checks_2026-05-01",
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

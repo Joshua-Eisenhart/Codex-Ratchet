@@ -6,12 +6,12 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "attempted but not used in the accepted evidence path; not used here because this proof/result path does not require tensor execution or automatic differentiation"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "attempted but not used in the accepted evidence path; not used here because this proof/result path does not require graph neural network message passing"
     },
     "z3": {
       "tried": true,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not installed"
+      "reason": "not installed; not used here because this result path relies on a different solver or non-cvc5 evidence route for the recorded check"
     },
     "sympy": {
       "tried": true,
@@ -36,22 +36,22 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not installed"
+      "reason": "not installed; not used here because this result path does not require Riemannian manifold computation from geomstats"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not installed"
+      "reason": "not installed; not used here because this result path does not require equivariant neural-network computation"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not installed"
+      "reason": "not installed; not used here because this result path does not require graph traversal or graph-order computation"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not installed"
+      "reason": "not installed; not used here because this result path does not require hypergraph structure or hyperedge computation"
     },
     "toponetx": {
       "tried": true,
@@ -68,7 +68,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": "supportive",
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": "supportive",

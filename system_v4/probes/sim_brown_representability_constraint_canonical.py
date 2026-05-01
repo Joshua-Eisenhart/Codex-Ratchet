@@ -446,7 +446,7 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
-    classification = "canonical"
+    classification = "classical_baseline"
 
     results = {
         "name": "Brown Representability Theorem",
@@ -456,6 +456,8 @@ if __name__ == "__main__":
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
         "classification": classification,
+        "original_classification": "canonical",
+        "downgrade_reason": "canonical_failed_checks_2026-05-01",
     }
 
     out_dir = os.path.join(

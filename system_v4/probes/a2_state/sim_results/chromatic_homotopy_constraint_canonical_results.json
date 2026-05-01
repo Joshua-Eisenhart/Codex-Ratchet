@@ -1,6 +1,6 @@
 {
   "name": "chromatic_homotopy_constraint_canonical",
-  "description": "Chromatic homotopy: cvc5 proves K(n) orthogonality (n\u2260m => K(n)_*(K(m))=0); sympy verifies K(0)=HQ, K(1)=mod-p K-theory",
+  "description": "Chromatic homotopy: cvc5 proves K(n) orthogonality (n≠m => K(n)_*(K(m))=0); sympy verifies K(0)=HQ, K(1)=mod-p K-theory",
   "tool_manifest": {
     "pytorch": {
       "tried": false,
@@ -79,7 +79,7 @@
   },
   "positive": {
     "test_orthogonality_distinct_heights": {
-      "description": "K(n)_*(K(m)) = 0 for n \u2260 m",
+      "description": "K(n)_*(K(m)) = 0 for n ≠ m",
       "pairs": [
         {
           "K(n)": 0,
@@ -111,7 +111,7 @@
       "status": "pass"
     },
     "test_self_pairing": {
-      "description": "K(n)_*(K(n)) \u2260 0 (same height does not vanish)",
+      "description": "K(n)_*(K(n)) ≠ 0 (same height does not vanish)",
       "pairs": [
         {
           "K(n)": 0,
@@ -144,12 +144,12 @@
         "K(1)": "mod-p K-theory (Quillen K-theory localized at p)",
         "K(n)": "height-n Morava K-theory"
       },
-      "convergence": "chromatic convergence theorem via E_\u221e page"
+      "convergence": "chromatic convergence theorem via E_∞ page"
     }
   },
   "negative": {
     "test_unsat_nonzero_orthogonal": {
-      "description": "UNSAT: K(n)_*(K(m)) \u2260 0 for n \u2260 m",
+      "description": "UNSAT: K(n)_*(K(m)) ≠ 0 for n ≠ m",
       "invalid_claims": [
         {
           "K(n)": 0,
@@ -230,11 +230,13 @@
       "note": "K(1) at p=2 differs from K(1) at p=3 (height = p-1)"
     },
     "test_chromatic_convergence": {
-      "description": "Chromatic convergence: \u03c0_*(X) recovered from K(n)_*(X)",
+      "description": "Chromatic convergence: π_*(X) recovered from K(n)_*(X)",
       "status": "pass",
       "theorem": "Chromatic convergence theorem (Hopkins-Ravenel)",
       "condition": "orthogonality of K(n) forces convergence"
     }
   },
-  "classification": "canonical"
+  "classification": "classical_baseline",
+  "original_classification": "canonical",
+  "downgrade_reason": "overclassification_fail_status_2026-05-01"
 }

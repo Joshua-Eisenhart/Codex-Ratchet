@@ -1,6 +1,6 @@
 {
   "name": "sim_gtower_e8_root_system_240",
-  "classification": "canonical",
+  "classification": "classical_baseline",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -88,7 +88,7 @@
       "tool": "sympy"
     },
     "P2_root_length_squared": {
-      "description": "All 240 roots satisfy |root|\u00b2 = 2 (simply-laced)",
+      "description": "All 240 roots satisfy |root|² = 2 (simply-laced)",
       "num_checked": 240,
       "num_violations": 0,
       "pass": true,
@@ -97,13 +97,13 @@
   },
   "negative": {
     "P3_z3_count_not_240_unsat": {
-      "description": "z3 UNSAT: asserting |roots|\u2260240 is unsatisfiable",
+      "description": "z3 UNSAT: asserting |roots|≠240 is unsatisfiable",
       "z3_status": "unsat",
       "pass": true,
       "tool": "z3"
     },
     "N1_z3_length_not_2_unsat": {
-      "description": "z3 UNSAT: asserting length\u00b2\u22602 for any root is unsatisfiable (simply-laced)",
+      "description": "z3 UNSAT: asserting length²≠2 for any root is unsatisfiable (simply-laced)",
       "z3_status": "unsat",
       "pass": true,
       "tool": "z3"
@@ -126,5 +126,8 @@
       "tool": "pytorch"
     }
   },
-  "all_pass": true
+  "all_pass": true,
+  "original_classification": "canonical",
+  "downgrade_reason": "stale_source_newer_than_result_2026-05-01",
+  "stale_source": "sim_gtower_e8_root_system_240.py"
 }

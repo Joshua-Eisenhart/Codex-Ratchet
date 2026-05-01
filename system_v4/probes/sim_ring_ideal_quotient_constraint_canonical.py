@@ -549,7 +549,9 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_ring_ideal_quotient_constraint_canonical",
-        "classification": "canonical",
+        "classification": "classical_baseline",
+        "original_classification": "canonical",
+        "downgrade_reason": "canonical_failed_checks_2026-05-01",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

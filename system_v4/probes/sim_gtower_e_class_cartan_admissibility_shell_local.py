@@ -20,7 +20,7 @@ import xgi
 
 from _gstack_shell_local_common import write_shell_local_result
 
-classification = "canonical"
+classification = "classical_baseline"
 _SHELL_LOCAL_REASON = "E-class Cartan admissibility is tested on each group separately; no cross-shell coupling."
 
 TOOL_MANIFEST = {

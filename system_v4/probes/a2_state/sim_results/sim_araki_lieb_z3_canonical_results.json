@@ -1,6 +1,6 @@
 {
   "name": "sim_araki_lieb_z3_canonical",
-  "classification": "canonical",
+  "classification": "classical_baseline",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -65,7 +65,7 @@
   },
   "tool_integration_depth": {
     "clifford": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "e3nn": null,
     "geomstats": null,
     "gudhi": null,
@@ -116,7 +116,7 @@
   "boundary": {
     "B1_pure_state_tight_bound": {
       "pass": true,
-      "note": "Pure Bell state: S(AB)=0, I_c=S(A)=log(2) \u2014 upper bound achieved exactly",
+      "note": "Pure Bell state: S(AB)=0, I_c=S(A)=log(2) — upper bound achieved exactly",
       "S_AB": 8.289328539239056e-11,
       "S_A": 0.6931471805599454,
       "I_c": 0.6931471804770521,
@@ -128,5 +128,7 @@
       "sympy_eq": "True"
     }
   },
-  "all_pass": false
+  "all_pass": false,
+  "original_classification": "canonical",
+  "downgrade_reason": "canonical_failed_checks_2026-05-01"
 }

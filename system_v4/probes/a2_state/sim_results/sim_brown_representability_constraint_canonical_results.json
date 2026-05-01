@@ -79,7 +79,7 @@
   "positive": {
     "test_mayer_vietoris_exact": {
       "pass": true,
-      "detail": "Mayer-Vietoris sequence is exact with ranks (X=5, A=2, B=3, A\u2229B=1)",
+      "detail": "Mayer-Vietoris sequence is exact with ranks (X=5, A=2, B=3, A∩B=1)",
       "ranks": {
         "X": 5,
         "A": 2,
@@ -89,7 +89,7 @@
     },
     "test_wedge_axiom": {
       "pass": true,
-      "detail": "h^n(X \u2228 Y) has rank = rank(h^n(X)) + rank(h^n(Y)) = 7",
+      "detail": "h^n(X ∨ Y) has rank = rank(h^n(X)) + rank(h^n(Y)) = 7",
       "rank_x": 3,
       "rank_y": 4,
       "rank_wedge": 7
@@ -132,7 +132,7 @@
     },
     "test_mayer_vietoris_rank_consistency": {
       "pass": true,
-      "detail": "Sympy confirms rank relation: rank(A) + rank(B) >= rank(A\u2229B)",
+      "detail": "Sympy confirms rank relation: rank(A) + rank(B) >= rank(A∩B)",
       "values": {
         "r_a": 2,
         "r_b": 3,
@@ -162,20 +162,22 @@
     },
     "test_boundary_wedge_with_point": {
       "pass": true,
-      "detail": "h^n(X \u2228 *) = h^n(X) (point is identity for wedge)",
+      "detail": "h^n(X ∨ *) = h^n(X) (point is identity for wedge)",
       "rank_x": 5,
       "rank_wedge": 5
     },
     "test_boundary_mayer_vietoris_disjoint": {
       "pass": true,
-      "detail": "Mayer-Vietoris with empty intersection (A \u2229 B = \u2205)",
+      "detail": "Mayer-Vietoris with empty intersection (A ∩ B = ∅)",
       "ranks": {
-        "A \u222a B": 5,
+        "A ∪ B": 5,
         "A": 2,
         "B": 3,
         "empty": 0
       }
     }
   },
-  "classification": "canonical"
+  "classification": "classical_baseline",
+  "original_classification": "canonical",
+  "downgrade_reason": "canonical_failed_checks_2026-05-01"
 }

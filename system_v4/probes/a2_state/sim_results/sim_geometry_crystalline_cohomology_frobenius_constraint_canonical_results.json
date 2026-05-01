@@ -1,5 +1,5 @@
 {
-  "name": "CrystallineCohomologyFrobenius \u2014 \u03c6V = p = V\u03c6 constraint",
+  "name": "CrystallineCohomologyFrobenius — φV = p = Vφ constraint",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "load_bearing: proves Frobenius-Verschiebung constraint \u03c6V=p=V\u03c6 via integer arithmetic; UNSAT when \u03c6V\u2260p or V\u03c6\u2260p"
+      "reason": "load_bearing: proves Frobenius-Verschiebung constraint φV=p=Vφ via integer arithmetic; UNSAT when φV≠p or Vφ≠p"
     },
     "sympy": {
       "tried": true,
@@ -79,7 +79,7 @@
   "positive": {
     "test_frobenius_verschiebung_p_equals_2": {
       "passed": true,
-      "reason": "cvc5 proves \u03c6V=p=V\u03c6 for p=2",
+      "reason": "cvc5 proves φV=p=Vφ for p=2",
       "p": 2,
       "phi_times_v": 2,
       "v_times_phi": 2
@@ -100,14 +100,14 @@
   "negative": {
     "test_phi_v_not_p_enforceable": {
       "passed": true,
-      "reason": "cvc5 UNSAT: constraint \u03c6V=p correctly enforced even when \u03c6V\u2260p initially",
+      "reason": "cvc5 UNSAT: constraint φV=p correctly enforced even when φV≠p initially",
       "phi_v": 2,
       "p": 3,
       "unsatisfiable": true
     },
     "test_v_phi_not_p_enforceable": {
       "passed": true,
-      "reason": "cvc5 UNSAT: constraint V\u03c6=p correctly enforced even when V\u03c6\u2260p initially",
+      "reason": "cvc5 UNSAT: constraint Vφ=p correctly enforced even when Vφ≠p initially",
       "v_phi": 1,
       "p": 2,
       "unsatisfiable": true
@@ -123,7 +123,7 @@
   "boundary": {
     "test_frobenius_p_equals_3": {
       "passed": true,
-      "reason": "cvc5 proves \u03c6V=p=V\u03c6 for p=3",
+      "reason": "cvc5 proves φV=p=Vφ for p=3",
       "p": 3,
       "phi_times_v": 3,
       "v_times_phi": 3
@@ -142,5 +142,8 @@
       "p": 5
     }
   },
-  "classification": "canonical"
+  "classification": "classical_baseline",
+  "original_classification": "canonical",
+  "downgrade_reason": "stale_source_newer_than_result_2026-05-01",
+  "stale_source": "sim_geometry_crystalline_cohomology_frobenius_constraint_canonical.py"
 }

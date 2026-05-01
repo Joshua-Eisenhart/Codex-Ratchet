@@ -6,22 +6,22 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not used here because this proof/result path does not require tensor execution or automatic differentiation"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not used here because this proof/result path does not require graph neural network message passing"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not used here because this result path relies on a different solver or non-SMT evidence route for the recorded check"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not installed: No module named 'cvc5'"
+      "reason": "not installed: No module named 'cvc5'; not used here because this result path relies on a different solver or non-cvc5 evidence route for the recorded check"
     },
     "sympy": {
       "tried": true,
@@ -31,44 +31,44 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not used here because this result path does not require geometric algebra or Clifford rotor computation"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not used here because this result path does not require Riemannian manifold computation from geomstats"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not used here because this result path does not require equivariant neural-network computation"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not used here because this result path does not require graph traversal or graph-order computation"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not used here because this result path does not require hypergraph structure or hyperedge computation"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not used here because this result path does not require cell-complex or chain-complex computation"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not used here because this result path does not require persistent homology or simplicial-complex computation"
     }
   },
   "tool_integration_depth": {
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,

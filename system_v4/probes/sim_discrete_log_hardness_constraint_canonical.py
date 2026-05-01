@@ -28,8 +28,8 @@ TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for algebraic constraint"},
     "pyg": {"tried": False, "used": False, "reason": "not needed for algebraic constraint"},
     "z3": {"tried": False, "used": False, "reason": "cvc5 used instead for QF_LIA"},
-    "cvc5": {"tried": True, "used": True, "reason": "load_bearing: QF_LIA for discrete log uniqueness constraint"},
-    "sympy": {"tried": True, "used": True, "reason": "supportive: symbolic order computation and complexity bounds"},
+    "cvc5": {"tried": False, "used": False, "reason": "load_bearing: QF_LIA for discrete log uniqueness constraint"},
+    "sympy": {"tried": False, "used": False, "reason": "supportive: symbolic order computation and complexity bounds"},
     "clifford": {"tried": False, "used": False, "reason": "not needed for algebraic constraint"},
     "geomstats": {"tried": False, "used": False, "reason": "not needed for algebraic constraint"},
     "e3nn": {"tried": False, "used": False, "reason": "not needed for algebraic constraint"},
@@ -43,7 +43,7 @@ TOOL_INTEGRATION_DEPTH = {
     "pytorch": None,
     "pyg": None,
     "z3": None,
-    "cvc5": "load_bearing",
+    "cvc5": None,
     "sympy": "supportive",
     "clifford": None,
     "geomstats": None,
@@ -58,6 +58,7 @@ TOOL_INTEGRATION_DEPTH = {
 try:
     import cvc5  # noqa: F401
     TOOL_MANIFEST["cvc5"]["tried"] = True
+    TOOL_INTEGRATION_DEPTH["cvc5"] = "load_bearing"
 except ImportError:
     TOOL_MANIFEST["cvc5"]["reason"] = "not installed"
     TOOL_MANIFEST["cvc5"]["tried"] = False
@@ -413,6 +414,11 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    if TOOL_MANIFEST["cvc5"]["tried"]:
+        TOOL_MANIFEST["cvc5"]["used"] = True
+    if TOOL_MANIFEST["sympy"]["tried"]:
+        TOOL_MANIFEST["sympy"]["used"] = True
+
     results = {
         "name": "sim_discrete_log_hardness_constraint_canonical",
         "description": "Discrete log uniqueness: g^x = g^y iff x ≡ y (mod ord(g))",

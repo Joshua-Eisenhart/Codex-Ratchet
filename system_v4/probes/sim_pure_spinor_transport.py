@@ -945,6 +945,8 @@ def main():
             "timestamp": datetime.datetime.now().isoformat(),
             "sim": "sim_pure_spinor_transport",
             "classification": classification,
+        "original_classification": "canonical",
+        "downgrade_reason": "overclassification_fail_status_2026-05-01",
             "divergence_log": divergence_log,
             "tool_manifest": TOOL_MANIFEST,
             "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

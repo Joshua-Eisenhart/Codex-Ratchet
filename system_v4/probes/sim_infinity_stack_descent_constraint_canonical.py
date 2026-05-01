@@ -57,7 +57,7 @@ TOOL_INTEGRATION_DEPTH = {
     "gudhi": None,
 }
 
-classification = "canonical"
+classification = "classical_baseline"
 
 # Try importing tools
 try:
@@ -473,6 +473,8 @@ def main():
 
     summary = {
         "classification": classification,
+        "original_classification": "canonical",
+        "downgrade_reason": "canonical_failed_checks_2026-05-01",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "total_tests": total,

@@ -6,7 +6,7 @@
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "torch.linalg.eigvalsh on Cl(3,0) Dirac tensor \u2014 load-bearing eigenvalue computation"
+      "reason": "torch.linalg.eigvalsh on Cl(3,0) Dirac tensor — load-bearing eigenvalue computation"
     },
     "pyg": {
       "tried": true,
@@ -14,9 +14,9 @@
       "reason": "not load-bearing for spectral triple; graph structure handled by rustworkx and xgi"
     },
     "z3": {
-      "tried": false,
+      "tried": true,
       "used": true,
-      "reason": "z3 SAT/UNSAT proof guard for mass-shell constraint admissibility \u2014 primary exclusion mechanism"
+      "reason": "z3 SAT/UNSAT proof guard for mass-shell constraint admissibility — primary exclusion mechanism"
     },
     "cvc5": {
       "tried": true,
@@ -108,7 +108,7 @@
       ],
       "has_mass_parameter": true,
       "pass": true,
-      "note": "sympy yields exactly \u00b1m as constraint-admissible eigenvalues"
+      "note": "sympy yields exactly ±m as constraint-admissible eigenvalues"
     },
     "P4_rustworkx_eigenvalue_graph": {
       "node_count": 2,
@@ -123,14 +123,14 @@
       "mass_sq_tested": 3.0,
       "z3_result": "UNSAT",
       "pass": true,
-      "note": "z3 correctly excluded lambda=2.0 as off-shell \u2014 UNSAT proof confirms exclusion"
+      "note": "z3 correctly excluded lambda=2.0 as off-shell — UNSAT proof confirms exclusion"
     },
     "N2_z3_excludes_complex_offshell": {
       "eigenvalue": "1.0 + 1.0i",
       "mass_sq_computed": 2.0,
       "z3_result": "UNSAT",
       "pass": true,
-      "note": "complex eigenvalue 1+i excluded by z3 \u2014 |1+i|^2=2 violates mass-shell constraint"
+      "note": "complex eigenvalue 1+i excluded by z3 — |1+i|^2=2 violates mass-shell constraint"
     },
     "N3_antihermitian_perturbation_excluded": {
       "actual_dirac_antihermitian_norm": 0.0,
@@ -146,14 +146,14 @@
       "eigenvalue": 0.0,
       "z3_result": "UNSAT",
       "pass": true,
-      "note": "lambda=0 excluded by z3 from mass_sq=3 spectral triple \u2014 massless not admissible here"
+      "note": "lambda=0 excluded by z3 from mass_sq=3 spectral triple — massless not admissible here"
     },
     "B2_massless_admits_zero": {
       "eigenvalue": 0.0,
       "mass_sq": 0.0,
       "z3_result": "SAT",
       "pass": true,
-      "note": "lambda=0 survives z3 probe for massless spectral triple \u2014 constraint-admissible boundary case"
+      "note": "lambda=0 survives z3 probe for massless spectral triple — constraint-admissible boundary case"
     },
     "B3_toponetx_eigenvalue_cell_complex": {
       "cell_count": 1,
@@ -163,7 +163,7 @@
     "B4_gudhi_rips_eigenvalue_cloud": {
       "num_simplices": 3,
       "pass": true,
-      "note": "gudhi Rips complex on eigenvalue point cloud \u2014 \u00b1sqrt(3) connected within max_edge_length"
+      "note": "gudhi Rips complex on eigenvalue point cloud — ±sqrt(3) connected within max_edge_length"
     },
     "B5_xgi_constraint_hypergraph": {
       "num_nodes": 3,

@@ -25,9 +25,9 @@ import os
 classification = "canonical"
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": "not needed -- proof complexity is combinatorial"},
+    "pytorch": {"tried": False, "used": False, "reason": "not needed -- proof complexity is combinatorial and does not require tensor execution or autograd"},
     "pyg": {"tried": False, "used": False, "reason": "not needed -- no learned graph structure"},
-    "z3": {"tried": False, "used": False, "reason": "alternative solver; cvc5 is primary"},
+    "z3": {"tried": False, "used": False, "reason": "alternative solver; cvc5 is primary; this lower-bound check records cvc5 statistics as the evidence path"},
     "cvc5": {"tried": True, "used": True, "reason": "load_bearing: UNSAT verdict + solver statistics for hardness lower bounds via QF_LIA"},
     "sympy": {"tried": True, "used": True, "reason": "supportive: symbolic clause enumeration and lower bound verification for PHP_n^{n+1}"},
     "clifford": {"tried": False, "used": False, "reason": "not needed -- no algebraic geometry"},
@@ -329,16 +329,13 @@ if __name__ == "__main__":
     neg = run_negative_tests()
     bnd = run_boundary_tests()
 
-    all_pass = (
-        pos.get("positive_test_cvc5_php_2_3_unsat", {}).get("pass", False)
-        and pos.get("positive_test_sympy_php_clause_count", {}).get("pass", False)
-        and neg.get("negative_test_cvc5_polynomial_proof_claim", {}).get("pass", False)
-        and any(v.get("pass", False) for k, v in bnd.items() if isinstance(v, dict) and "pass" in v)
-    )
+    all_pass = bool(pos.get("pass")) and bool(neg.get("pass")) and bool(bnd.get("pass"))
 
     results = {
         "name": "cvc5_proof_complexity_size_constraint",
-        "classification": classification,
+        "classification": classification if all_pass else "classical_baseline",
+        "original_classification": classification,
+        "downgrade_reason": None if all_pass else "summary_all_pass_false_2026-05-01",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

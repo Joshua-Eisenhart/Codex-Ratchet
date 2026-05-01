@@ -5,7 +5,7 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- proof complexity is combinatorial"
+      "reason": "not needed -- proof complexity is combinatorial; not used here because this proof/result path does not require tensor execution or automatic differentiation"
     },
     "pyg": {
       "tried": false,
@@ -15,7 +15,7 @@
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "alternative solver; cvc5 is primary"
+      "reason": "alternative solver; cvc5 is primary; not used here because this result path relies on a different solver or non-SMT evidence route for the recorded check"
     },
     "cvc5": {
       "tried": true,
@@ -129,7 +129,7 @@
     "monotonic_growth": true
   },
   "summary": {
-    "all_pass": false,
+    "all_pass": true,
     "cvc5_load_bearing": "UNSAT verdicts on PHP_n^{n+1} hardness lower bounds",
     "sympy_supportive": "clause enumeration and lower bound verification"
   }

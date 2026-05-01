@@ -1,6 +1,6 @@
 {
-  "name": "Heat Equation Constraint (\u03b1 > 0)",
-  "description": "Parabolic PDE u_t = \u03b1\u2207\u00b2u requires \u03b1 > 0 for well-posedness; maximum principle enforced",
+  "name": "Heat Equation Constraint (α > 0)",
+  "description": "Parabolic PDE u_t = α∇²u requires α > 0 for well-posedness; maximum principle enforced",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "cvc5 proves \u03b1 > 0 necessary for parabolic well-posedness"
+      "reason": "cvc5 proves α > 0 necessary for parabolic well-posedness"
     },
     "sympy": {
       "tried": true,
@@ -80,11 +80,11 @@
   "positive": {
     "heat_sat_alpha_positive": {
       "sat": "True",
-      "constraint": "\u03b1 > 0 for parabolic heat equation",
+      "constraint": "α > 0 for parabolic heat equation",
       "pass": true
     },
     "heat_fundamental_solution": {
-      "solution_form": "G(x,t) = (4\u03c0\u03b1t)^(-1/2) exp(-x\u00b2/4\u03b1t) in 1D",
+      "solution_form": "G(x,t) = (4παt)^(-1/2) exp(-x²/4αt) in 1D",
       "normalized": true,
       "preserves_mass": true,
       "pass": true
@@ -99,7 +99,7 @@
   "negative": {
     "heat_unsat_alpha_nonpositive": {
       "unsat": "True",
-      "constraint": "\u03b1 \u2264 0 contradicts \u03b1 > 0 requirement",
+      "constraint": "α ≤ 0 contradicts α > 0 requirement",
       "pass": true
     },
     "backward_heat_unbounded": {
@@ -118,7 +118,7 @@
   },
   "boundary": {
     "heat_alpha_to_zero": {
-      "limit": "\u03b1 \u2192 0+",
+      "limit": "α → 0+",
       "limiting_pde": "u_t = 0 (frozen field)",
       "passes_limit": true,
       "pass": true
@@ -138,5 +138,7 @@
       "pass": "True"
     }
   },
-  "classification": "canonical"
+  "classification": "classical_baseline",
+  "original_classification": "canonical",
+  "downgrade_reason": "canonical_failed_checks_2026-05-01"
 }

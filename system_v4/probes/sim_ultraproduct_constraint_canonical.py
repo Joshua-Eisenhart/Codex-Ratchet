@@ -400,7 +400,7 @@ def run_boundary_tests():
 # CLASSIFICATION
 # =====================================================================
 
-classification = "canonical"
+classification = "classical_baseline"
 
 
 # =====================================================================
@@ -416,6 +416,8 @@ if __name__ == "__main__":
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
         "classification": classification,
+        "original_classification": "canonical",
+        "downgrade_reason": "canonical_failed_checks_2026-05-01",
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

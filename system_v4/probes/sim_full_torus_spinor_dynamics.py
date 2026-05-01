@@ -632,6 +632,8 @@ def main():
     output = {
         "name": "full_torus_spinor_dynamics",
         "classification": classification,
+        "original_classification": "canonical",
+        "downgrade_reason": "overclassification_fail_status_2026-05-01",
         "divergence_log": divergence_log,
         "torus_levels_tested": ["inner", "clifford", "outer"],
         "cycles": N_CYCLES,

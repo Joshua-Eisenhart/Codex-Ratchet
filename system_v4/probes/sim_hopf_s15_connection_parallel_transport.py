@@ -19,7 +19,7 @@ from datetime import UTC, datetime
 
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
 PROBE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -256,6 +256,8 @@ if __name__ == "__main__":
     results = {
         "name": "hopf_s15_connection_parallel_transport",
         "classification": classification,
+        "original_classification": "canonical",
+        "downgrade_reason": "canonical_failed_checks_2026-05-01",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

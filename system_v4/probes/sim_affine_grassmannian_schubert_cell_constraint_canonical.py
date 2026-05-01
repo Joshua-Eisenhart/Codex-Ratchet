@@ -14,7 +14,7 @@ import json
 import os
 import sympy as sp
 
-classification = "canonical"
+classification = "classical_baseline"
 
 # =====================================================================
 # TOOL MANIFEST
@@ -359,7 +359,9 @@ if __name__ == "__main__":
         "name": "Affine Grassmannian -- Schubert Cell Dimension -- Canonical",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "classification": "canonical",
+        "classification": "classical_baseline",
+        "original_classification": "canonical",
+        "downgrade_reason": "overclassification_fail_status_2026-05-01",
         "positive_tests": positive,
         "negative_tests": negative,
         "boundary_tests": boundary,

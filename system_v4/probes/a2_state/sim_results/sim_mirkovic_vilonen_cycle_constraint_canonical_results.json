@@ -76,11 +76,11 @@
     "toponetx": null,
     "gudhi": null
   },
-  "classification": "canonical",
+  "classification": "classical_baseline",
   "positive_tests": {
     "sl2_weight1_highest": {
       "rep": "V_1 (sl(2))",
-      "weight": "\u03bc=1",
+      "weight": "μ=1",
       "multiplicity": 1,
       "mv_cycles": 1,
       "constraint_satisfied": true,
@@ -88,7 +88,7 @@
     },
     "sl2_weight1_lowest": {
       "rep": "V_1 (sl(2))",
-      "weight": "\u03bc=-1",
+      "weight": "μ=-1",
       "multiplicity": 1,
       "mv_cycles": 1,
       "constraint_satisfied": true,
@@ -96,7 +96,7 @@
     },
     "sl2_weight2_middle": {
       "rep": "V_2 (sl(2))",
-      "weight": "\u03bc=0",
+      "weight": "μ=0",
       "multiplicity": 1,
       "mv_cycles": 1,
       "constraint_satisfied": true,
@@ -106,7 +106,7 @@
   "negative_tests": {
     "mult_mismatch_2_vs_1": {
       "rep": "V_1 (sl(2))",
-      "weight": "\u03bc=1",
+      "weight": "μ=1",
       "claimed_mult": 2,
       "actual_mv_cycles": 1,
       "expected_unsat": true,
@@ -115,7 +115,7 @@
     },
     "mult_mismatch_0_vs_1": {
       "rep": "V_2 (sl(2))",
-      "weight": "\u03bc=0",
+      "weight": "μ=0",
       "claimed_mult": 0,
       "actual_mv_cycles": 1,
       "expected_unsat": true,
@@ -146,7 +146,7 @@
     },
     "trivial_rep_dimension": {
       "rep": "V_0 (trivial)",
-      "weight": "\u03bc=0",
+      "weight": "μ=0",
       "multiplicity": 1,
       "total_dimension": 1,
       "consistent": true,
@@ -160,5 +160,8 @@
     "negative_total": 3,
     "boundary_pass": 3,
     "boundary_total": 3
-  }
+  },
+  "original_classification": "canonical",
+  "downgrade_reason": "stale_source_newer_than_result_2026-05-01",
+  "stale_source": "sim_mirkovic_vilonen_cycle_constraint_canonical.py"
 }

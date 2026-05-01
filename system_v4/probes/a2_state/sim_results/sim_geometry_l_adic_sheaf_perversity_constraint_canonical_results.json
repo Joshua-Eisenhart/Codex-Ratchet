@@ -1,5 +1,5 @@
 {
-  "name": "LAdicSheafPerversity \u2014 dim(supp H^j) \u2264 -j; Verdier duality D[2d]\u2245F",
+  "name": "LAdicSheafPerversity — dim(supp H^j) ≤ -j; Verdier duality D[2d]≅F",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -19,12 +19,12 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "load_bearing: proves perversity constraint dim(supp H^j) \u2264 -j via QF_LIA; UNSAT when constraint violated"
+      "reason": "load_bearing: proves perversity constraint dim(supp H^j) ≤ -j via QF_LIA; UNSAT when constraint violated"
     },
     "sympy": {
       "tried": true,
       "used": true,
-      "reason": "supportive: validates Verdier duality formula D\u00b2[2d]=id and dimension algebra"
+      "reason": "supportive: validates Verdier duality formula D²[2d]=id and dimension algebra"
     },
     "clifford": {
       "tried": true,
@@ -142,10 +142,13 @@
     },
     "test_sympy_duality_validation": {
       "passed": true,
-      "reason": "sympy validates Verdier duality D\u00b2[2d]=id",
+      "reason": "sympy validates Verdier duality D²[2d]=id",
       "variety_dimension": 3,
       "duality_shift": 6
     }
   },
-  "classification": "canonical"
+  "classification": "classical_baseline",
+  "original_classification": "canonical",
+  "downgrade_reason": "stale_source_newer_than_result_2026-05-01",
+  "stale_source": "sim_geometry_l_adic_sheaf_perversity_constraint_canonical.py"
 }

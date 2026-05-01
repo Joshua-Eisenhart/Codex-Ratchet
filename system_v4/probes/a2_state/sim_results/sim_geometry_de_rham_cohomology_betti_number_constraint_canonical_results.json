@@ -1,7 +1,7 @@
 {
   "name": "DeRhamCohomologyBettiNumber",
   "domain": "de Rham cohomology and Betti number constraints",
-  "claim": "Betti numbers are non-negative and satisfy Poincar\u00e9 duality on compact oriented manifolds",
+  "claim": "Betti numbers are non-negative and satisfy Poincaré duality on compact oriented manifolds",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -117,7 +117,7 @@
       "euler_characteristic": 2,
       "expected_chi": 2,
       "pass": true,
-      "description": "\u03c7 = \u03a3(-1)^k b_k for S\u00b2 equals 2"
+      "description": "χ = Σ(-1)^k b_k for S² equals 2"
     },
     "bound_test_2_torus_euler": {
       "manifold": "T2",
@@ -129,12 +129,14 @@
       "euler_characteristic": 0,
       "expected_chi": 0,
       "pass": true,
-      "description": "\u03c7 = \u03a3(-1)^k b_k for T\u00b2 equals 0"
+      "description": "χ = Σ(-1)^k b_k for T² equals 0"
     },
     "bound_test_3_S4_poincare": {
       "error": "No module named 'cvc5'",
       "pass": false
     }
   },
-  "classification": "canonical"
+  "classification": "classical_baseline",
+  "original_classification": "canonical",
+  "downgrade_reason": "canonical_failed_checks_2026-05-01"
 }

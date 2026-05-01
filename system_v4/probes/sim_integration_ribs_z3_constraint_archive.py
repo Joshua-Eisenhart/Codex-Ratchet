@@ -77,68 +77,68 @@ except ImportError:
 try:
     import torch  # noqa
     TOOL_MANIFEST["pytorch"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["pytorch"]["reason"] = f"optional import failed: {exc}"
 
 try:
     import torch_geometric  # noqa
     TOOL_MANIFEST["pyg"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["pyg"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["pyg"]["reason"] = f"optional import failed: {exc}"
 
 try:
     import cvc5  # noqa
     TOOL_MANIFEST["cvc5"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["cvc5"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["cvc5"]["reason"] = f"optional import failed: {exc}"
 
 try:
     import sympy  # noqa
     TOOL_MANIFEST["sympy"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["sympy"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["sympy"]["reason"] = f"optional import failed: {exc}"
 
 try:
     from clifford import Cl  # noqa
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import failed: {exc}"
 
 try:
     import geomstats  # noqa
     TOOL_MANIFEST["geomstats"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["geomstats"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["geomstats"]["reason"] = f"optional import failed: {exc}"
 
 try:
     import e3nn  # noqa
     TOOL_MANIFEST["e3nn"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["e3nn"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["e3nn"]["reason"] = f"optional import failed: {exc}"
 
 try:
     import rustworkx  # noqa
     TOOL_MANIFEST["rustworkx"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["rustworkx"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["rustworkx"]["reason"] = f"optional import failed: {exc}"
 
 try:
     import xgi  # noqa
     TOOL_MANIFEST["xgi"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["xgi"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["xgi"]["reason"] = f"optional import failed: {exc}"
 
 try:
     from toponetx.classes import CellComplex  # noqa
     TOOL_MANIFEST["toponetx"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["toponetx"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["toponetx"]["reason"] = f"optional import failed: {exc}"
 
 try:
     import gudhi  # noqa
     TOOL_MANIFEST["gudhi"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["gudhi"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["gudhi"]["reason"] = f"optional import failed: {exc}"
 
 
 # =====================================================================

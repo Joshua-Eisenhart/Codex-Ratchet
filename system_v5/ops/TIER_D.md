@@ -3,7 +3,7 @@
 > **Worker spawn preamble (mandatory):** every spawned Claude worker receives Block B (140-word) from `~/wiki/harness/SALIENCE_PREAMBLE.md` prepended to its system prompt before any task description. See `system_v5/ops/HERMES_RULES.md` §0. Probe-tested 2026-04-17 on fresh Haiku.
 
 
-Preconditions: read `system_v5/ops/HERMES_RULES.md` and `system_v5/ops/SIM_RUNNER.md`. Preflight. Tier B gate passed: all 5 `~/wiki/projects/codex-ratchet/tier_b_<layer>.md` exist. Runner is live.
+Preconditions: read `system_v5/ops/HERMES_RULES.md` and `system_v5/ops/SIM_RUNNER.md`. Preflight. Tier B must be honestly complete enough for the four Tier D boundaries, not merely green by summary or override. Runner is live.
 
 ## Role
 
@@ -87,6 +87,11 @@ After runner DONEs the probe:
 Store re-verification at `~/wiki/projects/codex-ratchet/tier_d_audit.md`.
 
 ## Gate
+
+Hard launch gate before Tier D:
+- Tier B must not be merely "green by authority override"
+- relevant Tier B lego surfaces must show zero pending and zero unresolved FAIL on the lower-layer work needed for D1-D4
+- if lower-layer lego completion is still disputed, Tier D stays blocked
 
 - ✓ 4 boundary probes committed
 - ✓ Runner reports DONE for all 4

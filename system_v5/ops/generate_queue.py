@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
-"""Generate default queue: never-run probes + canonical-missing-depth.
-Sorted smallest-first for fast feedback."""
-import glob, os, json, sys
+"""Generate the stage-gated default queue.
+
+This queue is a fallback for tool sims, tool-integration sims, and unfinished
+local lego work only. It must not auto-queue pairwise/coexistence/bridge/axis
+style probes before the lego stage is complete.
+"""
+import glob, os, sys
 
 repo = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(repo)
@@ -16,6 +20,17 @@ probes = [
     and not any(os.path.basename(p).startswith(pre) for pre in SKIP_PREFIXES)
 ]
 
+LATE_STAGE_TOKENS = (
+    'pairwise', 'coupling', 'coexistence', 'triple', 'bridge', 'axis',
+    'phi0', 'rho_ab', 'cut_', '_cut', 'kernel', 'emergence', 'stacking',
+    'carnot', 'szilard', 'jarzynski', 'landauer', 'engine', 'ladder',
+    'bakeoff',
+)
+
+def allowed_in_default_queue(base: str) -> bool:
+    lower = base.lower()
+    return not any(token in lower for token in LATE_STAGE_TOKENS)
+
 result_dirs = [
     'system_v4/probes/a2_state/sim_results',
     'system_v4/probes/sim_results',
@@ -26,23 +41,24 @@ for d in result_dirs:
     for p in glob.glob(f'{d}/*.json'):
         results.add(os.path.basename(p).replace('_results.json', ''))
 
-never_run = [(os.path.basename(p)[:-3], os.path.getsize(p)) for p in probes if os.path.basename(p)[:-3] not in results]
+never_run = [
+    (os.path.basename(p)[:-3], os.path.getsize(p))
+    for p in probes
+    if os.path.basename(p)[:-3] not in results
+    and allowed_in_default_queue(os.path.basename(p)[:-3])
+]
 never_run.sort(key=lambda x: x[1])
 
+# Missing-depth repair is intentionally not inferred from the whole historical
+# result estate here. That scan is expensive and mixes contract repair with the
+# safe default queue. Use explicit repair queues for missing-depth work.
 canonical_missing = []
-for d in result_dirs:
-    for p in glob.glob(f'{d}/*.json'):
-        try: j = json.load(open(p))
-        except Exception: continue
-        if not isinstance(j, dict): continue
-        if j.get('classification') == 'canonical' and 'tool_integration_depth' not in j:
-            base = os.path.basename(p).replace('_results.json', '')
-            if os.path.exists(f'system_v4/probes/{base}.py'):
-                canonical_missing.append(base)
 
 lines = [
-    "# Default queue — never-run probes + canonical-missing-depth.",
-    "# Sorted smallest-file-first for fast feedback signal.",
+    "# Default queue — stage-gated fallback only.",
+    "# Contains tool sims, tool-integration sims, and local lego-stage work.",
+    "# Excludes pairwise/coexistence/bridge/axis/engine-style probes.",
+    "# Sorted smallest-file-first inside the allowed stage only.",
     "# Runner rewrites DONE/FAIL/SKIPPED lines in place.",
     f"# generated: {len(never_run)} never-run + {len(canonical_missing)} missing-depth",
     "",

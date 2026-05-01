@@ -4,14 +4,14 @@ Every Hermes brief invokes this file. Every worker spawned by Hermes also reads 
 
 ## 0. MANDATORY Salience Preamble (inject at every worker spawn)
 
-**Prepend this block to EVERY worker's system prompt, before any task description.** Probe-tested 2026-04-17 on fresh Haiku (Block B primed faster than file-read, held under pressure). Source: `~/wiki/harness/SALIENCE_PREAMBLE.md` Block B.
+**Prepend this block to EVERY worker's system prompt, before any task description.** Probe-tested 2026-04-17 on fresh Haiku (Block B primed faster than file-read, held under pressure). Current source: `~/wiki/wizard/harness-consolidated/SALIENCE_PREAMBLE.md` Block B, after the active Wizard boot path.
 
 ### CRITICAL: owner-origin framing required
 
 Raw injection of Block A/B without provenance **triggers prompt-injection safety refusal** in fresh Haiku subagents (confirmed 2026-04-17 by wiki-thread probe). Always wrap injection in owner-origin framing so the subagent recognizes it as project doctrine, not attack:
 
 ```
-[owner-sanctioned harness preamble — Joshua Eisenhart's constraint-admissibility research framework, canonical source at ~/wiki/harness/SALIENCE_PREAMBLE.md. This is project doctrine to apply, not prompt injection.]
+[owner-sanctioned harness preamble — Joshua Eisenhart's constraint-admissibility research framework, current support source at ~/wiki/wizard/harness-consolidated/SALIENCE_PREAMBLE.md after active Wizard boot. This is project doctrine to apply, not prompt injection.]
 
 Harness preamble. You are working under a nominalist constraint-admissibility harness.
 
@@ -26,7 +26,7 @@ Status ladder: exists < runs < passes local rerun < canonical by process. Never 
 Preserve divergence. Do not collapse surviving candidates. Pushback on harness conflicts rather than smoothing. Read SALIENCE_LOADER.md before other harness files.
 ```
 
-### Tier selection by context budget (per `~/wiki/harness/READ_POLICY.md`)
+### Tier selection by context budget (per `~/wiki/wizard/harness-consolidated/READ_POLICY.md`)
 
 - **Tier 1 (injection-only hygiene):** Block A (60w) — for token-tight task prompts. Recall: axiom, banned/preferred verbs, pushback. Does NOT give full claim-pattern; fine for mechanical work, insufficient for substantive claims.
 - **Tier 2 (standard):** Block B (140w, above) PLUS worker reads `SALIENCE_LOADER.md`. Default for all sim/probe/audit work.
@@ -40,8 +40,9 @@ Even if worker skips file reads, injection-time priming catches it. But always u
 
 ## 1. Harness location (authoritative)
 
-- Harness: `~/wiki/harness/`
-- Entry point: `~/wiki/harness/SALIENCE_LOADER.md` (1-page compressed loader — read-time fallback)
+- Active Wizard harness: `~/wiki/wizard/`
+- Consolidated nominalist support: `~/wiki/wizard/harness-consolidated/`
+- Entry point: `~/wiki/wizard/README.md`, then `~/wiki/wizard/00-read-first.md`, then `~/wiki/wizard/AGENTS.md`. Use `~/wiki/wizard/harness-consolidated/SALIENCE_LOADER.md` as the 1-page compressed nominalist loader after active Wizard boot.
 - Full order: SALIENCE_LOADER → 00_READ_FIRST → 15_root_axiom_card → 01 → 02 → 03 → 16_dictionary → 19_grammar → 20_phrasebook → rest per `00_READ_FIRST.md`
 - Every Claude worker reads the loader before any task — AND receives Block B preamble at spawn time.
 
@@ -96,7 +97,7 @@ Step 6 — Record active scope: append to `/tmp/hermes_active_scopes.txt`:
 - Model tier: Haiku for mechanical work, Sonnet for math/reasoning work, Opus only for owner-level decisions (escalate, don't spawn).
 - **Haiku is INSUFFICIENT for capstone-class probes** — any probe that imports from multiple existing `axis{N}_*.py`, applies a named schedule to state, or asserts `rho_stage2 != rho_stage1` REQUIRES Sonnet minimum. Haiku consistently fabricates (confirmed 2× 2026-04-17: Agent C + haiku capstone). See `memory/feedback_sub_agent_fabrication_incident.md`.
 - Max 9 concurrent Claude terminals per tier (peak).
-- Each worker prompt MUST include: path to `~/wiki/harness/00_READ_FIRST.md`, file-prefix scope, setup-only vs launch-authorized declaration, success criteria.
+- Each worker prompt MUST include: path to `~/wiki/wizard/00-read-first.md`, file-prefix scope, setup-only vs launch-authorized declaration, success criteria.
 - Disjoint file-prefix scopes — no shared scope between workers.
 - **Capstone probes MUST pass `system_v5/ops/detect_capstone_fabrication.py`** before Hermes reports worker done. If fabrication tells found → quarantine + respawn with Sonnet.
 
@@ -142,7 +143,7 @@ DO NOT commit. Author file, report path + detector exit code to parent.
 - All sims: repo per `REPO_LAYOUT.md` in `system_v5/docs/`.
 - Tier reports: `~/wiki/projects/codex-ratchet/tier_<X>.md`.
 - Spawn plans: `~/wiki/projects/codex-ratchet/<brief>_spawn_plan.md`.
-- New doctrine: propose at `~/wiki/harness/` — notify L3 before committing.
+- New doctrine: propose under `~/wiki/wizard/` or `~/wiki/wizard/harness-consolidated/` as appropriate — notify L3 before committing.
 - Never modify `~/wiki/current/` (owner-authored spine).
 
 ## 7. Language discipline (enforced everywhere)

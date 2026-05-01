@@ -12,7 +12,49 @@
 ## The Core Problem
 
 LLMs treat "exists," "runs," "passes," "verified," and "canonical" as interchangeable.
-They are not. Collapsing them produces false summaries that persist across sessions.
+They are not. Collapsing them surfaces false summaries that persist across sessions.
+
+---
+
+## Controller Intercept Rule
+
+**Named failure mode: Narrative Substitution for Gate Obedience.**
+
+The controller's generalized failure is extracting a plausible story from the rules and obeying the story instead of the rules. The story feels like the rules. It is not the rules.
+
+Evidence this failure is active:
+- "Some locals are strong, so successor work is informative" — the story is plausible; the gate criterion is not satisfied
+- "Most coupling work is done, so bridge claims are reasonable" — plausible; gate not cited
+- "The agent said it's done, and it was working hard" — agent output is not the verification
+- "This is the obvious next step given the research direction" — obvious is not admitted
+
+**Intercept procedure:**
+1. When a proposed action feels like the natural next step given the research narrative: pause.
+2. Name the specific gate criterion the action requires.
+3. Cite the result file that satisfies that criterion from this session.
+4. If the file cannot be cited: the gate is not satisfied. The action is excluded under the active constraint set.
+5. Report: "Gate not satisfied: [gate name]. Blocking. [what evidence is needed]."
+
+Do not smooth over gate failures with narrative. A smooth narrative that leads to the right answer by a different path is still a harness violation.
+
+---
+
+## Hard Build Guardrail
+
+Controllers must preserve this order and distinction:
+
+1. tool sims stay active
+2. tool-integration sims stay active
+3. lego sims stay active across the registry
+4. bounded coupling / coexistence exploration may run off strong local parents during this process
+5. exploratory coupling does not authorize higher-stage promotion
+6. bridge / axis / engine work remains late and gated
+
+Do not rewrite this into either:
+- "some locals are strong, so broad successor work can start"
+- "no coupling exploration is allowed until every lego row is complete"
+
+The allowed middle is bounded exploratory coupling off earned local parents, without label inflation or stage inflation.
 
 ---
 
@@ -45,31 +87,32 @@ Do not summarize without this table. Do not let a passing result on some criteri
 
 ---
 
-## Separate Lanes — Never Merge
+## Separate Evidence Tracks — Never Merge
 
-These three programs run in parallel. Their progress does NOT aggregate.
+These programs do not aggregate, and none of them overrides the hard stage gate.
 
 | Lane | What it tracks | Current blocker |
 |---|---|---|
 | **Foundation migration** | 28 families numpy → torch | C2_graph_topology: 11/28 non-null, 0 mismatches |
 | **Seam proof depth** | z3/cvc5 load-bearing on bridge/Phi0 | CLOSED 2026-04-08 for Phi0; open for Axis 6 |
-| **Stack/nesting sims** | shell-local → coupling → coexistence | coupling sims in progress (2026-04-08) |
+| **Stack/nesting sims** | shell-local completion plus bounded coupling/coexistence exploration | exploratory only until broader parent coverage is earned |
 
-A breakthrough in lane 3 does not close a gap in lane 1.
+A breakthrough in the late-stage track does not close a gap in the foundation track, and it does not override the hard stage gate.
 
 ---
 
-## Coupling/Nesting Program (shell-local → emergence)
+## Coupling/Nesting Program (exploration before promotion)
 
 The correct research order is:
-1. **Shell-local lego sims** — which primitive objects (states, operators, probes, entropies) are well-defined in isolation on each candidate shell?
-2. **Pairwise coupling sims** — which shell-local structures remain compatible when two shells are active? Which interact nontrivially?
-3. **Multi-shell coexistence** — small (2-3 shell) stacking tests
-4. **Topology-variant reruns** — same coupling test, different topology class (topology-stable vs topology-sensitive)
-5. **Emergence tests** — what entropy gradients, probes, or operators only appear when multiple shells run together?
-6. **Bridge claims** — rho_AB, Xi, Phi0, Axis 0 — ONLY AFTER steps 1-5
 
-Do not skip to step 6. Do not make bridge claims before shell-local and coupling work exists.
+1. keep shell-local lego coverage expanding across the registry
+2. allow bounded pairwise coupling exploration from already-strong local parents
+3. allow small coexistence tests where the parents are already honest and the claim stays bounded
+4. promote broader topology-variant / emergence work only when the parent local and exploratory coupling evidence are strong enough
+5. keep bridge claims — rho_AB, Xi, Phi0, Axis 0 — later than the exploratory coupling loop
+
+Do not treat exploratory coupling as proof that the coupling stage is earned.
+Do not skip to bridge claims at all.
 
 ---
 
@@ -78,6 +121,7 @@ Do not skip to step 6. Do not make bridge claims before shell-local and coupling
 1. **No registry/doc status edits** until the corresponding code/result gate is explicitly satisfied and the result file path is cited.
 2. Use the controller-side validator before accepting any worker closeout: `system_v4/skills/llm_research_enforcement_validator.py`.
 3. Keep the gap matrix current in `docs/LLM_RESEARCH_GAP_MATRIX.json`; do not promote cells without evidence paths.
+4. No broad coupling/coexistence/topology/emergence/bridge/axis queueing or launch merely because exploratory couplings exist.
 
 2. **Phase 7 completion** requires C2_graph_topology tested for all 28 families — not a subset.
 
@@ -107,10 +151,28 @@ Do not take agent output at face value. Verify claims against result files.
 Every agent prompt should have these sections in order:
 
 1. **Read order**: which files to read first (ENFORCEMENT_AND_PROCESS_RULES.md, SIM_TEMPLATE.py, relevant result JSONs)
-2. **Non-negotiable guardrails**: template compliance, tool manifest, non-empty reasons, classification field
+2. **Non-negotiable guardrails**: hard stage gate, template compliance, tool manifest, non-empty reasons, classification field
 3. **Allowed claims**: what this agent is permitted to conclude (bounded by its task)
 4. **Required verification**: what must be run locally before the agent reports success
 5. **Stop rules**: conditions under which the agent must stop and report back rather than proceeding
+
+---
+
+## Controller Closeout — Block K (mandatory)
+
+Every controller session ends with Block K from `~/wiki/harness/24_closeout_templates.md`. The closeout is the transmission channel between sessions; a rationalist closeout decays the shaped manifold before the next session boots.
+
+```
+Gates cited: <list of gates evaluated + step number from 06_coupling_program_order.md>
+Admission decisions: <per gate: admitted | blocked | not evaluated>
+Narrative substitutions intercepted: <if any adjacent-stage narratives were pressured and refused>
+Worker claims verified: <per worker: which claims were checked against result files>
+Worker claims not verified: <what was accepted on report only, if any>
+Status label changes to registry: <none | list with cited evidence path>
+Blocked actions: <named actions that were refused with gate criterion>
+```
+
+Missing-field closeout reads as incomplete, not as finished. Do not smooth a Block K by omitting fields that would show refusals or unverifieds — the whole point of the channel is to carry the refusal shape forward.
 
 ---
 

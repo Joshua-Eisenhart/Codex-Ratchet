@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import datetime as dt
 import glob
+import json
 import os
 import pathlib
 import re
@@ -12,7 +13,8 @@ REPO = pathlib.Path('/Users/joshuaeisenhart/Desktop/Codex Ratchet')
 WIKI = pathlib.Path('/Users/joshuaeisenhart/wiki/projects/codex-ratchet')
 TIER_B = WIKI / 'tier_b.md'
 TIER_D = WIKI / 'tier_d.md'
-PROMPT = REPO / 'ops' / 'tier_d_launch_prompt.md'
+PROMPT = REPO / 'system_v5' / 'ops' / 'tier_d_launch_prompt.md'
+STAGE_GATE = REPO / 'system_v5' / 'ops' / 'stage_gate.json'
 LOG = WIKI / 'tier_d_gate_poller.log'
 LAUNCH_LOG = WIKI / 'tier_d_launch_session.log'
 POLL_SECONDS = 600
@@ -32,6 +34,16 @@ def steward_cycle_end(status: str) -> None:
     steward_log = WIKI / '_steward_log.md'
     with steward_log.open('a', encoding='utf-8') as f:
         f.write(f"{ts()} tier_d_gate_poller tier_d cycle_end status={status}\n")
+
+
+def tier_d_launch_allowed() -> bool:
+    if not STAGE_GATE.exists():
+        return False
+    try:
+        data = json.loads(STAGE_GATE.read_text(encoding='utf-8'))
+    except Exception:
+        return False
+    return bool(data.get('allow_tier_d_launch'))
 
 
 def tier_b_gate_green() -> bool:
@@ -83,6 +95,11 @@ def main() -> int:
             if tier_d_already_owned():
                 log('tier_d.md already indicates active or terminal state; exiting poller')
                 return 0
+            if not tier_d_launch_allowed():
+                log('Tier D launch blocked by stage_gate.json; waiting')
+                steward_cycle_end('polling')
+                time.sleep(POLL_SECONDS)
+                continue
             green = tier_b_gate_green()
             layers = tier_b_layer_files_exist()
             if green and layers:

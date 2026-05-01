@@ -8,13 +8,18 @@ matrix parameter. z3+sympy verify gradient sign symbolically.
 
 classification: canonical
 pytorch: load_bearing
-z3: supportive
-sympy: supportive
+z3: load_bearing
+sympy: load_bearing
 """
 
 import json
 import os
 import numpy as np
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 
 # =====================================================================
 # TOOL MANIFEST
@@ -84,8 +89,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -122,6 +127,13 @@ try:
     TOOL_MANIFEST["gudhi"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["gudhi"]["reason"] = "not installed"
+
+for tool_name, entry in TOOL_MANIFEST.items():
+    if entry["tried"] and not entry["reason"]:
+        entry["reason"] = (
+            "import probe succeeded; this tool is not used unless a later "
+            "test marks it load-bearing for the PyTorch capability claim"
+        )
 
 
 # =====================================================================
@@ -394,6 +406,7 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
+        "all_pass": all_pass,
         "summary": {
             "all_pass": all_pass,
             "total_tests": len(all_sections),

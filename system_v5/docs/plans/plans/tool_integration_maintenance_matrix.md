@@ -9,6 +9,7 @@ Authority surfaces:
 - `docs/TOOL_MANIFEST_AUDIT.md`
 - `docs/16_lego_build_catalog.md`
 - `docs/17_actual_lego_registry.md`
+- `docs/plans/plans/2026-04-18-tool-stage-plan.md`
 
 ## Current maturity snapshot
 
@@ -39,6 +40,8 @@ Interpretation rule:
 | cvc5 | shallow but explicit proof-tool capability anchor | `cvc5_shells_crosscheck_results.json` | real and load-bearing in a narrow shell/fence cross-check lane with an explicit baseline-vs-canonical contract now recorded in the artifact, but still underused as a broader proving engine | promote the same contract into `constraint_probe_admissibility`: z3-only reference, cvc5 independent UNSAT cross-check, real SyGuS fence synthesis |
 | e3nn | shallow but real | `density_hopf_geometry_results.json`, `e3nn_equivariant_qubits_results.json`, and `e3nn_hopf_spinor_equivariance_results.json` | real packet work exists, but it is still not a reusable geometry/operator equivariance family in the main build | geometry/operator equivariance packet on the same carrier |
 | TopoNetX | underused outlier but with two strong rerun-backed anchors | `toponetx_state_class_binding_results.json` and `cell_complex_geometry_results.json` | broader coexistence/coupling use remains sparse even after the fresh direct cell-complex rerun | cell-complex packet and shell/state-class binding deepen pass |
+| hdbscan | specialized but present | `sim_hdbscan_umap_verdict_clustering.py` and `sim_integration_hdbscan_constraint_clustering.py` | dedicated integration anchor exists, but its current truth label needs reconciliation into the live tool-stage surfaces | reconcile the hdbscan integration anchor before adding new clustering work |
+| umap | specialized but present | `sim_hdbscan_umap_verdict_clustering.py` and `sim_integration_umap_gtower_projection.py` | dedicated integration anchor exists, but its current truth label needs reconciliation into the live tool-stage surfaces | reconcile the umap integration anchor before adding new projection work |
 
 ## Claim-to-tool reminders
 
@@ -75,6 +78,24 @@ Interpretation rule:
 - deepen clifford, e3nn, and geomstats as explicit capability lanes
 - best bounded moves: rotor/spinor packets, equivariance packets, metric/geodesic packets
 
+5. Honest second-wave tool-stage packets
+- keep second-wave integrations below lego work
+- verified 2026-04-18 current bounded candidates:
+  - `sim_integration_networkx_rustworkx_crosscheck.py`
+  - `sim_integration_geomstats_constraint_manifold.py`
+- executed 2026-04-18 but stage-heavier than the clean Tier A default:
+  - `sim_integration_toponetx_gtower_chain_complex.py`
+  - keep as baseline/reference only unless it is rewritten to stay below tower-order / shortcut-law semantics
+
+6. Coverage-lego tool-stage anchors
+- use real bounded legos to exercise tool families honestly
+- fresh verified examples:
+  - `sim_gtower_reduction_obstruction_z3.py`
+  - `sim_toponetx_hopf_crosscheck.py`
+  - `sim_gudhi_deep_s3_hopf_torus_persistent_homology.py`
+  - `sim_foundation_hopf_torus_geomstats_clifford.py`
+- these are still tool-stage / coverage-stage work, not permission to start coupling
+
 ## Maintenance rule
 After any meaningful batch:
 - if a tool became newly load-bearing, update this matrix
@@ -82,3 +103,4 @@ After any meaningful batch:
 - if a new sim exposes a better anchor for a tool, replace the weaker anchor
 - keep the linked truth status in `system_v5/docs/plans/sim_truth_audit.md` aligned so tool-depth claims do not outrun the current safe truth label for the anchor file
 - if the batch was run through the on-demand Telegram controller, include any tool-anchor change in the run closeout or explicitly queue the follow-up update before closure
+- do not let a stage-heavy integration packet become the default next move just because it executed successfully

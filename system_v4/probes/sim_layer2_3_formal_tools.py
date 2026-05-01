@@ -15,6 +15,11 @@ import sys, os, json, time
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical baseline: layers 2-3 are audited here with topology and Clifford-backed formal checks, not a canonical nonclassical witness."
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "carrier/loop numerics and JSON-safe verification surfaces"},
     "toponetx": {"tried": True, "used": True, "reason": "cell-complex carrier realization"},
@@ -289,9 +294,17 @@ def run_layer2():
     result = {
         "layer": 2,
         "name": "Carrier Realization (C^2, S^3, Hopf) -- formal tools",
+        "classification": classification,
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "tools_used": ["toponetx.CellComplex", "clifford.Cl(3)"],
+        "all_pass": bool(
+            all(v["pass"] for v in positive.values())
+            and all(v["pass"] for v in negative.values())
+        ),
         "timestamp": "2026-04-06",
         "summary": (
             f"P1-P5 all {'PASS' if all(v['pass'] for v in positive.values()) else 'MIXED'}. "
@@ -532,6 +545,10 @@ def run_layer3():
     result = {
         "layer": 3,
         "name": "Connection + Loop Geometry -- formal tools",
+        "classification": classification,
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "tools_used": [
@@ -539,6 +556,10 @@ def run_layer3():
             "clifford.Cl(3)",
             "hopf_manifold.berry_phase",
         ],
+        "all_pass": bool(
+            all(v["pass"] for v in positive.values())
+            and all(v["pass"] for v in negative.values())
+        ),
         "timestamp": "2026-04-06",
         "summary": (
             f"P1-P5 all {'PASS' if all(v['pass'] for v in positive.values()) else 'MIXED'}. "

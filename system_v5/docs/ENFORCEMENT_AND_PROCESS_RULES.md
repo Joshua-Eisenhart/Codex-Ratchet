@@ -4,7 +4,7 @@
 | Field | Value |
 |-------|-------|
 | **last_verified** | 2026-04-08 |
-| **current_reviewed_policy** | SIM_TEMPLATE.py structure, tool manifest requirement, two-lane policy (no automated checker, no promotion gate — bounded validator/gap-matrix process tools exist, but compliance still depends on discipline and review) |
+| **current_reviewed_policy** | SIM_TEMPLATE.py structure, tool manifest requirement, hard stage gate plus controller-side review discipline (no automated checker, no promotion gate — bounded validator/gap-matrix process tools exist, but compliance still depends on discipline and review) |
 | **discovered** | L0-L7 constraint cascade, 28 irreducible families, 9 independent observables, simultaneous shell geometry |
 | **planned** | Manifest checker CI, canonical promotion gate, Lean 4 / TLAPS proof layer, PyTorch migration of all 28 families |
 
@@ -13,6 +13,22 @@ These rules describe the target standard for new work. They are not yet automati
 
 ## Scope
 This document governs active simulation and build work. It does not replace source-of-truth math; it constrains how we produce, validate, and classify work.
+
+---
+
+## Hard Build Guardrail
+
+This guardrail is mandatory.
+
+1. keep tool sims active until the needed tool surface is honestly covered
+2. keep tool-integration sims active until the needed bounded integrations are honestly covered
+3. keep lego sims active across the registry, one bounded lego at a time
+4. bounded coupling / coexistence exploration may run inside this loop, but only off already-strong local parents and only as exploration
+5. exploratory coupling work does not mean the coupling stage is earned
+6. broad coupling / coexistence / topology-variant / emergence promotion remains blocked until the registry and parent evidence are strong enough
+7. bridge / axis / engine surfaces remain later and explicitly gated
+
+If a queue, launch prompt, ledger row, or worker plan widens exploratory coupling into earned higher-stage permission, this guardrail wins.
 
 ---
 
@@ -28,8 +44,8 @@ This is not new information. It is the already-corrected operating plan that mus
    - multiple active layers can operate at once
    - the exact final layer order is not yet closed
 5. do not force canon on the current candidate order
-6. only after the basic legos are real:
-   - test how layers stack
+6. after tool sims, tool integrations, and lego rows are underway, allow bounded stacking/composition exploration off strong local parents without treating that as closure:
+   - test how layers stack locally
    - test which orders and subsets can actually nest
    - test which structures survive composition
 
@@ -39,7 +55,7 @@ Concrete examples that must stay preserved:
 - flux is an open derived family and must be built from its dependency chain, not assumed as primitive
 - Pauli / Bloch / channel / differential machinery should be simmed as independent legos before compound claims
 
-If a sim batch violates that order, it is off-plan even if it produces passing outputs.
+If a sim batch violates that order, it is off-plan even if it reports passing outputs.
 
 ---
 
@@ -137,7 +153,7 @@ Required tool-role contract:
 - **Lean 4**: interactive theorem prover for math-side formalization above SMT level.
 - **TLAPS**: temporal logic model checking for ratchet safety/liveness properties.
 
-**Why:** Each tool carries a different ontological commitment. z3/cvc5 do constraint logic (non-classical). Clifford does geometric product (non-commutative). TopoNetX/GUDHI do topology (relational). geomstats does Riemannian geometry (intrinsic, not coordinate-first). e3nn does equivariant computation (symmetry-native). PyG does graph computation (non-Cartesian). Using them forces non-classical thinking.
+**Why:** Each tool carries a different ontological commitment. z3/cvc5 do constraint logic (non-classical). Clifford does geometric product (non-commutative). TopoNetX/GUDHI do topology (relational). geomstats does Riemannian geometry (intrinsic, not coordinate-first). e3nn does equivariant computation (symmetry-native). PyG does graph computation (non-Cartesian). Using them excludes classical defaults and admits non-classical structure.
 
 ## Rule 3: No engine jargon in sims
 Standard mathematical terms only. Z-dephasing, not Ti. X-rotation, not Fi. The Jungian labels are a Rosetta mapping applied only after the math has earned the relevant checks; they must not steer the computation layer.
@@ -176,10 +192,10 @@ This applies especially to:
 - bridge / cut-state layer
 - later entropy / `Phi0` layers
 
-## Rule 5: Two-lane quality policy
-**Lane 1 -- Coverage**: mass independent lego construction. Each lego is a standalone building-block candidate. Breadth matters for coverage. A lego should pass its own positive and negative tests, but this lane does not by itself grant a stronger public truth label or closure claim.
+## Rule 5: Two quality modes inside the active stage
+**Coverage mode**: mass independent lego construction. Each lego is a standalone building-block candidate. Breadth matters for coverage. A lego should pass its own positive and negative tests, but this mode does not by itself grant a stronger public truth label or closure claim.
 
-**Lane 2 -- Promotion**: promotion-grade deepening. A lego becomes `canonical by process` only after deep testing:
+**Promotion mode**: promotion-grade deepening. A lego becomes `canonical by process` only after deep testing:
 - multiple test states (not just one state)
 - theoretical value comparison
 - at least one negative/failure case
@@ -189,9 +205,9 @@ This applies especially to:
 - a clear statement of what would falsify the result
 - tool manifest documenting all tools tried
 
-Both lanes run simultaneously. Lane 1 produces baselines. Lane 2 is the path to `canonical by process`.
+These modes do not authorize broad stage promotion. Promotion inside the lego stage is still lego-stage work, and exploratory pairwise/coexistence work stays feedback-only unless separately earned. No bridge/axis/engine jump is earned merely because a subset of legos look strong.
 
-**Why:** Breadth without depth is shallow. Depth without breadth is incomplete. Both are required, but they serve different purposes and should not block each other.
+**Why:** Breadth without depth is shallow. Depth without breadth is incomplete. Both are required, but they operate inside the active stage and do not override stage order.
 
 ## Rule 6: Negative testing is mandatory
 Every positive test has a corresponding negative. Not "does it work" but "when does it break, and why."
@@ -216,7 +232,7 @@ Use "survived" not "created." Use "coupled with" not "causes." Use "constraint o
 - Zero gradient = what is redundant (noise)
 - Treat this as a strong architectural working thesis for current build design, not as a public proof claim.
 
-**Mathematical basis:** Autograd traces relationships between operations (relational, not Cartesian). Backprop flows information backward through constraints (non-causal, constraint-based). The graph topology determines what is computable (topological, not coordinate-based).
+**Mathematical basis:** Autograd traces relationships between operations (relational, not Cartesian). Backprop flows information backward through constraints (non-causal, constraint-based). The graph topology admits what is computable (topological, not coordinate-based).
 
 ## Rule 10: Classical legos are baselines, not answers
 The numpy legos show what works classically. The constraint cascade shows what fails classically. The PyTorch version uses the new substrate. The classical versions are the before picture and negative controls.
@@ -239,8 +255,25 @@ That means:
 - stack / nesting sims are also necessary
 - neither replaces the other
 
-## Rule 12: Anti-salience
-The boring foundational work matters most. LLMs skip it (salience bias), smooth contradictions (compression bias), and agree to please (RLHF bias). Push back. Stay on the current layer. Do not leap ahead.
+## Rule 12: Structural Anti-Salience Constraint
+
+**This is a structural constraint, not advice.**
+
+The training gradient pulls toward salient work: novel claims, high-level patterns, bridge and engine framing. It pulls away from: tool sims, lego rows, tool manifest completion, boring coverage passes. This is not a personality flaw; it is the LLM's completion probability under the training manifold. Left unresisted, stage inflation, label promotion, and Narrative Substitution for Gate Obedience surface on every session.
+
+**Specific intercept points (probe family M_salience):**
+
+1. **Lego skip** — model proposes coupling, bridge, or engine work while lego registry rows are open. Intercept: "which lego gate criterion is satisfied? cite the row and result file."
+2. **Label inflation** — model reports status in language stronger than the evidence. Intercept: "name the criteria checked; cite the result file from this session."
+3. **Agent trust without verify** — model builds on an agent's completion report without reading the result file. Intercept: "read the file; run the verification."
+4. **Narrative substitution** — model constructs a plausible research narrative that implies a gate is satisfied. Intercept: "cite the gate criterion and result file, not the narrative."
+5. **Scope creep** — model adds features, refactors, or improvements adjacent to the requested task. Intercept: "is this in scope? trace it to the request."
+
+**How to apply:**
+
+When salience pressure is detectable (the work feels exciting, the story feels right, the next step is obvious), that is the activation condition for this rule. Stop. Check the gate. Cite the evidence. If it cannot be cited, the gate is not satisfied.
+
+Push back on the salience pull. Stay on the current layer. Do not leap ahead.
 
 ## Rule 13: Multiple narratives
 Hold several divergent explanations simultaneously. Where they agree despite diverging = signal. Do not pick one story. Divergence is the information.
@@ -261,6 +294,7 @@ Hold several divergent explanations simultaneously. Where they agree despite div
 - Template includes required imports, validation structure, negative-test section, tool manifest, and `tool_integration_depth` — **exists**
 - Agent prompts include these rules verbatim — **partially implemented**
 - Hermes audits Rules 4-13 — **not yet automated**
+- Controller-side enforcement must reject or defer any pairwise/coexistence/bridge/axis work until tool sims, tool integration, and lego-stage completion are all satisfied — **required fail-closed process rule**
 
 ### Cultural
 - Speed is not the goal. Depth is.

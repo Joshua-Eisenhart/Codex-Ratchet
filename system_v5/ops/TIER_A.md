@@ -11,12 +11,29 @@ Hermes spawns multiple Claude Code terminals across domains. Each Claude writes 
 
 Workers never run sims themselves.
 
-## Reality (verified 2026-04-16)
+## Reality (verified 2026-04-18)
 
 - 1266 canonical result artifacts; 88 lack `tool_integration_depth`
 - 4 shared result-writer helpers: `_doc_illum_common.py`, `_couple_common.py`, `_triple_common.py`, `_quad_common.py`
 - All 4 define `TOOL_INTEGRATION_DEPTH` but `write_results()` does not inject it
 - `axis0_full_constraint_manifold_{audit,guardrail_sim}.py` contain `Se/Ne/Si` leaks
+- the repo now contains a broader tool-stage estate than the original Tier A surface reflected:
+  - 34 capability-style probes
+  - 47 integration-style probes
+- use `system_v5/docs/plans/plans/2026-04-18-tool-stage-plan.md` for the current tool-stage normalization and second-wave packet plan
+- fresh 2026-04-18 execution confirmed:
+  - `sim_rustworkx_capability.py`
+  - `sim_geomstats_capability.py`
+  - `sim_xgi_capability.py`
+  - `sim_e3nn_capability.py`
+- fresh 2026-04-18 executed baseline/reference integrations:
+  - `sim_integration_networkx_rustworkx_crosscheck.py`
+  - `sim_integration_geomstats_constraint_manifold.py`
+- `sim_integration_toponetx_gtower_chain_complex.py` also executed on 2026-04-18, but it is now treated as a stage-heavier reference packet rather than the clean default next Tier A move
+- hdbscan/umap no longer count as missing capability probes:
+  - `sim_capability_hdbscan_isolated.py`
+  - `sim_capability_umap_isolated.py`
+  - dedicated integration files also exist and need truth-label reconciliation, not new capability authoring
 
 ## Track 0 — Tool-capability sims (HARD GATE, per harness/05)
 
@@ -31,6 +48,22 @@ Seven Haiku Claudes, one tool each, parallel worktrees. Each writes ONE canonica
 | A0.5 | TopoNetX | `system_v4/probes/tool_capability_toponetx.py` |
 | A0.6 | Clifford (clifford/geometric_algebra) | `system_v4/probes/tool_capability_clifford.py` |
 | A0.7 | torch (autograd) | `system_v4/probes/tool_capability_torch.py` |
+
+## Track 0b — Extension capability normalization
+
+These are still tool-stage packets, not lego work:
+
+| Worker | Tool | Probe path |
+|---|---|---|
+| A0.8 | rustworkx | `system_v4/probes/sim_rustworkx_capability.py` |
+| A0.9 | geomstats | `system_v4/probes/sim_geomstats_capability.py` |
+| A0.10 | XGI | `system_v4/probes/sim_xgi_capability.py` |
+| A0.11 | e3nn | `system_v4/probes/sim_e3nn_capability.py` |
+
+Coverage note:
+- isolated capability probes are not the whole tool-stage story
+- prefer real bounded coverage legos when they exercise the tool more honestly than a sterile capability packet
+- the current best coverage-lego families are Hopf / same-carrier geometry, Weyl local shells, G-tower local obstruction/filtration, constraint/distinguishability, and graph/cell-complex locals
 
 ### Worker template (A0.*)
 
@@ -106,6 +139,35 @@ Six Sonnet Claudes, one pair each, parallel worktrees.
 | A4.5 | TopoNetX + PyG | `system_v4/probes/tool_integration_toponetx_pyg.py` |
 | A4.6 | cvc5 + sympy | `system_v4/probes/tool_integration_cvc5_sympy.py` |
 
+## Track 4b — Second-wave bounded tool integrations
+
+Only use packets that stay below lego coupling claims:
+
+| Worker | Pair / surface | Probe path |
+|---|---|---|
+| A4.7 | networkx + rustworkx | `system_v4/probes/sim_integration_networkx_rustworkx_crosscheck.py` |
+| A4.8 | geomstats + sympy + z3 | `system_v4/probes/sim_integration_geomstats_constraint_manifold.py` |
+| A4.9 | TopoNetX + torch + z3 | `system_v4/probes/sim_integration_toponetx_gtower_chain_complex.py` |
+
+Do not treat bridge-shaped or coexistence-shaped `sim_integration_*` files as Tier A defaults.
+After the 2026-04-18 run, treat A4.9 as executed reference material only until it is thinned back below tower-order / shortcut-law semantics.
+
+## Track 4c — Coverage-lego tool-stage runs
+
+These are real bounded legos used to exercise underused tool families honestly without leaving the tool stage:
+
+| Worker | Coverage lego | Probe path |
+|---|---|---|
+| A4.10 | G-tower local obstruction | `system_v4/probes/sim_gtower_reduction_obstruction_z3.py` |
+| A4.11 | Hopf TopoNetX crosscheck | `system_v4/probes/sim_toponetx_hopf_crosscheck.py` |
+| A4.12 | Hopf persistent homology | `system_v4/probes/sim_gudhi_deep_s3_hopf_torus_persistent_homology.py` |
+| A4.13 | Hopf manifold / Clifford geometry | `system_v4/probes/sim_foundation_hopf_torus_geomstats_clifford.py` |
+
+Rule:
+- these are still tool-stage / coverage-stage work
+- they do not authorize broad higher-stage promotion
+- if they expose a strong local parent, they may still feed bounded exploratory coupling selection elsewhere in the loop
+
 ### Worker template (A4.*)
 
 Read: `~/wiki/harness/00_READ_FIRST.md`, `~/wiki/harness/05_four_sim_kinds.md`, `system_v4/probes/SIM_TEMPLATE.py`.
@@ -120,12 +182,15 @@ Tail `overnight_logs/sim_runner_current.log`. Verify each claimed commit against
 
 ## Gate
 
-- ✓ 7 tool-capability probes exist, runner reports DONE for all
-- ✓ Serializer change committed
-- ✓ All 88 backfill probes re-run (runner DONE lines in queue)
-- ✓ `axis0_*.py` rename audit: 0 leaks
-- ✓ 6 tool-integration probes exist, runner reports DONE for all
-- ✓ Auditor log clean
+Do not call Tier A green from the old 7-capability / 6-integration checklist alone. The current gate is broader:
+
+- 22 capability probes exist and their current status is reflected in `system_v5/docs/plans/plans/TOOL_CAPABILITY_AND_INTEGRATION_LEDGER.md`
+- hdbscan and umap are not missing-capability tools; their remaining debt is integration/truth-label reconciliation
+- second-wave capability reruns and bounded integration/reference packets are reconciled in the ledger and maintenance matrix
+- `sim_integration_toponetx_gtower_chain_complex.py` remains reference material until thinned below tower-order / shortcut-law semantics
+- serializer/backfill/rename work remains separately required when the corresponding source/result evidence is staged
+- active queue rows must be runnable probe basenames; work-item labels stay commented until a matching probe exists
+- auditor log is clean for the exact queue/probe batch being closed
 
 ## Save + Report
 

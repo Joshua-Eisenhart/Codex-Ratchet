@@ -1,10 +1,21 @@
 # Parallel Sim Lanes
 
 Claim a row by setting `owner` (your terminal id or `hermes-<n>`) and `status` to `in_progress`.
-Use `scripts/claim_lane.py claim <lane_id>` for file-locked atomic claim.
+Use `scripts/claim_lane.py claim <lane_id> <owner>` for file-locked atomic claim.
 Status values: `open`, `in_progress`, `runs`, `passes local rerun`, `canonical by process`, `blocked`.
 
-**Lane priority:** T (tool sims) > TI (integration) > C (classical baselines, scale-out) > NC (nonclassical, blocked on T+TI) > B (bridge) > S (spine, blocked on NC).
+Maintenance overlay:
+- `M` rows are orthogonal to the build-stage lanes below
+- keep one primary build lane plus one `M` row when controller work is active
+- `M` never authorizes stage promotion
+
+**Lane priority:** T (tool sims) and TI (tool integrations) stay active first; C (classical baselines) may run in parallel; NC (nonclassical lego stage) is the main completion surface; B (bounded coupling exploration) may run off strong NC parents; S (spine/bridge/axis closure) stays blocked.
+
+Hard guardrail:
+- do not interpret `NC` as "some local winners"
+- do not interpret `B` as broad bridge/coupling permission
+- `B` means bounded exploratory coupling off already-strong local parents
+- `S` remains blocked until much later evidence exists
 
 Classical-baseline sims (Lane C) must carry `classification: "classical_baseline"` and MUST NOT be cited as evidence for nonclassical claims.
 
@@ -27,7 +38,7 @@ Classical-baseline sims (Lane C) must carry `classification: "classical_baseline
 |---|---|---|---|---|
 | TI-01 | z3 × sympy | | open | |
 | TI-02 | Cl(3) × PyG | | open | |
-| TI-03 | TopoNetX × torch | | open | |
+| TI-03 | TopoNetX × torch | hermes | blocked | system_v4/probes/a2_state/sim_results/system_hygiene_supervisor_results.json |
 | TI-04 | z3 × torch | | open | |
 | TI-05 | Cl(6) × TopoNetX | | open | |
 | TI-06 | sympy × Cl(3) | | open | |
@@ -40,14 +51,28 @@ Populate from existing 713-probe inventory. Each row stays `classical_baseline`.
 |---|---|---|---|---|
 | C-01 | (seed from sim inventory) | | open | |
 
-## Lane NC — Nonclassical geometry legos (BLOCKED on T+TI)
+## Lane NC — Nonclassical geometry legos
 
-Do not start until Lane T + Lane TI rows are all ≥ `passes local rerun`.
+Primary completion surface.
+Keep running NC while T and TI continue to deepen.
 
-## Lane B — Bridge (classical ↔ nonclassical pairs)
+## Lane B — Bounded coupling exploration
 
-Blocked on NC.
+Allowed only off strong local parents.
+Exploration only; not broad promotion.
 
-## Lane S — Spine
+## Lane S — Spine / bridge / axis closure
 
-Blocked on NC completion.
+Blocked.
+
+## Lane M — Maintenance / controller overlay
+
+Non-admitting controller lane. Run beside the current primary build lane when truth, hygiene, contract, or worker/harness surfaces need repair.
+
+| id | surface | owner | status | result_path |
+|---|---|---|---|---|
+| M-01 | truth / integrity verification | | blocked | system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json |
+| M-02 | hygiene / repository maintenance | | blocked | system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json |
+| M-03 | controller / harness contract governance | | blocked | system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json |
+| M-04 | runtime / CLI worker prerequisites | | passes local rerun | system_v4/probes/a2_state/sim_results/runtime_hygiene_audit_results.json |
+| M-05 | subagent + wiki harness integration |  | runs | system_v5/docs/plans/plans/subagent-wiki-harness-integration-contract.md |

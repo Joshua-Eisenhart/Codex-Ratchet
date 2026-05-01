@@ -24,6 +24,11 @@ from typing import Dict, List, Optional, Tuple
 import sys
 import os
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from clifford import Cl
@@ -728,6 +733,34 @@ def main():
     out_path = os.path.join(results_dir, "geometric_engine_results.json")
     result = {
         "name": "engine_geometric",
+        "classification": "classical_baseline",
+        "divergence_log": (
+            "Classical baseline engine trace: Cl(3), TopoNetX, and numpy are used "
+            "to audit geometric transport and derived rho surfaces, not to claim a "
+            "canonical nonclassical witness."
+        ),
+        "tool_manifest": {
+            "numpy": {
+                "tried": True,
+                "used": True,
+                "reason": "array, eigenspectrum, density-matrix, entropy, and trajectory calculations",
+            },
+            "clifford": {
+                "tried": True,
+                "used": True,
+                "reason": "Cl(3) rotor and bivector operations define the geometric state updates",
+            },
+            "toponetx": {
+                "tried": True,
+                "used": True,
+                "reason": "cell-complex adjacency maps engine cycles across nested torus levels",
+            },
+        },
+        "tool_integration_depth": {
+            "numpy": "supportive",
+            "clifford": "load_bearing",
+            "toponetx": "supportive",
+        },
         "torus_levels": ["inner", "clifford", "outer"],
         "n_cycles": n_cycles,
         "initial": {
@@ -776,6 +809,19 @@ def main():
             "rho_AB_psd": bool(rho_psd),
             "rho_AB_trace_1": bool(rho_tr),
         },
+        "all_pass": bool(
+            bp_ok
+            and avg_lr < 0.5
+            and cd > 0.01
+            and bd > 0.01
+            and eok
+            and pok
+            and abs(nL - 1) < 1e-8
+            and abs(nR - 1) < 1e-8
+            and conc_ok
+            and rho_psd
+            and rho_tr
+        ),
         "summary": "Spinors primary; rho derived; Cl(3) bivector entangling coupling active; "
                    "correlation matrix tracks L-R geometric entanglement.",
     }

@@ -82,13 +82,13 @@ POLL_TIMEOUT     = 30
 SIM_TIMEOUT      = 300
 CODEX_TIMEOUT    = 600
 CODEX_MODEL      = os.environ.get("CODEX_MODEL", "").strip()
-PROJECT_DIR      = os.environ.get("PROJECT_DIR", "/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+PROJECT_DIR      = os.environ.get("PROJECT_DIR", os.path.dirname(os.path.abspath(__file__)))
 RESULTS_DIR      = os.path.join(PROJECT_DIR, "system_v4/probes/a2_state/sim_results")
 PROBES_DIR       = os.path.join(PROJECT_DIR, "system_v4/probes")
 LIVE_SPINE_PATH  = os.path.join(RESULTS_DIR, "live_anchor_spine.json")
 MAX_MSG_LEN      = 4000
 
-PYTHON_BIN      = "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+PYTHON_BIN      = os.environ.get("CODEX_RATCHET_PYTHON_BIN", sys.executable)
 MPLCONFIGDIR    = "/tmp/codex-mpl"
 NUMBA_CACHE_DIR = "/tmp/codex-numba"
 CODEX_BIN       = os.environ.get("CODEX_BIN", "/usr/local/bin/codex")
@@ -373,7 +373,12 @@ def handle_log(args):
     if not os.path.exists(log_path):
         return "log not found"
     r = subprocess.run(["tail", "-40", log_path], capture_output=True, text=True, timeout=10)
-    return r.stdout.strip() or "(empty)"
+    out = r.stdout.strip()
+    if not out:
+        return "(empty)"
+    if os.environ.get("CODEX_RATCHET_DEBUG_BOT_LOGS") == "1":
+        return out
+    return _redact_log_text(out)
 
 
 def handle_spine(args):
@@ -461,9 +466,19 @@ FREEFORM_PROMPT = """You are a Codex controller for the Codex Ratchet repo.
 Reply in plain text only.
 Keep replies short.
 Work only inside the project directory.
+Read-only fallback only: do not edit files, mutate git, or launch long-running work.
 Do not refer to Hermes or Claude Code bots.
 Answer normal questions about repo files, docs, and project state.
 Only redirect the user to an explicit bot command when they are clearly trying to invoke that command directly."""
+
+
+def _redact_log_text(text):
+    chat_id = TELEGRAM_CHAT_ID
+    if chat_id:
+        text = text.replace(chat_id, "[redacted-chat-id]")
+    text = re.sub(r"[\w.+-]+@[\w.-]+\.\w+", "[redacted-email]", text)
+    text = re.sub(r"\+?\d[\d\s().-]{7,}\d", "[redacted-number]", text)
+    return text
 
 
 def codex_freeform(question):
@@ -473,7 +488,7 @@ def codex_freeform(question):
     cmd = [
         CODEX_BIN,
         "exec",
-        "--sandbox", "workspace-write",
+        "--sandbox", "read-only",
         "-C", PROJECT_DIR,
         "-o", output_path,
     ]

@@ -63,7 +63,7 @@ Summarize it for a phone screen. Rules:
 - Do not say "I ran" — you did not run it. Report what the output shows."""
 
 FREEFORM_PROMPT = f"""You are the Codex Ratchet project assistant, reachable via iMessage.
-You can read files, run bash commands, edit files, and execute sims.
+You can read files and run read-only bash commands.
 Project dir: {PROJECT_DIR}
 Results: system_v4/probes/a2_state/sim_results/
 Sims: system_v4/probes/sim_*.py
@@ -72,11 +72,21 @@ Correct Python: {PYTHON_BIN}
 Rules:
 - Plain text only. Short lines. Dashes for structure.
 - No markdown, no **, no ##, no follow-up templates, no status bars.
-- When user asks to run something, JUST RUN IT via Bash — don't ask permission.
-- Use the configured codex-ratchet python for sims: {PYTHON_BIN}
+- Do not edit files, write files, mutate git, or launch long-running sims from free-form fallback.
+- For execution requests, tell the user the structured command to use.
+- Use the configured codex-ratchet python only for read-only checks: {PYTHON_BIN}
 - Report what you actually did and what the output was.
 - Never ask for clarification — make a reasonable choice and act.
 - Keep replies under 1400 chars (iMessage limit)."""
+
+
+def _redact_log_text(text):
+    text = re.sub(r"[\w.+-]+@[\w.-]+\.\w+", "[redacted-email]", text)
+    text = re.sub(r"\+?\d[\d\s().-]{7,}\d", "[redacted-number]", text)
+    for value in (PHONE_HANDLE, EMAIL_HANDLE, REPLY_HANDLE):
+        if value:
+            text = text.replace(value, "[redacted-handle]")
+    return text
 
 
 def _base_env():
@@ -403,7 +413,12 @@ def handle_log(args):
     if not os.path.exists(log_path):
         return "log not found at /tmp/imessage_bot.log"
     r = subprocess.run(["tail", "-30", log_path], capture_output=True, text=True, env=_base_env(), timeout=10)
-    return r.stdout.strip() or "(empty log)"
+    out = r.stdout.strip()
+    if not out:
+        return "(empty log)"
+    if os.environ.get("CODEX_RATCHET_DEBUG_BOT_LOGS") == "1":
+        return out
+    return _redact_log_text(out)
 
 
 def handle_tools(args):
@@ -508,7 +523,7 @@ def claude_summarize(command_output, original_question):
 
 def claude_freeform(question):
     """Handle free-form questions with Claude in read-only mode."""
-    return _claude_call(question, FREEFORM_PROMPT, tools="Read,Glob,Grep,Bash,Write,Edit,MultiEdit")
+    return _claude_call(question, FREEFORM_PROMPT, tools="Read,Glob,Grep,Bash")
 
 
 def _claude_call(prompt, system_prompt, tools):

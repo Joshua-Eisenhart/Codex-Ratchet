@@ -60,15 +60,20 @@ FORCE_CLASSICAL_BASELINE = {
 }
 
 dry_run = "--dry-run" in sys.argv
-fixed = skipped = 0
+fixed = skipped = skipped_non_object = 0
+skipped_non_object_paths = []
 
 for path in sorted(glob.glob(f"{RESULTS_DIR}/*.json")):
+    basename = os.path.basename(path)
     with open(path) as f:
         try: data = json.load(f)
         except: continue
+    if not isinstance(data, dict):
+        skipped_non_object += 1
+        skipped_non_object_paths.append(basename)
+        continue
 
     changed = False
-    basename = os.path.basename(path)
 
     # Force classification for known classical-baseline files
     if basename in FORCE_CLASSICAL_BASELINE:
@@ -137,5 +142,12 @@ for path in sorted(glob.glob(f"{RESULTS_DIR}/*.json")):
             print(f"Would fix: {os.path.basename(path)}")
     else:
         skipped += 1
+
+if skipped_non_object_paths:
+    print(f"Skipped non-object JSON: {skipped_non_object}")
+    for name in skipped_non_object_paths[:20]:
+        print(f"  - {name}")
+    if len(skipped_non_object_paths) > 20:
+        print(f"  ... {len(skipped_non_object_paths) - 20} more")
 
 print(f"{'Would fix' if dry_run else 'Fixed'}: {fixed}, Already clean: {skipped}")

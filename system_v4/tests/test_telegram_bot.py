@@ -209,3 +209,41 @@ def test_format_run_status_report_includes_useful_human_fields():
     assert "Next: run fiber-equivalence packet" in message
     assert "Closure: truth/maintenance on track" in message
     assert "Worker: main runner active" in message
+
+
+def test_redact_log_text_hides_chat_ids_and_contact_values(monkeypatch):
+    monkeypatch.setattr(tb, "TELEGRAM_CHAT_ID", "8144581887")
+
+    redacted = tb._redact_log_text("from 8144581887 and user@example.com and +1 707 867 3323")
+
+    assert "8144581887" not in redacted
+    assert "user@example.com" not in redacted
+    assert "707" not in redacted
+    assert "[redacted-chat-id]" in redacted
+    assert "[redacted-email]" in redacted
+    assert "[redacted-number]" in redacted
+
+
+def test_codex_freeform_uses_read_only_sandbox(monkeypatch, tmp_path):
+    captured = {}
+
+    monkeypatch.setattr(tb.time, "time", lambda: 123.0)
+    monkeypatch.setattr(tb, "CODEX_BIN", "codex")
+    monkeypatch.setattr(tb, "PROJECT_DIR", str(tmp_path))
+
+    def fake_run(cmd, **kwargs):
+        captured["cmd"] = cmd
+        Path(cmd[cmd.index("-o") + 1]).write_text("ok", encoding="utf-8")
+
+        class Result:
+            stdout = ""
+            stderr = ""
+            returncode = 0
+
+        return Result()
+
+    monkeypatch.setattr(tb.subprocess, "run", fake_run)
+
+    assert tb.codex_freeform("what changed?") == "ok"
+    assert "--sandbox" in captured["cmd"]
+    assert captured["cmd"][captured["cmd"].index("--sandbox") + 1] == "read-only"

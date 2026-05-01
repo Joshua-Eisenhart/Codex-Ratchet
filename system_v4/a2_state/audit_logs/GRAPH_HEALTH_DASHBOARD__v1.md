@@ -91,11 +91,9 @@ None
 
 ### Missing Required Fields
 - `description`: 19 nodes missing
-- `admissibility_state`: 19 nodes missing
 
 ### Health Anomalies
 - ⚠️ Many nodes missing 'description': 19 nodes
-- ⚠️ Many nodes missing 'admissibility_state': 19 nodes
 
 ---
 

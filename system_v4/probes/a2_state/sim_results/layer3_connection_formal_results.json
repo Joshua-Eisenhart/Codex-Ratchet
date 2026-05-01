@@ -1,6 +1,90 @@
 {
   "layer": 3,
   "name": "Connection + Loop Geometry -- formal tools",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical baseline: layers 2-3 are audited here with topology and Clifford-backed formal checks, not a canonical nonclassical witness.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "carrier/loop numerics and JSON-safe verification surfaces"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex carrier realization"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "rotor and density conversion checks"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "toponetx": "supportive",
+    "clifford": "supportive",
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "gudhi": null
+  },
   "positive": {
     "P1_toponetx_cycle_mapping": {
       "pass": true,
@@ -125,6 +209,7 @@
     "clifford.Cl(3)",
     "hopf_manifold.berry_phase"
   ],
+  "all_pass": true,
   "timestamp": "2026-04-06",
   "summary": "P1-P5 all PASS. N1-N2 all PASS. Engine cycles correctly map fiber->inner, base->outer. Berry phases nontrivial and differ across torus levels. Rotor composition matches spinor sign-flip. Cutting between-ring edges kills shell structure and transport."
 }

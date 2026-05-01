@@ -1,5 +1,29 @@
 {
   "name": "engine_geometric",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical baseline engine trace: Cl(3), TopoNetX, and numpy are used to audit geometric transport and derived rho surfaces, not to claim a canonical nonclassical witness.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "array, eigenspectrum, density-matrix, entropy, and trajectory calculations"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor and bivector operations define the geometric state updates"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex adjacency maps engine cycles across nested torus levels"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "clifford": "load_bearing",
+    "toponetx": "supportive"
+  },
   "torus_levels": [
     "inner",
     "clifford",
@@ -168,5 +192,6 @@
     "rho_AB_psd": true,
     "rho_AB_trace_1": true
   },
+  "all_pass": true,
   "summary": "Spinors primary; rho derived; Cl(3) bivector entangling coupling active; correlation matrix tracks L-R geometric entanglement."
 }

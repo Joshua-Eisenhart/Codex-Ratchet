@@ -36,6 +36,7 @@ CLAUDE_MODEL   = "sonnet"
 PROJECT_DIR    = os.environ.get("CODEX_RATCHET_PROJECT_DIR", os.path.dirname(os.path.abspath(__file__)))
 RESULTS_DIR    = os.path.join(PROJECT_DIR, "system_v4/probes/a2_state/sim_results")
 PROBES_DIR     = os.path.join(PROJECT_DIR, "system_v4/probes")
+CLEANUP_FIRST_GUARD = os.path.join(PROBES_DIR, "cleanup_first_guard.py")
 LIVE_SPINE_PATH = os.path.join(RESULTS_DIR, "live_anchor_spine.json")
 LEGO_AUDIT_PATH = os.path.join(RESULTS_DIR, "lego_stack_audit_results.json")
 LEGO_COUPLING_PATH = os.path.join(RESULTS_DIR, "lego_coupling_candidates.json")
@@ -94,6 +95,17 @@ def _base_env():
     env["MPLCONFIGDIR"] = MPLCONFIGDIR
     env["NUMBA_CACHE_DIR"] = NUMBA_CACHE_DIR
     return env
+
+
+def _run_cleanup_guard(context):
+    r = subprocess.run(
+        [PYTHON_BIN, CLEANUP_FIRST_GUARD, "--context", context],
+        capture_output=True, text=True, cwd=PROJECT_DIR, timeout=120, env=_base_env()
+    )
+    out = (r.stdout + r.stderr).strip()
+    if r.returncode != 0:
+        return False, f"cleanup guard failed (rc={r.returncode}):\n{out[:1200]}"
+    return True, out
 
 
 # ── Structured command handlers ───────────────────────────────────────
@@ -262,6 +274,10 @@ def handle_run(args):
         return f"unknown sim: {name}{hint}\nrun 'sims' to list all."
 
     script = os.path.join(PROBES_DIR, f"sim_{name}.py")
+    guard_ok, guard_output = _run_cleanup_guard("sim")
+    if not guard_ok:
+        return guard_output
+
     ts_start = datetime.now().strftime("%H:%M:%S")
     r = subprocess.run(
         [PYTHON_BIN, script],
@@ -425,6 +441,10 @@ def handle_tools(args):
     """'tools' — summarize tool-stack coverage; 'tools run' reruns the omnibus check."""
     if args.strip().lower() == "run":
         script = os.path.join(PROBES_DIR, "sim_tools_load_bearing.py")
+        guard_ok, guard_output = _run_cleanup_guard("tools")
+        if not guard_ok:
+            return guard_output
+
         r = subprocess.run(
             [PYTHON_BIN, script],
             capture_output=True, text=True, cwd=PROJECT_DIR, timeout=120, env=_base_env()

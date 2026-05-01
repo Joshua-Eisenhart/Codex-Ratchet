@@ -85,6 +85,7 @@ CODEX_MODEL      = os.environ.get("CODEX_MODEL", "").strip()
 PROJECT_DIR      = os.environ.get("PROJECT_DIR", os.path.dirname(os.path.abspath(__file__)))
 RESULTS_DIR      = os.path.join(PROJECT_DIR, "system_v4/probes/a2_state/sim_results")
 PROBES_DIR       = os.path.join(PROJECT_DIR, "system_v4/probes")
+CLEANUP_FIRST_GUARD = os.path.join(PROBES_DIR, "cleanup_first_guard.py")
 LIVE_SPINE_PATH  = os.path.join(RESULTS_DIR, "live_anchor_spine.json")
 MAX_MSG_LEN      = 4000
 
@@ -223,6 +224,17 @@ def _base_env():
     return env
 
 
+def _run_cleanup_guard(context):
+    r = subprocess.run(
+        [PYTHON_BIN, CLEANUP_FIRST_GUARD, "--context", context],
+        capture_output=True, text=True, cwd=PROJECT_DIR, timeout=120, env=_base_env()
+    )
+    out = (r.stdout + r.stderr).strip()
+    if r.returncode != 0:
+        return False, f"cleanup guard failed (rc={r.returncode}):\n{out[:2000]}"
+    return True, out
+
+
 def resolve_incoming_chat(configured_chat_id, incoming_chat_id):
     configured = str(configured_chat_id or "").strip()
     incoming = str(incoming_chat_id or "").strip()
@@ -306,6 +318,10 @@ def handle_run_force(args):
 
 def _run_sim(name):
     script = os.path.join(PROBES_DIR, f"sim_{name}.py")
+    guard_ok, guard_output = _run_cleanup_guard("sim")
+    if not guard_ok:
+        return guard_output
+
     ts_start = datetime.now().strftime("%H:%M:%S")
     r = subprocess.run(
         [PYTHON_BIN, script],
@@ -426,6 +442,10 @@ def handle_live_queue_run(text):
     minutes = _parse_run_duration_minutes(text) or 60
     if not os.path.exists(LIVE_QUEUE_CONTROLLER):
         return "live queue controller missing"
+    guard_ok, guard_output = _run_cleanup_guard("sim")
+    if not guard_ok:
+        return guard_output
+
     log_path = f"/tmp/codex_live_queue_run_{int(time.time())}.log"
     with open(log_path, "w", encoding="utf-8") as logf:
         proc = subprocess.Popen(

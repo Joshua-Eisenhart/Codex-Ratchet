@@ -60,8 +60,9 @@ FORCE_CLASSICAL_BASELINE = {
 }
 
 dry_run = "--dry-run" in sys.argv
-fixed = skipped = skipped_non_object = 0
+fixed = skipped = skipped_non_object = skipped_bad_manifest = 0
 skipped_non_object_paths = []
+skipped_bad_manifest_paths = []
 
 for path in sorted(glob.glob(f"{RESULTS_DIR}/*.json")):
     basename = os.path.basename(path)
@@ -101,11 +102,16 @@ for path in sorted(glob.glob(f"{RESULTS_DIR}/*.json")):
             data["classification"] = "supporting"
         changed = True
 
-    # Ensure all standard tools are present in every manifest
-    manifest = data.get("tool_manifest", {})
-    if "tool_manifest" not in data:
+    # Ensure all standard tools are present in every manifest. Non-dict
+    # manifests are evidence-shape errors; do not overwrite them silently.
+    manifest = data.get("tool_manifest")
+    if manifest is None:
         data["tool_manifest"] = {}
         manifest = data["tool_manifest"]
+    elif not isinstance(manifest, dict):
+        skipped_bad_manifest += 1
+        skipped_bad_manifest_paths.append(basename)
+        continue
     for tool, default_reason in TOOL_REASONS.items():
         if tool not in manifest:
             manifest[tool] = {"tried": False, "used": False, "reason": default_reason}
@@ -121,17 +127,20 @@ for path in sorted(glob.glob(f"{RESULTS_DIR}/*.json")):
             entry["reason"] = TOOL_REASONS[tool]
             changed = True
 
-    # Add stub positive/negative sections if canonical and missing
+    # Alias existing positive/negative sections if canonical and obvious.
+    # Do not fabricate placeholder evidence for missing test sections.
     if data.get("classification") == "canonical":
         if "positive" not in data:
             # Try to alias from common alternate key names
             pos_keys = [k for k in data if k.startswith("positive_") or k in ("layer_8_pauli_operators", "layer_9_weyl_flux", "layer_10_entropy_gradient")]
-            data["positive"] = {k: data[k] for k in pos_keys} if pos_keys else {"stub": "positive tests embedded in probe output above"}
-            changed = True
+            if pos_keys:
+                data["positive"] = {k: data[k] for k in pos_keys}
+                changed = True
         if "negative" not in data:
             neg_keys = [k for k in data if k.startswith("negative_")]
-            data["negative"] = {k: data[k] for k in neg_keys} if neg_keys else {"stub": "negative tests embedded in probe output above"}
-            changed = True
+            if neg_keys:
+                data["negative"] = {k: data[k] for k in neg_keys}
+                changed = True
 
     if changed:
         fixed += 1
@@ -149,5 +158,12 @@ if skipped_non_object_paths:
         print(f"  - {name}")
     if len(skipped_non_object_paths) > 20:
         print(f"  ... {len(skipped_non_object_paths) - 20} more")
+
+if skipped_bad_manifest_paths:
+    print(f"Skipped non-dict tool_manifest JSON: {skipped_bad_manifest}")
+    for name in skipped_bad_manifest_paths[:20]:
+        print(f"  - {name}")
+    if len(skipped_bad_manifest_paths) > 20:
+        print(f"  ... {len(skipped_bad_manifest_paths) - 20} more")
 
 print(f"{'Would fix' if dry_run else 'Fixed'}: {fixed}, Already clean: {skipped}")

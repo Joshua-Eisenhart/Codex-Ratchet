@@ -165,6 +165,7 @@ def test_handle_live_queue_run_starts_controller_with_default_minutes(monkeypatc
 
     monkeypatch.setattr(tb.os.path, "exists", fake_exists)
     monkeypatch.setattr(tb, "_base_env", lambda: {"TEST_ENV": "1"})
+    monkeypatch.setattr(tb, "_run_cleanup_guard", lambda context: (True, "guard ok"))
     monkeypatch.setattr(tb, "time", type("FakeTime", (), {"time": staticmethod(lambda: 1710000000)})())
     monkeypatch.setattr(builtins, "open", fake_open)
     monkeypatch.setattr(tb.subprocess, "Popen", fake_popen)
@@ -178,6 +179,33 @@ def test_handle_live_queue_run_starts_controller_with_default_minutes(monkeypatc
     assert popen_call["cwd"] == tb.PROJECT_DIR
     assert popen_call["env"] == {"TEST_ENV": "1"}
     assert opened["path"] == "/tmp/codex_live_queue_run_1710000000.log"
+
+
+def test_run_sim_stops_on_cleanup_guard_failure(monkeypatch):
+    monkeypatch.setattr(tb, "_run_cleanup_guard", lambda context: (False, "guard failed"))
+
+    def fail_run(*args, **kwargs):
+        raise AssertionError("sim subprocess should not launch when cleanup guard fails")
+
+    monkeypatch.setattr(tb.subprocess, "run", fail_run)
+
+    assert tb._run_sim("foo") == "guard failed"
+
+
+def test_handle_live_queue_run_stops_on_cleanup_guard_failure(monkeypatch):
+    def fake_exists(path):
+        if path == tb.LIVE_QUEUE_CONTROLLER:
+            return True
+        return os.path.exists(path)
+
+    def fail_popen(*args, **kwargs):
+        raise AssertionError("live queue should not launch when cleanup guard fails")
+
+    monkeypatch.setattr(tb.os.path, "exists", fake_exists)
+    monkeypatch.setattr(tb, "_run_cleanup_guard", lambda context: (False, "guard failed"))
+    monkeypatch.setattr(tb.subprocess, "Popen", fail_popen)
+
+    assert tb.handle_live_queue_run("run live queue") == "guard failed"
 
 
 

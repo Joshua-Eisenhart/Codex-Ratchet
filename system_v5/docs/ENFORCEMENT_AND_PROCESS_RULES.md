@@ -3,13 +3,13 @@
 ## Document Status
 | Field | Value |
 |-------|-------|
-| **last_verified** | 2026-04-08 |
-| **current_reviewed_policy** | SIM_TEMPLATE.py structure, tool manifest requirement, hard stage gate plus controller-side review discipline (no automated checker, no promotion gate — bounded validator/gap-matrix process tools exist, but compliance still depends on discipline and review) |
+| **last_verified** | 2026-05-01 |
+| **current_reviewed_policy** | SIM_TEMPLATE.py structure, tool manifest requirement, hard stage gate, controller-side review discipline, and commit-time manifest checks for canonical result JSONs; full CI promotion remains future work |
 | **discovered** | L0-L7 constraint cascade, 28 irreducible families, 9 independent observables, simultaneous shell geometry |
 | **planned** | Manifest checker CI, canonical promotion gate, Lean 4 / TLAPS proof layer, PyTorch migration of all 28 families |
 
 ## Purpose
-These rules describe the target standard for new work. They are not yet automatically enforced — no CI checker, no promotion gate, no automated manifest validator exists. But bounded controller-side process tools now exist: the gap matrix and validator support enforcement by review even though they are not automatic gates.
+These rules describe the target standard for new work. They are partially enforced by controller-side process tools and the canonical result manifest pre-commit check. Full CI promotion is not yet automatic, so classification still depends on disciplined review plus the current audit gates.
 
 ## Scope
 This document governs active simulation and build work. It does not replace source-of-truth math; it constrains how we produce, validate, and classify work.

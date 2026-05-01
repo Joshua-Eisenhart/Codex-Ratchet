@@ -176,12 +176,13 @@ Missing-field closeout reads as incomplete, not as finished. Do not smooth a Blo
 
 ---
 
-## Current Known Stale State (2026-04-08)
+## Current Controller State (verified 2026-05-01)
 
-| Doc | Stale claim | Actual state |
-|---|---|---|
-| PYTORCH_RATCHET_BUILD_PLAN.md Phase 7 table | "PASS" for all 28 | C2_graph_topology: surface consistent, 0 mismatches; migration registry still NOT_STARTED |
-| MIGRATION_REGISTRY.md | all 28 NOT_STARTED | torch sims and result files exist |
-| ENFORCEMENT_AND_PROCESS_RULES.md | older "aspirational" wording | wording refreshed: bounded validator/gap-matrix tooling exists, but there is still no CI promotion gate |
+| Surface | Current state |
+|---|---|
+| Controller alignment audit | `controller_contract_current=true`, `docs_current=true`, `code_process_green=true` |
+| Phase 7 C2 topology | surface consistent: 11 non-null, 17 null, 0 not-tested, 28 total; mismatch count 0 |
+| Migration registry | `NOT_STARTED` remains a registry status label, not proof that no torch-family result files exist |
+| Enforcement/process rules | bounded validators and commit-time manifest checks exist; full CI promotion remains future work |
 
-These must be corrected before any agent reports "docs are current."
+Agents may report controller docs current only after `make align-strict-contract` passes.

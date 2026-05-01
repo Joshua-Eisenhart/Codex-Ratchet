@@ -43,8 +43,9 @@ LEGO_COUPLING_PATH = os.path.join(RESULTS_DIR, "lego_coupling_candidates.json")
 LEGO_QUEUE_PATH = os.path.join(RESULTS_DIR, "lego_batch_queue.json")
 MAX_MSG_LEN    = 1500      # iMessage safe chunk size
 
-# Correct Python for sims can be pinned by env; default to the active interpreter.
-PYTHON_BIN = os.environ.get("CODEX_RATCHET_PYTHON_BIN", sys.executable)
+# Correct Python for sims can be pinned by env; default to the repo runtime.
+DEFAULT_PYTHON_BIN = "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+PYTHON_BIN = os.environ.get("CODEX_RATCHET_PYTHON_BIN", DEFAULT_PYTHON_BIN)
 MPLCONFIGDIR = os.environ.get("MPLCONFIGDIR", "/tmp/codex-mpl")
 NUMBA_CACHE_DIR = os.environ.get("NUMBA_CACHE_DIR", "/tmp/codex-numba")
 

@@ -50,10 +50,11 @@ os.environ.setdefault("XDG_CACHE_HOME", str(RUNTIME_CACHE_ROOT / "xdg"))
 MAKEFILE_PATH = PROJECT_DIR / "Makefile"
 BOT_PATH = PROJECT_DIR / "imessage_bot.py"
 CLAUDE_PATH = PROJECT_DIR / "CLAUDE.md"
-TOOLING_STATUS_PATH = PROJECT_DIR / "new docs" / "TOOLING_STATUS.md"
-BUILD_PLAN_PATH = PROJECT_DIR / "new docs" / "PYTORCH_RATCHET_BUILD_PLAN.md"
-CONTROLLER_PATH = PROJECT_DIR / "new docs" / "LLM_CONTROLLER_CONTRACT.md"
-MIGRATION_PATH = PROJECT_DIR / "new docs" / "MIGRATION_REGISTRY.md"
+DOCS_DIR = PROJECT_DIR / "system_v5" / "docs"
+TOOLING_STATUS_PATH = DOCS_DIR / "TOOLING_STATUS.md"
+BUILD_PLAN_PATH = DOCS_DIR / "PYTORCH_RATCHET_BUILD_PLAN.md"
+CONTROLLER_PATH = DOCS_DIR / "LLM_CONTROLLER_CONTRACT.md"
+MIGRATION_PATH = DOCS_DIR / "MIGRATION_REGISTRY.md"
 REQ_SIM_STACK_PATH = PROJECT_DIR / "requirements-sim-stack.txt"
 PHASE7_SOURCE_PATH = SCRIPT_DIR / "sim_phase7_baseline_validation.py"
 PHASE7_RESULT_PATH = RESULTS_DIR / "phase7_baseline_validation_results.json"
@@ -182,7 +183,10 @@ def parse_python_from_makefile(text: str) -> str | None:
 
 def parse_python_bin_from_bot(text: str) -> str | None:
     match = re.search(r'^PYTHON_BIN\s*=\s*"([^"]+)"', text, flags=re.MULTILINE)
-    return match.group(1) if match else None
+    if match:
+        return match.group(1)
+    default_match = re.search(r'^DEFAULT_PYTHON_BIN\s*=\s*"([^"]+)"', text, flags=re.MULTILINE)
+    return default_match.group(1) if default_match else None
 
 
 def parse_requirement_floors(path: Path) -> dict[str, str]:
@@ -236,10 +240,10 @@ def package_status() -> dict[str, dict]:
 def collect_stale_doc_hits() -> list[dict]:
     hits: list[dict] = []
     checks = [
-        (CLAUDE_PATH, r"24/28 not tested", "stale_c2_not_tested_claim"),
-        (CONTROLLER_PATH, r"24/28 not tested", "stale_c2_not_tested_claim"),
-        (MIGRATION_PATH, r"24/28 not tested", "stale_c2_not_tested_claim"),
-        (BUILD_PLAN_PATH, r"24/28 not tested", "stale_c2_not_tested_claim"),
+        (CLAUDE_PATH, r"(?i)(?:24/28[^\n]{0,80}not[_ -]?tested|not[_ -]?tested[^\n]{0,80}24/28)", "stale_c2_not_tested_claim"),
+        (CONTROLLER_PATH, r"(?i)(?:24/28[^\n]{0,80}not[_ -]?tested|not[_ -]?tested[^\n]{0,80}24/28)", "stale_c2_not_tested_claim"),
+        (MIGRATION_PATH, r"(?i)(?:24/28[^\n]{0,80}not[_ -]?tested|not[_ -]?tested[^\n]{0,80}24/28)", "stale_c2_not_tested_claim"),
+        (BUILD_PLAN_PATH, r"(?i)(?:24/28[^\n]{0,80}not[_ -]?tested|not[_ -]?tested[^\n]{0,80}24/28)", "stale_c2_not_tested_claim"),
         (CLAUDE_PATH, r"/opt/homebrew/bin/python3", "stale_interpreter_claim"),
         (TOOLING_STATUS_PATH, r"/opt/homebrew/bin/python3", "stale_interpreter_claim"),
         (BUILD_PLAN_PATH, r"The PyTorch computational graph IS the ratchet\.", "strong_architectural_claim"),

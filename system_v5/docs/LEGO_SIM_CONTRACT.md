@@ -1,6 +1,7 @@
 # LEGO Sim Contract
 
 Status: working contract
+Last verified: 2026-05-01
 Purpose: define what every small sim (lego sim) must declare, use, emit, and satisfy before it can count as a real building block in the pre-Axis ladder
 
 This contract exists because the system should be built from small sims as legos.
@@ -65,6 +66,10 @@ Every lego sim must declare at least the following fields.
 - `proof_surfaces_used`
 - `graph_surfaces_used`
 - `topology_surfaces_used`
+- result key: `tool_manifest`
+- result key: `tool_integration_depth`
+- result key: `classification`
+- classical-baseline result key when applicable: `divergence_log`
 
 ### Inputs
 - `required_inputs`

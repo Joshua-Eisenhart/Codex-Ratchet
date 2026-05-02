@@ -1,6 +1,6 @@
 #!/bin/bash
 # Perpetual wrapper: respawns reseeder + runners whenever they exit.
-# Local compute only, zero tokens. Stop with: pkill -f perpetual_runner.sh
+# Local compute only, zero tokens. Stop with: kill "$(cat /tmp/codex_ratchet_perpetual_runner.pid)"
 set -u
 ROOT="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
 PY="/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
@@ -17,10 +17,28 @@ clear_perpetual_pidfile() {
   fi
 }
 
+stop_pidfile_process() {
+  local pidfile="$1" label="$2"
+  [ -f "$pidfile" ] || return 0
+  local pid
+  pid=$(cat "$pidfile" 2>/dev/null || true)
+  if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
+    echo "[$(date)] stopping $label pid=$pid" >> "$LOG"
+    kill "$pid" 2>/dev/null || true
+  fi
+}
+
+cleanup_perpetual() {
+  stop_pidfile_process "$CONTROLLER_PIDFILE" "adaptive_controller"
+  stop_pidfile_process "$RESEED_PIDFILE" "autonomous_reseed_loop"
+  clear_perpetual_pidfile
+}
+
 acquire_perpetual_pidfile() {
   if [ ! -f "$PERPETUAL_PIDFILE" ]; then
     echo "$$" > "$PERPETUAL_PIDFILE"
-    trap clear_perpetual_pidfile EXIT INT TERM
+    trap cleanup_perpetual EXIT
+    trap 'trap - EXIT; cleanup_perpetual; exit 130' INT TERM
     return 0
   fi
   pid=$(cat "$PERPETUAL_PIDFILE" 2>/dev/null || true)
@@ -29,7 +47,8 @@ acquire_perpetual_pidfile() {
     return 1
   fi
   echo "$$" > "$PERPETUAL_PIDFILE"
-  trap clear_perpetual_pidfile EXIT INT TERM
+  trap cleanup_perpetual EXIT
+  trap 'trap - EXIT; cleanup_perpetual; exit 130' INT TERM
   return 0
 }
 
@@ -72,6 +91,7 @@ while :; do
   if ! reseed_running; then
     echo "[$(date)] respawning legacy reseeder" >> "$LOG"
     MAX_HOURS=99999 IDLE_CYCLES=999999 nohup bash scripts/autonomous_reseed_loop.sh >> "$LOG" 2>&1 &
+    echo "$!" > "$RESEED_PIDFILE"
   fi
   sleep 120
 done

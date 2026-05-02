@@ -24,7 +24,7 @@ from receipt_schema import (
 )
 
 
-DONE_RE = re.compile(r"^#\s*(DONE|FAIL)\s+(\S+)\s+([A-Za-z0-9_./-]+)")
+DONE_RE = re.compile(r"^#\s*(DONE|FAIL|SKIPPED|INELIGIBLE)\s+(\S+)\s+([A-Za-z0-9_./-]+)")
 AS_PROBE_RE = re.compile(r"\bas\s+(sim_[A-Za-z0-9_]+)\b")
 TODO_RE = re.compile(r"^#\s*TODO\s+(.+)$")
 PACKET_START_RE = re.compile(r"^#\s*(MICRO|INTEGRATION_MICRO|BOUND):\s*(.*)$")
@@ -177,6 +177,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Return nonzero when any selected row has a hard finding.",
     )
+    parser.add_argument(
+        "--allow-empty",
+        action="store_true",
+        help="Allow a strict clean run to pass even when no rows were selected.",
+    )
     return parser.parse_args()
 
 
@@ -292,7 +297,7 @@ def selected(
 ) -> bool:
     if row.get("kind") == "missing_queue":
         return True
-    if row.get("status") not in {"DONE", "FAIL"}:
+    if row.get("status") not in {"DONE", "FAIL", "SKIPPED", "INELIGIBLE"}:
         return False
     timestamp = row.get("timestamp")
     lower_bound = since
@@ -624,8 +629,13 @@ def reconcile_row(
 
     raw_basename = str(row.get("basename") or "")
     result_name = str(result_basename or "")
-    if row.get("status") == "FAIL":
-        hard_findings.append({"kind": "queue_row_failed", "severity": "hard"})
+    if row.get("status") in {"FAIL", "SKIPPED", "INELIGIBLE"}:
+        status_kind = {
+            "FAIL": "queue_row_failed",
+            "SKIPPED": "queue_row_skipped",
+            "INELIGIBLE": "queue_row_ineligible",
+        }[str(row.get("status"))]
+        hard_findings.append({"kind": status_kind, "severity": "hard"})
         return {"facts": facts, "hard_findings": hard_findings, "warnings": warnings, "ok": False}
 
     ledger_only_tool = _ledger_only_work_item(raw_basename)
@@ -779,6 +789,23 @@ def main() -> int:
         "current_receipt_contract_start": CURRENT_RECEIPT_CONTRACT_START,
         "pending_todos": [row for row in rows if row.get("status") == "TODO"],
     })
+
+    if args.require_clean and not selected_rows:
+        finding = {
+            "kind": "strict_reconcile_selected_no_rows",
+            "severity": "warning" if args.allow_empty else "hard",
+            "message": "Strict reconciliation did not inspect any terminal queue rows.",
+            "allow_empty": bool(args.allow_empty),
+            "terminal_rows_available": sum(
+                1
+                for row in rows
+                if row.get("status") in {"DONE", "FAIL", "SKIPPED", "INELIGIBLE"}
+            ),
+        }
+        report.setdefault("selection_findings", []).append(finding)
+        if not args.allow_empty:
+            report["hard_finding_count"] += 1
+            report["all_pass"] = False
 
     if basenames:
         missing = sorted(basenames - {

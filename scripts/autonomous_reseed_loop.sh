@@ -20,10 +20,21 @@ clear_reseed_pidfile() {
   fi
 }
 
+RUNNER_PID=""
+
+cleanup_reseed() {
+  if [ -n "$RUNNER_PID" ] && kill -0 "$RUNNER_PID" 2>/dev/null; then
+    echo "[$(date)] stopping overnight runner pid=$RUNNER_PID" >> "$LOG"
+    kill "$RUNNER_PID" 2>/dev/null || true
+  fi
+  clear_reseed_pidfile
+}
+
 acquire_reseed_pidfile() {
   for _ in 1 2; do
     if ( set -o noclobber; printf '%s\n' "$$" > "$RESEED_PIDFILE" ) 2>/dev/null; then
-      trap clear_reseed_pidfile EXIT INT TERM
+      trap cleanup_reseed EXIT
+      trap 'trap - EXIT; cleanup_reseed; exit 130' INT TERM
       return 0
     fi
     existing=$(cat "$RESEED_PIDFILE" 2>/dev/null || true)
@@ -270,7 +281,10 @@ print(f'retag candidates flagged: {len(flagged)}')
   # restart runner if no active lock holder remains
   if [ ! -f /tmp/codex_ratchet_overnight.lock ]; then
     mins=$(( (DEADLINE - $(date +%s)) / 60 ))
-    [ "$mins" -gt 10 ] && nohup bash scripts/overnight_two_runner.sh --minutes "$mins" --lane-a-parallel 3 --lane-b-parallel 5 >> "$LOG" 2>&1 &
+    if [ "$mins" -gt 10 ]; then
+      nohup bash scripts/overnight_two_runner.sh --minutes "$mins" --lane-a-parallel 3 --lane-b-parallel 5 >> "$LOG" 2>&1 &
+      RUNNER_PID=$!
+    fi
     echo "[$(date)] respawned runner for $mins min" >> "$LOG"
   fi
 

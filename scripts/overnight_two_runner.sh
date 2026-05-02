@@ -18,6 +18,7 @@ MINUTES=0
 K1=2
 K2=4
 DRY=0
+STRICT_RECEIPT_ADMISSION="${STRICT_RECEIPT_ADMISSION:-1}"
 SIM_TIMEOUT=900  # seconds; kill any single sim that runs longer than this
 
 # Sims that must never enter the overnight queue (meta-benchmarks, harnesses).
@@ -88,10 +89,22 @@ PY
 }
 release_lock() { rm -f "$LOCK"; }
 
+stop_workers() {
+  for p in "${pids[@]:-}"; do kill "$p" 2>/dev/null || true; done
+  sleep 3
+  for p in "${pids[@]:-}"; do kill -9 "$p" 2>/dev/null || true; done
+  wait 2>/dev/null || true
+}
+
+cleanup() {
+  stop_workers
+  release_lock
+}
+
 # --- worker: claim one item, maybe-gate, run, complete ----------------------
 worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
   local lane="$1" qdir="$2" gated="$3" wid="$4"
-  local claim_json claim_path sim exit_code artifact sha
+  local claim_json claim_path sim exit_code artifact sha complete_json terminal_state
   if [ "$DRY" -eq 1 ]; then
     echo "DRY: $PY $QUEUE_CLAIM claim --queue $qdir --worker $wid"
     echo "DRY:  (gate if lane_a) $PY $GATE --sim <path>"
@@ -129,10 +142,17 @@ worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
     emit timeout "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"timeout_sec\":$SIM_TIMEOUT"
   fi
   sha=$(shasum -a 256 "$artifact" | awk '{print $1}')
-  if ! "$PY" "$QUEUE_CLAIM" complete --claim-path "$claim_path" --exit "$exit_code" --artifact "$artifact" 2>/dev/null; then
+  complete_args=(complete --claim-path "$claim_path" --exit "$exit_code" --artifact "$artifact")
+  [ "$STRICT_RECEIPT_ADMISSION" = "1" ] && complete_args+=(--require-receipt)
+  if ! complete_json=$("$PY" "$QUEUE_CLAIM" "${complete_args[@]}" 2>/dev/null); then
     emit complete_error "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"exit\":$exit_code,\"msg\":\"complete_failed\""
   else
-    emit claimed "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"exit\":$exit_code,\"artifact\":\"$artifact\",\"sha256\":\"$sha\""
+    terminal_state=$("$PY" -c "import json,sys;print(json.loads(sys.argv[1]).get('terminal_state',''))" "$complete_json" 2>/dev/null || echo "")
+    if [ "$terminal_state" = "blocked" ]; then
+      emit gate_denied "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"exit\":$exit_code,\"reason\":\"complete_blocked\""
+    else
+      emit claimed "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"exit\":$exit_code,\"artifact\":\"$artifact\",\"sha256\":\"$sha\""
+    fi
   fi
   return 0
 }
@@ -214,7 +234,8 @@ if [ "$DRY" -eq 1 ]; then
 fi
 
 acquire_lock || { say "FAILED to acquire $LOCK"; exit 1; }
-trap 'release_lock' EXIT
+trap cleanup EXIT
+trap 'cleanup; exit 130' INT TERM
 
 END_TS=$(( $(date +%s) + MINUTES * 60 ))
 pids=()
@@ -231,10 +252,7 @@ say "spawned ${#pids[@]} workers; budget ends $(date -r "$END_TS" -Iseconds 2>/d
 # wait for budget, then graceful shutdown
 while [ "$(date +%s)" -lt "$END_TS" ]; do sleep 30; done
 say "budget expired; terminating pools"
-for p in "${pids[@]}"; do kill "$p" 2>/dev/null || true; done
-sleep 3
-for p in "${pids[@]}"; do kill -9 "$p" 2>/dev/null || true; done
-wait 2>/dev/null || true
+stop_workers
 
 write_reports
 say "reports written: $MANIFEST $DENIALS $TOOLSTATE $SUCCESS"

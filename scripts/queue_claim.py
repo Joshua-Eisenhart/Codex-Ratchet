@@ -22,6 +22,7 @@ import hashlib
 import json
 import os
 import socket
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -91,11 +92,17 @@ def _lane_dir(lane: str) -> Path:
     return QUEUE_ROOT / lane
 
 
+def _result_json_path(sim_path: str | Path) -> Path:
+    stem = Path(sim_path).stem
+    return ROOT / "system_v4" / "probes" / "a2_state" / "sim_results" / f"{stem}_results.json"
+
+
 def enqueue(lane: str, sim_path: str) -> Path:
     _ensure_dirs()
     ld = _lane_dir(lane)
     payload = {
         "sim_path": str(sim_path),
+        "result_json_path": str(_result_json_path(sim_path)),
         "lane": lane,
         "enqueued_at": time.time(),
     }
@@ -197,6 +204,7 @@ def claim(lane: str, worker_id: str) -> Path | None:
             continue  # another worker got it
         # append claim metadata
         data = json.loads(target.read_text())
+        data.setdefault("result_json_path", str(_result_json_path(str(data.get("sim_path", "")))))
         data["claimed_by"] = worker_id
         data["claimed_pid"] = pid
         data["claimed_host"] = host
@@ -206,18 +214,65 @@ def claim(lane: str, worker_id: str) -> Path | None:
     return None
 
 
-def complete(claim_path: str | Path, exit_code: int, artifact_path: str) -> Path:
+def _write_terminal(claim_path: Path, data: dict, subdir: str) -> Path:
+    target = QUEUE_ROOT / subdir / claim_path.name
+    tmp = claim_path.with_suffix(claim_path.suffix + ".tmp")
+    tmp.write_text(json.dumps(data, sort_keys=True))
+    os.rename(tmp, target)
+    claim_path.unlink(missing_ok=True)
+    return target
+
+
+def _validate_receipt(result_json_path: str) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "validate_receipt.py"),
+            "--strict-scope",
+            "--require-executable",
+            "--require-run-boundary",
+            result_json_path,
+        ],
+        cwd=str(ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+
+
+def complete(
+    claim_path: str | Path,
+    exit_code: int,
+    artifact_path: str,
+    *,
+    require_receipt: bool = False,
+) -> Path:
     claim_path = Path(claim_path)
+    if claim_path.parent.name != "claimed":
+        raise ValueError(f"claim_path must be inside queue/claimed: {claim_path}")
     data = json.loads(claim_path.read_text())
     data["exit_code"] = exit_code
     data["artifact_path"] = str(artifact_path)
     data["completed_at"] = time.time()
-    done = QUEUE_ROOT / "done" / claim_path.name
-    tmp = claim_path.with_suffix(claim_path.suffix + ".tmp")
-    tmp.write_text(json.dumps(data, sort_keys=True))
-    os.rename(tmp, done)
-    claim_path.unlink(missing_ok=True)
-    return done
+    data.setdefault("result_json_path", str(_result_json_path(str(data.get("sim_path", "")))))
+    if exit_code != 0:
+        data["blocked_reason"] = f"exit_code_{exit_code}"
+        data["blocked_at"] = time.time()
+        return _write_terminal(claim_path, data, "blocked")
+    if require_receipt:
+        receipt = _validate_receipt(str(data.get("result_json_path") or ""))
+        data["receipt_validation_exit_code"] = receipt.returncode
+        data["receipt_validation_stdout"] = receipt.stdout[-8000:]
+        data["receipt_validation_stderr"] = receipt.stderr[-8000:]
+        if receipt.returncode != 0:
+            data["blocked_reason"] = "receipt_validation_failed"
+            data["blocked_at"] = time.time()
+            return _write_terminal(claim_path, data, "blocked")
+        data["receipt_admission"] = "strict_executable_run_boundary"
+    else:
+        data["receipt_admission"] = "not_required"
+    return _write_terminal(claim_path, data, "done")
 
 
 def block(claim_path: str | Path, reason: str) -> Path:
@@ -225,12 +280,7 @@ def block(claim_path: str | Path, reason: str) -> Path:
     data = json.loads(claim_path.read_text())
     data["blocked_reason"] = reason
     data["blocked_at"] = time.time()
-    blocked = QUEUE_ROOT / "blocked" / claim_path.name
-    tmp = claim_path.with_suffix(claim_path.suffix + ".tmp")
-    tmp.write_text(json.dumps(data, sort_keys=True))
-    os.rename(tmp, blocked)
-    claim_path.unlink(missing_ok=True)
-    return blocked
+    return _write_terminal(claim_path, data, "blocked")
 
 
 def counts() -> dict:
@@ -316,7 +366,13 @@ if __name__ == "__main__":
         claim_path = flags.get("claim-path")
         exit_code = int(flags.get("exit", 0))
         artifact = flags.get("artifact", "")
-        complete(_resolve_claim_path(claim_path=claim_path, worker=worker), exit_code, artifact)
+        terminal = complete(
+            _resolve_claim_path(claim_path=claim_path, worker=worker),
+            exit_code,
+            artifact,
+            require_receipt=bool(flags.get("require-receipt", False)),
+        )
+        print(json.dumps({"terminal_path": str(terminal), "terminal_state": terminal.parent.name}))
     elif cmd == "block":
         worker = flags.get("worker")
         claim_path = flags.get("claim-path")

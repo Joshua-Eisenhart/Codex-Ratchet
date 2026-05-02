@@ -214,7 +214,43 @@ def validate_result_payload(
         hard_findings.append(_finding("missing_or_empty_tool_integration_depth", "hard"))
         depth = {}
 
-    for tool, entry in manifest.items():
+    manifest_by_tool: dict[str, Any] = {}
+    for raw_tool, entry in manifest.items():
+        tool = str(raw_tool)
+        if not isinstance(raw_tool, str):
+            hard_findings.append(
+                _finding(
+                    "non_string_tool_manifest_key",
+                    "hard",
+                    tool=tool,
+                    actual_type=type(raw_tool).__name__,
+                )
+            )
+        if tool in manifest_by_tool:
+            hard_findings.append(_finding("duplicate_tool_manifest_key", "hard", tool=tool))
+            continue
+        manifest_by_tool[tool] = entry
+
+    depth_by_tool: dict[str, Any] = {}
+    for raw_tool, level in depth.items():
+        tool = str(raw_tool)
+        if not isinstance(raw_tool, str):
+            hard_findings.append(
+                _finding(
+                    "non_string_tool_integration_depth_key",
+                    "hard",
+                    tool=tool,
+                    actual_type=type(raw_tool).__name__,
+                )
+            )
+        if tool in depth_by_tool:
+            hard_findings.append(
+                _finding("duplicate_tool_integration_depth_key", "hard", tool=tool)
+            )
+            continue
+        depth_by_tool[tool] = level
+
+    for tool, entry in manifest_by_tool.items():
         if not isinstance(entry, dict):
             hard_findings.append(
                 _finding("malformed_tool_manifest_entry", "hard", tool=str(tool))
@@ -235,7 +271,11 @@ def validate_result_payload(
                     _finding("used_tool_missing_reason", "hard", tool=str(tool))
                 )
 
-    for tool, level in depth.items():
+    for tool, level in depth_by_tool.items():
+        if tool not in manifest_by_tool:
+            hard_findings.append(
+                _finding("depth_tool_missing_manifest", "hard", tool=str(tool))
+            )
         if level == "load_bearing":
             facts["load_bearing_tools"].append(str(tool))
         elif level not in VALID_DEPTHS:
@@ -251,8 +291,14 @@ def validate_result_payload(
             else:
                 warnings.append(finding)
 
+    for tool in facts["used_tools"]:
+        if tool not in depth_by_tool:
+            hard_findings.append(
+                _finding("used_tool_missing_integration_depth", "hard", tool=tool)
+            )
+
     for tool in facts["load_bearing_tools"]:
-        entry = manifest.get(tool)
+        entry = manifest_by_tool.get(tool)
         if not isinstance(entry, dict) or entry.get("used") is not True:
             hard_findings.append(
                 _finding("load_bearing_tool_not_used_in_manifest", "hard", tool=tool)

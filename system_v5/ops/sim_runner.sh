@@ -7,8 +7,10 @@ set -u
 REPO="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
 OPS="$REPO/system_v5/ops"
 STOP="$OPS/.stop_sim_runner"
+LOCK_DIR="$OPS/.sim_runner.lock"
 STAGE_GATE="$OPS/stage_gate.json"
 LOG_DIR="$REPO/overnight_logs"
+RESULT_DIR="$REPO/system_v4/probes/a2_state/sim_results"
 PYTHON="$(awk -F':=' '/^PYTHON[[:space:]]*:=/ {gsub(/^[[:space:]]+|[[:space:]]+$/, "", $2); print $2; exit}' "$REPO/Makefile")"
 [ -n "$PYTHON" ] || PYTHON="$(which python3)"
 
@@ -30,6 +32,8 @@ INTER_SIM_SLEEP=5
 CONSECUTIVE_FAIL_LIMIT=5
 POST_FAIL_PAUSE=1800
 PER_SIM_TIMEOUT=300  # kill any single sim after 5 min — protects against hangs
+STRICT_RECEIPT_ADMISSION="${STRICT_RECEIPT_ADMISSION:-1}"
+ALLOW_HELPER_PROCESSES="${ALLOW_HELPER_PROCESSES:-0}"
 # macOS ships without `timeout`; fall back to portable perl-alarm wrapper.
 TIMEOUT_BIN="$(command -v gtimeout || command -v timeout || echo '')"
 PERL_BIN="$(command -v perl)"
@@ -39,9 +43,51 @@ cd "$REPO" || exit 1
 
 # Keep a 'current' symlink to this run's log so Hermes can tail it
 THIS_LOG="$LOG_DIR/sim_runner_$(date +%Y%m%d_%H%M%S).log"
-ln -sf "$THIS_LOG" "$LOG_DIR/sim_runner_current.log"
 
 log() { echo "[$(date +'%Y-%m-%d %H:%M:%S')] $*"; }
+
+release_lock() {
+  if [ -d "$LOCK_DIR" ] && [ "$(cat "$LOCK_DIR/pid" 2>/dev/null || true)" = "$$" ]; then
+    rm -f "$LOCK_DIR/pid" "$LOCK_DIR/started_at"
+    rmdir "$LOCK_DIR" 2>/dev/null || true
+  fi
+}
+
+acquire_lock() {
+  for _ in 1 2; do
+    if mkdir "$LOCK_DIR" 2>/dev/null; then
+      printf '%s\n' "$$" > "$LOCK_DIR/pid"
+      date +%Y-%m-%d_%H:%M:%S > "$LOCK_DIR/started_at"
+      trap release_lock EXIT
+      trap 'release_lock; exit 130' INT TERM
+      return 0
+    fi
+    local owner
+    owner=$(cat "$LOCK_DIR/pid" 2>/dev/null || true)
+    if [ -z "$owner" ] || ! kill -0 "$owner" 2>/dev/null; then
+      log "Removing stale sim runner lock at $LOCK_DIR (owner=${owner:-unknown})"
+      rm -f "$LOCK_DIR/pid" "$LOCK_DIR/started_at"
+      rmdir "$LOCK_DIR" 2>/dev/null || true
+      continue
+    fi
+    break
+  done
+  log "Another sim runner appears active; lock exists at $LOCK_DIR"
+  log "Lock owner pid=$(cat "$LOCK_DIR/pid" 2>/dev/null || echo unknown) started_at=$(cat "$LOCK_DIR/started_at" 2>/dev/null || echo unknown)"
+  exit 1
+}
+
+helper_process_preflight() {
+  if [ "$ALLOW_HELPER_PROCESSES" = "1" ]; then
+    log "Helper process preflight bypassed by ALLOW_HELPER_PROCESSES=1"
+    return 0
+  fi
+  if ! "$PYTHON" scripts/helper_process_audit.py --strict >/dev/null; then
+    log "Helper process preflight failed; stop stale Playwright/Computer Use helpers before non-browser sim runs."
+    log "Set ALLOW_HELPER_PROCESSES=1 only when an active browser/computer-use task intentionally owns them."
+    exit 1
+  fi
+}
 
 check_stop() {
   [ -f "$STOP" ] && { log "Stop file present. Exiting."; exit 0; }
@@ -55,12 +101,13 @@ import json
 import sys
 
 path, key, default = sys.argv[1:]
+default_bool = default.lower() == "true"
 try:
     with open(path, encoding="utf-8") as fh:
         data = json.load(fh)
-    value = data.get(key, default.lower() == "true")
+    value = default_bool if key not in data else data.get(key) is True
 except Exception:
-    value = default.lower() == "true"
+    value = default_bool
 print("true" if bool(value) else "false")
 PY
 }
@@ -138,6 +185,27 @@ mark_line() {
   ' "$q" > "$tmp" && mv "$tmp" "$q"
 }
 
+receipt_admitted() {
+  local basename="$1"
+  local run_start="$2"
+  if [ "$STRICT_RECEIPT_ADMISSION" != "1" ]; then
+    ADMITTED_RESULT="not_required"
+    return 0
+  fi
+  local admitted
+  if ! admitted=$("$PYTHON" scripts/find_admitted_result.py \
+    --basename "$basename" \
+    --probe "system_v4/probes/${basename}.py" \
+    --result-dir "$RESULT_DIR" \
+    --run-start "$run_start" \
+    --path-only); then
+    log "ADMISSION FAIL $basename: no strict executable run-boundary result JSON was admitted"
+    return 1
+  fi
+  ADMITTED_RESULT="$admitted"
+  return 0
+}
+
 consecutive_failures=0
 sim_count=0
 STATS_EVERY=10
@@ -153,7 +221,17 @@ queue_stats() {
   done
 }
 
+acquire_lock
+ln -sf "$THIS_LOG" "$LOG_DIR/sim_runner_current.log"
+helper_process_preflight
+
 log "Runner started. Priority: A > B > D(if stage gate permits) > default."
+log "Single-runner lock: $LOCK_DIR"
+if [ "$STRICT_RECEIPT_ADMISSION" = "1" ]; then
+  log "Strict receipt admission is enabled; DONE requires executable run-boundary validation."
+else
+  log "Strict receipt admission is bypassed by STRICT_RECEIPT_ADMISSION=0; DONE means process exit only."
+fi
 log "Initial queue state:"
 queue_stats | while read line; do log "$line"; done
 if ! tier_d_allowed; then
@@ -214,6 +292,7 @@ while :; do
 
   log "Running [${queue_file##*/}]: $basename"
   start=$(date +%s)
+  ADMITTED_RESULT=""
   if [ -n "$TIMEOUT_BIN" ]; then
     RUN_CMD=("$TIMEOUT_BIN" "${PER_SIM_TIMEOUT}s" nice -n 19 "$PYTHON" "$probe")
   elif [ -n "$PERL_BIN" ]; then
@@ -224,9 +303,15 @@ while :; do
   fi
   if "${RUN_CMD[@]}" >/dev/null 2>&1; then
     dur=$(( $(date +%s) - start ))
-    log "OK   $basename (${dur}s)"
-    consecutive_failures=0
-    mark_line "$queue_file" "$basename" "DONE" "$dur"
+    if receipt_admitted "$basename" "$start"; then
+      log "OK   $basename (${dur}s, result=${ADMITTED_RESULT})"
+      consecutive_failures=0
+      mark_line "$queue_file" "$basename" "DONE" "$dur"
+    else
+      log "FAIL $basename (${dur}s, admission)"
+      consecutive_failures=$((consecutive_failures + 1))
+      mark_line "$queue_file" "$basename" "FAIL" "$dur"
+    fi
   else
     dur=$(( $(date +%s) - start ))
     log "FAIL $basename (${dur}s)"

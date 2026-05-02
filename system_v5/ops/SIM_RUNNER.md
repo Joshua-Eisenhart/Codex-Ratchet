@@ -26,11 +26,12 @@ Graph and proof tools are not universally valid across all three kinds. A graph/
 1. Reads queues in priority order: `queue_tier_a.txt` -> `queue_tier_b.txt` -> `queue_tier_d.txt` only when `stage_gate.json` permits Tier D -> `queue_default.txt`.
 2. Picks the first un-done probe from the highest-priority non-empty queue.
 3. Runs it with `nice -n 19`, captures result.
-4. Marks the queue line as `# DONE <timestamp>` or `# FAIL <timestamp>`.
-5. Sleeps between sims; cooldown sleep if hot.
-6. Repeats forever.
+4. Validates the canonical result JSON with strict executable run-boundary admission.
+5. Marks the queue line as `# DONE <timestamp>` only after the Python process exits cleanly and the receipt is admitted; otherwise marks `# FAIL <timestamp>`.
+6. Sleeps between sims; cooldown sleep if hot.
+7. Repeats forever.
 
-`DONE` is runner execution evidence only. It says the row ran; it does not admit the receipt, update the ledger by itself, certify result `classification`, prove load-bearing tool depth, or make coupling rows ready.
+`DONE` is runner execution plus strict receipt-admission evidence. It still does not update the ledger by itself or make coupling rows ready; controller reconciliation must connect the queue row, canonical result JSON, packet scope, and ledger loopback before any downstream claim moves.
 
 ## Priority rules
 
@@ -56,17 +57,19 @@ Cooldown sleep: 120s per cycle while hot.
 
 ## Queue file format
 
-One probe basename per line (relative to `system_v4/probes/`, no `.py` suffix). Lines starting with `#` are ignored. Runner rewrites completed lines to `# DONE <timestamp> <basename> (<dur>s)`.
+One probe basename per line (relative to `system_v4/probes/`, no `.py` suffix). Lines starting with `#` are ignored by the runner. Runner rewrites completed lines to `# DONE <timestamp> <basename> (<dur>s)` only after strict executable receipt admission; process failures, missing receipts, and admission failures become `# FAIL <timestamp> <basename> (<dur>s)`.
 
 Controller reconciliation must happen after this rewrite: match the queue row to the result JSON, result `classification`, `TOOL_INTEGRATION_DEPTH`, and ledger loopback before counting the receipt toward an admission gate.
 
-Before a non-browser sim/controller run, run the read-only helper preflight:
+Before a non-browser sim/controller run, run the fail-closed preflight:
 
 ```bash
-make helper-process-audit-strict
+make runner-preflight
 ```
 
 If it reports stale `playwright-mcp`, `@playwright/mcp`, or `SkyComputerUseClient` helpers, stop those helpers before launching the runner unless an active browser/computer-use task intentionally owns them.
+
+The live runner also runs `scripts/helper_process_audit.py --strict` at startup and refuses to launch when stale browser/computer-use helpers are present. `ALLOW_HELPER_PROCESSES=1` exists only for an explicitly owned browser/computer-use task; do not use it for ordinary sim runs. The runner also creates `system_v5/ops/.sim_runner.lock`, repairs a stale lock whose recorded PID is not live, and exits if another live runner owns that lock.
 
 Example `queue_tier_a.txt`:
 ```
@@ -104,7 +107,7 @@ touch system_v5/ops/.stop_sim_runner
 
 ## Rules
 
-1. One sim at a time. No parallelization (keeps laptop cool, keeps logs simple).
+1. One sim at a time. No parallelization (keeps laptop cool, keeps logs simple); the live runner enforces this with `system_v5/ops/.sim_runner.lock`.
 2. `nice -n 19` always; never `sudo`.
 3. Runner only reads queues and executes; never writes probe source.
 4. Unhandled probe exception → log, move on, don't retry.
@@ -115,3 +118,6 @@ touch system_v5/ops/.stop_sim_runner
 9. Runner admission must not treat all sims as one bucket. Before v2 enforcement, use `make runner-taxonomy-audit` to map current probes to `classical`, `nonclassical`, and `bridge` execution kinds and surface routing gaps.
 10. Tier D is gated by `stage_gate.json`. If `allow_tier_d_launch` is false, the live runner skips `queue_tier_d.txt` even when rows are present.
 11. Coupling readiness must come from reconciled parent receipts, not from aggregate DONE counts.
+12. `stage_gate.json` booleans are fail-closed: only literal JSON `true` admits Tier D or default-queue late-stage work. String values such as `"true"` or `"false"` do not admit.
+13. `STRICT_RECEIPT_ADMISSION=0` downgrades `DONE` to process-exit evidence for manual recovery only; leave it unset for normal runner use.
+14. Receipt admission uses `scripts/find_admitted_result.py` rather than assuming the result file stem matches the probe stem. It checks the exact basename, the `sim_`-stripped basename, literal `*_results.json` paths in the probe source, and result files modified during the run.

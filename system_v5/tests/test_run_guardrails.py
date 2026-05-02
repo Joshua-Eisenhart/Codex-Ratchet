@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -93,6 +94,161 @@ def test_receipt_executable_admission_rejects_supporting_and_audit_classes() -> 
         finding["kind"] == "non_executable_receipt_classification"
         for finding in result["hard_findings"]
     )
+
+
+def test_receipt_used_tool_requires_depth_entry() -> None:
+    receipt_schema = _load_module("receipt_schema_depth_under_test", SCRIPTS / "receipt_schema.py")
+
+    result = receipt_schema.validate_result_payload(
+        _canonical_payload(
+            tool_manifest={
+                "z3": {
+                    "tried": True,
+                    "used": True,
+                    "reason": "z3 is used for the fixture witness.",
+                },
+                "sympy": {
+                    "tried": True,
+                    "used": True,
+                    "reason": "sympy is load-bearing for the fixture check.",
+                },
+            },
+            tool_integration_depth={"sympy": "load_bearing"},
+        )
+    )
+
+    assert result["ok"] is False
+    assert any(
+        finding["kind"] == "used_tool_missing_integration_depth" and finding["tool"] == "z3"
+        for finding in result["hard_findings"]
+    )
+
+
+def test_receipt_depth_entry_requires_manifest_tool() -> None:
+    receipt_schema = _load_module("receipt_schema_manifest_under_test", SCRIPTS / "receipt_schema.py")
+
+    result = receipt_schema.validate_result_payload(
+        _canonical_payload(
+            tool_integration_depth={"z3": "load_bearing", "sympy": "supportive"},
+        )
+    )
+
+    assert result["ok"] is False
+    assert any(
+        finding["kind"] == "depth_tool_missing_manifest" and finding["tool"] == "sympy"
+        for finding in result["hard_findings"]
+    )
+
+
+def test_receipt_non_string_tool_keys_are_explicit_not_symmetry_noise() -> None:
+    receipt_schema = _load_module("receipt_schema_key_under_test", SCRIPTS / "receipt_schema.py")
+
+    result = receipt_schema.validate_result_payload(
+        _canonical_payload(
+            tool_manifest={
+                1: {
+                    "tried": True,
+                    "used": True,
+                    "reason": "direct Python payload fixture uses a non-string key.",
+                },
+            },
+            tool_integration_depth={1: "load_bearing"},
+        )
+    )
+
+    assert result["ok"] is False
+    kinds = {finding["kind"] for finding in result["hard_findings"]}
+    assert "non_string_tool_manifest_key" in kinds
+    assert "non_string_tool_integration_depth_key" in kinds
+    assert "used_tool_missing_integration_depth" not in kinds
+    assert "load_bearing_tool_not_used_in_manifest" not in kinds
+
+
+def test_receipt_tried_unused_tool_does_not_require_depth_entry() -> None:
+    receipt_schema = _load_module("receipt_schema_unused_under_test", SCRIPTS / "receipt_schema.py")
+
+    result = receipt_schema.validate_result_payload(
+        _canonical_payload(
+            tool_manifest={
+                "z3": {
+                    "tried": True,
+                    "used": True,
+                    "reason": "z3 is load-bearing for the fixture.",
+                },
+                "sympy": {
+                    "tried": True,
+                    "used": False,
+                    "reason": "sympy was checked but not needed for this fixture.",
+                },
+            },
+            tool_integration_depth={"z3": "load_bearing"},
+        )
+    )
+
+    assert result["ok"] is True
+
+
+def test_receipt_legacy_decorative_depth_remains_warning() -> None:
+    receipt_schema = _load_module("receipt_schema_legacy_under_test", SCRIPTS / "receipt_schema.py")
+
+    result = receipt_schema.validate_result_payload(
+        _canonical_payload(
+            tool_manifest={
+                "z3": {
+                    "tried": True,
+                    "used": True,
+                    "reason": "z3 is load-bearing for the fixture.",
+                },
+                "sympy": {
+                    "tried": True,
+                    "used": False,
+                    "reason": "sympy is legacy decorative metadata only.",
+                },
+            },
+            tool_integration_depth={"z3": "load_bearing", "sympy": "decorative"},
+        )
+    )
+
+    assert result["ok"] is True
+    assert any(
+        finding["kind"] == "invalid_tool_integration_depth"
+        and finding["severity"] == "warning"
+        and finding["tool"] == "sympy"
+        for finding in result["warnings"]
+    )
+
+
+def test_find_admitted_result_accepts_literal_result_name_mismatch(tmp_path: Path) -> None:
+    finder = _load_module("find_admitted_result_under_test", SCRIPTS / "find_admitted_result.py")
+
+    probe_dir = tmp_path / "system_v4" / "probes"
+    result_dir = probe_dir / "a2_state" / "sim_results"
+    result_dir.mkdir(parents=True)
+    probe = probe_dir / "sim_cvc5_shells_crosscheck.py"
+    probe.write_text('OUT = "cvc5_shells_crosscheck_results.json"\n', encoding="utf-8")
+    result_path = result_dir / "cvc5_shells_crosscheck_results.json"
+    result_path.write_text(
+        json.dumps(
+            _canonical_payload(
+                claim_ceiling="tool_function_micro_only",
+                next_lego_target="none",
+                promotion_condition="requires later admitted lego row",
+                blocked_until="exact lego target and parent receipts are reconciled",
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    report = finder.find_admitted_result(
+        root=tmp_path,
+        basename="sim_cvc5_shells_crosscheck",
+        probe=probe,
+        result_root=result_dir,
+        run_start=0,
+    )
+
+    assert report["all_pass"] is True
+    assert report["admitted_result"] == str(result_path)
 
 
 def test_micro_packet_run_boundary_fields_are_required_in_run_boundary_mode(tmp_path: Path) -> None:
@@ -282,3 +438,112 @@ def test_ledger_only_fail_rows_never_reconcile_as_ok(tmp_path: Path) -> None:
 
     assert result["ok"] is False
     assert any(finding["kind"] == "queue_row_failed" for finding in result["hard_findings"])
+
+
+def test_skipped_and_ineligible_rows_are_terminal_failures(tmp_path: Path) -> None:
+    reconcile_state = _load_module("reconcile_state_terminal_under_test", SCRIPTS / "reconcile_state.py")
+
+    queue = tmp_path / "queue.txt"
+    queue.write_text(
+        "\n".join(
+            [
+                "# SKIPPED 2026-05-02_13:22 missing_probe_fixture (0s)",
+                "# INELIGIBLE 2026-05-02_13:23 ineligible_probe_fixture (0s)",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    parsed = reconcile_state.parse_queue(queue, tmp_path)
+    assert [row["status"] for row in parsed] == ["SKIPPED", "INELIGIBLE"]
+    assert reconcile_state.selected(parsed[0], set(), "2026-05-02", include_legacy=False)
+    assert reconcile_state.selected(parsed[1], set(), "2026-05-02", include_legacy=False)
+
+    for status, kind in (
+        ("SKIPPED", "queue_row_skipped"),
+        ("INELIGIBLE", "queue_row_ineligible"),
+    ):
+        row = {
+            "queue": "system_v5/ops/queue_tier_a.txt",
+            "line": 7,
+            "status": status,
+            "timestamp": "2026-05-02_13:22",
+            "basename": "missing_probe_fixture",
+            "result_basename": "missing_probe_fixture",
+            "raw": f"# {status} 2026-05-02_13:22 missing_probe_fixture (0s)",
+            "packet": None,
+        }
+
+        result = reconcile_state.reconcile_row(
+            row,
+            root=tmp_path,
+            ledger_text="",
+            strict_scope=True,
+            require_run_boundary=False,
+            require_executable_receipt=False,
+            stage_gate={"ok": True, "active_stage": "lego", "allow_tier_d_launch": False},
+        )
+
+        assert result["ok"] is False
+        assert any(finding["kind"] == kind for finding in result["hard_findings"])
+
+
+def test_strict_reconcile_fails_on_empty_selection(tmp_path: Path) -> None:
+    queue = tmp_path / "queue.txt"
+    queue.write_text("# empty queue\n", encoding="utf-8")
+    ledger = tmp_path / "ledger.md"
+    ledger.write_text("", encoding="utf-8")
+    stage_gate = tmp_path / "stage_gate.json"
+    stage_gate.write_text('{"active_stage": "lego", "allow_tier_d_launch": false}', encoding="utf-8")
+
+    command = [
+        sys.executable,
+        str(SCRIPTS / "reconcile_state.py"),
+        "--queue",
+        str(queue),
+        "--ledger",
+        str(ledger),
+        "--stage-gate",
+        str(stage_gate),
+        "--since",
+        "2999-01-01",
+        "--require-clean",
+    ]
+    result = subprocess.run(command, cwd=REPO_ROOT, capture_output=True, text=True, check=False)
+
+    assert result.returncode == 1
+    payload = json.loads(result.stdout)
+    assert payload["all_pass"] is False
+    assert payload["selection_findings"][0]["kind"] == "strict_reconcile_selected_no_rows"
+
+
+def test_strict_reconcile_empty_selection_can_be_explicitly_allowed(tmp_path: Path) -> None:
+    queue = tmp_path / "queue.txt"
+    queue.write_text("# DONE 2026-05-02_13:22 old_contract_row (1s)\n", encoding="utf-8")
+    ledger = tmp_path / "ledger.md"
+    ledger.write_text("", encoding="utf-8")
+    stage_gate = tmp_path / "stage_gate.json"
+    stage_gate.write_text('{"active_stage": "lego", "allow_tier_d_launch": false}', encoding="utf-8")
+
+    command = [
+        sys.executable,
+        str(SCRIPTS / "reconcile_state.py"),
+        "--queue",
+        str(queue),
+        "--ledger",
+        str(ledger),
+        "--stage-gate",
+        str(stage_gate),
+        "--since",
+        "2999-01-01",
+        "--require-clean",
+        "--allow-empty",
+    ]
+    result = subprocess.run(command, cwd=REPO_ROOT, capture_output=True, text=True, check=False)
+
+    assert result.returncode == 0
+    payload = json.loads(result.stdout)
+    assert payload["all_pass"] is True
+    assert payload["selected_rows"] == 0
+    assert payload["selection_findings"][0]["kind"] == "strict_reconcile_selected_no_rows"
+    assert payload["selection_findings"][0]["severity"] == "warning"
+    assert payload["selection_findings"][0]["terminal_rows_available"] == 1

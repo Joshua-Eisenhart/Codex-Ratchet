@@ -195,3 +195,166 @@
 
 # RETRY: controller fixed all_pass false exit gate and aligned result filename with sim_ probe name.
 # DONE 2026-05-01_23:49:36 sim_pytorch_autograd_gradient_micro (4s)
+
+# MICRO: {
+#   "tool_target": "cvc5",
+#   "function_surface": "Solver.synthFun/addSygusConstraint/checkSynth/getSynthSolution over SyGuS LIA",
+#   "micro_claim": "cvc5 can synthesize a bounded integer successor function from a tiny grammar and reject an impossible grammar/spec pair",
+#   "lego_target": "minimal SyGuS integer grammar fixture before coupling or lego promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": ["sim_cvc5_qf_lia_model_extraction_micro"],
+#   "why_this_lego": "SyGuS is the next cvc5 API surface named by the ledger and is separate from QF_LIA model extraction",
+#   "positive_case": "grammar {x,0,1,x+1} synthesizes f(x)=x+1",
+#   "negative_case": "grammar restricted to x+1 rejects a spec requiring x+2",
+#   "boundary_case": "finite constant grammar {0,1} synthesizes the constant-one function",
+#   "demotion_condition": "demote if checkSynth cannot find the bounded solution, reports a solution outside grammar, or fails impossible-spec rejection",
+#   "out_of_scope": ["lego promotion", "tool-tool coupling", "bridge claim", "whole cvc5 SyGuS proof"]
+# }
+# DONE 2026-05-02_00:40:57 sim_cvc5_sygus_synthesis_micro (0s)
+
+# MICRO: {
+#   "tool_target": "geomstats",
+#   "function_surface": "SpecialOrthogonal(n=3, point_type='matrix').metric.exp/log",
+#   "micro_claim": "geomstats round-trips bounded SO(3) tangent fixtures and selects the principal log branch",
+#   "lego_target": "minimal SO(3) log/exp branch-selection fixture",
+#   "function_receipt": "new",
+#   "prior_function_receipts": ["sim_geomstats_so3_distance_micro"],
+#   "why_this_lego": "SO(3) log/exp branch selection is separate from the completed metric.dist receipt",
+#   "positive_case": "metric.log(metric.exp(A,I),I) recovers a small skew tangent",
+#   "negative_case": "the principal log rejects the long 2*pi+0.1 branch and ambient additive update is not SO(3)",
+#   "boundary_case": "tiny angle and pi-epsilon stay finite and on the intended branch",
+#   "demotion_condition": "demote if exp/log fail round-trip, admit ambient additive updates, or return the long branch",
+#   "out_of_scope": ["Hopf geometry", "lego promotion", "tool-tool coupling", "bridge claim", "whole geomstats proof"]
+# }
+# DONE 2026-05-02_00:41:03 sim_geomstats_so3_log_exp_micro (1s)
+
+# MICRO: {
+#   "tool_target": "pyg",
+#   "function_surface": "torch_geometric.nn.MessagePassing.propagate with PyTorch autograd backend",
+#   "micro_claim": "PyG aggregates directed source features on a tiny graph and keeps gradients flowing through the output",
+#   "lego_target": "minimal directed message-passing fixture before graph-dynamics claims",
+#   "function_receipt": "new",
+#   "prior_function_receipts": ["sim_pytorch_autograd_gradient_micro"],
+#   "why_this_lego": "PyG message passing is named as separate debt from scalar PyTorch autograd",
+#   "positive_case": "directed 3-cycle output and gradient match hand-computed values",
+#   "negative_case": "reversed edges differ and malformed edge_index is rejected",
+#   "boundary_case": "isolated node receives zero message and zero gradient contribution",
+#   "demotion_condition": "demote if propagate ignores edge orientation, silently accepts malformed edge_index, or breaks autograd",
+#   "out_of_scope": ["density-matrix entropy", "lego promotion", "bridge claim", "whole PyG proof"]
+# }
+# DONE 2026-05-02_00:41:10 sim_pyg_message_passing_autograd_micro (2s)
+
+# MICRO: {
+#   "tool_target": "pytorch / autograd",
+#   "function_surface": "torch.linalg.eigvalsh plus torch.autograd.grad on a 2x2 density matrix entropy fixture",
+#   "micro_claim": "PyTorch produces finite entropy gradients for normalized PSD density matrices and rejects detached/non-PSD misuse",
+#   "lego_target": "minimal 2x2 density-matrix entropy fixture before differentiable density claims",
+#   "function_receipt": "new",
+#   "prior_function_receipts": ["sim_pytorch_autograd_gradient_micro"],
+#   "why_this_lego": "density-matrix entropy gradients are separate from the completed scalar-gradient receipt",
+#   "positive_case": "autograd entropy gradient matches finite difference and matrix is trace-one PSD",
+#   "negative_case": "detached parameters and non-PSD trace-one matrix are excluded",
+#   "boundary_case": "maximally mixed zero-gradient and near-pure finite-gradient boundaries",
+#   "demotion_condition": "demote if eigvalsh/autograd gives nonfinite or wrong gradients or admits detached/non-PSD misuse",
+#   "out_of_scope": ["PyG message passing", "density-matrix lego promotion", "tool-tool coupling", "bridge claim"]
+# }
+# DONE 2026-05-02_00:41:16 sim_pytorch_density_entropy_gradient_micro (1s)
+
+# MICRO: {
+#   "tool_target": "e3nn",
+#   "function_surface": "e3nn.o3.Irreps plus FullyConnectedTensorProduct/TensorProduct on tiny SO(3) irrep fixtures",
+#   "micro_claim": "e3nn preserves declared irrep dimensions and rejects incompatible feature widths on a bounded tensor-product fixture",
+#   "lego_target": "minimal irrep tensor-product fixture before operator geometry claims",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [],
+#   "why_this_lego": "e3nn has no dedicated integration anchor and needs exact irrep/API micro evidence",
+#   "positive_case": "tiny tensor-product layer accepts correctly shaped irreps and returns declared output width",
+#   "negative_case": "incompatible input feature width is rejected",
+#   "boundary_case": "zero batch or scalar-only irrep boundary remains well-typed",
+#   "demotion_condition": "demote if declared irrep shapes are not enforced or tensor-product output shape drifts",
+#   "out_of_scope": ["broad equivariance proof", "operator geometry", "lego promotion", "tool-tool coupling", "bridge claim"]
+# }
+# DONE 2026-05-02_00:41:22 sim_e3nn_irreps_tensor_product_micro (1s)
+
+# MICRO: {
+#   "tool_target": "rustworkx",
+#   "function_surface": "PyGraph plus rustworkx.cycle_basis over a bounded non-DAG undirected graph",
+#   "micro_claim": "rustworkx detects simple graph cycles, excludes trees, and handles singleton self-loop boundaries",
+#   "lego_target": "minimal non-DAG graph cycle fixture before graph-cell promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": ["sim_rustworkx_dag_reachability_micro"],
+#   "why_this_lego": "non-DAG cycle detection is separate from completed DAG reachability",
+#   "positive_case": "triangle/square graph reports the expected cycle basis",
+#   "negative_case": "tree graph reports no cycle basis",
+#   "boundary_case": "self-loop or singleton boundary is handled explicitly",
+#   "demotion_condition": "demote if cycle_basis misses cycles, invents cycles in trees, or mishandles singleton boundaries",
+#   "out_of_scope": ["hypergraph incidence", "cell complex", "lego promotion", "tool-tool coupling", "bridge claim"]
+# }
+# DONE 2026-05-02_00:41:28 sim_rustworkx_cycle_basis_micro (1s)
+
+# MICRO: {
+#   "tool_target": "xgi",
+#   "function_surface": "xgi.Hypergraph construction plus nodes.memberships/edges.members/degree queries",
+#   "micro_claim": "XGI distinguishes incidence, non-incidence, edge size, degree, singleton, and empty-hypergraph boundaries",
+#   "lego_target": "minimal hypergraph incidence fixture before higher-order coupling claims",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [],
+#   "why_this_lego": "XGI has no dedicated integration anchor and needs exact incidence/API micro evidence",
+#   "positive_case": "mixed-size hyperedges report expected node memberships, edge members, edge sizes, and degrees",
+#   "negative_case": "non-incident node/edge pairs are excluded",
+#   "boundary_case": "singleton edge and empty/no-edge hypergraph boundaries stay explicit",
+#   "demotion_condition": "demote if XGI incidence or membership queries disagree with the hand fixture",
+#   "out_of_scope": ["higher-order coupling", "bridge claim", "lego promotion", "tool-tool coupling", "whole XGI proof"]
+# }
+# DONE 2026-05-02_00:41:34 sim_xgi_hypergraph_incidence_micro (1s)
+
+# MICRO: {
+#   "tool_target": "gudhi",
+#   "function_surface": "gudhi.RipsComplex(points=...).create_simplex_tree(...).persistence()",
+#   "micro_claim": "GUDHI RipsComplex on a tiny point cloud exposes an H1 bar and its filling threshold",
+#   "lego_target": "minimal point-cloud Rips fixture before topology coupling",
+#   "function_receipt": "new",
+#   "prior_function_receipts": ["sim_gudhi_simplex_persistence_micro"],
+#   "why_this_lego": "point-cloud/Rips coverage is separate from manual SimplexTree persistence",
+#   "positive_case": "four-point square Rips filtration has a finite H1 interval",
+#   "negative_case": "filled triangle or high-threshold fill excludes persistent H1",
+#   "boundary_case": "singleton/tiny threshold produces finite simplices without H1",
+#   "demotion_condition": "demote if RipsComplex misses the square H1 bar or invents H1 in filled/degenerate fixtures",
+#   "out_of_scope": ["Hopf topology", "AlphaComplex", "TopoNetX cross-check", "lego promotion", "tool-tool coupling", "bridge claim"]
+# }
+# DONE 2026-05-02_00:41:39 sim_gudhi_rips_point_cloud_micro (0s)
+
+# MICRO: {
+#   "tool_target": "sympy",
+#   "function_surface": "sympy.diff/integrate/factor/expand/simplify over exact scalar expressions",
+#   "micro_claim": "SymPy certifies a tiny sin(x)^2 derivative/integral identity and exact x^4-1 factorization while rejecting wrong scalar identities",
+#   "lego_target": "minimal scalar symbolic fixture before symbolic coupling",
+#   "function_receipt": "new",
+#   "prior_function_receipts": ["sim_sympy_matrix_identity_micro"],
+#   "why_this_lego": "scalar symbolic identity is separate from completed exact matrix inverse identity",
+#   "positive_case": "integral/derivative round-trip and factorization re-expand exactly",
+#   "negative_case": "wrong antiderivative and wrong factorization have nonzero residuals",
+#   "boundary_case": "zero, constant, and unit symbolic boundaries remain exact",
+#   "demotion_condition": "demote if scalar identities cannot be certified or wrong identities are admitted",
+#   "out_of_scope": ["matrix identity", "integration search", "broad simplification", "lego promotion", "tool-tool coupling", "bridge claim"]
+# }
+# DONE 2026-05-02_00:41:45 sim_sympy_symbolic_identity_micro (1s)
+
+# MICRO: {
+#   "tool_target": "clifford",
+#   "function_surface": "clifford.Cl(3) even rotor sign and vector sandwich action",
+#   "micro_claim": "R and -R are distinct unit rotor representatives that induce the same vector sandwich action",
+#   "lego_target": "minimal Spin(3) double-cover sign fixture before spinor-adjacent claims",
+#   "function_receipt": "new",
+#   "prior_function_receipts": ["sim_clifford_rotor_norm_micro"],
+#   "why_this_lego": "spinor/double-cover sign behavior is separate from the completed rotor norm gate",
+#   "positive_case": "unit R and -R have the same sandwich action on several vectors",
+#   "negative_case": "non-unit even candidates are excluded by norm and action checks",
+#   "boundary_case": "identity, 2*pi sign flip, and 4*pi return preserve vector action",
+#   "demotion_condition": "demote if R/-R actions differ, if non-unit candidates are admitted, or if sign boundaries fail",
+#   "out_of_scope": ["Hopf topology", "spinor chirality", "global spin structures", "lego promotion", "tool-tool coupling", "bridge claim"]
+# }
+# DONE 2026-05-02_00:41:52 sim_clifford_spinor_double_cover_micro (2s)
+
+# RETRY: controller renamed nested negative diagnostic pass fields so canonical truth audit sees only top-level test verdicts.
+# DONE 2026-05-02_00:45:59 sim_clifford_spinor_double_cover_micro (2s)

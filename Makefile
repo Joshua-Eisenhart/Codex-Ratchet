@@ -207,6 +207,39 @@ lego-queue:
 runner-taxonomy-audit:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/sim_runner_taxonomy_audit.py
 
+# Validate one or more result JSON files as controller-admissible receipts
+receipt-validate:
+	@test -n "$(FILES)" || (echo "FILES is required, e.g. make receipt-validate FILES=system_v4/probes/a2_state/sim_results/example_results.json"; exit 2)
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/validate_receipt.py $(FILES)
+
+# Strict receipt validation with scope ceiling fields required
+receipt-validate-strict:
+	@test -n "$(FILES)" || (echo "FILES is required, e.g. make receipt-validate-strict FILES=system_v4/probes/a2_state/sim_results/example_results.json"; exit 2)
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/validate_receipt.py --strict-scope $(FILES)
+
+# Reconcile queue DONE rows against result JSON evidence and ledger loopback
+receipt-reconcile:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/reconcile_state.py $(if $(BASENAME),--basename $(BASENAME),) $(if $(SINCE),--since $(SINCE),)
+
+# Strict reconciliation gate for a named row or bounded recent batch
+receipt-reconcile-strict:
+	@test -n "$(BASENAME)$(SINCE)" || (echo "BASENAME or SINCE is required for strict reconciliation"; exit 2)
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/reconcile_state.py --require-clean $(if $(BASENAME),--basename $(BASENAME),) $(if $(SINCE),--since $(SINCE),)
+
+# Strict reconciliation with demotion/scope-ceiling fields required
+receipt-reconcile-scope-strict:
+	@test -n "$(BASENAME)$(SINCE)" || (echo "BASENAME or SINCE is required for strict scope reconciliation"; exit 2)
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/reconcile_state.py --require-clean --strict-scope $(if $(BASENAME),--basename $(BASENAME),) $(if $(SINCE),--since $(SINCE),)
+
+# Report current sim stage-gate admissions
+stage-gate:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/stage_gate.py
+
+# Check one stage-gate claim, e.g. make stage-gate-claim CLAIM=scientific_coupling
+stage-gate-claim:
+	@test -n "$(CLAIM)" || (echo "CLAIM is required, e.g. make stage-gate-claim CLAIM=tool_micro"; exit 2)
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/stage_gate.py --claim $(CLAIM)
+
 # Extract the actual markdown lego registry into machine-readable JSON
 lego-registry:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/extract_actual_lego_registry.py
@@ -226,4 +259,4 @@ telegram:
 telegram-log:
 	tail -f /tmp/telegram_bot.log
 
-.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue runner-taxonomy-audit lego-registry lego-normalize
+.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue runner-taxonomy-audit receipt-validate receipt-validate-strict receipt-reconcile receipt-reconcile-strict receipt-reconcile-scope-strict stage-gate stage-gate-claim lego-registry lego-normalize

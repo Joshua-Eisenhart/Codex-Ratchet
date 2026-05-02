@@ -17,6 +17,8 @@ The controller previously treated `queue_default.txt` as a general drain surface
 
 Those are different stages, in that order, recursive. A pass at one stage does not discharge debt at another. A generic lego drain is not a tool-stage advance.
 
+`DONE` means the runner executed a queued row. It is not controller admission, not ledger reconciliation, and not coupling readiness until the queue row, result JSON, `classification`, tool-integration depth, and loopback target all agree.
+
 ## Micro-stage ladder
 
 Tool-stage work moves in tiny steps:
@@ -129,6 +131,8 @@ The runner (next version) enforces:
 7. `expected_outcome_classification: canonical` with no nonclassical-suitable load-bearing tool → INELIGIBLE.
 8. On DONE, verify the file at `loopback_target` was touched since run-start and contains the named row. If not → LOOPBACK_MISSING, reroute to `queue_disposal.txt`.
 9. Probe output JSON that claims a field listed in `out_of_scope` → SCOPE_VIOLATION, reroute to `queue_disposal.txt`.
+
+After DONE, admission remains provisional until the controller reconciles the queue row, result path, result `classification`, `TOOL_INTEGRATION_DEPTH`, and ledger loopback. DONE counts must not be used to infer that a coupling has both parent functions ready.
 
 INELIGIBLE is a routing fault, not a runtime failure. It does not trip the consecutive-failure circuit-breaker. It re-routes the row off the tier-A surface.
 

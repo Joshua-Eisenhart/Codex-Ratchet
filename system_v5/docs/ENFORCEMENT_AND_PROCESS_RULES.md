@@ -192,6 +192,8 @@ Tool-tool coupling is later than the individual tool-function receipts. A coupli
 
 This micro-first rule is a parallelization rule as much as a safety rule: many workers can test different tool/function/lego triples at once, and several workers may test the same triple in different ways. The controller accepts only receipts that stay inside one variable of uncertainty. If a worker has to debug the tool, the lego, and the coupling at the same time, the packet is too large.
 
+Runner `DONE` marks execution evidence only. Controller admission requires reconciling the queue row, result JSON, `classification`, claim-relevant `TOOL_INTEGRATION_DEPTH`, and ledger loopback before the receipt can satisfy a gate.
+
 Failure rule: when a compound or stack packet fails, do not debug the compound while any participating tool function lacks an individual useful-lego receipt. Decompose to the first missing micro proof, rerun that bounded packet, and only then revisit the compound.
 
 ## Rule 3: No engine jargon in sims
@@ -239,6 +241,8 @@ The long-term target is a larger integrated sim made from layers of smaller sims
 2. local stack/nesting tests that ask which legos can coexist or must precede others;
 3. bounded couplings only after the parent legos are current and honest;
 4. larger integrated sims only after the lower layers have current receipts.
+
+Coupling readiness is not inferred from `DONE` counts. It is earned only when the reconciled parent receipts satisfy the queue, result, classification, tool-depth, and ledger-loopback checks for the exact functions being coupled.
 
 For G-stack / G-tower / Hopf / Weyl / Pauli / Flux work, do not simulate only isolated geometries and do not jump straight to the whole stack. First establish each layer as a bounded lego with positive, negative, boundary, and claim-relevant tool checks. Then test the admissible nesting order and noncommutativity of compositions.
 

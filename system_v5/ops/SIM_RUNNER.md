@@ -30,6 +30,8 @@ Graph and proof tools are not universally valid across all three kinds. A graph/
 5. Sleeps between sims; cooldown sleep if hot.
 6. Repeats forever.
 
+`DONE` is runner execution evidence only. It says the row ran; it does not admit the receipt, update the ledger by itself, certify result `classification`, prove load-bearing tool depth, or make coupling rows ready.
+
 ## Priority rules
 
 - Tier A queue drains before B. Tier D drains only when `system_v5/ops/stage_gate.json` has `allow_tier_d_launch: true`. Foundation first.
@@ -55,6 +57,8 @@ Cooldown sleep: 120s per cycle while hot.
 ## Queue file format
 
 One probe basename per line (relative to `system_v4/probes/`, no `.py` suffix). Lines starting with `#` are ignored. Runner rewrites completed lines to `# DONE <timestamp> <basename> (<dur>s)`.
+
+Controller reconciliation must happen after this rewrite: match the queue row to the result JSON, result `classification`, `TOOL_INTEGRATION_DEPTH`, and ledger loopback before counting the receipt toward an admission gate.
 
 Example `queue_tier_a.txt`:
 ```
@@ -102,3 +106,4 @@ touch system_v5/ops/.stop_sim_runner
 8. If all tier queues are empty and no safe default queue exists, the runner stays idle rather than generating a generic never-run pile.
 9. Runner admission must not treat all sims as one bucket. Before v2 enforcement, use `make runner-taxonomy-audit` to map current probes to `classical`, `nonclassical`, and `bridge` execution kinds and surface routing gaps.
 10. Tier D is gated by `stage_gate.json`. If `allow_tier_d_launch` is false, the live runner skips `queue_tier_d.txt` even when rows are present.
+11. Coupling readiness must come from reconciled parent receipts, not from aggregate DONE counts.

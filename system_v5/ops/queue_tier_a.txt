@@ -40,6 +40,10 @@
 #   "function_surface": "Solver.assertFormula/checkSat/getValue over QF_LIA",
 #   "micro_claim": "cvc5 can decide a bounded integer fixture and return SAT witnesses",
 #   "lego_target": "minimal bounded arithmetic fixture before lego promotion",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal bounded arithmetic fixture before lego promotion",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
 #   "prior_function_receipts": [],
 #   "why_this_lego": "the tiny fixture isolates the solver API surface before any lego or coupling uses it",
@@ -47,7 +51,12 @@
 #   "negative_case": "x > 0 and x < 0 is UNSAT",
 #   "boundary_case": "0 <= edge <= 0 is SAT with edge=0; adding edge=1 is UNSAT",
 #   "demotion_condition": "demote if checkSat is not decisive or getValue cannot recover expected SAT witnesses",
-#   "out_of_scope": ["lego promotion", "tool-tool coupling", "bridge claim", "whole-library proof"]
+#   "out_of_scope": [
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "bridge claim",
+#     "whole-library proof"
+#   ]
 # }
 # FAIL 2026-05-01_23:27:21 sim_cvc5_qf_lia_model_extraction_micro (1s)
 
@@ -62,6 +71,10 @@
 #   "function_surface": "SolverFor('QF_LIA').add/check/model over QF_LIA",
 #   "micro_claim": "z3 can decide bounded linear integer systems and return exact SAT witnesses",
 #   "lego_target": "minimal bounded arithmetic fixture before lego promotion",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal bounded arithmetic fixture before lego promotion",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
 #   "prior_function_receipts": [],
 #   "why_this_lego": "the tiny fixture isolates the z3 QF_LIA solver API surface before any lego or coupling uses it",
@@ -69,7 +82,12 @@
 #   "negative_case": "x > 0 and x < 0 is UNSAT",
 #   "boundary_case": "0 <= edge <= 0 is SAT with edge=0; adding edge=1 is UNSAT",
 #   "demotion_condition": "demote if check is not decisive, model cannot recover exact integer witnesses, or verdicts diverge from the named fixtures",
-#   "out_of_scope": ["lego promotion", "tool-tool coupling", "bridge claim", "whole-library proof"]
+#   "out_of_scope": [
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "bridge claim",
+#     "whole-library proof"
+#   ]
 # }
 # DONE 2026-05-01_23:41:50 sim_z3_qf_lia_unsat_witness_micro (1s)
 
@@ -84,6 +102,10 @@
 #   "function_surface": "Matrix.inv plus Matrix.equals over exact 2x2 matrices",
 #   "micro_claim": "SymPy certifies inverse identities for an invertible exact matrix and excludes wrong or singular inverse claims",
 #   "lego_target": "minimal exact 2x2 matrix inverse fixture before lego promotion",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal exact 2x2 matrix inverse fixture before lego promotion",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
 #   "prior_function_receipts": [],
 #   "why_this_lego": "matrix inverse identity is a foundational symbolic constraint surface used by later operator-family work",
@@ -91,7 +113,12 @@
 #   "negative_case": "a wrong inverse candidate is rejected and det-zero matrix [[1,2],[2,4]] is excluded",
 #   "boundary_case": "diag(1,t) exposes the determinant boundary t=0",
 #   "demotion_condition": "demote if Matrix.inv/Matrix.equals cannot certify exact inverse identities or fails to exclude singular inverse claims",
-#   "out_of_scope": ["lego promotion", "tool-tool coupling", "bridge claim", "whole SymPy library proof"]
+#   "out_of_scope": [
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "bridge claim",
+#     "whole SymPy library proof"
+#   ]
 # }
 # DONE 2026-05-01_23:41:56 sim_sympy_matrix_identity_micro (1s)
 
@@ -103,6 +130,10 @@
 #   "function_surface": "Cl(3) MultiVector geometric product, reverse, and rotor sandwich action",
 #   "micro_claim": "a unit-bivector rotor has scalar norm R*~R == 1, preserves vector norm, and remains unit under composition",
 #   "lego_target": "minimal Cl(3) rotor fixture before Hopf or spinor promotion",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal Cl(3) rotor fixture before Hopf or spinor promotion",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
 #   "prior_function_receipts": [],
 #   "why_this_lego": "rotor norm is the gate required before Clifford rotor surfaces enter tool-lego or coupling work",
@@ -110,7 +141,13 @@
 #   "negative_case": "non-unit even multivector and non-unit bivector coefficient are excluded by the norm gate",
 #   "boundary_case": "identity, 2*pi, 4*pi, and tiny-angle rotors stay inside the expected Spin(3) norm boundary",
 #   "demotion_condition": "demote if rotor norm or sandwich vector norm drifts beyond tolerance",
-#   "out_of_scope": ["Hopf topology", "spinor chirality", "tool-tool coupling", "bridge claim", "whole-library proof"]
+#   "out_of_scope": [
+#     "Hopf topology",
+#     "spinor chirality",
+#     "tool-tool coupling",
+#     "bridge claim",
+#     "whole-library proof"
+#   ]
 # }
 # DONE 2026-05-01_23:42:08 sim_clifford_rotor_norm_micro (7s)
 
@@ -125,14 +162,25 @@
 #   "function_surface": "SpecialOrthogonal(n=3, point_type='matrix').metric.dist",
 #   "micro_claim": "geomstats returns intrinsic SO(3) geodesic distances, separates them from ambient Frobenius distance, and preserves left frame invariance",
 #   "lego_target": "minimal SO(3) distance fixture",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal SO(3) distance fixture",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
-#   "prior_function_receipts": ["sim_geomstats_so3_geodesic.py covers SO(3) log/exp only"],
+#   "prior_function_receipts": [
+#     "sim_geomstats_so3_geodesic.py covers SO(3) log/exp only"
+#   ],
 #   "why_this_lego": "SO(3) distance is the observable downstream coupling rows would consume, but this row proves only metric.dist",
 #   "positive_case": "dist(I,Rx(pi/2)) ~= pi/2 and left-multiplied distance is invariant",
 #   "negative_case": "ambient Frobenius distance is excluded as the SO(3) geodesic metric",
 #   "boundary_case": "dist(I,I)==0, near-identity stays non-collapsed, near-pi returns pi-epsilon within tolerance",
 #   "demotion_condition": "demote if metric.dist diverges from analytic SO(3) angles or violates left frame invariance",
-#   "out_of_scope": ["lego promotion", "tool-tool coupling", "bridge claim", "whole-library geomstats proof"]
+#   "out_of_scope": [
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "bridge claim",
+#     "whole-library geomstats proof"
+#   ]
 # }
 # FAIL 2026-05-01_23:42:17 sim_geomstats_so3_distance_micro (4s)
 
@@ -144,6 +192,10 @@
 #   "function_surface": "PyDiGraph plus has_path/descendants/ancestors over bounded DAG reachability",
 #   "micro_claim": "rustworkx can decide direct, transitive, absent, and cycle-blocked reachability on a tiny dependency DAG",
 #   "lego_target": "minimal shell dependency DAG fixture before graph-cell lego promotion",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal shell dependency DAG fixture before graph-cell lego promotion",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
 #   "prior_function_receipts": [],
 #   "why_this_lego": "the fixture isolates dependency reachability without adding hypergraph, topology, or bridge semantics",
@@ -151,7 +203,13 @@
 #   "negative_case": "a leaf cannot reach its ancestor and an isolated node is unreachable",
 #   "boundary_case": "empty and singleton DAGs are reachability-empty except self path; checked DAG rejects a cycle",
 #   "demotion_condition": "demote if has_path, descendants, or ancestors disagree with a hand-written BFS baseline",
-#   "out_of_scope": ["lego promotion", "tool-tool coupling", "hypergraph incidence", "bridge claim", "whole-library proof"]
+#   "out_of_scope": [
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "hypergraph incidence",
+#     "bridge claim",
+#     "whole-library proof"
+#   ]
 # }
 # DONE 2026-05-01_23:42:23 sim_rustworkx_dag_reachability_micro (0s)
 
@@ -163,6 +221,10 @@
 #   "function_surface": "SimplexTree.insert/persistence/persistence_intervals_in_dimension/persistent_betti_numbers",
 #   "micro_claim": "GUDHI distinguishes a delayed-filled 1-cycle from an immediately filled triangle and reports the H1 death boundary",
 #   "lego_target": "minimal persistence fixture before persistence geometry or topology coupling promotion",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal persistence fixture before persistence geometry or topology coupling promotion",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
 #   "prior_function_receipts": [],
 #   "why_this_lego": "the fixture isolates SimplexTree persistence before sampled point-cloud, lego, bridge, or coupling claims use it",
@@ -170,7 +232,13 @@
 #   "negative_case": "triangle filled at t=0 has no positive-length H1 interval and beta1=0 at t=0.5",
 #   "boundary_case": "beta1 survives just before t=1 and is gone just after t=1; a single vertex has no H1",
 #   "demotion_condition": "demote if SimplexTree persistence misses the delayed H1 interval or reports H1 for the immediately filled triangle",
-#   "out_of_scope": ["point-cloud sampling", "TopoNetX cross-check", "lego promotion", "tool-tool coupling", "bridge claim"]
+#   "out_of_scope": [
+#     "point-cloud sampling",
+#     "TopoNetX cross-check",
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "bridge claim"
+#   ]
 # }
 # DONE 2026-05-01_23:42:31 sim_gudhi_simplex_persistence_micro (3s)
 
@@ -182,6 +250,10 @@
 #   "function_surface": "torch.autograd.grad(outputs, inputs, create_graph=True)",
 #   "micro_claim": "autograd.grad computes exact first and second derivatives for one scalar constraint and rejects detached/non-scalar misuse",
 #   "lego_target": "minimal differentiable scalar fixture before lego promotion",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal differentiable scalar fixture before lego promotion",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
 #   "prior_function_receipts": [],
 #   "why_this_lego": "a weighted quadratic exposes gradient, Hessian, flat-axis boundary, and misuse rejection without graph or density-matrix uncertainty",
@@ -189,7 +261,12 @@
 #   "negative_case": "detached inputs and vector outputs without grad_outputs are excluded",
 #   "boundary_case": "zero-weight axis produces an admitted zero gradient, not NaN",
 #   "demotion_condition": "demote if gradients silently detach, lose second-order structure, or fail to reject invalid autograd requests",
-#   "out_of_scope": ["PyG message passing", "density-matrix entropy", "lego-stage promotion", "tool-tool coupling"]
+#   "out_of_scope": [
+#     "PyG message passing",
+#     "density-matrix entropy",
+#     "lego-stage promotion",
+#     "tool-tool coupling"
+#   ]
 # }
 # DONE 2026-05-01_23:42:43 sim_pytorch_autograd_gradient_micro (7s)
 
@@ -201,14 +278,25 @@
 #   "function_surface": "Solver.synthFun/addSygusConstraint/checkSynth/getSynthSolution over SyGuS LIA",
 #   "micro_claim": "cvc5 can synthesize a bounded integer successor function from a tiny grammar and reject an impossible grammar/spec pair",
 #   "lego_target": "minimal SyGuS integer grammar fixture before coupling or lego promotion",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal SyGuS integer grammar fixture before coupling or lego promotion",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
-#   "prior_function_receipts": ["sim_cvc5_qf_lia_model_extraction_micro"],
+#   "prior_function_receipts": [
+#     "sim_cvc5_qf_lia_model_extraction_micro"
+#   ],
 #   "why_this_lego": "SyGuS is the next cvc5 API surface named by the ledger and is separate from QF_LIA model extraction",
 #   "positive_case": "grammar {x,0,1,x+1} synthesizes f(x)=x+1",
 #   "negative_case": "grammar restricted to x+1 rejects a spec requiring x+2",
 #   "boundary_case": "finite constant grammar {0,1} synthesizes the constant-one function",
 #   "demotion_condition": "demote if checkSynth cannot find the bounded solution, reports a solution outside grammar, or fails impossible-spec rejection",
-#   "out_of_scope": ["lego promotion", "tool-tool coupling", "bridge claim", "whole cvc5 SyGuS proof"]
+#   "out_of_scope": [
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "bridge claim",
+#     "whole cvc5 SyGuS proof"
+#   ]
 # }
 # DONE 2026-05-02_00:40:57 sim_cvc5_sygus_synthesis_micro (0s)
 
@@ -217,14 +305,26 @@
 #   "function_surface": "SpecialOrthogonal(n=3, point_type='matrix').metric.exp/log",
 #   "micro_claim": "geomstats round-trips bounded SO(3) tangent fixtures and selects the principal log branch",
 #   "lego_target": "minimal SO(3) log/exp branch-selection fixture",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal SO(3) log/exp branch-selection fixture",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
-#   "prior_function_receipts": ["sim_geomstats_so3_distance_micro"],
+#   "prior_function_receipts": [
+#     "sim_geomstats_so3_distance_micro"
+#   ],
 #   "why_this_lego": "SO(3) log/exp branch selection is separate from the completed metric.dist receipt",
 #   "positive_case": "metric.log(metric.exp(A,I),I) recovers a small skew tangent",
 #   "negative_case": "the principal log rejects the long 2*pi+0.1 branch and ambient additive update is not SO(3)",
 #   "boundary_case": "tiny angle and pi-epsilon stay finite and on the intended branch",
 #   "demotion_condition": "demote if exp/log fail round-trip, admit ambient additive updates, or return the long branch",
-#   "out_of_scope": ["Hopf geometry", "lego promotion", "tool-tool coupling", "bridge claim", "whole geomstats proof"]
+#   "out_of_scope": [
+#     "Hopf geometry",
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "bridge claim",
+#     "whole geomstats proof"
+#   ]
 # }
 # DONE 2026-05-02_00:41:03 sim_geomstats_so3_log_exp_micro (1s)
 
@@ -233,14 +333,25 @@
 #   "function_surface": "torch_geometric.nn.MessagePassing.propagate with PyTorch autograd backend",
 #   "micro_claim": "PyG aggregates directed source features on a tiny graph and keeps gradients flowing through the output",
 #   "lego_target": "minimal directed message-passing fixture before graph-dynamics claims",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal directed message-passing fixture before graph-dynamics claims",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
-#   "prior_function_receipts": ["sim_pytorch_autograd_gradient_micro"],
+#   "prior_function_receipts": [
+#     "sim_pytorch_autograd_gradient_micro"
+#   ],
 #   "why_this_lego": "PyG message passing is named as separate debt from scalar PyTorch autograd",
 #   "positive_case": "directed 3-cycle output and gradient match hand-computed values",
 #   "negative_case": "reversed edges differ and malformed edge_index is rejected",
 #   "boundary_case": "isolated node receives zero message and zero gradient contribution",
 #   "demotion_condition": "demote if propagate ignores edge orientation, silently accepts malformed edge_index, or breaks autograd",
-#   "out_of_scope": ["density-matrix entropy", "lego promotion", "bridge claim", "whole PyG proof"]
+#   "out_of_scope": [
+#     "density-matrix entropy",
+#     "lego promotion",
+#     "bridge claim",
+#     "whole PyG proof"
+#   ]
 # }
 # DONE 2026-05-02_00:41:10 sim_pyg_message_passing_autograd_micro (2s)
 
@@ -249,14 +360,25 @@
 #   "function_surface": "torch.linalg.eigvalsh plus torch.autograd.grad on a 2x2 density matrix entropy fixture",
 #   "micro_claim": "PyTorch produces finite entropy gradients for normalized PSD density matrices and rejects detached/non-PSD misuse",
 #   "lego_target": "minimal 2x2 density-matrix entropy fixture before differentiable density claims",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal 2x2 density-matrix entropy fixture before differentiable density claims",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
-#   "prior_function_receipts": ["sim_pytorch_autograd_gradient_micro"],
+#   "prior_function_receipts": [
+#     "sim_pytorch_autograd_gradient_micro"
+#   ],
 #   "why_this_lego": "density-matrix entropy gradients are separate from the completed scalar-gradient receipt",
 #   "positive_case": "autograd entropy gradient matches finite difference and matrix is trace-one PSD",
 #   "negative_case": "detached parameters and non-PSD trace-one matrix are excluded",
 #   "boundary_case": "maximally mixed zero-gradient and near-pure finite-gradient boundaries",
 #   "demotion_condition": "demote if eigvalsh/autograd gives nonfinite or wrong gradients or admits detached/non-PSD misuse",
-#   "out_of_scope": ["PyG message passing", "density-matrix lego promotion", "tool-tool coupling", "bridge claim"]
+#   "out_of_scope": [
+#     "PyG message passing",
+#     "density-matrix lego promotion",
+#     "tool-tool coupling",
+#     "bridge claim"
+#   ]
 # }
 # DONE 2026-05-02_00:41:16 sim_pytorch_density_entropy_gradient_micro (1s)
 
@@ -265,6 +387,10 @@
 #   "function_surface": "e3nn.o3.Irreps plus FullyConnectedTensorProduct/TensorProduct on tiny SO(3) irrep fixtures",
 #   "micro_claim": "e3nn preserves declared irrep dimensions and rejects incompatible feature widths on a bounded tensor-product fixture",
 #   "lego_target": "minimal irrep tensor-product fixture before operator geometry claims",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal irrep tensor-product fixture before operator geometry claims",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
 #   "prior_function_receipts": [],
 #   "why_this_lego": "e3nn has no dedicated integration anchor and needs exact irrep/API micro evidence",
@@ -272,7 +398,13 @@
 #   "negative_case": "incompatible input feature width is rejected",
 #   "boundary_case": "zero batch or scalar-only irrep boundary remains well-typed",
 #   "demotion_condition": "demote if declared irrep shapes are not enforced or tensor-product output shape drifts",
-#   "out_of_scope": ["broad equivariance proof", "operator geometry", "lego promotion", "tool-tool coupling", "bridge claim"]
+#   "out_of_scope": [
+#     "broad equivariance proof",
+#     "operator geometry",
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "bridge claim"
+#   ]
 # }
 # DONE 2026-05-02_00:41:22 sim_e3nn_irreps_tensor_product_micro (1s)
 
@@ -281,14 +413,26 @@
 #   "function_surface": "PyGraph plus rustworkx.cycle_basis over a bounded non-DAG undirected graph",
 #   "micro_claim": "rustworkx detects simple graph cycles, excludes trees, and handles singleton self-loop boundaries",
 #   "lego_target": "minimal non-DAG graph cycle fixture before graph-cell promotion",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal non-DAG graph cycle fixture before graph-cell promotion",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
-#   "prior_function_receipts": ["sim_rustworkx_dag_reachability_micro"],
+#   "prior_function_receipts": [
+#     "sim_rustworkx_dag_reachability_micro"
+#   ],
 #   "why_this_lego": "non-DAG cycle detection is separate from completed DAG reachability",
 #   "positive_case": "triangle/square graph reports the expected cycle basis",
 #   "negative_case": "tree graph reports no cycle basis",
 #   "boundary_case": "self-loop or singleton boundary is handled explicitly",
 #   "demotion_condition": "demote if cycle_basis misses cycles, invents cycles in trees, or mishandles singleton boundaries",
-#   "out_of_scope": ["hypergraph incidence", "cell complex", "lego promotion", "tool-tool coupling", "bridge claim"]
+#   "out_of_scope": [
+#     "hypergraph incidence",
+#     "cell complex",
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "bridge claim"
+#   ]
 # }
 # DONE 2026-05-02_00:41:28 sim_rustworkx_cycle_basis_micro (1s)
 
@@ -297,6 +441,10 @@
 #   "function_surface": "xgi.Hypergraph construction plus nodes.memberships/edges.members/degree queries",
 #   "micro_claim": "XGI distinguishes incidence, non-incidence, edge size, degree, singleton, and empty-hypergraph boundaries",
 #   "lego_target": "minimal hypergraph incidence fixture before higher-order coupling claims",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal hypergraph incidence fixture before higher-order coupling claims",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
 #   "prior_function_receipts": [],
 #   "why_this_lego": "XGI has no dedicated integration anchor and needs exact incidence/API micro evidence",
@@ -304,7 +452,13 @@
 #   "negative_case": "non-incident node/edge pairs are excluded",
 #   "boundary_case": "singleton edge and empty/no-edge hypergraph boundaries stay explicit",
 #   "demotion_condition": "demote if XGI incidence or membership queries disagree with the hand fixture",
-#   "out_of_scope": ["higher-order coupling", "bridge claim", "lego promotion", "tool-tool coupling", "whole XGI proof"]
+#   "out_of_scope": [
+#     "higher-order coupling",
+#     "bridge claim",
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "whole XGI proof"
+#   ]
 # }
 # DONE 2026-05-02_00:41:34 sim_xgi_hypergraph_incidence_micro (1s)
 
@@ -313,14 +467,27 @@
 #   "function_surface": "gudhi.RipsComplex(points=...).create_simplex_tree(...).persistence()",
 #   "micro_claim": "GUDHI RipsComplex on a tiny point cloud exposes an H1 bar and its filling threshold",
 #   "lego_target": "minimal point-cloud Rips fixture before topology coupling",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal point-cloud Rips fixture before topology coupling",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
-#   "prior_function_receipts": ["sim_gudhi_simplex_persistence_micro"],
+#   "prior_function_receipts": [
+#     "sim_gudhi_simplex_persistence_micro"
+#   ],
 #   "why_this_lego": "point-cloud/Rips coverage is separate from manual SimplexTree persistence",
 #   "positive_case": "four-point square Rips filtration has a finite H1 interval",
 #   "negative_case": "filled triangle or high-threshold fill excludes persistent H1",
 #   "boundary_case": "singleton/tiny threshold produces finite simplices without H1",
 #   "demotion_condition": "demote if RipsComplex misses the square H1 bar or invents H1 in filled/degenerate fixtures",
-#   "out_of_scope": ["Hopf topology", "AlphaComplex", "TopoNetX cross-check", "lego promotion", "tool-tool coupling", "bridge claim"]
+#   "out_of_scope": [
+#     "Hopf topology",
+#     "AlphaComplex",
+#     "TopoNetX cross-check",
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "bridge claim"
+#   ]
 # }
 # DONE 2026-05-02_00:41:39 sim_gudhi_rips_point_cloud_micro (0s)
 
@@ -329,14 +496,27 @@
 #   "function_surface": "sympy.diff/integrate/factor/expand/simplify over exact scalar expressions",
 #   "micro_claim": "SymPy certifies a tiny sin(x)^2 derivative/integral identity and exact x^4-1 factorization while rejecting wrong scalar identities",
 #   "lego_target": "minimal scalar symbolic fixture before symbolic coupling",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal scalar symbolic fixture before symbolic coupling",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
-#   "prior_function_receipts": ["sim_sympy_matrix_identity_micro"],
+#   "prior_function_receipts": [
+#     "sim_sympy_matrix_identity_micro"
+#   ],
 #   "why_this_lego": "scalar symbolic identity is separate from completed exact matrix inverse identity",
 #   "positive_case": "integral/derivative round-trip and factorization re-expand exactly",
 #   "negative_case": "wrong antiderivative and wrong factorization have nonzero residuals",
 #   "boundary_case": "zero, constant, and unit symbolic boundaries remain exact",
 #   "demotion_condition": "demote if scalar identities cannot be certified or wrong identities are admitted",
-#   "out_of_scope": ["matrix identity", "integration search", "broad simplification", "lego promotion", "tool-tool coupling", "bridge claim"]
+#   "out_of_scope": [
+#     "matrix identity",
+#     "integration search",
+#     "broad simplification",
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "bridge claim"
+#   ]
 # }
 # DONE 2026-05-02_00:41:45 sim_sympy_symbolic_identity_micro (1s)
 
@@ -345,14 +525,27 @@
 #   "function_surface": "clifford.Cl(3) even rotor sign and vector sandwich action",
 #   "micro_claim": "R and -R are distinct unit rotor representatives that induce the same vector sandwich action",
 #   "lego_target": "minimal Spin(3) double-cover sign fixture before spinor-adjacent claims",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal Spin(3) double-cover sign fixture before spinor-adjacent claims",
+#   "promotion_condition": "requires a later admitted lego row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact lego target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
-#   "prior_function_receipts": ["sim_clifford_rotor_norm_micro"],
+#   "prior_function_receipts": [
+#     "sim_clifford_rotor_norm_micro"
+#   ],
 #   "why_this_lego": "spinor/double-cover sign behavior is separate from the completed rotor norm gate",
 #   "positive_case": "unit R and -R have the same sandwich action on several vectors",
 #   "negative_case": "non-unit even candidates are excluded by norm and action checks",
 #   "boundary_case": "identity, 2*pi sign flip, and 4*pi return preserve vector action",
 #   "demotion_condition": "demote if R/-R actions differ, if non-unit candidates are admitted, or if sign boundaries fail",
-#   "out_of_scope": ["Hopf topology", "spinor chirality", "global spin structures", "lego promotion", "tool-tool coupling", "bridge claim"]
+#   "out_of_scope": [
+#     "Hopf topology",
+#     "spinor chirality",
+#     "global spin structures",
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "bridge claim"
+#   ]
 # }
 # DONE 2026-05-02_00:41:52 sim_clifford_spinor_double_cover_micro (2s)
 
@@ -370,6 +563,10 @@
 #   "function_surface": "cvc5 Solver.assertFormula/checkSat/getValue and z3 SolverFor('QF_LIA').add/check/model over shared QF_LIA fixtures",
 #   "micro_claim": "cvc5 and z3 agree on bounded QF_LIA SAT/UNSAT verdicts and exact SAT witnesses for the same tiny fixtures",
 #   "lego_target": "minimal two-solver arithmetic agreement fixture below lego promotion",
+#   "claim_ceiling": "tool_integration_micro_only",
+#   "next_lego_target": "minimal two-solver arithmetic agreement fixture below lego promotion",
+#   "promotion_condition": "requires a later admitted integration or lego row that names the exact parent receipts and passes strict runner admission; this INTEGRATION_MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact integration target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
 #   "prior_function_receipts": [
 #     "system_v4/probes/a2_state/sim_results/sim_cvc5_qf_lia_model_extraction_micro_results.json",
@@ -380,7 +577,13 @@
 #   "negative_case": "both solvers return UNSAT for x>0 and x<0",
 #   "boundary_case": "both solvers admit edge=0 under 0<=edge<=0 and reject the contradictory edge=1 add-on",
 #   "demotion_condition": "demote if prior receipts are not canonical/load-bearing, if verdicts diverge, or if witnesses disagree",
-#   "out_of_scope": ["lego promotion", "bridge claim", "axis claim", "whole-solver equivalence", "three-tool coupling"]
+#   "out_of_scope": [
+#     "lego promotion",
+#     "bridge claim",
+#     "axis claim",
+#     "whole-solver equivalence",
+#     "three-tool coupling"
+#   ]
 # }
 # DONE 2026-05-02_11:26:17 sim_integration_cvc5_z3_unsat_agreement_micro (0s)
 
@@ -389,6 +592,10 @@
 #   "function_surface": "NetworkX DiGraph node/edge extraction to PyG Data plus torch_geometric.nn.MessagePassing.propagate",
 #   "micro_claim": "NetworkX directed graph nodes, edge orientation, isolated nodes, and incoming-neighbor sums survive the PyG handoff on a tiny fixture",
 #   "lego_target": "minimal graph handoff fixture below graph-cell lego promotion",
+#   "claim_ceiling": "tool_integration_micro_only",
+#   "next_lego_target": "minimal graph handoff fixture below graph-cell lego promotion",
+#   "promotion_condition": "requires a later admitted integration or lego row that names the exact parent receipts and passes strict runner admission; this INTEGRATION_MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact integration target, parent receipts, and active stage gate for promotion",
 #   "function_receipt": "new",
 #   "prior_function_receipts": [
 #     "system_v4/probes/a2_state/sim_results/sim_pyg_message_passing_autograd_micro_results.json"
@@ -398,6 +605,12 @@
 #   "negative_case": "reversing edge orientation or duplicating/missing node mappings is excluded",
 #   "boundary_case": "an isolated NetworkX node remains present in PyG Data and receives zero incoming message",
 #   "demotion_condition": "demote if node mapping is not exact, edge orientation changes, isolated nodes disappear, or PyG messages diverge from NetworkX incoming-neighbor sums",
-#   "out_of_scope": ["graph-cell lego promotion", "density-matrix or bridge claim", "GNN training", "whole NetworkX/PyG proof", "coupling beyond this exact graph handoff"]
+#   "out_of_scope": [
+#     "graph-cell lego promotion",
+#     "density-matrix or bridge claim",
+#     "GNN training",
+#     "whole NetworkX/PyG proof",
+#     "coupling beyond this exact graph handoff"
+#   ]
 # }
 # DONE 2026-05-02_13:22:32 sim_integration_networkx_pyg_graph_roundtrip_micro (3s)

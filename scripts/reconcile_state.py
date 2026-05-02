@@ -24,10 +24,12 @@ from receipt_schema import (
 )
 
 
-DONE_RE = re.compile(r"^#\s*(DONE|FAIL|SKIPPED|INELIGIBLE)\s+(\S+)\s+([A-Za-z0-9_./-]+)")
+DONE_RE = re.compile(r"^#\s*(DONE|LEDGER_DONE|FAIL|SKIPPED|INELIGIBLE)\s+(\S+)\s+([A-Za-z0-9_./-]+)")
 AS_PROBE_RE = re.compile(r"\bas\s+(sim_[A-Za-z0-9_]+)\b")
 TODO_RE = re.compile(r"^#\s*TODO\s+(.+)$")
 PACKET_START_RE = re.compile(r"^#\s*(MICRO|INTEGRATION_MICRO|BOUND):\s*(.*)$")
+EXECUTABLE_TERMINAL_STATUSES = {"DONE", "FAIL", "SKIPPED", "INELIGIBLE"}
+TERMINAL_STATUSES = EXECUTABLE_TERMINAL_STATUSES | {"LEDGER_DONE"}
 
 QUEUE_PRESETS = {
     "tier-a": (
@@ -173,6 +175,11 @@ def parse_args() -> argparse.Namespace:
         help="Fail ledger-only rows and supporting/audit JSON when executable sim evidence is required.",
     )
     parser.add_argument(
+        "--include-ledger-done",
+        action="store_true",
+        help="Inspect LEDGER_DONE rows. They remain non-executable and fail executable receipt mode.",
+    )
+    parser.add_argument(
         "--require-clean",
         action="store_true",
         help="Return nonzero when any selected row has a hard finding.",
@@ -294,10 +301,14 @@ def selected(
     since: str | None,
     *,
     include_legacy: bool,
+    include_ledger_done: bool = False,
 ) -> bool:
     if row.get("kind") == "missing_queue":
         return True
-    if row.get("status") not in {"DONE", "FAIL", "SKIPPED", "INELIGIBLE"}:
+    status = row.get("status")
+    if status == "LEDGER_DONE" and not include_ledger_done:
+        return False
+    if status not in TERMINAL_STATUSES:
         return False
     timestamp = row.get("timestamp")
     lower_bound = since
@@ -451,6 +462,11 @@ def reconcile_packet(
             {"kind": "queue_packet_non_object", "severity": "hard", "packet_type": packet_type}
         )
         return facts, hard_findings, warnings
+    facts["packet_run_boundary"] = {
+        field: payload.get(field)
+        for field in sorted(MICRO_RUN_BOUNDARY_FIELDS)
+        if isinstance(payload.get(field), str) and payload.get(field).strip()
+    }
 
     for field in sorted(
         _packet_required_fields(
@@ -686,7 +702,28 @@ def reconcile_row(
     )
     hard_findings.extend(receipt.get("hard_findings", []))
     warnings.extend(receipt.get("warnings", []))
-    facts.update(receipt.get("facts", {}))
+    receipt_facts = receipt.get("facts", {})
+    packet_run_boundary = facts.get("packet_run_boundary")
+    if require_run_boundary and isinstance(packet_run_boundary, dict):
+        for field, packet_value in sorted(packet_run_boundary.items()):
+            receipt_value = receipt_facts.get(field)
+            if (
+                isinstance(packet_value, str)
+                and packet_value.strip()
+                and isinstance(receipt_value, str)
+                and receipt_value.strip()
+                and receipt_value != packet_value
+            ):
+                hard_findings.append(
+                    {
+                        "kind": "run_boundary_packet_result_mismatch",
+                        "severity": "hard",
+                        "field": field,
+                        "packet_value": packet_value,
+                        "result_value": receipt_value,
+                    }
+                )
+    facts.update(receipt_facts)
 
     ledger_needles = {
         str(row.get("basename") or ""),
@@ -759,7 +796,13 @@ def main() -> int:
     selected_rows = [
         row
         for row in rows
-        if selected(row, basenames, args.since, include_legacy=args.include_legacy)
+        if selected(
+            row,
+            basenames,
+            args.since,
+            include_legacy=args.include_legacy,
+            include_ledger_done=args.include_ledger_done,
+        )
     ]
     if not args.include_superseded:
         selected_rows = latest_terminal_rows(selected_rows)
@@ -784,10 +827,12 @@ def main() -> int:
         "ledger": relpath(ledger_path, root),
         "stage_gate": stage_gate,
         "selected_rows": len(selected_rows),
+        "include_ledger_done": bool(args.include_ledger_done),
         "include_legacy": bool(args.include_legacy),
         "include_superseded": bool(args.include_superseded),
         "current_receipt_contract_start": CURRENT_RECEIPT_CONTRACT_START,
         "pending_todos": [row for row in rows if row.get("status") == "TODO"],
+        "ledger_done_rows": [row for row in rows if row.get("status") == "LEDGER_DONE"],
     })
 
     if args.require_clean and not selected_rows:
@@ -799,7 +844,7 @@ def main() -> int:
             "terminal_rows_available": sum(
                 1
                 for row in rows
-                if row.get("status") in {"DONE", "FAIL", "SKIPPED", "INELIGIBLE"}
+                if row.get("status") in TERMINAL_STATUSES
             ),
         }
         report.setdefault("selection_findings", []).append(finding)

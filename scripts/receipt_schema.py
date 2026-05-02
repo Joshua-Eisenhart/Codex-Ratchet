@@ -156,6 +156,10 @@ def validate_result_payload(
         "load_bearing_tools": [],
         "used_tools": [],
         "prior_receipts": [],
+        "claim_ceiling": None,
+        "next_lego_target": None,
+        "promotion_condition": None,
+        "blocked_until": None,
     }
     hard_findings: list[dict[str, Any]] = []
     warnings: list[dict[str, Any]] = []
@@ -409,6 +413,7 @@ def validate_result_payload(
 
     for key in RUN_BOUNDARY_FIELDS:
         value = payload.get(key)
+        facts[key] = value if isinstance(value, str) else None
         missing = not isinstance(value, str) or not value.strip()
         if missing:
             target = hard_findings if require_run_boundary else warnings

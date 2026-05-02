@@ -135,7 +135,7 @@ The runner (next version) enforces:
 7. `expected_outcome_classification: canonical` with no nonclassical-suitable load-bearing tool → INELIGIBLE.
 8. On DONE, verify the file at `loopback_target` was touched since run-start and contains the named row. If not → LOOPBACK_MISSING, reroute to `queue_disposal.txt`.
 9. Probe output JSON that claims a field listed in `out_of_scope` → SCOPE_VIOLATION, reroute to `queue_disposal.txt`.
-10. Ledger-only repair rows may reconcile ledger text, but they are not executable receipts and fail executable run-boundary admission.
+10. Ledger-only repair rows must use `LEDGER_DONE`, not `DONE`. They may reconcile ledger text, but they are excluded from default executable reconciliation and still fail executable run-boundary admission when explicitly included.
 11. Bridge, axis, engine, emergence, Tier D, or scientific-coupling language in the positive claim surface fails while `stage_gate.json` blocks that claim. Coupling language requires exact executable parent receipts.
 
 After DONE, admission remains provisional until the controller reconciles the queue row, result path, result `classification`, `TOOL_INTEGRATION_DEPTH`, and ledger loopback. DONE counts must not be used to infer that a coupling has both parent functions ready.

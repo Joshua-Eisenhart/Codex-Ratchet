@@ -81,6 +81,25 @@ def test_receipt_run_boundary_fields_are_separate_from_existing_strict_scope() -
     }
 
 
+def test_receipt_run_boundary_fields_are_reported_as_facts() -> None:
+    receipt_schema = _load_module("receipt_schema_facts_under_test", SCRIPTS / "receipt_schema.py")
+
+    result = receipt_schema.validate_result_payload(
+        _canonical_payload(
+            claim_ceiling="tool_function_micro_only",
+            next_lego_target="minimal arithmetic fixture",
+            promotion_condition="requires later admitted lego row",
+            blocked_until="downstream queue row declares target and parent receipts",
+        ),
+        strict_scope=True,
+        require_run_boundary=True,
+    )
+
+    assert result["ok"] is True
+    assert result["facts"]["claim_ceiling"] == "tool_function_micro_only"
+    assert result["facts"]["next_lego_target"] == "minimal arithmetic fixture"
+
+
 def test_receipt_executable_admission_rejects_supporting_and_audit_classes() -> None:
     receipt_schema = _load_module("receipt_schema_exec_under_test", SCRIPTS / "receipt_schema.py")
 
@@ -408,6 +427,105 @@ def test_ledger_only_rows_can_pass_loopback_but_fail_executable_mode(tmp_path: P
     assert any(
         finding["kind"] == "ledger_only_not_executable_receipt"
         for finding in executable["hard_findings"]
+    )
+
+
+def test_ledger_done_rows_are_excluded_from_default_selection(tmp_path: Path) -> None:
+    reconcile_state = _load_module("reconcile_state_ledger_done_under_test", SCRIPTS / "reconcile_state.py")
+
+    queue = tmp_path / "queue.txt"
+    queue.write_text(
+        "\n".join(
+            [
+                "# LEDGER_DONE 2026-05-02_13:22 manifest_repair_deap",
+                "# DONE 2026-05-02_13:23 sim_real_micro",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    parsed = reconcile_state.parse_queue(queue, tmp_path)
+
+    assert [row["status"] for row in parsed] == ["LEDGER_DONE", "DONE"]
+    assert not reconcile_state.selected(
+        parsed[0],
+        set(),
+        "2026-05-02",
+        include_legacy=False,
+    )
+    assert reconcile_state.selected(
+        parsed[0],
+        set(),
+        "2026-05-02",
+        include_legacy=False,
+        include_ledger_done=True,
+    )
+    assert reconcile_state.selected(parsed[1], set(), "2026-05-02", include_legacy=False)
+
+
+def test_run_boundary_packet_result_mismatch_is_hard(tmp_path: Path) -> None:
+    reconcile_state = _load_module("reconcile_state_mismatch_under_test", SCRIPTS / "reconcile_state.py")
+    result_dir = tmp_path / "system_v4" / "probes" / "a2_state" / "sim_results"
+    result_dir.mkdir(parents=True)
+    result_path = result_dir / "sim_guardrail_fixture_results.json"
+    result_path.write_text(
+        json.dumps(
+            _canonical_payload(
+                name="sim_guardrail_fixture",
+                claim_ceiling="tool_function_micro_only",
+                next_lego_target="different target",
+                promotion_condition="requires later admitted lego row",
+                blocked_until="downstream queue row declares target and parent receipts",
+            )
+        ),
+        encoding="utf-8",
+    )
+    row = {
+        "queue": "queue.txt",
+        "line": 1,
+        "status": "DONE",
+        "timestamp": "2026-05-02_13:23",
+        "basename": "sim_guardrail_fixture",
+        "result_basename": "sim_guardrail_fixture",
+        "raw": "# DONE 2026-05-02_13:23 sim_guardrail_fixture",
+        "packet": {
+            "type": "MICRO",
+            "line": 1,
+            "payload": {
+                "tool_target": "z3",
+                "function_surface": "SolverFor('QF_LIA').check",
+                "micro_claim": "one bounded SAT fixture",
+                "lego_target": "minimal arithmetic fixture",
+                "function_receipt": "new",
+                "prior_function_receipts": [],
+                "why_this_lego": "the fixture exposes the solver surface",
+                "positive_case": "SAT fixture passes",
+                "negative_case": "contradiction fails",
+                "boundary_case": "zero boundary checked",
+                "demotion_condition": "demote if SAT/UNSAT verdicts are wrong",
+                "out_of_scope": ["no lego promotion"],
+                "claim_ceiling": "tool_function_micro_only",
+                "next_lego_target": "minimal arithmetic fixture",
+                "promotion_condition": "requires later admitted lego row",
+                "blocked_until": "downstream queue row declares target and parent receipts",
+            },
+        },
+    }
+
+    result = reconcile_state.reconcile_row(
+        row,
+        root=tmp_path,
+        ledger_text="sim_guardrail_fixture",
+        strict_scope=True,
+        require_run_boundary=True,
+        require_executable_receipt=True,
+        stage_gate={"ok": True, "active_stage": "lego", "allow_tier_d_launch": False},
+    )
+
+    assert result["ok"] is False
+    assert any(
+        finding["kind"] == "run_boundary_packet_result_mismatch"
+        and finding["field"] == "next_lego_target"
+        for finding in result["hard_findings"]
     )
 
 

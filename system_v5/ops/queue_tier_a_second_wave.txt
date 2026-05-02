@@ -12,6 +12,8 @@
 # --- Stage 2: capability reconciliation, not missing-probe authoring ---
 # REMOVED 2026-04-30: hdbscan and umap capability probes already exist and pass local rerun.
 # Reconcile dedicated integration anchors instead of authoring new capability rows.
+# LEDGER_DONE 2026-05-02_16:13 truth_reconcile_hdbscan — ledger-only reconciliation to existing hdbscan capability + hdbscan integration + shared hdbscan/umap verdict receipts; no runner rerun; excluded stale failed duplicate verdict result
+# LEDGER_DONE 2026-05-02_16:13 truth_reconcile_umap — ledger-only reconciliation to existing umap capability + umap integration + shared hdbscan/umap verdict receipts; no runner rerun; excluded stale failed duplicate verdict result
 
 # --- Stage 3: missing integration probes (work items, not runner rows) ---
 # COVERED 2026-05-02_11:26 int_cvc5_x_z3_UNSAT_agreement — executable runner DONE lives in queue_tier_a as sim_integration_cvc5_z3_unsat_agreement_micro; narrow QF_LIA agreement only

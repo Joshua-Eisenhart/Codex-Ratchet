@@ -430,6 +430,50 @@ def test_ledger_only_rows_can_pass_loopback_but_fail_executable_mode(tmp_path: P
     )
 
 
+def test_truth_reconcile_rows_are_ledger_only_work_items(tmp_path: Path) -> None:
+    reconcile_state = _load_module("reconcile_state_truth_reconcile_under_test", SCRIPTS / "reconcile_state.py")
+
+    row = {
+        "queue": "system_v5/ops/queue_tier_a_second_wave.txt",
+        "line": 15,
+        "status": "LEDGER_DONE",
+        "timestamp": "2026-05-02_16:13",
+        "basename": "truth_reconcile_hdbscan",
+        "result_basename": "truth_reconcile_hdbscan",
+        "raw": "# LEDGER_DONE 2026-05-02_16:13 truth_reconcile_hdbscan",
+        "packet": None,
+    }
+    ledger_text = "| **hdbscan** | `sim_capability_hdbscan_isolated.py` | passes local rerun |\n"
+
+    normal = reconcile_state.reconcile_row(
+        row,
+        root=tmp_path,
+        ledger_text=ledger_text,
+        strict_scope=True,
+        require_run_boundary=True,
+        require_executable_receipt=False,
+        stage_gate={"ok": True, "active_stage": "lego", "allow_tier_d_launch": False},
+    )
+    assert normal["ok"] is True
+    assert normal["facts"]["ledger_only_tool"] == "hdbscan"
+    assert normal["facts"]["receipt_class"] == "ledger_only"
+
+    executable = reconcile_state.reconcile_row(
+        row,
+        root=tmp_path,
+        ledger_text=ledger_text,
+        strict_scope=True,
+        require_run_boundary=True,
+        require_executable_receipt=True,
+        stage_gate={"ok": True, "active_stage": "lego", "allow_tier_d_launch": False},
+    )
+    assert executable["ok"] is False
+    assert any(
+        finding["kind"] == "ledger_only_not_executable_receipt"
+        for finding in executable["hard_findings"]
+    )
+
+
 def test_ledger_done_rows_are_excluded_from_default_selection(tmp_path: Path) -> None:
     reconcile_state = _load_module("reconcile_state_ledger_done_under_test", SCRIPTS / "reconcile_state.py")
 

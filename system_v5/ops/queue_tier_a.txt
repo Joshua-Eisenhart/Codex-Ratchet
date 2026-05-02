@@ -698,3 +698,119 @@
 #   ]
 # }
 # DONE 2026-05-02_15:37:17 sim_integration_xgi_toponetx_higher_order_incidence_micro (1s)
+
+# MICRO: {
+#   "tool_target": "toponetx",
+#   "function_surface": "TopoNetX CellComplex.hodge_laplacian_matrix(k) on tiny CellComplex fixtures",
+#   "micro_claim": "TopoNetX returns bounded finite Hodge Laplacian operators whose tiny kernels distinguish filled and hollow cell fixtures",
+#   "lego_target": "minimal Hodge-Laplacian operation fixture before graph-cell promotion",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "none in this row; a downstream queue item would need to name an exact admissible target and parent receipt",
+#   "promotion_condition": "requires a later admitted downstream row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote any lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact target, parent receipt use, and active stage gate for promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [
+#     "system_v4/probes/a2_state/sim_results/sim_toponetx_cell_incidence_micro_results.json"
+#   ],
+#   "why_this_lego": "the ledger says TopoNetX Hodge spectra remain separate from exact cell incidence and graph-cell promotion",
+#   "positive_case": "filled square cell gives finite symmetric PSD L0/L1/L2 with tiny kernel dimensions",
+#   "negative_case": "hollow square L1 kernel differs from filled square and out-of-range rank is rejected",
+#   "boundary_case": "empty and single-edge CellComplex fixtures report finite bounded operators without fabricated cells",
+#   "demotion_condition": "demote if Hodge operators are missing/non-finite, filled and hollow L1 kernels collapse to the same verdict, out-of-range rank fabricates an operator, or empty/single-edge boundaries fail",
+#   "out_of_scope": [
+#     "GUDHI cross-check",
+#     "graph-cell lego promotion",
+#     "Hodge spectral agreement beyond this tiny operation receipt",
+#     "tool-tool coupling",
+#     "bridge or axis claim",
+#     "whole TopoNetX proof"
+#   ]
+# }
+# DONE 2026-05-02_16:12:43 sim_toponetx_hodge_laplacian_micro (1s)
+
+# MICRO: {
+#   "tool_target": "gudhi",
+#   "function_surface": "gudhi.AlphaComplex(points=...).create_simplex_tree(...).persistence()",
+#   "micro_claim": "GUDHI AlphaComplex on a tiny square point cloud exposes one finite H1 bar and its alpha-square filling threshold",
+#   "lego_target": "minimal AlphaComplex point-cloud fixture before topology coupling",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal AlphaComplex point-cloud fixture before topology coupling or graph-cell promotion",
+#   "promotion_condition": "requires a later admitted downstream row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote any lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact topology target, parent receipt use, and active stage gate for promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [
+#     "system_v4/probes/a2_state/sim_results/sim_gudhi_rips_point_cloud_micro_results.json"
+#   ],
+#   "why_this_lego": "AlphaComplex remains separate from completed SimplexTree and RipsComplex GUDHI receipts",
+#   "positive_case": "four-corner square AlphaComplex has one finite H1 interval born at alpha square 0.25 and killed at 0.5",
+#   "negative_case": "center-filled square excludes the same positive-length outer H1 bar",
+#   "boundary_case": "side-threshold, two-point, and singleton boundaries remain finite and explicit",
+#   "demotion_condition": "demote if AlphaComplex misses the square H1 bar, invents H1 in the centered fixture, or cannot report finite boundary filtrations",
+#   "out_of_scope": [
+#     "RipsComplex or SimplexTree retest",
+#     "TopoNetX cross-check",
+#     "lego promotion",
+#     "tool-tool coupling",
+#     "bridge or axis claim",
+#     "whole GUDHI proof"
+#   ]
+# }
+# DONE 2026-05-02_16:12:48 sim_gudhi_alpha_complex_micro (0s)
+
+# MICRO: {
+#   "tool_target": "e3nn",
+#   "function_surface": "e3nn.o3.spherical_harmonics plus D_from_matrix on tiny SO(3)/O(3) vector fixtures",
+#   "micro_claim": "e3nn spherical harmonics return declared l=0/1/2 widths and transform under the matching tiny SO(3)/O(3) irrep action",
+#   "lego_target": "minimal spherical-harmonics equivariance fixture before geometry/operator promotion",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal spherical-harmonics equivariance fixture before geometry or operator equivariance promotion",
+#   "promotion_condition": "requires a later admitted downstream row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote any lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact geometry or operator target, parent receipt use, and active stage gate for promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [
+#     "system_v4/probes/a2_state/sim_results/sim_e3nn_irreps_tensor_product_micro_results.json"
+#   ],
+#   "why_this_lego": "spherical harmonics are separate from completed Irreps/tensor-product and e3nn-PyG message-passing receipts",
+#   "positive_case": "l=1 and l=2 harmonics satisfy bounded SO(3) rotation equivariance and widths match 2l+1",
+#   "negative_case": "untransformed features, wrong representation orientation, and malformed vector widths are excluded",
+#   "boundary_case": "l=0 reflection, l=1/l=2 inversion parity, and zero-batch boundaries stay explicit",
+#   "demotion_condition": "demote if widths, SO(3)/O(3) equivariance, malformed-input rejection, or wrong-path exclusions fail",
+#   "out_of_scope": [
+#     "learned GNN",
+#     "e3nn convolution",
+#     "operator-geometry promotion",
+#     "tool-tool coupling",
+#     "bridge or axis claim",
+#     "whole e3nn proof"
+#   ]
+# }
+# DONE 2026-05-02_16:12:55 sim_e3nn_spherical_harmonics_equivariance_micro (2s)
+
+# MICRO: {
+#   "tool_target": "pyg",
+#   "function_surface": "torch_geometric.data.Batch.from_data_list on tiny Data graph fixtures",
+#   "micro_claim": "PyG batching offsets graph-local edge indexes and preserves graph membership metadata on bounded Data fixtures",
+#   "lego_target": "minimal PyG Data batching fixture before graph-native or graph-cell promotion",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal PyG Data batching fixture before graph-native or graph-cell promotion",
+#   "promotion_condition": "requires a later admitted downstream row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote any lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact graph target, parent receipt use, and active stage gate for promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [
+#     "system_v4/probes/a2_state/sim_results/sim_pyg_message_passing_autograd_micro_results.json"
+#   ],
+#   "why_this_lego": "PyG batching remains separate from completed MessagePassing/autograd and NetworkX-PyG handoff receipts",
+#   "positive_case": "two Data graphs concatenate node features, offset second graph edges, preserve batch/ptr metadata, and preserve graph-level targets",
+#   "negative_case": "raw unoffset concatenation and unlabeled merged-graph membership are excluded",
+#   "boundary_case": "single empty-edge graph is well-formed and empty data list is rejected",
+#   "demotion_condition": "demote if Batch.from_data_list stops offsetting graph-local edges, loses membership metadata, or admits an empty data list as meaningful",
+#   "out_of_scope": [
+#     "training",
+#     "HeteroData",
+#     "e3nn coupling",
+#     "graph-cell promotion",
+#     "bridge or axis claim",
+#     "whole PyG proof"
+#   ]
+# }
+# DONE 2026-05-02_16:13:03 sim_pyg_batching_micro (3s)

@@ -78,7 +78,7 @@ BOUND_REQUIRED_FIELDS = {
     "out_of_scope",
 }
 
-LEDGER_ONLY_PREFIXES = ("cap_rerun_", "manifest_repair_")
+LEDGER_ONLY_PREFIXES = ("cap_rerun_", "manifest_repair_", "truth_reconcile_")
 
 STAGE_ORDER = ["tools", "tool_integration", "lego", "coupling"]
 

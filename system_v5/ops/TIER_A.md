@@ -39,6 +39,24 @@ Workers never run sims themselves.
 
 Seven Haiku Claudes, one tool each, parallel worktrees. Each writes ONE capability probe. `classification = "canonical"` applies only to the bounded capability claim: this tool can carry this check. It does not admit downstream lego, coupling, bridge, axis, or engine work.
 
+### Micro packet rule
+
+Tier A is micro-first. A capability packet should test one named tool function or API surface, not the whole library. The accepted packet shape is:
+
+1. one tool;
+2. one function/API surface;
+3. one tiny claim;
+4. one useful bounded lego target or minimal fixture;
+5. positive, negative, and boundary tests;
+6. one demotion condition;
+7. one ledger loopback.
+
+Each tool should find legos that expose its real value. A z3 packet should prefer fence/impossibility/synthesis legos; a sympy packet should prefer symbolic-identity/derivation legos; graph/topology tools should prefer graph, hypergraph, cell-complex, filtration, or graph-dynamics legos; geometry tools should prefer rotor, spinor, metric, geodesic, holonomy, or equivariance legos. These are still tool-stage packets. They prove the tool/function fit, not the lego.
+
+Do not debug multiple unknowns at once. If a worker cannot tell whether failure came from the tool call, the lego object, or another tool coupling, split the packet before queueing it.
+
+Queue preface: Stage-3 and Stage-4 Tier A rows should carry the `MICRO` fields from `TOOL_STAGE_ROUTING_AND_SKIP_AHEAD.md`. Tool-pair rows additionally name prior receipts for both exact functions. Missing receipts mean the worker writes the missing micro proof first, not the pair packet.
+
 | Worker | Tool | Probe path |
 |---|---|---|
 | A0.1 | z3 | `system_v4/probes/tool_capability_z3.py` |
@@ -48,6 +66,8 @@ Seven Haiku Claudes, one tool each, parallel worktrees. Each writes ONE capabili
 | A0.5 | TopoNetX | `system_v4/probes/tool_capability_toponetx.py` |
 | A0.6 | Clifford (clifford/geometric_algebra) | `system_v4/probes/tool_capability_clifford.py` |
 | A0.7 | torch (autograd) | `system_v4/probes/tool_capability_torch.py` |
+
+Naming note: older `tool_capability_<tool>.py` rows and newer `sim_<tool>_capability.py` rows both exist in this repo. Do not infer coverage from filename style. Use the ledger row, exact function/API surface, and current receipt path.
 
 ## Track 0b — Extension capability normalization
 
@@ -129,6 +149,8 @@ Output: `system_v4/probes/a2_state/sim_results/tier_a_audit.json`. Commit: `"tie
 ## Track 4 — Tool-pair integration sims (Sonnet)
 
 Six Sonnet Claudes, one pair each, parallel worktrees.
+
+Do not start a tool-pair integration until the specific function/API surface for each tool has its own micro receipt. A valid pair packet names both prior receipts and demonstrates real interop: output of one feeds the other, or both independently cross-check the same tiny claim. Two tools imported into the same file is not integration.
 
 | Worker | Pair | Probe path |
 |---|---|---|

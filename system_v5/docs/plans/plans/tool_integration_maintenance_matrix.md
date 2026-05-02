@@ -22,6 +22,13 @@ For each major tool family, the process goal is ideally to maintain three bounde
 2. a canonical tool-native counterpart
 3. a comparison note showing what the tool adds beyond the baseline
 
+Granularity rule:
+- a tool-row status does not prove the whole library
+- each important function/API surface needs its own micro receipt before it becomes load-bearing in a lego or tool-tool coupling
+- every tool should choose useful bounded legos or minimal fixtures that expose that function's value
+- tool-lego fit probes are pre-lego tool-stage work; they do not promote the lego
+- tool-tool couplings require prior receipts for the exact functions being coupled
+
 Interpretation rule:
 - the tools and next moves named below are seed examples, not an exhaustive list of all valid packets
 - when a nearby bounded packet better clarifies the same tool capability, the controller may choose it instead of rigidly following only the named examples
@@ -71,14 +78,17 @@ Interpretation rule:
 2. Proof/symbolic tools
 - deepen z3, cvc5, and sympy as explicit capability lanes rather than incidental imports
 - best bounded moves: impossibility micro-probes, cross-check proofs, derivation micro-probes, SyGuS/fence synthesis
+- choose one exact function/API surface per packet, such as one solver assertion pattern, one UNSAT certificate shape, one SyGuS synthesis target, or one symbolic simplification/identity check
 
 3. Graph/topology tools
 - deepen rustworkx, PyG, XGI, TopoNetX, and GUDHI as explicit capability lanes
 - best bounded moves: DAG kernels, tensor-on-graph packets, hypergraph packets, cell-complex packets, persistence packets
+- choose one graph operation or invariant per packet before coupling tools
 
 4. Geometry/equivariance tools
 - deepen clifford, e3nn, and geomstats as explicit capability lanes
 - best bounded moves: rotor/spinor packets, equivariance packets, metric/geodesic packets
+- choose one rotor, spinor, metric, geodesic, holonomy, or equivariance function per packet before stacking geometry claims
 
 5. Honest second-wave tool-stage packets
 - keep second-wave integrations below lego work

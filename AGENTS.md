@@ -168,6 +168,14 @@ Every visible follow-up option should have:
 
 Use the interpreter from `Makefile` for sims.
 
+Tool-stage work is micro-first:
+
+- a tool sim proves one named tool function/API surface on one tiny claim;
+- each tool should find useful bounded lego targets or minimal fixtures that expose that function;
+- tool-lego fit probes are pre-lego evidence and do not promote the lego;
+- tool-tool couplings require prior receipts for the exact functions being coupled;
+- no worker should debug a tool, lego, and tool coupling in the same packet.
+
 Every canonical sim must satisfy the repo contract:
 
 - `classification` is set.
@@ -178,11 +186,12 @@ Every canonical sim must satisfy the repo contract:
 
 Respect the hard stage gate:
 
-1. tool sims;
-2. tool-integration sims;
-3. all lego rows;
-4. only then couplings;
-5. only after coupling/coexistence/topology/emergence evidence, bridge or axis-level claims.
+1. micro tool/function sims;
+2. tool-lego fit probes;
+3. tool-tool integration/coupling sims with prior function receipts;
+4. all lego rows;
+5. only then scientific lego couplings;
+6. only after coupling/coexistence/topology/emergence evidence, bridge or axis-level claims.
 
 Do not relaunch broad sim queues when contract lint or queue safety is red. Use small batches.
 

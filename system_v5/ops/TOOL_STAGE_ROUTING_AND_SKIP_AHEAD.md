@@ -6,23 +6,42 @@ Authority: accepts Codex correction 2026-04-19 that recent default-queue drain w
 
 ## Why this file exists
 
-The controller previously treated `queue_default.txt` as a general drain surface and used successful DONE counts as a proxy for tool-stage progress. That conflated five distinct things:
+The controller previously treated `queue_default.txt` as a general drain surface and used successful DONE counts as a proxy for tool-stage progress. That conflated six distinct things:
 
 1. Smoke test — does the tool import and run a minimal example.
-2. Capability probe — does the tool produce the invariants claimed of it.
-3. Integration probe — do two tools crosscheck on a scoped question.
-4. Tool-serving real-lego test (skip-ahead) — a bounded row answering one tool-integration question against a real lego, with mandatory loopback to the ledger.
-5. Full sim (classical baseline, canonical, or gray-zone) — downstream consumer of tool-stage closure, not part of it.
+2. Function/API micro-probe — does one named tool function or API surface produce the invariant claimed of it.
+3. Tool-lego fit probe — can that one tool function carry a useful bounded lego-shaped question.
+4. Tool-tool coupling probe — do two individually proven tool functions exchange output/input or cross-check one scoped question.
+5. Tool-serving real-lego test (skip-ahead) — a bounded row answering one tool-integration question against a real lego, with mandatory loopback to the ledger.
+6. Full sim (classical baseline, canonical, or gray-zone) — downstream consumer of tool-stage closure, not part of it.
 
-Those are five different stages, in that order, recursive. A pass at one stage does not discharge debt at another. A generic lego drain is not a tool-stage advance.
+Those are different stages, in that order, recursive. A pass at one stage does not discharge debt at another. A generic lego drain is not a tool-stage advance.
+
+## Micro-stage ladder
+
+Tool-stage work moves in tiny steps:
+
+1. pick one tool;
+2. pick one function/API surface from that tool;
+3. pick the smallest claim that function should certify, compute, exclude, or transform;
+4. pick one useful lego target or minimal fixture that exposes the claim;
+5. write positive, negative, and boundary tests;
+6. record the failure condition that would demote the tool role;
+7. update the ledger with the exact evidence path.
+
+This is pre-lego work even when it uses a real lego-shaped target. It proves the tool/function surface, not the lego, not the stack, and not a downstream coupling. Workers may run many independent micro-probes in parallel, and multiple workers may test the same triple in different ways, but each accepted row must keep only one thing uncertain.
+
+Do not debug stacked uncertainty. If a packet requires debugging the tool, the lego object, and another tool coupling at the same time, split it.
 
 ## Routing rule
 
 | Row type | Queue surface | Loopback required? |
 |---|---|---|
-| Stage 1–3 (smoke / capability / integration) | `queue_tier_a.txt` | Yes — to `TOOL_CAPABILITY_AND_INTEGRATION_LEDGER.md` |
-| Stage 4 (tool-serving real-lego skip-ahead) | `queue_tier_a.txt` with BOUND block | Yes — to `loopback_target` declared in the BOUND block |
-| Stage 5 full sim, bounded lego work | `queue_tier_b.txt` (shell-local) or `queue_tier_d.txt` only when `stage_gate.json` permits Tier D | No — but must carry classification field in probe |
+| Stage 1-2 (smoke / function micro-probe) | `queue_tier_a.txt` | Yes — to `TOOL_CAPABILITY_AND_INTEGRATION_LEDGER.md` |
+| Stage 3 (tool-lego fit probe) | `queue_tier_a.txt` with micro packet fields | Yes — to the named tool/function ledger row |
+| Stage 4 (tool-tool coupling probe) | `queue_tier_a.txt` with both prior receipts named | Yes — to both tool/function rows and the integration row |
+| Stage 5 (tool-serving real-lego skip-ahead) | `queue_tier_a.txt` with BOUND block | Yes — to `loopback_target` declared in the BOUND block |
+| Stage 6 full sim, bounded lego work | `queue_tier_b.txt` (shell-local) or `queue_tier_d.txt` only when `stage_gate.json` permits Tier D | No — but must carry classification field in probe |
 | Classical baselines, FEP/holodeck/leviathan locals, axis-composites | `queue_lego_backlog.txt` (tracked holding surface; not default-drained) | No |
 | Bridge composites, multi-shell stacks, off-lane | `queue_offlane.txt` (never auto-drained) | No |
 | Utility, telemetry, calibration | `queue_disposal.txt` or script direct | No |
@@ -55,7 +74,26 @@ The runner has three execution kinds. These are runner/admission labels, not rep
 
 ## Skip-ahead admissibility contract
 
-Any row entering stage 4 (tool-serving real-lego test) must carry an eight-field BOUND block immediately preceding its queue line:
+Any row entering stage 3 or 4 should carry these micro packet fields in its plan, prompt, or queue preface:
+
+```
+# MICRO: {
+#   "tool_target": "<tool name from the ledger>",
+#   "function_surface": "<exact function/API surface being tested>",
+#   "micro_claim": "<one tiny claim>",
+#   "lego_target": "<bounded lego target or minimal fixture>",
+#   "function_receipt": "<existing receipt for this function, or 'new' for a first proof>",
+#   "prior_function_receipts": ["<required before tool-tool coupling; empty for first proof>"],
+#   "why_this_lego": "<why this target exposes the function>",
+#   "positive_case": "<what must pass>",
+#   "negative_case": "<what must fail>",
+#   "boundary_case": "<edge condition>",
+#   "demotion_condition": "<what would prove the tool/function is not suitable here>",
+#   "out_of_scope": ["<anything this row must not claim>"]
+# }
+```
+
+Any row entering stage 5 (tool-serving real-lego test) must carry an eight-field BOUND block immediately preceding its queue line:
 
 ```
 # BOUND: {
@@ -74,25 +112,29 @@ Any row entering stage 4 (tool-serving real-lego test) must carry an eight-field
 
 The runner (next version) enforces:
 
-1. BOUND block required on stage-4 rows. Missing → INELIGIBLE.
-2. Any BOUND field empty or absent → INELIGIBLE.
-3. `expected_outcome_classification: canonical` with no nonclassical-suitable load-bearing tool → INELIGIBLE.
-4. On DONE, verify the file at `loopback_target` was touched since run-start and contains the named row. If not → LOOPBACK_MISSING, reroute to `queue_disposal.txt`.
-5. Probe output JSON that claims a field listed in `out_of_scope` → SCOPE_VIOLATION, reroute to `queue_disposal.txt`.
+1. MICRO fields required on stage-3 and stage-4 rows. Missing → INELIGIBLE.
+2. BOUND block required on stage-5 rows. Missing → INELIGIBLE.
+3. Any required MICRO or BOUND field empty or absent → INELIGIBLE.
+4. A stage-3 first proof may set `function_receipt: "new"`, but it must still name the exact function surface, lego target, positive/negative/boundary cases, and demotion condition.
+5. A tool-tool coupling with no prior receipt for both named function surfaces → INELIGIBLE.
+6. A stack or compound row that fails while any participating tool function lacks an individual receipt → DECOMPOSE, not retry. Move back to the first missing micro proof.
+7. `expected_outcome_classification: canonical` with no nonclassical-suitable load-bearing tool → INELIGIBLE.
+8. On DONE, verify the file at `loopback_target` was touched since run-start and contains the named row. If not → LOOPBACK_MISSING, reroute to `queue_disposal.txt`.
+9. Probe output JSON that claims a field listed in `out_of_scope` → SCOPE_VIOLATION, reroute to `queue_disposal.txt`.
 
 INELIGIBLE is a routing fault, not a runtime failure. It does not trip the consecutive-failure circuit-breaker. It re-routes the row off the tier-A surface.
 
 ## What this file explicitly does NOT do
 
 - It does not retro-delete the 511 default-queue DONEs. They are reclassifiable, not garbage.
-- It does not authorize lego-stage skipping. Stage 4 is tight and scoped; it answers one tool question per row.
+- It does not authorize lego-stage skipping. Stage 3 uses lego-shaped targets to test tools; Stage 5 is tight and scoped; each row answers one tool question only.
 - It does not unify the wiki harness tool probes with repo sim-tool substrate probes. Those remain distinct.
 - It does not promote any current tool to nonclassical-core without a probe. The role-discovery axis is populated only by evidence.
 
 ## Open debts after this file lands
 
 - Role-discovery column not yet added to `TOOL_CAPABILITY_AND_INTEGRATION_LEDGER.md` — schema change, owner review needed.
-- Runner (`sim_runner.sh`) now honors the coarse stage gate for Tier D and default-queue late-stage blocking, but it does not yet enforce the full BOUND admission gate. The v2 stub at `system_v5/ops/drafts/sim_runner_v2_stub.sh` sketches the intended gate, is not live, and is not executable.
+- Runner (`sim_runner.sh`) now honors the coarse stage gate for Tier D and default-queue late-stage blocking, but it does not yet enforce the full MICRO or BOUND admission gate. The v2 stub at `system_v5/ops/drafts/sim_runner_v2_stub.sh` sketches the intended BOUND gate, is not live, and is not executable.
 - `queue_lego_backlog.txt` and `queue_offlane.txt` now exist as explicit partition surfaces. They are holding areas, not proof that the rows inside them are admitted or safe to auto-drain.
 - Reclassification of the 511 default-queue DONEs into the seven buckets (tool-serving / nonclassical-support / classical-support / bridge-useful / generic-lego-backlog / off-lane / runtime-residue) is a separate pass, not done here.
 

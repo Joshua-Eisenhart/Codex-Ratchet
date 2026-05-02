@@ -44,13 +44,15 @@ Do not smooth over gate failures with narrative. A smooth narrative that leads t
 Controllers must preserve this order and distinction:
 
 1. tool sims stay active
-2. tool-integration sims stay active
-3. lego sims stay active across the registry
-4. classical baselines and controls may run more freely, but never as nonclassical or bridge evidence
-5. coupling / coexistence execution is after lego-stage completion by default
-6. any earlier pairwise/coexistence row must be an explicit bounded exception with named parent legos and no promotion claim
-7. exploratory coupling does not authorize higher-stage promotion
-8. bridge / axis / engine work remains late and gated
+2. tool sims split to micro-probes: one tool, one function/API surface, one tiny claim, one bounded target, one positive/negative/boundary set
+3. each tool finds useful bounded legos to test itself on before it is used inside lego-stage claims
+4. tool-integration sims stay active only after the individual tool functions being coupled have their own receipts
+5. lego sims stay active across the registry
+6. classical baselines and controls may run more freely, but never as nonclassical or bridge evidence
+7. coupling / coexistence execution is after lego-stage completion by default
+8. any earlier pairwise/coexistence row must be an explicit bounded exception with named parent legos and no promotion claim
+9. exploratory coupling does not authorize higher-stage promotion
+10. bridge / axis / engine work remains late and gated
 
 Do not rewrite this into "some locals are strong, so broad successor work can start."
 
@@ -122,14 +124,11 @@ Do not skip to bridge claims at all.
 2. Use the controller-side validator before accepting any worker closeout: `system_v4/skills/llm_research_enforcement_validator.py`.
 3. Keep the gap matrix current in `docs/LLM_RESEARCH_GAP_MATRIX.json`; do not promote cells without evidence paths.
 4. No broad coupling/coexistence/topology/emergence/bridge/axis queueing or launch merely because exploratory couplings exist.
-
-2. **Phase 7 completion** requires C2_graph_topology tested for all 28 families — not a subset.
-
-3. **No claim of "canonical"** without SIM_TEMPLATE + tool manifest with non-empty reason fields + classification field set + passes local rerun.
-
-4. **No "28/28" claims** without specifying exactly which criteria (C1/C2/C3/C4) were tested per family.
-
-5. **Ban on absolute repo-state claims** unless the model cites a current file path and result from this run. "The repo has X" requires `ls` or `cat` evidence from this session.
+5. No debugging stacked uncertainty. If a compound, stack, coupling, or integration packet fails and any participating tool function lacks an individual useful-lego receipt, stop debugging the compound packet and decompose to the first missing micro proof.
+6. **Phase 7 completion** requires C2_graph_topology tested for all 28 families — not a subset.
+7. **No claim of "canonical"** without SIM_TEMPLATE + tool manifest with non-empty reason fields + classification field set + passes local rerun.
+8. **No "28/28" claims** without specifying exactly which criteria (C1/C2/C3/C4) were tested per family.
+9. **Ban on absolute repo-state claims** unless the model cites a current file path and result from this run. "The repo has X" requires `ls` or `cat` evidence from this session.
 
 ---
 
@@ -138,6 +137,7 @@ Do not skip to bridge claims at all.
 When launching background agents:
 - Each agent gets a **bounded task** with explicit deliverables
 - Agents write, repair, audit, and enqueue bounded probes. They do not execute sims; executable evidence comes from the Python runner and result JSONs.
+- Micro tool workers get exactly one tool/function/lego-target triple. If they must debug more than one unknown at once, the packet is too large and must be split.
 - The controller does a **consolidation pass** after agent completion:
   - Check for overclaim (agent says "all pass" → verify the specific criteria)
   - Check for stale doc edits (agent edited a doc → verify the code gate was met first)
@@ -156,6 +156,14 @@ Every agent prompt should have these sections in order:
 3. **Allowed claims**: what this agent is permitted to conclude (bounded by its task)
 4. **Required verification**: what must be run locally before the agent reports success
 5. **Stop rules**: conditions under which the agent must stop and report back rather than proceeding
+
+For micro tool-stage workers, also include:
+
+1. **Tool target**: exact tool and function/API surface.
+2. **Lego target**: exact bounded lego or minimal fixture chosen to expose the tool.
+3. **One variable**: what is allowed to be uncertain in this packet.
+4. **Out of scope**: all stack, coupling, bridge, axis, engine, and promotion claims.
+5. **Ledger loopback**: which tool/function row must be updated if the probe runs.
 
 ---
 

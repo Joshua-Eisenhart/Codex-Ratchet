@@ -17,6 +17,10 @@ Planning companion:
 
 Status `unverified` = file exists but run status was not confirmed this session.
 
+Important granularity rule: a tool row is not a blanket proof of the whole library. Treat every capability or integration claim as scoped to the exact function/API surface and test shape named by its probe. Before a tool function becomes load-bearing in a lego-stage claim or a tool-tool coupling, it needs a micro receipt: one function, one bounded lego target or minimal fixture, one positive case, one negative case, one boundary case, and one demotion condition. Tool-lego fit probes are pre-lego tool-stage evidence; they do not promote the lego.
+
+Schema upgrade target: future ledger rows should track `function/API surface`, `useful_lego_anchor`, `individual_receipt`, `eligible_for_tool_tool_coupling`, and `last_demoted_by`. Until that schema exists, record those facts inside the `Next step` cell or in a cited companion note before treating a row as coupling-eligible.
+
 ---
 
 ## Ledger

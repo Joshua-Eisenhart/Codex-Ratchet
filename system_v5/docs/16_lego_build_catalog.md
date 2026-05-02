@@ -22,9 +22,10 @@ It exists to answer:
 Build guardrail:
 - this file may name downstream successors
 - successor columns are routing hints, not automatic permission
-- bounded exploratory pairwise/coexistence work may run off already-strong local parents
+- tool/function micro-probes and tool-lego fit probes happen before lego promotion; a tool-lego fit probe proves the tool/function on a bounded target, not the lego itself
+- bounded exploratory pairwise/coexistence work is recorded as a candidate while the lego stage is active, and may run only as an explicit bounded exception with parent receipts and no promotion claim
 - broad upward promotion is still blocked while the lego stage remains materially incomplete
-- the active loop is: tool sims, tool integrations, lego rows, bounded coupling exploration, then feedback into the same layers
+- the active loop is: micro tool/function sims, tool-lego fit probes, tool-tool couplings, lego rows, bounded coupling candidates, then feedback into the same layers
 
 ## Plain-English Notes
 
@@ -339,13 +340,21 @@ These rows may be used for bounded exploration when the named parent locals are 
 
 ## Current Build Order
 
-1. finish the weak legos first:
+0. prove the relevant tool/function surfaces first:
+- one tool
+- one function/API surface
+- one tiny claim
+- one useful bounded lego target or minimal fixture
+- positive, negative, and boundary tests
+- demotion condition and ledger loopback
+
+1. finish the weak legos without skipping the micro tool/function receipts:
 - `constraint_probe_admissibility`
 - `operator_family_admission`
 - `entropy_family_crosschecks`
 - `carrier_admission_density_matrix`
 
-2. deepen the shallow tools inside the tool/tool-integration/lego stages:
+2. deepen the shallow tools inside the tool/tool-integration/lego stages by making each tool find bounded legos that expose its exact function/API value:
 - `pyg`
 - `cvc5`
 - `e3nn`
@@ -371,7 +380,8 @@ Bot read-only views:
 
 The current program should be:
 
-1. build or strengthen all local legos
-2. force honest tool integration per lego
-3. finish the lego registry before any pairwise or coexistence successor is allowed to run
-4. only then widen into pairwise work, topology reruns, seam work, and assembly
+1. prove relevant tool functions in micro tool-lego packets
+2. build or strengthen all local legos
+3. force honest tool integration per lego only from tested function receipts
+4. finish the lego registry before any pairwise or coexistence successor is allowed to run
+5. only then widen into pairwise work, topology reruns, seam work, and assembly

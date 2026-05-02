@@ -21,14 +21,16 @@ This document governs active simulation and build work. It does not replace sour
 This guardrail is mandatory.
 
 1. keep tool sims active until the needed tool surface is honestly covered
-2. keep tool-integration sims active until the needed bounded integrations are honestly covered
-3. keep lego sims active across the registry, one bounded lego at a time
-4. use parallel workers aggressively inside bounded tool and lego packets; do not use parallelism as permission to widen stage
-5. classical baselines and controls may run more freely, but they remain baseline/control evidence and do not support nonclassical or bridge claims
-6. coupling / coexistence execution is after lego-stage completion by default; any earlier coupling row must be an explicit bounded exception, marked exploratory, and routed back into lego/tool refinement
-7. exploratory coupling work does not mean the coupling stage is earned
-8. broad coupling / coexistence / topology-variant / emergence promotion remains blocked until the registry and parent evidence are strong enough
-9. bridge / axis / engine surfaces remain later and explicitly gated
+2. split tool sims down to micro-probes: one tool, one function/API surface, one tiny claim, one positive test, one negative test, one boundary test
+3. make each tool find useful bounded legos to test itself on before the tool is used inside lego-stage claims
+4. keep tool-integration sims active only after the individual tool functions being coupled have their own receipts
+5. keep lego sims active across the registry, one bounded lego at a time
+6. use parallel workers aggressively inside bounded tool and lego packets; do not use parallelism as permission to widen stage
+7. classical baselines and controls may run more freely, but they remain baseline/control evidence and do not support nonclassical or bridge claims
+8. coupling / coexistence execution is after lego-stage completion by default; any earlier coupling row must be an explicit bounded exception, marked exploratory, and routed back into lego/tool refinement
+9. exploratory coupling work does not mean the coupling stage is earned
+10. broad coupling / coexistence / topology-variant / emergence promotion remains blocked until the registry and parent evidence are strong enough
+11. bridge / axis / engine surfaces remain later and explicitly gated
 
 If a queue, launch prompt, ledger row, or worker plan widens exploratory coupling into earned higher-stage permission, this guardrail wins.
 
@@ -88,6 +90,9 @@ All 13 rules below describe the target regime. They are the standard new work sh
 - **Layer / shell**: a simultaneous constraint surface, not a sequential rung. Higher layers do not replace lower layers; they restrict the same state space further.
 - **Classical baseline**: a numpy-era baseline artifact/result family. Useful as a baseline and negative control, not the target substrate. Its public status label still has to be checked separately (`exists`, `runs`, `passes local rerun`, or `canonical by process`).
 - **Canonical sim / canonical by process**: a result status earned by fresh rerun, SIM_TEMPLATE-style structure, `classification`, non-empty tool manifest reasons, and claim-relevant load-bearing tool depth. It does not by itself mean `nonclassical`.
+- **Micro tool sim**: the smallest tool-stage probe. It tests one named tool function or API surface against one tiny claim, including positive, negative, and boundary behavior. It proves only that function/surface under that claim.
+- **Tool-lego fit probe**: a pre-lego tool-stage probe where a tool applies one already-named function/API surface to one useful bounded lego target. It answers whether the tool can carry that lego-shaped question. It does not promote the lego.
+- **Tool-tool coupling**: a tool-stage integration probe where two already-tested tool functions exchange an output/input or cross-check the same tiny claim. Parallel use in one file is not coupling.
 - **Supporting work**: docs, manifests, audits, indexes, and migration helpers. These have lighter tool requirements than canonical sims.
 - **Relevance**: a tool may be omitted only if it cannot change the result or would be purely decorative. The omission must be explicit.
 
@@ -157,6 +162,27 @@ Required tool-role contract:
 - **TLAPS**: temporal logic model checking for ratchet safety/liveness properties.
 
 **Why:** Each tool carries a different mathematical commitment. z3/cvc5 do constraint logic. Clifford does geometric product. TopoNetX/GUDHI do topology. geomstats does Riemannian geometry. e3nn does equivariant computation. PyG does graph computation. A tool pressures a classical fallback only when the claim fails or cannot be certified without it and the result passes the sim contract; imports, wrappers, and parallel checks are decorative or supportive unless an ablation would break the claim.
+
+### Rule 2a: Tool depth is micro-first
+
+Do not build sims on stacks of untested tool behavior. Before a tool is used as load-bearing inside a lego-stage or integration claim, the relevant function/API surface must have a micro receipt:
+
+1. one named tool;
+2. one named function/API surface;
+3. one tiny claim;
+4. one useful bounded lego target or minimal fixture;
+5. one positive case;
+6. one negative case;
+7. one boundary case;
+8. one failure condition that would demote the tool role.
+
+Every tool should search for the legos that best expose its actual value. z3/cvc5 should find fence, impossibility, and synthesis legos; sympy should find derivation and identity legos; Clifford should find rotor/spinor/operator legos; geomstats should find metric/geodesic/holonomy legos; rustworkx/XGI/TopoNetX/GUDHI/PyG should find graph, hypergraph, cell-complex, filtration, and graph-dynamics legos. These are tool-stage probes using lego-shaped targets, not lego-stage promotions.
+
+Tool-tool coupling is later than the individual tool-function receipts. A coupling packet must name the two proven functions, the data exchanged or cross-check performed, and the single claim under test. If two tools are merely imported or run side by side, the packet is not a tool coupling.
+
+This micro-first rule is a parallelization rule as much as a safety rule: many workers can test different tool/function/lego triples at once, and several workers may test the same triple in different ways. The controller accepts only receipts that stay inside one variable of uncertainty. If a worker has to debug the tool, the lego, and the coupling at the same time, the packet is too large.
+
+Failure rule: when a compound or stack packet fails, do not debug the compound while any participating tool function lacks an individual useful-lego receipt. Decompose to the first missing micro proof, rerun that bounded packet, and only then revisit the compound.
 
 ## Rule 3: No engine jargon in sims
 Standard mathematical terms only. Z-dephasing, not Ti. X-rotation, not Fi. The Jungian labels are a Rosetta mapping applied only after the math has earned the relevant checks; they must not steer the computation layer.

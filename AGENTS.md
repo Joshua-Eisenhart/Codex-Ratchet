@@ -57,6 +57,42 @@ Do not use Wizard to:
 - claim a route ran unless a real worker, tool, or declared check ran;
 - use `CLAUDE.md` as Codex behavior law.
 
+## Sim-Mode Full Wizard Override
+
+For sim, proof, runner, tool-stage, lego, queue, or result work, Full Wizard is mandatory even for tiny issues. The general Wizard rule "run only routes that can change the answer" is still true for ordinary work, but sim-mode has a stricter interpretation because tool/function packets are naturally independent.
+
+Operational runbook: `system_v5/ops/SIM_FULL_WIZARD_PARALLEL_RUNBOOK.md`.
+
+Sim-mode Full Wizard must not collapse to a single tool, single voice, or single route unless the user explicitly asks for one named item or a real parallel preflight proves that only one item is admissible right now.
+
+Minimum sim-mode shape:
+
+- preflight/registry wave maps the active stage, queue surfaces, current blockers, runner boundary, and available worker pools;
+- voice wave runs real distinct workers when voices are visible;
+- council/check wave runs real review, not controller synthesis;
+- tool/function scout wave fans out across independent tool/function/lego-target triples;
+- follow-up Make, Scout, and Audit run before a follow-up option is called preworked;
+- synthesis names what is actually done, what is queued, and what is still blocked.
+
+Parallelism default for sim-mode:
+
+- Every independent tool/function/API surface can be worked on in parallel by LLM workers. This includes z3, cvc5, sympy, Clifford, geomstats, e3nn, rustworkx, XGI, TopoNetX, GUDHI, PyG, PyTorch/autograd, and any isolated capability/integration tool row.
+- Each worker stays bounded to one tool/function/lego-target triple or one audit surface. Parallelism is for breadth across independent packets, not widening a packet.
+- Use Codex parents plus Claude/Gemini/tool children for Full Wizard sim work when available. A normal full-power sim planning/audit shape should start near the proven operating band from the Claude Bridge runbook, then shrink only for a concrete blocker, not for convenience.
+- Parent subagents should launch child workers for independent source slices, tool rows, or audit checks. If child fanout fails or stalls, reroute or debug that fanout path before claiming a Full Wizard sim run.
+- Do not count direct controller synthesis, pending children, or started streams as completed work. Count only completed receipts.
+
+What remains serial:
+
+- the Python runner executes sims according to its runner contract;
+- Git/index mutation, staging, commits, pushes, and shared result commits stay single-controller;
+- one shared queue file write is serialized by the controller after fanout returns;
+- result classification changes require the exact result evidence path.
+
+Failure rule:
+
+- If sim-mode output has no real worker voices, no real tool/function fanout, no child receipt attempt where child capacity exists, or follow-up options that were not Made/Scouted/Audited, call it a partial/failed Wizard attempt and fix the orchestration path before advancing the sim work.
+
 ## Subagent And Mini-MMM Rule
 
 Use real subagents by default for independent repo lookup, verification, voice/lane/check passes, and follow-up scouting when the task is substantive enough for parallel work. Do not invent a visible route from controller synthesis alone.

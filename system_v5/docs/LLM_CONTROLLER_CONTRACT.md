@@ -58,6 +58,24 @@ Do not rewrite this into "some locals are strong, so broad successor work can st
 
 The allowed middle is narrow: record future coupling candidates while the lego stage is active, and run only explicit bounded exceptions when the parent legos, stop rule, and no-promotion boundary are named.
 
+## Sim-Mode Full Wizard Parallelism
+
+For sim/proof/tool-stage work, Full Wizard is not a decorative wrapper. It is the controller's default admission and parallelization mechanism.
+
+Controllers must treat independent tool/function/API surfaces as parallel-safe for LLM packet authoring, audit, and queue planning. z3, cvc5, sympy, Clifford, geomstats, e3nn, rustworkx, XGI, TopoNetX, GUDHI, PyG, PyTorch/autograd, and other isolated tool rows may all be scouted in the same Wizard pass, provided each worker has one bounded tool/function/lego-target triple.
+
+The Python runner may remain serial. Git/index mutation remains serial. That does not make planning, authoring, auditing, or follow-up scouting serial.
+
+A sim-mode Full Wizard run is invalid if it narrows to one tool or one packet before a real parallel preflight has checked the other independent tool surfaces, unless the user explicitly asked for that one named tool. When runtime capacity exists, parent workers should use child workers for source slices, tool-row audits, and follow-up scouting. If child fanout stalls, reroute or debug the fanout path; do not continue as if a Full Wizard ran.
+
+Accepted sim-mode closeout must distinguish:
+
+- authored or queued packet;
+- runner-executed result;
+- receipt-backed ledger update;
+- blocked/deferred tool surfaces;
+- follow-up options that were actually Made, Scouted, and Audited.
+
 ---
 
 ## Required Status Labels

@@ -21,6 +21,8 @@ Important granularity rule: a tool row is not a blanket proof of the whole libra
 
 Schema upgrade target: future ledger rows should track `function/API surface`, `useful_lego_anchor`, `individual_receipt`, `eligible_for_tool_tool_coupling`, and `last_demoted_by`. Until that schema exists, record those facts inside the `Next step` cell or in a cited companion note before treating a row as coupling-eligible.
 
+Parallelization note: ledger discovery is row-local and should fan out across independent tools and function/API surfaces. LLM/tool workers may author, audit, and reconcile MICRO/BOUND packets for separate rows in parallel, provided each row keeps its own exact function surface, receipt path, demotion condition, and loopback target. Runner execution and ledger writes remain serial only when required by the runner, shared result paths, queue mutation, or dependency on prior receipts.
+
 ---
 
 ## Ledger

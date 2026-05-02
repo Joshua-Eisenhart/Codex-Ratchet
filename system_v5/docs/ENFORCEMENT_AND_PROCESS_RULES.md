@@ -34,6 +34,16 @@ This guardrail is mandatory.
 
 If a queue, launch prompt, ledger row, or worker plan widens exploratory coupling into earned higher-stage permission, this guardrail wins.
 
+### Full Wizard Parallelism Guardrail
+
+Sim work must use the Full Wizard process every time, including tiny tool-stage issues. Full Wizard for sims is a max-useful parallel process, not a serial explanation format.
+
+Tool-stage and lego-stage authoring/audit work should fan out across every independent tool/function/API surface that can produce a bounded receipt. Each worker still owns one small packet: one tool, one function/API surface, one tiny claim, one bounded fixture or lego target, one positive case, one negative case, one boundary case, and one demotion condition.
+
+Do not let runner seriality suppress agent parallelism. The runner can execute one sim at a time while LLM workers concurrently prepare, audit, compare, and queue independent packets. Git/index changes, queue writes, result commits, and status-label changes remain controller-serial.
+
+If a sim-mode run produces only a single packet without a real preflight fanout across other available tool surfaces, treat the run as partial even when the packet itself is useful.
+
 ---
 
 ## Actual Plan Guardrail

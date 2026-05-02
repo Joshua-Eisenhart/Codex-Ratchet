@@ -33,6 +33,14 @@ This is pre-lego work even when it uses a real lego-shaped target. It proves the
 
 Do not debug stacked uncertainty. If a packet requires debugging the tool, the lego object, and another tool coupling at the same time, split it.
 
+## Sim-mode parallelization rule
+
+Independent tool/function surfaces can be worked in parallel. The default fanout surface is packet authoring, MICRO/BOUND block drafting, manifest checking, ledger-loopback planning, and audit/review for separate tools, function surfaces, or rows.
+
+Runner execution remains serial only where the runner requires it: shared queue mutation, shared result paths, fixture contention, prior-receipt dependency, stage-gate dependency, or a runner implementation that is not concurrency-safe. Do not treat runner serialization as a reason to serialize independent LLM/tool packet preparation or audit work.
+
+Acceptance remains row-local: each accepted packet must name one tool/function surface, one tiny claim, its own evidence path, and its own ledger loopback. Parallel work must not merge uncertain tool behavior, lego behavior, and coupling behavior into one packet.
+
 ## Routing rule
 
 | Row type | Queue surface | Loopback required? |

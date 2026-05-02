@@ -1,5 +1,7 @@
 # Premortem Transcript: Three-Wave Wizard
 
+Superseded: this transcript used an over-hardening frame for MMMs. See `premortem-transcript-20260502-130941.md` for the corrected frame: MMMs and mini-MMMs are salience manifolds that lift system-native vocabulary and completion topology; receipt rules bind execution claims.
+
 Timestamp: 2026-05-02 12:04:01 America/Los_Angeles
 
 ## Context

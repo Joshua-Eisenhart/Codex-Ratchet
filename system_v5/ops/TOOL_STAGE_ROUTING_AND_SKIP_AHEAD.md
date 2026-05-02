@@ -92,6 +92,10 @@ Any row entering stage 3 or 4 should carry these micro packet fields in its plan
 #   "function_surface": "<exact function/API surface being tested>",
 #   "micro_claim": "<one tiny claim>",
 #   "lego_target": "<bounded lego target or minimal fixture>",
+#   "claim_ceiling": "<highest admissible claim, e.g. tool_function_micro_only or tool_integration_micro_only>",
+#   "next_lego_target": "<named lego row/fixture this may unlock, or none>",
+#   "promotion_condition": "<exact evidence required before any lego/coupling use>",
+#   "blocked_until": "<what remains missing before promotion>",
 #   "function_receipt": "<existing receipt for this function, or 'new' for a first proof>",
 #   "prior_function_receipts": ["<required before tool-tool coupling; empty for first proof>"],
 #   "why_this_lego": "<why this target exposes the function>",
@@ -122,7 +126,7 @@ Any row entering stage 5 (tool-serving real-lego test) must carry an eight-field
 
 The runner (next version) enforces:
 
-1. MICRO fields required on stage-3 and stage-4 rows. Missing → INELIGIBLE.
+1. MICRO fields required on stage-3 and stage-4 rows. Missing → INELIGIBLE. Strict run-boundary reconciliation also requires `claim_ceiling`, `next_lego_target`, `promotion_condition`, and `blocked_until`.
 2. BOUND block required on stage-5 rows. Missing → INELIGIBLE.
 3. Any required MICRO or BOUND field empty or absent → INELIGIBLE.
 4. A stage-3 first proof may set `function_receipt: "new"`, but it must still name the exact function surface, lego target, positive/negative/boundary cases, and demotion condition.
@@ -131,6 +135,8 @@ The runner (next version) enforces:
 7. `expected_outcome_classification: canonical` with no nonclassical-suitable load-bearing tool → INELIGIBLE.
 8. On DONE, verify the file at `loopback_target` was touched since run-start and contains the named row. If not → LOOPBACK_MISSING, reroute to `queue_disposal.txt`.
 9. Probe output JSON that claims a field listed in `out_of_scope` → SCOPE_VIOLATION, reroute to `queue_disposal.txt`.
+10. Ledger-only repair rows may reconcile ledger text, but they are not executable receipts and fail executable run-boundary admission.
+11. Bridge, axis, engine, emergence, Tier D, or scientific-coupling language in the positive claim surface fails while `stage_gate.json` blocks that claim. Coupling language requires exact executable parent receipts.
 
 After DONE, admission remains provisional until the controller reconciles the queue row, result path, result `classification`, `TOOL_INTEGRATION_DEPTH`, and ledger loopback. DONE counts must not be used to infer that a coupling has both parent functions ready.
 

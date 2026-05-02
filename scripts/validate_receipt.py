@@ -18,6 +18,16 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Require demotion_condition and out_of_scope fields as hard gates.",
     )
+    parser.add_argument(
+        "--require-executable",
+        action="store_true",
+        help="Reject supporting/audit classifications for executable sim admission.",
+    )
+    parser.add_argument(
+        "--require-run-boundary",
+        action="store_true",
+        help="Require claim_ceiling, next_lego_target, promotion_condition, and blocked_until.",
+    )
     return parser.parse_args()
 
 
@@ -25,7 +35,13 @@ def main() -> int:
     args = parse_args()
     root = repo_root()
     records = [
-        validate_result_path(Path(path), root=root, strict_scope=args.strict_scope)
+        validate_result_path(
+            Path(path),
+            root=root,
+            strict_scope=args.strict_scope,
+            require_executable=args.require_executable,
+            require_run_boundary=args.require_run_boundary,
+        )
         for path in args.files
     ]
     report = make_report(records)

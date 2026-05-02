@@ -247,6 +247,17 @@ if __name__ == "__main__":
         # surviving_alternatives: what other candidates remain admissible?
         # Do not leave empty if any alternatives exist.
         "surviving_alternatives": [],
+        # Claim ceiling fields bind this receipt to one safe promotion boundary.
+        # Use "none" for next_lego_target when no lego target is unlocked.
+        "claim_ceiling": "classical_baseline_only",
+        "next_lego_target": "none",
+        "promotion_condition": "requires a separate reconciled queue row before lego/coupling use",
+        "blocked_until": "exact parent receipts, queue row, result JSON, and ledger loopback are reconciled",
+        "demotion_condition": "demote if any named criterion fails or if the result claims outside the stated ceiling",
+        "out_of_scope": [
+            "no lego promotion from this template result alone",
+            "no bridge, axis, engine, emergence, Tier D, or scientific coupling claim",
+        ],
         # all_pass: True only if all admission tests survived AND
         #           all exclusion tests confirmed exclusion AND
         #           criteria are named explicitly below

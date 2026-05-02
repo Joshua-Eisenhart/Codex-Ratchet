@@ -58,6 +58,13 @@ MICRO_REQUIRED_FIELDS = {
     "out_of_scope",
 }
 
+MICRO_RUN_BOUNDARY_FIELDS = {
+    "claim_ceiling",
+    "next_lego_target",
+    "promotion_condition",
+    "blocked_until",
+}
+
 BOUND_REQUIRED_FIELDS = {
     "tool_target",
     "integration_question",
@@ -70,6 +77,26 @@ BOUND_REQUIRED_FIELDS = {
 }
 
 LEDGER_ONLY_PREFIXES = ("cap_rerun_", "manifest_repair_")
+
+STAGE_ORDER = ["tools", "tool_integration", "lego", "coupling"]
+
+CLAIM_TERM_RULES = {
+    "bridge": (r"\bbridge(?:[- ]level)?(?:\s+claim|\s+readiness|\s+promotion)?\b",),
+    "axis": (r"\baxis[- ]level\b", r"\baxis\s+claim\b", r"\baxis\s+promotion\b"),
+    "engine": (r"\bengine[- ]level\b", r"\bengine\s+claim\b", r"\bengine\s+promotion\b"),
+    "emergence": (r"\bemergence\b", r"\bemergent\b"),
+    "scientific_coupling": (r"\bscientific\s+coupling\b",),
+    "tier_d": (r"\btier[- _]d\b",),
+}
+
+CLAIM_SCAN_FIELDS = (
+    "micro_claim",
+    "why_this_lego",
+    "positive_case",
+    "function_surface",
+    "integration_question",
+    "bound_exit_condition",
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -134,6 +161,16 @@ def parse_args() -> argparse.Namespace:
         "--strict-scope",
         action="store_true",
         help="Require receipt scope ceiling fields as hard gates.",
+    )
+    parser.add_argument(
+        "--require-run-boundary",
+        action="store_true",
+        help="Require claim_ceiling, next_lego_target, promotion_condition, and blocked_until in receipts and MICRO packets.",
+    )
+    parser.add_argument(
+        "--require-executable-receipt",
+        action="store_true",
+        help="Fail ledger-only rows and supporting/audit JSON when executable sim evidence is required.",
     )
     parser.add_argument(
         "--require-clean",
@@ -303,11 +340,40 @@ def load_stage_gate(path: Path) -> dict[str, Any]:
     }
 
 
-def _packet_required_fields(packet_type: str | None) -> set[str]:
+def stage_index(stage: Any) -> int:
+    try:
+        return STAGE_ORDER.index(str(stage))
+    except ValueError:
+        return -1
+
+
+def _stage_allows_claim(stage_gate: dict[str, Any], claim: str) -> bool:
+    if not stage_gate.get("ok"):
+        return False
+    if claim == "tier_d":
+        return stage_gate.get("allow_tier_d_launch") is True
+    return stage_index(stage_gate.get("active_stage")) >= stage_index("coupling")
+
+
+def _match_unblocked_claim(text: str, pattern: str) -> bool:
+    for match in re.finditer(pattern, text, flags=re.IGNORECASE):
+        prefix = text[max(0, match.start() - 48):match.start()].lower()
+        if re.search(r"\b(no|not|without|exclude|excludes|excluded|blocking|blocked)\b", prefix):
+            continue
+        if "out of scope" in prefix or "must not" in prefix or "do not" in prefix:
+            continue
+        return True
+    return False
+
+
+def _packet_required_fields(packet_type: str | None, *, require_run_boundary: bool) -> set[str]:
     if packet_type == "BOUND":
         return BOUND_REQUIRED_FIELDS
     if packet_type in {"MICRO", "INTEGRATION_MICRO"}:
-        return MICRO_REQUIRED_FIELDS
+        fields = set(MICRO_REQUIRED_FIELDS)
+        if require_run_boundary:
+            fields.update(MICRO_RUN_BOUNDARY_FIELDS)
+        return fields
     return set()
 
 
@@ -354,6 +420,8 @@ def reconcile_packet(
     packet: dict[str, Any] | None,
     *,
     root: Path,
+    require_run_boundary: bool,
+    stage_gate: dict[str, Any],
 ) -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str, Any]]]:
     facts: dict[str, Any] = {"packet_type": None, "packet_line": None, "packet_prior_receipts": []}
     hard_findings: list[dict[str, Any]] = []
@@ -379,7 +447,12 @@ def reconcile_packet(
         )
         return facts, hard_findings, warnings
 
-    for field in sorted(_packet_required_fields(str(packet_type))):
+    for field in sorted(
+        _packet_required_fields(
+            str(packet_type),
+            require_run_boundary=require_run_boundary,
+        )
+    ):
         if field not in payload:
             hard_findings.append(
                 {
@@ -406,6 +479,37 @@ def reconcile_packet(
                 "kind": "queue_packet_prior_receipts_empty_without_new_receipt",
                 "severity": "hard",
                 "packet_type": packet_type,
+            }
+        )
+
+    claim_texts = {
+        field: str(payload.get(field) or "")
+        for field in CLAIM_SCAN_FIELDS
+        if not _field_empty(payload.get(field))
+    }
+    for field, text in claim_texts.items():
+        folded = text.lower()
+        for claim, patterns in CLAIM_TERM_RULES.items():
+            if any(_match_unblocked_claim(folded, pattern) for pattern in patterns) and not _stage_allows_claim(stage_gate, claim):
+                hard_findings.append(
+                    {
+                        "kind": "claim_ceiling_violation",
+                        "severity": "hard",
+                        "packet_type": packet_type,
+                        "field": field,
+                        "claim": claim,
+                        "active_stage": stage_gate.get("active_stage"),
+                    }
+                )
+
+    coupling_text = " ".join(claim_texts.values()).lower()
+    if "coupling" in coupling_text and not declared_priors:
+        hard_findings.append(
+            {
+                "kind": "claim_language_requires_prior_receipts",
+                "severity": "hard",
+                "packet_type": packet_type,
+                "claim": "coupling",
             }
         )
 
@@ -480,6 +584,9 @@ def reconcile_row(
     root: Path,
     ledger_text: str,
     strict_scope: bool,
+    require_run_boundary: bool,
+    require_executable_receipt: bool,
+    stage_gate: dict[str, Any],
 ) -> dict[str, Any]:
     hard_findings: list[dict[str, Any]] = []
     warnings: list[dict[str, Any]] = []
@@ -505,21 +612,40 @@ def reconcile_row(
         "result_json": relpath(result_path, root),
         "ledger_loopback_present": False,
     }
-    packet_facts, packet_hard, packet_warnings = reconcile_packet(row.get("packet"), root=root)
+    packet_facts, packet_hard, packet_warnings = reconcile_packet(
+        row.get("packet"),
+        root=root,
+        require_run_boundary=require_run_boundary,
+        stage_gate=stage_gate,
+    )
     facts.update(packet_facts)
     hard_findings.extend(packet_hard)
     warnings.extend(packet_warnings)
 
     raw_basename = str(row.get("basename") or "")
     result_name = str(result_basename or "")
+    if row.get("status") == "FAIL":
+        hard_findings.append({"kind": "queue_row_failed", "severity": "hard"})
+        return {"facts": facts, "hard_findings": hard_findings, "warnings": warnings, "ok": False}
+
     ledger_only_tool = _ledger_only_work_item(raw_basename)
     if ledger_only_tool:
         facts["ledger_only_work_item"] = True
         facts["ledger_only_tool"] = ledger_only_tool
+        facts["executable_receipt"] = False
+        facts["receipt_class"] = "ledger_only"
         exact_loopback = raw_basename in ledger_text
         tool_row_loopback = f"**{ledger_only_tool}**" in ledger_text
         facts["ledger_loopback_present"] = exact_loopback or tool_row_loopback
         facts["ledger_row_name_present"] = facts["ledger_loopback_present"]
+        if require_executable_receipt:
+            hard_findings.append(
+                {
+                    "kind": "ledger_only_not_executable_receipt",
+                    "severity": "hard",
+                    "basename": raw_basename,
+                }
+            )
         if not facts["ledger_loopback_present"]:
             hard_findings.append(
                 {
@@ -535,17 +661,19 @@ def reconcile_row(
             "ok": not hard_findings,
         }
 
-    if row.get("status") == "FAIL":
-        hard_findings.append({"kind": "queue_row_failed", "severity": "hard"})
-        return {"facts": facts, "hard_findings": hard_findings, "warnings": warnings, "ok": False}
-
     if not result_path.exists():
         hard_findings.append(
             {"kind": "missing_result_json_for_done_row", "severity": "hard"}
         )
         return {"facts": facts, "hard_findings": hard_findings, "warnings": warnings, "ok": False}
 
-    receipt = validate_result_path(result_path, root=root, strict_scope=strict_scope)
+    receipt = validate_result_path(
+        result_path,
+        root=root,
+        strict_scope=strict_scope,
+        require_executable=require_executable_receipt,
+        require_run_boundary=require_run_boundary,
+    )
     hard_findings.extend(receipt.get("hard_findings", []))
     warnings.extend(receipt.get("warnings", []))
     facts.update(receipt.get("facts", {}))
@@ -611,6 +739,7 @@ def main() -> int:
     ledger_path = Path(args.ledger)
     stage_gate_path = Path(args.stage_gate)
     ledger_text = read_text_or_empty(ledger_path)
+    stage_gate = load_stage_gate(stage_gate_path)
 
     rows: list[dict[str, Any]] = []
     for queue in queues:
@@ -626,7 +755,15 @@ def main() -> int:
         selected_rows = latest_terminal_rows(selected_rows)
 
     records = [
-        reconcile_row(row, root=root, ledger_text=ledger_text, strict_scope=args.strict_scope)
+        reconcile_row(
+            row,
+            root=root,
+            ledger_text=ledger_text,
+            strict_scope=args.strict_scope,
+            require_run_boundary=args.require_run_boundary,
+            require_executable_receipt=args.require_executable_receipt,
+            stage_gate=stage_gate,
+        )
         for row in selected_rows
     ]
     report = make_report(records)
@@ -635,7 +772,7 @@ def main() -> int:
         "queue_preset": queue_preset,
         "include_blocked_tier_d": bool(args.include_blocked_tier_d),
         "ledger": relpath(ledger_path, root),
-        "stage_gate": load_stage_gate(stage_gate_path),
+        "stage_gate": stage_gate,
         "selected_rows": len(selected_rows),
         "include_legacy": bool(args.include_legacy),
         "include_superseded": bool(args.include_superseded),

@@ -60,6 +60,14 @@ One probe basename per line (relative to `system_v4/probes/`, no `.py` suffix). 
 
 Controller reconciliation must happen after this rewrite: match the queue row to the result JSON, result `classification`, `TOOL_INTEGRATION_DEPTH`, and ledger loopback before counting the receipt toward an admission gate.
 
+Before a non-browser sim/controller run, run the read-only helper preflight:
+
+```bash
+make helper-process-audit-strict
+```
+
+If it reports stale `playwright-mcp`, `@playwright/mcp`, or `SkyComputerUseClient` helpers, stop those helpers before launching the runner unless an active browser/computer-use task intentionally owns them.
+
 Example `queue_tier_a.txt`:
 ```
 # Tier A tool-capability + integration queue

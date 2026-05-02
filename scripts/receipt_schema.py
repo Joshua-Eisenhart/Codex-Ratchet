@@ -28,6 +28,18 @@ VALID_DEPTHS = {
 
 LEGACY_DEPTHS = {"decorative"}
 
+STRICT_SCOPE_FIELDS = (
+    "demotion_condition",
+    "out_of_scope",
+)
+
+RUN_BOUNDARY_FIELDS = (
+    "claim_ceiling",
+    "next_lego_target",
+    "promotion_condition",
+    "blocked_until",
+)
+
 
 def repo_root() -> Path:
     return Path(__file__).resolve().parents[1]
@@ -131,6 +143,8 @@ def validate_result_payload(
     path: Path | None = None,
     root: Path | None = None,
     strict_scope: bool = False,
+    require_executable: bool = False,
+    require_run_boundary: bool = False,
 ) -> dict[str, Any]:
     """Validate one result JSON payload for receipt-admission use."""
     base = root or repo_root()
@@ -171,6 +185,14 @@ def validate_result_payload(
                 "hard",
                 classification=classification,
                 allowed=sorted(VALID_CLASSIFICATIONS),
+            )
+        )
+    if require_executable and classification in {"supporting", "audit"}:
+        hard_findings.append(
+            _finding(
+                "non_executable_receipt_classification",
+                "hard",
+                classification=classification,
             )
         )
 
@@ -328,16 +350,25 @@ def validate_result_payload(
                 _finding("prior_function_receipt_non_object", "hard", prior=path_text)
             )
 
-    for key in ("demotion_condition", "out_of_scope"):
+    for key in STRICT_SCOPE_FIELDS:
         value = payload.get(key)
         missing = (
-            not isinstance(value, str) or not value.strip()
-            if key == "demotion_condition"
-            else not isinstance(value, list) or not value
+            not isinstance(value, list) or not value
+            if key == "out_of_scope"
+            else not isinstance(value, str) or not value.strip()
         )
         if missing:
             target = hard_findings if strict_scope else warnings
             target.append(_finding(f"missing_{key}", "hard" if strict_scope else "warning"))
+
+    for key in RUN_BOUNDARY_FIELDS:
+        value = payload.get(key)
+        missing = not isinstance(value, str) or not value.strip()
+        if missing:
+            target = hard_findings if require_run_boundary else warnings
+            target.append(
+                _finding(f"missing_{key}", "hard" if require_run_boundary else "warning")
+            )
 
     return {
         "facts": facts,
@@ -352,6 +383,8 @@ def validate_result_path(
     *,
     root: Path | None = None,
     strict_scope: bool = False,
+    require_executable: bool = False,
+    require_run_boundary: bool = False,
 ) -> dict[str, Any]:
     base = root or repo_root()
     try:
@@ -369,7 +402,14 @@ def validate_result_path(
             "warnings": [],
             "ok": False,
         }
-    return validate_result_payload(payload, path=path, root=base, strict_scope=strict_scope)
+    return validate_result_payload(
+        payload,
+        path=path,
+        root=base,
+        strict_scope=strict_scope,
+        require_executable=require_executable,
+        require_run_boundary=require_run_boundary,
+    )
 
 
 def _is_empty_test_section(value: Any) -> bool:

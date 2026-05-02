@@ -550,13 +550,13 @@
 # DONE 2026-05-02_00:41:52 sim_clifford_spinor_double_cover_micro (2s)
 
 # RETRY: controller renamed nested negative diagnostic pass fields so canonical truth audit sees only top-level test verdicts.
-# DONE 2026-05-02_00:45:59 sim_clifford_spinor_double_cover_micro (2s)
+# RETRY_DONE 2026-05-02_00:45:59 sim_clifford_spinor_double_cover_micro (2s) — duplicate refresh annotation; executable packeted DONE remains above
 
 # RETRY: refresh result receipts after source EOF cleanup so strict truth audit sees result evidence newer than source.
-# DONE 2026-05-02_00:52:31 sim_cvc5_sygus_synthesis_micro (0s)
-# DONE 2026-05-02_00:52:37 sim_geomstats_so3_log_exp_micro (1s)
-# DONE 2026-05-02_00:52:44 sim_pyg_message_passing_autograd_micro (2s)
-# DONE 2026-05-02_00:52:50 sim_pytorch_density_entropy_gradient_micro (1s)
+# RETRY_DONE 2026-05-02_00:52:31 sim_cvc5_sygus_synthesis_micro (0s) — duplicate refresh annotation; executable packeted DONE remains above
+# RETRY_DONE 2026-05-02_00:52:37 sim_geomstats_so3_log_exp_micro (1s) — duplicate refresh annotation; executable packeted DONE remains above
+# RETRY_DONE 2026-05-02_00:52:44 sim_pyg_message_passing_autograd_micro (2s) — duplicate refresh annotation; executable packeted DONE remains above
+# RETRY_DONE 2026-05-02_00:52:50 sim_pytorch_density_entropy_gradient_micro (1s) — duplicate refresh annotation; executable packeted DONE remains above
 
 # INTEGRATION_MICRO: {
 #   "tool_target": "cvc5 x z3",
@@ -614,3 +614,87 @@
 #   ]
 # }
 # DONE 2026-05-02_13:22:32 sim_integration_networkx_pyg_graph_roundtrip_micro (3s)
+
+# MICRO: {
+#   "tool_target": "toponetx",
+#   "function_surface": "TopoNetX CellComplex.add_cell(rank=2) plus incidence_matrix(1/2)",
+#   "micro_claim": "TopoNetX exposes rank-2 cell boundary incidence on a tiny cell fixture and rejects degenerate higher-order readings",
+#   "lego_target": "minimal rank-2 cell incidence fixture before graph-cell promotion",
+#   "claim_ceiling": "tool_function_micro_only",
+#   "next_lego_target": "minimal rank-2 cell incidence fixture before graph-cell promotion",
+#   "promotion_condition": "requires a later admitted downstream row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact graph-cell target, parent receipt use, and active stage gate for promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [],
+#   "why_this_lego": "the ledger names TopoNetX cell-complex operation micro debt before graph-cell promotion or a downstream XGI-TopoNetX incidence row",
+#   "positive_case": "one rank-2 triangle cell has three vertices, three boundary edges, a rank-2 incidence column, and boundary-of-boundary zero",
+#   "negative_case": "rank-1 edge and repeated-vertex inputs do not fabricate rank-2 cell evidence",
+#   "boundary_case": "empty and single-vertex complexes fabricate no boundary incidence",
+#   "demotion_condition": "demote if rank-2 cell boundary incidence is missing, boundary-of-boundary is nonzero, or degenerate inputs fabricate rank-2 cells",
+#   "out_of_scope": [
+#     "Hodge spectral agreement",
+#     "graph-cell lego promotion",
+#     "XGI or PyG cross-tool claim",
+#     "bridge or axis claim",
+#     "whole TopoNetX proof"
+#   ]
+# }
+# DONE 2026-05-02_15:33:41 sim_toponetx_cell_incidence_micro (1s)
+
+# INTEGRATION_MICRO: {
+#   "tool_target": "e3nn x pyg",
+#   "function_surface": "e3nn.o3.Irreps/D_from_matrix over 1x1o vector features plus torch_geometric.nn.MessagePassing.propagate",
+#   "micro_claim": "PyG additive message passing commutes with a shared e3nn SO(3) vector irrep action on a tiny directed graph",
+#   "lego_target": "minimal equivariant message-passing fixture below graph/operator lego promotion",
+#   "claim_ceiling": "tool_integration_micro_only",
+#   "next_lego_target": "minimal equivariant message-passing fixture below graph/operator lego promotion",
+#   "promotion_condition": "requires a later admitted integration or lego row that names the exact parent receipts and passes strict runner admission; this INTEGRATION_MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact graph/operator integration target, parent receipts, and active stage gate for promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [
+#     "system_v4/probes/a2_state/sim_results/sim_e3nn_irreps_tensor_product_micro_results.json",
+#     "system_v4/probes/a2_state/sim_results/sim_pyg_message_passing_autograd_micro_results.json"
+#   ],
+#   "why_this_lego": "second-wave e3nn-PyG TODO names equivariance under message passing and both exact parent function receipts are now available",
+#   "positive_case": "directed vector-feature aggregation satisfies MP(D(R)x)=D(R)MP(x)",
+#   "negative_case": "fixed unrotated bias and wrong output representation fail the equivariance check",
+#   "boundary_case": "isolated node and zero-batch vector-feature boundaries stay equivariant and well-typed",
+#   "demotion_condition": "demote if parent receipts are missing/noncanonical/stale, additive MP fails equivariance, biased/wrong-representation paths pass, or malformed feature widths are accepted",
+#   "out_of_scope": [
+#     "learned GNN equivariance",
+#     "e3nn convolution",
+#     "graph/operator lego promotion",
+#     "bridge or axis claim",
+#     "broad e3nn/PyG compatibility"
+#   ]
+# }
+# DONE 2026-05-02_15:37:11 sim_integration_e3nn_pyg_equivariance_under_mp_micro (2s)
+
+# INTEGRATION_MICRO: {
+#   "tool_target": "xgi x toponetx",
+#   "function_surface": "XGI Hypergraph edge membership plus TopoNetX CellComplex rank-2 cell incidence_matrix(2)",
+#   "micro_claim": "XGI size-3 hyperedge incidence and TopoNetX rank-2 cell face incidence agree on a tiny two-triad fixture",
+#   "lego_target": "minimal two-triad higher-order incidence fixture below graph-cell lego promotion",
+#   "claim_ceiling": "tool_integration_micro_only",
+#   "next_lego_target": "minimal two-triad higher-order incidence fixture below graph-cell lego promotion",
+#   "promotion_condition": "requires a later admitted integration or lego row that names the exact parent receipts and passes strict runner admission; this INTEGRATION_MICRO row does not promote the lego",
+#   "blocked_until": "blocked until a downstream queue row declares the exact graph-cell or higher-order integration target, parent receipts, and active stage gate for promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [
+#     "system_v4/probes/a2_state/sim_results/sim_xgi_hypergraph_incidence_micro_results.json",
+#     "system_v4/probes/a2_state/sim_results/sim_toponetx_cell_incidence_micro_results.json"
+#   ],
+#   "why_this_lego": "second-wave XGI-TopoNetX TODO names higher-order incidence, but first needs exact XGI incidence and TopoNetX cell-incidence micro receipts",
+#   "positive_case": "two size-3 XGI hyperedges match two TopoNetX rank-2 cells and share the same incident pair",
+#   "negative_case": "non-shared pair and omitted-vertex pseudo-cell are excluded",
+#   "boundary_case": "single-triad and empty fixtures do not fabricate extra incidence",
+#   "demotion_condition": "demote if parent receipts are missing/noncanonical/stale, hyperedge and cell vertex sets diverge, shared pair incidence is not seen by both tools, or fake/empty fixtures fabricate agreement",
+#   "out_of_scope": [
+#     "Hodge spectral agreement",
+#     "hypergraph Laplacian claim",
+#     "higher-order dynamics",
+#     "graph-cell lego promotion",
+#     "bridge or broad topology claim"
+#   ]
+# }
+# DONE 2026-05-02_15:37:17 sim_integration_xgi_toponetx_higher_order_incidence_micro (1s)

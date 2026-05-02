@@ -29,6 +29,7 @@ class ProcessHit:
     ppid: int
     etime: str
     command: str
+    parent_command: str | None
     suggested_stop: str
 
 
@@ -65,8 +66,12 @@ def _ps_rows() -> Iterable[tuple[int, int, str, str]]:
 
 def audit_processes() -> dict[str, object]:
     hits: list[ProcessHit] = []
+    commands_by_pid: dict[int, str] = {}
+    rows = list(_ps_rows())
+    for pid, _ppid, _etime, command in rows:
+        commands_by_pid[pid] = command
     own_pid = os.getpid()
-    for pid, ppid, etime, command in _ps_rows():
+    for pid, ppid, etime, command in rows:
         if pid == own_pid:
             continue
         for kind, needles in HELPER_PATTERNS.items():
@@ -78,15 +83,23 @@ def audit_processes() -> dict[str, object]:
                         ppid=ppid,
                         etime=etime,
                         command=command,
+                        parent_command=commands_by_pid.get(ppid),
                         suggested_stop=f"kill {pid}",
                     )
                 )
                 break
+    likely_root_cause = None
+    if any("codex app-server" in (hit.parent_command or "") for hit in hits):
+        likely_root_cause = (
+            "Codex App app-server is the parent for one or more helpers; check "
+            "global Codex MCP/plugin config before treating this as repo code."
+        )
     return {
         "all_pass": not hits,
         "helper_process_count": len(hits),
         "helper_processes": [asdict(hit) for hit in hits],
         "guard": "non_browser_sim_preflight",
+        "likely_root_cause": likely_root_cause,
         "note": (
             "These helpers are only suspicious for non-browser sim/controller runs; "
             "keep them if an active browser/computer-use task intentionally owns them."

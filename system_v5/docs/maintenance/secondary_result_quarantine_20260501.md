@@ -17,7 +17,7 @@ Move the legacy secondary result root out of active sim result routing.
 
 ## Evidence
 
-The active `a2_state` Pauli result is the safer canonical copy:
+The active `a2_state` Pauli duplicate is the safer retained copy for quarantine provenance:
 
 - classification: `classical_baseline`
 - has `tool_integration_depth`

@@ -1,6 +1,6 @@
 # Controller + Harness Integration Status
 
-Status: current live snapshot
+Status: historical snapshot; do not use as current live state
 Date: 2026-04-20
 Purpose: keep the control-plane state visible so bounded sim work does not silently outrun truth, hygiene, contract, or worker/harness reality.
 
@@ -30,7 +30,7 @@ Purpose: keep the control-plane state visible so bounded sim work does not silen
 |---|---|---|---|---|
 | M-01 | truth / integrity verification | blocked | `system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json` | `hard_finding_count=226`, `warning_finding_count=47` |
 | M-02 | hygiene / repository maintenance | blocked | `system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json` | `source_dirty_count=146`, `dirty_worktree_count=203`, duplicate basename `lego_pauli_algebra_results.json`, secondary result dir populated |
-| M-03 | controller / harness contract governance | blocked | `system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json` | `controller_contract_current=false`, `docs_current=true`, `code_process_green=false` |
+| M-03 | controller / harness contract governance | historical blocker at time of snapshot | `system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json` | stale 2026-04-20 values; use the current audit JSON for live state |
 | M-04 | runtime / CLI worker prerequisites | passes local rerun | `system_v4/probes/a2_state/sim_results/runtime_hygiene_audit_results.json` | `blocker_count=0`, `ok=true` |
 | M-05 | subagent + wiki harness integration | runs | `system_v5/docs/plans/plans/subagent-wiki-harness-integration-contract.md` | contract exists; direct Claude `10/10` read-only scale proved; one bounded write-producing Claude maintenance packet now proved (`live_queue_controller.py` + tests); Gemini `3/3` smoke proved; wiki-cluster parity still remains |
 

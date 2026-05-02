@@ -41,6 +41,18 @@ Every tool in the ledger gets a discovered role, recorded in a new column:
 
 Role is discovered by probing, not declared. A probe that tries a tool for nonclassical work and finds it unsuitable moves the tool to `classical-only` with the failing probe cited. The ledger currently conflates load-bearing-anywhere with nonclassical-suitable; that conflation is the next honest ledger debt.
 
+## Sim execution-kind axis
+
+The runner has three execution kinds. These are runner/admission labels, not replacements for result `classification`.
+
+| Sim execution kind | What it is | Runner/tool rule |
+|---|---|---|
+| `classical` | Baselines, controls, and negative/reference comparisons | May use classical-only or bridge-useful tools, but load-bearing use does not make the result nonclassical. Preserve `divergence_log` when classified `classical_baseline`. |
+| `nonclassical` | Canonical nonclassical-target sims | Use claim-relevant nonclassical tools: PyTorch/PyG for tensor or graph dynamics, Clifford for geometric product/spinor/rotor claims, and z3/cvc5 for structural proof or UNSAT claims. Missing relevant surfaces must be blocked/deferred, not silently ignored. |
+| `bridge` | The seam between classical baselines and nonclassical structure: `bridge`, `Xi`, `rho_AB`, `Phi0`, cut/kernel, pairwise/coupling, and coexistence work | Requires both a named classical-side source and a nonclassical tool plan. Default and lego-backlog runners do not auto-drain it. |
+
+`classification` says what status the result currently claims. `sim_execution_kind` / `runner_class` says which runner/tool admission law must apply before execution.
+
 ## Skip-ahead admissibility contract
 
 Any row entering stage 4 (tool-serving real-lego test) must carry an eight-field BOUND block immediately preceding its queue line:

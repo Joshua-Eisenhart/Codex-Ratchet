@@ -39,6 +39,11 @@ Every lego sim must declare at least the following fields.
 ### Purpose and scope
 - `purpose`
 - `scientific_question`
+- `sim_execution_kind`
+  - one of:
+    - `classical`
+    - `nonclassical`
+    - `bridge`
 - `sim_class`
   - examples:
     - `constraint_probe`
@@ -70,6 +75,11 @@ Every lego sim must declare at least the following fields.
 - result key: `tool_integration_depth`
 - result key: `classification`
 - classical-baseline result key when applicable: `divergence_log`
+
+`sim_execution_kind` controls runner admission:
+- `classical` sims are baselines/controls and may use graph/proof tools only as baseline or comparison surfaces.
+- `nonclassical` sims require the claim-relevant nonclassical stack: PyTorch/PyG for tensor or graph dynamics, Clifford for geometric product/spinor/rotor claims, and z3/cvc5 for structural proof or UNSAT claims.
+- `bridge` sims connect a named classical-side baseline to a named nonclassical tool plan and remain gated until bridge work is explicitly opened.
 
 ### Inputs
 - `required_inputs`
@@ -404,6 +414,7 @@ version: ...
 tier: ...
 purpose: ...
 scientific_question: ...
+sim_execution_kind: classical | nonclassical | bridge
 sim_class: ...
 root_constraints_in_force: [...]
 carrier_layer: ...

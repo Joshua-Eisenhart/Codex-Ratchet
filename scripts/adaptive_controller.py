@@ -97,6 +97,31 @@ LATE_INFO_KEYWORDS = (
     "landauer",
     "thermo",
 )
+BRIDGE_RUNNER_TOKENS = (
+    "bridge",
+    "coupling",
+    "pairwise",
+    "coexistence",
+    "xi",
+    "rho_ab",
+    "phi0",
+    "cut",
+    "kernel",
+)
+NONCLASSICAL_TOOL_TOKENS = (
+    "pytorch",
+    "torch",
+    "pyg",
+    "torch_geometric",
+    "clifford",
+    "z3",
+    "cvc5",
+    "gudhi",
+    "toponetx",
+    "xgi",
+    "geomstats",
+    "e3nn",
+)
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -276,9 +301,15 @@ def queue_item_path(lane: str, sim_path: str | pathlib.Path) -> pathlib.Path:
 
 def canonicalize_queue_payload(data: dict, lane: str, normalized: str) -> dict:
     bucket = str(data.get("plan_bucket") or plan_bucket(normalized))
+    sim_path = pathlib.Path(normalized)
+    runner_class = str(data.get("runner_class") or runner_class_for(sim_path))
     canonical = dict(data)
     canonical["sim_path"] = normalized
     canonical["lane"] = lane
+    canonical["runner_class"] = runner_class
+    canonical["runner_class_reason"] = str(
+        canonical.get("runner_class_reason") or runner_class_reason(sim_path)
+    )
     canonical["plan_bucket"] = bucket
     canonical["plan_stage"] = plan_stage(normalized)
     canonical["priority"] = canonical_priority(canonical.get("priority"), bucket)
@@ -290,11 +321,14 @@ def enqueue(sim_path: pathlib.Path, lane: str, priority: str = "normal"):
     (QUEUE / lane).mkdir(parents=True, exist_ok=True)
     normalized = normalize_sim_path(sim_path)
     bucket = plan_bucket(normalized)
+    runner_class = runner_class_for(sim_path)
     priority = canonical_priority(priority, bucket)
     payload = {
         "enqueued_at": int(time.time()),
         "lane": lane,
         "sim_path": normalized,
+        "runner_class": runner_class,
+        "runner_class_reason": runner_class_reason(sim_path),
         "priority": priority,
         "plan_bucket": bucket,
         "plan_stage": plan_stage(normalized),
@@ -306,6 +340,10 @@ def enqueue(sim_path: pathlib.Path, lane: str, priority: str = "normal"):
         existing = load_result(target)
         existing["sim_path"] = normalized
         existing["lane"] = lane
+        existing["runner_class"] = existing.get("runner_class") or runner_class
+        existing["runner_class_reason"] = (
+            existing.get("runner_class_reason") or runner_class_reason(sim_path)
+        )
         existing["plan_bucket"] = bucket
         existing["plan_stage"] = plan_stage(normalized)
         existing["priority"] = canonical_priority(existing.get("priority") or priority, bucket)
@@ -481,6 +519,63 @@ def plan_stage(name: str) -> str:
     return "early_core"
 
 
+def _source_classification(text: str) -> str:
+    match = re.search(r'^classification\s*=\s*["\']([^"\']+)["\']', text, re.M)
+    return match.group(1) if match else ""
+
+
+def runner_class_for(sim_path: pathlib.Path | str, source_text: str | None = None) -> str:
+    """Return runner admission class, separate from result classification.
+
+    `classification` remains the result/status label (`classical_baseline`,
+    `canonical`, etc.). `runner_class` answers which execution path should
+    admit the sim: classical, nonclassical, bridge, or unknown.
+    """
+    path = pathlib.Path(sim_path)
+    stem = path.stem.lower()
+    if stem.startswith("sim_"):
+        stem = stem[4:]
+    if any(token in stem for token in BRIDGE_RUNNER_TOKENS):
+        return "bridge"
+
+    text = source_text
+    if text is None:
+        try:
+            text = path.read_text()
+        except Exception:
+            text = ""
+
+    classification = _source_classification(text)
+    if classification == "classical_baseline" or "classical" in stem:
+        return "classical"
+    if classification == "canonical":
+        return "nonclassical"
+    if any(token in text.lower() for token in NONCLASSICAL_TOOL_TOKENS):
+        return "nonclassical"
+    return "unknown"
+
+
+def runner_class_reason(sim_path: pathlib.Path | str, source_text: str | None = None) -> str:
+    path = pathlib.Path(sim_path)
+    stem = path.stem.lower()
+    text = source_text
+    if text is None:
+        try:
+            text = path.read_text()
+        except Exception:
+            text = ""
+    if any(token in stem for token in BRIDGE_RUNNER_TOKENS):
+        return "bridge_token"
+    classification = _source_classification(text)
+    if classification == "classical_baseline":
+        return "classification_classical_baseline"
+    if classification == "canonical":
+        return "classification_canonical"
+    if any(token in text.lower() for token in NONCLASSICAL_TOOL_TOKENS):
+        return "nonclassical_tool_reference"
+    return "insufficient_metadata"
+
+
 def default_priority_for_bucket(bucket: str) -> str:
     if bucket == "core_ladder":
         return "high"
@@ -515,6 +610,11 @@ def summarize_stages(sim_names: list[str]) -> dict[str, int]:
     return dict(counts)
 
 
+def summarize_runner_classes(sim_names: list[str]) -> dict[str, int]:
+    counts = Counter(runner_class_for(PROBES / f"{pathlib.Path(name).stem}.py") for name in sim_names)
+    return dict(counts)
+
+
 def queue_family_counts(limit: int = 8) -> dict[str, dict[str, int]]:
     out: dict[str, dict[str, int]] = {}
     for lane in ("lane_A", "lane_B", "claimed", "blocked"):
@@ -528,6 +628,23 @@ def queue_family_counts(limit: int = 8) -> dict[str, dict[str, int]]:
                 sim_path = data.get("sim_path", "")
                 counts[sim_family(sim_path)] += 1
         out[lane] = dict(counts.most_common(limit))
+    return out
+
+
+def queue_runner_class_counts() -> dict[str, dict[str, int]]:
+    out: dict[str, dict[str, int]] = {}
+    for lane in ("lane_A", "lane_B", "claimed", "blocked"):
+        lane_dir = QUEUE / lane
+        counts: Counter[str] = Counter()
+        if lane_dir.exists():
+            for item in lane_dir.iterdir():
+                if not item.is_file():
+                    continue
+                data = load_result(item)
+                sim_path = str(data.get("sim_path", ""))
+                if sim_path:
+                    counts[str(data.get("runner_class") or runner_class_for(sim_path))] += 1
+        out[lane] = dict(counts)
     return out
 
 
@@ -707,9 +824,12 @@ def build_plane_snapshot(state: dict | None = None, integration: dict | None = N
                 "passing_buckets": summarize_buckets((state or {}).get("passing", [])),
                 "never_run_stages": summarize_stages((state or {}).get("never_run", [])),
                 "passing_stages": summarize_stages((state or {}).get("passing", [])),
+                "never_run_runner_classes": summarize_runner_classes((state or {}).get("never_run", [])),
+                "passing_runner_classes": summarize_runner_classes((state or {}).get("passing", [])),
                 "queue_families": queue_family_counts(),
                 "queue_buckets": queue_bucket_counts(),
                 "queue_stages": queue_stage_counts(),
+                "queue_runner_classes": queue_runner_class_counts(),
             },
         },
     }
@@ -717,6 +837,15 @@ def build_plane_snapshot(state: dict | None = None, integration: dict | None = N
 def infer_lane(sim_path: pathlib.Path) -> str:
     try:
         text = sim_path.read_text()
+        runner_class = runner_class_for(sim_path, text)
+        if runner_class == "classical":
+            return "lane_B"
+        if runner_class == "bridge":
+            # No bridge runner lane is live yet. Keep existing two-lane
+            # topology conservative: bridge rows stay on the gated side
+            # until the caller blocks/offlines them or v2 runner admission
+            # grows a real bridge lane.
+            return "lane_A"
         if re.search(r'^classification\s*=\s*"canonical"', text, re.M):
             return "lane_A"
     except Exception:

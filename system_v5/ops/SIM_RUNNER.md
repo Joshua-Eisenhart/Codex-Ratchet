@@ -4,6 +4,18 @@ Pure Python + shell. No LLM in the loop. Drains tier queues in priority order, p
 
 Status: this document describes the live v1 runner. The v2 admission-gate contract is not live yet; its routing law lives in `system_v5/ops/TOOL_STAGE_ROUTING_AND_SKIP_AHEAD.md`, and the draft implementation sketch lives in `system_v5/ops/drafts/sim_runner_v2_stub.sh`.
 
+## Runner taxonomy
+
+Agents and LLM workers may write, repair, audit, or enqueue probes. They do not execute sims. Executable evidence comes from Python runner classes.
+
+The runner layer must distinguish three execution kinds:
+
+1. `classical` — classical baselines, controls, and negative/reference comparisons. These preserve the before-picture and must not be promoted into nonclassical evidence.
+2. `nonclassical` — canonical nonclassical-target sims. These use the nonclassical stack where claim-relevant: PyTorch/PyG for tensor and graph dynamics, Clifford for geometric product/spinor/rotor claims, and z3/cvc5 for structural proof or UNSAT claims.
+3. `bridge` — sims that connect classical baselines to nonclassical structure, including `bridge`, `Xi`, `rho_AB`, `Phi0`, cut/kernel, pairwise/coupling, and coexistence work. Bridge sims need both sides named: the classical baseline being bridged from and the nonclassical tool plan being bridged to.
+
+Graph and proof tools are not universally valid across all three kinds. A graph/proof surface can be `classical-only`, `bridge-useful`, `nonclassical-support`, or `nonclassical-core`; the runner should admit it only in the matching execution kind.
+
 ## Role separation
 
 - **Hermes terminals** (Tier A / B / D) — write probes, enqueue them, monitor the runner's log. They do NOT execute sims.
@@ -88,3 +100,4 @@ touch system_v5/ops/.stop_sim_runner
 6. Runner obeys `system_v5/ops/.stop_sim_runner` sentinel file between sims.
 7. The hard stage gate wins over stale queue contents: no pairwise/coexistence/bridge/axis/engine probe may run from `queue_default.txt`.
 8. If all tier queues are empty and no safe default queue exists, the runner stays idle rather than generating a generic never-run pile.
+9. Runner admission must not treat all sims as one bucket. Before v2 enforcement, use `make runner-taxonomy-audit` to map current probes to `classical`, `nonclassical`, and `bridge` execution kinds and surface routing gaps.

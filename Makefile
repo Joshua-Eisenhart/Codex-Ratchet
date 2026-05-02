@@ -203,6 +203,10 @@ lego-coupling:
 lego-queue:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/lego_batch_queue.py
 
+# Map sims to runner-facing execution classes without running them
+runner-taxonomy-audit:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/sim_runner_taxonomy_audit.py
+
 # Extract the actual markdown lego registry into machine-readable JSON
 lego-registry:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/extract_actual_lego_registry.py
@@ -222,4 +226,4 @@ telegram:
 telegram-log:
 	tail -f /tmp/telegram_bot.log
 
-.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue lego-registry lego-normalize
+.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue runner-taxonomy-audit lego-registry lego-normalize

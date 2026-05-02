@@ -140,9 +140,11 @@ def run_boundary_tests():
 
     unsat_solver = _solver()
     edge_fail = _int(unsat_solver, "edge_fail")
-    unsat_solver.assertFormula(_geq(unsat_solver, edge_fail, zero))
-    unsat_solver.assertFormula(_leq(unsat_solver, edge_fail, zero))
-    unsat_solver.assertFormula(_eq(unsat_solver, edge_fail, one))
+    unsat_zero = unsat_solver.mkInteger(0)
+    unsat_one = unsat_solver.mkInteger(1)
+    unsat_solver.assertFormula(_geq(unsat_solver, edge_fail, unsat_zero))
+    unsat_solver.assertFormula(_leq(unsat_solver, edge_fail, unsat_zero))
+    unsat_solver.assertFormula(_eq(unsat_solver, edge_fail, unsat_one))
     unsat_result = unsat_solver.checkSat()
 
     return {

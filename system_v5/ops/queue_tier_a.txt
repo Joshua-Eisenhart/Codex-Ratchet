@@ -49,4 +49,134 @@
 #   "demotion_condition": "demote if checkSat is not decisive or getValue cannot recover expected SAT witnesses",
 #   "out_of_scope": ["lego promotion", "tool-tool coupling", "bridge claim", "whole-library proof"]
 # }
-sim_cvc5_qf_lia_model_extraction_micro
+# FAIL 2026-05-01_23:27:21 sim_cvc5_qf_lia_model_extraction_micro (1s)
+
+# RETRY: controller fixed cvc5 term-manager isolation in boundary UNSAT case.
+# DONE 2026-05-01_23:32:58 sim_cvc5_qf_lia_model_extraction_micro (1s)
+
+# MICRO: {
+#   "tool_target": "z3",
+#   "function_surface": "SolverFor('QF_LIA').add/check/model over QF_LIA",
+#   "micro_claim": "z3 can decide bounded linear integer systems and return exact SAT witnesses",
+#   "lego_target": "minimal bounded arithmetic fixture before lego promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [],
+#   "why_this_lego": "the tiny fixture isolates the z3 QF_LIA solver API surface before any lego or coupling uses it",
+#   "positive_case": "x + y = 10 and x - y = 4 is SAT with x=7, y=3 recovered from model",
+#   "negative_case": "x > 0 and x < 0 is UNSAT",
+#   "boundary_case": "0 <= edge <= 0 is SAT with edge=0; adding edge=1 is UNSAT",
+#   "demotion_condition": "demote if check is not decisive, model cannot recover exact integer witnesses, or verdicts diverge from the named fixtures",
+#   "out_of_scope": ["lego promotion", "tool-tool coupling", "bridge claim", "whole-library proof"]
+# }
+# DONE 2026-05-01_23:41:50 sim_z3_qf_lia_unsat_witness_micro (1s)
+
+# RETRY: controller made all_pass false exit nonzero after verifier audit.
+# DONE 2026-05-01_23:49:27 sim_z3_qf_lia_unsat_witness_micro (0s)
+
+# MICRO: {
+#   "tool_target": "sympy",
+#   "function_surface": "Matrix.inv plus Matrix.equals over exact 2x2 matrices",
+#   "micro_claim": "SymPy certifies inverse identities for an invertible exact matrix and excludes wrong or singular inverse claims",
+#   "lego_target": "minimal exact 2x2 matrix inverse fixture before lego promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [],
+#   "why_this_lego": "matrix inverse identity is a foundational symbolic constraint surface used by later operator-family work",
+#   "positive_case": "A = [[2,1],[1,1]] admits both right and left inverse identities exactly",
+#   "negative_case": "a wrong inverse candidate is rejected and det-zero matrix [[1,2],[2,4]] is excluded",
+#   "boundary_case": "diag(1,t) exposes the determinant boundary t=0",
+#   "demotion_condition": "demote if Matrix.inv/Matrix.equals cannot certify exact inverse identities or fails to exclude singular inverse claims",
+#   "out_of_scope": ["lego promotion", "tool-tool coupling", "bridge claim", "whole SymPy library proof"]
+# }
+# DONE 2026-05-01_23:41:56 sim_sympy_matrix_identity_micro (1s)
+
+# MICRO: {
+#   "tool_target": "clifford",
+#   "function_surface": "Cl(3) MultiVector geometric product, reverse, and rotor sandwich action",
+#   "micro_claim": "a unit-bivector rotor has scalar norm R*~R == 1, preserves vector norm, and remains unit under composition",
+#   "lego_target": "minimal Cl(3) rotor fixture before Hopf or spinor promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [],
+#   "why_this_lego": "rotor norm is the gate required before Clifford rotor surfaces enter tool-lego or coupling work",
+#   "positive_case": "unit rotors built from e12/e13/e23 satisfy R*~R == 1 and preserve vector norm",
+#   "negative_case": "non-unit even multivector and non-unit bivector coefficient are excluded by the norm gate",
+#   "boundary_case": "identity, 2*pi, 4*pi, and tiny-angle rotors stay inside the expected Spin(3) norm boundary",
+#   "demotion_condition": "demote if rotor norm or sandwich vector norm drifts beyond tolerance",
+#   "out_of_scope": ["Hopf topology", "spinor chirality", "tool-tool coupling", "bridge claim", "whole-library proof"]
+# }
+# DONE 2026-05-01_23:42:08 sim_clifford_rotor_norm_micro (7s)
+
+# RETRY: controller renamed nested negative diagnostic pass fields so canonical audit sees only top-level verdicts.
+# DONE 2026-05-01_23:53:52 sim_clifford_rotor_norm_micro (5s)
+
+# MICRO: {
+#   "tool_target": "geomstats",
+#   "function_surface": "SpecialOrthogonal(n=3, point_type='matrix').metric.dist",
+#   "micro_claim": "geomstats returns intrinsic SO(3) geodesic distances, separates them from ambient Frobenius distance, and preserves left frame invariance",
+#   "lego_target": "minimal SO(3) distance fixture",
+#   "function_receipt": "new",
+#   "prior_function_receipts": ["sim_geomstats_so3_geodesic.py covers SO(3) log/exp only"],
+#   "why_this_lego": "SO(3) distance is the observable downstream coupling rows would consume, but this row proves only metric.dist",
+#   "positive_case": "dist(I,Rx(pi/2)) ~= pi/2 and left-multiplied distance is invariant",
+#   "negative_case": "ambient Frobenius distance is excluded as the SO(3) geodesic metric",
+#   "boundary_case": "dist(I,I)==0, near-identity stays non-collapsed, near-pi returns pi-epsilon within tolerance",
+#   "demotion_condition": "demote if metric.dist diverges from analytic SO(3) angles or violates left frame invariance",
+#   "out_of_scope": ["lego promotion", "tool-tool coupling", "bridge claim", "whole-library geomstats proof"]
+# }
+# FAIL 2026-05-01_23:42:17 sim_geomstats_so3_distance_micro (4s)
+
+# RETRY: controller replaced exact-pi antipodal negative fixture with non-antipodal 2*pi/3 distance exclusion.
+# DONE 2026-05-01_23:47:46 sim_geomstats_so3_distance_micro (2s)
+
+# MICRO: {
+#   "tool_target": "rustworkx",
+#   "function_surface": "PyDiGraph plus has_path/descendants/ancestors over bounded DAG reachability",
+#   "micro_claim": "rustworkx can decide direct, transitive, absent, and cycle-blocked reachability on a tiny dependency DAG",
+#   "lego_target": "minimal shell dependency DAG fixture before graph-cell lego promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [],
+#   "why_this_lego": "the fixture isolates dependency reachability without adding hypergraph, topology, or bridge semantics",
+#   "positive_case": "source reaches all downstream shell nodes through direct and transitive edges",
+#   "negative_case": "a leaf cannot reach its ancestor and an isolated node is unreachable",
+#   "boundary_case": "empty and singleton DAGs are reachability-empty except self path; checked DAG rejects a cycle",
+#   "demotion_condition": "demote if has_path, descendants, or ancestors disagree with a hand-written BFS baseline",
+#   "out_of_scope": ["lego promotion", "tool-tool coupling", "hypergraph incidence", "bridge claim", "whole-library proof"]
+# }
+# DONE 2026-05-01_23:42:23 sim_rustworkx_dag_reachability_micro (0s)
+
+# RETRY: controller aligned singleton boundary with rustworkx zero-edge self-path semantics and made all_pass false exit nonzero.
+# DONE 2026-05-01_23:47:51 sim_rustworkx_dag_reachability_micro (0s)
+
+# MICRO: {
+#   "tool_target": "gudhi",
+#   "function_surface": "SimplexTree.insert/persistence/persistence_intervals_in_dimension/persistent_betti_numbers",
+#   "micro_claim": "GUDHI distinguishes a delayed-filled 1-cycle from an immediately filled triangle and reports the H1 death boundary",
+#   "lego_target": "minimal persistence fixture before persistence geometry or topology coupling promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [],
+#   "why_this_lego": "the fixture isolates SimplexTree persistence before sampled point-cloud, lego, bridge, or coupling claims use it",
+#   "positive_case": "hollow triangle filled at t=1 has one finite H1 interval and beta1=1 at t=0.5",
+#   "negative_case": "triangle filled at t=0 has no positive-length H1 interval and beta1=0 at t=0.5",
+#   "boundary_case": "beta1 survives just before t=1 and is gone just after t=1; a single vertex has no H1",
+#   "demotion_condition": "demote if SimplexTree persistence misses the delayed H1 interval or reports H1 for the immediately filled triangle",
+#   "out_of_scope": ["point-cloud sampling", "TopoNetX cross-check", "lego promotion", "tool-tool coupling", "bridge claim"]
+# }
+# DONE 2026-05-01_23:42:31 sim_gudhi_simplex_persistence_micro (3s)
+
+# MICRO: {
+#   "tool_target": "pytorch / autograd",
+#   "function_surface": "torch.autograd.grad(outputs, inputs, create_graph=True)",
+#   "micro_claim": "autograd.grad computes exact first and second derivatives for one scalar constraint and rejects detached/non-scalar misuse",
+#   "lego_target": "minimal differentiable scalar fixture before lego promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [],
+#   "why_this_lego": "a weighted quadratic exposes gradient, Hessian, flat-axis boundary, and misuse rejection without graph or density-matrix uncertainty",
+#   "positive_case": "gradient and Hessian diagonal match analytic values",
+#   "negative_case": "detached inputs and vector outputs without grad_outputs are excluded",
+#   "boundary_case": "zero-weight axis produces an admitted zero gradient, not NaN",
+#   "demotion_condition": "demote if gradients silently detach, lose second-order structure, or fail to reject invalid autograd requests",
+#   "out_of_scope": ["PyG message passing", "density-matrix entropy", "lego-stage promotion", "tool-tool coupling"]
+# }
+# DONE 2026-05-01_23:42:43 sim_pytorch_autograd_gradient_micro (7s)
+
+# RETRY: controller fixed all_pass false exit gate and aligned result filename with sim_ probe name.
+# DONE 2026-05-01_23:49:36 sim_pytorch_autograd_gradient_micro (4s)

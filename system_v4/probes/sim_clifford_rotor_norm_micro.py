@@ -43,17 +43,17 @@ MICRO = {
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed; no tensor/autograd surface in this Clifford micro"},
-    "pyg": {"tried": False, "used": False, "reason": "not graph-relevant"},
+    "pyg": {"tried": False, "used": False, "reason": "not used: no message-passing graph or PyG data object appears in this Clifford rotor fixture"},
     "z3": {"tried": False, "used": False, "reason": "not needed; this micro isolates numeric Clifford MultiVector operations"},
     "cvc5": {"tried": False, "used": False, "reason": "not needed; no SMT encoding in this micro"},
     "sympy": {"tried": False, "used": False, "reason": "not needed; closed-form trigonometric rotor fixture is evaluated directly"},
     "clifford": {"tried": False, "used": False, "reason": "under test"},
     "geomstats": {"tried": False, "used": False, "reason": "not needed; SO(3) matrix geometry is outside this Clifford API micro"},
     "e3nn": {"tried": False, "used": False, "reason": "not needed; Wigner-D/equivariance surfaces are separate"},
-    "rustworkx": {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "xgi": {"tried": False, "used": False, "reason": "not hypergraph-relevant"},
-    "toponetx": {"tried": False, "used": False, "reason": "not topology-relevant"},
-    "gudhi": {"tried": False, "used": False, "reason": "not persistence-relevant"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not used: no DAG reachability or graph algorithm surface appears in this Clifford rotor fixture"},
+    "xgi": {"tried": False, "used": False, "reason": "not used: no hyperedge incidence or higher-order graph operation appears in this fixture"},
+    "toponetx": {"tried": False, "used": False, "reason": "not used: no cell complex, chain group, or boundary operator appears in this fixture"},
+    "gudhi": {"tried": False, "used": False, "reason": "not used: no persistence, filtration, or simplex tree operation appears in this fixture"},
 }
 
 TOOL_INTEGRATION_DEPTH = {

@@ -21,18 +21,18 @@ CLASSIFICATION = "canonical"
 NAME = "sim_sympy_matrix_identity_micro"
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": "not needed -- symbolic matrix identity micro"},
-    "pyg": {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "z3": {"tried": False, "used": False, "reason": "not needed -- no SMT coupling in this micro"},
-    "cvc5": {"tried": False, "used": False, "reason": "not needed -- no SMT coupling in this micro"},
+    "pytorch": {"tried": False, "used": False, "reason": "not used: this exact symbolic matrix identity micro has no tensor or autograd surface"},
+    "pyg": {"tried": False, "used": False, "reason": "not used: no message-passing graph or PyG data object appears in this matrix fixture"},
+    "z3": {"tried": False, "used": False, "reason": "not used: no SMT encoding is needed for SymPy exact Matrix.inv/equals checks"},
+    "cvc5": {"tried": False, "used": False, "reason": "not used: no SMT encoding is needed for SymPy exact Matrix.inv/equals checks"},
     "sympy": {"tried": False, "used": False, "reason": "under test"},
-    "clifford": {"tried": False, "used": False, "reason": "not geometry-relevant"},
-    "geomstats": {"tried": False, "used": False, "reason": "not geometry-relevant"},
-    "e3nn": {"tried": False, "used": False, "reason": "not equivariance-relevant"},
-    "rustworkx": {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "xgi": {"tried": False, "used": False, "reason": "not hypergraph-relevant"},
-    "toponetx": {"tried": False, "used": False, "reason": "not topology-relevant"},
-    "gudhi": {"tried": False, "used": False, "reason": "not topology-relevant"},
+    "clifford": {"tried": False, "used": False, "reason": "not used: no geometric algebra blade, rotor, or MultiVector operation appears in this fixture"},
+    "geomstats": {"tried": False, "used": False, "reason": "not used: no manifold metric, geodesic, or group operation appears in this fixture"},
+    "e3nn": {"tried": False, "used": False, "reason": "not used: no equivariance, irrep, or Wigner-D surface appears in this fixture"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not used: no graph reachability or DAG operation appears in this matrix fixture"},
+    "xgi": {"tried": False, "used": False, "reason": "not used: no hyperedge incidence or higher-order graph operation appears in this fixture"},
+    "toponetx": {"tried": False, "used": False, "reason": "not used: no cell complex, chain group, or boundary operator appears in this fixture"},
+    "gudhi": {"tried": False, "used": False, "reason": "not used: no persistence, filtration, or simplex tree operation appears in this fixture"},
 }
 
 TOOL_INTEGRATION_DEPTH = {tool: None for tool in TOOL_MANIFEST}

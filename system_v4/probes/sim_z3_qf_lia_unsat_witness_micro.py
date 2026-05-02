@@ -19,7 +19,14 @@ NAME = "sim_z3_qf_lia_unsat_witness_micro"
 PROBE_FAMILY = "z3_qf_lia_unsat_witness_micro"
 CONSTRAINT_SET = "bounded_linear_integer_sat_unsat_boundary"
 
+_NOT_USED_REASON = (
+    "not used: this micro probe isolates z3 QF_LIA SAT/UNSAT witness "
+    "behavior only; cross-tool coupling and lego promotion are out of scope."
+)
+
 TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "pyg": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
     "z3": {
         "tried": False,
         "used": False,
@@ -27,10 +34,20 @@ TOOL_MANIFEST = {
             "z3 is load-bearing: SolverFor('QF_LIA').add, check, and model "
             "determine the SAT/UNSAT verdicts and witness values."
         ),
-    }
+    },
+    "cvc5": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "sympy": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "clifford": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "geomstats": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "e3nn": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "rustworkx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "xgi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "toponetx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "gudhi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
 }
 
-TOOL_INTEGRATION_DEPTH = {"z3": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {tool: None for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
 
 try:
     import z3

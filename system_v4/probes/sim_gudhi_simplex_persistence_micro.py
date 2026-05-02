@@ -22,7 +22,23 @@ NAME = "sim_gudhi_simplex_persistence_micro"
 PROBE_FAMILY = "gudhi_simplex_tree_persistence_micro"
 CONSTRAINT_SET = "manual_simplex_tree_h1_birth_death_boundary"
 
+_NOT_USED_REASON = (
+    "not used: this micro probe isolates GUDHI SimplexTree persistence only; "
+    "cross-tool coupling and lego promotion are out of scope."
+)
+
 TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "pyg": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "z3": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "cvc5": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "sympy": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "clifford": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "geomstats": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "e3nn": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "rustworkx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "xgi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "toponetx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
     "gudhi": {
         "tried": True,
         "used": True,
@@ -34,7 +50,8 @@ TOOL_MANIFEST = {
     }
 }
 
-TOOL_INTEGRATION_DEPTH = {"gudhi": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {tool: None for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["gudhi"] = "load_bearing"
 
 
 def _delayed_filled_triangle():

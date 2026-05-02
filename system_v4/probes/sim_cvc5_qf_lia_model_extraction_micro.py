@@ -22,7 +22,15 @@ NAME = "sim_cvc5_qf_lia_model_extraction_micro"
 PROBE_FAMILY = "cvc5_qf_lia_model_extraction_micro"
 CONSTRAINT_SET = "bounded_linear_integer_sat_unsat_boundary"
 
+_NOT_USED_REASON = (
+    "not used: this micro probe isolates cvc5 QF_LIA model extraction only; "
+    "cross-tool coupling and lego promotion are out of scope."
+)
+
 TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "pyg": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "z3": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
     "cvc5": {
         "tried": True,
         "used": True,
@@ -30,10 +38,19 @@ TOOL_MANIFEST = {
             "cvc5 is load-bearing: Solver.assertFormula, checkSat, and "
             "getValue determine the SAT/UNSAT verdicts and witness values."
         ),
-    }
+    },
+    "sympy": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "clifford": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "geomstats": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "e3nn": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "rustworkx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "xgi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "toponetx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "gudhi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
 }
 
-TOOL_INTEGRATION_DEPTH = {"cvc5": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {tool: None for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["cvc5"] = "load_bearing"
 
 
 def _solver():

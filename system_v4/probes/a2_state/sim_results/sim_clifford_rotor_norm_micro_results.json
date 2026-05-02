@@ -1,0 +1,252 @@
+{
+  "name": "sim_clifford_rotor_norm_micro",
+  "classification": "canonical",
+  "micro": {
+    "tool_target": "clifford",
+    "function_surface": "clifford.Cl(3) MultiVector geometric product, reverse (~), and rotor sandwich R*v*~R",
+    "micro_claim": "A Cl(3) unit-bivector rotor has scalar norm R*~R == 1, preserves vector norm under sandwich action, and remains unit under rotor composition.",
+    "lego_target": "minimal Cl(3) rotor fixture; pre-lego anchor for later Hopf/spinor targets",
+    "function_receipt": "new",
+    "prior_function_receipts": [],
+    "why_this_lego": "The fixture isolates the rotor norm gate required before Clifford rotor surfaces are used in tool-lego or tool-tool coupling work.",
+    "positive_case": "Unit rotors built from e12/e13/e23 at several angles satisfy R*~R == ~R*R == 1 and preserve vector norm.",
+    "negative_case": "A non-unit even multivector and a non-unit bivector coefficient are excluded by the same norm gate.",
+    "boundary_case": "Identity, 2*pi, 4*pi, and tiny-angle rotors stay inside the expected Spin(3) norm boundary.",
+    "demotion_condition": "Any unit rotor with |scalar(R*~R)-1| > 1e-10, non-scalar norm residue > 1e-10, or sandwich vector-norm drift > 1e-10 demotes this function surface.",
+    "out_of_scope": [
+      "Hopf fibration topology",
+      "spinor chirality",
+      "deap/clifford evolutionary coupling",
+      "tool-tool coupling",
+      "bridge, coexistence, topology-variant, emergence, or axis-level claims"
+    ]
+  },
+  "probe_family": "M_clifford_rotor_norm_micro",
+  "constraint_set": "C_unit_rotor_reverse_product_norm_gate",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no tensor/autograd surface in this Clifford micro"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no message-passing graph or PyG data object appears in this Clifford rotor fixture"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; this micro isolates numeric Clifford MultiVector operations"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no SMT encoding in this micro"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; closed-form trigonometric rotor fixture is evaluated directly"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Cl(3) blades, MultiVector geometric product, reverse (~), and rotor sandwich certify the norm gate"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; SO(3) matrix geometry is outside this Clifford API micro"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; Wigner-D/equivariance surfaces are separate"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no DAG reachability or graph algorithm surface appears in this Clifford rotor fixture"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no hyperedge incidence or higher-order graph operation appears in this fixture"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no cell complex, chain group, or boundary operator appears in this fixture"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no persistence, filtration, or simplex tree operation appears in this fixture"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "e12_pi_over_6_unit_rotor_norm_and_sandwich": {
+      "right_scalar": 1.0,
+      "left_scalar": 1.0,
+      "right_non_scalar_norm": 0.0,
+      "left_non_scalar_norm": 0.0,
+      "pass": true,
+      "vector_norm_before": 0.875,
+      "vector_norm_after": 0.875,
+      "sandwich_vector_norm_preserved": true,
+      "sandwich_output_is_vector": true
+    },
+    "e12_pi_over_2_unit_rotor_norm_and_sandwich": {
+      "right_scalar": 1.0,
+      "left_scalar": 1.0,
+      "right_non_scalar_norm": 0.0,
+      "left_non_scalar_norm": 0.0,
+      "pass": true,
+      "vector_norm_before": 0.875,
+      "vector_norm_after": 0.875,
+      "sandwich_vector_norm_preserved": true,
+      "sandwich_output_is_vector": true
+    },
+    "e13_pi_over_4_unit_rotor_norm_and_sandwich": {
+      "right_scalar": 1.0,
+      "left_scalar": 1.0,
+      "right_non_scalar_norm": 0.0,
+      "left_non_scalar_norm": 0.0,
+      "pass": true,
+      "vector_norm_before": 0.875,
+      "vector_norm_after": 0.8749999999999999,
+      "sandwich_vector_norm_preserved": true,
+      "sandwich_output_is_vector": true
+    },
+    "e23_pi_unit_rotor_norm_and_sandwich": {
+      "right_scalar": 1.0,
+      "left_scalar": 1.0,
+      "right_non_scalar_norm": 0.0,
+      "left_non_scalar_norm": 0.0,
+      "pass": true,
+      "vector_norm_before": 0.875,
+      "vector_norm_after": 0.875,
+      "sandwich_vector_norm_preserved": true,
+      "sandwich_output_is_vector": true
+    },
+    "different_axis_rotor_composition_remains_unit": {
+      "right_scalar": 0.9999999999999999,
+      "left_scalar": 0.9999999999999999,
+      "right_non_scalar_norm": 0.0,
+      "left_non_scalar_norm": 0.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "non_unit_even_multivector_excluded_by_norm_gate": {
+      "candidate_norm": {
+        "right_scalar": 1.25,
+        "left_scalar": 1.25,
+        "right_non_scalar_norm": 0.0,
+        "left_non_scalar_norm": 0.0,
+        "unit_norm_gate_admitted": false
+      },
+      "vector_norm_before": 1.29,
+      "vector_norm_after": 2.015625,
+      "pass": true
+    },
+    "non_unit_bivector_coefficient_excluded": {
+      "candidate_norm": {
+        "right_scalar": 1.75,
+        "left_scalar": 1.75,
+        "right_non_scalar_norm": 0.0,
+        "left_non_scalar_norm": 0.0,
+        "unit_norm_gate_admitted": false
+      },
+      "vector_norm_before": 1.29,
+      "vector_norm_after": 3.9506249999999987,
+      "pass": true
+    },
+    "odd_grade_contamination_excluded": {
+      "candidate_norm": {
+        "right_scalar": 1.0625,
+        "left_scalar": 1.0625,
+        "right_non_scalar_norm": 0.5,
+        "left_non_scalar_norm": 0.5,
+        "unit_norm_gate_admitted": false
+      },
+      "odd_part_norm": 0.25,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_angle_identity_norm_boundary": {
+      "right_scalar": 1.0,
+      "left_scalar": 1.0,
+      "right_non_scalar_norm": 0.0,
+      "left_non_scalar_norm": 0.0,
+      "pass": true,
+      "is_identity": true
+    },
+    "two_pi_is_minus_one_but_unit": {
+      "right_scalar": 1.0,
+      "left_scalar": 1.0,
+      "right_non_scalar_norm": 0.0,
+      "left_non_scalar_norm": 0.0,
+      "pass": true,
+      "is_minus_one": true,
+      "vector_action_identity": true
+    },
+    "four_pi_returns_identity_and_unit": {
+      "right_scalar": 1.0,
+      "left_scalar": 1.0,
+      "right_non_scalar_norm": 0.0,
+      "left_non_scalar_norm": 0.0,
+      "pass": true,
+      "is_identity": true
+    },
+    "tiny_angle_and_near_four_pi_stay_unit": {
+      "tiny": {
+        "right_scalar": 1.0,
+        "left_scalar": 1.0,
+        "right_non_scalar_norm": 0.0,
+        "left_non_scalar_norm": 0.0,
+        "pass": true
+      },
+      "near_four_pi": {
+        "right_scalar": 1.0,
+        "left_scalar": 1.0,
+        "right_non_scalar_norm": 0.0,
+        "left_non_scalar_norm": 0.0,
+        "pass": true
+      },
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Pre-lego Clifford rotor norm micro only; no queue, ledger, coupling, Hopf, spinor, or bridge claim."
+  },
+  "all_pass": true,
+  "criteria_checked": [
+    "C1_unit_rotor_reverse_product_is_scalar_one",
+    "C2_rotor_sandwich_preserves_vector_norm",
+    "C3_rotor_composition_remains_unit",
+    "C4_non_unit_even_multivectors_are_excluded",
+    "C5_identity_and_2pi_4pi_boundaries_remain_unit"
+  ],
+  "surviving_alternatives": [
+    "The sign convention in cos(theta/2) +/- sin(theta/2)*B remains live for orientation-specific action claims.",
+    "Non-Euclidean signatures such as Cl(1,1) remain separate future micro surfaces."
+  ]
+}

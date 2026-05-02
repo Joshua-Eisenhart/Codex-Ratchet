@@ -1,0 +1,177 @@
+{
+  "name": "sim_pytorch_autograd_gradient_micro",
+  "tool_stage": "stage_1_2_function_micro_probe",
+  "micro_packet": {
+    "tool_target": "pytorch / autograd",
+    "function_surface": "torch.autograd.grad(outputs, inputs, create_graph=True)",
+    "micro_claim": "autograd.grad computes exact first and second derivatives for one tiny scalar constraint and rejects detached/non-scalar misuse",
+    "lego_target": "minimal differentiable scalar fixture; no lego promotion",
+    "function_receipt": "new",
+    "prior_function_receipts": [],
+    "why_this_lego": "a weighted quadratic exposes gradient, Hessian, flat-axis boundary, and misuse rejection without graph or density-matrix uncertainty",
+    "positive_case": "gradient and Hessian diagonal match analytic values",
+    "negative_case": "detached inputs and vector outputs without grad_outputs are excluded",
+    "boundary_case": "zero-weight axis produces an admitted zero gradient, not NaN",
+    "demotion_condition": "demote this surface if gradients silently detach, lose second-order structure, or fail to reject invalid autograd requests",
+    "out_of_scope": [
+      "PyG message passing",
+      "density-matrix entropy",
+      "lego-stage promotion",
+      "tool-tool coupling"
+    ],
+    "loopback_target": "system_v5/docs/plans/plans/TOOL_CAPABILITY_AND_INTEGRATION_LEDGER.md#pytorch--autograd"
+  },
+  "probe_family": "M_torch_autograd_grad_micro",
+  "constraint_set": "C_scalar_differentiable_gradient_contract",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tool under micro test: torch.autograd.grad first/second derivatives"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph message passing in this function micro probe"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; misuse rejection is empirical runtime behavior, not SMT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no solver-side arithmetic claim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; analytic gradient is encoded directly in the fixture"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no geometric algebra surface"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no manifold metric surface"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no equivariant tensor surface"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph topology surface"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no hypergraph surface"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no cell-complex surface"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no persistence surface"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "autograd_grad_matches_analytic": {
+      "pass": true,
+      "gradient": [
+        2.6875,
+        -1.5,
+        4.0625
+      ],
+      "expected": [
+        2.6875,
+        -1.5,
+        4.0625
+      ]
+    },
+    "create_graph_second_derivative": {
+      "pass": true,
+      "hessian_diag": [
+        2.0,
+        3.0,
+        5.0
+      ],
+      "expected_diag": [
+        2.0,
+        3.0,
+        5.0
+      ]
+    },
+    "input_grad_field_not_populated": {
+      "pass": true,
+      "detail": "torch.autograd.grad returned the gradient without mutating theta.grad"
+    }
+  },
+  "negative": {
+    "detached_input_excluded": {
+      "pass": true,
+      "error_type": "RuntimeError"
+    },
+    "nonscalar_output_without_grad_outputs_excluded": {
+      "pass": true,
+      "error_type": "RuntimeError"
+    }
+  },
+  "boundary": {
+    "flat_axis_zero_gradient_is_admitted": {
+      "pass": true,
+      "gradient": [
+        2.0,
+        0.0,
+        -10.0
+      ],
+      "axis_1_second_derivative": 0.0,
+      "note": "zero sensitivity is a boundary result, not an autograd failure"
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "criteria_checked": [
+    "C1 first derivative matches analytic gradient",
+    "C2 create_graph preserves second derivative structure",
+    "C3 autograd.grad does not mutate input .grad",
+    "C4 detached input is excluded",
+    "C5 non-scalar output without grad_outputs is excluded",
+    "C6 flat-axis zero gradient is admitted as boundary"
+  ],
+  "surviving_alternatives": [
+    "PyG MessagePassing/autograd should remain a separate MICRO row",
+    "density-matrix entropy gradients should remain a downstream fixture"
+  ],
+  "classification": "canonical",
+  "out_of_scope_observed": []
+}

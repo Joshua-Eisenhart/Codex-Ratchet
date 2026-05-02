@@ -34,3 +34,19 @@
 # DONE 2026-04-18_02:24:49 sim_integration_networkx_rustworkx_crosscheck (2s)
 # DONE 2026-04-18_02:24:55 sim_integration_geomstats_constraint_manifold (1s)
 # DONE 2026-04-18_02:25:03 sim_integration_toponetx_gtower_chain_complex (3s)
+
+# MICRO: {
+#   "tool_target": "cvc5",
+#   "function_surface": "Solver.assertFormula/checkSat/getValue over QF_LIA",
+#   "micro_claim": "cvc5 can decide a bounded integer fixture and return SAT witnesses",
+#   "lego_target": "minimal bounded arithmetic fixture before lego promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [],
+#   "why_this_lego": "the tiny fixture isolates the solver API surface before any lego or coupling uses it",
+#   "positive_case": "x + y = 10 and x - y = 4 is SAT with x=7, y=3",
+#   "negative_case": "x > 0 and x < 0 is UNSAT",
+#   "boundary_case": "0 <= edge <= 0 is SAT with edge=0; adding edge=1 is UNSAT",
+#   "demotion_condition": "demote if checkSat is not decisive or getValue cannot recover expected SAT witnesses",
+#   "out_of_scope": ["lego promotion", "tool-tool coupling", "bridge claim", "whole-library proof"]
+# }
+sim_cvc5_qf_lia_model_extraction_micro

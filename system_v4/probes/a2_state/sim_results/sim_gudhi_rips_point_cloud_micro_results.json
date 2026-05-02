@@ -1,0 +1,177 @@
+{
+  "name": "sim_gudhi_rips_point_cloud_micro",
+  "probe_family": "gudhi_rips_point_cloud_persistence_micro",
+  "constraint_set": "rips_complex_square_h1_birth_death_boundary",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates GUDHI RipsComplex point-cloud persistence only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates GUDHI RipsComplex point-cloud persistence only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates GUDHI RipsComplex point-cloud persistence only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates GUDHI RipsComplex point-cloud persistence only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates GUDHI RipsComplex point-cloud persistence only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates GUDHI RipsComplex point-cloud persistence only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates GUDHI RipsComplex point-cloud persistence only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates GUDHI RipsComplex point-cloud persistence only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates GUDHI RipsComplex point-cloud persistence only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates GUDHI RipsComplex point-cloud persistence only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates GUDHI RipsComplex point-cloud persistence only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "GUDHI is load-bearing: RipsComplex builds the point-cloud filtration, create_simplex_tree materializes simplices, and persistence reports the H1 birth/death verdicts."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "square_rips_has_one_finite_h1_bar": {
+      "passed": true,
+      "expected": "one H1 interval born at side length 1 and killed at diagonal length sqrt(2)",
+      "h1_intervals": [
+        [
+          1.0,
+          1.4142135623730951
+        ]
+      ],
+      "expected_birth": 1.0,
+      "expected_death": 1.4142135623730951,
+      "longest_h1_lifetime": 0.41421356237309515,
+      "admission_note": "The square's side edges create a 1-cycle at filtration 1.0; diagonals enter at sqrt(2), creating triangles that kill it."
+    },
+    "square_rips_contains_triangles_at_killing_threshold": {
+      "passed": true,
+      "expected": "2-simplices exist once diagonals enter the Rips filtration",
+      "simplex_counts_by_dimension": {
+        "0": 4,
+        "1": 6,
+        "2": 4
+      }
+    }
+  },
+  "negative": {
+    "equilateral_triangle_filled_at_threshold_excludes_h1": {
+      "passed": true,
+      "expected": "no positive-length H1 interval for a filled three-point Rips triangle",
+      "h1_intervals": [],
+      "longest_h1_lifetime": 0.0,
+      "exclusion_note": "All three edges and the 2-simplex are born at the same side length, so the would-be loop is filled at birth."
+    },
+    "triangle_rips_materializes_one_filled_face": {
+      "passed": true,
+      "expected": "the three-point triangle has exactly one 2-simplex",
+      "simplex_counts_by_dimension": {
+        "0": 3,
+        "1": 3,
+        "2": 1
+      }
+    }
+  },
+  "boundary": {
+    "side_threshold_square_has_only_edges_before_diagonals": {
+      "passed": true,
+      "expected": "at side-length cutoff only finite vertices and side edges have entered",
+      "h1_intervals": [],
+      "simplex_counts_by_dimension": {
+        "0": 4,
+        "1": 4
+      },
+      "boundary_note": "This truncated side-only fixture checks the entry boundary for edges and absence of triangles; finite H1 death is checked in the positive square fixture with diagonals admitted."
+    },
+    "finite_simplices_and_singleton_no_h1": {
+      "passed": true,
+      "expected": "finite filtration values and no H1 for a singleton at tiny threshold",
+      "singleton_h1_intervals": [],
+      "singleton_filtration": [
+        {
+          "simplex": [
+            0
+          ],
+          "filtration": 0.0
+        }
+      ],
+      "side_only_filtration_count": 8
+    }
+  },
+  "surviving_alternatives": [
+    "Other point-cloud filtrations may survive; this micro receipt only covers the named RipsComplex persistence surface.",
+    "Manual SimplexTree persistence remains a separate GUDHI surface and is not retested here."
+  ],
+  "demotion_condition": "Demote GUDHI for this RipsComplex surface if it cannot build the tiny point-cloud simplex tree, if square H1 is not born at side length 1.0 and killed at diagonal length sqrt(2), if the filled three-point triangle reports a positive-length H1 bar, or if finite singleton/boundary filtrations cannot be reported.",
+  "out_of_scope": [
+    "no manually inserted SimplexTree claim",
+    "no AlphaComplex or CubicalComplex coverage",
+    "no persistent cohomology claim",
+    "no TopoNetX cross-check",
+    "no lego promotion",
+    "no tool-tool coupling",
+    "no Hopf, bridge, or axis-level topology claim",
+    "no proof of the whole GUDHI library"
+  ],
+  "criteria_checked": [
+    "GUDHI RipsComplex square H1 birth at side length",
+    "GUDHI RipsComplex square H1 death at diagonal/triangle threshold",
+    "GUDHI RipsComplex filled triangle H1 exclusion",
+    "GUDHI RipsComplex boundary finite simplices and singleton no-H1 check"
+  ],
+  "summary": {
+    "passed": 6,
+    "total": 6
+  },
+  "all_pass": true
+}

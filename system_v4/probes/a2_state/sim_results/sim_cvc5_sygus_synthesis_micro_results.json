@@ -1,0 +1,133 @@
+{
+  "name": "sim_cvc5_sygus_synthesis_micro",
+  "probe_family": "cvc5_sygus_synthesis_micro",
+  "constraint_set": "bounded_linear_integer_sygus_fixture",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates cvc5 SyGuS synthesis only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates cvc5 SyGuS synthesis only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates cvc5 SyGuS synthesis only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 is load-bearing: synthFun, addSygusConstraint, checkSynth, and getSynthSolution determine the synthesis/no-synthesis verdicts."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates cvc5 SyGuS synthesis only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates cvc5 SyGuS synthesis only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates cvc5 SyGuS synthesis only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates cvc5 SyGuS synthesis only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates cvc5 SyGuS synthesis only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates cvc5 SyGuS synthesis only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates cvc5 SyGuS synthesis only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates cvc5 SyGuS synthesis only; cross-tool coupling and lego promotion are out of scope."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "linear_successor_function_synthesized": {
+      "passed": true,
+      "expected": "solution lambda equivalent to x + 1",
+      "cvc5_result": "(SOLUTION)",
+      "solution": "(lambda ((x Int)) (+ x 1))",
+      "grammar": [
+        "x",
+        "0",
+        "1",
+        "x + 1"
+      ]
+    }
+  },
+  "negative": {
+    "grammar_rejects_unavailable_plus_two": {
+      "passed": true,
+      "expected": "no solution because the grammar only admits x + 1",
+      "cvc5_result": "(NO_SOLUTION)",
+      "exclusion_note": "SyGuS must not report a function outside the declared grammar."
+    }
+  },
+  "boundary": {
+    "constant_grammar_boundary_selects_one": {
+      "passed": true,
+      "expected": "solution from the finite grammar {0, 1}",
+      "cvc5_result": "(SOLUTION)",
+      "solution": "(lambda ((x Int)) 1)",
+      "boundary_note": "The grammar is intentionally finite to expose the synthesis boundary."
+    }
+  },
+  "surviving_alternatives": [
+    "Other SyGuS grammars and theories remain unproven; this receipt covers only the named LIA grammar fixtures."
+  ],
+  "demotion_condition": "Demote cvc5 for this surface if checkSynth cannot find the bounded successor solution, reports a solution outside the grammar, or fails to reject the impossible plus-two specification.",
+  "out_of_scope": [
+    "no lego promotion",
+    "no tool-tool coupling",
+    "no bridge claim",
+    "no proof of the whole cvc5 SyGuS surface"
+  ],
+  "criteria_checked": [
+    "cvc5 SyGuS bounded successor synthesis",
+    "cvc5 SyGuS impossible grammar/spec rejection",
+    "cvc5 SyGuS finite constant grammar boundary"
+  ],
+  "summary": {
+    "passed": 3,
+    "total": 3
+  },
+  "all_pass": true
+}

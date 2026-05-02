@@ -1,0 +1,144 @@
+{
+  "name": "sim_geomstats_so3_log_exp_micro",
+  "probe_family": "geomstats_so3_log_exp_micro",
+  "constraint_set": "bounded_so3_log_exp_branch_fixtures",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates geomstats SO(3) log/exp only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates geomstats SO(3) log/exp only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates geomstats SO(3) log/exp only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates geomstats SO(3) log/exp only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates geomstats SO(3) log/exp only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates geomstats SO(3) log/exp only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "geomstats is load-bearing: SpecialOrthogonal(3).metric.exp and metric.log produce the SO(3) tangent/rotation round-trip verdicts."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates geomstats SO(3) log/exp only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates geomstats SO(3) log/exp only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates geomstats SO(3) log/exp only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates geomstats SO(3) log/exp only; cross-tool coupling and lego promotion are out of scope."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates geomstats SO(3) log/exp only; cross-tool coupling and lego promotion are out of scope."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "log_exp_roundtrip_small_tangent": {
+      "passed": true,
+      "expected_angle": 0.5,
+      "recovered_angle": 0.49999999999999983,
+      "rotation_belongs_to_so3": true
+    },
+    "exp_log_roundtrip_rotation_matrix": {
+      "passed": true,
+      "expected": "exp(log(R)) returns the same SO(3) point",
+      "frobenius_roundtrip_error": 1.5700924586837752e-16
+    }
+  },
+  "negative": {
+    "principal_log_rejects_long_branch": {
+      "passed": true,
+      "expected": "principal log angle is 0.1, not 2*pi + 0.1",
+      "recovered_angle": 0.09999999999999981,
+      "excluded_long_angle": 6.383185307179586
+    },
+    "ambient_additive_step_is_not_so3_exp": {
+      "passed": true,
+      "expected": "I + skew(angle) is not admitted as an SO(3) point",
+      "belongs_to_so3": false,
+      "exclusion_note": "The micro receipt uses metric.exp, not ambient matrix addition."
+    }
+  },
+  "boundary": {
+    "tiny_angle_does_not_collapse": {
+      "passed": true,
+      "expected_angle": 1e-05,
+      "recovered_angle": 9.999999999999999e-06
+    },
+    "near_pi_below_cut_locus_stays_on_principal_branch": {
+      "passed": true,
+      "expected_angle": 3.141492653589793,
+      "recovered_angle": 3.141492653589793,
+      "boundary_note": "Exact pi branch ambiguity is intentionally out of scope."
+    }
+  },
+  "surviving_alternatives": [
+    "Other manifolds and exact-pi branch conventions remain separate future micro surfaces."
+  ],
+  "demotion_condition": "Demote geomstats for this surface if SO(3) exp/log fail round-trip on bounded tangents, admit ambient additive updates as SO(3) points, or return the long branch instead of the principal log branch.",
+  "out_of_scope": [
+    "no Hopf geometry claim",
+    "no lego promotion",
+    "no tool-tool coupling",
+    "no bridge claim",
+    "no proof of the whole geomstats library"
+  ],
+  "criteria_checked": [
+    "geomstats SO(3) exp/log local roundtrip",
+    "geomstats SO(3) principal branch selection",
+    "ambient additive update exclusion",
+    "tiny-angle and near-pi boundary behavior"
+  ],
+  "summary": {
+    "passed": 6,
+    "total": 6
+  },
+  "all_pass": true
+}

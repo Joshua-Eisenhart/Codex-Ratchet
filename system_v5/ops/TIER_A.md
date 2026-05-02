@@ -37,7 +37,7 @@ Workers never run sims themselves.
 
 ## Track 0 — Tool-capability sims (HARD GATE, per harness/05)
 
-Seven Haiku Claudes, one tool each, parallel worktrees. Each writes ONE canonical probe proving the tool works in isolation.
+Seven Haiku Claudes, one tool each, parallel worktrees. Each writes ONE capability probe. `classification = "canonical"` applies only to the bounded capability claim: this tool can carry this check. It does not admit downstream lego, coupling, bridge, axis, or engine work.
 
 | Worker | Tool | Probe path |
 |---|---|---|
@@ -154,7 +154,7 @@ After the 2026-04-18 run, treat A4.9 as executed reference material only until i
 
 ## Track 4c — Coverage-lego tool-stage runs
 
-These are real bounded legos used to exercise underused tool families honestly without leaving the tool stage:
+These are tool-stage coverage rows anchored to real bounded lego families. They answer one tool question and update the tool ledger; they do not count as lego-stage completion or successor permission.
 
 | Worker | Coverage lego | Probe path |
 |---|---|---|
@@ -166,7 +166,7 @@ These are real bounded legos used to exercise underused tool families honestly w
 Rule:
 - these are still tool-stage / coverage-stage work
 - they do not authorize broad higher-stage promotion
-- if they expose a strong local parent, they may still feed bounded exploratory coupling selection elsewhere in the loop
+- if they expose a strong local parent, record that parent as a future candidate only; coupling selection still needs the active stage gate to permit it
 
 ### Worker template (A4.*)
 

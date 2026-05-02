@@ -22,7 +22,7 @@ Those are five different stages, in that order, recursive. A pass at one stage d
 |---|---|---|
 | Stage 1–3 (smoke / capability / integration) | `queue_tier_a.txt` | Yes — to `TOOL_CAPABILITY_AND_INTEGRATION_LEDGER.md` |
 | Stage 4 (tool-serving real-lego skip-ahead) | `queue_tier_a.txt` with BOUND block | Yes — to `loopback_target` declared in the BOUND block |
-| Stage 5 full sim, bounded lego work | `queue_tier_b.txt` (shell-local) or `queue_tier_d.txt` | No — but must carry classification field in probe |
+| Stage 5 full sim, bounded lego work | `queue_tier_b.txt` (shell-local) or `queue_tier_d.txt` only when `stage_gate.json` permits Tier D | No — but must carry classification field in probe |
 | Classical baselines, FEP/holodeck/leviathan locals, axis-composites | `queue_lego_backlog.txt` (tracked holding surface; not default-drained) | No |
 | Bridge composites, multi-shell stacks, off-lane | `queue_offlane.txt` (never auto-drained) | No |
 | Utility, telemetry, calibration | `queue_disposal.txt` or script direct | No |
@@ -35,7 +35,7 @@ Every tool in the ledger gets a discovered role, recorded in a new column:
 
 - `nonclassical-core` — essential to a nonclassical admissibility proof.
 - `nonclassical-support` — load-bearing in nonclassical-admissible sims but replaceable.
-- `bridge-useful` — classical machinery whose output feeds nonclassical sims (Carnot / Szilard / FEP / persistence baselines).
+- `bridge-useful` — classical-side output that a later bridge sim may consume; not bridge evidence and not nonclassical support by itself.
 - `classical-only` — load-bearing only in classical baselines.
 - `controller-support` — runs controller or telemetry; not itself sim-stage.
 
@@ -49,7 +49,7 @@ The runner has three execution kinds. These are runner/admission labels, not rep
 |---|---|---|
 | `classical` | Baselines, controls, and negative/reference comparisons | May use classical-only or bridge-useful tools, but load-bearing use does not make the result nonclassical. Preserve `divergence_log` when classified `classical_baseline`. |
 | `nonclassical` | Canonical nonclassical-target sims | Use claim-relevant nonclassical tools: PyTorch/PyG for tensor or graph dynamics, Clifford for geometric product/spinor/rotor claims, and z3/cvc5 for structural proof or UNSAT claims. Missing relevant surfaces must be blocked/deferred, not silently ignored. |
-| `bridge` | The seam between classical baselines and nonclassical structure: `bridge`, `Xi`, `rho_AB`, `Phi0`, cut/kernel, pairwise/coupling, and coexistence work | Requires both a named classical-side source and a nonclassical tool plan. Default and lego-backlog runners do not auto-drain it. |
+| `bridge` | Explicit seam work between classical baselines and nonclassical structure: `bridge`, `Xi`, `rho_AB`, `Phi0`, cut/kernel, engine, or named pairwise/coupling/coexistence bridge rows | Requires both a named classical-side source and a nonclassical target/tool plan. Pairwise, coupling, coexistence, and engine rows stay exploratory unless both sides are named. Default and lego-backlog runners do not auto-drain it. |
 
 `classification` says what status the result currently claims. `sim_execution_kind` / `runner_class` says which runner/tool admission law must apply before execution.
 
@@ -92,7 +92,7 @@ INELIGIBLE is a routing fault, not a runtime failure. It does not trip the conse
 ## Open debts after this file lands
 
 - Role-discovery column not yet added to `TOOL_CAPABILITY_AND_INTEGRATION_LEDGER.md` — schema change, owner review needed.
-- Runner (`sim_runner.sh`) does not yet enforce the admission gate. The v2 stub at `system_v5/ops/drafts/sim_runner_v2_stub.sh` sketches the intended gate, is not live, and is not executable.
+- Runner (`sim_runner.sh`) now honors the coarse stage gate for Tier D and default-queue late-stage blocking, but it does not yet enforce the full BOUND admission gate. The v2 stub at `system_v5/ops/drafts/sim_runner_v2_stub.sh` sketches the intended gate, is not live, and is not executable.
 - `queue_lego_backlog.txt` and `queue_offlane.txt` now exist as explicit partition surfaces. They are holding areas, not proof that the rows inside them are admitted or safe to auto-drain.
 - Reclassification of the 511 default-queue DONEs into the seven buckets (tool-serving / nonclassical-support / classical-support / bridge-useful / generic-lego-backlog / off-lane / runtime-residue) is a separate pass, not done here.
 

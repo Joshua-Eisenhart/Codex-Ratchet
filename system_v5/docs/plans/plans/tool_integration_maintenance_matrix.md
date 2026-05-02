@@ -25,6 +25,8 @@ For each major tool family, the process goal is ideally to maintain three bounde
 Interpretation rule:
 - the tools and next moves named below are seed examples, not an exhaustive list of all valid packets
 - when a nearby bounded packet better clarifies the same tool capability, the controller may choose it instead of rigidly following only the named examples
+- current implementation selector: pick one proof/symbolic capability packet first (`z3`, `cvc5`, or `sympy`), pair it with the missing baseline/reference or canonical counterpart, then write the comparison note. If that is blocked, choose one graph/topology or geometry/equivariance packet with the same bounded baseline/counterpart/note shape.
+- do not choose a stage-heavy integration, bridge, axis, engine, cascade, or whole-stack packet just because it is more salient.
 
 | Tool | Repo-current maturity | Strong current anchor | Main weakness now | Best next bounded deepen move |
 |---|---|---|---|---|

@@ -1,12 +1,13 @@
 # Codex Ratchet
 
-Nonclassical constraint-admissibility research system. Runs sim legos under the three-lane architecture (Lane A capability-probes → Lane B classical baselines → Lane C nonclassical canonical).
+Nonclassical constraint-admissibility research system. Sims are written, audited, and queued by agents, then executed by Python runners. Active build order is tool sims -> tool integrations -> bounded lego rows -> only later couplings; classical baselines are controls, not nonclassical evidence, and bridge, axis, engine, and broad integrated claims remain gated.
 
 ## Where things live
 
 | What | Path |
 |---|---|
-| Session instructions | `CLAUDE.md` |
+| Codex authority | `AGENTS.md` |
+| Claude reference/session guidance | `CLAUDE.md` |
 | Repo layout map | `REPO_LAYOUT.md` |
 | **System docs** (plans, handoffs, research) | `system_v5/docs/` and `system_v5/docs/` |
 | Read-only reference docs | `system_v5/READ ONLY Reference Docs/` |

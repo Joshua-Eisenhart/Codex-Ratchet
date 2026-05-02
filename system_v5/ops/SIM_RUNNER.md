@@ -23,7 +23,7 @@ Graph and proof tools are not universally valid across all three kinds. A graph/
 
 ## What it does per tick
 
-1. Reads queues in priority order: `queue_tier_a.txt` → `queue_tier_b.txt` → `queue_tier_d.txt` → `queue_default.txt`.
+1. Reads queues in priority order: `queue_tier_a.txt` -> `queue_tier_b.txt` -> `queue_tier_d.txt` only when `stage_gate.json` permits Tier D -> `queue_default.txt`.
 2. Picks the first un-done probe from the highest-priority non-empty queue.
 3. Runs it with `nice -n 19`, captures result.
 4. Marks the queue line as `# DONE <timestamp>` or `# FAIL <timestamp>`.
@@ -32,10 +32,10 @@ Graph and proof tools are not universally valid across all three kinds. A graph/
 
 ## Priority rules
 
-- Tier A queue drained before B, B before D. Foundation first.
+- Tier A queue drains before B. Tier D drains only when `system_v5/ops/stage_gate.json` has `allow_tier_d_launch: true`. Foundation first.
 - Within a queue, top-to-bottom order (Hermes terminals append).
-- `queue_default.txt` = fail-closed fallback only. It should contain only controller-approved tool/tool-integration/local-lego entries, and it is allowed to stay empty.
-- `queue_default.txt` must not auto-queue pairwise/coexistence/bridge/axis/engine-style probes.
+- `queue_default.txt` = fail-closed fallback only. It should contain only controller-approved tool/local-lego entries; stage-heavier tool-integration rows belong in Tier A or explicit review. It is allowed to stay empty.
+- `queue_default.txt` must not auto-queue pairwise/coexistence/bridge/axis/engine-style probes unless `stage_gate.json` explicitly allows default-queue late-stage work.
 - `queue_lego_backlog.txt` and `queue_offlane.txt` are v2 partition surfaces. The live v1 runner does not auto-drain them; `queue_offlane.txt` is never auto-drained.
 
 ## Thermal safety
@@ -98,6 +98,7 @@ touch system_v5/ops/.stop_sim_runner
 4. Unhandled probe exception → log, move on, don't retry.
 5. 5 consecutive failures → pause 30 min, telegram L3 once.
 6. Runner obeys `system_v5/ops/.stop_sim_runner` sentinel file between sims.
-7. The hard stage gate wins over stale queue contents: no pairwise/coexistence/bridge/axis/engine probe may run from `queue_default.txt`.
+7. The hard stage gate wins over stale queue contents: no pairwise/coexistence/bridge/axis/engine probe may run from `queue_default.txt` unless `allow_default_queue_late_stage` is explicitly true.
 8. If all tier queues are empty and no safe default queue exists, the runner stays idle rather than generating a generic never-run pile.
 9. Runner admission must not treat all sims as one bucket. Before v2 enforcement, use `make runner-taxonomy-audit` to map current probes to `classical`, `nonclassical`, and `bridge` execution kinds and surface routing gaps.
+10. Tier D is gated by `stage_gate.json`. If `allow_tier_d_launch` is false, the live runner skips `queue_tier_d.txt` even when rows are present.

@@ -23,10 +23,12 @@ This guardrail is mandatory.
 1. keep tool sims active until the needed tool surface is honestly covered
 2. keep tool-integration sims active until the needed bounded integrations are honestly covered
 3. keep lego sims active across the registry, one bounded lego at a time
-4. bounded coupling / coexistence exploration may run inside this loop, but only off already-strong local parents and only as exploration
-5. exploratory coupling work does not mean the coupling stage is earned
-6. broad coupling / coexistence / topology-variant / emergence promotion remains blocked until the registry and parent evidence are strong enough
-7. bridge / axis / engine surfaces remain later and explicitly gated
+4. use parallel workers aggressively inside bounded tool and lego packets; do not use parallelism as permission to widen stage
+5. classical baselines and controls may run more freely, but they remain baseline/control evidence and do not support nonclassical or bridge claims
+6. coupling / coexistence execution is after lego-stage completion by default; any earlier coupling row must be an explicit bounded exception, marked exploratory, and routed back into lego/tool refinement
+7. exploratory coupling work does not mean the coupling stage is earned
+8. broad coupling / coexistence / topology-variant / emergence promotion remains blocked until the registry and parent evidence are strong enough
+9. bridge / axis / engine surfaces remain later and explicitly gated
 
 If a queue, launch prompt, ledger row, or worker plan widens exploratory coupling into earned higher-stage permission, this guardrail wins.
 
@@ -44,10 +46,11 @@ This is not new information. It is the already-corrected operating plan that mus
    - multiple active layers can operate at once
    - the exact final layer order is not yet closed
 5. do not force canon on the current candidate order
-6. after tool sims, tool integrations, and lego rows are underway, allow bounded stacking/composition exploration off strong local parents without treating that as closure:
+6. after the relevant parent legos are current, allow bounded stacking/composition tests without treating that as closure:
    - test how layers stack locally
    - test which orders and subsets can actually nest
    - test which structures survive composition
+   - while the active stage is still `lego`, record most stack/coupling ideas as future candidates rather than live execution
 
 Concrete examples that must stay preserved:
 - density matrices are near-first admissible objects under the root constraints
@@ -65,7 +68,7 @@ If a sim batch violates that order, it is off-plan even if it reports passing ou
 - L0-L7 constraint cascade mapped. Counts: see PYTORCH_RATCHET_BUILD_PLAN.md Phase 2.
 - Irreducible families identified with independent observables. Counts: see [MIGRATION_REGISTRY.md](MIGRATION_REGISTRY.md).
 - Tool usage across sim files: z3, sympy, clifford, toponetx, torch all represented. Counts: see [TOOL_MANIFEST_AUDIT.md](TOOL_MANIFEST_AUDIT.md).
-- The stack is broader than the older tool docs implied: cvc5, geomstats, e3nn, rustworkx, XGI, GUDHI, PyG are all now represented in sim-like files, but not yet equally load-bearing.
+- The stack is broader than the older tool docs implied: cvc5, geomstats, e3nn, rustworkx, XGI, GUDHI, PyG are all now represented in sim-like files. Do not count a tool as load-bearing until a result shows the tool changed, constrained, or certified the specific claim.
 - PyTorch is NOT yet the primary substrate. numpy dominates.
 - SIM_TEMPLATE.py now exists (system_v4/probes/SIM_TEMPLATE.py)
 - Tool manifest is defined in the template but not yet present in legacy result JSONs
@@ -84,7 +87,7 @@ All 13 rules below describe the target regime. They are the standard new work sh
 ## Definitions
 - **Layer / shell**: a simultaneous constraint surface, not a sequential rung. Higher layers do not replace lower layers; they restrict the same state space further.
 - **Classical baseline**: a numpy-era baseline artifact/result family. Useful as a baseline and negative control, not the target substrate. Its public status label still has to be checked separately (`exists`, `runs`, `passes local rerun`, or `canonical by process`).
-- **Canonical sim**: a deep, current-phase sim that uses PyTorch as the computation substrate and attempts the relevant proof/graph tools.
+- **Canonical sim / canonical by process**: a result status earned by fresh rerun, SIM_TEMPLATE-style structure, `classification`, non-empty tool manifest reasons, and claim-relevant load-bearing tool depth. It does not by itself mean `nonclassical`.
 - **Supporting work**: docs, manifests, audits, indexes, and migration helpers. These have lighter tool requirements than canonical sims.
 - **Relevance**: a tool may be omitted only if it cannot change the result or would be purely decorative. The omission must be explicit.
 
@@ -153,7 +156,7 @@ Required tool-role contract:
 - **Lean 4**: interactive theorem prover for math-side formalization above SMT level.
 - **TLAPS**: temporal logic model checking for ratchet safety/liveness properties.
 
-**Why:** Each tool carries a different ontological commitment. z3/cvc5 do constraint logic (non-classical). Clifford does geometric product (non-commutative). TopoNetX/GUDHI do topology (relational). geomstats does Riemannian geometry (intrinsic, not coordinate-first). e3nn does equivariant computation (symmetry-native). PyG does graph computation (non-Cartesian). Using them excludes classical defaults and admits non-classical structure.
+**Why:** Each tool carries a different mathematical commitment. z3/cvc5 do constraint logic. Clifford does geometric product. TopoNetX/GUDHI do topology. geomstats does Riemannian geometry. e3nn does equivariant computation. PyG does graph computation. A tool pressures a classical fallback only when the claim fails or cannot be certified without it and the result passes the sim contract; imports, wrappers, and parallel checks are decorative or supportive unless an ablation would break the claim.
 
 ## Rule 3: No engine jargon in sims
 Standard mathematical terms only. Z-dephasing, not Ti. X-rotation, not Fi. The Jungian labels are a Rosetta mapping applied only after the math has earned the relevant checks; they must not steer the computation layer.
@@ -191,6 +194,19 @@ This applies especially to:
 - differential / flux candidate layer
 - bridge / cut-state layer
 - later entropy / `Phi0` layers
+
+### Rule 4b: G-stack / nesting work is layered, not one giant sim
+
+The long-term target is a larger integrated sim made from layers of smaller sims. It must be built as:
+
+1. independent legos for the real math objects, operators, geometry, graph/proof surfaces, and constraints;
+2. local stack/nesting tests that ask which legos can coexist or must precede others;
+3. bounded couplings only after the parent legos are current and honest;
+4. larger integrated sims only after the lower layers have current receipts.
+
+For G-stack / G-tower / Hopf / Weyl / Pauli / Flux work, do not simulate only isolated geometries and do not jump straight to the whole stack. First establish each layer as a bounded lego with positive, negative, boundary, and claim-relevant tool checks. Then test the admissible nesting order and noncommutativity of compositions.
+
+LLM and subagent parallelism belongs in writing, auditing, repairing, and scouting bounded packets. Actual sim evidence comes from Python runners. Classical baselines may run more freely as baselines and controls, but they do not become nonclassical evidence or bridge permission.
 
 ## Rule 5: Two quality modes inside the active stage
 **Coverage mode**: mass independent lego construction. Each lego is a standalone building-block candidate. Breadth matters for coverage. A lego should pass its own positive and negative tests, but this mode does not by itself grant a stronger public truth label or closure claim.

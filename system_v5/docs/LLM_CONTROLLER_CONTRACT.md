@@ -46,15 +46,15 @@ Controllers must preserve this order and distinction:
 1. tool sims stay active
 2. tool-integration sims stay active
 3. lego sims stay active across the registry
-4. bounded coupling / coexistence exploration may run off strong local parents during this process
-5. exploratory coupling does not authorize higher-stage promotion
-6. bridge / axis / engine work remains late and gated
+4. classical baselines and controls may run more freely, but never as nonclassical or bridge evidence
+5. coupling / coexistence execution is after lego-stage completion by default
+6. any earlier pairwise/coexistence row must be an explicit bounded exception with named parent legos and no promotion claim
+7. exploratory coupling does not authorize higher-stage promotion
+8. bridge / axis / engine work remains late and gated
 
-Do not rewrite this into either:
-- "some locals are strong, so broad successor work can start"
-- "no coupling exploration is allowed until every lego row is complete"
+Do not rewrite this into "some locals are strong, so broad successor work can start."
 
-The allowed middle is bounded exploratory coupling off earned local parents, without label inflation or stage inflation.
+The allowed middle is narrow: record future coupling candidates while the lego stage is active, and run only explicit bounded exceptions when the parent legos, stop rule, and no-promotion boundary are named.
 
 ---
 
@@ -106,9 +106,9 @@ A breakthrough in the late-stage track does not close a gap in the foundation tr
 The correct research order is:
 
 1. keep shell-local lego coverage expanding across the registry
-2. allow bounded pairwise coupling exploration from already-strong local parents
-3. allow small coexistence tests where the parents are already honest and the claim stays bounded
-4. promote broader topology-variant / emergence work only when the parent local and exploratory coupling evidence are strong enough
+2. record bounded pairwise/coexistence candidates from already-strong local parents
+3. run an earlier pairwise/coexistence candidate only as an explicit bounded exception with named parents, stop rule, and no-promotion boundary
+4. promote broader topology-variant / emergence work only after parent local and coupling evidence are strong enough
 5. keep bridge claims — rho_AB, Xi, Phi0, Axis 0 — later than the exploratory coupling loop
 
 Do not treat exploratory coupling as proof that the coupling stage is earned.
@@ -137,6 +137,7 @@ Do not skip to bridge claims at all.
 
 When launching background agents:
 - Each agent gets a **bounded task** with explicit deliverables
+- Agents write, repair, audit, and enqueue bounded probes. They do not execute sims; executable evidence comes from the Python runner and result JSONs.
 - The controller does a **consolidation pass** after agent completion:
   - Check for overclaim (agent says "all pass" → verify the specific criteria)
   - Check for stale doc edits (agent edited a doc → verify the code gate was met first)

@@ -66,7 +66,8 @@ Authority surfaces used:
 - Tool sims stay active.
 - Tool-integration sims stay active.
 - Lego rows stay active, one bounded row at a time, across `17_actual_lego_registry.md`.
-- Bounded pairwise/coexistence exploration may run off the strongest already-simed local parents.
+- Pairwise/coexistence entries are deferred candidates by default while `stage_gate.json` says `active_stage=lego`.
+- An earlier pairwise/coexistence row may run only as an explicit bounded exception with named parent legos, named stop rule, and no promotion claim.
 - Do not treat exploratory coupling as permission for broad higher-stage promotion.
 - Flux stays derived and gated behind lower differential/chirality work.
 - Each queued batch should advance one of: lego completion, lego validation, assembly prerequisite clarity, or engine-readiness gating.
@@ -320,7 +321,16 @@ Fresh verified executions (2026-04-18):
 
 ## Recommended first execution batches
 
+Current selector: prefer tool-capability foundation / counterpart-forging first, then direct lego-completion / lego-normalization. The older batches below are construction-packet references; do not launch them as a broad queue. Choose one bounded packet or a tiny non-overlapping wave, then rerun, truth-audit, and controller-audit.
+
 Interpret these as construction packets, not as a list of sims to run for their own sake.
+
+### Batch 0 — current safe default
+- one proof/symbolic capability packet: z3, cvc5, or sympy
+- its baseline/reference counterpart if missing
+- its canonical tool-native counterpart if missing
+- one comparison note explaining what the tool adds
+- no coupling, bridge, axis, engine, cascade, or whole-stack work
 
 ### Batch 1
 - B2 carrier-admission audit/rerun surface

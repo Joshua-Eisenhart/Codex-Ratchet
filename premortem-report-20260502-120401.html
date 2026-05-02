@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Premortem Report: Three-Wave Wizard</title>
+<style>
+body{margin:0;background:#0a0e1a;color:#edf2ff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+main{max-width:1120px;margin:0 auto;padding:40px 22px}
+h1{font-size:34px;margin:0 0 8px}
+h2{font-size:22px;margin:34px 0 14px}
+h3{font-size:17px;margin:0 0 8px}
+.muted{color:#aab6d3}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:#11182b;border:1px solid #25314f;border-radius:8px;padding:18px}
+.synthesis{border-color:#60a5fa;background:#0f1b33}
+.tag{display:inline-block;font-size:12px;color:#07111f;background:#93c5fd;border-radius:999px;padding:3px 9px;margin-bottom:10px;font-weight:700}
+.accent1{border-top:4px solid #f97316}.accent2{border-top:4px solid #ef4444}.accent3{border-top:4px solid #eab308}.accent4{border-top:4px solid #22c55e}.accent5{border-top:4px solid #a78bfa}
+ul{padding-left:20px}.footer{margin-top:32px;padding-top:18px;border-top:1px solid #25314f;color:#aab6d3;font-size:13px}
+code{background:#17213a;padding:1px 5px;border-radius:4px}
+</style>
+</head>
+<body>
+<main>
+<h1>Premortem Report: Three-Wave Wizard</h1>
+<p class="muted">Premise: six months from now, the three-council Wizard redesign failed. This report works backward to harden the design before adoption.</p>
+
+<section class="grid">
+<div class="card synthesis"><span class="tag">Most likely failure</span><h3>Council wrapper sprawl</h3><p>The new councils become prettier labels around old voice/lane complexity unless role contracts and receipt boundaries are enforceable.</p></div>
+<div class="card synthesis"><span class="tag">Most dangerous failure</span><h3>Failure Council softens</h3><p>Unsupported decisions survive as caveated follow-ups, weakening the very gate meant to protect Wizard from overclaiming.</p></div>
+<div class="card synthesis"><span class="tag">Hidden assumption</span><h3>Cleaner structure creates cleaner behavior</h3><p>It will not. Behavior changes only if verdicts, canonical receipts, liveness state, and actionability are hard gates.</p></div>
+</section>
+
+<h2>Revised Three-Wave Design</h2>
+<div class="grid">
+<div class="card"><h3>Wave 1: Decision Council</h3><p>Choose one bounded move now, preserve one or two live alternatives, and freeze raw receipts before failure pressure begins.</p></div>
+<div class="card"><h3>Wave 2: Failure Council</h3><p>Read Decision raw receipts, not polished synthesis. Return <code>kill</code>, <code>quarantine</code>, <code>harden</code>, or <code>pass</code>.</p></div>
+<div class="card"><h3>Wave 3: Follow-up Council</h3><p>Generate divergent next lanes after Failure status, then audit to executable next moves with target, check, and done condition.</p></div>
+</div>
+
+<h2>Failure Cards</h2>
+<div class="grid">
+<div class="card accent1"><h3>Ceremonial Councils</h3><p><strong>Story:</strong> Each council rebuilt its own internal role matrix and the old sprawl hid behind cleaner names.</p><p><strong>Assumption:</strong> Visible simplification would simplify behavior.</p><p><strong>Warning:</strong> Councils name many roles without showing which claim changed.</p></div>
+<div class="card accent2"><h3>Soft Failure Gate</h3><p><strong>Story:</strong> Failure Council used caveats instead of blocking unsupported decisions.</p><p><strong>Assumption:</strong> Falsification would happen without mandatory verdict labels.</p><p><strong>Warning:</strong> Outputs say "risky" rather than <code>kill</code> or <code>quarantine</code>.</p></div>
+<div class="card accent3"><h3>Receipt Inflation</h3><p><strong>Story:</strong> Rerouting generated duplicate late receipts that inflated rigor while confusing accepted evidence.</p><p><strong>Assumption:</strong> More parallelism would beat coordination debt.</p><p><strong>Warning:</strong> Spawned counts outrank accepted canonical receipts.</p></div>
+<div class="card accent4"><h3>Prompt Theater</h3><p><strong>Story:</strong> Follow-ups sounded sharp but did not name file, command, check, owner, or done condition.</p><p><strong>Assumption:</strong> Better prompts naturally become executable actions.</p><p><strong>Warning:</strong> Many repeated labels, few changed files or verified results.</p></div>
+<div class="card accent5"><h3>Generic Hats Flatten Wizard</h3><p><strong>Story:</strong> Six Hats language displaced Popper, Factory, Systems, and route-truth audit.</p><p><strong>Assumption:</strong> Generic roles could preserve project-specific machinery.</p><p><strong>Warning:</strong> Outputs stop naming killed claims, bottlenecks, queue state, and receipt boundaries.</p></div>
+</div>
+
+<h2>Pre-Launch Checklist</h2>
+<ul>
+<li>Spike with a known-bad Decision claim and require Failure Council to return <code>kill</code>.</li>
+<li>Run one real repo decision through all three waves with liveness limits.</li>
+<li>Map every visible council slot to terminal receipt state.</li>
+<li>Require Follow-up outputs to include target, owner, check, done condition, and scout status.</li>
+<li>Repeat on a second task shape before promotion.</li>
+</ul>
+
+<div class="footer">Generated 2026-05-02 12:04:01 America/Los_Angeles. Premortemed: 3-wave Wizard architecture.</div>
+</main>
+</body>
+</html>

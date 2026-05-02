@@ -364,3 +364,22 @@
 # DONE 2026-05-02_00:52:37 sim_geomstats_so3_log_exp_micro (1s)
 # DONE 2026-05-02_00:52:44 sim_pyg_message_passing_autograd_micro (2s)
 # DONE 2026-05-02_00:52:50 sim_pytorch_density_entropy_gradient_micro (1s)
+
+# INTEGRATION_MICRO: {
+#   "tool_target": "cvc5 x z3",
+#   "function_surface": "cvc5 Solver.assertFormula/checkSat/getValue and z3 SolverFor('QF_LIA').add/check/model over shared QF_LIA fixtures",
+#   "micro_claim": "cvc5 and z3 agree on bounded QF_LIA SAT/UNSAT verdicts and exact SAT witnesses for the same tiny fixtures",
+#   "lego_target": "minimal two-solver arithmetic agreement fixture below lego promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [
+#     "system_v4/probes/a2_state/sim_results/sim_cvc5_qf_lia_model_extraction_micro_results.json",
+#     "system_v4/probes/a2_state/sim_results/sim_z3_qf_lia_unsat_witness_micro_results.json"
+#   ],
+#   "why_this_lego": "the second-wave ledger already names cvc5-z3 UNSAT agreement, and this row couples only the exact prior QF_LIA function receipts",
+#   "positive_case": "both solvers return SAT with x=7, y=3 for x+y=10 and x-y=4",
+#   "negative_case": "both solvers return UNSAT for x>0 and x<0",
+#   "boundary_case": "both solvers admit edge=0 under 0<=edge<=0 and reject the contradictory edge=1 add-on",
+#   "demotion_condition": "demote if prior receipts are not canonical/load-bearing, if verdicts diverge, or if witnesses disagree",
+#   "out_of_scope": ["lego promotion", "bridge claim", "axis claim", "whole-solver equivalence", "three-tool coupling"]
+# }
+# DONE 2026-05-02_11:26:17 sim_integration_cvc5_z3_unsat_agreement_micro (0s)

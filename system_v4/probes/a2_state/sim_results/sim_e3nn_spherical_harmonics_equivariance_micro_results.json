@@ -1,0 +1,228 @@
+{
+  "name": "sim_e3nn_spherical_harmonics_equivariance_micro",
+  "probe_family": "e3nn_spherical_harmonics_equivariance_micro",
+  "constraint_set": "tiny_so3_o3_spherical_harmonics_vector_fixtures",
+  "classification": "canonical",
+  "tool_function_scope": "tool_function_micro_only",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "PyTorch is supportive: tensors hold the tiny vector fixtures, orthogonal matrices, and numeric pass/fail comparisons."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this function micro isolates e3nn.o3.spherical_harmonics on tiny SO(3)/O(3) vector fixtures; proof, topology, GNN layers, convolution, lego promotion, bridge, axis, and operator-geometry claims are out of scope."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this function micro isolates e3nn.o3.spherical_harmonics on tiny SO(3)/O(3) vector fixtures; proof, topology, GNN layers, convolution, lego promotion, bridge, axis, and operator-geometry claims are out of scope."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this function micro isolates e3nn.o3.spherical_harmonics on tiny SO(3)/O(3) vector fixtures; proof, topology, GNN layers, convolution, lego promotion, bridge, axis, and operator-geometry claims are out of scope."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this function micro isolates e3nn.o3.spherical_harmonics on tiny SO(3)/O(3) vector fixtures; proof, topology, GNN layers, convolution, lego promotion, bridge, axis, and operator-geometry claims are out of scope."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this function micro isolates e3nn.o3.spherical_harmonics on tiny SO(3)/O(3) vector fixtures; proof, topology, GNN layers, convolution, lego promotion, bridge, axis, and operator-geometry claims are out of scope."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this function micro isolates e3nn.o3.spherical_harmonics on tiny SO(3)/O(3) vector fixtures; proof, topology, GNN layers, convolution, lego promotion, bridge, axis, and operator-geometry claims are out of scope."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "e3nn is load-bearing: o3.spherical_harmonics computes the features under test and o3.Irreps.D_from_matrix supplies the matching SO(3)/O(3) representation for equivariance checks."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this function micro isolates e3nn.o3.spherical_harmonics on tiny SO(3)/O(3) vector fixtures; proof, topology, GNN layers, convolution, lego promotion, bridge, axis, and operator-geometry claims are out of scope."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this function micro isolates e3nn.o3.spherical_harmonics on tiny SO(3)/O(3) vector fixtures; proof, topology, GNN layers, convolution, lego promotion, bridge, axis, and operator-geometry claims are out of scope."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this function micro isolates e3nn.o3.spherical_harmonics on tiny SO(3)/O(3) vector fixtures; proof, topology, GNN layers, convolution, lego promotion, bridge, axis, and operator-geometry claims are out of scope."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this function micro isolates e3nn.o3.spherical_harmonics on tiny SO(3)/O(3) vector fixtures; proof, topology, GNN layers, convolution, lego promotion, bridge, axis, and operator-geometry claims are out of scope."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "l1_so3_rotation_equivariance": {
+      "passed": true,
+      "max_equivariance_error": 4.6055479840934055e-07,
+      "tolerance": 1e-05,
+      "fixture": "Y_1(Rx) equals D^1(R) Y_1(x) on three tiny vectors",
+      "e3nn_irrep": "1x1o"
+    },
+    "l2_so3_rotation_equivariance": {
+      "passed": true,
+      "max_equivariance_error": 8.474024988380791e-07,
+      "tolerance": 1e-05,
+      "fixture": "Y_2(Rx) equals D^2(R) Y_2(x) on three tiny vectors",
+      "e3nn_irrep": "1x2e"
+    },
+    "declared_output_widths_match_degrees": {
+      "passed": true,
+      "observed_shapes": {
+        "l0": [
+          3,
+          1
+        ],
+        "l1": [
+          3,
+          3
+        ],
+        "l2": [
+          3,
+          5
+        ]
+      },
+      "expected_shapes": {
+        "l0": [
+          3,
+          1
+        ],
+        "l1": [
+          3,
+          3
+        ],
+        "l2": [
+          3,
+          5
+        ]
+      }
+    }
+  },
+  "negative": {
+    "untransformed_features_do_not_fake_rotation_equivariance": {
+      "passed": true,
+      "untransformed_feature_error": 0.9980177496015342,
+      "exclusion_note": "The receipt must not pass by comparing rotated inputs to unchanged spherical harmonic features."
+    },
+    "wrong_representation_orientation_is_excluded": {
+      "passed": true,
+      "wrong_orientation_error": 3.053304158976229,
+      "exclusion_note": "For this row-vector fixture, the matching e3nn D_from_matrix action uses the transpose on the right."
+    },
+    "malformed_vector_width_is_rejected": {
+      "passed": true,
+      "expected": "spherical_harmonics input vectors require last dimension 3",
+      "bad_input_shape": [
+        2,
+        2
+      ],
+      "error_type": "IndexError",
+      "error_message": "index 2 is out of bounds for dimension 1 with size 2"
+    }
+  },
+  "boundary": {
+    "l0_o3_reflection_invariant_boundary": {
+      "passed": true,
+      "max_equivariance_error": 0.0,
+      "boundary_note": "Degree-0 spherical harmonics remain invariant under a tiny O(3) reflection."
+    },
+    "l1_o3_inversion_odd_parity_boundary": {
+      "passed": true,
+      "max_equivariance_error": 0.0,
+      "sample_y1": [
+        [
+          0.4629100498862757,
+          0.9258200997725514,
+          1.3887301496588271
+        ]
+      ],
+      "sample_inverted_y1": [
+        [
+          -0.4629100498862757,
+          -0.9258200997725514,
+          -1.3887301496588271
+        ]
+      ],
+      "boundary_note": "Degree-1 harmonics have odd parity under inversion in this fixture."
+    },
+    "l2_o3_inversion_even_parity_boundary": {
+      "passed": true,
+      "max_equivariance_error": 0.0,
+      "boundary_note": "Degree-2 harmonics have even parity under inversion in this fixture."
+    },
+    "zero_batch_preserves_l1_width": {
+      "passed": true,
+      "observed_shape": [
+        0,
+        3
+      ],
+      "expected_shape": [
+        0,
+        3
+      ],
+      "boundary_note": "An empty vector batch preserves the declared l=1 output width."
+    }
+  },
+  "surviving_alternatives": [
+    "Other e3nn O(3) operations may remain useful; this micro receipt only covers o3.spherical_harmonics on tiny SO(3)/O(3) vector fixtures."
+  ],
+  "claim_ceiling": "tool_function_micro_only",
+  "next_lego_target": "minimal spherical-harmonics equivariance fixture before geometry or operator equivariance promotion",
+  "promotion_condition": "requires a later admitted downstream row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote any lego",
+  "blocked_until": "blocked until a downstream queue row declares the exact geometry or operator target, parent receipt use, and active stage gate for promotion",
+  "demotion_condition": "Demote e3nn for this function surface if o3.spherical_harmonics returns incorrect l=0/l=1/l=2 widths, fails the tiny SO(3)/O(3) D_from_matrix equivariance checks, silently accepts malformed non-3D vector inputs, or lets wrong/untransformed representation paths pass.",
+  "out_of_scope": [
+    "no learned GNN",
+    "no e3nn convolution",
+    "no operator-geometry promotion",
+    "no lego promotion",
+    "no tool-tool coupling",
+    "no bridge claim",
+    "no axis claim",
+    "no broad equivariance proof",
+    "no proof of the whole e3nn library"
+  ],
+  "criteria_checked": [
+    "spherical_harmonics returns declared widths for l=0, l=1, and l=2",
+    "l=1 harmonics satisfy tiny SO(3) rotation equivariance",
+    "l=2 harmonics satisfy tiny SO(3) rotation equivariance",
+    "l=0, l=1, and l=2 fixtures satisfy bounded O(3) reflection/inversion behavior",
+    "wrong and untransformed comparison paths fail",
+    "malformed vector width is rejected",
+    "zero-batch l=1 boundary preserves output width"
+  ],
+  "summary": {
+    "passed": 10,
+    "total": 10
+  },
+  "all_pass": true
+}

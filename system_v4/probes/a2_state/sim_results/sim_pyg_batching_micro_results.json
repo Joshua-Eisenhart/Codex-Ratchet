@@ -1,0 +1,289 @@
+{
+  "name": "sim_pyg_batching_micro",
+  "probe_family": "pyg_batching_micro",
+  "constraint_set": "tiny_data_fixtures_batch_from_data_list",
+  "classification": "canonical",
+  "scope": "tool_function_micro_only",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "PyTorch is supportive: tensors provide the tiny graph fixtures and expected batched values checked against PyG output."
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "PyG is load-bearing: Batch.from_data_list is the only API surface under test and supplies the offset edge_index, batch vector, and ptr."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates PyG Batch.from_data_list on tiny Data fixtures; proof tools, topology tools, equivariance tools, and graph-cell promotion are out of scope."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates PyG Batch.from_data_list on tiny Data fixtures; proof tools, topology tools, equivariance tools, and graph-cell promotion are out of scope."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates PyG Batch.from_data_list on tiny Data fixtures; proof tools, topology tools, equivariance tools, and graph-cell promotion are out of scope."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates PyG Batch.from_data_list on tiny Data fixtures; proof tools, topology tools, equivariance tools, and graph-cell promotion are out of scope."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates PyG Batch.from_data_list on tiny Data fixtures; proof tools, topology tools, equivariance tools, and graph-cell promotion are out of scope."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates PyG Batch.from_data_list on tiny Data fixtures; proof tools, topology tools, equivariance tools, and graph-cell promotion are out of scope."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates PyG Batch.from_data_list on tiny Data fixtures; proof tools, topology tools, equivariance tools, and graph-cell promotion are out of scope."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates PyG Batch.from_data_list on tiny Data fixtures; proof tools, topology tools, equivariance tools, and graph-cell promotion are out of scope."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates PyG Batch.from_data_list on tiny Data fixtures; proof tools, topology tools, equivariance tools, and graph-cell promotion are out of scope."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates PyG Batch.from_data_list on tiny Data fixtures; proof tools, topology tools, equivariance tools, and graph-cell promotion are out of scope."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": "load_bearing",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "batch_offsets_second_graph_edge_index": {
+      "passed": true,
+      "expected_edge_index": [
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          1,
+          2,
+          4
+        ]
+      ],
+      "observed_edge_index": [
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          1,
+          2,
+          4
+        ]
+      ],
+      "fixture_note": "graph_b edge 0->1 is shifted to global edge 3->4"
+    },
+    "batch_concatenates_node_features": {
+      "passed": true,
+      "expected_x": [
+        [
+          1.0
+        ],
+        [
+          2.0
+        ],
+        [
+          3.0
+        ],
+        [
+          5.0
+        ],
+        [
+          7.0
+        ]
+      ],
+      "observed_x": [
+        [
+          1.0
+        ],
+        [
+          2.0
+        ],
+        [
+          3.0
+        ],
+        [
+          5.0
+        ],
+        [
+          7.0
+        ]
+      ]
+    },
+    "batch_records_graph_membership": {
+      "passed": true,
+      "expected_batch": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "observed_batch": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "expected_ptr": [
+        0,
+        3,
+        5
+      ],
+      "observed_ptr": [
+        0,
+        3,
+        5
+      ]
+    },
+    "batch_preserves_graph_level_targets": {
+      "passed": true,
+      "expected_y": [
+        10,
+        20
+      ],
+      "observed_y": [
+        10,
+        20
+      ]
+    }
+  },
+  "negative": {
+    "raw_concatenation_does_not_match_pyg_offsets": {
+      "passed": true,
+      "stale_unoffset_edge_index": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          2,
+          1
+        ]
+      ],
+      "pyg_edge_index": [
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          1,
+          2,
+          4
+        ]
+      ],
+      "exclusion_note": "Batch.from_data_list must not leave later graph edge indexes in local coordinates."
+    },
+    "single_membership_vector_excluded": {
+      "passed": true,
+      "wrong_membership": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "pyg_batch": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "exclusion_note": "The output is a disjoint batch, not one unlabeled merged graph."
+    }
+  },
+  "boundary": {
+    "single_graph_empty_edge_batch_is_well_formed": {
+      "passed": true,
+      "num_graphs": 1,
+      "num_nodes": 1,
+      "edge_index_shape": [
+        2,
+        0
+      ],
+      "batch": [
+        0
+      ],
+      "ptr": [
+        0,
+        1
+      ]
+    },
+    "empty_data_list_rejected": {
+      "passed": true,
+      "expected": "Batch.from_data_list requires at least one Data object",
+      "error_type": "IndexError"
+    }
+  },
+  "surviving_alternatives": [
+    "PyG Data loaders, HeteroData batching, message passing, training loops, and graph-cell uses remain separate future surfaces."
+  ],
+  "claim_ceiling": "tool_function_micro_only",
+  "next_lego_target": "minimal PyG Data batching fixture before graph-native or graph-cell promotion",
+  "promotion_condition": "requires a later admitted downstream row that names this exact function receipt and passes strict runner admission; this MICRO row does not promote any lego",
+  "blocked_until": "blocked until a downstream queue row declares the exact graph target, parent receipt use, and active stage gate for promotion",
+  "demotion_condition": "Demote PyG for this batching surface if Batch.from_data_list stops offsetting graph-local edge indexes, loses graph membership metadata, or silently accepts an empty data list as a meaningful batch.",
+  "out_of_scope": [
+    "no training",
+    "no HeteroData use",
+    "no e3nn coupling",
+    "no graph-cell promotion",
+    "no bridge claim",
+    "no axis claim",
+    "no proof of the whole PyG library"
+  ],
+  "criteria_checked": [
+    "node feature concatenation",
+    "edge_index offsetting across Data fixtures",
+    "graph membership vector and ptr construction",
+    "graph-level target preservation",
+    "single empty-edge graph boundary",
+    "empty data list rejection"
+  ],
+  "summary": {
+    "passed": 8,
+    "total": 8
+  },
+  "all_pass": true
+}

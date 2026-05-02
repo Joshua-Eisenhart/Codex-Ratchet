@@ -221,15 +221,33 @@ receipt-validate-strict:
 receipt-reconcile:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/reconcile_state.py $(if $(BASENAME),--basename $(BASENAME),) $(if $(SINCE),--since $(SINCE),)
 
+# Reconcile Tier A, second-wave, and Tier B queue DONE rows against receipts and ledger loopback
+receipt-reconcile-all-c:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/reconcile_state.py --queue-preset all-c $(if $(BASENAME),--basename $(BASENAME),) $(if $(SINCE),--since $(SINCE),)
+
 # Strict reconciliation gate for a named row or bounded recent batch
 receipt-reconcile-strict:
 	@test -n "$(BASENAME)$(SINCE)" || (echo "BASENAME or SINCE is required for strict reconciliation"; exit 2)
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/reconcile_state.py --require-clean $(if $(BASENAME),--basename $(BASENAME),) $(if $(SINCE),--since $(SINCE),)
 
+# Strict All-C reconciliation gate for Tier A, second-wave, and Tier B rows
+receipt-reconcile-all-c-strict:
+	@test -n "$(BASENAME)$(SINCE)" || (echo "BASENAME or SINCE is required for strict All-C reconciliation"; exit 2)
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/reconcile_state.py --queue-preset all-c --require-clean $(if $(BASENAME),--basename $(BASENAME),) $(if $(SINCE),--since $(SINCE),)
+
 # Strict reconciliation with demotion/scope-ceiling fields required
 receipt-reconcile-scope-strict:
 	@test -n "$(BASENAME)$(SINCE)" || (echo "BASENAME or SINCE is required for strict scope reconciliation"; exit 2)
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/reconcile_state.py --require-clean --strict-scope $(if $(BASENAME),--basename $(BASENAME),) $(if $(SINCE),--since $(SINCE),)
+
+# Strict All-C reconciliation with demotion/scope-ceiling fields required
+receipt-reconcile-all-c-scope-strict:
+	@test -n "$(BASENAME)$(SINCE)" || (echo "BASENAME or SINCE is required for strict All-C scope reconciliation"; exit 2)
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/reconcile_state.py --queue-preset all-c --require-clean --strict-scope $(if $(BASENAME),--basename $(BASENAME),) $(if $(SINCE),--since $(SINCE),)
+
+# Advisory opt-in: include blocked Tier D rows in addition to All-C
+receipt-reconcile-all-c-with-tier-d:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/reconcile_state.py --queue-preset all-c --include-blocked-tier-d $(if $(BASENAME),--basename $(BASENAME),) $(if $(SINCE),--since $(SINCE),)
 
 # Report current sim stage-gate admissions
 stage-gate:
@@ -259,4 +277,4 @@ telegram:
 telegram-log:
 	tail -f /tmp/telegram_bot.log
 
-.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue runner-taxonomy-audit receipt-validate receipt-validate-strict receipt-reconcile receipt-reconcile-strict receipt-reconcile-scope-strict stage-gate stage-gate-claim lego-registry lego-normalize
+.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue runner-taxonomy-audit receipt-validate receipt-validate-strict receipt-reconcile receipt-reconcile-all-c receipt-reconcile-strict receipt-reconcile-all-c-strict receipt-reconcile-scope-strict receipt-reconcile-all-c-scope-strict receipt-reconcile-all-c-with-tier-d stage-gate stage-gate-claim lego-registry lego-normalize

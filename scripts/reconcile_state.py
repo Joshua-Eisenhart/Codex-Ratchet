@@ -29,6 +29,20 @@ AS_PROBE_RE = re.compile(r"\bas\s+(sim_[A-Za-z0-9_]+)\b")
 TODO_RE = re.compile(r"^#\s*TODO\s+(.+)$")
 PACKET_START_RE = re.compile(r"^#\s*(MICRO|INTEGRATION_MICRO|BOUND):\s*(.*)$")
 
+QUEUE_PRESETS = {
+    "tier-a": (
+        "system_v5/ops/queue_tier_a.txt",
+        "system_v5/ops/queue_tier_a_second_wave.txt",
+    ),
+    "all-c": (
+        "system_v5/ops/queue_tier_a.txt",
+        "system_v5/ops/queue_tier_a_second_wave.txt",
+        "system_v5/ops/queue_tier_b.txt",
+    ),
+}
+
+CURRENT_RECEIPT_CONTRACT_START = "2026-05-01"
+
 MICRO_REQUIRED_FIELDS = {
     "tool_target",
     "function_surface",
@@ -55,6 +69,8 @@ BOUND_REQUIRED_FIELDS = {
     "out_of_scope",
 }
 
+LEDGER_ONLY_PREFIXES = ("cap_rerun_", "manifest_repair_")
+
 
 def parse_args() -> argparse.Namespace:
     root = repo_root()
@@ -63,7 +79,18 @@ def parse_args() -> argparse.Namespace:
         "--queue",
         action="append",
         default=None,
-        help="Queue file to inspect. Defaults to Tier A and Tier A second wave.",
+        help="Queue file to inspect. Defaults to the selected queue preset.",
+    )
+    parser.add_argument(
+        "--queue-preset",
+        choices=sorted(QUEUE_PRESETS),
+        default="tier-a",
+        help="Queue preset to inspect when --queue is not provided.",
+    )
+    parser.add_argument(
+        "--include-blocked-tier-d",
+        action="store_true",
+        help="Include Tier D queue rows in addition to the selected preset. Tier D remains blocked by stage gate unless explicitly allowed.",
     )
     parser.add_argument(
         "--ledger",
@@ -94,6 +121,16 @@ def parse_args() -> argparse.Namespace:
         help="Limit DONE/FAIL rows to timestamps lexically >= this value.",
     )
     parser.add_argument(
+        "--include-legacy",
+        action="store_true",
+        help="Include rows before the current receipt-contract window.",
+    )
+    parser.add_argument(
+        "--include-superseded",
+        action="store_true",
+        help="Include older DONE/FAIL rows for the same queue item instead of checking only the latest terminal row.",
+    )
+    parser.add_argument(
         "--strict-scope",
         action="store_true",
         help="Require receipt scope ceiling fields as hard gates.",
@@ -107,10 +144,19 @@ def parse_args() -> argparse.Namespace:
 
 
 def default_queues(root: Path) -> list[Path]:
-    return [
-        root / "system_v5" / "ops" / "queue_tier_a.txt",
-        root / "system_v5" / "ops" / "queue_tier_a_second_wave.txt",
-    ]
+    return preset_queues(root, "tier-a", include_blocked_tier_d=False)
+
+
+def preset_queues(
+    root: Path,
+    preset: str,
+    *,
+    include_blocked_tier_d: bool,
+) -> list[Path]:
+    queue_texts = list(QUEUE_PRESETS[preset])
+    if include_blocked_tier_d:
+        queue_texts.append("system_v5/ops/queue_tier_d.txt")
+    return [root / queue for queue in queue_texts]
 
 
 def _result_basename(raw_basename: str, line: str) -> str:
@@ -200,18 +246,41 @@ def parse_queue(path: Path, root: Path) -> list[dict[str, Any]]:
     return rows
 
 
-def selected(row: dict[str, Any], basenames: set[str], since: str | None) -> bool:
+def selected(
+    row: dict[str, Any],
+    basenames: set[str],
+    since: str | None,
+    *,
+    include_legacy: bool,
+) -> bool:
     if row.get("kind") == "missing_queue":
         return True
     if row.get("status") not in {"DONE", "FAIL"}:
         return False
     timestamp = row.get("timestamp")
-    if since and isinstance(timestamp, str) and timestamp < since:
+    lower_bound = since
+    if not lower_bound and not basenames and not include_legacy:
+        lower_bound = CURRENT_RECEIPT_CONTRACT_START
+    if lower_bound and isinstance(timestamp, str) and timestamp < lower_bound:
         return False
     if not basenames:
         return True
     names = {str(row.get("basename")), str(row.get("result_basename"))}
     return bool(names & basenames)
+
+
+def latest_terminal_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    latest: dict[tuple[str, str], dict[str, Any]] = {}
+    passthrough: list[dict[str, Any]] = []
+    for row in rows:
+        if row.get("kind") == "missing_queue":
+            passthrough.append(row)
+            continue
+        key = (str(row.get("queue") or ""), str(row.get("basename") or ""))
+        previous = latest.get(key)
+        if previous is None or str(row.get("timestamp") or "") >= str(previous.get("timestamp") or ""):
+            latest[key] = row
+    return passthrough + list(latest.values())
 
 
 def read_text_or_empty(path: Path) -> str:
@@ -272,6 +341,13 @@ def _resolve_prior(path_text: str, root: Path) -> Path:
     if "/" not in path_text and not path_text.endswith("_results.json"):
         return result_dir(root) / f"{path_text}_results.json"
     return candidate
+
+
+def _ledger_only_work_item(raw_basename: str) -> str | None:
+    for prefix in LEDGER_ONLY_PREFIXES:
+        if raw_basename.startswith(prefix):
+            return raw_basename.removeprefix(prefix)
+    return None
 
 
 def reconcile_packet(
@@ -434,6 +510,31 @@ def reconcile_row(
     hard_findings.extend(packet_hard)
     warnings.extend(packet_warnings)
 
+    raw_basename = str(row.get("basename") or "")
+    result_name = str(result_basename or "")
+    ledger_only_tool = _ledger_only_work_item(raw_basename)
+    if ledger_only_tool:
+        facts["ledger_only_work_item"] = True
+        facts["ledger_only_tool"] = ledger_only_tool
+        exact_loopback = raw_basename in ledger_text
+        tool_row_loopback = f"**{ledger_only_tool}**" in ledger_text
+        facts["ledger_loopback_present"] = exact_loopback or tool_row_loopback
+        facts["ledger_row_name_present"] = facts["ledger_loopback_present"]
+        if not facts["ledger_loopback_present"]:
+            hard_findings.append(
+                {
+                    "kind": "ledger_loopback_missing",
+                    "severity": "hard",
+                    "needles": [raw_basename, f"**{ledger_only_tool}**"],
+                }
+            )
+        return {
+            "facts": facts,
+            "hard_findings": hard_findings,
+            "warnings": warnings,
+            "ok": not hard_findings,
+        }
+
     if row.get("status") == "FAIL":
         hard_findings.append({"kind": "queue_row_failed", "severity": "hard"})
         return {"facts": facts, "hard_findings": hard_findings, "warnings": warnings, "ok": False}
@@ -454,8 +555,6 @@ def reconcile_row(
         str(result_basename or ""),
         str(result_path.name),
     }
-    raw_basename = str(row.get("basename") or "")
-    result_name = str(result_basename or "")
     alias_used = bool(raw_basename and result_name and raw_basename != result_name)
     facts["alias_used"] = alias_used
     if alias_used:
@@ -482,7 +581,9 @@ def reconcile_row(
             {
                 "kind": "ledger_row_name_missing",
                 "severity": "hard",
-                "needles": sorted(needle for needle in required_ledger_needles if needle),
+                "needles": sorted(
+                    needle for needle in (raw_basename, result_name) if needle
+                ),
             }
         )
 
@@ -497,7 +598,16 @@ def reconcile_row(
 def main() -> int:
     args = parse_args()
     root = repo_root()
-    queues = [Path(q) for q in args.queue] if args.queue else default_queues(root)
+    if args.queue:
+        queues = [Path(q) for q in args.queue]
+        queue_preset = "custom"
+    else:
+        queues = preset_queues(
+            root,
+            args.queue_preset,
+            include_blocked_tier_d=args.include_blocked_tier_d,
+        )
+        queue_preset = args.queue_preset
     ledger_path = Path(args.ledger)
     stage_gate_path = Path(args.stage_gate)
     ledger_text = read_text_or_empty(ledger_path)
@@ -507,7 +617,13 @@ def main() -> int:
         rows.extend(parse_queue(queue, root))
 
     basenames = set(args.basename)
-    selected_rows = [row for row in rows if selected(row, basenames, args.since)]
+    selected_rows = [
+        row
+        for row in rows
+        if selected(row, basenames, args.since, include_legacy=args.include_legacy)
+    ]
+    if not args.include_superseded:
+        selected_rows = latest_terminal_rows(selected_rows)
 
     records = [
         reconcile_row(row, root=root, ledger_text=ledger_text, strict_scope=args.strict_scope)
@@ -516,9 +632,14 @@ def main() -> int:
     report = make_report(records)
     report.update({
         "queues": [relpath(path, root) for path in queues],
+        "queue_preset": queue_preset,
+        "include_blocked_tier_d": bool(args.include_blocked_tier_d),
         "ledger": relpath(ledger_path, root),
         "stage_gate": load_stage_gate(stage_gate_path),
         "selected_rows": len(selected_rows),
+        "include_legacy": bool(args.include_legacy),
+        "include_superseded": bool(args.include_superseded),
+        "current_receipt_contract_start": CURRENT_RECEIPT_CONTRACT_START,
         "pending_todos": [row for row in rows if row.get("status") == "TODO"],
     })
 

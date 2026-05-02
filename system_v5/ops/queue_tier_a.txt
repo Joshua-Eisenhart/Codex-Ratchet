@@ -383,3 +383,21 @@
 #   "out_of_scope": ["lego promotion", "bridge claim", "axis claim", "whole-solver equivalence", "three-tool coupling"]
 # }
 # DONE 2026-05-02_11:26:17 sim_integration_cvc5_z3_unsat_agreement_micro (0s)
+
+# INTEGRATION_MICRO: {
+#   "tool_target": "networkx x pyg",
+#   "function_surface": "NetworkX DiGraph node/edge extraction to PyG Data plus torch_geometric.nn.MessagePassing.propagate",
+#   "micro_claim": "NetworkX directed graph nodes, edge orientation, isolated nodes, and incoming-neighbor sums survive the PyG handoff on a tiny fixture",
+#   "lego_target": "minimal graph handoff fixture below graph-cell lego promotion",
+#   "function_receipt": "new",
+#   "prior_function_receipts": [
+#     "system_v4/probes/a2_state/sim_results/sim_pyg_message_passing_autograd_micro_results.json"
+#   ],
+#   "why_this_lego": "the second-wave ledger names NetworkX-PyG graph roundtrip, and this row couples only the exact PyG MessagePassing receipt with a fresh bounded NetworkX handoff receipt",
+#   "positive_case": "a->b, b->c, c->a with features 1,2,3 gives incoming sums [3,1,2] in PyG matching NetworkX",
+#   "negative_case": "reversing edge orientation or duplicating/missing node mappings is excluded",
+#   "boundary_case": "an isolated NetworkX node remains present in PyG Data and receives zero incoming message",
+#   "demotion_condition": "demote if node mapping is not exact, edge orientation changes, isolated nodes disappear, or PyG messages diverge from NetworkX incoming-neighbor sums",
+#   "out_of_scope": ["graph-cell lego promotion", "density-matrix or bridge claim", "GNN training", "whole NetworkX/PyG proof", "coupling beyond this exact graph handoff"]
+# }
+# DONE 2026-05-02_13:22:32 sim_integration_networkx_pyg_graph_roundtrip_micro (3s)

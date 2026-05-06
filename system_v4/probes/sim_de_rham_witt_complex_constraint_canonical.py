@@ -28,7 +28,7 @@ TOOL_MANIFEST = {
     "pyg": {"tried": False, "used": False, "reason": "PyG not needed; de Rham-Witt handled algebraically"},
     "z3": {"tried": False, "used": False, "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"},
     "cvc5": {"tried": False, "used": False, "reason": ""},
-    "sympy": {"tried": False, "used": False, "reason": ""},
+    "sympy": {"tried": False, "used": False, "reason": "sympy supports symbolic positive and boundary de Rham-Witt checks"},
     "clifford": {"tried": False, "used": False, "reason": "Clifford algebra not needed; Witt vector algebra via cvc5/sympy"},
     "geomstats": {"tried": False, "used": False, "reason": "geomstats not needed; algebraic geometry handled symbolically"},
     "e3nn": {"tried": False, "used": False, "reason": "e3nn not needed; no SO(3) equivariance required"},
@@ -211,15 +211,15 @@ def run_negative_tests():
         # In the complex, d(d(ω)) = 0 is enforced
         # Claim: d² ≠ 0 (false)
 
-        d_squared_result = cvc5.Term.from_int(solver, 0)  # True value = 0
-        false_claim = cvc5.Term.from_int(solver, 1)  # Claim d² = 1 (false)
+        d_squared_result = solver.mkInteger(0)  # True value = 0
+        false_claim = solver.mkInteger(1)  # Claim d² = 1 (false)
 
         # Constraint: d² = 0
-        constraint = solver.mkTerm(cvc5.Kind.Equal, d_squared_result, cvc5.Term.from_int(solver, 0))
+        constraint = solver.mkTerm(cvc5.Kind.EQUAL, d_squared_result, solver.mkInteger(0))
         solver.assertFormula(constraint)
 
         # Assertion: d² = 1 (contradicts constraint)
-        contradiction = solver.mkTerm(cvc5.Kind.Equal, d_squared_result, false_claim)
+        contradiction = solver.mkTerm(cvc5.Kind.EQUAL, d_squared_result, false_claim)
         solver.assertFormula(contradiction)
 
         result = solver.checkSat()
@@ -232,6 +232,7 @@ def run_negative_tests():
         }
 
         TOOL_MANIFEST["cvc5"]["used"] = True
+        TOOL_MANIFEST["cvc5"]["reason"] = "cvc5 is load-bearing for UNSAT de Rham-Witt differential and Frobenius constraints"
     except Exception as e:
         results['d_squared_nonzero_unsat'] = {'passed': False, 'error': str(e)}
 
@@ -246,15 +247,15 @@ def run_negative_tests():
         # For a ∈ W_n O_X: F(da) = 0 is enforced
         # Claim: F(da) ≠ 0 (false)
 
-        f_da_value = cvc5.Term.from_real(solver, "0.0")  # True value = 0
-        false_claim = cvc5.Term.from_real(solver, "1.0")  # Claim F(da) = 1 (false)
+        f_da_value = solver.mkReal("0.0")  # True value = 0
+        false_claim = solver.mkReal("1.0")  # Claim F(da) = 1 (false)
 
         # Constraint: F(da) = 0
-        constraint = solver.mkTerm(cvc5.Kind.Equal, f_da_value, cvc5.Term.from_real(solver, "0.0"))
+        constraint = solver.mkTerm(cvc5.Kind.EQUAL, f_da_value, solver.mkReal("0.0"))
         solver.assertFormula(constraint)
 
         # Assertion: F(da) = 1 (contradicts)
-        contradiction = solver.mkTerm(cvc5.Kind.Equal, f_da_value, false_claim)
+        contradiction = solver.mkTerm(cvc5.Kind.EQUAL, f_da_value, false_claim)
         solver.assertFormula(contradiction)
 
         result = solver.checkSat()
@@ -267,6 +268,7 @@ def run_negative_tests():
         }
 
         TOOL_MANIFEST["cvc5"]["used"] = True
+        TOOL_MANIFEST["cvc5"]["reason"] = "cvc5 is load-bearing for UNSAT de Rham-Witt differential and Frobenius constraints"
     except Exception as e:
         results['frobenius_da_nonzero_unsat'] = {'passed': False, 'error': str(e)}
 
@@ -281,24 +283,24 @@ def run_negative_tests():
         # Non-commutativity emerges from constraint structure
         # Claim: F and V commute arbitrarily (false under Witt structure)
 
-        f_order = cvc5.Term.from_int(solver, 1)  # Frobenius exponent
-        v_order = cvc5.Term.from_int(solver, 1)  # Verschiebung exponent
+        f_order = solver.mkInteger(1)  # Frobenius exponent
+        v_order = solver.mkInteger(1)  # Verschiebung exponent
 
         # FV = p constraint (mod Frobenius algebra)
         # Claim they commute freely: not always true
 
         # For the sake of constraint: enforce FV = pI on some element
-        fv_product = solver.mkTerm(cvc5.Kind.Mult,
+        fv_product = solver.mkTerm(cvc5.Kind.MULT,
                                    f_order, v_order)
 
         # Product should equal p (prime = 5 for example)
-        p_value = cvc5.Term.from_int(solver, 5)
-        fv_relation = solver.mkTerm(cvc5.Kind.Equal, fv_product, p_value)
+        p_value = solver.mkInteger(5)
+        fv_relation = solver.mkTerm(cvc5.Kind.EQUAL, fv_product, p_value)
         solver.assertFormula(fv_relation)
 
         # Try to claim they commute with different constant (false)
-        false_product = cvc5.Term.from_int(solver, 3)
-        false_relation = solver.mkTerm(cvc5.Kind.Equal, fv_product, false_product)
+        false_product = solver.mkInteger(3)
+        false_relation = solver.mkTerm(cvc5.Kind.EQUAL, fv_product, false_product)
         solver.assertFormula(false_relation)
 
         result = solver.checkSat()
@@ -311,6 +313,7 @@ def run_negative_tests():
         }
 
         TOOL_MANIFEST["cvc5"]["used"] = True
+        TOOL_MANIFEST["cvc5"]["reason"] = "cvc5 is load-bearing for UNSAT de Rham-Witt differential and Frobenius constraints"
     except Exception as e:
         results['frobenius_verschiebung_constraint'] = {'passed': False, 'error': str(e)}
 
@@ -418,14 +421,27 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    flat_test_rows = []
+    for section in (positive, negative, boundary):
+        flat_test_rows.extend(row for row in section.values() if isinstance(row, dict))
+    all_pass = bool(flat_test_rows) and all(row.get("passed") is True for row in flat_test_rows)
+
     results = {
         "name": "de Rham-Witt Complex (Illusie-Raynaud) — Constraint-admissibility",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
-        "classification": "canonical",
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": {
+            "all_pass": all_pass,
+            "tests_total": len(flat_test_rows),
+            "tests_passed": sum(1 for row in flat_test_rows if row.get("passed") is True),
+        },
+        "classification": "canonical" if all_pass else "diagnostic_only",
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

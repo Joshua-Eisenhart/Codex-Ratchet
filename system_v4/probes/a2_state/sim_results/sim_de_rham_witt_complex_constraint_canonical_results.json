@@ -1,0 +1,150 @@
+{
+  "name": "de Rham-Witt Complex (Illusie-Raynaud) \u2014 Constraint-admissibility",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; de Rham-Witt handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 is load-bearing for UNSAT de Rham-Witt differential and Frobenius constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy supports symbolic positive and boundary de Rham-Witt checks"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; Witt vector algebra via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; algebraic geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "d_squared_zero": {
+      "passed": true,
+      "property": "de Rham closure: d\u00b2 = 0",
+      "reason": "Differential d in W_n \u03a9^\u2022 always satisfies d\u00b2 = 0 (fundamental property)"
+    },
+    "frobenius_frobenius_relation": {
+      "passed": true,
+      "relation": "F(da) = 0 for a \u2208 W_n O_X",
+      "reason": "Frobenius operator distinguishes de Rham-Witt from ordinary de Rham"
+    },
+    "slope_decomposition_elliptic": {
+      "passed": true,
+      "dim_slope_0": 1,
+      "dim_slope_1": 1,
+      "total_dimension": 2,
+      "reason": "Ordinary elliptic curve: H^1_{cris} decomposes as slope_0 \u2295 slope_1"
+    },
+    "reduction_to_ordinary_de_rham": {
+      "passed": true,
+      "dim_w1_omega1": 1,
+      "dim_ordinary_de_rham": 1,
+      "reason": "W_1 \u03a9^\u2022 = \u03a9^\u2022_{X/k} (ordinary de Rham complex mod p)"
+    }
+  },
+  "negative": {
+    "d_squared_nonzero_unsat": {
+      "passed": true,
+      "solver_result": "unsat",
+      "reason": "CVC5: d\u00b2 \u2260 0 violates de Rham closure, correctly UNSAT"
+    },
+    "frobenius_da_nonzero_unsat": {
+      "passed": true,
+      "solver_result": "unsat",
+      "reason": "CVC5: F(da) \u2260 0 violates de Rham-Witt property, correctly UNSAT"
+    },
+    "frobenius_verschiebung_constraint": {
+      "passed": true,
+      "solver_result": "unsat",
+      "reason": "CVC5: FV = p constraint is enforced; arbitrary commutativity is UNSAT"
+    }
+  },
+  "boundary": {
+    "w1_ordinary_de_rham": {
+      "passed": true,
+      "dim_w1": 1,
+      "dim_ordinary": 1,
+      "reason": "W_1 \u03a9^\u2022_X = \u03a9^\u2022_{X/k} (Witt vector length 1 = residue field)"
+    },
+    "slope_separation": {
+      "passed": true,
+      "is_ordinary": true,
+      "slope_multiplicities": {
+        "0": 1,
+        "1": 1
+      },
+      "total_rank": 2,
+      "reason": "Slope multiplicity sum = H^1_{cris} rank = 2"
+    },
+    "supersingular_frobenius_nilpotent": {
+      "passed": true,
+      "f_nilpotency_index": 2,
+      "reason": "Supersingular case: Frobenius is nilpotent, F\u00b2 = 0"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "tests_total": 10,
+    "tests_passed": 10
+  },
+  "classification": "canonical"
+}

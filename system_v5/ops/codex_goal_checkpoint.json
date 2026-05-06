@@ -1,45 +1,47 @@
 {
-  "last_updated": "2026-05-06T15:41:52-07:00",
+  "last_updated": "2026-05-06T15:47:29-07:00",
   "goal_state_scope": "main-thread active goal; current git branch codex/source-cleanup-checkpoint-20260506",
   "current_stage": "lego / conformance repair before broad coupling",
   "last_completed_checkpoint": {
-    "commit": "6aabae595",
-    "label": "repair: lattice distributive cvc5 witness",
+    "commit": "c4ac62f6b",
+    "label": "repair: p-adic comparison cvc5 constraints",
     "status": "passes local rerun",
     "evidence": [
-      "MPLCONFIGDIR=/tmp/codex-mpl NUMBA_CACHE_DIR=/tmp/codex-numba /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v4/probes/sim_lattice_distributive_constraint_canonical.py",
-      "cvc5 UNSAT checks for bounded Boolean and chain distributive lattices.",
-      "cvc5 SAT checks for non-distributive M3, including fixed atom witness lhs=1 rhs=0.",
-      "make truth-audit: current result estate files_scanned=3 hard_finding_count=0 warning_finding_count=0",
-      "pre-commit canonical manifest hook passed for sim_lattice_distributive_constraint_canonical_results.json"
+      "MPLCONFIGDIR=/tmp/codex-mpl NUMBA_CACHE_DIR=/tmp/codex-numba /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v4/probes/sim_p_adic_comparison_crystalline_constraint_canonical.py",
+      "cvc5 SAT admissible rows for Hodge-Tate weights 0/1, D_cris dimension 2, and cyclotomic weight 1.",
+      "cvc5 UNSAT violation rows for Hodge-Tate weight 2, D_cris dimension 3, and cyclotomic weight 2.",
+      "cvc5 SAT mutation flips after removing the structural Hodge-Tate, D_cris, and cyclotomic constraints.",
+      "make truth-audit: current result estate files_scanned=4 hard_finding_count=0 warning_finding_count=0",
+      "pre-commit canonical manifest hook passed for sim_p_adic_comparison_crystalline_constraint_canonical_results.json"
     ]
   },
-  "next_obligation": "Repair the next known hard truth-audit finding from the prior full list: sim_p_adic_comparison_crystalline_constraint_canonical_results.json cvc5 load_bearing_without_used.",
+  "next_obligation": "Repair the next known hard truth-audit finding from the prior full list: sim_rosetta_su2_so3_double_cover_invariant_results.json scipy load_bearing_without_used.",
   "blockers": [
     "Tier D/E, engine, axis, bridge, and broad coupling claims remain blocked by stage gate.",
-    "Prior full hard-finding list had 5 known findings before this repair; after removing the lattice cvc5 item, 4 known hard findings remain to repair when their result artifacts are present.",
-    "Current make truth-audit scanned only the currently present result estate (files_scanned=3), so it proves the committed local repair set passes but is not a restored full-estate audit."
+    "Prior full hard-finding list had 4 known findings before this repair; after removing the p-adic comparison cvc5 item, 3 known hard findings remain to repair when their result artifacts are present.",
+    "Current make truth-audit scanned only the currently present result estate (files_scanned=4), so it proves the committed local repair set passes but is not a restored full-estate audit."
   ],
   "artifacts": [
-    "system_v4/probes/sim_lattice_distributive_constraint_canonical.py",
-    "system_v4/probes/a2_state/sim_results/sim_lattice_distributive_constraint_canonical_results.json",
-    "/tmp/codex_claude_bridge/20260506T223640Z-premortem-audit-this-codex-ratchet-repair-target-82d7e5b2e751.receipt.json"
+    "system_v4/probes/sim_p_adic_comparison_crystalline_constraint_canonical.py",
+    "system_v4/probes/a2_state/sim_results/sim_p_adic_comparison_crystalline_constraint_canonical_results.json",
+    "/tmp/codex_claude_bridge/20260506T224413Z-premortem-audit-this-codex-ratchet-repair-target-7486b8e4f820.receipt.json"
   ],
   "verification_state": {
     "hypergraph_potential": "passes local rerun",
-    "truth_audit": "runs on current result estate; passes with files_scanned=3 and hard_finding_count=0; prior full-estate remainder is 4 known hard findings",
+    "truth_audit": "runs on current result estate; passes with files_scanned=4 and hard_finding_count=0; prior full-estate remainder is 3 known hard findings",
     "git_sync": "pending push after checkpoint update",
     "helper_process_audit": "passes local rerun; helper_process_count=0",
     "dilworth": "passes local rerun",
     "gerbe": "passes local rerun",
     "gtower_e_class_cartan": "passes local rerun",
-    "lattice_distributive": "passes local rerun"
+    "lattice_distributive": "passes local rerun",
+    "p_adic_comparison_crystalline": "passes local rerun"
   },
   "route_truth_state": {
-    "native_parents": "1 completed explorer parent: 019dff6f-c651-73a3-8fab-837eb654ddeb",
+    "native_parents": "1 completed explorer parent: 019dff76-b2a3-7ad2-9057-5492dad0183c",
     "native_children": "not run in this checkpoint",
     "claude_bridge": "Opus premortem/audit ran; external evidence only, not Codex-native child evidence",
-    "opus_verdict_applied": "accepted: rejected manifest-only repair, replaced weak consistency rows with cvc5 UNSAT/SAT finite-table checks, added pass/all_pass/status/summary aggregation, and made cvc5 used=true only after load-bearing outcomes"
+    "opus_verdict_applied": "accepted: rejected literal-contradiction cvc5 rows, replaced invalid API and hard-coded assertions with structural SAT/UNSAT rows plus mutation flips, and kept claim narrow as a bounded micro-constraint scaffold"
   },
   "child_capacity_state": "native parent completed; no child subagents launched for this bounded single-file repair",
   "browser_hygiene_state": "killed relaunched Computer Use/Playwright helpers; final helper_process_audit passes with helper_process_count=0",

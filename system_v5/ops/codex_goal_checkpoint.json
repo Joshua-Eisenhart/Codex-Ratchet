@@ -1,34 +1,34 @@
 {
-  "last_updated": "2026-05-06T15:53:28-07:00",
+  "last_updated": "2026-05-06T16:51:59-07:00",
   "goal_state_scope": "main-thread active goal; current git branch codex/source-cleanup-checkpoint-20260506",
   "current_stage": "lego / conformance repair before broad coupling",
   "last_completed_checkpoint": {
-    "commit": "7d61d890f",
-    "label": "repair: rosetta scipy quotient manifest",
+    "commit": "1cce16894",
+    "label": "repair: zorn bounded cvc5 witness",
     "status": "passes local rerun",
     "evidence": [
-      "MPLCONFIGDIR=/tmp/codex-mpl NUMBA_CACHE_DIR=/tmp/codex-numba /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v4/probes/sim_rosetta_su2_so3_double_cover_invariant.py",
-      "scipy.spatial Rotation computes SO(3) quotient classes from sampled SU(2) quaternions; scipy.stats.entropy computes the resulting entropy gap.",
-      "Clifford rotor path uses Cl(3) bivector coefficients and sign canonicalization for the paired SO(3) classes.",
-      "summary language narrowed to bounded classical-baseline fixture; no Rosetta/stage promotion claim.",
-      "make truth-audit: current result estate files_scanned=5 hard_finding_count=0 warning_finding_count=0",
-      "pre-commit manifest hook passed for sim_rosetta_su2_so3_double_cover_invariant_results.json as noncanonical/classical-baseline evidence"
+      "MPLCONFIGDIR=/tmp/codex-mpl NUMBA_CACHE_DIR=/tmp/codex-numba /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v4/probes/sim_zorns_lemma_constraint_canonical.py",
+      "cvc5 QF_LIA rows now certify only bounded finite-chain SAT/UNSAT and upper-bound mutation behavior.",
+      "Full Zorn's Lemma, AoC, bridge, axis, engine, and broad coupling claims were explicitly removed from the result summary.",
+      "TOOL_MANIFEST cvc5 is tried=true, used=true, and reasoned only after consumed SAT/UNSAT rows pass; sympy is supportive propositional-shape bookkeeping only.",
+      "make truth-audit: current result estate files_scanned=6 hard_finding_count=0 warning_finding_count=0",
+      "pre-commit manifest hook passed for sim_zorns_lemma_constraint_canonical_results.json as canonical evidence"
     ]
   },
-  "next_obligation": "Repair the next known hard truth-audit finding from the prior full list: sim_zorns_lemma_constraint_canonical_results.json cvc5 load_bearing_without_used.",
+  "next_obligation": "Repair the next known hard truth-audit finding from the prior full list: tool_integration_manim_results.json manim load_bearing_without_used, if that artifact is present or can be regenerated under the runner contract.",
   "blockers": [
     "Tier D/E, engine, axis, bridge, and broad coupling claims remain blocked by stage gate.",
-    "Prior full hard-finding list had 3 known findings before this repair; after removing the Rosetta scipy item, 2 known hard findings remain to repair when their result artifacts are present.",
-    "Current make truth-audit scanned only the currently present result estate (files_scanned=5), so it proves the committed local repair set passes but is not a restored full-estate audit."
+    "Prior full hard-finding list had 3 known findings before the Rosetta repair; after Rosetta and Zorn, 1 known hard finding remains to repair when its result artifact is present.",
+    "Current make truth-audit scanned only the currently present result estate (files_scanned=6), so it proves the committed local repair set passes but is not a restored full-estate audit."
   ],
   "artifacts": [
-    "system_v4/probes/sim_rosetta_su2_so3_double_cover_invariant.py",
-    "system_v4/probes/a2_state/sim_results/sim_rosetta_su2_so3_double_cover_invariant_results.json",
-    "/tmp/codex_claude_bridge/20260506T224937Z-premortem-audit-this-codex-ratchet-repair-target-0edf34c19aa7.receipt.json"
+    "system_v4/probes/sim_zorns_lemma_constraint_canonical.py",
+    "system_v4/probes/a2_state/sim_results/sim_zorns_lemma_constraint_canonical_results.json",
+    "/tmp/codex_claude_bridge/20260506T225824Z-codex-ratchet-opus-premortem-audit-target-repair-c427401035c9.receipt.json"
   ],
   "verification_state": {
     "hypergraph_potential": "passes local rerun",
-    "truth_audit": "runs on current result estate; passes with files_scanned=5 and hard_finding_count=0; prior full-estate remainder is 2 known hard findings",
+    "truth_audit": "runs on current result estate; passes with files_scanned=6 and hard_finding_count=0; prior full-estate remainder is 1 known hard finding",
     "git_sync": "pending push after checkpoint update",
     "helper_process_audit": "passes local rerun; helper_process_count=0",
     "dilworth": "passes local rerun",
@@ -36,13 +36,14 @@
     "gtower_e_class_cartan": "passes local rerun",
     "lattice_distributive": "passes local rerun",
     "p_adic_comparison_crystalline": "passes local rerun",
-    "rosetta_su2_so3_double_cover": "passes local rerun"
+    "rosetta_su2_so3_double_cover": "passes local rerun",
+    "zorn_bounded_chain_constraint": "passes local rerun"
   },
   "route_truth_state": {
-    "native_parents": "1 completed explorer parent: 019dff7c-035a-7c31-94de-580755d15135",
+    "native_parents": "1 completed explorer parent: 019dff82-d11a-7171-89da-89e0dddf7a38",
     "native_children": "not run in this checkpoint",
     "claude_bridge": "Opus premortem/audit ran; external evidence only, not Codex-native child evidence",
-    "opus_verdict_applied": "accepted: fixed missing scipy manifest/depth mismatch, made scipy quotient computation less tautological via Rotation-derived SO(3) classes, narrowed summary to classical-baseline fixture, and preserved no-promotion boundary"
+    "opus_verdict_applied": "accepted: avoided manifest-only repair, replaced overclaiming Zorn/AoC wording with bounded finite-chain SMT fixture, fixed SAT/UNSAT expectations, added mutation evidence, and preserved no-promotion boundary"
   },
   "child_capacity_state": "native parent completed; no child subagents launched for this bounded single-file repair",
   "browser_hygiene_state": "killed relaunched Computer Use/Playwright helpers; final helper_process_audit passes with helper_process_count=0",

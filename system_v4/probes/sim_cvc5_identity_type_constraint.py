@@ -15,6 +15,22 @@ import json
 import os
 import sys
 
+
+def _eq(cvc5_module, solver, left, right):
+    return solver.mkTerm(cvc5_module.Kind.EQUAL, left, right)
+
+
+def _not(cvc5_module, solver, term):
+    return solver.mkTerm(cvc5_module.Kind.NOT, term)
+
+
+def _implies(cvc5_module, solver, left, right):
+    return solver.mkTerm(cvc5_module.Kind.IMPLIES, left, right)
+
+
+def _geq(cvc5_module, solver, left, right):
+    return solver.mkTerm(cvc5_module.Kind.GEQ, left, right)
+
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================
@@ -90,8 +106,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:  # noqa: BLE001
+    TOOL_MANIFEST["clifford"]["reason"] = f"not used: optional import failed: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -163,10 +179,10 @@ def run_positive_tests():
 
         # J rule conclusion: P holds at (x, p) for any p : a = x
         # (specializing to refl case: x = a, p = refl a)
-        conclusion = solver.mkEqual(x, a)  # x must equal a for refl
+        conclusion = _eq(cvc5, solver, x, a)  # x must equal a for refl
 
         # J rule: premise → conclusion
-        j_rule = solver.mkImplies(premise, conclusion)
+        j_rule = _implies(cvc5, solver, premise, conclusion)
         solver.assertFormula(j_rule)
         solver.assertFormula(premise)
 
@@ -197,7 +213,7 @@ def run_positive_tests():
         solver2.assertFormula(P_on_refl)
 
         # J conclusion: if P on (a, refl), then P on (b, p)
-        j_conclusion = solver2.mkImplies(P_on_refl, P_on_p)
+        j_conclusion = _implies(cvc5, solver2, P_on_refl, P_on_p)
         solver2.assertFormula(j_conclusion)
 
         result2 = solver2.checkSat()
@@ -213,7 +229,7 @@ def run_positive_tests():
         solver3.setLogic("QF_LIA")
 
         # Type context
-        A = solver3.mkInt(1)  # type A
+        A = solver3.mkInteger(1)  # type A
         a = solver3.mkConst(solver3.getIntegerSort(), "a")  # element of A
         x = solver3.mkConst(solver3.getIntegerSort(), "x")  # element of A
 
@@ -223,11 +239,11 @@ def run_positive_tests():
         P_aa_refl = solver3.mkConst(solver3.getBooleanSort(), "P_aa_refl")
 
         # Both a and x are inhabitants of A
-        solver3.assertFormula(solver3.mkGe(a, solver3.mkInt(0)))
-        solver3.assertFormula(solver3.mkGe(x, solver3.mkInt(0)))
+        solver3.assertFormula(_geq(cvc5, solver3, a, solver3.mkInteger(0)))
+        solver3.assertFormula(_geq(cvc5, solver3, x, solver3.mkInteger(0)))
 
         # J rule: P_aa_refl → P_ab (when types match)
-        j_well_typed = solver3.mkImplies(P_aa_refl, P_ab)
+        j_well_typed = _implies(cvc5, solver3, P_aa_refl, P_ab)
         solver3.assertFormula(j_well_typed)
         solver3.assertFormula(P_aa_refl)
 
@@ -267,11 +283,11 @@ def run_negative_tests():
         solver = cvc5.Solver()
         solver.setLogic("QF_LIA")
 
-        a = solver.mkInt(0)
-        b = solver.mkInt(1)
+        a = solver.mkInteger(0)
+        b = solver.mkInteger(1)
 
         # Constraint: a ≠ b
-        solver.assertFormula(solver.mkNot(solver.mkEqual(a, b)))
+        solver.assertFormula(_not(cvc5, solver, _eq(cvc5, solver, a, b)))
 
         # Path p : a = b (exists)
         p_exists = solver.mkConst(solver.getBooleanSort(), "p_exists")
@@ -284,11 +300,11 @@ def run_negative_tests():
         solver.assertFormula(P_on_refl)
 
         # J rule: P_on_refl → P_on_p (required by J)
-        j_rule = solver.mkImplies(P_on_refl, P_on_p)
+        j_rule = _implies(cvc5, solver, P_on_refl, P_on_p)
         solver.assertFormula(j_rule)
 
         # But claim: NOT P_on_p (violates J)
-        solver.assertFormula(solver.mkNot(P_on_p))
+        solver.assertFormula(_not(cvc5, solver, P_on_p))
 
         result = solver.checkSat()
         results["test_1_j_property_violation"] = {
@@ -315,7 +331,7 @@ def run_negative_tests():
 
         # Well-typing constraint: J only applies to identity types
         # If non_identity is not an identity type, J application fails
-        j_requires_identity = solver2.mkImplies(
+        j_requires_identity = _implies(cvc5, solver2,
             non_identity,
             solver2.mkFalse()  # contradiction: non-identity cannot be used with J
         )
@@ -339,8 +355,8 @@ def run_negative_tests():
         solver3.setLogic("QF_LIA")
 
         # Type markers
-        type_A = solver3.mkInt(1)
-        type_B = solver3.mkInt(2)
+        type_A = solver3.mkInteger(1)
+        type_B = solver3.mkInteger(2)
 
         # Elements
         a = solver3.mkConst(solver3.getIntegerSort(), "a")
@@ -353,15 +369,15 @@ def run_negative_tests():
         x_type = type_B
 
         # Constraint: types differ
-        solver3.assertFormula(solver3.mkNot(solver3.mkEqual(a_type, x_type)))
+        solver3.assertFormula(_not(cvc5, solver3, _eq(cvc5, solver3, a_type, x_type)))
 
         # Path p : a = x requires both in same type
         # J type rule: (p : a = x) requires a : A, x : A (same type)
         path_p = solver3.mkConst(solver3.getBooleanSort(), "p_exists")
 
-        type_compatibility = solver3.mkImplies(
+        type_compatibility = _implies(cvc5, solver3,
             path_p,
-            solver3.mkEqual(a_type, x_type)  # path requires same type
+            _eq(cvc5, solver3, a_type, x_type)  # path requires same type
         )
         solver3.assertFormula(type_compatibility)
 
@@ -403,14 +419,14 @@ def run_boundary_tests():
         solver = cvc5.Solver()
         solver.setLogic("QF_LIA")
 
-        a = solver.mkInt(0)
-        b = solver.mkInt(0)  # a = b at level 0
+        a = solver.mkInteger(0)
+        b = solver.mkInteger(0)  # a = b at level 0
 
         # Property at level 0
         P = solver.mkConst(solver.getBooleanSort(), "P_at_level_0")
 
         # J at level 0: P(a, refl_a) implies P(a, refl_a) (reflexive)
-        j_at_level_0 = solver.mkImplies(P, P)
+        j_at_level_0 = _implies(cvc5, solver, P, P)
         solver.assertFormula(j_at_level_0)
         solver.assertFormula(P)
 
@@ -435,9 +451,9 @@ def run_boundary_tests():
         solver2.assertFormula(P1)
 
         # J applied at each level
-        solver2.assertFormula(solver2.mkImplies(P1, p1_exists))
-        solver2.assertFormula(solver2.mkImplies(p1_exists, p2_exists))
-        solver2.assertFormula(solver2.mkImplies(p2_exists, p3_exists))
+        solver2.assertFormula(_implies(cvc5, solver2, P1, p1_exists))
+        solver2.assertFormula(_implies(cvc5, solver2, p1_exists, p2_exists))
+        solver2.assertFormula(_implies(cvc5, solver2, p2_exists, p3_exists))
 
         result2 = solver2.checkSat()
         results["test_2_nested_path_iteration"] = {
@@ -459,7 +475,7 @@ def run_boundary_tests():
         unit_property = solver3.mkTrue()
 
         # J with vacuous property
-        j_vacuous = solver3.mkImplies(unit_property, unit_property)
+        j_vacuous = _implies(cvc5, solver3, unit_property, unit_property)
         solver3.assertFormula(j_vacuous)
 
         result3 = solver3.checkSat()
@@ -483,15 +499,42 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+
+    positive_passed = [
+        row.get("satisfiable") is True
+        for row in positive.values()
+        if isinstance(row, dict) and "satisfiable" in row
+    ]
+    negative_passed = [
+        row.get("is_unsat") is True
+        for row in negative.values()
+        if isinstance(row, dict) and "is_unsat" in row
+    ]
+    boundary_passed = [
+        row.get("satisfiable") is True
+        for row in boundary.values()
+        if isinstance(row, dict) and "satisfiable" in row
+    ]
+    pass_vector = positive_passed + negative_passed + boundary_passed
+    all_pass = bool(pass_vector) and all(pass_vector)
+
     results = {
         "name": "sim_cvc5_identity_type_constraint",
         "description": "cvc5 validates Martin-Löf J-eliminator: any property of refl holds for all paths",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
-        "classification": "canonical",
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": {
+            "all_pass": all_pass,
+            "tests_total": len(pass_vector),
+            "tests_passed": sum(1 for passed in pass_vector if passed),
+        },
+        "classification": "canonical" if all_pass else "diagnostic_only",
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

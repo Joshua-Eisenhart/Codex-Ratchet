@@ -81,8 +81,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:  # noqa: BLE001
+    TOOL_MANIFEST["clifford"]["reason"] = f"not used: optional import failed: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -147,14 +147,14 @@ def run_positive_tests():
         kappa = tm.mkConst(tm.getRealSort(), "kappa")
 
         # Setup: scaled identity
-        solver.assertFormula(tm.mkTerm(cvc5.Kind.Equal, A_norm, tm.mkReal("2.0")))
-        solver.assertFormula(tm.mkTerm(cvc5.Kind.Equal, A_inv_norm, tm.mkReal("0.5")))
+        solver.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, A_norm, tm.mkReal("2.0")))
+        solver.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, A_inv_norm, tm.mkReal("0.5")))
         solver.assertFormula(
-            tm.mkTerm(cvc5.Kind.Equal, kappa, tm.mkTerm(cvc5.Kind.Mult, A_norm, A_inv_norm))
+            tm.mkTerm(cvc5.Kind.EQUAL, kappa, tm.mkTerm(cvc5.Kind.MULT, A_norm, A_inv_norm))
         )
 
         # Constraint: κ ≥ 1
-        constraint = tm.mkTerm(cvc5.Kind.Ge, kappa, tm.mkReal("1.0"))
+        constraint = tm.mkTerm(cvc5.Kind.GEQ, kappa, tm.mkReal("1.0"))
         solver.assertFormula(constraint)
 
         result = solver.checkSat()
@@ -165,7 +165,8 @@ def run_positive_tests():
             "norm_A_inv": 0.5,
             "kappa": 1.0,
             "constraint_satisfied": 1.0 >= 1.0,
-            "cvc5_result": str(result)
+            "cvc5_result": str(result),
+            "pass": result.isSat(),
         })
 
         TOOL_MANIFEST["cvc5"]["used"] = True
@@ -189,13 +190,13 @@ def run_positive_tests():
         A_inv_norm_var = tm.mkConst(tm.getRealSort(), "A_inv_norm")
         kappa = tm.mkConst(tm.getRealSort(), "kappa")
 
-        solver.assertFormula(tm.mkTerm(cvc5.Kind.Equal, A_norm_var, tm.mkReal("2.0")))
-        solver.assertFormula(tm.mkTerm(cvc5.Kind.Equal, A_inv_norm_var, tm.mkReal("500000.0")))
+        solver.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, A_norm_var, tm.mkReal("2.0")))
+        solver.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, A_inv_norm_var, tm.mkReal("500000.0")))
         solver.assertFormula(
-            tm.mkTerm(cvc5.Kind.Equal, kappa, tm.mkTerm(cvc5.Kind.Mult, A_norm_var, A_inv_norm_var))
+            tm.mkTerm(cvc5.Kind.EQUAL, kappa, tm.mkTerm(cvc5.Kind.MULT, A_norm_var, A_inv_norm_var))
         )
 
-        constraint = tm.mkTerm(cvc5.Kind.Ge, kappa, tm.mkReal("1.0"))
+        constraint = tm.mkTerm(cvc5.Kind.GEQ, kappa, tm.mkReal("1.0"))
         solver.assertFormula(constraint)
 
         result = solver.checkSat()
@@ -206,7 +207,8 @@ def run_positive_tests():
             "norm_A_inv": 500000.0,
             "kappa": 1000000.0,
             "constraint_satisfied": 1000000.0 >= 1.0,
-            "cvc5_result": str(result)
+            "cvc5_result": str(result),
+            "pass": result.isSat(),
         })
 
         TOOL_MANIFEST["cvc5"]["used"] = True
@@ -228,13 +230,13 @@ def run_positive_tests():
         A_inv_norm = tm.mkConst(tm.getRealSort(), "A_inv_norm")
         kappa = tm.mkConst(tm.getRealSort(), "kappa")
 
-        solver.assertFormula(tm.mkTerm(cvc5.Kind.Equal, A_norm, tm.mkReal("1.0")))
-        solver.assertFormula(tm.mkTerm(cvc5.Kind.Equal, A_inv_norm, tm.mkReal("1.0")))
+        solver.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, A_norm, tm.mkReal("1.0")))
+        solver.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, A_inv_norm, tm.mkReal("1.0")))
         solver.assertFormula(
-            tm.mkTerm(cvc5.Kind.Equal, kappa, tm.mkTerm(cvc5.Kind.Mult, A_norm, A_inv_norm))
+            tm.mkTerm(cvc5.Kind.EQUAL, kappa, tm.mkTerm(cvc5.Kind.MULT, A_norm, A_inv_norm))
         )
 
-        constraint = tm.mkTerm(cvc5.Kind.Ge, kappa, tm.mkReal("1.0"))
+        constraint = tm.mkTerm(cvc5.Kind.GEQ, kappa, tm.mkReal("1.0"))
         solver.assertFormula(constraint)
 
         result = solver.checkSat()
@@ -245,7 +247,8 @@ def run_positive_tests():
             "norm_A_inv": 1.0,
             "kappa": 1.0,
             "constraint_satisfied": 1.0 >= 1.0,
-            "cvc5_result": str(result)
+            "cvc5_result": str(result),
+            "pass": result.isSat(),
         })
 
         TOOL_MANIFEST["cvc5"]["used"] = True
@@ -280,10 +283,10 @@ def run_negative_tests():
         kappa = tm.mkConst(tm.getRealSort(), "kappa")
 
         # Setup: arbitrary κ value
-        solver.assertFormula(tm.mkTerm(cvc5.Kind.Equal, kappa, tm.mkReal("0.5")))
+        solver.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, kappa, tm.mkReal("0.5")))
 
         # Claim: κ ≥ 1 (contradiction with κ = 0.5)
-        false_constraint = tm.mkTerm(cvc5.Kind.Ge, kappa, tm.mkReal("1.0"))
+        false_constraint = tm.mkTerm(cvc5.Kind.GEQ, kappa, tm.mkReal("1.0"))
         solver.assertFormula(false_constraint)
 
         result = solver.checkSat()
@@ -291,7 +294,8 @@ def run_negative_tests():
         test1_results.append({
             "claim": "κ = 0.5 AND κ ≥ 1",
             "cvc5_result": str(result),
-            "correctly_unsat": str(result) == "unsat"
+            "correctly_unsat": str(result) == "unsat",
+            "pass": result.isUnsat(),
         })
 
         if str(result) == "unsat":
@@ -313,14 +317,14 @@ def run_negative_tests():
         kappa = tm.mkConst(tm.getRealSort(), "kappa")
 
         # Setup: ‖A‖ = 2, ‖A^{-1}‖ = 0.3, κ = 0.6 < 1 (invalid)
-        solver.assertFormula(tm.mkTerm(cvc5.Kind.Equal, A_norm, tm.mkReal("2.0")))
-        solver.assertFormula(tm.mkTerm(cvc5.Kind.Equal, A_inv_norm, tm.mkReal("0.3")))
+        solver.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, A_norm, tm.mkReal("2.0")))
+        solver.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, A_inv_norm, tm.mkReal("0.3")))
         solver.assertFormula(
-            tm.mkTerm(cvc5.Kind.Equal, kappa, tm.mkTerm(cvc5.Kind.Mult, A_norm, A_inv_norm))
+            tm.mkTerm(cvc5.Kind.EQUAL, kappa, tm.mkTerm(cvc5.Kind.MULT, A_norm, A_inv_norm))
         )
 
         # Claim: κ ≥ 1 (false, since 0.6 < 1)
-        false_constraint = tm.mkTerm(cvc5.Kind.Ge, kappa, tm.mkReal("1.0"))
+        false_constraint = tm.mkTerm(cvc5.Kind.GEQ, kappa, tm.mkReal("1.0"))
         solver.assertFormula(false_constraint)
 
         result = solver.checkSat()
@@ -331,7 +335,8 @@ def run_negative_tests():
             "kappa": 0.6,
             "claim": "κ ≥ 1",
             "cvc5_result": str(result),
-            "correctly_unsat": str(result) == "unsat"
+            "correctly_unsat": str(result) == "unsat",
+            "pass": result.isUnsat(),
         })
 
         if str(result) == "unsat":
@@ -353,16 +358,16 @@ def run_negative_tests():
         rel_perturb = tm.mkConst(tm.getRealSort(), "rel_perturb")
 
         # Setup: κ = 100, rel_perturb = 0.01
-        solver.assertFormula(tm.mkTerm(cvc5.Kind.Equal, kappa, tm.mkReal("100.0")))
-        solver.assertFormula(tm.mkTerm(cvc5.Kind.Equal, rel_perturb, tm.mkReal("0.01")))
+        solver.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, kappa, tm.mkReal("100.0")))
+        solver.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, rel_perturb, tm.mkReal("0.01")))
         solver.assertFormula(
-            tm.mkTerm(cvc5.Kind.Equal, rel_error_rhs, tm.mkTerm(cvc5.Kind.Mult, kappa, rel_perturb))
+            tm.mkTerm(cvc5.Kind.EQUAL, rel_error_rhs, tm.mkTerm(cvc5.Kind.MULT, kappa, rel_perturb))
         )
 
         # rel_error_rhs = 100 * 0.01 = 1.0
 
         # False claim: rel_error < 0.5 (but should be ≤ 1.0)
-        false_bound = tm.mkTerm(cvc5.Kind.Lt, rel_error_rhs, tm.mkReal("0.5"))
+        false_bound = tm.mkTerm(cvc5.Kind.LT, rel_error_rhs, tm.mkReal("0.5"))
         solver.assertFormula(false_bound)
 
         result = solver.checkSat()
@@ -372,7 +377,8 @@ def run_negative_tests():
             "bound_value": 1.0,
             "false_claim": "rel_error < 0.5",
             "cvc5_result": str(result),
-            "correctly_unsat": str(result) == "unsat"
+            "correctly_unsat": str(result) == "unsat",
+            "pass": result.isUnsat(),
         })
 
         if str(result) == "unsat":
@@ -409,7 +415,8 @@ def run_boundary_tests():
             "definition": "κ(A) = σ_max / σ_min (SVD-based condition number)",
             "formula": str(kappa),
             "interpretation": "Ratio of largest to smallest singular value",
-            "monotonicity": "κ increases as gap between σ_max and σ_min increases"
+            "monotonicity": "κ increases as gap between σ_max and σ_min increases",
+            "pass": True,
         })
 
         TOOL_MANIFEST["sympy"]["used"] = True
@@ -436,7 +443,8 @@ def run_boundary_tests():
         test2_results.append({
             "error_bound": f"‖δx‖/‖x‖ ≤ κ(A) × ‖δb‖/‖b‖",
             "formula": str(error_bound),
-            "meaning": "Relative error in solution amplified by factor κ(A)"
+            "meaning": "Relative error in solution amplified by factor κ(A)",
+            "pass": True,
         })
 
         TOOL_MANIFEST["sympy"]["used"] = True
@@ -462,7 +470,8 @@ def run_boundary_tests():
             "sigma_max": float(sigma[0]),
             "sigma_min": float(sigma[-1]),
             "kappa": float(kappa_actual),
-            "interpretation": f"Ill-conditioned: κ ≈ {kappa_actual:.1f}"
+            "interpretation": f"Ill-conditioned: κ ≈ {kappa_actual:.1f}",
+            "pass": bool(kappa_actual > 1.0),
         })
 
         TOOL_MANIFEST["sympy"]["used"] = True
@@ -480,20 +489,39 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+
+    flat_test_rows = []
+    for section in (positive, negative, boundary):
+        for rows in section.values():
+            if isinstance(rows, list):
+                flat_test_rows.extend(row for row in rows if isinstance(row, dict))
+            elif isinstance(rows, dict):
+                flat_test_rows.append(rows)
+    all_pass = bool(flat_test_rows) and all(row.get("pass") is True for row in flat_test_rows)
+
+    if TOOL_MANIFEST["cvc5"]["used"]:
+        TOOL_INTEGRATION_DEPTH["cvc5"] = "load_bearing"
+    if TOOL_MANIFEST["sympy"]["used"]:
+        TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
+
     results = {
         "name": "Condition Number Constraint Canonical Sim",
         "description": "Condition number: κ(A) = ‖A‖·‖A⁻¹‖ ≥ 1 always. cvc5 QF_NRA proves κ ≥ 1 and relative error ≤ κ × relative perturbation. sympy derives κ(A) = σ_max/σ_min.",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
-        "classification": "canonical",
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": {
+            "all_pass": all_pass,
+            "tests_total": len(flat_test_rows),
+            "tests_passed": sum(1 for row in flat_test_rows if row.get("pass") is True),
+        },
+        "classification": "canonical" if all_pass else "diagnostic_only",
     }
-
-    # Mark tools as used
-    TOOL_INTEGRATION_DEPTH["cvc5"] = "load_bearing"
-    TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

@@ -177,20 +177,19 @@ def run_negative_tests():
         solver.setLogic("QF_LIA")
 
         # Variables: rank of H^1_{cris}(E/W), Betti number b_1, torsion flag
-        rank_cris = cvc5.Term.from_int(solver, 3)  # Falsely claim rank = 3
-        betti_1 = cvc5.Term.from_int(solver, 2)    # True Betti number = 2
-        p_prime = cvc5.Term.from_int(solver, 5)    # Prime p ≠ 2
+        rank_cris = solver.mkInteger(3)  # Falsely claim rank = 3
+        betti_1 = solver.mkInteger(2)    # True Betti number = 2
 
         # Constraint: if p does not divide b_i, then rank_cris = b_i
         # Katz-Messing theorem
         p_divides_betti = False  # Assume p=5 does not divide b_1=2
         if not p_divides_betti:
             # rank_cris must equal betti_1
-            constraint = solver.mkTerm(cvc5.Kind.Equal, rank_cris, betti_1)
+            constraint = solver.mkTerm(cvc5.Kind.EQUAL, rank_cris, betti_1)
             solver.assertFormula(constraint)
 
         # Add assertion that rank_cris = 3 (false claim)
-        false_rank = solver.mkTerm(cvc5.Kind.Equal, rank_cris, cvc5.Term.from_int(solver, 3))
+        false_rank = solver.mkTerm(cvc5.Kind.EQUAL, rank_cris, solver.mkInteger(3))
         solver.assertFormula(false_rank)
 
         result = solver.checkSat()
@@ -205,6 +204,7 @@ def run_negative_tests():
         }
 
         TOOL_MANIFEST["cvc5"]["used"] = True
+        TOOL_MANIFEST["cvc5"]["reason"] = "cvc5 is load-bearing for UNSAT rank-equality constraint checks"
     except Exception as e:
         results['rank_exceeds_betti_unsat'] = {'passed': False, 'error': str(e)}
 
@@ -217,16 +217,16 @@ def run_negative_tests():
 
         # For smooth proper curve: E^{p,q}_1 must degenerate at E_1
         # Claim: E^{1,1}_1 ≠ E^{1,1}_∞ (false)
-        e11_at_1 = cvc5.Term.from_int(solver, 2)  # E^{1,1}_1 dimension
-        e11_at_inf = cvc5.Term.from_int(solver, 2)  # E^{1,1}_∞ dimension
+        e11_at_1 = solver.mkInteger(2)  # E^{1,1}_1 dimension
+        e11_at_inf = solver.mkInteger(2)  # E^{1,1}_∞ dimension
 
         # Degeneration constraint: E^{1,1}_1 = E^{1,1}_∞
-        degeneration = solver.mkTerm(cvc5.Kind.Equal, e11_at_1, e11_at_inf)
+        degeneration = solver.mkTerm(cvc5.Kind.EQUAL, e11_at_1, e11_at_inf)
         solver.assertFormula(degeneration)
 
         # Claim they differ (false assertion)
-        non_degeneration = solver.mkTerm(cvc5.Kind.Not,
-                                         solver.mkTerm(cvc5.Kind.Equal, e11_at_1, e11_at_inf))
+        non_degeneration = solver.mkTerm(cvc5.Kind.NOT,
+                                         solver.mkTerm(cvc5.Kind.EQUAL, e11_at_1, e11_at_inf))
         solver.assertFormula(non_degeneration)
 
         result = solver.checkSat()
@@ -239,6 +239,7 @@ def run_negative_tests():
         }
 
         TOOL_MANIFEST["cvc5"]["used"] = True
+        TOOL_MANIFEST["cvc5"]["reason"] = "cvc5 is load-bearing for UNSAT spectral-degeneration constraint checks"
     except Exception as e:
         results['spectral_non_degeneration_unsat'] = {'passed': False, 'error': str(e)}
 
@@ -250,16 +251,16 @@ def run_negative_tests():
         solver.setLogic("QF_LIA")
 
         # Rank of H^1_{cris}(E/W) is stable over finite extensions of W
-        rank_base = cvc5.Term.from_int(solver, 2)  # Base rank = 2
-        rank_extended = cvc5.Term.from_int(solver, 2)  # After extension
+        rank_base = solver.mkInteger(2)  # Base rank = 2
+        rank_extended = solver.mkInteger(2)  # After extension
 
         # Admissibility: rank is stable
-        stability = solver.mkTerm(cvc5.Kind.Equal, rank_base, rank_extended)
+        stability = solver.mkTerm(cvc5.Kind.EQUAL, rank_base, rank_extended)
         solver.assertFormula(stability)
 
         # Falsely claim they differ
-        false_diff = solver.mkTerm(cvc5.Kind.Not,
-                                    solver.mkTerm(cvc5.Kind.Equal, rank_base, rank_extended))
+        false_diff = solver.mkTerm(cvc5.Kind.NOT,
+                                    solver.mkTerm(cvc5.Kind.EQUAL, rank_base, rank_extended))
         solver.assertFormula(false_diff)
 
         result = solver.checkSat()
@@ -272,6 +273,7 @@ def run_negative_tests():
         }
 
         TOOL_MANIFEST["cvc5"]["used"] = True
+        TOOL_MANIFEST["cvc5"]["reason"] = "cvc5 is load-bearing for UNSAT rank-stability constraint checks"
     except Exception as e:
         results['rank_stability_extension'] = {'passed': False, 'error': str(e)}
 
@@ -370,14 +372,27 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    flat_test_rows = []
+    for section in (positive, negative, boundary):
+        flat_test_rows.extend(row for row in section.values() if isinstance(row, dict))
+    all_pass = bool(flat_test_rows) and all(row.get("passed") is True for row in flat_test_rows)
+
     results = {
         "name": "Crystalline Cohomology (Berthelot-Ogus) — Constraint-admissibility",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
-        "classification": "canonical",
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": {
+            "all_pass": all_pass,
+            "tests_total": len(flat_test_rows),
+            "tests_passed": sum(1 for row in flat_test_rows if row.get("passed") is True),
+        },
+        "classification": "canonical" if all_pass else "diagnostic_only",
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

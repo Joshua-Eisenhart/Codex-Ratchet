@@ -1,41 +1,43 @@
 {
-  "last_updated": "2026-05-06T15:19:00-07:00",
+  "last_updated": "2026-05-06T15:38:00-07:00",
   "goal_state_scope": "main-thread active goal; current git branch codex/source-cleanup-checkpoint-20260506",
   "current_stage": "lego / conformance repair before broad coupling",
   "last_completed_checkpoint": {
-    "commit": "255107659",
-    "label": "repair: dilworth cvc5 chain cover checks",
+    "commit": "42a360095",
+    "label": "repair: gerbe toponetx hodge witness",
     "status": "passes local rerun",
     "evidence": [
-      "MPLCONFIGDIR=/tmp/codex-mpl NUMBA_CACHE_DIR=/tmp/codex-numba /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v4/probes/sim_dilworth_theorem_constraint_canonical.py",
-      "cvc5 toggle check: antichain3 cover2 unsat, cover3 sat; diamond cover1 unsat, cover2 sat",
+      "MPLCONFIGDIR=/tmp/codex-mpl NUMBA_CACHE_DIR=/tmp/codex-numba /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v4/probes/sim_gerbe_derived_stack_cohomology.py",
+      "TopoNetX CellComplex Hodge-Laplacian toggle: closed tetrahedral 2-surface h2_kernel_dim=1, open two-triangle patch h2_kernel_dim=0",
       "make truth-audit"
     ]
   },
-  "next_obligation": "Repair the next hard truth-audit finding on this branch: sim_gerbe_derived_stack_cohomology_results.json toponetx load_bearing_without_used.",
+  "next_obligation": "Repair the next hard truth-audit finding on this branch: sim_gtower_e_class_cartan_admissibility_shell_local_results.json canonical_has_failed_checks.",
   "blockers": [
     "Tier D/E, engine, axis, bridge, and broad coupling claims remain blocked by stage gate.",
-    "probe_truth_audit still fails branch-scope with hard_finding_count=7.",
-    "probe_truth_audit_results.json remains a noncanonical audit snapshot and triggers nonblocking manifest-hook warnings."
+    "probe_truth_audit still fails branch-scope with hard_finding_count=6.",
+    "probe_truth_audit_results.json remains a noncanonical audit snapshot and triggers nonblocking manifest-hook warnings.",
+    "Two unrelated Wizard v3.5 doc deletes remain dirty and are intentionally unstaged."
   ],
   "artifacts": [
-    "system_v4/probes/sim_dilworth_theorem_constraint_canonical.py",
-    "system_v4/probes/a2_state/sim_results/sim_dilworth_theorem_constraint_canonical_results.json",
+    "system_v4/probes/sim_gerbe_derived_stack_cohomology.py",
+    "system_v4/probes/a2_state/sim_results/sim_gerbe_derived_stack_cohomology_results.json",
     "system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json",
-    "/tmp/codex_claude_bridge/20260506T221557Z-premortem-audit-this-codex-ratchet-repair-frame--4198af4c5ee8.receipt.json"
+    "/tmp/codex_claude_bridge/20260506T222232Z-premortem-audit-this-codex-ratchet-repair-frame--bb5140fedcb4.receipt.json"
   ],
   "verification_state": {
     "hypergraph_potential": "passes local rerun",
-    "truth_audit": "runs; fails with hard_finding_count=7",
+    "truth_audit": "runs; fails with hard_finding_count=6",
     "git_sync": "pending push after checkpoint update",
     "helper_process_audit": "passes local rerun; helper_process_count=0",
-    "dilworth": "passes local rerun"
+    "dilworth": "passes local rerun",
+    "gerbe": "passes local rerun"
   },
   "route_truth_state": {
     "native_parents": "not run in this checkpoint",
     "native_children": "not run in this checkpoint",
     "claude_bridge": "Opus audit ran; external evidence only, not Codex-native child evidence",
-    "opus_verdict_applied": "accepted conditionally: kept canonical only after cvc5 chain-cover negatives were UNSAT and SAT/UNSAT toggle witness passed"
+    "opus_verdict_applied": "accepted Path A only after TopoNetX Hodge-Laplacian closed/open toggle passed and the result JSON was re-read"
   },
   "child_capacity_state": "not exercised in this checkpoint",
   "browser_hygiene_state": "absent",

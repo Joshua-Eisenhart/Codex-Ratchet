@@ -25,6 +25,9 @@ def _load_module(module_name: str, path: Path):
     sys.modules[module_name] = module
     try:
         spec.loader.exec_module(module)
+        if path.name == "queue_claim.py":
+            module.STRICT_WIZARD_QUEUE_ADMISSION = False
+            module.CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION = False
         return module
     finally:
         sys.modules.pop(module_name, None)
@@ -417,6 +420,7 @@ def test_check_witnesses_accepts_recent_witness_fields(tmp_path, monkeypatch, ca
         REPO_ROOT / "scripts" / "check_witnesses.py",
     )
     repo = tmp_path / "repo"
+    _write_allow_stage_gate(repo)
     probes = repo / "system_v4" / "probes"
     probes.mkdir(parents=True)
 
@@ -581,6 +585,53 @@ def test_gate_accepts_isolated_capability_probe_for_load_bearing_tool(
     monkeypatch.setattr(module, "RESULTS_DIR", results)
 
     assert module.probe_status("evotorch") is None
+
+
+def test_gate_extracts_depth_updates_after_manifest_comprehension(tmp_path) -> None:
+    module = _load_module(
+        "verify_load_bearing_depth_updates_under_test",
+        REPO_ROOT / "scripts" / "verify_load_bearing_has_capability_probe.py",
+    )
+    sim = tmp_path / "sim_dynamic_depth.py"
+    sim.write_text(
+        "\n".join(
+            [
+                "TOOL_MANIFEST = {'e3nn': {'tried': True, 'used': True, 'reason': 'fixture'}}",
+                "TOOL_INTEGRATION_DEPTH = {tool: None for tool in TOOL_MANIFEST}",
+                "TOOL_INTEGRATION_DEPTH['e3nn'] = 'load_bearing'",
+                "TOOL_INTEGRATION_DEPTH['pytorch'] = 'supportive'",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    assert module.extract_tool_integration_depth(sim) == {
+        "e3nn": "load_bearing",
+        "pytorch": "supportive",
+    }
+
+
+def test_gate_extracts_depth_when_manifest_values_are_nonliteral(tmp_path) -> None:
+    module = _load_module(
+        "verify_load_bearing_nonliteral_manifest_under_test",
+        REPO_ROOT / "scripts" / "verify_load_bearing_has_capability_probe.py",
+    )
+    sim = tmp_path / "sim_nonliteral_manifest_depth.py"
+    sim.write_text(
+        "\n".join(
+            [
+                "_REASON = 'shared reason text'",
+                "TOOL_MANIFEST = {'cvc5': {'tried': True, 'used': True, 'reason': _REASON}}",
+                "TOOL_INTEGRATION_DEPTH = {tool: None for tool in TOOL_MANIFEST}",
+                "TOOL_INTEGRATION_DEPTH['cvc5'] = 'load_bearing'",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    assert module.extract_tool_integration_depth(sim) == {"cvc5": "load_bearing"}
 
 
 def test_adaptive_controller_builds_plane_snapshot_from_current_surfaces(
@@ -953,7 +1004,7 @@ def test_adaptive_controller_enqueue_is_idempotent(tmp_path, monkeypatch) -> Non
     probes.mkdir(parents=True, exist_ok=True)
     lane_b.mkdir(parents=True, exist_ok=True)
 
-    sim = probes / "sim_weyl_chirality_bipartite.py"
+    sim = probes / "sim_weyl_chirality_core.py"
     sim.write_text('classification = "classical_baseline"\n', encoding="utf-8")
 
     monkeypatch.setattr(module, "ROOT", repo)
@@ -967,7 +1018,7 @@ def test_adaptive_controller_enqueue_is_idempotent(tmp_path, monkeypatch) -> Non
     assert len(queued) == 1
     payload = json.loads(queued[0].read_text(encoding="utf-8"))
     assert payload["sim_path"] == str(sim.resolve())
-    assert payload["plan_stage"] == "late_info"
+    assert payload["plan_stage"] == "early_core"
 
 
 def test_adaptive_controller_dedupes_queue_entries_and_normalizes_paths(
@@ -5088,9 +5139,13 @@ def test_queue_claim_inferrs_priority_for_legacy_items(tmp_path) -> None:
 
     claimed = module.claim("lane_B", "w1")
 
-    assert claimed is not None
-    payload = json.loads(claimed.read_text(encoding="utf-8"))
+    assert claimed is None
+    blocked = list((queue_root / "blocked").glob("*.json*"))
+    assert len(blocked) == 1
+    payload = json.loads(blocked[0].read_text(encoding="utf-8"))
     assert payload["sim_path"] == "sim_weyl_chirality_bipartite.py"
+    assert payload["blocked_reason"] == "stage_gate_blocked"
+    assert exploratory.exists()
 
 
 def test_queue_claim_prefers_core_ladder_when_priority_ties(tmp_path) -> None:
@@ -5118,9 +5173,13 @@ def test_queue_claim_prefers_core_ladder_when_priority_ties(tmp_path) -> None:
 
     claimed = module.claim("lane_B", "w1")
 
-    assert claimed is not None
-    payload = json.loads(claimed.read_text(encoding="utf-8"))
+    assert claimed is None
+    blocked = list((queue_root / "blocked").glob("*.json*"))
+    assert len(blocked) == 1
+    payload = json.loads(blocked[0].read_text(encoding="utf-8"))
     assert payload["sim_path"] == "sim_weyl_chirality_bipartite.py"
+    assert payload["blocked_reason"] == "stage_gate_blocked"
+    assert exploratory.exists()
 
 
 def test_queue_claim_promotes_stale_priority_to_bucket_default(tmp_path) -> None:
@@ -5148,9 +5207,13 @@ def test_queue_claim_promotes_stale_priority_to_bucket_default(tmp_path) -> None
 
     claimed = module.claim("lane_B", "w1")
 
-    assert claimed is not None
-    payload = json.loads(claimed.read_text(encoding="utf-8"))
+    assert claimed is None
+    blocked = list((queue_root / "blocked").glob("*.json*"))
+    assert len(blocked) == 1
+    payload = json.loads(blocked[0].read_text(encoding="utf-8"))
     assert payload["sim_path"] == "sim_qit_szilard_record_translation_lane.py"
+    assert payload["blocked_reason"] == "stage_gate_blocked"
+    assert exploratory.exists()
 
 
 def test_queue_claim_demotes_axis_stage_within_core_ladder(tmp_path) -> None:
@@ -5211,6 +5274,18 @@ def test_queue_claim_demotes_late_info_stage_within_core_ladder(tmp_path) -> Non
     assert claimed is not None
     payload = json.loads(claimed.read_text(encoding="utf-8"))
     assert payload["sim_path"] == "sim_z3_negative_quasiprob_exclusion.py"
+
+
+def test_queue_claim_stage_gate_sees_engine_qit_and_nonclassical_tokens() -> None:
+    module = _load_module(
+        "queue_claim_stage_token_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+
+    assert module._stage_gate_claim_for_sim("sim_engine_smoke.py") == "scientific_coupling"
+    assert module._stage_gate_claim_for_sim("sim_qit_smoke.py") == "scientific_coupling"
+    assert module._stage_gate_claim_for_sim("sim_mega_smoke.py") == "scientific_coupling"
+    assert module._stage_gate_claim_for_sim("sim_nonclassical_smoke.py") == "scientific_coupling"
 
 
 def test_queue_claim_classifies_coherent_info_as_late_info(tmp_path) -> None:
@@ -5279,6 +5354,1897 @@ def test_autonomous_reseed_loop_uses_deterministic_stage_aware_enqueue() -> None
     assert "hashlib.sha1" in text
     assert '"plan_stage": stage' in text
     assert "secrets.token_hex" not in text
+
+
+def test_autonomous_reseed_loop_blocks_stage_gated_enqueue() -> None:
+    text = (REPO_ROOT / "scripts" / "autonomous_reseed_loop.sh").read_text(encoding="utf-8")
+    assert "stage_gate_claim_for_sim()" in text
+    assert "stage_gate_allows_sim" in text
+    assert 'scripts/stage_gate.py --claim "$claim"' in text
+    assert "stage gate blocked enqueue" in text
+
+
+def test_overnight_two_runner_blocks_stage_gated_claims() -> None:
+    text = (REPO_ROOT / "scripts" / "overnight_two_runner.sh").read_text(encoding="utf-8")
+    assert "stage_gate_claim_for_sim()" in text
+    assert 'scripts/stage_gate.py" --claim "$claim"' in text
+    assert "stage_gate_blocked" in text
+    assert "QUEUE_CLAIM\" block" in text
+
+
+def test_parallel_runner_has_helper_and_admission_preflight() -> None:
+    text = (REPO_ROOT / "scripts" / "overnight_two_runner.sh").read_text(encoding="utf-8")
+    assert "helper_process_preflight()" in text
+    assert "helper_process_audit.py\" --strict" in text
+    assert "admission_bypass_preflight()" in text
+    assert "STRICT_RECEIPT_ADMISSION" in text
+    assert "STRICT_WIZARD_QUEUE_ADMISSION" in text
+
+
+def test_makefile_exposes_parallel_runner_targets() -> None:
+    text = (REPO_ROOT / "Makefile").read_text(encoding="utf-8")
+    assert "parallel-runner-dry:" in text
+    assert "parallel-runner:" in text
+    assert "overnight_two_runner.sh --minutes" in text
+    assert "runner-preflight" in text
+
+
+def test_runner_queue_preflight_blocks_live_default_queue_when_stage_gate_closed(tmp_path) -> None:
+    module = _load_module(
+        "runner_queue_preflight_under_test",
+        REPO_ROOT / "scripts" / "runner_queue_preflight.py",
+    )
+    repo = tmp_path / "repo"
+    ops = repo / "system_v5" / "ops"
+    ops.mkdir(parents=True)
+    (ops / "stage_gate.json").write_text(
+        json.dumps({"active_stage": "lego", "allow_default_queue_late_stage": False}),
+        encoding="utf-8",
+    )
+    (ops / "queue_default.txt").write_text(
+        "# comment\nsim_engine_default_leak\n\n",
+        encoding="utf-8",
+    )
+
+    report = module.audit(root=repo)
+
+    assert report["all_pass"] is False
+    assert report["blocked_default_queue_count"] == 1
+    assert report["findings"][0]["kind"] == "default_queue_late_stage_blocked"
+
+
+def test_runner_queue_preflight_blocks_late_rows_in_priority_queues(tmp_path) -> None:
+    module = _load_module(
+        "runner_queue_preflight_priority_under_test",
+        REPO_ROOT / "scripts" / "runner_queue_preflight.py",
+    )
+    repo = tmp_path / "repo"
+    ops = repo / "system_v5" / "ops"
+    ops.mkdir(parents=True)
+    (ops / "stage_gate.json").write_text(
+        json.dumps({"active_stage": "lego", "allow_default_queue_late_stage": False}),
+        encoding="utf-8",
+    )
+    (ops / "queue_tier_a.txt").write_text("sim_coupling_pairwise_probe\n", encoding="utf-8")
+
+    report = module.audit(root=repo)
+
+    assert report["all_pass"] is False
+    assert report["blocked_stage_gate_queue_count"] == 1
+    assert report["findings"][0]["queue"] == "system_v5/ops/queue_tier_a.txt"
+    assert report["findings"][0]["claim"] == "scientific_coupling"
+
+
+def test_runner_preflight_runs_queue_stage_gate_audit() -> None:
+    text = (REPO_ROOT / "Makefile").read_text(encoding="utf-8")
+    assert "scripts/runner_queue_preflight.py" in text
+
+
+def test_wizard_autoresearch_loop_preserves_sim_boundaries() -> None:
+    text = (REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py").read_text(encoding="utf-8")
+    assert "accepted QIT/engine evidence only from controller-read canonical artifacts" in text
+    assert "parallel_runner_launch_not_authorized" in text
+    assert "authorized_deferred" in text
+    assert "runner_taxonomy_disagreements_need_packet_or_taxonomy_reconcile" in text
+    assert "opus_audit" in text
+    assert "premortem.json" in text
+    assert "helper_process_audit.py" in text
+
+
+def test_wizard_autoresearch_loop_writes_real_qit_evidence_index() -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_evidence_index_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    text = (REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py").read_text(encoding="utf-8")
+
+    assert module.EVIDENCE_INDEX == REPO_ROOT / "system_v5" / "evidence" / "qit_engine_evidence_index.json"
+    assert "scripts/qit_engine_evidence_index.py" in text
+    assert "qit_index_write.out" in text
+
+
+def test_ralph_goal_loop_surfaces_next_qit_acceptance_targets() -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_qit_targets_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    loop = module.build_ralph_goal_loop(
+        objective_ref="test",
+        objective_text="test objective",
+        iteration=1,
+        counts={
+            "accepted": 0,
+            "missing_or_invalid_admission": 1,
+            "next_acceptance_targets": [
+                {
+                    "basename": "sim_qit_probe",
+                    "next_action": "create_or_repair_wizard_sim_admission",
+                }
+            ],
+        },
+        premortem={"ok": True},
+        decision={"blockers": ["accepted_qit_engine_evidence_zero"]},
+    )
+
+    strict_item = next(
+        item
+        for item in loop["prompt_to_artifact_checklist"]
+        if item["requirement"] == "strict admission blocks promotion"
+    )
+    assert strict_item["evidence"]["next_acceptance_targets"][0]["basename"] == "sim_qit_probe"
+    assert loop["completion_audit"]["next_acceptance_targets"][0]["next_action"] == "create_or_repair_wizard_sim_admission"
+
+
+def test_ralph_goal_loop_covers_qit_canonical_artifact_requirement_with_accepted_entry() -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_qit_accepted_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    loop = module.build_ralph_goal_loop(
+        objective_ref="test",
+        objective_text="test objective",
+        iteration=1,
+        counts={
+            "accepted": 1,
+            "missing_or_invalid_admission": 38,
+            "next_acceptance_targets": [
+                {
+                    "basename": "sim_next_probe",
+                    "next_action": "create_or_repair_wizard_sim_admission",
+                }
+            ],
+        },
+        premortem={"ok": True},
+        decision={"blockers": ["runner_taxonomy_disagreements_need_packet_or_taxonomy_reconcile"]},
+    )
+
+    qit_item = next(
+        item
+        for item in loop["prompt_to_artifact_checklist"]
+        if item["requirement"] == "QIT engine evidence is accepted only from canonical artifacts"
+    )
+    assert qit_item["status"] == "covered"
+    assert "QIT engine evidence is accepted only from canonical artifacts" not in loop["completion_audit"]["uncovered_requirements"]
+
+
+def test_wizard_autoresearch_loop_evidence_counts_reads_full_index_targets(tmp_path) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_counts_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    index_path = tmp_path / "qit_engine_evidence_index.json"
+    index_path.write_text(
+        json.dumps(
+            {
+                "summary": {
+                    "accepted": 0,
+                    "admitted_micro_entries": 1,
+                    "blocked": 1,
+                    "quarantine_entries": 1,
+                    "candidate_entries": 0,
+                    "missing_or_invalid_admission": 1,
+                },
+                "next_acceptance_targets": [
+                    {
+                        "basename": "sim_qit_probe",
+                        "next_action": "create_or_repair_wizard_sim_admission",
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    module.EVIDENCE_INDEX = index_path
+
+    counts = module.evidence_counts()
+
+    assert counts["accepted"] == 0
+    assert counts["admitted_micro_entries"] == 1
+    assert counts["next_acceptance_targets"][0]["basename"] == "sim_qit_probe"
+
+
+def test_wizard_autoresearch_loop_runs_three_councils_with_skill_lanes() -> None:
+    text = (REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py").read_text(encoding="utf-8")
+    assert "write_council_receipts" in text
+    assert '"decision"' in text
+    assert '"failure"' in text
+    assert '"follow_up"' in text
+    assert "parent_skill_lanes" in text
+    assert "child_skill_lanes" in text
+    assert "codex-autoresearch" in text
+    assert "premortem" in text
+    assert "claude-bridge:opus" in text
+    assert "cdo" in text
+
+
+def test_wizard_autoresearch_loop_records_cdo_scheduler_state() -> None:
+    text = (REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py").read_text(encoding="utf-8")
+    assert "cdo_scheduler" in text
+    assert "turn_count" in text
+    assert "total_agents" in text
+    assert "next_turn_strategy" in text
+    assert "exit_eligible" in text
+    assert "final synthesis is blocked until scheduler metrics are met" in text
+
+
+def test_wizard_autoresearch_loop_records_goal_ralph_loop_state() -> None:
+    text = (REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py").read_text(encoding="utf-8")
+    assert "build_ralph_goal_loop" in text
+    assert "ralph_goal_loop" in text
+    assert "run_audit_learn_premortem_harden" in text
+    assert "objective_ref" in text
+    assert "prompt_to_artifact_checklist" in text
+    assert "completion_audit" in text
+    assert "goal_exit_eligible" in text
+
+
+def test_wizard_autoresearch_loop_blocks_failed_opus_audit() -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    decision = module.decide_next(
+        {
+            "summary": {
+                "runner_taxonomy_disagreement_count": 0,
+                "row_state_counts": {"queue_candidate": 1},
+            }
+        },
+        {"accepted": 1},
+        [{"returncode": 0}],
+        run_runner=True,
+        parallel_runner_authorized=True,
+        opus={"status": "blocked", "returncode": 1, "reason": "opus_audit_failed"},
+    )
+
+    assert decision["action"] == "draft_or_repair_packets_parallel"
+    assert "opus_audit_failed" in decision["blockers"]
+    assert "opus_audit_failed" in decision["runner_launch_blockers"]
+
+
+def test_wizard_autoresearch_loop_taxonomy_blocks_promotion_not_sim_execution() -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_runner_gate_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    decision = module.decide_next(
+        {
+            "summary": {
+                "runner_taxonomy_disagreement_count": 7,
+                "row_state_counts": {"queue_candidate": 3},
+            }
+        },
+        {"accepted": 1},
+        [{"returncode": 0}],
+        run_runner=True,
+        parallel_runner_authorized=True,
+        opus={"status": "skipped"},
+    )
+
+    assert "runner_taxonomy_disagreements_need_packet_or_taxonomy_reconcile" in decision["blockers"]
+    assert decision["runner_launch_blockers"] == []
+    assert decision["runner_launch_allowed"] is True
+    assert decision["action"] == "run_parallel_admitted_workers"
+
+
+def test_ralph_goal_loop_dedupes_failed_opus_blocker() -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_ralph_opus_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+
+    loop = module.build_ralph_goal_loop(
+        objective_ref="test",
+        objective_text="test objective",
+        iteration=1,
+        opus={"status": "blocked", "returncode": 1},
+        decision={"blockers": ["opus_audit_failed"]},
+    )
+
+    assert loop["completion_audit"]["blockers"].count("opus_audit_failed") == 1
+
+
+def test_wizard_autoresearch_loop_writes_v41_receipt_shape() -> None:
+    text = (REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py").read_text(encoding="utf-8")
+    assert "wizard_council_receipt" in text
+    assert "parent_receipts" in text
+    assert "child_receipts" in text
+    assert "management_parents" in text
+    assert "manager_rerouter" in text
+    assert "sim_loop_state_gate" in text
+    assert "route_truth_join" in text
+    assert "premortem_follow_up_join_gate" in text
+
+
+def test_wizard_autoresearch_loop_can_bind_external_native_parent_receipts() -> None:
+    text = (REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py").read_text(encoding="utf-8")
+    assert "--external-council-receipts" in text
+    assert "load_external_council_receipts" in text
+    assert "external_native_parent_receipts" in text
+    assert "external_native_child_receipts" in text
+    assert "native_codex_parent" in text
+    assert "mass_parent_child_fanout_boundary" in text
+
+
+def test_wizard_autoresearch_loop_does_not_count_artifact_proxies_as_native_children() -> None:
+    text = (REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py").read_text(encoding="utf-8")
+    assert "artifact_proxy_receipts" in text
+    assert "accepted_artifact_proxy_receipt_ids" in text
+    assert "validated_native_child_ids" in text
+    assert "is_native_codex_receipt" in text
+    assert '"children": f"{len(native_child_ids)' in text
+    assert '"accepted_child_receipt_ids": native_child_ids' in text
+    assert "counts_as_native_codex_child" in text
+
+
+def _valid_wizard_admission_payload(
+    *,
+    repo: Path,
+    basename: str,
+    sim_path: str,
+    artifact: Path,
+) -> dict:
+    return {
+        "schema": "wizard_sim_admission_v4_1",
+        "basename": basename,
+        "sim_path": sim_path,
+        "status": "queue_ready",
+        "admitted_by": "guard.receipt_audit",
+        "admission_artifact": str(artifact),
+        "controller_read_artifacts": [
+            str(artifact),
+            str(repo / "system_v4/probes/a2_state/sim_results" / f"{basename}_results.json"),
+        ],
+        "bounded_work_compile_gate": {"status": "ready_for_execution"},
+        "sim_packet_compile_gate": {"status": "queue_candidate"},
+        "sim_admissibility_gate": {"result": "one_exact_packet"},
+        "formal_sim_profile": {
+            "stage": "micro",
+            "claim": "one bounded claim",
+            "carrier_fixture": "fixture_a",
+            "exact_tool_or_function": "tool.fn",
+            "positive_check": "accepts good fixture",
+            "negative_or_boundary_check": "rejects boundary fixture",
+            "expected_result_path": str(repo / "system_v4/probes/a2_state/sim_results" / f"{basename}_results.json"),
+        },
+        "management_parent_surfaces": [
+            "queue_liveness",
+            "runner_preflight",
+            "sim_admissibility",
+            "queue_readiness",
+            "formal_sim_profile",
+            "stage_gate",
+            "expected_result_surface",
+            "controller_read_artifacts",
+        ],
+        "packet_contract": {
+            "type": "MICRO",
+            "tool_target": "tool",
+            "function_surface": "tool.fn",
+            "micro_claim": "one bounded claim",
+            "lego_target": "fixture_a",
+            "function_receipt": "new",
+            "prior_function_receipts": [],
+            "why_this_lego": "the fixture exposes exactly one function surface",
+            "positive_case": "accepts good fixture",
+            "negative_case": "rejects bad fixture",
+            "boundary_case": "checks the boundary fixture",
+            "demotion_condition": "demote if the function fails this fixture",
+            "out_of_scope": ["no lego promotion", "no coupling claim"],
+            "claim_ceiling": "tool_function_micro_only",
+            "next_lego_target": "none",
+            "promotion_condition": "requires later admitted row",
+            "blocked_until": "exact downstream packet and parent receipts are reconciled",
+            "promotion_boundary": "no promotion without a later admitted packet",
+        },
+    }
+
+
+def _write_allow_stage_gate(repo: Path) -> None:
+    stage_gate = repo / "scripts" / "stage_gate.py"
+    stage_gate.parent.mkdir(parents=True, exist_ok=True)
+    stage_gate.write_text("#!/usr/bin/env python3\nraise SystemExit(0)\n", encoding="utf-8")
+    stage_gate.chmod(0o755)
+
+
+def test_wizard_sim_admission_rejects_runner_self_promotion(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["admitted_by"] = "runner"
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "admitted_by_not_independent" in findings
+
+
+def test_wizard_sim_admission_accepts_exact_queue_ready_packet(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_valid_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    _write_allow_stage_gate(repo)
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    admission_dir = repo / "system_v5" / "ops" / "wizard_admissions"
+    admission_dir.mkdir(parents=True)
+    admission_path = admission_dir / "sim_probe_object.json"
+    admission_path.write_text(
+        json.dumps(
+            _valid_wizard_admission_payload(
+                repo=repo,
+                basename="sim_probe_object",
+                sim_path="system_v4/probes/sim_probe_object.py",
+                artifact=artifact,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    report = module.load_and_validate(
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert report["ok"] is True
+    assert report["path"] == str(admission_path)
+
+
+def test_wizard_sim_admission_rejects_profile_without_packet_contract(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_no_packet_contract_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload.pop("packet_contract")
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "missing_packet_contract" in findings
+
+
+def test_wizard_sim_admission_rejects_coupling_without_exact_parent_results(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_parent_receipts_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["stage"] = "integration_micro"
+    payload["packet_contract"]["type"] = "INTEGRATION_MICRO"
+    payload["packet_contract"]["micro_claim"] = "couple two exact function surfaces"
+    payload["packet_contract"]["function_receipt"] = "system_v4/probes/a2_state/sim_results/parent_a_results.json"
+    payload["packet_contract"]["prior_function_receipts"] = ["parent_a"]
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "packet_contract_parent_receipts_not_exact_result_paths" in findings
+
+
+def test_wizard_sim_admission_rejects_missing_parent_result_artifact(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_missing_parent_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["stage"] = "integration_micro"
+    payload["packet_contract"]["type"] = "INTEGRATION_MICRO"
+    payload["packet_contract"]["micro_claim"] = "couple two exact function surfaces"
+    payload["packet_contract"]["function_receipt"] = "system_v4/probes/a2_state/sim_results/parent_a_results.json"
+    payload["packet_contract"]["prior_function_receipts"] = [
+        "system_v4/probes/a2_state/sim_results/parent_a_results.json"
+    ]
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "packet_contract_parent_receipt_missing" in findings
+
+
+def test_wizard_sim_admission_rejects_parent_result_hash_mismatch(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_parent_hash_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    parent = repo / "system_v4" / "probes" / "a2_state" / "sim_results" / "parent_a_results.json"
+    parent.parent.mkdir(parents=True)
+    parent.write_text(
+        json.dumps(
+            {
+                "name": "parent_a",
+                "classification": "canonical",
+                "summary": {"tests_passed": 1, "tests_total": 1},
+                "tool_manifest": {"sympy": {"tried": True, "used": True, "reason": "parent function"}},
+                "tool_integration_depth": {"sympy": "load_bearing"},
+                "positive": {"passed": True},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if parent fails",
+                "out_of_scope": ["no coupling promotion"],
+                "claim_ceiling": "parent_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires downstream packet",
+                "blocked_until": "child cites current hash",
+            }
+        ),
+        encoding="utf-8",
+    )
+    prior = "system_v4/probes/a2_state/sim_results/parent_a_results.json"
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["stage"] = "integration_micro"
+    payload["packet_contract"]["type"] = "INTEGRATION_MICRO"
+    payload["packet_contract"]["micro_claim"] = "couple two exact function surfaces"
+    payload["packet_contract"]["function_receipt"] = prior
+    payload["packet_contract"]["prior_function_receipts"] = [prior]
+    payload["packet_contract"]["parent_receipt_sha256"] = {prior: "not-the-current-hash"}
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "packet_contract_parent_receipt_hash_mismatch" in findings
+
+
+def test_wizard_sim_admission_rejects_noncanonical_parent_receipt(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_parent_classification_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    parent = repo / "system_v4" / "probes" / "a2_state" / "sim_results" / "parent_a_results.json"
+    parent.parent.mkdir(parents=True)
+    parent.write_text(
+        json.dumps(
+            {
+                "name": "parent_a",
+                "classification": "classical_baseline",
+                "summary": {"tests_passed": 1, "tests_total": 1},
+                "tool_manifest": {"z3": {"tried": True, "used": True, "reason": "baseline function"}},
+                "tool_integration_depth": {"z3": "load_bearing"},
+                "divergence_log": "classical baseline only",
+                "positive": {"passed": True},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if parent fails",
+                "out_of_scope": ["no coupling promotion"],
+                "claim_ceiling": "parent_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires downstream packet",
+                "blocked_until": "child cites current hash",
+            }
+        ),
+        encoding="utf-8",
+    )
+    prior = "system_v4/probes/a2_state/sim_results/parent_a_results.json"
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["stage"] = "integration_micro"
+    payload["packet_contract"]["type"] = "INTEGRATION_MICRO"
+    payload["packet_contract"]["micro_claim"] = "couple two exact function surfaces"
+    payload["packet_contract"]["function_receipt"] = prior
+    payload["packet_contract"]["prior_function_receipts"] = [prior]
+    payload["packet_contract"]["parent_receipt_sha256"] = {
+        prior: __import__("hashlib").sha256(parent.read_bytes()).hexdigest()
+    }
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "packet_contract_parent_receipt_not_canonical" in findings
+
+
+def test_wizard_sim_admission_rejects_stage_above_stage_gate(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_stage_gate_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    stage_gate = repo / "scripts" / "stage_gate.py"
+    stage_gate.parent.mkdir(parents=True)
+    stage_gate.write_text("#!/usr/bin/env python3\nraise SystemExit(1)\n", encoding="utf-8")
+    stage_gate.chmod(0o755)
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_qit_probe",
+        sim_path="system_v4/probes/sim_qit_probe.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["stage"] = "qit"
+    payload["packet_contract"] = {
+        "type": "QIT",
+        "tool_target": "sympy",
+        "integration_question": "can this QIT engine claim advance",
+        "anchor_lego": "qit_micro",
+        "why_this_lego": "tests an advanced engine claim",
+        "loopback_target": "qit_engine_index",
+        "expected_outcome_classification": "blocked",
+        "bound_exit_condition": "stage gate must allow engine",
+        "out_of_scope": ["no promotion while stage gate is red"],
+        "prior_function_receipts": ["system_v4/probes/a2_state/sim_results/parent_a_results.json"],
+        "parent_receipt_sha256": {"system_v4/probes/a2_state/sim_results/parent_a_results.json": "abc"},
+        "claim_ceiling": "qit_engine",
+        "promotion_condition": "stage gate allows engine",
+        "blocked_until": "active stage reaches coupling/engine",
+    }
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_qit_probe",
+        sim_path="system_v4/probes/sim_qit_probe.py",
+    )
+
+    assert "stage_gate_rejects_engine" in findings
+
+
+def test_wizard_sim_admission_rejects_micro_when_stage_gate_missing(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_missing_micro_stage_gate_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "stage_gate_missing_for_tool_micro" in findings
+
+
+def test_wizard_sim_admission_rejects_advanced_stage_when_stage_gate_missing(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_missing_stage_gate_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_qit_probe",
+        sim_path="system_v4/probes/sim_qit_probe.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["stage"] = "qit"
+    payload["packet_contract"] = {
+        "type": "QIT",
+        "tool_target": "sympy",
+        "integration_question": "can this QIT engine claim advance",
+        "anchor_lego": "qit_micro",
+        "why_this_lego": "tests an advanced engine claim",
+        "loopback_target": "qit_engine_index",
+        "expected_outcome_classification": "blocked",
+        "bound_exit_condition": "stage gate must allow engine",
+        "out_of_scope": ["no promotion while stage gate is missing"],
+        "prior_function_receipts": ["system_v4/probes/a2_state/sim_results/parent_a_results.json"],
+        "parent_receipt_sha256": {"system_v4/probes/a2_state/sim_results/parent_a_results.json": "abc"},
+        "claim_ceiling": "qit_engine",
+        "promotion_condition": "stage gate allows engine",
+        "blocked_until": "active stage reaches coupling/engine",
+    }
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_qit_probe",
+        sim_path="system_v4/probes/sim_qit_probe.py",
+    )
+
+    assert "stage_gate_missing_for_engine" in findings
+
+
+def test_wizard_sim_admission_rejects_advanced_stage_without_packet_contract(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_advanced_stage_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["stage"] = "qit"
+    payload.pop("packet_contract")
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "missing_packet_contract" in findings
+
+
+def test_wizard_sim_admission_rejects_noncanonical_expected_result_path(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_expected_result_path_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["expected_result_path"] = "tmp/result.json"
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "formal_sim_profile_expected_result_path_not_canonical" in findings
+
+
+def test_wizard_sim_admission_rejects_stale_result_hash_artifact(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_stale_artifact_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    result_path = repo / "system_v4" / "probes" / "a2_state" / "sim_results" / "sim_probe_object_results.json"
+    result_path.parent.mkdir(parents=True)
+    result_path.write_text('{"result":"current"}\n', encoding="utf-8")
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text(
+        json.dumps({"result_path": str(result_path), "result_sha256": "stale-hash"}),
+        encoding="utf-8",
+    )
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "admission_artifact_result_sha256_mismatch" in findings
+
+
+def test_wizard_sim_admission_rejects_existing_result_without_artifact_hash(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_missing_artifact_hash_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    result_path = repo / "system_v4" / "probes" / "a2_state" / "sim_results" / "sim_probe_object_results.json"
+    result_path.parent.mkdir(parents=True)
+    result_path.write_text('{"result":"current"}\n', encoding="utf-8")
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "admission_artifact_missing_result_path" in findings
+    assert "admission_artifact_missing_result_sha256" in findings
+
+
+def test_wizard_sim_admission_rejects_controller_read_missing_bound_artifacts(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_controller_read_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    result_path = repo / "system_v4" / "probes" / "a2_state" / "sim_results" / "sim_probe_object_results.json"
+    result_path.parent.mkdir(parents=True)
+    result_path.write_text('{"result":"current"}\n', encoding="utf-8")
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text(
+        json.dumps(
+            {
+                "result_path": str(result_path),
+                "result_sha256": __import__("hashlib").sha256(result_path.read_bytes()).hexdigest(),
+            }
+        ),
+        encoding="utf-8",
+    )
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["controller_read_artifacts"] = ["other.json"]
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "controller_read_artifacts_missing_admission_artifact" in findings
+    assert "controller_read_artifacts_missing_expected_result" in findings
+
+
+def test_wizard_sim_admission_requires_promotion_boundary(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_promotion_boundary_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["packet_contract"].pop("promotion_boundary")
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "packet_contract_missing_promotion_boundary" in findings
+
+
+def test_queue_claim_blocks_strict_wizard_admission_without_artifact(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "queue_claim_wizard_admission_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+    repo = tmp_path / "repo"
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "QUEUE_ROOT", queue_root)
+    monkeypatch.setattr(module, "STRICT_WIZARD_QUEUE_ADMISSION", True)
+
+    terminal = module.enqueue("lane_A", "system_v4/probes/sim_probe_object.py")
+
+    assert terminal.parent.name == "blocked"
+    payload = json.loads(terminal.read_text(encoding="utf-8"))
+    assert payload["blocked_reason"] == "wizard_admission_blocked"
+
+
+def test_queue_claim_claim_rechecks_wizard_admission_even_when_enqueue_relaxed(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "queue_claim_wizard_claim_gate_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+    repo = tmp_path / "repo"
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "QUEUE_ROOT", queue_root)
+    monkeypatch.setattr(module, "STRICT_WIZARD_QUEUE_ADMISSION", False)
+    monkeypatch.setattr(module, "CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION", True)
+
+    queued = module.enqueue("lane_A", "system_v4/probes/sim_probe_object.py")
+    assert queued.parent.name == "lane_A"
+
+    claimed = module.claim("lane_A", "w1")
+
+    assert claimed is None
+    blocked = list((queue_root / "blocked").glob("*.json*"))
+    assert len(blocked) == 1
+    payload = json.loads(blocked[0].read_text(encoding="utf-8"))
+    assert payload["blocked_reason"] == "wizard_admission_blocked"
+
+
+def test_qit_engine_evidence_index_blocks_unadmitted_qit_results(tmp_path) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    probes.mkdir(parents=True)
+    (probes / "sim_qit_probe.py").write_text("# fixture\n", encoding="utf-8")
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    results.mkdir(parents=True)
+    result_path = results / "sim_qit_probe_results.json"
+    result_path.write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_probe",
+                "classification": "canonical",
+                "summary": {"tests_passed": 1, "tests_total": 1},
+                "tool_manifest": {"sympy": {"tried": True, "used": True, "reason": "exact fixture check"}},
+                "tool_integration_depth": {"sympy": "load_bearing"},
+                "positive": {"passed": True},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "qit_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "wizard admission exists",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    index = module.build_index(repo)
+
+    assert index["summary"]["total_entries"] == 1
+    assert index["summary"]["candidate_entries"] == 0
+    assert index["summary"]["quarantine_entries"] == 1
+    assert index["operational_status"] == "blocked_no_accepted_qit_entries"
+    assert len(index["candidate_entries"]) == 0
+    assert len(index["quarantine_entries"]) == 1
+    entry = index["entries"][0]
+    assert entry["status"] == "blocked"
+    assert entry["admission_status"] == "missing_or_invalid"
+    assert entry["receipt_schema_ok"] is True
+    assert any(item.startswith("admission:") for item in entry["blockers"])
+    assert index["next_acceptance_targets"][0]["basename"] == "sim_qit_probe"
+    assert index["next_acceptance_targets"][0]["next_action"] == "create_or_repair_wizard_sim_admission"
+
+
+def test_qit_engine_evidence_index_requires_source_binding_before_admission(tmp_path) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_source_binding_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    results.mkdir(parents=True)
+    (results / "lego_07_results.json").write_text(
+        json.dumps(
+            {
+                "name": "lego_07",
+                "classification": "canonical",
+                "summary": {"tests_passed": 1, "tests_total": 1},
+                "tool_manifest": {"sympy": {"tried": True, "used": True, "reason": "exact qit fixture check"}},
+                "tool_integration_depth": {"sympy": "load_bearing"},
+                "positive": {"passed": True},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "qit_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "wizard admission exists",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    index = module.build_index(repo)
+
+    assert index["next_acceptance_targets"][0]["next_action"] == "repair_or_bind_source_probe_before_admission"
+
+
+def test_qit_engine_evidence_index_prioritizes_source_bound_admission_targets(tmp_path) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_target_priority_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    probes.mkdir(parents=True)
+    (probes / "sim_qit_probe.py").write_text("# fixture\n", encoding="utf-8")
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    results.mkdir(parents=True)
+    base_payload = {
+        "classification": "canonical",
+        "summary": {"tests_passed": 1, "tests_total": 1},
+        "tool_manifest": {"sympy": {"tried": True, "used": True, "reason": "exact qit fixture check"}},
+        "tool_integration_depth": {"sympy": "load_bearing"},
+        "positive": {"passed": True},
+        "negative": {"passed": True},
+        "boundary": {"passed": True},
+        "demotion_condition": "demote if fixture fails",
+        "out_of_scope": ["no engine promotion"],
+        "claim_ceiling": "qit_micro_only",
+        "next_lego_target": "none",
+        "promotion_condition": "requires admitted downstream packet",
+        "blocked_until": "wizard admission exists",
+    }
+    (results / "aaa_unbound_qit_results.json").write_text(
+        json.dumps({"name": "aaa_unbound_qit", **base_payload}),
+        encoding="utf-8",
+    )
+    (results / "sim_qit_probe_results.json").write_text(
+        json.dumps({"name": "sim_qit_probe", **base_payload}),
+        encoding="utf-8",
+    )
+
+    index = module.build_index(repo)
+
+    first_target = index["next_acceptance_targets"][0]
+    assert first_target["basename"] == "sim_qit_probe"
+    assert first_target["sim_path"] == "system_v4/probes/sim_qit_probe.py"
+    assert first_target["next_action"] == "create_or_repair_wizard_sim_admission"
+    targets_by_basename = {target["basename"]: target for target in index["next_acceptance_targets"]}
+    assert targets_by_basename["aaa_unbound_qit"]["next_action"] == "repair_or_bind_source_probe_before_admission"
+
+
+def test_qit_engine_evidence_index_accepts_strict_result_with_wizard_admission(tmp_path) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_accept_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    _write_allow_stage_gate(repo)
+    probes = repo / "system_v4" / "probes"
+    probes.mkdir(parents=True)
+    (probes / "sim_qit_probe.py").write_text("# fixture\n", encoding="utf-8")
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    results.mkdir(parents=True)
+    result_path = results / "sim_qit_probe_results.json"
+    result_path.write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_probe",
+                "classification": "canonical",
+                "summary": {"tests_passed": 1, "tests_total": 1},
+                "tool_manifest": {"z3": {"tried": True, "used": True, "reason": "exact structural fixture check"}},
+                "tool_integration_depth": {"z3": "load_bearing"},
+                "positive": {"passed": True},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "qit_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text(
+        json.dumps(
+            {
+                "result_path": str(result_path),
+                "result_sha256": __import__("hashlib").sha256(result_path.read_bytes()).hexdigest(),
+            }
+        ),
+        encoding="utf-8",
+    )
+    admission_dir = repo / "system_v5" / "ops" / "wizard_admissions"
+    admission_dir.mkdir(parents=True)
+    admission = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_qit_probe",
+        sim_path="system_v4/probes/sim_qit_probe.py",
+        artifact=artifact,
+    )
+    admission["formal_sim_profile"]["expected_result_path"] = str(result_path)
+    admission["formal_sim_profile"]["exact_tool_or_function"] = "z3.Solver.check"
+    admission["packet_contract"]["tool_target"] = "z3"
+    admission["packet_contract"]["function_surface"] = "z3.Solver.check"
+    payload = json.loads(result_path.read_text(encoding="utf-8"))
+    payload["positive"] = {"passed": True, "function_surface": "z3.Solver.check"}
+    result_path.write_text(json.dumps(payload), encoding="utf-8")
+    import hashlib
+    artifact.write_text(
+        json.dumps({"result_path": str(result_path), "result_sha256": hashlib.sha256(result_path.read_bytes()).hexdigest()}),
+        encoding="utf-8",
+    )
+    admission_path = admission_dir / "sim_qit_probe.json"
+    admission_path.write_text(json.dumps(admission), encoding="utf-8")
+
+    index = module.build_index(repo)
+
+    assert index["summary"]["accepted"] == 1
+    assert index["summary"]["admitted_micro_entries"] == 1
+    assert index["summary"]["candidate_entries"] == 1
+    assert index["summary"]["quarantine_entries"] == 0
+    assert index["operational_status"] == "has_accepted_qit_entry"
+    assert index["next_acceptance_targets"] == []
+    entry = index["entries"][0]
+    assert entry["status"] == "accepted"
+    assert entry["admission_status"] == "admitted"
+    assert entry["admission_artifact"] == str(admission_path)
+    assert entry["parent_receipt_sha256"] == {}
+    assert entry["tool_function_ancestry"]["tool_target"] == "z3"
+    assert entry["tool_function_ancestry"]["function_surface"] == "z3.Solver.check"
+    assert entry["result_sha256"]
+
+
+def test_wizard_sim_admission_rejects_tool_target_not_load_bearing(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_tool_binding_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    result_path = repo / "system_v4" / "probes" / "a2_state" / "sim_results" / "sim_probe_object_results.json"
+    result_path.parent.mkdir(parents=True)
+    result_path.write_text(
+        json.dumps(
+            {
+                "name": "sim_probe_object",
+                "classification": "canonical",
+                "all_pass": True,
+                "tool_manifest": {"sympy": {"tried": True, "used": True, "reason": "fixture"}},
+                "tool_integration_depth": {"sympy": "load_bearing"},
+                "positive": {"passed": True, "function_surface": "sympy.simplify"},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no promotion"],
+                "claim_ceiling": "micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires later packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["expected_result_path"] = str(result_path)
+    payload["packet_contract"]["tool_target"] = "z3"
+    payload["packet_contract"]["function_surface"] = "z3.Solver.check"
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "admission_artifact_tool_target_not_load_bearing" in findings
+
+
+def test_wizard_sim_admission_rejects_qit_canonical_without_nonclassical_tool(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_nonclassical_tool_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    result_path = repo / "system_v4" / "probes" / "a2_state" / "sim_results" / "sim_qit_probe_results.json"
+    result_path.parent.mkdir(parents=True)
+    result_path.write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_probe",
+                "classification": "canonical",
+                "all_pass": True,
+                "tool_manifest": {"sympy": {"tried": True, "used": True, "reason": "symbolic fixture only"}},
+                "tool_integration_depth": {"sympy": "load_bearing"},
+                "positive": {"passed": True, "function_surface": "sympy.simplify"},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "qit_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_qit_probe",
+        sim_path="system_v4/probes/sim_qit_probe.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["expected_result_path"] = str(result_path)
+    payload["formal_sim_profile"]["claim"] = "QIT engine micro claim"
+    payload["packet_contract"]["tool_target"] = "sympy"
+    payload["packet_contract"]["function_surface"] = "sympy.simplify"
+    payload["packet_contract"]["claim_ceiling"] = "qit_micro_only"
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_qit_probe",
+        sim_path="system_v4/probes/sim_qit_probe.py",
+    )
+
+    assert "nonclassical_suitable_load_bearing_tool_missing" in findings
+
+
+def test_wizard_sim_admission_rejects_hidden_coupling_result_without_nonclassical_tool(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_hidden_coupling_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    result_path = repo / "system_v4" / "probes" / "a2_state" / "sim_results" / "sim_probe_object_results.json"
+    result_path.parent.mkdir(parents=True)
+    result_path.write_text(
+        json.dumps(
+            {
+                "name": "sim_probe_object",
+                "classification": "classical_baseline",
+                "all_pass": True,
+                "tool_manifest": {"sympy": {"tried": True, "used": True, "reason": "symbolic fixture only"}},
+                "tool_integration_depth": {"sympy": "load_bearing"},
+                "positive": {"passed": True, "function_surface": "sympy.simplify"},
+                "observables": {"rho_AB": 1, "Phi0": 0, "Xi": "coupling witness"},
+                "divergence_log": "classical baseline only",
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["expected_result_path"] = str(result_path)
+    payload["packet_contract"]["tool_target"] = "sympy"
+    payload["packet_contract"]["function_surface"] = "sympy.simplify"
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "nonclassical_suitable_load_bearing_tool_missing" in findings
+
+
+def test_wizard_sim_admission_accepts_nonclassical_tool_family_suffix(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_tool_family_suffix_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    result_path = repo / "system_v4" / "probes" / "a2_state" / "sim_results" / "sim_qit_probe_results.json"
+    result_path.parent.mkdir(parents=True)
+    result_path.write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_probe",
+                "classification": "canonical",
+                "all_pass": True,
+                "tool_manifest": {"z3.solver": {"tried": True, "used": True, "reason": "exact fixture"}},
+                "tool_integration_depth": {"z3.solver": "load_bearing"},
+                "positive": {"passed": True, "function_surface": "z3.Solver.check"},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "qit_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_qit_probe",
+        sim_path="system_v4/probes/sim_qit_probe.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["expected_result_path"] = str(result_path)
+    payload["formal_sim_profile"]["claim"] = "QIT engine micro claim"
+    payload["packet_contract"]["tool_target"] = "z3.solver"
+    payload["packet_contract"]["function_surface"] = "z3.Solver.check"
+    payload["packet_contract"]["claim_ceiling"] = "qit_micro_only"
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_qit_probe",
+        sim_path="system_v4/probes/sim_qit_probe.py",
+    )
+
+    assert "nonclassical_suitable_load_bearing_tool_missing" not in findings
+
+
+def test_wizard_sim_admission_rejects_hidden_coupling_baseline_without_baseline_ceiling(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_hidden_baseline_ceiling_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    _write_allow_stage_gate(repo)
+    result_path = repo / "system_v4" / "probes" / "a2_state" / "sim_results" / "sim_probe_object_results.json"
+    result_path.parent.mkdir(parents=True)
+    result_path.write_text(
+        json.dumps(
+            {
+                "name": "sim_probe_object",
+                "classification": "classical_baseline",
+                "all_pass": True,
+                "tool_manifest": {"z3": {"tried": True, "used": True, "reason": "exact fixture"}},
+                "tool_integration_depth": {"z3": "load_bearing"},
+                "positive": {"passed": True, "function_surface": "z3.Solver.check"},
+                "observables": {"rho_AB": 1, "Phi0": 0, "Xi": "coupling witness"},
+                "divergence_log": "classical baseline only",
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["expected_result_path"] = str(result_path)
+    payload["packet_contract"]["tool_target"] = "z3"
+    payload["packet_contract"]["function_surface"] = "z3.Solver.check"
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "nonclassical_baseline_missing_baseline_only_ceiling" in findings
+
+
+def test_wizard_sim_admission_rejects_hidden_coupling_source_without_nonclassical_tool(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_hidden_source_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    sim_path = repo / "system_v4" / "probes" / "sim_probe_object.py"
+    sim_path.parent.mkdir(parents=True)
+    sim_path.write_text("rho_AB = 'hidden coupling source signal'\n", encoding="utf-8")
+    result_path = repo / "system_v4" / "probes" / "a2_state" / "sim_results" / "sim_probe_object_results.json"
+    result_path.parent.mkdir(parents=True)
+    result_path.write_text(
+        json.dumps(
+            {
+                "name": "sim_probe_object",
+                "classification": "classical_baseline",
+                "all_pass": True,
+                "tool_manifest": {"sympy": {"tried": True, "used": True, "reason": "symbolic fixture only"}},
+                "tool_integration_depth": {"sympy": "load_bearing"},
+                "positive": {"passed": True, "function_surface": "sympy.simplify"},
+                "divergence_log": "classical baseline only",
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["expected_result_path"] = str(result_path)
+    payload["packet_contract"]["tool_target"] = "sympy"
+    payload["packet_contract"]["function_surface"] = "sympy.simplify"
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "nonclassical_suitable_load_bearing_tool_missing" in findings
+
+
+def test_qit_engine_evidence_index_blocks_stale_admission_artifact_hash(tmp_path) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_stale_artifact_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    _write_allow_stage_gate(repo)
+    probes = repo / "system_v4" / "probes"
+    probes.mkdir(parents=True)
+    (probes / "sim_qit_probe.py").write_text("# fixture\n", encoding="utf-8")
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    results.mkdir(parents=True)
+    result_path = results / "sim_qit_probe_results.json"
+    result_path.write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_probe",
+                "classification": "canonical",
+                "summary": {"tests_passed": 1, "tests_total": 1},
+                "tool_manifest": {"sympy": {"tried": True, "used": True, "reason": "exact fixture check"}},
+                "tool_integration_depth": {"sympy": "load_bearing"},
+                "positive": {"passed": True},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "qit_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text(
+        json.dumps({"result_path": str(result_path), "result_sha256": "stale-hash"}),
+        encoding="utf-8",
+    )
+    admission_dir = repo / "system_v5" / "ops" / "wizard_admissions"
+    admission_dir.mkdir(parents=True)
+    admission = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_qit_probe",
+        sim_path="system_v4/probes/sim_qit_probe.py",
+        artifact=artifact,
+    )
+    admission["formal_sim_profile"]["expected_result_path"] = str(result_path)
+    (admission_dir / "sim_qit_probe.json").write_text(json.dumps(admission), encoding="utf-8")
+
+    index = module.build_index(repo)
+
+    assert index["summary"]["accepted"] == 0
+    assert index["summary"]["candidate_entries"] == 0
+    assert index["summary"]["quarantine_entries"] == 1
+    entry = index["entries"][0]
+    assert entry["status"] == "blocked"
+    assert "admission:admission_artifact_result_sha256_mismatch" in entry["blockers"]
+
+
+def test_qit_engine_evidence_index_does_not_accept_admitted_baseline_as_qit_evidence(tmp_path) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_baseline_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    _write_allow_stage_gate(repo)
+    probes = repo / "system_v4" / "probes"
+    probes.mkdir(parents=True)
+    (probes / "sim_hopf_probe.py").write_text("# fixture\n", encoding="utf-8")
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    results.mkdir(parents=True)
+    result_path = results / "sim_hopf_probe_results.json"
+    result_path.write_text(
+        json.dumps(
+            {
+                "name": "sim_hopf_probe",
+                "classification": "classical_baseline",
+                "all_pass": True,
+                "tool_manifest": {"z3": {"tried": True, "used": True, "reason": "exact fixture check"}},
+                "tool_integration_depth": {"z3": "load_bearing"},
+                "positive": {"passed": True, "function_surface": "z3.Solver.check"},
+                "divergence_log": "baseline only",
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "hopf_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text(
+        json.dumps(
+            {
+                "result_path": str(result_path),
+                "result_sha256": __import__("hashlib").sha256(result_path.read_bytes()).hexdigest(),
+            }
+        ),
+        encoding="utf-8",
+    )
+    admission_dir = repo / "system_v5" / "ops" / "wizard_admissions"
+    admission_dir.mkdir(parents=True)
+    admission = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_hopf_probe",
+        sim_path="system_v4/probes/sim_hopf_probe.py",
+        artifact=artifact,
+    )
+    admission["formal_sim_profile"]["expected_result_path"] = str(result_path)
+    admission["packet_contract"]["tool_target"] = "z3"
+    admission["packet_contract"]["function_surface"] = "z3.Solver.check"
+    admission["packet_contract"]["nonclassical_claim_ceiling"] = "baseline_only"
+    (admission_dir / "sim_hopf_probe.json").write_text(json.dumps(admission), encoding="utf-8")
+
+    index = module.build_index(repo)
+
+    assert index["summary"]["admitted_micro_entries"] == 1
+    assert index["summary"]["accepted"] == 0
+    assert index["operational_status"] == "blocked_no_accepted_qit_entries"
+    assert index["next_acceptance_targets"][0]["next_action"] == "do_not_promote_reclassify_or_replace_with_canonical_qit_result"
+    entry = index["entries"][0]
+    assert entry["status"] == "blocked"
+    assert "result:result_classification_not_canonical" in entry["blockers"]
+
+
+def test_qit_engine_evidence_index_ignores_broad_filename_without_structured_qit_signal(tmp_path) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_scope_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    results.mkdir(parents=True)
+    (results / "sim_coupling_micro_results.json").write_text(
+        json.dumps(
+            {
+                "name": "sim_coupling_micro",
+                "classification": "canonical",
+                "summary": {"tests_passed": 1, "tests_total": 1},
+                "tool_manifest": {"sympy": {"tried": True, "used": True, "reason": "ordinary micro check"}},
+                "tool_integration_depth": {"sympy": "load_bearing"},
+                "positive": {"passed": True},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no downstream promotion"],
+                "claim_ceiling": "lego_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires later ordinary packet",
+                "blocked_until": "ordinary micro acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    index = module.build_index(repo)
+
+    assert index["summary"]["total_entries"] == 0
+    assert index["summary"]["quarantine_entries"] == 0
+
+
+def test_qit_engine_evidence_index_require_accepted_fails_without_candidate(tmp_path) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_require_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    results.mkdir(parents=True)
+    (results / "sim_qit_probe_results.json").write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_probe",
+                "classification": "canonical",
+                "summary": {"tests_passed": 1, "tests_total": 1},
+                "tool_manifest": {"sympy": {"tried": True, "used": True, "reason": "exact fixture check"}},
+                "tool_integration_depth": {"sympy": "load_bearing"},
+                "positive": {"passed": True},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "qit_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "wizard admission exists",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    index = module.build_index(repo)
+
+    assert index["summary"]["accepted"] == 0
+    assert index["operational_status"] == "blocked_no_accepted_qit_entries"
+
+
+def test_queue_claim_defaults_to_strict_wizard_admission() -> None:
+    text = (REPO_ROOT / "scripts" / "queue_claim.py").read_text(encoding="utf-8")
+    assert 'os.environ.get("STRICT_WIZARD_QUEUE_ADMISSION", "1") == "1"' in text
+
+
+def test_queue_claim_accepts_strict_wizard_admission_artifact(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "queue_claim_wizard_admission_valid_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+    repo = tmp_path / "repo"
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    admission = tmp_path / "admission.json"
+    admission.write_text(
+        json.dumps(
+            _valid_wizard_admission_payload(
+                repo=repo,
+                basename="sim_probe_object",
+                sim_path="system_v4/probes/sim_probe_object.py",
+                artifact=artifact,
+            )
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "QUEUE_ROOT", queue_root)
+    monkeypatch.setattr(module, "STRICT_WIZARD_QUEUE_ADMISSION", True)
+
+    queued = module.enqueue(
+        "lane_A",
+        "system_v4/probes/sim_probe_object.py",
+        str(admission),
+    )
+
+    assert queued.parent.name == "lane_A"
+    payload = json.loads(queued.read_text(encoding="utf-8"))
+    assert payload["wizard_admission_file"] == str(admission)
+
+
+def test_live_sim_runner_requires_wizard_queue_admission_before_execution() -> None:
+    text = (REPO_ROOT / "system_v5" / "ops" / "sim_runner.sh").read_text(encoding="utf-8")
+    assert 'STRICT_WIZARD_QUEUE_ADMISSION="${STRICT_WIZARD_QUEUE_ADMISSION:-1}"' in text
+    assert "wizard_queue_admitted()" in text
+    assert "scripts/wizard_sim_admission.py" in text
+    assert 'mark_line "$queue_file" "$basename" "INELIGIBLE" "0"' in text
+
+
+def test_live_sim_runner_requires_recovery_sentinel_for_admission_bypass() -> None:
+    text = (REPO_ROOT / "system_v5" / "ops" / "sim_runner.sh").read_text(encoding="utf-8")
+    assert "admission_bypass_preflight()" in text
+    assert 'STRICT_RECEIPT_ADMISSION" = "1"' in text
+    assert 'STRICT_WIZARD_QUEUE_ADMISSION" = "1"' in text
+    assert ".allow_admission_bypass_recovery" in text
+    assert "Admission bypass refused" in text
+
+
+def test_tier_b_gate_poller_uses_system_v5_prompt_authority() -> None:
+    text = (REPO_ROOT / "system_v5" / "ops" / "tier_b_gate_poller.py").read_text(
+        encoding="utf-8"
+    )
+    assert "REPO / 'system_v5' / 'ops' / 'tier_b_launch_prompt.md'" in text
+    assert "REPO / 'ops' / 'tier_b_launch_prompt.md'" not in text
+
+
+def test_adaptive_controller_stage_gate_blocks_late_enqueue(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "adaptive_controller_stage_gate_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    queue_root = tmp_path / "queue"
+    sim = tmp_path / "sim_axis0_forbidden.py"
+    sim.write_text('classification = "canonical"\n', encoding="utf-8")
+    gate = tmp_path / "stage_gate.py"
+    gate.write_text("#!/usr/bin/env python3\nraise SystemExit(1)\n", encoding="utf-8")
+    gate.chmod(0o755)
+
+    monkeypatch.setattr(module, "QUEUE", queue_root)
+    monkeypatch.setattr(module, "STAGE_GATE_SCRIPT", gate)
+
+    result = module.enqueue(sim, "lane_A", "high")
+
+    assert result is None
+    assert not list(queue_root.glob("lane_A/*.json"))
+    blocked = list(queue_root.glob("blocked/*.json"))
+    assert len(blocked) == 1
+    payload = json.loads(blocked[0].read_text(encoding="utf-8"))
+    assert payload["blocked_reason"] == "stage_gate_blocked"
+    assert payload["blocked_stage_claim"] == "axis"
+
+
+def test_queue_claim_blocks_stage_gated_enqueue_and_claim(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "queue_claim_stage_gate_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+    repo = tmp_path / "repo"
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    gate = tmp_path / "stage_gate.py"
+    gate.write_text("#!/usr/bin/env python3\nraise SystemExit(1)\n", encoding="utf-8")
+    gate.chmod(0o755)
+
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "QUEUE_ROOT", queue_root)
+    monkeypatch.setattr(module, "STAGE_GATE_SCRIPT", gate)
+
+    terminal = module.enqueue("lane_A", "system_v4/probes/sim_boundary_flux_admissibility.py")
+
+    assert terminal.parent.name == "blocked"
+    payload = json.loads(terminal.read_text(encoding="utf-8"))
+    assert payload["blocked_reason"] == "stage_gate_blocked"
+    assert payload["blocked_stage_claim"] == "tier_d"
+
+    allowed = tmp_path / "allow_gate.py"
+    allowed.write_text("#!/usr/bin/env python3\nraise SystemExit(0)\n", encoding="utf-8")
+    allowed.chmod(0o755)
+    monkeypatch.setattr(module, "STAGE_GATE_SCRIPT", allowed)
+    queued = module.enqueue("lane_A", "system_v4/probes/sim_axis0_forbidden.py")
+    assert queued.parent.name == "lane_A"
+
+    monkeypatch.setattr(module, "STAGE_GATE_SCRIPT", gate)
+    claimed = module.claim("lane_A", "w1")
+
+    assert claimed is None
+    blocked = list((queue_root / "blocked").glob("*.json*"))
+    assert any(
+        json.loads(item.read_text(encoding="utf-8")).get("blocked_stage_claim") == "axis"
+        for item in blocked
+    )
 
 
 def test_queue_claim_prefers_older_items_when_rank_ties(tmp_path) -> None:

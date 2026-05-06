@@ -43,6 +43,29 @@ Runner execution remains serial only where the runner requires it: shared queue 
 
 Acceptance remains row-local: each accepted packet must name one tool/function surface, one tiny claim, its own evidence path, and its own ledger loopback. Parallel work must not merge uncertain tool behavior, lego behavior, and coupling behavior into one packet.
 
+The stage gate is conservative by design, so the search before it should be
+wide. Workers may produce many MICRO/BOUND candidates, alternate lego targets,
+negative cases, and demotion probes. A failed candidate that cleanly identifies
+the missing function receipt, bad tool role, over-broad lego claim, or coupling
+debt is useful ratchet evidence. It should be recorded, split, demoted, or
+rerouted; it should not be promoted.
+
+## Child/subsubagent status ceiling
+
+Subagents and subsubagents can improve packet quality by testing alternate
+model/reasoning salience, finding missing prior receipts, drafting stricter
+MICRO/BOUND fields, or falsifying a proposed queue row. They cannot make a row
+queue-ready by agreement. A child receipt that says "promising," "council
+agreed," "runner passed," or "ready" remains advisory until the controller
+reads the exact artifact and the relevant compile gate passes.
+
+For Stage 3 and Stage 4, child receipts may produce a `queue_candidate` only.
+Queue visibility still requires the strict fields, stage gate, exact
+tool/function or admitted coupling, positive check, negative/boundary check,
+expected result path, prior receipts when required, and explicit blocked or
+admission status. Missing pieces must return `split_smaller` or `blocked`, not
+an inferred promotion.
+
 ## Routing rule
 
 | Row type | Queue surface | Loopback required? |
@@ -69,6 +92,10 @@ Every tool in the ledger gets a discovered role, recorded in a new column:
 - `controller-support` — runs controller or telemetry; not itself sim-stage.
 
 Role is discovered by probing, not declared. A probe that tries a tool for nonclassical work and finds it unsuitable moves the tool to `classical-only` with the failing probe cited. The ledger currently conflates load-bearing-anywhere with nonclassical-suitable; that conflation is the next honest ledger debt.
+
+Failed role-discovery probes are evidence when they cite the exact function
+surface, claim ceiling, and demotion condition. They do not promote the tool,
+but they prevent the next packet from pretending the role is still unknown.
 
 ## Sim execution-kind axis
 

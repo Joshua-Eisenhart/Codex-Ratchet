@@ -17,6 +17,8 @@ def _load_queue_claim_module():
     assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
+    module.STRICT_WIZARD_QUEUE_ADMISSION = False
+    module.CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION = False
     return module
 
 

@@ -183,6 +183,17 @@ if __name__ == "__main__":
         "surviving_alternatives": [
             "Other SyGuS grammars and theories remain unproven; this receipt covers only the named LIA grammar fixtures."
         ],
+        "claim_ceiling": "tool_function_micro_only",
+        "next_lego_target": "minimal SyGuS integer grammar fixture before coupling or lego promotion",
+        "promotion_condition": (
+            "requires a later admitted lego row that names this exact function "
+            "receipt and passes strict runner admission; this MICRO row does "
+            "not promote the lego"
+        ),
+        "blocked_until": (
+            "blocked until a downstream queue row declares the exact lego "
+            "target, parent receipts, and active stage gate for promotion"
+        ),
         "demotion_condition": (
             "Demote cvc5 for this surface if checkSynth cannot find the bounded "
             "successor solution, reports a solution outside the grammar, or fails "

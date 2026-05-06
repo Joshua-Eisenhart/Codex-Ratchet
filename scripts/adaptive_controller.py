@@ -35,6 +35,7 @@ QUEUE = PROBES / "a2_state/queue"
 LOGS = ROOT / "overnight_logs"
 SKILL_LOG = ROOT / "system_v4" / "a1_state" / "skill_invocation_log.jsonl"
 PY = "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+STAGE_GATE_SCRIPT = ROOT / "scripts" / "stage_gate.py"
 CONTROLLER_PIDFILE = pathlib.Path("/tmp/codex_ratchet_adaptive_controller.pid")
 CYCLE_SEC = 300
 STUB_PATTERNS = {"not relevant", "n/a", "na", "tbd", "todo", "stub",
@@ -299,6 +300,67 @@ def queue_item_path(lane: str, sim_path: str | pathlib.Path) -> pathlib.Path:
     return QUEUE / lane / f"{digest}.json"
 
 
+def stage_gate_claim_for_sim(sim_path: pathlib.Path | str) -> str | None:
+    """Return the narrowest stage-gate claim needed before queueing a sim."""
+    path = pathlib.Path(sim_path)
+    runner_class = runner_class_for(path)
+    stage = plan_stage(path.name)
+    stem = path.stem.lower()
+    family = sim_family(path.name)
+    if "tier_d" in stem or "boundary_flux" in stem or (
+        "boundary" in stem and "admissibility" in stem
+    ):
+        return "tier_d"
+    if family in {"axis", "axis0"} or stage == "late_axis":
+        return "axis"
+    if runner_class == "bridge":
+        return "scientific_coupling"
+    if stage == "late_info":
+        return "default_late_stage"
+    return None
+
+
+def stage_gate_allows_sim(sim_path: pathlib.Path | str) -> bool:
+    claim = stage_gate_claim_for_sim(sim_path)
+    if claim is None:
+        return True
+    try:
+        proc = subprocess.run(
+            [PY, str(STAGE_GATE_SCRIPT), "--claim", claim],
+            cwd=str(ROOT),
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            text=True,
+            timeout=10,
+        )
+    except Exception:
+        return False
+    return proc.returncode == 0
+
+
+def record_stage_gate_block(sim_path: pathlib.Path | str, lane: str, priority: str) -> pathlib.Path:
+    (QUEUE / "blocked").mkdir(parents=True, exist_ok=True)
+    normalized = normalize_sim_path(sim_path)
+    claim = stage_gate_claim_for_sim(sim_path)
+    bucket = plan_bucket(normalized)
+    payload = {
+        "blocked_at": int(time.time()),
+        "blocked_reason": "stage_gate_blocked",
+        "blocked_stage_claim": claim,
+        "lane": lane,
+        "sim_path": normalized,
+        "runner_class": runner_class_for(sim_path),
+        "runner_class_reason": runner_class_reason(sim_path),
+        "priority": canonical_priority(priority, bucket),
+        "plan_bucket": bucket,
+        "plan_stage": plan_stage(normalized),
+    }
+    digest = hashlib.sha1(f"{lane}:{normalized}:stage_gate_blocked".encode()).hexdigest()[:16]
+    target = QUEUE / "blocked" / f"{digest}.json"
+    target.write_text(json.dumps(payload, sort_keys=True))
+    return target
+
+
 def canonicalize_queue_payload(data: dict, lane: str, normalized: str) -> dict:
     bucket = str(data.get("plan_bucket") or plan_bucket(normalized))
     sim_path = pathlib.Path(normalized)
@@ -317,7 +379,10 @@ def canonicalize_queue_payload(data: dict, lane: str, normalized: str) -> dict:
     return canonical
 
 
-def enqueue(sim_path: pathlib.Path, lane: str, priority: str = "normal"):
+def enqueue(sim_path: pathlib.Path, lane: str, priority: str = "normal") -> pathlib.Path | None:
+    if not stage_gate_allows_sim(sim_path):
+        record_stage_gate_block(sim_path, lane, priority)
+        return None
     (QUEUE / lane).mkdir(parents=True, exist_ok=True)
     normalized = normalize_sim_path(sim_path)
     bucket = plan_bucket(normalized)
@@ -349,9 +414,10 @@ def enqueue(sim_path: pathlib.Path, lane: str, priority: str = "normal"):
         existing["priority"] = canonical_priority(existing.get("priority") or priority, bucket)
         existing["enqueued_at"] = existing.get("enqueued_at", payload["enqueued_at"])
         target.write_text(json.dumps(existing, sort_keys=True))
-        return
+        return target
     with os.fdopen(fd, "w", encoding="utf-8") as handle:
         handle.write(json.dumps(payload, sort_keys=True))
+    return target
 
 
 def normalize_queue_filenames() -> int:
@@ -535,6 +601,9 @@ def runner_class_for(sim_path: pathlib.Path | str, source_text: str | None = Non
     stem = path.stem.lower()
     if stem.startswith("sim_"):
         stem = stem[4:]
+    family = sim_family(path.name)
+    if family in {"axis", "axis0"}:
+        return "bridge"
     if any(token in stem for token in BRIDGE_RUNNER_TOKENS):
         return "bridge"
 
@@ -865,9 +934,14 @@ def target_running_under_pinned_python(target: str) -> bool:
             prefixes.add(f"{PY} {ROOT / target_path}")
     except Exception:
         pass
+    # Stem fallback: catches invocations where the interpreter path differs
+    # from PY (symlink, venv swap, subprocess wrapper). If the sim filename
+    # stem appears in any live python3 command line, treat it as live rather
+    # than yanking the claim and racing another worker onto the same result file.
+    stem_needle = target_path.stem
     try:
         proc = subprocess.run(
-            ["pgrep", "-af", PY],
+            ["pgrep", "-af", "python"],
             capture_output=True,
             text=True,
             timeout=5,
@@ -879,6 +953,8 @@ def target_running_under_pinned_python(target: str) -> bool:
     for line in proc.stdout.splitlines():
         _, _, cmd = line.partition(" ")
         if any(cmd.startswith(prefix) for prefix in prefixes):
+            return True
+        if stem_needle and stem_needle in cmd:
             return True
     return False
 
@@ -1096,7 +1172,7 @@ def _exists_safe(path: pathlib.Path) -> bool:
         return False
 
 
-def find_result_file(sim_stem: str, results_dir: pathlib.Path = RESULTS) -> pathlib.Path | None:
+def find_result_file(sim_stem: str, results_dir: pathlib.Path | None = None) -> pathlib.Path | None:
     """
     Find a result file for a given sim stem, accounting for flexible naming conventions.
 
@@ -1105,6 +1181,8 @@ def find_result_file(sim_stem: str, results_dir: pathlib.Path = RESULTS) -> path
     2. {stem_without_sim_prefix}_results.json (strip leading "sim_")
     3. Any substring-based match where the basename (without _results.json) contains the key part
     """
+    results_dir = results_dir or RESULTS
+
     # Pattern 1: exact match
     exact = results_dir / f"{sim_stem}_results.json"
     if _exists_safe(exact):
@@ -1159,8 +1237,8 @@ def triage_cycle(dry: bool = False) -> dict:
         if rj is None:
             state["never_run"].append(stem)
             if not dry and not is_tracked(str(sim), include_blocked=True):
-                enqueue(sim, infer_lane(sim), default_priority_for_bucket(plan_bucket(sim.name)))
-                state["enqueued"]["never_run"] += 1
+                if enqueue(sim, infer_lane(sim), default_priority_for_bucket(plan_bucket(sim.name))):
+                    state["enqueued"]["never_run"] += 1
             continue
 
         r = load_result(rj)
@@ -1176,8 +1254,8 @@ def triage_cycle(dry: bool = False) -> dict:
         if passing is False:
             state["failing"].append(stem)
             if not dry and not is_tracked(str(sim), include_blocked=True):
-                enqueue(sim, infer_lane(sim), "high")
-                state["enqueued"]["failing"] += 1
+                if enqueue(sim, infer_lane(sim), "high"):
+                    state["enqueued"]["failing"] += 1
             continue
 
         if has_stub_reasons(r):
@@ -1194,8 +1272,8 @@ def triage_cycle(dry: bool = False) -> dict:
             state["stale"].append(stem)
             if not dry and not is_tracked(str(sim), include_blocked=True):
                 priority = "normal" if plan_bucket(sim.name) == "core_ladder" else "low"
-                enqueue(sim, infer_lane(sim), priority)
-                state["enqueued"]["stale"] += 1
+                if enqueue(sim, infer_lane(sim), priority):
+                    state["enqueued"]["stale"] += 1
             continue
 
         state["passing"].append(stem)

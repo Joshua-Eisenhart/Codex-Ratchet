@@ -82,6 +82,16 @@ def _find_module_literal(tree: ast.AST, name: str):
                         return ast.literal_eval(node.value)
                     except (ValueError, SyntaxError):
                         pass
+                    if isinstance(node.value, ast.Dict):
+                        keys = []
+                        for key_node in node.value.keys:
+                            if key_node is None:
+                                return None
+                            key = _literal_key(key_node)
+                            if key is None:
+                                return None
+                            keys.append(key)
+                        return {key: None for key in keys}
                     if isinstance(node.value, ast.DictComp) and len(node.value.generators) == 1:
                         gen = node.value.generators[0]
                         if gen.ifs or gen.is_async:
@@ -147,6 +157,35 @@ def _eval_dictcomp_from_manifest(node: ast.DictComp, tree: ast.AST) -> dict | No
     return {k: value for k in keys}
 
 
+def _literal_key(node: ast.AST) -> str | None:
+    if isinstance(node, ast.Constant) and isinstance(node.value, str):
+        return node.value
+    if isinstance(node, ast.Str):
+        return node.s
+    return None
+
+
+def _apply_subscript_updates(tree: ast.AST, name: str, depth: dict) -> dict:
+    """Apply top-level `NAME["tool"] = <literal>` updates to a parsed dict."""
+    merged = dict(depth)
+    for node in ast.iter_child_nodes(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        for target in node.targets:
+            if not isinstance(target, ast.Subscript):
+                continue
+            if not isinstance(target.value, ast.Name) or target.value.id != name:
+                continue
+            key = _literal_key(target.slice)
+            if key is None:
+                continue
+            try:
+                merged[key] = ast.literal_eval(node.value)
+            except (ValueError, SyntaxError):
+                continue
+    return merged
+
+
 def extract_tool_integration_depth(path: Path) -> dict | None:
     """Parse-only extraction of TOOL_INTEGRATION_DEPTH.
 
@@ -167,11 +206,11 @@ def extract_tool_integration_depth(path: Path) -> dict | None:
                     except (ValueError, SyntaxError):
                         val = None
                     if isinstance(val, dict):
-                        return val
+                        return _apply_subscript_updates(tree, "TOOL_INTEGRATION_DEPTH", val)
                     if isinstance(node.value, ast.DictComp):
                         comp_val = _eval_dictcomp_from_manifest(node.value, tree)
                         if isinstance(comp_val, dict):
-                            return comp_val
+                            return _apply_subscript_updates(tree, "TOOL_INTEGRATION_DEPTH", comp_val)
                     return None
     return None
 

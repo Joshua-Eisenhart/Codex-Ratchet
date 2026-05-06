@@ -8,7 +8,7 @@ Use this file for Codex-only operating preferences that should not be copied int
 
 ## Wizard Use
 
-Wizard is the default Codex Ratchet alignment layer. Run Wizard preflight on every substantive repo turn, load the positive main MMM in the leader thread, and use exact route mini-MMMs for subagents. It routes, compresses, remembers, and audits the existing repo process. It does not replace sim/proof/tool work.
+Wizard is the default Codex Ratchet alignment layer. Run Wizard preflight on every substantive repo turn. A new leader/main thread loads the positive full MMM first, then boots the thread/runtime rules. Subagents and subsubagents load exact route/member mini-MMMs before their route task card. It routes, compresses, remembers, and audits the existing repo process. It does not replace sim/proof/tool work.
 
 Use real subagents whenever a visible voice, lane, check, council, composition, or preworked follow-up option is claimed. If a route did not run, mark it blocked, deferred, or future-only. Ordinary sim and repo cleanup turns should still stay compact and task-focused; internal Wizard alignment is not a license to print worker logs.
 

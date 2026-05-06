@@ -60,6 +60,7 @@ TOOL_INTEGRATION_DEPTH = {
 try:
     import torch
     TOOL_MANIFEST["pytorch"]["tried"] = True
+    TOOL_MANIFEST["pytorch"]["reason"] = "available but not used; numpy carries this local numerical fixture"
 except ImportError:
     TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
 
@@ -111,9 +112,6 @@ def run_positive_tests() -> dict:
                 "idempotence_gap": float(np.linalg.norm(hh - h)),
                 "pass": bool(ok),
             })
-        TOOL_MANIFEST["pytorch"]["used"] = True
-        TOOL_MANIFEST["pytorch"]["reason"] = "Load-bearing numerical verification that the Hopf horizontal projector removes vertical motion and is idempotent"
-        TOOL_INTEGRATION_DEPTH["pytorch"] = "load_bearing"
         results["numeric_projector_properties"] = {"pass": all(c["pass"] for c in checks), "checks": checks}
     except Exception as exc:
         results["numeric_projector_properties"] = {"pass": False, "error": str(exc), "traceback": traceback.format_exc()}
@@ -126,25 +124,38 @@ def run_positive_tests() -> dict:
         A = q0 * v1 - q1 * v0 + q2 * v3 - q3 * v2
         h = v - A * xi
         Ah = sp.expand(q0 * h[1] - q1 * h[0] + q2 * h[3] - q3 * h[2])
-        residual = sp.simplify(Ah.subs({q0**2 + q1**2 + q2**2 + q3**2: 1}))
+        unit_norm = q0**2 + q1**2 + q2**2 + q3**2
+        residual = sp.factor(Ah - A * (1 - unit_norm))
         pass_flag = residual == 0
         TOOL_MANIFEST["sympy"]["used"] = True
         TOOL_MANIFEST["sympy"]["reason"] = "Load-bearing symbolic proof that the Hopf projector produces a horizontal vector with A(H(v)) = 0"
         TOOL_INTEGRATION_DEPTH["sympy"] = "load_bearing"
-        results["symbolic_horizontal_annihilation"] = {"pass": bool(pass_flag), "residual": str(residual)}
+        results["symbolic_horizontal_annihilation"] = {
+            "pass": bool(pass_flag),
+            "residual": str(residual),
+            "unit_sphere_factor": str(sp.factor(Ah)),
+        }
     except Exception as exc:
         results["symbolic_horizontal_annihilation"] = {"pass": False, "error": str(exc), "traceback": traceback.format_exc()}
 
     try:
-        lam = Real("lam")
+        q0, q1, q2, q3, lam = Reals("q0 q1 q2 q3 lam")
+        v0, v1, v2, v3 = Reals("v0 v1 v2 v3")
+        connection = q0 * v1 - q1 * v0 + q2 * v3 - q3 * v2
         solver = Solver()
+        solver.add(q0 == 1, q1 == 0, q2 == 0, q3 == 0)
+        solver.add(v0 == 0, v1 == lam, v2 == 0, v3 == 0)
         solver.add(lam != 0)
-        solver.add(lam == 0)
+        solver.add(connection == 0)
         pass_flag = solver.check() == unsat
         TOOL_MANIFEST["z3"]["used"] = True
-        TOOL_MANIFEST["z3"]["reason"] = "Structural exclusion witness for the impossible claim that a nonzero pure vertical coefficient vanishes under the Hopf connection normalization"
+        TOOL_MANIFEST["z3"]["reason"] = "Structural exclusion witness that a nonzero pure vertical Hopf tangent at q=(1,0,0,0) cannot have zero connection value"
         TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
-        results["z3_nonzero_vertical_zero_connection_excluded"] = {"pass": bool(pass_flag), "unsat": bool(pass_flag)}
+        results["z3_nonzero_vertical_zero_connection_excluded"] = {
+            "pass": bool(pass_flag),
+            "unsat": bool(pass_flag),
+            "function_surface": "z3.Solver.check",
+        }
     except Exception as exc:
         results["z3_nonzero_vertical_zero_connection_excluded"] = {"pass": False, "error": str(exc), "traceback": traceback.format_exc()}
     return results
@@ -213,9 +224,20 @@ if __name__ == "__main__":
         "name": "hopf_horizontal_projector_constraint",
         "generated_at": datetime.now(UTC).isoformat(),
         "classification": classification,
-        "original_classification": "canonical",
-        "downgrade_reason": "canonical_failed_checks_2026-05-01",
-        "classification_note": "The Hopf horizontal projector survives as a local principal-bundle constraint on one carrier.",
+        "classification_note": "The Hopf horizontal projector is retained only as a local principal-bundle constraint baseline on one carrier.",
+        "divergence_log": "Classical baseline only: this packet checks a local Hopf horizontal projector carrier and does not promote QIT, engine, coupling, bridge, axis, or nonclassical claims.",
+        "demotion_condition": "Demote if the numeric projector properties, symbolic horizontal annihilation, z3 exclusion, negative controls, or boundary controls fail.",
+        "out_of_scope": [
+            "QIT engine promotion",
+            "scientific coupling promotion",
+            "bridge or axis claims",
+            "mega-sim evidence",
+            "nonclassical interpretation beyond the local Hopf projector carrier",
+        ],
+        "claim_ceiling": "hopf_horizontal_projector_micro_only",
+        "next_lego_target": "tool-lego fit packet for one named Hopf carrier only after independent Wizard admission",
+        "promotion_condition": "Requires a separate admitted tool-lego packet with exact prior receipt hash before any lego, coupling, engine, bridge, or axis claim.",
+        "blocked_until": "Wizard sim admission, controller-read artifact, and QIT evidence index acceptance all cite this exact result path and hash.",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
@@ -223,4 +245,4 @@ if __name__ == "__main__":
         "boundary": boundary,
         "all_pass": _passes(positive) and _passes(negative) and _passes(boundary),
     }
-    _write_results(results, "hopf_horizontal_projector_constraint")
+    _write_results(results, "sim_hopf_horizontal_projector_constraint")

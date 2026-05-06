@@ -127,6 +127,31 @@ plan_stage_for_sim() {
   esac
 }
 
+stage_gate_claim_for_sim() {
+  local sim="$1" base family
+  base=$(basename "$sim" .py)
+  base=${base#sim_}
+  family=${base%%_*}
+  case "$base" in
+    *tier_d*|*boundary_flux*) echo "tier_d"; return 0 ;;
+    *bridge*|*coupling*|*pairwise*|*coexistence*|*rho_ab*|*phi0*|*kernel*|*emergence*) echo "scientific_coupling"; return 0 ;;
+  esac
+  case "$family" in
+    axis|axis0) echo "axis"; return 0 ;;
+  esac
+  case "$(plan_stage_for_sim "$sim")" in
+    late_axis) echo "axis"; return 0 ;;
+    late_info) echo "default_late_stage"; return 0 ;;
+  esac
+  return 1
+}
+
+stage_gate_allows_sim() {
+  local sim="$1" claim
+  claim=$(stage_gate_claim_for_sim "$sim") || return 0
+  "$PY" scripts/stage_gate.py --claim "$claim" >/dev/null 2>&1
+}
+
 idle=0
 if ! acquire_reseed_pidfile; then
   echo "[$(date)] existing reseed pidfile is alive; exiting duplicate" >> "$LOG"
@@ -156,6 +181,10 @@ while :; do
     bucket=$(plan_bucket_for_sim "$sim")
     priority=$(priority_for_bucket "$bucket")
     stage=$(plan_stage_for_sim "$sim")
+    if ! stage_gate_allows_sim "$sim"; then
+      echo "[$(date)] stage gate blocked enqueue sim=$sim stage=$stage" >> "$LOG"
+      continue
+    fi
     "$PY" - "$ROOT" "$lane" "$sim_abs" "$priority" "$bucket" "$stage" <<'PY'
 import hashlib
 import json
@@ -282,7 +311,13 @@ print(f'retag candidates flagged: {len(flagged)}')
   if [ ! -f /tmp/codex_ratchet_overnight.lock ]; then
     mins=$(( (DEADLINE - $(date +%s)) / 60 ))
     if [ "$mins" -gt 10 ]; then
-      nohup bash scripts/overnight_two_runner.sh --minutes "$mins" --lane-a-parallel 3 --lane-b-parallel 5 >> "$LOG" 2>&1 &
+      if "$PY" scripts/stage_gate.py >/dev/null 2>&1; then
+        nohup bash scripts/overnight_two_runner.sh --minutes "$mins" --lane-a-parallel 3 --lane-b-parallel 5 >> "$LOG" 2>&1 &
+      else
+        echo "[$(date)] stage gate unavailable; not respawning runner" >> "$LOG"
+        sleep "$CYCLE_SEC"
+        continue
+      fi
       RUNNER_PID=$!
     fi
     echo "[$(date)] respawned runner for $mins min" >> "$LOG"

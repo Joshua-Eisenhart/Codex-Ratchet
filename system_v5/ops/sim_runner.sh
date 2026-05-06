@@ -33,7 +33,9 @@ CONSECUTIVE_FAIL_LIMIT=5
 POST_FAIL_PAUSE=1800
 PER_SIM_TIMEOUT=300  # kill any single sim after 5 min — protects against hangs
 STRICT_RECEIPT_ADMISSION="${STRICT_RECEIPT_ADMISSION:-1}"
+STRICT_WIZARD_QUEUE_ADMISSION="${STRICT_WIZARD_QUEUE_ADMISSION:-1}"
 ALLOW_HELPER_PROCESSES="${ALLOW_HELPER_PROCESSES:-0}"
+ADMISSION_BYPASS_SENTINEL="${ADMISSION_BYPASS_SENTINEL:-$OPS/.allow_admission_bypass_recovery}"
 # macOS ships without `timeout`; fall back to portable perl-alarm wrapper.
 TIMEOUT_BIN="$(command -v gtimeout || command -v timeout || echo '')"
 PERL_BIN="$(command -v perl)"
@@ -87,6 +89,19 @@ helper_process_preflight() {
     log "Set ALLOW_HELPER_PROCESSES=1 only when an active browser/computer-use task intentionally owns them."
     exit 1
   fi
+}
+
+admission_bypass_preflight() {
+  if [ "$STRICT_RECEIPT_ADMISSION" = "1" ] && [ "$STRICT_WIZARD_QUEUE_ADMISSION" = "1" ]; then
+    return 0
+  fi
+  if [ -f "$ADMISSION_BYPASS_SENTINEL" ]; then
+    log "Admission bypass recovery sentinel present: $ADMISSION_BYPASS_SENTINEL"
+    return 0
+  fi
+  log "Admission bypass refused: strict receipt and Wizard queue admission must stay enabled for normal sim runs."
+  log "Create $ADMISSION_BYPASS_SENTINEL only for a bounded manual recovery run, then remove it immediately."
+  exit 1
 }
 
 check_stop() {
@@ -206,6 +221,18 @@ receipt_admitted() {
   return 0
 }
 
+wizard_queue_admitted() {
+  local basename="$1"
+  local probe="$2"
+  if [ "$STRICT_WIZARD_QUEUE_ADMISSION" != "1" ]; then
+    return 0
+  fi
+  "$PYTHON" scripts/wizard_sim_admission.py \
+    --basename "$basename" \
+    --sim-path "$probe" \
+    --path-only >/dev/null
+}
+
 consecutive_failures=0
 sim_count=0
 STATS_EVERY=10
@@ -224,6 +251,7 @@ queue_stats() {
 acquire_lock
 ln -sf "$THIS_LOG" "$LOG_DIR/sim_runner_current.log"
 helper_process_preflight
+admission_bypass_preflight
 
 log "Runner started. Priority: A > B > D(if stage gate permits) > default."
 log "Single-runner lock: $LOCK_DIR"
@@ -231,6 +259,11 @@ if [ "$STRICT_RECEIPT_ADMISSION" = "1" ]; then
   log "Strict receipt admission is enabled; DONE requires executable run-boundary validation."
 else
   log "Strict receipt admission is bypassed by STRICT_RECEIPT_ADMISSION=0; DONE means process exit only."
+fi
+if [ "$STRICT_WIZARD_QUEUE_ADMISSION" = "1" ]; then
+  log "Strict Wizard queue admission is enabled; queued rows require v4.1 admission artifacts before execution."
+else
+  log "Strict Wizard queue admission is bypassed by STRICT_WIZARD_QUEUE_ADMISSION=0; rows may run without v4.1 queue admission."
 fi
 log "Initial queue state:"
 queue_stats | while read line; do log "$line"; done
@@ -258,6 +291,12 @@ while :; do
   if [ ! -f "$probe" ]; then
     log "Missing probe: $probe — marking SKIPPED"
     mark_line "$queue_file" "$basename" "SKIPPED" "0"
+    continue
+  fi
+
+  if ! wizard_queue_admitted "$basename" "$probe"; then
+    log "INELIGIBLE (wizard admission): $basename lacks v4.1 queue-ready admission"
+    mark_line "$queue_file" "$basename" "INELIGIBLE" "0"
     continue
   fi
 

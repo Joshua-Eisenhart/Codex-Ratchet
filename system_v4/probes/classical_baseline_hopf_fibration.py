@@ -29,8 +29,6 @@ TOOL_INTEGRATION_DEPTH = {
     "xgi": None, "toponetx": None, "gudhi": None,
 }
 
-divergence_log = "Classical baseline: Hopf fibration S^3 -> S^2, not a canonical nonclassical witness."
-
 NAME = "classical_baseline_hopf_fibration"
 
 def hopf(z1, z2):

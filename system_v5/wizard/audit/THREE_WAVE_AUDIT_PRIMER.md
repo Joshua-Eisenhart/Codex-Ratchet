@@ -59,6 +59,25 @@ Salience audit reports load, lift, drift, no-lift, stale-surface, or cosmetic-on
 
 When salience and execution disagree, execution receipt truth owns the action claim. Salience disagreement becomes a drift signal.
 
+## Source-And-Lift Gate Audit
+
+Audit `source_and_lift_receipt_gate` in plain operational language. The auditor may inspect an MMM or mini-MMM as a quoted object, but should not inhabit that same register while judging execution truth.
+
+The gate audit checks:
+
+- route id, council, source bundle, and source slice are named;
+- raw launch and completion receipt refs exist for any claimed completed route;
+- terminal status is explicit;
+- execution evidence is artifact-backed or a concrete observation, not self-report only;
+- salience loading is recorded separately from salience lift;
+- lift is a changed reasoning move that can survive a label-stripped or plain-English probe;
+- `not_run`, `simulated`, `blocked`, `timed_out`, and `pending` work receives zero route-completion credit;
+- evidence boundary states what the receipt does not prove.
+
+Reject cosmetic lift when native terms appear but the label-stripped output no longer preserves bounded evidence stance, live alternatives, status distinctions, or stop conditions.
+
+The main readout is the share of claimed completed routes that survive audit with non-empty raw receipt refs, terminal status, evidence boundary, and label-stripped reasoning preservation. Track cosmetic-only lift separately; it cannot raise route credit.
+
 ## Verdicts
 
 ```yaml

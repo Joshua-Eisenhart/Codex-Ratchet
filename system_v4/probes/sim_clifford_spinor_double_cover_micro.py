@@ -360,6 +360,17 @@ if __name__ == "__main__":
             "Orientation-sign conventions for the bivector exponential remain separate from this sign-equivalence claim.",
             "Other signatures and full spinor module actions remain future micro surfaces.",
         ],
+        "claim_ceiling": "tool_function_micro_only",
+        "next_lego_target": "minimal Spin(3) double-cover sign fixture before spinor-adjacent claims",
+        "promotion_condition": (
+            "requires a later admitted lego row that names this exact function "
+            "receipt and passes strict runner admission; this MICRO row does "
+            "not promote the lego"
+        ),
+        "blocked_until": (
+            "blocked until a downstream queue row declares the exact lego "
+            "target, parent receipts, and active stage gate for promotion"
+        ),
         "demotion_condition": MICRO["demotion_condition"],
         "out_of_scope": MICRO["out_of_scope"],
     }

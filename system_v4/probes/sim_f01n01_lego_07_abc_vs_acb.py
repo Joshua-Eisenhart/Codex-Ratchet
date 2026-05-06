@@ -31,6 +31,18 @@ if __name__ == "__main__":
     checks = list(pos.values())+list(neg.values())+list(bnd.values())
     all_pass = all(bool(x) for x in checks)
     r = {"name":"lego_07_abc_vs_acb","classification":"canonical",
+         "claim_ceiling":"local_lego_only",
+         "next_lego_target":"composition_order_noncommutation",
+         "promotion_condition":"requires controller reconciliation of this exact result path plus sibling F01/N01 lego receipts before any coupling, bridge, axis, or engine claim",
+         "blocked_until":"blocked from downstream promotion until the controller reads this result JSON and records ledger loopback/admission for the exact lego row",
+         "demotion_condition":"demote if ABC and ACB are indistinguishable for noncommuting B,C, distinguishable for commuting B,C, or fail the B==C boundary collapse",
+         "out_of_scope":[
+             "tool-tool coupling",
+             "bridge or axis claim",
+             "engine placement claim",
+             "general theorem beyond the two-by-two symbolic fixture",
+             "queue/admission readiness without controller reconciliation"
+         ],
          "tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH,
          "positive":{k:bool(v) for k,v in pos.items()},
          "negative":{k:bool(v) for k,v in neg.items()},

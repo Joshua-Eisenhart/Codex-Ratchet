@@ -116,6 +116,30 @@ def test_run_wizard_system_strict_live_validation_rejects_local_receipts(tmp_pat
     assert "visible_lane_not_live" in finding_codes
 
 
+def test_run_wizard_system_source_lift_gate_strict_mode_accepts_local_gates(tmp_path: Path):
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+
+    result = mod.run_wizard(
+        candidate,
+        tmp_path / "out",
+        "test strict source lift gate validation",
+        general_size="standard",
+        require_source_and_lift_gate=True,
+    )
+
+    assert result["ok"], result["findings"]
+    assert result["require_source_and_lift_gate"] is True
+    validation = json.loads(Path(result["final_validation_path"]).read_text(encoding="utf-8"))
+    assert validation["require_source_and_lift_gate"] is True
+    assert validation["findings"] == []
+    receipt = json.loads((Path(result["receipts_dir"]) / "direct.json").read_text(encoding="utf-8"))
+    gate = receipt["source_and_lift_receipt_gate"]
+    assert gate["terminal_status"] == "simulated"
+    assert gate["expansion_permission"] is False
+
+
 def test_run_wizard_system_strict_live_validation_accepts_spawn_receipt_overlay(tmp_path: Path):
     mod = load_module()
     candidate = tmp_path / "candidate"
@@ -350,9 +374,79 @@ def test_run_wizard_system_full_scale_uses_runtime_plan_for_batches(tmp_path: Pa
 
     assert result["ok"], result["findings"]
     assert result["runtime_plan"]["max_concurrent_subagents"] == 13
+    assert result["runtime_plan"]["release_completed_agents"] is True
+    assert result["runtime_plan"]["child_spawn_retry_policy"] == "close_completed_then_retry_smaller"
     assert result["full_wizard_scale"]["runtime_max_concurrent_subagents"] == 13
+    assert result["full_wizard_scale"]["release_completed_agents"] is True
     assert result["full_wizard_scale"]["planned_batches_by_wave"][1] == 2
     assert result["full_wizard_scale"]["planned_batches_by_wave"][11] == 2
+
+
+def test_run_wizard_system_rejects_terminal_thread_limit_plan(tmp_path: Path):
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(json.dumps(full_scale_receipts()), encoding="utf-8")
+    runtime_plan_path = tmp_path / "runtime_plan.json"
+    runtime_plan_path.write_text(
+        json.dumps(
+            {
+                "runtime": "codex-app",
+                "pool": "codex-native",
+                "max_concurrent_subagents": 1,
+                "batching": "rolling",
+                "release_completed_agents": False,
+                "child_spawn_retry_policy": "mark_blocked",
+                "thread_limit_is_terminal_blocker": True,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="release_completed_agents must be true"):
+        mod.run_wizard(
+            candidate,
+            tmp_path / "out",
+            "thread limit cannot be terminal child blocker",
+            general_size="standard",
+            live_receipts_path=live_receipts_path,
+            runtime_plan_path=runtime_plan_path,
+            require_live_execution=True,
+            require_full_wizard_scale=True,
+        )
+
+
+def test_run_wizard_system_rejects_non_rolling_child_batching(tmp_path: Path):
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(json.dumps(full_scale_receipts()), encoding="utf-8")
+    runtime_plan_path = tmp_path / "runtime_plan.json"
+    runtime_plan_path.write_text(
+        json.dumps(
+            {
+                "runtime": "codex-app",
+                "pool": "codex-native",
+                "max_concurrent_subagents": 10,
+                "batching": "parallel",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="batching must be rolling"):
+        mod.run_wizard(
+            candidate,
+            tmp_path / "out",
+            "non-rolling batching hides child capacity failure",
+            general_size="standard",
+            live_receipts_path=live_receipts_path,
+            runtime_plan_path=runtime_plan_path,
+            require_live_execution=True,
+            require_full_wizard_scale=True,
+        )
 
 
 def test_run_wizard_system_full_scale_can_require_plan_specific_minimum(tmp_path: Path):
@@ -458,3 +552,250 @@ def test_output_feedback_changes_final_answer_only_not_receipts(tmp_path: Path):
     assert "first surface" in first_final
     assert "second surface" in second_final
     assert first_final != second_final
+
+
+def _all_d_live_receipt(mini_mmm_path: str) -> dict:
+    return {
+        "lane": "All-D",
+        "status": "spawned_completed",
+        "agent_id": "019-live-all-d",
+        "worker_id": "codex-live-all-d",
+        "mini_mmm_path": mini_mmm_path,
+        "mini_mmm_scope": "lane_local",
+        "runtime_registry": "codex native subagent spawned with route-local mini-MMM",
+        "source_tool": "codex_app_spawn_agent",
+        "spawn_timestamp": "2026-04-30T00:00:00+00:00",
+        "checked": "spawned All-D",
+        "concluded": "All-D returned a usable live receipt",
+        "open": "none",
+        "evidence": "spawn_agent receipt 019-live-all-d",
+        "output": "All-D live worker output",
+    }
+
+
+def _child_live_receipt(lane: str, mini_mmm_path: str, index: int, family: str = "codex") -> dict:
+    return {
+        "lane": lane,
+        "status": "spawned_completed",
+        "agent_id": f"019-live-child-{index:02d}",
+        "worker_id": f"{family}-live-child-{index:02d}",
+        "model_family": family,
+        "mini_mmm_path": mini_mmm_path,
+        "mini_mmm_scope": "lane_local",
+        "runtime_registry": f"{family} child spawned with route-local mini-MMM",
+        "source_tool": "codex_app_spawn_agent" if family == "codex" else f"{family}_child_runtime",
+        "spawn_timestamp": "2026-04-30T00:00:00+00:00",
+        "checked": f"spawned child {lane}",
+        "concluded": f"{lane} returned a usable live receipt",
+        "open": "none",
+        "evidence": f"spawn_agent receipt 019-live-child-{index:02d}",
+        "output": f"{lane} live child worker output",
+    }
+
+
+def test_child_quorum_all_d_live_with_no_children_is_rejected(tmp_path: Path):
+    """Falsifier: All-D live + zero child receipts must raise ValueError.
+
+    Before hardening, _overlay_live_receipts accepted this silently.
+    The parent claimed 'completed' with no child execution evidence.
+    """
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+
+    direct_mini = "mini_mmms/standard/lanes/md/MMM_LANE_DIRECT_STANDARD_v2_7.md"
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(
+        json.dumps([_all_d_live_receipt(direct_mini)]),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="All-D has a live receipt but only 0 child receipts"):
+        mod.run_wizard(
+            candidate,
+            tmp_path / "out",
+            "child-quorum falsifier: All-D live, no children",
+            general_size="standard",
+            live_receipts_path=live_receipts_path,
+        )
+
+
+def test_child_quorum_all_d_live_with_one_child_is_rejected(tmp_path: Path):
+    """Falsifier: All-D live + one child is below the v4.1 quorum."""
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+
+    direct_mini = "mini_mmms/standard/lanes/md/MMM_LANE_DIRECT_STANDARD_v2_7.md"
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(
+        json.dumps([
+            _all_d_live_receipt(direct_mini),
+            _child_live_receipt("Follow-up 1", direct_mini, 1),
+        ]),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="only 1 child receipts"):
+        mod.run_wizard(
+            candidate,
+            tmp_path / "out",
+            "child-quorum falsifier: All-D live with one child",
+            general_size="standard",
+            live_receipts_path=live_receipts_path,
+        )
+
+
+def test_child_quorum_all_d_live_with_model_matrix_is_accepted(tmp_path: Path):
+    """Hardened path: All-D live needs 5-10 child receipts with v4.1 family spread."""
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+
+    direct_mini = "mini_mmms/standard/lanes/md/MMM_LANE_DIRECT_STANDARD_v2_7.md"
+    families = ("codex", "opus", "sonnet", "haiku", "gemini")
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(
+        json.dumps([
+            _all_d_live_receipt(direct_mini),
+            *[
+                _child_live_receipt(f"Follow-up {index}", direct_mini, index, family)
+                for index, family in enumerate(families, start=1)
+            ],
+        ]),
+        encoding="utf-8",
+    )
+
+    result = mod.run_wizard(
+        candidate,
+        tmp_path / "out",
+        "child-quorum hardened: All-D live with model matrix",
+        general_size="standard",
+        live_receipts_path=live_receipts_path,
+    )
+
+    assert "All-D" in result["live_routes"]
+    assert "Follow-up 5" in result["live_routes"]
+
+
+def test_child_quorum_meta_row_alone_does_not_satisfy_quorum(tmp_path: Path):
+    """Falsifier: All-D live + only a meta-row receipt (self-check) must be rejected.
+
+    Before hardening, ALL_D_META_ROWS was not excluded from the quorum count.
+    A parent could claim completion by supplying only 'All-D self-check', which
+    records verification work, not child execution evidence.
+    """
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+
+    direct_mini = "mini_mmms/standard/lanes/md/MMM_LANE_DIRECT_STANDARD_v2_7.md"
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(
+        json.dumps([
+            _all_d_live_receipt(direct_mini),
+            _child_live_receipt("All-D self-check", direct_mini, 99),
+        ]),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="meta-rows.*do not count"):
+        mod.run_wizard(
+            candidate,
+            tmp_path / "out",
+            "child-quorum falsifier: All-D live, self-check-only",
+            general_size="standard",
+            live_receipts_path=live_receipts_path,
+        )
+
+
+def test_child_quorum_meta_row_plus_model_matrix_is_accepted(tmp_path: Path):
+    """Hardened path: meta rows are allowed but do not count toward the v4.1 quorum."""
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+
+    direct_mini = "mini_mmms/standard/lanes/md/MMM_LANE_DIRECT_STANDARD_v2_7.md"
+    live_receipts_path = tmp_path / "live_receipts.json"
+    families = ("codex", "opus", "sonnet", "haiku", "gemini")
+    live_receipts_path.write_text(
+        json.dumps([
+            _all_d_live_receipt(direct_mini),
+            _child_live_receipt("All-D self-check", direct_mini, 99),
+            *[
+                _child_live_receipt(f"Follow-up {index}", direct_mini, index, family)
+                for index, family in enumerate(families, start=1)
+            ],
+        ]),
+        encoding="utf-8",
+    )
+
+    result = mod.run_wizard(
+        candidate,
+        tmp_path / "out",
+        "child-quorum hardened: All-D live with meta-row and real child",
+        general_size="standard",
+        live_receipts_path=live_receipts_path,
+    )
+
+    assert "All-D" in result["live_routes"]
+    assert "All-D self-check" in result["live_routes"]
+    assert "Follow-up 5" in result["live_routes"]
+
+
+def test_child_quorum_all_d_live_missing_model_family_is_rejected(tmp_path: Path):
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+
+    direct_mini = "mini_mmms/standard/lanes/md/MMM_LANE_DIRECT_STANDARD_v2_7.md"
+    families = ("codex", "opus", "sonnet", "haiku", "codex")
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(
+        json.dumps([
+            _all_d_live_receipt(direct_mini),
+            *[
+                _child_live_receipt(f"Follow-up {index}", direct_mini, index, family)
+                for index, family in enumerate(families, start=1)
+            ],
+        ]),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="missing required families: gemini"):
+        mod.run_wizard(
+            candidate,
+            tmp_path / "out",
+            "child-quorum falsifier: All-D live missing Gemini",
+            general_size="standard",
+            live_receipts_path=live_receipts_path,
+        )
+
+
+def test_child_quorum_all_d_live_above_normal_quorum_is_rejected(tmp_path: Path):
+    mod = load_module()
+    candidate = tmp_path / "candidate"
+    make_candidate(mod, candidate)
+
+    direct_mini = "mini_mmms/standard/lanes/md/MMM_LANE_DIRECT_STANDARD_v2_7.md"
+    families = ("codex", "opus", "sonnet", "haiku", "gemini", "codex", "opus", "sonnet", "haiku", "gemini", "codex")
+    live_receipts_path = tmp_path / "live_receipts.json"
+    live_receipts_path.write_text(
+        json.dumps([
+            _all_d_live_receipt(direct_mini),
+            *[
+                _child_live_receipt(f"Follow-up {index}", direct_mini, index, family)
+                for index, family in enumerate(families, start=1)
+            ],
+        ]),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="normal quorum is 5-10"):
+        mod.run_wizard(
+            candidate,
+            tmp_path / "out",
+            "child-quorum falsifier: All-D stress run without audit",
+            general_size="standard",
+            live_receipts_path=live_receipts_path,
+        )

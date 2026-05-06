@@ -14,11 +14,15 @@ The hardened Wizard spine is three sequential councils:
 
 The councils are sequential write barriers. Parallelism happens inside each wave, not between waves.
 
+Before a council result expands into more routes, larger fanout, canonical examples, or a visible "preworked" claim, run the `source_and_lift_receipt_gate`. The gate is not another council. It is the receipt boundary that separates route execution from MMM salience lift.
+
+After Follow-up Council, run the bounded-work compile gate before calling any option ready. The Wizard is a general bounded-work compiler, not a sim-only tool: councils create judgment, critique, and options; receipts prove what actually ran; the compile gate decides whether the result is actionable in the current domain.
+
 ## MMM Boundary
 
 MMMs and mini-MMMs are positive salience manifolds. They are not rules, deterministic gates, glossaries, or negative law banks. They bias the context window toward project-native words, phraselets, cadence, and grammar so system-native continuations become more likely.
 
-The existing v3.4 MMMs and mini-MMMs were mined from the wiki and are assumed to be broadly aligned to Joshua's system unless a specific drift probe shows otherwise. In the three-wave Wizard, they are salience surfaces loaded to shape council roles, not compliance contracts.
+The active v3.5 Wizard FULL document is the current salience and route-contract baseline. Older mined MMM and mini-MMM material can remain useful as an optional reservoir, but it is archive/supporting context unless a run explicitly loads it as a bounded salience source. In the three-wave Wizard, MMMs and mini-MMMs shape council role salience; they are not compliance contracts.
 
 The active Wizard packet still owns route execution, receipt accounting, and runtime authority. The MMM layer owns salience pressure: increasing the use and availability of words such as candidate, probe, survivor, constraint, admissible, excluded, receipt, rung, open, held, and bounded.
 
@@ -79,6 +83,7 @@ Internal roles may draw from Popper, Feynman, Pushback, Audit, Security, Systems
 Return:
 
 - verdict: `kill`, `quarantine`, `harden`, or `pass`;
+- operational outcome: `pass_to_execution`, `split_smaller`, `harden_then_execute`, `block_for_missing_input`, or `kill`;
 - target claim;
 - strongest falsifier;
 - decisive check;
@@ -98,13 +103,18 @@ Avoid:
 
 Use: bias the worker toward divergent next moves after the Failure verdict, then select executable options.
 
-Internal roles may draw from Direct, Alternative, Reframe, Back, Wildcard, All-A, All-B, All-C, Full Wizard, Factory, Strategy, Orwell, Hygiene, Audit, and Security.
+Internal roles may draw from Direct, Alternative, Reframe, Back, Wildcard, All-A, All-B, All-C, Max Assembly, Factory, Strategy, Orwell, Hygiene, Audit, and Security.
 
 Return visible options only when each option has:
 
 - target artifact or surface;
+- bounded target;
+- immediate action;
 - owner/agent shape;
-- check or done condition;
+- success check or done condition;
+- stop/failure condition;
+- artifact or output surface;
+- explicit status;
 - payoff;
 - use-when condition;
 - defer/block condition;
@@ -115,7 +125,44 @@ Avoid:
 - prompt theater;
 - "preworked" claims without Make, Scout, and Audit receipts;
 - reopening failure analysis unless Failure Council explicitly returns control;
-- Full Wizard as an all-routes quota.
+- Max Assembly as an all-routes quota.
+
+## Bounded-Work Compile Gate
+
+Universal gate:
+
+- one target;
+- one immediate action;
+- one owner/lane;
+- one success check;
+- one stop or failure condition;
+- one artifact/output surface;
+- explicit status.
+
+Useful universal statuses include `salience_only`, `proposal`, `bounded_work_candidate`, `ready_for_execution`, `executed`, `accepted`, `partial`, `blocked`, and `deferred`.
+
+The compile gate is domain-shaped:
+
+- code/repo work needs a change surface, behavior claim, verification command, and rollback/blocker condition;
+- writing/docs work needs audience, purpose, output, and acceptance check;
+- strategy/product work needs target user/stakeholder, bet, test, and decision point;
+- Codex Ratchet adapter sim/probe work uses the stricter sim packet profile below before queue visibility.
+
+For Codex Ratchet adapter sims/probes, a queue-visible packet must have exactly:
+
+- one active stage;
+- one claim;
+- one carrier or fixture;
+- one exact tool/function surface or admitted coupling;
+- one positive check;
+- one negative or boundary check;
+- one expected result path;
+- prior receipt refs when the stage requires them;
+- explicit sim status.
+
+Sim statuses include `salience_only`, `queue_candidate`, `runner_done`, `admitted`, `partial`, and `blocked`. The full strict sim packet fields are required only when the option is sim-classified and queue-visible: `queue_candidate`, `runner_done`, or `admitted`.
+
+If the compile gate fails, return a smaller prompt, `partial`, `blocked` with the exact missing prior receipt, `deferred` for a real sequencing wait, or `salience_only` with zero queue credit. Do not let council agreement, salience lift, source-and-lift receipts, or polished prose imply execution readiness.
 
 ## Liveness / Rerouter
 
@@ -133,6 +180,26 @@ It tracks:
 - simulated.
 
 Reroute only on explicit terminal reasons: timeout, blocked dependency, malformed receipt, wrong source slice, or no progress by deadline. Reroute smaller, not broader.
+
+## Source-And-Lift Gate
+
+Use this gate after a wave returns and before accepting the result as a route fact, follow-up option, canonical example, or reason to expand the system.
+
+The gate records:
+
+- which source slice was actually used;
+- which salience surfaces were loaded;
+- what route action executed;
+- what raw launch and completion receipts support it;
+- what reasoning move changed after salience loading;
+- what receives zero route-completion credit;
+- what the receipt does not prove.
+
+The gate can return `pass`, `harden`, `quarantine`, or `kill`, but the verdict is scoped to the tested claim. A `pass` for a documentation patch is not a pass for production Wizard behavior or broader fanout.
+
+Treat `loaded but no lift`, `cosmetic-only`, `folded under counter-probe`, and `not-run/simulated` as valid report states. They are not embarrassments to smooth away.
+
+No controller summary, role-fit prose, pending worker, worker self-report, or style match can count as route completion. When execution truth and salience lift disagree, execution truth owns the action claim and salience becomes a drift signal.
 
 ## Salience Probe
 

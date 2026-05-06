@@ -21,23 +21,23 @@ Codex Ratchet is a nonclassical constraint-admissibility research system. The ma
 
 ## Wizard Runtime Default
 
-Wizard is the default routing, preflight, receipt, and collapse-resistance layer around normal repo work. Run Full Wizard by default at the start of every substantive Codex Ratchet turn. The point is better repo execution, not more visible orchestration.
+Wizard is the default routing, preflight, receipt, and collapse-resistance layer around normal repo work. Run Wizard v4.1 Max Assembly by default at the start of every substantive Codex Ratchet turn. The point is better repo execution, not more visible orchestration.
 
-Full Wizard default means:
+Max Assembly default means:
 
-- Run the real Full Wizard wave plan by default: preflight/registry, voice wave, voice audit/improvement when needed, LLM Council wave, checks/guards, follow-up Make/Assembly, follow-up Run/Scout, follow-up Audit/Improve, final receipt boundary, and controller synthesis.
-- Do not silently downgrade to compact Wizard. If runtime capacity, context, or task shape prevents a complete Full Wizard run, state the blocked/deferred/not-run waves in the header and continue with the maximum honest subset.
-- Keep visible output compact when the user needs work product more than route detail, but keep the internal route truth complete.
-- Do not call an incomplete subset "Full Wizard." It is a partial Full Wizard attempt unless the required waves actually ran or were explicitly blocked/deferred.
+- Run the real Wizard v4.1 sequence by default: full MMM salience load, boot/thread rules, Decision Council, Failure Council, Follow-Up Council, compile gate, final receipt boundary, and controller synthesis.
+- Do not silently downgrade to a smaller Wizard run. If runtime capacity, context, or task shape prevents a complete Max Assembly run, state the blocked/deferred/not-run waves in the header and continue with the maximum honest subset.
+- Keep visible output concise when the user needs work product more than route detail, but keep the internal route truth complete and repair the visible surface before sending.
+- Do not call an incomplete subset `FULL`. It is a partial Max Assembly attempt unless the required waves actually ran or were explicitly blocked/deferred.
 - Do not confuse route phases with completed worker waves. `waves:n` means actual receipt-boundary passes. One lateral wave with many parent subagents and child subsubagents is still one wave.
 
-Default boot/load rule (v3.5 two-doc):
+Default boot/load rule (v4.1 MMM-first):
 
-- Main Codex thread loads `~/wiki/wizard/packet-v3-5-current/WIZARD_UNIVERSAL_FULL_v3_5_SIMPLE.md` for full work or the COMPACT sibling for narrow tasks.
-- Subagents load shared task summary + their assigned route definition (from inside the same v3.5 doc) + task card + source slice + receipt format.
-- Subsubagents load parent route summary + child route definition + child task card + source slice + receipt format. Narrower than parent.
-- v3.5 has no separate main-MMM or mini-MMM tree; route definitions live at the end of the FULL doc.
-- Older packet trees (`MMM_WIZARD_CLEAN_SYSTEM_PACKET_v3_4/`, `MMM_WIZARD_CLEAN_SYSTEM_PACKET_v3_3/`) are archive. Do not load as runtime law unless explicitly asked to mine them.
+- Main Codex thread loads the positive full MMM first: `~/wiki/wizard/packet-v4-1-current/mmm/FULL_MMM_v4_1.md`.
+- After full MMM salience is loaded, the main Codex thread loads `~/wiki/wizard/packet-v4-1-current/00_BOOT.md`, `~/wiki/wizard/packet-v4-1-current/01_UNIVERSAL_THREE_COUNCIL_WIZARD.md`, and the relevant runtime adapter for the current work.
+- Subagents load shared task summary + exact route/member mini-MMM from `~/wiki/wizard/packet-v4-1-current/mmm/mini/MEMBER_MINI_MMM_REGISTRY_v4_1.md` + assigned route definition + task card + source slice + receipt format.
+- Subsubagents load parent route summary + exact child route/member mini-MMM + child route definition + child task card + source slice + receipt format. Narrower than parent.
+- v4.1 has a separate positive full MMM and route/member mini-MMM surface. The boot/core/adapter docs are thread/runtime rules after salience load, not replacements for MMM load.
 - Negative, banned, contrast, archive, and reference-only material never enters boot.
 
 Use Wizard to:
@@ -46,7 +46,7 @@ Use Wizard to:
 - decide which subagents and mini-MMMs are required;
 - prevent fake plurality;
 - keep spawned/blocked/deferred truth;
-- preserve real voice differences when voices, lanes, council, compositions, or Full Wizard are visible;
+- preserve real voice differences when voices, lanes, council, compositions, or Max Assembly are visible;
 - audit follow-up prompts so they are useful next actions.
 
 Do not use Wizard to:
@@ -57,13 +57,13 @@ Do not use Wizard to:
 - claim a route ran unless a real worker, tool, or declared check ran;
 - use `CLAUDE.md` as Codex behavior law.
 
-## Sim-Mode Full Wizard Override
+## Sim-Mode Max Assembly Override
 
-For sim, proof, runner, tool-stage, lego, queue, or result work, Full Wizard is mandatory even for tiny issues. The general Wizard rule "run only routes that can change the answer" is still true for ordinary work, but sim-mode has a stricter interpretation because tool/function packets are naturally independent.
+For sim, proof, runner, tool-stage, lego, queue, or result work, Max Assembly is mandatory even for tiny issues. The general Wizard rule "run only routes that can change the answer" is still true for ordinary work, but sim-mode has a stricter interpretation because tool/function packets are naturally independent.
 
 Operational runbook: `system_v5/ops/SIM_FULL_WIZARD_PARALLEL_RUNBOOK.md`.
 
-Sim-mode Full Wizard must not collapse to a single tool, single voice, or single route unless the user explicitly asks for one named item or a real parallel preflight proves that only one item is admissible right now.
+Sim-mode Max Assembly must not collapse to a single tool, single voice, or single route unless the user explicitly asks for one named item or a real parallel preflight proves that only one item is admissible right now.
 
 Minimum sim-mode shape:
 
@@ -78,8 +78,8 @@ Parallelism default for sim-mode:
 
 - Every independent tool/function/API surface can be worked on in parallel by LLM workers. This includes z3, cvc5, sympy, Clifford, geomstats, e3nn, rustworkx, XGI, TopoNetX, GUDHI, PyG, PyTorch/autograd, and any isolated capability/integration tool row.
 - Each worker stays bounded to one tool/function/lego-target triple or one audit surface. Parallelism is for breadth across independent packets, not widening a packet.
-- Use Codex parents plus Claude/Gemini/tool children for Full Wizard sim work when available. A normal full-power sim planning/audit shape should start near the proven operating band from the Claude Bridge runbook, then shrink only for a concrete blocker, not for convenience.
-- Parent subagents should launch child workers for independent source slices, tool rows, or audit checks. If child fanout fails or stalls, reroute or debug that fanout path before claiming a Full Wizard sim run.
+- Use Codex parents plus Claude/Gemini/tool children for Max Assembly sim work when available. A normal full-power sim planning/audit shape should shrink only for a concrete blocker, not for convenience.
+- Parent subagents should launch child workers for independent source slices, tool rows, or audit checks. If child fanout fails or stalls, reroute or debug that fanout path before claiming a Max Assembly sim run.
 - Do not count direct controller synthesis, pending children, or started streams as completed work. Count only completed receipts.
 
 What remains serial:
@@ -112,7 +112,7 @@ Parallelism and reroute rule:
 - Do not reroute around a Codex runtime failure. If Codex itself cannot spawn, reset, identify, or return trustworthy subagent receipts, stop using other models as substitutes and fix the Codex subagent health/receipt path first.
 - Codex subagent health requires a spawn-agent tool receipt with agent id, route-local mini-MMM path, assigned route, completion status, and usable output. Worker self-description alone is not proof of spawn; absence or contradiction is a Codex health blocker.
 - Reboot/restart Codex subagent lanes when a fresh route-local mini-MMM load is needed or when old thread state could contaminate the lane.
-- Use available model capacity aggressively for Full Wizard and other explicitly multi-route work, while keeping each worker bounded and receipt-producing.
+- Use available model capacity aggressively for Max Assembly and other explicitly multi-route work, while keeping each worker bounded and receipt-producing.
 - Large Claude/Sonnet fanout may be used for independent advisory or scout lanes, but only completed Task/Agent receipts count as executed routes.
 - Pending workers are not results. Count them as pending, blocked, deferred, or not-run until they return usable receipts. If duplicate/rerouted workers return, accept the first valid receipt and mark later returns as supplemental or superseded.
 - Git index repair, staging, committing, pushing, lockfile changes, and shared result rewrites are serial controller work. Do not run competing Git/index mutations in parallel fanout. Parallel workers may inspect or advise, but the controller owns the single shared-state lane.
@@ -125,7 +125,7 @@ Worker pool truth:
 - Gemini may be used directly or through `omx ask gemini` for bounded scout, compare, and liveness lanes. Count it only when the command returns a durable receipt or artifact containing prompt hash/route, model, exit status, stdout/stderr or JSON output, and conclusion/open fields.
 - OMX `ask` and `sparkshell` are valid worker/tool surfaces from the Codex App shell when they return artifacts or bounded command output. OMX `team` is valid only inside a tmux leader pane with a running tmux server/session; outside that environment, mark the team wave `blocked` and use another honest pool for independent work.
 - Tmux presence alone is not team execution. A tmux/OMX route counts only when a pane/session id, command, exit state, and output/receipt artifact are recorded.
-- Header counts must always show total completed parent subagents and total completed child subsubagents: `subagents:total={n}` and `subsubagents:total={n}`. When a response relies on more than one pool, put the pool split in Results or an optional diagnostic line: `codex-native`, `claude-bridge`, `gemini`, `omx/tmux`, and `tools`.
+- Header counts must always show completed/required parent subagents and completed/current-obligation child subsubagents. If child routes were expected but not launched, do not write `children:0/0 not-run`; show the missed obligation, such as `children:0/3 not-run`. When a response relies on more than one pool, put the pool split in Results or an optional diagnostic line: `codex-native`, `claude-bridge`, `gemini`, `omx/tmux`, and `tools`.
 - A rerouted duplicate can keep the work moving, but the original stalled route remains pending/blocked until its own receipt resolves or it is explicitly abandoned.
 
 Parent/child authority:
@@ -144,23 +144,25 @@ Route truth:
 - Follow-up options count as preworked only when all three follow-up waves ran for that option: Make/Assembly, Run/Scout, and Audit/Improve. If any wave did not run in a real subagent/tool space, mark the option `simulated`, `blocked`, or `deferred`.
 - If runtime, budget, context, or task shape prevents running the route, mark it `blocked`, `deferred`, or `simulated`.
 - Controller synthesis may combine results, but it is not itself route execution.
-- Voice waves, council waves, checks/guards, and follow-up scouting are separate waves when Full Wizard or a visible multi-route answer is used.
+- Voice waves, council waves, checks/guards, and follow-up scouting are separate waves when Max Assembly or a visible multi-route answer is used.
 - Follow-up options claimed as preworked must include receipts for their Make, Run/Scout, and Audit/Improve waves or be marked simulated.
 
 ## Output Contract
 
-For ordinary repo work, still keep output readable. Use Full Wizard internally by default, and expose only the compact truth needed for the user:
+For ordinary repo work, still keep output readable. Use Wizard v4.1 Max Assembly internally by default, and expose only the concise truth needed for the user:
 
 1. Main answer.
 2. Results: changed files, commands/checks, blockers.
 3. Follow-up: useful next prompts or next steps.
 4. Hygiene/security: relevant boundaries and risks.
 
-For Full Wizard, plurality, council, Wizard-output testing, or any response that visibly claims voices/lanes/compositions, use the v3.5 header shape:
+For Wizard plurality, council, output testing, or any response that visibly claims voices/lanes/compositions, use the v4.1 header shape:
 
 ```text
-🧙🏽‍♂️ {FULL|COMPACT} | waves:{n|sim|blocked} | subagents:total={n} | subsubagents:total={n} | models:{actual_models}
+🧙 Wizard v4.1 | {FULL|PARTIAL|BLOCKED} | waves:{completed/3}[ partial-coverage] | parents:{completed/required} | children:{completed/obligation}[ blocked|deferred|not-run] | [tools:{completed} | ]score:{0-100} | runtimes:{actual_runtimes}
 ```
+
+v4.1 has no compact mode yet. Use `PARTIAL` for an incomplete run, `BLOCKED` for a blocked run, or no Wizard run header when councils did not actually run.
 
 Then provide useful content, not a log:
 
@@ -172,9 +174,24 @@ Then provide useful content, not a log:
 
 Audit fixes the answer. Do not output an Audit section by default. Quality score belongs in the footer only when useful.
 
+Before sending any visible Wizard answer, run the v4.1 self-repair gate:
+
+- use real Markdown sections, not bold pseudo-headings;
+- include `## ✨ Answer`, `## 🏛️ Council Results`, `## ✅ Compiled Move`, `## 🧭 Follow-Up Options`, and final `## 🧙 Footer` when a Wizard header is shown;
+- make the first nonblank footer line `🧙 Time/value:`;
+- keep tools separate from children/subsubagents;
+- expose missing child/subsubagent obligations instead of hiding them as `children:0/0`;
+- preserve the canonical three council identities: Decision, Failure, and Follow-Up. Proof/Premortem/Scout, Make/Run/Audit, lanes, options, or tools are not council replacements;
+- include a concise MMM proof line in the footer when a visible Wizard header is shown;
+- make follow-up options copy-pasteable prompts with payoff, use condition, and stop/block condition;
+- include all universal compile-gate fields in the compiled move;
+- tie verification counts to exact fresh commands.
+
+If this gate fails, rewrite the answer before sending it. Do not make the user provide this feedback.
+
 ## Voice Preservation Gate
 
-If a Full Wizard voice wave ran, each visible voice must say something useful and distinct:
+If a Wizard v4.1 voice wave ran, each visible voice must say something useful and distinct:
 
 - Hume: evidence, uncertainty, next honest move.
 - Zhuangzi: live readings and exclusion conditions.

@@ -211,6 +211,17 @@ if __name__ == "__main__":
         "surviving_alternatives": [
             "Other QF_LIA fixtures may survive; this micro receipt only covers the named API surface and bounded constraints."
         ],
+        "claim_ceiling": "tool_function_micro_only",
+        "next_lego_target": "no queue-packet lego target declared; no promotion is admitted",
+        "promotion_condition": (
+            "requires a later admitted lego row that names this exact function "
+            "receipt and passes strict runner admission; this MICRO row does "
+            "not promote the lego"
+        ),
+        "blocked_until": (
+            "blocked until a downstream queue row declares the exact lego "
+            "target, parent receipts, and active stage gate for promotion"
+        ),
         "demotion_condition": (
             "Demote cvc5 for this surface if checkSat is not decisive, if getValue "
             "cannot recover SAT witnesses, or if SAT/UNSAT verdicts diverge from "

@@ -65,6 +65,23 @@ def _skipped_result(reason: str):
     return {"status": "skipped", "reason": reason}
 
 
+def _json_default(obj):
+    if hasattr(obj, "item"):
+        return obj.item()
+    raise TypeError(f"Object of type {type(obj).__name__} is not JSON serializable")
+
+
+def _section_pass(section, pass_keys):
+    if any(row.get("status") == "skipped" for row in section.values()):
+        return False
+    for row in section.values():
+        if "pass" in row and not bool(row["pass"]):
+            return False
+        if "claim_excluded" in row and not bool(row["claim_excluded"]):
+            return False
+    return any(any(key in row for key in pass_keys) for row in section.values())
+
+
 # =====================================================================
 # POSITIVE TESTS
 # =====================================================================
@@ -211,20 +228,32 @@ def run_boundary_tests():
 
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    summary = {
+        "positive_all_pass": _section_pass(positive, ("pass",)),
+        "negative_all_pass": _section_pass(negative, ("claim_excluded",)),
+        "boundary_all_pass": _section_pass(boundary, ("pass",)),
+    }
+    summary["all_pass"] = all(summary.values())
     results = {
         "name": NAME,
         "scope_note": SCOPE_NOTE,
         "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": summary,
+        "all_pass": bool(summary["all_pass"]),
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, f"{NAME}_results.json")
     with open(out_path, "w", encoding="utf-8") as handle:
-        json.dump(results, handle, indent=2, sort_keys=True, default=str)
+        json.dump(results, handle, indent=2, sort_keys=True, default=_json_default)
     print(f"Results written to {out_path}")
+    print(f"summary.all_pass = {summary['all_pass']}")

@@ -304,6 +304,19 @@ if __name__ == "__main__":
             "The sign convention in cos(theta/2) +/- sin(theta/2)*B remains live for orientation-specific action claims.",
             "Non-Euclidean signatures such as Cl(1,1) remain separate future micro surfaces.",
         ],
+        "claim_ceiling": "tool_function_micro_only",
+        "next_lego_target": "minimal Cl(3) rotor fixture before Hopf or spinor promotion",
+        "promotion_condition": (
+            "requires a later admitted lego row that names this exact function "
+            "receipt and passes strict runner admission; this MICRO row does "
+            "not promote the lego"
+        ),
+        "blocked_until": (
+            "blocked until a downstream queue row declares the exact lego "
+            "target, parent receipts, and active stage gate for promotion"
+        ),
+        "demotion_condition": MICRO["demotion_condition"],
+        "out_of_scope": MICRO["out_of_scope"],
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

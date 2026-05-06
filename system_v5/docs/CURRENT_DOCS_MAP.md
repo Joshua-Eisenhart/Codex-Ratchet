@@ -48,6 +48,7 @@ Start with:
 Then check:
 - `LLM_CONTROLLER_CONTRACT.md`
 - `TOOLING_STATUS.md`
+- `LEGO_TOOL_COUPLING_LEDGER.md`
 - `MIGRATION_REGISTRY.md`
 
 ### If you need the math spine
@@ -95,9 +96,10 @@ Do not treat intake material as canon until its content is promoted into a top-l
 | Formal math chain from constraints to entropy/entanglement | `CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md` | `ENGINE_MATH_REFERENCE.md`, `AXIS_AND_ENTROPY_REFERENCE.md` | promoted math spine |
 | Operator math, terrain math, placements, loop geometry | `ENGINE_MATH_REFERENCE.md` | `AXIS_AND_ENTROPY_REFERENCE.md`, `V5_CONTENT_GAP_ANALYSIS.md` | promoted, but some deeper v5 details still tracked as gaps |
 | Axis stack and entropy placement | `AXIS_AND_ENTROPY_REFERENCE.md` | `06_entropy_sweep_protocol.md`, `TIER_STATUS.md` | mixed: promoted plus open areas |
-| Sim admission, classification, evidence discipline | `LEGO_SIM_CONTRACT.md`, `LLM_CONTROLLER_CONTRACT.md` | `SIM_CORRECTIONS_AND_CLASSIFICATIONS.md`, `TOOL_MANIFEST_AUDIT.md` | promoted governance |
+| Sim admission, classification, evidence discipline | `LEGO_SIM_CONTRACT.md`, `LLM_CONTROLLER_CONTRACT.md` | `SIM_CORRECTIONS_AND_CLASSIFICATIONS.md`, `TOOL_MANIFEST_AUDIT.md`, `LEGO_TOOL_COUPLING_LEDGER.md` | promoted governance plus working ledger |
 | Live sim truth and resolution status | `TIER_STATUS.md` | `SIM_SESSION_INDEX.md`, `SIM_CORRECTIONS_AND_CLASSIFICATIONS.md` | current status surfaces |
 | Tool stack and runtime readiness | `TOOLING_STATUS.md` | `VENV_MIGRATION_STATUS.md`, `TOOL_MANIFEST_AUDIT.md` | current status surfaces |
+| Lego-tool coupling status and bounded next packets | `LEGO_TOOL_COUPLING_LEDGER.md` | `16_lego_build_catalog.md`, `17_actual_lego_registry.md`, `TOOL_LEGO_INTEGRATION_MATRIX.md`, `TOOLING_STATUS.md` | working ledger; evidence-first, not promotion authority |
 | Torch migration state | `MIGRATION_REGISTRY.md` | `PYTORCH_RATCHET_BUILD_PLAN.md` | registry is current tracker; build plan is broader program doc |
 | Research compression / density-matrix cluster | `01_pca_qpca_alignment.md`, `02_compression_to_density_matrix_map.md`, `04_system_math_alignment.md` | `05_research_index.md` | promoted research cluster |
 | Foundational research inventory | `09_research_inventory_and_foundations.md` | `03_source_notes.md`, `05_research_index.md` | promoted plus provenance |

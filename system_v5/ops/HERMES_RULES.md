@@ -26,6 +26,10 @@ Status ladder: exists < runs < passes local rerun < canonical by process. Never 
 Preserve divergence. Do not collapse surviving candidates. Pushback on harness conflicts rather than smoothing. Read SALIENCE_LOADER.md before other harness files.
 ```
 
+Exploration can be wide; promotion cannot. Failed candidates are worth
+preserving when they name the boundary, falsifier, demotion condition, or
+missing artifact that keeps the gate strict.
+
 ### Tier selection by context budget (per `~/wiki/wizard/harness-consolidated/READ_POLICY.md`)
 
 - **Tier 1 (injection-only hygiene):** Block A (60w) — for token-tight task prompts. Recall: axiom, banned/preferred verbs, pushback. Does NOT give full claim-pattern; fine for mechanical work, insufficient for substantive claims.

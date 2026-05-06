@@ -2,6 +2,8 @@
 
 Use this when the runtime needs the small version. This doc stands alone.
 
+Boundary note: this v3.5 packet is a runtime packet with adapter examples. Codex, Claude, subsubagent, model, and tool references below are adapter/runtime examples unless the active runtime adapter explicitly binds them. The pure universal model must not require Codex Ratchet queues, runner states, result paths, Claude Bridge, or local v3.5 source paths.
+
 ---
 
 ## Header
@@ -268,7 +270,7 @@ L5 Back
 C1 All-A
 C2 All-B
 C3 All-C
-C4 Full Wizard
+C4 Max Assembly
 ```
 
 Scout only options that will be called preworked. Otherwise mark `Scout:not_scouted`.
@@ -352,6 +354,8 @@ LLM Council = independent model/worker disagreement before merge -> agreement, d
 
 ## Compositions
 
+Route registry note: every route/member should carry `route_id`, `display_name`, `category`, `scale`, `member_registry_refs`, `default_member_routes`, `allowed_loader`, and `receipt_required`. The maximum useful assembly composition uses `route_id: FULL_WIZARD`, `display_name: Max Assembly`, `legacy_alias: Full Wizard`, and `not_runtime_mode: true`; `FULL` remains runtime/header language, not the composition option name.
+
 Compositions are procedural contracts, not fixed source maps. They may use adaptive source selection when the receipt preserves composition identity, source slice, status, and evidence boundary.
 
 Listed routes define default duties and return shape, not voice quotas or proof that every route ran. Composition receipt: goal; used sources; excluded relevant sources; exclusion reasons; strongest omitted falsifier; whether the conclusion survives omission; status.
@@ -362,7 +366,7 @@ Compositions are default procedural contracts with adaptive source selection. Ke
 All-A       Direct -> Popper -> Feynman -> Systems/Strategy -> Alternative -> Audit
 All-B       Hume -> Zhuangzi -> Popper -> Feynman -> Wildcard -> Audit
 All-C       Direct -> Orwell -> Hygiene -> Security -> Factory -> Audit
-Full Wizard Preflight -> adaptive route waves -> Council if useful -> Checks -> Follow-up -> Synthesis
+Max Assembly Preflight -> adaptive route waves -> Council if useful -> Checks -> Follow-up -> Synthesis
 ```
 
 ## Controller

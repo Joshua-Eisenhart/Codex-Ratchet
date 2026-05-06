@@ -81,7 +81,20 @@ helper-process-audit-strict:
 # Fail-closed runner launch preflight for non-browser sim execution
 runner-preflight:
 	$(MAKE) helper-process-audit-strict
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/runner_queue_preflight.py
 	bash -n system_v5/ops/sim_runner.sh
+	bash -n scripts/overnight_two_runner.sh
+
+# Dry-run the parallel queue-claim runner topology without executing sims
+parallel-runner-dry:
+	$(MAKE) runner-preflight
+	bash scripts/overnight_two_runner.sh --minutes $(or $(MINUTES),1) --lane-a-parallel $(or $(LANE_A_PARALLEL),2) --lane-b-parallel $(or $(LANE_B_PARALLEL),4) --dry
+
+# Run independent admitted queue claims in parallel worker pools
+parallel-runner:
+	@test -n "$(MINUTES)" || (echo "MINUTES is required, e.g. make parallel-runner MINUTES=30"; exit 2)
+	$(MAKE) runner-preflight
+	bash scripts/overnight_two_runner.sh --minutes $(MINUTES) --lane-a-parallel $(or $(LANE_A_PARALLEL),2) --lane-b-parallel $(or $(LANE_B_PARALLEL),4)
 
 # Advisory audit for duplicate repo-local agent state dirs and Codex runtime homes
 state-dir-ownership-audit:
@@ -216,6 +229,18 @@ lego-coupling:
 lego-queue:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/lego_batch_queue.py
 
+# Build a non-promoting mass exploration manifest for every sim/micro-lego/lego
+mass-lego-batch:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/mass_lego_batch_manifest.py
+
+# Bounded Wizard/autoresearch sim loop: broad exploration, strict admission, no runner launch by default
+wizard-autoresearch-loop:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/wizard_autoresearch_sim_loop.py --iterations $(or $(ITERATIONS),1) $(if $(RUN_TAG),--run-tag $(RUN_TAG),) $(if $(OPUS_AUDIT),--opus-audit,) $(if $(RUN_RUNNER),--run-runner,) $(if $(RUNNER_MINUTES),--runner-minutes $(RUNNER_MINUTES),) $(if $(LANE_A_PARALLEL),--lane-a-parallel $(LANE_A_PARALLEL),) $(if $(LANE_B_PARALLEL),--lane-b-parallel $(LANE_B_PARALLEL),) $(if $(EXTERNAL_COUNCIL_RECEIPTS),--external-council-receipts $(EXTERNAL_COUNCIL_RECEIPTS),)
+
+# One safe smoke loop with premortem and dry-run runner topology only
+wizard-autoresearch-loop-dry:
+	$(MAKE) wizard-autoresearch-loop ITERATIONS=$(or $(ITERATIONS),1)
+
 # Map sims to runner-facing execution classes without running them
 runner-taxonomy-audit:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/sim_runner_taxonomy_audit.py
@@ -305,4 +330,4 @@ telegram:
 telegram-log:
 	tail -f /tmp/telegram_bot.log
 
-.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit helper-process-audit helper-process-audit-strict runner-preflight state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue runner-taxonomy-audit receipt-validate receipt-validate-strict receipt-validate-run-boundary receipt-reconcile receipt-reconcile-all-c receipt-reconcile-strict receipt-reconcile-all-c-strict receipt-reconcile-scope-strict receipt-reconcile-all-c-scope-strict receipt-reconcile-run-boundary-strict receipt-reconcile-all-c-run-boundary-strict receipt-reconcile-all-c-with-tier-d stage-gate stage-gate-claim lego-registry lego-normalize
+.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit helper-process-audit helper-process-audit-strict runner-preflight state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue mass-lego-batch runner-taxonomy-audit receipt-validate receipt-validate-strict receipt-validate-run-boundary receipt-reconcile receipt-reconcile-all-c receipt-reconcile-strict receipt-reconcile-all-c-strict receipt-reconcile-scope-strict receipt-reconcile-all-c-scope-strict receipt-reconcile-run-boundary-strict receipt-reconcile-all-c-run-boundary-strict receipt-reconcile-all-c-with-tier-d stage-gate stage-gate-claim lego-registry lego-normalize

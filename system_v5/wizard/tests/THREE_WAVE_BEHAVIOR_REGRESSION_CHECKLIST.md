@@ -40,6 +40,8 @@ Include at least:
 
 - one adversarial fake-plurality task;
 - one sim/tool-stage task where tool/function/stage-gate terms must remain exact;
+- one general bounded-work task that must compile to target/action/owner/success/stop/artifact/status;
+- one queue-visible sim packet task that must compile to the stricter sim packet profile;
 - one blocked-worker task;
 - one follow-up task where Make, Scout, and Audit can be faked;
 - one receipt-truth task with known ground truth.
@@ -74,6 +76,8 @@ Execution axis:
 - blocked/deferred/not-run honesty;
 - follow-up usefulness;
 - actionability;
+- bounded-work compileability;
+- sim packet compileability before queue visibility;
 - overclaim rate;
 - cosplay/style substitution.
 
@@ -102,6 +106,31 @@ Mark the surface as `no_lift`, `drift_prone`, or `cosmetic_only` when:
 - controller synthesis satisfies a worker route;
 - Follow-up Council calls options preworked without Make, Scout, and Audit receipts;
 - audit shares the same inhabited register as workers.
+
+## Source-And-Lift Dry Run
+
+Before expanding the three-wave Wizard, run one dry receipt on the current task through `source_and_lift_receipt_gate`.
+
+The dry receipt must keep four fields separate:
+
+- `source_slice_used`: what source object changed the route;
+- `execution_evidence`: what actually ran or changed;
+- `lift_probe`: what changed in the reasoning move after MMM/mini-MMM loading;
+- `not_run_or_simulated_accounting`: what receives zero completion credit.
+
+The dry receipt passes only when a plain-register audit can distinguish route execution from salience lift without trusting style, self-report, or controller synthesis.
+
+Accepted dry receipt signal:
+
+- raw launch and completion receipt refs are present for any claimed completed route;
+- terminal status is explicit;
+- evidence boundary states what the receipt does not show;
+- `gate_verdict` is scoped to the tested claim and cannot imply broader expansion by itself;
+- `expansion_permission` is false unless the evidence boundary explicitly supports expansion;
+- label-stripped or plain-English probe preserves bounded evidence stance, live alternative, and stop condition;
+- cosmetic-only lift, no-lift, folded counter-probe, blocked work, and simulated work remain admissible report states.
+
+Retreat to Decision Council when the dry receipt cannot show what changed operationally, when "lift" means only native terms appearing, or when audit cannot separate completed receipts from starts, pending workers, controller synthesis, or role-fit.
 
 ## Spike Test
 

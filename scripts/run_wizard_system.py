@@ -143,13 +143,13 @@ LANES: list[dict[str, str]] = [
     {
         "lane": "Hygiene",
         "emoji": "🧼",
-        "path_template": "mini_mmms/{size}/lanes/md/MMM_LANE_REPO_HYGIENE_{upper}_v2_7.md",
+        "path_template": "mini_mmms/{size}/checks_guards/md/MMM_LANE_REPO_HYGIENE_{upper}_v2_7.md",
         "output": "Lane result: clean drift, bloat, stale wording, duplicate surfaces, and receipt confusion while preserving substance.",
     },
     {
         "lane": "Security",
         "emoji": "🛡️",
-        "path_template": "mini_mmms/{size}/lanes/md/MMM_LANE_SECURITY_{upper}_v2_7.md",
+        "path_template": "mini_mmms/{size}/checks_guards/md/MMM_LANE_SECURITY_{upper}_v2_7.md",
         "output": "Lane result: check unsafe claims, permission confusion, prompt leakage, fake execution, and unearned certainty before answering.",
     },
     {
@@ -324,6 +324,14 @@ ALL_D_CHILD_ROWS = tuple(f"Follow-up {index}" for index in range(1, 18)) + (
     "All-D self-check",
     "Follow-up Audit/Improve",
 )
+# Meta-rows record verification and audit work, not child execution.
+# They appear in ALL_D_CHILD_ROWS for blocking purposes but must not count
+# toward quorum — a parent claiming done on meta-rows alone has no child
+# execution evidence.
+ALL_D_META_ROWS: frozenset[str] = frozenset({"All-D self-check", "Follow-up Audit/Improve"})
+ALL_D_CHILD_MIN = 5
+ALL_D_CHILD_MAX = 10
+ALL_D_REQUIRED_CHILD_FAMILIES: frozenset[str] = frozenset({"codex", "opus", "sonnet", "haiku", "gemini"})
 FOLLOWUP_SCOUT_ROWS = tuple(f"Follow-up Scout {option}" for option in ("L1", "L2", "L3", "L4", "L5", "L6", "C5", "C6", "C7", "C8", "C9"))
 FULL_WIZARD_WAVE_COUNT = 11
 FULL_WIZARD_MAX_SUBAGENTS_PER_WAVE = 14
@@ -333,6 +341,9 @@ DEFAULT_RUNTIME_PLAN = {
     "pool": "codex-native",
     "max_concurrent_subagents": 1,
     "batching": "rolling",
+    "release_completed_agents": True,
+    "child_spawn_retry_policy": "close_completed_then_retry_smaller",
+    "thread_limit_is_terminal_blocker": False,
     "reroute_policy": "blocked_or_slow_routes_may_use_other_receipted_pools",
 }
 DEFAULT_RUNTIME_REGISTRY_PATH = REPO_ROOT / "runtime_registry.json"
@@ -593,13 +604,80 @@ def _lanes_for(candidate_root: Path, size: str, version: str) -> list[dict[str, 
 def _record_for(spec: dict[str, str], candidate_root: Path, task: str, size: str, version: str) -> dict[str, Any]:
     rel_path = _path_for(spec, size, version)
     mmm_path = candidate_root / rel_path
+    general_rel = str(_general_path(candidate_root, size, version))
     if not mmm_path.exists():
-        raise FileNotFoundError(f"missing Wizard language body for {spec['lane']}: {mmm_path}")
+        wave = int(spec.get("wave") or LANE_WAVES[spec["lane"]])
+        reason = f"missing Wizard language body: {rel_path}"
+        return {
+            "lane": spec["lane"],
+            "emoji": spec["emoji"],
+            "role": "local_wizard_lane",
+            "wave": wave,
+            "wave_name": WAVE_DEFINITIONS[wave]["name"],
+            "status": "blocked",
+            "state": "blocked",
+            "reason": reason,
+            "blocker_or_defer_reason": reason,
+            "output": (
+                f"Task: {task}\n"
+                f"Wizard General size: {size}\n"
+                f"Wave {wave}: {WAVE_DEFINITIONS[wave]['name']}\n"
+                f"Blocked: {reason}"
+            ),
+            "checked": f"looked for {rel_path}",
+            "concluded": "route blocked before local receipt execution",
+            "open": "provide the missing route-local mini-MMM or remove the route from the packet registry",
+            "evidence": reason,
+            "mini_mmm_path": rel_path,
+            "mini_mmm": (
+                f"Blocked route-local salience body for {spec['lane']}. "
+                f"The expected mini-MMM path was not present in this packet size: {rel_path}. "
+                "This inline body exists only so the local harness can preserve a receipt row "
+                "without pretending the missing route executed or the salience surface loaded."
+            ),
+            "mini_mmm_scope": "voice_local" if _category(spec["lane"]) == "voice" else "lane_local",
+            "task_card": task,
+            "source_and_lift_receipt_gate": {
+                "gate_id": f"source_lift_{_slug(spec['lane'])}",
+                "route_id": spec["lane"],
+                "source_bundle_ref": [general_rel, rel_path],
+                "source_slice_used": [rel_path],
+                "loaded_salience_surfaces": [],
+                "raw_launch_receipt_refs": [],
+                "raw_completion_receipt_refs": [],
+                "claim_tested": f"{spec['lane']} route can run in this packet",
+                "claim_scope": "route availability only",
+                "execution_evidence": [reason],
+                "terminal_status": "blocked",
+                "not_run_or_simulated_accounting": "missing mini-MMM; zero route completion credit",
+                "evidence_boundary": "proves the route is unavailable in this packet size, not a Wizard behavior result",
+                "lift_probe": "not run because the salience surface was missing",
+                "counter_probe_seed": "route remains blocked after removing Wizard labels",
+                "label_strip_result": "untested",
+                "counter_probe_result": "untested",
+                "strongest_omitted_falsifier": "the file may exist under another intended route category",
+                "salience_status": {
+                    "load_axis": "missing",
+                    "salience_axis": "no_lift",
+                    "counter_probe_axis": "untested",
+                    "corpus_axis": "named_stale",
+                },
+                "gate_verdict": "quarantine",
+                "expansion_permission": False,
+            },
+        }
     terms = _read_terms(mmm_path)
     term_text = ", ".join(terms[:8]) if terms else "language body missing"
     evidence = f"{rel_path} terms: {term_text}"
     wave = int(spec.get("wave") or LANE_WAVES[spec["lane"]])
     wave_def = WAVE_DEFINITIONS[wave]
+    output = (
+        f"Task: {task}\n"
+        f"Wizard General size: {size}\n"
+        f"Wave {wave}: {wave_def['name']}\n"
+        f"{spec['output']}\n"
+        f"Loaded language body terms: {term_text}"
+    )
     return {
         "lane": spec["lane"],
         "emoji": spec["emoji"],
@@ -607,13 +685,7 @@ def _record_for(spec: dict[str, str], candidate_root: Path, task: str, size: str
         "wave": wave,
         "wave_name": wave_def["name"],
         "status": "local_receipt",
-        "output": (
-            f"Task: {task}\n"
-            f"Wizard General size: {size}\n"
-            f"Wave {wave}: {wave_def['name']}\n"
-            f"{spec['output']}\n"
-            f"Loaded language body terms: {term_text}"
-        ),
+        "output": output,
         "checked": f"loaded {rel_path}",
         "concluded": spec["output"],
         "open": "live proof pending",
@@ -621,6 +693,34 @@ def _record_for(spec: dict[str, str], candidate_root: Path, task: str, size: str
         "mini_mmm_path": rel_path,
         "mini_mmm_scope": "voice_local" if _category(spec["lane"]) == "voice" else "lane_local",
         "task_card": task,
+        "source_and_lift_receipt_gate": {
+            "gate_id": f"source_lift_{_slug(spec['lane'])}",
+            "route_id": spec["lane"],
+            "source_bundle_ref": [general_rel, rel_path],
+            "source_slice_used": [rel_path],
+            "loaded_salience_surfaces": [rel_path],
+            "raw_launch_receipt_refs": [],
+            "raw_completion_receipt_refs": [],
+            "claim_tested": f"{spec['lane']} local receipt can be represented without live route credit",
+            "claim_scope": "local Wizard dry-run receipt only",
+            "execution_evidence": [rel_path],
+            "terminal_status": "simulated",
+            "not_run_or_simulated_accounting": "local receipt; no live route completion credit",
+            "evidence_boundary": "proves local receipt shape and salience surface loading only, not live Wizard behavior or expansion readiness",
+            "lift_probe": f"loaded terms available for {spec['lane']}: {term_text}",
+            "counter_probe_seed": "strip Wizard labels; output must still separate local receipt shape from live execution truth",
+            "label_strip_result": "untested",
+            "counter_probe_result": "untested",
+            "strongest_omitted_falsifier": "local terms could be decorative without changing reasoning behavior",
+            "salience_status": {
+                "load_axis": "loaded",
+                "salience_axis": "untested",
+                "counter_probe_axis": "untested",
+                "corpus_axis": "named_current",
+            },
+            "gate_verdict": "harden",
+            "expansion_permission": False,
+        },
     }
 
 
@@ -676,6 +776,31 @@ def _load_live_receipts(path: Path | None) -> dict[str, dict[str, Any]]:
     return overlays
 
 
+def _normalize_runtime_plan(plan: dict[str, Any], source: str) -> dict[str, Any]:
+    max_concurrent = int(plan.get("max_concurrent_subagents") or 0)
+    if max_concurrent < 1:
+        raise ValueError(f"{source}: max_concurrent_subagents must be >= 1")
+    plan["max_concurrent_subagents"] = max_concurrent
+
+    batching = str(plan.get("batching") or "").strip().lower()
+    if "rolling" not in batching:
+        raise ValueError(f"{source}: batching must be rolling so child waves can drain and retry under thread limits")
+    plan["batching"] = batching
+
+    if plan.get("release_completed_agents") is not True:
+        raise ValueError(f"{source}: release_completed_agents must be true before blocked child capacity is accepted")
+
+    retry_policy = str(plan.get("child_spawn_retry_policy") or "").strip().lower()
+    if "close_completed" not in retry_policy or "retry" not in retry_policy:
+        raise ValueError(f"{source}: child_spawn_retry_policy must close completed agents and retry smaller child work")
+    plan["child_spawn_retry_policy"] = retry_policy
+
+    if plan.get("thread_limit_is_terminal_blocker") is True:
+        raise ValueError(f"{source}: thread limits are retry signals, not terminal child blockers")
+
+    return plan
+
+
 def _runtime_plan(path: Path | None, registry_path: Path | None = None) -> dict[str, Any]:
     registry_path = registry_path or DEFAULT_RUNTIME_REGISTRY_PATH
     registry_payload: dict[str, Any] = {}
@@ -699,21 +824,15 @@ def _runtime_plan(path: Path | None, registry_path: Path | None = None) -> dict[
         plan["batching"] = registry_payload.get("batching_strategy", registry_payload.get("runtime_reset_strategy", plan["batching"]))
         if registry_payload:
             plan["runtime_registry_path"] = str(registry_path)
-        max_concurrent = int(plan.get("max_concurrent_subagents") or 0)
-        if max_concurrent < 1:
-            max_concurrent = 1
-        plan["max_concurrent_subagents"] = max_concurrent
-        return plan
+        if int(plan.get("max_concurrent_subagents") or 0) < 1:
+            plan["max_concurrent_subagents"] = 1
+        return _normalize_runtime_plan(plan, str(registry_path) if registry_payload else "default runtime plan")
     payload = _load_json_or_jsonl(path)
     if not isinstance(payload, dict):
         raise ValueError(f"{path}: runtime plan must be a JSON object")
     plan = dict(DEFAULT_RUNTIME_PLAN)
     plan.update(payload)
-    max_concurrent = int(plan.get("max_concurrent_subagents") or 0)
-    if max_concurrent < 1:
-        raise ValueError(f"{path}: max_concurrent_subagents must be >= 1")
-    plan["max_concurrent_subagents"] = max_concurrent
-    return plan
+    return _normalize_runtime_plan(plan, str(path))
 
 
 def _status_counts(records: list[dict[str, Any]]) -> dict[str, int]:
@@ -780,6 +899,8 @@ def _validate_full_wizard_scale(
         "required_waves": FULL_WIZARD_WAVE_COUNT,
         "design_max_subagents_per_wave": FULL_WIZARD_MAX_SUBAGENTS_PER_WAVE,
         "runtime_max_concurrent_subagents": runtime_max,
+        "release_completed_agents": bool(runtime_plan.get("release_completed_agents")),
+        "child_spawn_retry_policy": runtime_plan.get("child_spawn_retry_policy"),
         "planned_batches_by_wave": planned_batches,
         "min_live_subagents": min_live_subagents,
         "live_subagents": total,
@@ -819,6 +940,31 @@ def _apply_live_overlay(record: dict[str, Any], overlay: dict[str, Any]) -> dict
     if not runtime_registry:
         runtime_registry = "codex native subagent spawned with route-local mini-MMM"
 
+    live_ref = (
+        overlay.get("spawn_receipt_path")
+        or overlay.get("agent_receipt_path")
+        or overlay.get("live_receipt_path")
+        or overlay.get("evidence")
+        or f"live receipt for {lane}: {agent_id or worker_id}"
+    )
+    source_lift_gate = dict(
+        overlay.get("source_and_lift_receipt_gate")
+        or record.get("source_and_lift_receipt_gate")
+        or {}
+    )
+    if source_lift_gate:
+        source_lift_gate.update(
+            {
+                "terminal_status": "completed",
+                "raw_launch_receipt_refs": source_lift_gate.get("raw_launch_receipt_refs") or [live_ref],
+                "raw_completion_receipt_refs": source_lift_gate.get("raw_completion_receipt_refs") or [live_ref],
+                "claim_scope": source_lift_gate.get("claim_scope") or "live Wizard route receipt only",
+                "execution_evidence": source_lift_gate.get("execution_evidence") or [live_ref],
+                "evidence_boundary": source_lift_gate.get("evidence_boundary")
+                or "proves this live route receipt only, not broader Wizard expansion",
+            }
+        )
+
     updated = dict(record)
     updated.update(
         {
@@ -841,6 +987,8 @@ def _apply_live_overlay(record: dict[str, Any], overlay: dict[str, Any]) -> dict
             "spawn_timestamp": spawn_timestamp,
         }
     )
+    if source_lift_gate:
+        updated["source_and_lift_receipt_gate"] = source_lift_gate
     return updated
 
 
@@ -894,7 +1042,63 @@ def _overlay_live_receipts(
             continue
         updated_records.append(_apply_live_overlay({"lane": lane, "emoji": "", "wave": 8}, overlay))
         live_routes.append(lane)
+    _validate_all_d_child_quorum(live_routes, overlays)
     return updated_records, live_routes, scale_report
+
+
+def _all_d_child_family(lane: str, overlay: dict[str, Any]) -> str:
+    raw = " ".join(
+        str(overlay.get(field) or "")
+        for field in ("model_family", "family", "model", "runtime", "source_tool", "worker_id", "agent_id", "evidence")
+    ).lower()
+    for family in ("codex", "opus", "sonnet", "haiku", "gemini"):
+        if family in raw:
+            return family
+    return lane.lower().replace("follow-up ", "").replace(" ", "_")
+
+
+def _validate_all_d_child_quorum(
+    live_routes: list[str],
+    overlays: dict[str, dict[str, Any]],
+    *,
+    min_children: int = ALL_D_CHILD_MIN,
+    max_children: int = ALL_D_CHILD_MAX,
+) -> None:
+    """If All-D has a live receipt, require v4.1-sized child depth.
+
+    Absent this check, a parent can claim 'completed' with zero child execution
+    evidence or one token child, which is below the v4.1 child quorum.
+    """
+    live_set = set(live_routes)
+    if "All-D" not in live_set:
+        return
+    live_children = [
+        lane for lane in ALL_D_CHILD_ROWS
+        if lane in live_set and lane not in ALL_D_META_ROWS
+    ]
+    if len(live_children) < min_children:
+        execution_rows = [r for r in ALL_D_CHILD_ROWS if r not in ALL_D_META_ROWS]
+        raise ValueError(
+            f"All-D has a live receipt but only {len(live_children)} child receipts "
+            f"(need {min_children}); meta-rows (self-check, audit) do not count; "
+            f"supply live receipts for at least {min_children} "
+            f"of: {', '.join(execution_rows[:4])} ..."
+        )
+    if len(live_children) > max_children:
+        raise ValueError(
+            f"All-D has {len(live_children)} child receipts; v4.1 normal quorum is "
+            f"{min_children}-{max_children}. Split this into a stress run with a receipt-shape/divergence audit."
+        )
+    families = {
+        _all_d_child_family(lane, overlays[lane])
+        for lane in live_children
+    }
+    missing = sorted(ALL_D_REQUIRED_CHILD_FAMILIES - families)
+    if missing:
+        raise ValueError(
+            "All-D child model matrix missing required families: "
+            + ", ".join(missing)
+        )
 
 
 def _block_unproven_live_records(records: list[dict[str, Any]], live_routes: list[str]) -> list[dict[str, Any]]:
@@ -1091,7 +1295,8 @@ def _final_answer(
     if scale_report:
         wave_truth += (
             f" Full Wizard scale covered {scale_report['live_subagents']} live receipts across "
-            f"{scale_report['required_waves']} waves; rolling batches by wave: {scale_report['planned_batches_by_wave']}."
+            f"{scale_report['required_waves']} waves; rolling batches by wave: {scale_report['planned_batches_by_wave']}; "
+            f"completed agents must be released before retry: {scale_report['release_completed_agents']}."
         )
 
     return "\n".join(
@@ -1145,6 +1350,7 @@ def run_wizard(
     runtime_plan_path: Path | None = None,
     runtime_registry_path: Path | None = None,
     require_live_execution: bool = False,
+    require_source_and_lift_gate: bool = False,
     require_full_wizard_scale: bool = False,
     full_wizard_min_live_subagents: int = FULL_WIZARD_DEFAULT_MIN_LIVE_SUBAGENTS,
 ) -> dict[str, Any]:
@@ -1183,6 +1389,7 @@ def run_wizard(
         allow_controller_local=False,
         allow_local_receipt=True,
         require_live_execution=require_live_execution,
+        require_source_and_lift_gate=require_source_and_lift_gate,
     )
     validation_path.write_text(json.dumps(validation, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
@@ -1214,6 +1421,7 @@ def run_wizard(
         allow_controller_local=False,
         allow_local_receipt=True,
         require_live_execution=require_live_execution,
+        require_source_and_lift_gate=require_source_and_lift_gate,
     )
     if final_ok != ok or final_validation.get("findings"):
         final_answer_path.write_text(
@@ -1243,6 +1451,7 @@ def run_wizard(
             allow_controller_local=False,
             allow_local_receipt=True,
             require_live_execution=require_live_execution,
+            require_source_and_lift_gate=require_source_and_lift_gate,
         )
     final_validation_path.write_text(
         json.dumps(final_validation, indent=2, sort_keys=True) + "\n",
@@ -1267,6 +1476,7 @@ def run_wizard(
         "require_full_wizard_scale": require_full_wizard_scale,
         "full_wizard_min_live_subagents": full_wizard_min_live_subagents,
         "require_live_execution": require_live_execution,
+        "require_source_and_lift_gate": require_source_and_lift_gate,
         "candidate_root": str(candidate_root),
         "out_dir": str(out_dir),
         "lane_resolution_path": harness_result["lane_resolution_path"],
@@ -1313,6 +1523,11 @@ def main(argv: list[str] | None = None) -> int:
         help="fail local receipts when live spawned-agent execution is required",
     )
     parser.add_argument(
+        "--require-source-and-lift-gate",
+        action="store_true",
+        help="fail receipts that do not carry a valid source-and-lift gate",
+    )
+    parser.add_argument(
         "--require-full-wizard-scale",
         action="store_true",
         help="require live spawn receipts covering all Wizard waves in --live-receipts-path",
@@ -1339,6 +1554,7 @@ def main(argv: list[str] | None = None) -> int:
         runtime_plan_path=args.runtime_plan_path,
         runtime_registry_path=args.runtime_registry_path,
         require_live_execution=args.require_live_execution,
+        require_source_and_lift_gate=args.require_source_and_lift_gate,
         require_full_wizard_scale=args.require_full_wizard_scale,
         full_wizard_min_live_subagents=args.full_wizard_min_live_subagents,
     )

@@ -33,6 +33,7 @@ TOOL_MANIFEST = {
     "z3":        {"tried": True,  "used": False, "reason": ""},
     "cvc5":      {"tried": False, "used": False, "reason": "not installed"},
     "sympy":     {"tried": True,  "used": False, "reason": ""},
+    "scipy":     {"tried": False, "used": False, "reason": "not installed"},
     "clifford":  {"tried": True,  "used": False, "reason": ""},
     "geomstats": {"tried": False, "used": False, "reason": "not needed; orbit geometry handled by clifford"},
     "e3nn":      {"tried": False, "used": False, "reason": "not needed; SU(2) handled by clifford directly"},
@@ -48,6 +49,7 @@ TOOL_INTEGRATION_DEPTH = {
     "z3":        None,   # set to load_bearing after UNSAT confirmed
     "cvc5":      None,
     "sympy":     None,   # set to load_bearing after spectral entropy computed
+    "scipy":     None,   # set to load_bearing after entropy gap computed
     "clifford":  None,   # set to load_bearing after rotor path computed
     "geomstats": None,
     "e3nn":      None,
@@ -61,6 +63,9 @@ TOOL_INTEGRATION_DEPTH = {
 
 try:
     import scipy.stats
+    from scipy.spatial.transform import Rotation as ScipyRotation
+    TOOL_MANIFEST["scipy"]["tried"] = True
+    TOOL_MANIFEST["scipy"]["reason"] = "available; used only if entropy computations are consumed by passing rows"
     _SCIPY_AVAILABLE = True
 except ImportError:
     _SCIPY_AVAILABLE = False
@@ -99,24 +104,45 @@ def run_positive_tests():
     LOG2 = math.log(2)
 
     # ------------------------------------------------------------------
-    # P1: Path 1 — scipy orbit quotient entropy
-    # SU(2) has N group elements (discrete approximation).
-    # The SO(3) quotient identifies pairs {g, -g}, giving N/2 classes.
-    # S(SU2) - S(SO3) = log(N) - log(N/2) = log(2).
+    # P1: Path 1 — scipy quotient entropy on an SU(2) rotor path.
+    # We sample unit quaternions q(theta) over a 4pi SU(2) path and let
+    # scipy construct their SO(3) rotation matrices. The quotient class count
+    # comes from unique SO(3) matrices, not from pre-setting N/2.
     # ------------------------------------------------------------------
     if _SCIPY_AVAILABLE:
-        N_su2 = 1000  # must be even; discrete approximation of SU(2)
-        N_so3 = N_su2 // 2
+        N_samples = 1000  # must be even; one sampled SU(2) rotor path over [0,4pi)
+        thetas = np.linspace(0, 4 * math.pi, N_samples, endpoint=False)
+        quaternions_xyzw = np.array([
+            [0.0, 0.0, math.sin(theta / 2.0), math.cos(theta / 2.0)]
+            for theta in thetas
+        ])
 
-        p_su2 = np.ones(N_su2) / N_su2
-        p_so3 = np.ones(N_so3) / N_so3
+        su2_keys = {
+            tuple(np.round(quaternion, 8))
+            for quaternion in quaternions_xyzw
+        }
+        rotation_matrices = ScipyRotation.from_quat(quaternions_xyzw).as_matrix()
+        so3_keys = {
+            tuple(np.round(rotation.reshape(-1), 8))
+            for rotation in rotation_matrices
+        }
+
+        N_su2 = len(su2_keys)
+        N_so3 = len(so3_keys)
+
+        p_su2 = np.ones(N_su2, dtype=float) / N_su2
+        p_so3 = np.ones(N_so3, dtype=float) / N_so3
 
         S_su2_p1 = float(scipy.stats.entropy(p_su2))   # log(N_su2)
         S_so3_p1 = float(scipy.stats.entropy(p_so3))   # log(N_so3)
         gap_p1 = S_su2_p1 - S_so3_p1
 
-        TOOL_MANIFEST["z3"]["used"] = True  # placeholder; updated below
+        TOOL_MANIFEST["scipy"]["used"] = True
+        TOOL_MANIFEST["scipy"]["reason"] = "load-bearing: scipy.spatial Rotation computes SO(3) quotient classes from SU(2) quaternions and scipy.stats.entropy computes the resulting class-entropy gap"
         results["P1_orbit_quotient"] = {
+            "N_samples": N_samples,
+            "N_su2_unique_quaternions": N_su2,
+            "N_so3_unique_rotation_matrices": N_so3,
             "S_su2": S_su2_p1,
             "S_so3": S_so3_p1,
             "gap": gap_p1,
@@ -124,8 +150,8 @@ def run_positive_tests():
             "gap_error": abs(gap_p1 - LOG2),
             "pass": abs(gap_p1 - LOG2) < 1e-10,
             "interpretation": (
-                "SU(2) orbit entropy exceeds SO(3) orbit entropy by log(2) "
-                "because the 2:1 map identifies two SU(2) elements per SO(3) class"
+                "scipy maps sampled SU(2) unit quaternions to SO(3) rotation matrices; "
+                "antipodal quaternion pairs collapse to one SO(3) matrix, producing the measured log(2) entropy gap"
             ),
         }
     else:
@@ -139,25 +165,29 @@ def run_positive_tests():
     # Under SO(3) identification, pairs (theta, theta+2pi) collapse to 500 classes.
     # S(SU2 path) = log(1000), S(SO3 path) = log(500), gap = log(2).
     # ------------------------------------------------------------------
-    if _CLIFFORD_AVAILABLE:
+    if _CLIFFORD_AVAILABLE and _SCIPY_AVAILABLE:
         layout, blades = Cl(3)
         e12 = blades["e12"]  # unit bivector in e1-e2 plane
 
         N_samples = 1000  # must be even
         thetas = np.linspace(0, 4 * math.pi, N_samples, endpoint=False)
 
-        # Each rotor is unique in SU(2) (tracked by its scalar + e12 coefficient)
+        # Each rotor is unique in SU(2) (tracked by actual Clifford scalar + e12 coefficients)
         rotor_keys_su2 = []
         for t in thetas:
-            scalar_part = math.cos(t / 2)
-            biv_part = math.sin(t / 2)
+            rotor = math.cos(t / 2) + math.sin(t / 2) * e12
+            scalar_part = float(rotor[()])
+            biv_part = float(rotor[(1, 2)])
             rotor_keys_su2.append((round(scalar_part, 8), round(biv_part, 8)))
 
         N_su2_cliff = len(set(rotor_keys_su2))   # should equal N_samples
 
-        # SO(3) identification: theta in [0, 2pi) and theta+2pi in [2pi, 4pi) give same rotation
-        # The two halves of the rotor path are identified
-        N_so3_cliff = N_samples // 2
+        # SO(3) identification: rotor and -rotor give the same rotation.
+        rotor_keys_so3 = {
+            tuple(key if key >= tuple(-x for x in key) else tuple(-x for x in key))
+            for key in rotor_keys_su2
+        }
+        N_so3_cliff = len(rotor_keys_so3)
 
         p_su2_cliff = np.ones(N_su2_cliff) / N_su2_cliff
         p_so3_cliff = np.ones(N_so3_cliff) / N_so3_cliff
@@ -167,6 +197,8 @@ def run_positive_tests():
         gap_p2 = S_su2_p2 - S_so3_p2
 
         TOOL_MANIFEST["clifford"]["used"] = True
+        TOOL_MANIFEST["clifford"]["reason"] = "load-bearing: Clifford Cl(3) constructs the bivector rotor path whose SU(2) samples collapse pairwise under SO(3)"
+        TOOL_MANIFEST["scipy"]["used"] = True
 
         results["P2_clifford_bivector"] = {
             "N_su2_rotors": N_su2_cliff,
@@ -178,12 +210,14 @@ def run_positive_tests():
             "gap_error": abs(gap_p2 - LOG2),
             "pass": abs(gap_p2 - LOG2) < 1e-10,
             "interpretation": (
-                "Clifford rotor R(theta)=exp(theta/2*e12) over [0,4pi) has 1000 distinct SU(2) elements. "
-                "SO(3) identification collapses them to 500 classes. Entropy drops by log(2)."
+                "Clifford rotor R(theta)=cos(theta/2)+sin(theta/2)e12 over [0,4pi) has 1000 distinct SU(2) elements. "
+                "Rotor sign canonicalization collapses antipodal pairs to 500 SO(3) classes. Entropy drops by log(2)."
             ),
         }
-    else:
+    elif not _CLIFFORD_AVAILABLE:
         results["P2_clifford_bivector"] = {"pass": False, "error": "clifford not available"}
+    else:
+        results["P2_clifford_bivector"] = {"pass": False, "error": "scipy not available"}
 
     # ------------------------------------------------------------------
     # P3: Path 3 — sympy spectral triple entropy
@@ -204,6 +238,7 @@ def run_positive_tests():
         expected_gap_sym = float(sp.log(2).evalf())
 
         TOOL_MANIFEST["sympy"]["used"] = True
+        TOOL_MANIFEST["sympy"]["reason"] = "load-bearing: SymPy simplifies log(N)-log(N/2) to log(2) for the spectral-count path"
 
         results["P3_sympy_spectral"] = {
             "symbolic_gap_expression": gap_sym_str,
@@ -245,12 +280,12 @@ def run_positive_tests():
             "d12": d12,
             "d13": d13,
             "d23": d23,
-            "rosetta_r4_confirmed": rosetta_confirmed,
+            "bounded_fixture_agreement": rosetta_confirmed,
             "pass": rosetta_confirmed,
             "interpretation": (
                 "Three independent paths (scipy orbit, clifford bivector, sympy spectral) "
-                "all agree on the log(2) entropy gap from the SU(2)->SO(3) double cover. "
-                "Rosetta R4: the invariant is path-independent."
+                "all agree on the log(2) entropy gap for this bounded SU(2)->SO(3) double-cover fixture. "
+                "This remains classical-baseline evidence and does not promote a higher-stage Rosetta claim."
             ),
         }
     else:
@@ -297,6 +332,7 @@ def run_negative_tests():
 
         z3_result = str(solver.check())
         TOOL_MANIFEST["z3"]["used"] = True
+        TOOL_MANIFEST["z3"]["reason"] = "load-bearing: z3 proves entropy preservation is UNSAT when a positive kernel entropy gap is asserted"
         TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
 
         results["N1_z3_unsat_entropy_preservation"] = {
@@ -372,27 +408,34 @@ if __name__ == "__main__":
         TOOL_INTEGRATION_DEPTH["sympy"] = "load_bearing"
     if TOOL_MANIFEST["clifford"]["used"]:
         TOOL_INTEGRATION_DEPTH["clifford"] = "load_bearing"
-    if _SCIPY_AVAILABLE:
-        TOOL_INTEGRATION_DEPTH["scipy"] = "load_bearing"  # not in template schema but used
+    if TOOL_MANIFEST["scipy"]["used"]:
+        TOOL_INTEGRATION_DEPTH["scipy"] = "load_bearing"
+
+    all_tests = {}
+    all_tests.update(positive)
+    all_tests.update(negative)
+    all_tests.update(boundary)
+    passed = [k for k, v in all_tests.items() if isinstance(v, dict) and v.get("pass", False)]
+    failed = [k for k, v in all_tests.items() if isinstance(v, dict) and not v.get("pass", False)]
+    all_pass = len(failed) == 0
 
     results = {
         "name": "sim_rosetta_su2_so3_double_cover_invariant",
         "classification": "classical_baseline",
+        "status": "PASS" if all_pass else "FAIL",
+        "all_pass": all_pass,
+        "divergence_log": "Classical baseline: scipy, Clifford, SymPy, and z3 numerically/symbolically cross-check a bounded SU(2)->SO(3) double-cover entropy-gap invariant; this does not promote nonclassical, bridge, axis, or coupling claims.",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
         "summary": {
-            "claim": (
-                "The SU(2)->SO(3) double cover creates an entropy gap of exactly log(2). "
-                "This is confirmed by three independent evidence paths (scipy orbit quotient, "
-                "clifford bivector rotor, sympy spectral triple) and refuted by z3 UNSAT as necessary."
-            ),
-            "rosetta_r4_status": (
-                "CONFIRMED: All three paths agree on log(2) gap to within 1e-10. "
-                "Rosetta R4 is: the entropy gap from a 2:1 group cover = log(|kernel|)."
-            ),
+            "tests_total": len(all_tests),
+            "tests_passed": len(passed),
+            "all_pass": all_pass,
+            "claim": "Bounded classical-baseline cross-check: the tested SU(2)->SO(3) double-cover fixtures show a log(2) entropy gap.",
+            "allowed_public_label": "passes local rerun after fresh execution; no higher-stage claim",
         },
     }
 
@@ -403,13 +446,6 @@ if __name__ == "__main__":
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
 
-    # Print summary
-    all_tests = {}
-    all_tests.update(positive)
-    all_tests.update(negative)
-    all_tests.update(boundary)
-    passed = [k for k, v in all_tests.items() if isinstance(v, dict) and v.get("pass", False)]
-    failed = [k for k, v in all_tests.items() if isinstance(v, dict) and not v.get("pass", False)]
     print(f"PASS: {len(passed)}/{len(all_tests)}: {passed}")
     if failed:
         print(f"FAIL: {failed}")

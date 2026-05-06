@@ -1,0 +1,41 @@
+{
+  "last_updated": "2026-05-06T15:12:00-07:00",
+  "goal_state_scope": "main-thread active goal; current git branch codex/source-cleanup-checkpoint-20260506",
+  "current_stage": "lego / conformance repair before broad coupling",
+  "last_completed_checkpoint": {
+    "commit": "9666cbf86",
+    "label": "evidence: refresh hypergraph potential receipt",
+    "status": "passes local rerun",
+    "evidence": [
+      "MPLCONFIGDIR=/tmp/codex-mpl NUMBA_CACHE_DIR=/tmp/codex-numba /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v4/probes/sim_leviathan_explore_as_hypergraph_potential.py",
+      "make truth-audit"
+    ]
+  },
+  "next_obligation": "Repair the next hard truth-audit finding on this branch: sim_dilworth_theorem_constraint_canonical_results.json cvc5 load_bearing_without_used.",
+  "blockers": [
+    "Tier D/E, engine, axis, bridge, and broad coupling claims remain blocked by stage gate.",
+    "probe_truth_audit still fails branch-scope with hard_finding_count=8.",
+    "probe_truth_audit_results.json remains a noncanonical audit snapshot and triggers nonblocking manifest-hook warnings."
+  ],
+  "artifacts": [
+    "system_v4/probes/sim_leviathan_explore_as_hypergraph_potential.py",
+    "system_v4/probes/a2_state/sim_results/leviathan_explore_as_hypergraph_potential_results.json",
+    "system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json",
+    "/tmp/codex_claude_bridge/20260506T220711Z-premortem-audit-this-codex-ratchet-repair-frame--45b20f853705.receipt.json"
+  ],
+  "verification_state": {
+    "hypergraph_potential": "passes local rerun",
+    "truth_audit": "runs; fails with hard_finding_count=8",
+    "git_sync": "origin/codex/source-cleanup-checkpoint-20260506...HEAD = 0 0 before this checkpoint file",
+    "helper_process_audit": "passes local rerun; helper_process_count=0"
+  },
+  "route_truth_state": {
+    "native_parents": "not run in this checkpoint",
+    "native_children": "not run in this checkpoint",
+    "claude_bridge": "Opus audit ran; external evidence only, not Codex-native child evidence",
+    "opus_verdict_applied": "accepted: XGI demoted to supportive and NumPy kept load-bearing for the classical-baseline entropy readout"
+  },
+  "child_capacity_state": "not exercised in this checkpoint",
+  "browser_hygiene_state": "absent",
+  "closure_gate_state": "open; goal not complete and user did not ask to complete"
+}

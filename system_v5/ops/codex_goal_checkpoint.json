@@ -1,45 +1,45 @@
 {
-  "last_updated": "2026-05-06T15:38:00-07:00",
+  "last_updated": "2026-05-06T15:35:13-07:00",
   "goal_state_scope": "main-thread active goal; current git branch codex/source-cleanup-checkpoint-20260506",
   "current_stage": "lego / conformance repair before broad coupling",
   "last_completed_checkpoint": {
-    "commit": "42a360095",
-    "label": "repair: gerbe toponetx hodge witness",
+    "commit": "420b15093",
+    "label": "repair: gtower e-class cartan determinants",
     "status": "passes local rerun",
     "evidence": [
-      "MPLCONFIGDIR=/tmp/codex-mpl NUMBA_CACHE_DIR=/tmp/codex-numba /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v4/probes/sim_gerbe_derived_stack_cohomology.py",
-      "TopoNetX CellComplex Hodge-Laplacian toggle: closed tetrahedral 2-surface h2_kernel_dim=1, open two-triangle patch h2_kernel_dim=0",
-      "make truth-audit"
+      "MPLCONFIGDIR=/tmp/codex-mpl NUMBA_CACHE_DIR=/tmp/codex-numba /Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v4/probes/sim_gtower_e_class_cartan_admissibility_shell_local.py",
+      "E6/E7/E8 exact Cartan determinants now pass as 3/2/1 using the local ADE edge convention.",
+      "z3 pairwise determinant-collision checks are UNSAT for E6/E7, E7/E8, and E6/E8.",
+      "make truth-audit: current result estate files_scanned=1 hard_finding_count=0 warning_finding_count=0"
     ]
   },
-  "next_obligation": "Repair the next hard truth-audit finding on this branch: sim_gtower_e_class_cartan_admissibility_shell_local_results.json canonical_has_failed_checks.",
+  "next_obligation": "Repair the next known hard truth-audit finding from the prior full list: sim_lattice_distributive_constraint_canonical_results.json cvc5 load_bearing_without_used.",
   "blockers": [
     "Tier D/E, engine, axis, bridge, and broad coupling claims remain blocked by stage gate.",
-    "probe_truth_audit still fails branch-scope with hard_finding_count=6.",
-    "probe_truth_audit_results.json remains a noncanonical audit snapshot and triggers nonblocking manifest-hook warnings.",
-    "Two unrelated Wizard v3.5 doc deletes remain dirty and are intentionally unstaged."
+    "Prior full hard-finding list had 6 findings before this repair; after removing the Gtower canonical failed-check item, 5 known hard findings remain to repair when their result artifacts are present.",
+    "Current make truth-audit scanned only the currently present result estate (files_scanned=1), so it proves the Gtower repair passes but is not a restored full-estate audit."
   ],
   "artifacts": [
-    "system_v4/probes/sim_gerbe_derived_stack_cohomology.py",
-    "system_v4/probes/a2_state/sim_results/sim_gerbe_derived_stack_cohomology_results.json",
-    "system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json",
-    "/tmp/codex_claude_bridge/20260506T222232Z-premortem-audit-this-codex-ratchet-repair-frame--bb5140fedcb4.receipt.json"
+    "system_v4/probes/sim_gtower_e_class_cartan_admissibility_shell_local.py",
+    "system_v4/probes/a2_state/sim_results/sim_gtower_e_class_cartan_admissibility_shell_local_results.json",
+    "/tmp/codex_claude_bridge/20260506T222956Z-premortem-audit-this-codex-ratchet-repair-target-c98638f169d2.receipt.json"
   ],
   "verification_state": {
     "hypergraph_potential": "passes local rerun",
-    "truth_audit": "runs; fails with hard_finding_count=6",
+    "truth_audit": "runs on current result estate; passes with files_scanned=1 and hard_finding_count=0; prior full-estate remainder is 5 known hard findings",
     "git_sync": "pending push after checkpoint update",
     "helper_process_audit": "passes local rerun; helper_process_count=0",
     "dilworth": "passes local rerun",
-    "gerbe": "passes local rerun"
+    "gerbe": "passes local rerun",
+    "gtower_e_class_cartan": "passes local rerun"
   },
   "route_truth_state": {
-    "native_parents": "not run in this checkpoint",
+    "native_parents": "1 completed explorer parent: 019dff69-59d1-7251-8ac3-3e561b8f5f2c",
     "native_children": "not run in this checkpoint",
-    "claude_bridge": "Opus audit ran; external evidence only, not Codex-native child evidence",
-    "opus_verdict_applied": "accepted Path A only after TopoNetX Hodge-Laplacian closed/open toggle passed and the result JSON was re-read"
+    "claude_bridge": "Opus premortem/audit ran; external evidence only, not Codex-native child evidence",
+    "opus_verdict_applied": "accepted: corrected E-series Cartan matrices, exact integer checks, pairwise z3 UNSAT checks, backed boundary/invariance rows, and demoted unused XGI"
   },
-  "child_capacity_state": "not exercised in this checkpoint",
-  "browser_hygiene_state": "absent",
+  "child_capacity_state": "native parent completed; no child subagents launched for this bounded single-file repair",
+  "browser_hygiene_state": "killed relaunched Computer Use/Playwright helpers; final helper_process_audit passes with helper_process_count=0",
   "closure_gate_state": "open; goal not complete and user did not ask to complete"
 }

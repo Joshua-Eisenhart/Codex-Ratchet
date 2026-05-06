@@ -1,6 +1,6 @@
 {
   "name": "layer_coupling_matrix_v3",
-  "timestamp": "2026-04-18T08:00:44.227758+00:00",
+  "timestamp": "2026-05-06T21:59:01.196920+00:00",
   "classification": "canonical",
   "token": "T_LAYER_COUPLING_MATRIX_V3",
   "tool_manifest": {
@@ -30,9 +30,9 @@
       "reason": "Symbolic derivation of I_c change under Z-dephasing"
     },
     "clifford": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "attempted but not used in the accepted evidence path; not used here because this result path does not require geometric algebra or Clifford rotor computation"
+      "reason": "not used: optional import failed: cannot cache function 'canonical_reordering_sign': no locator available for file '/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/clifford/_layout.py'"
     },
     "geomstats": {
       "tried": false,
@@ -47,7 +47,7 @@
     "rustworkx": {
       "tried": true,
       "used": true,
-      "reason": "Full 25-cell SCC analysis and partial order; not used here because this result path does not require graph traversal or graph-order computation"
+      "reason": "Builds the directed 25-cell layer-coupling graph and computes strongly connected components plus SCC condensation order to decide the completed matrix topology"
     },
     "xgi": {
       "tried": false,
@@ -114,7 +114,7 @@
       "Ic_before": -0.0099,
       "Ic_after": -0.0099,
       "classification": "PRESERVE",
-      "clifford_cross_check": "clifford_error: 'MultiVector' object has no attribute 'rev'",
+      "clifford_cross_check": "clifford_error: name 'Cl' is not defined",
       "note": "SU(2) rotation U_A is unitary. S(C) unchanged (U_A does not act on C). S(AC) invariant: U_A \u2297 I_C is unitary on subsystem AC -> spectrum preserved. Therefore I_c = S(C) - S(AC) unchanged -> PRESERVE expected."
     },
     "L2_on_L4": {
@@ -227,11 +227,11 @@
     "outgoing_positive_from_L4": [
       [
         "L4",
-        "L1"
+        "L4"
       ],
       [
         "L4",
-        "L4"
+        "L1"
       ],
       [
         "L4",
@@ -271,36 +271,16 @@
     "isolation_proof": "NOT_PROVED",
     "all_positive_edges": [
       [
-        "L1",
-        "L5"
+        "L2",
+        "L2"
       ],
       [
         "L3",
         "L2"
       ],
       [
-        "L5",
-        "L5"
-      ],
-      [
         "L1",
         "L2"
-      ],
-      [
-        "L4",
-        "L1"
-      ],
-      [
-        "L2",
-        "L1"
-      ],
-      [
-        "L4",
-        "L4"
-      ],
-      [
-        "L2",
-        "L4"
       ],
       [
         "L5",
@@ -309,18 +289,6 @@
       [
         "L2",
         "L3"
-      ],
-      [
-        "L2",
-        "L5"
-      ],
-      [
-        "L4",
-        "L2"
-      ],
-      [
-        "L1",
-        "L1"
       ],
       [
         "L3",
@@ -331,15 +299,47 @@
         "L3"
       ],
       [
+        "L1",
+        "L5"
+      ],
+      [
+        "L4",
+        "L4"
+      ],
+      [
         "L5",
         "L1"
+      ],
+      [
+        "L2",
+        "L4"
       ],
       [
         "L1",
         "L4"
       ],
       [
+        "L4",
+        "L1"
+      ],
+      [
         "L2",
+        "L1"
+      ],
+      [
+        "L1",
+        "L1"
+      ],
+      [
+        "L5",
+        "L5"
+      ],
+      [
+        "L2",
+        "L5"
+      ],
+      [
+        "L4",
         "L2"
       ]
     ],

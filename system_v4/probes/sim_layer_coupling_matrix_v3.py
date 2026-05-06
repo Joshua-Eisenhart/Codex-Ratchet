@@ -52,7 +52,7 @@ classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_INTEGRATION_DEPTH = {
-    "clifford": "load_bearing",
+    "clifford": None,
     "cvc5": None,
     "e3nn": None,
     "geomstats": None,
@@ -89,8 +89,8 @@ except ImportError:
 try:
     from clifford import Cl
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:  # noqa: BLE001
+    TOOL_MANIFEST["clifford"]["reason"] = f"not used: optional import failed: {exc}"
 
 try:
     import rustworkx as rx
@@ -892,7 +892,10 @@ def run_rustworkx_complete_matrix(new_measurements: dict):
             ),
         }
         TOOL_MANIFEST["rustworkx"]["used"] = True
-        TOOL_MANIFEST["rustworkx"]["reason"] = "Full 25-cell SCC analysis and partial order"
+        TOOL_MANIFEST["rustworkx"]["reason"] = (
+            "Builds the directed 25-cell layer-coupling graph and computes strongly connected "
+            "components plus SCC condensation order to decide the completed matrix topology"
+        )
         TOOL_INTEGRATION_DEPTH["rustworkx"] = "load_bearing"
     except Exception as e:
         result = {"pass": False, "error": str(e), "traceback": traceback.format_exc()}

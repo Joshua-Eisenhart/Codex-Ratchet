@@ -10,20 +10,21 @@ nontrivial holonomy is excluded (z3 UNSAT).
 import json
 import os
 import math
+import numpy as np
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": ""},
-    "pyg": {"tried": False, "used": False, "reason": ""},
-    "z3": {"tried": False, "used": False, "reason": ""},
-    "cvc5": {"tried": False, "used": False, "reason": ""},
-    "sympy": {"tried": False, "used": False, "reason": ""},
-    "clifford": {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn": {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi": {"tried": False, "used": False, "reason": ""},
-    "toponetx": {"tried": False, "used": False, "reason": ""},
-    "gudhi": {"tried": False, "used": False, "reason": ""},
+    "pytorch": {"tried": False, "used": False, "reason": "required for numerical U(1) holonomy phase accumulation if torch imports"},
+    "pyg": {"tried": False, "used": False, "reason": "graph neural message passing is not needed for BU(1) cohomology or gerbe holonomy checks"},
+    "z3": {"tried": False, "used": False, "reason": "required for the trivial-gerbe/nontrivial-holonomy UNSAT guard if z3 imports"},
+    "cvc5": {"tried": False, "used": False, "reason": "not used because the active contradiction is already encoded in z3 real arithmetic"},
+    "sympy": {"tried": False, "used": False, "reason": "required for symbolic BU(1) cohomology ring checks if sympy imports"},
+    "clifford": {"tried": False, "used": False, "reason": "geometric algebra is not needed for this cohomology-ring and 2-cycle packet"},
+    "geomstats": {"tried": False, "used": False, "reason": "Riemannian manifold statistics are not needed for discrete BU(1) cohomology checks"},
+    "e3nn": {"tried": False, "used": False, "reason": "equivariant neural layers are not needed for this algebraic/topological cohomology packet"},
+    "rustworkx": {"tried": False, "used": False, "reason": "graph traversal is not needed because the topology check is carried by a CellComplex"},
+    "xgi": {"tried": False, "used": False, "reason": "hypergraphs are not needed because the topological witness is a cell complex"},
+    "toponetx": {"tried": False, "used": False, "reason": "required for the CellComplex Hodge-Laplacian 2-cycle witness if TopoNetX imports"},
+    "gudhi": {"tried": False, "used": False, "reason": "persistent homology is not needed for this fixed finite CellComplex witness"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -115,6 +116,28 @@ except ImportError:
     TOOL_MANIFEST["gudhi"]["reason"] = "not installed; not required for cohomology"
 
 
+def _hodge_kernel_dim(matrix, tol=1e-8):
+    arr = matrix.toarray() if hasattr(matrix, "toarray") else np.asarray(matrix)
+    if arr.size == 0:
+        return 0
+    eigenvalues = np.linalg.eigvalsh(arr.astype(float))
+    return int(np.sum(np.abs(eigenvalues) < tol))
+
+
+def _cell_complex_h2_kernel(cells):
+    cc = CellComplex()
+    for cell in cells:
+        cc.add_cell(cell, rank=2)
+    laplacian_2 = cc.hodge_laplacian_matrix(2)
+    return {
+        "rank_0_cells": len(cc.skeleton(0)),
+        "rank_1_cells": len(cc.skeleton(1)),
+        "rank_2_cells": len(cc.skeleton(2)),
+        "hodge_laplacian_2_shape": list(laplacian_2.shape),
+        "h2_kernel_dim": _hodge_kernel_dim(laplacian_2),
+    }
+
+
 def compute_holonomy_numerical(phases):
     """Compute U(1) holonomy as product of e^{i*phase} around a loop."""
     import cmath
@@ -175,27 +198,42 @@ def run_positive_tests():
         "pass": True,
     }
 
-    # toponetx: model the 2-cycle as a cell complex
+    # toponetx: model a closed 2-cycle as a cell complex. The rank-2
+    # Hodge-Laplacian kernel is the load-bearing finite-complex witness.
     if TOOL_MANIFEST["toponetx"]["tried"]:
         try:
-            cc = CellComplex()
-            cc.add_cell([0, 1, 2], rank=2)
-            cc.add_cell([0, 2, 3], rank=2)
-            betti = cc.betti_number(2)
+            closed_surface = _cell_complex_h2_kernel([
+                [0, 1, 2],
+                [0, 1, 3],
+                [0, 2, 3],
+                [1, 2, 3],
+            ])
+            open_patch = _cell_complex_h2_kernel([
+                [0, 1, 2],
+                [0, 2, 3],
+            ])
             TOOL_MANIFEST["toponetx"]["used"] = True
-            TOOL_MANIFEST["toponetx"]["reason"] = "Cell complex model of 2-cycle for gerbe holonomy; Betti number cross-check"
+            TOOL_MANIFEST["toponetx"]["reason"] = (
+                "Load-bearing CellComplex Hodge-Laplacian witness: closed tetrahedral "
+                "2-surface has one H2 kernel generator, while an open two-triangle "
+                "patch has none."
+            )
             results["toponetx_2cycle"] = {
-                "betti_2": betti,
-                "note": "2-cycle carries nontrivial H2",
-                "pass": betti >= 0,
+                "closed_surface": closed_surface,
+                "open_patch": open_patch,
+                "note": "Closed 2-cycle carries one rank-2 Hodge kernel generator; open patch does not.",
+                "pass": closed_surface["h2_kernel_dim"] == 1 and open_patch["h2_kernel_dim"] == 0,
             }
         except Exception as e:
-            results["toponetx_2cycle"] = {"error": str(e), "pass": True}  # non-critical
+            results["toponetx_2cycle"] = {"error": str(e), "pass": False}
+    else:
+        results["toponetx_2cycle"] = {"error": "toponetx not installed", "pass": False}
 
     results["pass"] = (
         results["cohomology_ring_BU1"]["pass"]
         and results["nontrivial_gerbe_holonomy"]["pass"]
         and results["H2_isomorphic_Z"]["pass"]
+        and results["toponetx_2cycle"]["pass"]
     )
     return results
 
@@ -273,15 +311,36 @@ if __name__ == "__main__":
     pos = run_positive_tests()
     neg = run_negative_tests()
     bnd = run_boundary_tests()
+    sections = (pos, neg, bnd)
+    tests_total = sum(
+        1
+        for section in sections
+        for value in section.values()
+        if isinstance(value, dict) and "pass" in value
+    )
+    tests_passed = sum(
+        1
+        for section in sections
+        for value in section.values()
+        if isinstance(value, dict) and value.get("pass") is True
+    )
+    all_pass = pos.get("pass") is True and neg.get("pass") is True and bnd.get("pass") is True
 
     results = {
         "name": "sim_gerbe_derived_stack_cohomology",
-        "classification": "canonical",
+        "classification": "canonical" if all_pass else "supporting",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,
         "negative": neg,
         "boundary": bnd,
+        "summary": {
+            "tests_total": tests_total,
+            "tests_passed": tests_passed,
+            "all_pass": all_pass,
+        },
+        "all_pass": all_pass,
+        "status": "PASS" if all_pass else "FAIL",
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
@@ -290,5 +349,5 @@ if __name__ == "__main__":
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
-    overall = pos.get("pass") and neg.get("pass") and bnd.get("pass")
+    overall = all_pass
     print(f"Overall pass: {overall}")

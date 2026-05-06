@@ -28,6 +28,7 @@ import numpy as np
 # =====================================================================
 
 TOOL_MANIFEST = {
+    "numpy":     {"tried": True, "used": False, "reason": "imported for authority-flow matrices, simplex projection, entropy, iteration, and correlation checks"},
     "pytorch":   {"tried": False, "used": False, "reason": "no autograd needed; numpy iteration sufficient here"},
     "pyg":       {"tried": False, "used": False, "reason": "pairwise graph; authority gradient is operator on simplex"},
     "z3":        {"tried": False, "used": False, "reason": "UNSAT: AM-GM encoding of entropy upper bound"},
@@ -36,13 +37,14 @@ TOOL_MANIFEST = {
     "clifford":  {"tried": False, "used": False, "reason": "no spinor structure in power-distribution operator"},
     "geomstats": {"tried": False, "used": False, "reason": "Riemannian manifold not the target here"},
     "e3nn":      {"tried": False, "used": False, "reason": "equivariant NN not required"},
-    "rustworkx": {"tried": False, "used": False, "reason": "not required"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not attempted because this operator acts on dense simplex distributions rather than an explicit graph traversal or graph-order computation"},
     "xgi":       {"tried": False, "used": False, "reason": "hyperedge structure not the target here"},
     "toponetx":  {"tried": False, "used": False, "reason": "cell complex not required"},
     "gudhi":     {"tried": False, "used": False, "reason": "persistence topology reserved for stability sim"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
+    "numpy": None,
     "pytorch": None, "pyg": None, "z3": None, "cvc5": None,
     "sympy": None, "clifford": None, "geomstats": None, "e3nn": None,
     "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
@@ -120,6 +122,12 @@ def entropy(p):
 
 def run_positive_tests():
     results = {}
+    TOOL_MANIFEST["numpy"]["used"] = True
+    TOOL_MANIFEST["numpy"]["reason"] = (
+        "Load-bearing numerical operator implementation: builds authority-flow "
+        "matrices, runs simplex-projected iterations, computes Shannon entropy, "
+        "and evaluates entropy/concentration correlation."
+    )
     TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
 
     # ------------------------------------------------------------------
@@ -336,8 +344,6 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
-    TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
-
     pos = run_positive_tests()
     neg = run_negative_tests()
     bnd = run_boundary_tests()
@@ -348,15 +354,28 @@ if __name__ == "__main__":
         return all(v.get("pass", False) for v in d.values() if isinstance(v, dict))
 
     ap = allpass(pos) and allpass(neg) and allpass(bnd)
+    tests_total = sum(len(section) for section in (pos, neg, bnd))
+    tests_passed = sum(
+        1
+        for section in (pos, neg, bnd)
+        for value in section.values()
+        if isinstance(value, dict) and value.get("pass") is True
+    )
+    summary = {
+        "tests_total": tests_total,
+        "tests_passed": tests_passed,
+        "all_pass": ap,
+    }
 
     out = {
         "name": "leviathan_authority_entropy_operator",
-        "classification": "canonical",
+        "classification": "canonical" if ap else "failed",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,
         "negative": neg,
         "boundary": bnd,
+        "summary": summary,
         "all_pass": ap,
         "status": "PASS" if ap else "FAIL",
     }

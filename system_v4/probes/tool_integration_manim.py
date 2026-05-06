@@ -19,6 +19,7 @@ from pathlib import Path
 from typing import Any, Dict
 
 classification = "canonical"
+divergence_log = "Manim runtime unavailable in the repo interpreter demotes the renderer lane; manim_export replay-to-scene payload checks can still run as bounded tool-surface evidence."
 NAME = "tool_integration_manim"
 REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
@@ -48,6 +49,9 @@ try:
     TOOL_MANIFEST["manim"]["tried"] = True
 except ImportError:
     manim = None
+    classification = "classical_baseline"
+    TOOL_MANIFEST["manim"]["tried"] = True
+    TOOL_INTEGRATION_DEPTH["manim"] = None
     TOOL_MANIFEST["manim"]["reason"] = "Manim import failed on this machine; runtime capability cannot be admitted."
 
 try:
@@ -84,7 +88,19 @@ def _integration_ready() -> bool:
 
 def _gate_results(section: str) -> Dict[str, Any]:
     missing = [name for name, payload in TOOL_MANIFEST.items() if not payload["tried"]]
-    return {f"{section}_import_gate": {"status": "skipped", "missing": missing}}
+    unavailable = [
+        name
+        for name in ("manim", "manim_export")
+        if TOOL_MANIFEST[name]["tried"] and TOOL_MANIFEST[name]["used"] is False and TOOL_INTEGRATION_DEPTH.get(name) is None
+    ]
+    skipped_tools = sorted(set(missing + unavailable))
+    return {
+        f"{section}_import_gate": {
+            "status": "skipped",
+            "missing": skipped_tools,
+            "unavailable_runtime": unavailable,
+        }
+    }
 
 
 def _render_scene(run_dir: Path, media_dir: Path) -> subprocess.CompletedProcess[str]:
@@ -192,6 +208,9 @@ if __name__ == "__main__":
     results = {
         "name": NAME,
         "classification": classification,
+        "status": "skipped_missing_runtime" if manim is None else "pass",
+        "missing_runtime": ["manim"] if manim is None else [],
+        "divergence_log": divergence_log if classification == "classical_baseline" else "",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": _serialize(run_positive_tests()),

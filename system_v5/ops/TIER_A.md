@@ -11,6 +11,27 @@ Hermes spawns multiple Claude Code terminals across domains. Each Claude writes 
 
 Workers never run sims themselves.
 
+## Child/subsubagent status ceiling
+
+Claude, Gemini, Codex child, and autoresearch lanes may draft, falsify, audit,
+or sharpen Tier A MICRO/BOUND packets. Their agreement is not queue readiness.
+Only the controller can move a row to queue-visible status after reading the
+strict packet fields, cited prior receipts, stage gate, queue row, and expected
+result path.
+
+Child/subsubagent receipts may support `salience_only`, `proposal`,
+`bounded_work_candidate`, `queue_candidate`, `partial`, or `blocked`. They do
+not write `admitted_by`, do not convert runner DONE into accepted evidence, and
+do not promote tool-stage work into lego, coupling, bridge, axis, or engine
+claims.
+
+Tier A should be broad before it is admitted. Many tools, functions, fixtures,
+coverage legos, negative cases, and model variants can be drafted in parallel.
+Most are expected to fail the strict ratchet. That is useful when the failure
+names the exact function surface, missing receipt, demotion condition, or claim
+ceiling. Failed or rejected candidates inform the next packet; they do not make
+the queue row ready.
+
 ## Reality (verified 2026-04-18)
 
 - 1266 canonical result artifacts; 88 lack `tool_integration_depth`
@@ -52,6 +73,12 @@ Tier A is micro-first. A capability packet should test one named tool function o
 7. one ledger loopback.
 
 Each tool should find legos that expose its real value. A z3 packet should prefer fence/impossibility/synthesis legos; a sympy packet should prefer symbolic-identity/derivation legos; graph/topology tools should prefer graph, hypergraph, cell-complex, filtration, or graph-dynamics legos; geometry tools should prefer rotor, spinor, metric, geodesic, holonomy, or equivariance legos. These are still tool-stage packets. They prove the tool/function fit, not the lego.
+
+Broad candidate generation is encouraged here: many candidate tools, fixtures,
+and negative cases may be drafted before one packet is accepted. Each accepted
+packet still keeps one uncertainty and one claim ceiling. Rejected candidates
+are useful only when they name why they failed or how the next packet should be
+smaller.
 
 Do not debug multiple unknowns at once. If a worker cannot tell whether failure came from the tool call, the lego object, or another tool coupling, split the packet before queueing it.
 
@@ -213,6 +240,7 @@ Do not call Tier A green from the old 7-capability / 6-integration checklist alo
 - serializer/backfill/rename work remains separately required when the corresponding source/result evidence is staged
 - active queue rows must be runnable probe basenames; work-item labels stay commented until a matching probe exists
 - auditor log is clean for the exact queue/probe batch being closed
+- demotion, classical-only, and boundary-failure outcomes may support gate evidence, but only as exclusions or next-packet constraints, not promotions
 
 ## Save + Report
 

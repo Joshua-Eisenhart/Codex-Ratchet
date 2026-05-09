@@ -55,6 +55,22 @@ Parallelization note: ledger discovery is row-local and should fan out across in
 
 ---
 
+## Extension Tool-Role Normalization: Qiskit / QuTiP / SciPy
+
+Date: 2026-05-06  
+Status: scoped normalization note, not a broad tool admission
+
+These tools were added or surfaced after the main 22-tool ledger shape and are now normalized here so they are visible to tool-lego planning. Each row is scoped to the exact receipt path and function/API surface named below.
+
+| Tool / surface | Evidence receipts | Current role | Load-bearing depth | Coupling permission |
+|---|---|---|---|---|
+| **qiskit** | `system_v4/probes/a2_state/sim_results/tool_capability_qiskit_results.json` has `classification: canonical`, `summary.all_pass: true`, and `qiskit: load_bearing` for circuit construction, statevector evaluation, density matrices, partial trace, and Pauli expectation checks. | Nonclassical/QIT tool-stage capability. | load-bearing only for the named circuit/state/density/partial-trace/Pauli surfaces. | May feed exact Qiskit function/tool-lego micro receipts. Does not prove whole-Qiskit, bridge, axis, or engine claims. |
+| **qutip** | `system_v4/probes/a2_state/sim_results/tool_capability_qutip_results.json` has `classification: canonical`, `summary.all_pass: true`, and `qutip: load_bearing` for Qobj construction, operator application, expectation evaluation, and capability-gated input validation. | Nonclassical/QIT and open-system support capability. | load-bearing only for named Qobj/operator/expectation/input-validation surfaces. | May feed exact QuTiP function/tool-lego micro receipts. Does not prove broad nonclassical engine behavior. |
+| **qiskit x qutip x clifford Bell surface** | `system_v4/probes/a2_state/sim_results/sim_integration_qiskit_qutip_clifford_bell_bridge_results.json` has `classification: canonical`, `summary.all_pass: true`, with `qiskit`, `qutip`, and `clifford` load-bearing and `numpy` supportive. | Nonclassical tool-integration micro over one Bell-state density/correlation surface. | load-bearing for the exact Bell circuit/Qobj/Cl(3) Pauli-correlation agreement. | May be a parent receipt for bounded Bell-density/correlation tool-lego probes only. The result's own divergence log blocks broad promotion until later strict audit. |
+| **qiskit x qutip x pytorch x z3 channel variants** | `system_v4/probes/a2_state/sim_results/sim_tier2_qiskit_qutip_channel_variant_probe_results.json` has `classification: canonical`, `summary.all_pass: true`, with all four tools load-bearing. | Below-axis tier-2 channel/tool evidence on 3q density witnesses and valid GStack order variants. | load-bearing for bounded CPTP channel action, entropy cross-checks, and z3 shortcut UNSAT guards. | May feed bounded channel-on-density/GStack-order variant probes. It explicitly promotes no axis or bridge claim. |
+| **qutip open-system baseline** | `system_v4/probes/a2_state/sim_results/qutip_open_system_bridge_results.json` has `classification: classical_baseline`, `summary.all_pass: true`, `qutip: load_bearing`, `scipy` and `numpy` supportive. | Classical/bridge baseline for single-qubit amplitude-damping Lindblad evolution. | qutip load-bearing for `mesolve` witness; SciPy/Numpy supportive as Liouvillian exponential reference. | Use as baseline/control only unless a later packet adds exact nonclassical claim ceiling and admission. |
+| **scipy spectral baseline** | `system_v4/probes/a2_state/sim_results/sim_integration_scipy_spectral_eigenvalues_results.json` has `classification: classical_baseline`, `summary.all_pass: true`, with `scipy`, `pytorch`, `sympy`, and `z3` load-bearing. | Classical/spectral bridge support for Dirac eigenvalue baseline. | SciPy load-bearing for `scipy.linalg.eigvalsh`; SymPy/PyTorch/z3 cross-check analytical/numerical/proof fixtures. | Use as classical spectral baseline/control. Do not treat SciPy as strict nonclassical geometry by default; repair or record divergence-log expectations before using as conformant baseline. |
+
 ## Key Gaps Summary
 
 1. **All 22 tools now have a capability probe** that passes a fresh local rerun (2026-04-19). Earlier ledger entries claiming hdbscan/umap had no probe were stale — `sim_capability_hdbscan_isolated.py` and `sim_capability_umap_isolated.py` both exist and pass.

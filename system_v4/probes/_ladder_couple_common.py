@@ -37,6 +37,10 @@ def write_results(sim_name, results):
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, f"{sim_name}_results.json")
+    results.setdefault(
+        "tool_integration_depth",
+        results.get("TOOL_INTEGRATION_DEPTH", TOOL_INTEGRATION_DEPTH),
+    )
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2, default=str)
     return out_path

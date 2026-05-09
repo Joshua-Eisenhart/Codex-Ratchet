@@ -1,44 +1,35 @@
 #!/usr/bin/env python3
 """
-Zorn's Lemma Constraint Canonical Sim
+Zorn-style bounded chain constraint canonical sim.
 
-Theorem: In a poset (partially ordered set), if every chain has an upper bound,
-then the poset contains a maximal element.
-
-This sim encodes the contrapositive as a constraint satisfaction problem:
-If there is NO maximal element, then there exists a chain with NO upper bound.
-
-Tool: cvc5 QF_LIA encodes finite poset as integer constraints; proves UNSAT
-for negation of the theorem.
-Sympy: symbolic derivation of equivalence to Axiom of Choice.
+This is a finite order-theory conformance probe, not a proof of Zorn's Lemma
+or the Axiom of Choice.  cvc5 checks small integer-chain SAT/UNSAT fixtures
+that mirror the local obstruction: a strictly increasing chain cannot be
+extended inside a finite bounded universe once it already occupies every slot.
+SymPy records only the propositional implication shape as supportive context.
 """
+
+from __future__ import annotations
 
 import json
 import os
+from typing import Any
 
-# =====================================================================
-# TOOL MANIFEST
-# =====================================================================
+classification = "canonical"
 
 TOOL_MANIFEST = {
-    # --- Computation layer ---
-    "pytorch": {"tried": False, "used": False, "reason": "not required for discrete constraint proof"},
-    "pyg": {"tried": False, "used": False, "reason": "not required for discrete constraint proof"},
-    # --- Proof layer ---
-    "z3": {"tried": False, "used": False, "reason": "cvc5 chosen for linear integer arithmetic"},
-    "cvc5": {"tried": False, "used": False, "reason": ""},
-    # --- Symbolic layer ---
-    "sympy": {"tried": False, "used": False, "reason": ""},
-    # --- Geometry layer ---
-    "clifford": {"tried": False, "used": False, "reason": "not required for order theory"},
-    "geomstats": {"tried": False, "used": False, "reason": "not required for order theory"},
-    "e3nn": {"tried": False, "used": False, "reason": "not required for order theory"},
-    # --- Graph layer ---
-    "rustworkx": {"tried": False, "used": False, "reason": "not required for constraint proof"},
-    "xgi": {"tried": False, "used": False, "reason": "not required for constraint proof"},
-    # --- Topology layer ---
-    "toponetx": {"tried": False, "used": False, "reason": "not required for constraint proof"},
-    "gudhi": {"tried": False, "used": False, "reason": "not required for constraint proof"},
+    "pytorch": {"tried": False, "used": False, "reason": "finite order-theory SMT packet has no tensor/autograd computation"},
+    "pyg": {"tried": False, "used": False, "reason": "finite chain constraints do not use graph neural message passing"},
+    "z3": {"tried": False, "used": False, "reason": "cvc5 is the selected SMT surface for this QF_LIA finite-chain packet"},
+    "cvc5": {"tried": False, "used": False, "reason": "not installed"},
+    "sympy": {"tried": False, "used": False, "reason": "not installed"},
+    "clifford": {"tried": False, "used": False, "reason": "finite poset chain inequalities have no Clifford product, rotor, spinor, or multivector operation"},
+    "geomstats": {"tried": False, "used": False, "reason": "the packet has no metric manifold, geodesic, curvature, or statistics-on-manifolds computation"},
+    "e3nn": {"tried": False, "used": False, "reason": "no Euclidean equivariant tensor field appears in this finite order-theory SMT fixture"},
+    "rustworkx": {"tried": False, "used": False, "reason": "the witness is decided by explicit integer order constraints, not graph traversal or DAG routing"},
+    "xgi": {"tried": False, "used": False, "reason": "no hyperedge incidence or multiway relation is part of this bounded chain query"},
+    "toponetx": {"tried": False, "used": False, "reason": "there is no cell complex, boundary map, adjacency, or homology computation to certify"},
+    "gudhi": {"tried": False, "used": False, "reason": "there is no filtration, simplex complex, persistence interval, or TDA invariant to compute"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -56,279 +47,224 @@ TOOL_INTEGRATION_DEPTH = {
     "gudhi": None,
 }
 
-# Try importing tools
 try:
     import cvc5
+
     TOOL_MANIFEST["cvc5"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["cvc5"]["reason"] = "not installed"
+    TOOL_MANIFEST["cvc5"]["reason"] = "available; used only if finite-chain SAT/UNSAT rows are consumed"
+except ImportError:  # pragma: no cover - optional dependency absent
+    cvc5 = None
 
 try:
     import sympy as sp
+
     TOOL_MANIFEST["sympy"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["sympy"]["reason"] = "not installed"
+    TOOL_MANIFEST["sympy"]["reason"] = "available; used only for supportive propositional-shape bookkeeping"
+except ImportError:  # pragma: no cover - optional dependency absent
+    sp = None
 
 
-# =====================================================================
-# POSITIVE TESTS -- Zorn's Lemma holds
-# =====================================================================
+def result_is_sat(result: Any) -> bool:
+    return str(result) == "sat" or getattr(result, "isSat", lambda: False)()
 
-def run_positive_tests():
-    """Test cases where Zorn's lemma is satisfied: chain bounded => maximal exists."""
-    results = {}
 
-    if not TOOL_MANIFEST["cvc5"]["tried"]:
-        return {"error": "cvc5 not installed"}
+def result_is_unsat(result: Any) -> bool:
+    return str(result) == "unsat" or getattr(result, "isUnsat", lambda: False)()
 
-    import cvc5
 
-    # Test 1: Simple 3-element chain with upper bound
-    solver1 = cvc5.Solver()
-    solver1.setOption("produce-models", "true")
-
-    # Elements: 0, 1, 2
-    # Chain: 0 < 1 < 2
-    # Upper bound: 2 is maximal
-    a = solver1.mkConst(solver1.getIntegerSort(), "a")
-    b = solver1.mkConst(solver1.getIntegerSort(), "b")
-    c = solver1.mkConst(solver1.getIntegerSort(), "c")
-    max_elem = solver1.mkConst(solver1.getIntegerSort(), "max_elem")
-
-    # Define partial order: a < b < c, c is maximal
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LT, a, b))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LT, b, c))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.EQUAL, max_elem, c))
-
-    # All elements in range [0, 2]
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.GEQ, a, solver1.mkInteger(0)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LEQ, a, solver1.mkInteger(2)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.GEQ, b, solver1.mkInteger(0)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LEQ, b, solver1.mkInteger(2)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.GEQ, c, solver1.mkInteger(0)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LEQ, c, solver1.mkInteger(2)))
-
-    sat1 = solver1.checkSat()
-    results["positive_test_1_simple_chain"] = {
-        "satisfiable": str(sat1.isSat()),
-        "expectation": "SAT (chain has upper bound, maximal exists)"
+def cvc5_unavailable_row(name: str) -> dict[str, Any]:
+    return {
+        "pass": False,
+        "solver_result": "not_run",
+        "detail": f"{name} requires cvc5, but cvc5 is unavailable.",
     }
 
-    # Test 2: Two-element chain
-    solver2 = cvc5.Solver()
-    x = solver2.mkConst(solver2.getIntegerSort(), "x")
-    y = solver2.mkConst(solver2.getIntegerSort(), "y")
 
-    solver2.assertFormula(solver2.mkTerm(cvc5.Kind.LT, x, y))
-    solver2.assertFormula(solver2.mkTerm(cvc5.Kind.GEQ, x, solver2.mkInteger(0)))
-    solver2.assertFormula(solver2.mkTerm(cvc5.Kind.LEQ, y, solver2.mkInteger(1)))
+def bounded_int(solver: Any, var: Any, lower: int, upper: int) -> None:
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, var, solver.mkInteger(lower)))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.LEQ, var, solver.mkInteger(upper)))
 
-    sat2 = solver2.checkSat()
-    results["positive_test_2_two_element_chain"] = {
-        "satisfiable": str(sat2.isSat()),
-        "expectation": "SAT (y is maximal upper bound)"
+
+def finite_chain_query(chain_length: int, upper_bound: int, require_extension: bool) -> Any:
+    solver = cvc5.Solver()
+    solver.setLogic("QF_LIA")
+    elements = [
+        solver.mkConst(solver.getIntegerSort(), f"e_{index}")
+        for index in range(chain_length)
+    ]
+
+    for element in elements:
+        bounded_int(solver, element, 0, upper_bound)
+
+    for left, right in zip(elements, elements[1:]):
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.LT, left, right))
+
+    if require_extension:
+        extension = solver.mkConst(solver.getIntegerSort(), "extension")
+        bounded_int(solver, extension, 0, upper_bound)
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.LT, elements[-1], extension))
+
+    return solver.checkSat()
+
+
+def run_positive_tests() -> dict[str, dict[str, Any]]:
+    if cvc5 is None:
+        return {
+            "three_element_bounded_chain_sat": cvc5_unavailable_row("three_element_bounded_chain_sat"),
+            "two_element_bounded_chain_sat": cvc5_unavailable_row("two_element_bounded_chain_sat"),
+            "singleton_bounded_chain_sat": cvc5_unavailable_row("singleton_bounded_chain_sat"),
+        }
+
+    three = finite_chain_query(chain_length=3, upper_bound=2, require_extension=False)
+    two = finite_chain_query(chain_length=2, upper_bound=1, require_extension=False)
+    singleton = finite_chain_query(chain_length=1, upper_bound=0, require_extension=False)
+
+    return {
+        "three_element_bounded_chain_sat": {
+            "pass": result_is_sat(three),
+            "solver_result": str(three),
+            "detail": "cvc5 accepts a strict 0<1<2 chain inside the finite universe [0,2].",
+            "expectation": "SAT for the bounded finite chain fixture",
+        },
+        "two_element_bounded_chain_sat": {
+            "pass": result_is_sat(two),
+            "solver_result": str(two),
+            "detail": "cvc5 accepts a strict two-element chain inside [0,1].",
+            "expectation": "SAT for the bounded finite chain fixture",
+        },
+        "singleton_bounded_chain_sat": {
+            "pass": result_is_sat(singleton),
+            "solver_result": str(singleton),
+            "detail": "cvc5 accepts a singleton finite chain inside [0,0].",
+            "expectation": "SAT for the bounded singleton fixture",
+        },
     }
 
-    # Test 3: Single element (trivially has maximal)
-    solver3 = cvc5.Solver()
-    z = solver3.mkConst(solver3.getIntegerSort(), "z")
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.GEQ, z, solver3.mkInteger(5)))
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LEQ, z, solver3.mkInteger(5)))
 
-    sat3 = solver3.checkSat()
-    results["positive_test_3_single_element"] = {
-        "satisfiable": str(sat3.isSat()),
-        "expectation": "SAT (single element is maximal)"
+def run_negative_tests() -> dict[str, dict[str, Any]]:
+    if cvc5 is None:
+        return {
+            "full_three_slot_chain_extension_unsat": cvc5_unavailable_row("full_three_slot_chain_extension_unsat"),
+            "full_four_slot_chain_extension_unsat": cvc5_unavailable_row("full_four_slot_chain_extension_unsat"),
+            "too_many_strict_elements_unsat": cvc5_unavailable_row("too_many_strict_elements_unsat"),
+        }
+
+    three_extension = finite_chain_query(chain_length=3, upper_bound=2, require_extension=True)
+    four_extension = finite_chain_query(chain_length=4, upper_bound=3, require_extension=True)
+    too_many = finite_chain_query(chain_length=5, upper_bound=3, require_extension=False)
+
+    return {
+        "full_three_slot_chain_extension_unsat": {
+            "pass": result_is_unsat(three_extension),
+            "solver_result": str(three_extension),
+            "detail": "Given a strict three-element chain inside [0,2], cvc5 rejects a fourth in-range element above its top.",
+            "structural_constraint": "0 <= e_i <= 2 and e0 < e1 < e2 < extension",
+            "expectation": "UNSAT because the finite upper bound is already occupied",
+        },
+        "full_four_slot_chain_extension_unsat": {
+            "pass": result_is_unsat(four_extension),
+            "solver_result": str(four_extension),
+            "detail": "Given a strict four-element chain inside [0,3], cvc5 rejects a fifth in-range element above its top.",
+            "structural_constraint": "0 <= e_i <= 3 and e0 < e1 < e2 < e3 < extension",
+            "expectation": "UNSAT because the finite upper bound is already occupied",
+        },
+        "too_many_strict_elements_unsat": {
+            "pass": result_is_unsat(too_many),
+            "solver_result": str(too_many),
+            "detail": "cvc5 rejects five strictly increasing integer elements inside a four-slot universe [0,3].",
+            "structural_constraint": "five distinct strict positions in four bounded integer slots",
+            "expectation": "UNSAT by finite pigeonhole-style ordering pressure",
+        },
     }
 
-    return results
 
+def run_boundary_tests() -> dict[str, dict[str, Any]]:
+    if cvc5 is None:
+        mutation = None
+    else:
+        mutation = finite_chain_query(chain_length=3, upper_bound=3, require_extension=True)
 
-# =====================================================================
-# NEGATIVE TESTS -- Zorn's Lemma violation (UNSAT)
-# =====================================================================
-
-def run_negative_tests():
-    """Test UNSAT: claim no chain has upper bound AND claim no maximal exists."""
-    results = {}
-
-    if not TOOL_MANIFEST["cvc5"]["tried"]:
-        return {"error": "cvc5 not installed"}
-
-    import cvc5
-
-    # Test 1: Contradiction - claim chain bounded AND no maximal exists
-    solver1 = cvc5.Solver()
-    a = solver1.mkConst(solver1.getIntegerSort(), "a")
-    b = solver1.mkConst(solver1.getIntegerSort(), "b")
-    c = solver1.mkConst(solver1.getIntegerSort(), "c")
-
-    # Chain: a < b < c
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LT, a, b))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LT, b, c))
-
-    # Claim: no element is maximal (both a and b have something greater)
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.AND,
-        solver1.mkTerm(cvc5.Kind.LT, a, b),
-        solver1.mkTerm(cvc5.Kind.LT, b, c)
-    ))
-
-    # Negate: c is NOT maximal => there exists d > c
-    d = solver1.mkConst(solver1.getIntegerSort(), "d")
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LT, c, d))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LEQ, d, solver1.mkInteger(3)))
-
-    # But constraint: all must be in finite range [0, 3]
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.GEQ, a, solver1.mkInteger(0)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.GEQ, b, solver1.mkInteger(0)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.GEQ, c, solver1.mkInteger(0)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.GEQ, d, solver1.mkInteger(0)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LT, a, solver1.mkInteger(3)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LT, b, solver1.mkInteger(3)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LT, c, solver1.mkInteger(3)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LT, d, solver1.mkInteger(3)))
-
-    sat1 = solver1.checkSat()
-    results["negative_test_1_finite_chain_no_maximal"] = {
-        "satisfiable": str(sat1.isSat()),
-        "expectation": "UNSAT (contradicts Zorn's lemma)"
-    }
-
-    # Test 2: Unbounded chain with no upper bound (finite approximation)
-    solver2 = cvc5.Solver()
-    x1 = solver2.mkConst(solver2.getIntegerSort(), "x1")
-    x2 = solver2.mkConst(solver2.getIntegerSort(), "x2")
-    x3 = solver2.mkConst(solver2.getIntegerSort(), "x3")
-
-    # Chain: x1 < x2 < x3 < ... with no maximal
-    solver2.assertFormula(solver2.mkTerm(cvc5.Kind.LT, x1, x2))
-    solver2.assertFormula(solver2.mkTerm(cvc5.Kind.LT, x2, x3))
-
-    # Claim: no upper bound for this chain
-    # (x1 is not upper, x2 is not upper, x3 is not upper)
-    # Equivalently: for each element, there's a larger one in the chain
-    solver2.assertFormula(solver2.mkTerm(cvc5.Kind.AND,
-        solver2.mkTerm(cvc5.Kind.LT, x1, x2),
-        solver2.mkTerm(cvc5.Kind.LT, x2, x3)
-    ))
-
-    # In a finite universe [0, 10], this must be SAT, but under Zorn's
-    # constraint "chain_bounded => maximal_exists", negation is UNSAT
-    solver2.assertFormula(solver2.mkTerm(cvc5.Kind.GEQ, x1, solver2.mkInteger(0)))
-    solver2.assertFormula(solver2.mkTerm(cvc5.Kind.LEQ, x3, solver2.mkInteger(10)))
-
-    sat2 = solver2.checkSat()
-    results["negative_test_2_no_upper_bound_claim"] = {
-        "satisfiable": str(sat2.isSat()),
-        "expectation": "SAT (but if combined with Zorn's constraint, becomes UNSAT)"
-    }
-
-    # Test 3: Direct negation of Zorn's lemma
-    solver3 = cvc5.Solver()
-    # Assume: chain is bounded
-    # Negation: no maximal exists
-
-    # Build a chain of 4 elements
-    e0 = solver3.mkConst(solver3.getIntegerSort(), "e0")
-    e1 = solver3.mkConst(solver3.getIntegerSort(), "e1")
-    e2 = solver3.mkConst(solver3.getIntegerSort(), "e2")
-    e3 = solver3.mkConst(solver3.getIntegerSort(), "e3")
-
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LT, e0, e1))
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LT, e1, e2))
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LT, e2, e3))
-
-    # All in [0, 3]
-    for e in [e0, e1, e2, e3]:
-        solver3.assertFormula(solver3.mkTerm(cvc5.Kind.GEQ, e, solver3.mkInteger(0)))
-        solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LEQ, e, solver3.mkInteger(3)))
-
-    # Negate maximality of e3: claim there exists e4 > e3
-    e4 = solver3.mkConst(solver3.getIntegerSort(), "e4")
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LT, e3, e4))
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.GEQ, e4, solver3.mkInteger(0)))
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LEQ, e4, solver3.mkInteger(3)))
-
-    sat3 = solver3.checkSat()
-    results["negative_test_3_negate_zorn_maximal"] = {
-        "satisfiable": str(sat3.isSat()),
-        "expectation": "UNSAT (violates Zorn's lemma in finite poset)"
-    }
-
-    return results
-
-
-# =====================================================================
-# BOUNDARY TESTS
-# =====================================================================
-
-def run_boundary_tests():
-    """Edge cases and sympy symbolic verification."""
-    results = {}
-
-    # Test 1: Empty poset (vacuously true)
-    results["boundary_test_1_empty_poset"] = {
-        "description": "Empty poset has no chains, vacuously satisfies Zorn",
-        "result": "vacuously_true"
-    }
-
-    # Test 2: Sympy verification of equivalence to Axiom of Choice
-    try:
-        import sympy as sp
-        from sympy import symbols, Implies, Not, And, Or
-
+    if sp is None:
+        sympy_row = {
+            "pass": False,
+            "detail": "SymPy unavailable; propositional-shape row not run.",
+        }
+    else:
+        chain_bounded, maximal_exists = sp.symbols("chain_bounded maximal_exists")
+        implication = sp.Implies(chain_bounded, maximal_exists)
+        contrapositive = sp.Implies(sp.Not(maximal_exists), sp.Not(chain_bounded))
+        sympy_row = {
+            "pass": True,
+            "zorn_shape": str(implication),
+            "contrapositive_shape": str(contrapositive),
+            "detail": "SymPy records only the propositional implication/contrapositive shape; it does not prove AoC or full Zorn's Lemma.",
+        }
         TOOL_MANIFEST["sympy"]["used"] = True
-        TOOL_MANIFEST["sympy"]["reason"] = "verified Zorn-AoC equivalence symbolically"
+        TOOL_MANIFEST["sympy"]["reason"] = "supportive: recorded the implication and contrapositive shapes without promoting a set-theoretic theorem proof"
 
-        # Simplified symbolic representation:
-        # chain_bounded = "every chain has upper bound"
-        # maximal_exists = "maximal element exists"
-        # AoC_version = "can select from non-empty subsets"
-
-        chain_bounded = symbols('chain_bounded')
-        maximal_exists = symbols('maximal_exists')
-
-        # Zorn's lemma: chain_bounded => maximal_exists
-        zorns = Implies(chain_bounded, maximal_exists)
-
-        results["boundary_test_2_sympy_zorns_form"] = {
-            "zorns_lemma": str(zorns),
-            "contrapositive": str(Implies(Not(maximal_exists), Not(chain_bounded))),
-            "equivalence_note": "Zorn's lemma is equivalent to AoC in ZF set theory"
-        }
-
-    except Exception as e:
-        results["boundary_test_2_sympy_error"] = str(e)
-
-    # Test 3: Minimal finite poset
-    if TOOL_MANIFEST["cvc5"]["tried"]:
-        import cvc5
-        solver = cvc5.Solver()
-        single = solver.mkConst(solver.getIntegerSort(), "single")
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, single, solver.mkInteger(0)))
-
-        sat = solver.checkSat()
-        results["boundary_test_3_singleton_poset"] = {
-            "satisfiable": str(sat.isSat()),
-            "maximal": "single element trivially maximal"
-        }
-
-    return results
+    return {
+        "extension_mutation_flips_to_sat": {
+            "pass": mutation is not None and result_is_sat(mutation),
+            "solver_result": "not_run" if mutation is None else str(mutation),
+            "detail": "Raising the finite universe from [0,2] to [0,3] makes the three-chain extension SAT, proving the UNSAT row depends on the finite upper-bound constraint.",
+            "expectation": "SAT after relaxing the upper-bound fixture",
+        },
+        "empty_chain_note": {
+            "pass": True,
+            "detail": "The empty-chain case is recorded as a convention note only; no SMT theorem promotion is made.",
+        },
+        "sympy_propositional_shape": sympy_row,
+    }
 
 
-# =====================================================================
-# MAIN
-# =====================================================================
+def rows_pass(rows: dict[str, dict[str, Any]]) -> bool:
+    return all(bool(row.get("pass")) for row in rows.values())
+
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+
+    cvc5_rows_pass = rows_pass(positive) and rows_pass(negative) and boundary["extension_mutation_flips_to_sat"]["pass"]
+    if cvc5_rows_pass:
+        TOOL_MANIFEST["cvc5"]["used"] = True
+        TOOL_MANIFEST["cvc5"]["reason"] = (
+            "load-bearing: cvc5 QF_LIA SAT/UNSAT rows certify bounded finite-chain "
+            "extension constraints and the mutation row flips after relaxing the upper bound"
+        )
+
+    all_pass = rows_pass(positive) and rows_pass(negative) and rows_pass(boundary)
     results = {
-        "name": "Zorn's Lemma Constraint Canonical",
+        "name": "Zorn-style bounded chain constraint canonical",
+        "classification": classification,
+        "status": "pass" if all_pass else "fail",
+        "all_pass": all_pass,
+        "summary": (
+            "Bounded finite-poset SMT fixture only: cvc5 checks finite-chain "
+            "SAT/UNSAT and upper-bound mutation behavior; no full Zorn, AoC, bridge, "
+            "axis, engine, or broad coupling claim is admitted."
+        ),
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
-        "classification": "canonical",
+        "demotion_condition": (
+            "demote if any cvc5 finite-chain SAT/UNSAT, upper-bound mutation, or SymPy propositional-shape row fails"
+        ),
+        "out_of_scope": [
+            "no bridge promotion",
+            "no axis promotion",
+            "no engine promotion",
+            "no scientific coupling promotion",
+            "no full Zorn lemma or Axiom of Choice theorem claim",
+        ],
+        "claim_ceiling": "tool_micro_finite_chain_zorn_shadow_constraint_only",
+        "next_lego_target": "strict admission as cvc5 finite-chain micro before any geometry/operator coupling",
+        "promotion_condition": "requires canonical result surface, strict admission artifact, and stage-gate approval",
+        "blocked_until": "accepted wizard sim admission exists for this exact result hash",
+        "prior_function_receipts": [],
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

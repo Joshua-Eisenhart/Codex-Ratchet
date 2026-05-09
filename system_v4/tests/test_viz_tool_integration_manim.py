@@ -31,11 +31,13 @@ def test_tool_integration_manim_probe_writes_green_results() -> None:
     assert result.returncode == 0, result.stderr
     payload = json.loads(RESULT_PATH.read_text(encoding="utf-8"))
     assert payload["name"] == "tool_integration_manim"
-    assert payload["classification"] == "canonical"
     positive = payload["positive"]
     if "manim_low_quality_scene_render" in positive:
+        assert payload["classification"] == "canonical"
         assert positive["manim_low_quality_scene_render"]["render_succeeded"] is True
     else:
+        assert payload["classification"] == "classical_baseline"
+        assert payload["status"] == "skipped_missing_runtime"
         assert positive["positive_import_gate"]["status"] == "skipped"
         assert "manim" in positive["positive_import_gate"]["missing"]
     assert payload["boundary"]["transport_run_without_patch_transitions_stays_scene_safe"]["scene_safe_without_transitions"] is True

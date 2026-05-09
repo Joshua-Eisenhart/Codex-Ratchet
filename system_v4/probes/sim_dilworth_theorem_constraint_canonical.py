@@ -19,6 +19,8 @@ Sympy: derives Mirsky's dual theorem symbolically.
 import json
 import os
 
+CLASSIFICATION = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -73,6 +75,57 @@ except ImportError:
     TOOL_MANIFEST["sympy"]["reason"] = "not installed"
 
 
+def _mark_cvc5_used() -> None:
+    TOOL_MANIFEST["cvc5"]["used"] = True
+    TOOL_MANIFEST["cvc5"]["reason"] = (
+        "Load-bearing QF_LIA chain-cover feasibility checks: cvc5 assigns "
+        "poset elements to bounded chain indices and proves impossible covers "
+        "UNSAT when an antichain has more elements than the proposed cover."
+    )
+
+
+def _mk_not_equal(solver, left, right):
+    import cvc5
+    return solver.mkTerm(cvc5.Kind.NOT, solver.mkTerm(cvc5.Kind.EQUAL, left, right))
+
+
+def _chain_cover_status(name: str, element_count: int, chain_count: int, incomparable_pairs: list[tuple[int, int]]) -> dict:
+    """Ask cvc5 whether a chain cover with `chain_count` chains can fit known incomparable pairs."""
+    if not TOOL_MANIFEST["cvc5"]["tried"]:
+        return {
+            "case": name,
+            "status": "skipped",
+            "reason": "cvc5 not installed",
+            "pass": False,
+        }
+
+    import cvc5
+
+    _mark_cvc5_used()
+    solver = cvc5.Solver()
+    chain_vars = [
+        solver.mkConst(solver.getIntegerSort(), f"{name}_chain_{idx}")
+        for idx in range(element_count)
+    ]
+
+    for var in chain_vars:
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, var, solver.mkInteger(0)))
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.LT, var, solver.mkInteger(chain_count)))
+
+    for left, right in incomparable_pairs:
+        solver.assertFormula(_mk_not_equal(solver, chain_vars[left], chain_vars[right]))
+
+    result = solver.checkSat()
+    return {
+        "case": name,
+        "element_count": element_count,
+        "proposed_chain_cover": chain_count,
+        "incomparable_pairs": [list(pair) for pair in incomparable_pairs],
+        "cvc5_result": str(result),
+        "satisfiable": bool(result.isSat()),
+    }
+
+
 # =====================================================================
 # POSITIVE TESTS -- Dilworth's theorem holds
 # =====================================================================
@@ -82,116 +135,35 @@ def run_positive_tests():
     results = {}
 
     if not TOOL_MANIFEST["cvc5"]["tried"]:
-        return {"error": "cvc5 not installed"}
+        return {"error": "cvc5 not installed", "pass": False}
 
-    import cvc5
-
-    # Test 1: Antichain of size 2 with chain cover of size 2
-    # Poset: {a, b} with no ordering (a || b, incomparable)
-    # max_antichain = {a, b} (size 2)
-    # min_chain_cover = 2 (need 2 chains: {a}, {b})
-
-    solver1 = cvc5.Solver()
-
-    # Elements
-    a = solver1.mkConst(solver1.getIntegerSort(), "a")
-    b = solver1.mkConst(solver1.getIntegerSort(), "b")
-
-    # No ordering constraint between a and b (they are incomparable)
-    # Both are in poset
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.GEQ, a, solver1.mkInteger(0)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LEQ, a, solver1.mkInteger(1)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.GEQ, b, solver1.mkInteger(0)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LEQ, b, solver1.mkInteger(1)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.NOT,
-        solver1.mkTerm(cvc5.Kind.EQUAL, a, b)
-    ))
-
-    # max_antichain_size = 2, min_chain_cover = 2
-    # Dilworth: they should be equal
-    max_antichain = 2
-    min_chain_cover = 2
-
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.EQUAL,
-        solver1.mkInteger(min_chain_cover),
-        solver1.mkInteger(max_antichain)
-    ))
-
-    sat1 = solver1.checkSat()
+    # Antichain of size 2 with a proposed cover of 2 singleton chains.
+    sat1 = _chain_cover_status("positive_antichain2_cover2", 2, 2, [(0, 1)])
     results["positive_test_1_antichain_of_size_2"] = {
-        "satisfiable": str(sat1.isSat()),
-        "max_antichain_size": max_antichain,
-        "min_chain_cover": min_chain_cover,
+        **sat1,
+        "max_antichain_size": 2,
+        "min_chain_cover": 2,
+        "pass": sat1["satisfiable"],
         "expectation": "SAT (Dilworth's theorem: min_chains = max_antichain)"
     }
 
-    # Test 2: Total order (chain)
-    # Poset: {1, 2, 3} with 1 < 2 < 3
-    # max_antichain = 1 (any single element)
-    # min_chain_cover = 1 (entire poset is one chain)
-
-    solver2 = cvc5.Solver()
-
-    x1 = solver2.mkConst(solver2.getIntegerSort(), "x1")
-    x2 = solver2.mkConst(solver2.getIntegerSort(), "x2")
-    x3 = solver2.mkConst(solver2.getIntegerSort(), "x3")
-
-    # Define total order
-    solver2.assertFormula(solver2.mkTerm(cvc5.Kind.LT, x1, x2))
-    solver2.assertFormula(solver2.mkTerm(cvc5.Kind.LT, x2, x3))
-
-    # Dilworth: max_antichain = 1, min_chain_cover = 1
-    solver2.assertFormula(solver2.mkTerm(cvc5.Kind.EQUAL,
-        solver2.mkInteger(1),
-        solver2.mkInteger(1)
-    ))
-
-    sat2 = solver2.checkSat()
+    # Total order has no incomparable pairs, so one chain covers all elements.
+    sat2 = _chain_cover_status("positive_total_order3_cover1", 3, 1, [])
     results["positive_test_2_total_order_chain"] = {
-        "satisfiable": str(sat2.isSat()),
+        **sat2,
         "max_antichain_size": 1,
         "min_chain_cover": 1,
+        "pass": sat2["satisfiable"],
         "expectation": "SAT (any chain has antichain size 1 and chain cover 1)"
     }
 
-    # Test 3: Boolean lattice on 2 elements: P({1, 2})
-    # Elements: {}, {1}, {2}, {1,2}
-    # Partial order: subset inclusion
-    # max_antichain: {{1}, {2}} (size 2)
-    # min_chain_cover: 2 chains, e.g., ({} -> {1,2}) and ({2})
-    # Dilworth: min_chains = 2 = max_antichain
-
-    solver3 = cvc5.Solver()
-
-    # Elements as bitmasks: 0={}, 1={1}, 2={2}, 3={1,2}
-    e0 = solver3.mkConst(solver3.getIntegerSort(), "e0")  # {}
-    e1 = solver3.mkConst(solver3.getIntegerSort(), "e1")  # {1}
-    e2 = solver3.mkConst(solver3.getIntegerSort(), "e2")  # {2}
-    e3 = solver3.mkConst(solver3.getIntegerSort(), "e3")  # {1,2}
-
-    # Assign values
-    for e in [e0, e1, e2, e3]:
-        solver3.assertFormula(solver3.mkTerm(cvc5.Kind.GEQ, e, solver3.mkInteger(0)))
-        solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LEQ, e, solver3.mkInteger(3)))
-
-    # Order: (e1, e2 incomparable at middle level)
-    # e0 < e1, e0 < e2, e1 < e3, e2 < e3
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LT, e0, e1))
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LT, e0, e2))
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LT, e1, e3))
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LT, e2, e3))
-
-    # Dilworth: max_antichain ({e1, e2}) = 2, min_chain_cover = 2
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.EQUAL,
-        solver3.mkInteger(2),
-        solver3.mkInteger(2)
-    ))
-
-    sat3 = solver3.checkSat()
+    # Boolean lattice B2 has one middle-level antichain pair; two chains suffice.
+    sat3 = _chain_cover_status("positive_boolean_lattice_b2_cover2", 4, 2, [(1, 2)])
     results["positive_test_3_boolean_lattice_power_set"] = {
-        "satisfiable": str(sat3.isSat()),
+        **sat3,
         "max_antichain_size": 2,
         "min_chain_cover": 2,
+        "pass": sat3["satisfiable"],
         "expectation": "SAT (power set lattice satisfies Dilworth)"
     }
 
@@ -207,120 +179,44 @@ def run_negative_tests():
     results = {}
 
     if not TOOL_MANIFEST["cvc5"]["tried"]:
-        return {"error": "cvc5 not installed"}
+        return {"error": "cvc5 not installed", "pass": False}
 
-    import cvc5
-
-    # Test 1: Try to claim min_chain_cover < max_antichain_size (impossible)
-    # Poset: antichain of size 3: {a, b, c} all incomparable
-    # max_antichain = 3, but try to claim min_chain_cover = 2
-
-    solver1 = cvc5.Solver()
-
-    a = solver1.mkConst(solver1.getIntegerSort(), "a")
-    b = solver1.mkConst(solver1.getIntegerSort(), "b")
-    c = solver1.mkConst(solver1.getIntegerSort(), "c")
-
-    # All distinct, in range [0, 2]
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.GEQ, a, solver1.mkInteger(0)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LEQ, a, solver1.mkInteger(2)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.GEQ, b, solver1.mkInteger(0)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LEQ, b, solver1.mkInteger(2)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.GEQ, c, solver1.mkInteger(0)))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LEQ, c, solver1.mkInteger(2)))
-
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.NOT,
-        solver1.mkTerm(cvc5.Kind.EQUAL, a, b)
-    ))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.NOT,
-        solver1.mkTerm(cvc5.Kind.EQUAL, a, c)
-    ))
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.NOT,
-        solver1.mkTerm(cvc5.Kind.EQUAL, b, c)
-    ))
-
-    # No ordering relations (antichain)
-    # max_antichain_size = 3
-    # Claim: min_chain_cover = 2 (< 3, IMPOSSIBLE under Dilworth)
-
-    solver1.assertFormula(solver1.mkTerm(cvc5.Kind.LT,
-        solver1.mkInteger(2),  # min_chain_cover
-        solver1.mkInteger(3)   # max_antichain_size
-    ))
-
-    sat1 = solver1.checkSat()
+    # Antichain of size 3 cannot be covered by 2 chains: all three elements
+    # are pairwise incomparable, so all three must receive different chains.
+    sat1 = _chain_cover_status(
+        "negative_antichain3_cover2",
+        3,
+        2,
+        [(0, 1), (0, 2), (1, 2)],
+    )
     results["negative_test_1_min_chains_less_than_max_antichain"] = {
-        "satisfiable": str(sat1.isSat()),
+        **sat1,
         "violation": "min_chain_cover (2) < max_antichain_size (3)",
+        "pass": not sat1["satisfiable"],
         "expectation": "UNSAT (violates Dilworth's theorem)"
     }
 
-    # Test 2: Poset with 4 elements: 2 incomparable pairs
-    # {a, b} and {c, d}, all four incomparable
-    # max_antichain = 4, claim min_chain_cover = 1 (impossible)
-
-    solver2 = cvc5.Solver()
-
-    e = [solver2.mkConst(solver2.getIntegerSort(), f"e{i}") for i in range(4)]
-
-    for ei in e:
-        solver2.assertFormula(solver2.mkTerm(cvc5.Kind.GEQ, ei, solver2.mkInteger(0)))
-        solver2.assertFormula(solver2.mkTerm(cvc5.Kind.LEQ, ei, solver2.mkInteger(3)))
-
-    # All distinct
-    for i in range(4):
-        for j in range(i + 1, 4):
-            solver2.assertFormula(solver2.mkTerm(cvc5.Kind.NOT,
-                solver2.mkTerm(cvc5.Kind.EQUAL, e[i], e[j])
-            ))
-
-    # max_antichain = 4, claim min_chain_cover = 1
-    solver2.assertFormula(solver2.mkTerm(cvc5.Kind.LT,
-        solver2.mkInteger(1),  # min_chain_cover
-        solver2.mkInteger(4)   # max_antichain_size
-    ))
-
-    sat2 = solver2.checkSat()
+    # Antichain of size 4 cannot be covered by a single chain.
+    sat2 = _chain_cover_status(
+        "negative_antichain4_cover1",
+        4,
+        1,
+        [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)],
+    )
     results["negative_test_2_antichain_4_claim_cover_1"] = {
-        "satisfiable": str(sat2.isSat()),
+        **sat2,
         "violation": "min_chain_cover (1) << max_antichain_size (4)",
+        "pass": not sat2["satisfiable"],
         "expectation": "UNSAT (impossible under Dilworth)"
     }
 
-    # Test 3: Bounded case - diamond lattice
-    # {a, b, c, d} with a < b, a < c, b < d, c < d
-    # max_antichain = 2 (either {b, c})
-    # claim min_chain_cover = 1 (impossible, need >= 2)
-
-    solver3 = cvc5.Solver()
-
-    a3 = solver3.mkConst(solver3.getIntegerSort(), "a3")
-    b3 = solver3.mkConst(solver3.getIntegerSort(), "b3")
-    c3 = solver3.mkConst(solver3.getIntegerSort(), "c3")
-    d3 = solver3.mkConst(solver3.getIntegerSort(), "d3")
-
-    # Diamond structure
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LT, a3, b3))
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LT, a3, c3))
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LT, b3, d3))
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LT, c3, d3))
-
-    # Range
-    for var in [a3, b3, c3, d3]:
-        solver3.assertFormula(solver3.mkTerm(cvc5.Kind.GEQ, var, solver3.mkInteger(0)))
-        solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LEQ, var, solver3.mkInteger(3)))
-
-    # Claim: min_chain_cover = 1 < max_antichain = 2
-    solver3.assertFormula(solver3.mkTerm(cvc5.Kind.LT,
-        solver3.mkInteger(1),  # min_chain_cover
-        solver3.mkInteger(2)   # max_antichain_size
-    ))
-
-    sat3 = solver3.checkSat()
+    # Diamond lattice with middle elements b,c incomparable cannot use one chain.
+    sat3 = _chain_cover_status("negative_diamond_cover1", 4, 1, [(1, 2)])
     results["negative_test_3_diamond_claim_single_chain"] = {
-        "satisfiable": str(sat3.isSat()),
+        **sat3,
         "violation": "min_chain_cover (1) < max_antichain_size (2)",
         "structure": "diamond lattice",
+        "pass": not sat3["satisfiable"],
         "expectation": "UNSAT (diamond requires 2 chains for antichain {b, c})"
     }
 
@@ -340,7 +236,8 @@ def run_boundary_tests():
         "description": "Empty poset has no chains and no antichain",
         "min_chain_cover": 0,
         "max_antichain_size": 0,
-        "dilworth_holds": True
+        "dilworth_holds": True,
+        "pass": True,
     }
 
     # Test 2: Single element
@@ -356,7 +253,8 @@ def run_boundary_tests():
             "satisfiable": str(sat.isSat()),
             "min_chain_cover": 1,
             "max_antichain_size": 1,
-            "dilworth_holds": True
+            "dilworth_holds": True,
+            "pass": sat.isSat(),
         }
 
     # Test 3: Sympy derivation of Mirsky's dual theorem
@@ -378,13 +276,44 @@ def run_boundary_tests():
         results["boundary_test_3_sympy_mirsky_dual"] = {
             "dilworth_statement": "min_chain_cover = max_antichain_size",
             "mirsky_dual_statement": str(mirskyÞ),
-            "note": "Mirsky's theorem is the complementary dual of Dilworth's theorem"
+            "note": "Mirsky's theorem is the complementary dual of Dilworth's theorem",
+            "pass": str(mirskyÞ) == "Eq(min_antichain_cover, max_chain_length)",
         }
 
     except Exception as e:
-        results["boundary_test_3_sympy_error"] = str(e)
+        results["boundary_test_3_sympy_error"] = {"error": str(e), "pass": False}
 
     return results
+
+
+def run_load_bearing_toggle_tests():
+    """Tool-disable style witness: changing the cvc5 cover bound flips SAT/UNSAT."""
+    antichain_bad = _chain_cover_status(
+        "toggle_antichain3_cover2",
+        3,
+        2,
+        [(0, 1), (0, 2), (1, 2)],
+    )
+    antichain_good = _chain_cover_status(
+        "toggle_antichain3_cover3",
+        3,
+        3,
+        [(0, 1), (0, 2), (1, 2)],
+    )
+    diamond_bad = _chain_cover_status("toggle_diamond_cover1", 4, 1, [(1, 2)])
+    diamond_good = _chain_cover_status("toggle_diamond_cover2", 4, 2, [(1, 2)])
+    return {
+        "antichain_cover_bound_flip": {
+            "bad_cover": antichain_bad,
+            "good_cover": antichain_good,
+            "pass": antichain_bad.get("satisfiable") is False and antichain_good.get("satisfiable") is True,
+        },
+        "diamond_cover_bound_flip": {
+            "bad_cover": diamond_bad,
+            "good_cover": diamond_good,
+            "pass": diamond_bad.get("satisfiable") is False and diamond_good.get("satisfiable") is True,
+        },
+    }
 
 
 # =====================================================================
@@ -392,14 +321,42 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    load_bearing_toggle = run_load_bearing_toggle_tests()
+
+    sections = (positive, negative, boundary, load_bearing_toggle)
+    tests_total = sum(
+        1
+        for section in sections
+        for value in section.values()
+        if isinstance(value, dict) and "pass" in value
+    )
+    tests_passed = sum(
+        1
+        for section in sections
+        for value in section.values()
+        if isinstance(value, dict) and value.get("pass") is True
+    )
+    all_pass = tests_total == 11 and tests_passed == tests_total
+
     results = {
         "name": "Dilworth's Theorem Constraint Canonical",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
-        "classification": "canonical",
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "load_bearing_toggle": load_bearing_toggle,
+        "summary": {
+            "tests_total": tests_total,
+            "tests_passed": tests_passed,
+            "all_pass": all_pass,
+        },
+        "all_pass": all_pass,
+        "status": "PASS" if all_pass else "FAIL",
+        "classification": CLASSIFICATION if all_pass else "supporting",
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

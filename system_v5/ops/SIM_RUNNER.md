@@ -1,8 +1,18 @@
-# 24/7 Sim Runner — thermal-safe, zero token cost
+# Sim Runner — strict admission, parallel-safe where rows are independent
 
-Pure Python + shell. No LLM in the loop. Drains tier queues in priority order, pauses when the machine gets hot.
+Pure Python + shell. No LLM in the loop. Drains admitted queues, pauses or
+blocks when safety gates fail, and preserves controller-owned reconciliation.
 
-Status: this document describes the live v1 runner. The v2 admission-gate contract is not live yet; its routing law lives in `system_v5/ops/TOOL_STAGE_ROUTING_AND_SKIP_AHEAD.md`, and the draft implementation sketch lives in `system_v5/ops/drafts/sim_runner_v2_stub.sh`.
+Status: this document describes two live runner surfaces:
+
+- `system_v5/ops/sim_runner.sh` — legacy single-worker tier-file drain.
+- `scripts/overnight_two_runner.sh` — parallel worker-pool runner using
+  atomic queue claims under `system_v4/probes/a2_state/queue/`.
+
+The older v1 tier-file runner is conservative. It is not the architecture
+ceiling. Lego, micro-lego, tool-function, and admitted independent coupling
+rows are innately parallel when their queue claims, result paths, fixtures,
+logs, and ledger loopbacks do not collide.
 
 ## Runner taxonomy
 
@@ -19,9 +29,35 @@ Graph and proof tools are not universally valid across all three kinds. A graph/
 ## Role separation
 
 - **Hermes terminals** (Tier A / B / D) — write probes, enqueue them, monitor the runner's log. They do NOT execute sims.
-- **Runner** (this file) — picks next queued probe, runs it at low priority, writes result JSON, logs, repeats.
+- **Runner** — claims admitted queued probes, runs them, writes result JSON,
+  logs, and records terminal queue state. Runner success is still not ledger
+  acceptance.
 
-## What it does per tick
+## Parallel execution model
+
+Run many workers when rows are independent. Parallelism is allowed for:
+
+- separate tool/function MICRO rows;
+- independent classical baselines;
+- independent lego rows with distinct result JSONs and fixtures;
+- independent admitted coupling rows after the stage gate allows them and exact
+  parent receipts are named;
+- variants of the same triple when each writes its own artifact namespace.
+
+Parallelism is blocked for:
+
+- shared queue mutation without atomic claims;
+- shared result paths or fixture directories;
+- ledger reconciliation or promotion;
+- rows with prior-receipt dependencies not yet satisfied;
+- bridge/coupling/axis/engine rows blocked by `stage_gate.json`;
+- any row lacking strict Wizard queue admission when strict admission is on.
+
+The parallel worker-pool runner uses atomic file claims, so many workers can
+claim distinct rows safely. Controller synthesis, admission writes, ledger
+loopback, Git/index mutation, and promotion remain serial.
+
+## Legacy tier-file runner tick
 
 1. Reads queues in priority order: `queue_tier_a.txt` -> `queue_tier_b.txt` -> `queue_tier_d.txt` only when `stage_gate.json` permits Tier D -> `queue_default.txt`.
 2. Picks the first un-done probe from the highest-priority non-empty queue.
@@ -31,7 +67,10 @@ Graph and proof tools are not universally valid across all three kinds. A graph/
 6. Sleeps between sims; cooldown sleep if hot.
 7. Repeats forever.
 
-`DONE` is runner execution plus strict receipt-admission evidence. It still does not update the ledger by itself or make coupling rows ready; controller reconciliation must connect the queue row, canonical result JSON, packet scope, and ledger loopback before any downstream claim moves.
+`DONE` is runner execution plus strict receipt-admission evidence. It still
+does not update the ledger by itself or make coupling rows ready; controller
+reconciliation must connect the queue row, canonical result JSON, packet scope,
+and ledger loopback before any downstream claim moves.
 
 ## Priority rules
 
@@ -61,6 +100,21 @@ One probe basename per line (relative to `system_v4/probes/`, no `.py` suffix). 
 
 Controller reconciliation must happen after this rewrite: match the queue row to the result JSON, result `classification`, `TOOL_INTEGRATION_DEPTH`, and ledger loopback before counting the receipt toward an admission gate.
 
+`FAIL` and `INELIGIBLE` are not wasted when they expose the exact contract miss,
+missing artifact, demotion condition, or boundary failure. They support the
+ratchet as exclusions and next-packet constraints. They never self-promote into
+readiness.
+
+## Autoresearch queue clients
+
+Autoresearch clients are adapter/runtime clients, not runner authorities. They
+may propose or enqueue bounded packets only when the packet references
+`system_v5/ops/codex_autoresearch_contract.md`, has `launch_mode=owner_authorized`,
+and records `guardrail_check=PASS`. They must not self-promote pre-run output
+to queue readiness, write `admitted_by`, or treat runner DONE as accepted
+evidence. The controller still has to read the cited queue row, result JSON,
+stage gate, ledger loopback, and admission artifact.
+
 Before a non-browser sim/controller run, run the fail-closed preflight:
 
 ```bash
@@ -69,7 +123,14 @@ make runner-preflight
 
 If it reports stale `playwright-mcp`, `@playwright/mcp`, or `SkyComputerUseClient` helpers, stop those helpers before launching the runner unless an active browser/computer-use task intentionally owns them.
 
-The live runner also runs `scripts/helper_process_audit.py --strict` at startup and refuses to launch when stale browser/computer-use helpers are present. `ALLOW_HELPER_PROCESSES=1` exists only for an explicitly owned browser/computer-use task; do not use it for ordinary sim runs. The runner also creates `system_v5/ops/.sim_runner.lock`, repairs a stale lock whose recorded PID is not live, and exits if another live runner owns that lock.
+Both runner surfaces run `scripts/helper_process_audit.py --strict` at startup
+and refuse to launch when stale browser/computer-use helpers are present.
+`ALLOW_HELPER_PROCESSES=1` exists only for an explicitly owned
+browser/computer-use task; do not use it for ordinary sim runs. The legacy
+tier-file runner creates `system_v5/ops/.sim_runner.lock` and exits if another
+legacy tier-file runner owns that lock. The parallel worker-pool runner uses
+`/tmp/codex_ratchet_overnight.lock` for one controller process plus many
+worker children.
 
 Example `queue_tier_a.txt`:
 ```
@@ -100,6 +161,16 @@ Launch:
 cd "/Users/joshuaeisenhart/Desktop/Codex Ratchet" && nohup bash system_v5/ops/sim_runner.sh > overnight_logs/sim_runner_$(date +%Y%m%d_%H%M%S).log 2>&1 &
 ```
 
+Parallel dry-run:
+```bash
+make parallel-runner-dry MINUTES=1 LANE_A_PARALLEL=2 LANE_B_PARALLEL=4
+```
+
+Parallel admitted run:
+```bash
+make parallel-runner MINUTES=30 LANE_A_PARALLEL=2 LANE_B_PARALLEL=4
+```
+
 Stop gracefully:
 ```bash
 touch system_v5/ops/.stop_sim_runner
@@ -107,12 +178,16 @@ touch system_v5/ops/.stop_sim_runner
 
 ## Rules
 
-1. One sim at a time. No parallelization (keeps laptop cool, keeps logs simple); the live runner enforces this with `system_v5/ops/.sim_runner.lock`.
+1. Use parallel worker pools for independent admitted rows. Use the legacy
+   single-worker tier-file runner only when debugging, conserving heat, or when
+   queue/result isolation has not been proved.
 2. `nice -n 19` always; never `sudo`.
 3. Runner only reads queues and executes; never writes probe source.
 4. Unhandled probe exception → log, move on, don't retry.
 5. 5 consecutive failures → pause 30 min, telegram L3 once.
-6. Runner obeys `system_v5/ops/.stop_sim_runner` sentinel file between sims.
+6. The legacy runner obeys `system_v5/ops/.stop_sim_runner` sentinel file
+   between sims. The parallel runner obeys its minute budget and stops worker
+   pools at the budget boundary.
 7. The hard stage gate wins over stale queue contents: no pairwise/coexistence/bridge/axis/engine probe may run from `queue_default.txt` unless `allow_default_queue_late_stage` is explicitly true.
 8. If all tier queues are empty and no safe default queue exists, the runner stays idle rather than generating a generic never-run pile.
 9. Runner admission must not treat all sims as one bucket. Before v2 enforcement, use `make runner-taxonomy-audit` to map current probes to `classical`, `nonclassical`, and `bridge` execution kinds and surface routing gaps.
@@ -121,3 +196,6 @@ touch system_v5/ops/.stop_sim_runner
 12. `stage_gate.json` booleans are fail-closed: only literal JSON `true` admits Tier D or default-queue late-stage work. String values such as `"true"` or `"false"` do not admit.
 13. `STRICT_RECEIPT_ADMISSION=0` downgrades `DONE` to process-exit evidence for manual recovery only; leave it unset for normal runner use.
 14. Receipt admission uses `scripts/find_admitted_result.py` rather than assuming the result file stem matches the probe stem. It checks the exact basename, the `sim_`-stripped basename, literal `*_results.json` paths in the probe source, and result files modified during the run.
+15. **Wizard v4.1 fanout guard:** Workers inside a Wizard v4.1 parallel fanout wave must not append directly to any `queue_*.txt` file. They return proposed queue entries in their receipt under a `proposed_queue_entries` field. The controller serializes the actual append to the correct tier queue after all fanout receipts return. The Hermes single-terminal enqueue convention (`echo "probe" >> queue_tier_a.txt`) remains valid only for non-fanout, single-worker Hermes terminals where no parallel wave is active.
+16. `STRICT_WIZARD_QUEUE_ADMISSION=1` is the live default. A row can be selected only when `scripts/wizard_sim_admission.py` finds a v4.1 queue-ready admission artifact under `system_v5/ops/wizard_admissions/` or `system_v5/wizard/admissions/`. Missing or bad admission becomes `INELIGIBLE`, not `FAIL`; it is structural gate evidence, not a scientific result.
+17. A Wizard sim admission must be written by an independent non-runner/non-manager route, cite controller-read artifacts, pass the universal bounded-work gate, pass the strict sim packet gate, name one exact packet, and include the formal sim profile fields. Pre-runs, runner output, council agreement, manager receipts, or route salience do not admit a queue row by themselves.

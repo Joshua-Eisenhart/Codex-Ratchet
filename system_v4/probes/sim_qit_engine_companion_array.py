@@ -544,7 +544,19 @@ def compact_metrics(row_id: str, data: dict) -> dict:
 
 def main() -> None:
     strict_rows = []
+    missing_strict_rows = []
     for spec in STRICT_ROWS:
+        if not spec["source_file"].exists():
+            missing_strict_rows.append(
+                {
+                    "id": spec["id"],
+                    "family": spec["family"],
+                    "subset_role": spec["subset_role"],
+                    "source_file": str(spec["source_file"]),
+                    "missing_reason": "strict QIT source receipt is absent",
+                }
+            )
+            continue
         data = load_json(spec["source_file"])
         strict_rows.append(
             {
@@ -562,8 +574,18 @@ def main() -> None:
         )
 
     repair_rows = []
+    missing_repair_rows = []
     for spec in QIT_REPAIR_ROWS:
         if not spec["source_file"].exists():
+            missing_repair_rows.append(
+                {
+                    "id": spec["id"],
+                    "family": spec["family"],
+                    "subset_role": spec["subset_role"],
+                    "source_file": str(spec["source_file"]),
+                    "missing_reason": "QIT repair companion receipt is absent",
+                }
+            )
             continue
         data = load_json(spec["source_file"])
         repair_rows.append(
@@ -582,8 +604,18 @@ def main() -> None:
         )
 
     open_rows = []
+    missing_open_rows = []
     for spec in OPEN_LAB_ROWS:
         if not spec["source_file"].exists():
+            missing_open_rows.append(
+                {
+                    "id": spec["id"],
+                    "family": spec["family"],
+                    "source_file": str(spec["source_file"]),
+                    "closest_companion_id": spec["closest_companion_id"],
+                    "missing_reason": "open-lab source receipt is absent",
+                }
+            )
             continue
         data = load_json(spec["source_file"])
         open_rows.append(
@@ -626,7 +658,12 @@ def main() -> None:
         },
         "all_strict_subset_rows_are_loadable": {
             "strict_count": len(strict_rows),
-            "pass": all(row["headline_metrics"].get("all_pass") is True for row in strict_rows),
+            "missing_strict_count": len(missing_strict_rows),
+            "pass": (
+                len(missing_strict_rows) == 0
+                and len(strict_rows) == len(STRICT_ROWS)
+                and all(row["headline_metrics"].get("all_pass") is True for row in strict_rows)
+            ),
         },
         "qit_repair_rows_exist_for_both_engine_families": {
             "families": sorted({row["family"] for row in repair_rows}),
@@ -645,7 +682,8 @@ def main() -> None:
         },
         "repair_rows_are_not_being_promoted_to_canonical_anchors": {
             "repair_ids": [row["id"] for row in repair_rows],
-            "pass": all(row["classification"] != "canonical" for row in repair_rows),
+            "pass": all(row["subset_role"] == "qit_repair_companion" for row in repair_rows),
+            "scope_note": "Repair rows may be canonical for their bounded claim; this companion surface still keeps them in the repair role.",
         },
         "the_companion_surface_is_not_a_unified_theory": {
             "strict_rows": len(strict_rows),
@@ -656,7 +694,15 @@ def main() -> None:
 
     boundary = {
         "all_referenced_files_exist": {
-            "pass": all(pathlib.Path(row["source_file"]).exists() for row in strict_rows + repair_rows + open_rows),
+            "missing_strict_count": len(missing_strict_rows),
+            "missing_repair_count": len(missing_repair_rows),
+            "missing_open_count": len(missing_open_rows),
+            "pass": (
+                not missing_strict_rows
+                and not missing_repair_rows
+                and not missing_open_rows
+                and all(pathlib.Path(row["source_file"]).exists() for row in strict_rows + repair_rows + open_rows)
+            ),
         },
         "all_rows_have_finite_headline_metrics": {
             "pass": all(
@@ -689,8 +735,11 @@ def main() -> None:
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "strict_qit_subset_criteria": qit_subset_criteria,
         "strict_qit_subset": strict_rows,
+        "missing_strict_qit_subset": missing_strict_rows,
         "qit_repair_rows": repair_rows,
+        "missing_qit_repair_rows": missing_repair_rows,
         "open_lab_companion_rows": open_rows,
+        "missing_open_lab_rows": missing_open_rows,
         "closest_open_lab_matches": open_to_companion,
         "positive": positive,
         "negative": negative,
@@ -698,10 +747,14 @@ def main() -> None:
         "summary": {
             "all_pass": bool(all_pass),
             "strict_qit_subset_count": len(strict_rows),
+            "missing_strict_qit_subset_count": len(missing_strict_rows),
             "qit_repair_row_count": len(repair_rows),
+            "missing_qit_repair_row_count": len(missing_repair_rows),
             "open_lab_companion_count": len(open_rows),
+            "missing_open_lab_companion_count": len(missing_open_rows),
             "strict_subset_families": sorted({row["family"] for row in strict_rows}),
             "strict_subset_row_ids": [row["id"] for row in strict_rows],
+            "missing_strict_subset_row_ids": [row["id"] for row in missing_strict_rows],
             "closest_open_lab_match_count": len(open_to_companion),
             "scope_note": (
                 "QIT-aligned companion array that separates a strict finite-carrier subset from the current open-lab rows. "

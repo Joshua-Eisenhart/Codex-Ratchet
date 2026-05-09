@@ -19,10 +19,14 @@ K1=2
 K2=4
 DRY=0
 STRICT_RECEIPT_ADMISSION="${STRICT_RECEIPT_ADMISSION:-1}"
+STRICT_WIZARD_QUEUE_ADMISSION="${STRICT_WIZARD_QUEUE_ADMISSION:-1}"
+ALLOW_HELPER_PROCESSES="${ALLOW_HELPER_PROCESSES:-0}"
+ADMISSION_BYPASS_SENTINEL="${ADMISSION_BYPASS_SENTINEL:-$ROOT/system_v5/ops/.allow_admission_bypass_recovery}"
 SIM_TIMEOUT=900  # seconds; kill any single sim that runs longer than this
 
 # Sims that must never enter the overnight queue (meta-benchmarks, harnesses).
 QUEUE_BLACKLIST="sim_timing_benchmark.py|autoresearch_sim_harness.py|exploratory_process_cycle_stage_matrix_sim.py|stage_matrix_neg_lib.py"
+LATE_STAGE_PATTERN='tier_d|boundary_flux|bridge|coupling|pairwise|coexistence|rho_ab|phi0|kernel|emergence|axis|axis0|bipartite|partial_trace|entanglement|mutual_information|mutual_info|coherent_information|coherent_info|concurrence|negativity|schmidt|entropy|capacity|capacities|carnot|szilard|landauer|thermo'
 
 usage() { echo "usage: $0 --minutes N [--lane-a-parallel K1] [--lane-b-parallel K2] [--dry]"; exit 2; }
 
@@ -54,6 +58,21 @@ emit() { # emit JSON event line
 
 run_or_echo() { if [ "$DRY" -eq 1 ]; then echo "DRY: $*"; else "$@"; fi; }
 
+helper_process_preflight() {
+  if [ "$ALLOW_HELPER_PROCESSES" = "1" ]; then
+    say "Helper process preflight bypassed by ALLOW_HELPER_PROCESSES=1"
+    return 0
+  fi
+  "$PY" "$ROOT/scripts/helper_process_audit.py" --strict >/dev/null
+}
+
+admission_bypass_preflight() {
+  if [ "$STRICT_RECEIPT_ADMISSION" = "1" ] && [ "$STRICT_WIZARD_QUEUE_ADMISSION" = "1" ]; then
+    return 0
+  fi
+  [ -f "$ADMISSION_BYPASS_SENTINEL" ]
+}
+
 run_sim_with_timeout() { # $1=sim $2=artifact
   local sim="$1" artifact="$2"
   MPLCONFIGDIR=/tmp/codex-mpl NUMBA_CACHE_DIR=/tmp/codex-numba \
@@ -73,6 +92,25 @@ except subprocess.TimeoutExpired:
 raise SystemExit(result.returncode)
 PY
   return $?
+}
+
+stage_gate_claim_for_sim() {
+  local sim="$1" base
+  base=$(basename "$sim" .py)
+  base=${base#sim_}
+  case "$base" in
+    *tier_d*|*boundary_flux*) echo "tier_d"; return 0 ;;
+    *bridge*|*coupling*|*pairwise*|*coexistence*|*rho_ab*|*phi0*|*kernel*|*emergence*) echo "scientific_coupling"; return 0 ;;
+    axis*|axis0*) echo "axis"; return 0 ;;
+    *bipartite*|*partial_trace*|*entanglement*|*mutual_information*|*mutual_info*|*coherent_information*|*coherent_info*|*concurrence*|*negativity*|*schmidt*|*entropy*|*capacity*|*capacities*|*carnot*|*szilard*|*landauer*|*thermo*) echo "default_late_stage"; return 0 ;;
+  esac
+  return 1
+}
+
+stage_gate_allows_sim() {
+  local sim="$1" claim
+  claim=$(stage_gate_claim_for_sim "$sim") || return 0
+  "$PY" "$ROOT/scripts/stage_gate.py" --claim "$claim" >/dev/null 2>&1
 }
 
 # --- atomic O_EXCL lock via python ------------------------------------------
@@ -107,7 +145,11 @@ worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
   local claim_json claim_path sim exit_code artifact sha complete_json terminal_state
   if [ "$DRY" -eq 1 ]; then
     echo "DRY: $PY $QUEUE_CLAIM claim --queue $qdir --worker $wid"
-    echo "DRY:  (gate if lane_a) $PY $GATE --sim <path>"
+    if [ "$gated" -eq 1 ]; then
+      echo "DRY:  lane gate $PY $GATE --sim <path>"
+    else
+      echo "DRY:  no lane-specific capability gate"
+    fi
     echo "DRY:  run sim, then $PY $QUEUE_CLAIM complete --worker $wid"
     return 1  # signal empty to stop dry loop
   fi
@@ -124,6 +166,20 @@ worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
     "$PY" "$QUEUE_CLAIM" block --claim-path "$claim_path" --reason "blacklisted_meta_sim" >/dev/null 2>&1 || true
     emit gate_denied "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"reason\":\"blacklisted\""
     return 0
+  fi
+
+  if ! stage_gate_allows_sim "$sim"; then
+    "$PY" "$QUEUE_CLAIM" block --claim-path "$claim_path" --reason "stage_gate_blocked" >/dev/null 2>&1 || true
+    emit gate_denied "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"reason\":\"stage_gate_blocked\""
+    return 0
+  fi
+
+  if [ "$STRICT_WIZARD_QUEUE_ADMISSION" = "1" ]; then
+    if ! "$PY" "$ROOT/scripts/wizard_sim_admission.py" --basename "$(basename "$sim" .py)" --sim-path "$sim" >/dev/null 2>&1; then
+      "$PY" "$QUEUE_CLAIM" block --claim-path "$claim_path" --reason "wizard_admission_blocked" >/dev/null 2>&1 || true
+      emit gate_denied "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"reason\":\"wizard_admission_blocked\""
+      return 0
+    fi
   fi
 
   if [ "$gated" -eq 1 ]; then
@@ -219,12 +275,26 @@ PY
 # --- main -------------------------------------------------------------------
 say "two-runner start minutes=$MINUTES K1=$K1 K2=$K2 dry=$DRY"
 
+if ! helper_process_preflight; then
+  say "FAILED helper process preflight; stop stale Playwright/Computer Use helpers before non-browser parallel runner work."
+  exit 1
+fi
+
+if ! admission_bypass_preflight; then
+  say "FAILED admission bypass preflight; strict receipt and Wizard queue admission must stay enabled unless recovery sentinel exists."
+  exit 1
+fi
+
 if [ "$DRY" -eq 1 ]; then
   echo "DRY: acquire_lock $LOCK"
   echo "DRY: spawn $K1 Lane A workers loop(claim lane_A -> gate -> run -> complete) until $MINUTES min"
   echo "DRY: spawn $K2 Lane B workers loop(claim lane_B -> run -> complete) until $MINUTES min"
-  for i in $(seq 1 "$K1"); do worker_once "A" "$LANE_A_DIR" 1 "laneA_w${i}" || true; done
-  for i in $(seq 1 "$K2"); do worker_once "B" "$LANE_B_DIR" 0 "laneB_w${i}" || true; done
+  if [ "$K1" -gt 0 ]; then
+    for i in $(seq 1 "$K1"); do worker_once "A" "$LANE_A_DIR" 1 "laneA_w${i}" || true; done
+  fi
+  if [ "$K2" -gt 0 ]; then
+    for i in $(seq 1 "$K2"); do worker_once "B" "$LANE_B_DIR" 0 "laneB_w${i}" || true; done
+  fi
   echo "DRY: wait for pools, then write reports:"
   echo "DRY:  $MANIFEST"
   echo "DRY:  $DENIALS"
@@ -239,14 +309,18 @@ trap 'cleanup; exit 130' INT TERM
 
 END_TS=$(( $(date +%s) + MINUTES * 60 ))
 pids=()
-for i in $(seq 1 "$K1"); do
-  worker_loop "A" "$LANE_A_DIR" 1 "laneA_w${i}" "$END_TS" &
-  pids+=("$!")
-done
-for i in $(seq 1 "$K2"); do
-  worker_loop "B" "$LANE_B_DIR" 0 "laneB_w${i}" "$END_TS" &
-  pids+=("$!")
-done
+if [ "$K1" -gt 0 ]; then
+  for i in $(seq 1 "$K1"); do
+    worker_loop "A" "$LANE_A_DIR" 1 "laneA_w${i}" "$END_TS" &
+    pids+=("$!")
+  done
+fi
+if [ "$K2" -gt 0 ]; then
+  for i in $(seq 1 "$K2"); do
+    worker_loop "B" "$LANE_B_DIR" 0 "laneB_w${i}" "$END_TS" &
+    pids+=("$!")
+  done
+fi
 say "spawned ${#pids[@]} workers; budget ends $(date -r "$END_TS" -Iseconds 2>/dev/null || date -Iseconds)"
 
 # wait for budget, then graceful shutdown

@@ -21,7 +21,6 @@ TOOL_MANIFEST = {
     "toponetx": {"tried": False, "used": False, "reason": "no cell complex in this sim"},
     "gudhi":    {"tried": False, "used": False, "reason": "no persistent homology in this sim"},
 }
-divergence_log = "Classical baseline: U(1) phase holonomy around a discrete loop via numpy, not a canonical nonclassical witness."
 
 TOOL_INTEGRATION_DEPTH = {
     "numpy": "load_bearing",

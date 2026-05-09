@@ -4,6 +4,8 @@ Use this as the full Wizard operating document. The compact version is the only 
 
 No scattered registry docs. No separate adapter docs. No separate acceptance-gate docs. No separate follow-up docs. Definitions live at the end.
 
+Boundary note: this v3.5 packet is a runtime packet with adapter examples. Codex, Claude, subsubagent, model, and tool references below are adapter/runtime examples unless the active runtime adapter explicitly binds them. The pure universal model must not require Codex Ratchet queues, runner states, result paths, Claude Bridge, or local v3.5 source paths.
+
 ---
 
 ## 1. Header
@@ -657,7 +659,7 @@ Back
 All-A
 All-B
 All-C
-Full Wizard
+Max Assembly
 ```
 
 ### Follow-up Scout
@@ -1038,6 +1040,16 @@ Salience: independent proposal, dissent, arbitration, source-aware weighting, tr
 
 ---
 
+## Route Registry Note
+
+Every route/member definition should be addressable without hard-binding it to one runtime.
+
+Minimum registry fields: `route_id`, `display_name`, `category`, `scale`, `member_registry_refs`, `default_member_routes`, `allowed_loader`, and `receipt_required`.
+
+For the maximum useful assembly composition, use `route_id: FULL_WIZARD`, `display_name: Max Assembly`, `legacy_alias: Full Wizard`, and `not_runtime_mode: true`. `FULL` remains a runtime/header mode, not a visible composition option name.
+
+---
+
 ## Compositions
 
 Composition source-fit rule:
@@ -1092,7 +1104,7 @@ Return: final bounded move; concrete wording; structure check; security check; h
 
 Avoid: calling it done while checks remain open.
 
-### 🧙🏽‍♂️ Full Wizard
+### 🧙🏽‍♂️ Max Assembly
 
 Use: maximum useful integrated route.
 
@@ -1100,7 +1112,7 @@ Route: Preflight -> adaptive route waves -> Council if useful -> Checks -> Follo
 
 Return: full wave-truth answer; integrated plan; useful prompts; blockers; stop conditions.
 
-Avoid: treating Full Wizard as a quota to run every route.
+Avoid: treating Max Assembly as a quota to run every route.
 
 ---
 

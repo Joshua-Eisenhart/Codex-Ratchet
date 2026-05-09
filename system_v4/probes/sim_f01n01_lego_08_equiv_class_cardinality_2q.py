@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Lego 08: Equivalence-class cardinality for 2-qubit computational basis under local-unitary indistinguishability.
-Restricted symmetry group: bit-flip on each qubit (Z2 x Z2). Class of |00>: {|00>,|01>,|10>,|11>}? No --
-under local Z-basis population permutation only, classes are orbits. We verify orbit sizes via sympy group action.
+"""Lego 08: restricted Z2 x Z2 computational-basis bit-flip orbit count.
+
+This fixture proves only the finite local bit-flip action on two computational
+basis qubits. It does not claim full local-unitary equivalence or a continuous
+U(2) x U(2) orbit cardinality.
 """
 import json, os, sympy as sp
 from itertools import product
@@ -50,8 +52,25 @@ if __name__ == "__main__":
     pos=run_positive_tests(); neg=run_negative_tests(); bnd=run_boundary_tests()
     all_pass = all(list(pos.values())+list(neg.values())+list(bnd.values()))
     r = {"name":"lego_08_equiv_class_cardinality_2q","classification":"canonical",
+         "claim_ceiling":"local_lego_only",
+         "next_lego_target":"restricted_z2x_z2_basis_bitflip_orbit_count",
+         "promotion_condition":"requires controller reconciliation of this exact result path plus sibling F01/N01 lego receipts before any quotient, coupling, bridge, axis, or engine claim",
+         "blocked_until":"blocked from downstream promotion until the controller reads this result JSON and records ledger loopback/admission for the exact restricted Z2 x Z2 bit-flip orbit row",
+         "demotion_condition":"demote if the Z2 x Z2 orbit of |00> is not size 4, the trivial orbit is not size 1, the single-generator orbit is not size 2, or this fixture is used as a full local-unitary equivalence claim",
+         "out_of_scope":[
+             "full local-unitary equivalence",
+             "continuous U(2) x U(2) orbit cardinality",
+             "quotient theorem beyond the finite Z2 x Z2 computational-basis bit-flip fixture",
+             "tool-tool coupling",
+             "bridge or axis claim",
+             "engine placement claim",
+             "queue/admission readiness without controller reconciliation"
+         ],
          "tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH,
-         "positive":pos,"negative":neg,"boundary":bnd,"overall_pass":bool(all_pass)}
+         "positive":{k:bool(v) for k,v in pos.items()},
+         "negative":{k:bool(v) for k,v in neg.items()},
+         "boundary":{k:bool(v) for k,v in bnd.items()},
+         "overall_pass":bool(all_pass)}
     od = os.path.join(os.path.dirname(__file__),"a2_state","sim_results"); os.makedirs(od,exist_ok=True)
     p = os.path.join(od,"lego_08_equiv_class_cardinality_2q_results.json")
     with open(p,"w") as f: json.dump(r,f,indent=2,default=str)

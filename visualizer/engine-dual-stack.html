@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Engine Dual Stack</title>
+<style>
+  :root {
+    --bg: #10120f;
+    --panel: #181b16;
+    --panel2: #20241d;
+    --line: #3a4233;
+    --text: #eeeadf;
+    --muted: #a7aa9e;
+    --hot: #d95f43;
+    --cold: #3aa0a7;
+    --work: #d8b65c;
+    --ok: #7fb069;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+  main { min-height: 100vh; display: grid; grid-template-columns: 320px 1fr; }
+  aside { border-right: 1px solid var(--line); padding: 18px; background: #0d100c; }
+  section { padding: 18px; }
+  h1, h2, h3, p { margin: 0; }
+  h1 { font-size: 20px; }
+  h2 { color: var(--muted); font-size: 12px; text-transform: uppercase; margin-bottom: 10px; }
+  .muted { color: var(--muted); }
+  .mono { font-family: "SFMono-Regular", Consolas, monospace; }
+  button {
+    width: 100%;
+    text-align: left;
+    margin-top: 8px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--text);
+    padding: 10px;
+    cursor: pointer;
+  }
+  button.active { border-color: var(--work); background: var(--panel2); }
+  .metrics { display: grid; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: 8px; margin-bottom: 16px; }
+  .metric { border: 1px solid var(--line); background: var(--panel); padding: 10px; }
+  .metric b { display: block; font-size: 18px; }
+  .metric span { color: var(--muted); font-size: 11px; }
+  .loops { display: grid; grid-template-columns: repeat(2, minmax(280px, 1fr)); gap: 14px; }
+  .loop { border: 1px solid var(--line); background: var(--panel); }
+  .loop header { padding: 13px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; }
+  .stages { display: grid; gap: 6px; padding: 12px; }
+  .stage { display: grid; grid-template-columns: 1fr 80px 80px; gap: 8px; border: 1px solid var(--line); background: #131710; padding: 8px; font-size: 12px; }
+  .stage span { color: var(--muted); font-size: 11px; }
+  .axes { margin-top: 16px; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+  .axisgrid { display: grid; grid-template-columns: repeat(2, minmax(240px, 1fr)); gap: 8px; }
+  .axis { border: 1px solid var(--line); background: #131710; padding: 9px; }
+  .axis b { font-size: 13px; }
+  .axis p { margin-top: 5px; color: var(--muted); font-size: 12px; line-height: 1.35; }
+  .rosetta { margin-top: 16px; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+  .rosetta-grid { display: grid; grid-template-columns: repeat(3, minmax(180px, 1fr)); gap: 8px; }
+  .rosetta-row { border: 1px solid var(--line); background: #131710; padding: 9px; font-size: 12px; line-height: 1.35; }
+  .rosetta-row span { display: block; color: var(--muted); margin-top: 4px; }
+  .wheel-wrap { margin-top: 16px; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+  .wheel-layout { display: grid; grid-template-columns: 240px 1fr; gap: 16px; align-items: center; }
+  .wheel {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: conic-gradient(var(--hot) 0 180deg, var(--cold) 180deg 360deg);
+    animation: spin 28s linear infinite;
+  }
+  .wheel::before {
+    content: "";
+    position: absolute;
+    inset: 42px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 25%, var(--cold) 0 10px, var(--hot) 11px 50%, transparent 51%),
+                radial-gradient(circle at 50% 75%, var(--hot) 0 10px, var(--cold) 11px 50%, transparent 51%);
+    border: 1px solid rgba(238, 234, 223, 0.35);
+  }
+  .tick {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1px;
+    height: 104px;
+    transform-origin: 0 0;
+    transform: rotate(var(--angle));
+    background: linear-gradient(var(--text), transparent 22px);
+    opacity: 0.8;
+  }
+  .tick:nth-child(8n) { width: 2px; opacity: 1; }
+  .wheel-key { display: grid; grid-template-columns: repeat(2, minmax(160px, 1fr)); gap: 8px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (max-width: 900px) {
+    main { grid-template-columns: 1fr; }
+    aside { border-right: 0; border-bottom: 1px solid var(--line); }
+    .metrics, .loops, .axisgrid, .rosetta-grid, .wheel-layout, .wheel-key { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <aside>
+    <h1>Dual-Stack Engines</h1>
+    <p class="muted" style="margin-top:8px; line-height:1.4">Receipt-backed Carnot and Szilard loops with local Ax0-Ax6 candidate mappings.</p>
+    <div id="nav"></div>
+  </aside>
+  <section>
+    <div id="metrics" class="metrics"></div>
+    <div id="loops" class="loops"></div>
+    <div class="axes">
+      <h2>Local Ax0-Ax6 Candidate Mapping</h2>
+      <div id="axes" class="axisgrid"></div>
+    </div>
+    <div class="rosetta">
+      <h2>Carnot / Szilard Rosetta</h2>
+      <div id="rosetta" class="rosetta-grid"></div>
+      <div id="tiers" class="rosetta-grid" style="margin-top:8px"></div>
+      <div id="qitRows" class="rosetta-grid" style="margin-top:8px"></div>
+    </div>
+    <div class="wheel-wrap">
+      <h2>Symbolic 64-State Wheel</h2>
+      <div class="wheel-layout">
+        <div id="wheel" class="wheel"></div>
+        <div id="wheelKey" class="wheel-key"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="carnot-dual-stack-data.js"></script>
+<script src="szilard-dual-stack-data.js"></script>
+<script src="engine-rosetta-data.js"></script>
+<script>
+const engines = {
+  carnot: window.CARNOT_DUAL_STACK_DATA,
+  szilard: window.SZILARD_DUAL_STACK_DATA,
+};
+const rosetta = window.ENGINE_ROSETTA_DATA;
+let active = "carnot";
+const fmt = v => Number.isFinite(v) ? v.toFixed(6) : String(v);
+function renderNav() {
+  document.getElementById("nav").innerHTML = Object.entries(engines).map(([id, data]) => `
+    <button class="${id === active ? "active" : ""}" onclick="active='${id}'; render()">
+      <b>${id === "carnot" ? "Carnot" : "Szilard"}</b><br>
+      <span class="muted">${data.summary.all_pass ? "passes" : "open"} · ${data.summary.load_bearing_tool_count}/${data.summary.tool_count} tools</span>
+    </button>
+  `).join("");
+}
+function metricPairs(data) {
+  if (active === "carnot") {
+    return [
+      ["efficiency", data.summary.forward_efficiency],
+      ["bound", data.summary.forward_carnot_bound],
+      ["reverse COP", data.summary.reverse_cop],
+      ["tools", `${data.summary.load_bearing_tool_count}/${data.summary.tool_count}`],
+    ];
+  }
+  return [
+    ["information", data.summary.information_gain],
+    ["free-energy gain", data.summary.system_free_energy_gain],
+    ["erasure cost", data.summary.erasure_cost],
+    ["tools", `${data.summary.load_bearing_tool_count}/${data.summary.tool_count}`],
+  ];
+}
+function renderLoop(loop, title) {
+  const stages = loop.stage_trace.map(row => `
+    <div class="stage">
+      <div><b>${row.kind}</b><br><span>${row.before} -> ${row.after}</span></div>
+      <div class="mono">${fmt(row.delta_entropy ?? row.record_entropy_delta ?? row.information_delta ?? 0)}</div>
+      <div class="mono">${fmt(row.work_by_system ?? row.free_energy_gain ?? 0)}</div>
+    </div>
+  `).join("");
+  return `<article class="loop"><header><h3>${title}</h3><span class="muted">${loop.role}</span></header><div class="stages">${stages}</div></article>`;
+}
+function render() {
+  const data = engines[active];
+  renderNav();
+  document.getElementById("metrics").innerHTML = metricPairs(data).map(([k, v]) => `<div class="metric"><b>${typeof v === "number" ? fmt(v) : v}</b><span>${k}</span></div>`).join("");
+  document.getElementById("loops").innerHTML = [
+    renderLoop(data.loops.inductive_heating_loop, "Inductive / Heating"),
+    renderLoop(data.loops.deductive_cooling_loop, "Deductive / Cooling"),
+  ].join("");
+  document.getElementById("axes").innerHTML = Object.entries(data.axes_candidate_model.axes).map(([id, axis]) => `
+    <div class="axis"><b>${id} · ${axis.local_name}</b><p>${axis.degree_of_freedom}</p><p>${axis.observable || ""}</p></div>
+  `).join("");
+  document.getElementById("rosetta").innerHTML = rosetta.rosetta_rows.slice(0, 8).map(row => `
+    <div class="rosetta-row">
+      <b>${row.row}</b>
+      <span>${row.status}</span>
+      <span>Carnot: ${row.carnot}</span>
+      <span>Szilard: ${row.szilard}</span>
+      <span>${row.boundary}</span>
+    </div>
+  `).join("");
+  document.getElementById("tiers").innerHTML = rosetta.tier_correlations.map(row => `
+    <div class="rosetta-row">
+      <b>Tier ${row.tier} · ${row.name}</b>
+      <span>${row.evidence}</span>
+      <span>Carnot: ${row.carnot}</span>
+      <span>Szilard: ${row.szilard}</span>
+      <span>Next: ${row.next_allowed}</span>
+    </div>
+  `).join("");
+  document.getElementById("qitRows").innerHTML = rosetta.triadic_qit_rows.map(row => `
+    <div class="rosetta-row">
+      <b>${row.row}</b>
+      <span>${row.status}</span>
+      <span>Carnot: ${row.carnot}</span>
+      <span>Szilard: ${row.szilard}</span>
+      <span>QIT-adjacent: ${row.qit_adjacent}</span>
+      <span>${row.boundary}</span>
+    </div>
+  `).join("");
+  document.getElementById("wheel").innerHTML = Array.from({length: 64}, (_, i) => `<span class="tick" style="--angle:${i * 5.625}deg"></span>`).join("");
+  document.getElementById("wheelKey").innerHTML = [
+    ["state count", "64 binary slots; visual only"],
+    ["axis slots", rosetta.summary.shared_axis_slots.join(", ")],
+    ["evidence", `${rosetta.summary.rosetta_row_count} Rosetta rows, ${rosetta.summary.tier_count} tiers, ${rosetta.summary.triadic_qit_row_count} QIT-adjacent rows`],
+    ["QIT gate", `strict missing: ${rosetta.summary.qit_missing_strict_subset_count}`],
+    ["entropy gate", `strict missing: ${rosetta.summary.qit_entropy_missing_strict_row_count}`],
+    ["boundary", "not an I Ching proof or QIT-engine admission"],
+  ].map(([k, v]) => `<div class="rosetta-row"><b>${k}</b><span>${v}</span></div>`).join("");
+}
+render();
+</script>
+</body>
+</html>

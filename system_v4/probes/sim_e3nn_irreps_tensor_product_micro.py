@@ -258,6 +258,17 @@ if __name__ == "__main__":
             "only covers Irreps parsing and bounded tensor product layer "
             "dimension behavior."
         ],
+        "claim_ceiling": "tool_function_micro_only",
+        "next_lego_target": "minimal irrep tensor-product fixture before operator geometry claims",
+        "promotion_condition": (
+            "requires a later admitted lego row that names this exact function "
+            "receipt and passes strict runner admission; this MICRO row does "
+            "not promote the lego"
+        ),
+        "blocked_until": (
+            "blocked until a downstream queue row declares the exact lego "
+            "target, parent receipts, and active stage gate for promotion"
+        ),
         "demotion_condition": (
             "Demote e3nn for this function surface if o3.Irreps reports "
             "incorrect dimensions for the bounded fixtures, if "

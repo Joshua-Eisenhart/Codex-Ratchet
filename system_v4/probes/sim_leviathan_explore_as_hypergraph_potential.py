@@ -15,13 +15,21 @@ What this framing FAILS to capture:
 classification: classical_baseline
 """
 import json, os, numpy as np
-classification = "canonical"
+classification = "classical_baseline"
 
 TOOL_MANIFEST = {
-    "xgi":       {"tried": False, "used": False, "reason": ""},
-    "numpy":     {"tried": True,  "used": True,  "reason": "degree + entropy stats"},
+    "xgi": {
+        "tried": False,
+        "used": False,
+        "reason": "hypergraph package is required to construct multi-way group-potential exchange fixtures",
+    },
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive degree-vector normalization and Shannon entropy calculations on XGI hypergraph degrees",
+    },
 }
-TOOL_INTEGRATION_DEPTH = {"xgi": "load_bearing", "numpy": "supportive"}
+TOOL_INTEGRATION_DEPTH = {"xgi": "supportive", "numpy": "load_bearing"}
 
 try:
     import xgi
@@ -58,6 +66,12 @@ def potential_entropy(H):
 
 def run_positive_tests():
     if xgi is None: return {"skipped": "xgi missing"}
+    TOOL_MANIFEST["xgi"]["used"] = True
+    TOOL_MANIFEST["xgi"]["reason"] = (
+        "Supportive hypergraph construction: decentralized multi-way potential "
+        "exchange fixtures are XGI Hypergraph objects, while the degree-entropy "
+        "readout remains a NumPy calculation."
+    )
     H = build_decentralized()
     S = potential_entropy(H)
     return {"decentralized_entropy": S, "pass": S > 1.5, "n_edges": H.num_edges}
@@ -69,7 +83,7 @@ def run_negative_tests():
     Hd = build_decentralized()
     Sd = potential_entropy(Hd)
     return {"centralized_entropy": Sc, "decentralized_entropy": Sd,
-            "pass_centralized_lower": Sc < Sd}
+            "pass_centralized_lower": Sc < Sd, "pass": Sc < Sd}
 
 def run_boundary_tests():
     if xgi is None: return {"skipped": "xgi missing"}
@@ -78,15 +92,31 @@ def run_boundary_tests():
 
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+
+    test_sections = (positive, negative, boundary)
+    tests_total = sum(1 for section in test_sections if isinstance(section, dict) and "pass" in section)
+    tests_passed = sum(1 for section in test_sections if isinstance(section, dict) and section.get("pass") is True)
+    all_pass = tests_total == 3 and tests_passed == tests_total
+
     results = {
         "name": "leviathan_explore_as_hypergraph_potential",
         "framing_assumption": "multi-way hyperedges as potential pathways; degree-entropy = decentralization",
         "blind_spot": "no temporal dynamics, no signed power asymmetry",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": {
+            "tests_total": tests_total,
+            "tests_passed": tests_passed,
+            "all_pass": all_pass,
+        },
+        "all_pass": all_pass,
+        "status": "PASS" if all_pass else "FAIL",
         "classification": "classical_baseline",
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

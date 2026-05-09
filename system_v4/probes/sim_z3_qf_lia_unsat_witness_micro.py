@@ -224,6 +224,17 @@ if __name__ == "__main__":
             "total": len(flat_tests),
         },
         "all_pass": all_pass,
+        "claim_ceiling": "tool_function_micro_only",
+        "next_lego_target": "minimal bounded arithmetic fixture before lego promotion",
+        "promotion_condition": (
+            "requires a later admitted lego row that names this exact function "
+            "receipt and passes strict runner admission; this MICRO row does "
+            "not promote the lego"
+        ),
+        "blocked_until": (
+            "blocked until a downstream queue row declares the exact lego target, "
+            "parent receipts, and active stage gate for promotion"
+        ),
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

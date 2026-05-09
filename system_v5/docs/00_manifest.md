@@ -45,6 +45,7 @@ Authority:
 - `SIM_CORRECTIONS_AND_CLASSIFICATIONS.md` — **canonical** — corrections to sim results + evidence classification
 - `LLM_CONTROLLER_CONTRACT.md` — **canonical** — status-label discipline and evidence rules for controller summaries
 - `LEGO_SIM_CONTRACT.md` — **canonical** — what each sim must declare before it can be promoted
+- `LEGO_TOOL_COUPLING_LEDGER.md` — **working ledger** — compact evidence-first map of key legos, tool roles, receipts, blockers, and bounded next coupling permissions under the current lego stage
 - `TODO.md` — **plan** — remaining work items: nominalist reframing, topos theory, concurrency, quantum Shannon, boot testing, falsification sims, consolidation
 
 ## Math and Reference

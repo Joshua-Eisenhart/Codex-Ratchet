@@ -22,8 +22,6 @@ TOOL_MANIFEST = {
     "gudhi":    {"tried": False, "used": False, "reason": "no persistent homology in this sim"},
 }
 
-divergence_log = "Classical baseline: Cl(6) Kronecker Pauli representation, not a canonical nonclassical witness."
-
 TOOL_INTEGRATION_DEPTH = {
     "numpy": "load_bearing",
     "pytorch": None, "pyg": None, "z3": None, "cvc5": None, "sympy": None,

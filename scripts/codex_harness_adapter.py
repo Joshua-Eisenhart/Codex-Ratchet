@@ -109,6 +109,52 @@ REQUIRED_RECEIPT_FIELDS = {
     "evidence",
 }
 
+SOURCE_LIFT_GATE_REQUIRED_FIELDS = {
+    "gate_id",
+    "route_id",
+    "source_bundle_ref",
+    "source_slice_used",
+    "loaded_salience_surfaces",
+    "claim_tested",
+    "claim_scope",
+    "execution_evidence",
+    "terminal_status",
+    "not_run_or_simulated_accounting",
+    "evidence_boundary",
+    "lift_probe",
+    "counter_probe_seed",
+    "label_strip_result",
+    "counter_probe_result",
+    "strongest_omitted_falsifier",
+    "salience_status",
+    "gate_verdict",
+    "expansion_permission",
+}
+
+SOURCE_LIFT_GATE_REQUIRED_KEYS = {
+    "raw_launch_receipt_refs",
+    "raw_completion_receipt_refs",
+}
+
+SOURCE_LIFT_STATUS_AXES = {
+    "load_axis",
+    "salience_axis",
+    "counter_probe_axis",
+    "corpus_axis",
+}
+
+SOURCE_LIFT_TERMINAL_STATUSES = {
+    "completed",
+    "blocked",
+    "timed_out",
+    "rerouted",
+    "superseded",
+    "simulated",
+    "deferred",
+}
+
+SOURCE_LIFT_GATE_VERDICTS = {"pass", "harden", "quarantine", "kill"}
+
 REQUIRED_SPAWNED_SPINE_FIELDS = {
     "wiki_harness_boot",
     "mini_mmm_language_body",
@@ -587,7 +633,75 @@ def _resolve_receipt_path(base_dir: Path, raw_path: Any) -> Path | None:
     return path
 
 
-def _receipt_findings(lane: str, receipt_path: Path) -> list[Finding]:
+def _present(value: Any) -> bool:
+    if value is None:
+        return False
+    if isinstance(value, bool):
+        return True
+    if isinstance(value, str):
+        return bool(value.strip())
+    if isinstance(value, (list, tuple, set, dict)):
+        return bool(value)
+    return True
+
+
+def _source_lift_gate_findings(lane: str, receipt: dict[str, Any], *, row_state: str = "") -> list[Finding]:
+    gate = receipt.get("source_and_lift_receipt_gate")
+    if gate is None:
+        return [Finding("missing_source_and_lift_gate", lane)]
+    if not isinstance(gate, dict):
+        return [Finding("invalid_source_and_lift_gate_shape", lane)]
+
+    findings: list[Finding] = []
+    missing = sorted(field for field in SOURCE_LIFT_GATE_REQUIRED_FIELDS if not _present(gate.get(field)))
+    if missing:
+        findings.append(Finding("missing_source_and_lift_gate_fields", f"{lane}: {', '.join(missing)}"))
+    missing_keys = sorted(field for field in SOURCE_LIFT_GATE_REQUIRED_KEYS if field not in gate)
+    if missing_keys:
+        findings.append(Finding("missing_source_and_lift_gate_keys", f"{lane}: {', '.join(missing_keys)}"))
+
+    terminal_status = str(gate.get("terminal_status", "")).strip().lower()
+    if terminal_status and terminal_status not in SOURCE_LIFT_TERMINAL_STATUSES:
+        findings.append(Finding("invalid_source_lift_terminal_status", f"{lane}: {terminal_status}"))
+    if row_state in SPAWNED_STATES and terminal_status != "completed":
+        findings.append(Finding("source_lift_terminal_status_mismatch", f"{lane}: row={row_state} gate={terminal_status or '<empty>'}"))
+
+    gate_verdict = str(gate.get("gate_verdict", "")).strip().lower()
+    if gate_verdict and gate_verdict not in SOURCE_LIFT_GATE_VERDICTS:
+        findings.append(Finding("invalid_source_lift_gate_verdict", f"{lane}: {gate_verdict}"))
+
+    if not isinstance(gate.get("expansion_permission"), bool):
+        findings.append(Finding("invalid_source_lift_expansion_permission", lane))
+
+    salience_status = gate.get("salience_status")
+    if not isinstance(salience_status, dict):
+        findings.append(Finding("invalid_source_lift_salience_status", lane))
+    else:
+        missing_axes = sorted(axis for axis in SOURCE_LIFT_STATUS_AXES if not _present(salience_status.get(axis)))
+        if missing_axes:
+            findings.append(Finding("missing_source_lift_salience_axes", f"{lane}: {', '.join(missing_axes)}"))
+
+    if terminal_status == "completed":
+        if not _present(gate.get("raw_launch_receipt_refs")):
+            findings.append(Finding("source_lift_missing_launch_refs_for_completed", lane))
+        if not _present(gate.get("raw_completion_receipt_refs")):
+            findings.append(Finding("source_lift_missing_completion_refs_for_completed", lane))
+
+    if gate_verdict == "pass" and gate.get("expansion_permission") is True:
+        boundary = str(gate.get("evidence_boundary", "")).lower()
+        if "expand" not in boundary and "expansion" not in boundary:
+            findings.append(Finding("source_lift_expansion_without_boundary", lane))
+
+    return findings
+
+
+def _receipt_findings(
+    lane: str,
+    receipt_path: Path,
+    *,
+    require_source_and_lift_gate: bool = False,
+    row_state: str = "",
+) -> list[Finding]:
     findings: list[Finding] = []
     if not receipt_path.exists():
         return [Finding("missing_receipt_file", f"{lane}: {receipt_path}")]
@@ -605,6 +719,9 @@ def _receipt_findings(lane: str, receipt_path: Path) -> list[Finding]:
     receipt_lane = str(receipt.get("lane", "")).strip()
     if receipt_lane and receipt_lane != lane:
         findings.append(Finding("receipt_lane_mismatch", f"{lane}: receipt says {receipt_lane}"))
+
+    if require_source_and_lift_gate:
+        findings.extend(_source_lift_gate_findings(lane, receipt, row_state=row_state))
 
     return findings
 
@@ -771,6 +888,7 @@ def validate(
     allow_controller_local: bool,
     allow_local_receipt: bool = False,
     require_live_execution: bool = False,
+    require_source_and_lift_gate: bool = False,
 ) -> tuple[bool, dict[str, Any]]:
     records = _load_jsonl(lane_resolution_path)
     findings: list[Finding] = []
@@ -814,7 +932,14 @@ def validate(
             if receipt_path is None:
                 findings.append(Finding("missing_receipt_path", lane))
             else:
-                findings.extend(_receipt_findings(lane, receipt_path))
+                findings.extend(
+                    _receipt_findings(
+                        lane,
+                        receipt_path,
+                        require_source_and_lift_gate=require_source_and_lift_gate,
+                        row_state=state,
+                    )
+                )
             if require_live_execution:
                 findings.extend(_live_execution_findings(lane, record, lane_resolution_path.parent))
 
@@ -841,7 +966,14 @@ def validate(
             if receipt_path is None:
                 findings.append(Finding("missing_receipt_path", lane))
             else:
-                findings.extend(_receipt_findings(lane, receipt_path))
+                findings.extend(
+                    _receipt_findings(
+                        lane,
+                        receipt_path,
+                        require_source_and_lift_gate=require_source_and_lift_gate,
+                        row_state=state,
+                    )
+                )
 
     findings.extend(_all_d_child_findings(by_lane))
 
@@ -878,6 +1010,7 @@ def validate(
         "visible_lanes": sorted(visible),
         "followup_scout_claims": sorted(followup_scout_claims),
         "require_live_execution": require_live_execution,
+        "require_source_and_lift_gate": require_source_and_lift_gate,
         "findings": [finding.to_dict() for finding in findings],
     }
     return not findings, report
@@ -929,6 +1062,7 @@ def main(argv: list[str] | None = None) -> int:
     validate_parser.add_argument("--allow-controller-local", action="store_true")
     validate_parser.add_argument("--allow-local-receipt", action="store_true")
     validate_parser.add_argument("--require-live-execution", action="store_true")
+    validate_parser.add_argument("--require-source-and-lift-gate", action="store_true")
     validate_parser.add_argument("--out", type=Path)
 
     registry_parser = sub.add_parser("write-registry", help="write current Codex runtime registry facts")
@@ -958,6 +1092,7 @@ def main(argv: list[str] | None = None) -> int:
             allow_controller_local=args.allow_controller_local,
             allow_local_receipt=args.allow_local_receipt,
             require_live_execution=args.require_live_execution,
+            require_source_and_lift_gate=args.require_source_and_lift_gate,
         )
         payload = json.dumps(report, indent=2, sort_keys=True) + "\n"
         if args.out:

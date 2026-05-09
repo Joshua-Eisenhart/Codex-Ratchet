@@ -29,8 +29,6 @@ TOOL_INTEGRATION_DEPTH = {
     "xgi": None, "toponetx": None, "gudhi": None,
 }
 
-divergence_log = "Classical baseline: Cl(3) rotor identities checked via 2x2 Pauli matrix representation, not a canonical nonclassical witness."
-
 NAME = "classical_baseline_cl3_rotor_pauli_rep"
 
 I2 = np.eye(2, dtype=complex)

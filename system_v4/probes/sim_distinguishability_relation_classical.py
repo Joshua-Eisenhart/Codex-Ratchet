@@ -13,6 +13,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical numpy baseline over finite probability vectors only; it does not establish "
+    "qubit density-matrix probe refinement, noncommuting probe behavior, POVM/Helstrom bounds, "
+    "QIT engine behavior, bridge/axis claims, or nonclassical emergence."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "probability arithmetic"},
@@ -22,7 +27,7 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 def indistinguishable(px, py, tol=1e-9):
-    return bool(np.allclose(px, py, atol=tol))
+    return bool(np.allclose(px, py, atol=tol, rtol=0.0))
 
 def run_positive_tests():
     a = np.array([0.3, 0.7]); b = np.array([0.3, 0.7]); c = np.array([0.3, 0.7])

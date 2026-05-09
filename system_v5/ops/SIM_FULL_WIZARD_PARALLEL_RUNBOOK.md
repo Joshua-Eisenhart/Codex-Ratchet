@@ -8,6 +8,20 @@ Purpose: prevent sim work from collapsing into a single-route or single-tool con
 
 Every sim/proof/tool-stage turn runs Full Wizard. For sims, Full Wizard means max-useful parallel packet work across independent tool/function surfaces, followed by serial controller synthesis and safe Git/runner handoff.
 
+Sim Full Wizard uses a strict ratchet with wide search. Admission and promotion
+are conservative, but candidate generation is deliberately broad: many
+tool/function rows, lego targets, falsifiers, model variants, and child
+subsubagents may be tried in parallel. Failed candidates are useful when they
+record why they failed, what boundary they exposed, or what demotion condition
+they proved. They support the ratchet without becoming admitted evidence.
+
+Do not collapse this into one-at-a-time micro admission. The exploration surface
+is all available micro-legos, legos, variants, negatives, and alternate tool
+surfaces in mass batches. The controller should delineate each row as
+classical, bridge, or nonclassical and record batch status for every row it can
+see. The ratchet is conservative at the admission and promotion boundary, not
+at the exploration boundary.
+
 ## Topology
 
 Use this shape unless a concrete blocker forces a smaller pass:
@@ -16,7 +30,7 @@ Use this shape unless a concrete blocker forces a smaller pass:
 outer wave 1: preflight + tool/function registry scouts
 outer wave 2: packet authors/auditors + child fanout
 outer wave 3: council/checks + follow-up make/scout/audit
-outer wave 4: controller synthesis + serial Git/queue/result handoff
+outer wave 4: controller synthesis + runner handoff with parallel workers only for independent admitted rows; Git, ledger, admission, and promotion remain serial
 ```
 
 The exact wave count is receipt-boundary count, not a quota. Prefer one broad lateral wave over many serial waits.
@@ -34,13 +48,32 @@ These can run concurrently when they touch separate files or return read-only re
 - voice/council/check routes;
 - Claude/Gemini child reader/audit/scout jobs under Codex parents.
 
+## Parallel runner work
+
+Python runner execution is parallel when queue claims are atomic and rows have
+distinct result paths, fixtures, logs, and ledger loopback surfaces. This is
+the normal shape for mass micro-lego, lego, classical baseline, and
+already-admitted independent coupling work. The runner pool may execute many
+rows at once; each row remains row-local and cannot promote siblings.
+
+Use the parallel queue-claim runner for this shape:
+
+```text
+make parallel-runner MINUTES=<n> LANE_A_PARALLEL=<k> LANE_B_PARALLEL=<k>
+```
+
+Use dry-run first when changing queue shape:
+
+```text
+make parallel-runner-dry MINUTES=1
+```
+
 ## Serial work
 
 These stay single-controller:
 
-- Python runner execution under the runner contract;
-- shared queue file mutation;
-- result JSON classification/ledger updates;
+- shared queue file mutation where no atomic claim surface exists;
+- result JSON classification, ledger updates, controller reconciliation, and promotion;
 - Git index repair, staging, commit, and push;
 - edits to the same file path.
 
@@ -50,9 +83,33 @@ For Full Wizard sim work, spawn Codex parent workers for route families. Parents
 
 If child fanout fails:
 
-1. mark the child lane blocked or timed out;
-2. reroute with a smaller child batch, different model, or shorter prompt;
-3. do not call the run Full Wizard unless the child layer either completed or was explicitly blocked/deferred in the header.
+1. close or release every completed child/parent agent whose receipt has already been collected;
+2. retry the missed child lane as a rolling batch at the observed capacity ceiling;
+3. reroute with a smaller child batch, different model, or shorter prompt;
+4. mark the child lane blocked or timed out only after cleanup plus retry fails;
+5. do not call the run Full Wizard unless the child layer either completed or was explicitly blocked/deferred in the header.
+
+`agent thread limit reached` is a liveness signal, not a terminal child blocker.
+The controller must drain completed agents and retry smaller before accepting
+capacity failure. A parent that returns after a thread-limit message without a
+cleanup/retry ledger has failed its child rerouter obligation.
+
+## Same-Triple Variant Fanout
+
+Variant child/subsubagents may multiply only the same exact tool/function/claim/fixture triple.
+
+Each variant must declare what differs:
+
+- mini-MMM slice;
+- model/runtime;
+- task framing;
+- assigned falsifier;
+- source slice;
+- audit angle.
+
+Variants that differ only by label, prose, or worker count are redundancy, not breadth.
+
+Variant agreement is not proof. A sim/QIT claim remains provisional unless normal executable evidence surfaces agree through runner/result/ledger reconciliation, or the variants produce useful falsifiers, boundary failures, or demotion conditions that improve the next admissible packet.
 
 ## Default tool-stage fanout bank
 

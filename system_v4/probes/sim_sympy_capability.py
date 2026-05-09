@@ -190,6 +190,17 @@ if __name__ == "__main__":
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
         "classification": "canonical",
+        "claim_ceiling": "tool_micro_sympy_capability_only",
+        "out_of_scope": [
+            "no lego admission",
+            "no tool-tool coupling claim",
+            "no bridge, axis, engine, or scientific coupling claim",
+        ],
+        "demotion_condition": "Demote to blocked tool capability if sympy is unavailable, any symbolic check fails, or strict receipt lint fails.",
+        "promotion_condition": "May only support later sympy tool-lego or tool-tool packets after those packets provide their own admitted receipts.",
+        "next_lego_target": "Use as a prerequisite receipt for bounded sympy symbolic micro packets.",
+        "blocked_until": "No broader claim until a downstream packet cites this receipt and passes its own stage gate.",
+        "prior_function_receipts": [],
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

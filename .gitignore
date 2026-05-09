@@ -54,6 +54,8 @@ archive/
 system_v3/
 
 # Large graph data files (tracked by DVC, not git)
+system_v4/a2_state/graphs/*.json
+system_v4/a2_state/graphs/*.graphml
 system_v4/a2_state/graphs/system_graph_a2_refinery.json
 system_v4/a2_state/graphs/identity_registry_v1.json
 system_v4/a2_state/graphs/identity_registry_overlap_suggestions_v1.json
@@ -68,6 +70,9 @@ system_v4/a2_state/graphs/system_graph_v3_ingest_pass1.json
 system_v4/a2_state/graphs/*.graphml
 system_v4/a2_state/graphs/*.html
 system_v4/a2_state/refinery_batch_index.json
+
+# Generated v4 sim result data (regenerable, not source)
+system_v4/probes/a2_state/sim_results/*.json
 
 # Regenerable runtime state (rebuilt on each run)
 system_v4/runtime_state/
@@ -89,6 +94,10 @@ codex-ratchet-architecture.html
 MMM_WIZARD_CLEAN_SYSTEM_PACKET_v3_3/
 MMM_WIZARD_CLEAN_SYSTEM_PACKET_v3_4/
 MMM_WIZARD_CLEAN_SYSTEM_PACKET_*_DOWNLOADABLE.zip.sha256
+
+# Generated premortem reports/transcripts from standalone runs
+premortem-report-*.html
+premortem-transcript-*.md
 
 # Live overnight worker spillover (tracked canonical artifacts still show normally)
 overnight_logs/

@@ -27,8 +27,13 @@ import sys
 import time
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+SCRIPT_DIR = Path(__file__).resolve().parent
+ROOT = SCRIPT_DIR.parent
 QUEUE_ROOT = ROOT / "system_v4" / "probes" / "a2_state" / "queue"
+STAGE_GATE_SCRIPT = ROOT / "scripts" / "stage_gate.py"
+WIZARD_ADMISSION_SCRIPT = SCRIPT_DIR / "wizard_sim_admission.py"
+STRICT_WIZARD_QUEUE_ADMISSION = os.environ.get("STRICT_WIZARD_QUEUE_ADMISSION", "1") == "1"
+CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION = True
 
 LANES = ("lane_A", "lane_B")
 PRIORITY_RANK = {"high": 0, "normal": 1, "low": 2}
@@ -79,6 +84,24 @@ LATE_INFO_KEYWORDS = (
     "landauer",
     "thermo",
 )
+BRIDGE_RUNNER_TOKENS = (
+    "bridge",
+    "coupling",
+    "pairwise",
+    "coexistence",
+    "engine",
+    "qit",
+    "mega",
+    "mega_sim",
+    "nonclassical",
+    "tool_serving_lego",
+    "xi",
+    "rho_ab",
+    "phi0",
+    "cut",
+    "kernel",
+    "emergence",
+)
 
 
 def _ensure_dirs() -> None:
@@ -97,8 +120,49 @@ def _result_json_path(sim_path: str | Path) -> Path:
     return ROOT / "system_v4" / "probes" / "a2_state" / "sim_results" / f"{stem}_results.json"
 
 
-def enqueue(lane: str, sim_path: str) -> Path:
+def _wizard_admission_report(sim_path: str, admission_file: str | None = None) -> dict[str, object]:
+    stem = Path(sim_path).stem
+    proc = subprocess.run(
+        [
+            sys.executable,
+            str(WIZARD_ADMISSION_SCRIPT),
+            "--basename",
+            stem,
+            "--sim-path",
+            str(sim_path),
+            "--repo-root",
+            str(ROOT),
+            *(["--admission-file", admission_file] if admission_file else []),
+        ],
+        cwd=str(ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        timeout=10,
+        check=False,
+    )
+    try:
+        report = json.loads(proc.stdout or "{}")
+    except json.JSONDecodeError:
+        report = {"ok": False, "reason": "invalid_admission_report", "stderr": proc.stderr[-1000:]}
+    report["returncode"] = proc.returncode
+    return report
+
+
+def _wizard_admission_allows_sim(sim_path: str, admission_file: str | None = None) -> bool:
+    return bool(_wizard_admission_report(sim_path, admission_file).get("ok"))
+
+
+def enqueue(lane: str, sim_path: str, admission_file: str | None = None) -> Path:
     _ensure_dirs()
+    claim = _stage_gate_claim_for_sim(sim_path)
+    if claim and not _stage_gate_allows_claim(claim):
+        return _write_blocked_payload(lane, sim_path, "stage_gate_blocked", claim)
+    if (STRICT_WIZARD_QUEUE_ADMISSION or admission_file) and not _wizard_admission_allows_sim(
+        sim_path,
+        admission_file,
+    ):
+        return _write_blocked_payload(lane, sim_path, "wizard_admission_blocked", claim)
     ld = _lane_dir(lane)
     payload = {
         "sim_path": str(sim_path),
@@ -106,11 +170,31 @@ def enqueue(lane: str, sim_path: str) -> Path:
         "lane": lane,
         "enqueued_at": time.time(),
     }
+    if admission_file:
+        payload["wizard_admission_file"] = str(admission_file)
     h = hashlib.sha1(f"{lane}:{sim_path}".encode()).hexdigest()[:16]
     target = ld / f"{h}.json"
     tmp = ld / f".{h}.json.tmp"
     tmp.write_text(json.dumps(payload, sort_keys=True))
     os.rename(tmp, target)  # atomic publish
+    return target
+
+
+def _write_blocked_payload(lane: str, sim_path: str, reason: str, claim: str | None = None) -> Path:
+    _ensure_dirs()
+    payload = {
+        "blocked_at": time.time(),
+        "blocked_reason": reason,
+        "blocked_stage_claim": claim,
+        "sim_path": str(sim_path),
+        "result_json_path": str(_result_json_path(sim_path)),
+        "lane": lane,
+        "plan_bucket": _plan_bucket_from_sim_path(sim_path),
+        "plan_stage": _plan_stage_from_sim_path(sim_path),
+    }
+    h = hashlib.sha1(f"{lane}:{sim_path}:{reason}:{claim}".encode()).hexdigest()[:16]
+    target = QUEUE_ROOT / "blocked" / f"{h}.json"
+    target.write_text(json.dumps(payload, sort_keys=True))
     return target
 
 
@@ -149,6 +233,39 @@ def _plan_stage_from_sim_path(sim_path: str) -> str:
     if any(token in stem for token in LATE_INFO_KEYWORDS):
         return "late_info"
     return "early_core"
+
+
+def _stage_gate_claim_for_sim(sim_path: str | Path) -> str | None:
+    stem = Path(sim_path).stem.lower()
+    if stem.startswith("sim_"):
+        stem = stem[4:]
+    family = _sim_family(str(sim_path))
+    if "tier_d" in stem or "boundary_flux" in stem or (
+        "boundary" in stem and "admissibility" in stem
+    ):
+        return "tier_d"
+    if family in {"axis", "axis0"}:
+        return "axis"
+    if any(token in stem for token in BRIDGE_RUNNER_TOKENS):
+        return "scientific_coupling"
+    if any(token in stem for token in LATE_INFO_KEYWORDS):
+        return "default_late_stage"
+    return None
+
+
+def _stage_gate_allows_claim(claim: str) -> bool:
+    try:
+        proc = subprocess.run(
+            [sys.executable, str(STAGE_GATE_SCRIPT), "--claim", claim],
+            cwd=str(ROOT),
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            text=True,
+            timeout=10,
+        )
+    except Exception:
+        return False
+    return proc.returncode == 0
 
 
 def _effective_priority(priority: str | None, bucket: str) -> str:
@@ -195,8 +312,12 @@ def claim(lane: str, worker_id: str) -> Path | None:
     claimed_dir = QUEUE_ROOT / "claimed"
     pid = os.getpid()
     host = socket.gethostname().split(".")[0]
+    blocked_barrier_order: tuple[int, int] | None = None
     # Snapshot then race; os.rename on same fs is atomic and fails if src missing
     for item in sorted(ld.glob("*.json"), key=_claim_order):
+        item_order = _claim_order(item)
+        if blocked_barrier_order and item_order[:2] > blocked_barrier_order:
+            return None
         target = claimed_dir / f"{item.name}.{pid}.{host}.{worker_id}"
         try:
             os.rename(item, target)
@@ -210,6 +331,23 @@ def claim(lane: str, worker_id: str) -> Path | None:
         data["claimed_host"] = host
         data["claimed_at"] = time.time()
         target.write_text(json.dumps(data, sort_keys=True))
+        claim = _stage_gate_claim_for_sim(str(data.get("sim_path", "")))
+        if claim and not _stage_gate_allows_claim(claim):
+            data["blocked_reason"] = "stage_gate_blocked"
+            data["blocked_stage_claim"] = claim
+            data["blocked_at"] = time.time()
+            _write_terminal(target, data, "blocked")
+            blocked_barrier_order = item_order[:2]
+            continue
+        if CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION and not _wizard_admission_allows_sim(
+            str(data.get("sim_path", "")),
+            data.get("wizard_admission_file"),
+        ):
+            data["blocked_reason"] = "wizard_admission_blocked"
+            data["blocked_at"] = time.time()
+            _write_terminal(target, data, "blocked")
+            blocked_barrier_order = item_order[:2]
+            continue
         return target
     return None
 
@@ -347,7 +485,7 @@ if __name__ == "__main__":
     elif cmd == "enqueue":
         lane = flags.get("lane") or rest[0]
         sim = flags.get("sim") or rest[1]
-        print(enqueue(lane, sim))
+        print(enqueue(lane, sim, flags.get("admission-file")))
     elif cmd == "claim":
         if "queue" in flags:
             lane = _lane_from_queue(flags["queue"])

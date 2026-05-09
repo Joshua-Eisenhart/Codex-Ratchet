@@ -160,6 +160,8 @@ def _receipt_for(
         "output_sha256": hashlib.sha256(output_text.encode("utf-8")).hexdigest(),
         "output_excerpt": output_text[:1000],
     }
+    if "source_and_lift_receipt_gate" in record:
+        receipt["source_and_lift_receipt_gate"] = record["source_and_lift_receipt_gate"]
     for key in (
         "batch_id",
         "batch_index",

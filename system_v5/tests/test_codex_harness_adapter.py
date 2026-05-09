@@ -96,6 +96,47 @@ def receipt(lane: str) -> dict:
     }
 
 
+def source_lift_gate(
+    *,
+    terminal_status: str = "simulated",
+    raw_launch_receipt_refs: list[str] | None = None,
+    raw_completion_receipt_refs: list[str] | None = None,
+    gate_verdict: str = "harden",
+    expansion_permission: bool = False,
+    evidence_boundary: str = "proves fixture shape only, not broader behavior",
+) -> dict:
+    return {
+        "gate_id": "source_lift_fixture_gate",
+        "route_id": "direct_fixture_route",
+        "source_bundle_ref": ["fixture-record"],
+        "source_slice_used": ["direct lane behavior record"],
+        "loaded_salience_surfaces": ["fixture mini-MMM body"],
+        "raw_launch_receipt_refs": raw_launch_receipt_refs if raw_launch_receipt_refs is not None else [],
+        "raw_completion_receipt_refs": (
+            raw_completion_receipt_refs if raw_completion_receipt_refs is not None else []
+        ),
+        "claim_tested": "strict source-and-lift gate validates a bounded fixture claim",
+        "claim_scope": "local adapter fixture only",
+        "execution_evidence": ["generated receipt JSON"],
+        "terminal_status": terminal_status,
+        "not_run_or_simulated_accounting": "no live route completion credit",
+        "evidence_boundary": evidence_boundary,
+        "lift_probe": "fixture keeps execution evidence separate from salience terms",
+        "counter_probe_seed": "strip labels; separation should remain",
+        "label_strip_result": "partial_survival",
+        "counter_probe_result": "partial_survival",
+        "strongest_omitted_falsifier": "gate fields could become decorative metadata",
+        "salience_status": {
+            "load_axis": "loaded",
+            "salience_axis": "lift",
+            "counter_probe_axis": "partial_survival",
+            "corpus_axis": "named_current",
+        },
+        "gate_verdict": gate_verdict,
+        "expansion_permission": expansion_permission,
+    }
+
+
 def spawned_row(lane: str, mini_path: Path, receipt_path: str) -> dict:
     return {
         "lane": lane,
@@ -277,7 +318,7 @@ def test_wizard_chat_contract_accepts_plain_text_followup_prework(tmp_path: Path
         "   🪄 Follow-up: \"Compare expected behavior against output.\"\n"
         "   Pre-run status/score: scouted, not executed as current work; 96/100.\n"
         "   Audit: passes only if there is a falsifier.\n"
-        "C9. Full Wizard pass\n"
+        "C9. Max Assembly pass\n"
         "   🪄 Follow-up: \"Integrate the useful composition work.\"\n"
         "   Pre-run status/score: scouted, not executed as current work; 92/100.\n"
         "   Audit: passes only if body and follow-up stay separate.\n\n"
@@ -311,7 +352,7 @@ def test_wizard_chat_contract_rejects_body_compositions(tmp_path: Path):
         "   🪄 Follow-up: \"Rewrite as chat.\"\n"
         "   Pre-run status/score: scouted, not executed as current work; 91/100.\n"
         "   Audit: passes only if evidence is preserved.\n"
-        "C9. Full Wizard pass\n"
+        "C9. Max Assembly pass\n"
         "   🪄 Follow-up: \"Integrate useful compositions.\"\n"
         "   Pre-run status/score: scouted, not executed as current work; 92/100.\n"
         "   Audit: passes only if boundaries hold.\n",
@@ -343,7 +384,7 @@ def test_wizard_chat_contract_rejects_body_c5_without_compositions_heading(tmp_p
         "   🪄 Follow-up: Rewrite as chat.\n"
         "   Pre-run status/score: scouted, not executed as current work; 91/100.\n"
         "   Audit: passes only if evidence is preserved.\n"
-        "C9. Full Wizard pass\n"
+        "C9. Max Assembly pass\n"
         "   🪄 Follow-up: Integrate useful compositions.\n"
         "   Pre-run status/score: scouted, not executed as current work; 92/100.\n"
         "   Audit: passes only if boundaries hold.\n",
@@ -377,7 +418,7 @@ def test_wizard_chat_contract_rejects_missing_fields_per_followup_option(tmp_pat
         "   🪄 Follow-up: Rewrite as chat.\n"
         "   Pre-run status/score: scouted, not executed as current work; 91/100.\n"
         "   Audit: passes only if evidence is preserved.\n"
-        "C9. Full Wizard pass\n"
+        "C9. Max Assembly pass\n"
         "   🪄 Follow-up: Integrate useful compositions.\n"
         "   Pre-run status/score: scouted, not executed as current work; 92/100.\n"
         "   Audit: passes only if boundaries hold.\n",
@@ -703,6 +744,116 @@ def test_receipt_json_must_be_valid_object_with_matching_lane(tmp_path: Path):
     )
     assert not ok
     assert "receipt_lane_mismatch" in finding_codes(report)
+
+
+def test_source_lift_gate_accepts_simulated_gate_with_empty_raw_refs(tmp_path: Path):
+    mini = tmp_path / "direct.md"
+    mini_mmm(mini)
+    receipts_dir = tmp_path / "receipts"
+    receipts_dir.mkdir()
+    receipt_payload = receipt("Direct")
+    receipt_payload["source_and_lift_receipt_gate"] = source_lift_gate(terminal_status="simulated")
+    write_json(receipts_dir / "direct.json", receipt_payload)
+    row = spawned_row("Direct", mini, "direct.json")
+    row["status"] = "local_receipt"
+    row["state"] = "local_receipt"
+    row["worker_id"] = None
+    row["runtime_registry"] = "not spawned; behavior harness normalization only"
+    lane_resolution = tmp_path / "lanes.jsonl"
+    write_jsonl(lane_resolution, [row])
+
+    mod = load_module()
+    ok, report = mod.validate(
+        lane_resolution_path=lane_resolution,
+        receipts_dir=receipts_dir,
+        final_answer_path=None,
+        allow_controller_local=False,
+        allow_local_receipt=True,
+        require_source_and_lift_gate=True,
+    )
+
+    assert ok, report["findings"]
+
+
+def test_source_lift_gate_rejects_completed_gate_without_raw_refs(tmp_path: Path):
+    mini = tmp_path / "direct.md"
+    mini_mmm(mini)
+    receipts_dir = tmp_path / "receipts"
+    receipts_dir.mkdir()
+    receipt_payload = receipt("Direct")
+    receipt_payload["source_and_lift_receipt_gate"] = source_lift_gate(terminal_status="completed")
+    write_json(receipts_dir / "direct.json", receipt_payload)
+    row = spawned_row("Direct", mini, "direct.json")
+    lane_resolution = tmp_path / "lanes.jsonl"
+    write_jsonl(lane_resolution, [row])
+
+    mod = load_module()
+    ok, report = mod.validate(
+        lane_resolution_path=lane_resolution,
+        receipts_dir=receipts_dir,
+        final_answer_path=None,
+        allow_controller_local=False,
+        require_source_and_lift_gate=True,
+    )
+
+    assert not ok
+    codes = finding_codes(report)
+    assert "source_lift_missing_launch_refs_for_completed" in codes
+    assert "source_lift_missing_completion_refs_for_completed" in codes
+
+
+def test_source_lift_gate_rejects_spawned_row_with_simulated_gate(tmp_path: Path):
+    mini = tmp_path / "direct.md"
+    mini_mmm(mini)
+    receipts_dir = tmp_path / "receipts"
+    receipts_dir.mkdir()
+    receipt_payload = receipt("Direct")
+    receipt_payload["source_and_lift_receipt_gate"] = source_lift_gate(terminal_status="simulated")
+    write_json(receipts_dir / "direct.json", receipt_payload)
+    row = spawned_row("Direct", mini, "direct.json")
+    lane_resolution = tmp_path / "lanes.jsonl"
+    write_jsonl(lane_resolution, [row])
+
+    mod = load_module()
+    ok, report = mod.validate(
+        lane_resolution_path=lane_resolution,
+        receipts_dir=receipts_dir,
+        final_answer_path=None,
+        allow_controller_local=False,
+        require_source_and_lift_gate=True,
+    )
+
+    assert not ok
+    assert "source_lift_terminal_status_mismatch" in finding_codes(report)
+
+
+def test_source_lift_gate_rejects_expansion_permission_without_boundary(tmp_path: Path):
+    mini = tmp_path / "direct.md"
+    mini_mmm(mini)
+    receipts_dir = tmp_path / "receipts"
+    receipts_dir.mkdir()
+    receipt_payload = receipt("Direct")
+    receipt_payload["source_and_lift_receipt_gate"] = source_lift_gate(
+        gate_verdict="pass",
+        expansion_permission=True,
+        evidence_boundary="proves only this narrow fixture claim",
+    )
+    write_json(receipts_dir / "direct.json", receipt_payload)
+    row = spawned_row("Direct", mini, "direct.json")
+    lane_resolution = tmp_path / "lanes.jsonl"
+    write_jsonl(lane_resolution, [row])
+
+    mod = load_module()
+    ok, report = mod.validate(
+        lane_resolution_path=lane_resolution,
+        receipts_dir=receipts_dir,
+        final_answer_path=None,
+        allow_controller_local=False,
+        require_source_and_lift_gate=True,
+    )
+
+    assert not ok
+    assert "source_lift_expansion_without_boundary" in finding_codes(report)
 
 
 def test_spawned_row_requires_lane_local_mini_mmm(tmp_path: Path):

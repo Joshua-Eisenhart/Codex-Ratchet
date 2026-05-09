@@ -427,6 +427,21 @@ if __name__ == "__main__":
         "divergence_log": "Classical baseline: scipy, Clifford, SymPy, and z3 numerically/symbolically cross-check a bounded SU(2)->SO(3) double-cover entropy-gap invariant; this does not promote nonclassical, bridge, axis, or coupling claims.",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "demotion_condition": (
+            "demote if any bounded scipy, Clifford, SymPy, or z3 classical-baseline entropy-gap row fails"
+        ),
+        "out_of_scope": [
+            "no nonclassical promotion",
+            "no bridge promotion",
+            "no axis promotion",
+            "no engine promotion",
+            "no scientific coupling promotion",
+        ],
+        "claim_ceiling": "classical_baseline_su2_so3_double_cover_entropy_gap_only",
+        "next_lego_target": "use only as a classical reference unless a later admitted nonclassical packet binds it",
+        "promotion_condition": "requires a separate admitted nonclassical or bridge packet; this row remains baseline-only",
+        "blocked_until": "accepted wizard sim admission exists for this exact classical-baseline result hash",
+        "prior_function_receipts": [],
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

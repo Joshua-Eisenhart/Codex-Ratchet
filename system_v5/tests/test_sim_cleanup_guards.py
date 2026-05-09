@@ -1,10 +1,14 @@
 from __future__ import annotations
 
+import argparse
 import importlib.util
+import hashlib
 import json
 import os
+import subprocess
 import sys
 import time
+from datetime import datetime
 from pathlib import Path
 
 import pytest
@@ -901,7 +905,7 @@ def test_adaptive_controller_rescues_gate_ready_blocked_canonical(
     blocked.mkdir(parents=True)
     lane_a.mkdir(parents=True)
 
-    sim = probes / "sim_clifford_holo_dirac_pairwise_coupling.py"
+    sim = probes / "sim_clifford_holo_dirac_topology_variants.py"
     sim.write_text('classification = "canonical"\n', encoding="utf-8")
     blocked_item = blocked / "gate.json.123.host.w1"
     blocked_item.write_text(
@@ -5381,6 +5385,67 @@ def test_parallel_runner_has_helper_and_admission_preflight() -> None:
     assert "STRICT_WIZARD_QUEUE_ADMISSION" in text
 
 
+def test_helper_process_audit_blocks_enabled_playwright_mcp_config(tmp_path) -> None:
+    module = _load_module(
+        "helper_process_audit_playwright_config_under_test",
+        REPO_ROOT / "scripts" / "helper_process_audit.py",
+    )
+    config = tmp_path / "config.toml"
+    config.write_text(
+        '[mcp_servers.playwright]\ncommand = "npx"\nargs = ["@playwright/mcp@latest"]\n',
+        encoding="utf-8",
+    )
+
+    report = module.audit_mcp_config(config)
+
+    assert report["findings"] == [
+        {
+            "kind": "playwright_mcp_server_enabled",
+            "server": "playwright",
+            "config_path": str(config),
+            "suggested_stop": "codex mcp remove playwright",
+        }
+    ]
+
+
+def test_helper_process_audit_allows_removed_playwright_mcp_config(tmp_path) -> None:
+    module = _load_module(
+        "helper_process_audit_no_playwright_config_under_test",
+        REPO_ROOT / "scripts" / "helper_process_audit.py",
+    )
+    config = tmp_path / "config.toml"
+    config.write_text(
+        '[mcp_servers.omx_state]\ncommand = "node"\nargs = ["state-server.js"]\n',
+        encoding="utf-8",
+    )
+
+    report = module.audit_mcp_config(config)
+
+    assert report["findings"] == []
+    assert report["parse_error"] is None
+
+
+def test_qit_admission_rehearsal_rejects_non_tmp_out_dir(tmp_path) -> None:
+    module = _load_module(
+        "qit_admission_rehearsal_out_dir_guard_under_test",
+        REPO_ROOT / "scripts" / "qit_admission_rehearsal.py",
+    )
+
+    with pytest.raises(ValueError, match="out_dir_not_under_tmp_codex_ratchet_prefix"):
+        module.disposable_out_dir(tmp_path / "not_disposable")
+
+
+def test_qit_admission_rehearsal_allows_tmp_codex_ratchet_out_dir() -> None:
+    module = _load_module(
+        "qit_admission_rehearsal_safe_out_dir_under_test",
+        REPO_ROOT / "scripts" / "qit_admission_rehearsal.py",
+    )
+
+    out_dir = module.disposable_out_dir(Path("/tmp/codex_ratchet_safe_rehearsal/nested"))
+
+    assert str(out_dir).startswith(str(Path("/tmp").resolve() / "codex_ratchet_safe_rehearsal"))
+
+
 def test_makefile_exposes_parallel_runner_targets() -> None:
     text = (REPO_ROOT / "Makefile").read_text(encoding="utf-8")
     assert "parallel-runner-dry:" in text
@@ -5443,7 +5508,9 @@ def test_runner_preflight_runs_queue_stage_gate_audit() -> None:
 def test_wizard_autoresearch_loop_preserves_sim_boundaries() -> None:
     text = (REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py").read_text(encoding="utf-8")
     assert "accepted QIT/engine evidence only from controller-read canonical artifacts" in text
-    assert "parallel_runner_launch_not_authorized" in text
+    assert "runner_deferred_receipt" in text
+    assert "\"authorization_status\": \"not_requested\"" in text
+    assert "\"outcome_status\": \"not_executed\"" in text
     assert "authorized_deferred" in text
     assert "runner_taxonomy_disagreements_need_packet_or_taxonomy_reconcile" in text
     assert "opus_audit" in text
@@ -5461,6 +5528,1208 @@ def test_wizard_autoresearch_loop_writes_real_qit_evidence_index() -> None:
     assert module.EVIDENCE_INDEX == REPO_ROOT / "system_v5" / "evidence" / "qit_engine_evidence_index.json"
     assert "scripts/qit_engine_evidence_index.py" in text
     assert "qit_index_write.out" in text
+
+
+def test_wizard_autoresearch_make_target_routes_out_dir_qit_index_to_tmp() -> None:
+    text = (REPO_ROOT / "Makefile").read_text(encoding="utf-8")
+
+    assert "$(if $(OUT_DIR),--out-dir $(OUT_DIR),)" in text
+    assert "$(if $(OUT_DIR),--evidence-index-out $(OUT_DIR)/qit_engine_evidence_index.json,)" in text
+
+
+def test_wizard_autoresearch_dry_target_is_disposable_preflight_only() -> None:
+    text = (REPO_ROOT / "Makefile").read_text(encoding="utf-8")
+    dry_block = text.split("wizard-autoresearch-loop-dry:", 1)[1].split("\n\n", 1)[0]
+
+    assert "OUT_DIR=$(or $(OUT_DIR),/tmp/codex_ratchet_wizard_autoresearch_dry)" in dry_block
+    assert "SKIP_WIZARD_MATRIX=1" in dry_block
+    assert "RUN_RUNNER=1" in dry_block
+    assert "LANE_A_PARALLEL=$(or $(LANE_A_PARALLEL),2)" in dry_block
+    assert "LANE_B_PARALLEL=$(or $(LANE_B_PARALLEL),4)" in dry_block
+
+
+def test_qit_admission_rehearsal_make_target_is_tmp_only() -> None:
+    text = (REPO_ROOT / "Makefile").read_text(encoding="utf-8")
+    block = text.split("qit-admission-rehearsal:", 1)[1].split("\n\n", 1)[0]
+
+    assert "scripts/qit_admission_rehearsal.py" in block
+    assert "--basename $(BASENAME)" in block
+    assert "--result $(RESULT)" in block
+    assert "$(if $(FUNCTION_SURFACE),--function-surface $(FUNCTION_SURFACE),)" in block
+    assert "$(if $(OUT_DIR),--out-dir $(OUT_DIR),)" in block
+    assert "system_v4/probes/a2_state/sim_results" not in block
+
+
+def test_qit_admission_rehearsal_script_accepts_temp_canonical_shape(tmp_path) -> None:
+    result = tmp_path / "sim_qit_probe_results.json"
+    result.write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_probe",
+                "classification": "canonical",
+                "all_pass": True,
+                "all_passed": True,
+                "TOOL_MANIFEST": {"pytorch": {"tried": True, "used": True, "reason": "fixture"}},
+                "TOOL_INTEGRATION_DEPTH": {"pytorch": "load_bearing"},
+                "tool_manifest": {"pytorch": {"tried": True, "used": True, "reason": "fixture"}},
+                "tool_integration_depth": {"pytorch": "load_bearing"},
+                "positive": {"passed": True, "function_surface": "pytorch.linalg.eigvalsh"},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no bridge promotion", "no axis promotion", "no engine promotion"],
+                "claim_ceiling": "qit_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    source = tmp_path / "sim_qit_probe.py"
+    source.write_text("# fixture\n", encoding="utf-8")
+    out_dir = Path("/tmp") / f"codex_ratchet_pytest_rehearsal_{tmp_path.name}_canonical"
+
+    proc = subprocess.run(
+        [
+            sys.executable,
+            str(REPO_ROOT / "scripts" / "qit_admission_rehearsal.py"),
+            "--basename",
+            "sim_qit_probe",
+            "--result",
+            str(result),
+            "--sim-path",
+            str(source),
+            "--function-surface",
+            "pytorch.linalg.eigvalsh",
+            "--out-dir",
+            str(out_dir),
+        ],
+        cwd=REPO_ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        check=False,
+        timeout=60,
+    )
+
+    assert proc.returncode == 0, proc.stdout[-4000:]
+    report = json.loads(proc.stdout)
+    assert report["ok"] is True
+    assert report["accepted"] == 1
+    assert report["admitted_micro_entries"] == 1
+    assert report["operational_status"] == "has_accepted_qit_entry"
+    assert report["receipt_validation"]["returncode"] == 0
+    assert report["admission_validation"]["returncode"] == 0
+    assert report["index_run"]["returncode"] == 0
+    admission = json.loads(Path(report["admission"]).read_text(encoding="utf-8"))
+    assert admission["packet_contract"]["tool_target"] == "pytorch"
+    assert admission["packet_contract"]["function_surface"] == "pytorch.linalg.eigvalsh"
+    assert admission["packet_contract"]["promotion_boundary"] == "no promotion beyond tool_micro without a later admitted packet"
+
+
+def test_qit_admission_rehearsal_derives_nested_positive_function_surface(tmp_path) -> None:
+    result = tmp_path / "sim_qit_probe_results.json"
+    result.write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_probe",
+                "classification": "canonical",
+                "all_pass": True,
+                "all_passed": True,
+                "tool_manifest": {"pytorch": {"tried": True, "used": True, "reason": "fixture"}},
+                "tool_integration_depth": {"pytorch": "load_bearing"},
+                "positive": {"P_entropy": {"passed": True, "function_surface": "torch.linalg.eigvalsh"}},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no bridge promotion", "no axis promotion", "no engine promotion"],
+                "claim_ceiling": "qit_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    source = tmp_path / "sim_qit_probe.py"
+    source.write_text("# fixture\n", encoding="utf-8")
+    out_dir = Path("/tmp") / f"codex_ratchet_pytest_rehearsal_{tmp_path.name}_nested"
+
+    proc = subprocess.run(
+        [
+            sys.executable,
+            str(REPO_ROOT / "scripts" / "qit_admission_rehearsal.py"),
+            "--basename",
+            "sim_qit_probe",
+            "--result",
+            str(result),
+            "--sim-path",
+            str(source),
+            "--out-dir",
+            str(out_dir),
+        ],
+        cwd=REPO_ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        check=False,
+        timeout=60,
+    )
+
+    assert proc.returncode == 0, proc.stdout[-4000:]
+    report = json.loads(proc.stdout)
+    admission = json.loads(Path(report["admission"]).read_text(encoding="utf-8"))
+    assert admission["packet_contract"]["function_surface"] == "torch.linalg.eigvalsh"
+    assert report["accepted"] == 1
+
+
+def test_wizard_autoresearch_dry_loop_writes_numbered_iteration_receipts(tmp_path) -> None:
+    out_dir = tmp_path / "dry_loop"
+    evidence_index = out_dir / "qit_engine_evidence_index.json"
+
+    proc = subprocess.run(
+        [
+            sys.executable,
+            str(REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py"),
+            "--iterations",
+            "2",
+            "--run-tag",
+            "pytest-multi-iteration",
+            "--out-dir",
+            str(out_dir),
+            "--evidence-index-out",
+            str(evidence_index),
+            "--run-runner",
+            "--runner-minutes",
+            "1",
+            "--lane-a-parallel",
+            "2",
+            "--lane-b-parallel",
+            "4",
+            "--skip-wizard-matrix",
+        ],
+        cwd=REPO_ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        check=False,
+        timeout=60,
+    )
+
+    assert proc.returncode == 0, proc.stdout[-4000:]
+    manifest = json.loads((out_dir / "run_manifest.json").read_text(encoding="utf-8"))
+    assert manifest["schema"] == "wizard_autoresearch_run_manifest"
+    assert manifest["schema_version"] == 1
+    assert manifest["run_status"] == "complete"
+    datetime.fromisoformat(manifest["run_started_at"])
+    datetime.fromisoformat(manifest["manifest_updated_at"])
+    assert manifest["iterations_requested"] == 2
+    assert manifest["iterations_completed"] == 2
+    assert manifest["evidence_index"] == str(evidence_index)
+    assert manifest["run_mode"] == {
+        "matrix_enabled": False,
+        "gemini_requested": False,
+        "haiku_requested": False,
+        "runner_requested": True,
+    }
+    assert manifest["run_config"] == {
+        "runner_minutes": 1,
+        "lane_a_parallel": 2,
+        "lane_b_parallel": 4,
+        "opus_audit_requested": False,
+        "external_council_receipts": "",
+        "evidence_index_out": str(evidence_index),
+    }
+    assert "--iterations" in manifest["argv"]
+    assert "--skip-wizard-matrix" in manifest["argv"]
+    expected_argv_hash = hashlib.sha256(
+        json.dumps(manifest["argv"], separators=(",", ":"), ensure_ascii=True).encode("utf-8")
+    ).hexdigest()
+    assert manifest["argv_sha256"] == expected_argv_hash
+    assert manifest["artifact_status"]["status"] == "complete"
+    assert manifest["artifact_status"]["checked_paths"] == 12
+    assert manifest["artifact_status"]["missing_paths"] == 0
+    expected_next_required_step = manifest["admission_summary"]["next_required_step"]
+    assert expected_next_required_step in {
+        "rerun_repaired_source_under_canonical_micro_result_surface",
+        "create_or_repair_wizard_sim_admission",
+        "run_parallel_admitted_workers",
+        "repair_decision_or_runner_blockers",
+    }
+    expected_next_action_by_step = {
+        "rerun_repaired_source_under_canonical_micro_result_surface": "rerun_repaired_source_under_canonical_micro_result_surface",
+        "create_or_repair_wizard_sim_admission": "create_or_repair_wizard_sim_admission",
+        "run_parallel_admitted_workers": "runner_launch_allowed",
+        "repair_decision_or_runner_blockers": "repair_runner_launch_blockers",
+    }
+    expected_next_action = expected_next_action_by_step[expected_next_required_step]
+    assert manifest["overall_readiness"]["next_required_step"] == expected_next_required_step
+    assert manifest["overall_readiness"]["components"]["artifact_status"] == "complete"
+    assert manifest["overall_readiness"]["components"]["claim_boundary_status"] == "no_claims_promoted"
+    assert manifest["final_blockers"] in ([], ["accepted_qit_engine_evidence_zero"])
+    accepted_qit_entries = manifest["admission_summary"]["accepted_qit_entries"]
+    assert manifest["run_classification"] in {"blocked", "complete_no_blockers", "runner_launch_allowed"}
+    assert manifest["next_action"] == expected_next_action
+    assert manifest["controller_consistency"] == {
+        "next_action_matches_admission": True,
+        "next_action": expected_next_action,
+        "admission_next_required_step": expected_next_required_step,
+        "expected_next_action": (
+            None if expected_next_required_step == "repair_decision_or_runner_blockers" else expected_next_action
+        ),
+    }
+    assert manifest["runner_summary"]["requested"] is True
+    assert manifest["runner_summary"]["launch_allowed"] is manifest["admission_summary"]["runner_launch_allowed"]
+    if manifest["runner_summary"]["launch_allowed"]:
+        assert manifest["runner_summary"]["status"] == "allowed"
+        assert manifest["runner_summary"]["next_required_step"] == "run_parallel_admitted_workers"
+        assert manifest["runner_summary"]["launch_blockers"] == []
+    elif accepted_qit_entries:
+        assert manifest["runner_summary"]["status"] == "authorized_deferred"
+        assert manifest["runner_summary"]["next_required_step"] == "repair_runner_launch_blockers"
+    else:
+        assert manifest["runner_summary"]["status"] == "authorized_deferred"
+        assert manifest["runner_summary"]["next_required_step"] == "admit_or_repair_micro_qit_evidence"
+        assert "accepted_qit_engine_evidence_zero" in manifest["runner_summary"]["launch_blockers"]
+    assert manifest["admission_summary"]["status"] in {
+        "blocked_no_accepted_qit_entries",
+        "blocked",
+        "runner_launch_allowed",
+    }
+    assert manifest["admission_summary"]["next_required_step"] == expected_next_required_step
+    assert manifest["admission_summary"]["active_stage"] == "lego"
+    assert manifest["admission_summary"]["stage_gate_all_pass"] is True
+    assert "tool_micro" in manifest["admission_summary"]["allowed_claims"]
+    assert "bridge" in manifest["admission_summary"]["blocked_claims"]
+    assert manifest["admission_summary"]["qit_operational_status"] in {
+        "blocked_no_accepted_qit_entries",
+        "has_accepted_qit_entry",
+    }
+    assert accepted_qit_entries >= 0
+    assert manifest["admission_summary"]["out_of_scope_qit_signal_result_count"] >= 1
+    assert manifest["admission_summary"]["out_of_scope_qit_scan_status"] == "out_of_scope_qit_like_results_present"
+    triage_counts = manifest["admission_summary"]["out_of_scope_qit_triage_bucket_counts"]
+    if accepted_qit_entries:
+        assert triage_counts["already_admitted_duplicate_reference"] >= 1
+        assert manifest["admission_summary"]["out_of_scope_qit_provisional_target_count"] == 0
+    else:
+        assert triage_counts["source_bound_repaired_source_rerun_candidate"] >= 1
+        assert manifest["admission_summary"]["out_of_scope_qit_provisional_target_count"] >= 1
+        assert manifest["admission_summary"]["out_of_scope_qit_first_provisional_target"]["next_action"] == (
+            "rerun_repaired_source_under_canonical_micro_result_surface"
+        )
+    if expected_next_required_step == "create_or_repair_wizard_sim_admission":
+        assert manifest["admission_summary"]["next_acceptance_target_count"] >= 1
+        assert manifest["admission_summary"]["first_next_acceptance_target"]["next_action"] == (
+            "create_or_repair_wizard_sim_admission"
+        )
+    if accepted_qit_entries:
+        assert manifest["admission_summary"]["canonical_micro_rerun_command"] is None
+        assert manifest["admission_summary"]["tmp_admission_rehearsal_command"] is None
+    else:
+        assert manifest["admission_summary"]["canonical_micro_rerun_command"] == [
+            "env",
+            "SIM_RESULTS_DIR=system_v4/probes/a2_state/sim_results",
+            "NUMBA_CACHE_DIR=/tmp/codex-numba",
+            "MPLCONFIGDIR=/tmp/codex-mpl",
+            "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+            "system_v4/probes/sim_weyl_holo_symplectic_topology_variants.py",
+        ]
+        assert manifest["admission_summary"]["tmp_admission_rehearsal_command"] == [
+            "make",
+            "qit-admission-rehearsal",
+            "BASENAME=sim_weyl_holo_symplectic_topology_variants",
+            "RESULT=system_v4/probes/a2_state/sim_results/sim_weyl_holo_symplectic_topology_variants_results.json",
+            "SIM_PATH=system_v4/probes/sim_weyl_holo_symplectic_topology_variants.py",
+            "OUT_DIR=/tmp/codex_ratchet_qit_admission_rehearsal_sim_weyl_holo_symplectic_topology_variants",
+        ]
+    assert manifest["admission_summary"]["runner_launch_blockers"] == manifest["runner_summary"]["launch_blockers"]
+    if accepted_qit_entries:
+        assert "accepted_qit_engine_evidence_zero" not in manifest["admission_summary"]["runner_launch_blockers"]
+        assert manifest["admission_summary"]["decision_blockers"] == []
+    else:
+        assert "accepted_qit_engine_evidence_zero" in manifest["admission_summary"]["runner_launch_blockers"]
+        assert manifest["admission_summary"]["decision_blockers"] == ["accepted_qit_engine_evidence_zero"]
+    assert manifest["claim_boundary_summary"]["claim_boundary_status"] == "no_claims_promoted"
+    assert manifest["claim_boundary_summary"]["promoted_claims"] == []
+    assert manifest["claim_boundary_summary"]["promoted_count"] == 0
+    assert "tool_micro" in manifest["claim_boundary_summary"]["allowed_claims"]
+    assert manifest["claim_boundary_summary"]["late_stage_claims_blocked"] == [
+        "bridge",
+        "axis",
+        "engine",
+        "scientific_coupling",
+        "tier_d",
+    ]
+    assert manifest["matrix_summary"]["latest_route_count"] == 0
+    assert manifest["matrix_summary"]["status"] == "not_attempted"
+    assert manifest["matrix_summary"]["latest_all_accepted"] is None
+    assert manifest["matrix_summary"]["latest_routes"] == {}
+    assert manifest["matrix_summary"]["completed_count"] == 2
+    assert manifest["matrix_summary"]["attempted_count"] == 0
+    assert manifest["matrix_summary"]["skipped_count"] == 2
+    assert manifest["matrix_summary"]["failed_iterations"] == []
+    assert manifest["preflight_summary"]["status"] == ("passed" if all(item["preflight_all_pass"] for item in manifest["iterations"]) else "failed")
+    assert manifest["preflight_summary"]["completed_count"] == 2
+    assert manifest["preflight_summary"]["latest_all_pass"] == manifest["iterations"][-1]["preflight_all_pass"]
+    assert manifest["preflight_summary"]["all_completed_pass"] == all(item["preflight_all_pass"] for item in manifest["iterations"])
+    assert manifest["preflight_summary"]["failed_iterations"] == [
+        item["iteration"] for item in manifest["iterations"] if not item["preflight_all_pass"]
+    ]
+    assert manifest["latest_iteration_summary"]["iteration"] == 2
+    assert manifest["latest_iteration_summary"]["blockers"] in ([], ["accepted_qit_engine_evidence_zero"])
+    assert manifest["latest_iteration_summary"]["preflight_all_pass"] == manifest["iterations"][-1]["preflight_all_pass"]
+    assert isinstance(manifest["latest_iteration_summary"]["goal_exit_eligible"], bool)
+    assert isinstance(manifest["latest_iteration_summary"]["runner_launch_allowed"], bool)
+    assert manifest["latest_iteration_summary"]["stage_gate_summary"]["active_stage"] == "lego"
+    assert manifest["latest_iteration_summary"]["qit_evidence_summary"]["summary"]["accepted"] >= 0
+    assert manifest["latest_stage_gate_summary"]["active_stage"] == "lego"
+    assert manifest["latest_qit_evidence_summary"]["summary"]["accepted"] >= 0
+    assert manifest["latest_helper_process_summary"] == manifest["latest_iteration_summary"]["helper_process_summary"]
+    for iteration in (1, 2):
+        goal_loop = json.loads((out_dir / f"ralph_goal_loop_{iteration:02d}.json").read_text(encoding="utf-8"))
+        council = json.loads((out_dir / f"wizard_council_receipt_{iteration:02d}.json").read_text(encoding="utf-8"))
+        preflight = json.loads((out_dir / f"preflight_receipts_{iteration:02d}.json").read_text(encoding="utf-8"))
+        manifest_item = manifest["iterations"][iteration - 1]
+
+        assert manifest_item["iteration"] == iteration
+        datetime.fromisoformat(manifest_item["completed_at"])
+        assert manifest_item["preflight_receipt"] == str(out_dir / f"preflight_receipts_{iteration:02d}.json")
+        assert manifest_item["council_receipt"] == str(out_dir / f"wizard_council_receipt_{iteration:02d}.json")
+        assert manifest_item["goal_loop_receipt"] == str(out_dir / f"ralph_goal_loop_{iteration:02d}.json")
+        assert manifest_item["premortem"] == str(out_dir / f"premortem_{iteration:02d}.json")
+        assert manifest_item["qit_index_stdout"] == str(out_dir / f"qit_index_write_{iteration:02d}.out")
+        assert manifest_item["qit_evidence_summary"]["operational_status"] in {
+            "blocked_no_accepted_qit_entries",
+            "has_accepted_qit_entry",
+        }
+        assert manifest_item["qit_evidence_summary"]["status"] in {
+            "blocked_no_accepted_qit_entries",
+            "has_accepted_qit_entry",
+        }
+        assert manifest_item["qit_evidence_summary"]["status_reason"] in {
+            "no_qit_signal_results_indexed",
+            "qit_entries_blocked",
+            "accepted_qit_entries_present",
+        }
+        assert manifest_item["qit_evidence_summary"]["scanned_result_count"] >= 1
+        assert manifest_item["qit_evidence_summary"]["qit_signal_result_count"] >= 0
+        assert "qit" in manifest_item["qit_evidence_summary"]["qit_signal_filter"]["tokens"]
+        assert "claim_ceiling" in manifest_item["qit_evidence_summary"]["qit_signal_filter"]["fields"]
+        assert len(manifest_item["qit_evidence_summary"]["scan_sample"]["scanned_result_files"]) >= 1
+        assert isinstance(manifest_item["qit_evidence_summary"]["scan_sample"]["qit_signal_result_files"], list)
+        assert manifest_item["qit_evidence_summary"]["out_of_scope_qit_result_scan"]["status"] in {
+            "out_of_scope_qit_like_results_present",
+            "no_out_of_scope_qit_like_results",
+        }
+        if manifest_item["qit_evidence_summary"]["qit_signal_result_count"] == 0:
+            assert manifest_item["qit_evidence_summary"]["out_of_scope_qit_result_scan"]["external_qit_signal_count"] >= 1
+        else:
+            assert manifest_item["qit_evidence_summary"]["out_of_scope_qit_result_scan"]["external_qit_signal_count"] >= 0
+        assert manifest_item["qit_evidence_summary"]["out_of_scope_qit_result_scan"]["admission_boundary"] == "diagnostic_only_not_accepted_evidence"
+        if manifest_item["qit_evidence_summary"]["qit_signal_result_count"] == 0:
+            assert manifest_item["qit_evidence_summary"]["out_of_scope_qit_triage_summary"]["bucket_counts"][
+                "source_bound_repaired_source_rerun_candidate"
+            ] >= 1
+        else:
+            assert manifest_item["qit_evidence_summary"]["next_acceptance_target_count"] >= 0
+        assert manifest_item["qit_evidence_summary"]["summary"]["accepted"] >= 0
+        assert manifest_item["qit_evidence_summary"]["parse_error"] is False
+        assert manifest_item["stage_gate_stdout"] == str(out_dir / f"stage_gate_{iteration:02d}.out")
+        assert manifest_item["stage_gate_summary"]["active_stage"] == "lego"
+        assert manifest_item["stage_gate_summary"]["status"] == "passed"
+        assert "tool_micro" in manifest_item["stage_gate_summary"]["allowed_claims"]
+        assert "bridge" in manifest_item["stage_gate_summary"]["blocked_claims"]
+        assert "axis" in manifest_item["stage_gate_summary"]["blocked_claims"]
+        assert "engine" in manifest_item["stage_gate_summary"]["blocked_claims"]
+        assert "tier_d" in manifest_item["stage_gate_summary"]["blocked_claims"]
+        assert manifest_item["blockers"] in ([], ["accepted_qit_engine_evidence_zero"])
+        assert isinstance(manifest_item["goal_exit_eligible"], bool)
+        assert isinstance(manifest_item["runner_launch_allowed"], bool)
+        assert manifest_item["matrix_route_count"] == 0
+        assert manifest_item["matrix_route_summaries"] == {}
+        assert manifest_item["matrix_all_accepted"] is None
+        assert isinstance(preflight["all_pass"], bool)
+        assert preflight["qit_evidence_index"] == str(evidence_index)
+        assert preflight["premortem_path"] == str(out_dir / f"premortem_{iteration:02d}.json")
+        assert preflight["qit_index_stdout_path"] == str(out_dir / f"qit_index_write_{iteration:02d}.out")
+        assert preflight["qit_evidence_summary"]["operational_status"] in {
+            "blocked_no_accepted_qit_entries",
+            "has_accepted_qit_entry",
+        }
+        assert preflight["qit_evidence_summary"]["status"] in {
+            "blocked_no_accepted_qit_entries",
+            "has_accepted_qit_entry",
+        }
+        assert preflight["qit_evidence_summary"]["status_reason"] in {
+            "no_qit_signal_results_indexed",
+            "qit_entries_blocked",
+            "accepted_qit_entries_present",
+        }
+        assert preflight["qit_evidence_summary"]["scanned_result_count"] >= 1
+        assert preflight["qit_evidence_summary"]["qit_signal_result_count"] >= 0
+        assert "qit" in preflight["qit_evidence_summary"]["qit_signal_filter"]["tokens"]
+        assert "claim_ceiling" in preflight["qit_evidence_summary"]["qit_signal_filter"]["fields"]
+        assert len(preflight["qit_evidence_summary"]["scan_sample"]["scanned_result_files"]) >= 1
+
+        assert isinstance(preflight["qit_evidence_summary"]["scan_sample"]["qit_signal_result_files"], list)
+        assert preflight["qit_evidence_summary"]["out_of_scope_qit_result_scan"]["status"] in {
+            "out_of_scope_qit_like_results_present",
+            "no_out_of_scope_qit_like_results",
+        }
+        if preflight["qit_evidence_summary"]["qit_signal_result_count"] == 0:
+            assert preflight["qit_evidence_summary"]["out_of_scope_qit_result_scan"]["external_qit_signal_count"] >= 1
+        else:
+            assert preflight["qit_evidence_summary"]["out_of_scope_qit_result_scan"]["external_qit_signal_count"] >= 0
+        if preflight["qit_evidence_summary"]["qit_signal_result_count"] == 0:
+            assert preflight["qit_evidence_summary"]["out_of_scope_qit_triage_summary"]["provisional_rerun_target_count"] >= 1
+        else:
+            assert preflight["qit_evidence_summary"]["next_acceptance_target_count"] >= 0
+        assert preflight["qit_evidence_summary"]["summary"]["accepted"] >= 0
+        assert preflight["stage_gate_stdout_path"] == str(out_dir / f"stage_gate_{iteration:02d}.out")
+        assert preflight["qit_index_write"]["returncode"] == 0
+        assert preflight["stage_gate"]["returncode"] == 0
+        assert preflight["stage_gate_summary"]["active_stage"] == "lego"
+        assert preflight["stage_gate_summary"]["status"] == "passed"
+        assert preflight["stage_gate_summary"]["parse_error"] is False
+        assert preflight["helper_process_summary"]["returncode"] == preflight["helper_process_audit"]["returncode"]
+        if preflight["helper_process_audit"]["returncode"] == 0:
+            assert preflight["helper_process_summary"]["parse_error"] is False
+            assert preflight["helper_process_summary"]["status"] == "passed"
+            assert preflight["helper_process_summary"]["helper_process_count"] == 0
+            assert preflight["helper_process_summary"]["guard"] == "non_browser_sim_preflight"
+            assert manifest_item["helper_process_summary"]["helper_process_count"] == 0
+        else:
+            assert preflight["helper_process_summary"]["parse_error"] is True
+            assert preflight["helper_process_summary"]["status"] == "parse_error"
+        assert preflight["helper_process_audit"]["command"][-1] == "--strict"
+        assert Path(preflight["premortem_path"]).exists()
+        assert Path(preflight["qit_index_stdout_path"]).exists()
+        assert Path(preflight["stage_gate_stdout_path"]).exists()
+        assert goal_loop["completion_audit"]["preflight_receipt"] == str(out_dir / f"preflight_receipts_{iteration:02d}.json")
+        assert isinstance(goal_loop["goal_exit_eligible"], bool)
+        assert goal_loop["completion_audit"]["qit_evidence_index"] == str(evidence_index)
+        assert goal_loop["completion_audit"]["blockers"] in ([], ["accepted_qit_engine_evidence_zero"])
+        assert council["run_mode"] == {
+            "matrix_enabled": False,
+            "gemini_enabled": False,
+            "haiku_enabled": False,
+            "matrix_route_count": 0,
+            "matrix_all_accepted": False,
+        }
+        assert council["parent_receipts"]["failure"]["status"] == "skipped"
+        assert council["parent_receipts"]["follow_up"]["status"] == "deferred"
+
+
+def test_wizard_autoresearch_manifest_prefers_admission_target_over_stale_rerun_triage() -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_admission_target_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    decision = {
+        "blockers": ["accepted_qit_engine_evidence_zero"],
+        "runner_launch_blockers": ["accepted_qit_engine_evidence_zero"],
+        "runner_launch_allowed": False,
+    }
+    iteration = {
+        "stage_gate_summary": {
+            "all_pass": True,
+            "active_stage": "lego",
+            "allowed_claims": ["tool_micro"],
+            "blocked_claims": ["bridge", "axis", "engine", "scientific_coupling", "tier_d"],
+        },
+        "qit_evidence_summary": {
+            "operational_status": "blocked_no_accepted_qit_entries",
+            "summary": {
+                "accepted": 0,
+                "missing_or_invalid_admission": 1,
+                "qit_signal_result_count": 1,
+            },
+            "next_acceptance_targets": [
+                {
+                    "basename": "sim_weyl_holo_symplectic_topology_variants",
+                    "next_action": "create_or_repair_wizard_sim_admission",
+                    "result_path": "system_v4/probes/a2_state/sim_results/sim_weyl_holo_symplectic_topology_variants_results.json",
+                    "sim_path": "system_v4/probes/sim_weyl_holo_symplectic_topology_variants.py",
+                }
+            ],
+            "first_next_acceptance_target": {
+                "basename": "sim_weyl_holo_symplectic_topology_variants",
+                "next_action": "create_or_repair_wizard_sim_admission",
+            },
+            "out_of_scope_qit_result_scan": {
+                "status": "out_of_scope_qit_like_results_present",
+                "external_qit_signal_count": 39,
+            },
+            "out_of_scope_qit_triage_summary": {
+                "bucket_counts": {"source_bound_repaired_source_rerun_candidate": 1},
+                "provisional_rerun_target_count": 1,
+                "first_provisional_target": {
+                    "name": "sim_weyl_holo_symplectic_topology_variants",
+                    "next_action": "rerun_repaired_source_under_canonical_micro_result_surface",
+                    "source_path": "system_v4/probes/sim_weyl_holo_symplectic_topology_variants.py",
+                },
+            },
+        },
+    }
+
+    assert module.manifest_next_action(decision, [iteration]) == "create_or_repair_wizard_sim_admission"
+    admission = module.manifest_admission_summary(decision, iteration)
+    assert admission["next_required_step"] == "create_or_repair_wizard_sim_admission"
+    assert admission["next_acceptance_target_count"] == 1
+    consistency = module.manifest_controller_consistency("create_or_repair_wizard_sim_admission", admission)
+    assert consistency["next_action_matches_admission"] is True
+
+
+def test_wizard_autoresearch_accepted_evidence_without_runner_request_is_ready_not_failed() -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_no_runner_ready_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    decision = module.decide_next(
+        {"summary": {"runner_taxonomy_disagreement_count": 0}},
+        {"accepted": 1, "admitted_micro_entries": 1, "next_acceptance_targets": []},
+        [{"returncode": 0}, {"returncode": 0}, {"returncode": 0}],
+        run_runner=False,
+        parallel_runner_authorized=False,
+        opus={"status": "skipped"},
+        matrix_receipts={},
+    )
+    assert decision == {
+        "action": "draft_or_repair_packets_parallel",
+        "blockers": [],
+        "runner_launch_allowed": False,
+        "runner_launch_blockers": [],
+        "runner_status": "not_requested",
+    }
+
+    iteration = {
+        "stage_gate_summary": {
+            "all_pass": True,
+            "active_stage": "lego",
+            "allowed_claims": ["tool_micro"],
+            "blocked_claims": ["bridge", "axis", "engine", "scientific_coupling", "tier_d"],
+        },
+        "qit_evidence_summary": {
+            "operational_status": "has_accepted_qit_entry",
+            "summary": {"accepted": 1, "admitted_micro_entries": 1},
+            "next_acceptance_targets": [],
+            "out_of_scope_qit_result_scan": {"external_qit_signal_count": 0},
+            "out_of_scope_qit_triage_summary": {"bucket_counts": {}, "provisional_rerun_target_count": 0},
+        },
+    }
+    admission = module.manifest_admission_summary(decision, iteration)
+    assert admission["status"] == "ready_for_next_micro_step"
+    assert admission["next_required_step"] == "continue_next_micro_step"
+    consistency = module.manifest_controller_consistency("continue_next_iteration", admission)
+    assert consistency["next_action_matches_admission"] is True
+    runner = module.manifest_runner_summary(False, decision)
+    assert runner["next_required_step"] == "request_runner_when_admissible"
+
+
+def test_wizard_autoresearch_no_runner_does_not_emit_runner_launch_blockers() -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_no_runner_blocker_truth_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    decision = module.decide_next(
+        {"summary": {"runner_taxonomy_disagreement_count": 0}},
+        {"accepted": 0},
+        [{"returncode": 1}],
+        run_runner=False,
+        parallel_runner_authorized=False,
+        opus={"status": "blocked", "returncode": 1},
+        matrix_receipts={"manager.route_truth": {"status": "failed"}},
+    )
+
+    assert decision["runner_status"] == "not_requested"
+    assert decision["runner_launch_allowed"] is False
+    assert decision["runner_launch_blockers"] == []
+    assert "accepted_qit_engine_evidence_zero" in decision["blockers"]
+    assert "opus_audit_failed" in decision["blockers"]
+    assert "wizard_matrix_failed:manager.route_truth" in decision["blockers"]
+    runner = module.manifest_runner_summary(False, decision)
+    assert runner["launch_blockers"] == []
+    assert runner["next_required_step"] == "request_runner_when_admissible"
+
+
+def _run_wizard_autoresearch_receipt_fixture(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    *,
+    run_runner: bool,
+    runner_allowed: bool,
+    runner_returncode: int = 0,
+) -> tuple[dict[str, object], dict[str, object], dict[str, object]]:
+    module = _load_module(
+        f"wizard_autoresearch_receipt_fixture_{run_runner}_{runner_allowed}",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    out_dir = tmp_path / ("runner_requested" if run_runner else "no_runner")
+    evidence_index = out_dir / "qit_engine_evidence_index.json"
+    qit_summary = {
+        "operational_status": "has_accepted_qit_entry",
+        "status": "has_accepted_qit_entry",
+        "status_reason": "accepted_qit_entries_present",
+        "summary": {
+            "accepted": 1,
+            "admitted_micro_entries": 1,
+            "scanned_result_count": 1,
+            "qit_signal_result_count": 1,
+        },
+        "next_acceptance_targets": [],
+        "first_next_acceptance_target": None,
+        "out_of_scope_qit_result_scan": {
+            "status": "no_out_of_scope_qit_like_results",
+            "external_qit_signal_count": 0,
+        },
+        "out_of_scope_qit_triage_summary": {
+            "bucket_counts": {},
+            "provisional_rerun_target_count": 0,
+            "first_provisional_target": None,
+        },
+        "qit_signal_filter": {"tokens": ["qit"], "fields": ["claim_ceiling"]},
+    }
+    stage_summary = {
+        "all_pass": True,
+        "active_stage": "lego",
+        "allowed_claims": ["tool_micro", "tool_lego_fit", "tool_integration_micro", "lego"],
+        "blocked_claims": ["bridge", "axis", "engine", "scientific_coupling", "tier_d"],
+    }
+
+    def fake_run(command: list[str], *, cwd: Path = module.REPO_ROOT) -> dict[str, object]:
+        text = " ".join(command)
+        if "qit_engine_evidence_index.py" in text:
+            evidence_index.parent.mkdir(parents=True, exist_ok=True)
+            evidence_index.write_text(json.dumps(qit_summary), encoding="utf-8")
+            return {"command": command, "returncode": 0, "stdout": json.dumps(qit_summary)}
+        if "stage_gate.py" in text:
+            return {"command": command, "returncode": 0, "stdout": json.dumps(stage_summary)}
+        if command[:2] == ["make", "parallel-runner-dry"]:
+            return {"command": command, "returncode": runner_returncode, "stdout": "dry runner ok", "status": "allowed"}
+        return {"command": command, "returncode": 0, "stdout": "{}"}
+
+    def fake_decide_next(*args, **kwargs):
+        run_requested = bool(kwargs["run_runner"])
+        allowed = bool(run_requested and runner_allowed)
+        runner_status = "allowed" if allowed else ("authorized_deferred" if run_requested else "not_requested")
+        return {
+            "action": "run_parallel_admitted_workers" if allowed else "draft_or_repair_packets_parallel",
+            "blockers": [] if allowed or not run_requested else ["fixture_runner_deferred"],
+            "runner_launch_allowed": allowed,
+            "runner_launch_blockers": [] if allowed or not run_requested else ["fixture_runner_deferred"],
+            "runner_status": runner_status,
+        }
+
+    argv = [
+        "wizard_autoresearch_sim_loop.py",
+        "--iterations",
+        "1",
+        "--run-tag",
+        "pytest-runner-receipt",
+        "--out-dir",
+        str(out_dir),
+        "--evidence-index-out",
+        str(evidence_index),
+        "--skip-wizard-matrix",
+    ]
+    if run_runner:
+        argv.append("--run-runner")
+
+    monkeypatch.setattr(module, "run", fake_run)
+    monkeypatch.setattr(module, "qit_evidence_summary", lambda path: qit_summary)
+    monkeypatch.setattr(module, "evidence_counts", lambda path=None: qit_summary["summary"] | {"next_acceptance_targets": []})
+    monkeypatch.setattr(module, "stage_gate_summary", lambda result: stage_summary)
+    monkeypatch.setattr(module, "decide_next", fake_decide_next)
+    monkeypatch.setattr(sys, "argv", argv)
+
+    assert module.main() == 0
+    council = json.loads((out_dir / "wizard_council_receipt_01.json").read_text(encoding="utf-8"))
+    manifest = json.loads((out_dir / "run_manifest.json").read_text(encoding="utf-8"))
+    decision = council["parent_receipts"]["decision"]["decision"]
+    return council, manifest, decision
+
+
+def test_wizard_autoresearch_no_runner_main_loop_receipt_is_not_requested(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _council, manifest, decision = _run_wizard_autoresearch_receipt_fixture(
+        tmp_path,
+        monkeypatch,
+        run_runner=False,
+        runner_allowed=False,
+    )
+
+    assert decision["runner_status"] == "not_requested"
+    assert decision["runner"] == {
+        "authorization_status": "not_requested",
+        "outcome_status": "not_executed",
+        "execution_mode": "none",
+        "dry_run": False,
+        "authorized_deferred": False,
+        "launch_blockers": [],
+    }
+    assert manifest["runner_summary"]["requested"] is False
+    assert manifest["runner_summary"]["status"] == "not_requested"
+
+
+def test_wizard_autoresearch_runner_requested_main_loop_receipt_stays_consistent(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _council, manifest, decision = _run_wizard_autoresearch_receipt_fixture(
+        tmp_path,
+        monkeypatch,
+        run_runner=True,
+        runner_allowed=False,
+    )
+
+    assert decision["runner_status"] == "authorized_deferred"
+    assert decision["runner"]["authorization_status"] == "authorized_deferred"
+    assert decision["runner"]["outcome_status"] == "not_executed"
+    assert decision["runner"]["execution_mode"] == "none"
+    assert decision["runner"]["dry_run"] is False
+    assert decision["runner"]["authorized_deferred"] is True
+    assert decision["runner"]["launch_blockers"] == ["fixture_runner_deferred"]
+    assert manifest["runner_summary"]["requested"] is True
+    assert manifest["runner_summary"]["status"] == "authorized_deferred"
+
+
+def test_wizard_autoresearch_runner_allowed_main_loop_receipt_marks_runner_allowed(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _council, manifest, decision = _run_wizard_autoresearch_receipt_fixture(
+        tmp_path,
+        monkeypatch,
+        run_runner=True,
+        runner_allowed=True,
+    )
+
+    assert decision["runner_status"] == "allowed"
+    assert decision["runner_launch_allowed"] is True
+    assert decision["runner"]["authorization_status"] == "permitted"
+    assert decision["runner"]["outcome_status"] == "dry_run_completed"
+    assert decision["runner"]["execution_mode"] == "dry_run"
+    assert decision["runner"]["dry_run"] is True
+    assert decision["runner"]["returncode"] == 0
+    assert manifest["runner_summary"]["requested"] is True
+    assert manifest["runner_summary"]["status"] == "allowed"
+
+
+def test_wizard_autoresearch_runner_allowed_main_loop_marks_failed_dry_runner(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _council, manifest, decision = _run_wizard_autoresearch_receipt_fixture(
+        tmp_path,
+        monkeypatch,
+        run_runner=True,
+        runner_allowed=True,
+        runner_returncode=2,
+    )
+
+    assert decision["runner_status"] == "allowed"
+    assert decision["runner_launch_allowed"] is True
+    assert decision["runner"]["authorization_status"] == "permitted"
+    assert decision["runner"]["execution_mode"] == "dry_run"
+    assert decision["runner"]["dry_run"] is True
+    assert decision["runner"]["outcome_status"] == "dry_run_failed"
+    assert decision["runner"]["returncode"] == 2
+    assert manifest["runner_summary"]["status"] == "allowed"
+
+
+def test_wizard_autoresearch_runner_receipt_state_machine_is_enumerated() -> None:
+    valid_shapes = [
+        {
+            "authorization_status": "not_requested",
+            "execution_mode": "none",
+            "dry_run": False,
+            "outcome_status": "not_executed",
+        },
+        {
+            "authorization_status": "authorized_deferred",
+            "execution_mode": "none",
+            "dry_run": False,
+            "outcome_status": "not_executed",
+        },
+        {
+            "authorization_status": "permitted",
+            "execution_mode": "dry_run",
+            "dry_run": True,
+            "outcome_status": "dry_run_completed",
+        },
+        {
+            "authorization_status": "permitted",
+            "execution_mode": "dry_run",
+            "dry_run": True,
+            "outcome_status": "dry_run_failed",
+        },
+    ]
+
+    for runner in valid_shapes:
+        if runner["execution_mode"] == "none":
+            assert runner["dry_run"] is False
+            assert runner["outcome_status"] == "not_executed"
+            assert runner["authorization_status"] in {"not_requested", "authorized_deferred"}
+        elif runner["execution_mode"] == "dry_run":
+            assert runner["dry_run"] is True
+            assert runner["authorization_status"] == "permitted"
+            assert runner["outcome_status"] in {"dry_run_completed", "dry_run_failed"}
+        else:
+            raise AssertionError(f"unexpected execution mode: {runner['execution_mode']}")
+
+
+def test_wizard_autoresearch_matrix_receipt_without_status_is_invalid_schema(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_matrix_status_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    monkeypatch.setattr(module, "run", lambda command: {"command": command, "returncode": 0, "stdout": ""})
+    monkeypatch.setattr(
+        module,
+        "latest_matrix_receipt",
+        lambda route_out: {"receipt_path": str(tmp_path / "matrix_receipt.json"), "counts": {}, "model_family_statuses": {}},
+    )
+
+    receipt = module.run_wizard_matrix(
+        route="manager.route_truth",
+        only_children="manager.lineage_audit",
+        prompt="audit",
+        out_dir=tmp_path,
+        attempt_gemini=False,
+        include_haiku=False,
+    )
+
+    assert receipt["status"] == "invalid_schema"
+
+
+def test_wizard_autoresearch_run_manifest_can_checkpoint_in_progress(tmp_path) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_manifest_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    evidence_index = tmp_path / "qit_engine_evidence_index.json"
+
+    path = module.write_run_manifest(
+        tmp_path,
+        run_tag="pytest-checkpoint",
+        run_started_at="2026-05-08T00:00:00+00:00",
+        iterations_requested=3,
+        evidence_index=evidence_index,
+        matrix_enabled=False,
+        gemini_requested=False,
+        haiku_requested=False,
+        runner_requested=True,
+        run_config={"runner_minutes": 1, "lane_a_parallel": 2, "lane_b_parallel": 4},
+        argv=["wizard_autoresearch_sim_loop.py", "--iterations", "3"],
+        latest_decision={"blockers": ["accepted_qit_engine_evidence_zero"], "runner_launch_allowed": False},
+        iteration_manifest=[
+            {
+                "iteration": 1,
+                "preflight_receipt": str(tmp_path / "preflight_receipts_01.json"),
+                "runner_launch_allowed": False,
+                "blockers": ["accepted_qit_engine_evidence_zero"],
+            }
+        ],
+        run_status="in_progress",
+    )
+    manifest = json.loads(path.read_text(encoding="utf-8"))
+
+    assert manifest["schema_version"] == 1
+    assert manifest["run_status"] == "in_progress"
+    assert not (tmp_path / "run_manifest.json.tmp").exists()
+    assert manifest["run_started_at"] == "2026-05-08T00:00:00+00:00"
+    datetime.fromisoformat(manifest["manifest_updated_at"])
+    assert manifest["iterations_requested"] == 3
+    assert manifest["iterations_completed"] == 1
+    assert manifest["artifact_status"]["status"] == "missing_artifacts"
+    assert manifest["artifact_status"]["missing_paths"] == 1
+    assert manifest["artifact_status"]["missing"][0]["field"] == "preflight_receipt"
+    assert manifest["overall_readiness"] == {
+        "status": "blocked",
+        "blockers": ["missing_artifacts", "accepted_qit_engine_evidence_zero"],
+        "next_required_step": "admit_or_repair_micro_qit_evidence",
+        "runner_launch_allowed": False,
+        "components": {
+            "artifact_status": "missing_artifacts",
+            "admission_status": "blocked_no_accepted_qit_entries",
+            "controller_consistent": True,
+            "claim_boundary_status": "no_claims_promoted",
+        },
+    }
+    assert manifest["run_config"]["lane_b_parallel"] == 4
+    assert manifest["argv"] == ["wizard_autoresearch_sim_loop.py", "--iterations", "3"]
+    assert len(manifest["argv_sha256"]) == 64
+    assert manifest["final_blockers"] == ["accepted_qit_engine_evidence_zero"]
+    assert manifest["run_mode"]["runner_requested"] is True
+    assert manifest["iterations"][0]["iteration"] == 1
+    assert manifest["controller_consistency"] == {
+        "next_action_matches_admission": True,
+        "next_action": "repair_or_admit_micro_qit_evidence_before_runner_launch",
+        "admission_next_required_step": "admit_or_repair_micro_qit_evidence",
+        "expected_next_action": "repair_or_admit_micro_qit_evidence_before_runner_launch",
+    }
+    assert manifest["admission_summary"] == {
+        "status": "blocked_no_accepted_qit_entries",
+        "next_required_step": "admit_or_repair_micro_qit_evidence",
+        "active_stage": None,
+        "stage_gate_all_pass": None,
+        "allowed_claims": [],
+        "blocked_claims": [],
+        "qit_operational_status": None,
+        "accepted_qit_entries": None,
+        "out_of_scope_qit_signal_result_count": 0,
+        "out_of_scope_qit_scan_status": None,
+        "out_of_scope_qit_triage_bucket_counts": {},
+        "out_of_scope_qit_provisional_target_count": 0,
+        "out_of_scope_qit_first_provisional_target": None,
+        "next_acceptance_target_count": 0,
+        "first_next_acceptance_target": None,
+        "canonical_micro_rerun_command": None,
+        "tmp_admission_rehearsal_command": None,
+        "runner_launch_allowed": False,
+        "runner_launch_blockers": [],
+        "decision_blockers": ["accepted_qit_engine_evidence_zero"],
+    }
+    assert manifest["claim_boundary_summary"] == {
+        "promoted_claims": [],
+        "promoted_count": 0,
+        "allowed_claims": [],
+        "blocked_claims": [],
+        "late_stage_claims_blocked": [],
+        "claim_boundary_status": "no_claims_promoted",
+    }
+    assert manifest["matrix_summary"] == {
+        "status": "not_attempted",
+        "latest_route_count": 0,
+        "latest_all_accepted": None,
+        "latest_routes": {},
+        "completed_count": 1,
+        "attempted_count": 0,
+        "skipped_count": 1,
+        "failed_iterations": [],
+    }
+
+
+def test_wizard_autoresearch_run_manifest_summarizes_enabled_matrix_routes(tmp_path) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_enabled_matrix_manifest_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    route_summary = {
+        "failure.premortem": {
+            "status": "accepted",
+            "counts": {"accepted_children": 2},
+            "model_family_statuses": {"sonnet": "completed", "opus": "completed"},
+            "receipt_path": "/tmp/failure/matrix_receipt.json",
+        },
+        "manager.route_truth": {
+            "status": "failed",
+            "counts": {"accepted_children": 0},
+            "model_family_statuses": {"sonnet": "blocked", "opus": "failed"},
+            "receipt_path": "/tmp/manager/matrix_receipt.json",
+        },
+    }
+
+    path = module.write_run_manifest(
+        tmp_path,
+        run_tag="pytest-matrix",
+        run_started_at="2026-05-08T00:00:00+00:00",
+        iterations_requested=2,
+        evidence_index=tmp_path / "qit_engine_evidence_index.json",
+        matrix_enabled=True,
+        gemini_requested=False,
+        haiku_requested=False,
+        runner_requested=False,
+        run_config={},
+        argv=["wizard_autoresearch_sim_loop.py"],
+        latest_decision={"blockers": ["wizard_matrix_failed:manager.route_truth"], "runner_launch_allowed": False},
+        iteration_manifest=[
+            {
+                "iteration": 1,
+                "matrix_route_summaries": {"failure.premortem": {"status": "accepted"}},
+                "matrix_all_accepted": True,
+            },
+            {
+                "iteration": 2,
+                "matrix_route_summaries": route_summary,
+                "matrix_all_accepted": False,
+            },
+        ],
+        run_status="in_progress",
+    )
+    manifest = json.loads(path.read_text(encoding="utf-8"))
+
+    assert manifest["matrix_summary"]["latest_route_count"] == 2
+    assert manifest["matrix_summary"]["status"] == "failed"
+    assert manifest["matrix_summary"]["latest_all_accepted"] is False
+    assert manifest["matrix_summary"]["attempted_count"] == 2
+    assert manifest["matrix_summary"]["skipped_count"] == 0
+    assert manifest["matrix_summary"]["failed_iterations"] == [2]
+    assert manifest["matrix_summary"]["latest_routes"]["failure.premortem"]["status"] == "accepted"
+    assert manifest["matrix_summary"]["latest_routes"]["manager.route_truth"]["status"] == "failed"
+    assert manifest["next_action"] == "repair_wizard_matrix_route:manager.route_truth"
+    assert manifest["admission_summary"]["status"] == "blocked"
+    assert manifest["admission_summary"]["next_required_step"] == "repair_decision_or_runner_blockers"
+    assert manifest["admission_summary"]["decision_blockers"] == ["wizard_matrix_failed:manager.route_truth"]
+    assert manifest["controller_consistency"] == {
+        "next_action_matches_admission": True,
+        "next_action": "repair_wizard_matrix_route:manager.route_truth",
+        "admission_next_required_step": "repair_decision_or_runner_blockers",
+        "expected_next_action": None,
+    }
+    assert manifest["overall_readiness"] == {
+        "status": "blocked",
+        "blockers": ["wizard_matrix_failed:manager.route_truth"],
+        "next_required_step": "repair_decision_or_runner_blockers",
+        "runner_launch_allowed": False,
+        "components": {
+            "artifact_status": "not_started",
+            "admission_status": "blocked",
+            "controller_consistent": True,
+            "claim_boundary_status": "no_claims_promoted",
+        },
+    }
+
+
+def test_wizard_autoresearch_controller_consistency_flags_drift() -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_controller_drift_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+
+    result = module.manifest_controller_consistency(
+        "continue_next_iteration",
+        {"next_required_step": "admit_or_repair_micro_qit_evidence"},
+    )
+
+    assert result == {
+        "next_action_matches_admission": False,
+        "next_action": "continue_next_iteration",
+        "admission_next_required_step": "admit_or_repair_micro_qit_evidence",
+        "expected_next_action": "repair_or_admit_micro_qit_evidence_before_runner_launch",
+    }
+
+
+def test_wizard_autoresearch_run_manifest_can_exist_before_first_iteration(tmp_path) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_initial_manifest_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    evidence_index = tmp_path / "qit_engine_evidence_index.json"
+
+    path = module.write_run_manifest(
+        tmp_path,
+        run_tag="pytest-start",
+        run_started_at="2026-05-08T00:00:00+00:00",
+        iterations_requested=5,
+        evidence_index=evidence_index,
+        matrix_enabled=True,
+        gemini_requested=True,
+        haiku_requested=False,
+        runner_requested=False,
+        run_config={},
+        argv=[],
+        latest_decision={},
+        iteration_manifest=[],
+        run_status="in_progress",
+    )
+    manifest = json.loads(path.read_text(encoding="utf-8"))
+
+    assert manifest["schema_version"] == 1
+    assert manifest["run_status"] == "in_progress"
+    assert manifest["run_started_at"] == "2026-05-08T00:00:00+00:00"
+    datetime.fromisoformat(manifest["manifest_updated_at"])
+    assert manifest["iterations_requested"] == 5
+    assert manifest["iterations_completed"] == 0
+    assert manifest["run_classification"] == "initialized"
+    assert manifest["next_action"] == "continue_first_iteration"
+    assert manifest["controller_consistency"] == {
+        "next_action_matches_admission": True,
+        "next_action": "continue_first_iteration",
+        "admission_next_required_step": "complete_first_preflight_iteration",
+        "expected_next_action": "continue_first_iteration",
+    }
+    assert manifest["runner_summary"] == {
+        "requested": False,
+        "launch_allowed": False,
+        "status": None,
+        "launch_blockers": [],
+        "next_required_step": "request_runner_when_admissible",
+    }
+    assert manifest["preflight_summary"] == {
+        "status": "not_started",
+        "latest_all_pass": None,
+        "all_completed_pass": None,
+        "completed_count": 0,
+        "failed_iterations": [],
+    }
+    assert manifest["admission_summary"] == {
+        "status": "not_started",
+        "next_required_step": "complete_first_preflight_iteration",
+        "active_stage": None,
+        "stage_gate_all_pass": None,
+        "allowed_claims": [],
+        "blocked_claims": [],
+        "qit_operational_status": None,
+        "accepted_qit_entries": None,
+        "out_of_scope_qit_signal_result_count": 0,
+        "out_of_scope_qit_scan_status": None,
+        "out_of_scope_qit_triage_bucket_counts": {},
+        "out_of_scope_qit_provisional_target_count": 0,
+        "out_of_scope_qit_first_provisional_target": None,
+        "next_acceptance_target_count": 0,
+        "first_next_acceptance_target": None,
+        "canonical_micro_rerun_command": None,
+        "tmp_admission_rehearsal_command": None,
+        "runner_launch_allowed": False,
+        "runner_launch_blockers": [],
+        "decision_blockers": [],
+    }
+    assert manifest["matrix_summary"] == {
+        "status": "not_started",
+        "latest_route_count": 0,
+        "latest_all_accepted": None,
+        "latest_routes": {},
+        "completed_count": 0,
+        "attempted_count": 0,
+        "skipped_count": 0,
+        "failed_iterations": [],
+    }
+    assert manifest["latest_iteration_summary"]["iteration"] is None
+    assert manifest["latest_iteration_summary"]["blockers"] == []
+    assert manifest["latest_stage_gate_summary"] is None
+    assert manifest["latest_qit_evidence_summary"] is None
+    assert manifest["latest_helper_process_summary"] is None
+    assert manifest["artifact_status"]["checked_paths"] == 0
+    assert manifest["artifact_status"]["status"] == "not_started"
+    assert manifest["artifact_status"]["missing_paths"] == 0
+    assert manifest["overall_readiness"] == {
+        "status": "not_started",
+        "blockers": [],
+        "next_required_step": "complete_first_preflight_iteration",
+        "runner_launch_allowed": False,
+        "components": {
+            "artifact_status": "not_started",
+            "admission_status": "not_started",
+            "controller_consistent": True,
+            "claim_boundary_status": "no_claims_promoted",
+        },
+    }
+    assert manifest["final_blockers"] == []
+    assert manifest["iterations"] == []
+    assert manifest["run_mode"] == {
+        "matrix_enabled": True,
+        "gemini_requested": True,
+        "haiku_requested": False,
+        "runner_requested": False,
+    }
 
 
 def test_ralph_goal_loop_surfaces_next_qit_acceptance_targets() -> None:
@@ -5662,6 +6931,1759 @@ def test_ralph_goal_loop_dedupes_failed_opus_blocker() -> None:
     )
 
     assert loop["completion_audit"]["blockers"].count("opus_audit_failed") == 1
+
+
+def test_ralph_goal_loop_persists_decision_counts_and_evidence_index_path(tmp_path) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_ralph_audit_surface_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    evidence_index = tmp_path / "qit_engine_evidence_index.json"
+    counts = {
+        "accepted": 0,
+        "admitted_micro_entries": 0,
+        "missing_or_invalid_admission": 0,
+        "next_acceptance_targets": [],
+    }
+    decision = {
+        "runner_launch_allowed": False,
+        "runner_launch_blockers": ["accepted_qit_engine_evidence_zero"],
+        "blockers": ["accepted_qit_engine_evidence_zero"],
+    }
+
+    loop = module.build_ralph_goal_loop(
+        objective_ref="test",
+        objective_text="test objective",
+        iteration=1,
+        counts=counts,
+        decision=decision,
+        evidence_index_path=evidence_index,
+    )
+
+    audit = loop["completion_audit"]
+    assert audit["decision"]["runner_launch_allowed"] is False
+    assert audit["qit_evidence_counts"]["accepted"] == 0
+    assert audit["qit_evidence_index"] == str(evidence_index)
+
+
+def test_ralph_goal_loop_can_point_to_preflight_receipt(tmp_path) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_preflight_pointer_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+    preflight = tmp_path / "preflight_receipts_01.json"
+
+    loop = module.build_ralph_goal_loop(
+        objective_ref="test",
+        objective_text="test objective",
+        iteration=1,
+        counts={"accepted": 0},
+        decision={"blockers": ["accepted_qit_engine_evidence_zero"]},
+        preflight_receipt_path=preflight,
+    )
+
+    assert loop["completion_audit"]["preflight_receipt"] == str(preflight)
+
+
+def test_wizard_autoresearch_loop_writes_preflight_receipt_artifact() -> None:
+    text = (REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py").read_text(encoding="utf-8")
+    assert "preflight_receipts_" in text
+    assert "wizard_autoresearch_preflight_receipts" in text
+    assert "helper_process_audit" in text
+    assert "qit_index_write" in text
+
+
+def test_wizard_council_receipt_separates_active_and_disabled_model_lanes(tmp_path) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_lane_truth_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+
+    path = module.write_council_receipts(
+        tmp_path,
+        iteration=1,
+        decision={"action": "draft_or_repair_packets_parallel"},
+        premortem={"ok": True},
+        external={},
+        matrix_receipts={"failure.premortem": {"status": "accepted"}},
+        gemini_enabled=True,
+    )
+    receipt = json.loads(path.read_text(encoding="utf-8"))
+
+    assert "claude-bridge:sonnet-high" in receipt["child_skill_lanes"]
+    assert "claude-bridge:opus-audit" in receipt["child_skill_lanes"]
+    assert "gemini:audit" in receipt["child_skill_lanes"]
+    assert "claude-bridge:haiku" not in receipt["child_skill_lanes"]
+    assert receipt["disabled_skill_lanes"] == ["claude-bridge:haiku"]
+    assert "premortem" in receipt["parent_skill_lanes"]
+    assert "claude-bridge" in receipt["parent_skill_lanes"]
+    assert receipt["disabled_parent_skill_lanes"] == ["cdo"]
+    assert receipt["parent_receipts"]["failure"]["status"] == "completed"
+    assert receipt["parent_receipts"]["follow_up"]["status"] == "deferred"
+    assert receipt["parent_receipts"]["follow_up"]["evidence_present"] is False
+    assert "route_truth_join" in receipt["management_parents"]
+    assert "premortem_follow_up_join_gate" in receipt["management_parents"]
+    assert receipt["disabled_management_parents"] == []
+    assert receipt["run_mode"] == {
+        "matrix_enabled": True,
+        "gemini_enabled": True,
+        "haiku_enabled": False,
+        "matrix_route_count": 1,
+        "matrix_all_accepted": True,
+    }
+
+
+def test_wizard_council_receipt_completes_followup_only_with_followup_evidence(tmp_path) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_followup_evidence_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+
+    path = module.write_council_receipts(
+        tmp_path,
+        iteration=1,
+        decision={"action": "draft_or_repair_packets_parallel"},
+        premortem={"ok": True},
+        external={},
+        matrix_receipts={
+            "failure.premortem": {"status": "accepted"},
+            "follow_up.compile_gate": {"status": "accepted"},
+        },
+        gemini_enabled=True,
+    )
+    receipt = json.loads(path.read_text(encoding="utf-8"))
+
+    assert receipt["parent_receipts"]["follow_up"]["status"] == "completed"
+    assert receipt["parent_receipts"]["follow_up"]["evidence_present"] is True
+
+
+def test_wizard_child_matrix_blocks_accepted_status_on_usefulness_failures() -> None:
+    text = (REPO_ROOT / "scripts" / "wizard_child_matrix.py").read_text(encoding="utf-8")
+
+    assert "blocking_failures = blocking_usefulness_failures(groups, formal_completed, active_formal_children)" in text
+    assert "launched_families_completed" in text
+    assert "route_quality_ok = formal_ok and launched_families_completed and usefulness_ok" in text
+    assert "matrix_ok = (route_quality_ok if v4_2_route else core_families_completed and route_quality_ok)" in text
+    assert "and not rescore_stale" in text
+    assert '"status": "accepted" if matrix_ok else "rescored_stale" if rescore_stale else "partial"' in text
+
+
+def test_wizard_child_matrix_delegates_expensive_failure_skill_child_to_opus() -> None:
+    module = _load_module(
+        "wizard_child_matrix_specialist_opus_under_test",
+        REPO_ROOT / "scripts" / "wizard_child_matrix.py",
+    )
+    roles = module.FORMAL_CHILDREN["failure.loophole_auditor"]
+
+    specs = module.asymmetric_model_role_specs(
+        route="failure.loophole_auditor",
+        roles=roles,
+        active_formal_children=roles,
+        full_model_council=False,
+        sonnet_count=4,
+        opus_count=1,
+        haiku_count=0,
+    )
+
+    assert specs["opus"]["roles"] == ["skill.loophole_auditor"]
+    assert specs["opus"]["count"] == 1
+    assert "skill.loophole_auditor" not in specs["sonnet"]["roles"]
+    assert specs["sonnet"]["count"] == 3
+
+
+def test_wizard_child_matrix_ignores_redundant_failure_when_formal_child_completed_elsewhere() -> None:
+    module = _load_module(
+        "wizard_child_matrix_redundant_failure_under_test",
+        REPO_ROOT / "scripts" / "wizard_child_matrix.py",
+    )
+    active = module.FORMAL_CHILDREN["failure.loophole_auditor"]
+    completed = list(active)
+    groups = [
+        {
+            "model": "sonnet",
+            "usefulness_failures": [
+                {
+                    "id": "failure.loophole_auditor-skill-loophole-auditor-sonnet-1",
+                    "status": "timed_out",
+                    "reason": "child_not_completed",
+                }
+            ],
+        },
+        {"model": "opus", "usefulness_failures": []},
+    ]
+
+    assert module.blocking_usefulness_failures(groups, completed, active) == []
+
+
+def test_wizard_child_matrix_keeps_failure_blocking_when_formal_child_missing() -> None:
+    module = _load_module(
+        "wizard_child_matrix_missing_failure_under_test",
+        REPO_ROOT / "scripts" / "wizard_child_matrix.py",
+    )
+    active = module.FORMAL_CHILDREN["failure.loophole_auditor"]
+    completed = [child for child in active if child != "skill.loophole_auditor"]
+    failure = {
+        "id": "failure.loophole_auditor-skill-loophole-auditor-sonnet-1",
+        "status": "timed_out",
+        "reason": "child_not_completed",
+    }
+    groups = [{"model": "sonnet", "usefulness_failures": [failure]}]
+
+    assert module.blocking_usefulness_failures(groups, completed, active) == [failure]
+
+
+def test_wizard_full_matrix_launches_sibling_council_routes_before_waiting(monkeypatch, tmp_path) -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_parallel_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+    events: list[str] = []
+
+    class FakeProc:
+        def __init__(self, command, **_kwargs) -> None:
+            route = command[command.index("--route") + 1]
+            self.route = route
+            events.append(f"launch:{route}")
+
+        def wait(self) -> int:
+            events.append(f"wait:{self.route}")
+            return 0
+
+    class Args:
+        task = "audit v4.2 topology"
+        followup_prompt = "next"
+        payoff = "prove parallel council topology"
+        use_when = "running v4.2"
+        stop_if = "blocked"
+        boundary = "tmp receipts only"
+        cwd = REPO_ROOT
+        run_id = "test-run"
+        sonnet_timeout_sec = 1
+        opus_timeout_sec = 1
+        haiku_timeout_sec = 1
+        sonnet_count = 0
+        opus_count = 0
+        haiku_count = 1
+        sonnet_budget = 0.1
+        opus_budget = 0.1
+        haiku_budget = 0.1
+        global_max_active = 4
+        max_concurrency = 2
+        parallel_model_groups = True
+        full_model_council = True
+        attempt_gemini = False
+        skip_gemini = True
+        repair_single_model = True
+        repair_skip_gemini = True
+        capacity_preflight = False
+        capacity_preflight_models = "sonnet,opus,haiku"
+        capacity_preflight_timeout_sec = 1
+        dry_run = False
+
+    monkeypatch.setattr(module.subprocess, "Popen", FakeProc)
+    routes = [
+        "decision.context_strategy",
+        "decision.move_selection",
+        "decision.evidence_boundary",
+    ]
+
+    results = module.run_routes_parallel(Args, routes, tmp_path)
+
+    assert list(results) == routes
+    assert events[:3] == [f"launch:{route}" for route in routes]
+    assert events[3:] == [f"wait:{route}" for route in routes]
+
+
+def test_wizard_full_matrix_passes_parallel_model_groups_to_child_matrix() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_parallel_groups_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    class Args:
+        task = "audit v4.2 topology"
+        followup_prompt = "next"
+        payoff = "prove parallel model families"
+        use_when = "running v4.2"
+        stop_if = "blocked"
+        boundary = "tmp receipts only"
+        cwd = REPO_ROOT
+        run_id = "test-run"
+        sonnet_timeout_sec = 1
+        opus_timeout_sec = 1
+        haiku_timeout_sec = 1
+        sonnet_count = 0
+        opus_count = 0
+        haiku_count = 1
+        sonnet_budget = 0.1
+        opus_budget = 0.1
+        haiku_budget = 0.1
+        global_max_active = 4
+        max_concurrency = 2
+        parallel_model_groups = True
+        full_model_council = True
+        attempt_gemini = False
+        skip_gemini = True
+        repair_single_model = True
+        repair_skip_gemini = True
+        capacity_preflight = False
+        capacity_preflight_models = "sonnet,opus,haiku"
+        capacity_preflight_timeout_sec = 1
+        dry_run = False
+
+    command = module.route_command(Args, "decision.context_strategy", REPO_ROOT)
+
+    assert "--parallel-model-groups" in command
+    assert "--full-model-council" in command
+
+
+def test_wizard_full_matrix_can_forward_dry_run_to_child_matrix() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_dry_run_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    class Args:
+        task = "local topology rehearsal"
+        followup_prompt = "next"
+        payoff = "prove dry run forwarding"
+        use_when = "external capacity unavailable"
+        stop_if = "blocked"
+        boundary = "tmp receipts only"
+        cwd = REPO_ROOT
+        run_id = "test-run"
+        sonnet_timeout_sec = 1
+        opus_timeout_sec = 1
+        haiku_timeout_sec = 1
+        sonnet_count = 0
+        opus_count = 0
+        haiku_count = 1
+        sonnet_budget = 0.1
+        opus_budget = 0.1
+        haiku_budget = 0.1
+        global_max_active = 4
+        max_concurrency = 2
+        parallel_model_groups = True
+        full_model_council = True
+        attempt_gemini = False
+        skip_gemini = True
+        dry_run = True
+        repair_single_model = True
+        repair_skip_gemini = True
+
+    command = module.route_command(Args, "decision.context_strategy", REPO_ROOT)
+
+    assert "--dry-run" in command
+
+
+def test_wizard_full_matrix_compact_caps_child_count_to_route_obligation() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_compact_count_cap_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    class Args:
+        mode = "compact"
+        task = "compact count cap"
+        followup_prompt = "next"
+        payoff = "avoid duplicate child timeouts"
+        use_when = "compact audit"
+        stop_if = "blocked"
+        boundary = "tmp receipts only"
+        cwd = REPO_ROOT
+        run_id = "test-run"
+        sonnet_timeout_sec = 1
+        opus_timeout_sec = 1
+        haiku_timeout_sec = 1
+        sonnet_count = 7
+        opus_count = 1
+        haiku_count = 0
+        sonnet_budget = 0.1
+        opus_budget = 0.1
+        haiku_budget = 0.1
+        global_max_active = 4
+        max_concurrency = 2
+        parallel_model_groups = True
+        full_model_council = False
+        codex_local_children = False
+        attempt_gemini = False
+        skip_gemini = True
+        repair_single_model = True
+        repair_skip_gemini = True
+        dry_run = False
+
+    command = module.route_command(Args, "failure.loophole_auditor", REPO_ROOT)
+
+    assert command[command.index("--sonnet-count") + 1] == "4"
+
+
+def test_wizard_full_matrix_does_not_attempt_gemini_by_default() -> None:
+    text = (REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py").read_text(encoding="utf-8")
+
+    assert 'parser.add_argument("--attempt-gemini", action="store_true", default=False)' in text
+
+
+def test_wizard_v42_compact_routes_are_one_parent_per_council() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_compact_routes_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    assert module.council_wave_routes("Decision", "compact") == ["decision.move_selection"]
+    assert module.council_wave_routes("Failure", "compact") == ["failure.falsifier"]
+    assert module.council_wave_routes("Follow-Up", "compact") == ["follow_up.compile_gate"]
+
+
+def test_wizard_v42_compact_can_run_three_representatives_parallel() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_compact_parallel_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    assert module.selected_run_waves("compact", "parallel") == [
+        (
+            "Compact",
+            ["decision.move_selection", "failure.falsifier", "follow_up.compile_gate"],
+        )
+    ]
+
+
+def test_wizard_v42_compact_profiles_select_different_members() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_compact_profiles_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    assert module.compact_council_routes("Decision", "audit") == ["decision.evidence_boundary"]
+    assert module.compact_council_routes("Failure", "strategy") == ["failure.premortem"]
+    assert module.compact_council_routes("Follow-Up", "followup") == ["follow_up.next_move_selector"]
+    assert module.resolve_compact_profile("auto", "audit route truth and overclaim") == "audit"
+    assert module.resolve_compact_profile("auto", "give nice formatting and readable report") == "formatting"
+    assert (
+        module.resolve_compact_profile(
+            "auto",
+            "nice formatting, clean output, readable report, route truth",
+        )
+        == "formatting"
+    )
+    assert module.selected_run_waves("compact", "parallel", "auto", "audit route truth") == [
+        (
+            "Compact",
+            ["decision.evidence_boundary", "failure.loophole_auditor", "follow_up.compile_gate"],
+        )
+    ]
+
+
+def test_wizard_v42_level_loop_cli_normalizes_friendly_invocation() -> None:
+    module = _load_module(
+        "wizard_v4_2_level_loop_cli_under_test",
+        REPO_ROOT / "scripts" / "wizard_v4_2.py",
+    )
+
+    assert module.normalize_invocation(["low", "loop", "2", "--task", "x"]) == (
+        "low",
+        "2",
+        ["--task", "x"],
+    )
+    assert module.normalize_invocation(["auto", "loop", "auto", "--task", "x"]) == (
+        "auto",
+        "auto",
+        ["--task", "x"],
+    )
+    assert module.loop_limit("auto") == (6, True)
+    assert module.loop_limit("2") == (2, False)
+
+
+def test_wizard_v42_auto_level_selects_reasoning_breadth() -> None:
+    module = _load_module(
+        "wizard_v4_2_auto_level_under_test",
+        REPO_ROOT / "scripts" / "wizard_v4_2.py",
+    )
+
+    assert module.select_auto_level("give nice formatting") == "low"
+    assert module.select_auto_level("audit route truth and overclaim") == "medium"
+    assert module.select_auto_level("canonical sim promotion proof") == "high"
+
+
+def test_wizard_v42_level_presets_build_expected_runner_commands(tmp_path) -> None:
+    module = _load_module(
+        "wizard_v4_2_runner_command_under_test",
+        REPO_ROOT / "scripts" / "wizard_v4_2.py",
+    )
+
+    low_command = module.build_runner_command(
+        preset=module.PRESETS["low"],
+        task="audit",
+        out_dir=tmp_path / "low",
+        cwd=REPO_ROOT,
+    )
+    high_command = module.build_runner_command(
+        preset=module.PRESETS["high"],
+        task="proof",
+        out_dir=tmp_path / "high",
+        cwd=REPO_ROOT,
+        attempt_gemini=True,
+    )
+
+    assert low_command[low_command.index("--mode") + 1] == "compact"
+    assert low_command[low_command.index("--compact-route-mode") + 1] == "sequential"
+    assert low_command[low_command.index("--compact-profile") + 1] == "auto"
+    assert low_command[low_command.index("--sonnet-count") + 1] == "7"
+    assert "--no-full-model-council" in low_command
+    assert "--skip-gemini" in low_command
+    assert high_command[high_command.index("--mode") + 1] == "full"
+    assert "--full-model-council" in high_command
+    assert "--parallel-model-groups" in high_command
+    assert "--attempt-gemini" in high_command
+    assert "--skip-gemini" not in high_command
+
+
+def test_wizard_v42_level_wrapper_can_force_compact_profile(tmp_path) -> None:
+    module = _load_module(
+        "wizard_v4_2_runner_profile_under_test",
+        REPO_ROOT / "scripts" / "wizard_v4_2.py",
+    )
+
+    command = module.build_runner_command(
+        preset=module.PRESETS["low"],
+        task="premortem audit repair",
+        out_dir=tmp_path / "low",
+        cwd=REPO_ROOT,
+        compact_profile="strategy",
+    )
+
+    assert command[command.index("--compact-profile") + 1] == "strategy"
+
+
+def test_wizard_v42_loop_extracts_next_task_from_compiled_followup(tmp_path) -> None:
+    module = _load_module(
+        "wizard_v4_2_next_task_under_test",
+        REPO_ROOT / "scripts" / "wizard_v4_2.py",
+    )
+    compiled = tmp_path / "compiled.md"
+    compiled.write_text(
+        "\n".join(
+            [
+                "🧙 Wizard v4.2 | PARTIAL | waves:3/3 | parents:3/3 | children:1/1 | tools:2 | score:90 | runtimes:codex-controller | mode:compact",
+                "## 🧭 Follow-Up Options",
+                "### 1. Continue",
+                "`Run Wizard Auto loop auto on the next evidence repair.`",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    assert module.next_task_from_compiled(compiled, "fallback") == (
+        "Run Wizard Auto loop auto on the next evidence repair."
+    )
+    assert module.should_stop_auto_loop(
+        header="🧙 Wizard v4.2 | PARTIAL",
+        next_task="fallback",
+        seen_tasks={"fallback"},
+    ) == "repeated_next_task"
+    assert module.should_stop_auto_loop(
+        header="🧙 Wizard v4.2 | PARTIAL",
+        next_task="repair next",
+        seen_tasks=set(),
+    ) is None
+    assert module.should_stop_auto_loop(
+        header="🧙 Wizard v4.2 | BLOCKED",
+        next_task="repair next",
+        seen_tasks=set(),
+    ) == "blocked_header"
+
+
+def test_wizard_v42_loop_stops_when_compile_fails(monkeypatch, tmp_path) -> None:
+    module = _load_module(
+        "wizard_v4_2_compile_fail_under_test",
+        REPO_ROOT / "scripts" / "wizard_v4_2.py",
+    )
+
+    class Proc:
+        returncode = 0
+
+    def fake_run(command, **_kwargs):
+        out_dir = Path(command[command.index("--out-dir") + 1])
+        run_root = out_dir / "20260509T000000Z"
+        run_root.mkdir(parents=True)
+        return Proc()
+
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+    monkeypatch.setattr(module, "compile_run", lambda *_args, **_kwargs: (1, "compile failed"))
+
+    args = argparse.Namespace(
+        out_dir=str(tmp_path),
+        requested_level="low",
+        loop_value="2",
+        task="test compile failure",
+        cwd=REPO_ROOT,
+        dry_run=False,
+        codex_local_children=True,
+        attempt_gemini=False,
+        no_capacity_preflight=True,
+    )
+
+    assert module.run_level_loop(args, module.PRESETS["low"], loop_count=2, loop_auto=False) == 1
+    manifest = json.loads(next(tmp_path.glob("wizard-low-*/wizard_loop_manifest.json")).read_text(encoding="utf-8"))
+    assert manifest["stop_reason"] == "compile_failed"
+    assert len(manifest["iterations"]) == 1
+
+
+def test_wizard_v42_auto_loop_stops_after_repeated_pass(monkeypatch, tmp_path) -> None:
+    module = _load_module(
+        "wizard_v4_2_repeat_stop_under_test",
+        REPO_ROOT / "scripts" / "wizard_v4_2.py",
+    )
+
+    class Proc:
+        returncode = 0
+
+    def fake_run(command, **_kwargs):
+        out_dir = Path(command[command.index("--out-dir") + 1])
+        run_root = out_dir / "20260509T000000Z"
+        run_root.mkdir(parents=True)
+        return Proc()
+
+    def fake_compile(_run_root, task, _cwd, compiled_path):
+        compiled_path.write_text(
+            "\n".join(
+                [
+                    "🧙 Wizard v4.2 | PARTIAL | waves:3/3 | parents:3/3 | children:1/1 | tools:2 | score:90 | runtimes:codex-controller | mode:compact",
+                    "## 🧭 Follow-Up Options",
+                    f"`{task}`",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        return 0, str(compiled_path)
+
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+    monkeypatch.setattr(module, "compile_run", fake_compile)
+
+    args = argparse.Namespace(
+        out_dir=str(tmp_path),
+        requested_level="medium",
+        loop_value="auto",
+        task="repeat me exactly",
+        cwd=REPO_ROOT,
+        dry_run=False,
+        codex_local_children=True,
+        attempt_gemini=False,
+        no_capacity_preflight=True,
+    )
+
+    assert module.run_level_loop(args, module.PRESETS["medium"], loop_count=6, loop_auto=True) == 0
+    manifest = json.loads(next(tmp_path.glob("wizard-medium-*/wizard_loop_manifest.json")).read_text(encoding="utf-8"))
+    assert manifest["stop_reason"] == "repeated_next_task"
+    assert len(manifest["iterations"]) == 1
+    assert Path(manifest["iterations"][0]["wizard_output"]).name == "latest_wizard_output.md"
+    assert Path(manifest["iterations"][0]["wizard_output"]).exists()
+
+
+def test_wizard_v42_auto_loop_continues_after_partial_output(monkeypatch, tmp_path) -> None:
+    module = _load_module(
+        "wizard_v4_2_partial_continue_under_test",
+        REPO_ROOT / "scripts" / "wizard_v4_2.py",
+    )
+
+    class Proc:
+        returncode = 1
+
+    calls = {"count": 0}
+
+    def fake_run(command, **_kwargs):
+        calls["count"] += 1
+        out_dir = Path(command[command.index("--out-dir") + 1])
+        run_root = out_dir / f"20260509T00000{calls['count']}Z"
+        run_root.mkdir(parents=True)
+        return Proc()
+
+    def fake_compile(_run_root, task, _cwd, compiled_path):
+        header = "🧙 Wizard v4.2 | PARTIAL | waves:3/3 | parents:3/3 | children:1/1 | tools:2 | score:90 | runtimes:codex-controller | mode:compact" if calls["count"] == 1 else "🧙 Wizard v4.2 | PARTIAL | waves:3/3 | parents:3/3 | children:1/1 | tools:2 | score:90 | runtimes:codex-controller | mode:compact"
+        next_prompt = "repair visible Wizard output" if calls["count"] == 1 else task
+        compiled_path.write_text(
+            "\n".join([header, "## 🧭 Follow-Up Options", f"`{next_prompt}`"]),
+            encoding="utf-8",
+        )
+        return 0, str(compiled_path)
+
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+    monkeypatch.setattr(module, "compile_run", fake_compile)
+
+    args = argparse.Namespace(
+        out_dir=str(tmp_path),
+        requested_level="medium",
+        loop_value="auto",
+        task="audit visible Wizard output",
+        cwd=REPO_ROOT,
+        dry_run=False,
+        codex_local_children=True,
+        attempt_gemini=False,
+        no_capacity_preflight=True,
+    )
+
+    assert module.run_level_loop(args, module.PRESETS["medium"], loop_count=6, loop_auto=True) == 0
+    manifest = json.loads(next(tmp_path.glob("wizard-medium-*/wizard_loop_manifest.json")).read_text(encoding="utf-8"))
+    assert len(manifest["iterations"]) == 2
+    assert manifest["iterations"][0]["header"].startswith("🧙 Wizard v4.2 | PARTIAL")
+    assert manifest["iterations"][1]["header"].startswith("🧙 Wizard v4.2 | PARTIAL")
+    assert Path(manifest["iterations"][1]["wizard_output"]).read_text(encoding="utf-8").startswith(
+        "🧙 Wizard v4.2 | PARTIAL"
+    )
+
+
+def test_wizard_v42_loop_prints_wizard_output_not_json_log(monkeypatch, capsys, tmp_path) -> None:
+    module = _load_module(
+        "wizard_v4_2_stdout_output_under_test",
+        REPO_ROOT / "scripts" / "wizard_v4_2.py",
+    )
+
+    class Proc:
+        returncode = 0
+
+    def fake_run(command, **_kwargs):
+        out_dir = Path(command[command.index("--out-dir") + 1])
+        run_root = out_dir / "20260509T000000Z"
+        run_root.mkdir(parents=True)
+        return Proc()
+
+    def fake_compile(_run_root, _task, _cwd, compiled_path):
+        compiled_path.write_text(
+            "\n".join(
+                [
+                    "🧙 Wizard v4.2 | PARTIAL | waves:3/3 | parents:3/3 | children:1/1 | tools:2 | score:90 | runtimes:codex-controller | mode:compact",
+                    "",
+                    "## ✨ Answer",
+                    "",
+                    "Wizard body, not a JSON pass record.",
+                ]
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        return 0, str(compiled_path)
+
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+    monkeypatch.setattr(module, "compile_run", fake_compile)
+
+    args = argparse.Namespace(
+        out_dir=str(tmp_path),
+        requested_level="low",
+        loop_value="1",
+        task="print wizard body",
+        cwd=REPO_ROOT,
+        dry_run=False,
+        codex_local_children=True,
+        attempt_gemini=False,
+        no_capacity_preflight=True,
+    )
+
+    assert module.run_level_loop(args, module.PRESETS["low"], loop_count=1, loop_auto=False) == 0
+    captured = capsys.readouterr()
+    assert captured.out.startswith("🧙 Wizard v4.2 | PARTIAL | loops:1/1 | waves:3/3")
+    assert "## ✨ Answer" in captured.out
+    assert not captured.out.lstrip().startswith("{")
+    assert '"compile_returncode": 0' in captured.err
+
+
+def test_wizard_v42_loop_output_header_aggregates_completed_loops() -> None:
+    module = _load_module(
+        "wizard_v4_2_aggregate_header_under_test",
+        REPO_ROOT / "scripts" / "wizard_v4_2.py",
+    )
+    manifest = {
+        "loop_count_limit": 4,
+        "iterations": [
+            {
+                "header": "🧙 Wizard v4.2 | PARTIAL | waves:3/3 | parents:3/3 | children:13/13 | tools:2 | score:90 | runtimes:codex-controller, claude-bridge | mode:compact"
+            },
+            {
+                "header": "🧙 Wizard v4.2 | PARTIAL | waves:3/3 | parents:3/3 | children:15/15 | tools:2 | score:90 | runtimes:codex-controller, claude-bridge | mode:compact"
+            },
+        ],
+    }
+    output = "\n".join(
+        [
+            "🧙 Wizard v4.2 | PARTIAL | waves:3/3 | parents:3/3 | children:15/15 | tools:2 | score:90 | runtimes:codex-controller, claude-bridge | mode:compact",
+            "",
+            "## ✨ Answer",
+            "Body.",
+        ]
+    )
+    aggregated = module.aggregate_loop_header(manifest, output)
+
+    assert aggregated.startswith(
+        "🧙 Wizard v4.2 | PARTIAL | loops:2/4 | waves:6/6 | parents:6/6 | children:28/28 | tools:4 | score:90 | runtimes:codex-controller, claude-bridge | mode:compact"
+    )
+
+
+def test_wizard_v42_compact_defaults_shrink_fanout(monkeypatch, tmp_path) -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_compact_defaults_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+    seen: dict[str, object] = {}
+
+    def fake_external_capacity_preflight(args, root):
+        seen["preflight_mode"] = args.mode
+        return {"status": "skipped", "probes": []}
+
+    def fake_run_routes_parallel(args, routes, root, repair_by_route=None):
+        seen["mode"] = args.mode
+        seen["sonnet_count"] = args.sonnet_count
+        seen["opus_count"] = args.opus_count
+        seen["haiku_count"] = args.haiku_count
+        seen["full_model_council"] = args.full_model_council
+        seen["attempt_gemini"] = args.attempt_gemini
+        return {route: 1 for route in routes}
+
+    monkeypatch.setattr(module, "external_capacity_preflight", fake_external_capacity_preflight)
+    monkeypatch.setattr(module, "run_routes_parallel", fake_run_routes_parallel)
+    monkeypatch.setattr(module, "capacity_blockers", lambda root: [])
+    monkeypatch.setattr(module, "status_json", lambda root, cwd, required_routes=None: (1, {"members": []}))
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "wizard_full_matrix_run_v4_2.py",
+            "--task",
+            "compact defaults regression",
+            "--cwd",
+            str(REPO_ROOT),
+            "--out-dir",
+            str(tmp_path / "compact"),
+            "--mode",
+            "compact",
+            "--max-repair-loops",
+            "0",
+            "--no-capacity-preflight",
+        ],
+    )
+
+    assert module.main() == 1
+    assert seen["mode"] == "compact"
+    assert seen["sonnet_count"] == 1
+    assert seen["opus_count"] == 1
+    assert seen["haiku_count"] == 0
+    assert seen["full_model_council"] is False
+    assert seen["attempt_gemini"] is False
+
+
+def test_wizard_full_matrix_zero_repair_loops_accepts_clean_status(monkeypatch, tmp_path) -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_zero_repair_accept_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    monkeypatch.setattr(module, "external_capacity_preflight", lambda args, root: {"status": "skipped", "probes": []})
+    monkeypatch.setattr(module, "run_routes_parallel", lambda args, routes, root, repair_by_route=None: {route: 0 for route in routes})
+    monkeypatch.setattr(module, "capacity_blockers", lambda root: [])
+    monkeypatch.setattr(
+        module,
+        "status_json",
+        lambda root, cwd, required_routes=None: (
+            0,
+            {
+                "members": [
+                    {"status": "accepted", "first_pass_clean": True},
+                    {"status": "accepted", "first_pass_clean": True},
+                    {"status": "accepted", "first_pass_clean": True},
+                ]
+            },
+        ),
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "wizard_full_matrix_run_v4_2.py",
+            "--task",
+            "zero repair accept regression",
+            "--cwd",
+            str(REPO_ROOT),
+            "--out-dir",
+            str(tmp_path / "compact"),
+            "--mode",
+            "compact",
+            "--compact-route-mode",
+            "parallel",
+            "--max-repair-loops",
+            "0",
+            "--no-capacity-preflight",
+        ],
+    )
+
+    assert module.main() == 0
+
+
+def test_wizard_child_matrix_dry_run_children_are_not_useful_or_accepted() -> None:
+    module = _load_module(
+        "wizard_child_matrix_dry_run_truth_under_test",
+        REPO_ROOT / "scripts" / "wizard_child_matrix.py",
+    )
+
+    dry_child = {"id": "decision.context_strategy-voice.hume-sonnet-1", "status": "dry_run"}
+    groups = [{"model": "sonnet", "status": "dry_run", "counts": {"completed": 0}}]
+    gemini = {"model": "gemini", "status": "dry_run", "counts": {"completed": 0}}
+
+    assert module.child_usefulness_failure_reason(dry_child) == "child_not_completed"
+    assert module.child_is_useful(dry_child) is False
+    assert module.accepted_child_count(groups, gemini) == 0
+
+
+def test_wizard_full_matrix_repairs_partial_routes_but_not_accepted_unclean_by_default() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_partial_repair_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    repair = module.repair_children_by_route(
+        {
+            "members": [
+                {
+                    "route": "failure.premortem",
+                    "status": "partial",
+                    "missing_formal": [],
+                    "first_pass_clean": False,
+                },
+                {
+                    "route": "follow_up.compile_gate",
+                    "status": "accepted",
+                    "missing_formal": [],
+                    "first_pass_clean": False,
+                },
+            ]
+        }
+    )
+
+    assert repair["failure.premortem"] == module.FORMAL_CHILDREN["failure.premortem"]
+    assert "follow_up.compile_gate" not in repair
+
+
+def test_wizard_full_matrix_can_repair_accepted_unclean_when_explicit() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_unclean_repair_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    repair = module.repair_children_by_route(
+        {
+            "members": [
+                {
+                    "route": "follow_up.compile_gate",
+                    "status": "accepted",
+                    "missing_formal": [],
+                    "first_pass_clean": False,
+                },
+            ]
+        },
+        repair_first_pass_unclean=True,
+    )
+
+    assert repair["follow_up.compile_gate"] == module.FORMAL_CHILDREN["follow_up.compile_gate"]
+
+
+def test_wizard_full_matrix_caps_repair_routes() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_repair_cap_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    repair = module.repair_children_by_route(
+        {
+            "members": [
+                {"route": "failure.premortem", "status": "partial", "missing_formal": []},
+                {"route": "failure.falsifier", "status": "partial", "missing_formal": []},
+                {"route": "follow_up.compile_gate", "status": "partial", "missing_formal": []},
+            ]
+        },
+        max_repair_routes=2,
+    )
+
+    assert list(repair) == ["failure.premortem", "failure.falsifier"]
+
+
+def test_wizard_full_matrix_uses_smaller_repair_fanout_by_default() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_repair_command_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    class Args:
+        task = "audit v4.2 repair"
+        followup_prompt = "next"
+        payoff = "avoid repair storm"
+        use_when = "repairing v4.2"
+        stop_if = "blocked"
+        boundary = "tmp receipts only"
+        cwd = REPO_ROOT
+        run_id = "test-run"
+        sonnet_timeout_sec = 1
+        opus_timeout_sec = 1
+        haiku_timeout_sec = 1
+        sonnet_count = 0
+        opus_count = 0
+        haiku_count = 1
+        sonnet_budget = 0.1
+        opus_budget = 0.1
+        haiku_budget = 0.1
+        global_max_active = 4
+        max_concurrency = 2
+        parallel_model_groups = True
+        full_model_council = True
+        attempt_gemini = True
+        skip_gemini = False
+        repair_single_model = True
+        repair_skip_gemini = True
+        capacity_preflight = False
+        capacity_preflight_models = "sonnet,opus,haiku"
+        capacity_preflight_timeout_sec = 1
+        dry_run = False
+
+    command = module.route_command(Args, "follow_up.compile_gate", REPO_ROOT, ["compile_gate.action"])
+
+    assert "--parallel-model-groups" in command
+    assert "--full-model-council" not in command
+    assert "--attempt-gemini" not in command
+
+
+def test_wizard_full_matrix_caps_repair_fanout_to_missing_children() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_repair_child_cap_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    class Args:
+        mode = "compact"
+        task = "audit v4.2 repair"
+        followup_prompt = "next"
+        payoff = "avoid repair storm"
+        use_when = "repairing v4.2"
+        stop_if = "blocked"
+        boundary = "tmp receipts only"
+        cwd = REPO_ROOT
+        run_id = "test-run"
+        sonnet_timeout_sec = 1
+        opus_timeout_sec = 1
+        haiku_timeout_sec = 1
+        sonnet_count = 7
+        opus_count = 1
+        haiku_count = 0
+        sonnet_budget = 0.1
+        opus_budget = 0.1
+        haiku_budget = 0.1
+        global_max_active = 6
+        max_concurrency = 4
+        parallel_model_groups = False
+        codex_local_children = False
+        full_model_council = False
+        attempt_gemini = False
+        skip_gemini = True
+        repair_single_model = True
+        repair_skip_gemini = True
+        capacity_preflight = False
+        capacity_preflight_models = "sonnet"
+        capacity_preflight_timeout_sec = 1
+        dry_run = False
+
+    command = module.route_command(Args, "failure.loophole_auditor", REPO_ROOT, ["voice.strategy"])
+
+    assert command[command.index("--sonnet-count") + 1] == "1"
+    assert command[command.index("--opus-count") + 1] == "1"
+    assert command[command.index("--haiku-count") + 1] == "0"
+    assert command[command.index("--only-children") + 1] == "voice.strategy"
+
+
+def test_wizard_full_matrix_detects_external_capacity_blockers(tmp_path) -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_capacity_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+    receipt = tmp_path / "child.receipt.json"
+    receipt.write_text(
+        json.dumps({"parsed": {"result_preview": "You've hit your limit - resets later"}}),
+        encoding="utf-8",
+    )
+
+    blockers = module.capacity_blockers(tmp_path)
+
+    assert blockers
+    assert blockers[0]["path"] == str(receipt)
+    assert blockers[0]["pattern"] == "you've hit your limit"
+
+
+def test_wizard_full_matrix_detects_new_premortem_report_artifacts(tmp_path) -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_premortem_artifact_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+    existing = tmp_path / "premortem-report-existing.html"
+    existing.write_text("old artifact\n", encoding="utf-8")
+    baseline = module.premortem_artifacts(tmp_path)
+    new_report = tmp_path / "premortem-report-new.html"
+    new_transcript = tmp_path / "premortem-transcript-new.md"
+    new_report.write_text("new report\n", encoding="utf-8")
+    new_transcript.write_text("new transcript\n", encoding="utf-8")
+
+    leaked = module.new_premortem_artifacts(tmp_path, baseline)
+
+    assert str(existing) not in leaked
+    assert leaked == [str(new_report), str(new_transcript)]
+
+
+def test_gitignore_excludes_generated_premortem_artifacts() -> None:
+    text = (REPO_ROOT / ".gitignore").read_text(encoding="utf-8")
+
+    assert "premortem-report-*.html" in text
+    assert "premortem-transcript-*.md" in text
+
+
+def test_wizard_full_matrix_capacity_preflight_blocks_before_waves(
+    tmp_path,
+    monkeypatch,
+) -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_capacity_preflight_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+    launched: list[str] = []
+    seen_commands: list[list[str]] = []
+
+    def fake_run(command, **_kwargs):
+        seen_commands.append(command)
+        class Completed:
+            returncode = 1
+            stdout = "You've hit your limit - resets later"
+
+        return Completed()
+
+    bridge = tmp_path / "claude_bridge.py"
+    bridge.write_text("# fixture\n", encoding="utf-8")
+    monkeypatch.setattr(module, "CANONICAL_CLAUDE_BRIDGE", bridge)
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+    monkeypatch.setattr(module, "run_routes_parallel", lambda *args, **kwargs: launched.append("wave") or {})
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "wizard_full_matrix_run_v4_2.py",
+            "--task",
+            "capacity preflight regression",
+            "--cwd",
+            str(REPO_ROOT),
+            "--out-dir",
+            str(tmp_path / "full"),
+            "--skip-gemini",
+        ],
+    )
+
+    assert module.main() == 1
+    assert launched == []
+    preflight_files = list((tmp_path / "full").glob("*/capacity_preflight.json"))
+    assert preflight_files
+    preflight = json.loads(preflight_files[0].read_text(encoding="utf-8"))
+    assert preflight["status"] == "blocked"
+    assert preflight["reason"] == "external_model_capacity"
+    assert seen_commands[0][seen_commands[0].index("--budget") + 1] == "0.5"
+
+
+def test_wizard_full_matrix_capacity_preflight_skips_in_dry_run(tmp_path) -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_capacity_preflight_dry_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    class Args:
+        dry_run = True
+        capacity_preflight = True
+        capacity_preflight_only = False
+        capacity_preflight_models = "sonnet"
+        capacity_preflight_timeout_sec = 1
+        capacity_preflight_budget = 0.5
+        cwd = REPO_ROOT
+
+    assert module.external_capacity_preflight(Args, tmp_path)["status"] == "skipped"
+
+
+def test_wizard_full_matrix_capacity_preflight_skips_for_codex_local_children(tmp_path) -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_capacity_preflight_codex_local_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    class Args:
+        dry_run = False
+        codex_local_children = True
+        capacity_preflight = True
+        capacity_preflight_only = False
+        capacity_preflight_models = "sonnet"
+        capacity_preflight_timeout_sec = 1
+        capacity_preflight_budget = 0.5
+        cwd = REPO_ROOT
+
+    assert module.external_capacity_preflight(Args, tmp_path) == {
+        "status": "skipped",
+        "reason": "codex_local_children",
+        "probes": [],
+    }
+
+
+def test_wizard_child_matrix_codex_local_children_cover_formal_obligation(tmp_path) -> None:
+    module = _load_module(
+        "wizard_child_matrix_codex_local_under_test",
+        REPO_ROOT / "scripts" / "wizard_child_matrix.py",
+    )
+
+    class Args:
+        route = "failure.falsifier"
+
+    roles = module.FORMAL_CHILDREN["failure.falsifier"]
+    group = module.run_codex_local_group(Args, tmp_path, roles)
+
+    assert group["model"] == "codex-local"
+    assert group["counts"]["completed"] == len(roles)
+    assert module.completed_formal_children_any_group([group], roles) == roles
+    assert not group["usefulness_failures"]
+
+
+def test_wizard_full_matrix_capacity_preflight_only_exits_before_waves(
+    tmp_path,
+    monkeypatch,
+) -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_capacity_preflight_only_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+    launched: list[str] = []
+
+    bridge = tmp_path / "claude_bridge.py"
+    bridge.write_text("# fixture\n", encoding="utf-8")
+    monkeypatch.setattr(module, "CANONICAL_CLAUDE_BRIDGE", bridge)
+
+    def fake_run(command, **_kwargs):
+        class Completed:
+            returncode = 0
+            stdout = "ready"
+
+        return Completed()
+
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+    monkeypatch.setattr(module, "run_routes_parallel", lambda *args, **kwargs: launched.append("wave") or {})
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "wizard_full_matrix_run_v4_2.py",
+            "--task",
+            "capacity preflight only regression",
+            "--cwd",
+            str(REPO_ROOT),
+            "--out-dir",
+            str(tmp_path / "full"),
+            "--capacity-preflight-only",
+            "--capacity-preflight-models",
+            "sonnet",
+        ],
+    )
+
+    assert module.main() == 0
+    assert launched == []
+
+
+def test_wizard_full_matrix_stops_after_capacity_blocked_council_wave(
+    tmp_path,
+    monkeypatch,
+) -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_capacity_stop_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+    launched_waves: list[list[str]] = []
+
+    def fake_run_routes_parallel(args, routes, root, repair_by_route=None):
+        launched_waves.append(list(routes))
+        receipt = root / "decision.context_strategy" / "child.receipt.json"
+        receipt.parent.mkdir(parents=True, exist_ok=True)
+        receipt.write_text(
+            json.dumps({"parsed": {"result_preview": "You have exhausted your capacity. Quota will reset later."}}),
+            encoding="utf-8",
+        )
+        return {route: (1 if route == "decision.context_strategy" else 0) for route in routes}
+
+    monkeypatch.setattr(module, "run_routes_parallel", fake_run_routes_parallel)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "wizard_full_matrix_run_v4_2.py",
+            "--task",
+            "capacity breaker regression",
+            "--cwd",
+            str(REPO_ROOT),
+            "--out-dir",
+            str(tmp_path / "full"),
+            "--skip-gemini",
+            "--no-capacity-preflight",
+        ],
+    )
+
+    assert module.main() == 1
+    assert launched_waves == [module.council_wave_routes("Decision")]
+
+
+def test_wizard_full_matrix_stops_on_capacity_even_when_routes_return_zero(
+    tmp_path,
+    monkeypatch,
+) -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_capacity_zero_stop_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+    launched_waves: list[list[str]] = []
+
+    def fake_run_routes_parallel(args, routes, root, repair_by_route=None):
+        launched_waves.append(list(routes))
+        receipt = root / "follow_up.compile_gate" / "child.receipt.json"
+        receipt.parent.mkdir(parents=True, exist_ok=True)
+        receipt.write_text(
+            json.dumps({"parsed": {"result_preview": "hit your limit - resets 8:50pm"}}),
+            encoding="utf-8",
+        )
+        return {route: 0 for route in routes}
+
+    monkeypatch.setattr(module, "run_routes_parallel", fake_run_routes_parallel)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "wizard_full_matrix_run_v4_2.py",
+            "--task",
+            "capacity breaker regression",
+            "--cwd",
+            str(REPO_ROOT),
+            "--out-dir",
+            str(tmp_path / "full"),
+            "--skip-gemini",
+            "--no-capacity-preflight",
+        ],
+    )
+
+    assert module.main() == 1
+    assert launched_waves == [module.council_wave_routes("Decision")]
+
+
+def test_wizard_child_matrix_full_model_council_expands_opus_and_haiku() -> None:
+    text = (REPO_ROOT / "scripts" / "wizard_child_matrix.py").read_text(encoding="utf-8")
+
+    assert 'parser.add_argument("--full-model-council"' in text
+    assert "opus_count = args.opus_count if args.opus_count > 0 else (full_role_count if args.full_model_council else 1)" in text
+    assert "haiku_count = full_role_count if args.full_model_council and args.haiku_count > 0 else args.haiku_count" in text
+    assert "roles = roles if args.full_model_council and roles else [\"outside-model contrast and sanity check\"]" in text
+    assert "gemini_group_receipt.json" in text
+    assert '"mode": "full_model_council" if args.full_model_council else "asymmetric_model_council"' in text
+
+
+def test_wizard_full_matrix_uses_three_council_waves_with_management_side_lanes() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_topology_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+    text = (REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py").read_text(encoding="utf-8")
+
+    assert module.council_wave_routes("Decision") == [
+        "decision.context_strategy",
+        "decision.move_selection",
+        "decision.evidence_boundary",
+        "manager.run_controller",
+        "manager.child_health",
+    ]
+    assert module.council_wave_routes("Failure") == [
+        "failure.premortem",
+        "failure.falsifier",
+        "failure.loophole_auditor",
+        "manager.strategy_memory",
+    ]
+    assert module.council_wave_routes("Follow-Up") == [
+        "follow_up.next_move_selector",
+        "follow_up.lane_builder",
+        "follow_up.compile_gate",
+        "manager.route_truth",
+        "manager.output_compiler",
+    ]
+    assert "Management Preflight" not in text
+    assert "Management Closeout" not in text
+
+
+def test_wizard_member_status_does_not_upgrade_partial_receipt_to_accepted() -> None:
+    text = (REPO_ROOT / "scripts" / "wizard_member_status.py").read_text(encoding="utf-8")
+
+    assert 'elif status == "accepted" and formal_expected and formal_passed == formal_expected:' in text
+    assert "elif formal_expected and formal_passed == formal_expected:" not in text
+
+
+def test_wizard_member_status_v42_keeps_dry_run_receipt_partial(tmp_path) -> None:
+    route_dir = tmp_path / "decision.context_strategy" / "20260509T000000Z"
+    route_dir.mkdir(parents=True)
+    (route_dir / "matrix_receipt.json").write_text(
+        json.dumps(
+            {
+                "route": "decision.context_strategy",
+                "run_id": "wizard-v4-2-dry-run-fixture",
+                "status": "partial",
+                "formal_child_obligation": [
+                    "voice.strategy",
+                    "voice.systems",
+                    "voice.hume",
+                    "voice.feynman",
+                ],
+                "formal_children_completed": [],
+                "groups": [
+                    {
+                        "model": "sonnet",
+                        "status": "dry_run",
+                        "counts": {"completed": 0, "failed": 0, "timed_out": 0, "total": 4},
+                    }
+                ],
+                "gemini": {"status": "dry_run", "counts": {"completed": 0, "total": 1}},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    proc = subprocess.run(
+        [
+            sys.executable,
+            str(REPO_ROOT / "scripts" / "wizard_member_status_v4_2.py"),
+            str(tmp_path),
+            "--json",
+        ],
+        cwd=REPO_ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        check=False,
+    )
+
+    assert proc.returncode == 1
+    payload = json.loads(proc.stdout)
+    row = next(member for member in payload["members"] if member["route"] == "decision.context_strategy")
+    assert row["status"] == "partial"
+    assert row["formal_passed"] == 0
+    assert row["agents_passed"] == 0
+
+
+def test_wizard_compile_output_v42_labels_partial_when_gates_not_clean() -> None:
+    module = _load_module(
+        "wizard_compile_output_v4_2_label_under_test",
+        REPO_ROOT / "scripts" / "wizard_compile_output_v4_2.py",
+    )
+    rows = [
+        {"council": "Management", "status": "accepted", "formal_passed": 1, "formal_expected": 1},
+        {"council": "Decision", "status": "accepted", "formal_passed": 1, "formal_expected": 1},
+    ]
+    counts = module.count_by_council(rows)
+
+    assert module.run_completion_label(rows, counts, first_pass_clean=False, failed_or_weak=1) == "PARTIAL"
+    assert module.council_result_label(rows, "Management", 5) == "partial"
+    assert module.council_result_label(rows, "Failure", 3) == "blocked"
+
+
+def test_wizard_compile_output_v42_labels_dry_run_status_as_blocked() -> None:
+    module = _load_module(
+        "wizard_compile_output_v4_2_dry_label_under_test",
+        REPO_ROOT / "scripts" / "wizard_compile_output_v4_2.py",
+    )
+    rows = [
+        {
+            "council": "Decision",
+            "status": "partial",
+            "formal_passed": 0,
+            "formal_expected": 4,
+        },
+        {
+            "council": "Management",
+            "status": "partial",
+            "formal_passed": 0,
+            "formal_expected": 3,
+        },
+    ]
+    counts = module.count_by_council(rows)
+
+    assert module.run_completion_label(rows, counts, first_pass_clean=False, failed_or_weak=0) == "BLOCKED"
+    assert module.council_result_label(rows, "Decision", 3) == "blocked"
+
+
+def test_wizard_compile_output_v42_compact_uses_compact_parent_denominator() -> None:
+    module = _load_module(
+        "wizard_compile_output_v4_2_compact_label_under_test",
+        REPO_ROOT / "scripts" / "wizard_compile_output_v4_2.py",
+    )
+    rows = [
+        {
+            "council": "Decision",
+            "status": "accepted",
+            "formal_passed": 5,
+            "formal_expected": 5,
+        },
+        {
+            "council": "Failure",
+            "status": "accepted",
+            "formal_passed": 4,
+            "formal_expected": 4,
+        },
+        {
+            "council": "Follow-Up",
+            "status": "accepted",
+            "formal_passed": 7,
+            "formal_expected": 7,
+        },
+    ]
+    counts = module.count_by_council(rows)
+
+    assert module.required_routes_for_compile("compact", "sequential") == [
+        "decision.move_selection",
+        "failure.falsifier",
+        "follow_up.compile_gate",
+    ]
+    assert module.required_routes_for_compile("compact", "parallel", "strategy") == [
+        "decision.context_strategy",
+        "failure.premortem",
+        "follow_up.lane_builder",
+    ]
+    assert module.expected_parent_counts(rows) == {"Decision": 1, "Failure": 1, "Follow-Up": 1}
+    assert module.weak_spots(rows, module.expected_parent_counts(rows)) == []
+    assert (
+        module.run_completion_label(
+            rows,
+            counts,
+            first_pass_clean=True,
+            failed_or_weak=0,
+            expected_parents=module.expected_parent_counts(rows),
+        )
+        == "FULL"
+    )
+    assert module.visible_completion_label("FULL", "compact") == "PARTIAL"
+    assert module.visible_completion_label("FULL", "full") == "FULL"
+
+
+def test_wizard_compile_output_v42_names_usefulness_blockers(tmp_path) -> None:
+    module = _load_module(
+        "wizard_compile_output_v4_2_usefulness_blockers_under_test",
+        REPO_ROOT / "scripts" / "wizard_compile_output_v4_2.py",
+    )
+    receipt_path = tmp_path / "matrix_receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            {
+                "groups": [
+                    {
+                        "model": "sonnet",
+                        "usefulness_failures": [
+                            {"id": "child-1", "status": "timed_out"},
+                            {"id": "child-2", "status": "failed"},
+                        ],
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    rows = [{"route": "failure.loophole_auditor", "receipt_path": str(receipt_path), "degraded": []}]
+
+    spots = module.weak_spots(rows, {"Failure": 1})
+
+    assert "failure.loophole_auditor had 2 usefulness-blocked child receipts, including 1 timed out." in spots
+
+
+def test_wizard_compile_output_v42_exposes_exact_blockers_and_repair_command(tmp_path) -> None:
+    module = _load_module(
+        "wizard_compile_output_v4_2_exact_blockers_under_test",
+        REPO_ROOT / "scripts" / "wizard_compile_output_v4_2.py",
+    )
+    receipt_path = tmp_path / "matrix_receipt.json"
+    receipt_path.write_text(
+        json.dumps(
+            {
+                "route": "failure.loophole_auditor",
+                "run_id": "test-run",
+                "parent_prompt": "repair this route",
+                "active_formal_child_obligation": ["skill.loophole_auditor"],
+                "formal_child_obligation": ["skill.loophole_auditor"],
+                "followup": {
+                    "prompt": "next",
+                    "payoff": "restore route",
+                    "use_when": "partial route",
+                    "stop_if": "still blocked",
+                    "boundary": "tmp only",
+                },
+                "child_rerouter": {
+                    "quality_blockers": {
+                        "blocking_usefulness_failures": [
+                            {
+                                "id": "failure.loophole_auditor-skill-loophole-auditor-sonnet-1",
+                                "status": "timed_out",
+                                "reason": "child_not_completed",
+                            }
+                        ]
+                    }
+                },
+                "groups": [],
+            }
+        ),
+        encoding="utf-8",
+    )
+    rows = [
+        {
+            "route": "failure.loophole_auditor",
+            "status": "partial",
+            "receipt_path": str(receipt_path),
+            "missing_formal": ["skill.loophole_auditor"],
+            "agents_failed_or_weak": 1,
+        }
+    ]
+
+    details = module.route_blocker_details(rows, REPO_ROOT)
+
+    assert details[0]["failures"][0]["id"] == "failure.loophole_auditor-skill-loophole-auditor-sonnet-1"
+    assert "--only-children skill.loophole_auditor" in details[0]["repair_command"]
+    assert "scripts/wizard_child_matrix.py" in details[0]["repair_command"]
+    assert module.compact_profile_match_summary("audit", "audit route truth overclaim") == (
+        "auto matched `audit` from: `audit`, `overclaim`, `route truth`"
+    )
+
+
+def test_wizard_compile_output_v42_parses_partial_status_json(monkeypatch, tmp_path) -> None:
+    module = _load_module(
+        "wizard_compile_output_v4_2_partial_status_under_test",
+        REPO_ROOT / "scripts" / "wizard_compile_output_v4_2.py",
+    )
+
+    class Result:
+        returncode = 1
+        stdout = json.dumps({"members": [{"route": "failure.loophole_auditor", "status": "partial"}]})
+
+    monkeypatch.setattr(module.subprocess, "run", lambda *_args, **_kwargs: Result())
+
+    assert module.status_json(tmp_path, REPO_ROOT)["members"][0]["status"] == "partial"
+
+
+def test_wizard_council_receipt_marks_matrix_lanes_disabled_when_skipped(tmp_path) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_skip_lane_truth_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+
+    path = module.write_council_receipts(
+        tmp_path,
+        iteration=1,
+        decision={"action": "draft_or_repair_packets_parallel"},
+        premortem={"ok": True},
+        external={},
+        matrix_enabled=False,
+        gemini_enabled=True,
+    )
+    receipt = json.loads(path.read_text(encoding="utf-8"))
+
+    assert receipt["child_skill_lanes"] == ["tool:helper_process_audit.py"]
+    assert "claude-bridge:sonnet-high" in receipt["disabled_skill_lanes"]
+    assert "claude-bridge:opus-audit" in receipt["disabled_skill_lanes"]
+    assert "gemini:audit" in receipt["disabled_skill_lanes"]
+    assert "claude-bridge:haiku" in receipt["disabled_skill_lanes"]
+    assert receipt["parent_skill_lanes"] == ["codex-autoresearch", "tool:preflight"]
+    assert "premortem" in receipt["disabled_parent_skill_lanes"]
+    assert "claude-bridge" in receipt["disabled_parent_skill_lanes"]
+    assert "cdo" in receipt["disabled_parent_skill_lanes"]
+    assert receipt["parent_receipts"]["failure"]["status"] == "skipped"
+    assert receipt["parent_receipts"]["follow_up"]["status"] == "deferred"
+    assert receipt["management_parents"] == ["manager_rerouter", "sim_loop_state_gate"]
+    assert "route_truth_join" in receipt["disabled_management_parents"]
+    assert "premortem_follow_up_join_gate" in receipt["disabled_management_parents"]
+    assert receipt["run_mode"] == {
+        "matrix_enabled": False,
+        "gemini_enabled": False,
+        "haiku_enabled": False,
+        "matrix_route_count": 0,
+        "matrix_all_accepted": False,
+    }
+
+
+def test_wizard_council_receipt_summarizes_per_route_model_statuses(tmp_path) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_matrix_summary_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+
+    path = module.write_council_receipts(
+        tmp_path,
+        iteration=1,
+        decision={"action": "draft_or_repair_packets_parallel"},
+        premortem={"ok": True},
+        external={},
+        matrix_receipts={
+            "failure.premortem": {
+                "status": "accepted",
+                "counts": {"accepted_children": 2, "sonnet_completed": 0, "opus_completed": 1, "gemini_completed": 1},
+                "model_family_statuses": {"sonnet": "blocked", "opus": "completed", "gemini": "completed", "haiku": "disabled"},
+                "receipt_path": "/tmp/failure/matrix_receipt.json",
+            }
+        },
+        gemini_enabled=True,
+    )
+    receipt = json.loads(path.read_text(encoding="utf-8"))
+    summary = receipt["matrix_route_summaries"]["failure.premortem"]
+
+    assert summary["status"] == "accepted"
+    assert summary["counts"]["accepted_children"] == 2
+    assert summary["model_family_statuses"]["sonnet"] == "blocked"
+    assert summary["model_family_statuses"]["opus"] == "completed"
+    assert summary["receipt_path"] == "/tmp/failure/matrix_receipt.json"
+
+
+def test_wizard_council_receipt_blocks_followup_when_any_matrix_route_fails(tmp_path) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_matrix_followup_gate_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+
+    path = module.write_council_receipts(
+        tmp_path,
+        iteration=1,
+        decision={"action": "draft_or_repair_packets_parallel"},
+        premortem={"ok": True},
+        external={},
+        matrix_receipts={
+            "failure.premortem": {"status": "accepted"},
+            "manager.route_truth": {"status": "failed"},
+        },
+        gemini_enabled=True,
+    )
+    receipt = json.loads(path.read_text(encoding="utf-8"))
+
+    assert receipt["parent_receipts"]["failure"]["status"] == "completed"
+    assert receipt["parent_receipts"]["follow_up"]["status"] == "blocked"
+    assert receipt["matrix_route_summaries"]["manager.route_truth"]["status"] == "failed"
+
+
+def test_wizard_council_receipt_blocks_failure_when_premortem_route_fails(tmp_path) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_failure_gate_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
+
+    path = module.write_council_receipts(
+        tmp_path,
+        iteration=1,
+        decision={"action": "draft_or_repair_packets_parallel"},
+        premortem={"ok": True},
+        external={},
+        matrix_receipts={"failure.premortem": {"status": "failed"}},
+        gemini_enabled=True,
+    )
+    receipt = json.loads(path.read_text(encoding="utf-8"))
+
+    assert receipt["parent_receipts"]["failure"]["status"] == "blocked"
+    assert receipt["parent_receipts"]["follow_up"]["status"] == "blocked"
+    assert receipt["matrix_route_summaries"]["failure.premortem"]["status"] == "failed"
 
 
 def test_wizard_autoresearch_loop_writes_v41_receipt_shape() -> None:
@@ -6413,9 +9435,16 @@ def test_qit_engine_evidence_index_blocks_unadmitted_qit_results(tmp_path) -> No
     index = module.build_index(repo)
 
     assert index["summary"]["total_entries"] == 1
+    assert index["summary"]["scanned_result_count"] == 1
+    assert index["summary"]["qit_signal_result_count"] == 1
+    assert "qit" in index["qit_signal_filter"]["tokens"]
+    assert "claim_ceiling" in index["qit_signal_filter"]["fields"]
+    assert index["scan_sample"]["scanned_result_files"] == ["sim_qit_probe_results.json"]
+    assert index["scan_sample"]["qit_signal_result_files"] == ["sim_qit_probe_results.json"]
     assert index["summary"]["candidate_entries"] == 0
     assert index["summary"]["quarantine_entries"] == 1
     assert index["operational_status"] == "blocked_no_accepted_qit_entries"
+    assert index["status_reason"] == "qit_entries_blocked"
     assert len(index["candidate_entries"]) == 0
     assert len(index["quarantine_entries"]) == 1
     entry = index["entries"][0]
@@ -6460,6 +9489,36 @@ def test_qit_engine_evidence_index_requires_source_binding_before_admission(tmp_
     index = module.build_index(repo)
 
     assert index["next_acceptance_targets"][0]["next_action"] == "repair_or_bind_source_probe_before_admission"
+
+
+def test_qit_engine_evidence_index_accepts_uppercase_tool_contract_fields(tmp_path) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_uppercase_contract_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    results.mkdir(parents=True)
+    (results / "sim_qit_probe_results.json").write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_probe",
+                "classification": "canonical",
+                "TOOL_MANIFEST": {"z3": {"tried": True, "used": True, "reason": "uppercase fixture"}},
+                "TOOL_INTEGRATION_DEPTH": {"z3": "load_bearing"},
+                "claim_ceiling": "qit_micro_only",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "wizard admission exists",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    index = module.build_index(repo)
+
+    assert index["summary"]["total_entries"] == 1
+    assert index["entries"][0]["receipt_schema_ok"] is True
+    assert "result:receipt_schema_incomplete" not in index["entries"][0]["blockers"]
 
 
 def test_qit_engine_evidence_index_prioritizes_source_bound_admission_targets(tmp_path) -> None:
@@ -6578,10 +9637,14 @@ def test_qit_engine_evidence_index_accepts_strict_result_with_wizard_admission(t
     index = module.build_index(repo)
 
     assert index["summary"]["accepted"] == 1
+    assert index["summary"]["scanned_result_count"] == 1
+    assert index["summary"]["qit_signal_result_count"] == 1
+    assert index["scan_sample"]["qit_signal_result_files"] == ["sim_qit_probe_results.json"]
     assert index["summary"]["admitted_micro_entries"] == 1
     assert index["summary"]["candidate_entries"] == 1
     assert index["summary"]["quarantine_entries"] == 0
     assert index["operational_status"] == "has_accepted_qit_entry"
+    assert index["status_reason"] == "accepted_qit_entries_present"
     assert index["next_acceptance_targets"] == []
     entry = index["entries"][0]
     assert entry["status"] == "accepted"
@@ -6591,6 +9654,147 @@ def test_qit_engine_evidence_index_accepts_strict_result_with_wizard_admission(t
     assert entry["tool_function_ancestry"]["tool_target"] == "z3"
     assert entry["tool_function_ancestry"]["function_surface"] == "z3.Solver.check"
     assert entry["result_sha256"]
+
+
+def test_qit_engine_evidence_index_accepts_payload_named_result_with_strict_admission(tmp_path) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_payload_named_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    _write_allow_stage_gate(repo)
+    probes = repo / "system_v4" / "probes"
+    probes.mkdir(parents=True)
+    (probes / "sim_z3_capability.py").write_text("# fixture\n", encoding="utf-8")
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    results.mkdir(parents=True)
+    result_path = results / "z3_capability_results.json"
+    result_path.write_text(
+        json.dumps(
+            {
+                "name": "sim_z3_capability",
+                "classification": "canonical",
+                "tool_manifest": {"z3": {"tried": True, "used": True, "reason": "capability fixture"}},
+                "tool_integration_depth": {"z3": "load_bearing"},
+                "positive": {"passed": True, "function_surface": "z3.Solver.check"},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "tool_micro_z3_capability_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    import hashlib
+
+    artifact = repo / "system_v5" / "ops" / "wizard_admission_receipts" / "sim_z3_capability_admission_artifact.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text(
+        json.dumps({"result_path": str(result_path), "result_sha256": hashlib.sha256(result_path.read_bytes()).hexdigest()}),
+        encoding="utf-8",
+    )
+    admission_dir = repo / "system_v5" / "ops" / "wizard_admissions"
+    admission_dir.mkdir(parents=True)
+    admission = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_z3_capability",
+        sim_path="system_v4/probes/sim_z3_capability.py",
+        artifact=artifact,
+    )
+    admission["admission_artifact"] = str(artifact.relative_to(repo))
+    admission["controller_read_artifacts"] = [str(artifact.relative_to(repo)), str(result_path)]
+    admission["formal_sim_profile"]["expected_result_path"] = str(result_path)
+    admission["formal_sim_profile"]["claim"] = "tool_micro_z3_capability_only"
+    admission["formal_sim_profile"]["exact_tool_or_function"] = "z3.Solver.check"
+    admission["packet_contract"]["tool_target"] = "z3"
+    admission["packet_contract"]["function_surface"] = "z3.Solver.check"
+    admission["packet_contract"]["claim_ceiling"] = "tool_micro_z3_capability_only"
+    admission["packet_contract"]["micro_claim"] = "tool_micro_z3_capability_only"
+    admission_path = admission_dir / "sim_z3_capability.json"
+    admission_path.write_text(json.dumps(admission), encoding="utf-8")
+
+    index = module.build_index(repo)
+
+    assert index["summary"]["accepted"] == 1
+    entry = index["entries"][0]
+    assert entry["basename"] == "sim_z3_capability"
+    assert entry["result_path"] == str(result_path)
+    assert entry["status"] == "accepted"
+    assert entry["admission_artifact"] == str(admission_path)
+
+
+def test_qit_engine_evidence_index_does_not_rerun_already_admitted_duplicate(tmp_path) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_duplicate_admitted_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    _write_allow_stage_gate(repo)
+    probes = repo / "system_v4" / "probes"
+    probes.mkdir(parents=True)
+    source = probes / "sim_qit_probe.py"
+    source.write_text("# repaired source newer than duplicate result\n", encoding="utf-8")
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    results.mkdir(parents=True)
+    canonical_result = results / "sim_qit_probe_results.json"
+    payload = {
+        "name": "sim_qit_probe",
+        "classification": "canonical",
+        "all_pass": True,
+        "tool_manifest": {"z3": {"tried": True, "used": True, "reason": "qit fixture"}},
+        "tool_integration_depth": {"z3": "load_bearing"},
+        "positive": {"passed": True, "function_surface": "z3.Solver.check"},
+        "negative": {"passed": True},
+        "boundary": {"passed": True},
+        "demotion_condition": "demote if fixture fails",
+        "out_of_scope": ["no engine promotion"],
+        "claim_ceiling": "qit_micro_only",
+        "next_lego_target": "none",
+        "promotion_condition": "requires admitted downstream packet",
+        "blocked_until": "controller acceptance",
+    }
+    canonical_result.write_text(json.dumps(payload), encoding="utf-8")
+    duplicate_result = probes / "sim_qit_probe_results.json"
+    duplicate_result.write_text(json.dumps(payload), encoding="utf-8")
+    import hashlib
+
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text(
+        json.dumps(
+            {
+                "result_path": str(canonical_result),
+                "result_sha256": hashlib.sha256(canonical_result.read_bytes()).hexdigest(),
+            }
+        ),
+        encoding="utf-8",
+    )
+    admission_dir = repo / "system_v5" / "ops" / "wizard_admissions"
+    admission_dir.mkdir(parents=True)
+    admission = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_qit_probe",
+        sim_path="system_v4/probes/sim_qit_probe.py",
+        artifact=artifact,
+    )
+    admission["formal_sim_profile"]["expected_result_path"] = str(canonical_result)
+    admission["formal_sim_profile"]["exact_tool_or_function"] = "z3.Solver.check"
+    admission["packet_contract"]["tool_target"] = "z3"
+    admission["packet_contract"]["function_surface"] = "z3.Solver.check"
+    (admission_dir / "sim_qit_probe.json").write_text(json.dumps(admission), encoding="utf-8")
+
+    index = module.build_index(repo)
+
+    assert index["summary"]["accepted"] == 1
+    triage = index["out_of_scope_qit_result_scan"]["triage"]
+    assert triage["bucket_counts"] == {"already_admitted_duplicate_reference": 1}
+    assert triage["provisional_rerun_target_count"] == 0
+    duplicate = triage["bucket_samples"]["already_admitted_duplicate_reference"][0]
+    assert duplicate["next_action"] == "do_not_rerun_already_accepted_canonical_evidence"
 
 
 def test_wizard_sim_admission_rejects_tool_target_not_load_bearing(tmp_path) -> None:
@@ -6643,6 +9847,64 @@ def test_wizard_sim_admission_rejects_tool_target_not_load_bearing(tmp_path) -> 
     )
 
     assert "admission_artifact_tool_target_not_load_bearing" in findings
+
+
+def test_wizard_sim_admission_reads_uppercase_tool_integration_depth(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_uppercase_depth_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    _write_allow_stage_gate(repo)
+    result_path = repo / "system_v4" / "probes" / "a2_state" / "sim_results" / "sim_qit_probe_results.json"
+    result_path.parent.mkdir(parents=True)
+    result_path.write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_probe",
+                "classification": "canonical",
+                "all_passed": True,
+                "TOOL_MANIFEST": {"z3": {"tried": True, "used": True, "reason": "legacy uppercase fixture"}},
+                "TOOL_INTEGRATION_DEPTH": {"z3": "load_bearing"},
+                "positive": {"passed": True, "function_surface": "z3.Solver.check"},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "qit_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text(
+        json.dumps({"result_path": str(result_path), "result_sha256": __import__("hashlib").sha256(result_path.read_bytes()).hexdigest()}),
+        encoding="utf-8",
+    )
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_qit_probe",
+        sim_path="system_v4/probes/sim_qit_probe.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["expected_result_path"] = str(result_path)
+    payload["formal_sim_profile"]["exact_tool_or_function"] = "z3.Solver.check"
+    payload["packet_contract"]["tool_target"] = "z3"
+    payload["packet_contract"]["function_surface"] = "z3.Solver.check"
+    payload["packet_contract"]["claim_ceiling"] = "qit_micro_only"
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_qit_probe",
+        sim_path="system_v4/probes/sim_qit_probe.py",
+    )
+
+    assert "admission_artifact_tool_target_not_load_bearing" not in findings
 
 
 def test_wizard_sim_admission_rejects_qit_canonical_without_nonclassical_tool(tmp_path) -> None:
@@ -7075,7 +10337,205 @@ def test_qit_engine_evidence_index_ignores_broad_filename_without_structured_qit
     index = module.build_index(repo)
 
     assert index["summary"]["total_entries"] == 0
+    assert index["summary"]["scanned_result_count"] == 1
+    assert index["summary"]["qit_signal_result_count"] == 0
+    assert len(index["scan_sample"]["scanned_result_files"]) == 1
+    assert index["scan_sample"]["qit_signal_result_files"] == []
+    assert index["status_reason"] == "no_qit_signal_results_indexed"
     assert index["summary"]["quarantine_entries"] == 0
+
+
+def test_qit_engine_evidence_index_reports_out_of_scope_qit_like_results_without_accepting_them(tmp_path) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_external_scope_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    canonical_results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    canonical_results.mkdir(parents=True)
+    (canonical_results / "sim_plain_micro_results.json").write_text(
+        json.dumps(
+            {
+                "name": "sim_plain_micro",
+                "classification": "canonical",
+                "tool_manifest": {"sympy": {"tried": True, "used": True, "reason": "ordinary fixture"}},
+                "tool_integration_depth": {"sympy": "load_bearing"},
+                "claim_ceiling": "lego_micro_only",
+                "promotion_condition": "ordinary later packet",
+                "blocked_until": "ordinary acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    legacy_result = repo / "system_v4" / "probes" / "sim_weyl_legacy_results.json"
+    legacy_result.parent.mkdir(parents=True, exist_ok=True)
+    (legacy_result.parent / "sim_weyl_legacy.py").write_text("# legacy fixture\n", encoding="utf-8")
+    legacy_result.write_text(
+        json.dumps(
+            {
+                "name": "sim_weyl_legacy",
+                "classification": "canonical",
+                "tool_manifest": {"sympy": {"tried": True, "used": True, "reason": "legacy fixture"}},
+                "tool_integration_depth": {"sympy": "load_bearing"},
+                "claim_ceiling": "weyl_micro_only",
+                "promotion_condition": "requires canonical re-run and admission",
+                "blocked_until": "canonical result exists",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    index = module.build_index(repo)
+
+    assert index["summary"]["total_entries"] == 0
+    assert index["summary"]["qit_signal_result_count"] == 0
+    assert index["status_reason"] == "no_qit_signal_results_indexed"
+    external_scan = index["out_of_scope_qit_result_scan"]
+    assert external_scan["status"] == "out_of_scope_qit_like_results_present"
+    assert external_scan["external_qit_signal_count"] == 1
+    assert external_scan["admission_boundary"] == "diagnostic_only_not_accepted_evidence"
+    assert external_scan["sample"][0]["path"] == "system_v4/probes/sim_weyl_legacy_results.json"
+    assert external_scan["triage"]["triage_boundary"] == "diagnostic_only_targets_require_canonical_rerun_and_strict_admission"
+    assert external_scan["triage"]["bucket_counts"] == {"source_bound_micro_rerun_candidate": 1}
+    assert external_scan["triage"]["provisional_rerun_target_count"] == 1
+    assert external_scan["triage"]["provisional_rerun_targets"][0]["next_action"] == (
+        "rerun_under_canonical_micro_result_surface_then_create_strict_admission"
+    )
+    assert external_scan["triage"]["provisional_rerun_targets"][0]["source_path"] == (
+        "system_v4/probes/sim_weyl_legacy.py"
+    )
+
+
+def test_qit_engine_evidence_index_triages_out_of_scope_late_stage_and_classical_without_rerun_target(
+    tmp_path,
+) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_external_triage_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    canonical_results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    canonical_results.mkdir(parents=True)
+    probes = repo / "system_v4" / "probes"
+    probes.mkdir(parents=True, exist_ok=True)
+    (probes / "sim_weyl_pairwise_coupling.py").write_text("# late fixture\n", encoding="utf-8")
+    (probes / "sim_weyl_pairwise_coupling_results.json").write_text(
+        json.dumps(
+            {
+                "name": "sim_weyl_pairwise_coupling",
+                "classification": "canonical",
+                "tool_manifest": {"z3": {"tried": True, "used": True, "reason": "legacy"}},
+                "tool_integration_depth": {"z3": "load_bearing"},
+                "claim_ceiling": "weyl_coupling_only",
+            }
+        ),
+        encoding="utf-8",
+    )
+    mirror = probes / "classical_doctrine_mirrors" / "sim_results"
+    mirror.mkdir(parents=True)
+    (mirror / "sim_classical_hopf_u1_fiber_winding_results.json").write_text(
+        json.dumps(
+            {
+                "name": "sim_classical_hopf_u1_fiber_winding",
+                "classification": "classical_baseline",
+                "tool_manifest": {"numpy": {"tried": True, "used": True, "reason": "baseline"}},
+                "tool_integration_depth": {"numpy": "load_bearing"},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    index = module.build_index(repo)
+
+    triage = index["out_of_scope_qit_result_scan"]["triage"]
+    assert triage["bucket_counts"] == {
+        "classical_baseline_reference_only": 1,
+        "late_stage_or_coupling_blocked": 1,
+    }
+    assert triage["provisional_rerun_target_count"] == 0
+    late_sample = triage["bucket_samples"]["late_stage_or_coupling_blocked"][0]
+    assert late_sample["late_stage_tokens"] == ["coupling", "pairwise"]
+    assert late_sample["next_action"] == "do_not_promote_extract_smaller_tool_or_geometry_micro_probe"
+    classical_sample = triage["bucket_samples"]["classical_baseline_reference_only"][0]
+    assert classical_sample["next_action"] == (
+        "do_not_promote_use_only_as_classical_reference_or_rerun_as_new_micro_if_needed"
+    )
+
+
+def test_qit_engine_evidence_index_triages_source_bound_without_load_bearing_as_contract_repair(
+    tmp_path,
+) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_external_repair_triage_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    canonical_results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    canonical_results.mkdir(parents=True)
+    probes = repo / "system_v4" / "probes"
+    probes.mkdir(parents=True, exist_ok=True)
+    (probes / "sim_weyl_micro.py").write_text("# fixture\n", encoding="utf-8")
+    (probes / "sim_weyl_micro_results.json").write_text(
+        json.dumps(
+            {
+                "name": "sim_weyl_micro",
+                "classification": "canonical",
+                "TOOL_MANIFEST": {"z3": {"tried": True, "used": True, "reason": "legacy"}},
+                "TOOL_INTEGRATION_DEPTH": {"z3": None},
+                "claim_ceiling": "weyl_micro_only",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    index = module.build_index(repo)
+
+    triage = index["out_of_scope_qit_result_scan"]["triage"]
+    assert triage["bucket_counts"] == {"source_bound_contract_repair_candidate": 1}
+    assert triage["provisional_rerun_target_count"] == 1
+    target = triage["provisional_rerun_targets"][0]
+    assert target["next_action"] == "repair_micro_contract_then_rerun_under_canonical_result_surface"
+    assert target["receipt_schema_present"] is True
+    assert target["load_bearing_depths"] == {}
+
+
+def test_qit_engine_evidence_index_triages_newer_repaired_source_as_rerun_candidate(
+    tmp_path,
+) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_external_repaired_source_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    canonical_results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    canonical_results.mkdir(parents=True)
+    probes = repo / "system_v4" / "probes"
+    probes.mkdir(parents=True, exist_ok=True)
+    source = probes / "sim_weyl_micro.py"
+    source.write_text("# repaired fixture\n", encoding="utf-8")
+    result = probes / "sim_weyl_micro_results.json"
+    result.write_text(
+        json.dumps(
+            {
+                "name": "sim_weyl_micro",
+                "classification": "canonical",
+                "TOOL_MANIFEST": {"z3": {"tried": True, "used": True, "reason": "legacy"}},
+                "TOOL_INTEGRATION_DEPTH": {"z3": None},
+                "claim_ceiling": "weyl_micro_only",
+            }
+        ),
+        encoding="utf-8",
+    )
+    os.utime(result, (1, 1))
+    os.utime(source, (2, 2))
+
+    index = module.build_index(repo)
+
+    triage = index["out_of_scope_qit_result_scan"]["triage"]
+    assert triage["bucket_counts"] == {"source_bound_repaired_source_rerun_candidate": 1}
+    target = triage["provisional_rerun_targets"][0]
+    assert target["next_action"] == "rerun_repaired_source_under_canonical_micro_result_surface"
+    assert target["source_newer_than_result"] is True
 
 
 def test_qit_engine_evidence_index_require_accepted_fails_without_candidate(tmp_path) -> None:
@@ -7112,6 +10572,7 @@ def test_qit_engine_evidence_index_require_accepted_fails_without_candidate(tmp_
 
     assert index["summary"]["accepted"] == 0
     assert index["operational_status"] == "blocked_no_accepted_qit_entries"
+    assert index["status_reason"] == "qit_entries_blocked"
 
 
 def test_queue_claim_defaults_to_strict_wizard_admission() -> None:
@@ -7126,6 +10587,7 @@ def test_queue_claim_accepts_strict_wizard_admission_artifact(tmp_path, monkeypa
     )
     repo = tmp_path / "repo"
     queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    _write_allow_stage_gate(repo)
     artifact = repo / "receipts" / "admission.json"
     artifact.parent.mkdir(parents=True)
     artifact.write_text("{}", encoding="utf-8")

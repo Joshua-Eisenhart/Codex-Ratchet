@@ -247,6 +247,21 @@ if __name__ == "__main__":
         ),
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "demotion_condition": (
+            "demote if any cvc5 finite-chain SAT/UNSAT, upper-bound mutation, or SymPy propositional-shape row fails"
+        ),
+        "out_of_scope": [
+            "no bridge promotion",
+            "no axis promotion",
+            "no engine promotion",
+            "no scientific coupling promotion",
+            "no full Zorn lemma or Axiom of Choice theorem claim",
+        ],
+        "claim_ceiling": "tool_micro_finite_chain_zorn_shadow_constraint_only",
+        "next_lego_target": "strict admission as cvc5 finite-chain micro before any geometry/operator coupling",
+        "promotion_condition": "requires canonical result surface, strict admission artifact, and stage-gate approval",
+        "blocked_until": "accepted wizard sim admission exists for this exact result hash",
+        "prior_function_receipts": [],
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

@@ -33,8 +33,8 @@ Max Assembly default means:
 
 Default boot/load rule (v4.1 MMM-first):
 
-- Main Codex thread loads the positive full MMM first: `~/wiki/wizard/packet-v4-1-current/mmm/FULL_MMM_v4_1.md`.
-- After full MMM salience is loaded, the main Codex thread loads `~/wiki/wizard/packet-v4-1-current/00_BOOT.md`, `~/wiki/wizard/packet-v4-1-current/01_UNIVERSAL_THREE_COUNCIL_WIZARD.md`, and the relevant runtime adapter for the current work.
+- Main Codex thread loads the positive full MMM first: `~/wiki/wizard/packet-v4-1-current/mmm/FULL_MMM_v4_1.md`, backed by the versioned source `~/wiki/wizard/packet-v4-1-current/mmm/main/full/md/MMM_MAIN_FULL_v4_1.md`.
+- After full MMM salience is loaded, the main Codex thread loads the runnable full Wizard file `~/wiki/wizard/packet-v4-1-current/WIZARD_FULL_v4_1.md`, the local skills manifest `~/wiki/wizard/packet-v4-1-current/skills/SKILLS_MANIFEST_v4_1.md`, and the relevant runtime adapter for the current work. The split docs `00_BOOT.md` through `10_DELIBERATOR_CONTRACT.md` are source/reference docs for the compiled runnable file, not the default boot replacement.
 - Subagents load shared task summary + exact route/member mini-MMM from `~/wiki/wizard/packet-v4-1-current/mmm/mini/MEMBER_MINI_MMM_REGISTRY_v4_1.md` + assigned route definition + task card + source slice + receipt format.
 - Subsubagents load parent route summary + exact child route/member mini-MMM + child route definition + child task card + source slice + receipt format. Narrower than parent.
 - v4.1 has a separate positive full MMM and route/member mini-MMM surface. The boot/core/adapter docs are thread/runtime rules after salience load, not replacements for MMM load.

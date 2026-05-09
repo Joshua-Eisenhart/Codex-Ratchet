@@ -9,6 +9,8 @@ import json, os, time, math
 import numpy as np
 import rustworkx as rx
 
+classification = "classical_baseline"
+
 TOOL_MANIFEST = {
     "rustworkx": {"tried": True, "used": True,
                   "reason": "all_pairs_dijkstra_path_lengths with edge_cost_fn — load-bearing typed-weight APSP"},

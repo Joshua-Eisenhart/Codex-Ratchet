@@ -84,6 +84,26 @@ ROW_SPECS = [
         "scope_hint": "graph_proof_bridge",
     },
     {
+        "id": "szilard_dual_stacked_engine",
+        "engine_family": "szilard",
+        "level": "dual_stacked_engine",
+        "geometry_topology": "finite_two_qubit_system_memory_with_opposite_information_engine_traversals",
+        "entropy_family": ["record_entropy_delta", "mutual_information", "free_energy_gain", "erasure_cost"],
+        "direction_modes": ["inductive_measurement_feedback_erasure", "deductive_reverse_recovery_bookkeeping"],
+        "result_file": RESULT_DIR / "szilard_dual_stacked_engine_results.json",
+        "scope_hint": "dual_stacked_engine",
+    },
+    {
+        "id": "carnot_szilard_rosetta_correlation",
+        "engine_family": "mixed",
+        "level": "rosetta_correlation",
+        "geometry_topology": "carnot_four_cycle_compared_to_szilard_two_qubit_protocol",
+        "entropy_family": ["reservoir_entropy", "record_entropy", "mutual_information", "proof_fence"],
+        "direction_modes": ["inductive_heating_loop", "deductive_cooling_loop", "rosetta_comparison"],
+        "result_file": RESULT_DIR / "carnot_szilard_rosetta_correlation_results.json",
+        "scope_hint": "rosetta_correlation",
+    },
+    {
         "id": "szilard_substeps",
         "engine_family": "szilard",
         "level": "stochastic_submechanics",
@@ -332,6 +352,26 @@ ROW_SPECS = [
         "direction_modes": ["forward_engine", "reverse_refrigerator"],
         "result_file": RESULT_DIR / "qit_carnot_two_bath_cycle_results.json",
         "scope_hint": "exact_reference_row",
+    },
+    {
+        "id": "carnot_tool_coupling_matrix",
+        "engine_family": "carnot",
+        "level": "tool_lego_fit_probe",
+        "geometry_topology": "four_leg_cycle_graph_density_carrier_and_regularized_spd_surface",
+        "entropy_family": ["gibbs_entropy", "von_neumann_entropy", "proof_fence", "stage_graph"],
+        "direction_modes": ["tool_fit", "proof_fence", "graph_topology", "density_witness"],
+        "result_file": RESULT_DIR / "carnot_tool_coupling_matrix_results.json",
+        "scope_hint": "tool_lego_fit_probe",
+    },
+    {
+        "id": "carnot_dual_stacked_engine",
+        "engine_family": "carnot",
+        "level": "dual_stacked_engine",
+        "geometry_topology": "shared_four_state_carnot_rectangle_with_opposite_loop_traversals",
+        "entropy_family": ["cold_reservoir_entropy_delta", "working_substance_entropy_closure", "efficiency", "cop"],
+        "direction_modes": ["inductive_heating_loop", "deductive_cooling_loop"],
+        "result_file": RESULT_DIR / "carnot_dual_stacked_engine_results.json",
+        "scope_hint": "dual_stacked_engine",
     },
     {
         "id": "carnot_graph_proof_alignment",
@@ -585,6 +625,12 @@ def likely_constraint_relation(scope_hint: str, result: dict) -> str:
         return "likely_allowed_qit_core"
     if scope_hint == "exact_reference_row":
         return "allowed_as_reference_not_runtime"
+    if scope_hint == "tool_lego_fit_probe":
+        return "pre_admission_tool_fit_surface"
+    if scope_hint == "dual_stacked_engine":
+        return "dual_stack_sim_surface_not_runtime_promotion"
+    if scope_hint == "rosetta_correlation":
+        return "rosetta_surface_candidate_prior_not_qit_promotion"
     if scope_hint == "graph_proof_bridge":
         return "graph_proof_bridge_surface"
     if scope_hint == "repair_companion":

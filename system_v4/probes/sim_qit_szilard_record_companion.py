@@ -288,14 +288,22 @@ def _qml_reset_memory_to_zero(rho_sm: np.ndarray, reset_strength: float) -> np.n
 
 
 def _cirq_measurement_stage(rho: np.ndarray, measurement_error: float) -> np.ndarray:
-    gate = cirq.unitary(cirq.CNOT(Q0, Q1))
-    measured = gate @ np.asarray(rho, dtype=np.complex128) @ gate.conj().T
+    circuit = cirq.Circuit(cirq.CNOT(Q0, Q1))
+    sim = cirq.DensityMatrixSimulator(seed=13)
+    measured = np.asarray(
+        sim.simulate(circuit, initial_state=np.asarray(rho, dtype=np.complex128), qubit_order=[Q0, Q1]).final_density_matrix,
+        dtype=np.complex128,
+    )
     return base.memory_flip_channel(measured, measurement_error)
 
 
 def _cirq_feedback_stage(rho: np.ndarray, record_quality: float) -> np.ndarray:
-    gate = cirq.unitary(cirq.CNOT(Q1, Q0))
-    feedback = gate @ np.asarray(rho, dtype=np.complex128) @ gate.conj().T
+    circuit = cirq.Circuit(cirq.CNOT(Q1, Q0))
+    sim = cirq.DensityMatrixSimulator(seed=13)
+    feedback = np.asarray(
+        sim.simulate(circuit, initial_state=np.asarray(rho, dtype=np.complex128), qubit_order=[Q0, Q1]).final_density_matrix,
+        dtype=np.complex128,
+    )
     return (1.0 - (1.0 - record_quality)) * feedback + (1.0 - record_quality) * rho
 
 
@@ -546,7 +554,7 @@ def main() -> None:
 
     ordered_rows = [row for row in rows if row["best_scrambled_name"] is not None]
     best_row = max(ordered_rows, key=lambda row: row["ordering_margin"])
-    bridge = build_bridge_witnesses(
+    bridge = bridge_witnesses(
         measurement_error=best_row["measurement_error"],
         record_lifetime_steps=best_row["record_lifetime_steps"],
         reset_strength=best_row["reset_strength"],

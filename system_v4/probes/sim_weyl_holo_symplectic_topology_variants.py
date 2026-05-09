@@ -12,6 +12,11 @@ Classification: canonical
 import json, math, os
 import numpy as np
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
 classification = "canonical"
 
 TOOL_MANIFEST = {
@@ -94,6 +99,7 @@ _TORCH = _Z3 = _SYMPY = False
 try:
     import torch
     TOOL_MANIFEST["pytorch"].update(tried=True, used=True)
+    TOOL_INTEGRATION_DEPTH["pytorch"] = "load_bearing"
     _TORCH = True
 except ImportError:
     TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
@@ -101,6 +107,7 @@ except ImportError:
 try:
     import z3 as _z3_mod
     TOOL_MANIFEST["z3"].update(tried=True, used=True)
+    TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
     _Z3 = True
 except ImportError:
     TOOL_MANIFEST["z3"]["reason"] = "not installed"
@@ -108,6 +115,7 @@ except ImportError:
 try:
     import sympy as _sp
     TOOL_MANIFEST["sympy"].update(tried=True, used=True)
+    TOOL_INTEGRATION_DEPTH["sympy"] = "load_bearing"
     _SYMPY = True
 except ImportError:
     TOOL_MANIFEST["sympy"]["reason"] = "not installed"
@@ -155,6 +163,13 @@ TOPOLOGY_VARIANTS = {
 }
 
 
+def torch_von_neumann_entropy(probs):
+    rho = torch.diag(torch.tensor(probs, dtype=torch.float64))
+    evals = torch.linalg.eigvalsh(rho)
+    evals = evals[evals > 0]
+    return float(-(evals * torch.log(evals)).sum().item())
+
+
 def run_positive_tests():
     results = {}
 
@@ -181,10 +196,18 @@ def run_positive_tests():
         }
 
         if _TORCH:
-            t_hw = torch.tensor(hw, dtype=torch.float64)
-            t_hh = torch.tensor(hh, dtype=torch.float64)
-            detail["torch_H_weyl"] = float(t_hw.item())
-            detail["torch_H_holo"] = float(t_hh.item())
+            torch_hw = torch_von_neumann_entropy([0.5, 0.5])
+            torch_hh = torch_von_neumann_entropy([0.25, 0.25, 0.25, 0.25])
+            detail["function_surface"] = "torch.linalg.eigvalsh"
+            detail["torch_H_weyl"] = torch_hw
+            detail["torch_H_holo"] = torch_hh
+            detail["torch_entropy_matches_weyl"] = bool(abs(torch_hw - hw) < 1e-12)
+            detail["torch_entropy_matches_holo"] = bool(abs(torch_hh - hh) < 1e-12)
+            detail["passed"] = bool(
+                detail["passed"]
+                and detail["torch_entropy_matches_weyl"]
+                and detail["torch_entropy_matches_holo"]
+            )
 
         results[f"P_{var_name}_entropy_stability"] = detail
 
@@ -283,20 +306,51 @@ def main():
 
     all_passed = all(v.get("passed", False) for v in results.values())
     summary = {
+        "name": "sim_weyl_holo_symplectic_topology_variants",
         "classification": classification,
+        "summary": {"passed": sum(1 for v in results.values() if v.get("passed", False)), "total": len(results)},
         "total": len(results),
         "passed": sum(1 for v in results.values() if v.get("passed", False)),
         "all_passed": all_passed,
+        "positive": {
+            key: value
+            for key, value in results.items()
+            if key.startswith("P_")
+        },
+        "negative": {
+            key: value
+            for key, value in results.items()
+            if key.startswith("N")
+        },
+        "boundary": {
+            key: value
+            for key, value in results.items()
+            if key.startswith("B")
+        },
+        "demotion_condition": "demote if any topology variant entropy stability, UNSAT, or boundary check fails",
+        "out_of_scope": [
+            "no bridge promotion",
+            "no axis promotion",
+            "no engine promotion",
+            "no scientific coupling promotion",
+        ],
+        "claim_ceiling": "tool_micro_topology_variant_entropy_stability_only",
+        "next_lego_target": "repair or admit as micro topology-variant evidence before coupling work",
+        "promotion_condition": "requires canonical result surface, strict admission artifact, and stage-gate approval",
+        "blocked_until": "accepted wizard sim admission exists for this exact result hash",
         "topology_variants": list(TOPOLOGY_VARIANTS.keys()),
         "H_WEYL_stable": H_WEYL_BASE,
         "H_HOLO_stable": H_HOLO_BASE,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "results": results,
     }
 
-    out = os.path.join(os.path.dirname(__file__),
-                       "sim_weyl_holo_symplectic_topology_variants_results.json")
+    out_dir = os.environ.get("SIM_RESULTS_DIR") or os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
+    os.makedirs(out_dir, exist_ok=True)
+    out = os.path.join(out_dir, "sim_weyl_holo_symplectic_topology_variants_results.json")
     with open(out, "w") as f:
         json.dump(summary, f, indent=2)
     print(json.dumps({"all_passed": all_passed, "passed": summary["passed"],

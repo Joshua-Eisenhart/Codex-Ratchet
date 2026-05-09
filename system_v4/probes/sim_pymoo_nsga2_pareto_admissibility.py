@@ -13,6 +13,8 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pymoo": {"tried": False, "used": False, "reason": ""},
     "numpy": {"tried": True, "used": True, "reason": "objective arithmetic and hypervolume indicator"},

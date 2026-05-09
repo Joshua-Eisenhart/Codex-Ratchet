@@ -1,0 +1,117 @@
+#!/usr/bin/env python3
+"""Fail-closed queue preflight before launching parallel sim runners."""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+from typing import Any
+
+
+LATE_STAGE_RE = re.compile(
+    r"(tier_d|boundary_flux|bridge|coupling|pairwise|coexistence|rho_ab|phi0|kernel|"
+    r"emergence|axis|axis0|bipartite|partial_trace|entanglement|mutual_information|"
+    r"mutual_info|coherent_information|coherent_info|concurrence|negativity|schmidt|"
+    r"entropy|capacity|capacities|carnot|szilard|landauer|thermo|engine|qit|nonclassical)",
+    re.I,
+)
+
+
+def repo_root() -> Path:
+    return Path(__file__).resolve().parents[1]
+
+
+def load_gate(root: Path) -> dict[str, Any]:
+    path = root / "system_v5" / "ops" / "stage_gate.json"
+    if not path.exists():
+        return {"active_stage": None, "allow_default_queue_late_stage": False, "allow_tier_d_launch": False}
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return {
+        "active_stage": payload.get("active_stage"),
+        "allow_default_queue_late_stage": payload.get("allow_default_queue_late_stage") is True,
+        "allow_tier_d_launch": payload.get("allow_tier_d_launch") is True,
+    }
+
+
+def rows(path: Path) -> list[str]:
+    if not path.exists():
+        return []
+    out: list[str] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        item = line.strip()
+        if item and not item.startswith("#"):
+            out.append(item)
+    return out
+
+
+def claim_for_row(row: str) -> str | None:
+    low = row.lower()
+    if "tier_d" in low or "boundary_flux" in low:
+        return "tier_d"
+    if any(token in low for token in ("bridge", "coupling", "pairwise", "coexistence", "rho_ab", "phi0", "kernel", "emergence", "engine", "qit", "nonclassical")):
+        return "scientific_coupling"
+    if "axis" in low:
+        return "axis"
+    if LATE_STAGE_RE.search(low):
+        return "default_late_stage"
+    return None
+
+
+def audit(root: Path | None = None) -> dict[str, Any]:
+    root = root or repo_root()
+    ops = root / "system_v5" / "ops"
+    gate = load_gate(root)
+    findings: list[dict[str, Any]] = []
+
+    blocked_default = 0
+    if not gate.get("allow_default_queue_late_stage"):
+        for row in rows(ops / "queue_default.txt"):
+            if LATE_STAGE_RE.search(row):
+                blocked_default += 1
+                findings.append(
+                    {
+                        "kind": "default_queue_late_stage_blocked",
+                        "queue": "system_v5/ops/queue_default.txt",
+                        "row": row,
+                        "claim": claim_for_row(row) or "default_late_stage",
+                    }
+                )
+
+    blocked_priority = 0
+    for rel in ("queue_tier_a.txt", "queue_tier_b.txt"):
+        queue = ops / rel
+        for row in rows(queue):
+            claim = claim_for_row(row)
+            if claim in {"scientific_coupling", "axis", "tier_d", "default_late_stage"}:
+                blocked_priority += 1
+                findings.append(
+                    {
+                        "kind": "priority_queue_stage_gate_blocked",
+                        "queue": f"system_v5/ops/{rel}",
+                        "row": row,
+                        "claim": claim,
+                    }
+                )
+
+    return {
+        "all_pass": not findings,
+        "active_stage": gate.get("active_stage"),
+        "blocked_default_queue_count": blocked_default,
+        "blocked_stage_gate_queue_count": blocked_priority,
+        "findings": findings,
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--repo-root", default=str(repo_root()))
+    args = parser.parse_args()
+    report = audit(Path(args.repo_root))
+    print(json.dumps(report, indent=2, sort_keys=True))
+    return 0 if report["all_pass"] else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

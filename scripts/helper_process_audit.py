@@ -12,7 +12,9 @@ import json
 import os
 import subprocess
 import sys
+import tomllib
 from dataclasses import asdict, dataclass
+from pathlib import Path
 from typing import Iterable
 
 
@@ -98,6 +100,7 @@ def audit_processes() -> dict[str, object]:
         "all_pass": not hits,
         "helper_process_count": len(hits),
         "helper_processes": [asdict(hit) for hit in hits],
+        "mcp_config_findings": [],
         "guard": "non_browser_sim_preflight",
         "likely_root_cause": likely_root_cause,
         "note": (
@@ -107,10 +110,48 @@ def audit_processes() -> dict[str, object]:
     }
 
 
+def audit_mcp_config(config_path: Path | None = None) -> dict[str, object]:
+    config_path = config_path or Path.home() / ".codex" / "config.toml"
+    if not config_path.exists():
+        return {"config_path": str(config_path), "findings": [], "parse_error": None}
+    try:
+        payload = tomllib.loads(config_path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        return {
+            "config_path": str(config_path),
+            "findings": [{"kind": "codex_config_parse_error", "error": str(exc)}],
+            "parse_error": str(exc),
+        }
+    servers = payload.get("mcp_servers") or {}
+    playwright = servers.get("playwright") if isinstance(servers, dict) else None
+    findings: list[dict[str, object]] = []
+    if isinstance(playwright, dict) and playwright.get("enabled", True) is not False:
+        findings.append(
+            {
+                "kind": "playwright_mcp_server_enabled",
+                "server": "playwright",
+                "config_path": str(config_path),
+                "suggested_stop": "codex mcp remove playwright",
+            }
+        )
+    return {"config_path": str(config_path), "findings": findings, "parse_error": None}
+
+
+def audit_all() -> dict[str, object]:
+    process_report = audit_processes()
+    config_report = audit_mcp_config()
+    findings = list(config_report.get("findings") or [])
+    process_report["mcp_config_findings"] = findings
+    process_report["mcp_config_path"] = config_report.get("config_path")
+    process_report["mcp_config_parse_error"] = config_report.get("parse_error")
+    process_report["all_pass"] = bool(process_report.get("all_pass")) and not findings
+    return process_report
+
+
 def main() -> int:
     args = parse_args()
     try:
-        report = audit_processes()
+        report = audit_all()
     except RuntimeError as exc:
         report = {
             "all_pass": False,

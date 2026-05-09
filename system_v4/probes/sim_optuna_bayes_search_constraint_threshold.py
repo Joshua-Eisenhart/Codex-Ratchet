@@ -16,6 +16,8 @@ import os
 import math
 import optuna
 
+classification = "canonical"
+
 optuna.logging.set_verbosity(optuna.logging.WARNING)
 
 TOOL_MANIFEST = {

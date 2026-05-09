@@ -189,5 +189,22 @@ if __name__ == "__main__":
         run_positive_tests(),
         run_negative_tests(),
         run_boundary_tests(),
-        extras={"classes": ["E6", "E7", "E8"], "ranks": [6, 7, 8], "determinants": [3, 2, 1]},
+        extras={
+            "classes": ["E6", "E7", "E8"],
+            "ranks": [6, 7, 8],
+            "determinants": [3, 2, 1],
+            "demotion_condition": "demote if any exact Cartan determinant, determinant-collision, branch-removal, or permutation-invariance row fails",
+            "out_of_scope": [
+                "no bridge promotion",
+                "no axis promotion",
+                "no engine promotion",
+                "no scientific coupling promotion",
+                "no cross-shell coupling claim",
+            ],
+            "claim_ceiling": "tool_micro_e_class_cartan_admissibility_shell_local_only",
+            "next_lego_target": "strict admission as z3/sympy E-class Cartan shell-local micro before any GStack coupling",
+            "promotion_condition": "requires canonical result surface, strict admission artifact, and stage-gate approval",
+            "blocked_until": "accepted wizard sim admission exists for this exact result hash",
+            "prior_function_receipts": [],
+        },
     )

@@ -8,6 +8,8 @@ import json, os, time
 import numpy as np
 import rustworkx as rx
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "rustworkx": {"tried": True, "used": True,
                   "reason": "Tarjan SCC on PyDiGraph — load-bearing; networkx equivalent exists but we exercise rustworkx's typed DiGraph for downstream integration"},

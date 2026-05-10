@@ -347,6 +347,29 @@ def main():
         ),
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "claim_ceiling": (
+            "supporting finite compound operator/geometry coupling map only; no bridge, "
+            "GStack, axis, QIT, or nonclassical admission"
+        ),
+        "next_lego_target": (
+            "Use as a bounded supporting successor surface for later operator-geometry "
+            "coupling checks only after exact downstream receipts."
+        ),
+        "promotion_condition": (
+            "Requires separate closure-grade coupling/coexistence receipts and explicit "
+            "stage-gate approval."
+        ),
+        "blocked_until": "closure-grade coupling receipt; coexistence evidence; stage-gate admission",
+        "demotion_condition": (
+            "Demote if pair/triple/order-variant checks fail or if the result is used as "
+            "a closure-grade proof."
+        ),
+        "out_of_scope": [
+            "QIT engine admission",
+            "GStack admission",
+            "axis promotion",
+            "nonclassical proof",
+        ],
         "tests": {}
     }
 

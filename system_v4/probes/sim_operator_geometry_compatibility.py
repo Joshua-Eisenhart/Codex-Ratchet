@@ -581,6 +581,10 @@ def main():
 
     # ── Verdict counts ──
     verdicts = [c['verdict'] for c in all_cells]
+    all_cells_accounted_for = (
+        verdicts.count('COMPATIBLE') + verdicts.count('BREAKS') + verdicts.count('TRIVIAL')
+        == len(all_cells)
+    )
     print(f"\nVERDICT TOTALS: "
           f"COMPATIBLE={verdicts.count('COMPATIBLE')}  "
           f"BREAKS={verdicts.count('BREAKS')}  "
@@ -599,11 +603,40 @@ def main():
         'attractor_discovery': attractor_results,
         'tool_manifest': TOOL_MANIFEST,
         'tool_integration_depth': TOOL_INTEGRATION_DEPTH,
+        'claim_ceiling': (
+            'supporting finite operator/geometry compatibility matrix only; no bridge, '
+            'GStack, axis, QIT, or nonclassical admission'
+        ),
+        'next_lego_target': (
+            'Use as a bounded supporting operator-geometry routing map for later '
+            'closure-grade coupling checks only after exact downstream receipts.'
+        ),
+        'promotion_condition': (
+            'Requires separate closure-grade coupling/coexistence receipts and explicit '
+            'stage-gate approval.'
+        ),
+        'blocked_until': 'closure-grade coupling receipt; coexistence evidence; stage-gate admission',
+        'demotion_condition': (
+            'Demote if compatibility cells are not fully accounted for or if this '
+            'supporting map is used as promotion evidence.'
+        ),
+        'out_of_scope': [
+            'QIT engine admission',
+            'GStack admission',
+            'axis promotion',
+            'nonclassical proof',
+        ],
+        'all_pass': all_cells_accounted_for,
         'summary': {
             'compatible_count': verdicts.count('COMPATIBLE'),
             'breaks_count': verdicts.count('BREAKS'),
             'trivial_count': verdicts.count('TRIVIAL'),
-            'all_cells_accounted_for': verdicts.count('COMPATIBLE') + verdicts.count('BREAKS') + verdicts.count('TRIVIAL') == len(all_cells),
+            'all_cells_accounted_for': all_cells_accounted_for,
+            'all_pass': all_cells_accounted_for,
+            'scope_note': (
+                'Finite 8x6 operator/geometry compatibility matrix plus attractor '
+                'discovery; supporting routing evidence only.'
+            ),
         },
         'classification': 'supporting',
         'classification_note': 'Supporting compatibility-map lego. Useful for operator/geometry routing, not a closure-grade proof or full promotion surface.',

@@ -574,14 +574,46 @@ if __name__ == "__main__":
         ],
         "import_source": "ratchet_modules.py -> original sim files",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "classification": "canonical",
+        "classification_note": (
+            "Canonical finite dependency-chain coupling receipt across imported Torch "
+            "modules; this is not QIT/GStack/axis promotion."
+        ),
+        "claim_ceiling": (
+            "finite torch dependency-chain coupling receipt only; no bridge, GStack, "
+            "axis, QIT, or nonclassical admission"
+        ),
+        "next_lego_target": (
+            "Use as a bounded carrier/operator dependency-chain receipt for later "
+            "coupling work only after exact downstream checks."
+        ),
+        "promotion_condition": (
+            "Requires separate bridge/nonclassical/topology/operator coupling receipts "
+            "and explicit stage-gate approval."
+        ),
+        "blocked_until": "tool-lego fit; coupling/coexistence evidence; stage-gate admission",
+        "demotion_condition": (
+            "Demote if imported module chain breaks, gradients stop flowing, or claims "
+            "exceed this finite dependency-chain receipt."
+        ),
+        "out_of_scope": [
+            "QIT engine admission",
+            "GStack admission",
+            "axis promotion",
+            "nonclassical proof",
+        ],
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "classification": "canonical",
         "summary": {
             "total_tests": total_tests,
             "total_pass": total_pass,
             "all_pass": total_pass == total_tests,
+            "scope_note": (
+                "Finite imported-module dependency chain over density matrix, "
+                "dephasing, CNOT, mutual information, and Hopf connection modules."
+            ),
         },
     }
 

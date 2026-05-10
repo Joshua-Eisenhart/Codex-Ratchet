@@ -1,50 +1,50 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T20:43:21.942156+00:00",
+  "generated_at": "2026-05-10T20:50:17.495969+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3924,
-    "result_json_count": 432,
-    "linked_result_json_count": 401,
+    "source_count": 3925,
+    "result_json_count": 433,
+    "linked_result_json_count": 402,
     "unlinked_result_json_count": 31,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3525,
-      "rerun_or_admission_candidate": 300,
+      "rerun_or_admission_candidate": 301,
       "legacy_result_or_repair_needed": 14,
       "contract_shaped_but_tool_depth_thin": 74,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
     },
     "family_counts": {
-      "channel_operator": 774,
+      "channel_operator": 775,
       "entropy_information": 577,
-      "thermo_engine": 416,
+      "thermo_engine": 417,
       "uncategorized": 335,
-      "axis_bridge": 648,
+      "axis_bridge": 649,
       "graveyard_negative": 1696,
-      "root_admission": 835,
+      "root_admission": 836,
       "hopf_torus": 590,
       "weyl_spinor_clifford": 780,
-      "geometry_gstack_gtower": 708,
+      "geometry_gstack_gtower": 709,
       "density_carrier": 476,
-      "classical_baseline": 1086,
+      "classical_baseline": 1087,
       "gerbe_dirac_mera_spectral": 668,
       "graph_topology": 401,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2695,
+      "numpy": 2696,
       "sympy": 2235,
-      "scipy": 248,
+      "scipy": 249,
       "pytorch": 1968,
       "pyg": 842,
       "cvc5": 1324,
       "qutip": 42,
       "e3nn": 840,
       "gudhi": 895,
-      "z3": 1889,
+      "z3": 1890,
       "clifford": 1328,
       "rustworkx": 1073,
       "toponetx": 914,
@@ -54,17 +54,17 @@
       "qiskit": 10
     },
     "load_bearing_tool_counts": {
-      "numpy": 254,
+      "numpy": 255,
       "cvc5": 505,
       "pytorch": 1123,
       "rustworkx": 281,
-      "z3": 728,
+      "z3": 729,
       "sympy": 552,
       "clifford": 273,
       "xgi": 200,
       "geomstats": 108,
       "gudhi": 119,
-      "scipy": 60,
+      "scipy": 61,
       "toponetx": 118,
       "e3nn": 55,
       "pyg": 68,
@@ -73,7 +73,7 @@
       "networkx": 3
     },
     "result_classification_counts": {
-      "classical_baseline": 81,
+      "classical_baseline": 82,
       "canonical": 250,
       "supporting": 11,
       "exploratory": 30,
@@ -84,7 +84,7 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 388,
+    "repair_candidate_count": 389,
     "source_only_count": 3525
   },
   "admitted_stems": [
@@ -97692,6 +97692,45 @@
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
+      "stem": "sim_operator_geometry_closure_coexistence",
+      "source_path": "system_v4/probes/sim_operator_geometry_closure_coexistence.py",
+      "families": [
+        "root_admission",
+        "channel_operator",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "scipy": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy",
+        "scipy",
+        "z3"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/operator_geometry_closure_coexistence_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": true,
       "has_contract_shape": true,
       "inventory_status": "rerun_or_admission_candidate"
     },

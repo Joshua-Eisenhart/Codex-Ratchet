@@ -25,6 +25,7 @@ DEFAULT_EXTRA_PATHS = (
     "system_v4/probes/a2_state/sim_results/operator_geometry_multi_pair_exclusions_results.json",
     "system_v4/probes/a2_state/sim_results/operator_geometry_exclusion_assembly_audit_results.json",
     "system_v4/probes/a2_state/sim_results/operator_geometry_shared_state_coexistence_results.json",
+    "system_v4/probes/a2_state/sim_results/operator_geometry_closure_coexistence_results.json",
     "system_v4/probes/a2_state/sim_results/graph_cell_complex_coexistence_results.json",
     "system_v4/probes/a2_state/sim_results/gudhi_bipartite_entangled_results.json",
     "system_v4/probes/a2_state/sim_results/bipartite_entropy_topology_coexistence_results.json",

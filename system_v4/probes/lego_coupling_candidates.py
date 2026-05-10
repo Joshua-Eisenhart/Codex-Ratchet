@@ -64,6 +64,16 @@ COUPLING_TARGETS = {
                 "status": "supporting_only",
                 "reason": "Berry/QFI shell-local geometry can feed the existing compound operator/geometry map, but that successor is still supporting rather than closure-grade.",
             },
+            {
+                "lego_probe": "sim_berry_qfi_shell_paths.py",
+                "coupling_probe": "sim_operator_geometry_closure_coexistence.py",
+                "existing_anchor": "operator_geometry_closure_coexistence_results.json",
+                "status": "existing_anchor",
+                "reason": (
+                    "Fresh bounded closure-candidate coexistence packet ties finite shell geometry, "
+                    "operator selectivity, order gaps, and z3 controls without promotion."
+                ),
+            },
         ],
     },
     "graph_cell_complex_geometry": {
@@ -148,6 +158,16 @@ COUPLING_TARGETS = {
                 "existing_anchor": "operator_geometry_compatibility_results.json",
                 "status": "supporting_only",
                 "reason": "Best current operator/geometry successor exists, but it is supporting rather than closure-grade.",
+            },
+            {
+                "lego_probe": None,
+                "coupling_probe": "sim_operator_geometry_closure_coexistence.py",
+                "existing_anchor": "operator_geometry_closure_coexistence_results.json",
+                "status": "existing_anchor",
+                "reason": (
+                    "Operator family admission now has a bounded closure-candidate queue receipt "
+                    "built from selectivity, finite shell order gaps, and controls."
+                ),
             },
         ],
     },

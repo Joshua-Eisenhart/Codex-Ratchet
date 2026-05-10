@@ -1,6 +1,6 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T18:29:51.974363+00:00`
+Generated: `2026-05-10T18:33:16.839001+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
@@ -17,8 +17,8 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 ## Inventory Status Counts
 
 - `source_only`: 3526
-- `rerun_or_admission_candidate`: 224
-- `contract_shaped_but_tool_depth_thin`: 142
+- `rerun_or_admission_candidate`: 228
+- `contract_shaped_but_tool_depth_thin`: 138
 - `legacy_result_or_repair_needed`: 14
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2
@@ -50,7 +50,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `rustworkx`: 280
 - `clifford`: 273
 - `xgi`: 199
-- `numpy`: 179
+- `numpy`: 183
 - `gudhi`: 117
 - `toponetx`: 117
 - `geomstats`: 109
@@ -156,7 +156,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | contract_shaped_but_tool_depth_thin | `sim_carnot_szilard_rosetta_correlation` | thermo_engine, graveyard_negative | - | canonical |
 | rerun_or_admission_candidate | `sim_carnot_tool_coupling_matrix` | thermo_engine | clifford, cvc5, geomstats, gudhi, numpy, pyg, pytorch, qiskit, qutip, rustworkx, scipy, sympy, toponetx, xgi, z3 | tool_lego_fit_probe |
 | contract_shaped_but_tool_depth_thin | `sim_carnot_topology_array` | thermo_engine | - | exploratory |
-| contract_shaped_but_tool_depth_thin | `sim_carrier_probe_support` | root_admission | - | canonical |
+| rerun_or_admission_candidate | `sim_carrier_probe_support` | root_admission | numpy | canonical |
 | rerun_or_admission_candidate | `sim_cell_complex_geometry` | graph_topology | toponetx | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_channel_capacity` | channel_operator | - | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_channel_cptp_classical` | channel_operator, classical_baseline | - | classical_baseline |

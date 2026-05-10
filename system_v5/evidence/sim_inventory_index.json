@@ -1,18 +1,18 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T07:54:12.443976+00:00",
+  "generated_at": "2026-05-10T07:58:35.224954+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 3917,
-    "result_json_count": 284,
-    "linked_result_json_count": 258,
+    "result_json_count": 291,
+    "linked_result_json_count": 265,
     "unlinked_result_json_count": 26,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
-      "source_only": 3660,
+      "source_only": 3653,
       "legacy_result_or_repair_needed": 12,
-      "rerun_or_admission_candidate": 161,
+      "rerun_or_admission_candidate": 168,
       "contract_shaped_but_tool_depth_thin": 73,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
@@ -55,26 +55,26 @@
     },
     "load_bearing_tool_counts": {
       "numpy": 174,
-      "cvc5": 501,
+      "cvc5": 503,
       "pytorch": 1121,
       "rustworkx": 278,
-      "z3": 719,
+      "z3": 721,
       "sympy": 550,
       "clifford": 273,
-      "xgi": 196,
+      "xgi": 197,
       "geomstats": 109,
       "gudhi": 114,
       "scipy": 53,
-      "toponetx": 111,
+      "toponetx": 112,
       "e3nn": 55,
-      "pyg": 66,
+      "pyg": 67,
       "qutip": 31,
       "qiskit": 8,
-      "networkx": 2
+      "networkx": 3
     },
     "result_classification_counts": {
-      "canonical": 140,
-      "classical_baseline": 62,
+      "canonical": 145,
+      "classical_baseline": 64,
       "exploratory": 30,
       "research_support": 6,
       "tool_lego_fit_probe": 1,
@@ -83,8 +83,8 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 246,
-    "source_only_count": 3660
+    "repair_candidate_count": 253,
+    "source_only_count": 3653
   },
   "admitted_stems": [
     "sim_clifford_capability",
@@ -2010,6 +2010,36 @@
       "inventory_status": "contract_shaped_but_tool_depth_thin"
     },
     {
+      "stem": "sim_cvc5_qf_lia_model_extraction_micro",
+      "source_path": "system_v4/probes/sim_cvc5_qf_lia_model_extraction_micro.py",
+      "families": [
+        "axis_bridge"
+      ],
+      "tools": {
+        "cvc5": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "cvc5"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_cvc5_qf_lia_model_extraction_micro_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_decuple_coupling_program",
       "source_path": "system_v4/probes/sim_decuple_coupling_program.py",
       "families": [
@@ -3656,55 +3686,29 @@
       "inventory_status": "rerun_or_admission_candidate"
     },
     {
-      "stem": "sim_integration_qutip_open_system_bridge",
-      "source_path": "system_v4/probes/sim_integration_qutip_open_system_bridge.py",
+      "stem": "sim_integration_cvc5_z3_unsat_agreement_micro",
+      "source_path": "system_v4/probes/sim_integration_cvc5_z3_unsat_agreement_micro.py",
       "families": [
-        "channel_operator",
+        "thermo_engine",
         "axis_bridge",
-        "classical_baseline"
+        "graveyard_negative"
       ],
       "tools": {
-        "numpy": "supportive",
-        "scipy": "supportive",
-        "qutip": "load_bearing"
+        "z3": "load_bearing",
+        "cvc5": "load_bearing"
       },
       "load_bearing_tools": [
-        "qutip"
+        "cvc5",
+        "z3"
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
       "result_paths": [
-        "system_v4/probes/a2_state/sim_results/qutip_open_system_bridge_results.json"
+        "system_v4/probes/a2_state/sim_results/sim_integration_cvc5_z3_unsat_agreement_micro_results.json"
       ],
       "result_count": 1,
       "result_classifications": [
-        "classical_baseline"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": true,
-      "has_contract_shape": true,
-      "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_inventory_unlinked_result_audit",
-      "source_path": "system_v4/probes/sim_inventory_unlinked_result_audit.py",
-      "families": [
-        "uncategorized"
-      ],
-      "tools": {},
-      "load_bearing_tools": [],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/inventory_unlinked_result_audit_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "controller_index"
+        "canonical"
       ],
       "result_has_contract_shape": true,
       "admission_path": "",
@@ -3713,7 +3717,7 @@
       "admitted": false,
       "late_stage_signal": false,
       "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
+      "inventory_status": "rerun_or_admission_candidate"
     }
   ],
   "source_only_samples": [
@@ -47502,22 +47506,28 @@
         "axis_bridge"
       ],
       "tools": {
-        "cvc5": "imported"
+        "cvc5": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "cvc5"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_cvc5_qf_lia_model_extraction_micro_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_cvc5_quantum_channel_constraint",
@@ -84578,23 +84588,30 @@
         "graveyard_negative"
       ],
       "tools": {
-        "z3": "imported",
-        "cvc5": "imported"
+        "z3": "load_bearing",
+        "cvc5": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "cvc5",
+        "z3"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_integration_cvc5_z3_unsat_agreement_micro_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_integration_datasketch_pyg_lsh_graph",
@@ -84992,24 +85009,31 @@
         "axis_bridge"
       ],
       "tools": {
-        "pytorch": "imported",
-        "pyg": "imported",
-        "networkx": "imported"
+        "pytorch": "supportive",
+        "pyg": "load_bearing",
+        "networkx": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "networkx",
+        "pyg"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_integration_networkx_pyg_graph_roundtrip_micro_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_integration_networkx_rustworkx_crosscheck",
@@ -85033,17 +85057,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_integration_networkx_rustworkx_crosscheck_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_integration_optuna_sympy_invariant_search",
@@ -85115,15 +85143,15 @@
         "pytorch": "load_bearing",
         "pyg": "load_bearing",
         "z3": "load_bearing",
-        "cvc5": "imported",
-        "sympy": "imported",
-        "clifford": "imported",
-        "rustworkx": "imported",
-        "toponetx": "imported",
-        "gudhi": "imported",
-        "geomstats": "imported",
-        "xgi": "imported",
-        "e3nn": "imported"
+        "cvc5": "tried",
+        "sympy": "tried",
+        "clifford": "tried",
+        "rustworkx": "tried",
+        "toponetx": "tried",
+        "gudhi": "tried",
+        "geomstats": "tried",
+        "xgi": "tried",
+        "e3nn": "tried"
       },
       "load_bearing_tools": [
         "pyg",
@@ -85132,17 +85160,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_integration_pyg_shell_coupling_admissibility_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": true,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_integration_pymoo_gudhi_pareto_persistence",
@@ -85883,24 +85915,31 @@
         "axis_bridge"
       ],
       "tools": {
-        "numpy": "imported",
-        "toponetx": "imported",
-        "xgi": "imported"
+        "numpy": "supportive",
+        "toponetx": "load_bearing",
+        "xgi": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "toponetx",
+        "xgi"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_intersection_cohomology_constraint_canonical",
@@ -126705,22 +126744,28 @@
         "graveyard_negative"
       ],
       "tools": {
-        "z3": "imported"
+        "z3": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "z3"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_z3_qf_lia_unsat_witness_micro_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_z3_quantum_capacity_bound",

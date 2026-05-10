@@ -850,6 +850,22 @@ def run_boundary_tests():
     return results
 
 
+def collect_pass_flags(obj):
+    if isinstance(obj, dict):
+        flags = []
+        if "pass" in obj:
+            flags.append(bool(obj["pass"]))
+        for value in obj.values():
+            flags.extend(collect_pass_flags(value))
+        return flags
+    if isinstance(obj, list):
+        flags = []
+        for value in obj:
+            flags.extend(collect_pass_flags(value))
+        return flags
+    return []
+
+
 # =====================================================================
 # MAIN
 # =====================================================================
@@ -875,6 +891,8 @@ if __name__ == "__main__":
     positive = run_positive_tests()
     negative = run_negative_tests()
     boundary = run_boundary_tests()
+    pass_flags = collect_pass_flags({"positive": positive, "negative": negative, "boundary": boundary})
+    all_pass = bool(pass_flags) and all(pass_flags)
 
     elapsed = time.time() - t0
 
@@ -887,8 +905,13 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "classification": "canonical",
+        "classification": "canonical" if all_pass else "supporting",
+        "demotion_condition": None if all_pass else "same-chirality fiber-phase distinctness expectation failed; keep as repair/negative evidence",
+        "all_pass": all_pass,
         "summary": {
+            "tests_passed": sum(1 for flag in pass_flags if flag),
+            "tests_total": len(pass_flags),
+            "all_pass": all_pass,
             "claim_lr_overlap_formula": "⟨ψ_L(θ,φ,ξ)|ψ_R(θ,φ,ξ)⟩ = e^{-iξ} (unit magnitude, pure phase)",
             "claim_chirality_separation": "L and R differ by fiber reversal ξ→-ξ, not Hilbert space orthogonality",
             "claim_z3_unsat": "xi = -xi AND xi != 0 is UNSAT: disjoint fiber sheets for nontrivial xi",

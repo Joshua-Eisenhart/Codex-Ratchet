@@ -13,6 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUT = ROOT / "system_v5" / "evidence" / "a2_state_manifest_2026-05-10.json"
 NORMALIZATION_QUEUE_PATH = ROOT / "system_v4" / "probes" / "a2_state" / "sim_results" / "actual_lego_normalization_queue.json"
+WORK_MATRIX_PATH = ROOT / "system_v4" / "probes" / "a2_state" / "sim_results" / "actual_lego_work_matrix.json"
 DEFAULT_EXTRA_PATHS = (
     "system_v4/probes/a2_state/sim_results/actual_lego_work_matrix.json",
     "system_v4/probes/a2_state/sim_results/constraint_manifold_L0_L1_results.json",
@@ -45,6 +46,19 @@ def read_queue_row_count() -> int:
     return len(rows) if isinstance(rows, list) else 0
 
 
+def read_work_matrix_result_paths() -> list[str]:
+    if not WORK_MATRIX_PATH.exists():
+        return []
+    payload = json.loads(WORK_MATRIX_PATH.read_text(encoding="utf-8"))
+    paths = []
+    for row in payload.get("rows", []):
+        result_path = row.get("result_path")
+        if result_path:
+            path = Path(result_path)
+            paths.append(rel(path if path.is_absolute() else ROOT / path))
+    return paths
+
+
 def is_frontier_receipt(row: dict) -> bool:
     path = row["path"]
     return path.startswith("system_v4/probes/a2_state/sim_results/") and path.endswith(
@@ -68,7 +82,9 @@ def main() -> int:
     out_path = args.out if args.out.is_absolute() else ROOT / args.out
     manifest = json.loads(out_path.read_text(encoding="utf-8")) if out_path.exists() else {}
     previous_paths = [row.get("path") for row in manifest.get("items", []) if row.get("path")]
-    requested_paths = list(dict.fromkeys([*previous_paths, *DEFAULT_EXTRA_PATHS, *args.extra_path]))
+    requested_paths = list(
+        dict.fromkeys([*previous_paths, *DEFAULT_EXTRA_PATHS, *read_work_matrix_result_paths(), *args.extra_path])
+    )
 
     items = []
     missing = []

@@ -646,9 +646,11 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "classification": "canonical",
+        "all_pass": n_pass == n_total,
         "summary": {
             "tests_passed": n_pass,
             "tests_total": n_total,
+            "all_pass": n_pass == n_total,
             "gudhi_betti_numbers": gudhi_betti,
             "beta1_equals_2": beta1_confirmed,
             "clifford_hopf_map_exact": clifford_pass,

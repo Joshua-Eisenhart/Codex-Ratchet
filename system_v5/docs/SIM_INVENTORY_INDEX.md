@@ -1,25 +1,25 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T17:26:39.813990+00:00`
+Generated: `2026-05-10T17:43:20.524177+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `3917`
-- Result JSON files seen: `374`
-- Linked result JSON files: `346`
-- Unlinked result JSON files: `28`
+- Result JSON files seen: `397`
+- Linked result JSON files: `368`
+- Unlinked result JSON files: `29`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `334`
-- Source-only rows: `3572`
+- Repair / rerun candidate rows: `356`
+- Source-only rows: `3550`
 
 ## Inventory Status Counts
 
-- `source_only`: 3572
-- `rerun_or_admission_candidate`: 203
-- `contract_shaped_but_tool_depth_thin`: 118
-- `legacy_result_or_repair_needed`: 13
+- `source_only`: 3550
+- `rerun_or_admission_candidate`: 211
+- `contract_shaped_but_tool_depth_thin`: 131
+- `legacy_result_or_repair_needed`: 14
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2
 
@@ -43,16 +43,16 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Load-Bearing Tool Counts
 
-- `pytorch`: 1121
+- `pytorch`: 1123
 - `z3`: 724
-- `sympy`: 551
+- `sympy`: 553
 - `cvc5`: 505
 - `rustworkx`: 280
 - `clifford`: 273
-- `xgi`: 198
-- `numpy`: 174
+- `xgi`: 199
+- `numpy`: 175
+- `toponetx`: 117
 - `gudhi`: 116
-- `toponetx`: 114
 - `geomstats`: 109
 - `pyg`: 67
 - `e3nn`: 55
@@ -79,6 +79,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `system_v4/probes/a2_state/sim_results/state_dir_ownership_audit_results.json`
 - `system_v4/probes/a2_state/sim_results/system_hygiene_repair_results.json`
 - `system_v4/probes/a2_state/sim_results/system_hygiene_supervisor_results.json`
+- `system_v4/probes/a2_state/sim_results/wilczek_zee_holonomy_results.json`
 - `system_v4/probes/classical_doctrine_mirrors/sim_results/sim_classical_axis0_entropy_gradient_flow_results.json`
 - `system_v4/probes/classical_doctrine_mirrors/sim_results/sim_classical_axis6_action_handedness_results.json`
 - `system_v4/probes/classical_doctrine_mirrors/sim_results/sim_classical_bell_state_partial_trace_results.json`
@@ -121,7 +122,11 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | legacy_result_or_repair_needed | `sim_axis_hopf_geometry` | density_carrier, hopf_torus, weyl_spinor_clifford, geometry_gstack_gtower, thermo_engine, axis_bridge | - | - |
 | rerun_or_admission_candidate | `sim_berry_qfi_shell_paths` | density_carrier, entropy_information, hopf_torus, geometry_gstack_gtower | geomstats, pytorch, sympy | canonical |
 | rerun_or_admission_candidate | `sim_blackwell_style_comparison` | root_admission, channel_operator, classical_baseline | cvc5 | canonical |
+| contract_shaped_but_tool_depth_thin | `sim_branch_weight` | uncategorized | - | canonical |
 | rerun_or_admission_candidate | `sim_bridge_extended_proofs` | root_admission, channel_operator, entropy_information, geometry_gstack_gtower, axis_bridge, classical_baseline, graveyard_negative | cvc5, z3 | canonical |
+| contract_shaped_but_tool_depth_thin | `sim_bridge_family_xi_history` | axis_bridge | - | classical_baseline |
+| contract_shaped_but_tool_depth_thin | `sim_bridge_family_xi_point` | axis_bridge | - | classical_baseline |
+| contract_shaped_but_tool_depth_thin | `sim_bridge_family_xi_shell` | axis_bridge | - | classical_baseline |
 | rerun_or_admission_candidate | `sim_bridge_to_rhoab_construction` | density_carrier, axis_bridge, graveyard_negative | pytorch | canonical |
 | rerun_or_admission_candidate | `sim_bridge_z3_kernel_ordering` | density_carrier, axis_bridge, graveyard_negative | rustworkx, z3 | canonical |
 | legacy_result_or_repair_needed | `sim_broad_axis_search` | thermo_engine, axis_bridge | - | - |
@@ -147,14 +152,10 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | rerun_or_admission_candidate | `sim_carnot_tool_coupling_matrix` | thermo_engine | clifford, cvc5, geomstats, gudhi, numpy, pyg, pytorch, qiskit, qutip, rustworkx, scipy, sympy, toponetx, xgi, z3 | tool_lego_fit_probe |
 | contract_shaped_but_tool_depth_thin | `sim_carnot_topology_array` | thermo_engine | - | exploratory |
 | contract_shaped_but_tool_depth_thin | `sim_carrier_probe_support` | root_admission | - | canonical |
+| rerun_or_admission_candidate | `sim_cell_complex_geometry` | graph_topology | toponetx | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_channel_capacity` | channel_operator | - | canonical |
+| contract_shaped_but_tool_depth_thin | `sim_channel_cptp_classical` | channel_operator, classical_baseline | - | classical_baseline |
 | contract_shaped_but_tool_depth_thin | `sim_channel_space_geometry` | channel_operator | - | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_characteristic_representation` | channel_operator | - | canonical |
 | rerun_or_admission_candidate | `sim_clifford_deep_cl3_rotor_double_cover` | channel_operator, hopf_torus, weyl_spinor_clifford, axis_bridge, graveyard_negative | clifford | canonical |
 | rerun_or_admission_candidate | `sim_clifford_even_odd_grade_partition` | weyl_spinor_clifford | clifford, z3 | canonical |
-| contract_shaped_but_tool_depth_thin | `sim_clifford_generator_basis` | weyl_spinor_clifford | - | canonical |
-| rerun_or_admission_candidate | `sim_clifford_holo_dirac_bridge_claims_canonical` | channel_operator, weyl_spinor_clifford, geometry_gstack_gtower, gerbe_dirac_mera_spectral, axis_bridge, classical_baseline, graveyard_negative | cvc5, gudhi, pyg, rustworkx, toponetx, xgi | classical_baseline |
-| rerun_or_admission_candidate | `sim_clifford_holo_dirac_emergence_quantities` | weyl_spinor_clifford, graph_topology, gerbe_dirac_mera_spectral, axis_bridge, graveyard_negative | rustworkx, toponetx, xgi | classical_baseline |
-| rerun_or_admission_candidate | `sim_clifford_holo_dirac_pairwise_coupling` | channel_operator, hopf_torus, weyl_spinor_clifford, gerbe_dirac_mera_spectral, graveyard_negative | rustworkx, toponetx, xgi | classical_baseline |
-| rerun_or_admission_candidate | `sim_clifford_holo_dirac_topology_variants` | weyl_spinor_clifford, graph_topology, gerbe_dirac_mera_spectral, graveyard_negative | rustworkx, toponetx, xgi | classical_baseline |
-| rerun_or_admission_candidate | `sim_clifford_holo_dirac_triple_coexistence` | weyl_spinor_clifford, graph_topology, gerbe_dirac_mera_spectral, graveyard_negative | gudhi, rustworkx, toponetx, xgi | classical_baseline |

@@ -12,6 +12,12 @@ TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": "not needed"} for 
     "pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"
 ]}
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_MANIFEST["numpy"] = {
+    "tried": True,
+    "used": True,
+    "reason": "load-bearing finite probability vectors and log2 entropy computation",
+}
+TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
 
 def entropy(p):
     p = np.asarray(p, dtype=float)
@@ -37,7 +43,7 @@ def main():
         "all_distributions_are_normalized": {"pass": abs(np.sum(seat_balanced)-1.0)<1e-10 and abs(np.sum(seat_skewed)-1.0)<1e-10},
     }
     all_pass = all(v["pass"] for sec in [positive,negative,boundary] for v in sec.values())
-    results = {"name":"torus_seat_entropy","classification":CLASSIFICATION if all_pass else "exploratory_signal","classification_note":CLASSIFICATION_NOTE,"lego_ids":LEGO_IDS,"primary_lego_ids":PRIMARY_LEGO_IDS,"tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH,"positive":positive,"negative":negative,"boundary":boundary,"summary":{"all_pass":all_pass,"scope_note":"Direct local torus-seat entropy row on one bounded seat-allocation distribution."}}
+    results = {"name":"torus_seat_entropy","classification":CLASSIFICATION if all_pass else "supporting","classification_note":CLASSIFICATION_NOTE,"lego_ids":LEGO_IDS,"primary_lego_ids":PRIMARY_LEGO_IDS,"tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH,"positive":positive,"negative":negative,"boundary":boundary,"all_pass":all_pass,"summary":{"all_pass":all_pass,"scope_note":"Direct local torus-seat entropy row on one bounded seat-allocation distribution."}}
     out = pathlib.Path(__file__).resolve().parent / "a2_state" / "sim_results" / "torus_seat_entropy_results.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(results, indent=2, default=str))

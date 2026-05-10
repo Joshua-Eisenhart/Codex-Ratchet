@@ -462,6 +462,22 @@ def run_boundary_tests():
     return results
 
 
+def collect_pass_flags(obj):
+    if isinstance(obj, dict):
+        flags = []
+        if "pass" in obj:
+            flags.append(bool(obj["pass"]))
+        for value in obj.values():
+            flags.extend(collect_pass_flags(value))
+        return flags
+    if isinstance(obj, list):
+        flags = []
+        for value in obj:
+            flags.extend(collect_pass_flags(value))
+        return flags
+    return []
+
+
 # =====================================================================
 # MAIN
 # =====================================================================
@@ -470,6 +486,18 @@ if __name__ == "__main__":
     positive = run_positive_tests()
     negative = run_negative_tests()
     boundary = run_boundary_tests()
+    pass_flags = collect_pass_flags({"positive": positive, "negative": negative, "boundary": boundary})
+    core_checks = [
+        positive.get("kill_shells_dominate", False),
+        negative.get("rankings_differ_from_pairwise", False),
+        negative.get("L4_rank_changes", False),
+        negative.get("L6_rank_changes", False),
+        boundary.get("singleton_test", {}).get("L0_degree_is_1", False),
+        boundary.get("singleton_test", {}).get("L4_degree_is_1", False),
+        boundary.get("full_hyperedge_test", {}).get("centrality_uniform", False),
+        boundary.get("rustworkx_dag_kill_order", {}).get("rustworkx_dag_ok", False),
+    ]
+    all_pass = all(pass_flags) if pass_flags else all(bool(check) for check in core_checks)
 
     # Mark integration depth
     TOOL_INTEGRATION_DEPTH["xgi"] = "load_bearing"
@@ -489,6 +517,9 @@ if __name__ == "__main__":
         "L4_rank_changes_in_pairwise": negative.get("L4_rank_changes", False),
         "L6_rank_changes_in_pairwise": negative.get("L6_rank_changes", False),
         "multi_way_structure_load_bearing": negative.get("rankings_differ_from_pairwise", False),
+        "tests_passed": sum(1 for flag in pass_flags if flag) if pass_flags else sum(1 for check in core_checks if check),
+        "tests_total": len(pass_flags) if pass_flags else len(core_checks),
+        "all_pass": all_pass,
     }
 
     results = {
@@ -511,6 +542,7 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "classification": "canonical",
+        "all_pass": all_pass,
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

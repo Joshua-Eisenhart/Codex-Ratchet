@@ -846,6 +846,22 @@ def run_boundary_tests():
     return results
 
 
+def collect_pass_flags(obj):
+    if isinstance(obj, dict):
+        flags = []
+        if "pass" in obj:
+            flags.append(bool(obj["pass"]))
+        for value in obj.values():
+            flags.extend(collect_pass_flags(value))
+        return flags
+    if isinstance(obj, list):
+        flags = []
+        for value in obj:
+            flags.extend(collect_pass_flags(value))
+        return flags
+    return []
+
+
 # =====================================================================
 # MAIN
 # =====================================================================
@@ -861,6 +877,8 @@ if __name__ == "__main__":
 
     print("\n[BOUNDARY TESTS]")
     boundary = run_boundary_tests()
+    pass_flags = collect_pass_flags({"positive": positive, "negative": negative, "boundary": boundary})
+    all_pass = bool(pass_flags) and all(pass_flags)
 
     # --- Summary of key findings ---
     chern_val = positive.get("chern_number", {}).get("value", "N/A")
@@ -897,12 +915,16 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "classification": "canonical",
+        "all_pass": all_pass,
         "summary": {
             "chern_number_numeric":  chern_val,
             "chern_number_pass":     chern_pass,
             "chern_number_symbolic": sympy_chern,
             "qfi_constant_at_1":     qfi_pass,
             "qfi_grad_ic_pearson_r": corr,
+            "tests_passed": sum(1 for flag in pass_flags if flag),
+            "tests_total": len(pass_flags),
+            "all_pass": all_pass,
         },
         "open_questions_addressed": open_questions,
     }

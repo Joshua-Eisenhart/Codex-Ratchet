@@ -85,37 +85,49 @@ function DetailPanel({ t, data, resolution, cell }) {
 }
 
 const VIEWS = [
-  { id: 'atlas',       label: 'Fiber Bundle Atlas' },
-  { id: 'schedule',    label: '64-Schedule · Lindblad' },
-  { id: 'lie',         label: 'Lie · [X,Y]' },
-  { id: 'mc',          label: 'M(C) · Level Set' },
-  { id: 'connes',      label: 'Connes · (A, H, D)' },
-  { id: 'rosetta',     label: 'Rosetta · k' },
-  { id: 'gstack-live', label: 'G-Stack · Live' },
-  { id: 'cycle',       label: 'Cycle · Video' },
-  { id: 'gstack',      label: 'G-Stack · Static' },
+  { id: 'carnot-engine', label: 'Carnot', group: 'Engine Lab' },
+  { id: 'szilard-engine', label: 'Szilard', group: 'Engine Lab' },
+  { id: 'iching-engine', label: 'I Ching 64', group: 'Engine Lab' },
+  { id: 'rosetta',     label: 'Rosetta', group: 'Engine Lab' },
+  { id: 'sim-receipts', label: 'Sim Receipts', group: 'Engine Lab' },
+  { id: 'schedule',    label: '64-Schedule', group: 'QIT System' },
+  { id: 'atlas',       label: 'Fiber Atlas', group: 'QIT System' },
+  { id: 'gstack-live', label: 'G-Stack Live', group: 'QIT System' },
+  { id: 'lie',         label: 'Lie [X,Y]', group: 'Math Surfaces' },
+  { id: 'mc',          label: 'M(C)', group: 'Math Surfaces' },
+  { id: 'connes',      label: 'Connes', group: 'Math Surfaces' },
+  { id: 'cycle',       label: 'Cycle Video', group: 'Legacy' },
+  { id: 'gstack',      label: 'G-Stack Static', group: 'Legacy' },
 ];
 
 function ViewTabs({ t, active, onChange }) {
+  const groups = [...new Set(VIEWS.map(v => v.group))];
   return (
-    <div style={{ display: 'flex', borderBottom: `1px solid ${t.line}` }}>
-      {VIEWS.map(v => {
-        const isActive = active === v.id;
-        return (
-          <div key={v.id} onClick={() => onChange(v.id)}
-            style={{
-              padding: '10px 16px', cursor: 'pointer',
-              borderRight: `1px solid ${t.line}`,
-              background: isActive ? t.bg2 : 'transparent',
-              borderBottom: isActive ? `2px solid ${t.amber}` : '2px solid transparent',
-              marginBottom: -1,
-            }}>
-            <Mono t={t} size={11} dim={!isActive} style={{ letterSpacing: 1, textTransform: 'uppercase' }}>
-              {v.label}
-            </Mono>
+    <div style={{ display: 'flex', borderBottom: `1px solid ${t.line}`, overflowX: 'auto', background: t.bg }}>
+      {groups.map(group => (
+        <div key={group} style={{ display: 'flex', alignItems: 'stretch', borderRight: `1px solid ${t.line}` }}>
+          <div style={{ padding: '9px 10px', background: t.bg2, minWidth: 92, borderRight: `1px solid ${t.line}` }}>
+            <Mono t={t} size={9} dim style={{ textTransform: 'uppercase' }}>{group}</Mono>
           </div>
-        );
-      })}
+          {VIEWS.filter(v => v.group === group).map(v => {
+            const isActive = active === v.id;
+            return (
+              <button key={v.id} onClick={() => onChange(v.id)}
+                style={{
+                  padding: '9px 12px', cursor: 'pointer',
+                  border: 'none',
+                  borderRight: `1px solid ${t.line}`,
+                  background: isActive ? t.bg3 : 'transparent',
+                  borderBottom: isActive ? `2px solid ${t.amber}` : '2px solid transparent',
+                  marginBottom: -1,
+                  whiteSpace: 'nowrap',
+                }}>
+                <Mono t={t} size={10} dim={!isActive} style={{ textTransform: 'uppercase' }}>{v.label}</Mono>
+              </button>
+            );
+          })}
+        </div>
+      ))}
     </div>
   );
 }
@@ -171,14 +183,30 @@ function App({ tweaks, setTweaks }) {
   const t = palette;
   const data = window.RATCHET_DATA;
   const [selectedR, setSelectedR] = React.useState(6);
-  const [view, setView] = React.useState('atlas');
+  const [view, setView] = React.useState(() => {
+    try {
+      const requested = new URLSearchParams(window.location.search).get('view');
+      return VIEWS.some(v => v.id === requested) ? requested : 'sim-receipts';
+    } catch (e) {
+      return 'sim-receipts';
+    }
+  });
   const [gridCell, setGridCell] = React.useState(null);
   const [gstackMode, setGstackMode] = React.useState('integrated');
   const [gsLayer, setGsLayer] = React.useState(null);
   const [gsCoupling, setGsCoupling] = React.useState(null);
   const [gsLego, setGsLego] = React.useState(null);
 
+  React.useEffect(() => {
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('view', view);
+      window.history.replaceState(null, '', url);
+    } catch (e) {}
+  }, [view]);
+
   const cell = CellFromKey(data, gridCell);
+  const focusWorkspace = view === 'carnot-engine' || view === 'szilard-engine' || view === 'iching-engine' || view === 'rosetta' || view === 'sim-receipts';
 
   return (
     <div data-screen-label="01 Console" style={{
@@ -190,9 +218,9 @@ function App({ tweaks, setTweaks }) {
     }}>
       <TopBar t={t} data={data} tone={tweaks.tone} setTone={v => setTweaks({ ...tweaks, tone: v })} />
 
-      <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '280px 1fr 340px', minHeight: 0 }}>
+      <div style={{ flex: 1, display: 'grid', gridTemplateColumns: focusWorkspace ? '1fr' : '280px 1fr 340px', minHeight: 0 }}>
         {/* LEFT RAIL */}
-        <div style={{ borderRight: `1px solid ${t.line}`, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+        {!focusWorkspace && <div style={{ borderRight: `1px solid ${t.line}`, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
           <FrameLabel t={t} n="01" title="Resolution ladder · M(C)">
             <ResolutionLadder t={t} data={data} selected={selectedR} onSelect={setSelectedR} />
           </FrameLabel>
@@ -202,17 +230,21 @@ function App({ tweaks, setTweaks }) {
             </div>
             <LanesStrip t={t} data={data} />
           </div>
-        </div>
+        </div>}
 
         {/* CENTER */}
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0, background: t.bg }}>
           <ViewTabs t={t} active={view} onChange={setView} />
-          <div style={{ flex: 1, overflow: view === 'cycle' || view === 'gstack-live' || view === 'schedule' || view === 'atlas' || view === 'lie' || view === 'mc' || view === 'connes' || view === 'rosetta' ? 'hidden' : 'auto', position: 'relative' }}>
+          <div style={{ flex: 1, overflow: view === 'cycle' || view === 'gstack-live' || view === 'schedule' || view === 'atlas' || view === 'lie' || view === 'mc' || view === 'connes' || view === 'rosetta' || view === 'sim-receipts' || view === 'iching-engine' || view === 'carnot-engine' || view === 'szilard-engine' ? 'hidden' : 'auto', position: 'relative' }}>
             {view === 'atlas' && <FiberBundleAtlas t={t} />}
             {view === 'lie' && <LieStructureView t={t} />}
             {view === 'mc' && <MCLevelSetView t={t} />}
             {view === 'connes' && <ConnesSpectralTripleView t={t} />}
             {view === 'rosetta' && <RosettaPanel t={t} />}
+            {view === 'sim-receipts' && <SimReceiptIndexPanel t={t} />}
+            {view === 'carnot-engine' && <CarnotEngineView t={t} />}
+            {view === 'szilard-engine' && <SzilardEngineView t={t} />}
+            {view === 'iching-engine' && <IchingEngineView t={t} />}
             {view === 'gstack-live' && <GStackLiveView t={t} data={data} />}
             {view === 'schedule' && <Schedule64Sim t={t} data={data} />}
             {view === 'cycle' && <RatchetCycle t={t} />}
@@ -225,9 +257,9 @@ function App({ tweaks, setTweaks }) {
         </div>
 
         {/* RIGHT RAIL */}
-        <div style={{ borderLeft: `1px solid ${t.line}`, display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'auto' }}>
+        {!focusWorkspace && <div style={{ borderLeft: `1px solid ${t.line}`, display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'auto' }}>
           <DetailPanel t={t} data={data} resolution={selectedR} cell={cell} />
-        </div>
+        </div>}
       </div>
 
       {/* footer */}

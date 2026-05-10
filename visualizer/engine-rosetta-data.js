@@ -38,11 +38,14 @@ window.ENGINE_ROSETTA_DATA = {
     "tier_count": 8,
     "degree_pair_count": 8,
     "triadic_qit_row_count": 6,
-    "qit_companion_all_pass": true,
-    "qit_missing_strict_subset_count": 0,
-    "qit_entropy_all_pass": true,
-    "qit_entropy_missing_strict_row_count": 0,
-    "clifford_capability_all_pass": true,
+    "qit_companion_all_pass": null,
+    "qit_missing_strict_subset_count": null,
+    "qit_entropy_all_pass": null,
+    "qit_entropy_missing_strict_row_count": null,
+    "iching_64_all_pass": true,
+    "iching_64_state_count": 64,
+    "iching_64_graveyard_variant_count": 3,
+    "clifford_capability_all_pass": null,
     "weyl_topology_passed": 8,
     "graveyard_row_count": 3,
     "visual_payload": "visualizer/engine-rosetta-data.js",
@@ -288,8 +291,8 @@ window.ENGINE_ROSETTA_DATA = {
       "evidence": {
         "carnot_pass": true,
         "szilard_pass": true,
-        "qit_strict_subset_count": 4,
-        "missing_qit_strict_count": 0
+        "qit_strict_subset_count": null,
+        "missing_qit_strict_count": null
       },
       "boundary": "QIT carrier coverage is not complete because strict Szilard/QIT receipts are missing"
     },
@@ -298,9 +301,9 @@ window.ENGINE_ROSETTA_DATA = {
       "carnot": "thermal contact and adiabatic work operators",
       "szilard": "measurement, feedback, erasure operations",
       "qit_adjacent": "Clifford rotor/sandwich capability",
-      "status": "supported_tool_micro_only",
+      "status": "missing",
       "evidence": {
-        "clifford_capability_all_pass": true,
+        "clifford_capability_all_pass": null,
         "clifford_scope": "tool_micro_clifford_capability_only"
       },
       "boundary": "Clifford capability does not yet couple the engine loops to Weyl/spinor geometry"
@@ -324,9 +327,9 @@ window.ENGINE_ROSETTA_DATA = {
       "qit_adjacent": "QIT entropy companion array is partial",
       "status": "open",
       "evidence": {
-        "qit_entropy_all_pass": true,
-        "qit_entropy_present_rows": 11,
-        "qit_entropy_missing_rows": 0
+        "qit_entropy_all_pass": null,
+        "qit_entropy_present_rows": null,
+        "qit_entropy_missing_rows": null
       },
       "boundary": "Entropy/readout coverage is not complete until missing QIT Szilard/readout receipts exist"
     },
@@ -334,8 +337,8 @@ window.ENGINE_ROSETTA_DATA = {
       "row": "axis_schedule",
       "carnot": "local Ax0-Ax6 thermodynamic comparison slots",
       "szilard": "local Ax0-Ax6 information-engine comparison slots",
-      "qit_adjacent": "active Ax0-Ax6 doctrine exists in docs; Axis 0 remains open",
-      "status": "candidate_only",
+      "qit_adjacent": "I Ching 64-state row supplies symbolic Ax0-Ax6 comparison slots; active QIT axis doctrine remains open",
+      "status": "sim_supported_symbolic_only",
       "evidence": {
         "shared_axis_slots": [
           "Ax0",
@@ -346,6 +349,16 @@ window.ENGINE_ROSETTA_DATA = {
           "Ax5",
           "Ax6"
         ],
+        "iching_axis_slots": [
+          "Ax0",
+          "Ax1",
+          "Ax2",
+          "Ax3",
+          "Ax4",
+          "Ax5",
+          "Ax6"
+        ],
+        "iching_all_pass": true,
         "qit_axis_admission": "blocked_until_QIT_grounded_and_negative_tested"
       },
       "boundary": "Local axis labels are Rosetta slots, not admitted QIT axes"
@@ -354,58 +367,95 @@ window.ENGINE_ROSETTA_DATA = {
       "row": "sixty_four_schedule",
       "carnot": "four Carnot legs times two traversals as a small engine grammar",
       "szilard": "three operation protocol plus reverse bookkeeping as a small engine grammar",
-      "qit_adjacent": "64 schedule is represented visually only in this layer",
-      "status": "visual_only",
+      "qit_adjacent": "six-bit Gray-code schedule with one-line flip operators and killed graveyard variants",
+      "status": "sim_supported_symbolic_only",
       "evidence": {
-        "visual_wheel_slots": 64,
+        "iching_result": "iching_64_engine_rosetta_results.json",
+        "iching_all_pass": true,
+        "state_count": 64,
+        "axis_count": 7,
+        "rosetta_row_count": 4,
+        "graveyard_variant_count": 3,
         "engine_microsteps_claim": "not admitted here"
       },
-      "boundary": "The wheel is a pattern-view and cannot count as a sim proof"
+      "boundary": "The 64-state schedule is a symbolic Rosetta sim, not I Ching proof or QIT-engine admission"
     }
   ],
   "qit_companion_summary": {
-    "all_pass": true,
-    "strict_qit_subset_count": 4,
-    "missing_strict_qit_subset_count": 0,
-    "qit_repair_row_count": 7,
-    "missing_qit_repair_row_count": 0,
-    "open_lab_companion_count": 19,
-    "missing_open_lab_companion_count": 0,
-    "strict_subset_families": [
-      "carnot",
-      "control_recovery",
-      "szilard"
-    ],
-    "strict_subset_row_ids": [
-      "qit_szilard_landauer_cycle",
-      "qit_strong_coupling_landauer",
-      "qit_carnot_two_bath_cycle",
-      "qit_attractor_basin_recovery"
-    ],
-    "missing_strict_subset_row_ids": [],
-    "closest_open_lab_match_count": 19,
-    "scope_note": "QIT-aligned companion array that separates a strict finite-carrier subset from the current open-lab rows. Use it as the comparison surface for later constraint repair."
+    "all_pass": null,
+    "missing": "qit_engine_companion_array_results.json"
   },
   "qit_entropy_summary": {
-    "all_pass": true,
-    "strict_row_count": 11,
-    "missing_strict_row_count": 0,
-    "missing_row_ids": [],
-    "families_present": [
-      "carnot",
-      "carnot_repair_closure",
-      "carnot_repair_finite_time",
-      "carnot_repair_hold_policy",
-      "carnot_repair_irreversibility",
-      "control_recovery",
-      "strong_coupling_landauer",
-      "szilard",
-      "szilard_repair",
-      "szilard_repair_reverse_recovery",
-      "szilard_repair_substeps"
-    ],
-    "scope_note": "Strict QIT readout-family companion array over finite-carrier anchors. This result is partial until the missing entropy/readout source receipts exist."
+    "all_pass": null,
+    "missing": "qit_entropy_companion_array_results.json"
   },
+  "iching_64_summary": {
+    "all_pass": true,
+    "state_count": 64,
+    "axis_count": 7,
+    "rosetta_row_count": 4,
+    "graveyard_variant_count": 3,
+    "load_bearing_tool_count": 11,
+    "tool_count": 11,
+    "visual_payload": "visualizer/iching-64-rosetta-data.js",
+    "scope_note": "I Ching / 64-state symbolic engine Rosetta. It tests a six-bit, one-line-transition schedule as a comparison surface for Carnot/Szilard/QIT-adjacent engine grammar. It is symbolic and pre-admission, not I Ching proof or QIT engine promotion."
+  },
+  "iching_64_rosetta_rows": [
+    {
+      "slot": "dual_loop",
+      "carnot": "engine/refrigerator traversal",
+      "szilard": "measurement-feedback-erasure/recovery traversal",
+      "iching_64": "odd/even parity loop family on a 64-state walk",
+      "boundary": "shared two-direction grammar, not identity"
+    },
+    {
+      "slot": "operator",
+      "carnot": "thermal contact or adiabatic work leg",
+      "szilard": "correlate, feedback, reset",
+      "iching_64": "single-line flip operator",
+      "boundary": "symbolic line flips are not physical operators"
+    },
+    {
+      "slot": "geometry",
+      "carnot": "four-state cycle",
+      "szilard": "protocol path and memory carrier",
+      "iching_64": "six-bit hypercube Hamiltonian cycle",
+      "boundary": "hypercube schedule is not a GStack"
+    },
+    {
+      "slot": "axis",
+      "carnot": "local Ax0-Ax6 thermodynamic slots",
+      "szilard": "local Ax0-Ax6 information slots",
+      "iching_64": "six lines plus derived precedence Ax6",
+      "boundary": "axis labels are comparison slots only"
+    }
+  ],
+  "iching_64_graveyard_variants": [
+    {
+      "variant": "binary_count_order",
+      "reason": "ordinary binary count causes multi-line jumps",
+      "unique_states": 64,
+      "max_hamming_step": 6,
+      "survives_single_line_gate": false,
+      "status": "killed"
+    },
+    {
+      "variant": "collapsed_single_state",
+      "reason": "all structure collapses to one state",
+      "unique_states": 1,
+      "max_hamming_step": 0,
+      "survives_single_line_gate": false,
+      "status": "killed"
+    },
+    {
+      "variant": "seeded_random_order",
+      "reason": "random order loses local line-flip grammar",
+      "unique_states": 64,
+      "max_hamming_step": 6,
+      "survives_single_line_gate": false,
+      "status": "killed"
+    }
+  ],
   "qit_analogue_map": {
     "boundary": "candidate_search_prior_not_qit_engine_admission",
     "shared_candidates": {

@@ -60,6 +60,7 @@ FAMILY_TOKENS = {
 }
 
 LATE_STAGE_TOKENS = ("axis", "bridge", "coupling", "coexistence", "emergence", "engine", "pairwise", "triple")
+FINDER_DUPLICATE_RE = re.compile(r" \d+$")
 
 
 def rel(path: Path) -> str:
@@ -76,11 +77,24 @@ def load_json(path: Path) -> Any:
         return None
 
 
+def is_finder_duplicate_path(path: Path) -> bool:
+    return bool(FINDER_DUPLICATE_RE.search(path.stem))
+
+
 def source_paths() -> list[Path]:
-    patterns = ("sim_*.py", "classical_baseline*.py", "axis*.py", "validate_*.py", "tool_*.py")
+    patterns = (
+        "sim_*.py",
+        "*_sim.py",
+        "*_investigation.py",
+        "*_probe.py",
+        "classical_baseline*.py",
+        "axis*.py",
+        "validate_*.py",
+        "tool_*.py",
+    )
     paths: set[Path] = set()
     for pattern in patterns:
-        paths.update(path for path in PROBES.glob(pattern) if path.is_file())
+        paths.update(path for path in PROBES.glob(pattern) if path.is_file() and not is_finder_duplicate_path(path))
     return sorted(paths)
 
 
@@ -91,6 +105,7 @@ def result_paths() -> list[Path]:
         if root.exists()
         for path in root.rglob("*.json")
         if path.name.endswith(("_results.json", "_result.json"))
+        and not is_finder_duplicate_path(path)
     )
 
 
@@ -103,6 +118,11 @@ def source_result_keys(stem: str) -> list[str]:
     keys = [stem]
     if stem.startswith("sim_"):
         keys.append(stem.removeprefix("sim_"))
+    if stem.startswith("sim_integration_"):
+        keys.append(stem.removeprefix("sim_integration_"))
+    for suffix in ("_sim", "_investigation", "_probe"):
+        if stem.endswith(suffix):
+            keys.append(stem.removesuffix(suffix))
     if stem.startswith("classical_baseline_"):
         keys.append(stem.removeprefix("classical_baseline_"))
     if stem.startswith("validate_"):
@@ -117,9 +137,28 @@ def result_lookup(paths: list[Path]) -> dict[str, list[Path]]:
     return out
 
 
-def admissions() -> set[str]:
+def linked_result_path_set(rows: list[dict[str, Any]]) -> set[str]:
+    linked: set[str] = set()
+    for row in rows:
+        for path in row.get("result_paths") or []:
+            linked.add(str(path))
+    return linked
+
+
+def admissions() -> dict[str, dict[str, Any]]:
     root = ROOT / "system_v5" / "ops" / "wizard_admissions"
-    return {path.stem for path in root.glob("*.json")} if root.exists() else set()
+    if not root.exists():
+        return {}
+    out: dict[str, dict[str, Any]] = {}
+    for path in sorted(root.glob("*.json")):
+        if is_finder_duplicate_path(path):
+            continue
+        payload = load_json(path)
+        out[path.stem] = {
+            "path": path,
+            "payload": payload if isinstance(payload, dict) else {},
+        }
+    return out
 
 
 def imports_from_ast(text: str) -> set[str]:
@@ -252,6 +291,12 @@ def receipt_schema_present(payload: Any) -> bool:
 def status_for(row: dict[str, Any]) -> str:
     if row["admitted"]:
         return "admitted"
+    if row.get("admission_status") == "admission_missing_result_link":
+        return "admission_missing_result_link"
+    if row.get("admission_status") == "admission_missing_contract_shape":
+        return "admission_missing_contract_shape"
+    if "sidecar_probe" in row.get("result_classifications", []):
+        return "sidecar_probe_not_admitted"
     if not row["result_paths"]:
         return "source_only"
     if row["has_contract_shape"] and row["load_bearing_tools"]:
@@ -259,6 +304,36 @@ def status_for(row: dict[str, Any]) -> str:
     if row["has_contract_shape"]:
         return "contract_shaped_but_tool_depth_thin"
     return "legacy_result_or_repair_needed"
+
+
+def admission_expected_result(entry: dict[str, Any] | None) -> str:
+    payload = (entry or {}).get("payload") or {}
+    profile = payload.get("formal_sim_profile") if isinstance(payload, dict) else {}
+    expected = profile.get("expected_result_path") if isinstance(profile, dict) else ""
+    return str(expected or "")
+
+
+def admission_status(
+    stem: str,
+    entry: dict[str, Any] | None,
+    linked_results: list[Path],
+    result_has_contract_shape: bool,
+) -> str:
+    if not entry:
+        return "no_admission"
+    expected = admission_expected_result(entry)
+    linked = {path.resolve() for path in linked_results}
+    if expected:
+        expected_path = Path(expected)
+        if not expected_path.is_absolute():
+            expected_path = ROOT / expected_path
+        if expected_path.resolve() not in linked:
+            return "admission_missing_result_link"
+    elif not linked_results:
+        return "admission_missing_result_link"
+    if not result_has_contract_shape:
+        return "admission_missing_contract_shape"
+    return "admitted_evidence_linked"
 
 
 def build_index() -> dict[str, Any]:
@@ -277,6 +352,9 @@ def build_index() -> dict[str, Any]:
         classifications = sorted({payload_classification(payload) for payload in payloads if payload_classification(payload)})
         tools = detect_tools(text, payloads)
         load_bearing_tools = sorted(tool for tool, depth in tools.items() if depth == "load_bearing")
+        entry = admitted.get(stem)
+        result_has_contract_shape = any(receipt_schema_present(payload) for payload in payloads)
+        current_admission_status = admission_status(stem, entry, linked_results, result_has_contract_shape)
         row = {
             "stem": stem,
             "source_path": rel(path),
@@ -288,8 +366,11 @@ def build_index() -> dict[str, Any]:
             "result_paths": [rel(p) for p in linked_results],
             "result_count": len(linked_results),
             "result_classifications": classifications,
-            "result_has_contract_shape": any(receipt_schema_present(payload) for payload in payloads),
-            "admitted": stem in admitted,
+            "result_has_contract_shape": result_has_contract_shape,
+            "admission_path": rel(entry["path"]) if entry else "",
+            "admission_expected_result_path": admission_expected_result(entry),
+            "admission_status": current_admission_status,
+            "admitted": current_admission_status == "admitted_evidence_linked",
             "late_stage_signal": any(token in stem.lower() for token in LATE_STAGE_TOKENS),
         }
         row["has_contract_shape"] = bool(
@@ -306,12 +387,19 @@ def build_index() -> dict[str, Any]:
     load_bearing_counts = Counter(tool for row in rows for tool in row["load_bearing_tools"])
     result_class_counts = Counter(cls for row in rows for cls in row["result_classifications"])
     admitted_rows = [row for row in rows if row["admitted"]]
+    admission_repair_rows = [
+        row
+        for row in rows
+        if row.get("admission_status") in {"admission_missing_result_link", "admission_missing_contract_shape"}
+    ]
     repair_candidates = [
         row
         for row in rows
         if row["inventory_status"] in {"rerun_or_admission_candidate", "contract_shaped_but_tool_depth_thin", "legacy_result_or_repair_needed"}
     ]
     source_only = [row for row in rows if row["inventory_status"] == "source_only"]
+    linked_results = linked_result_path_set(rows)
+    unlinked_results = [path for path in results if rel(path) not in linked_results]
     return {
         "schema": "sim_inventory_index.v1",
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -319,7 +407,10 @@ def build_index() -> dict[str, Any]:
         "summary": {
             "source_count": len(rows),
             "result_json_count": len(results),
+            "linked_result_json_count": len(linked_results),
+            "unlinked_result_json_count": len(unlinked_results),
             "admitted_count": len(admitted_rows),
+            "admission_repair_count": len(admission_repair_rows),
             "status_counts": dict(status_counts),
             "family_counts": dict(family_counts),
             "tool_signal_counts": dict(tool_counts),
@@ -329,6 +420,8 @@ def build_index() -> dict[str, Any]:
             "source_only_count": len(source_only),
         },
         "admitted_stems": sorted(row["stem"] for row in admitted_rows),
+        "admission_repair_samples": admission_repair_rows[:100],
+        "unlinked_result_samples": [rel(path) for path in unlinked_results[:100]],
         "repair_candidate_samples": repair_candidates[:100],
         "source_only_samples": source_only[:100],
         "rows": rows,
@@ -348,6 +441,8 @@ def write_markdown(index: dict[str, Any], path: Path) -> None:
         "",
         f"- Sim source files indexed: `{summary['source_count']}`",
         f"- Result JSON files seen: `{summary['result_json_count']}`",
+        f"- Linked result JSON files: `{summary['linked_result_json_count']}`",
+        f"- Unlinked result JSON files: `{summary['unlinked_result_json_count']}`",
         f"- Wizard-admitted stems: `{summary['admitted_count']}`",
         f"- Repair / rerun candidate rows: `{summary['repair_candidate_count']}`",
         f"- Source-only rows: `{summary['source_only_count']}`",
@@ -363,6 +458,12 @@ def write_markdown(index: dict[str, Any], path: Path) -> None:
     lines += ["", "## Load-Bearing Tool Counts", ""]
     for key, value in sorted(summary["load_bearing_tool_counts"].items(), key=lambda item: (-item[1], item[0])):
         lines.append(f"- `{key}`: {value}")
+    lines += ["", "## Unlinked Result Samples", ""]
+    if index.get("unlinked_result_samples"):
+        for result_path in index["unlinked_result_samples"][:50]:
+            lines.append(f"- `{result_path}`")
+    else:
+        lines.append("- none")
     lines += ["", "## Admitted Stems", ""]
     if index["admitted_stems"]:
         for stem in index["admitted_stems"]:

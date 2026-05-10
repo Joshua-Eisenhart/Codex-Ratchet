@@ -22,7 +22,11 @@ from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = SCRIPT_DIR.parent.parent
-REGISTRY_PATH = PROJECT_DIR / "new docs" / "17_actual_lego_registry.md"
+REGISTRY_PATH_CANDIDATES = [
+    PROJECT_DIR / "system_v5" / "docs" / "17_actual_lego_registry.md",
+    PROJECT_DIR / "new docs" / "17_actual_lego_registry.md",
+]
+REGISTRY_PATH = next((path for path in REGISTRY_PATH_CANDIDATES if path.exists()), REGISTRY_PATH_CANDIDATES[0])
 RESULTS_DIR = SCRIPT_DIR / "a2_state" / "sim_results"
 OUT_PATH = RESULTS_DIR / "actual_lego_registry.json"
 QUEUE_PATH = RESULTS_DIR / "actual_lego_normalization_queue.json"

@@ -119,6 +119,7 @@ def run_protocol_with_feedback(
         total_heat = np.zeros(n, dtype=float)
         total_delta_u = np.zeros(n, dtype=float)
         measured_bits = None
+        measurement_accuracy = 0.0
         measurement_record = None
         record_history = []
         reset_stage_entropy = None
@@ -134,6 +135,7 @@ def run_protocol_with_feedback(
                 true_bits = (x_before >= hard_base.base.LEFT_STATE_THRESHOLD).astype(int)
                 sensed_bits = hard_base.base.binary_readout(x, stage.measurement_flip_prob, rng)
                 measured_bits = sensed_bits
+                measurement_accuracy = float(np.mean(sensed_bits == true_bits))
                 measurement_record = sensed_bits.copy()
             elif stage.kind == "record_wait":
                 x, stage_work, stage_heat, stage_delta_u, _ = hard_base.base.base.stage_simulation(
@@ -206,6 +208,7 @@ def run_protocol_with_feedback(
         record_survival = float(np.mean([item["survival_fraction"] for item in record_history])) if record_history else 0.0
         return {
             "final_entropy": float(final_entropy),
+            "measurement_accuracy": float(measurement_accuracy),
             "measurement_mutual_information": float(measured_mi),
             "record_survival_fraction": float(record_survival),
             "reset_stage_entropy": float(reset_stage_entropy) if reset_stage_entropy is not None else 0.0,

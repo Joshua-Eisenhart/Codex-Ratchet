@@ -67,9 +67,19 @@ def summary_all_pass(payload: dict[str, Any]) -> bool | None:
     return None
 
 
+def is_killed_graveyard_row(obj: dict[str, Any]) -> bool:
+    verdict = obj.get("verdict")
+    variant_id = obj.get("variant_id")
+    if verdict != "killed" or not isinstance(variant_id, str):
+        return False
+    return "metrics" in obj and "next_allowed_action" in obj
+
+
 def false_pass_paths(obj: Any, path: str = "$") -> list[str]:
     hits: list[str] = []
     if isinstance(obj, dict):
+        if is_killed_graveyard_row(obj):
+            return hits
         for key, value in obj.items():
             next_path = f"{path}.{key}"
             if key == "pass" and value is False:

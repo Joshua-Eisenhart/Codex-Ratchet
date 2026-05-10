@@ -114,8 +114,24 @@ def normalize_invocation(tokens: list[str]) -> tuple[str | None, str | None, lis
     loop: str | None = None
     rest: list[str] = []
     idx = 0
+    option_value_flags = {
+        "--task",
+        "--cwd",
+        "--out-dir",
+        "--level",
+        "--loop",
+        "--compact-profile",
+    }
     while idx < len(tokens):
         token = tokens[idx]
+        if token in option_value_flags:
+            rest.append(token)
+            if idx + 1 < len(tokens):
+                rest.append(tokens[idx + 1])
+                idx += 2
+            else:
+                idx += 1
+            continue
         lowered = token.lower()
         if lowered in LEVELS and level is None:
             level = lowered
@@ -294,10 +310,57 @@ def next_task_from_compiled(compiled_path: Path, fallback: str) -> str:
     followup = text.split("## 🧭 Follow-Up Options", 1)[-1] if "## 🧭 Follow-Up Options" in text else text
     match = re.search(r"`([^`]{24,1200})`", followup)
     if match:
-        return " ".join(match.group(1).split())
+        candidate = " ".join(match.group(1).split())
+        if is_output_format_drift(candidate):
+            return fallback
+        if not preserves_task_domain(candidate, fallback):
+            return fallback
+        return candidate
     action = text.split("### 🔨 Action", 1)[-1].split("###", 1)[0] if "### 🔨 Action" in text else ""
     action = " ".join(action.split())
-    return action or fallback
+    if action and not is_output_format_drift(action) and preserves_task_domain(action, fallback):
+        return action
+    return fallback
+
+
+def is_output_format_drift(task: str) -> bool:
+    lowered = " ".join(task.lower().split())
+    drift_markers = (
+        "make the compiled wizard answer shorter",
+        "useful output without log collapse",
+        "require the same readable output shape",
+        "run wizard low with claude children",
+        "run full wizard v4.2 only after compact output",
+        "tests all nine parents plus management",
+        "stdout becomes json or a run log",
+    )
+    return any(marker in lowered for marker in drift_markers)
+
+
+def preserves_task_domain(candidate: str, fallback: str) -> bool:
+    fallback_tokens = task_domain_tokens(fallback)
+    if not fallback_tokens:
+        return True
+    candidate_tokens = task_domain_tokens(candidate)
+    return bool(candidate_tokens & fallback_tokens)
+
+
+def task_domain_tokens(task: str) -> set[str]:
+    lowered = " ".join(task.lower().split())
+    token_groups = {
+        "szilard": ("szilard",),
+        "carnot": ("carnot",),
+        "rosetta": ("rosetta", "lego", "legos"),
+        "engine_lab": ("engine-lab", "engine lab", "open-row", "open row"),
+        "qit": ("qit",),
+        "sim": ("sim", "sims", "simulation", "evidence", "receipt", "receipts"),
+        "visualizer": ("visualizer", "payload"),
+        "matrix": ("matrix", "inventory", "queue", "successor"),
+        "admission": ("admission", "admitted", "result linkage", "duplicate"),
+        "wizard": ("wizard", "route-truth", "route truth", "receipt-truth", "receipt truth"),
+        "audit": ("audit", "regression", "blocker", "overclaim"),
+    }
+    return {label for label, markers in token_groups.items() if any(marker in lowered for marker in markers)}
 
 
 def should_stop_auto_loop(*, header: str, next_task: str, seen_tasks: set[str]) -> str | None:

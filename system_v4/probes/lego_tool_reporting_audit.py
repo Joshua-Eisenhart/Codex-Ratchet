@@ -139,6 +139,37 @@ def finding(
 
 def main() -> int:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    if not REGISTRY_PATH.exists():
+        summary = {
+            "registry_row_count": 0,
+            "registry_linked_result_count": 0,
+            "registry_linked_lego_count": 0,
+            "blocker_count": 1,
+            "advisory_count": 0,
+            "blocker_result_count": 0,
+            "advisory_result_count": 0,
+            "issue_kind_counts": {"missing_registry": 1},
+            "ok": False,
+        }
+        report = {
+            "generated_at": datetime.now(UTC).isoformat(),
+            "summary": summary,
+            "blockers": [
+                {
+                    "severity": "blocker",
+                    "kind": "missing_registry",
+                    "registry_path": str(REGISTRY_PATH.relative_to(PROJECT_DIR)),
+                    "detail": "Registry-linked lego tool-reporting audit cannot run because actual_lego_registry.json is missing.",
+                }
+            ],
+            "advisories": [],
+        }
+        OUT_PATH.write_text(json.dumps(report, indent=2), encoding="utf-8")
+        print(f"Wrote {OUT_PATH}")
+        print("blocker_count=1")
+        print("advisory_count=0")
+        print("LEGO TOOL REPORTING AUDIT FAILED: missing registry")
+        return 1
     registry = read_json(REGISTRY_PATH)
     rows = registry.get("rows", [])
     if not isinstance(rows, list):

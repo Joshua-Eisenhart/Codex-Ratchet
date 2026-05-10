@@ -18,6 +18,14 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = SCRIPT_DIR.parent.parent
 RESULTS_DIR = SCRIPT_DIR / "a2_state" / "sim_results"
 SUPERVISOR_PATH = RESULTS_DIR / "system_hygiene_supervisor_results.json"
+MAINTENANCE_CONTEXTS = {
+    "cleanup",
+    "checkpoint",
+    "hygiene",
+    "maintenance",
+    "source-dirty",
+    "source_dirty",
+}
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -57,6 +65,17 @@ def main() -> int:
     overall_green = bool(supervisor.get("overall_green"))
     repair_queue_count = int(supervisor.get("repair_queue_count", 0) or 0)
     active_actionable_lane = supervisor.get("active_actionable_lane") or {}
+
+    if context in MAINTENANCE_CONTEXTS:
+        print(f"CLEANUP FIRST GUARD PASSED context={context}")
+        print("maintenance/source-dirty work is allowed while cleanup-first policy blocks new sim execution")
+        print(f"repo_hygiene_green={repo_hygiene_green}")
+        print(f"overall_green={overall_green}")
+        print(f"repair_queue_count={repair_queue_count}")
+        if active_actionable_lane.get("group_id"):
+            print(f"active_actionable_lane={active_actionable_lane['group_id']}")
+        print(f"supervisor={SUPERVISOR_PATH.relative_to(PROJECT_DIR)}")
+        return 0
 
     if repo_hygiene_green and overall_green and repair_queue_count == 0:
         print(f"CLEANUP FIRST GUARD PASSED context={context}")

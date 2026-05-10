@@ -168,6 +168,7 @@ def qit_analogue_map(carnot: dict[str, Any], szilard: dict[str, Any]) -> dict[st
 def triadic_qit_rows(
     carnot: dict[str, Any],
     szilard: dict[str, Any],
+    iching_64: dict[str, Any] | None,
     qit_companion: dict[str, Any] | None,
     qit_entropy: dict[str, Any] | None,
     clifford_capability: dict[str, Any] | None,
@@ -175,6 +176,14 @@ def triadic_qit_rows(
 ) -> list[dict[str, Any]]:
     qit_summary = qit_companion.get("summary", {}) if qit_companion else {}
     entropy_summary = qit_entropy.get("summary", {}) if qit_entropy else {}
+    iching_summary = iching_64.get("summary", {}) if iching_64 else {}
+    iching_axes = (
+        sorted(iching_64.get("axes_candidate_model", {}).get("axes", {}))
+        if iching_64
+        else []
+    )
+    iching_rosetta_rows = iching_64.get("rosetta_rows", []) if iching_64 else []
+    iching_pass = bool(iching_summary.get("all_pass"))
     return [
         {
             "row": "finite_carrier",
@@ -231,10 +240,12 @@ def triadic_qit_rows(
             "row": "axis_schedule",
             "carnot": "local Ax0-Ax6 thermodynamic comparison slots",
             "szilard": "local Ax0-Ax6 information-engine comparison slots",
-            "qit_adjacent": "active Ax0-Ax6 doctrine exists in docs; Axis 0 remains open",
-            "status": "candidate_only",
+            "qit_adjacent": "I Ching 64-state row supplies symbolic Ax0-Ax6 comparison slots; active QIT axis doctrine remains open",
+            "status": "sim_supported_symbolic_only" if iching_pass and len(iching_axes) == 7 else "candidate_only",
             "evidence": {
                 "shared_axis_slots": sorted(set(carnot["axes_candidate_model"]["axes"]) & set(szilard["axes_candidate_model"]["axes"])),
+                "iching_axis_slots": iching_axes,
+                "iching_all_pass": iching_summary.get("all_pass"),
                 "qit_axis_admission": "blocked_until_QIT_grounded_and_negative_tested",
             },
             "boundary": "Local axis labels are Rosetta slots, not admitted QIT axes",
@@ -243,13 +254,18 @@ def triadic_qit_rows(
             "row": "sixty_four_schedule",
             "carnot": "four Carnot legs times two traversals as a small engine grammar",
             "szilard": "three operation protocol plus reverse bookkeeping as a small engine grammar",
-            "qit_adjacent": "64 schedule is represented visually only in this layer",
-            "status": "visual_only",
+            "qit_adjacent": "six-bit Gray-code schedule with one-line flip operators and killed graveyard variants",
+            "status": "sim_supported_symbolic_only" if iching_pass else "missing_symbolic_receipt",
             "evidence": {
-                "visual_wheel_slots": 64,
+                "iching_result": "iching_64_engine_rosetta_results.json" if iching_64 else None,
+                "iching_all_pass": iching_summary.get("all_pass"),
+                "state_count": iching_summary.get("state_count"),
+                "axis_count": iching_summary.get("axis_count"),
+                "rosetta_row_count": len(iching_rosetta_rows),
+                "graveyard_variant_count": iching_summary.get("graveyard_variant_count"),
                 "engine_microsteps_claim": "not admitted here",
             },
-            "boundary": "The wheel is a pattern-view and cannot count as a sim proof",
+            "boundary": "The 64-state schedule is a symbolic Rosetta sim, not I Ching proof or QIT-engine admission",
         },
     ]
 
@@ -359,6 +375,9 @@ def build_visual_payload(result: dict[str, Any]) -> dict[str, Any]:
         "triadic_qit_rows": result["triadic_qit_rows"],
         "qit_companion_summary": result["qit_companion_summary"],
         "qit_entropy_summary": result["qit_entropy_summary"],
+        "iching_64_summary": result["iching_64_summary"],
+        "iching_64_rosetta_rows": result["iching_64_rosetta_rows"],
+        "iching_64_graveyard_variants": result["iching_64_graveyard_variants"],
         "qit_analogue_map": result["qit_analogue_map"],
         "graveyard_rows": result["graveyard_rows"],
     }
@@ -375,6 +394,7 @@ def main() -> None:
     szilard = load_result("szilard_dual_stacked_engine")
     qit_companion = load_optional_result("qit_engine_companion_array_results.json")
     qit_entropy = load_optional_result("qit_entropy_companion_array_results.json")
+    iching_64 = load_optional_result("iching_64_engine_rosetta_results.json")
     clifford_capability = load_optional_result("clifford_capability_results.json")
     weyl_topology = load_optional_result("sim_weyl_holo_symplectic_topology_variants_results.json")
 
@@ -409,6 +429,12 @@ def main() -> None:
             and pass_at(szilard, "negative", "landauer_free_erasure_blocked_by_cvc5")
         ),
         "same_axis_slot_count": len(shared_axes) == 7,
+        "iching_64_symbolic_rosetta_pass": bool(
+            iching_64
+            and iching_64.get("summary", {}).get("all_pass")
+            and iching_64.get("summary", {}).get("state_count") == 64
+            and iching_64.get("summary", {}).get("axis_count") == 7
+        ),
     }
     graveyard_rows = [
         {
@@ -452,12 +478,13 @@ def main() -> None:
         "source_receipts": {
             "carnot": str(RESULT_DIR / "carnot_dual_stacked_engine_results.json"),
             "szilard": str(RESULT_DIR / "szilard_dual_stacked_engine_results.json"),
+            "iching_64": str(RESULT_DIR / "iching_64_engine_rosetta_results.json") if iching_64 else None,
         },
         "evidence_flags": evidence_flags,
         "rosetta_rows": rosetta_rows(carnot, szilard),
         "tier_correlations": tier_correlations(carnot, szilard),
         "degree_of_freedom_comparison": degree_of_freedom_comparison(carnot, szilard),
-        "triadic_qit_rows": triadic_qit_rows(carnot, szilard, qit_companion, qit_entropy, clifford_capability, weyl_topology),
+        "triadic_qit_rows": triadic_qit_rows(carnot, szilard, iching_64, qit_companion, qit_entropy, clifford_capability, weyl_topology),
         "qit_companion_summary": (
             qit_companion.get("summary", {})
             if qit_companion
@@ -468,6 +495,13 @@ def main() -> None:
             if qit_entropy
             else {"all_pass": None, "missing": "qit_entropy_companion_array_results.json"}
         ),
+        "iching_64_summary": (
+            iching_64.get("summary", {})
+            if iching_64
+            else {"all_pass": None, "missing": "iching_64_engine_rosetta_results.json"}
+        ),
+        "iching_64_rosetta_rows": iching_64.get("rosetta_rows", []) if iching_64 else [],
+        "iching_64_graveyard_variants": iching_64.get("graveyard_variants", []) if iching_64 else [],
         "qit_analogue_map": qit_analogue_map(carnot, szilard),
         "graveyard_rows": graveyard_rows,
         "summary": {
@@ -485,6 +519,9 @@ def main() -> None:
             "qit_missing_strict_subset_count": None if qit_companion is None else qit_companion.get("summary", {}).get("missing_strict_qit_subset_count"),
             "qit_entropy_all_pass": None if qit_entropy is None else qit_entropy.get("summary", {}).get("all_pass"),
             "qit_entropy_missing_strict_row_count": None if qit_entropy is None else qit_entropy.get("summary", {}).get("missing_strict_row_count"),
+            "iching_64_all_pass": None if iching_64 is None else iching_64.get("summary", {}).get("all_pass"),
+            "iching_64_state_count": None if iching_64 is None else iching_64.get("summary", {}).get("state_count"),
+            "iching_64_graveyard_variant_count": None if iching_64 is None else iching_64.get("summary", {}).get("graveyard_variant_count"),
             "clifford_capability_all_pass": None if clifford_capability is None else clifford_capability.get("summary", {}).get("all_pass"),
             "weyl_topology_passed": None if weyl_topology is None else weyl_topology.get("summary", {}).get("passed"),
             "graveyard_row_count": len(graveyard_rows),

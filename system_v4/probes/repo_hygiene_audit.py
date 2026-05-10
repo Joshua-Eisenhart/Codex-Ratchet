@@ -88,6 +88,11 @@ def is_generated_artifact_path(rel_path: str) -> bool:
     return (
         (rel_path.startswith("results") and rel_path.endswith(".json"))
         or rel_path.endswith("_results.json")
+        or (
+            rel_path.startswith("visualizer/")
+            and rel_path.endswith("-data.js")
+            and "/" not in rel_path.removeprefix("visualizer/")
+        )
         or "/a2_state/sim_results/" in normalized
         or "/probes/sim_results/" in normalized
         or rel_path in GENERATED_ROOT_FILES

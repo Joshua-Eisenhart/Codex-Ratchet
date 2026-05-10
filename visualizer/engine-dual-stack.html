@@ -117,6 +117,17 @@
       <div id="rosetta" class="rosetta-grid"></div>
       <div id="tiers" class="rosetta-grid" style="margin-top:8px"></div>
       <div id="qitRows" class="rosetta-grid" style="margin-top:8px"></div>
+      <div id="triadModes" class="rosetta-grid" style="margin-top:8px"></div>
+      <div id="entropyTopology" class="rosetta-grid" style="margin-top:8px"></div>
+      <div id="orderGraveyard" class="rosetta-grid" style="margin-top:8px"></div>
+      <div id="legoRegistry" class="rosetta-grid" style="margin-top:8px"></div>
+      <div id="coupledArray" class="rosetta-grid" style="margin-top:8px"></div>
+      <div id="engineLabOpenRows" class="rosetta-grid" style="margin-top:8px"></div>
+      <div id="engineLabNextWork" class="rosetta-grid" style="margin-top:8px"></div>
+      <div id="engineLabSuccessorCoverage" class="rosetta-grid" style="margin-top:8px"></div>
+      <div id="carnotAsymGraveyard" class="rosetta-grid" style="margin-top:8px"></div>
+      <div id="szilardOpenGraveyard" class="rosetta-grid" style="margin-top:8px"></div>
+      <div id="sidecarGraveyard" class="rosetta-grid" style="margin-top:8px"></div>
     </div>
     <div class="wheel-wrap">
       <h2>Symbolic 64-State Wheel</h2>
@@ -130,12 +141,39 @@
 <script src="carnot-dual-stack-data.js"></script>
 <script src="szilard-dual-stack-data.js"></script>
 <script src="engine-rosetta-data.js"></script>
+<script src="iching-64-rosetta-data.js"></script>
+<script src="rosetta-triad-modes-data.js"></script>
+<script src="rosetta-triad-entropy-topology-data.js"></script>
+<script src="rosetta-triad-order-graveyard-data.js"></script>
+<script src="rosetta-lego-registry-data.js"></script>
+<script src="rosetta-lego-coupled-array-data.js"></script>
+<script src="rosetta-lego-coupled-array-graveyard-data.js"></script>
+<script src="engine-lab-open-row-audit-data.js"></script>
+<script src="engine-lab-next-work-queue-data.js"></script>
+<script src="engine-lab-successor-coverage-data.js"></script>
+<script src="szilard-open-row-consolidation-data.js"></script>
+<script src="carnot-asymmetric-direction-graveyard-data.js"></script>
+<script src="szilard-open-failure-graveyard-data.js"></script>
+<script src="engine-lab-sidecar-graveyard-data.js"></script>
 <script>
 const engines = {
   carnot: window.CARNOT_DUAL_STACK_DATA,
   szilard: window.SZILARD_DUAL_STACK_DATA,
 };
 const rosetta = window.ENGINE_ROSETTA_DATA;
+const iching = window.ICHING_64_ROSETTA_DATA;
+const triad = window.ROSETTA_TRIAD_MODES_DATA;
+const entropyTopology = window.ROSETTA_TRIAD_ENTROPY_TOPOLOGY_DATA;
+const orderGraveyard = window.ROSETTA_TRIAD_ORDER_GRAVEYARD_DATA;
+const legoRegistry = window.ROSETTA_LEGO_REGISTRY_DATA;
+const coupledArray = window.ROSETTA_LEGO_COUPLED_ARRAY_DATA;
+const coupledGraveyard = window.ROSETTA_LEGO_COUPLED_ARRAY_GRAVEYARD_DATA;
+const engineLabOpenRows = window.ENGINE_LAB_OPEN_ROW_AUDIT_DATA;
+const engineLabNextWork = window.ENGINE_LAB_NEXT_WORK_QUEUE_DATA;
+const engineLabSuccessorCoverage = window.ENGINE_LAB_SUCCESSOR_COVERAGE_DATA;
+const carnotAsymGraveyard = window.CARNOT_ASYMMETRIC_DIRECTION_GRAVEYARD_DATA;
+const szilardOpenGraveyard = window.SZILARD_OPEN_FAILURE_GRAVEYARD_DATA;
+const sidecarGraveyard = window.ENGINE_LAB_SIDECAR_GRAVEYARD_DATA;
 let active = "carnot";
 const fmt = v => Number.isFinite(v) ? v.toFixed(6) : String(v);
 function renderNav() {
@@ -211,13 +249,166 @@ function render() {
       <span>${row.boundary}</span>
     </div>
   `).join("");
+  document.getElementById("triadModes").innerHTML = (triad?.mode_matrix || []).map(row => `
+    <div class="rosetta-row">
+      <b>${row.engine} · ${row.mode}</b>
+      <span>${row.pass ? "passes" : "open"}</span>
+      <span>${row.claim}</span>
+      <span>${row.geometry}</span>
+      <span>${row.entropy_readout}</span>
+      <span>${row.boundary}</span>
+    </div>
+  `).join("");
+  document.getElementById("entropyTopology").innerHTML = (entropyTopology?.entropy_rows || []).map(row => `
+    <div class="rosetta-row">
+      <b>${row.engine} · entropy</b>
+      <span>${row.family_pass ? "passes" : "open"}</span>
+      <span>H: ${fmt(row.entropy_family.shannon)}</span>
+      <span>R2: ${fmt(row.entropy_family.renyi_2)}</span>
+      <span>T2: ${fmt(row.entropy_family.tsallis_2)}</span>
+      <span>support: ${row.support_size}</span>
+    </div>
+  `).join("") + (entropyTopology?.topology_rows || []).map(row => `
+    <div class="rosetta-row">
+      <b>${row.engine} · topology</b>
+      <span>${row.topology_pass ? "passes" : "open"}</span>
+      <span>nodes: ${row.nodes}; edges: ${row.edges}</span>
+      <span>beta0: ${row.beta0_laplacian}; beta1: ${row.beta1_cycle_rank}</span>
+      <span>gap: ${fmt(row.laplacian_spectral_gap)}</span>
+    </div>
+  `).join("");
+  document.getElementById("orderGraveyard").innerHTML = (orderGraveyard?.variant_rows || []).map(row => `
+    <div class="rosetta-row">
+      <b>${row.engine} · ${row.variant}</b>
+      <span>${row.status}</span>
+      <span>expected: ${row.expected}</span>
+      <span>${row.reason}</span>
+    </div>
+  `).join("");
+  document.getElementById("legoRegistry").innerHTML = (legoRegistry?.registry_rows || []).map(row => `
+    <div class="rosetta-row">
+      <b>${row.lego_id} · registry</b>
+      <span>${row.source_all_pass ? "source passes" : "source open"}</span>
+      <span>modes: ${Object.entries(row.sim_type_coverage).filter(([, ok]) => ok).map(([mode]) => mode).join(", ")}</span>
+      <span>axes: ${row.axis_slots.length}; entropy families: ${row.entropy_families.length}</span>
+      <span>tools: ${row.tools_used.length}; graveyard variants: ${row.graveyard_variants.length}</span>
+    </div>
+  `).join("") + (legoRegistry?.coupling_matrix || []).map(row => `
+    <div class="rosetta-row">
+      <b>${row.left} ↔ ${row.right}</b>
+      <span>${row.allowed_next ? "allowed next" : "blocked"}</span>
+      <span>modes: ${row.shared_modes.join(", ")}</span>
+      <span>shared tools: ${row.shared_tool_count}; shared entropy: ${row.shared_entropy_families.length}</span>
+      <span>${row.claim_ceiling}</span>
+    </div>
+  `).join("");
+  document.getElementById("coupledArray").innerHTML = [
+    ["coupled graph", `pairs: ${coupledArray?.summary?.coupled_pair_count ?? 0}; pass: ${coupledArray?.summary?.all_pass ?? false}`],
+    ["density", `entropy: ${fmt(coupledArray?.coupling_density?.shannon_entropy ?? 0)}; qutip trace: ${fmt(coupledArray?.coupling_density?.qutip_trace ?? 0)}`],
+    ["proof fences", `z3: ${coupledArray?.proof_fences?.z3_blocks_qit_promotion?.result ?? "missing"}; cvc5: ${coupledArray?.proof_fences?.cvc5_blocks_qit_promotion?.result ?? "missing"}`],
+    ["graveyard", `${coupledGraveyard?.summary?.variant_count ?? 0} coupled-array mutations; pass: ${coupledGraveyard?.summary?.all_pass ?? false}`],
+  ].map(([k, v]) => `<div class="rosetta-row"><b>${k}</b><span>${v}</span></div>`).join("");
+  document.getElementById("engineLabOpenRows").innerHTML = [
+    ["engine lab coverage", `${engineLabOpenRows?.summary?.available_rows ?? 0} rows; missing: ${engineLabOpenRows?.summary?.missing_rows ?? "unknown"}`],
+    ["open rows", `${engineLabOpenRows?.summary?.nonpassing_row_count ?? 0} nonpassing; classified: ${(engineLabOpenRows?.summary?.unclassified_open_rows ?? 0) === 0}`],
+    ["audit classes", Object.entries(engineLabOpenRows?.summary?.audit_class_counts || {}).map(([k, v]) => `${k}: ${v}`).join("; ") || "missing"],
+    ["promotion gate", `QIT/axis gate closed: ${!(engineLabOpenRows?.summary?.qit_or_axis_promotion_allowed ?? false)}`],
+  ].map(([k, v]) => `<div class="rosetta-row"><b>${k}</b><span>${v}</span></div>`).join("") + (engineLabOpenRows?.rows || []).map(row => `
+    <div class="rosetta-row">
+      <b>${row.row_id}</b>
+      <span>${row.audit_class}</span>
+      <span>${row.next_allowed_action}</span>
+      <span>${row.failed_check_count} failed checks; target: ${row.target_qit_row_id || "none"}</span>
+      <span>passing successors: ${row.passing_successor_count ?? 0}</span>
+      <span>consolidated recheck: ${row.consolidated_admission_status || "not_run"}</span>
+      <span>${row.promotion_blocker}</span>
+    </div>
+  `).join("");
+  document.getElementById("engineLabNextWork").innerHTML = [
+    ["next work queue", `${engineLabNextWork?.summary?.open_row_count ?? 0} open rows; top: ${engineLabNextWork?.summary?.top_row_id || "none"}`],
+    ["repair gaps", `${engineLabNextWork?.summary?.repair_gap_count ?? 0}; open-lab failures: ${engineLabNextWork?.summary?.open_lab_failure_count ?? 0}`],
+    ["promotion gate", `QIT/axis gate closed: ${!(engineLabNextWork?.summary?.qit_or_axis_promotion_allowed ?? false)}`],
+  ].map(([k, v]) => `<div class="rosetta-row"><b>${k}</b><span>${v}</span></div>`).join("") + (engineLabNextWork?.rows || []).slice(0, 8).map(row => `
+    <div class="rosetta-row">
+      <b>${row.row_id}</b>
+      <span>${row.recommended_lane}</span>
+      <span>${row.next_allowed_action}</span>
+      <span>${row.audit_class}; failed checks: ${row.failed_check_count}</span>
+      <span>${row.priority_bucket || "unbucketed"} ${row.translation_closeness_score == null ? "" : fmt(row.translation_closeness_score)}</span>
+      <span>${row.promotion_blocker}</span>
+    </div>
+  `).join("");
+  document.getElementById("engineLabSuccessorCoverage").innerHTML = [
+    ["successor-layer coverage", `${engineLabSuccessorCoverage?.summary?.queue_row_count ?? 0} queue rows; active uncovered: ${engineLabSuccessorCoverage?.summary?.active_uncovered_row_count ?? "unknown"}`],
+    ["coverage sources", `successor: ${engineLabSuccessorCoverage?.summary?.covered_by_successor_count ?? 0}; consolidated: ${engineLabSuccessorCoverage?.summary?.covered_by_consolidated_closed_count ?? 0}; superseded: ${engineLabSuccessorCoverage?.summary?.covered_by_superseded_count ?? 0}`],
+    ["source layer", `preserved negative: ${engineLabSuccessorCoverage?.summary?.source_rows_preserved_negative ?? false}; matrix all_pass remains false`],
+    ["receipt vintage", `${engineLabSuccessorCoverage?.generated_at || "missing"}; schema errors: ${engineLabSuccessorCoverage?.summary?.schema_error_count ?? "unknown"}`],
+    ["promotion gate", `QIT/GStack/axis gate closed: ${!(engineLabSuccessorCoverage?.summary?.qit_or_axis_promotion_allowed ?? false)}`],
+  ].map(([k, v]) => `<div class="rosetta-row"><b>${k}</b><span>${v}</span></div>`).join("") + (engineLabSuccessorCoverage?.rows || []).map(row => `
+    <div class="rosetta-row">
+      <b>${row.row_id}</b>
+      <span>${row.covered ? "successor-layer covered" : "uncovered"}</span>
+      <span>${row.recommended_lane}</span>
+      <span>source negative preserved: ${row.source_negative_preserved}</span>
+      <span>QIT/GStack/axis gate closed: ${!row.qit_or_axis_promotion_allowed}</span>
+    </div>
+  `).join("");
+  document.getElementById("carnotAsymGraveyard").innerHTML = [
+    ["Carnot asymmetry graveyard", `${carnotAsymGraveyard?.summary?.variant_count ?? 0} variants; killed: ${carnotAsymGraveyard?.summary?.killed_count ?? 0}; survived: ${carnotAsymGraveyard?.summary?.survived_count ?? 0}`],
+    ["source layer", `preserved negative: ${!(carnotAsymGraveyard?.summary?.source_rows_closed ?? false)}; QIT/axis gate closed: ${!(carnotAsymGraveyard?.summary?.qit_or_axis_promotion_allowed ?? false)}`],
+  ].map(([k, v]) => `<div class="rosetta-row"><b>${k}</b><span>${v}</span></div>`).join("") + (carnotAsymGraveyard?.rows || []).map(row => `
+    <div class="rosetta-row">
+      <b>${row.variant_id}</b>
+      <span>${row.verdict}</span>
+      <span>${row.expected}</span>
+      <span>${row.observed}</span>
+      <span>${row.next_allowed_action}</span>
+    </div>
+  `).join("");
+  document.getElementById("szilardOpenGraveyard").innerHTML = [
+    ["Szilard open-failure graveyard", `${szilardOpenGraveyard?.summary?.variant_count ?? 0} variants; killed: ${szilardOpenGraveyard?.summary?.killed_count ?? 0}; survived: ${szilardOpenGraveyard?.summary?.survived_count ?? 0}`],
+    ["source layer", `preserved negative: ${!(szilardOpenGraveyard?.summary?.source_rows_closed ?? false)}; QIT/axis gate closed: ${!(szilardOpenGraveyard?.summary?.qit_or_axis_promotion_allowed ?? false)}`],
+  ].map(([k, v]) => `<div class="rosetta-row"><b>${k}</b><span>${v}</span></div>`).join("") + (szilardOpenGraveyard?.rows || []).map(row => `
+    <div class="rosetta-row">
+      <b>${row.variant_id}</b>
+      <span>${row.verdict}</span>
+      <span>${row.expected}</span>
+      <span>${row.observed}</span>
+      <span>${row.next_allowed_action}</span>
+    </div>
+  `).join("");
+  document.getElementById("sidecarGraveyard").innerHTML = [
+    ["Readout/topology sidecar graveyard", `${sidecarGraveyard?.summary?.variant_count ?? 0} variants; killed: ${sidecarGraveyard?.summary?.killed_count ?? 0}; survived: ${sidecarGraveyard?.summary?.survived_count ?? 0}`],
+    ["source layer", `preserved negative: ${!(sidecarGraveyard?.summary?.source_rows_closed ?? false)}; QIT/axis gate closed: ${!(sidecarGraveyard?.summary?.qit_or_axis_promotion_allowed ?? false)}`],
+  ].map(([k, v]) => `<div class="rosetta-row"><b>${k}</b><span>${v}</span></div>`).join("") + (sidecarGraveyard?.rows || []).map(row => `
+    <div class="rosetta-row">
+      <b>${row.variant_id}</b>
+      <span>${row.verdict}</span>
+      <span>${row.expected}</span>
+      <span>${row.observed}</span>
+      <span>${row.next_allowed_action}</span>
+    </div>
+  `).join("");
   document.getElementById("wheel").innerHTML = Array.from({length: 64}, (_, i) => `<span class="tick" style="--angle:${i * 5.625}deg"></span>`).join("");
+  const ichingProof = iching?.summary?.all_pass ? "symbolic sim passes" : "symbolic sim missing/open";
+  const ichingGraveyard = iching?.graveyard_variants?.map(row => `${row.variant}: ${row.status}`).join("; ") || "no variants loaded";
   document.getElementById("wheelKey").innerHTML = [
-    ["state count", "64 binary slots; visual only"],
+    ["state count", `${iching?.summary?.state_count ?? 64} binary slots; ${ichingProof}`],
     ["axis slots", rosetta.summary.shared_axis_slots.join(", ")],
-    ["evidence", `${rosetta.summary.rosetta_row_count} Rosetta rows, ${rosetta.summary.tier_count} tiers, ${rosetta.summary.triadic_qit_row_count} QIT-adjacent rows`],
+    ["evidence", `${rosetta.summary.rosetta_row_count} Rosetta rows, ${rosetta.summary.tier_count} tiers, ${rosetta.summary.triadic_qit_row_count} QIT-adjacent rows, ${iching?.summary?.rosetta_row_count ?? 0} I Ching rows, ${triad?.summary?.mode_row_count ?? 0} triad mode rows, ${entropyTopology?.summary?.entropy_family_count ?? 0} entropy families, ${legoRegistry?.summary?.registry_row_count ?? 0} registry rows`],
     ["QIT gate", `strict missing: ${rosetta.summary.qit_missing_strict_subset_count}`],
     ["entropy gate", `strict missing: ${rosetta.summary.qit_entropy_missing_strict_row_count}`],
+    ["I Ching operators", iching?.rosetta_rows?.find(row => row.slot === "operator")?.iching_64 || "single-line flip operator"],
+    ["graveyard", ichingGraveyard],
+    ["triad graveyard", `${triad?.summary?.graveyard_row_count ?? 0} variants; identity collapse blocked: ${triad?.summary?.identity_collapse_blocked ?? false}`],
+    ["order graveyard", `${orderGraveyard?.summary?.variant_count ?? 0} variants; killed: ${orderGraveyard?.summary?.killed_count ?? 0}; survived: ${orderGraveyard?.summary?.survivor_count ?? 0}`],
+    ["coupled array", `${coupledArray?.summary?.coupled_pair_count ?? 0} pairs; QIT gate: not admitted; graveyard variants: ${coupledGraveyard?.summary?.variant_count ?? 0}`],
+    ["engine lab open rows", `${engineLabOpenRows?.summary?.nonpassing_row_count ?? 0} classified; QIT/axis gate closed: ${!(engineLabOpenRows?.summary?.qit_or_axis_promotion_allowed ?? false)}`],
+    ["next work queue", `${engineLabNextWork?.summary?.open_row_count ?? 0} rows; top: ${engineLabNextWork?.summary?.top_row_id || "none"}`],
+    ["successor coverage", `${engineLabSuccessorCoverage?.summary?.queue_row_count ?? 0} rows; active uncovered: ${engineLabSuccessorCoverage?.summary?.active_uncovered_row_count ?? "unknown"}; QIT/GStack/axis gate closed: ${!(engineLabSuccessorCoverage?.summary?.qit_or_axis_promotion_allowed ?? false)}`],
+    ["Carnot asymmetry graveyard", `${carnotAsymGraveyard?.summary?.killed_count ?? 0} killed; ${carnotAsymGraveyard?.summary?.survived_count ?? 0} survived`],
+    ["Szilard open graveyard", `${szilardOpenGraveyard?.summary?.killed_count ?? 0} killed; ${szilardOpenGraveyard?.summary?.survived_count ?? 0} survived`],
+    ["sidecar graveyard", `${sidecarGraveyard?.summary?.killed_count ?? 0} killed; ${sidecarGraveyard?.summary?.survived_count ?? 0} survived`],
     ["boundary", "not an I Ching proof or QIT-engine admission"],
   ].map(([k, v]) => `<div class="rosetta-row"><b>${k}</b><span>${v}</span></div>`).join("");
 }

@@ -69,7 +69,6 @@ CAPACITY_BLOCK_PATTERNS = (
     "hit your limit",
     "you have exhausted your capacity",
     "quota will reset",
-    "resets ",
 )
 PREMORTEM_ARTIFACT_PATTERNS = (
     "premortem-report-*.html",
@@ -109,6 +108,17 @@ def route_prompt(route: str, task: str, repair_children: list[str] | None = None
         "Process both the current prompt and the larger active context. Preserve strategy state, identify local-overoptimization risk, "
         "and return concise route-specific findings plus parent/child truth. Do not emit process logs."
     )
+
+
+def compact_active_children(route: str, args: argparse.Namespace) -> list[str]:
+    """Return the formal child obligation that compact mode actually launches."""
+    if getattr(args, "mode", "full") != "compact":
+        return []
+    formal_children = FORMAL_CHILDREN.get(route, [])
+    if not formal_children:
+        return []
+    requested_count = max(1, args.sonnet_count, args.opus_count, args.haiku_count)
+    return formal_children[: min(requested_count, len(formal_children))]
 
 
 def route_command(args: argparse.Namespace, route: str, root: Path, repair_children: list[str] | None = None) -> list[str]:
@@ -176,6 +186,10 @@ def route_command(args: argparse.Namespace, route: str, root: Path, repair_child
     ]
     if repair_children:
         command.extend(["--only-children", ",".join(repair_children)])
+    else:
+        active_children = compact_active_children(route, args)
+        if active_children:
+            command.extend(["--only-children", ",".join(active_children)])
     if args.parallel_model_groups:
         command.append("--parallel-model-groups")
     if getattr(args, "codex_local_children", False):
@@ -306,7 +320,7 @@ def status_json(root: Path, cwd: Path, required_routes: list[str] | None = None)
 def capacity_blockers(root: Path) -> list[dict[str, str]]:
     blockers: list[dict[str, str]] = []
     for path in root.rglob("*"):
-        if not path.is_file() or path.suffix not in {".json", ".log", ".txt"}:
+        if not capacity_scan_candidate(path):
             continue
         try:
             text = path.read_text(encoding="utf-8", errors="replace").lower()
@@ -319,6 +333,10 @@ def capacity_blockers(root: Path) -> list[dict[str, str]]:
         if len(blockers) >= 20:
             break
     return blockers
+
+
+def capacity_scan_candidate(path: Path) -> bool:
+    return path.is_file() and path.suffix in {".json", ".log", ".txt"}
 
 
 def premortem_artifacts(cwd: Path) -> set[str]:

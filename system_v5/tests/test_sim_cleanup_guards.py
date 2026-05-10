@@ -39,6 +39,721 @@ def _load_module(module_name: str, path: Path):
             sys.path.remove(module_parent)
 
 
+def test_repo_hygiene_classifies_visualizer_data_payloads_as_generated() -> None:
+    module = _load_module(
+        "repo_hygiene_visualizer_payloads_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "repo_hygiene_audit.py",
+    )
+
+    assert module.is_generated_artifact_path("visualizer/prime-qit-sidecar-data.js")
+    assert module.is_generated_artifact_path("visualizer/engine-rosetta-data.js")
+    assert not module.is_generated_artifact_path("visualizer/app.jsx")
+    assert not module.is_generated_artifact_path("visualizer/engine_primitives.jsx")
+    assert not module.is_generated_artifact_path("visualizer/DESIGN.md")
+
+
+def test_source_dirty_plan_skips_visualizer_generated_data_payloads(monkeypatch) -> None:
+    module = _load_module(
+        "source_dirty_plan_visualizer_payloads_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "source_dirty_checkpoint_plan.py",
+    )
+
+    class Completed:
+        stdout = "\n".join(
+            [
+                "?? visualizer/prime-qit-sidecar-data.js",
+                "?? visualizer/rosetta-triad-modes-data.js",
+                "?? visualizer/app.jsx",
+                " M system_v4/probes/sim_prime_qit_sidecar_probe.py",
+            ]
+        )
+
+    monkeypatch.setattr(module.subprocess, "run", lambda *args, **kwargs: Completed())
+
+    entries = module.git_source_entries()
+
+    assert entries == [
+        {"path": "visualizer/app.jsx", "status_kind": "untracked"},
+        {"path": "system_v4/probes/sim_prime_qit_sidecar_probe.py", "status_kind": "modified"},
+    ]
+
+
+def test_cleanup_first_guard_allows_maintenance_context_with_dirty_repo(
+    tmp_path, monkeypatch, capsys
+) -> None:
+    module = _load_module(
+        "cleanup_first_guard_maintenance_context_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "cleanup_first_guard.py",
+    )
+
+    results = tmp_path / "results"
+    results.mkdir()
+    supervisor = results / "system_hygiene_supervisor_results.json"
+    supervisor.write_text(
+        json.dumps(
+            {
+                "repo_hygiene_green": False,
+                "overall_green": False,
+                "repair_queue_count": 1,
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(module, "PROJECT_DIR", tmp_path)
+    monkeypatch.setattr(module, "SUPERVISOR_PATH", supervisor)
+    monkeypatch.setattr(sys, "argv", ["cleanup_first_guard.py", "--context", "hygiene"])
+
+    assert module.main() == 0
+    out = capsys.readouterr().out
+    assert "CLEANUP FIRST GUARD PASSED context=hygiene" in out
+    assert "blocks new sim execution" in out
+
+
+def test_cleanup_first_guard_still_blocks_sim_context_with_dirty_repo(
+    tmp_path, monkeypatch, capsys
+) -> None:
+    module = _load_module(
+        "cleanup_first_guard_sim_context_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "cleanup_first_guard.py",
+    )
+
+    results = tmp_path / "results"
+    results.mkdir()
+    supervisor = results / "system_hygiene_supervisor_results.json"
+    supervisor.write_text(
+        json.dumps(
+            {
+                "repo_hygiene_green": False,
+                "overall_green": False,
+                "repair_queue_count": 1,
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(module, "PROJECT_DIR", tmp_path)
+    monkeypatch.setattr(module, "SUPERVISOR_PATH", supervisor)
+    monkeypatch.setattr(sys, "argv", ["cleanup_first_guard.py", "--context", "sim"])
+
+    assert module.main() == 1
+    out = capsys.readouterr().out
+    assert "CLEANUP FIRST GUARD FAILED context=sim" in out
+
+
+def test_rosetta_completion_audit_keeps_cleanup_gate_as_blocker(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "rosetta_completion_audit_cleanup_blocker_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "rosetta_goal_completion_audit.py",
+    )
+
+    project = tmp_path / "repo"
+    results = project / "system_v4" / "probes" / "a2_state" / "sim_results"
+    evidence = project / "system_v5" / "evidence"
+    results.mkdir(parents=True)
+    evidence.mkdir(parents=True)
+
+    def write_result(name: str, summary: dict) -> Path:
+        path = results / name
+        path.write_text(json.dumps({"summary": summary}), encoding="utf-8")
+        return path
+
+    paths = {
+        "probe_truth": write_result("probe_truth_audit_results.json", {"ok": True}),
+        "controller_alignment": write_result(
+            "controller_alignment_audit_results.json",
+            {"code_process_green": True, "controller_contract_current": True},
+        ),
+        "migration_contract": write_result("migration_contract_audit_results.json", {"ok": True}),
+        "lego_tool_reporting": write_result("lego_tool_reporting_audit_results.json", {"ok": True}),
+        "repo_hygiene": write_result(
+            "repo_hygiene_audit_results.json",
+            {"dirty_worktree_count": 3, "source_dirty_count": 2, "generated_dirty_count": 1},
+        ),
+        "system_hygiene": write_result(
+            "system_hygiene_supervisor_results.json",
+            {
+                "truth_green": True,
+                "controller_green": True,
+                "migration_green": True,
+                "lego_tool_reporting_green": True,
+                "repo_hygiene_green": False,
+                "overall_green": False,
+            },
+        ),
+        "lane_catalog": write_result(
+            "source_dirty_lane_catalog.json",
+            {
+                "lane_count": 1,
+                "ready_for_checkpoint_review_count": 1,
+                "missing_companion_count": 0,
+                "stage_path_count": 4,
+            },
+        ),
+        "lane_catalog_md": results / "source_dirty_lane_catalog.md",
+        "parallel_review_md": results / "source_dirty_parallel_review.md",
+        "prime_sidecar": write_result(
+            "prime_qit_sidecar_probe_results.json",
+            {
+                "all_pass": True,
+                "claim_ceiling": "sidecar_probe_candidate_prior_only",
+                "recommendation": "retool",
+            },
+        ),
+        "prime_sidecar_graveyard": write_result(
+            "prime_qit_sidecar_graveyard_results.json",
+            {
+                "all_pass": True,
+                "claim_ceiling": "sidecar_graveyard_control_only",
+                "recommendation": "retool",
+            },
+        ),
+        "prime_rosetta_fit": write_result(
+            "prime_rosetta_sidecar_fit_results.json",
+            {
+                "all_pass": True,
+                "claim_ceiling": "sidecar_fit_diagnostic_only",
+                "recommendation": "retool",
+                "all_fits_diagnostic_only": True,
+            },
+        ),
+        "iching_rosetta": write_result("iching_64_engine_rosetta_results.json", {"all_pass": True}),
+        "visualizer_audit": write_result(
+            "visualizer_engine_lab_receipt_audit_results.json",
+            {"all_pass": True, "qit_or_axis_promotion_allowed": False},
+        ),
+        "z3_capability": write_result("z3_capability_results.json", {"all_pass": True}),
+        "cvc5_capability": write_result("cvc5_capability_results.json", {"all_pass": True}),
+        "clifford_capability": write_result("clifford_capability_results.json", {"all_pass": True}),
+        "rosetta_lego_registry": write_result("rosetta_lego_registry_results.json", {"all_pass": True}),
+        "rosetta_coupled_array": write_result(
+            "rosetta_lego_coupled_array_results.json", {"all_pass": True}
+        ),
+        "rosetta_coupled_array_graveyard": write_result(
+            "rosetta_lego_coupled_array_graveyard_results.json", {"all_pass": True}
+        ),
+    }
+    inventory = evidence / "sim_inventory_index.json"
+    inventory.write_text(
+        json.dumps(
+            {
+                "summary": {
+                    "admitted_count": 9,
+                    "admission_repair_count": 0,
+                    "unlinked_result_json_count": 0,
+                },
+                "admitted_stems": ["sim_z3_capability", "sim_cvc5_capability"],
+            }
+        ),
+        encoding="utf-8",
+    )
+    paths["inventory"] = inventory
+    paths["inventory_unlinked_audit"] = write_result(
+        "inventory_unlinked_result_audit_results.json",
+        {"all_pass": True, "possible_orphan_count": 0, "source_link_gap_count": 0},
+    )
+
+    monkeypatch.setattr(module, "PROJECT_DIR", project)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+    monkeypatch.setattr(module, "OUT_JSON", results / "rosetta_goal_completion_audit_results.json")
+    monkeypatch.setattr(module, "OUT_MD", results / "rosetta_goal_completion_audit.md")
+    monkeypatch.setattr(module, "PATHS", paths)
+
+    report = module.build_report()
+
+    assert report["completion_status"] == "blocked"
+    assert report["checklist"]["repo_cleanup_gate"]["status"] == "blocked"
+    assert report["checklist"]["tracking_and_admission_truth"]["status"] == "met"
+    assert report["checklist"]["rosetta_registry_and_coupling_receipts"]["status"] == "met"
+    assert any(
+        item["requirement"].startswith("Do not claim goal complete")
+        and item["status"] == "blocked"
+        for item in report["prompt_to_artifact_checklist"]
+    )
+
+
+def test_rosetta_completion_audit_blocks_prime_sidecar_overclaim(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "rosetta_completion_audit_prime_overclaim_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "rosetta_goal_completion_audit.py",
+    )
+
+    project = tmp_path / "repo"
+    results = project / "system_v4" / "probes" / "a2_state" / "sim_results"
+    evidence = project / "system_v5" / "evidence"
+    results.mkdir(parents=True)
+    evidence.mkdir(parents=True)
+
+    def write_result(name: str, summary: dict) -> Path:
+        path = results / name
+        path.write_text(json.dumps({"summary": summary}), encoding="utf-8")
+        return path
+
+    passing = {"all_pass": True}
+    paths = {
+        "probe_truth": write_result("probe_truth_audit_results.json", {"ok": True}),
+        "controller_alignment": write_result(
+            "controller_alignment_audit_results.json",
+            {"code_process_green": True, "controller_contract_current": True},
+        ),
+        "migration_contract": write_result("migration_contract_audit_results.json", {"ok": True}),
+        "lego_tool_reporting": write_result("lego_tool_reporting_audit_results.json", {"ok": True}),
+        "repo_hygiene": write_result(
+            "repo_hygiene_audit_results.json",
+            {"dirty_worktree_count": 0, "source_dirty_count": 0, "generated_dirty_count": 0},
+        ),
+        "system_hygiene": write_result(
+            "system_hygiene_supervisor_results.json",
+            {
+                "truth_green": True,
+                "controller_green": True,
+                "migration_green": True,
+                "lego_tool_reporting_green": True,
+                "repo_hygiene_green": True,
+                "overall_green": True,
+            },
+        ),
+        "lane_catalog": write_result(
+            "source_dirty_lane_catalog.json",
+            {
+                "lane_count": 1,
+                "ready_for_checkpoint_review_count": 1,
+                "missing_companion_count": 0,
+                "stage_path_count": 4,
+            },
+        ),
+        "lane_catalog_md": results / "source_dirty_lane_catalog.md",
+        "parallel_review_md": results / "source_dirty_parallel_review.md",
+        "prime_sidecar": write_result(
+            "prime_qit_sidecar_probe_results.json",
+            {"all_pass": True, "claim_ceiling": "riemann_solved", "recommendation": "promote"},
+        ),
+        "prime_sidecar_graveyard": write_result(
+            "prime_qit_sidecar_graveyard_results.json",
+            {
+                "all_pass": True,
+                "claim_ceiling": "sidecar_graveyard_control_only",
+                "recommendation": "retool",
+            },
+        ),
+        "prime_rosetta_fit": write_result(
+            "prime_rosetta_sidecar_fit_results.json",
+            {
+                "all_pass": True,
+                "claim_ceiling": "sidecar_fit_diagnostic_only",
+                "recommendation": "retool",
+                "all_fits_diagnostic_only": True,
+            },
+        ),
+        "iching_rosetta": write_result("iching_64_engine_rosetta_results.json", passing),
+        "visualizer_audit": write_result(
+            "visualizer_engine_lab_receipt_audit_results.json",
+            {"all_pass": True, "qit_or_axis_promotion_allowed": False},
+        ),
+        "z3_capability": write_result("z3_capability_results.json", passing),
+        "cvc5_capability": write_result("cvc5_capability_results.json", passing),
+        "clifford_capability": write_result("clifford_capability_results.json", passing),
+        "rosetta_lego_registry": write_result("rosetta_lego_registry_results.json", passing),
+        "rosetta_coupled_array": write_result("rosetta_lego_coupled_array_results.json", passing),
+        "rosetta_coupled_array_graveyard": write_result(
+            "rosetta_lego_coupled_array_graveyard_results.json", passing
+        ),
+    }
+    inventory = evidence / "sim_inventory_index.json"
+    inventory.write_text(
+        json.dumps(
+            {
+                "summary": {
+                    "admitted_count": 9,
+                    "admission_repair_count": 0,
+                    "unlinked_result_json_count": 0,
+                },
+                "admitted_stems": ["sim_z3_capability", "sim_cvc5_capability"],
+            }
+        ),
+        encoding="utf-8",
+    )
+    paths["inventory"] = inventory
+    paths["inventory_unlinked_audit"] = write_result(
+        "inventory_unlinked_result_audit_results.json",
+        {"all_pass": True, "possible_orphan_count": 0, "source_link_gap_count": 0},
+    )
+
+    monkeypatch.setattr(module, "PROJECT_DIR", project)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+    monkeypatch.setattr(module, "OUT_JSON", results / "rosetta_goal_completion_audit_results.json")
+    monkeypatch.setattr(module, "OUT_MD", results / "rosetta_goal_completion_audit.md")
+    monkeypatch.setattr(module, "PATHS", paths)
+
+    report = module.build_report()
+
+    assert report["completion_status"] == "blocked"
+    assert report["checklist"]["bounded_prime_sidecar"]["status"] == "blocked"
+    assert any(
+        item["requirement"].startswith("Run bounded prime/Riemann sidecar")
+        and item["status"] == "blocked"
+        for item in report["prompt_to_artifact_checklist"]
+    )
+
+
+def test_source_dirty_lane_manifest_can_select_manual_next_lane(
+    tmp_path, monkeypatch, capsys
+) -> None:
+    module = _load_module(
+        "source_dirty_lane_manifest_manual_next_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "source_dirty_lane_manifest.py",
+    )
+
+    results = tmp_path / "results"
+    results.mkdir()
+    plan_path = results / "source_dirty_checkpoint_plan.json"
+    out_path = results / "source_dirty_lane_manifest.json"
+    plan_path.write_text(
+        json.dumps(
+            {
+                "checkpoint_groups": [],
+                "recommended_checkpoint_order": [],
+                "next_code_only_manual": {
+                    "group_id": "probe_source__sim_family_iching",
+                    "file_count": 1,
+                    "untracked_count": 1,
+                    "tracked_dirty_count": 0,
+                    "safe_next_action": "manual_split_required",
+                    "source_path": "system_v4/probes/sim_iching_64_engine_rosetta.py",
+                    "result_path": "system_v4/probes/a2_state/sim_results/iching_64_engine_rosetta_results.json",
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(module, "PROJECT_DIR", tmp_path)
+    monkeypatch.setattr(module, "PLAN_PATH", plan_path)
+    monkeypatch.setattr(module, "OUT_PATH", out_path)
+    monkeypatch.setattr(sys, "argv", ["source_dirty_lane_manifest.py", "--allow-manual"])
+
+    assert module.main() == 0
+    out = capsys.readouterr().out
+    assert "manual-only lane selected" in out
+    payload = json.loads(out_path.read_text(encoding="utf-8"))
+    assert payload["summary"]["status"] == "manual_only_lane_selected"
+    assert payload["summary"]["manual_review_required"] is True
+    lane_manifest = results / "source_dirty_lane_manifest__probe_source__sim_family_iching.json"
+    lane_payload = json.loads(lane_manifest.read_text(encoding="utf-8"))
+    assert payload["lane_specific_manifest_path"].endswith(str(lane_manifest.relative_to(tmp_path)))
+    assert lane_payload["selected_group_id"] == "probe_source__sim_family_iching"
+    assert "last-write-wins latest pointer" in lane_payload["concurrency_note"]
+    assert payload["executable_lane"]["files"] == [
+        "system_v4/probes/sim_iching_64_engine_rosetta.py"
+    ]
+
+
+def test_source_dirty_lane_manifest_can_select_explicit_manual_lane(
+    tmp_path, monkeypatch, capsys
+) -> None:
+    module = _load_module(
+        "source_dirty_lane_manifest_explicit_manual_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "source_dirty_lane_manifest.py",
+    )
+
+    results = tmp_path / "results"
+    results.mkdir()
+    plan_path = results / "source_dirty_checkpoint_plan.json"
+    out_path = results / "source_dirty_lane_manifest.json"
+    plan_path.write_text(
+        json.dumps(
+            {
+                "checkpoint_groups": [],
+                "recommended_checkpoint_order": [],
+                "recommended_code_only_order": [
+                    {
+                        "group_id": "probe_source__sim_family_iching",
+                        "file_count": 1,
+                        "safe_next_action": "manual_split_required",
+                        "source_path": "system_v4/probes/sim_iching_64_engine_rosetta.py",
+                        "result_path": "system_v4/probes/a2_state/sim_results/iching_64_engine_rosetta_results.json",
+                    },
+                    {
+                        "group_id": "probe_source__sim_family_prime",
+                        "file_count": 1,
+                        "safe_next_action": "manual_split_required",
+                        "source_path": "system_v4/probes/sim_prime_qit_sidecar_probe.py",
+                        "result_path": "system_v4/probes/a2_state/sim_results/prime_qit_sidecar_probe_results.json",
+                    },
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(module, "PROJECT_DIR", tmp_path)
+    monkeypatch.setattr(module, "PLAN_PATH", plan_path)
+    monkeypatch.setattr(module, "OUT_PATH", out_path)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "source_dirty_lane_manifest.py",
+            "--allow-manual",
+            "--group-id",
+            "probe_source__sim_family_prime",
+        ],
+    )
+
+    assert module.main() == 0
+    out = capsys.readouterr().out
+    assert "probe_source__sim_family_prime (manual-only)" in out
+    payload = json.loads(out_path.read_text(encoding="utf-8"))
+    assert payload["summary"]["selected_group_id"] == "probe_source__sim_family_prime"
+    assert payload["selection_mode"] == "explicit_manual"
+    lane_manifest = results / "source_dirty_lane_manifest__probe_source__sim_family_prime.json"
+    assert lane_manifest.exists()
+    assert payload["executable_lane"]["files"] == [
+        "system_v4/probes/sim_prime_qit_sidecar_probe.py"
+    ]
+
+
+def test_source_dirty_lane_manifest_can_select_manual_group_lane(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "source_dirty_lane_manifest_manual_group_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "source_dirty_lane_manifest.py",
+    )
+
+    results = tmp_path / "results"
+    results.mkdir()
+    plan_path = results / "source_dirty_checkpoint_plan.json"
+    out_path = results / "source_dirty_lane_manifest.json"
+    plan_path.write_text(
+        json.dumps(
+            {
+                "checkpoint_groups": [
+                    {
+                        "group_id": "probe_source__sim_family_carnot",
+                        "file_count": 2,
+                        "safe_next_action": "manual_split_required",
+                        "path_prefixes": [
+                            "system_v4/probes/sim_carnot_alpha.py",
+                            "system_v4/probes/sim_carnot_beta.py",
+                        ],
+                    }
+                ],
+                "recommended_checkpoint_order": [],
+                "recommended_code_only_order": [
+                    {
+                        "group_id": "probe_source__sim_family_carnot",
+                        "file_count": 2,
+                        "safe_next_action": "manual_split_required",
+                        "source_path": None,
+                        "result_path": None,
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(module, "PROJECT_DIR", tmp_path)
+    monkeypatch.setattr(module, "PLAN_PATH", plan_path)
+    monkeypatch.setattr(module, "OUT_PATH", out_path)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "source_dirty_lane_manifest.py",
+            "--allow-manual",
+            "--group-id",
+            "probe_source__sim_family_carnot",
+        ],
+    )
+
+    assert module.main() == 0
+    payload = json.loads(out_path.read_text(encoding="utf-8"))
+    assert payload["summary"]["selected_group_id"] == "probe_source__sim_family_carnot"
+    assert payload["executable_lane"]["files"] == [
+        "system_v4/probes/sim_carnot_alpha.py",
+        "system_v4/probes/sim_carnot_beta.py",
+    ]
+    assert payload["executable_lane"]["result_companions"] == [
+        "system_v4/probes/a2_state/sim_results/carnot_alpha_results.json",
+        "system_v4/probes/a2_state/sim_results/carnot_beta_results.json",
+    ]
+
+
+def test_source_dirty_checkpoint_packet_includes_visual_payload_companion(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "source_dirty_checkpoint_packet_visual_payload_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "source_dirty_checkpoint_packet.py",
+    )
+
+    repo = tmp_path / "repo"
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    visualizer = repo / "visualizer"
+    results.mkdir(parents=True)
+    visualizer.mkdir()
+    (results / "probe_truth_audit_results.json").write_text(
+        json.dumps({"summary": {"ok": True}}),
+        encoding="utf-8",
+    )
+    (results / "repo_hygiene_audit_results.json").write_text(
+        json.dumps({"summary": {"root_result_orphan_count": 0, "secondary_result_count": 0, "duplicate_result_basename_count": 0}}),
+        encoding="utf-8",
+    )
+    (results / "prime_qit_sidecar_probe_results.json").write_text(
+        json.dumps({"summary": {"visual_payload": "visualizer/prime-qit-sidecar-data.js"}}),
+        encoding="utf-8",
+    )
+    (visualizer / "prime-qit-sidecar-data.js").write_text("window.X = {};\n", encoding="utf-8")
+    manifest = results / "source_dirty_lane_manifest.json"
+    manifest.write_text(
+        json.dumps(
+            {
+                "lane_id": "source_dirty__probe_source__sim_family_prime",
+                "selected_group_id": "probe_source__sim_family_prime",
+                "executable_lane": {
+                    "group_id": "probe_source__sim_family_prime",
+                    "files": ["system_v4/probes/sim_prime_qit_sidecar_probe.py"],
+                    "result_companions": [
+                        "system_v4/probes/a2_state/sim_results/prime_qit_sidecar_probe_results.json"
+                    ],
+                    "required_git_paths_clean": [
+                        "system_v4/probes/sim_prime_qit_sidecar_probe.py",
+                        "system_v4/probes/a2_state/sim_results/prime_qit_sidecar_probe_results.json",
+                    ],
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "PROJECT_DIR", repo)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+    monkeypatch.setattr(module, "LANE_MANIFEST_PATH", manifest)
+    monkeypatch.setattr(module, "TRUTH_AUDIT_PATH", results / "probe_truth_audit_results.json")
+    monkeypatch.setattr(module, "REPO_HYGIENE_PATH", results / "repo_hygiene_audit_results.json")
+    monkeypatch.setattr(module, "OUT_PATH", results / "source_dirty_checkpoint_packet.json")
+    monkeypatch.setattr(module, "git_status_for", lambda paths: [f"?? {path}" for path in paths])
+
+    assert module.main() == 0
+    payload = json.loads((results / "source_dirty_checkpoint_packet.json").read_text(encoding="utf-8"))
+    lane_packet = results / "source_dirty_checkpoint_packet__probe_source__sim_family_prime.json"
+    lane_payload = json.loads(lane_packet.read_text(encoding="utf-8"))
+    assert "visualizer/prime-qit-sidecar-data.js" in payload["result_companions"]
+    assert "visualizer/prime-qit-sidecar-data.js" in payload["required_git_paths_clean"]
+    assert payload["lane_specific_packet_path"].endswith(str(lane_packet.relative_to(repo)))
+    assert lane_payload["group_id"] == "probe_source__sim_family_prime"
+    assert "last-write-wins latest pointer" in lane_payload["concurrency_note"]
+
+
+def test_source_dirty_stage_plan_keeps_source_maintenance_scripts(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "source_dirty_stage_plan_keeps_source_scripts_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "source_dirty_stage_plan.py",
+    )
+
+    results = tmp_path / "results"
+    results.mkdir()
+    manifest_path = results / "source_dirty_lane_manifest.json"
+    packet_path = results / "source_dirty_checkpoint_packet.json"
+    out_path = results / "source_dirty_stage_plan.json"
+    manifest_path.write_text(
+        json.dumps({"lane_id": "source_dirty__probe_source__probe_misc", "selected_group_id": "probe_source__probe_misc"}),
+        encoding="utf-8",
+    )
+    packet_path.write_text(
+        json.dumps(
+            {
+                "group_id": "probe_source__probe_misc",
+                "ready_for_checkpoint": True,
+                "owned_files": [
+                    "system_v4/probes/source_dirty_lane_manifest.py",
+                    "system_v4/probes/source_dirty_stage_plan.py",
+                ],
+                "result_companions": [],
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(module, "PROJECT_DIR", tmp_path)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+    monkeypatch.setattr(module, "LANE_MANIFEST_PATH", manifest_path)
+    monkeypatch.setattr(module, "CHECKPOINT_PACKET_PATH", packet_path)
+    monkeypatch.setattr(module, "OUT_PATH", out_path)
+
+    assert module.main() == 0
+    payload = json.loads(out_path.read_text(encoding="utf-8"))
+    lane_stage_plan = results / "source_dirty_stage_plan__probe_source__probe_misc.json"
+    lane_payload = json.loads(lane_stage_plan.read_text(encoding="utf-8"))
+    assert "system_v4/probes/source_dirty_lane_manifest.py" in payload["stage_paths"]
+    assert "system_v4/probes/source_dirty_stage_plan.py" in payload["stage_paths"]
+    assert payload["lane_specific_stage_plan_path"].endswith(str(lane_stage_plan.relative_to(tmp_path)))
+    assert lane_payload["summary"]["ready_for_staging"] is True
+
+
+def test_source_dirty_lane_catalog_expands_result_and_visual_payload(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "source_dirty_lane_catalog_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "source_dirty_lane_catalog.py",
+    )
+
+    repo = tmp_path / "repo"
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    visualizer = repo / "visualizer"
+    results.mkdir(parents=True)
+    visualizer.mkdir()
+    plan_path = results / "source_dirty_checkpoint_plan.json"
+    out_path = results / "source_dirty_lane_catalog.json"
+    out_md = results / "source_dirty_lane_catalog.md"
+    (results / "rosetta_lego_registry_results.json").write_text(
+        json.dumps({"summary": {"visual_payload": "visualizer/rosetta-lego-registry-data.js"}}),
+        encoding="utf-8",
+    )
+    (visualizer / "rosetta-lego-registry-data.js").write_text("window.X = {};\n", encoding="utf-8")
+    plan_path.write_text(
+        json.dumps(
+            {
+                "checkpoint_groups": [
+                    {
+                        "group_id": "probe_source__sim_family_rosetta",
+                        "bucket": "probe_source",
+                        "display_name": "Rosetta",
+                        "safe_next_action": "manual_split_required",
+                        "file_count": 1,
+                        "path_prefixes": ["system_v4/probes/sim_rosetta_lego_registry.py"],
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(module, "PROJECT_DIR", repo)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+    monkeypatch.setattr(module, "PLAN_PATH", plan_path)
+    monkeypatch.setattr(module, "TRUTH_AUDIT_PATH", results / "probe_truth_audit_results.json")
+    monkeypatch.setattr(module, "REPO_HYGIENE_PATH", results / "repo_hygiene_audit_results.json")
+    monkeypatch.setattr(module, "OUT_PATH", out_path)
+    monkeypatch.setattr(module, "OUT_MD", out_md)
+    monkeypatch.setattr(module, "git_status_for", lambda paths: [])
+
+    assert module.main() == 0
+    payload = json.loads(out_path.read_text(encoding="utf-8"))
+    lane = payload["lanes"][0]
+    assert lane["stage_paths"] == [
+        "system_v4/probes/sim_rosetta_lego_registry.py",
+        "system_v4/probes/a2_state/sim_results/rosetta_lego_registry_results.json",
+        "visualizer/rosetta-lego-registry-data.js",
+    ]
+    assert lane["ready_for_checkpoint_review"] is True
+    assert lane["decision_needed"] == "checkpoint_or_rework_probe_lane"
+    markdown = out_md.read_text(encoding="utf-8")
+    assert "Source Dirty Lane Catalog" in markdown
+    assert "decision needed: checkpoint_or_rework_probe_lane" in markdown
+
+
 def test_axis0_result_loader_prefers_canonical_over_legacy(tmp_path) -> None:
     module = _load_module(
         "axis0_result_loader_prefers_under_test",
@@ -7994,6 +8709,50 @@ def test_wizard_full_matrix_caps_repair_fanout_to_missing_children() -> None:
     assert command[command.index("--only-children") + 1] == "voice.strategy"
 
 
+def test_wizard_full_matrix_compact_passes_active_child_obligation() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_compact_obligation_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    class Args:
+        mode = "compact"
+        task = "audit v4.2 compact route truth"
+        followup_prompt = "next"
+        payoff = "avoid compact overclaim"
+        use_when = "compact route smoke"
+        stop_if = "blocked"
+        boundary = "tmp receipts only"
+        cwd = REPO_ROOT
+        run_id = "test-run"
+        sonnet_timeout_sec = 1
+        opus_timeout_sec = 1
+        haiku_timeout_sec = 1
+        sonnet_count = 1
+        opus_count = 1
+        haiku_count = 0
+        sonnet_budget = 0.1
+        opus_budget = 0.1
+        haiku_budget = 0.1
+        global_max_active = 2
+        max_concurrency = 2
+        parallel_model_groups = False
+        codex_local_children = False
+        full_model_council = False
+        attempt_gemini = False
+        skip_gemini = True
+        repair_single_model = True
+        repair_skip_gemini = True
+        capacity_preflight = False
+        capacity_preflight_models = "sonnet"
+        capacity_preflight_timeout_sec = 1
+        dry_run = False
+
+    command = module.route_command(Args, "follow_up.compile_gate", REPO_ROOT)
+
+    assert command[command.index("--only-children") + 1] == "compile_gate.target"
+
+
 def test_wizard_full_matrix_detects_external_capacity_blockers(tmp_path) -> None:
     module = _load_module(
         "wizard_full_matrix_run_v4_2_capacity_under_test",
@@ -8010,6 +8769,257 @@ def test_wizard_full_matrix_detects_external_capacity_blockers(tmp_path) -> None
     assert blockers
     assert blockers[0]["path"] == str(receipt)
     assert blockers[0]["pattern"] == "you've hit your limit"
+
+
+def test_wizard_full_matrix_scans_matrix_and_gemini_capacity_receipts(tmp_path) -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_capacity_receipts_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+    matrix = tmp_path / "route" / "matrix_receipt.json"
+    gemini = tmp_path / "route" / "gemini" / "gemini_group_receipt.json"
+    matrix.parent.mkdir(parents=True)
+    gemini.parent.mkdir(parents=True)
+    matrix.write_text(json.dumps({"status": "partial", "note": "hit your limit"}), encoding="utf-8")
+    gemini.write_text(json.dumps({"status": "blocked", "note": "quota will reset"}), encoding="utf-8")
+
+    blockers = module.capacity_blockers(tmp_path)
+    paths = {Path(row["path"]).name for row in blockers}
+
+    assert "matrix_receipt.json" in paths
+    assert "gemini_group_receipt.json" in paths
+
+
+def test_sim_inventory_excludes_finder_duplicates_and_requires_admission_result_link(tmp_path) -> None:
+    module = _load_module(
+        "sim_inventory_index_duplicate_admission_under_test",
+        REPO_ROOT / "scripts" / "sim_inventory_index.py",
+    )
+    module.ROOT = tmp_path
+    module.PROBES = tmp_path / "system_v4" / "probes"
+    module.PROBES.mkdir(parents=True)
+    result_dir = tmp_path / "system_v4" / "probes" / "a2_state" / "sim_results"
+    result_dir.mkdir(parents=True)
+    admission_dir = tmp_path / "system_v5" / "ops" / "wizard_admissions"
+    admission_dir.mkdir(parents=True)
+
+    source_text = (
+        'TOOL_MANIFEST = {"z3": {"used": True, "reason": "fixture"}}\n'
+        'TOOL_INTEGRATION_DEPTH = {"z3": "load_bearing"}\n'
+    )
+    (module.PROBES / "sim_good.py").write_text(source_text, encoding="utf-8")
+    (module.PROBES / "sim_good 2.py").write_text(source_text, encoding="utf-8")
+    (module.PROBES / "sim_missing.py").write_text(source_text, encoding="utf-8")
+    good_result = result_dir / "good_results.json"
+    good_result.write_text(
+        json.dumps({"tool_manifest": {"z3": {"used": True}}, "tool_integration_depth": {"z3": "load_bearing"}}),
+        encoding="utf-8",
+    )
+    (admission_dir / "sim_good.json").write_text(
+        json.dumps({"formal_sim_profile": {"expected_result_path": str(good_result)}}),
+        encoding="utf-8",
+    )
+    (admission_dir / "sim_good 2.json").write_text(
+        json.dumps({"formal_sim_profile": {"expected_result_path": str(good_result)}}),
+        encoding="utf-8",
+    )
+    (admission_dir / "sim_missing.json").write_text(
+        json.dumps({"formal_sim_profile": {"expected_result_path": str(result_dir / "missing_results.json")}}),
+        encoding="utf-8",
+    )
+
+    index = module.build_index()
+    rows = {row["stem"]: row for row in index["rows"]}
+
+    assert "sim_good 2" not in rows
+    assert index["admitted_stems"] == ["sim_good"]
+    assert rows["sim_good"]["inventory_status"] == "admitted"
+    assert rows["sim_missing"]["inventory_status"] == "admission_missing_result_link"
+    assert index["summary"]["admitted_count"] == 1
+    assert index["summary"]["admission_repair_count"] == 1
+
+
+def test_sim_inventory_reports_unlinked_result_paths(tmp_path) -> None:
+    module = _load_module(
+        "sim_inventory_index_unlinked_results_under_test",
+        REPO_ROOT / "scripts" / "sim_inventory_index.py",
+    )
+    module.ROOT = tmp_path
+    module.PROBES = tmp_path / "system_v4" / "probes"
+    module.PROBES.mkdir(parents=True)
+    result_dir = tmp_path / "system_v4" / "probes" / "a2_state" / "sim_results"
+    result_dir.mkdir(parents=True)
+    (module.PROBES / "sim_linked.py").write_text(
+        'TOOL_MANIFEST = {"numpy": {"used": True, "reason": "fixture"}}\n'
+        'TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}\n',
+        encoding="utf-8",
+    )
+    (result_dir / "linked_results.json").write_text(
+        json.dumps({"tool_manifest": {"numpy": {"used": True}}, "tool_integration_depth": {"numpy": "load_bearing"}}),
+        encoding="utf-8",
+    )
+    (result_dir / "orphan_results.json").write_text(json.dumps({"classification": "canonical"}), encoding="utf-8")
+
+    index = module.build_index()
+
+    assert index["summary"]["result_json_count"] == 2
+    assert index["summary"]["linked_result_json_count"] == 1
+    assert index["summary"]["unlinked_result_json_count"] == 1
+    assert index["unlinked_result_samples"] == ["system_v4/probes/a2_state/sim_results/orphan_results.json"]
+
+
+def test_lego_tool_reporting_audit_writes_fail_closed_missing_registry(tmp_path) -> None:
+    module = _load_module(
+        "lego_tool_reporting_audit_missing_registry_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "lego_tool_reporting_audit.py",
+    )
+    module.PROJECT_DIR = tmp_path
+    module.RESULTS_DIR = tmp_path / "system_v4" / "probes" / "a2_state" / "sim_results"
+    module.REGISTRY_PATH = module.RESULTS_DIR / "actual_lego_registry.json"
+    module.OUT_PATH = module.RESULTS_DIR / "lego_tool_reporting_audit_results.json"
+
+    assert module.main() == 1
+    report = json.loads(module.OUT_PATH.read_text(encoding="utf-8"))
+
+    assert report["summary"]["ok"] is False
+    assert report["blockers"][0]["kind"] == "missing_registry"
+
+
+def test_controller_alignment_writes_blocked_surface_when_truth_audit_red(tmp_path) -> None:
+    module = _load_module(
+        "controller_alignment_audit_truth_red_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "controller_alignment_audit.py",
+    )
+    module.PROJECT_DIR = tmp_path
+    module.RESULTS_DIR = tmp_path / "system_v4" / "probes" / "a2_state" / "sim_results"
+    module.OUT_PATH = module.RESULTS_DIR / "controller_alignment_audit_results.json"
+    module.TRUTH_AUDIT_PATH = module.RESULTS_DIR / "probe_truth_audit_results.json"
+    module.DOC_DRIFT_INVENTORY_PATH = module.RESULTS_DIR / "controller_doc_drift_inventory.json"
+    module.LIVE_ANCHOR_SPINE_PATH = module.RESULTS_DIR / "live_anchor_spine.json"
+    module.MAKEFILE_PATH = tmp_path / "Makefile"
+    module.BOT_PATH = tmp_path / "imessage_bot.py"
+    module.REQ_SIM_STACK_PATH = tmp_path / "requirements-sim-stack.txt"
+    module.RESULTS_DIR.mkdir(parents=True)
+    module.MAKEFILE_PATH.write_text("PYTHON := /tmp/python\n", encoding="utf-8")
+    module.BOT_PATH.write_text('PYTHON_BIN = "/tmp/python"\n', encoding="utf-8")
+    module.REQ_SIM_STACK_PATH.write_text("z3-solver>=0.0\n", encoding="utf-8")
+    module.TRUTH_AUDIT_PATH.write_text(json.dumps({"ok": False, "hard_finding_count": 1}), encoding="utf-8")
+
+    monkeypatch = pytest.MonkeyPatch()
+    monkeypatch.setattr(sys, "argv", ["controller_alignment_audit.py"])
+    try:
+        assert module.main() == 0
+    finally:
+        monkeypatch.undo()
+    report = json.loads(module.OUT_PATH.read_text(encoding="utf-8"))
+
+    assert report["status"] == "blocked"
+    assert report["summary"]["blocked_reason"] == "truth_audit_not_green"
+    assert report["summary"]["controller_contract_current"] is False
+
+
+def test_controller_alignment_c2_compare_fails_closed_missing_inputs(tmp_path) -> None:
+    module = _load_module(
+        "controller_alignment_audit_missing_c2_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "controller_alignment_audit.py",
+    )
+    module.RESULTS_DIR = tmp_path
+    module.PHASE7_RESULT_PATH = tmp_path / "phase7_baseline_validation_results.json"
+    module.C2_REMAINING_PATH = tmp_path / "c2_topology_remaining_results.json"
+
+    report = module.compare_c2_surfaces()
+
+    assert report["available"] is False
+    assert report["mismatch_count"] == 1
+    assert report["mismatches"][0]["kind"] == "missing_c2_surface_input"
+
+
+def test_controller_alignment_xgi_drift_fails_closed_missing_inputs(tmp_path) -> None:
+    module = _load_module(
+        "controller_alignment_audit_missing_xgi_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "controller_alignment_audit.py",
+    )
+    module.XGI_AUTOGRAD_SOURCE_PATH = tmp_path / "sim_xgi_torch_autograd.py"
+    module.XGI_AUTOGRAD_RESULT_PATH = tmp_path / "xgi_torch_autograd_results.json"
+    module.XGI_ASCENT_SOURCE_PATH = tmp_path / "sim_xgi_gradient_ascent.py"
+    module.XGI_ASCENT_RESULT_PATH = tmp_path / "xgi_gradient_ascent_results.json"
+
+    report = module.check_xgi_source_result_drift()
+
+    assert report == [{
+        "kind": "missing_xgi_source_result_input",
+        "missing_inputs": [
+            str(module.XGI_AUTOGRAD_SOURCE_PATH),
+            str(module.XGI_AUTOGRAD_RESULT_PATH),
+            str(module.XGI_ASCENT_SOURCE_PATH),
+            str(module.XGI_ASCENT_RESULT_PATH),
+        ],
+        "source_result_drift_check_available": False,
+    }]
+
+
+def test_probe_truth_audit_allows_killed_graveyard_pass_false() -> None:
+    module = _load_module(
+        "probe_truth_audit_graveyard_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "probe_truth_audit.py",
+    )
+    payload = {
+        "rows": [
+            {
+                "variant_id": "negative_variant",
+                "verdict": "killed",
+                "metrics": {"pass": False},
+                "next_allowed_action": "graveyard this claim only",
+            },
+            {
+                "variant_id": "surviving_variant",
+                "verdict": "survived",
+                "metrics": {"pass": True},
+                "next_allowed_action": "use as local evidence only",
+            },
+        ],
+        "boundary": {"all_rows_have_verdicts": {"pass": True}},
+    }
+
+    assert module.false_pass_paths(payload) == []
+
+
+def test_probe_truth_audit_still_blocks_non_graveyard_pass_false() -> None:
+    module = _load_module(
+        "probe_truth_audit_failed_check_under_test",
+        REPO_ROOT / "system_v4" / "probes" / "probe_truth_audit.py",
+    )
+    payload = {
+        "rows": [
+            {
+                "variant_id": "surviving_variant",
+                "verdict": "survived",
+                "metrics": {"pass": False},
+                "next_allowed_action": "use as local evidence only",
+            }
+        ]
+    }
+
+    assert module.false_pass_paths(payload) == ["$.rows[0].metrics.pass"]
+
+
+def test_wizard_followups_preserve_inventory_admission_audit_domain() -> None:
+    compiler = _load_module(
+        "wizard_compile_output_v4_2_inventory_domain_under_test",
+        REPO_ROOT / "scripts" / "wizard_compile_output_v4_2.py",
+    )
+    loop = _load_module(
+        "wizard_v4_2_inventory_domain_under_test",
+        REPO_ROOT / "scripts" / "wizard_v4_2.py",
+    )
+    task = "Audit Wizard inventory/admission updates for duplicate stems and missing result linkage."
+
+    prompts = [prompt for _, prompt in compiler.task_preserving_followups(task, "PARTIAL", "compact")]
+
+    assert "Wizard inventory/admission audit" in compiler.task_domain_label(task)
+    assert any("Continue the Wizard inventory/admission audit" in prompt for prompt in prompts)
+    assert all("Continue bounded sim work" not in prompt for prompt in prompts)
+    assert loop.preserves_task_domain(prompts[0], task)
 
 
 def test_wizard_full_matrix_detects_new_premortem_report_artifacts(tmp_path) -> None:

@@ -18,15 +18,15 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "canonical"
+classification = "controller_index"
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "controller_index"
 divergence_log = (
     "Controller-facing engine-lab matrix over Carnot and Szilard rows. "
     "It organizes exact rows, stochastic rows, topology sweeps, and entropy/"
     "readout variants into one comparable surface without changing the engine "
-    "theorem or scope."
+    "theorem or scope. It is not a canonical admission surface."
 )
 CLASSIFICATION_NOTE = divergence_log
 
@@ -122,6 +122,55 @@ ROW_SPECS = [
         "direction_modes": ["ordered_vs_scrambled", "feedback_strength", "feedback_duration", "reset_strength"],
         "result_file": RESULT_DIR / "szilard_substep_refinement_sweep_results.json",
         "scope_hint": "stochastic_sidecar",
+    },
+    {
+        "id": "szilard_substep_ordering_reset_successor",
+        "engine_family": "szilard",
+        "level": "stochastic_submechanics",
+        "geometry_topology": "double_well_memory_with_substep_ordering_reset_signal_repair",
+        "entropy_family": ["ordering_margin", "reset_signal", "measurement_mi_bottleneck"],
+        "direction_modes": ["substep_refinement", "ordering_repair", "reset_signal_repair"],
+        "result_file": RESULT_DIR / "szilard_substep_ordering_reset_successor_results.json",
+        "scope_hint": "stochastic_sidecar_successor",
+    },
+    {
+        "id": "szilard_open_failure_graveyard",
+        "engine_family": "szilard",
+        "level": "open_failure_graveyard",
+        "geometry_topology": "double_well_measurement_feedback_reset_variant_space",
+        "entropy_family": [
+            "ordering_margin",
+            "measurement_mutual_information",
+            "record_survival",
+            "reset_signal",
+            "graveyard_verdict",
+        ],
+        "direction_modes": ["ordering_sensitivity", "record_reset_repair", "substep_refinement"],
+        "result_file": RESULT_DIR / "szilard_open_failure_graveyard_results.json",
+        "scope_hint": "graveyard_controller",
+    },
+    {
+        "id": "szilard_open_row_consolidation",
+        "engine_family": "szilard",
+        "level": "open_row_consolidation",
+        "geometry_topology": "double_well_memory_family_with_topology_successor_overlay",
+        "entropy_family": [
+            "ordering_margin",
+            "measurement_mutual_information",
+            "record_survival",
+            "reset_signal",
+            "topology_entropy",
+            "coupling_constraint",
+        ],
+        "direction_modes": [
+            "ordering_sensitivity",
+            "substep_refinement",
+            "record_reset_repair",
+            "topology_entropy_array",
+            "promotion_blocked",
+        ],
+        "result_file": RESULT_DIR / "szilard_open_row_consolidation_results.json",
+        "scope_hint": "consolidation_controller",
     },
     {
         "id": "szilard_substep_balanced_refinement_sweep",
@@ -234,6 +283,16 @@ ROW_SPECS = [
         "scope_hint": "parameter_map",
     },
     {
+        "id": "szilard_ordering_nonmonotone_noise_successor",
+        "engine_family": "szilard",
+        "level": "parameter_array",
+        "geometry_topology": "double_well_memory_family_with_nonmonotone_noise_response",
+        "entropy_family": ["ordering_margin", "measurement_noise_response", "feedback_strength"],
+        "direction_modes": ["ordered_vs_scrambled", "nonmonotone_noise", "strong_feedback_survival"],
+        "result_file": RESULT_DIR / "szilard_ordering_nonmonotone_noise_successor_results.json",
+        "scope_hint": "parameter_map_successor",
+    },
+    {
         "id": "szilard_record_reset_sweep",
         "engine_family": "szilard",
         "level": "record_reset_array",
@@ -252,6 +311,16 @@ ROW_SPECS = [
         "direction_modes": ["ordered_vs_scrambled", "record_lifetime", "reset_tilt", "feedback_strength"],
         "result_file": RESULT_DIR / "szilard_record_reset_repair_sweep_results.json",
         "scope_hint": "parameter_map",
+    },
+    {
+        "id": "szilard_record_lifetime_repair_successor",
+        "engine_family": "szilard",
+        "level": "record_reset_array",
+        "geometry_topology": "double_well_memory_with_record_lifetime_repair_axis",
+        "entropy_family": ["repair_score", "record_survival", "ordering_margin", "reset_axis_reroute"],
+        "direction_modes": ["record_lifetime", "low_noise_ordering", "reset_swing_rerouted"],
+        "result_file": RESULT_DIR / "szilard_record_lifetime_repair_successor_results.json",
+        "scope_hint": "parameter_map_successor",
     },
     {
         "id": "szilard_record_hard_reset_repair_sweep",
@@ -282,6 +351,36 @@ ROW_SPECS = [
         "direction_modes": ["ordered_vs_scrambled", "feedback_asymmetry", "record_wait", "feedback_duration", "feedback_barrier"],
         "result_file": RESULT_DIR / "szilard_record_ordering_refinement_sweep_results.json",
         "scope_hint": "parameter_map",
+    },
+    {
+        "id": "szilard_record_ordering_refinement_reset_swing_sweep",
+        "engine_family": "szilard",
+        "level": "record_reset_array",
+        "geometry_topology": "double_well_memory_with_ordering_refinement_reset_swing_axis",
+        "entropy_family": ["reset_swing", "reset_stage_entropy", "residual_reset_entropy", "translation_gap"],
+        "direction_modes": ["reset_tilt_sensitivity", "ordering_refinement_best_setting"],
+        "result_file": RESULT_DIR / "szilard_record_ordering_refinement_reset_swing_sweep_results.json",
+        "scope_hint": "repair_companion",
+    },
+    {
+        "id": "szilard_record_ordering_refinement_reset_axis_widened_sweep",
+        "engine_family": "szilard",
+        "level": "record_reset_array",
+        "geometry_topology": "double_well_memory_with_ordering_refinement_reset_tilt_duration_barrier_axes",
+        "entropy_family": ["reset_swing", "reset_stage_entropy", "residual_reset_entropy", "translation_gap"],
+        "direction_modes": ["reset_tilt_sensitivity", "reset_duration", "reset_barrier", "ordering_refinement_best_setting"],
+        "result_file": RESULT_DIR / "szilard_record_ordering_refinement_reset_axis_widened_sweep_results.json",
+        "scope_hint": "repair_companion",
+    },
+    {
+        "id": "szilard_record_ordering_refinement_measurement_accuracy_recheck",
+        "engine_family": "szilard",
+        "level": "record_reset_array",
+        "geometry_topology": "double_well_memory_with_ordering_refinement_measurement_readout",
+        "entropy_family": ["measurement_accuracy", "measurement_mutual_information", "translation_gap"],
+        "direction_modes": ["measurement_readout", "ordering_refinement_best_setting"],
+        "result_file": RESULT_DIR / "szilard_record_ordering_refinement_measurement_accuracy_recheck_results.json",
+        "scope_hint": "repair_companion",
     },
     {
         "id": "qit_szilard_record_companion",
@@ -484,6 +583,16 @@ ROW_SPECS = [
         "scope_hint": "budget_map",
     },
     {
+        "id": "carnot_forward_cold_leg_dominance_successor",
+        "engine_family": "carnot",
+        "level": "topology_budget_array",
+        "geometry_topology": "harmonic_working_substance_with_corrected_cold_leg_closure_dominance",
+        "entropy_family": ["closure_defect", "efficiency", "leg_budget_dominance"],
+        "direction_modes": ["forward_engine", "cold_heavy_closure", "hot_heavy_prior_graveyard"],
+        "result_file": RESULT_DIR / "carnot_forward_cold_leg_dominance_successor_results.json",
+        "scope_hint": "budget_map_successor",
+    },
+    {
         "id": "carnot_reverse_asymmetric",
         "engine_family": "carnot",
         "level": "topology_budget_array",
@@ -492,6 +601,26 @@ ROW_SPECS = [
         "direction_modes": ["reverse_refrigerator"],
         "result_file": RESULT_DIR / "carnot_reverse_asymmetric_sweep_results.json",
         "scope_hint": "budget_map",
+    },
+    {
+        "id": "carnot_reverse_balanced_return_successor",
+        "engine_family": "carnot",
+        "level": "topology_budget_array",
+        "geometry_topology": "harmonic_working_substance_with_balanced_reverse_return_closure",
+        "entropy_family": ["return_closure", "cop_distance", "leg_budget_dominance"],
+        "direction_modes": ["reverse_refrigerator", "balanced_return_closure", "asymmetry_graveyard"],
+        "result_file": RESULT_DIR / "carnot_reverse_balanced_return_successor_results.json",
+        "scope_hint": "budget_map_successor",
+    },
+    {
+        "id": "carnot_asymmetric_direction_graveyard",
+        "engine_family": "carnot",
+        "level": "topology_budget_graveyard",
+        "geometry_topology": "harmonic_working_substance_leg_budget_variants",
+        "entropy_family": ["efficiency", "cop", "cycle_delta_u", "variance_mismatch", "graveyard_verdict"],
+        "direction_modes": ["forward_engine", "reverse_refrigerator", "leg_budget_order_variants"],
+        "result_file": RESULT_DIR / "carnot_asymmetric_direction_graveyard_results.json",
+        "scope_hint": "graveyard_controller",
     },
     {
         "id": "carnot_topology_array",
@@ -544,6 +673,32 @@ ROW_SPECS = [
         "scope_hint": "readout_map",
     },
     {
+        "id": "carnot_entropy_family_open_split",
+        "engine_family": "carnot",
+        "level": "entropy_family_array",
+        "geometry_topology": "open_stochastic_and_topology_carnot_readout_family_comparison",
+        "entropy_family": ["performance", "bath_entropy_proxy", "closure_proxy", "return_proxy"],
+        "direction_modes": ["open_forward_engine", "open_reverse_refrigerator", "exact_anchor_excluded"],
+        "result_file": RESULT_DIR / "carnot_entropy_family_open_split_results.json",
+        "scope_hint": "readout_split_successor",
+    },
+    {
+        "id": "engine_lab_sidecar_graveyard",
+        "engine_family": "mixed",
+        "level": "sidecar_graveyard",
+        "geometry_topology": "readout_topology_sidecar_variant_space",
+        "entropy_family": [
+            "performance_distance",
+            "closure_proxy",
+            "ordering_margin",
+            "topology_entropy",
+            "graveyard_verdict",
+        ],
+        "direction_modes": ["readout_family_split", "topology_sidecar"],
+        "result_file": RESULT_DIR / "engine_lab_sidecar_graveyard_results.json",
+        "scope_hint": "graveyard_controller",
+    },
+    {
         "id": "szilard_topology_entropy_array",
         "engine_family": "szilard",
         "level": "topology_entropy_array",
@@ -552,6 +707,16 @@ ROW_SPECS = [
         "direction_modes": ["ordered_vs_scrambled"],
         "result_file": RESULT_DIR / "szilard_topology_entropy_array_results.json",
         "scope_hint": "topology_map",
+    },
+    {
+        "id": "szilard_topology_positive_diversity_successor",
+        "engine_family": "szilard",
+        "level": "topology_entropy_array",
+        "geometry_topology": "memory_landscape_family_with_positive_ordering_diversity",
+        "entropy_family": ["ordering_margin", "spread_entropy_proxy", "measurement_information"],
+        "direction_modes": ["topology_diversity", "asymmetric_best", "weak_topology_claim_killed"],
+        "result_file": RESULT_DIR / "szilard_topology_positive_diversity_successor_results.json",
+        "scope_hint": "topology_map_successor",
     },
     {
         "id": "qit_engine_companion_array",
@@ -604,6 +769,46 @@ ROW_SPECS = [
         "scope_hint": "companion_map",
     },
     {
+        "id": "engine_lab_open_row_audit",
+        "engine_family": "mixed",
+        "level": "open_row_audit_array",
+        "geometry_topology": "nonpassing_row_failure_classification_overlay",
+        "entropy_family": ["failed_check_family", "promotion_blocker", "next_allowed_action"],
+        "direction_modes": ["open_row_audit", "graveyard_or_repair_routing"],
+        "result_file": RESULT_DIR / "engine_lab_open_row_audit_results.json",
+        "scope_hint": "companion_map",
+    },
+    {
+        "id": "engine_lab_repair_gap_consolidated_admission",
+        "engine_family": "mixed",
+        "level": "repair_gap_consolidated_recheck",
+        "geometry_topology": "repair_successor_vs_original_threshold_overlay",
+        "entropy_family": ["translation_threshold", "repair_gap_status", "promotion_blocker"],
+        "direction_modes": ["consolidated_recheck"],
+        "result_file": RESULT_DIR / "engine_lab_repair_gap_consolidated_admission_results.json",
+        "scope_hint": "companion_map",
+    },
+    {
+        "id": "engine_lab_successor_coverage_audit",
+        "engine_family": "mixed",
+        "level": "successor_coverage_audit",
+        "geometry_topology": "open_row_successor_coverage_overlay",
+        "entropy_family": ["successor_coverage", "source_negative_preservation", "promotion_blocker"],
+        "direction_modes": ["successor_coverage", "stage_gate"],
+        "result_file": RESULT_DIR / "engine_lab_successor_coverage_audit_results.json",
+        "scope_hint": "companion_map",
+    },
+    {
+        "id": "visualizer_engine_lab_receipt_audit",
+        "engine_family": "mixed",
+        "level": "visualizer_receipt_audit",
+        "geometry_topology": "engine_lab_visualizer_data_global_and_boundary_overlay",
+        "entropy_family": ["receipt_wiring", "schema_error_count", "promotion_boundary"],
+        "direction_modes": ["visualizer_payload_check", "react_boundary_check", "receipt_index_check"],
+        "result_file": RESULT_DIR / "visualizer_engine_lab_receipt_audit_results.json",
+        "scope_hint": "companion_map",
+    },
+    {
         "id": "qit_repair_comparison_surface",
         "engine_family": "mixed",
         "level": "qit_repair_comparison_surface",
@@ -612,6 +817,86 @@ ROW_SPECS = [
         "direction_modes": ["open_vs_qit_repair"],
         "result_file": RESULT_DIR / "qit_repair_comparison_surface_results.json",
         "scope_hint": "companion_map",
+    },
+    {
+        "id": "iching_64_engine_rosetta",
+        "engine_family": "mixed",
+        "level": "symbolic_64_rosetta",
+        "geometry_topology": "six_bit_hypercube_gray_cycle_symbolic_schedule",
+        "entropy_family": ["uniform_state_entropy", "polarity_parity", "axis_schedule_readouts"],
+        "direction_modes": ["single_line_flip_cycle", "inductive_deductive_parity_split", "graveyard_variants"],
+        "result_file": RESULT_DIR / "iching_64_engine_rosetta_results.json",
+        "scope_hint": "symbolic_rosetta",
+    },
+    {
+        "id": "rosetta_triad_modes",
+        "engine_family": "mixed",
+        "level": "triadic_rosetta_mode_layer",
+        "geometry_topology": "carnot_szilard_iching_mode_graph_with_density_witness",
+        "entropy_family": ["reservoir_entropy", "record_entropy", "uniform_state_entropy", "identity_collapse_fence"],
+        "direction_modes": ["classical", "bridge", "nonclassical_adjacent", "graveyard_variants"],
+        "result_file": RESULT_DIR / "rosetta_triad_modes_results.json",
+        "scope_hint": "triadic_rosetta",
+    },
+    {
+        "id": "rosetta_triad_entropy_topology_sweep",
+        "engine_family": "mixed",
+        "level": "triadic_entropy_topology_sweep",
+        "geometry_topology": "carnot_szilard_iching_entropy_family_and_topology_signature_sweep",
+        "entropy_family": ["shannon", "von_neumann", "renyi", "tsallis", "min_entropy", "max_entropy", "purity"],
+        "direction_modes": ["entropy_family_sweep", "graph_topology_sweep", "topology_collapse_graveyard"],
+        "result_file": RESULT_DIR / "rosetta_triad_entropy_topology_sweep_results.json",
+        "scope_hint": "triadic_rosetta",
+    },
+    {
+        "id": "rosetta_triad_order_graveyard",
+        "engine_family": "mixed",
+        "level": "triadic_order_variant_graveyard",
+        "geometry_topology": "carnot_szilard_iching_order_variant_graphs",
+        "entropy_family": ["order_precedence", "dual_orientation", "negative_variant_survival"],
+        "direction_modes": ["canonical", "honest_reverse", "scrambled", "collapsed", "wrong_precedence"],
+        "result_file": RESULT_DIR / "rosetta_triad_order_graveyard_results.json",
+        "scope_hint": "triadic_rosetta",
+    },
+    {
+        "id": "rosetta_lego_registry",
+        "engine_family": "mixed",
+        "level": "rosetta_lego_registry",
+        "geometry_topology": "machine_readable_rosetta_lego_registry_and_pairwise_coupling_matrix",
+        "entropy_family": ["registry_entropy_family_coverage", "coupling_candidate_overlap"],
+        "direction_modes": ["classical", "bridge", "nonclassical_adjacent", "coupling_candidate_matrix"],
+        "result_file": RESULT_DIR / "rosetta_lego_registry_results.json",
+        "scope_hint": "rosetta_registry",
+    },
+    {
+        "id": "rosetta_lego_coupled_array",
+        "engine_family": "mixed",
+        "level": "rosetta_coupled_lego_array",
+        "geometry_topology": "registry_approved_three_engine_coupling_graph",
+        "entropy_family": ["coupling_weight_entropy", "density_witness", "symbolic_normalization"],
+        "direction_modes": ["registry_coupling", "graph_tensor_density", "promotion_blocked"],
+        "result_file": RESULT_DIR / "rosetta_lego_coupled_array_results.json",
+        "scope_hint": "rosetta_coupled_array",
+    },
+    {
+        "id": "rosetta_lego_coupled_array_graveyard",
+        "engine_family": "mixed",
+        "level": "rosetta_coupled_lego_array_graveyard",
+        "geometry_topology": "mutated_coupling_graphs_and_promotion_variants",
+        "entropy_family": ["zero_entropy_overlap", "operator_identity_collapse", "promotion_block"],
+        "direction_modes": ["drop_edge", "disconnect_graph", "zero_score", "qit_promotion_variant"],
+        "result_file": RESULT_DIR / "rosetta_lego_coupled_array_graveyard_results.json",
+        "scope_hint": "rosetta_coupled_array",
+    },
+    {
+        "id": "prime_qit_sidecar_probe",
+        "engine_family": "mixed",
+        "level": "prime_qit_sidecar_probe",
+        "geometry_topology": "finite_cptp_style_divisibility_channel_over_indices",
+        "entropy_family": ["fixed_state_survivor", "spectral_gap_proxy", "prime_gap_statistics"],
+        "direction_modes": ["sidecar_probe", "baseline_comparison", "not_admitted"],
+        "result_file": RESULT_DIR / "prime_qit_sidecar_probe_results.json",
+        "scope_hint": "sidecar_probe",
     },
 ]
 
@@ -631,6 +916,16 @@ def likely_constraint_relation(scope_hint: str, result: dict) -> str:
         return "dual_stack_sim_surface_not_runtime_promotion"
     if scope_hint == "rosetta_correlation":
         return "rosetta_surface_candidate_prior_not_qit_promotion"
+    if scope_hint == "symbolic_rosetta":
+        return "symbolic_rosetta_surface_not_qit_promotion"
+    if scope_hint == "triadic_rosetta":
+        return "triadic_rosetta_mode_surface_not_qit_promotion"
+    if scope_hint == "rosetta_registry":
+        return "rosetta_registry_controller_surface_not_qit_promotion"
+    if scope_hint == "rosetta_coupled_array":
+        return "rosetta_coupled_array_surface_not_qit_promotion"
+    if scope_hint == "sidecar_probe":
+        return "sidecar_candidate_prior_not_qit_or_rh_promotion"
     if scope_hint == "graph_proof_bridge":
         return "graph_proof_bridge_surface"
     if scope_hint == "repair_companion":
@@ -643,6 +938,10 @@ def likely_constraint_relation(scope_hint: str, result: dict) -> str:
         return "controller_readout_surface"
     if scope_hint == "companion_map":
         return "qit_alignment_controller_surface"
+    if scope_hint == "graveyard_controller":
+        return "graveyard_negative_evidence_not_runtime_promotion"
+    if scope_hint == "consolidation_controller":
+        return "consolidated_successor_constraints_not_runtime_promotion"
     return "unknown"
 
 
@@ -681,6 +980,11 @@ def extract_headline_metrics(row_id: str, result: dict) -> dict:
         "mean_measurement_mutual_information",
         "mean_feedback_system_free_energy_gain",
         "best_reverse_cop",
+        "registry_row_count",
+        "coupling_candidate_count",
+        "allowed_coupling_count",
+        "blocked_coupling_count",
+        "coupled_edge_count",
         "baseline_forward_closure_defect",
         "baseline_forward_efficiency",
         "graph_path_length",
@@ -817,6 +1121,33 @@ def extract_headline_metrics(row_id: str, result: dict) -> dict:
         ]:
             if key in summary:
                 metrics[key] = summary[key]
+    if row_id == "szilard_record_ordering_refinement_reset_swing_sweep":
+        for key in [
+            "open_reset_swing",
+            "qit_reset_swing",
+            "reset_swing_gap",
+            "residual_reset_entropy_gap",
+        ]:
+            if key in summary:
+                metrics[key] = summary[key]
+    if row_id == "szilard_record_ordering_refinement_reset_axis_widened_sweep":
+        for key in [
+            "best_open_reset_swing",
+            "qit_reset_swing",
+            "best_reset_swing_gap",
+            "best_residual_reset_entropy_gap",
+            "passing_candidate_count",
+        ]:
+            if key in summary:
+                metrics[key] = summary[key]
+    if row_id == "szilard_record_ordering_refinement_measurement_accuracy_recheck":
+        for key in [
+            "open_mean_measurement_accuracy",
+            "qit_mean_measurement_accuracy",
+            "measurement_accuracy_gap",
+        ]:
+            if key in summary:
+                metrics[key] = summary[key]
     if row_id == "qit_szilard_record_repair_translation_lane":
         for key in [
             "best_repair_score",
@@ -855,6 +1186,58 @@ def extract_headline_metrics(row_id: str, result: dict) -> dict:
         ]:
             if key in summary:
                 metrics[key] = summary[key]
+    if row_id == "carnot_asymmetric_direction_graveyard":
+        for key in [
+            "variant_count",
+            "killed_count",
+            "survived_count",
+            "source_rows_closed",
+        ]:
+            if key in summary:
+                metrics[key] = summary[key]
+    if row_id == "szilard_open_failure_graveyard":
+        for key in [
+            "variant_count",
+            "killed_count",
+            "survived_count",
+            "source_rows_closed",
+        ]:
+            if key in summary:
+                metrics[key] = summary[key]
+    if row_id == "szilard_open_row_consolidation":
+        for key in [
+            "source_row_count",
+            "source_negative_count",
+            "passing_successor_count",
+            "fresh_source_count",
+            "fresh_successor_count",
+            "accepted_constraint_count",
+            "blocked_promotion_edges",
+            "source_rows_closed",
+        ]:
+            if key in summary:
+                metrics[key] = summary[key]
+    if row_id == "engine_lab_sidecar_graveyard":
+        for key in [
+            "variant_count",
+            "killed_count",
+            "survived_count",
+            "source_row_graveyarded_count",
+            "source_rows_closed",
+            "source_sidecars_tool_integrated",
+        ]:
+            if key in summary:
+                metrics[key] = summary[key]
+    if row_id == "prime_qit_sidecar_probe":
+        for key in [
+            "fixed_states_match_primes",
+            "baseline_exact_match_count",
+            "prime_count",
+            "composite_count",
+            "claim_ceiling",
+        ]:
+            if key in summary:
+                metrics[key] = summary[key]
     return metrics
 
 
@@ -883,8 +1266,31 @@ def main() -> None:
         )
 
     available_ids = {row["id"] for row in rows}
+    row_pass_values = [
+        row["headline_metrics"].get("all_pass")
+        for row in rows
+        if "all_pass" in row["headline_metrics"]
+    ]
+    available_rows_pass = bool(rows) and all(value is not False for value in row_pass_values)
+    coverage_complete = bool(rows) and not missing
+    nonpassing_row_ids = [
+        row["id"]
+        for row in rows
+        if row["headline_metrics"].get("all_pass") is False
+    ]
     summary = {
-        "all_pass": True,
+        "all_pass": bool(coverage_complete and available_rows_pass),
+        "matrix_status": (
+            "complete"
+            if coverage_complete and available_rows_pass
+            else "complete_with_open_rows"
+            if coverage_complete
+            else "partial"
+        ),
+        "coverage_status": "complete" if coverage_complete else "partial",
+        "row_all_pass": available_rows_pass,
+        "nonpassing_row_count": len(nonpassing_row_ids),
+        "nonpassing_row_ids": sorted(nonpassing_row_ids),
         "available_rows": len(rows),
         "missing_rows": len(missing),
         "available_ids": sorted(available_ids),
@@ -904,6 +1310,7 @@ def main() -> None:
     out = {
         "name": "engine_lab_matrix",
         "classification": CLASSIFICATION,
+        "sim_execution_kind": "controller_index",
         "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,

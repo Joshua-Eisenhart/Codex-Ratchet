@@ -29,6 +29,7 @@ STATE_DIR_OWNERSHIP_AUDIT_PATH = RESULTS_DIR / "state_dir_ownership_audit_result
 LEGO_TOOL_REPORTING_AUDIT_PATH = RESULTS_DIR / "lego_tool_reporting_audit_results.json"
 SOURCE_DIRTY_PLAN_PATH = RESULTS_DIR / "source_dirty_checkpoint_plan.json"
 SOURCE_DIRTY_LANE_MANIFEST_PATH = RESULTS_DIR / "source_dirty_lane_manifest.json"
+SOURCE_DIRTY_LANE_CATALOG_PATH = RESULTS_DIR / "source_dirty_lane_catalog.json"
 
 
 def read_json(path: Path) -> dict[str, Any] | None:
@@ -78,6 +79,7 @@ def main() -> int:
         "lego_tool_reporting": LEGO_TOOL_REPORTING_AUDIT_PATH,
         "source_dirty_checkpoint": SOURCE_DIRTY_PLAN_PATH,
         "source_dirty_lane_manifest": SOURCE_DIRTY_LANE_MANIFEST_PATH,
+        "source_dirty_lane_catalog": SOURCE_DIRTY_LANE_CATALOG_PATH,
     }
 
     payloads: dict[str, dict[str, Any] | None] = {
@@ -101,6 +103,7 @@ def main() -> int:
     source_dirty_plan = payloads["source_dirty_checkpoint"] or {}
     source_dirty_plan_summary = (payloads["source_dirty_checkpoint"] or {}).get("summary", {})
     source_dirty_lane_manifest_summary = (payloads["source_dirty_lane_manifest"] or {}).get("summary", {})
+    source_dirty_lane_catalog_summary = (payloads["source_dirty_lane_catalog"] or {}).get("summary", {})
 
     truth_ok = bool(truth_summary.get("ok"))
     controller_ok = bool(controller_summary.get("code_process_green")) and bool(controller_summary.get("controller_contract_current"))
@@ -258,6 +261,21 @@ def main() -> int:
         "code_only_fallback_group_id": source_dirty_lane_manifest_summary.get("code_only_fallback_group_id"),
         "active_actionable_lane_group_id": source_dirty_lane_manifest_summary.get("active_actionable_lane_group_id"),
     }
+    source_dirty_lane_catalog = {
+        "present": payloads["source_dirty_lane_catalog"] is not None,
+        "path": str(SOURCE_DIRTY_LANE_CATALOG_PATH.relative_to(PROJECT_DIR)),
+        "status": (
+            "current"
+            if payloads["source_dirty_lane_catalog"] is not None
+            else "missing"
+        ),
+        "required": bool(repo_summary.get("source_dirty_count", 0)),
+        "lane_count": source_dirty_lane_catalog_summary.get("lane_count", 0),
+        "ready_for_checkpoint_review_count": source_dirty_lane_catalog_summary.get("ready_for_checkpoint_review_count", 0),
+        "manual_review_lane_count": source_dirty_lane_catalog_summary.get("manual_review_lane_count", 0),
+        "stage_path_count": source_dirty_lane_catalog_summary.get("stage_path_count", 0),
+        "missing_companion_count": source_dirty_lane_catalog_summary.get("missing_companion_count", 0),
+    }
     active_actionable_lane = (payloads["source_dirty_lane_manifest"] or {}).get("active_actionable_lane")
     lego_tool_reporting_surface = {
         "present": payloads["lego_tool_reporting"] is not None,
@@ -309,6 +327,7 @@ def main() -> int:
         "source_dirty_surface": source_dirty_surface,
         "source_dirty_checkpoint": source_dirty_checkpoint,
         "source_dirty_lane_manifest": source_dirty_lane_manifest,
+        "source_dirty_lane_catalog": source_dirty_lane_catalog,
         "maintenance_lanes": maintenance_lanes,
         "missing_surfaces": missing_surfaces,
         "repair_queue": repair_queue,
@@ -324,6 +343,7 @@ def main() -> int:
             "lego_tool_reporting": lego_tool_reporting_summary,
             "source_dirty_checkpoint": source_dirty_plan_summary,
             "source_dirty_lane_manifest": source_dirty_lane_manifest_summary,
+            "source_dirty_lane_catalog": source_dirty_lane_catalog_summary,
         },
     }
 

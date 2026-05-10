@@ -1,0 +1,441 @@
+window.ROSETTA_LEGO_REGISTRY_DATA = {
+  "name": "rosetta_lego_registry",
+  "summary": {
+    "all_pass": true,
+    "registry_row_count": 3,
+    "coupling_candidate_count": 3,
+    "allowed_coupling_count": 3,
+    "blocked_coupling_count": 0,
+    "visual_payload": "visualizer/rosetta-lego-registry-data.js",
+    "scope_note": "Machine-readable Rosetta lego registry over current Carnot, Szilard, and I Ching-64 receipts. It indexes lego coverage and next coupling candidates without promoting any row to QIT/GStack/axis admission."
+  },
+  "registry_rows": [
+    {
+      "lego_id": "carnot",
+      "source_receipt": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_dual_stacked_engine_results.json",
+      "source_all_pass": true,
+      "sim_type_coverage": {
+        "classical": true,
+        "bridge": true,
+        "nonclassical_adjacent": true
+      },
+      "tools_used": [
+        "cvc5",
+        "gudhi",
+        "numpy",
+        "pyg",
+        "pytorch",
+        "qiskit",
+        "qutip",
+        "rustworkx",
+        "scipy",
+        "sympy",
+        "toponetx",
+        "xgi",
+        "z3"
+      ],
+      "lego_ids": [
+        "carnot_cycle",
+        "dual_stacked_engine",
+        "quantum_thermodynamics",
+        "density_matrix",
+        "graph_topology",
+        "proof_fence"
+      ],
+      "entropy_families": [
+        "max_entropy",
+        "min_entropy",
+        "purity",
+        "renyi_0_5",
+        "renyi_2",
+        "renyi_inf_proxy",
+        "shannon",
+        "tsallis_0_5",
+        "tsallis_2"
+      ],
+      "entropy_support_size": 4,
+      "topology_signature": {
+        "nodes": 4,
+        "edges": 4,
+        "beta0": 1,
+        "beta1": 1,
+        "laplacian_spectral_gap": 2.0,
+        "pass": true
+      },
+      "operators": {
+        "count": 4,
+        "readout": "reservoir entropy plus heat/work efficiency"
+      },
+      "axis_slots": [
+        "Ax0",
+        "Ax1",
+        "Ax2",
+        "Ax3",
+        "Ax4",
+        "Ax5",
+        "Ax6"
+      ],
+      "graveyard_variants": [
+        {
+          "variant": "canonical_forward",
+          "status": "survives",
+          "expected": "survives",
+          "survives_order_gate": true
+        },
+        {
+          "variant": "honest_reverse",
+          "status": "survives",
+          "expected": "survives",
+          "survives_order_gate": true
+        },
+        {
+          "variant": "swap_middle_legs",
+          "status": "killed",
+          "expected": "killed",
+          "survives_order_gate": false
+        },
+        {
+          "variant": "collapsed_single_leg",
+          "status": "killed",
+          "expected": "killed",
+          "survives_order_gate": false
+        }
+      ],
+      "claim_ceiling": "rosetta_lego_candidate_not_qit_admission"
+    },
+    {
+      "lego_id": "szilard",
+      "source_receipt": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_dual_stacked_engine_results.json",
+      "source_all_pass": true,
+      "sim_type_coverage": {
+        "classical": true,
+        "bridge": true,
+        "nonclassical_adjacent": true
+      },
+      "tools_used": [
+        "cvc5",
+        "gudhi",
+        "numpy",
+        "pyg",
+        "pytorch",
+        "qiskit",
+        "qutip",
+        "rustworkx",
+        "scipy",
+        "sympy",
+        "toponetx",
+        "xgi",
+        "z3"
+      ],
+      "lego_ids": [
+        "szilard_cycle",
+        "landauer_erasure",
+        "dual_stacked_engine",
+        "density_matrix",
+        "graph_topology",
+        "proof_fence"
+      ],
+      "entropy_families": [
+        "max_entropy",
+        "min_entropy",
+        "purity",
+        "renyi_0_5",
+        "renyi_2",
+        "renyi_inf_proxy",
+        "shannon",
+        "tsallis_0_5",
+        "tsallis_2"
+      ],
+      "entropy_support_size": 4,
+      "topology_signature": {
+        "nodes": 4,
+        "edges": 3,
+        "beta0": 1,
+        "beta1": 0,
+        "laplacian_spectral_gap": 0.585786437626905,
+        "pass": true
+      },
+      "operators": {
+        "count": 3,
+        "readout": "record entropy, mutual information, erasure cost"
+      },
+      "axis_slots": [
+        "Ax0",
+        "Ax1",
+        "Ax2",
+        "Ax3",
+        "Ax4",
+        "Ax5",
+        "Ax6"
+      ],
+      "graveyard_variants": [
+        {
+          "variant": "canonical_measure_feedback_erase",
+          "status": "survives",
+          "expected": "survives",
+          "survives_order_gate": true
+        },
+        {
+          "variant": "honest_reverse_recovery",
+          "status": "survives",
+          "expected": "survives",
+          "survives_order_gate": true
+        },
+        {
+          "variant": "feedback_before_measurement",
+          "status": "killed",
+          "expected": "killed",
+          "survives_order_gate": false
+        },
+        {
+          "variant": "missing_erasure",
+          "status": "killed",
+          "expected": "killed",
+          "survives_order_gate": false
+        }
+      ],
+      "claim_ceiling": "rosetta_lego_candidate_not_qit_admission"
+    },
+    {
+      "lego_id": "iching_64",
+      "source_receipt": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/iching_64_engine_rosetta_results.json",
+      "source_all_pass": true,
+      "sim_type_coverage": {
+        "classical": true,
+        "bridge": true,
+        "nonclassical_adjacent": true
+      },
+      "tools_used": [
+        "cvc5",
+        "gudhi",
+        "numpy",
+        "pyg",
+        "qiskit",
+        "qutip",
+        "rustworkx",
+        "toponetx",
+        "torch",
+        "xgi",
+        "z3"
+      ],
+      "lego_ids": [
+        "iching_64_schedule",
+        "axis_schedule",
+        "dual_stacked_engine",
+        "graph_topology",
+        "density_matrix",
+        "rosetta_correlation",
+        "graveyard_variant"
+      ],
+      "entropy_families": [
+        "max_entropy",
+        "min_entropy",
+        "purity",
+        "renyi_0_5",
+        "renyi_2",
+        "renyi_inf_proxy",
+        "shannon",
+        "tsallis_0_5",
+        "tsallis_2"
+      ],
+      "entropy_support_size": 64,
+      "topology_signature": {
+        "nodes": 64,
+        "edges": 64,
+        "beta0": 1,
+        "beta1": 1,
+        "laplacian_spectral_gap": 0.00963054665560548,
+        "pass": true
+      },
+      "operators": {
+        "count": 64,
+        "readout": "uniform state entropy plus parity polarity"
+      },
+      "axis_slots": [
+        "Ax0",
+        "Ax1",
+        "Ax2",
+        "Ax3",
+        "Ax4",
+        "Ax5",
+        "Ax6"
+      ],
+      "graveyard_variants": [
+        {
+          "variant": "canonical_gray_cycle",
+          "status": "survives",
+          "expected": "survives",
+          "survives_order_gate": true
+        },
+        {
+          "variant": "honest_reverse_gray_cycle",
+          "status": "survives",
+          "expected": "survives",
+          "survives_order_gate": true
+        },
+        {
+          "variant": "binary_count_order",
+          "status": "killed",
+          "expected": "killed",
+          "survives_order_gate": false
+        },
+        {
+          "variant": "collapsed_single_state",
+          "status": "killed",
+          "expected": "killed",
+          "survives_order_gate": false
+        },
+        {
+          "variant": "seeded_random_order",
+          "status": "killed",
+          "expected": "killed",
+          "survives_order_gate": false
+        }
+      ],
+      "claim_ceiling": "rosetta_lego_candidate_not_qit_admission"
+    }
+  ],
+  "coupling_matrix": [
+    {
+      "left": "carnot",
+      "right": "szilard",
+      "allowed_next": true,
+      "shared_modes": [
+        "bridge",
+        "classical",
+        "nonclassical_adjacent"
+      ],
+      "shared_tool_count": 13,
+      "shared_tools": [
+        "cvc5",
+        "gudhi",
+        "numpy",
+        "pyg",
+        "pytorch",
+        "qiskit",
+        "qutip",
+        "rustworkx",
+        "scipy",
+        "sympy",
+        "toponetx",
+        "xgi",
+        "z3"
+      ],
+      "shared_axis_slots": [
+        "Ax0",
+        "Ax1",
+        "Ax2",
+        "Ax3",
+        "Ax4",
+        "Ax5",
+        "Ax6"
+      ],
+      "shared_entropy_families": [
+        "max_entropy",
+        "min_entropy",
+        "purity",
+        "renyi_0_5",
+        "renyi_2",
+        "renyi_inf_proxy",
+        "shannon",
+        "tsallis_0_5",
+        "tsallis_2"
+      ],
+      "coupling_type": "bounded_rosetta_coupling",
+      "blocked_or_deferred": [],
+      "claim_ceiling": "couple_as_candidate_rosetta_surface_only"
+    },
+    {
+      "left": "carnot",
+      "right": "iching_64",
+      "allowed_next": true,
+      "shared_modes": [
+        "bridge",
+        "classical",
+        "nonclassical_adjacent"
+      ],
+      "shared_tool_count": 10,
+      "shared_tools": [
+        "cvc5",
+        "gudhi",
+        "numpy",
+        "pyg",
+        "qiskit",
+        "qutip",
+        "rustworkx",
+        "toponetx",
+        "xgi",
+        "z3"
+      ],
+      "shared_axis_slots": [
+        "Ax0",
+        "Ax1",
+        "Ax2",
+        "Ax3",
+        "Ax4",
+        "Ax5",
+        "Ax6"
+      ],
+      "shared_entropy_families": [
+        "max_entropy",
+        "min_entropy",
+        "purity",
+        "renyi_0_5",
+        "renyi_2",
+        "renyi_inf_proxy",
+        "shannon",
+        "tsallis_0_5",
+        "tsallis_2"
+      ],
+      "coupling_type": "bounded_rosetta_coupling",
+      "blocked_or_deferred": [],
+      "claim_ceiling": "couple_as_candidate_rosetta_surface_only"
+    },
+    {
+      "left": "szilard",
+      "right": "iching_64",
+      "allowed_next": true,
+      "shared_modes": [
+        "bridge",
+        "classical",
+        "nonclassical_adjacent"
+      ],
+      "shared_tool_count": 10,
+      "shared_tools": [
+        "cvc5",
+        "gudhi",
+        "numpy",
+        "pyg",
+        "qiskit",
+        "qutip",
+        "rustworkx",
+        "toponetx",
+        "xgi",
+        "z3"
+      ],
+      "shared_axis_slots": [
+        "Ax0",
+        "Ax1",
+        "Ax2",
+        "Ax3",
+        "Ax4",
+        "Ax5",
+        "Ax6"
+      ],
+      "shared_entropy_families": [
+        "max_entropy",
+        "min_entropy",
+        "purity",
+        "renyi_0_5",
+        "renyi_2",
+        "renyi_inf_proxy",
+        "shannon",
+        "tsallis_0_5",
+        "tsallis_2"
+      ],
+      "coupling_type": "bounded_rosetta_coupling",
+      "blocked_or_deferred": [],
+      "claim_ceiling": "couple_as_candidate_rosetta_surface_only"
+    }
+  ]
+};

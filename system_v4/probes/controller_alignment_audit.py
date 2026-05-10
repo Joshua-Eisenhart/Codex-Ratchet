@@ -451,6 +451,28 @@ def normalize_c2_remaining(verdict: str) -> str:
 
 
 def compare_c2_surfaces() -> dict:
+    missing_inputs = [
+        str(path)
+        for path in (PHASE7_RESULT_PATH, C2_REMAINING_PATH)
+        if not path.exists()
+    ]
+    if missing_inputs:
+        return {
+            "available": False,
+            "missing_inputs": missing_inputs,
+            "phase7_summary": {},
+            "c2_remaining_counts": {},
+            "compared_families": 0,
+            "mismatch_count": 1,
+            "mismatches": [
+                {
+                    "kind": "missing_c2_surface_input",
+                    "missing_inputs": missing_inputs,
+                }
+            ],
+            "sample": [],
+        }
+
     phase7 = read_json(PHASE7_RESULT_PATH)
     c2_remaining = read_json(C2_REMAINING_PATH)
 
@@ -471,6 +493,8 @@ def compare_c2_surfaces() -> dict:
 
     summary = phase7.get("criterion_summary", {}).get("C2_graph_topology", {})
     return {
+        "available": True,
+        "missing_inputs": [],
         "phase7_summary": summary,
         "c2_remaining_counts": {
             "load_bearing": sum(1 for p in remaining_positive.values() if p.get("verdict") == "LOAD_BEARING"),
@@ -631,6 +655,19 @@ def build_live_anchor_spine(truth_blockers: dict[str, list[str]] | None = None) 
 
 def check_xgi_source_result_drift() -> list[dict]:
     checks = []
+    required_paths = [
+        XGI_AUTOGRAD_SOURCE_PATH,
+        XGI_AUTOGRAD_RESULT_PATH,
+        XGI_ASCENT_SOURCE_PATH,
+        XGI_ASCENT_RESULT_PATH,
+    ]
+    missing_inputs = [str(path) for path in required_paths if not path.exists()]
+    if missing_inputs:
+        return [{
+            "kind": "missing_xgi_source_result_input",
+            "missing_inputs": missing_inputs,
+            "source_result_drift_check_available": False,
+        }]
 
     autograd_source = read_text(XGI_AUTOGRAD_SOURCE_PATH)
     autograd_result = read_json(XGI_AUTOGRAD_RESULT_PATH)
@@ -765,6 +802,90 @@ def main() -> int:
     makefile_python = parse_python_from_makefile(makefile_text)
     bot_python = parse_python_bin_from_bot(bot_text)
     floors = parse_requirement_floors(REQ_SIM_STACK_PATH)
+    truth_audit = load_truth_audit_summary()
+    if truth_audit.get("ok") is not True:
+        OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+        report = {
+            "name": "controller_alignment_audit",
+            "generated_at": datetime.now(UTC).isoformat(),
+            "classification": "audit",
+            "status": "blocked",
+            "blocker": "truth_audit_not_green",
+            "interpreter_authority": {
+                "sys_executable": sys.executable,
+                "makefile_python": makefile_python,
+                "imessage_bot_python": bot_python,
+                "makefile_and_bot_agree": makefile_python == bot_python,
+            },
+            "env_requirements": {
+                req_name: {
+                    "required_floor": floor,
+                    "installed_version": None,
+                    "import_ok": None,
+                    "meets_floor": None,
+                    "skipped_reason": "truth_audit_not_green",
+                }
+                for req_name, floor in floors.items()
+            },
+            "probe_truth_audit": truth_audit,
+            "stale_doc_hits": [],
+            "stale_doc_summary": {"total": 0, "by_kind": {}},
+            "tool_stack_summary": {"shallow_tools": []},
+            "summary": {
+                "doc_drift_count": 0,
+                "interpreter_aligned": makefile_python == bot_python,
+                "phase7_c2_surface_consistent": False,
+                "phase7_source_has_legacy_subset_branch": False,
+                "trusted_spine_risky_entries": 0,
+                "truth_audit_ok": False,
+                "shallow_tool_count": 0,
+                "code_process_green": False,
+                "docs_current": False,
+                "controller_contract_current": False,
+                "blocked_reason": "truth_audit_not_green",
+            },
+        }
+        report["doc_drift_count"] = report["summary"]["doc_drift_count"]
+        report["phase7_c2_surface_consistent"] = report["summary"]["phase7_c2_surface_consistent"]
+        report["phase7_source_has_legacy_subset_branch"] = report["summary"]["phase7_source_has_legacy_subset_branch"]
+        report["trusted_spine_risky_entries"] = report["summary"]["trusted_spine_risky_entries"]
+        report["shallow_tools"] = []
+        report["shallow_tool_count"] = 0
+        report["doc_drift_by_kind"] = {}
+        report["code_process_green"] = False
+        report["docs_current"] = False
+        report["controller_contract_current"] = False
+        with OUT_PATH.open("w", encoding="utf-8") as fh:
+            json.dump(report, fh, indent=2)
+        with DOC_DRIFT_INVENTORY_PATH.open("w", encoding="utf-8") as fh:
+            json.dump(
+                {
+                    "name": "controller_doc_drift_inventory",
+                    "generated_at": datetime.now(UTC).isoformat(),
+                    "status": "blocked",
+                    "blocked_reason": "truth_audit_not_green",
+                    "rows": [],
+                },
+                fh,
+                indent=2,
+            )
+        with LIVE_ANCHOR_SPINE_PATH.open("w", encoding="utf-8") as fh:
+            json.dump(
+                {
+                    "name": "live_anchor_spine",
+                    "generated_at": datetime.now(UTC).isoformat(),
+                    "status": "blocked",
+                    "blocked_reason": "truth_audit_not_green",
+                    "rows": [],
+                },
+                fh,
+                indent=2,
+            )
+        print(f"Wrote {OUT_PATH}")
+        print(f"Wrote {DOC_DRIFT_INVENTORY_PATH}")
+        print(f"Wrote {LIVE_ANCHOR_SPINE_PATH}")
+        print("CONTROLLER ALIGNMENT AUDIT BLOCKED: truth audit is not green")
+        return 0
     packages = package_status()
 
     env_report = {}
@@ -783,7 +904,6 @@ def main() -> int:
             "meets_floor": compare_floor(pkg.get("installed_version"), floor),
         }
 
-    truth_audit = load_truth_audit_summary()
     truth_blockers = truth_audit.get("blocked_results", {})
 
     raw_stale_doc_hits = collect_stale_doc_hits()

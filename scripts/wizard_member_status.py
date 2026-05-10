@@ -54,7 +54,8 @@ def group_counts(receipt: dict[str, Any]) -> dict[str, dict[str, int]]:
 def summarize_receipt_data(receipt: dict[str, Any], path: Path) -> dict[str, Any]:
     route = str(receipt.get("route") or path.parent.name)
     council, member = COUNCIL_ORDER.get(route, ("Other", route))
-    formal_expected = len(receipt.get("formal_child_obligation") or [])
+    formal_obligation = receipt.get("active_formal_child_obligation") or receipt.get("formal_child_obligation") or []
+    formal_expected = len(formal_obligation)
     formal_passed = len(receipt.get("formal_children_completed") or [])
     groups = group_counts(receipt)
     repair_or_reroute = bool(receipt.get("rescore_existing")) or path.name.startswith("rescored_")
@@ -68,7 +69,7 @@ def summarize_receipt_data(receipt: dict[str, Any], path: Path) -> dict[str, Any
     for model, counts in groups.items():
         if counts["not_launched"] and counts["passed"] == 0:
             degraded.append(model)
-    missing_formal = sorted(set(receipt.get("formal_child_obligation") or []) - set(receipt.get("formal_children_completed") or []))
+    missing_formal = sorted(set(formal_obligation) - set(receipt.get("formal_children_completed") or []))
     status = str(receipt.get("status") or "unknown")
     if route in OBSOLETE_ROUTES:
         status = "obsolete"
@@ -128,7 +129,7 @@ def merge_route_receipts(receipts: list[tuple[Path, dict[str, Any]]]) -> list[tu
         for _, receipt in route_items:
             statuses.append(str(receipt.get("status") or "unknown"))
             run_ids.append(receipt.get("run_id"))
-            for child in receipt.get("formal_child_obligation") or []:
+            for child in receipt.get("active_formal_child_obligation") or receipt.get("formal_child_obligation") or []:
                 if child not in formal_obligation:
                     formal_obligation.append(child)
             for child in receipt.get("formal_children_completed") or []:

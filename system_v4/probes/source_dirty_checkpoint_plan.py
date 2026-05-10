@@ -215,6 +215,12 @@ def git_source_entries() -> list[dict[str, str]]:
             continue
         if "/a2_state/sim_results/" in f"/{rel_path}" or "/probes/sim_results/" in f"/{rel_path}":
             continue
+        if (
+            rel_path.startswith("visualizer/")
+            and rel_path.endswith("-data.js")
+            and "/" not in rel_path.removeprefix("visualizer/")
+        ):
+            continue
         if rel_path.startswith("results") and rel_path.endswith(".json"):
             continue
         entries.append({

@@ -28,6 +28,27 @@ DEFAULT_VERIFY_COMMANDS = [
 ]
 
 
+def manifest_path_for(group_id: str | None) -> Path:
+    if not group_id:
+        return OUT_PATH.parent / "source_dirty_lane_manifest__no_actionable_lane.json"
+    safe = "".join(ch if ch.isalnum() or ch in {"_", "-"} else "_" for ch in group_id)
+    return OUT_PATH.parent / f"source_dirty_lane_manifest__{safe}.json"
+
+
+def write_manifest(report: dict[str, Any], group_id: str | None) -> Path:
+    manifest_path = manifest_path_for(group_id)
+    report["latest_manifest_path"] = str(OUT_PATH.relative_to(PROJECT_DIR))
+    report["lane_specific_manifest_path"] = str(manifest_path.relative_to(PROJECT_DIR))
+    report["concurrency_note"] = (
+        "source_dirty_lane_manifest.json is a last-write-wins latest pointer; "
+        "parallel cleanup consumers should read the lane-specific manifest path."
+    )
+    serialized = json.dumps(report, indent=2)
+    OUT_PATH.write_text(serialized, encoding="utf-8")
+    manifest_path.write_text(serialized, encoding="utf-8")
+    return manifest_path
+
+
 def read_json(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
@@ -46,6 +67,10 @@ def parse_allow_docs(argv: list[str]) -> bool:
     return "--allow-docs" in argv
 
 
+def parse_allow_manual(argv: list[str]) -> bool:
+    return "--allow-manual" in argv
+
+
 def result_companion_for(source_rel: str) -> str | None:
     path = Path(source_rel)
     if path.parent.name != "probes" or not path.name.startswith("sim_"):
@@ -54,12 +79,92 @@ def result_companion_for(source_rel: str) -> str | None:
     return f"system_v4/probes/a2_state/sim_results/{stem}_results.json"
 
 
+def manual_lane_candidates(plan: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    candidates = [
+        item for item in plan.get("recommended_code_only_order", [])
+        if isinstance(item, dict) and item.get("group_id")
+    ]
+    fallback = plan.get("next_code_only_manual")
+    if isinstance(fallback, dict) and fallback.get("group_id"):
+        candidates.append(fallback)
+    return {str(item["group_id"]): item for item in candidates}
+
+
+def write_manual_lane_manifest(
+    *,
+    manual_lane: dict[str, Any],
+    allow_docs: bool,
+    allow_manual: bool,
+    selection_mode: str,
+) -> int:
+    source_path = manual_lane.get("source_path")
+    result_path = manual_lane.get("result_path")
+    files = [source_path] if source_path else list(manual_lane.get("path_prefixes") or manual_lane.get("sample_paths") or [])
+    result_companions = (
+        [result_path]
+        if result_path
+        else [p for p in (result_companion_for(path) for path in files) if p]
+    )
+    executable_lane = {
+        "group_id": manual_lane["group_id"],
+        "files": files,
+        "result_companions": result_companions,
+        "required_git_paths_clean": files + result_companions,
+        "goal": "Review one manual-only source-dirty lane without widening scope.",
+        "stop_condition": "Lane is either explicitly checkpointed by the controller later, intentionally reclassified, or left blocked.",
+        "manual_review_required": True,
+    }
+    report = {
+        "generated_at": datetime.now(UTC).isoformat(),
+        "lane_id": f"source_dirty__{manual_lane['group_id']}",
+        "source_plan_path": str(PLAN_PATH.relative_to(PROJECT_DIR)),
+        "selection_mode": selection_mode,
+        "allow_docs": allow_docs,
+        "allow_manual": allow_manual,
+        "docs_opt_in_required": False,
+        "code_only_fallback": manual_lane,
+        "active_actionable_lane": {
+            **manual_lane,
+            "selection_mode": selection_mode,
+            "manual_review_required": True,
+        },
+        "selected_group_id": manual_lane["group_id"],
+        "file_count": manual_lane["file_count"],
+        "safe_next_action": manual_lane["safe_next_action"],
+        "stop_condition": "Manual-only lane selected for review; do not stage or promote without controller decision.",
+        "code_only_fallback_group_id": manual_lane["group_id"],
+        "active_actionable_lane_group_id": manual_lane["group_id"],
+        "summary": {
+            "selected_group_id": manual_lane["group_id"],
+            "file_count": manual_lane["file_count"],
+            "safe_next_action": manual_lane["safe_next_action"],
+            "docs_opt_in_required": False,
+            "code_only_fallback_group_id": manual_lane["group_id"],
+            "active_actionable_lane_group_id": manual_lane["group_id"],
+            "executable_lane_group_id": manual_lane["group_id"],
+            "manual_review_required": True,
+            "ok": True,
+            "status": "manual_only_lane_selected",
+        },
+        "lane": None,
+        "executable_lane": executable_lane,
+    }
+    manifest_path = write_manifest(report, manual_lane["group_id"])
+    print(f"Wrote {OUT_PATH}")
+    print(f"Wrote {manifest_path}")
+    print(f"selected_group_id={manual_lane['group_id']} (manual-only)")
+    print(f"file_count={manual_lane['file_count']}")
+    print("SOURCE DIRTY LANE MANIFEST PASSED (manual-only lane selected)")
+    return 0
+
+
 def main() -> int:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     plan = read_json(PLAN_PATH)
     argv = sys.argv[1:]
     requested_group_id = parse_group_id(argv)
     allow_docs = parse_allow_docs(argv)
+    allow_manual = parse_allow_manual(argv)
     code_only_fallback = plan.get("next_code_only_manual")
 
     checkpoint_groups = {
@@ -67,24 +172,51 @@ def main() -> int:
         for group in plan.get("checkpoint_groups", [])
         if group.get("safe_next_action") == "checkpoint"
     }
+    plan_groups = {
+        group["group_id"]: group
+        for group in plan.get("checkpoint_groups", [])
+        if group.get("group_id")
+    }
     recommended = plan.get("recommended_checkpoint_order", [])
 
     if requested_group_id:
         selected = checkpoint_groups.get(requested_group_id)
         if selected is None:
+            manual_lane = manual_lane_candidates(plan).get(requested_group_id)
+            if manual_lane is None or (
+                manual_lane.get("source_path") is None
+                and not manual_lane.get("sample_paths")
+                and not manual_lane.get("path_prefixes")
+            ):
+                manual_lane = plan_groups.get(requested_group_id)
+            if allow_manual and manual_lane is not None:
+                return write_manual_lane_manifest(
+                    manual_lane=manual_lane,
+                    allow_docs=allow_docs,
+                    allow_manual=allow_manual,
+                    selection_mode="explicit_manual",
+                )
             raise SystemExit(f"unknown or non-checkpoint group_id: {requested_group_id}")
         selection_mode = "explicit"
         docs_opt_in_required = False
     else:
         if not recommended:
+            if allow_manual and code_only_fallback:
+                return write_manual_lane_manifest(
+                    manual_lane=code_only_fallback,
+                    allow_docs=allow_docs,
+                    allow_manual=allow_manual,
+                    selection_mode="manual_next_code_only",
+                )
             # No checkpoint-ready groups — all remaining source pressure is manual-only.
             # This is the success state after a cleanup pass. Write a no-op result and exit 0.
-            OUT_PATH.write_text(json.dumps({
+            report = {
                 "generated_at": datetime.now(UTC).isoformat(),
                 "lane_id": "source_dirty__no_actionable_lanes",
                 "source_plan_path": str(PLAN_PATH.relative_to(PROJECT_DIR)),
                 "selection_mode": "no_checkpoint_ready_groups",
                 "allow_docs": allow_docs,
+                "allow_manual": allow_manual,
                 "docs_opt_in_required": False,
                 "code_only_fallback": code_only_fallback,
                 "active_actionable_lane": None,
@@ -108,8 +240,10 @@ def main() -> int:
                 },
                 "lane": None,
                 "executable_lane": None,
-            }, indent=2), encoding="utf-8")
+            }
+            manifest_path = write_manifest(report, None)
             print(f"Wrote {OUT_PATH}")
+            print(f"Wrote {manifest_path}")
             print("selected_group_id=None (no checkpoint-ready groups)")
             print("file_count=0")
             print("SOURCE DIRTY LANE MANIFEST PASSED (no actionable lanes — clean state)")
@@ -209,8 +343,9 @@ def main() -> int:
         "executable_lane": executable_lane,
     }
 
-    OUT_PATH.write_text(json.dumps(report, indent=2), encoding="utf-8")
+    manifest_path = write_manifest(report, selected["group_id"])
     print(f"Wrote {OUT_PATH}")
+    print(f"Wrote {manifest_path}")
     print(f"selected_group_id={selected['group_id']}")
     print(f"file_count={selected['file_count']}")
     print("SOURCE DIRTY LANE MANIFEST PASSED")

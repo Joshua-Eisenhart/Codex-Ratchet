@@ -25,6 +25,13 @@ REPO_HYGIENE_PATH = RESULTS_DIR / "repo_hygiene_audit_results.json"
 OUT_PATH = RESULTS_DIR / "source_dirty_checkpoint_packet.json"
 
 
+def packet_path_for(group_id: str | None) -> Path:
+    if not group_id:
+        return OUT_PATH.parent / "source_dirty_checkpoint_packet__no_actionable_lane.json"
+    safe = "".join(ch if ch.isalnum() or ch in {"_", "-"} else "_" for ch in group_id)
+    return OUT_PATH.parent / f"source_dirty_checkpoint_packet__{safe}.json"
+
+
 def read_json(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
@@ -52,6 +59,24 @@ def git_status_for(paths: list[str]) -> list[str]:
     return [line for line in completed.stdout.splitlines() if line.strip()]
 
 
+def visual_payload_companions(result_paths: list[str]) -> list[str]:
+    companions: list[str] = []
+    for rel in result_paths:
+        path = PROJECT_DIR / rel
+        if not path.exists() or path.suffix != ".json":
+            continue
+        try:
+            payload = read_json(path)
+        except Exception:  # noqa: BLE001
+            continue
+        visual_payload = (payload.get("summary") or {}).get("visual_payload")
+        if not isinstance(visual_payload, str):
+            continue
+        if visual_payload.startswith("visualizer/") and (PROJECT_DIR / visual_payload).exists():
+            companions.append(visual_payload)
+    return companions
+
+
 def main() -> int:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     manifest = read_json(LANE_MANIFEST_PATH)
@@ -66,6 +91,12 @@ def main() -> int:
             "lane_id": manifest["lane_id"],
             "group_id": None,
             "selected_group_id": manifest.get("selected_group_id"),
+            "latest_packet_path": str(OUT_PATH.relative_to(PROJECT_DIR)),
+            "lane_specific_packet_path": str(packet_path_for(None).relative_to(PROJECT_DIR)),
+            "concurrency_note": (
+                "source_dirty_checkpoint_packet.json is a last-write-wins latest pointer; "
+                "parallel cleanup consumers should read the lane-specific packet path."
+            ),
             "owned_files": [],
             "result_companions": [],
             "verification_snapshot": {
@@ -81,8 +112,12 @@ def main() -> int:
             "ready_for_checkpoint": False,
             "status": "no_actionable_lane",
         }
-        OUT_PATH.write_text(json.dumps(report, indent=2), encoding="utf-8")
+        packet_path = packet_path_for(None)
+        serialized = json.dumps(report, indent=2)
+        OUT_PATH.write_text(serialized, encoding="utf-8")
+        packet_path.write_text(serialized, encoding="utf-8")
         print(f"Wrote {OUT_PATH}")
+        print(f"Wrote {packet_path}")
         print("group_id=None")
         print("ready_for_checkpoint=False")
         print("SOURCE DIRTY CHECKPOINT PACKET PASSED (no actionable lane)")
@@ -98,7 +133,13 @@ def main() -> int:
     lane = executable_lane
     owned_files = list(lane["files"])
     result_companions = list(lane.get("result_companions", []))
+    for visual_payload in visual_payload_companions(result_companions):
+        if visual_payload not in result_companions:
+            result_companions.append(visual_payload)
     required_git_paths_clean = list(lane.get("required_git_paths_clean", owned_files + result_companions))
+    for path in result_companions:
+        if path not in required_git_paths_clean:
+            required_git_paths_clean.append(path)
     git_snapshot = git_status_for(required_git_paths_clean)
 
     checks_run = [
@@ -157,6 +198,12 @@ def main() -> int:
         "lane_id": manifest["lane_id"],
         "group_id": executable_group_id,
         "selected_group_id": manifest["selected_group_id"],
+        "latest_packet_path": str(OUT_PATH.relative_to(PROJECT_DIR)),
+        "lane_specific_packet_path": str(packet_path_for(executable_group_id).relative_to(PROJECT_DIR)),
+        "concurrency_note": (
+            "source_dirty_checkpoint_packet.json is a last-write-wins latest pointer; "
+            "parallel cleanup consumers should read the lane-specific packet path."
+        ),
         "owned_files": owned_files,
         "result_companions": result_companions,
         "verification_snapshot": {
@@ -170,8 +217,12 @@ def main() -> int:
         "ready_for_checkpoint": ready_for_checkpoint,
     }
 
-    OUT_PATH.write_text(json.dumps(report, indent=2), encoding="utf-8")
+    packet_path = packet_path_for(executable_group_id)
+    serialized = json.dumps(report, indent=2)
+    OUT_PATH.write_text(serialized, encoding="utf-8")
+    packet_path.write_text(serialized, encoding="utf-8")
     print(f"Wrote {OUT_PATH}")
+    print(f"Wrote {packet_path}")
     print(f"group_id={report['group_id']}")
     print(f"ready_for_checkpoint={report['ready_for_checkpoint']}")
     print("SOURCE DIRTY CHECKPOINT PACKET PASSED")

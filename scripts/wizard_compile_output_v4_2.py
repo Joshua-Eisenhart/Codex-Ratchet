@@ -276,6 +276,103 @@ def uses_codex_local_children(rows: list[dict]) -> bool:
     return False
 
 
+def task_domain_label(task: str) -> str:
+    lower = task.lower()
+    if "inventory" in lower and ("audit" in lower or "admission" in lower):
+        return "Wizard inventory/admission audit"
+    if "wizard" in lower and ("audit" in lower or "route" in lower or "truth" in lower):
+        return "Wizard route-truth audit"
+    if "szilard" in lower:
+        return "Szilard consolidation"
+    if "carnot" in lower:
+        return "Carnot consolidation"
+    if "rosetta" in lower or "lego" in lower:
+        return "Rosetta lego-scaling"
+    if "sim" in lower or "engine" in lower or "qit" in lower:
+        return "bounded sim work"
+    return "the original user task"
+
+
+def task_preserving_followups(task: str, completion_label: str, mode: str) -> list[tuple[str, str]]:
+    domain = task_domain_label(task)
+    lower = task.lower()
+    if "szilard" in lower:
+        continue_prompt = (
+            "Continue the bounded Szilard consolidation lane from the current task. "
+            "Preserve source rows as negative/open evidence, refresh successor/graveyard/consolidated receipts, "
+            "update engine_lab_matrix/open-row audit/queue/successor coverage/inventory/visualizer payloads, "
+            "and do not promote QIT, GStack, axis, bridge, or nonclassical claims."
+        )
+        scout_prompt = (
+            "Run a cheap Haiku or Sonnet scout over the Szilard source and successor receipts only. "
+            "Payoff: find missing coupling constraints or stale visualizer/index rows. "
+            "Stop if the scout tries to promote the source rows or rewrite the stage gate."
+        )
+    elif "engine_lab" in lower or "engine lab" in lower or "open row" in lower:
+        continue_prompt = (
+            "Continue the bounded engine-lab open-row repair task. "
+            "Use exact source receipts, preserve nonpassing source rows, add only receipt-backed successors or graveyards, "
+            "then rerun matrix, open-row audit, queue, successor coverage, inventory, and visualizer checks."
+        )
+        scout_prompt = (
+            "Run a cheap Haiku or Sonnet scout over current engine-lab nonpassing rows and successor coverage. "
+            "Payoff: identify one stale or missing receipt-backed lane. "
+            "Stop if the scout proposes broad QIT/GStack/axis promotion."
+        )
+    elif "inventory" in lower and ("audit" in lower or "admission" in lower):
+        continue_prompt = (
+            "Continue the Wizard inventory/admission audit from the current task. "
+            "Patch only receipt-truth, duplicate-artifact exclusion, admission-result linkage, and focused regressions; "
+            "do not pivot to generic sim work or output formatting."
+        )
+        scout_prompt = (
+            "Run a cheap Haiku or Sonnet scout over Wizard inventory/admission receipts and duplicate artifacts. "
+            "Payoff: find one remaining stale admission or missing result-link guard. "
+            "Stop if the scout proposes new sims instead of fixing the audit target."
+        )
+    elif "wizard" in lower and ("audit" in lower or "route" in lower or "truth" in lower):
+        continue_prompt = (
+            "Continue the Wizard route-truth audit from the current task. "
+            "Preserve the named route-truth or receipt-truth defect, patch only the harness/test surface needed, "
+            "and verify with a focused compact or receipt-level regression."
+        )
+        scout_prompt = (
+            "Run a cheap Haiku or Sonnet scout over the Wizard route-truth receipts only. "
+            "Payoff: find a missing blocker or overclaim in the current harness path. "
+            "Stop if the scout drifts into generic compiled-output polish."
+        )
+    else:
+        continue_prompt = (
+            f"Continue {domain} from the current user task. "
+            "Preserve the task objective through Decision, Failure/Premortem, Follow-Up, and management; "
+            "act only on receipt-backed changes and keep route truth honest."
+        )
+        scout_prompt = (
+            f"Run a cheap Haiku or Sonnet scout over {domain}. "
+            "Payoff: find the smallest missing receipt or blocked coupling. "
+            "Stop if the scout substitutes output formatting for the original task."
+        )
+
+    if completion_label == "FULL" and mode == "full":
+        audit_prompt = (
+            f"Run an Opus audit of the completed {domain} Wizard receipts and sim artifacts. "
+            "Payoff: catch overclaim, stale evidence, or missing verification before reporting completion. "
+            "Stop if exact artifact paths and commands are not available."
+        )
+    else:
+        audit_prompt = (
+            f"Repair the Wizard route-truth blockers for {domain} without changing the task. "
+            "Payoff: keep the loop from drifting into output-format work. "
+            "Stop if the next prompt no longer names the original sim/evidence objective."
+        )
+
+    return [
+        ("Continue Sim Task", continue_prompt),
+        ("Audit Route Truth", audit_prompt),
+        ("Cheap Scout", scout_prompt),
+    ]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("run_root")
@@ -334,14 +431,14 @@ def main() -> int:
         concise_lines.append("Use this as a fast health check, not as full v4.2 evidence.")
         concise_lines.append("")
         concise_lines.append(
-            "The selected compact councils completed cleanly, and the useful next move is to keep the output surface strict: "
-            "Wizard should answer with this compiled body first, while receipts and logs stay secondary."
+            "The selected compact councils are useful only if the next loop preserves the original task. "
+            "Use this compiled body as route truth, then continue the task named below."
         )
     else:
         concise_lines.append("Use this run only if the full topology and management gates stayed clean.")
         concise_lines.append("")
         concise_lines.append(
-            "The useful next move is to act on the compiled decision, not to treat route completion as the final product."
+            "The useful next move is to act on the compiled decision while preserving the original sim/evidence objective."
         )
     concise_lines.append("")
     concise_lines.append("## 🧭 Context + Strategy")
@@ -349,23 +446,23 @@ def main() -> int:
     concise_lines.append(f"Current Prompt: {args.task}")
     concise_lines.append("")
     concise_lines.append(
-        "Larger Context: Wizard v4.2 is an output runtime. It should improve the user-facing move, not expose orchestration by default."
+        "Larger Context: Wizard v4.2 is a harness around repo work. It should preserve the task through councils, not replace the task with orchestration or formatting."
     )
     concise_lines.append("")
     concise_lines.append(
-        "Strategy State: keep compact runs readable and honest; reserve full claims for all nine council parents plus management."
+        "Strategy State: keep the original task stable through loop handoff; reserve FULL claims for all required council parents, child evidence, and management gates."
     )
     concise_lines.append("")
     concise_lines.append(
-        "Local Overoptimization Risk: passing receipts can still produce a bad answer if the visible output collapses into logs."
+        "Local Overoptimization Risk: passing route receipts can still produce a bad run if the follow-up prompt drifts away from the sim objective."
     )
     concise_lines.append("")
     concise_lines.append(
-        "Strategy Memory Effect: the output boundary is now a first-class gate; stdout should carry the compiled Wizard body."
+        "Strategy Memory Effect: the loop handoff is a first-class gate; follow-up prompts must carry the user's task domain and evidence boundary."
     )
     concise_lines.append("")
     concise_lines.append(
-        "Rejected Local Move: do not add more agents to fix readability; fix the answer shape."
+        "Rejected Local Move: do not replace sim/proof work with answer-shape or readability loops."
     )
     concise_lines.append("")
     concise_lines.append("## 🏛️ Council Results")
@@ -416,38 +513,33 @@ def main() -> int:
     concise_lines.append("")
     concise_lines.append("## ✅ Compiled Move")
     concise_lines.append("")
-    concise_lines.append("Target: make Wizard output useful enough to read directly.")
+    concise_lines.append(f"Target: continue {task_domain_label(args.task)} without losing the original objective.")
     concise_lines.append("")
-    concise_lines.append("Action: keep the compiled body as the primary answer; keep manifests, receipts, and logs as audit surfaces.")
+    concise_lines.append("Action: use the compiled body as route-truth evidence, then continue the receipt-backed sim/evidence work named in the current prompt.")
     concise_lines.append("")
     concise_lines.append("Owner: `scripts/wizard_v4_2.py` owns stdout; `scripts/wizard_compile_output_v4_2.py` owns answer shape.")
     concise_lines.append("")
-    concise_lines.append("Success Check: the answer is readable in one screen, names the route truth, and gives one next move.")
+    concise_lines.append("Success Check: the next loop prompt still names the original task domain, evidence boundary, and allowed artifact updates.")
     concise_lines.append("")
-    concise_lines.append("Stop Condition: stop if the visible answer becomes JSON, a file list, or a long receipt report.")
+    concise_lines.append("Stop Condition: stop if the next prompt becomes generic output formatting, route bookkeeping, or promotion beyond the stage gate.")
     concise_lines.append("")
     concise_lines.append(f"Artifact Surface: {root}")
     concise_lines.append("")
-    concise_lines.append("Status: compact diagnostic accepted; full topology still requires a full run.")
+    concise_lines.append(f"Status: {header_completion_label}; task-preserving handoff required before any next loop.")
     concise_lines.append("")
     concise_lines.append("## 🧭 Follow-Up Options")
     concise_lines.append("")
-    concise_lines.append("### 1. Tighten Output")
-    concise_lines.append("`Make the compiled Wizard answer shorter and decision-first. Payoff: useful output without log collapse. Use when compact route health passes. Stop if required sections disappear.`")
-    concise_lines.append("")
-    concise_lines.append("### 2. Run External Low")
-    concise_lines.append("`Run wizard low with Claude children and require the same readable output shape. Payoff: proves the surface outside local-child mode. Stop if stdout becomes JSON or a run log.`")
-    concise_lines.append("")
-    concise_lines.append("### 3. Escalate Full")
-    concise_lines.append("`Run full Wizard v4.2 only after compact output stays readable. Payoff: tests all nine parents plus management. Stop if capacity or route truth blocks.`")
-    concise_lines.append("")
+    for index, (label, prompt) in enumerate(task_preserving_followups(args.task, header_completion_label, mode), start=1):
+        concise_lines.append(f"### {index}. {label}")
+        concise_lines.append(f"`{prompt}`")
+        concise_lines.append("")
     concise_lines.append("## 🧙 Footer")
     concise_lines.append("")
-    concise_lines.append("🧙 Time/value: high; the output is now readable without hiding route truth.")
+    concise_lines.append("🧙 Time/value: high; the loop handoff now preserves the task instead of optimizing visible output alone.")
     concise_lines.append("")
     concise_lines.append("MMM proof: v4.2 packet-local routes and child receipts are recorded in the artifact surface.")
     concise_lines.append("")
-    concise_lines.append("Verification: status was parsed before compilation; compact remains PARTIAL by full-topology truth.")
+    concise_lines.append("Verification: status was parsed before compilation; follow-up options are generated from the current task domain.")
     Path(args.out).write_text("\n".join(concise_lines) + "\n", encoding="utf-8")
     print(args.out)
     return 0

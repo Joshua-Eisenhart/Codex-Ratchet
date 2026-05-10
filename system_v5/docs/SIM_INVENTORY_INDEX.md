@@ -1,6 +1,6 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T18:37:08.300473+00:00`
+Generated: `2026-05-10T18:45:11.064197+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
@@ -17,8 +17,8 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 ## Inventory Status Counts
 
 - `source_only`: 3526
-- `rerun_or_admission_candidate`: 243
-- `contract_shaped_but_tool_depth_thin`: 123
+- `rerun_or_admission_candidate`: 263
+- `contract_shaped_but_tool_depth_thin`: 103
 - `legacy_result_or_repair_needed`: 14
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2
@@ -49,8 +49,8 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `cvc5`: 505
 - `rustworkx`: 280
 - `clifford`: 273
+- `numpy`: 218
 - `xgi`: 199
-- `numpy`: 198
 - `gudhi`: 117
 - `toponetx`: 117
 - `geomstats`: 109
@@ -124,7 +124,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | legacy_result_or_repair_needed | `sim_axis_anti_conflation` | channel_operator, entropy_information, hopf_torus, weyl_spinor_clifford, axis_bridge | - | - |
 | legacy_result_or_repair_needed | `sim_axis_exploration_suite` | channel_operator, hopf_torus, weyl_spinor_clifford, axis_bridge | - | - |
 | legacy_result_or_repair_needed | `sim_axis_hopf_geometry` | density_carrier, hopf_torus, weyl_spinor_clifford, geometry_gstack_gtower, thermo_engine, axis_bridge | - | - |
-| contract_shaped_but_tool_depth_thin | `sim_base_loop_law` | hopf_torus | - | canonical |
+| rerun_or_admission_candidate | `sim_base_loop_law` | hopf_torus | numpy | canonical |
 | rerun_or_admission_candidate | `sim_berry_qfi_shell_paths` | density_carrier, entropy_information, hopf_torus, geometry_gstack_gtower | geomstats, pytorch, sympy | canonical |
 | rerun_or_admission_candidate | `sim_blackwell_style_comparison` | root_admission, channel_operator, classical_baseline | cvc5 | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_branch_weight` | uncategorized | - | canonical |
@@ -135,7 +135,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | rerun_or_admission_candidate | `sim_bridge_to_rhoab_construction` | density_carrier, axis_bridge, graveyard_negative | pytorch | canonical |
 | rerun_or_admission_candidate | `sim_bridge_z3_kernel_ordering` | density_carrier, axis_bridge, graveyard_negative | rustworkx, z3 | canonical |
 | legacy_result_or_repair_needed | `sim_broad_axis_search` | thermo_engine, axis_bridge | - | - |
-| contract_shaped_but_tool_depth_thin | `sim_bures_geometry` | uncategorized | - | canonical |
+| rerun_or_admission_candidate | `sim_bures_geometry` | uncategorized | numpy | canonical |
 | rerun_or_admission_candidate | `sim_c2_topology_remaining` | density_carrier, entropy_information, hopf_torus, graph_topology | pytorch, rustworkx | canonical |
 | rerun_or_admission_candidate | `sim_capability_clifford_isolated` | weyl_spinor_clifford, classical_baseline | clifford | classical_baseline |
 | rerun_or_admission_candidate | `sim_capability_e3nn_isolated` | classical_baseline | e3nn, pytorch | classical_baseline |
@@ -158,6 +158,6 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | contract_shaped_but_tool_depth_thin | `sim_carnot_topology_array` | thermo_engine | - | exploratory |
 | rerun_or_admission_candidate | `sim_carrier_probe_support` | root_admission | numpy | canonical |
 | rerun_or_admission_candidate | `sim_cell_complex_geometry` | graph_topology | toponetx | canonical |
-| contract_shaped_but_tool_depth_thin | `sim_channel_capacity` | channel_operator | - | canonical |
+| rerun_or_admission_candidate | `sim_channel_capacity` | channel_operator | numpy | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_channel_cptp_classical` | channel_operator, classical_baseline | - | classical_baseline |
-| contract_shaped_but_tool_depth_thin | `sim_channel_space_geometry` | channel_operator | - | canonical |
+| rerun_or_admission_candidate | `sim_channel_space_geometry` | channel_operator | numpy | canonical |

@@ -27,6 +27,8 @@ import os
 import numpy as np
 classification = "canonical"
 
+from receipt_boundary import apply_default_receipt_boundary
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -732,6 +734,17 @@ if __name__ == "__main__":
     positive = run_positive_tests()
     negative = run_negative_tests()
     boundary = run_boundary_tests()
+    kt = positive.get("key_tests", {})
+    boundary_summary = boundary.get("boundary_summary", {})
+    all_pass = bool(
+        positive.get("analytic_all_pass")
+        and kt.get("K1_trivial_confirmed")
+        and kt.get("K2_nontrivial")
+        and kt.get("K2_H1_detected")
+        and negative.get("equatorial_K1_phi_blind", {}).get("K1_phi_blind_confirmed")
+        and negative.get("equatorial_K2_phi_sensitive", {}).get("forms_circle_confirmed")
+        and boundary_summary.get("fix_validated")
+    )
 
     results = {
         "name": "gudhi_bipartite_entangled",
@@ -750,7 +763,36 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "classification": "canonical",
+        "summary": {
+            "all_pass": all_pass,
+            "K1_phi_blind_trivial": bool(kt.get("K1_trivial_confirmed")),
+            "K2_phase_aware_nontrivial": bool(kt.get("K2_nontrivial")),
+            "K2_circle_detected": bool(kt.get("K2_H1_detected")),
+            "K3_berry_extended_nontrivial": bool(kt.get("K3_nontrivial")),
+            "boundary_fix_validated": bool(boundary_summary.get("fix_validated")),
+            "promotion_allowed": False,
+            "scope_note": "Local bipartite GUDHI topology receipt only; no bridge, GStack, axis, QIT, or nonclassical admission.",
+        },
+        "all_pass": all_pass,
+        "criteria_checked": [
+            "K1 phi-blind negative control remains topologically trivial",
+            "K2 joint off-diagonal phase-aware kernel forms a nontrivial S1 signal",
+            "equatorial K1 collapse and K2 phase distinction are both present",
+            "analytic Bell-family feature checks pass",
+        ],
+        "divergence_log": (
+            "Repairs the receipt boundary for the existing GUDHI bipartite Bell-family lego. "
+            "The sim remains local to kernel/topology comparison and does not promote the bipartite "
+            "or entropy coupling stage."
+        ),
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_gudhi_bipartite_entangled",
+        target="Use as local bipartite topology evidence before entropy/topology coupling packets.",
+    )
+    results["promotion_condition"] = "Requires separate entropy/topology coupling evidence and explicit stage-gate admission."
+    results["blocked_until"] = "bipartite entropy/topology coupling receipt and stage-gate admission"
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

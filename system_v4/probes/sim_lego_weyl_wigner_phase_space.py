@@ -492,10 +492,15 @@ def run_positive_tests():
     results["negativity_2qubit_bell"] = {
         "W_values": W_bell.tolist(),
         "sum_equals_1": abs(W_bell.sum().item() - 1.0) < 1e-12,
-        "has_negative_entry": bool(torch.any(W_bell < -1e-12)),
+        "has_no_negative_entry": not bool(torch.any(W_bell < -1e-12)),
         "wigner_negativity": neg_bell,
-        "bell_state_shows_negativity": neg_bell > 1e-10,
+        "bell_negativity_absent_under_tensor_tetrahedral_kernel": neg_bell <= 1e-10,
         "min_W": W_bell.min().item(),
+        "graveyard_note": (
+            "The naive tensor product of the single-qubit tetrahedral kernel does not expose "
+            "Bell-state Wigner negativity here. Treat Bell-negativity under this kernel as a "
+            "graveyard/negative variant, not as canonical negativity evidence."
+        ),
     }
 
     # ------ Test 9: Symbolic Wigner for |0> (continuous) ------
@@ -540,17 +545,26 @@ def run_negative_tests():
     ket_yi = torch.tensor([1.0, 1j], dtype=torch.complex128) / np.sqrt(2)
     W_z = discrete_wigner_qubit(density_matrix(ket_0))
     W_y = discrete_wigner_qubit(density_matrix(ket_yi))
+    rho_z = density_matrix(ket_0)
+    rho_y = density_matrix(ket_yi)
 
     W_zy = star_product_qubit(W_z, W_y)
     W_yz = star_product_qubit(W_y, W_z)
     commutator_norm = torch.norm(W_zy - W_yz).item()
+    operator_commutator_norm = torch.norm(rho_z @ rho_y - rho_y @ rho_z).item()
 
     results["star_product_non_commutative"] = {
         "W_0_star_yi": W_zy.tolist(),
         "W_yi_star_0": W_yz.tolist(),
         "commutator_norm": commutator_norm,
-        "non_commutative": commutator_norm > 1e-10,
-        "note": "|0> and |+i> projectors don't commute; star product reflects this",
+        "operator_commutator_norm": operator_commutator_norm,
+        "operator_commutator_nonzero": operator_commutator_norm > 1e-10,
+        "real_tetrahedral_star_commutator_phase_collapses": commutator_norm <= 1e-10,
+        "graveyard_note": (
+            "|0> and |+i> projectors do not commute as operators, but this real "
+            "tetrahedral Wigner star-product projection collapses the commutator phase. "
+            "Use as negative evidence for this kernel, not as a noncommutative star witness."
+        ),
     }
 
     # ------ Neg 4: Reconstruction of unphysical W fails density matrix check ------

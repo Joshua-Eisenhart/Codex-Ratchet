@@ -1,50 +1,50 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T19:26:22.258396+00:00",
+  "generated_at": "2026-05-10T19:52:34.980718+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3917,
-    "result_json_count": 424,
-    "linked_result_json_count": 393,
+    "source_count": 3919,
+    "result_json_count": 426,
+    "linked_result_json_count": 395,
     "unlinked_result_json_count": 31,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3526,
-      "rerun_or_admission_candidate": 293,
+      "rerun_or_admission_candidate": 295,
       "legacy_result_or_repair_needed": 14,
       "contract_shaped_but_tool_depth_thin": 73,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
     },
     "family_counts": {
-      "channel_operator": 769,
+      "channel_operator": 771,
       "entropy_information": 576,
       "thermo_engine": 415,
       "uncategorized": 335,
       "axis_bridge": 647,
-      "graveyard_negative": 1695,
+      "graveyard_negative": 1696,
       "root_admission": 835,
       "hopf_torus": 590,
       "weyl_spinor_clifford": 780,
       "geometry_gstack_gtower": 707,
-      "density_carrier": 473,
+      "density_carrier": 474,
       "classical_baseline": 1086,
       "gerbe_dirac_mera_spectral": 668,
       "graph_topology": 399,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2689,
+      "numpy": 2691,
       "sympy": 2235,
-      "scipy": 245,
+      "scipy": 246,
       "pytorch": 1966,
       "pyg": 841,
       "cvc5": 1324,
       "qutip": 42,
       "e3nn": 840,
       "gudhi": 893,
-      "z3": 1885,
+      "z3": 1886,
       "clifford": 1328,
       "rustworkx": 1072,
       "toponetx": 913,
@@ -54,17 +54,17 @@
       "qiskit": 10
     },
     "load_bearing_tool_counts": {
-      "numpy": 248,
+      "numpy": 250,
       "cvc5": 505,
       "pytorch": 1121,
       "rustworkx": 280,
-      "z3": 724,
+      "z3": 725,
       "sympy": 552,
       "clifford": 273,
       "xgi": 199,
       "geomstats": 109,
       "gudhi": 117,
-      "scipy": 57,
+      "scipy": 58,
       "toponetx": 117,
       "e3nn": 55,
       "pyg": 67,
@@ -78,13 +78,13 @@
       "exploratory": 30,
       "research_support": 6,
       "tool_lego_fit_probe": 1,
-      "supporting": 4,
+      "supporting": 6,
       "controller_index": 2,
       "graveyard_negative": 1,
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 380,
+    "repair_candidate_count": 382,
     "source_only_count": 3526
   },
   "admitted_stems": [
@@ -97567,6 +97567,37 @@
       "inventory_status": "source_only"
     },
     {
+      "stem": "sim_operator_geometry_closure_ablation",
+      "source_path": "system_v4/probes/sim_operator_geometry_closure_ablation.py",
+      "families": [
+        "channel_operator",
+        "graveyard_negative"
+      ],
+      "tools": {
+        "numpy": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/operator_geometry_closure_ablation_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "supporting"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_operator_geometry_compatibility",
       "source_path": "system_v4/probes/sim_operator_geometry_compatibility.py",
       "families": [
@@ -97587,6 +97618,41 @@
       "source_has_tool_integration_depth": true,
       "result_paths": [
         "system_v4/probes/a2_state/sim_results/operator_geometry_compatibility_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "supporting"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
+      "stem": "sim_operator_geometry_single_pair_exclusion",
+      "source_path": "system_v4/probes/sim_operator_geometry_single_pair_exclusion.py",
+      "families": [
+        "density_carrier",
+        "channel_operator"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "scipy": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy",
+        "scipy",
+        "z3"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/operator_geometry_single_pair_exclusion_results.json"
       ],
       "result_count": 1,
       "result_classifications": [

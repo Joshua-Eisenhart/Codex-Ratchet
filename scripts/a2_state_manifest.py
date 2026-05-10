@@ -21,6 +21,7 @@ DEFAULT_EXTRA_PATHS = (
     "system_v4/probes/a2_state/sim_results/actual_lego_indexed_receipt_audit.json",
     "system_v4/probes/a2_state/sim_results/actual_lego_coupling_receipt_audit.json",
     "system_v4/probes/a2_state/sim_results/operator_geometry_closure_ablation_results.json",
+    "system_v4/probes/a2_state/sim_results/operator_geometry_single_pair_exclusion_results.json",
     "system_v4/probes/a2_state/sim_results/constraint_manifold_L0_L1_results.json",
     "system_v4/probes/a2_state/sim_results/commutative_geometry_collapse_results.json",
     "system_v4/probes/a2_state/sim_results/gauge_group_correspondence_results.json",

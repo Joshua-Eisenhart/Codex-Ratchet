@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T20:54:51.398569+00:00",
+  "generated_at": "2026-05-10T21:05:17.073120+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3925,
-    "result_json_count": 433,
-    "linked_result_json_count": 402,
+    "source_count": 3926,
+    "result_json_count": 434,
+    "linked_result_json_count": 403,
     "unlinked_result_json_count": 31,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3525,
-      "rerun_or_admission_candidate": 301,
+      "rerun_or_admission_candidate": 302,
       "legacy_result_or_repair_needed": 14,
       "contract_shaped_but_tool_depth_thin": 74,
       "admitted": 9,
@@ -19,23 +19,23 @@
     },
     "family_counts": {
       "channel_operator": 775,
-      "entropy_information": 577,
-      "thermo_engine": 417,
+      "entropy_information": 578,
+      "thermo_engine": 418,
       "uncategorized": 335,
-      "axis_bridge": 649,
+      "axis_bridge": 650,
       "graveyard_negative": 1696,
-      "root_admission": 836,
+      "root_admission": 837,
       "hopf_torus": 590,
       "weyl_spinor_clifford": 780,
-      "geometry_gstack_gtower": 709,
+      "geometry_gstack_gtower": 710,
       "density_carrier": 476,
-      "classical_baseline": 1087,
+      "classical_baseline": 1088,
       "gerbe_dirac_mera_spectral": 668,
       "graph_topology": 401,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2696,
+      "numpy": 2697,
       "sympy": 2235,
       "scipy": 249,
       "pytorch": 1968,
@@ -44,7 +44,7 @@
       "qutip": 42,
       "e3nn": 840,
       "gudhi": 895,
-      "z3": 1890,
+      "z3": 1891,
       "clifford": 1328,
       "rustworkx": 1073,
       "toponetx": 914,
@@ -54,7 +54,7 @@
       "qiskit": 10
     },
     "load_bearing_tool_counts": {
-      "numpy": 255,
+      "numpy": 256,
       "cvc5": 505,
       "pytorch": 1123,
       "rustworkx": 281,
@@ -73,7 +73,7 @@
       "networkx": 3
     },
     "result_classification_counts": {
-      "classical_baseline": 82,
+      "classical_baseline": 83,
       "canonical": 250,
       "supporting": 11,
       "exploratory": 30,
@@ -84,7 +84,7 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 389,
+    "repair_candidate_count": 390,
     "source_only_count": 3525
   },
   "admitted_stems": [
@@ -55510,6 +55510,42 @@
       "late_stage_signal": false,
       "has_contract_shape": false,
       "inventory_status": "source_only"
+    },
+    {
+      "stem": "sim_entropy_family_crosscheck_coexistence",
+      "source_path": "system_v4/probes/sim_entropy_family_crosscheck_coexistence.py",
+      "families": [
+        "root_admission",
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "z3": "supportive"
+      },
+      "load_bearing_tools": [
+        "numpy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/entropy_family_crosscheck_coexistence_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": true,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_entropy_fisher_geodesic_crosscouple_classical",

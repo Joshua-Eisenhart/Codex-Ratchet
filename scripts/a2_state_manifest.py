@@ -29,6 +29,7 @@ DEFAULT_EXTRA_PATHS = (
     "system_v4/probes/a2_state/sim_results/graph_cell_complex_coexistence_results.json",
     "system_v4/probes/a2_state/sim_results/gudhi_bipartite_entangled_results.json",
     "system_v4/probes/a2_state/sim_results/bipartite_entropy_topology_coexistence_results.json",
+    "system_v4/probes/a2_state/sim_results/entropy_family_crosscheck_coexistence_results.json",
     "system_v4/probes/a2_state/sim_results/constraint_manifold_L0_L1_results.json",
     "system_v4/probes/a2_state/sim_results/commutative_geometry_collapse_results.json",
     "system_v4/probes/a2_state/sim_results/gauge_group_correspondence_results.json",

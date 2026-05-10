@@ -180,6 +180,16 @@ COUPLING_TARGETS = {
                 "status": "blocked_until_better_lego",
                 "reason": "Entropy family work is still too tied to later surfaces; lower-layer local entropy witnesses need a cleaner lego set first.",
             },
+            {
+                "lego_probe": "sim_lego_entropy_family_crosscheck.py",
+                "coupling_probe": "sim_entropy_family_crosscheck_coexistence.py",
+                "existing_anchor": "entropy_family_crosscheck_coexistence_results.json",
+                "status": "existing_anchor",
+                "reason": (
+                    "Entropy family crosschecks now have a bounded finite-state coexistence receipt "
+                    "linking conditional, coherent, cut, and entanglement entropy without higher-stage promotion."
+                ),
+            },
         ],
     },
     "gauge_group_falsifier": {

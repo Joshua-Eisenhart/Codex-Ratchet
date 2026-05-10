@@ -1,23 +1,23 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T07:47:41.592265+00:00`
+Generated: `2026-05-10T07:51:03.999577+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `3917`
-- Result JSON files seen: `267`
-- Linked result JSON files: `242`
-- Unlinked result JSON files: `25`
+- Result JSON files seen: `280`
+- Linked result JSON files: `254`
+- Unlinked result JSON files: `26`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `230`
-- Source-only rows: `3676`
+- Repair / rerun candidate rows: `242`
+- Source-only rows: `3664`
 
 ## Inventory Status Counts
 
-- `source_only`: 3676
-- `rerun_or_admission_candidate`: 145
+- `source_only`: 3664
+- `rerun_or_admission_candidate`: 157
 - `contract_shaped_but_tool_depth_thin`: 73
 - `legacy_result_or_repair_needed`: 12
 - `admitted`: 9
@@ -47,14 +47,14 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `z3`: 719
 - `sympy`: 550
 - `cvc5`: 501
-- `rustworkx`: 277
+- `rustworkx`: 278
 - `clifford`: 273
-- `xgi`: 195
+- `xgi`: 196
 - `numpy`: 174
-- `gudhi`: 112
+- `gudhi`: 113
 - `geomstats`: 109
-- `toponetx`: 107
-- `pyg`: 64
+- `toponetx`: 109
+- `pyg`: 65
 - `e3nn`: 55
 - `scipy`: 53
 - `qutip`: 31
@@ -67,6 +67,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `system_v4/a2_state/sim_results/holodeck_fep_results.json`
 - `system_v4/a2_state/sim_results/type2_process_cycle_results.json`
 - `system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json`
+- `system_v4/probes/a2_state/sim_results/engine_protocol_dag_results.json`
 - `system_v4/probes/a2_state/sim_results/lego_tool_reporting_audit_results.json`
 - `system_v4/probes/a2_state/sim_results/migration_contract_audit_results.json`
 - `system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json`

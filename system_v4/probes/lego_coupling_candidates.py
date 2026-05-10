@@ -134,6 +134,16 @@ COUPLING_TARGETS = {
                 ),
             },
             {
+                "lego_probe": "sim_gudhi_bipartite_entangled.py",
+                "coupling_probe": "sim_bipartite_phase_entropy_closure.py",
+                "existing_anchor": "bipartite_phase_entropy_closure_results.json",
+                "status": "existing_anchor",
+                "reason": (
+                    "Bipartite entropy/topology now has a bounded phase-robustness closure receipt "
+                    "with grid-refinement, rotation, phase-blind, and radial-collapse controls."
+                ),
+            },
+            {
                 "lego_probe": "sim_gudhi_concurrence_filtration.py",
                 "coupling_probe": "sim_pyg_dynamic_edge_werner.py",
                 "existing_anchor": "pyg_dynamic_edge_werner_results.json",

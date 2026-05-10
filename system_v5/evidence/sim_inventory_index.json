@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T21:25:52.817558+00:00",
+  "generated_at": "2026-05-10T21:30:41.941474+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3928,
-    "result_json_count": 436,
-    "linked_result_json_count": 405,
+    "source_count": 3929,
+    "result_json_count": 437,
+    "linked_result_json_count": 406,
     "unlinked_result_json_count": 31,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3525,
-      "rerun_or_admission_candidate": 304,
+      "rerun_or_admission_candidate": 305,
       "legacy_result_or_repair_needed": 14,
       "contract_shaped_but_tool_depth_thin": 74,
       "admitted": 9,
@@ -19,32 +19,32 @@
     },
     "family_counts": {
       "channel_operator": 775,
-      "entropy_information": 579,
-      "thermo_engine": 420,
+      "entropy_information": 580,
+      "thermo_engine": 421,
       "uncategorized": 335,
-      "axis_bridge": 652,
+      "axis_bridge": 653,
       "graveyard_negative": 1697,
       "root_admission": 838,
       "hopf_torus": 590,
       "weyl_spinor_clifford": 780,
-      "geometry_gstack_gtower": 712,
+      "geometry_gstack_gtower": 713,
       "density_carrier": 476,
-      "classical_baseline": 1090,
+      "classical_baseline": 1091,
       "gerbe_dirac_mera_spectral": 668,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2699,
+      "numpy": 2700,
       "sympy": 2235,
       "scipy": 249,
-      "pytorch": 1970,
+      "pytorch": 1971,
       "pyg": 843,
       "cvc5": 1324,
       "qutip": 42,
       "e3nn": 840,
-      "gudhi": 896,
-      "z3": 1893,
+      "gudhi": 897,
+      "z3": 1894,
       "clifford": 1328,
       "rustworkx": 1074,
       "toponetx": 915,
@@ -54,16 +54,16 @@
       "qiskit": 10
     },
     "load_bearing_tool_counts": {
-      "numpy": 258,
+      "numpy": 259,
       "cvc5": 505,
-      "pytorch": 1125,
+      "pytorch": 1126,
       "rustworkx": 282,
       "z3": 729,
       "sympy": 552,
       "clifford": 273,
       "xgi": 200,
       "geomstats": 108,
-      "gudhi": 120,
+      "gudhi": 121,
       "scipy": 61,
       "toponetx": 118,
       "e3nn": 55,
@@ -73,7 +73,7 @@
       "networkx": 3
     },
     "result_classification_counts": {
-      "classical_baseline": 85,
+      "classical_baseline": 86,
       "canonical": 250,
       "supporting": 11,
       "exploratory": 30,
@@ -84,7 +84,7 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 392,
+    "repair_candidate_count": 393,
     "source_only_count": 3525
   },
   "admitted_stems": [
@@ -672,6 +672,45 @@
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": true,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
+      "stem": "sim_bipartite_phase_entropy_closure",
+      "source_path": "system_v4/probes/sim_bipartite_phase_entropy_closure.py",
+      "families": [
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "pytorch": "load_bearing",
+        "z3": "supportive",
+        "gudhi": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "gudhi",
+        "numpy",
+        "pytorch"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/bipartite_phase_entropy_closure_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
       "has_contract_shape": true,
       "inventory_status": "rerun_or_admission_candidate"
     },
@@ -3526,36 +3565,6 @@
       "source_has_tool_integration_depth": true,
       "result_paths": [
         "system_v4/probes/a2_state/sim_results/sim_e3nn_ylm_orthogonality_under_rotation_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "canonical"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": false,
-      "has_contract_shape": true,
-      "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_eigenvalue_spectrum_view",
-      "source_path": "system_v4/probes/sim_eigenvalue_spectrum_view.py",
-      "families": [
-        "uncategorized"
-      ],
-      "tools": {
-        "numpy": "load_bearing"
-      },
-      "load_bearing_tools": [
-        "numpy"
-      ],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/eigenvalue_spectrum_view_results.json"
       ],
       "result_count": 1,
       "result_classifications": [
@@ -18624,6 +18633,45 @@
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": true,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
+      "stem": "sim_bipartite_phase_entropy_closure",
+      "source_path": "system_v4/probes/sim_bipartite_phase_entropy_closure.py",
+      "families": [
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "pytorch": "load_bearing",
+        "z3": "supportive",
+        "gudhi": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "gudhi",
+        "numpy",
+        "pytorch"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/bipartite_phase_entropy_closure_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
       "has_contract_shape": true,
       "inventory_status": "rerun_or_admission_candidate"
     },

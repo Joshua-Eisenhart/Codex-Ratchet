@@ -6100,32 +6100,25 @@ def test_parallel_runner_has_helper_and_admission_preflight() -> None:
     assert "STRICT_WIZARD_QUEUE_ADMISSION" in text
 
 
-def test_helper_process_audit_blocks_enabled_playwright_mcp_config(tmp_path) -> None:
+def test_helper_process_audit_ignores_removed_browser_mcp_config(tmp_path) -> None:
     module = _load_module(
-        "helper_process_audit_playwright_config_under_test",
+        "helper_process_audit_removed_browser_config_under_test",
         REPO_ROOT / "scripts" / "helper_process_audit.py",
     )
     config = tmp_path / "config.toml"
     config.write_text(
-        '[mcp_servers.playwright]\ncommand = "npx"\nargs = ["@playwright/mcp@latest"]\n',
+        '[mcp_servers.browser]\ncommand = "npx"\nargs = ["removed-browser-mcp"]\n',
         encoding="utf-8",
     )
 
     report = module.audit_mcp_config(config)
 
-    assert report["findings"] == [
-        {
-            "kind": "playwright_mcp_server_enabled",
-            "server": "playwright",
-            "config_path": str(config),
-            "suggested_stop": "codex mcp remove playwright",
-        }
-    ]
+    assert report["findings"] == []
 
 
-def test_helper_process_audit_allows_removed_playwright_mcp_config(tmp_path) -> None:
+def test_helper_process_audit_allows_no_browser_mcp_config(tmp_path) -> None:
     module = _load_module(
-        "helper_process_audit_no_playwright_config_under_test",
+        "helper_process_audit_no_browser_config_under_test",
         REPO_ROOT / "scripts" / "helper_process_audit.py",
     )
     config = tmp_path / "config.toml"

@@ -64,23 +64,6 @@ def test_runtime_graph_bridge_skill_registry_sync_smoke() -> None:
                         "lineage_refs": ["legacy-lineage"],
                         "witness_refs": ["legacy-witness"],
                     },
-                    "SKILL::playwright": {
-                        "id": "SKILL::playwright",
-                        "node_type": "SKILL",
-                        "layer": "SKILL_REGISTRY",
-                        "name": "playwright",
-                        "description": "old alias",
-                        "trust_zone": "SKILL_REGISTRY",
-                        "tags": ["legacy"],
-                        "authority": "SOURCE_CLAIM",
-                        "properties": {},
-                        "object_family": "SkillRecord",
-                        "source_class": "DERIVED",
-                        "status": "LIVE",
-                        "admissibility_state": "REGISTERED",
-                        "lineage_refs": [],
-                        "witness_refs": [],
-                    },
                     "SKILL::ghost-skill": {
                         "id": "SKILL::ghost-skill",
                         "node_type": "SKILL",
@@ -107,12 +90,6 @@ def test_runtime_graph_bridge_skill_registry_sync_smoke() -> None:
                         "attributes": {"inferred": True, "role": "skill_hub"},
                     },
                     {
-                        "source_id": "SKILL::playwright",
-                        "target_id": "SKILL::runtime-graph-bridge",
-                        "relation": "RELATED_TO",
-                        "attributes": {"inferred": True, "role": "skill_hub"},
-                    },
-                    {
                         "source_id": "SKILL::ghost-skill",
                         "target_id": "SKILL::run-real-ratchet",
                         "relation": "RELATED_TO",
@@ -127,7 +104,6 @@ def test_runtime_graph_bridge_skill_registry_sync_smoke() -> None:
                 "run-real-ratchet": _skill_record("run-real-ratchet"),
                 "runtime-graph-bridge": _skill_record("runtime-graph-bridge"),
                 "automation-controller": _skill_record("automation-controller"),
-                "browser-automation": _skill_record("browser-automation"),
                 "bounded-improve-operator": _skill_record("bounded-improve-operator"),
                 "intent-control-surface-builder": _skill_record(
                     "intent-control-surface-builder",
@@ -137,7 +113,7 @@ def test_runtime_graph_bridge_skill_registry_sync_smoke() -> None:
         )
 
         stats = bridge_runtime_to_graph(str(root), clean=False)
-        assert stats["skill_alias_nodes_migrated"] == 2
+        assert stats["skill_alias_nodes_migrated"] == 1
         assert stats["skill_stale_nodes_removed"] == 1
 
         bridged = json.loads(graph_path.read_text(encoding="utf-8"))
@@ -148,7 +124,6 @@ def test_runtime_graph_bridge_skill_registry_sync_smoke() -> None:
             "SKILL::run-real-ratchet",
             "SKILL::runtime-graph-bridge",
             "SKILL::automation-controller",
-            "SKILL::browser-automation",
             "SKILL::bounded-improve-operator",
             "SKILL::intent-control-surface-builder",
         }
@@ -157,7 +132,6 @@ def test_runtime_graph_bridge_skill_registry_sync_smoke() -> None:
             assert nodes[nid]["node_type"] == "SKILL"
 
         assert "SKILL::codex-automation-controller" not in nodes
-        assert "SKILL::playwright" not in nodes
         assert "SKILL::ghost-skill" not in nodes
 
         automation_node = nodes["SKILL::automation-controller"]
@@ -172,12 +146,6 @@ def test_runtime_graph_bridge_skill_registry_sync_smoke() -> None:
         assert (
             "SKILL::automation-controller",
             "SKILL::run-real-ratchet",
-            "RELATED_TO",
-            "skill_hub",
-        ) in edge_pairs
-        assert (
-            "SKILL::browser-automation",
-            "SKILL::runtime-graph-bridge",
             "RELATED_TO",
             "skill_hub",
         ) in edge_pairs

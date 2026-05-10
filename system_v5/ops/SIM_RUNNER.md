@@ -121,7 +121,7 @@ Before a non-browser sim/controller run, run the fail-closed preflight:
 make runner-preflight
 ```
 
-If it reports stale `playwright-mcp`, `@playwright/mcp`, or `SkyComputerUseClient` helpers, stop those helpers before launching the runner unless an active browser/computer-use task intentionally owns them.
+If it reports stale `SkyComputerUseClient` helpers, stop those helpers before launching the runner unless an active computer-use task intentionally owns them.
 
 Both runner surfaces run `scripts/helper_process_audit.py --strict` at startup
 and refuse to launch when stale browser/computer-use helpers are present.

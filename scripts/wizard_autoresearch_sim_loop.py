@@ -1031,7 +1031,7 @@ def main() -> int:
                 prompt=(
                     "Premortem the Wizard long-goal harness: it must run for 10 hours to days, "
                     "preserve context, invoke skills including claude-bridge and premortem, keep sim gates strict, "
-                    "avoid Playwright, and avoid false FULL claims. Return YAML receipts only."
+                    "avoid browser automation, and avoid false FULL claims. Return YAML receipts only."
                 ),
                 out_dir=out_dir,
                 attempt_gemini=gemini_requested,

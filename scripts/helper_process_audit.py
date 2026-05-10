@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Report stale browser/computer-use helpers before non-browser sim runs.
+"""Report stale computer-use helpers before non-browser sim runs.
 
 This script is read-only. It does not start browser tooling and it does not kill
 processes. Use it as a preflight guard before sim/controller runs where stale
@@ -19,7 +19,6 @@ from typing import Iterable
 
 
 HELPER_PATTERNS = {
-    "playwright_mcp": ("playwright-mcp", "@playwright/mcp"),
     "computer_use_mcp": ("SkyComputerUseClient",),
 }
 
@@ -123,17 +122,7 @@ def audit_mcp_config(config_path: Path | None = None) -> dict[str, object]:
             "parse_error": str(exc),
         }
     servers = payload.get("mcp_servers") or {}
-    playwright = servers.get("playwright") if isinstance(servers, dict) else None
     findings: list[dict[str, object]] = []
-    if isinstance(playwright, dict) and playwright.get("enabled", True) is not False:
-        findings.append(
-            {
-                "kind": "playwright_mcp_server_enabled",
-                "server": "playwright",
-                "config_path": str(config_path),
-                "suggested_stop": "codex mcp remove playwright",
-            }
-        )
     return {"config_path": str(config_path), "findings": findings, "parse_error": None}
 
 

@@ -85,7 +85,7 @@ helper_process_preflight() {
     return 0
   fi
   if ! "$PYTHON" scripts/helper_process_audit.py --strict >/dev/null; then
-    log "Helper process preflight failed; stop stale Playwright/Computer Use helpers before non-browser sim runs."
+    log "Helper process preflight failed; stop stale Computer Use helpers before non-browser sim runs."
     log "Set ALLOW_HELPER_PROCESSES=1 only when an active browser/computer-use task intentionally owns them."
     exit 1
   fi

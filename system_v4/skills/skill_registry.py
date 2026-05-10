@@ -57,7 +57,7 @@ class SkillRecord(BaseModel):
     #                              not a queue-driven correction side lane
     #   is_owner_graph_builder - skill materializes an owner graph surface rather than
     #                            acting as a thin operator/module wrapper
-    tool_dependencies: list[str] = Field(default_factory=list)  # e.g. ["z3", "playwright"]
+    tool_dependencies: list[str] = Field(default_factory=list)  # e.g. ["z3", "cvc5"]
     provenance: str = ""                    # where the pattern came from (repo, doc, etc.)
     status: str = "active"                  # active | stale | retired | draft
     last_verified_utc: str = ""

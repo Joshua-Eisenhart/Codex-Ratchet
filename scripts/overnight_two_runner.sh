@@ -276,7 +276,7 @@ PY
 say "two-runner start minutes=$MINUTES K1=$K1 K2=$K2 dry=$DRY"
 
 if ! helper_process_preflight; then
-  say "FAILED helper process preflight; stop stale Playwright/Computer Use helpers before non-browser parallel runner work."
+  say "FAILED helper process preflight; stop stale Computer Use helpers before non-browser parallel runner work."
   exit 1
 fi
 

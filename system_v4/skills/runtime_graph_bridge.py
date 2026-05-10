@@ -34,7 +34,6 @@ LAYER_SKILL_REGISTRY = "SKILL_REGISTRY"
 
 SKILL_ID_ALIASES = {
     "codex-automation-controller": "automation-controller",
-    "playwright": "browser-automation",
 }
 
 
@@ -807,7 +806,6 @@ def bridge_runtime_to_graph(repo_root: str, clean: bool = True) -> dict:
         "codex-automation-controller": "SKILL::run-real-ratchet",
         "external-research-refinery-launcher": "SKILL::a2-brain-refresh",
         "memory-admission-guard": "SKILL::a2-a1-memory-admission-guard",
-        "playwright": "SKILL::runtime-graph-bridge",
         "pro-return-instant-audit": "SKILL::ratchet-verify",
         "ratchet-prompt-stack": "SKILL::run-real-ratchet",
         "safe-run-maintenance": "SKILL::ratchet-verify",

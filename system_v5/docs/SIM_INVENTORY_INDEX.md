@@ -1,6 +1,6 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T18:09:54.377331+00:00`
+Generated: `2026-05-10T18:16:47.774812+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 

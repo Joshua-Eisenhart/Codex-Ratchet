@@ -855,6 +855,8 @@ def collect_pass_flags(obj):
         flags = []
         if "pass" in obj:
             flags.append(bool(obj["pass"]))
+        if "status" in obj:
+            flags.append(obj["status"] == "PASS")
         for value in obj.values():
             flags.extend(collect_pass_flags(value))
         return flags

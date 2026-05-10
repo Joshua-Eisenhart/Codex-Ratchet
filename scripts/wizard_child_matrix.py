@@ -86,6 +86,227 @@ def claude_auth_warmup(args: argparse.Namespace, model: str, out_dir: Path) -> d
     }
 
 
+def has_claude_auth_failure(receipt: dict[str, Any]) -> bool:
+    """Detect the fast Claude CLI auth-cache failure seen under fanout pressure."""
+    text = json.dumps(receipt, ensure_ascii=False)
+    return "Not logged in" in text or "Please run /login" in text
+
+
+def nested_claude_auth_probe(args: argparse.Namespace, model: str, group_dir: Path) -> dict[str, Any]:
+    """Fast preflight for the current Python process tree's Claude auth visibility."""
+    if os.environ.get("WIZARD_SKIP_NESTED_CLAUDE_PROBE", "").strip() == "1":
+        return {"status": "skipped", "reason": "WIZARD_SKIP_NESTED_CLAUDE_PROBE=1"}
+    probe_dir = group_dir / "_nested_auth_probe"
+    probe_dir.mkdir(parents=True, exist_ok=True)
+    command = [
+        claude_python_executable(),
+        str(claude_bridge_path()),
+        "--model",
+        model,
+        "--effort",
+        "high",
+        "--budget",
+        "0.05",
+        "--timeout-sec",
+        "20",
+        "--cwd",
+        args.cwd,
+        "--out-dir",
+        str(probe_dir),
+        "--name",
+        f"{slug(args.route)}-{model}-nested-auth-probe",
+        "--prompt",
+        "Return OK only.",
+    ]
+    started = now_iso()
+    completed = subprocess.run(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
+    finished = now_iso()
+    parsed: dict[str, Any] = {}
+    try:
+        candidate = json.loads(completed.stdout)
+        if isinstance(candidate, dict):
+            parsed = candidate
+    except json.JSONDecodeError:
+        pass
+    blocked = completed.returncode != 0 and ("Not logged in" in completed.stdout or "Please run /login" in completed.stdout)
+    return {
+        "status": "blocked" if blocked else "accepted" if completed.returncode == 0 else "failed",
+        "returncode": completed.returncode,
+        "started_at": started,
+        "completed_at": finished,
+        "receipt_path": parsed.get("receipt_path"),
+        "output_path": parsed.get("output_path"),
+        "stdout_preview": completed.stdout[:1000],
+        "blocked_reason": "nested_claude_auth_not_visible" if blocked else None,
+    }
+
+
+def bridge_child_result(
+    job: dict[str, str],
+    *,
+    started_at: datetime,
+    completed_at: datetime,
+    raw: str,
+    returncode: int,
+    wrapper_timed_out: bool = False,
+) -> dict[str, Any]:
+    parsed_receipt: dict[str, Any] = {}
+    try:
+        parsed = json.loads(raw)
+        if isinstance(parsed, dict):
+            parsed_receipt = parsed
+    except json.JSONDecodeError:
+        pass
+    bridge_timed_out = bool(parsed_receipt.get("timed_out"))
+    parsed = parsed_receipt.get("parsed") if isinstance(parsed_receipt.get("parsed"), dict) else {}
+    status = (
+        "completed"
+        if returncode == 0 and not bridge_timed_out and not wrapper_timed_out
+        else "timed_out"
+        if returncode == 124 or bridge_timed_out or wrapper_timed_out
+        else "failed"
+    )
+    return {
+        "id": job["id"],
+        "status": status,
+        "returncode": returncode,
+        "started_at": started_at.isoformat(),
+        "completed_at": completed_at.isoformat(),
+        "duration_ms": int((completed_at - started_at).total_seconds() * 1000),
+        "bridge_receipt_path": parsed_receipt.get("receipt_path"),
+        "bridge_output_path": parsed_receipt.get("output_path"),
+        "model": parsed_receipt.get("model"),
+        "cost_usd": parsed.get("total_cost_usd"),
+        "result_preview": str(parsed.get("result_preview") or "")[:800],
+        "raw_preview": raw[:800],
+    }
+
+
+def run_direct_bridge_group(
+    *,
+    args: argparse.Namespace,
+    model: str,
+    jobs: list[dict[str, str]],
+    timeout_sec: float,
+    budget: float,
+    group_dir: Path,
+    name_suffix: str,
+) -> dict[str, Any]:
+    """Fallback around fanout when direct Claude Bridge works but fanout auth fails."""
+    bridge_path = claude_bridge_path()
+    run_dir = group_dir / f"{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}-{slug(args.route)}-{model}{name_suffix}"
+    child_root = run_dir / "children"
+    child_root.mkdir(parents=True, exist_ok=True)
+    started_at = datetime.now(timezone.utc)
+    children: list[dict[str, Any]] = []
+    for job in jobs:
+        child_dir = child_root / slug(job["id"])
+        child_dir.mkdir(parents=True, exist_ok=True)
+        prompt_path = child_dir / "prompt.txt"
+        prompt_path.write_text(job["prompt"].rstrip() + "\n", encoding="utf-8")
+        command = [
+            claude_python_executable(),
+            str(bridge_path),
+            "--model",
+            model,
+            "--effort",
+            "high",
+            "--budget",
+            str(budget),
+            "--timeout-sec",
+            str(timeout_sec),
+            "--cwd",
+            args.cwd,
+            "--out-dir",
+            str(child_dir),
+            "--name",
+            job["id"],
+            "--prompt-file",
+            str(prompt_path),
+        ]
+        child_started = datetime.now(timezone.utc)
+        attempts: list[dict[str, Any]] = []
+        raw = ""
+        returncode = 1
+        wrapper_timed_out = False
+        for attempt in range(1, 4):
+            attempt_started = datetime.now(timezone.utc)
+            try:
+                completed = subprocess.run(
+                    command,
+                    text=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    check=False,
+                    timeout=timeout_sec + 15,
+                )
+                raw = completed.stdout
+                returncode = completed.returncode
+                wrapper_timed_out = False
+            except subprocess.TimeoutExpired as exc:
+                raw = exc.stdout or ""
+                if isinstance(raw, bytes):
+                    raw = raw.decode("utf-8", errors="replace")
+                raw += f"\n[WRAPPER TIMEOUT after {timeout_sec + 15}s]\n"
+                returncode = 124
+                wrapper_timed_out = True
+            attempt_completed = datetime.now(timezone.utc)
+            auth_transient = "Not logged in" in raw or "Please run /login" in raw
+            attempts.append(
+                {
+                    "attempt": attempt,
+                    "started_at": attempt_started.isoformat(),
+                    "completed_at": attempt_completed.isoformat(),
+                    "returncode": returncode,
+                    "wrapper_timed_out": wrapper_timed_out,
+                    "auth_transient": auth_transient,
+                    "stdout_preview": raw[:300],
+                }
+            )
+            if returncode == 0 or not auth_transient or attempt == 3:
+                break
+            time.sleep(15 * attempt)
+        child_completed = datetime.now(timezone.utc)
+        (child_dir / "direct_bridge_stdout.json").write_text(raw, encoding="utf-8", errors="replace")
+        child = bridge_child_result(
+            job,
+            started_at=child_started,
+            completed_at=child_completed,
+            raw=raw,
+            returncode=returncode,
+            wrapper_timed_out=wrapper_timed_out,
+        )
+        child["direct_bridge_attempts"] = attempts
+        children.append(child)
+    completed_at = datetime.now(timezone.utc)
+    counts = {
+        "completed": sum(1 for child in children if child["status"] == "completed"),
+        "failed": sum(1 for child in children if child["status"] == "failed"),
+        "timed_out": sum(1 for child in children if child["status"] == "timed_out"),
+        "abandoned": 0,
+        "not_launched": 0,
+        "total": len(children),
+    }
+    receipt = {
+        "route": f"{slug(args.route)}-{model}{name_suffix}",
+        "status": "completed" if counts["completed"] == len(jobs) else "partial" if counts["completed"] else "failed",
+        "started_at": started_at.isoformat(),
+        "completed_at": completed_at.isoformat(),
+        "duration_ms": int((completed_at - started_at).total_seconds() * 1000),
+        "model": model,
+        "effort": "high",
+        "timeout_sec": timeout_sec,
+        "budget": budget,
+        "direct_bridge_fallback": True,
+        "counts": counts,
+        "children": sorted(children, key=lambda child: child["id"]),
+    }
+    receipt_path = run_dir / "direct_bridge_receipt.json"
+    receipt["receipt_path"] = str(receipt_path)
+    receipt_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    return receipt
+
+
 def packet_root_for_route(route: str) -> Path:
     if route in V4_2_FORMAL_CHILDREN:
         return PACKET_ROOT_V4_2
@@ -442,7 +663,10 @@ def child_prompt(args: argparse.Namespace, child_id: str, role: str) -> str:
         f"{loophole_contract}"
         f"{management_contract}"
         f"Packet root: {packet_root}\n"
-        "You are a bounded child/subsubagent. Do not edit files. Do not open a browser.\n"
+        "This is a non-interactive worker invocation launched by the Wizard harness. "
+        "For this invocation, adopt the bounded child role exactly; do not describe yourself as the main assistant and do not ask whether to proceed. "
+        "If you see a role or evidence conflict, encode it inside evidence_boundary or status, then still return the YAML receipt. "
+        "Do not edit files. Do not open a browser.\n"
         "Do not ask for clarification. If source data is incomplete, name the evidence boundary and still return the required YAML receipt.\n"
         "Use the assigned role only. Return YAML only, no prose before or after. "
         "Quote any scalar value containing a colon, or use a block scalar. "
@@ -453,6 +677,7 @@ def child_prompt(args: argparse.Namespace, child_id: str, role: str) -> str:
         "If this exact child id is skill.loophole_auditor, also include the required top-level loophole_audit, confidence_status, and stop_condition fields. "
         "If this child id starts with manager., also include the required management parent fields. "
         "Do not nest these required keys under another object. Do not omit them. "
+        "Do not output prose, Markdown headings, or clarification questions. "
         "Set status to accepted, partial, blocked, or killed.\n\n"
         f"Parent prompt:\n{args.prompt}\n\n"
         f"Follow-up prompt under construction:\n{args.followup_prompt}\n"
@@ -492,33 +717,158 @@ def run_claude_group(
     jobs_file = group_dir / "jobs.json"
     jobs_file.write_text(json.dumps(jobs, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     fanout_path, fanout_source = claude_fanout_path()
-    command = [
-        claude_python_executable(),
-        str(fanout_path),
-        "--jobs-file",
-        str(jobs_file),
-        "--model",
-        model,
-        "--effort",
-        "high",
-        "--budget",
-        str(budget),
-        "--timeout-sec",
-        str(timeout_sec),
-        "--max-concurrency",
-        str(args.max_concurrency),
-        "--global-max-active",
-        str(args.global_max_active),
-        "--cwd",
-        args.cwd,
-        "--out-dir",
-        str(group_dir),
-        "--name",
-        f"{slug(args.route)}-{model}",
-    ]
+    packet_root = packet_root_for_route(args.route)
+    packet_fanout_path = packet_root / "skills/claude-bridge/scripts/claude_child_fanout.py"
+
+    auth_probe = nested_claude_auth_probe(args, model, group_dir)
+    if auth_probe.get("status") == "blocked":
+        return {
+            "model": model,
+            "status": "blocked",
+            "returncode": 1,
+            "claude_fanout_path": str(fanout_path),
+            "claude_fanout_source": fanout_source,
+            "claude_launch_mode": "blocked_by_nested_auth_probe",
+            "packet_root": str(packet_root),
+            "packet_claude_fanout_path": str(packet_fanout_path),
+            "jobs_file": str(jobs_file),
+            "started_at": auth_probe.get("started_at"),
+            "completed_at": auth_probe.get("completed_at"),
+            "retry_reason": "nested_claude_auth_not_visible",
+            "retry_warmup": None,
+            "retry_started_at": None,
+            "retry_completed_at": None,
+            "auth_probe": auth_probe,
+            "auth_fallback": {
+                "reason": "nested_claude_auth_not_visible",
+                "action": "blocked_fast_do_not_launch_children_from_python_process_tree",
+                "top_level_claude_bridge_note": "Top-level Codex exec_command Claude Bridge may still work, but it is not proof that Wizard Python child launch works.",
+            },
+            "receipt_path": auth_probe.get("receipt_path"),
+            "stdout_preview": str(auth_probe.get("stdout_preview") or "")[:1000],
+            "completed_child_ids": [],
+            "completed_child_receipt_paths": [],
+            "usefulness_failures": [
+                {
+                    "id": job["id"],
+                    "status": "not_launched",
+                    "reason": "nested_claude_auth_not_visible",
+                    "receipt_path": auth_probe.get("receipt_path"),
+                }
+                for job in jobs
+            ],
+            "counts": {
+                "completed": 0,
+                "process_completed": 0,
+                "failed": 0,
+                "timed_out": 0,
+                "abandoned": 0,
+                "not_launched": len(jobs),
+                "total": len(jobs),
+            },
+        }
+
+    direct_primary = run_direct_bridge_group(
+        args=args,
+        model=model,
+        jobs=jobs,
+        timeout_sec=timeout_sec,
+        budget=budget,
+        group_dir=group_dir,
+        name_suffix="-direct-bridge-primary",
+    )
+    direct_children = direct_primary.get("children") if isinstance(direct_primary.get("children"), list) else []
+    direct_useful_children = [child for child in direct_children if child_is_useful(child)]
+    if direct_useful_children:
+        direct_counts = direct_primary.get("counts") or {}
+        completed_child_ids = [str(child.get("id")) for child in direct_useful_children]
+        completed_paths = [
+            str(child.get("bridge_receipt_path"))
+            for child in direct_useful_children
+            if child.get("bridge_receipt_path")
+        ]
+        usefulness_failures = [
+            {
+                "id": str(child.get("id")),
+                "status": child.get("status"),
+                "reason": child_usefulness_failure_reason(child),
+                "receipt_path": child.get("bridge_receipt_path"),
+            }
+            for child in direct_children
+            if isinstance(child, dict) and not child_is_useful(child)
+        ]
+        return {
+            "model": model,
+            "status": "completed",
+            "returncode": 0,
+            "claude_fanout_path": str(fanout_path),
+            "claude_fanout_source": fanout_source,
+            "claude_launch_mode": "direct_bridge_primary",
+            "packet_root": str(packet_root),
+            "packet_claude_fanout_path": str(packet_fanout_path),
+            "jobs_file": str(jobs_file),
+            "started_at": direct_primary.get("started_at"),
+            "completed_at": direct_primary.get("completed_at"),
+            "retry_reason": None,
+            "retry_warmup": None,
+            "retry_started_at": None,
+            "retry_completed_at": None,
+            "auth_fallback": None,
+            "receipt_path": str(direct_primary.get("receipt_path")),
+            "stdout_preview": json.dumps(
+                {
+                    "direct_bridge_primary": True,
+                    "receipt_path": direct_primary.get("receipt_path"),
+                    "counts": direct_counts,
+                },
+                sort_keys=True,
+            ),
+            "completed_child_ids": completed_child_ids,
+            "completed_child_receipt_paths": completed_paths,
+            "usefulness_failures": usefulness_failures,
+            "counts": {
+                "completed": len(direct_useful_children),
+                "process_completed": int(direct_counts.get("completed") or 0),
+                "failed": int(direct_counts.get("failed") or 0),
+                "timed_out": int(direct_counts.get("timed_out") or 0),
+                "abandoned": int(direct_counts.get("abandoned") or 0),
+                "not_launched": int(direct_counts.get("not_launched") or 0),
+                "total": int(direct_counts.get("total") or count),
+            },
+        }
+
+    def fanout_command(*, max_concurrency: int | None = None, global_max_active: int | None = None, name_suffix: str = "") -> list[str]:
+        return [
+            claude_python_executable(),
+            str(fanout_path),
+            "--jobs-file",
+            str(jobs_file),
+            "--model",
+            model,
+            "--effort",
+            "high",
+            "--budget",
+            str(budget),
+            "--timeout-sec",
+            str(timeout_sec),
+            "--max-concurrency",
+            str(max_concurrency if max_concurrency is not None else args.max_concurrency),
+            "--global-max-active",
+            str(global_max_active if global_max_active is not None else args.global_max_active),
+            "--cwd",
+            args.cwd,
+            "--out-dir",
+            str(group_dir),
+            "--name",
+            f"{slug(args.route)}-{model}{name_suffix}",
+        ]
+
+    command = fanout_command()
     started = now_iso()
     completed = subprocess.run(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
     finished = now_iso()
+    group_returncode = completed.returncode
+    group_stdout_preview = completed.stdout[:1000]
     receipt = {}
     try:
         parsed_stdout = json.loads(completed.stdout)
@@ -537,16 +887,16 @@ def run_claude_group(
     retry_warmup = None
     retry_started = None
     retry_finished = None
-    if (
-        int(counts.get("completed") or 0) == 0
-        and "Not logged in" in json.dumps(receipt, ensure_ascii=False)
-    ):
+    auth_fallback = None
+    if int(counts.get("completed") or 0) == 0 and has_claude_auth_failure(receipt):
         retry_reason = "claude_auth_cache_transient_not_logged_in"
         retry_warmup = claude_auth_warmup(args, model, group_dir)
         time.sleep(2)
         retry_started = now_iso()
         completed = subprocess.run(command, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
         retry_finished = now_iso()
+        group_returncode = completed.returncode
+        group_stdout_preview = completed.stdout[:1000]
         try:
             parsed_stdout = json.loads(completed.stdout)
             if isinstance(parsed_stdout, dict) and "children" in parsed_stdout:
@@ -559,6 +909,70 @@ def run_claude_group(
             receipt = load_receipt(receipt_path)
         counts = receipt.get("counts") or {}
         children = receipt.get("children") if isinstance(receipt.get("children"), list) else []
+    if int(counts.get("completed") or 0) == 0 and has_claude_auth_failure(receipt):
+        auth_fallback = {
+            "reason": "parallel_auth_retry_still_not_logged_in",
+            "action": "cooldown_then_serialized_fanout",
+            "cooldown_sec": 8,
+            "max_concurrency": 1,
+            "global_max_active": 1,
+        }
+        time.sleep(8)
+        fallback_command = fanout_command(max_concurrency=1, global_max_active=1, name_suffix="-auth-serialized")
+        fallback_started = now_iso()
+        completed = subprocess.run(fallback_command, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
+        fallback_finished = now_iso()
+        group_returncode = completed.returncode
+        group_stdout_preview = completed.stdout[:1000]
+        auth_fallback["started_at"] = fallback_started
+        auth_fallback["completed_at"] = fallback_finished
+        auth_fallback["returncode"] = completed.returncode
+        auth_fallback["stdout_preview"] = completed.stdout[:1000]
+        try:
+            parsed_stdout = json.loads(completed.stdout)
+            if isinstance(parsed_stdout, dict) and "children" in parsed_stdout:
+                receipt = parsed_stdout
+        except json.JSONDecodeError:
+            pass
+        receipt_paths = sorted(group_dir.rglob("fanout_receipt.json"), key=lambda path: path.stat().st_mtime)
+        if receipt_paths:
+            receipt_path = receipt_paths[-1]
+            receipt = load_receipt(receipt_path)
+        counts = receipt.get("counts") or {}
+        children = receipt.get("children") if isinstance(receipt.get("children"), list) else []
+    if int(counts.get("completed") or 0) == 0 and has_claude_auth_failure(receipt):
+        direct_receipt = run_direct_bridge_group(
+            args=args,
+            model=model,
+            jobs=jobs,
+            timeout_sec=timeout_sec,
+            budget=budget,
+            group_dir=group_dir,
+            name_suffix="-direct-bridge-auth-fallback",
+        )
+        if auth_fallback is None:
+            auth_fallback = {
+                "reason": "fanout_auth_not_logged_in",
+                "action": "direct_bridge_fallback",
+            }
+        else:
+            auth_fallback["direct_bridge_action"] = "direct_bridge_fallback"
+        auth_fallback["direct_bridge_receipt_path"] = direct_receipt.get("receipt_path")
+        auth_fallback["direct_bridge_status"] = direct_receipt.get("status")
+        auth_fallback["direct_bridge_counts"] = direct_receipt.get("counts")
+        receipt = direct_receipt
+        receipt_path = Path(str(direct_receipt["receipt_path"]))
+        counts = receipt.get("counts") or {}
+        children = receipt.get("children") if isinstance(receipt.get("children"), list) else []
+        group_returncode = 0 if int(counts.get("completed") or 0) > 0 else 1
+        group_stdout_preview = json.dumps(
+            {
+                "direct_bridge_fallback": True,
+                "receipt_path": direct_receipt.get("receipt_path"),
+                "counts": counts,
+            },
+            sort_keys=True,
+        )
     useful_children = [child for child in children if child_is_useful(child)]
     completed_child_ids = [str(child.get("id")) for child in useful_children]
     completed_paths = [
@@ -576,12 +990,10 @@ def run_claude_group(
         for child in children
         if isinstance(child, dict) and not child_is_useful(child)
     ]
-    packet_root = packet_root_for_route(args.route)
-    packet_fanout_path = packet_root / "skills/claude-bridge/scripts/claude_child_fanout.py"
     return {
         "model": model,
-        "status": "completed" if completed.returncode == 0 else "failed",
-        "returncode": completed.returncode,
+        "status": "completed" if group_returncode == 0 else "failed",
+        "returncode": group_returncode,
         "claude_fanout_path": str(fanout_path),
         "claude_fanout_source": fanout_source,
         "packet_root": str(packet_root),
@@ -593,8 +1005,9 @@ def run_claude_group(
         "retry_warmup": retry_warmup,
         "retry_started_at": retry_started,
         "retry_completed_at": retry_finished,
+        "auth_fallback": auth_fallback,
         "receipt_path": str(receipt_path) if receipt_path else None,
-        "stdout_preview": completed.stdout[:1000],
+        "stdout_preview": group_stdout_preview,
         "completed_child_ids": completed_child_ids,
         "completed_child_receipt_paths": completed_paths,
         "usefulness_failures": usefulness_failures,

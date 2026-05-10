@@ -31,9 +31,10 @@ import traceback
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 divergence_log = (
-    "Classical baseline: numpy computes frame bundle geometry while z3 checks "
-    "G-level ordering; the canonical geomstats/sympy obstruction proof remains "
-    "to be built."
+    "Classical baseline only: numpy computes bounded support-manifold geometry "
+    "while z3 and sympy check G-level ordering and obstruction criteria. "
+    "Separate coupling, GStack, bridge, axis, engine, or nonclassical admission "
+    "remains blocked until independent follow-on receipts are reconciled."
 )
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
@@ -994,6 +995,35 @@ if __name__ == "__main__":
         "classification": "classical_baseline",
         "classification_note": divergence_log,
         "divergence_log": divergence_log,
+        "claim_ceiling": "classical_baseline_support_manifold_admissibility_only",
+        "next_lego_target": "none",
+        "promotion_condition": (
+            "requires a separate reconciled queue row and canonical follow-on receipt "
+            "before any coupling, GStack, bridge, axis, or engine use"
+        ),
+        "blocked_until": (
+            "exact parent receipts, queue row, result JSON, ledger loopback, and "
+            "separate coupling-stage admission are reconciled"
+        ),
+        "demotion_condition": (
+            "demote if any named G-structure positive/negative/boundary criterion fails "
+            "or if the result is used to claim coupling, GStack, bridge, axis, engine, "
+            "or nonclassical admission"
+        ),
+        "out_of_scope": [
+            "no GStack promotion",
+            "no bridge, axis, engine, emergence, or QIT admission claim",
+            "no scientific coupling claim from this classical baseline receipt",
+        ],
+        "surviving_alternatives": [
+            "S3 reaches the odd-dimensional contact/Sasakian branch while almost-complex is blocked",
+            "S2/CP1 reaches the even-dimensional Kahler branch",
+            "T2 reaches the flat Kahler branch",
+        ],
+        "all_pass": all_pass,
+        "criteria_checked": sorted(
+            k for k, v in all_tests.items() if not k.startswith("_") and isinstance(v, dict)
+        ),
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

@@ -1,18 +1,18 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T07:51:03.999577+00:00",
+  "generated_at": "2026-05-10T07:54:12.443976+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 3917,
-    "result_json_count": 280,
-    "linked_result_json_count": 254,
+    "result_json_count": 284,
+    "linked_result_json_count": 258,
     "unlinked_result_json_count": 26,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
-      "source_only": 3664,
+      "source_only": 3660,
       "legacy_result_or_repair_needed": 12,
-      "rerun_or_admission_candidate": 157,
+      "rerun_or_admission_candidate": 161,
       "contract_shaped_but_tool_depth_thin": 73,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
@@ -63,18 +63,18 @@
       "clifford": 273,
       "xgi": 196,
       "geomstats": 109,
-      "gudhi": 113,
+      "gudhi": 114,
       "scipy": 53,
-      "toponetx": 109,
+      "toponetx": 111,
       "e3nn": 55,
-      "pyg": 65,
+      "pyg": 66,
       "qutip": 31,
       "qiskit": 8,
       "networkx": 2
     },
     "result_classification_counts": {
-      "canonical": 137,
-      "classical_baseline": 61,
+      "canonical": 140,
+      "classical_baseline": 62,
       "exploratory": 30,
       "research_support": 6,
       "tool_lego_fit_probe": 1,
@@ -83,8 +83,8 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 242,
-    "source_only_count": 3664
+    "repair_candidate_count": 246,
+    "source_only_count": 3660
   },
   "admitted_stems": [
     "sim_clifford_capability",
@@ -2951,6 +2951,42 @@
       "inventory_status": "rerun_or_admission_candidate"
     },
     {
+      "stem": "sim_gudhi_bridge_persistence",
+      "source_path": "system_v4/probes/sim_gudhi_bridge_persistence.py",
+      "families": [
+        "entropy_information",
+        "graph_topology",
+        "axis_bridge",
+        "graveyard_negative"
+      ],
+      "tools": {
+        "numpy": "imported",
+        "pytorch": "load_bearing",
+        "gudhi": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "gudhi",
+        "pytorch"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/gudhi_bridge_persistence_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": true,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_gudhi_capability",
       "source_path": "system_v4/probes/sim_gudhi_capability.py",
       "families": [
@@ -3678,45 +3714,6 @@
       "late_stage_signal": false,
       "has_contract_shape": true,
       "inventory_status": "contract_shaped_but_tool_depth_thin"
-    },
-    {
-      "stem": "sim_layer_coupling_matrix_v3",
-      "source_path": "system_v4/probes/sim_layer_coupling_matrix_v3.py",
-      "families": [
-        "graph_topology",
-        "graveyard_negative"
-      ],
-      "tools": {
-        "numpy": "imported",
-        "pytorch": "load_bearing",
-        "z3": "load_bearing",
-        "sympy": "load_bearing",
-        "clifford": "tried",
-        "rustworkx": "load_bearing"
-      },
-      "load_bearing_tools": [
-        "pytorch",
-        "rustworkx",
-        "sympy",
-        "z3"
-      ],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/layer_coupling_matrix_v3_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "canonical"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": true,
-      "has_contract_shape": true,
-      "inventory_status": "rerun_or_admission_candidate"
     }
   ],
   "source_only_samples": [
@@ -77227,17 +77224,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/gudhi_bridge_persistence_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": true,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_gudhi_capability",
@@ -117151,23 +117152,30 @@
       ],
       "tools": {
         "numpy": "imported",
-        "toponetx": "used",
-        "gudhi": "used"
+        "toponetx": "load_bearing",
+        "gudhi": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "gudhi",
+        "toponetx"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/toponetx_gudhi_hodge_betti_cross_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_toponetx_gudhi_joint_same_complex_parity",
@@ -117278,24 +117286,31 @@
       ],
       "tools": {
         "numpy": "imported",
-        "pytorch": "imported",
-        "pyg": "imported",
-        "toponetx": "imported"
+        "pytorch": "supportive",
+        "pyg": "load_bearing",
+        "toponetx": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "pyg",
+        "toponetx"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_toponetx_pyg_hodge_message_pass_compound_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_toponetx_state_class_binding",
@@ -117808,17 +117823,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_torch_clifford_ga_bridge_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": true,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_torch_cnot",

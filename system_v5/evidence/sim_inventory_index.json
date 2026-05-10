@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T17:52:44.303374+00:00",
+  "generated_at": "2026-05-10T17:56:53.453276+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 3917,
-    "result_json_count": 423,
-    "linked_result_json_count": 392,
+    "result_json_count": 424,
+    "linked_result_json_count": 393,
     "unlinked_result_json_count": 31,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
-      "source_only": 3527,
-      "rerun_or_admission_candidate": 219,
+      "source_only": 3526,
+      "rerun_or_admission_candidate": 220,
       "legacy_result_or_repair_needed": 14,
       "contract_shaped_but_tool_depth_thin": 146,
       "admitted": 9,
@@ -56,7 +56,7 @@
     "load_bearing_tool_counts": {
       "numpy": 175,
       "cvc5": 505,
-      "pytorch": 1122,
+      "pytorch": 1121,
       "rustworkx": 280,
       "z3": 724,
       "sympy": 552,
@@ -73,7 +73,7 @@
       "networkx": 3
     },
     "result_classification_counts": {
-      "classical_baseline": 80,
+      "classical_baseline": 81,
       "canonical": 248,
       "exploratory": 30,
       "research_support": 6,
@@ -84,8 +84,8 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 379,
-    "source_only_count": 3527
+    "repair_candidate_count": 380,
+    "source_only_count": 3526
   },
   "admitted_stems": [
     "sim_clifford_capability",
@@ -60007,37 +60007,40 @@
       ],
       "tools": {
         "numpy": "imported",
-        "pytorch": "load_bearing",
-        "pyg": "imported",
+        "pytorch": "supportive",
+        "pyg": "tried",
         "z3": "load_bearing",
-        "cvc5": "imported",
+        "cvc5": "tried",
         "sympy": "load_bearing",
-        "clifford": "imported",
-        "rustworkx": "imported",
-        "toponetx": "imported",
-        "gudhi": "imported",
-        "geomstats": "imported",
-        "xgi": "imported",
-        "e3nn": "imported"
+        "clifford": "tried",
+        "rustworkx": "tried",
+        "toponetx": "tried",
+        "gudhi": "tried",
+        "geomstats": "tried",
+        "xgi": "tried",
+        "e3nn": "tried"
       },
       "load_bearing_tools": [
-        "pytorch",
         "sympy",
         "z3"
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/g_structure_tower_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_g_structure_tower_classical_obstruction",

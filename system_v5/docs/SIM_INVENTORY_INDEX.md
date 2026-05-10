@@ -1,23 +1,23 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T08:03:58.050255+00:00`
+Generated: `2026-05-10T08:05:44.272485+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `3917`
-- Result JSON files seen: `299`
-- Linked result JSON files: `273`
-- Unlinked result JSON files: `26`
+- Result JSON files seen: `302`
+- Linked result JSON files: `275`
+- Unlinked result JSON files: `27`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `261`
-- Source-only rows: `3645`
+- Repair / rerun candidate rows: `263`
+- Source-only rows: `3643`
 
 ## Inventory Status Counts
 
-- `source_only`: 3645
-- `rerun_or_admission_candidate`: 176
+- `source_only`: 3643
+- `rerun_or_admission_candidate`: 178
 - `contract_shaped_but_tool_depth_thin`: 73
 - `legacy_result_or_repair_needed`: 12
 - `admitted`: 9
@@ -67,6 +67,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `system_v4/a2_state/sim_results/holodeck_fep_results.json`
 - `system_v4/a2_state/sim_results/type2_process_cycle_results.json`
 - `system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json`
+- `system_v4/probes/a2_state/sim_results/deep_graveyard_results.json`
 - `system_v4/probes/a2_state/sim_results/engine_protocol_dag_results.json`
 - `system_v4/probes/a2_state/sim_results/lego_tool_reporting_audit_results.json`
 - `system_v4/probes/a2_state/sim_results/migration_contract_audit_results.json`
@@ -106,6 +107,8 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 | status | stem | families | load-bearing tools | result classes |
 | --- | --- | --- | --- | --- |
+| rerun_or_admission_candidate | `classical_baseline_carnot_efficiency` | thermo_engine, classical_baseline | numpy | classical_baseline |
+| rerun_or_admission_candidate | `classical_baseline_szilard_onebit` | thermo_engine, classical_baseline | numpy | classical_baseline |
 | legacy_result_or_repair_needed | `followup_anomaly_investigation` | entropy_information, hopf_torus, graph_topology | - | - |
 | legacy_result_or_repair_needed | `mass_stabilization_sim` | entropy_information, hopf_torus, weyl_spinor_clifford, graph_topology, axis_bridge | - | - |
 | rerun_or_admission_candidate | `sim_axis6_e3nn_fe_bridge` | density_carrier, axis_bridge, graveyard_negative | e3nn, geomstats, pytorch, z3 | canonical |
@@ -154,5 +157,3 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | rerun_or_admission_candidate | `sim_contact_holo_weyl_bridge_claims_canonical` | density_carrier, weyl_spinor_clifford, geometry_gstack_gtower, graph_topology, gerbe_dirac_mera_spectral, axis_bridge, graveyard_negative | rustworkx, toponetx, xgi | classical_baseline |
 | rerun_or_admission_candidate | `sim_contact_holo_weyl_emergence_quantities` | weyl_spinor_clifford, geometry_gstack_gtower, graph_topology, gerbe_dirac_mera_spectral | rustworkx, toponetx, xgi | classical_baseline |
 | rerun_or_admission_candidate | `sim_contact_holo_weyl_pairwise_coupling` | hopf_torus, weyl_spinor_clifford, geometry_gstack_gtower, gerbe_dirac_mera_spectral, graveyard_negative | rustworkx, toponetx, xgi | classical_baseline |
-| rerun_or_admission_candidate | `sim_contact_holo_weyl_topology_variants` | weyl_spinor_clifford, geometry_gstack_gtower, graph_topology, gerbe_dirac_mera_spectral, classical_baseline, graveyard_negative | rustworkx, toponetx, xgi | classical_baseline |
-| rerun_or_admission_candidate | `sim_contact_holo_weyl_triple_coexistence` | entropy_information, weyl_spinor_clifford, geometry_gstack_gtower, graph_topology, gerbe_dirac_mera_spectral | rustworkx, toponetx, xgi | classical_baseline |

@@ -1,18 +1,18 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T08:03:58.050255+00:00",
+  "generated_at": "2026-05-10T08:05:44.272485+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 3917,
-    "result_json_count": 299,
-    "linked_result_json_count": 273,
-    "unlinked_result_json_count": 26,
+    "result_json_count": 302,
+    "linked_result_json_count": 275,
+    "unlinked_result_json_count": 27,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
-      "source_only": 3645,
+      "source_only": 3643,
+      "rerun_or_admission_candidate": 178,
       "legacy_result_or_repair_needed": 12,
-      "rerun_or_admission_candidate": 176,
       "contract_shaped_but_tool_depth_thin": 73,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
@@ -73,8 +73,8 @@
       "networkx": 3
     },
     "result_classification_counts": {
+      "classical_baseline": 68,
       "canonical": 151,
-      "classical_baseline": 66,
       "exploratory": 30,
       "research_support": 6,
       "tool_lego_fit_probe": 1,
@@ -83,8 +83,8 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 261,
-    "source_only_count": 3645
+    "repair_candidate_count": 263,
+    "source_only_count": 3643
   },
   "admitted_stems": [
     "sim_clifford_capability",
@@ -103,6 +103,7 @@
     "system_v4/a2_state/sim_results/holodeck_fep_results.json",
     "system_v4/a2_state/sim_results/type2_process_cycle_results.json",
     "system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json",
+    "system_v4/probes/a2_state/sim_results/deep_graveyard_results.json",
     "system_v4/probes/a2_state/sim_results/engine_protocol_dag_results.json",
     "system_v4/probes/a2_state/sim_results/lego_tool_reporting_audit_results.json",
     "system_v4/probes/a2_state/sim_results/migration_contract_audit_results.json",
@@ -127,6 +128,68 @@
     "system_v4/probes/classical_doctrine_mirrors/sim_results/sim_classical_weyl_chirality_extraction_results.json"
   ],
   "repair_candidate_samples": [
+    {
+      "stem": "classical_baseline_carnot_efficiency",
+      "source_path": "system_v4/probes/classical_baseline_carnot_efficiency.py",
+      "families": [
+        "thermo_engine",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/classical_baseline_carnot_efficiency_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
+      "stem": "classical_baseline_szilard_onebit",
+      "source_path": "system_v4/probes/classical_baseline_szilard_onebit.py",
+      "families": [
+        "thermo_engine",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/classical_baseline_szilard_onebit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
     {
       "stem": "followup_anomaly_investigation",
       "source_path": "system_v4/probes/followup_anomaly_investigation.py",
@@ -3608,98 +3671,6 @@
       "late_stage_signal": false,
       "has_contract_shape": true,
       "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_hopf_mera_gerbe_triple_coexistence",
-      "source_path": "system_v4/probes/sim_hopf_mera_gerbe_triple_coexistence.py",
-      "families": [
-        "hopf_torus",
-        "gerbe_dirac_mera_spectral",
-        "graveyard_negative"
-      ],
-      "tools": {
-        "numpy": "imported",
-        "pytorch": "used",
-        "pyg": "load_bearing",
-        "z3": "used",
-        "cvc5": "tried",
-        "sympy": "used",
-        "clifford": "used",
-        "rustworkx": "load_bearing",
-        "toponetx": "load_bearing",
-        "gudhi": "load_bearing",
-        "geomstats": "tried",
-        "xgi": "load_bearing",
-        "e3nn": "tried"
-      },
-      "load_bearing_tools": [
-        "gudhi",
-        "pyg",
-        "rustworkx",
-        "toponetx",
-        "xgi"
-      ],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/sim_hopf_mera_gerbe_triple_coexistence_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "classical_baseline"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": true,
-      "has_contract_shape": true,
-      "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_hopf_torus_lego",
-      "source_path": "system_v4/probes/sim_hopf_torus_lego.py",
-      "families": [
-        "channel_operator",
-        "hopf_torus",
-        "weyl_spinor_clifford",
-        "geometry_gstack_gtower",
-        "graph_topology",
-        "graveyard_negative"
-      ],
-      "tools": {
-        "numpy": "imported",
-        "pytorch": "load_bearing",
-        "z3": "load_bearing",
-        "clifford": "load_bearing",
-        "gudhi": "load_bearing",
-        "geomstats": "load_bearing"
-      },
-      "load_bearing_tools": [
-        "clifford",
-        "geomstats",
-        "gudhi",
-        "pytorch",
-        "z3"
-      ],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/hopf_torus_lego_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "canonical"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": false,
-      "has_contract_shape": true,
-      "inventory_status": "rerun_or_admission_candidate"
     }
   ],
   "source_only_samples": [
@@ -4821,33 +4792,6 @@
       "stem": "classical_baseline_boids",
       "source_path": "system_v4/probes/classical_baseline_boids.py",
       "families": [
-        "classical_baseline"
-      ],
-      "tools": {
-        "numpy": "load_bearing"
-      },
-      "load_bearing_tools": [
-        "numpy"
-      ],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
-    },
-    {
-      "stem": "classical_baseline_carnot_efficiency",
-      "source_path": "system_v4/probes/classical_baseline_carnot_efficiency.py",
-      "families": [
-        "thermo_engine",
         "classical_baseline"
       ],
       "tools": {
@@ -6319,6 +6263,32 @@
       "late_stage_signal": false,
       "has_contract_shape": false,
       "inventory_status": "source_only"
+    },
+    {
+      "stem": "classical_baseline_monte_carlo_pi",
+      "source_path": "system_v4/probes/classical_baseline_monte_carlo_pi.py",
+      "families": [
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [],
+      "result_count": 0,
+      "result_classifications": [],
+      "result_has_contract_shape": false,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": false,
+      "inventory_status": "source_only"
     }
   ],
   "rows": [
@@ -7477,17 +7447,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/classical_baseline_carnot_efficiency_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "classical_baseline_cellular_automaton",
@@ -9711,17 +9685,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/classical_baseline_szilard_onebit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "classical_baseline_u1_phase_loop",

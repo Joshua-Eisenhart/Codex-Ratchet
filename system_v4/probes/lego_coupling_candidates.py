@@ -90,6 +90,16 @@ COUPLING_TARGETS = {
             },
             {
                 "lego_probe": "sim_xgi_family_hypergraph.py",
+                "coupling_probe": "sim_graph_cell_complex_betti_crosscheck.py",
+                "existing_anchor": "graph_cell_complex_betti_crosscheck_results.json",
+                "status": "existing_anchor",
+                "reason": (
+                    "Graph/cell-complex geometry now has a bounded cross-tool Betti invariant receipt "
+                    "across rustworkx, PyG/torch, and GUDHI with negative controls."
+                ),
+            },
+            {
+                "lego_probe": "sim_xgi_family_hypergraph.py",
                 "coupling_probe": "sim_xgi_indirect_pathway.py",
                 "existing_anchor": "xgi_indirect_pathway_results.json",
                 "status": "existing_anchor",

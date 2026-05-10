@@ -1,23 +1,23 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T07:58:35.224954+00:00`
+Generated: `2026-05-10T08:00:30.943993+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `3917`
-- Result JSON files seen: `291`
-- Linked result JSON files: `265`
+- Result JSON files seen: `297`
+- Linked result JSON files: `271`
 - Unlinked result JSON files: `26`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `253`
-- Source-only rows: `3653`
+- Repair / rerun candidate rows: `259`
+- Source-only rows: `3647`
 
 ## Inventory Status Counts
 
-- `source_only`: 3653
-- `rerun_or_admission_candidate`: 168
+- `source_only`: 3647
+- `rerun_or_admission_candidate`: 174
 - `contract_shaped_but_tool_depth_thin`: 73
 - `legacy_result_or_repair_needed`: 12
 - `admitted`: 9
@@ -49,10 +49,10 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `cvc5`: 503
 - `rustworkx`: 278
 - `clifford`: 273
-- `xgi`: 197
+- `xgi`: 198
 - `numpy`: 174
-- `gudhi`: 114
-- `toponetx`: 112
+- `gudhi`: 116
+- `toponetx`: 114
 - `geomstats`: 109
 - `pyg`: 67
 - `e3nn`: 55

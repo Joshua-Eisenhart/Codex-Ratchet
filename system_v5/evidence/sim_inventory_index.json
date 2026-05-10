@@ -1,18 +1,18 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T07:58:35.224954+00:00",
+  "generated_at": "2026-05-10T08:00:30.943993+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 3917,
-    "result_json_count": 291,
-    "linked_result_json_count": 265,
+    "result_json_count": 297,
+    "linked_result_json_count": 271,
     "unlinked_result_json_count": 26,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
-      "source_only": 3653,
+      "source_only": 3647,
       "legacy_result_or_repair_needed": 12,
-      "rerun_or_admission_candidate": 168,
+      "rerun_or_admission_candidate": 174,
       "contract_shaped_but_tool_depth_thin": 73,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
@@ -61,11 +61,11 @@
       "z3": 721,
       "sympy": 550,
       "clifford": 273,
-      "xgi": 197,
+      "xgi": 198,
       "geomstats": 109,
-      "gudhi": 114,
+      "gudhi": 116,
       "scipy": 53,
-      "toponetx": 112,
+      "toponetx": 114,
       "e3nn": 55,
       "pyg": 67,
       "qutip": 31,
@@ -73,7 +73,7 @@
       "networkx": 3
     },
     "result_classification_counts": {
-      "canonical": 145,
+      "canonical": 151,
       "classical_baseline": 64,
       "exploratory": 30,
       "research_support": 6,
@@ -83,8 +83,8 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 253,
-    "source_only_count": 3653
+    "repair_candidate_count": 259,
+    "source_only_count": 3647
   },
   "admitted_stems": [
     "sim_clifford_capability",
@@ -3050,6 +3050,71 @@
       "inventory_status": "rerun_or_admission_candidate"
     },
     {
+      "stem": "sim_gudhi_deep_persistence_diagram_stability_under_probe",
+      "source_path": "system_v4/probes/sim_gudhi_deep_persistence_diagram_stability_under_probe.py",
+      "families": [
+        "root_admission",
+        "channel_operator",
+        "graph_topology"
+      ],
+      "tools": {
+        "numpy": "imported",
+        "gudhi": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "gudhi"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_gudhi_deep_persistence_diagram_stability_under_probe_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
+      "stem": "sim_gudhi_deep_rips_vs_cech_admissibility",
+      "source_path": "system_v4/probes/sim_gudhi_deep_rips_vs_cech_admissibility.py",
+      "families": [
+        "root_admission",
+        "graph_topology"
+      ],
+      "tools": {
+        "numpy": "imported",
+        "gudhi": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "gudhi"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_gudhi_deep_rips_vs_cech_admissibility_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_gudhi_rips_point_cloud_micro",
       "source_path": "system_v4/probes/sim_gudhi_rips_point_cloud_micro.py",
       "families": [
@@ -3622,89 +3687,6 @@
       "source_has_tool_integration_depth": true,
       "result_paths": [
         "system_v4/probes/a2_state/sim_results/hopf_torus_lego_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "canonical"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": false,
-      "has_contract_shape": true,
-      "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_iching_64_engine_rosetta",
-      "source_path": "system_v4/probes/sim_iching_64_engine_rosetta.py",
-      "families": [
-        "thermo_engine"
-      ],
-      "tools": {
-        "numpy": "load_bearing",
-        "pytorch": "imported",
-        "pyg": "load_bearing",
-        "z3": "load_bearing",
-        "cvc5": "load_bearing",
-        "qutip": "load_bearing",
-        "qiskit": "load_bearing",
-        "rustworkx": "load_bearing",
-        "toponetx": "load_bearing",
-        "gudhi": "load_bearing",
-        "xgi": "load_bearing"
-      },
-      "load_bearing_tools": [
-        "cvc5",
-        "gudhi",
-        "numpy",
-        "pyg",
-        "qiskit",
-        "qutip",
-        "rustworkx",
-        "toponetx",
-        "xgi",
-        "z3"
-      ],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/iching_64_engine_rosetta_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "canonical"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": true,
-      "has_contract_shape": true,
-      "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_integration_cvc5_z3_unsat_agreement_micro",
-      "source_path": "system_v4/probes/sim_integration_cvc5_z3_unsat_agreement_micro.py",
-      "families": [
-        "thermo_engine",
-        "axis_bridge",
-        "graveyard_negative"
-      ],
-      "tools": {
-        "z3": "load_bearing",
-        "cvc5": "load_bearing"
-      },
-      "load_bearing_tools": [
-        "cvc5",
-        "z3"
-      ],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/sim_integration_cvc5_z3_unsat_agreement_micro_results.json"
       ],
       "result_count": 1,
       "result_classifications": [
@@ -77374,22 +77356,28 @@
       ],
       "tools": {
         "numpy": "imported",
-        "gudhi": "imported"
+        "gudhi": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "gudhi"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_gudhi_deep_persistence_diagram_stability_under_probe_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_gudhi_deep_persistent_h1_excludes_trivial_homology",
@@ -77427,22 +77415,28 @@
       ],
       "tools": {
         "numpy": "imported",
-        "gudhi": "imported"
+        "gudhi": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "gudhi"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_gudhi_deep_rips_vs_cech_admissibility_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_gudhi_deep_s3_hopf_torus_persistent_homology",
@@ -102033,17 +102027,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_pyg_deep_oversmoothing_bound_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_pyg_dynamic_edge_werner",
@@ -107500,17 +107498,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_rustworkx_deep_planarity_vs_genus_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_rustworkx_deep_scc_admissibility",
@@ -117055,22 +117057,28 @@
       ],
       "tools": {
         "numpy": "imported",
-        "toponetx": "imported"
+        "toponetx": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "toponetx"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_toponetx_deep_cell_complex_boundary_consistency_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_toponetx_deep_hodge_boundary",
@@ -125404,25 +125412,32 @@
         "graveyard_negative"
       ],
       "tools": {
-        "numpy": "used",
-        "toponetx": "imported",
-        "xgi": "imported",
-        "networkx": "imported"
+        "numpy": "supportive",
+        "toponetx": "load_bearing",
+        "xgi": "load_bearing",
+        "networkx": "supportive"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "toponetx",
+        "xgi"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_xgi_deep_toponetx_hodge_agreement_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_xgi_dual_hypergraph",

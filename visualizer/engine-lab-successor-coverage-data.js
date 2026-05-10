@@ -1,6 +1,6 @@
 window.ENGINE_LAB_SUCCESSOR_COVERAGE_DATA = {
   "name": "engine_lab_successor_coverage_audit",
-  "generated_at": "2026-05-10T07:36:22.869994+00:00",
+  "generated_at": "2026-05-10T08:03:31.074807+00:00",
   "summary": {
     "all_pass": true,
     "queue_row_count": 10,
@@ -19,9 +19,9 @@ window.ENGINE_LAB_SUCCESSOR_COVERAGE_DATA = {
     "engine_lab_next_work_queue": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/engine_lab_next_work_queue_results.json"
   },
   "source_receipt_mtimes": {
-    "engine_lab_matrix_results.json": 1778398582.7614508,
-    "engine_lab_open_row_audit_results.json": 1778379101.9842682,
-    "engine_lab_next_work_queue_results.json": 1778398582.870319
+    "engine_lab_matrix_results.json": 1778400210.9422123,
+    "engine_lab_open_row_audit_results.json": 1778400211.073278,
+    "engine_lab_next_work_queue_results.json": 1778398582.870418
   },
   "positive": {
     "queue_reports_no_active_uncovered_rows": {

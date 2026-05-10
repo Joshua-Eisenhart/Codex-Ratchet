@@ -1,18 +1,18 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T08:00:30.943993+00:00",
+  "generated_at": "2026-05-10T08:03:58.050255+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 3917,
-    "result_json_count": 297,
-    "linked_result_json_count": 271,
+    "result_json_count": 299,
+    "linked_result_json_count": 273,
     "unlinked_result_json_count": 26,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
-      "source_only": 3647,
+      "source_only": 3645,
       "legacy_result_or_repair_needed": 12,
-      "rerun_or_admission_candidate": 174,
+      "rerun_or_admission_candidate": 176,
       "contract_shaped_but_tool_depth_thin": 73,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
@@ -74,7 +74,7 @@
     },
     "result_classification_counts": {
       "canonical": 151,
-      "classical_baseline": 64,
+      "classical_baseline": 66,
       "exploratory": 30,
       "research_support": 6,
       "tool_lego_fit_probe": 1,
@@ -83,8 +83,8 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 259,
-    "source_only_count": 3647
+    "repair_candidate_count": 261,
+    "source_only_count": 3645
   },
   "admitted_stems": [
     "sim_clifford_capability",
@@ -106633,17 +106633,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_rosetta_pairwise_entropy_nc_coupling_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": true,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_rosetta_pairwise_frameworks_entropy_coupling",
@@ -106674,17 +106678,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_rosetta_pairwise_frameworks_entropy_coupling_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": true,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_rosetta_signal_scorer",

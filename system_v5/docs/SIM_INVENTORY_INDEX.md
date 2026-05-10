@@ -1,6 +1,6 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T20:39:22.830997+00:00`
+Generated: `2026-05-10T20:43:21.942156+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
@@ -53,7 +53,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `xgi`: 200
 - `gudhi`: 119
 - `toponetx`: 118
-- `geomstats`: 109
+- `geomstats`: 108
 - `pyg`: 68
 - `scipy`: 60
 - `e3nn`: 55
@@ -125,7 +125,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | legacy_result_or_repair_needed | `sim_axis_exploration_suite` | channel_operator, hopf_torus, weyl_spinor_clifford, axis_bridge | - | - |
 | legacy_result_or_repair_needed | `sim_axis_hopf_geometry` | density_carrier, hopf_torus, weyl_spinor_clifford, geometry_gstack_gtower, thermo_engine, axis_bridge | - | - |
 | rerun_or_admission_candidate | `sim_base_loop_law` | hopf_torus | numpy | canonical |
-| rerun_or_admission_candidate | `sim_berry_qfi_shell_paths` | density_carrier, entropy_information, hopf_torus, geometry_gstack_gtower | geomstats, pytorch, sympy | canonical |
+| rerun_or_admission_candidate | `sim_berry_qfi_shell_paths` | density_carrier, entropy_information, hopf_torus, geometry_gstack_gtower | pytorch, sympy | canonical |
 | rerun_or_admission_candidate | `sim_bipartite_entropy_topology_coexistence` | entropy_information, geometry_gstack_gtower, graph_topology, thermo_engine, axis_bridge | gudhi, numpy, pytorch, z3 | supporting |
 | rerun_or_admission_candidate | `sim_blackwell_style_comparison` | root_admission, channel_operator, classical_baseline | cvc5 | canonical |
 | rerun_or_admission_candidate | `sim_branch_weight` | uncategorized | numpy | canonical |

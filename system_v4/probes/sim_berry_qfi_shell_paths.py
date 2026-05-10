@@ -27,6 +27,8 @@ import numpy as np
 import math
 classification = "canonical"
 
+from receipt_boundary import apply_default_receipt_boundary
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -50,7 +52,7 @@ TOOL_INTEGRATION_DEPTH = {
     "clifford": None,
     "cvc5": None,
     "e3nn": None,
-    "geomstats": "load_bearing",
+    "geomstats": "supportive",
     "gudhi": None,
     "pyg": None,
     "pytorch": "load_bearing",
@@ -928,6 +930,18 @@ if __name__ == "__main__":
         },
         "open_questions_addressed": open_questions,
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_berry_qfi_shell_paths",
+        target=(
+            "Use as a bounded Berry/QFI shell-geometry lego receipt before exact "
+            "operator/geometry coexistence work."
+        ),
+    )
+    results["promotion_condition"] = (
+        "Requires exact downstream operator/geometry coexistence receipts and explicit stage-gate admission."
+    )
+    results["blocked_until"] = "operator/geometry coexistence receipt and stage-gate admission"
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

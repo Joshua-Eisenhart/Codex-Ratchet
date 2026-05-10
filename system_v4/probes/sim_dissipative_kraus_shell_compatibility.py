@@ -650,15 +650,68 @@ if __name__ == "__main__":
                 sname: d["sat_counts"] for sname, d in shells.items()
             }
 
+    all_pass = bool(
+        TORCH_OK
+        and Z3_OK
+        and SYMPY_OK
+        and GEOMSTATS_OK
+        and "shell_summary" in positive
+        and negative.get("z3_summary", {}).get("all_unsat") is True
+        and "sympy_amplitude_damping_unitality" in boundary
+        and "geomstats_geodesic" in boundary
+    )
+
     results = {
         "name": "sim_dissipative_kraus_shell_compatibility",
         "classification": "canonical",
+        "classification_note": (
+            "Canonical finite multi-tool shell compatibility receipt for three "
+            "dissipative Kraus channel families; this is not QIT/GStack/axis promotion."
+        ),
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "claim_ceiling": (
+            "finite dissipative Kraus shell compatibility receipt only; no bridge, "
+            "GStack, axis, QIT, or nonclassical admission"
+        ),
+        "next_lego_target": (
+            "Use as a bounded operator-parameter/source receipt for later coupling "
+            "work only after exact downstream checks."
+        ),
+        "promotion_condition": (
+            "Requires separate bridge/nonclassical/topology/operator coupling receipts "
+            "and explicit stage-gate approval."
+        ),
+        "blocked_until": "tool-lego fit; coupling/coexistence evidence; stage-gate admission",
+        "demotion_condition": (
+            "Demote if any required tool import is unavailable, Z3 proofs stop being "
+            "UNSAT, or shell/channel claims exceed this finite receipt."
+        ),
+        "out_of_scope": [
+            "QIT engine admission",
+            "GStack admission",
+            "axis promotion",
+            "nonclassical proof",
+        ],
+        "all_pass": all_pass,
+        "criteria_checked": [
+            "PyTorch Kraus channel shell matrix produced",
+            "Z3 negative proofs returned UNSAT",
+            "SymPy analytic boundary checks produced",
+            "geomstats SPD geodesic witness produced",
+        ],
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
         "shell_matrix_report": shell_matrix_report,
+        "summary": {
+            "all_pass": all_pass,
+            "tools_required": ["pytorch", "z3", "sympy", "geomstats"],
+            "scope_note": (
+                "Finite operator-parameter compatibility receipt over amplitude "
+                "damping, phase damping, and depolarizing channels."
+            ),
+        },
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

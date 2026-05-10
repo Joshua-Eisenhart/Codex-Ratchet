@@ -36,6 +36,7 @@ PRIMARY_LEGO_IDS = [
 ]
 
 TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "load-bearing density matrices, probe probabilities, and repeatability comparisons"},
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
     "z3": {"tried": False, "used": False, "reason": "not needed for smallest repeatability row"},
@@ -51,6 +52,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
 
 
 def dm(v):
@@ -136,6 +138,16 @@ def main():
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "claim_ceiling": "canonical_local_probe_identity_lego_only",
+        "next_lego_target": "none",
+        "promotion_condition": "requires separate reconciled queue row before coupling, bridge, axis, engine, or QIT use",
+        "blocked_until": "exact parent receipts, queue row, result JSON, and ledger loopback are reconciled",
+        "demotion_condition": "demote if repeatability or separation criteria fail, or if this row is used for a higher-stage claim",
+        "out_of_scope": [
+            "no coupling, bridge, axis, engine, GStack, or nonclassical admission claim",
+        ],
+        "all_pass": all_pass,
+        "criteria_checked": list(positive) + list(negative) + list(boundary),
         "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": divergence_log,
         "positive": positive,

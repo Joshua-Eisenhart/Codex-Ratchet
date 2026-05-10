@@ -26,6 +26,7 @@ INVENTORY_PATH = PROJECT_DIR / "system_v5" / "evidence" / "sim_inventory_index.j
 OUT_PATH = RESULTS_DIR / "actual_lego_work_matrix.json"
 PROCESS_AUDIT_PATH = RESULTS_DIR / "actual_lego_process_receipt_audit.json"
 INDEXED_AUDIT_PATH = RESULTS_DIR / "actual_lego_indexed_receipt_audit.json"
+COUPLING_AUDIT_PATH = RESULTS_DIR / "actual_lego_coupling_receipt_audit.json"
 
 
 NONCLASSICAL_ADJACENT_TOOLS = {
@@ -210,6 +211,7 @@ def next_action(
     coupling_rows: list[dict],
     process_audit_row: dict | None = None,
     indexed_audit_row: dict | None = None,
+    coupling_audit_by_result: dict[str, dict] | None = None,
 ) -> dict:
     machine_coverage = row.get("machine_current_coverage") or row.get("current_coverage")
     source_coverage = row.get("current_coverage")
@@ -267,11 +269,41 @@ def next_action(
     if ready_couplings:
         receipt_linked = []
         for coupling in ready_couplings:
-            coupling_result = load_result_summary(result_name_for_probe(coupling.get("recommended_sim")))
+            coupling_result_name = result_name_for_probe(coupling.get("recommended_sim"))
+            coupling_result = load_result_summary(coupling_result_name)
             if coupling_result.get("result_exists") and coupling_result.get("all_pass") is True:
-                receipt_linked.append((coupling, coupling_result))
+                receipt_linked.append((coupling, coupling_result, coupling_result_name))
         if receipt_linked:
-            coupling, coupling_result = receipt_linked[0]
+            coupling, coupling_result, coupling_result_name = receipt_linked[0]
+            coupling_audit = (coupling_audit_by_result or {}).get(coupling_result_name)
+            if coupling_audit:
+                if coupling_audit.get("hard_finding_count", 0):
+                    return {
+                        "status": "coupling_receipt_hard_blocked",
+                        "reason": "linked coupling receipt audit found hard validator findings",
+                        "packet": coupling.get("recommended_sim"),
+                        "coupling_result_classification": coupling_result.get("classification"),
+                    }
+                if coupling_audit.get("warning_count", 0):
+                    return {
+                        "status": "coupling_receipt_boundary_warnings",
+                        "reason": "linked coupling receipt is hard-green but still has boundary warnings",
+                        "packet": coupling.get("recommended_sim"),
+                        "coupling_result_classification": coupling_result.get("classification"),
+                    }
+                if coupling_audit.get("audit_status") == "hard_green_closure_candidate":
+                    return {
+                        "status": "coupling_receipt_audited_closure_candidate",
+                        "reason": "linked coupling receipt is hard-green and closure-candidate, but still not promoted",
+                        "packet": coupling.get("recommended_sim"),
+                        "coupling_result_classification": coupling_result.get("classification"),
+                    }
+                return {
+                    "status": "coupling_receipt_audited_not_closure_grade",
+                    "reason": "linked coupling receipt is hard-green but supporting/not closure-grade; keep as evidence only",
+                    "packet": coupling.get("recommended_sim"),
+                    "coupling_result_classification": coupling_result.get("classification"),
+                }
             if coupling.get("status") == "supporting_only":
                 return {
                     "status": "coupling_supporting_receipt_indexed",
@@ -362,6 +394,7 @@ def main() -> int:
     inventory = read_json(INVENTORY_PATH)
     process_audit = read_json(PROCESS_AUDIT_PATH)
     indexed_audit = read_json(INDEXED_AUDIT_PATH)
+    coupling_audit = read_json(COUPLING_AUDIT_PATH)
 
     inv_by_stem = inventory_by_stem(inventory)
     norm_by_id = {row.get("lego_id"): row for row in normalization.get("rows", [])}
@@ -369,6 +402,11 @@ def main() -> int:
     coupling_by_probe: dict[str, list[dict]] = defaultdict(list)
     process_audit_by_id = {row.get("lego_id"): row for row in process_audit.get("rows", [])}
     indexed_audit_by_id = {row.get("lego_id"): row for row in indexed_audit.get("rows", [])}
+    coupling_audit_by_result = {
+        Path(row.get("coupling_result", "")).name: row
+        for row in coupling_audit.get("rows", [])
+        if row.get("coupling_result")
+    }
     for row in coupling_queue.get("rows", []):
         coupling_by_family[row.get("lego_or_pair")].append(row)
         for probe in row.get("depends_on", []):
@@ -438,6 +476,7 @@ def main() -> int:
             couplings,
             process_audit_by_id.get(lego_id),
             indexed_audit_by_id.get(lego_id),
+            coupling_audit_by_result,
         )
         source_label = reg_row.get("current_coverage")
         machine_label = reg_row.get("machine_current_coverage")
@@ -544,6 +583,7 @@ def main() -> int:
             "normalization_queue": str(NORMALIZATION_QUEUE_PATH),
             "coupling_queue": str(COUPLING_QUEUE_PATH),
             "inventory": str(INVENTORY_PATH),
+            "coupling_audit": str(COUPLING_AUDIT_PATH),
         },
         "summary": {
             "row_count": len(rows),

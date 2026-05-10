@@ -158,6 +158,16 @@ COUPLING_TARGETS = {
                 "status": "existing_anchor",
                 "reason": "Constraint/probe legos already feed an explicit canonical binding crosscheck successor.",
             },
+            {
+                "lego_probe": "sim_bc1_fence_investigation.py",
+                "coupling_probe": "sim_constraint_shells_ablation_closure.py",
+                "existing_anchor": "constraint_shells_ablation_closure_results.json",
+                "status": "existing_anchor",
+                "reason": (
+                    "Constraint-shell binding now has a bounded ablation closure receipt separating "
+                    "L4 sub-projection roles, L4 order effects, and L6 activation."
+                ),
+            },
         ],
     },
     "operator_family_admission": {

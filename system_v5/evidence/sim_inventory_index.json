@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T21:13:18.843751+00:00",
+  "generated_at": "2026-05-10T21:25:52.817558+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3927,
-    "result_json_count": 435,
-    "linked_result_json_count": 404,
+    "source_count": 3928,
+    "result_json_count": 436,
+    "linked_result_json_count": 405,
     "unlinked_result_json_count": 31,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3525,
-      "rerun_or_admission_candidate": 303,
+      "rerun_or_admission_candidate": 304,
       "legacy_result_or_repair_needed": 14,
       "contract_shaped_but_tool_depth_thin": 74,
       "admitted": 9,
@@ -19,32 +19,32 @@
     },
     "family_counts": {
       "channel_operator": 775,
-      "entropy_information": 578,
-      "thermo_engine": 419,
+      "entropy_information": 579,
+      "thermo_engine": 420,
       "uncategorized": 335,
-      "axis_bridge": 651,
-      "graveyard_negative": 1696,
+      "axis_bridge": 652,
+      "graveyard_negative": 1697,
       "root_admission": 838,
       "hopf_torus": 590,
       "weyl_spinor_clifford": 780,
-      "geometry_gstack_gtower": 711,
+      "geometry_gstack_gtower": 712,
       "density_carrier": 476,
-      "classical_baseline": 1089,
+      "classical_baseline": 1090,
       "gerbe_dirac_mera_spectral": 668,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2698,
+      "numpy": 2699,
       "sympy": 2235,
       "scipy": 249,
-      "pytorch": 1969,
+      "pytorch": 1970,
       "pyg": 843,
       "cvc5": 1324,
       "qutip": 42,
       "e3nn": 840,
       "gudhi": 896,
-      "z3": 1892,
+      "z3": 1893,
       "clifford": 1328,
       "rustworkx": 1074,
       "toponetx": 915,
@@ -54,9 +54,9 @@
       "qiskit": 10
     },
     "load_bearing_tool_counts": {
-      "numpy": 257,
+      "numpy": 258,
       "cvc5": 505,
-      "pytorch": 1124,
+      "pytorch": 1125,
       "rustworkx": 282,
       "z3": 729,
       "sympy": 552,
@@ -73,7 +73,7 @@
       "networkx": 3
     },
     "result_classification_counts": {
-      "classical_baseline": 84,
+      "classical_baseline": 85,
       "canonical": 250,
       "supporting": 11,
       "exploratory": 30,
@@ -84,7 +84,7 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 391,
+    "repair_candidate_count": 392,
     "source_only_count": 3525
   },
   "admitted_stems": [
@@ -2584,6 +2584,44 @@
       "inventory_status": "rerun_or_admission_candidate"
     },
     {
+      "stem": "sim_constraint_shells_ablation_closure",
+      "source_path": "system_v4/probes/sim_constraint_shells_ablation_closure.py",
+      "families": [
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline",
+        "graveyard_negative"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "pytorch": "load_bearing",
+        "z3": "supportive"
+      },
+      "load_bearing_tools": [
+        "numpy",
+        "pytorch"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/constraint_shells_ablation_closure_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_constraint_shells_binding_crosscheck",
       "source_path": "system_v4/probes/sim_constraint_shells_binding_crosscheck.py",
       "families": [
@@ -3529,56 +3567,6 @@
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": true,
-      "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_engine_16_placements",
-      "source_path": "system_v4/probes/sim_engine_16_placements.py",
-      "families": [
-        "density_carrier",
-        "entropy_information",
-        "hopf_torus",
-        "weyl_spinor_clifford",
-        "thermo_engine"
-      ],
-      "tools": {
-        "numpy": "imported",
-        "pytorch": "load_bearing",
-        "pyg": "tried",
-        "z3": "load_bearing",
-        "cvc5": "tried",
-        "sympy": "load_bearing",
-        "clifford": "load_bearing",
-        "rustworkx": "tried",
-        "toponetx": "tried",
-        "gudhi": "load_bearing",
-        "geomstats": "tried",
-        "xgi": "tried",
-        "e3nn": "tried"
-      },
-      "load_bearing_tools": [
-        "clifford",
-        "gudhi",
-        "pytorch",
-        "sympy",
-        "z3"
-      ],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/engine_16_placements_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "canonical"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": true,
       "has_contract_shape": true,
       "inventory_status": "rerun_or_admission_candidate"
     }
@@ -27803,6 +27791,44 @@
       "late_stage_signal": false,
       "has_contract_shape": false,
       "inventory_status": "source_only"
+    },
+    {
+      "stem": "sim_constraint_shells_ablation_closure",
+      "source_path": "system_v4/probes/sim_constraint_shells_ablation_closure.py",
+      "families": [
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline",
+        "graveyard_negative"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "pytorch": "load_bearing",
+        "z3": "supportive"
+      },
+      "load_bearing_tools": [
+        "numpy",
+        "pytorch"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/constraint_shells_ablation_closure_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_constraint_shells_binding_crosscheck",

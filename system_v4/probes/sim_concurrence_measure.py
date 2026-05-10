@@ -29,6 +29,14 @@ PRIMARY_LEGO_IDS = [
 ]
 
 TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": (
+            "load_bearing: two-qubit density matrices, spin-flip spectrum, "
+            "and Werner-family concurrence readouts"
+        ),
+    },
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
     "z3": {"tried": False, "used": False, "reason": "not needed"},
@@ -44,6 +52,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
 
 
 SIGMA_Y = np.array([[0, -1j], [1j, 0]], dtype=complex)
@@ -143,6 +152,32 @@ def main():
             "all_pass": all_pass,
             "scope_note": "Direct local concurrence lego on bounded two-qubit product, Bell, and Werner states.",
         },
+        "all_pass": all_pass,
+        "criteria_checked": [
+            "product state has zero concurrence",
+            "Bell state has unit concurrence",
+            "Werner concurrence increases with r",
+            "Werner below one-third is zero and above one-third is positive",
+        ],
+        "claim_ceiling": (
+            "finite NumPy concurrence lego on bounded two-qubit states only; "
+            "no bridge, GStack, axis, QIT, or nonclassical admission"
+        ),
+        "next_lego_target": (
+            "Use as local bipartite/correlation evidence for later entropy or "
+            "topology coupling packets after exact companion receipts."
+        ),
+        "promotion_condition": (
+            "Requires separate coupling/coexistence receipts and stage-gate approval."
+        ),
+        "blocked_until": "explicit coupling-stage admission and companion topology/entropy receipts",
+        "demotion_condition": "Demote if product/Bell/Werner concurrence checks fail on rerun.",
+        "out_of_scope": [
+            "QIT engine admission",
+            "GStack promotion",
+            "axis promotion",
+            "nonclassical admission",
+        ],
     }
 
     out_path = (

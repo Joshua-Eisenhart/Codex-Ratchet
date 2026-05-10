@@ -1,6 +1,6 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T19:15:44.849063+00:00",
+  "generated_at": "2026-05-10T19:19:41.575449+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 3917,
@@ -11,9 +11,9 @@
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3526,
-      "rerun_or_admission_candidate": 292,
+      "rerun_or_admission_candidate": 293,
       "legacy_result_or_repair_needed": 14,
-      "contract_shaped_but_tool_depth_thin": 74,
+      "contract_shaped_but_tool_depth_thin": 73,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
     },
@@ -54,7 +54,7 @@
       "qiskit": 10
     },
     "load_bearing_tool_counts": {
-      "numpy": 247,
+      "numpy": 248,
       "cvc5": 505,
       "pytorch": 1121,
       "rustworkx": 280,
@@ -2455,9 +2455,11 @@
         "uncategorized"
       ],
       "tools": {
-        "numpy": "imported"
+        "numpy": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "numpy"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
       "result_paths": [
@@ -2474,7 +2476,7 @@
       "admitted": false,
       "late_stage_signal": false,
       "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_conditional_entropy",
@@ -26739,9 +26741,11 @@
         "uncategorized"
       ],
       "tools": {
-        "numpy": "imported"
+        "numpy": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "numpy"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
       "result_paths": [
@@ -26758,7 +26762,7 @@
       "admitted": false,
       "late_stage_signal": false,
       "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_condensed_set_sheaf_constraint_canonical",

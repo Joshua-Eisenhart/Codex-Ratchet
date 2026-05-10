@@ -1,6 +1,6 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T19:15:44.849063+00:00`
+Generated: `2026-05-10T19:19:41.575449+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
@@ -17,8 +17,8 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 ## Inventory Status Counts
 
 - `source_only`: 3526
-- `rerun_or_admission_candidate`: 292
-- `contract_shaped_but_tool_depth_thin`: 74
+- `rerun_or_admission_candidate`: 293
+- `contract_shaped_but_tool_depth_thin`: 73
 - `legacy_result_or_repair_needed`: 14
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2
@@ -49,7 +49,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `cvc5`: 505
 - `rustworkx`: 280
 - `clifford`: 273
-- `numpy`: 247
+- `numpy`: 248
 - `xgi`: 199
 - `gudhi`: 117
 - `toponetx`: 117

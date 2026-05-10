@@ -212,12 +212,12 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "Berry phase = Omega/2 for spin-1/2 is null classically",
-            "no U(1) fibre to support a geometric phase",
-            "spinor sign ambiguity around closed loop unrepresentable",
-            "holonomy is a real frame rotation, not a complex phase",
-        ],
+        "divergence_log": (
+            "Classical S2 Levi-Civita transport keeps only real frame rotation: "
+            "Berry phase Omega/2 for spin-1/2 is null classically; no U(1) "
+            "fiber supports a geometric phase; spinor sign ambiguity around a "
+            "closed loop is unrepresentable."
+        ),
     }
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "parallel_transport_s2_classical_results.json")

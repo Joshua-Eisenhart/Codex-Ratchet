@@ -24,6 +24,7 @@ NORMALIZATION_QUEUE_PATH = RESULTS_DIR / "actual_lego_normalization_queue.json"
 COUPLING_QUEUE_PATH = RESULTS_DIR / "lego_batch_queue.json"
 INVENTORY_PATH = PROJECT_DIR / "system_v5" / "evidence" / "sim_inventory_index.json"
 OUT_PATH = RESULTS_DIR / "actual_lego_work_matrix.json"
+PROCESS_AUDIT_PATH = RESULTS_DIR / "actual_lego_process_receipt_audit.json"
 
 
 NONCLASSICAL_ADJACENT_TOOLS = {
@@ -201,7 +202,13 @@ def coverage_label_diverges(source_label: str | None, machine_label: str | None)
     return True
 
 
-def next_action(row: dict, inv_row: dict, result: dict, coupling_rows: list[dict]) -> dict:
+def next_action(
+    row: dict,
+    inv_row: dict,
+    result: dict,
+    coupling_rows: list[dict],
+    process_audit_row: dict | None = None,
+) -> dict:
     machine_coverage = row.get("machine_current_coverage") or row.get("current_coverage")
     source_coverage = row.get("current_coverage")
     inventory_status = inv_row.get("inventory_status")
@@ -212,6 +219,24 @@ def next_action(row: dict, inv_row: dict, result: dict, coupling_rows: list[dict
         if result.get("result_exists"):
             if result.get("all_pass") is False:
                 return {"status": "result_failing_repair_needed", "reason": "linked result explicitly reports all_pass false", "packet": row.get("machine_best_probe")}
+            if process_audit_row:
+                if process_audit_row.get("hard_finding_count", 0):
+                    return {
+                        "status": "source_process_receipt_hard_blocked",
+                        "reason": "source process receipt audit found hard validator findings",
+                        "packet": row.get("machine_best_probe"),
+                    }
+                if process_audit_row.get("warning_count", 0):
+                    return {
+                        "status": "source_process_receipt_boundary_warnings",
+                        "reason": "source process receipt is hard-green but still has run-boundary warning fields",
+                        "packet": row.get("machine_best_probe"),
+                    }
+                return {
+                    "status": "source_process_receipt_audited",
+                    "reason": "source process receipt is hard-green with no validator warnings",
+                    "packet": None,
+                }
             return {
                 "status": "source_process_receipt_linked_audit_needed",
                 "reason": "source registry says canonical by process; local receipt is linked but still needs audit/admission boundary checks",
@@ -297,11 +322,13 @@ def main() -> int:
     normalization = read_json(NORMALIZATION_QUEUE_PATH)
     coupling_queue = read_json(COUPLING_QUEUE_PATH)
     inventory = read_json(INVENTORY_PATH)
+    process_audit = read_json(PROCESS_AUDIT_PATH)
 
     inv_by_stem = inventory_by_stem(inventory)
     norm_by_id = {row.get("lego_id"): row for row in normalization.get("rows", [])}
     coupling_by_family: dict[str, list[dict]] = defaultdict(list)
     coupling_by_probe: dict[str, list[dict]] = defaultdict(list)
+    process_audit_by_id = {row.get("lego_id"): row for row in process_audit.get("rows", [])}
     for row in coupling_queue.get("rows", []):
         coupling_by_family[row.get("lego_or_pair")].append(row)
         for probe in row.get("depends_on", []):
@@ -364,7 +391,7 @@ def main() -> int:
         couplings = deduped_couplings
         slots = coverage_slots(lego_id or "", reg_row.get("section", ""), inv_row, result)
         stage = stage_gate_level(inv_row, result, slots)
-        action = next_action(reg_row, inv_row, result, couplings)
+        action = next_action(reg_row, inv_row, result, couplings, process_audit_by_id.get(lego_id))
         source_label = reg_row.get("current_coverage")
         machine_label = reg_row.get("machine_current_coverage")
         stale_label_risk = coverage_label_diverges(source_label, machine_label)

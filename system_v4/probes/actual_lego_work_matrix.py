@@ -50,6 +50,26 @@ BRIDGE_TOOLS = {
 }
 CLASSICAL_TOOLS = {"numpy", "scipy", "sympy", "networkx"}
 
+LEGO_PROBE_ALIASES = {
+    "holonomy_geometry": "sim_pure_lego_wilczek_zee_holonomy.py",
+    "transport_geometry": "sim_parallel_transport_s2_classical.py",
+    "hopf_map_s3_to_s2": "sim_hopf_base_section_phase_recovery.py",
+    "hopf_connection_form": "sim_hopf_connection_curvature_operators.py",
+    "berry_holonomy": "sim_pure_lego_berry_phase_u1_abelian.py",
+    "weyl_chirality_pair": "sim_weyl_chirality_bipartite.py",
+    "composition_order_noncommutation": "sim_axiom_n01_composition_order_distinguishes.py",
+    "composition_order_sensitivity": "sim_axiom_n01_composition_order_distinguishes.py",
+    "channel_cptp_map": "sim_lego_cptp_channel_family.py",
+    "kraus_operator_sum": "sim_kraus_operator_sum_classical.py",
+    "lindbladian_evolution": "sim_lindbladian_evolution_classical.py",
+    "werner_local_structure": "sim_pyg_dynamic_edge_werner.py",
+}
+
+LEGO_RESULT_ALIASES = {
+    "holonomy_geometry": "wilczek_zee_holonomy_results.json",
+    "berry_holonomy": "berry_phase_u1_abelian_results.json",
+}
+
 
 def read_json(path: Path, default: dict | None = None) -> dict:
     if not path.exists():
@@ -260,6 +280,15 @@ def main() -> int:
             or norm_row.get("existing_result_json")
             or result_name_for_probe(probe)
         )
+        if not probe and lego_id in LEGO_PROBE_ALIASES:
+            alias_probe = LEGO_PROBE_ALIASES[lego_id]
+            if (SCRIPT_DIR / alias_probe).exists():
+                probe = alias_probe
+                result_name = result_name_for_probe(probe)
+        if lego_id in LEGO_RESULT_ALIASES:
+            alias_result = LEGO_RESULT_ALIASES[lego_id]
+            if result_path(alias_result) and result_path(alias_result).exists():
+                result_name = alias_result
         if result_name and not (result_path(result_name) and result_path(result_name).exists()) and probe:
             probe_stem_result = f"{stem_from_probe(probe)}_results.json"
             if result_path(probe_stem_result) and result_path(probe_stem_result).exists():

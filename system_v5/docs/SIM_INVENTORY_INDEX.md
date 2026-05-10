@@ -1,24 +1,24 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T17:48:56.881094+00:00`
+Generated: `2026-05-10T17:52:44.303374+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `3917`
-- Result JSON files seen: `414`
-- Linked result JSON files: `385`
-- Unlinked result JSON files: `29`
+- Result JSON files seen: `423`
+- Linked result JSON files: `392`
+- Unlinked result JSON files: `31`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `372`
-- Source-only rows: `3534`
+- Repair / rerun candidate rows: `379`
+- Source-only rows: `3527`
 
 ## Inventory Status Counts
 
-- `source_only`: 3534
-- `rerun_or_admission_candidate`: 213
-- `contract_shaped_but_tool_depth_thin`: 145
+- `source_only`: 3527
+- `rerun_or_admission_candidate`: 219
+- `contract_shaped_but_tool_depth_thin`: 146
 - `legacy_result_or_repair_needed`: 14
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2
@@ -43,9 +43,9 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Load-Bearing Tool Counts
 
-- `pytorch`: 1123
+- `pytorch`: 1122
 - `z3`: 724
-- `sympy`: 553
+- `sympy`: 552
 - `cvc5`: 505
 - `rustworkx`: 280
 - `clifford`: 273
@@ -66,6 +66,8 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `system_v4/a2_state/sim_results/deep_geometric_audit_results.json`
 - `system_v4/a2_state/sim_results/holodeck_fep_results.json`
 - `system_v4/a2_state/sim_results/type2_process_cycle_results.json`
+- `system_v4/probes/a2_state/sim_results/berry_phase_u1_abelian_results.json`
+- `system_v4/probes/a2_state/sim_results/clifford_weyl_transport_results.json`
 - `system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json`
 - `system_v4/probes/a2_state/sim_results/deep_graveyard_results.json`
 - `system_v4/probes/a2_state/sim_results/engine_protocol_dag_results.json`
@@ -114,6 +116,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | legacy_result_or_repair_needed | `followup_anomaly_investigation` | entropy_information, hopf_torus, graph_topology | - | - |
 | legacy_result_or_repair_needed | `mass_stabilization_sim` | entropy_information, hopf_torus, weyl_spinor_clifford, graph_topology, axis_bridge | - | - |
 | legacy_result_or_repair_needed | `neg_commutative_process_cycle_sim` | channel_operator, thermo_engine, graveyard_negative | - | - |
+| rerun_or_admission_candidate | `sim_axiom_n01_composition_order_distinguishes` | root_admission, density_carrier, channel_operator | pytorch | canonical |
 | rerun_or_admission_candidate | `sim_axis0_kernel_phi0` | axis_bridge | clifford, geomstats, gudhi, pytorch, rustworkx, scipy, sympy, toponetx, xgi, z3 | classical_baseline |
 | rerun_or_admission_candidate | `sim_axis6_e3nn_fe_bridge` | density_carrier, axis_bridge, graveyard_negative | e3nn, geomstats, pytorch, z3 | canonical |
 | legacy_result_or_repair_needed | `sim_axis7_deep_test` | channel_operator, axis_bridge | - | - |
@@ -121,6 +124,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | legacy_result_or_repair_needed | `sim_axis_anti_conflation` | channel_operator, entropy_information, hopf_torus, weyl_spinor_clifford, axis_bridge | - | - |
 | legacy_result_or_repair_needed | `sim_axis_exploration_suite` | channel_operator, hopf_torus, weyl_spinor_clifford, axis_bridge | - | - |
 | legacy_result_or_repair_needed | `sim_axis_hopf_geometry` | density_carrier, hopf_torus, weyl_spinor_clifford, geometry_gstack_gtower, thermo_engine, axis_bridge | - | - |
+| contract_shaped_but_tool_depth_thin | `sim_base_loop_law` | hopf_torus | - | canonical |
 | rerun_or_admission_candidate | `sim_berry_qfi_shell_paths` | density_carrier, entropy_information, hopf_torus, geometry_gstack_gtower | geomstats, pytorch, sympy | canonical |
 | rerun_or_admission_candidate | `sim_blackwell_style_comparison` | root_admission, channel_operator, classical_baseline | cvc5 | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_branch_weight` | uncategorized | - | canonical |
@@ -157,5 +161,3 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | contract_shaped_but_tool_depth_thin | `sim_channel_capacity` | channel_operator | - | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_channel_cptp_classical` | channel_operator, classical_baseline | - | classical_baseline |
 | contract_shaped_but_tool_depth_thin | `sim_channel_space_geometry` | channel_operator | - | canonical |
-| contract_shaped_but_tool_depth_thin | `sim_characteristic_representation` | channel_operator | - | canonical |
-| rerun_or_admission_candidate | `sim_clifford_deep_cl3_rotor_double_cover` | channel_operator, hopf_torus, weyl_spinor_clifford, axis_bridge, graveyard_negative | clifford | canonical |

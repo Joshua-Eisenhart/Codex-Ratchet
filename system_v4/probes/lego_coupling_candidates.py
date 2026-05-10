@@ -104,6 +104,16 @@ COUPLING_TARGETS = {
     "bipartite_structure_local": {
         "pairings": [
             {
+                "lego_probe": "sim_gudhi_bipartite_entangled.py",
+                "coupling_probe": "sim_bipartite_entropy_topology_coexistence.py",
+                "existing_anchor": "bipartite_entropy_topology_coexistence_results.json",
+                "status": "existing_anchor",
+                "reason": (
+                    "Fresh bounded same-state coupling between GUDHI bipartite topology "
+                    "and bipartite cut entropy."
+                ),
+            },
+            {
                 "lego_probe": "sim_gudhi_concurrence_filtration.py",
                 "coupling_probe": "sim_pyg_dynamic_edge_werner.py",
                 "existing_anchor": "pyg_dynamic_edge_werner_results.json",

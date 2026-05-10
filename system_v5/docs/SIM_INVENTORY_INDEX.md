@@ -1,23 +1,23 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T20:31:16.761646+00:00`
+Generated: `2026-05-10T20:39:22.830997+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
-- Sim source files indexed: `3923`
-- Result JSON files seen: `431`
-- Linked result JSON files: `400`
+- Sim source files indexed: `3924`
+- Result JSON files seen: `432`
+- Linked result JSON files: `401`
 - Unlinked result JSON files: `31`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `387`
+- Repair / rerun candidate rows: `388`
 - Source-only rows: `3525`
 
 ## Inventory Status Counts
 
 - `source_only`: 3525
-- `rerun_or_admission_candidate`: 299
+- `rerun_or_admission_candidate`: 300
 - `contract_shaped_but_tool_depth_thin`: 74
 - `legacy_result_or_repair_needed`: 14
 - `admitted`: 9
@@ -30,28 +30,28 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `root_admission`: 835
 - `weyl_spinor_clifford`: 780
 - `channel_operator`: 774
-- `geometry_gstack_gtower`: 707
+- `geometry_gstack_gtower`: 708
 - `gerbe_dirac_mera_spectral`: 668
-- `axis_bridge`: 647
+- `axis_bridge`: 648
 - `hopf_torus`: 590
-- `entropy_information`: 576
+- `entropy_information`: 577
 - `density_carrier`: 476
-- `thermo_engine`: 415
-- `graph_topology`: 400
+- `thermo_engine`: 416
+- `graph_topology`: 401
 - `uncategorized`: 335
 - `fep_holodeck_igt`: 237
 
 ## Load-Bearing Tool Counts
 
-- `pytorch`: 1122
-- `z3`: 727
+- `pytorch`: 1123
+- `z3`: 728
 - `sympy`: 552
 - `cvc5`: 505
 - `rustworkx`: 281
 - `clifford`: 273
-- `numpy`: 253
+- `numpy`: 254
 - `xgi`: 200
-- `gudhi`: 118
+- `gudhi`: 119
 - `toponetx`: 118
 - `geomstats`: 109
 - `pyg`: 68
@@ -126,6 +126,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | legacy_result_or_repair_needed | `sim_axis_hopf_geometry` | density_carrier, hopf_torus, weyl_spinor_clifford, geometry_gstack_gtower, thermo_engine, axis_bridge | - | - |
 | rerun_or_admission_candidate | `sim_base_loop_law` | hopf_torus | numpy | canonical |
 | rerun_or_admission_candidate | `sim_berry_qfi_shell_paths` | density_carrier, entropy_information, hopf_torus, geometry_gstack_gtower | geomstats, pytorch, sympy | canonical |
+| rerun_or_admission_candidate | `sim_bipartite_entropy_topology_coexistence` | entropy_information, geometry_gstack_gtower, graph_topology, thermo_engine, axis_bridge | gudhi, numpy, pytorch, z3 | supporting |
 | rerun_or_admission_candidate | `sim_blackwell_style_comparison` | root_admission, channel_operator, classical_baseline | cvc5 | canonical |
 | rerun_or_admission_candidate | `sim_branch_weight` | uncategorized | numpy | canonical |
 | rerun_or_admission_candidate | `sim_bridge_extended_proofs` | root_admission, channel_operator, entropy_information, geometry_gstack_gtower, axis_bridge, classical_baseline, graveyard_negative | cvc5, z3 | canonical |
@@ -160,4 +161,3 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | rerun_or_admission_candidate | `sim_cell_complex_geometry` | graph_topology | toponetx | canonical |
 | rerun_or_admission_candidate | `sim_channel_capacity` | channel_operator | numpy | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_channel_cptp_classical` | channel_operator, classical_baseline | - | classical_baseline |
-| rerun_or_admission_candidate | `sim_channel_space_geometry` | channel_operator | numpy | canonical |

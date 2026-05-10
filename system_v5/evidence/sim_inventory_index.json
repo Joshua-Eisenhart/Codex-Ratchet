@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T20:31:16.761646+00:00",
+  "generated_at": "2026-05-10T20:39:22.830997+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3923,
-    "result_json_count": 431,
-    "linked_result_json_count": 400,
+    "source_count": 3924,
+    "result_json_count": 432,
+    "linked_result_json_count": 401,
     "unlinked_result_json_count": 31,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3525,
-      "rerun_or_admission_candidate": 299,
+      "rerun_or_admission_candidate": 300,
       "legacy_result_or_repair_needed": 14,
       "contract_shaped_but_tool_depth_thin": 74,
       "admitted": 9,
@@ -19,32 +19,32 @@
     },
     "family_counts": {
       "channel_operator": 774,
-      "entropy_information": 576,
-      "thermo_engine": 415,
+      "entropy_information": 577,
+      "thermo_engine": 416,
       "uncategorized": 335,
-      "axis_bridge": 647,
+      "axis_bridge": 648,
       "graveyard_negative": 1696,
       "root_admission": 835,
       "hopf_torus": 590,
       "weyl_spinor_clifford": 780,
-      "geometry_gstack_gtower": 707,
+      "geometry_gstack_gtower": 708,
       "density_carrier": 476,
       "classical_baseline": 1086,
       "gerbe_dirac_mera_spectral": 668,
-      "graph_topology": 400,
+      "graph_topology": 401,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2694,
+      "numpy": 2695,
       "sympy": 2235,
       "scipy": 248,
-      "pytorch": 1967,
+      "pytorch": 1968,
       "pyg": 842,
       "cvc5": 1324,
       "qutip": 42,
       "e3nn": 840,
-      "gudhi": 894,
-      "z3": 1888,
+      "gudhi": 895,
+      "z3": 1889,
       "clifford": 1328,
       "rustworkx": 1073,
       "toponetx": 914,
@@ -54,16 +54,16 @@
       "qiskit": 10
     },
     "load_bearing_tool_counts": {
-      "numpy": 253,
+      "numpy": 254,
       "cvc5": 505,
-      "pytorch": 1122,
+      "pytorch": 1123,
       "rustworkx": 281,
-      "z3": 727,
+      "z3": 728,
       "sympy": 552,
       "clifford": 273,
       "xgi": 200,
       "geomstats": 109,
-      "gudhi": 118,
+      "gudhi": 119,
       "scipy": 60,
       "toponetx": 118,
       "e3nn": 55,
@@ -75,16 +75,16 @@
     "result_classification_counts": {
       "classical_baseline": 81,
       "canonical": 250,
+      "supporting": 11,
       "exploratory": 30,
       "research_support": 6,
       "tool_lego_fit_probe": 1,
-      "supporting": 10,
       "controller_index": 2,
       "graveyard_negative": 1,
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 387,
+    "repair_candidate_count": 388,
     "source_only_count": 3525
   },
   "admitted_stems": [
@@ -633,6 +633,46 @@
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
+      "stem": "sim_bipartite_entropy_topology_coexistence",
+      "source_path": "system_v4/probes/sim_bipartite_entropy_topology_coexistence.py",
+      "families": [
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "graph_topology",
+        "thermo_engine",
+        "axis_bridge"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "pytorch": "load_bearing",
+        "z3": "load_bearing",
+        "gudhi": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "gudhi",
+        "numpy",
+        "pytorch",
+        "z3"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/bipartite_entropy_topology_coexistence_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "supporting"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": true,
       "has_contract_shape": true,
       "inventory_status": "rerun_or_admission_candidate"
     },
@@ -3542,34 +3582,6 @@
       "late_stage_signal": true,
       "has_contract_shape": true,
       "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_engine_lab_constraint_audit",
-      "source_path": "system_v4/probes/sim_engine_lab_constraint_audit.py",
-      "families": [
-        "root_admission",
-        "thermo_engine",
-        "axis_bridge"
-      ],
-      "tools": {},
-      "load_bearing_tools": [],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/engine_lab_constraint_audit_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "classical_baseline"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": true,
-      "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
     }
   ],
   "source_only_samples": [
@@ -18588,6 +18600,46 @@
       "late_stage_signal": false,
       "has_contract_shape": false,
       "inventory_status": "source_only"
+    },
+    {
+      "stem": "sim_bipartite_entropy_topology_coexistence",
+      "source_path": "system_v4/probes/sim_bipartite_entropy_topology_coexistence.py",
+      "families": [
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "graph_topology",
+        "thermo_engine",
+        "axis_bridge"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "pytorch": "load_bearing",
+        "z3": "load_bearing",
+        "gudhi": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "gudhi",
+        "numpy",
+        "pytorch",
+        "z3"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/bipartite_entropy_topology_coexistence_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "supporting"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": true,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_bishop_gromov_constraint_canonical",

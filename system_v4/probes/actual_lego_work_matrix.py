@@ -180,6 +180,14 @@ def next_action(row: dict, inv_row: dict, result: dict, coupling_rows: list[dict
     if machine_coverage == "blocked_as_late_surface":
         return {"status": "blocked", "reason": "late_surface_stage_gate", "packet": None}
     if machine_coverage == "canonical by process":
+        if result.get("result_exists"):
+            if result.get("all_pass") is False:
+                return {"status": "result_failing_repair_needed", "reason": "linked result explicitly reports all_pass false", "packet": row.get("machine_best_probe")}
+            return {
+                "status": "source_process_receipt_linked_audit_needed",
+                "reason": "source registry says canonical by process; local receipt is linked but still needs audit/admission boundary checks",
+                "packet": row.get("machine_best_probe"),
+            }
         return {
             "status": "source_process_claim_needs_receipt_link",
             "reason": "source registry says canonical by process but no local result is linked in the machine overlay",
@@ -252,6 +260,14 @@ def main() -> int:
             or norm_row.get("existing_result_json")
             or result_name_for_probe(probe)
         )
+        if not result_name and lego_id:
+            lego_result_name = f"{lego_id}_results.json"
+            if result_path(lego_result_name) and result_path(lego_result_name).exists():
+                result_name = lego_result_name
+        if not probe and lego_id:
+            lego_probe = f"sim_{lego_id}.py"
+            if (SCRIPT_DIR / lego_probe).exists():
+                probe = lego_probe
         stem = stem_from_probe(probe) or stem_from_result_name(result_name) or ""
         inv_row = inv_by_stem.get(stem, {})
         result = load_result_summary(result_name)

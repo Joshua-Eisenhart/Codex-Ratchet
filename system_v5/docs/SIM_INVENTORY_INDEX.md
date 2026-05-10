@@ -1,24 +1,24 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T19:56:53.186962+00:00`
+Generated: `2026-05-10T19:59:20.323077+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
-- Sim source files indexed: `3920`
-- Result JSON files seen: `427`
-- Linked result JSON files: `396`
+- Sim source files indexed: `3921`
+- Result JSON files seen: `428`
+- Linked result JSON files: `397`
 - Unlinked result JSON files: `31`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `383`
+- Repair / rerun candidate rows: `384`
 - Source-only rows: `3526`
 
 ## Inventory Status Counts
 
 - `source_only`: 3526
 - `rerun_or_admission_candidate`: 296
-- `contract_shaped_but_tool_depth_thin`: 73
+- `contract_shaped_but_tool_depth_thin`: 74
 - `legacy_result_or_repair_needed`: 14
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2
@@ -29,7 +29,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `classical_baseline`: 1086
 - `root_admission`: 835
 - `weyl_spinor_clifford`: 780
-- `channel_operator`: 772
+- `channel_operator`: 773
 - `geometry_gstack_gtower`: 707
 - `gerbe_dirac_mera_spectral`: 668
 - `axis_bridge`: 647

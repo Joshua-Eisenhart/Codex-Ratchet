@@ -274,6 +274,22 @@ def next_action(
             if coupling_result.get("result_exists") and coupling_result.get("all_pass") is True:
                 receipt_linked.append((coupling, coupling_result, coupling_result_name))
         if receipt_linked:
+            def coupling_priority(item: tuple[dict, dict, str]) -> tuple[int, int, int]:
+                coupling, coupling_result, coupling_result_name = item
+                audit = (coupling_audit_by_result or {}).get(coupling_result_name, {})
+                if audit.get("audit_status") == "hard_green_closure_candidate":
+                    audit_rank = 0
+                elif coupling_result.get("summary", {}).get("closure_candidate") is True:
+                    audit_rank = 0
+                elif audit:
+                    audit_rank = 1
+                else:
+                    audit_rank = 2
+                classification_rank = 0 if coupling_result.get("classification") != "supporting" else 1
+                status_rank = 0 if coupling.get("status") != "supporting_only" else 1
+                return (audit_rank, classification_rank, status_rank)
+
+            receipt_linked.sort(key=coupling_priority)
             coupling, coupling_result, coupling_result_name = receipt_linked[0]
             coupling_audit = (coupling_audit_by_result or {}).get(coupling_result_name)
             if coupling_audit:

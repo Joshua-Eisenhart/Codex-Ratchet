@@ -753,6 +753,7 @@ if __name__ == "__main__":
     all_results = {**positive, **negative, **boundary}
     total  = len(all_results)
     passed = sum(1 for v in all_results.values() if isinstance(v, dict) and v.get("passed"))
+    all_pass = total > 0 and passed == total
 
     results = {
         "name": "sim_pure_lego_wilczek_zee_holonomy",
@@ -769,7 +770,9 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
+        "all_pass": all_pass,
         "summary": {
+            "all_pass": all_pass,
             "total_tests": total,
             "passed": passed,
             "failed": total - passed,

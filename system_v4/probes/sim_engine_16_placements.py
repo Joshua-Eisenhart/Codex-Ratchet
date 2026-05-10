@@ -892,6 +892,17 @@ if __name__ == "__main__":
         and summary.get("all_cptp_valid", False)
         and all(v.get("passed", False) for v in negative.values())
     )
+    results["all_pass"] = all_pass
+    results["summary"] = {
+        **summary,
+        "all_pass": all_pass,
+        "negative_count": len(negative),
+        "boundary_count": len(boundary),
+    }
+
+    with open(out_path, "w") as f:
+        json.dump(results, f, indent=2, default=str)
+
     verdict = "ALL PASS" if all_pass else "FAILURES DETECTED"
     print(f"\n{'=' * 60}")
     print(f"  VERDICT: {verdict}")

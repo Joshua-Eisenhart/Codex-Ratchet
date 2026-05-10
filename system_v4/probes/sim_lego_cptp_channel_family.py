@@ -449,6 +449,16 @@ if __name__ == "__main__":
     neg = run_negative_tests()
     bnd = run_boundary_tests()
 
+    all_tests = {}
+    for section in (pos, neg, bnd):
+        for k, v in section.items():
+            if isinstance(v, dict) and "passed" in v:
+                all_tests[k] = v["passed"]
+
+    passed = sum(1 for v in all_tests.values() if v)
+    total  = len(all_tests)
+    all_pass = total > 0 and passed == total
+
     results = {
         "name": "sim_lego_cptp_channel_family",
         "classification": "canonical",
@@ -457,6 +467,13 @@ if __name__ == "__main__":
         "positive": pos,
         "negative": neg,
         "boundary": bnd,
+        "all_pass": all_pass,
+        "summary": {
+            "all_pass": all_pass,
+            "passed": passed,
+            "failed": total - passed,
+            "total": total,
+        },
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
@@ -466,15 +483,6 @@ if __name__ == "__main__":
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
 
-    # Summary
-    all_tests = {}
-    for section in (pos, neg, bnd):
-        for k, v in section.items():
-            if isinstance(v, dict) and "passed" in v:
-                all_tests[k] = v["passed"]
-
-    passed = sum(1 for v in all_tests.values() if v)
-    total  = len(all_tests)
     print(f"Tests: {passed}/{total} passed")
     for k, v in all_tests.items():
         status = "PASS" if v else "FAIL"

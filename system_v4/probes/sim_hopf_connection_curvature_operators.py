@@ -438,14 +438,43 @@ if __name__ == "__main__":
     TOOL_MANIFEST["sympy"]["used"] = True
     TOOL_MANIFEST["geomstats"]["used"] = True
 
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+
+    def collect_boolean_failures(value):
+        failures = 0
+        total = 0
+        if isinstance(value, dict):
+            for item in value.values():
+                sub_total, sub_failures = collect_boolean_failures(item)
+                total += sub_total
+                failures += sub_failures
+        elif isinstance(value, bool):
+            total += 1
+            if not value:
+                failures += 1
+        return total, failures
+
+    boolean_total, boolean_failures = collect_boolean_failures(
+        {"positive": positive, "negative": negative, "boundary": boundary}
+    )
+    all_pass = boolean_total > 0 and boolean_failures == 0
+
     results = {
         "name": "sim_hopf_connection_curvature_operators",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
         "classification": "canonical",
+        "all_pass": all_pass,
+        "summary": {
+            "all_pass": all_pass,
+            "boolean_total": boolean_total,
+            "boolean_failures": boolean_failures,
+        },
         "scope_note": (
             "Hopf bundle S^1->S^3->S^2 connection operators. "
             "Principal connection A evaluated on vertical tangent = 1 (admissible). "

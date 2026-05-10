@@ -67,6 +67,8 @@ PRIMARY_LEGO_IDS = [
     "channel_cptp_map",
 ]
 TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "load-bearing density matrix construction, spectra, distances, channels, and tensor products"},
+    "scipy": {"tried": True, "used": True, "reason": "load-bearing matrix square roots and logarithms for fidelity, Bures distance, and relative entropy"},
     "pytorch": {"tried": False, "used": False, "reason": "not needed -- pure numpy/scipy local lego probe"},
     "pyg": {"tried": False, "used": False, "reason": "not needed -- no graph-native computation"},
     "z3": {"tried": False, "used": False, "reason": "not needed -- no SMT proof layer in this probe"},
@@ -81,6 +83,8 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "not needed -- no persistent homology"},
 }
 TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "scipy": "load_bearing",
     "pytorch": None,
     "pyg": None,
     "z3": None,
@@ -712,6 +716,8 @@ summary = {
 }
 
 all_pass = all(summary.values())
+invalid_trace = is_valid_dm(np.array([[2.0, 0.0], [0.0, 0.0]], dtype=complex), "invalid_trace")
+invalid_psd = is_valid_dm(np.array([[0.5, 0.75], [0.75, 0.5]], dtype=complex), "invalid_psd")
 RESULTS["name"] = "pure_lego_density_matrices"
 RESULTS["classification"] = CLASSIFICATION
 RESULTS["classification_note"] = CLASSIFICATION_NOTE
@@ -720,7 +726,40 @@ RESULTS["primary_lego_ids"] = PRIMARY_LEGO_IDS
 RESULTS["tool_manifest"] = TOOL_MANIFEST
 RESULTS["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
 RESULTS["summary"] = summary
+RESULTS["all_pass"] = all_pass
 RESULTS["ALL_PASS"] = all_pass
+RESULTS["positive"] = {
+    "construction_and_state_identities": {
+        "pass": bool(summary["1_construction"] and summary["2_pauli_roundtrip"] and summary["2_pauli_iff"]),
+        "sections": ["1_construction", "2_pauli_decomposition"],
+    },
+    "entropy_distance_correlation_channels": {
+        "pass": bool(
+            summary["3_spectral"]
+            and summary["4_entropy_ordering"]
+            and summary["5_triangle_ineq"]
+            and summary["6_mi_nonneg"]
+            and summary["7_bell_C1"]
+            and summary["8_cptp_all"]
+        ),
+        "sections": ["3_spectral_decomposition", "4_entropies", "5_distances", "6_two_qubit", "7_correlations", "8_cptp_channels"],
+    },
+}
+RESULTS["negative"] = {
+    "invalid_trace_rejected": {
+        "pass": not invalid_trace["trace_ok"],
+        "invalid_state_check": invalid_trace,
+    },
+    "invalid_psd_rejected": {
+        "pass": not invalid_psd["psd"],
+        "invalid_state_check": invalid_psd,
+    },
+}
+RESULTS["boundary"] = {
+    "pure_state_vn_entropy_zero": {"pass": bool(summary["4_vn_pure_zero"])},
+    "max_mixed_vn_entropy_one": {"pass": bool(summary["4_vn_mixed_one"])},
+    "fuchs_van_de_graaf_no_violations": {"pass": bool(summary["5_fuchs_van_de_graaf"])},
+}
 RESULTS["honest_summary"] = {
     "all_pass": all_pass,
     "section_pass_count": sum(1 for v in summary.values() if v),

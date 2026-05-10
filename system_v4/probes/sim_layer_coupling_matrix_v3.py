@@ -1029,6 +1029,30 @@ if __name__ == "__main__":
         else:
             cell_summary[cell] = f"ERROR: {positive.get(cell, {}).get('error', 'unknown')}"
 
+    def count_pass_records(*sections):
+        passed = 0
+        failed = 0
+        for section in sections:
+            if isinstance(section, dict):
+                for value in section.values():
+                    if isinstance(value, dict) and "pass" in value:
+                        if value["pass"]:
+                            passed += 1
+                        else:
+                            failed += 1
+        return passed, failed
+
+    pass_count, fail_count = count_pass_records(
+        positive,
+        negative,
+        boundary,
+        {"sympy_L3_on_L4": sympy_result},
+        {"z3_L4_isolation_proof": z3_result},
+        {"rustworkx_complete_matrix": rustworkx_result},
+    )
+    all_pass = fail_count == 0 and pass_count > 0
+    l4_isolation_proved = z3_result.get("isolation_proof") == "PROVED"
+
     results = {
         "name": "layer_coupling_matrix_v3",
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -1044,6 +1068,18 @@ if __name__ == "__main__":
         "sympy_L3_on_L4": sympy_result,
         "z3_L4_isolation_proof": z3_result,
         "rustworkx_complete_matrix": rustworkx_result,
+        "all_pass": all_pass,
+        "summary": {
+            "all_pass": all_pass,
+            "pass_count": pass_count,
+            "fail_count": fail_count,
+            "l4_isolation_proved": l4_isolation_proved,
+            "claim_note": (
+                "all_pass means the coupling-matrix measurement pipeline ran without failed "
+                "checks. It does not mean L4 isolation was proved; z3_L4_isolation_proof "
+                "records that claim separately."
+            ),
+        },
     }
 
     out_dir  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "a2_state", "sim_results")

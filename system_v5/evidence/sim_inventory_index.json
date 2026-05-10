@@ -1,6 +1,6 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T17:56:53.453276+00:00",
+  "generated_at": "2026-05-10T18:09:54.377331+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 3917,
@@ -11,9 +11,9 @@
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3526,
-      "rerun_or_admission_candidate": 220,
+      "rerun_or_admission_candidate": 221,
       "legacy_result_or_repair_needed": 14,
-      "contract_shaped_but_tool_depth_thin": 146,
+      "contract_shaped_but_tool_depth_thin": 145,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
     },
@@ -54,7 +54,7 @@
       "qiskit": 10
     },
     "load_bearing_tool_counts": {
-      "numpy": 175,
+      "numpy": 176,
       "cvc5": 505,
       "pytorch": 1121,
       "rustworkx": 280,
@@ -64,7 +64,7 @@
       "xgi": 199,
       "geomstats": 109,
       "gudhi": 117,
-      "scipy": 53,
+      "scipy": 54,
       "toponetx": 117,
       "e3nn": 55,
       "pyg": 67,
@@ -74,11 +74,11 @@
     },
     "result_classification_counts": {
       "classical_baseline": 81,
-      "canonical": 248,
+      "canonical": 247,
       "exploratory": 30,
       "research_support": 6,
       "tool_lego_fit_probe": 1,
-      "supporting": 5,
+      "supporting": 6,
       "controller_index": 2,
       "graveyard_negative": 1,
       "sidecar_probe": 2,
@@ -90662,7 +90662,7 @@
       ],
       "result_count": 1,
       "result_classifications": [
-        "canonical"
+        "supporting"
       ],
       "result_has_contract_shape": true,
       "admission_path": "",
@@ -100348,10 +100348,13 @@
         "thermo_engine"
       ],
       "tools": {
-        "numpy": "imported",
-        "scipy": "imported"
+        "numpy": "load_bearing",
+        "scipy": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "numpy",
+        "scipy"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
       "result_paths": [
@@ -100368,7 +100371,7 @@
       "admitted": false,
       "late_stage_signal": false,
       "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_pure_lego_dfs_noiseless",

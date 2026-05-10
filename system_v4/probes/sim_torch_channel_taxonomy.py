@@ -986,13 +986,16 @@ if __name__ == "__main__":
     p_pass, p_fail = count_passes(positive)
     n_pass, n_fail = count_passes(negative)
     b_pass, b_fail = count_passes(boundary)
+    all_pass = (p_fail + n_fail + b_fail) == 0 and (p_pass + n_pass + b_pass) > 0
 
     results = {
         "name": "torch_channel_taxonomy",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "classification": "canonical",
+        "all_pass": all_pass,
         "summary": {
+            "all_pass": all_pass,
             "positive_pass": p_pass,
             "positive_fail": p_fail,
             "negative_pass": n_pass,

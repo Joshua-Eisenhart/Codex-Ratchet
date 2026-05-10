@@ -97,22 +97,42 @@ def build_summary(results):
     record_total = 0
     explicit_total = 0
     explicit_passed = 0
+    named_boolean_total = 0
+    named_boolean_false = 0
+
+    def walk_booleans(value):
+        nonlocal named_boolean_total, named_boolean_false
+        if isinstance(value, dict):
+            for item in value.values():
+                walk_booleans(item)
+        elif isinstance(value, list):
+            for item in value:
+                walk_booleans(item)
+        elif isinstance(value, bool):
+            named_boolean_total += 1
+            if not value:
+                named_boolean_false += 1
 
     for section in ["positive", "negative", "boundary"]:
         for name, value in results[section].items():
             if not isinstance(value, dict):
                 continue
             record_total += 1
+            walk_booleans(value)
             if "pass" in value:
                 explicit_total += 1
                 if value["pass"]:
                     explicit_passed += 1
 
+    all_pass = explicit_total > 0 and explicit_total == explicit_passed and named_boolean_false == 0
     return {
+        "all_pass": all_pass,
         "record_total": record_total,
         "records_with_explicit_pass": explicit_total,
         "explicit_passed": explicit_passed,
         "explicit_failed": explicit_total - explicit_passed,
+        "named_boolean_total": named_boolean_total,
+        "named_boolean_false": named_boolean_false,
         "note": "Most Weyl-Wigner checks report named boolean invariants inside each record rather than a top-level pass field.",
     }
 
@@ -645,10 +665,16 @@ if __name__ == "__main__":
         "positive": run_positive_tests(),
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
-        "classification": "canonical",
     }
 
     results["summary"] = build_summary(results)
+    results["all_pass"] = results["summary"]["all_pass"]
+    results["classification"] = "canonical" if results["all_pass"] else "supporting"
+    if not results["all_pass"]:
+        results["classification_note"] = (
+            "Receipt remains supporting because at least one expectation-style boolean "
+            "is false; do not treat this as canonical Weyl-Wigner coverage until repaired."
+        )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

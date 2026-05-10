@@ -575,7 +575,14 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
+        "all_pass": all_passed,
         "all_tests_passed": all_passed,
+        "summary": {
+            "all_pass": all_passed,
+            "positive_count": len(positive),
+            "negative_count": len(negative),
+            "boundary_count": len(boundary),
+        },
         "elapsed_s": round(elapsed, 4),
         "classification": "canonical",
     }

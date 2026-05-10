@@ -131,6 +131,8 @@ if __name__ == "__main__":
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd, "pass": ok,
+        "all_pass": ok,
+        "summary": {"all_pass": ok, "pass_count": int(ok), "fail_count": int(not ok)},
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

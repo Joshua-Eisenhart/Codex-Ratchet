@@ -260,6 +260,10 @@ def main() -> int:
             or norm_row.get("existing_result_json")
             or result_name_for_probe(probe)
         )
+        if result_name and not (result_path(result_name) and result_path(result_name).exists()) and probe:
+            probe_stem_result = f"{stem_from_probe(probe)}_results.json"
+            if result_path(probe_stem_result) and result_path(probe_stem_result).exists():
+                result_name = probe_stem_result
         if not result_name and lego_id:
             lego_result_name = f"{lego_id}_results.json"
             if result_path(lego_result_name) and result_path(lego_result_name).exists():

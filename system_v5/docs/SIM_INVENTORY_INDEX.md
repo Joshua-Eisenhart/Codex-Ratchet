@@ -1,24 +1,24 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T17:45:36.762089+00:00`
+Generated: `2026-05-10T17:48:56.881094+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `3917`
-- Result JSON files seen: `403`
-- Linked result JSON files: `374`
+- Result JSON files seen: `414`
+- Linked result JSON files: `385`
 - Unlinked result JSON files: `29`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `362`
-- Source-only rows: `3544`
+- Repair / rerun candidate rows: `372`
+- Source-only rows: `3534`
 
 ## Inventory Status Counts
 
-- `source_only`: 3544
-- `rerun_or_admission_candidate`: 212
-- `contract_shaped_but_tool_depth_thin`: 136
+- `source_only`: 3534
+- `rerun_or_admission_candidate`: 213
+- `contract_shaped_but_tool_depth_thin`: 145
 - `legacy_result_or_repair_needed`: 14
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2
@@ -114,6 +114,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | legacy_result_or_repair_needed | `followup_anomaly_investigation` | entropy_information, hopf_torus, graph_topology | - | - |
 | legacy_result_or_repair_needed | `mass_stabilization_sim` | entropy_information, hopf_torus, weyl_spinor_clifford, graph_topology, axis_bridge | - | - |
 | legacy_result_or_repair_needed | `neg_commutative_process_cycle_sim` | channel_operator, thermo_engine, graveyard_negative | - | - |
+| rerun_or_admission_candidate | `sim_axis0_kernel_phi0` | axis_bridge | clifford, geomstats, gudhi, pytorch, rustworkx, scipy, sympy, toponetx, xgi, z3 | classical_baseline |
 | rerun_or_admission_candidate | `sim_axis6_e3nn_fe_bridge` | density_carrier, axis_bridge, graveyard_negative | e3nn, geomstats, pytorch, z3 | canonical |
 | legacy_result_or_repair_needed | `sim_axis7_deep_test` | channel_operator, axis_bridge | - | - |
 | legacy_result_or_repair_needed | `sim_axis_7_12_audit` | channel_operator, weyl_spinor_clifford, axis_bridge | - | - |
@@ -158,4 +159,3 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | contract_shaped_but_tool_depth_thin | `sim_channel_space_geometry` | channel_operator | - | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_characteristic_representation` | channel_operator | - | canonical |
 | rerun_or_admission_candidate | `sim_clifford_deep_cl3_rotor_double_cover` | channel_operator, hopf_torus, weyl_spinor_clifford, axis_bridge, graveyard_negative | clifford | canonical |
-| rerun_or_admission_candidate | `sim_clifford_even_odd_grade_partition` | weyl_spinor_clifford | clifford, z3 | canonical |

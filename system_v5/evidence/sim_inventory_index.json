@@ -1,24 +1,24 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T19:59:20.323077+00:00",
+  "generated_at": "2026-05-10T20:12:12.426924+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3921,
-    "result_json_count": 428,
-    "linked_result_json_count": 397,
+    "source_count": 3922,
+    "result_json_count": 429,
+    "linked_result_json_count": 398,
     "unlinked_result_json_count": 31,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3526,
-      "rerun_or_admission_candidate": 296,
+      "rerun_or_admission_candidate": 297,
       "legacy_result_or_repair_needed": 14,
       "contract_shaped_but_tool_depth_thin": 74,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
     },
     "family_counts": {
-      "channel_operator": 773,
+      "channel_operator": 774,
       "entropy_information": 576,
       "thermo_engine": 415,
       "uncategorized": 335,
@@ -28,16 +28,16 @@
       "hopf_torus": 590,
       "weyl_spinor_clifford": 780,
       "geometry_gstack_gtower": 707,
-      "density_carrier": 475,
+      "density_carrier": 476,
       "classical_baseline": 1086,
       "gerbe_dirac_mera_spectral": 668,
       "graph_topology": 399,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2692,
+      "numpy": 2693,
       "sympy": 2235,
-      "scipy": 247,
+      "scipy": 248,
       "pytorch": 1966,
       "pyg": 841,
       "cvc5": 1324,
@@ -54,7 +54,7 @@
       "qiskit": 10
     },
     "load_bearing_tool_counts": {
-      "numpy": 251,
+      "numpy": 252,
       "cvc5": 505,
       "pytorch": 1121,
       "rustworkx": 280,
@@ -64,7 +64,7 @@
       "xgi": 199,
       "geomstats": 109,
       "gudhi": 117,
-      "scipy": 59,
+      "scipy": 60,
       "toponetx": 117,
       "e3nn": 55,
       "pyg": 67,
@@ -78,13 +78,13 @@
       "exploratory": 30,
       "research_support": 6,
       "tool_lego_fit_probe": 1,
-      "supporting": 8,
+      "supporting": 9,
       "controller_index": 2,
       "graveyard_negative": 1,
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 384,
+    "repair_candidate_count": 385,
     "source_only_count": 3526
   },
   "admitted_stems": [
@@ -97690,6 +97690,39 @@
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
+      "stem": "sim_operator_geometry_shared_state_coexistence",
+      "source_path": "system_v4/probes/sim_operator_geometry_shared_state_coexistence.py",
+      "families": [
+        "density_carrier",
+        "channel_operator"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "scipy": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy",
+        "scipy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/operator_geometry_shared_state_coexistence_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "supporting"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": true,
       "has_contract_shape": true,
       "inventory_status": "rerun_or_admission_candidate"
     },

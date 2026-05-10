@@ -1,23 +1,23 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T19:59:20.323077+00:00`
+Generated: `2026-05-10T20:12:12.426924+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
-- Sim source files indexed: `3921`
-- Result JSON files seen: `428`
-- Linked result JSON files: `397`
+- Sim source files indexed: `3922`
+- Result JSON files seen: `429`
+- Linked result JSON files: `398`
 - Unlinked result JSON files: `31`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `384`
+- Repair / rerun candidate rows: `385`
 - Source-only rows: `3526`
 
 ## Inventory Status Counts
 
 - `source_only`: 3526
-- `rerun_or_admission_candidate`: 296
+- `rerun_or_admission_candidate`: 297
 - `contract_shaped_but_tool_depth_thin`: 74
 - `legacy_result_or_repair_needed`: 14
 - `admitted`: 9
@@ -29,13 +29,13 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `classical_baseline`: 1086
 - `root_admission`: 835
 - `weyl_spinor_clifford`: 780
-- `channel_operator`: 773
+- `channel_operator`: 774
 - `geometry_gstack_gtower`: 707
 - `gerbe_dirac_mera_spectral`: 668
 - `axis_bridge`: 647
 - `hopf_torus`: 590
 - `entropy_information`: 576
-- `density_carrier`: 475
+- `density_carrier`: 476
 - `thermo_engine`: 415
 - `graph_topology`: 399
 - `uncategorized`: 335
@@ -49,13 +49,13 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `cvc5`: 505
 - `rustworkx`: 280
 - `clifford`: 273
-- `numpy`: 251
+- `numpy`: 252
 - `xgi`: 199
 - `gudhi`: 117
 - `toponetx`: 117
 - `geomstats`: 109
 - `pyg`: 67
-- `scipy`: 59
+- `scipy`: 60
 - `e3nn`: 55
 - `qutip`: 31
 - `qiskit`: 8

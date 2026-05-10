@@ -149,7 +149,12 @@ def survivor_distribution(channel: np.ndarray, values: list[int]) -> dict[str, f
     }
 
 
-def noncommuting_order_report(values: list[int], primes: list[int], seed: int) -> dict[str, Any]:
+def noncommuting_order_report(
+    values: list[int],
+    primes: list[int],
+    seed: int,
+    max_logm_dim: int,
+) -> dict[str, Any]:
     operations = {divisor: build_divisor_operation(values, divisor) for divisor in divisor_sequence(values, seed, "ascending")}
     commutators = []
     divisors = sorted(operations)
@@ -163,7 +168,7 @@ def noncommuting_order_report(values: list[int], primes: list[int], seed: int) -
     for mode in ("ascending", "descending", "shuffled"):
         sequence = divisor_sequence(values, seed, mode)
         channel = compose_divisor_operations(values, sequence)
-        row = evaluate_channel(channel, values, primes)
+        row = evaluate_channel(channel, values, primes, max_logm_dim=max_logm_dim)
         row["divisor_sequence"] = sequence
         row["survivor_distribution"] = survivor_distribution(channel, values)
         orders[mode] = row
@@ -188,25 +193,32 @@ def fixed_states(channel: np.ndarray, values: list[int]) -> list[int]:
     return [values[i] for i in range(len(values)) if abs(channel[i, i] - 1.0) < 1e-12 and np.count_nonzero(channel[:, i]) == 1]
 
 
-def spectral_summary(channel: np.ndarray) -> dict[str, Any]:
+def spectral_summary(channel: np.ndarray, max_logm_dim: int) -> dict[str, Any]:
     eig = np.linalg.eigvals(channel)
     abs_eig = np.sort(np.abs(eig))[::-1]
     nontrivial = [float(v) for v in abs_eig if v < 1.0 - 1e-12]
     gap = float(1.0 - nontrivial[0]) if nontrivial else 1.0
     logm_error = None
-    try:
-        generator_proxy = scipy.linalg.logm(channel + np.eye(channel.shape[0]) * 1e-9)
-        logm_frobenius = float(np.real(np.linalg.norm(generator_proxy, ord="fro")))
-        if not math.isfinite(logm_frobenius):
-            raise ValueError("non-finite logm norm")
-    except Exception as exc:
-        logm_error = str(exc)
+    logm_skipped = channel.shape[0] > max_logm_dim
+    if logm_skipped:
         logm_frobenius = None
+        logm_error = f"skipped_logm_dim_{channel.shape[0]}_gt_{max_logm_dim}"
+    else:
+        try:
+            generator_proxy = scipy.linalg.logm(channel + np.eye(channel.shape[0]) * 1e-9)
+            logm_frobenius = float(np.real(np.linalg.norm(generator_proxy, ord="fro")))
+            if not math.isfinite(logm_frobenius):
+                raise ValueError("non-finite logm norm")
+        except Exception as exc:
+            logm_error = str(exc)
+            logm_frobenius = None
     return {
         "unit_eigenvalue_count": int(np.sum(np.isclose(abs_eig, 1.0, atol=1e-9))),
         "spectral_gap_proxy": gap,
         "logm_frobenius_proxy": logm_frobenius,
         "logm_error": logm_error,
+        "logm_skipped": logm_skipped,
+        "max_logm_dim": max_logm_dim,
         "rank": int(np.linalg.matrix_rank(channel)),
     }
 
@@ -226,7 +238,12 @@ def gap_statistics(primes: list[int]) -> dict[str, Any]:
     }
 
 
-def evaluate_channel(channel: np.ndarray, values: list[int], prime_labels: list[int]) -> dict[str, Any]:
+def evaluate_channel(
+    channel: np.ndarray,
+    values: list[int],
+    prime_labels: list[int],
+    max_logm_dim: int,
+) -> dict[str, Any]:
     fixed = fixed_states(channel, values)
     fixed_set = set(fixed)
     prime_set = set(prime_labels)
@@ -245,20 +262,46 @@ def evaluate_channel(channel: np.ndarray, values: list[int], prime_labels: list[
         "recall": recall,
         "exact_fixed_state_match": false_positive == 0 and false_negative == 0,
         "fixed_state_sample": fixed[:24],
-        "spectral": spectral_summary(channel),
+        "spectral": spectral_summary(channel, max_logm_dim=max_logm_dim),
     }
 
 
-def run_probe(n_max: int, seed: int) -> dict[str, Any]:
+def run_probe(n_max: int, seed: int, max_logm_dim: int) -> dict[str, Any]:
     values = index_values(n_max)
     primes = list(sp.primerange(2, n_max + 1))
     sieve = build_sieve_channel(values)
-    sidecar_eval = evaluate_channel(sieve, values, primes)
-    order_report = noncommuting_order_report(values, primes, seed)
+    sidecar_eval = evaluate_channel(sieve, values, primes, max_logm_dim=max_logm_dim)
+    order_report = noncommuting_order_report(values, primes, seed, max_logm_dim=max_logm_dim)
     baselines = {
-        "shuffled_absorbers": evaluate_channel(shuffled_absorber_baseline(values, len(primes), seed), values, primes),
-        "random_survivor_map": evaluate_channel(random_survivor_baseline(values, seed + 1), values, primes),
-        "identity_channel": evaluate_channel(np.eye(len(values), dtype=np.float64), values, primes),
+        "shuffled_absorbers": evaluate_channel(
+            shuffled_absorber_baseline(values, len(primes), seed),
+            values,
+            primes,
+            max_logm_dim=max_logm_dim,
+        ),
+        "random_survivor_map": evaluate_channel(
+            random_survivor_baseline(values, seed + 1),
+            values,
+            primes,
+            max_logm_dim=max_logm_dim,
+        ),
+        "identity_channel": evaluate_channel(
+            np.eye(len(values), dtype=np.float64),
+            values,
+            primes,
+            max_logm_dim=max_logm_dim,
+        ),
+    }
+    logm_skipped_channels = {
+        "sidecar": bool(sidecar_eval["spectral"]["logm_skipped"]),
+        "orders": {
+            name: bool(row["spectral"]["logm_skipped"])
+            for name, row in order_report["orders"].items()
+        },
+        "baselines": {
+            name: bool(row["spectral"]["logm_skipped"])
+            for name, row in baselines.items()
+        },
     }
     baseline_exact = {name: row["exact_fixed_state_match"] for name, row in baselines.items()}
     all_pass = (
@@ -287,7 +330,7 @@ def run_probe(n_max: int, seed: int) -> dict[str, Any]:
             "note": "Sympy prime labels are compared only after the divisibility-channel dynamics run.",
         },
         "source_prompts": ["system_v4/a2_state/batch5_prompts/PRO-15_riemann_primes.md"],
-        "parameters": {"N": n_max, "seed": seed, "index_range": [2, n_max]},
+        "parameters": {"N": n_max, "seed": seed, "index_range": [2, n_max], "max_logm_dim": max_logm_dim},
         "construction": {
             "channel_type": "finite classical CPTP-style column-stochastic divisibility channel",
             "uses_prime_labels_in_construction": False,
@@ -327,6 +370,12 @@ def run_probe(n_max: int, seed: int) -> dict[str, Any]:
             "scope_note": divergence_log,
             "recommendation": "retool",
             "recommendation_reason": "bounded diagnostic passes fixed-state and noncommuting-order checks, but remains sidecar evidence and needs stronger baselines before promotion",
+            "logm_skipped_channels": logm_skipped_channels,
+            "logm_skipped_count": int(
+                logm_skipped_channels["sidecar"]
+                + sum(logm_skipped_channels["orders"].values())
+                + sum(logm_skipped_channels["baselines"].values())
+            ),
         },
     }
 
@@ -373,13 +422,19 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--N", type=int, default=256)
     parser.add_argument("--seed", type=int, default=1729)
+    parser.add_argument(
+        "--max-logm-dim",
+        type=int,
+        default=96,
+        help="Skip scipy.linalg.logm above this matrix dimension and keep cheaper eigen/rank proxies.",
+    )
     parser.add_argument("--out", type=pathlib.Path, default=RESULT_DIR / "prime_qit_sidecar_probe_results.json")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    result = run_probe(args.N, args.seed)
+    result = run_probe(args.N, args.seed, max_logm_dim=args.max_logm_dim)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(result, indent=2, default=str) + "\n", encoding="utf-8")
     write_visual_payload(result)

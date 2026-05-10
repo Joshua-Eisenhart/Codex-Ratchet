@@ -192,6 +192,15 @@ def stage_gate_level(inv_row: dict, result: dict, slots: dict) -> str:
     return "1_passes_local_rerun"
 
 
+def coverage_label_diverges(source_label: str | None, machine_label: str | None) -> bool:
+    """Return true only for actionable source/machine coverage disagreement."""
+    if source_label == machine_label:
+        return False
+    if source_label == "canonical by process" and machine_label == "covered":
+        return False
+    return True
+
+
 def next_action(row: dict, inv_row: dict, result: dict, coupling_rows: list[dict]) -> dict:
     machine_coverage = row.get("machine_current_coverage") or row.get("current_coverage")
     source_coverage = row.get("current_coverage")
@@ -233,6 +242,12 @@ def next_action(row: dict, inv_row: dict, result: dict, coupling_rows: list[dict
             "status": "coupling_available",
             "reason": "one or more bounded coupling packets reference this lego family",
             "packet": ready_couplings[0].get("recommended_sim"),
+        }
+    if source_coverage == "canonical by process" and machine_coverage == "covered":
+        return {
+            "status": "indexed",
+            "reason": "source process label is not stale; machine receipt covers the row",
+            "packet": None,
         }
     if machine_coverage == "covered" and source_coverage != "covered":
         if result.get("all_pass") is not True:
@@ -326,7 +341,7 @@ def main() -> int:
         action = next_action(reg_row, inv_row, result, couplings)
         source_label = reg_row.get("current_coverage")
         machine_label = reg_row.get("machine_current_coverage")
-        stale_label_risk = bool(source_label != machine_label)
+        stale_label_risk = coverage_label_diverges(source_label, machine_label)
         negative_evidence = bool(
             "graveyard_negative" in inv_row.get("families", [])
             or any(tok in f"{lego_id} {reg_row.get('section', '')}".lower() for tok in ["graveyard", "falsifier", "rejection"])

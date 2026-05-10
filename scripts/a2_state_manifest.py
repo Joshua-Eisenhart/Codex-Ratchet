@@ -16,6 +16,7 @@ NORMALIZATION_QUEUE_PATH = ROOT / "system_v4" / "probes" / "a2_state" / "sim_res
 WORK_MATRIX_PATH = ROOT / "system_v4" / "probes" / "a2_state" / "sim_results" / "actual_lego_work_matrix.json"
 DEFAULT_EXTRA_PATHS = (
     "system_v4/probes/a2_state/sim_results/actual_lego_work_matrix.json",
+    "system_v4/probes/a2_state/sim_results/actual_lego_source_label_normalization_ledger.json",
     "system_v4/probes/a2_state/sim_results/constraint_manifold_L0_L1_results.json",
     "system_v4/probes/a2_state/sim_results/commutative_geometry_collapse_results.json",
     "system_v4/probes/a2_state/sim_results/gauge_group_correspondence_results.json",

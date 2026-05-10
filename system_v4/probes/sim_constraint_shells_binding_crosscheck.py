@@ -1147,6 +1147,7 @@ if __name__ == "__main__":
     classification = "supporting"
     summary = {
         "negative_all_pass": negative_all_pass,
+        "all_pass": negative_all_pass and not bool(boundary.get("error")),
         "scope_note": (
             "Constraint-shell binding probe for local carrier/probe and shell-binding behavior. "
             "Negative lane closed (physically-correct tests pass). "
@@ -1175,6 +1176,36 @@ if __name__ == "__main__":
         "final_verdict": final_verdict,
         "summary": summary,
         "classification": classification,
+        "all_pass": summary["all_pass"],
+        "criteria_checked": [
+            "per-step L4/L6 displacement comparison",
+            "z3 hypothesis consistency checks",
+            "geomstats SPD geodesic shell-binding comparison",
+            "sympy symbolic displacement derivation",
+            "negative and boundary projection controls",
+        ],
+        "claim_ceiling": (
+            "supporting finite constraint-shell binding crosscheck only; no bridge, "
+            "GStack, axis, QIT, or nonclassical admission"
+        ),
+        "next_lego_target": (
+            "Use as a candidate coupling scout only after explicit shell-ablation "
+            "receipts show the binding quantity collapses when either shell is removed."
+        ),
+        "promotion_condition": (
+            "Requires closure-grade coupling receipt with UNSAT or ablation fence and "
+            "stage-gate approval."
+        ),
+        "blocked_until": "explicit shell-ablation receipt and coupling-stage admission",
+        "demotion_condition": (
+            "Demote if negative controls fail or z3/geomstats/sympy routes disagree without resolution."
+        ),
+        "out_of_scope": [
+            "QIT engine admission",
+            "GStack promotion",
+            "axis promotion",
+            "nonclassical admission",
+        ],
     }
 
     out_dir = os.path.join(

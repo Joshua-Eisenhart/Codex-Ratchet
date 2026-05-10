@@ -742,6 +742,18 @@ if __name__ == "__main__":
     summary["z3_separable_ic_positive_is_unsat"] = bnd_results.get("z3_separable_ic_positive_is_unsat", "N/A")
     summary["z3_proof_strategy"] = bnd_results.get("z3_proof_strategy", "")
     summary["z3_direct_arithmetic_unsat"] = bnd_results.get("z3_direct_arithmetic_unsat", "N/A")
+    all_pass = bool(
+        TORCH_OK
+        and PYG_OK
+        and Z3_OK
+        and RX_OK
+        and XGI_OK
+        and summary["bifurcation_visible"]
+        and summary["z3_separable_ic_positive_is_unsat"]
+        and summary["z3_direct_arithmetic_unsat"] == "unsat"
+        and summary["xgi_intersection_pos_sep"] == []
+    )
+    summary["all_pass"] = all_pass
 
     results = {
         "name": "sim_pyg_dynamic_edge_werner",
@@ -752,8 +764,38 @@ if __name__ == "__main__":
         "boundary": bnd_results,
         "summary": summary,
         "classification": "canonical",
+        "all_pass": all_pass,
         "p_I_c_zero_reference": 0.252,
         "p_sep_reference": round(1.0/3.0, 6),
+        "criteria_checked": [
+            "PyTorch Werner density/entropy computation",
+            "PyG dynamic edge graph over I_c-positive neighbors",
+            "rustworkx quantum-channel DAG bottleneck",
+            "XGI positive/entangled/separable hyperedge separation",
+            "z3 separable-and-I_c-positive UNSAT fence",
+        ],
+        "claim_ceiling": (
+            "finite Werner graph/topology and coherent-information boundary witness only; "
+            "no bridge, GStack, axis, QIT, or nonclassical admission"
+        ),
+        "next_lego_target": (
+            "Use as graph/topology and bipartite-structure evidence for later "
+            "coupling packets after exact shell-scope and ablation checks."
+        ),
+        "promotion_condition": (
+            "Requires separate coupling/coexistence receipts, shell-scope proof, "
+            "and stage-gate approval."
+        ),
+        "blocked_until": "explicit shell-scope ablation receipt and coupling-stage admission",
+        "demotion_condition": (
+            "Demote if any load-bearing tool is unavailable or the UNSAT/bifurcation checks fail."
+        ),
+        "out_of_scope": [
+            "QIT engine admission",
+            "GStack promotion",
+            "axis promotion",
+            "nonclassical admission",
+        ],
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

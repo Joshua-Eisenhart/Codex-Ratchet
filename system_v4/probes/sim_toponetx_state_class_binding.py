@@ -479,11 +479,20 @@ if __name__ == "__main__":
     z3_disjoint = negative.get("z3_l4_l6_disjoint", {})
     xgi_result  = boundary.get("xgi_hypergraph", {})
     r_star_test = boundary.get("r_star_boundary", {})
+    all_pass = bool(
+        betti.get("euler_consistent")
+        and coboundary.get("r_star_is_coboundary")
+        and z3_disjoint.get("is_unsat")
+        and xgi_result.get("shared_node_is_r_star")
+        and r_star_test.get("is_strict_boundary")
+        and sympy_euler.get("all_consistent")
+    )
 
     results = {
         "name": "toponetx_state_class_binding",
         "timestamp": ts,
         "classification": "canonical",
+        "all_pass": all_pass,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "summary": {
@@ -497,10 +506,39 @@ if __name__ == "__main__":
             "z3_l4_l6_regimes_disjoint_unsat": z3_disjoint.get("is_unsat"),
             "xgi_r_star_is_unique_l4_l6_interface": xgi_result.get("shared_node_is_r_star"),
             "r_star_is_strict_boundary": r_star_test.get("is_strict_boundary"),
+            "all_pass": all_pass,
         },
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
+        "criteria_checked": [
+            "CellComplex Betti/Euler consistency",
+            "r*=0.17 coboundary boundary check",
+            "z3 L4/L6 disjointness UNSAT",
+            "XGI unique L4/L6 interface check",
+            "sympy Euler consistency",
+        ],
+        "claim_ceiling": (
+            "finite TopoNetX/XGI Werner state-class binding witness only; "
+            "no bridge, GStack, axis, QIT, or nonclassical admission"
+        ),
+        "next_lego_target": (
+            "Use as topology/state-class coexistence evidence for later coupling "
+            "packets after explicit ablation or companion receipts."
+        ),
+        "promotion_condition": (
+            "Requires separate coupling/coexistence receipts and stage-gate approval."
+        ),
+        "blocked_until": "explicit coupling-stage admission and ablation receipt",
+        "demotion_condition": (
+            "Demote if boundary, UNSAT, or Euler consistency checks fail on rerun."
+        ),
+        "out_of_scope": [
+            "QIT engine admission",
+            "GStack promotion",
+            "axis promotion",
+            "nonclassical admission",
+        ],
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

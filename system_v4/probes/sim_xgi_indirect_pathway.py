@@ -618,6 +618,14 @@ if __name__ == "__main__":
             "This is a structural coupling effect, not direct L4 membership."
         ),
     }
+    all_pass = bool(
+        comp.get("indirect_removal_significant")
+        and b1.get("edge_2_rises_when_edge6_removed")
+        and b2.get("rank_agreement_top3")
+        and b2.get("verified_match")
+        and negative.get("synthetic_edge6_replaced", {}).get("synthetic_grad_much_lower")
+    )
+    summary["all_pass"] = all_pass
 
     fill_unused_tool_reasons()
 
@@ -642,6 +650,34 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "classification": "canonical",
+        "all_pass": all_pass,
+        "criteria_checked": [
+            "indirect edge removal changes L4 centrality",
+            "direct L4 edge rank rises when indirect pathway is removed",
+            "analytical and autograd gradients agree",
+            "synthetic non-overlap control weakens the edge-6 gradient",
+        ],
+        "claim_ceiling": (
+            "finite XGI hypergraph indirect-pathway coupling witness only; "
+            "no bridge, GStack, axis, QIT, or nonclassical admission"
+        ),
+        "next_lego_target": (
+            "Use as graph/topology coexistence evidence for later coupling packets "
+            "only when paired with explicit ablation receipts."
+        ),
+        "promotion_condition": (
+            "Requires separate ablation/coupling receipts and stage-gate approval."
+        ),
+        "blocked_until": "explicit ablation receipt and coupling-stage admission",
+        "demotion_condition": (
+            "Demote if indirect-removal or synthetic-control checks fail on rerun."
+        ),
+        "out_of_scope": [
+            "QIT engine admission",
+            "GStack promotion",
+            "axis promotion",
+            "nonclassical admission",
+        ],
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

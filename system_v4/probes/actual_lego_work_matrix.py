@@ -238,6 +238,32 @@ def next_action(row: dict, inv_row: dict, result: dict, coupling_rows: list[dict
         return {"status": "audit_tool_depth", "reason": "result exists but load-bearing tool depth is thin", "packet": row.get("machine_best_probe")}
     ready_couplings = [c for c in coupling_rows if c.get("ready")]
     if ready_couplings:
+        receipt_linked = []
+        for coupling in ready_couplings:
+            coupling_result = load_result_summary(result_name_for_probe(coupling.get("recommended_sim")))
+            if coupling_result.get("result_exists") and coupling_result.get("all_pass") is True:
+                receipt_linked.append((coupling, coupling_result))
+        if receipt_linked:
+            coupling, coupling_result = receipt_linked[0]
+            if coupling.get("status") == "supporting_only":
+                return {
+                    "status": "coupling_supporting_receipt_indexed",
+                    "reason": (
+                        "ready coupling packet has a fresh all_pass supporting receipt; "
+                        "closure-grade coupling still blocked by its stop rule"
+                    ),
+                    "packet": coupling.get("recommended_sim"),
+                    "coupling_result_classification": coupling_result.get("classification"),
+                }
+            return {
+                "status": "coupling_receipt_linked_audit_needed",
+                "reason": (
+                    "ready coupling/coexistence packet has a fresh all_pass receipt; "
+                    "audit/ablation boundary still required before promotion"
+                ),
+                "packet": coupling.get("recommended_sim"),
+                "coupling_result_classification": coupling_result.get("classification"),
+            }
         return {
             "status": "coupling_available",
             "reason": "one or more bounded coupling packets reference this lego family",

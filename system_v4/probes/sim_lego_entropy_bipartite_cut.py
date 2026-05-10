@@ -466,6 +466,8 @@ if __name__ == "__main__":
         "schema_version": "1.0",
         "classification": "canonical",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "all_pass": error is None and p_pass == p_total and n_pass == n_total and b_pass == b_total,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
@@ -476,6 +478,32 @@ if __name__ == "__main__":
             "all_pass": error is None and p_pass == p_total and n_pass == n_total and b_pass == b_total,
             "total_time_s": time.time() - t_start,
         },
+        "criteria_checked": [
+            "product, Bell, maximally mixed, and Werner cut-state entropy identities",
+            "conditional entropy, mutual information, and coherent information checks",
+            "negative controls for forbidden entropy signs/values",
+            "boundary checks at Werner p=0, p=1/3, and p=1",
+        ],
+        "claim_ceiling": (
+            "finite bipartite cut entropy lego only; not proof of shell coupling "
+            "unless paired with explicit distinct-shell scope and ablation receipts"
+        ),
+        "next_lego_target": (
+            "Use as entropy-family support for later entropy-geometry or shell-coupling "
+            "packets after the cut sides are explicitly mapped to distinct shells."
+        ),
+        "promotion_condition": (
+            "Requires distinct-shell scope, ablation, and coupling-stage approval."
+        ),
+        "blocked_until": "explicit distinct-shell mapping and ablation receipt",
+        "demotion_condition": "Demote if entropy identities or boundary checks fail on rerun.",
+        "out_of_scope": [
+            "QIT engine admission",
+            "GStack promotion",
+            "axis promotion",
+            "nonclassical admission",
+            "Riemann/RH/PNT claims",
+        ],
     }
     if error is not None:
         results["error"] = error

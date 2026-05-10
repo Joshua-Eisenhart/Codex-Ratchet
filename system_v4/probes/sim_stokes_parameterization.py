@@ -30,6 +30,7 @@ PRIMARY_LEGO_IDS = [
 ]
 
 TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "load-bearing finite numeric arrays and bounded linear-algebra checks for this local lego"},
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
     "z3": {"tried": False, "used": False, "reason": "not needed"},
@@ -45,6 +46,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
 
 I2 = np.eye(2, dtype=complex)
 SX = np.array([[0.0, 1.0], [1.0, 0.0]], dtype=complex)
@@ -158,6 +160,16 @@ def main():
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "claim_ceiling": "canonical_local_stokes_parameterization_lego_only",
+        "next_lego_target": "none",
+        "promotion_condition": "requires separate reconciled queue row before coupling, bridge, axis, engine, or QIT use",
+        "blocked_until": "exact parent receipts, queue row, result JSON, and ledger loopback are reconciled",
+        "demotion_condition": "demote if the named positive, negative, or boundary criteria fail, or if this row is used for a higher-stage claim",
+        "out_of_scope": [
+            "no coupling, bridge, axis, engine, GStack, or nonclassical admission claim",
+        ],
+        "all_pass": all_pass,
+        "criteria_checked": list(positive) + list(negative) + list(boundary),
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

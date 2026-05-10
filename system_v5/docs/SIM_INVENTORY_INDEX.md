@@ -1,6 +1,6 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T18:45:11.064197+00:00`
+Generated: `2026-05-10T18:52:27.021504+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
@@ -17,8 +17,8 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 ## Inventory Status Counts
 
 - `source_only`: 3526
-- `rerun_or_admission_candidate`: 263
-- `contract_shaped_but_tool_depth_thin`: 103
+- `rerun_or_admission_candidate`: 292
+- `contract_shaped_but_tool_depth_thin`: 74
 - `legacy_result_or_repair_needed`: 14
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2
@@ -49,7 +49,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `cvc5`: 505
 - `rustworkx`: 280
 - `clifford`: 273
-- `numpy`: 218
+- `numpy`: 247
 - `xgi`: 199
 - `gudhi`: 117
 - `toponetx`: 117
@@ -127,11 +127,11 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | rerun_or_admission_candidate | `sim_base_loop_law` | hopf_torus | numpy | canonical |
 | rerun_or_admission_candidate | `sim_berry_qfi_shell_paths` | density_carrier, entropy_information, hopf_torus, geometry_gstack_gtower | geomstats, pytorch, sympy | canonical |
 | rerun_or_admission_candidate | `sim_blackwell_style_comparison` | root_admission, channel_operator, classical_baseline | cvc5 | canonical |
-| contract_shaped_but_tool_depth_thin | `sim_branch_weight` | uncategorized | - | canonical |
+| rerun_or_admission_candidate | `sim_branch_weight` | uncategorized | numpy | canonical |
 | rerun_or_admission_candidate | `sim_bridge_extended_proofs` | root_admission, channel_operator, entropy_information, geometry_gstack_gtower, axis_bridge, classical_baseline, graveyard_negative | cvc5, z3 | canonical |
-| contract_shaped_but_tool_depth_thin | `sim_bridge_family_xi_history` | axis_bridge | - | classical_baseline |
-| contract_shaped_but_tool_depth_thin | `sim_bridge_family_xi_point` | axis_bridge | - | classical_baseline |
-| contract_shaped_but_tool_depth_thin | `sim_bridge_family_xi_shell` | axis_bridge | - | classical_baseline |
+| rerun_or_admission_candidate | `sim_bridge_family_xi_history` | axis_bridge | numpy | classical_baseline |
+| rerun_or_admission_candidate | `sim_bridge_family_xi_point` | axis_bridge | numpy | classical_baseline |
+| rerun_or_admission_candidate | `sim_bridge_family_xi_shell` | axis_bridge | numpy | classical_baseline |
 | rerun_or_admission_candidate | `sim_bridge_to_rhoab_construction` | density_carrier, axis_bridge, graveyard_negative | pytorch | canonical |
 | rerun_or_admission_candidate | `sim_bridge_z3_kernel_ordering` | density_carrier, axis_bridge, graveyard_negative | rustworkx, z3 | canonical |
 | legacy_result_or_repair_needed | `sim_broad_axis_search` | thermo_engine, axis_bridge | - | - |

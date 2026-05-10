@@ -37,6 +37,12 @@ TOOL_INTEGRATION_DEPTH = {
     "toponetx": None,
     "gudhi": None,
 }
+TOOL_MANIFEST["numpy"] = {
+    "tried": True,
+    "used": True,
+    "reason": "load-bearing finite array/matrix computation for this bounded classical lego receipt",
+}
+TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
 
 def discrete_gradient(field):
     return np.diff(field)
@@ -60,7 +66,7 @@ def main():
         "site_order_is_stable": {"pass": np.sign(g_ref[0]) == np.sign(ref[1]-ref[0])},
     }
     all_pass = all(v["pass"] for sec in [positive,negative,boundary] for v in sec.values())
-    results = {"name":"discrete_axis0_field","classification":CLASSIFICATION if all_pass else "exploratory_signal","classification_note":CLASSIFICATION_NOTE,"lego_ids":LEGO_IDS,"primary_lego_ids":PRIMARY_LEGO_IDS,"tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH,"positive":positive,"negative":negative,"boundary":boundary,"summary":{"all_pass":all_pass,"scope_note":"Direct local discrete Axis-0 field row on one bounded lattice of signed field values."}}
+    results = {"name":"discrete_axis0_field","classification":CLASSIFICATION if all_pass else "exploratory_signal","classification_note":CLASSIFICATION_NOTE,"lego_ids":LEGO_IDS,"primary_lego_ids":PRIMARY_LEGO_IDS,"tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH,"claim_ceiling":"finite classical baseline/tool-depth receipt only; no bridge, GStack, axis, QIT, or nonclassical admission","next_lego_target":"Use as a bounded source receipt for later tool-lego or coupling work only after exact downstream checks.","promotion_condition":"Requires separate bridge/nonclassical/topology/operator coupling receipts and explicit stage-gate approval.","blocked_until":"tool-lego fit; coupling/coexistence evidence; stage-gate admission","demotion_condition":"Demote if rerun fails, tool use is not load-bearing, or result claims exceed this finite receipt.","out_of_scope":["QIT engine admission","GStack admission","axis promotion","nonclassical proof"],"all_pass":all_pass,"criteria_checked":["finite computation completed","load-bearing tool path exercised","local pass/fail criteria satisfied"],"positive":positive,"negative":negative,"boundary":boundary,"summary":{"all_pass":all_pass,"scope_note":"Direct local discrete Axis-0 field row on one bounded lattice of signed field values."}}
     outp = pathlib.Path(__file__).resolve().parent/"a2_state"/"sim_results"/"discrete_axis0_field_results.json"
     outp.parent.mkdir(parents=True, exist_ok=True)
     outp.write_text(json.dumps(results, indent=2, default=str))

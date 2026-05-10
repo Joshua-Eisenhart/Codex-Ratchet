@@ -25,6 +25,7 @@ COUPLING_QUEUE_PATH = RESULTS_DIR / "lego_batch_queue.json"
 INVENTORY_PATH = PROJECT_DIR / "system_v5" / "evidence" / "sim_inventory_index.json"
 OUT_PATH = RESULTS_DIR / "actual_lego_work_matrix.json"
 PROCESS_AUDIT_PATH = RESULTS_DIR / "actual_lego_process_receipt_audit.json"
+INDEXED_AUDIT_PATH = RESULTS_DIR / "actual_lego_indexed_receipt_audit.json"
 
 
 NONCLASSICAL_ADJACENT_TOOLS = {
@@ -208,6 +209,7 @@ def next_action(
     result: dict,
     coupling_rows: list[dict],
     process_audit_row: dict | None = None,
+    indexed_audit_row: dict | None = None,
 ) -> dict:
     machine_coverage = row.get("machine_current_coverage") or row.get("current_coverage")
     source_coverage = row.get("current_coverage")
@@ -295,6 +297,24 @@ def next_action(
             "packet": ready_couplings[0].get("recommended_sim"),
         }
     if source_coverage == "canonical by process" and machine_coverage == "covered":
+        if indexed_audit_row:
+            if indexed_audit_row.get("hard_finding_count", 0):
+                return {
+                    "status": "indexed_receipt_hard_blocked",
+                    "reason": "indexed receipt audit found hard validator findings",
+                    "packet": row.get("machine_best_probe"),
+                }
+            if indexed_audit_row.get("warning_count", 0):
+                return {
+                    "status": "indexed_receipt_boundary_warnings",
+                    "reason": "source process label is not stale; hard-green receipt still has run-boundary warning fields",
+                    "packet": row.get("machine_best_probe"),
+                }
+            return {
+                "status": "indexed_receipt_audited",
+                "reason": "source process label is not stale; machine receipt is hard-green with no validator warnings",
+                "packet": None,
+            }
         return {
             "status": "indexed",
             "reason": "source process label is not stale; machine receipt covers the row",
@@ -314,6 +334,24 @@ def next_action(
             "reason": "machine says covered but linked result does not expose all_pass true",
             "packet": row.get("machine_best_probe"),
         }
+    if indexed_audit_row:
+        if indexed_audit_row.get("hard_finding_count", 0):
+            return {
+                "status": "indexed_receipt_hard_blocked",
+                "reason": "indexed receipt audit found hard validator findings",
+                "packet": row.get("machine_best_probe"),
+            }
+        if indexed_audit_row.get("warning_count", 0):
+            return {
+                "status": "indexed_receipt_boundary_warnings",
+                "reason": "indexed receipt is hard-green but still has run-boundary warning fields",
+                "packet": row.get("machine_best_probe"),
+            }
+        return {
+            "status": "indexed_receipt_audited",
+            "reason": "indexed receipt is hard-green with no validator warnings",
+            "packet": None,
+        }
     return {"status": "indexed", "reason": "receipt indexed; no immediate missing packet inferred", "packet": None}
 
 
@@ -323,12 +361,14 @@ def main() -> int:
     coupling_queue = read_json(COUPLING_QUEUE_PATH)
     inventory = read_json(INVENTORY_PATH)
     process_audit = read_json(PROCESS_AUDIT_PATH)
+    indexed_audit = read_json(INDEXED_AUDIT_PATH)
 
     inv_by_stem = inventory_by_stem(inventory)
     norm_by_id = {row.get("lego_id"): row for row in normalization.get("rows", [])}
     coupling_by_family: dict[str, list[dict]] = defaultdict(list)
     coupling_by_probe: dict[str, list[dict]] = defaultdict(list)
     process_audit_by_id = {row.get("lego_id"): row for row in process_audit.get("rows", [])}
+    indexed_audit_by_id = {row.get("lego_id"): row for row in indexed_audit.get("rows", [])}
     for row in coupling_queue.get("rows", []):
         coupling_by_family[row.get("lego_or_pair")].append(row)
         for probe in row.get("depends_on", []):
@@ -391,7 +431,14 @@ def main() -> int:
         couplings = deduped_couplings
         slots = coverage_slots(lego_id or "", reg_row.get("section", ""), inv_row, result)
         stage = stage_gate_level(inv_row, result, slots)
-        action = next_action(reg_row, inv_row, result, couplings, process_audit_by_id.get(lego_id))
+        action = next_action(
+            reg_row,
+            inv_row,
+            result,
+            couplings,
+            process_audit_by_id.get(lego_id),
+            indexed_audit_by_id.get(lego_id),
+        )
         source_label = reg_row.get("current_coverage")
         machine_label = reg_row.get("machine_current_coverage")
         stale_label_risk = coverage_label_diverges(source_label, machine_label)

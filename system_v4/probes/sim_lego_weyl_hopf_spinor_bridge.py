@@ -364,6 +364,43 @@ def main() -> None:
             "graph": graph,
             "proof": proof,
         },
+        "positive": {
+            "spinor_norms_and_hopf_roundtrip": {
+                "pass": (
+                    summary["max_left_norm_gap"] < EPS
+                    and summary["max_right_norm_gap"] < EPS
+                    and summary["max_hopf_roundtrip_gap"] < EPS
+                ),
+                "max_left_norm_gap": summary["max_left_norm_gap"],
+                "max_right_norm_gap": summary["max_right_norm_gap"],
+                "max_hopf_roundtrip_gap": summary["max_hopf_roundtrip_gap"],
+            },
+            "pauli_readout_matches_bloch": {
+                "pass": summary["max_pauli_readout_gap"] < EPS,
+                "max_pauli_readout_gap": summary["max_pauli_readout_gap"],
+            },
+        },
+        "negative": {
+            "left_right_spinors_do_not_collapse": {
+                "pass": summary["max_left_right_overlap_abs"] < EPS,
+                "max_left_right_overlap_abs": summary["max_left_right_overlap_abs"],
+            },
+            "reverse_protocol_order_rejected": {
+                "pass": proof["reverse_order_unsat"] and proof["back_edge_unsat"],
+            },
+        },
+        "boundary": {
+            "nested_torus_levels_are_monotone": {
+                "pass": summary["radii_monotone"],
+                "level_counts": summary["level_counts"],
+            },
+            "finite_protocol_graph_is_dag": {
+                "pass": graph["is_dag"] and graph["node_count"] == 5 and graph["edge_count"] == 4,
+                "node_count": graph["node_count"],
+                "edge_count": graph["edge_count"],
+            },
+        },
+        "all_pass": all_pass,
         "summary": {
             "all_pass": all_pass,
             "scope_note": (
@@ -388,6 +425,25 @@ def main() -> None:
             "max_pauli_readout_gap": summary["max_pauli_readout_gap"],
             "alternate_carrier_gap": summary["alternate_carrier_gap"],
         },
+        "claim_ceiling": (
+            "finite Weyl/Hopf/Pauli spinor-geometry lego only; no bridge, "
+            "GStack, axis, QIT, or nonclassical admission"
+        ),
+        "next_lego_target": (
+            "Use as spinor/Hopf geometry support for later operator/topology "
+            "coupling packets after exact companion receipts."
+        ),
+        "promotion_condition": (
+            "Requires separate coupling/coexistence receipts and stage-gate approval."
+        ),
+        "blocked_until": "explicit coupling-stage admission and companion topology/operator receipts",
+        "demotion_condition": "Demote if spinor, Hopf, Pauli, or graph-order checks fail on rerun.",
+        "out_of_scope": [
+            "QIT engine admission",
+            "GStack promotion",
+            "axis promotion",
+            "nonclassical admission",
+        ],
     }
 
     out_path = (

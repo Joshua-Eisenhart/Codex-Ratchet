@@ -593,6 +593,65 @@ def run_tests():
         "failed": total_tests - total_pass,
         "all_pass": all_pass,
     }
+    results["all_pass"] = all_pass
+    results["positive"] = {
+        "qfi_wy_qgt_sections_pass": {
+            "pass": all_pass,
+            "passed": total_pass,
+            "total": total_tests,
+        },
+        "information_geometry_relation_checked": {
+            "pass": all(
+                test.get("pass")
+                for test in results["sections"].get("6_InformationGeometry", {}).get("tests", [])
+            ),
+        },
+    }
+    results["negative"] = {
+        "entanglement_witness_not_trivial": {
+            "pass": results["sections"]
+            .get("5_EntanglementWitness", {})
+            .get("sympy_shot_noise", {})
+            .get("entanglement_witnessed")
+            is True,
+        }
+    }
+    results["boundary"] = {
+        "cramer_rao_and_metric_bounds": {
+            "pass": all(
+                test.get("pass")
+                for section_name in ("4_CramerRao", "6_InformationGeometry")
+                for test in results["sections"].get(section_name, {}).get("tests", [])
+            ),
+        }
+    }
+    results["criteria_checked"] = [
+        "QFI generator tests",
+        "Wigner-Yanase skew information checks",
+        "QGT metric/curvature checks",
+        "Cramer-Rao bound checks",
+        "two-qubit QFI entanglement witness",
+        "QFI = 4 * Bures information-geometry relation",
+    ]
+    results["claim_ceiling"] = (
+        "finite QFI/Wigner-Yanase/QGT information-geometry lego only; "
+        "no bridge, GStack, axis, QIT, or nonclassical admission"
+    )
+    results["next_lego_target"] = (
+        "Use as metric/information-geometry support for later entropy or "
+        "operator-geometry coupling packets after exact companion receipts."
+    )
+    results["promotion_condition"] = (
+        "Requires separate coupling/coexistence receipts and stage-gate approval."
+    )
+    results["blocked_until"] = "explicit coupling-stage admission and companion topology/operator receipts"
+    results["demotion_condition"] = "Demote if any QFI/WY/QGT section check fails on rerun."
+    results["out_of_scope"] = [
+        "QIT engine admission",
+        "GStack promotion",
+        "axis promotion",
+        "nonclassical admission",
+    ]
 
     return results
 

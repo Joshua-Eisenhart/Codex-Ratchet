@@ -1,24 +1,24 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T17:16:59.943164+00:00`
+Generated: `2026-05-10T17:26:39.813990+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `3917`
-- Result JSON files seen: `371`
-- Linked result JSON files: `343`
+- Result JSON files seen: `374`
+- Linked result JSON files: `346`
 - Unlinked result JSON files: `28`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `331`
-- Source-only rows: `3575`
+- Repair / rerun candidate rows: `334`
+- Source-only rows: `3572`
 
 ## Inventory Status Counts
 
-- `source_only`: 3575
+- `source_only`: 3572
 - `rerun_or_admission_candidate`: 203
-- `contract_shaped_but_tool_depth_thin`: 115
+- `contract_shaped_but_tool_depth_thin`: 118
 - `legacy_result_or_repair_needed`: 13
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2

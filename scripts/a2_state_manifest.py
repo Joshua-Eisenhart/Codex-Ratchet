@@ -27,6 +27,8 @@ DEFAULT_EXTRA_PATHS = (
     "system_v4/probes/a2_state/sim_results/operator_geometry_shared_state_coexistence_results.json",
     "system_v4/probes/a2_state/sim_results/operator_geometry_closure_coexistence_results.json",
     "system_v4/probes/a2_state/sim_results/clifford_hopf_geometry_closure_results.json",
+    "system_v4/probes/a2_state/sim_results/density_carrier_dependency_discrimination_results.json",
+    "system_v4/probes/a2_state/sim_results/density_carrier_qutip_qiskit_closure_results.json",
     "system_v4/probes/a2_state/sim_results/graph_cell_complex_coexistence_results.json",
     "system_v4/probes/a2_state/sim_results/graph_cell_complex_betti_crosscheck_results.json",
     "system_v4/probes/a2_state/sim_results/gudhi_bipartite_entangled_results.json",

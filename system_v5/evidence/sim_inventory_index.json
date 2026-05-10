@@ -1,47 +1,47 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T21:41:52.550527+00:00",
+  "generated_at": "2026-05-10T21:51:10.719972+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3930,
-    "result_json_count": 438,
-    "linked_result_json_count": 407,
+    "source_count": 3932,
+    "result_json_count": 440,
+    "linked_result_json_count": 409,
     "unlinked_result_json_count": 31,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3525,
-      "rerun_or_admission_candidate": 306,
+      "rerun_or_admission_candidate": 308,
       "legacy_result_or_repair_needed": 14,
       "contract_shaped_but_tool_depth_thin": 74,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
     },
     "family_counts": {
-      "channel_operator": 776,
+      "channel_operator": 777,
       "entropy_information": 580,
-      "thermo_engine": 422,
+      "thermo_engine": 424,
       "uncategorized": 335,
-      "axis_bridge": 654,
-      "graveyard_negative": 1698,
-      "root_admission": 838,
+      "axis_bridge": 656,
+      "graveyard_negative": 1699,
+      "root_admission": 839,
       "hopf_torus": 591,
       "weyl_spinor_clifford": 781,
-      "geometry_gstack_gtower": 714,
-      "density_carrier": 476,
-      "classical_baseline": 1092,
+      "geometry_gstack_gtower": 716,
+      "density_carrier": 478,
+      "classical_baseline": 1094,
       "gerbe_dirac_mera_spectral": 668,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2701,
+      "numpy": 2703,
       "sympy": 2236,
       "scipy": 249,
-      "pytorch": 1971,
+      "pytorch": 1973,
       "pyg": 843,
       "cvc5": 1324,
-      "qutip": 42,
+      "qutip": 44,
       "e3nn": 840,
       "gudhi": 897,
       "z3": 1894,
@@ -51,12 +51,12 @@
       "geomstats": 900,
       "xgi": 968,
       "networkx": 25,
-      "qiskit": 10
+      "qiskit": 12
     },
     "load_bearing_tool_counts": {
-      "numpy": 260,
+      "numpy": 262,
       "cvc5": 505,
-      "pytorch": 1126,
+      "pytorch": 1128,
       "rustworkx": 282,
       "z3": 729,
       "sympy": 552,
@@ -68,12 +68,12 @@
       "toponetx": 118,
       "e3nn": 55,
       "pyg": 69,
-      "qutip": 31,
-      "qiskit": 8,
+      "qutip": 33,
+      "qiskit": 10,
       "networkx": 3
     },
     "result_classification_counts": {
-      "classical_baseline": 87,
+      "classical_baseline": 89,
       "canonical": 250,
       "supporting": 11,
       "exploratory": 30,
@@ -84,7 +84,7 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 394,
+    "repair_candidate_count": 396,
     "source_only_count": 3525
   },
   "admitted_stems": [
@@ -3202,6 +3202,89 @@
       "inventory_status": "rerun_or_admission_candidate"
     },
     {
+      "stem": "sim_density_carrier_dependency_discrimination",
+      "source_path": "system_v4/probes/sim_density_carrier_dependency_discrimination.py",
+      "families": [
+        "root_admission",
+        "density_carrier",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline",
+        "graveyard_negative"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "pytorch": "load_bearing",
+        "qutip": "load_bearing",
+        "qiskit": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy",
+        "pytorch",
+        "qiskit",
+        "qutip"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/density_carrier_dependency_discrimination_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
+      "stem": "sim_density_carrier_qutip_qiskit_closure",
+      "source_path": "system_v4/probes/sim_density_carrier_qutip_qiskit_closure.py",
+      "families": [
+        "density_carrier",
+        "channel_operator",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "pytorch": "load_bearing",
+        "qutip": "load_bearing",
+        "qiskit": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy",
+        "pytorch",
+        "qiskit",
+        "qutip"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/density_carrier_qutip_qiskit_closure_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_density_hopf_geometry",
       "source_path": "system_v4/probes/sim_density_hopf_geometry.py",
       "families": [
@@ -3509,72 +3592,6 @@
       "source_has_tool_integration_depth": true,
       "result_paths": [
         "system_v4/probes/a2_state/sim_results/e3nn_relay_equivariance_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "canonical"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": false,
-      "has_contract_shape": true,
-      "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_e3nn_spherical_harmonics_equivariance_micro",
-      "source_path": "system_v4/probes/sim_e3nn_spherical_harmonics_equivariance_micro.py",
-      "families": [
-        "channel_operator",
-        "axis_bridge"
-      ],
-      "tools": {
-        "pytorch": "supportive",
-        "e3nn": "load_bearing"
-      },
-      "load_bearing_tools": [
-        "e3nn"
-      ],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/sim_e3nn_spherical_harmonics_equivariance_micro_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "canonical"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": false,
-      "has_contract_shape": true,
-      "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_e3nn_tensor_product",
-      "source_path": "system_v4/probes/sim_e3nn_tensor_product.py",
-      "families": [
-        "density_carrier",
-        "graveyard_negative"
-      ],
-      "tools": {
-        "numpy": "imported",
-        "pytorch": "load_bearing",
-        "e3nn": "load_bearing"
-      },
-      "load_bearing_tools": [
-        "e3nn",
-        "pytorch"
-      ],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/e3nn_tensor_product_results.json"
       ],
       "result_count": 1,
       "result_classifications": [
@@ -51361,6 +51378,89 @@
       "late_stage_signal": false,
       "has_contract_shape": false,
       "inventory_status": "source_only"
+    },
+    {
+      "stem": "sim_density_carrier_dependency_discrimination",
+      "source_path": "system_v4/probes/sim_density_carrier_dependency_discrimination.py",
+      "families": [
+        "root_admission",
+        "density_carrier",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline",
+        "graveyard_negative"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "pytorch": "load_bearing",
+        "qutip": "load_bearing",
+        "qiskit": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy",
+        "pytorch",
+        "qiskit",
+        "qutip"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/density_carrier_dependency_discrimination_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
+      "stem": "sim_density_carrier_qutip_qiskit_closure",
+      "source_path": "system_v4/probes/sim_density_carrier_qutip_qiskit_closure.py",
+      "families": [
+        "density_carrier",
+        "channel_operator",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "pytorch": "load_bearing",
+        "qutip": "load_bearing",
+        "qiskit": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy",
+        "pytorch",
+        "qiskit",
+        "qutip"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/density_carrier_qutip_qiskit_closure_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_density_hopf_geometry",

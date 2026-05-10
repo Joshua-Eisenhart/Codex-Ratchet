@@ -1,23 +1,23 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T21:41:52.550527+00:00`
+Generated: `2026-05-10T21:51:10.719972+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
-- Sim source files indexed: `3930`
-- Result JSON files seen: `438`
-- Linked result JSON files: `407`
+- Sim source files indexed: `3932`
+- Result JSON files seen: `440`
+- Linked result JSON files: `409`
 - Unlinked result JSON files: `31`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `394`
+- Repair / rerun candidate rows: `396`
 - Source-only rows: `3525`
 
 ## Inventory Status Counts
 
 - `source_only`: 3525
-- `rerun_or_admission_candidate`: 306
+- `rerun_or_admission_candidate`: 308
 - `contract_shaped_but_tool_depth_thin`: 74
 - `legacy_result_or_repair_needed`: 14
 - `admitted`: 9
@@ -25,31 +25,31 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Family Counts
 
-- `graveyard_negative`: 1698
-- `classical_baseline`: 1092
-- `root_admission`: 838
+- `graveyard_negative`: 1699
+- `classical_baseline`: 1094
+- `root_admission`: 839
 - `weyl_spinor_clifford`: 781
-- `channel_operator`: 776
-- `geometry_gstack_gtower`: 714
+- `channel_operator`: 777
+- `geometry_gstack_gtower`: 716
 - `gerbe_dirac_mera_spectral`: 668
-- `axis_bridge`: 654
+- `axis_bridge`: 656
 - `hopf_torus`: 591
 - `entropy_information`: 580
-- `density_carrier`: 476
-- `thermo_engine`: 422
+- `density_carrier`: 478
+- `thermo_engine`: 424
 - `graph_topology`: 402
 - `uncategorized`: 335
 - `fep_holodeck_igt`: 237
 
 ## Load-Bearing Tool Counts
 
-- `pytorch`: 1126
+- `pytorch`: 1128
 - `z3`: 729
 - `sympy`: 552
 - `cvc5`: 505
 - `rustworkx`: 282
 - `clifford`: 274
-- `numpy`: 260
+- `numpy`: 262
 - `xgi`: 200
 - `gudhi`: 121
 - `toponetx`: 118
@@ -57,8 +57,8 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `pyg`: 69
 - `scipy`: 61
 - `e3nn`: 55
-- `qutip`: 31
-- `qiskit`: 8
+- `qutip`: 33
+- `qiskit`: 10
 - `networkx`: 3
 
 ## Unlinked Result Samples

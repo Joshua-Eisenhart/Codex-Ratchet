@@ -46,6 +46,26 @@ COUPLING_TARGETS = {
                 "status": "existing_anchor",
                 "reason": "Density/carrier admission already has a stronger pairwise dependency successor.",
             },
+            {
+                "lego_probe": "sim_density_hopf_geometry.py",
+                "coupling_probe": "sim_density_carrier_dependency_discrimination.py",
+                "existing_anchor": "density_carrier_dependency_discrimination_results.json",
+                "status": "existing_anchor",
+                "reason": (
+                    "Density-shaped carrier work now has a discrimination receipt against "
+                    "integrated_dependency_chain before any separate tool closure is used."
+                ),
+            },
+            {
+                "lego_probe": "sim_density_hopf_geometry.py",
+                "coupling_probe": "sim_density_carrier_qutip_qiskit_closure.py",
+                "existing_anchor": "density_carrier_qutip_qiskit_closure_results.json",
+                "status": "existing_anchor",
+                "reason": (
+                    "After discrimination, the density-shaped carrier has a bounded torch/QuTiP/Qiskit "
+                    "tool-closure receipt with invalid-carrier controls and no admission claim."
+                ),
+            },
         ],
     },
     "geometry_crosschecks_same_carrier": {

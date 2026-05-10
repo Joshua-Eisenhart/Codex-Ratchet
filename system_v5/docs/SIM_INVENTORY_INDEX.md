@@ -1,23 +1,23 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T17:07:31.260890+00:00`
+Generated: `2026-05-10T17:13:24.113378+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `3917`
-- Result JSON files seen: `362`
-- Linked result JSON files: `335`
-- Unlinked result JSON files: `27`
+- Result JSON files seen: `368`
+- Linked result JSON files: `340`
+- Unlinked result JSON files: `28`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `323`
-- Source-only rows: `3583`
+- Repair / rerun candidate rows: `328`
+- Source-only rows: `3578`
 
 ## Inventory Status Counts
 
-- `source_only`: 3583
-- `rerun_or_admission_candidate`: 196
+- `source_only`: 3578
+- `rerun_or_admission_candidate`: 201
 - `contract_shaped_but_tool_depth_thin`: 115
 - `legacy_result_or_repair_needed`: 12
 - `admitted`: 9
@@ -69,6 +69,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json`
 - `system_v4/probes/a2_state/sim_results/deep_graveyard_results.json`
 - `system_v4/probes/a2_state/sim_results/engine_protocol_dag_results.json`
+- `system_v4/probes/a2_state/sim_results/lego_stack_audit_results.json`
 - `system_v4/probes/a2_state/sim_results/lego_tool_reporting_audit_results.json`
 - `system_v4/probes/a2_state/sim_results/migration_contract_audit_results.json`
 - `system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json`

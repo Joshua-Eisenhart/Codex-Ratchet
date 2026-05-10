@@ -23,7 +23,7 @@ OUT_PATH = RESULTS_DIR / "lego_stack_audit_results.json"
 LIVE_SPINE_PATH = RESULTS_DIR / "live_anchor_spine.json"
 PROBES_DIR = SCRIPT_DIR
 
-DOCS_ROOT = PROJECT_DIR / "system_v5" / "new docs"
+DOCS_ROOT = PROJECT_DIR / "system_v5" / "docs"
 
 CORE_DOCS = [
     DOCS_ROOT / "07_model_math_geometry_sim_plan.md",

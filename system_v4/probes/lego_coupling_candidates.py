@@ -70,6 +70,16 @@ COUPLING_TARGETS = {
         "pairings": [
             {
                 "lego_probe": "sim_xgi_family_hypergraph.py",
+                "coupling_probe": "sim_graph_cell_complex_coexistence.py",
+                "existing_anchor": "graph_cell_complex_coexistence_results.json",
+                "status": "existing_anchor",
+                "reason": (
+                    "Fresh bounded coexistence witness ties graph, hypergraph, cell-complex, "
+                    "simplex, and PyG views on one finite Werner-regime path."
+                ),
+            },
+            {
+                "lego_probe": "sim_xgi_family_hypergraph.py",
                 "coupling_probe": "sim_xgi_indirect_pathway.py",
                 "existing_anchor": "xgi_indirect_pathway_results.json",
                 "status": "existing_anchor",

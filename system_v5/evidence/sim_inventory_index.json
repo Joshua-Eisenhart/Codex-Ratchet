@@ -1,42 +1,42 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T21:30:41.941474+00:00",
+  "generated_at": "2026-05-10T21:41:52.550527+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3929,
-    "result_json_count": 437,
-    "linked_result_json_count": 406,
+    "source_count": 3930,
+    "result_json_count": 438,
+    "linked_result_json_count": 407,
     "unlinked_result_json_count": 31,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3525,
-      "rerun_or_admission_candidate": 305,
+      "rerun_or_admission_candidate": 306,
       "legacy_result_or_repair_needed": 14,
       "contract_shaped_but_tool_depth_thin": 74,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
     },
     "family_counts": {
-      "channel_operator": 775,
+      "channel_operator": 776,
       "entropy_information": 580,
-      "thermo_engine": 421,
+      "thermo_engine": 422,
       "uncategorized": 335,
-      "axis_bridge": 653,
-      "graveyard_negative": 1697,
+      "axis_bridge": 654,
+      "graveyard_negative": 1698,
       "root_admission": 838,
-      "hopf_torus": 590,
-      "weyl_spinor_clifford": 780,
-      "geometry_gstack_gtower": 713,
+      "hopf_torus": 591,
+      "weyl_spinor_clifford": 781,
+      "geometry_gstack_gtower": 714,
       "density_carrier": 476,
-      "classical_baseline": 1091,
+      "classical_baseline": 1092,
       "gerbe_dirac_mera_spectral": 668,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2700,
-      "sympy": 2235,
+      "numpy": 2701,
+      "sympy": 2236,
       "scipy": 249,
       "pytorch": 1971,
       "pyg": 843,
@@ -45,24 +45,24 @@
       "e3nn": 840,
       "gudhi": 897,
       "z3": 1894,
-      "clifford": 1328,
+      "clifford": 1329,
       "rustworkx": 1074,
       "toponetx": 915,
-      "geomstats": 899,
+      "geomstats": 900,
       "xgi": 968,
       "networkx": 25,
       "qiskit": 10
     },
     "load_bearing_tool_counts": {
-      "numpy": 259,
+      "numpy": 260,
       "cvc5": 505,
       "pytorch": 1126,
       "rustworkx": 282,
       "z3": 729,
       "sympy": 552,
-      "clifford": 273,
+      "clifford": 274,
       "xgi": 200,
-      "geomstats": 108,
+      "geomstats": 109,
       "gudhi": 121,
       "scipy": 61,
       "toponetx": 118,
@@ -73,7 +73,7 @@
       "networkx": 3
     },
     "result_classification_counts": {
-      "classical_baseline": 86,
+      "classical_baseline": 87,
       "canonical": 250,
       "supporting": 11,
       "exploratory": 30,
@@ -84,7 +84,7 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 393,
+    "repair_candidate_count": 394,
     "source_only_count": 3525
   },
   "admitted_stems": [
@@ -2238,6 +2238,48 @@
       "inventory_status": "rerun_or_admission_candidate"
     },
     {
+      "stem": "sim_clifford_hopf_geometry_closure",
+      "source_path": "system_v4/probes/sim_clifford_hopf_geometry_closure.py",
+      "families": [
+        "channel_operator",
+        "hopf_torus",
+        "weyl_spinor_clifford",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline",
+        "graveyard_negative"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "sympy": "supportive",
+        "clifford": "load_bearing",
+        "geomstats": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "clifford",
+        "geomstats",
+        "numpy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/clifford_hopf_geometry_closure_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_clifford_rotor_norm_micro",
       "source_path": "system_v4/probes/sim_clifford_rotor_norm_micro.py",
       "families": [
@@ -3533,38 +3575,6 @@
       "source_has_tool_integration_depth": true,
       "result_paths": [
         "system_v4/probes/a2_state/sim_results/e3nn_tensor_product_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "canonical"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": false,
-      "has_contract_shape": true,
-      "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_e3nn_ylm_orthogonality_under_rotation",
-      "source_path": "system_v4/probes/sim_e3nn_ylm_orthogonality_under_rotation.py",
-      "families": [
-        "graveyard_negative"
-      ],
-      "tools": {
-        "numpy": "imported",
-        "pytorch": "supportive",
-        "e3nn": "load_bearing"
-      },
-      "load_bearing_tools": [
-        "e3nn"
-      ],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/sim_e3nn_ylm_orthogonality_under_rotation_results.json"
       ],
       "result_count": 1,
       "result_classifications": [
@@ -25274,6 +25284,48 @@
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": true,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
+      "stem": "sim_clifford_hopf_geometry_closure",
+      "source_path": "system_v4/probes/sim_clifford_hopf_geometry_closure.py",
+      "families": [
+        "channel_operator",
+        "hopf_torus",
+        "weyl_spinor_clifford",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline",
+        "graveyard_negative"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "sympy": "supportive",
+        "clifford": "load_bearing",
+        "geomstats": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "clifford",
+        "geomstats",
+        "numpy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/clifford_hopf_geometry_closure_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
       "has_contract_shape": true,
       "inventory_status": "rerun_or_admission_candidate"
     },

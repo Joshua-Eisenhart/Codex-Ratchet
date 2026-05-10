@@ -58,6 +58,16 @@ COUPLING_TARGETS = {
                 "reason": "Geometry families should meet operator compatibility before stacking/coexistence.",
             },
             {
+                "lego_probe": "sim_foundation_hopf_torus_geomstats_clifford.py",
+                "coupling_probe": "sim_clifford_hopf_geometry_closure.py",
+                "existing_anchor": "clifford_hopf_geometry_closure_results.json",
+                "status": "existing_anchor",
+                "reason": (
+                    "Hopf/torus geometry now has a bounded Clifford closure receipt with "
+                    "native Cl(3,0) grade/product/rotor checks and phase controls."
+                ),
+            },
+            {
                 "lego_probe": "sim_berry_qfi_shell_paths.py",
                 "coupling_probe": "sim_compound_operator_geometry.py",
                 "existing_anchor": "compound_operator_geometry_results.json",

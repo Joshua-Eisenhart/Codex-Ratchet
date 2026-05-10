@@ -1,18 +1,18 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T17:13:24.113378+00:00",
+  "generated_at": "2026-05-10T17:16:59.943164+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 3917,
-    "result_json_count": 368,
-    "linked_result_json_count": 340,
+    "result_json_count": 371,
+    "linked_result_json_count": 343,
     "unlinked_result_json_count": 28,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
-      "source_only": 3578,
-      "rerun_or_admission_candidate": 201,
-      "legacy_result_or_repair_needed": 12,
+      "source_only": 3575,
+      "rerun_or_admission_candidate": 203,
+      "legacy_result_or_repair_needed": 13,
       "contract_shaped_but_tool_depth_thin": 115,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
@@ -58,8 +58,8 @@
       "cvc5": 505,
       "pytorch": 1121,
       "rustworkx": 280,
-      "z3": 723,
-      "sympy": 550,
+      "z3": 724,
+      "sympy": 551,
       "clifford": 273,
       "xgi": 198,
       "geomstats": 109,
@@ -73,8 +73,8 @@
       "networkx": 3
     },
     "result_classification_counts": {
-      "classical_baseline": 68,
-      "canonical": 212,
+      "classical_baseline": 69,
+      "canonical": 213,
       "exploratory": 30,
       "research_support": 6,
       "tool_lego_fit_probe": 1,
@@ -84,8 +84,8 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 328,
-    "source_only_count": 3578
+    "repair_candidate_count": 331,
+    "source_only_count": 3575
   },
   "admitted_stems": [
     "sim_clifford_capability",
@@ -242,6 +242,34 @@
       "source_has_tool_integration_depth": false,
       "result_paths": [
         "system_v4/probes/mass_stabilization_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [],
+      "result_has_contract_shape": false,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": false,
+      "inventory_status": "legacy_result_or_repair_needed"
+    },
+    {
+      "stem": "neg_commutative_process_cycle_sim",
+      "source_path": "system_v4/probes/neg_commutative_process_cycle_sim.py",
+      "families": [
+        "channel_operator",
+        "thermo_engine",
+        "graveyard_negative"
+      ],
+      "tools": {
+        "numpy": "imported"
+      },
+      "load_bearing_tools": [],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/neg_commutative_process_cycle_results.json"
       ],
       "result_count": 1,
       "result_classifications": [],
@@ -3468,34 +3496,6 @@
       "late_stage_signal": false,
       "has_contract_shape": true,
       "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_fubini_study_geometry",
-      "source_path": "system_v4/probes/sim_fubini_study_geometry.py",
-      "families": [
-        "uncategorized"
-      ],
-      "tools": {
-        "numpy": "imported"
-      },
-      "load_bearing_tools": [],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/fubini_study_geometry_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "canonical"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": false,
-      "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
     }
   ],
   "source_only_samples": [
@@ -10584,8 +10584,10 @@
       "load_bearing_tools": [],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": false,
-      "result_paths": [],
-      "result_count": 0,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/neg_commutative_process_cycle_results.json"
+      ],
+      "result_count": 1,
       "result_classifications": [],
       "result_has_contract_shape": false,
       "admission_path": "",
@@ -10594,7 +10596,7 @@
       "admitted": false,
       "late_stage_signal": false,
       "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "inventory_status": "legacy_result_or_repair_needed"
     },
     {
       "stem": "neg_infinite_d_sim",
@@ -75013,22 +75015,28 @@
       ],
       "tools": {
         "numpy": "imported",
-        "sympy": "imported"
+        "sympy": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "sympy"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/gtower_order_gl_to_o_then_so_vs_reverse_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_gtower_order_o_to_so_then_u_vs_reverse",
@@ -106582,23 +106590,29 @@
       ],
       "tools": {
         "numpy": "imported",
-        "z3": "tried",
-        "sympy": "tried"
+        "z3": "load_bearing",
+        "sympy": "supportive"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "z3"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_rosetta_log2_cross_family_invariant_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_rosetta_noncommutativity_ratchet_axis4_convergence",

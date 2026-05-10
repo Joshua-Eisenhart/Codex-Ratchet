@@ -1,25 +1,25 @@
 # Sim Inventory Index
 
-Generated: `2026-05-10T17:13:24.113378+00:00`
+Generated: `2026-05-10T17:16:59.943164+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `3917`
-- Result JSON files seen: `368`
-- Linked result JSON files: `340`
+- Result JSON files seen: `371`
+- Linked result JSON files: `343`
 - Unlinked result JSON files: `28`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `328`
-- Source-only rows: `3578`
+- Repair / rerun candidate rows: `331`
+- Source-only rows: `3575`
 
 ## Inventory Status Counts
 
-- `source_only`: 3578
-- `rerun_or_admission_candidate`: 201
+- `source_only`: 3575
+- `rerun_or_admission_candidate`: 203
 - `contract_shaped_but_tool_depth_thin`: 115
-- `legacy_result_or_repair_needed`: 12
+- `legacy_result_or_repair_needed`: 13
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2
 
@@ -44,8 +44,8 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 ## Load-Bearing Tool Counts
 
 - `pytorch`: 1121
-- `z3`: 723
-- `sympy`: 550
+- `z3`: 724
+- `sympy`: 551
 - `cvc5`: 505
 - `rustworkx`: 280
 - `clifford`: 273
@@ -112,6 +112,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | rerun_or_admission_candidate | `classical_baseline_szilard_onebit` | thermo_engine, classical_baseline | numpy | classical_baseline |
 | legacy_result_or_repair_needed | `followup_anomaly_investigation` | entropy_information, hopf_torus, graph_topology | - | - |
 | legacy_result_or_repair_needed | `mass_stabilization_sim` | entropy_information, hopf_torus, weyl_spinor_clifford, graph_topology, axis_bridge | - | - |
+| legacy_result_or_repair_needed | `neg_commutative_process_cycle_sim` | channel_operator, thermo_engine, graveyard_negative | - | - |
 | rerun_or_admission_candidate | `sim_axis6_e3nn_fe_bridge` | density_carrier, axis_bridge, graveyard_negative | e3nn, geomstats, pytorch, z3 | canonical |
 | legacy_result_or_repair_needed | `sim_axis7_deep_test` | channel_operator, axis_bridge | - | - |
 | legacy_result_or_repair_needed | `sim_axis_7_12_audit` | channel_operator, weyl_spinor_clifford, axis_bridge | - | - |
@@ -157,4 +158,3 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | rerun_or_admission_candidate | `sim_clifford_holo_dirac_pairwise_coupling` | channel_operator, hopf_torus, weyl_spinor_clifford, gerbe_dirac_mera_spectral, graveyard_negative | rustworkx, toponetx, xgi | classical_baseline |
 | rerun_or_admission_candidate | `sim_clifford_holo_dirac_topology_variants` | weyl_spinor_clifford, graph_topology, gerbe_dirac_mera_spectral, graveyard_negative | rustworkx, toponetx, xgi | classical_baseline |
 | rerun_or_admission_candidate | `sim_clifford_holo_dirac_triple_coexistence` | weyl_spinor_clifford, graph_topology, gerbe_dirac_mera_spectral, graveyard_negative | gudhi, rustworkx, toponetx, xgi | classical_baseline |
-| rerun_or_admission_candidate | `sim_clifford_rotor_norm_micro` | hopf_torus, weyl_spinor_clifford, axis_bridge | clifford | canonical |

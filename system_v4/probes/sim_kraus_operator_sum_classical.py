@@ -8,6 +8,8 @@ needed for CPTP on noncommuting observables.
 import json, os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 divergence_log = (
     "Classical Kraus collapse to rank-1 diagonal selections and cannot "
@@ -81,17 +83,19 @@ def run_boundary_tests():
 if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(pos.values()) and all(neg.values()) and all(bnd.values())
+    results = {
+        "name": "kraus_operator_sum_classical",
+        "classification": "classical_baseline",
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "positive": pos, "negative": neg, "boundary": bnd,
+        "all_pass": all_pass, "summary": {"all_pass": all_pass},
+        "divergence_log": divergence_log,
+    }
+    results = apply_default_receipt_boundary(results, source_name="sim_kraus_operator_sum_classical")
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "kraus_operator_sum_classical_results.json")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w") as f:
-        json.dump({
-            "name": "kraus_operator_sum_classical",
-            "classification": "classical_baseline",
-            "tool_manifest": TOOL_MANIFEST,
-            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-            "positive": pos, "negative": neg, "boundary": bnd,
-            "all_pass": all_pass, "summary": {"all_pass": all_pass},
-            "divergence_log": divergence_log,
-        }, f, indent=2, default=str)
+        json.dump(results, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

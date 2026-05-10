@@ -16,6 +16,12 @@ RESULTS_DIR = SCRIPT_DIR / "a2_state" / "sim_results"
 WORK_MATRIX_PATH = RESULTS_DIR / "actual_lego_work_matrix.json"
 OUT_PATH = RESULTS_DIR / "actual_lego_process_receipt_audit.json"
 SCRIPTS_DIR = PROJECT_DIR / "scripts"
+AUDITABLE_STATUSES = {
+    "source_process_receipt_linked_audit_needed",
+    "source_process_receipt_hard_blocked",
+    "source_process_receipt_boundary_warnings",
+    "source_process_receipt_audited",
+}
 
 sys.path.insert(0, str(SCRIPTS_DIR))
 from receipt_schema import validate_result_path  # noqa: E402
@@ -34,7 +40,7 @@ def main() -> int:
     rows = []
     status_counts: Counter[str] = Counter()
     for row in matrix.get("rows", []):
-        if row.get("next_action", {}).get("status") != "source_process_receipt_linked_audit_needed":
+        if row.get("next_action", {}).get("status") not in AUDITABLE_STATUSES:
             continue
         result_path_text = row.get("result_path")
         if not result_path_text:

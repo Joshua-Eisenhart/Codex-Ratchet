@@ -10,6 +10,7 @@ import pathlib
 
 import numpy as np
 from toponetx import CellComplex
+from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"  # auto-backfill
 
 
@@ -174,6 +175,8 @@ def main():
             "scope_note": "Direct local class-binding topology lego on bounded Werner parameter samples around the 0.17 threshold.",
         },
     }
+
+    results = apply_default_receipt_boundary(results, source_name=pathlib.Path(__file__).stem)
 
     out_path = (
         pathlib.Path(__file__).resolve().parent

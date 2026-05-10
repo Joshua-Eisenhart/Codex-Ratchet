@@ -34,6 +34,7 @@ import traceback
 from datetime import UTC, datetime
 
 import numpy as np
+from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"
 divergence_log = (
     "Classical baseline: this probe checks finite bipartite chirality structure "
@@ -761,6 +762,8 @@ if __name__ == "__main__":
             "supportive_tools":   [k for k, v in TOOL_INTEGRATION_DEPTH.items() if v == "supportive"],
         },
     }
+
+    results = apply_default_receipt_boundary(results, source_name="sim_weyl_chirality_bipartite")
 
     out_dir  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

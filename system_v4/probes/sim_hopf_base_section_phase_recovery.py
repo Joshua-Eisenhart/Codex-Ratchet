@@ -25,6 +25,7 @@ if PROBE_DIR not in sys.path:
     sys.path.insert(0, PROBE_DIR)
 
 from hopf_manifold import fiber_action, hopf_map, left_weyl_spinor, lift_base_point, torus_coordinates
+from receipt_boundary import apply_default_receipt_boundary
 
 
 TOOL_MANIFEST = {
@@ -186,6 +187,8 @@ def _passes(block: dict) -> bool:
 
 
 def _write_results(results: dict, basename: str) -> None:
+    results = apply_default_receipt_boundary(results, source_name=basename)
+
     out_dir = os.path.join(PROBE_DIR, "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, f"{basename}_results.json")

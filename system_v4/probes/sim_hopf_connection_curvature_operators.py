@@ -16,6 +16,7 @@ Tools: geomstats (load_bearing), sympy (load_bearing), z3 (load_bearing),
 import json
 import os
 import numpy as np
+from receipt_boundary import apply_default_receipt_boundary
 
 # =====================================================================
 # TOOL MANIFEST
@@ -484,6 +485,8 @@ if __name__ == "__main__":
             "Exclusion language: c_1=0 excluded, holonomy=+1 for 2pi loop excluded."
         ),
     }
+
+    results = apply_default_receipt_boundary(results, source_name="sim_hopf_connection_curvature_operators")
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

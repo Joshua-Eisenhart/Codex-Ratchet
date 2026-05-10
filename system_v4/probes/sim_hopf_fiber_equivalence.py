@@ -37,6 +37,7 @@ from hopf_manifold import (
     left_weyl_spinor,
     torus_coordinates,
 )
+from receipt_boundary import apply_default_receipt_boundary
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
@@ -315,6 +316,8 @@ def main():
         "summary": {"positive": {"passed": p_pass, "total": p_total}, "negative": {"passed": n_pass, "total": n_total}, "boundary": {"passed": b_pass, "total": b_total}},
         "classification": classification,
     }
+    results = apply_default_receipt_boundary(results, source_name="sim_hopf_fiber_equivalence")
+
     out_dir = os.path.join(PROBE_DIR, "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "hopf_fiber_equivalence_results.json")

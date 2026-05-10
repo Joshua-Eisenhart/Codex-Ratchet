@@ -31,6 +31,7 @@ import time
 import traceback
 
 import torch
+from receipt_boundary import apply_default_receipt_boundary
 classification = "canonical"
 
 # =====================================================================
@@ -461,6 +462,8 @@ if __name__ == "__main__":
     }
     if error is not None:
         results["error"] = error
+
+    results = apply_default_receipt_boundary(results, source_name="sim_bridge_to_rhoab_construction")
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

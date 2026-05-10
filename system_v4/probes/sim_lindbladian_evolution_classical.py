@@ -14,6 +14,7 @@ piece.
 import json, os
 import numpy as np
 from scipy.linalg import expm  # scipy is numeric, fine as supportive
+from receipt_boundary import apply_default_receipt_boundary
 
 classification = "classical_baseline"
 divergence_log = (
@@ -90,6 +91,8 @@ if __name__ == "__main__":
         "summary": {"all_pass": all_pass},
         "divergence_log": divergence_log,
     }
+    results = apply_default_receipt_boundary(results, source_name="sim_lindbladian_evolution_classical")
+
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "lindbladian_evolution_classical_results.json")
     os.makedirs(os.path.dirname(out), exist_ok=True)

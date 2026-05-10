@@ -17,6 +17,7 @@ Boundary test: singleton and full-set hyperedges behave correctly.
 import json
 import os
 import numpy as np
+from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
@@ -544,6 +545,8 @@ if __name__ == "__main__":
         "classification": "canonical",
         "all_pass": all_pass,
     }
+
+    results = apply_default_receipt_boundary(results, source_name="sim_xgi_shell_hypergraph")
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

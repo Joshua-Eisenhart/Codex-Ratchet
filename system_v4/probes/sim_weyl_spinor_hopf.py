@@ -25,6 +25,7 @@ import os
 import time
 from datetime import datetime, timezone
 import numpy as np
+from receipt_boundary import apply_default_receipt_boundary
 classification = "canonical"
 
 # =====================================================================
@@ -921,6 +922,8 @@ if __name__ == "__main__":
             "claim_gudhi": "Combined L+R bundle Betti numbers measured via persistent homology",
         },
     }
+
+    results = apply_default_receipt_boundary(results, source_name="sim_weyl_spinor_hopf")
 
     out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

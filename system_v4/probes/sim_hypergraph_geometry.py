@@ -12,6 +12,7 @@ from itertools import combinations
 import numpy as np
 import xgi
 from toponetx import CellComplex
+from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"  # auto-backfill
 
 
@@ -187,6 +188,8 @@ def main():
             "scope_note": "Direct local hypergraph-carrier lego contrasting one genuine triadic relation against its pairwise shadow and CellComplex lift.",
         },
     }
+
+    results = apply_default_receipt_boundary(results, source_name=pathlib.Path(__file__).stem)
 
     out_path = (
         pathlib.Path(__file__).resolve().parent

@@ -20,6 +20,7 @@ Sections
 import json, pathlib, time
 import numpy as np
 from scipy.linalg import sqrtm, logm
+from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"  # auto-backfill
 divergence_log = (
     "Classical baseline density-matrix lego: this probe builds and checks "
@@ -783,6 +784,8 @@ for k, v in summary.items():
     print(f"  [{tag}] {k}")
 
 # Write results
+RESULTS = apply_default_receipt_boundary(RESULTS, source_name=pathlib.Path(__file__).stem)
+
 out_path = pathlib.Path(__file__).parent / "a2_state" / "sim_results" / "pure_lego_density_matrices_results.json"
 out_path.parent.mkdir(parents=True, exist_ok=True)
 with open(out_path, "w") as f:

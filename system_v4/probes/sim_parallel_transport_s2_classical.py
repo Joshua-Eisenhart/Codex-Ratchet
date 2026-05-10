@@ -13,6 +13,7 @@ quantum U(1) Berry phase and its half-factor are invisible.
 """
 import json, os
 import numpy as np
+from receipt_boundary import apply_default_receipt_boundary
 
 classification = "classical_baseline"
 divergence_log = (
@@ -219,6 +220,8 @@ if __name__ == "__main__":
             "closed loop is unrepresentable."
         ),
     }
+    results = apply_default_receipt_boundary(results, source_name="sim_parallel_transport_s2_classical")
+
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "parallel_transport_s2_classical_results.json")
     os.makedirs(os.path.dirname(out), exist_ok=True)

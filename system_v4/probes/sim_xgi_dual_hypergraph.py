@@ -17,6 +17,7 @@ import json
 import os
 import numpy as np
 from collections import Counter, defaultdict
+from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
@@ -572,6 +573,8 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
     }
+
+    results = apply_default_receipt_boundary(results, source_name="sim_xgi_dual_hypergraph")
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

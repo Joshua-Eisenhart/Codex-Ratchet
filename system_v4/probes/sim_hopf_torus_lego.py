@@ -20,6 +20,7 @@ import os
 import sys
 import traceback
 import numpy as np
+from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
@@ -665,6 +666,8 @@ if __name__ == "__main__":
             ),
         },
     }
+
+    results = apply_default_receipt_boundary(results, source_name="sim_hopf_torus_lego")
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

@@ -36,6 +36,7 @@ from sympy import Matrix, I as Imag, sqrt, Rational, eye, zeros
 from sympy import conjugate
 
 from engine_core import TERRAINS, STAGE_OPERATOR_LUT, LOOP_STAGE_ORDER
+from receipt_boundary import apply_default_receipt_boundary
 
 CLASSIFICATION = "supporting"
 CLASSIFICATION_NOTE = (
@@ -1085,6 +1086,7 @@ def main():
         "timestamp": datetime.now().strftime("%Y-%m-%d"),
     }
 
+    output = apply_default_receipt_boundary(output, source_name="sim_constraint_manifold_L0_L1")
     output = sanitize(output)
 
     out_path = os.path.join(

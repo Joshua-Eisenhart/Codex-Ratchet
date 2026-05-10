@@ -23,6 +23,7 @@ import rustworkx as rx
 import sympy as sp
 import torch
 import torch_ga
+from receipt_boundary import apply_default_receipt_boundary
 import xgi
 from clifford import Cl
 from geomstats.geometry.hypersphere import Hypersphere
@@ -590,6 +591,8 @@ def main() -> None:
         "overall_pass": overall_pass,
         "all_pass": overall_pass,
     }
+
+    results = apply_default_receipt_boundary(results, source_name=pathlib.Path(__file__).stem)
 
     legacy_out_path = (
         pathlib.Path(__file__).resolve().parent

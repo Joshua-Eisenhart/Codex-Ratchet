@@ -46,6 +46,7 @@ from hopf_manifold import (
     right_weyl_spinor,
     torus_coordinates,
 )
+from receipt_boundary import apply_default_receipt_boundary
 
 # =====================================================================
 # TOOL MANIFEST
@@ -465,6 +466,8 @@ def main() -> None:
         },
         "classification": "canonical",
     }
+
+    results = apply_default_receipt_boundary(results, source_name="sim_chiral_density_bookkeeping")
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

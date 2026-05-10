@@ -38,6 +38,7 @@ import math
 import os
 
 import numpy as np  # noqa: F401  (used for np.cos/sin in analytic checks)
+from receipt_boundary import apply_default_receipt_boundary
 classification = "canonical"
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
@@ -556,6 +557,8 @@ if __name__ == "__main__":
         },
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
     }
+
+    results = apply_default_receipt_boundary(results, source_name="sim_pure_lego_berry_phase_u1_abelian")
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

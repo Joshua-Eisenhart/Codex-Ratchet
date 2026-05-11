@@ -1,17 +1,24 @@
 {
-  "schema": "actual_work_remaining_v1",
+  "schema": "actual_work_remaining_v2",
   "generated_from": [
     "system_v4/probes/a2_state/sim_results/actual_lego_work_matrix.json",
     "system_v4/probes/a2_state/sim_results/actual_lego_frontier_closeout_ledger.json",
-    "system_v4/probes/a2_state/sim_results/engine_lab_next_work_queue_results.json"
+    "system_v4/probes/a2_state/sim_results/actual_lego_indexed_receipt_audit.json",
+    "system_v4/probes/a2_state/sim_results/actual_lego_process_receipt_audit.json"
   ],
   "stage_gate": {
     "active_stage": "lego",
     "allow_default_queue_late_stage": false,
     "allow_tier_d_launch": false,
-    "notes": [
-      "Hard stage gate: tools -> tool integration -> all legos -> only then couplings.",
-      "Tier D launch stays blocked until the owner/controller explicitly advances the stage gate."
+    "blocked_claims": [
+      "scientific_coupling",
+      "axis",
+      "bridge",
+      "engine",
+      "tier_d",
+      "qit",
+      "gstack",
+      "nonclassical_admission"
     ]
   },
   "queue_counts": {
@@ -19,7 +26,30 @@
     "lane_B": 0,
     "claimed": 0,
     "blocked": 710,
-    "done": 2161
+    "done": 2161,
+    "done_duplicate_bases": 0
+  },
+  "receipt_audit_summary": {
+    "indexed": {
+      "row_count": 119,
+      "status_counts": {
+        "hard_green_clean": 119
+      },
+      "hard_blocked_count": 0,
+      "hard_green_count": 119,
+      "boundary_warning_row_count": 0,
+      "promotion_allowed_count": 0
+    },
+    "process": {
+      "row_count": 19,
+      "status_counts": {
+        "hard_green_clean": 19
+      },
+      "hard_blocked_count": 0,
+      "hard_green_count": 19,
+      "boundary_warning_row_count": 0,
+      "promotion_allowed_count": 0
+    }
   },
   "lego_summary": {
     "row_count": 150,
@@ -33,10 +63,8 @@
     "next_action_counts": {
       "blocked": 2,
       "coupling_receipt_audited_closure_candidate": 10,
-      "indexed_receipt_audited": 90,
-      "indexed_receipt_boundary_warnings": 29,
-      "source_process_receipt_audited": 14,
-      "source_process_receipt_boundary_warnings": 5
+      "indexed_receipt_audited": 119,
+      "source_process_receipt_audited": 19
     },
     "coverage_slot_counts": {
       "bridge_tool_fit": 57,
@@ -62,9 +90,9 @@
     "row_count": 150,
     "state_counts": {
       "blocked": 2,
-      "done": 87,
+      "done": 113,
       "graveyard": 22,
-      "queued": 39
+      "queued": 13
     },
     "result_exists_count": 149,
     "missing_result_count": 0,
@@ -117,18 +145,6 @@
     "promotion_allowed_count": 0,
     "claim_ceiling": "frontier classified, not closed as admitted or promoted"
   },
-  "engine_lab_next_work_summary": {
-    "queue_complete": true,
-    "open_row_count": 10,
-    "active_uncovered_row_count": 0,
-    "repair_gap_count": 3,
-    "open_lab_failure_count": 5,
-    "graveyard_covered_open_row_count": 7,
-    "top_row_id": "carnot_entropy_family_array",
-    "top_active_row_id": null,
-    "qit_or_axis_promotion_allowed": false,
-    "scope_note": "Controller queue derived from engine-lab open-row audit and repair-priority receipts. It does not claim row closure; it names bounded next sim moves."
-  },
   "admissible_missing_lego_count": 0,
   "raw_missing_lego_count": 1,
   "blocked_late_surface_count": 2,
@@ -137,6 +153,7 @@
     {
       "lego_id": "bridge_weighted_entropy",
       "coverage": "blocked_as_late_surface",
+      "section": "Entropy Legos",
       "result_exists": true,
       "probe": null,
       "result": "sim_lego_entropy_shell_history_weighted_results.json",
@@ -145,6 +162,7 @@
         "reason": "late_surface_stage_gate",
         "packet": null
       },
+      "claim_ceiling": "late-surface/no-promotion unless exact stage-gate evidence advances",
       "coverage_slots": {
         "classical_baseline": true,
         "bridge_tool_fit": false,
@@ -159,6 +177,7 @@
     {
       "lego_id": "bridge_family_xi_point",
       "coverage": "partial",
+      "section": "Bridge, Axis, And Support Legos",
       "result_exists": true,
       "probe": "sim_bridge_family_xi_point.py",
       "result": "bridge_family_xi_point_results.json",
@@ -167,6 +186,7 @@
         "reason": "indexed receipt is hard-green with no validator warnings",
         "packet": null
       },
+      "claim_ceiling": "late-surface/no-promotion unless exact stage-gate evidence advances",
       "coverage_slots": {
         "classical_baseline": true,
         "bridge_tool_fit": false,
@@ -181,6 +201,7 @@
     {
       "lego_id": "bridge_family_xi_shell",
       "coverage": "not_normalized_yet",
+      "section": "Bridge, Axis, And Support Legos",
       "result_exists": true,
       "probe": "sim_bridge_family_xi_shell.py",
       "result": "bridge_family_xi_shell_results.json",
@@ -189,6 +210,7 @@
         "reason": "indexed receipt is hard-green with no validator warnings",
         "packet": null
       },
+      "claim_ceiling": "late-surface/no-promotion unless exact stage-gate evidence advances",
       "coverage_slots": {
         "classical_baseline": true,
         "bridge_tool_fit": false,
@@ -203,6 +225,7 @@
     {
       "lego_id": "bridge_family_xi_history",
       "coverage": "not_normalized_yet",
+      "section": "Bridge, Axis, And Support Legos",
       "result_exists": true,
       "probe": "sim_bridge_family_xi_history.py",
       "result": "bridge_family_xi_history_results.json",
@@ -211,6 +234,7 @@
         "reason": "indexed receipt is hard-green with no validator warnings",
         "packet": null
       },
+      "claim_ceiling": "late-surface/no-promotion unless exact stage-gate evidence advances",
       "coverage_slots": {
         "classical_baseline": true,
         "bridge_tool_fit": false,
@@ -225,6 +249,7 @@
     {
       "lego_id": "axis0_kernel_phi0",
       "coverage": "partial",
+      "section": "Bridge, Axis, And Support Legos",
       "result_exists": true,
       "probe": "sim_axis0_kernel_phi0.py",
       "result": "axis0_kernel_phi0_results.json",
@@ -233,6 +258,7 @@
         "reason": "indexed receipt is hard-green with no validator warnings",
         "packet": null
       },
+      "claim_ceiling": "late-surface/no-promotion unless exact stage-gate evidence advances",
       "coverage_slots": {
         "classical_baseline": true,
         "bridge_tool_fit": true,
@@ -247,6 +273,7 @@
     {
       "lego_id": "axis0_field_candidate",
       "coverage": "blocked_as_late_surface",
+      "section": "Bridge, Axis, And Support Legos",
       "result_exists": false,
       "probe": null,
       "result": null,
@@ -255,6 +282,7 @@
         "reason": "late_surface_stage_gate",
         "packet": null
       },
+      "claim_ceiling": "late-surface/no-promotion unless exact stage-gate evidence advances",
       "coverage_slots": {
         "classical_baseline": false,
         "bridge_tool_fit": false,
@@ -267,5 +295,5 @@
       }
     }
   ],
-  "claim_boundary": "No QIT/GStack/axis/nonclassical promotion; active stage remains lego, coupling/axis/engine/tier_d blocked by stage gate."
+  "claim_boundary": "No QIT/GStack/axis/nonclassical promotion; active stage remains lego. Coupling candidates are indexed but promotion_allowed_count remains 0."
 }

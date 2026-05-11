@@ -14,6 +14,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this checks finite carrier and POVM cardinality bounds "
+    "with numpy shapes only; it does not prove F01 as a constraint generator, "
+    "z3-level impossibility, bridge behavior, or QIT/axis admission."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "dimension/cardinality checks"},
@@ -60,6 +65,7 @@ if __name__ == "__main__":
     results = {
         "name": "f01_finitude_constraint_classical",
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

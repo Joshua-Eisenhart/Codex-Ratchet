@@ -8,6 +8,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: CMI is computed from commuting joint probability "
+    "tables and Bayes conditioning; it cannot stand in for quantum conditional "
+    "independence, Petz recovery, or noncommuting side-information leakage."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "joint-pmf marginalization and entropy computation"},

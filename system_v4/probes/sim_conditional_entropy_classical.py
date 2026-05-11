@@ -12,6 +12,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: H(X|Y) is nonnegative for ordinary joint probability "
+    "tables and cannot represent negative quantum conditional entropy, coherent "
+    "information, or noncommuting conditioning."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "log/sum"},

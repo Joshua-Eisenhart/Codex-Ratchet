@@ -17,6 +17,12 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this full-spine constraint manifold uses finite "
+    "integer-tuple filtering and monotone set restriction; it does not prove "
+    "constraint-admissibility, bridge behavior, GStack structure, or QIT/axis "
+    "claims."
+)
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed; classical baseline"},
@@ -175,6 +181,7 @@ if __name__ == "__main__":
         "negative": neg,
         "boundary": bnd,
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "all_pass": bool(pos.get("pass") and neg.get("pass") and bnd.get("pass")),
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

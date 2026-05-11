@@ -10,6 +10,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: DPI is checked for stochastic maps over commuting "
+    "probability distributions; it cannot distinguish CPTP quantum DPI, "
+    "Stinespring coherence, or noncommuting channel structure."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "stochastic-matrix propagation and KL evaluation"},

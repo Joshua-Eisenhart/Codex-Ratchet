@@ -13,6 +13,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: classical joints remain separable under LOCC-like "
+    "stochastic maps and have zero distillable entanglement; this cannot "
+    "represent quantum ebits, bound entanglement, or distillation rates."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "local stochastic map composition and marginal checks"},

@@ -13,6 +13,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this witness uses context-independent hidden-variable "
+    "assignments and classical expectation arithmetic; it cannot express "
+    "Kochen-Specker obstruction, Tsirelson violation, or noncommuting contexts."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "expectation arithmetic"},

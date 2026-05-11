@@ -11,6 +11,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: classical joint probability tables are separable and "
+    "therefore have E_F=0; this cannot encode concurrence, Wootters spin-flip "
+    "structure, or nonzero entanglement of formation."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "pmf arithmetic"},

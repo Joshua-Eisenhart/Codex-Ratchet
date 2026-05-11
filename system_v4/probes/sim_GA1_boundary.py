@@ -195,8 +195,22 @@ def run_GA1_validation():
         json.dump({
             "timestamp": datetime.now(UTC).isoformat(),
             "axis": 1, "name": "Geometric_Axis1_Boundary",
+            "classification": classification,
+            "classification_note": divergence_log,
+            "divergence_log": divergence_log,
+            "TOOL_MANIFEST": TOOL_MANIFEST,
+            "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+            "tool_manifest": TOOL_MANIFEST,
+            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "results": results,
             "evidence_ledger": [t.__dict__ for t in tokens],
+            "summary": {
+                "all_pass": bool(all_pass),
+                "promotion_allowed": False,
+                "claim_ceiling": "geometric_axis_classical_baseline_only",
+                "scope_note": divergence_log,
+            },
+            "all_pass": bool(all_pass),
         }, f, indent=2, default=str)
     print(f"  Results saved: {outpath}")
     return tokens

@@ -49,11 +49,11 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None,
+    "pytorch": "load_bearing",
     "pyg": None,
-    "z3": None,
+    "z3": "load_bearing",
     "cvc5": None,
-    "sympy": None,
+    "sympy": "load_bearing",
     "clifford": None,
     "geomstats": None,
     "e3nn": None,

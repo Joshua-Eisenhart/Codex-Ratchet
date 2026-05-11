@@ -107,12 +107,12 @@ TOOL_INTEGRATION_DEPTH = {
     "geomstats": None,
     "gudhi": None,
     "pyg": None,
-    "pytorch": None,
+    "pytorch": "load_bearing",
     "rustworkx": None,
-    "sympy": None,
+    "sympy": "load_bearing",
     "toponetx": None,
     "xgi": None,
-    "z3": None,
+    "z3": "load_bearing",
 }
 
 # =====================================================================

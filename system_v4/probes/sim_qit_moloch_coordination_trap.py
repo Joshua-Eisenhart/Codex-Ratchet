@@ -43,6 +43,7 @@ PRIMARY_LEGO_IDS = [
 ]
 
 TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "load-bearing finite density-matrix entropy and resource-longevity calculations"},
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
     "z3": {"tried": False, "used": False, "reason": "not needed"},
@@ -58,6 +59,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
 
 
 def density_from_bias(z: float) -> np.ndarray:

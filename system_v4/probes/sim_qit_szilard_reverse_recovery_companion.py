@@ -44,6 +44,7 @@ PRIMARY_LEGO_IDS = [
 ]
 
 TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "load-bearing finite density-operator reverse-recovery calculations"},
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
     "z3": {"tried": False, "used": False, "reason": "not needed"},
@@ -59,6 +60,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
 
 LN2 = float(np.log(2.0))
 TEMPERATURE = 1.0

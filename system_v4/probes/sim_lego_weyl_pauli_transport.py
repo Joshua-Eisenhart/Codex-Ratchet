@@ -50,6 +50,7 @@ PRIMARY_LEGO_IDS = [
 ]
 
 TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "load-bearing finite transport, Pauli readout, and overlap calculations"},
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
     "z3": {"tried": False, "used": False, "reason": "not needed"},
@@ -65,6 +66,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
 
 EPS = 1e-10
 SAMPLE_THETA_PAIRS = [

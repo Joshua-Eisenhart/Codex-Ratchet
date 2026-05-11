@@ -25,6 +25,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["sympy"] = "load_bearing"
 
 try:
     import sympy as sp

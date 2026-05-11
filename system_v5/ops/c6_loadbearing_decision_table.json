@@ -14,7 +14,8 @@
   "action_counts": {
     "promote_to_canonical_candidate_after_owner_review": 55,
     "remove_or_demote_tool_depth_candidate": 39,
-    "owner_review_missing_result_before_edit": 74
+    "owner_review_missing_result_before_edit": 73,
+    "owner_review_inconclusive": 1
   },
   "tool_counts": {
     "pytorch": 65,
@@ -623,9 +624,9 @@
       "sim": "system_v4/probes/sim_ratchet_optimizer.py",
       "tool": "pytorch",
       "bucket": "inconclusive_needs_owner",
-      "result_path": null,
-      "evidence": "no_result_tool_evidence",
-      "candidate_action": "owner_review_missing_result_before_edit",
+      "result_path": "system_v4/probes/a2_state/sim_results/ratchet_optimizer_results.json",
+      "evidence": "result_json_mentions_tool",
+      "candidate_action": "owner_review_inconclusive",
       "owner_review_required": true,
       "source_edit_allowed": false,
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."

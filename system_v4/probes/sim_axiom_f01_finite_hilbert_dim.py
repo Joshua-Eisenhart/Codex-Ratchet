@@ -37,7 +37,7 @@ TOOL_INTEGRATION_DEPTH = {
     "sympy": None,
     "toponetx": None,
     "xgi": None,
-    "z3": "load_bearing",
+    "z3": "supportive",
 }
 
 try:

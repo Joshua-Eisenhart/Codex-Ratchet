@@ -43,14 +43,14 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {
     "clifford": None,
-    "cvc5": "load_bearing",
+    "cvc5": "supportive",
     "e3nn": None,
     "geomstats": None,
     "gudhi": None,
     "pyg": None,
-    "pytorch": "load_bearing",
+    "pytorch": "supportive",
     "rustworkx": None,
-    "sympy": "load_bearing",
+    "sympy": "supportive",
     "toponetx": None,
     "xgi": None,
     "z3": "load_bearing",

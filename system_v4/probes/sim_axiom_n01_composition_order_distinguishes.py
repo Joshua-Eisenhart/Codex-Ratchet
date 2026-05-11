@@ -36,7 +36,7 @@ TOOL_INTEGRATION_DEPTH = {
     "pyg": None,
     "pytorch": "load_bearing",
     "rustworkx": None,
-    "sympy": "load_bearing",
+    "sympy": "supportive",
     "toponetx": None,
     "xgi": None,
     "z3": None,

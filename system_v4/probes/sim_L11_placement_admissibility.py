@@ -58,7 +58,7 @@ TOOL_INTEGRATION_DEPTH = {
     "gudhi": None,
     "pyg": None,
     "pytorch": None,
-    "rustworkx": "load_bearing",
+    "rustworkx": "supportive",
     "sympy": None,
     "toponetx": None,
     "xgi": None,

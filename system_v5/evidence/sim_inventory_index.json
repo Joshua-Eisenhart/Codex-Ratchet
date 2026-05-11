@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-11T20:40:01.444045+00:00",
+  "generated_at": "2026-05-11T20:53:20.851957+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3948,
-    "result_json_count": 748,
-    "linked_result_json_count": 712,
+    "source_count": 3949,
+    "result_json_count": 757,
+    "linked_result_json_count": 721,
     "unlinked_result_json_count": 36,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
-      "source_only": 3237,
-      "rerun_or_admission_candidate": 484,
+      "source_only": 3229,
+      "rerun_or_admission_candidate": 493,
       "legacy_result_or_repair_needed": 29,
       "contract_shaped_but_tool_depth_thin": 187,
       "admitted": 9,
@@ -19,32 +19,32 @@
     },
     "family_counts": {
       "channel_operator": 785,
-      "entropy_information": 585,
-      "thermo_engine": 436,
+      "entropy_information": 586,
+      "thermo_engine": 437,
       "uncategorized": 335,
-      "axis_bridge": 667,
+      "axis_bridge": 668,
       "graveyard_negative": 1702,
-      "root_admission": 849,
+      "root_admission": 850,
       "hopf_torus": 593,
       "weyl_spinor_clifford": 781,
-      "geometry_gstack_gtower": 727,
-      "density_carrier": 487,
-      "classical_baseline": 1103,
+      "geometry_gstack_gtower": 728,
+      "density_carrier": 488,
+      "classical_baseline": 1104,
       "gerbe_dirac_mera_spectral": 670,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2717,
+      "numpy": 2718,
       "sympy": 2254,
       "scipy": 254,
       "pytorch": 1980,
       "pyg": 846,
       "cvc5": 1328,
-      "qutip": 46,
+      "qutip": 47,
       "e3nn": 843,
       "gudhi": 899,
-      "z3": 1903,
+      "z3": 1904,
       "clifford": 1330,
       "rustworkx": 1075,
       "toponetx": 915,
@@ -68,17 +68,17 @@
       "toponetx": 121,
       "e3nn": 55,
       "pyg": 69,
-      "qutip": 35,
+      "qutip": 37,
       "qiskit": 12,
       "networkx": 4
     },
     "result_classification_counts": {
       "classical_baseline": 249,
-      "canonical": 372,
+      "canonical": 380,
       "supporting": 13,
       "exploratory": 30,
       "research_support": 6,
-      "tool_lego_fit_probe": 12,
+      "tool_lego_fit_probe": 13,
       "controller_index": 2,
       "graveyard_negative": 1,
       "sidecar_probe": 2,
@@ -86,8 +86,8 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 700,
-    "source_only_count": 3237
+    "repair_candidate_count": 709,
+    "source_only_count": 3229
   },
   "admitted_stems": [
     "sim_clifford_capability",
@@ -96252,6 +96252,44 @@
       "inventory_status": "source_only"
     },
     {
+      "stem": "sim_mutual_information_qutip_microfit",
+      "source_path": "system_v4/probes/sim_mutual_information_qutip_microfit.py",
+      "families": [
+        "root_admission",
+        "density_carrier",
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "supportive",
+        "z3": "supportive",
+        "qutip": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "qutip"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/mutual_information_qutip_microfit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "tool_lego_fit_probe"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_n01_compose_a_not_b_requires_distinguishing_probe",
       "source_path": "system_v4/probes/sim_n01_compose_a_not_b_requires_distinguishing_probe.py",
       "families": [
@@ -129772,17 +129810,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/tool_capability_clifford_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "tool_capability_cvc5",
@@ -129798,17 +129840,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/tool_capability_cvc5_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "tool_capability_gudhi",
@@ -129855,17 +129901,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/tool_capability_networkx_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "tool_capability_pennylane",
@@ -129928,22 +129978,28 @@
         "channel_operator"
       ],
       "tools": {
-        "qutip": "imported"
+        "qutip": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "qutip"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/tool_capability_qutip_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "tool_capability_sympy",
@@ -129961,17 +130017,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/tool_capability_sympy_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "tool_capability_toponetx",
@@ -129987,17 +130047,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/tool_capability_toponetx_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "tool_capability_torch",
@@ -130013,17 +130077,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/tool_capability_torch_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "tool_capability_torch_ga",
@@ -130065,17 +130133,21 @@
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/tool_capability_z3_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "tool_integration_clifford_weyl",

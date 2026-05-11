@@ -21,23 +21,23 @@ Codex Ratchet is a nonclassical constraint-admissibility research system. The ma
 
 ## Wizard Runtime Default
 
-Wizard is the default routing, preflight, receipt, and collapse-resistance layer around normal repo work. Run Wizard v4.1 Max Assembly by default at the start of every substantive Codex Ratchet turn. The point is better repo execution, not more visible orchestration.
+Wizard is the default routing, preflight, receipt, and collapse-resistance layer around normal repo work. Run Wizard v4.2 Max Assembly by default at the start of every substantive Codex Ratchet turn. The point is better repo execution, not more visible orchestration.
 
 Max Assembly default means:
 
-- Run the real Wizard v4.1 sequence by default: full MMM salience load, boot/thread rules, Decision Council, Failure Council, Follow-Up Council, compile gate, final receipt boundary, and controller synthesis.
+- Run the real Wizard v4.2 sequence by default: v4.2 salience load, boot/thread rules, Decision Council, Failure Council, Follow-Up Council, management side lanes, compile gate, final receipt boundary, and controller synthesis.
 - Do not silently downgrade to a smaller Wizard run. If runtime capacity, context, or task shape prevents a complete Max Assembly run, state the blocked/deferred/not-run waves in the header and continue with the maximum honest subset.
 - Keep visible output concise when the user needs work product more than route detail, but keep the internal route truth complete and repair the visible surface before sending.
 - Do not call an incomplete subset `FULL`. It is a partial Max Assembly attempt unless the required waves actually ran or were explicitly blocked/deferred.
 - Do not confuse route phases with completed worker waves. `waves:n` means actual receipt-boundary passes. One lateral wave with many parent subagents and child subsubagents is still one wave.
 
-Default boot/load rule (v4.1 MMM-first):
+Default boot/load rule (v4.2 packet-first):
 
-- Main Codex thread loads the positive full MMM first: `~/wiki/wizard/packet-v4-1-current/mmm/FULL_MMM_v4_1.md`, backed by the versioned source `~/wiki/wizard/packet-v4-1-current/mmm/main/full/md/MMM_MAIN_FULL_v4_1.md`.
-- After full MMM salience is loaded, the main Codex thread loads the runnable full Wizard file `~/wiki/wizard/packet-v4-1-current/WIZARD_FULL_v4_1.md`, the local skills manifest `~/wiki/wizard/packet-v4-1-current/skills/SKILLS_MANIFEST_v4_1.md`, and the relevant runtime adapter for the current work. The split docs `00_BOOT.md` through `10_DELIBERATOR_CONTRACT.md` are source/reference docs for the compiled runnable file, not the default boot replacement.
-- Subagents load shared task summary + exact route/member mini-MMM from `~/wiki/wizard/packet-v4-1-current/mmm/mini/MEMBER_MINI_MMM_REGISTRY_v4_1.md` + assigned route definition + task card + source slice + receipt format.
+- Main Codex thread loads the runnable v4.2 packet first: `~/wiki/wizard/packet-v4-2-current/WIZARD_v4_2.md`, the local skills manifest `~/wiki/wizard/packet-v4-2-current/skills/SKILLS_MANIFEST_v4_2.md`, and only the relevant v4.2 MMM or mini-MMM material from `~/wiki/wizard/packet-v4-2-current/mmm/`.
+- For full v4.2 topology, use `scripts/wizard_full_matrix_run_v4_2.py` with receipt-producing parent and child lanes. For level/loop operation, use `scripts/wizard_v4_2.py`.
+- Subagents load shared task summary + exact route/member mini-MMM from `~/wiki/wizard/packet-v4-2-current/mmm/` + assigned route definition + task card + source slice + receipt format.
 - Subsubagents load parent route summary + exact child route/member mini-MMM + child route definition + child task card + source slice + receipt format. Narrower than parent.
-- v4.1 has a separate positive full MMM and route/member mini-MMM surface. The boot/core/adapter docs are thread/runtime rules after salience load, not replacements for MMM load.
+- v4.1 packet paths are legacy/reference only unless the user explicitly asks for v4.1. Do not mix v4.1 route claims with v4.2 headers or receipts.
 - Negative, banned, contrast, archive, and reference-only material never enters boot.
 
 Use Wizard to:
@@ -149,20 +149,20 @@ Route truth:
 
 ## Output Contract
 
-For ordinary repo work, still keep output readable. Use Wizard v4.1 Max Assembly internally by default, and expose only the concise truth needed for the user:
+For ordinary repo work, still keep output readable. Use Wizard v4.2 Max Assembly internally by default, and expose only the concise truth needed for the user:
 
 1. Main answer.
 2. Results: changed files, commands/checks, blockers.
 3. Follow-up: useful next prompts or next steps.
 4. Hygiene/security: relevant boundaries and risks.
 
-For Wizard plurality, council, output testing, or any response that visibly claims voices/lanes/compositions, use the v4.1 header shape:
+For Wizard plurality, council, output testing, or any response that visibly claims voices/lanes/compositions, use the v4.2 header shape:
 
 ```text
-🧙 Wizard v4.1 | {FULL|PARTIAL|BLOCKED} | waves:{completed/3}[ partial-coverage] | parents:{completed/required} | children:{completed/obligation}[ blocked|deferred|not-run] | [tools:{completed} | ]score:{0-100} | runtimes:{actual_runtimes}
+🧙 Wizard v4.2 | {FULL|PARTIAL|BLOCKED} | loops:{completed/requested} | waves:{completed/total across completed loops} | parents:{accepted/required across completed loops} | children:{completed/obligation across completed loops} | tools:{completed across completed loops} | score:{0-100} | runtimes:{actual_runtimes}
 ```
 
-v4.1 has no compact mode yet. Use `PARTIAL` for an incomplete run, `BLOCKED` for a blocked run, or no Wizard run header when councils did not actually run.
+Compact v4.2 is never a `FULL` proof of the nine-parent topology. Use `PARTIAL` for an incomplete, compact, degraded, or repaired-after-first-pass run, `BLOCKED` for a blocked run, or no Wizard run header when councils did not actually run.
 
 Then provide useful content, not a log:
 
@@ -174,7 +174,7 @@ Then provide useful content, not a log:
 
 Audit fixes the answer. Do not output an Audit section by default. Quality score belongs in the footer only when useful.
 
-Before sending any visible Wizard answer, run the v4.1 self-repair gate:
+Before sending any visible Wizard answer, run the v4.2 self-repair gate:
 
 - use real Markdown sections, not bold pseudo-headings;
 - include `## ✨ Answer`, `## 🏛️ Council Results`, `## ✅ Compiled Move`, `## 🧭 Follow-Up Options`, and final `## 🧙 Footer` when a Wizard header is shown;
@@ -191,7 +191,7 @@ If this gate fails, rewrite the answer before sending it. Do not make the user p
 
 ## Voice Preservation Gate
 
-If a Wizard v4.1 voice wave ran, each visible voice must say something useful and distinct:
+If a Wizard v4.2 voice wave ran, each visible voice must say something useful and distinct:
 
 - Hume: evidence, uncertainty, next honest move.
 - Zhuangzi: live readings and exclusion conditions.

@@ -1,7 +1,7 @@
 {
   "schema": "never_run_cohorts_v1",
   "mode": "audit_no_queue_mutation",
-  "never_run_count": 3046,
+  "never_run_count": 3038,
   "family_counts": {
     "coupling": 361,
     "cvc5": 335,
@@ -18,8 +18,8 @@
     "integration": 38,
     "leviathan": 35,
     "other": 31,
-    "bridge": 27,
     "igt": 27,
+    "bridge": 26,
     "dirac": 26,
     "symplectic": 26,
     "axis0": 25,
@@ -57,9 +57,9 @@
     "u1": 10,
     "holographic": 9,
     "sci": 9,
-    "axiom": 8,
     "e3nn": 8,
     "quantum": 8,
+    "axiom": 7,
     "cl6": 7,
     "constrain": 7,
     "constraint": 7,
@@ -93,7 +93,6 @@
     "symp": 5,
     "werner": 5,
     "3qubit": 4,
-    "arith": 4,
     "c1": 4,
     "capability": 4,
     "chromatic": 4,
@@ -115,6 +114,7 @@
     "toric": 4,
     "yang": 4,
     "yinyang": 4,
+    "arith": 3,
     "ax3": 3,
     "c2": 3,
     "chern": 3,
@@ -149,7 +149,6 @@
     "ax1": 2,
     "bicategory": 2,
     "both": 2,
-    "bregman": 2,
     "cauchy": 2,
     "cheeger": 2,
     "chernoff": 2,
@@ -219,9 +218,7 @@
     "wiggle": 2,
     "zero": 2,
     "2": 1,
-    "3q": 1,
     "4qubit": 1,
-    "64": 1,
     "a0": 1,
     "ab": 1,
     "adams": 1,
@@ -244,7 +241,6 @@
     "axis12": 1,
     "axis1": 1,
     "axis2": 1,
-    "axis3": 1,
     "axis4": 1,
     "axis5": 1,
     "axis8": 1,
@@ -253,7 +249,6 @@
     "band": 1,
     "bayesian": 1,
     "bbd": 1,
-    "bc1": 1,
     "bell": 1,
     "berkovich": 1,
     "berry": 1,
@@ -269,6 +264,7 @@
     "bousfield": 1,
     "bps": 1,
     "branching": 1,
+    "bregman": 1,
     "brenier": 1,
     "breuil": 1,
     "broad": 1,
@@ -617,13 +613,13 @@
     "zermelo": 1
   },
   "bucket_counts": {
-    "exploratory": 2015,
-    "core_ladder": 898,
+    "exploratory": 2008,
+    "core_ladder": 897,
     "framework_doctrine": 133
   },
   "contract_rule_counts": {
     "C1_classification_missing": 1715,
-    "contract_clean": 870,
+    "contract_clean": 862,
     "C4_divergence_log_missing": 372,
     "C6_classical_has_load_bearing": 314,
     "C2_manifest_missing": 174,
@@ -638,13 +634,6 @@
       "family": "2",
       "bucket": "exploratory",
       "runner_class": "nonclassical",
-      "contract_rules": []
-    },
-    {
-      "sim": "system_v4/probes/sim_3q_ambiguity_expansion.py",
-      "family": "3q",
-      "bucket": "exploratory",
-      "runner_class": "classical",
       "contract_rules": []
     },
     {
@@ -690,13 +679,6 @@
         "C4_divergence_log_missing",
         "C6_classical_has_load_bearing"
       ]
-    },
-    {
-      "sim": "system_v4/probes/sim_64_address_audit.py",
-      "family": "64",
-      "bucket": "exploratory",
-      "runner_class": "classical",
-      "contract_rules": []
     },
     {
       "sim": "system_v4/probes/sim_Ax3_Ax4_rebinding_stress.py",
@@ -1108,13 +1090,6 @@
       ]
     },
     {
-      "sim": "system_v4/probes/sim_arith_geom_3_reduction.py",
-      "family": "arith",
-      "bucket": "exploratory",
-      "runner_class": "classical",
-      "contract_rules": []
-    },
-    {
       "sim": "system_v4/probes/sim_arith_geom_4_admissibility.py",
       "family": "arith",
       "bucket": "exploratory",
@@ -1450,13 +1425,6 @@
       ]
     },
     {
-      "sim": "system_v4/probes/sim_axiom_f01_finite_measurement_set.py",
-      "family": "axiom",
-      "bucket": "exploratory",
-      "runner_class": "bridge",
-      "contract_rules": []
-    },
-    {
       "sim": "system_v4/probes/sim_axiom_f01_finite_state_set.py",
       "family": "axiom",
       "bucket": "exploratory",
@@ -1782,13 +1750,6 @@
       "contract_rules": [
         "C1_classification_missing"
       ]
-    },
-    {
-      "sim": "system_v4/probes/sim_axis3_fiber_base.py",
-      "family": "axis3",
-      "bucket": "exploratory",
-      "runner_class": "bridge",
-      "contract_rules": []
     },
     {
       "sim": "system_v4/probes/sim_axis4_deductive_inductive.py",
@@ -2137,13 +2098,6 @@
       "contract_rules": []
     },
     {
-      "sim": "system_v4/probes/sim_bc1_fence_investigation.py",
-      "family": "bc1",
-      "bucket": "exploratory",
-      "runner_class": "classical",
-      "contract_rules": []
-    },
-    {
       "sim": "system_v4/probes/sim_bell_inequality_constraint_canonical.py",
       "family": "bell",
       "bucket": "exploratory",
@@ -2322,13 +2276,6 @@
       ]
     },
     {
-      "sim": "system_v4/probes/sim_bregman_exponential_family_coupling_classical.py",
-      "family": "bregman",
-      "bucket": "exploratory",
-      "runner_class": "bridge",
-      "contract_rules": []
-    },
-    {
       "sim": "system_v4/probes/sim_brenier_theorem_constraint_canonical.py",
       "family": "brenier",
       "bucket": "exploratory",
@@ -2345,13 +2292,6 @@
       "contract_rules": [
         "C1_classification_missing"
       ]
-    },
-    {
-      "sim": "system_v4/probes/sim_bridge_2q_vs_3q_kernel_advantage.py",
-      "family": "bridge",
-      "bucket": "core_ladder",
-      "runner_class": "bridge",
-      "contract_rules": []
     },
     {
       "sim": "system_v4/probes/sim_bridge_axis0_gradient_autograd.py",

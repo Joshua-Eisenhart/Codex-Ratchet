@@ -33,6 +33,7 @@ REQUIRED_TOOLS = [
 VALID_CLASSIFICATIONS = {
     "classical_baseline",
     "canonical",
+    "tool_lego_fit_probe",
     "supporting",
     "audit",
 }

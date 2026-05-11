@@ -27,6 +27,26 @@ classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 from itertools import combinations
 
+CLAIM_CEILING = "canonical_local_channel_taxonomy_lego_only"
+NEXT_LEGO_TARGET = "none"
+PROMOTION_CONDITION = (
+    "requires separate reconciled queue row before coupling, bridge, axis, engine, "
+    "GStack, QIT, or nonclassical use"
+)
+BLOCKED_UNTIL = "exact parent receipts, queue row, result JSON, and ledger loopback are reconciled"
+DEMOTION_CONDITION = (
+    "demote if channel classification, fixed-point, invariant-subspace, "
+    "contraction, entropy, commutativity, negative, or boundary checks fail"
+)
+OUT_OF_SCOPE = [
+    "QIT engine admission",
+    "GStack admission",
+    "axis promotion",
+    "engine promotion",
+    "nonclassical proof",
+    "scientific coupling closure",
+]
+
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================
@@ -990,6 +1010,12 @@ if __name__ == "__main__":
 
     results = {
         "name": "torch_channel_taxonomy",
+        "claim_ceiling": CLAIM_CEILING,
+        "next_lego_target": NEXT_LEGO_TARGET,
+        "promotion_condition": PROMOTION_CONDITION,
+        "blocked_until": BLOCKED_UNTIL,
+        "demotion_condition": DEMOTION_CONDITION,
+        "out_of_scope": OUT_OF_SCOPE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "classification": "canonical",

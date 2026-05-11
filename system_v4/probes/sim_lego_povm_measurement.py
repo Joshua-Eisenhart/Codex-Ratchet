@@ -31,6 +31,26 @@ os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
 os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 classification = "canonical"
 
+CLAIM_CEILING = "canonical_local_povm_measurement_lego_only"
+NEXT_LEGO_TARGET = "none"
+PROMOTION_CONDITION = (
+    "requires separate reconciled queue row before coupling, bridge, axis, engine, "
+    "GStack, QIT, or nonclassical use"
+)
+BLOCKED_UNTIL = "exact parent receipts, queue row, result JSON, and ledger loopback are reconciled"
+DEMOTION_CONDITION = (
+    "demote if finite POVM completeness, PSD, Born-rule, post-measurement, "
+    "Naimark, negative, or boundary checks fail, or if this row is used for a higher-stage claim"
+)
+OUT_OF_SCOPE = [
+    "QIT engine admission",
+    "GStack admission",
+    "axis promotion",
+    "engine promotion",
+    "nonclassical proof",
+    "scientific coupling closure",
+]
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -1167,6 +1187,12 @@ if __name__ == "__main__":
         "timestamp": datetime.now().isoformat(),
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
+        "claim_ceiling": CLAIM_CEILING,
+        "next_lego_target": NEXT_LEGO_TARGET,
+        "promotion_condition": PROMOTION_CONDITION,
+        "blocked_until": BLOCKED_UNTIL,
+        "demotion_condition": DEMOTION_CONDITION,
+        "out_of_scope": OUT_OF_SCOPE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

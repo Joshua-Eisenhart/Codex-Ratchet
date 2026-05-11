@@ -47,13 +47,17 @@ TOOL_MANIFEST = {
         "reason": "load-bearing entropy trajectory and gradient witness over the staged density carrier",
     },
     "scipy": {"tried": True, "used": True, "reason": "load-bearing entropy crosscheck for the staged carrier"},
-    "z3": {"tried": True, "used": True, "reason": "load-bearing UNSAT fence for the too-strong distinct-line mapping"},
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive fence records the finite enumeration has no distinct-line witness",
+    },
 }
 TOOL_INTEGRATION_DEPTH = {
     "numpy": "supportive",
     "pytorch": "load_bearing",
     "scipy": "load_bearing",
-    "z3": "load_bearing",
+    "z3": "supportive",
 }
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -158,6 +162,7 @@ def z3_no_distinct_measure_erasure_block() -> dict[str, object]:
     return {
         "claim_killed": "canonical Gray walk has a four-stage measure/erase block with four distinct line operators",
         "candidate_count": len(valid_starts),
+        "proof_vehicle": "finite_python_enumeration_with_supportive_z3_unsat_record",
         "z3_result": str(result),
         "pass": result == z3.unsat,
     }
@@ -288,6 +293,16 @@ def main() -> None:
             ),
         },
         "torch_scipy_entropy_trajectory_is_order_sensitive": entropy,
+        "final_state_collapse_is_explicit_ceiling": {
+            "torch_final_state_delta": entropy.get("torch_final_state_delta"),
+            "scipy_final_state_delta": entropy.get("scipy_final_state_delta"),
+            "claim_ceiling": "path_order_sensitive_only_not_outcome_order_sensitive",
+            "pass": bool(
+                entropy.get("pass")
+                and float(entropy.get("torch_final_state_delta", 1.0)) <= EPS
+                and float(entropy.get("scipy_final_state_delta", 1.0)) <= EPS
+            ),
+        },
     }
     negative = {
         "z3_kills_too_strong_distinct_line_mapping": z3_no_distinct_measure_erasure_block(),
@@ -298,10 +313,32 @@ def main() -> None:
         },
     }
     boundary = {
-        "finite_rosetta_probe_only": {"pass": True, "scope_note": divergence_log},
-        "no_qit_gstack_axis_bridge_or_nonclassical_admission": {"pass": True},
-        "szilard_mi_bound_not_tested_or_inherited": {"pass": True},
-        "trigram_mapping_is_candidate_not_unique": {"pass": True},
+        "finite_rosetta_probe_only": {
+            "scope_note": divergence_log,
+            "forbidden_claims_absent": [
+                "QIT engine admission",
+                "GStack admission",
+                "axis promotion",
+                "bridge admission",
+                "nonclassical admission",
+            ],
+            "pass": "admission" in divergence_log and "not QIT" in divergence_log,
+        },
+        "no_qit_gstack_axis_bridge_or_nonclassical_admission": {
+            "promotion_allowed": False,
+            "claim_ceiling": "tool_lego_fit_probe_only",
+            "pass": True,
+        },
+        "szilard_mi_bound_not_tested_or_inherited": {
+            "tested_metrics": ["single_line_gray_blocks", "entropy_trajectory", "final_state_delta"],
+            "excluded_metrics": ["mutual_information_bound", "szilard_work_bound"],
+            "pass": True,
+        },
+        "trigram_mapping_is_candidate_not_unique": {
+            "candidate_count": len(candidates),
+            "chosen_policy": "first strongest candidate by distinct-line count then earliest start",
+            "pass": len(candidates) > 1,
+        },
     }
     all_pass = all(row["pass"] for group in (positive, negative, boundary) for row in group.values())
     result = {
@@ -311,7 +348,7 @@ def main() -> None:
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
-        "sim_execution_kind": "bridge",
+        "sim_execution_kind": "rosetta_comparison",
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
@@ -327,7 +364,9 @@ def main() -> None:
             "promotion_allowed": False,
             "candidate_block_count": len(candidates),
             "killed_claim": "four distinct Szilard stage line operators in canonical Gray walk",
-            "surviving_claim": "weaker measure-lower / erasure-upper Rosetta block with order-sensitive entropy trajectory",
+            "surviving_claim": "weaker measure-lower / erasure-upper Rosetta block with path-only entropy trajectory order sensitivity",
+            "outcome_order_sensitive": False,
+            "followup_required": "initial_state_sweep_before_any_stronger_rosetta_or_coupling_claim",
             "scope_note": divergence_log,
         },
         "all_pass": bool(all_pass),

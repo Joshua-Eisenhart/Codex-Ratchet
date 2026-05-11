@@ -14,6 +14,12 @@ These rules describe the target standard for new work. They are partially enforc
 ## Scope
 This document governs active simulation and build work. It does not replace source-of-truth math; it constrains how we produce, validate, and classify work.
 
+## Current Ops Debt Registers
+
+- Proposal review/apply rules: [PROPOSAL_APPLY_CONTRACT.md](PROPOSAL_APPLY_CONTRACT.md)
+- Never-run cohort intake rules: [NEVER_RUN_TRIAGE.md](NEVER_RUN_TRIAGE.md)
+- Runner taxonomy unknown allowlist: [RUNNER_TAXONOMY_UNKNOWN_ALLOWLIST.md](RUNNER_TAXONOMY_UNKNOWN_ALLOWLIST.md)
+
 ---
 
 ## Hard Build Guardrail

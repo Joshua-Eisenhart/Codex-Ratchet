@@ -12,8 +12,13 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+import adaptive_controller
+import lint_sim_contract
+
+
 HOME = Path.home()
 
 LIVE_SURFACES = [
@@ -121,16 +126,18 @@ def scan_live_surfaces() -> list[dict[str, Any]]:
 def queue_counts() -> dict[str, int | str]:
     check = run(["python3", "scripts/queue_claim.py", "counts"])
     if not check["ok"]:
-        return {"error": check["stderr"] or check["stdout"] or "queue count command failed"}
+        return {"_valid": 0, "error": check["stderr"] or check["stdout"] or "queue count command failed"}
     try:
         parsed = json.loads(str(check["stdout"]))
     except json.JSONDecodeError:
         parsed = None
     if isinstance(parsed, dict):
-        return {
+        counts = {
             str(key): int(value) if isinstance(value, int) else str(value)
             for key, value in parsed.items()
         }
+        counts["_valid"] = 1
+        return counts
     counts: dict[str, int | str] = {}
     for line in str(check["stdout"]).splitlines():
         if ":" not in line:
@@ -140,6 +147,9 @@ def queue_counts() -> dict[str, int | str]:
             counts[key.strip()] = int(value.strip())
         except ValueError:
             counts[key.strip()] = value.strip()
+    counts["_valid"] = 1 if counts else 0
+    if not counts:
+        counts["error"] = "queue count output was not parseable"
     return counts
 
 
@@ -209,6 +219,7 @@ def blocked_reason_valid(path: Path, *, now: datetime) -> tuple[bool, str]:
 
 def heartbeat_status(counts: dict[str, int | str]) -> dict[str, Any]:
     idle_keys = ("lane_A", "lane_B", "lane_D", "default", "claimed")
+    queue_counts_valid = int_count(counts, "_valid") == 1
     idle = all(int_count(counts, key) == 0 for key in idle_keys)
     now = datetime.now(timezone.utc)
     blocked_reason_details = []
@@ -221,7 +232,9 @@ def heartbeat_status(counts: dict[str, int | str]) -> dict[str, Any]:
     blocked_reasons = [item["path"] for item in blocked_reason_details if item["valid"]]
     blocked_count = int_count(counts, "blocked")
     runner_idle_with_backlog = idle and blocked_count > 0
-    if runner_idle_with_backlog:
+    if not queue_counts_valid:
+        status = "queue_counts_invalid"
+    elif runner_idle_with_backlog:
         status = "runner_idle_with_backlog"
     elif not idle:
         status = "active_or_queued"
@@ -231,6 +244,8 @@ def heartbeat_status(counts: dict[str, int | str]) -> dict[str, Any]:
         status = "needs_next_micro_move_or_blocked_reason"
     return {
         "status": status,
+        "queue_counts_valid": queue_counts_valid,
+        "queue_counts_error": counts.get("error"),
         "idle": idle,
         "idle_keys": list(idle_keys),
         "blocked_count": blocked_count,
@@ -276,6 +291,7 @@ def reports_freshness(now: datetime) -> dict[str, Any]:
         else:
             source_files.extend(iter_jsonish_files(base))
     newest_source = newest_mtime(source_files)
+    source_missing = newest_source is None
     reports = []
     stale = False
     missing = False
@@ -294,12 +310,100 @@ def reports_freshness(now: datetime) -> dict[str, Any]:
             }
         )
     return {
-        "ok": not stale and not missing,
+        "ok": not stale and not missing and not source_missing,
         "generated_at": now.isoformat(),
+        "source_file_count": len(source_files),
         "newest_source_mtime": newest_source.isoformat() if newest_source else None,
+        "source_missing": source_missing,
         "missing": missing,
         "stale": stale,
         "reports": reports,
+    }
+
+
+def contract_lint_summary() -> dict[str, Any]:
+    violation_total = 0
+    sims_with_violations = 0
+    violations_by_type: dict[str, int] = {}
+    checked = 0
+    for path in sorted(adaptive_controller.PROBES.glob("sim_*.py")):
+        if not path.is_file() or " 2" in path.name:
+            continue
+        checked += 1
+        violations = lint_sim_contract.lint_sim(path)
+        if violations:
+            sims_with_violations += 1
+        for violation in violations:
+            rule = str(violation.get("rule") or "unknown")
+            violations_by_type[rule] = violations_by_type.get(rule, 0) + 1
+            violation_total += 1
+    return {
+        "ok": violation_total == 0,
+        "checked": checked,
+        "violation_total": violation_total,
+        "sims_with_violations": sims_with_violations,
+        "violations_by_type": dict(sorted(violations_by_type.items())),
+    }
+
+
+def never_run_summary() -> dict[str, Any]:
+    path = ROOT / "system_v5/ops/never_run_cohorts.json"
+    if not path.exists():
+        return {"ok": False, "path": rel(path), "error": "missing_report"}
+    data = json.loads(path.read_text())
+    total = int(data.get("never_run_count") or 0)
+    return {
+        "ok": total == 0,
+        "path": rel(path),
+        "never_run_total": total,
+        "top_families": dict(list(dict(data.get("family_counts") or {}).items())[:10]),
+    }
+
+
+def taxonomy_allowlist_summary(now: datetime) -> dict[str, Any]:
+    unknown_path = ROOT / "system_v5/ops/runner_taxonomy_unknowns.json"
+    allowlist_path = ROOT / "system_v5/docs/RUNNER_TAXONOMY_UNKNOWN_ALLOWLIST.md"
+    if not unknown_path.exists() or not allowlist_path.exists():
+        return {"ok": False, "error": "missing_unknown_report_or_allowlist"}
+    report = json.loads(unknown_path.read_text())
+    text = allowlist_path.read_text()
+    rows = [str(row.get("sim") or "") for row in report.get("rows", []) if isinstance(row, dict)]
+    allowlisted = [row for row in rows if row and row in text]
+    review_match = re.search(r"review_by:\s*(\d{4}-\d{2}-\d{2})", text)
+    review_by = review_match.group(1) if review_match else None
+    review_due = False
+    if review_by:
+        review_due = datetime.fromisoformat(review_by).replace(tzinfo=timezone.utc) < now
+    drift = len(rows) - len(allowlisted)
+    return {
+        "ok": drift == 0 and not review_due,
+        "path": rel(allowlist_path),
+        "unknown_count": len(rows),
+        "allowlisted_count": len(allowlisted),
+        "drift": drift,
+        "review_by": review_by,
+        "review_due": review_due,
+    }
+
+
+def dominant_blocked_reason_next_check(heartbeat: dict[str, Any]) -> dict[str, str] | None:
+    dominant = heartbeat.get("dominant_blocked_reason")
+    if not isinstance(dominant, dict):
+        return None
+    reason = dominant.get("reason")
+    if reason == "wizard_admission_blocked":
+        return {
+            "owner_surface": "system_v5/ops/blocked_reason_breakdown.json",
+            "next_check": "review wizard_admission_blocked rows by contract_subreasons before queue admission",
+        }
+    if reason == "stage_gate_blocked":
+        return {
+            "owner_surface": "system_v5/docs/LEGO_SIM_CONTRACT.md",
+            "next_check": "verify exact stage prerequisite receipts before requeue",
+        }
+    return {
+        "owner_surface": "system_v5/ops/blocked_reason_breakdown.json",
+        "next_check": "inspect dominant blocked reason rows and record one admissible next step",
     }
 
 
@@ -348,6 +452,10 @@ def main(argv: list[str] | None = None) -> int:
     now = datetime.now(timezone.utc)
     checks["worker_pool_receipts"] = worker_receipt_check(now)
     checks["ops_reports_freshness"] = reports_freshness(now)
+    checks["contract_lint_summary"] = contract_lint_summary()
+    checks["never_run_summary"] = never_run_summary()
+    checks["taxonomy_unknown_allowlist"] = taxonomy_allowlist_summary(now)
+    heartbeat["dominant_blocked_reason_next_check"] = dominant_blocked_reason_next_check(heartbeat)
 
     if not args.skip_preflight:
         checks["packet_conformance"] = run(

@@ -2,6 +2,8 @@
 
 Unknown runner-class rows are allowed only as named audit debt. They are not evidence of correctness.
 
+review_by: 2026-08-11
+
 Allowed current unknowns:
 
 - `system_v4/probes/sim_carnot_asymmetric_direction_graveyard.py`

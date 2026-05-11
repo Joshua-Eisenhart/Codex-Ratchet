@@ -27,6 +27,26 @@ import os
 import numpy as np
 classification = "canonical"
 
+CLAIM_CEILING = "canonical_local_hopf_connection_geometry_lego_only"
+NEXT_LEGO_TARGET = "none"
+PROMOTION_CONDITION = (
+    "requires separate reconciled queue row before coupling, bridge, axis, engine, "
+    "GStack, QIT, or nonclassical use"
+)
+BLOCKED_UNTIL = "exact parent receipts, queue row, result JSON, and ledger loopback are reconciled"
+DEMOTION_CONDITION = (
+    "demote if Hopf connection, Berry phase, autograd, equivariance, negative, "
+    "or boundary criteria fail, or if this row is used for a higher-stage geometry claim"
+)
+OUT_OF_SCOPE = [
+    "QIT engine admission",
+    "GStack admission",
+    "axis promotion",
+    "engine promotion",
+    "nonclassical proof",
+    "scientific coupling closure",
+]
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -611,6 +631,12 @@ if __name__ == "__main__":
         "name": "torch_hopf_connection",
         "family": "GEOMETRIC",
         "description": "Hopf fibration S3->S2 with Berry connection via autograd",
+        "claim_ceiling": CLAIM_CEILING,
+        "next_lego_target": NEXT_LEGO_TARGET,
+        "promotion_condition": PROMOTION_CONDITION,
+        "blocked_until": BLOCKED_UNTIL,
+        "demotion_condition": DEMOTION_CONDITION,
+        "out_of_scope": OUT_OF_SCOPE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

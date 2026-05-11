@@ -27,6 +27,22 @@ import json
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical foundation baseline: this validates the S3/Hopf manifold numerically and geometrically, not as a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "constructs S3/Hopf samples, SU(2) matrices, density matrices, and numerical geometry checks",
+    },
+    "json": {
+        "tried": True,
+        "used": True,
+        "reason": "writes the bounded validation receipt",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "json": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import (
@@ -306,7 +322,27 @@ def run_L0_validation():
             "timestamp": datetime.now(UTC).isoformat(),
             "layer": 0,
             "name": "S3_Hopf_Manifold_Validation",
+            "classification": classification,
+            "classification_note": divergence_log,
+            "divergence_log": divergence_log,
+            "tool_manifest": TOOL_MANIFEST,
+            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+            "promotion_allowed": False,
+            "claim_ceiling": "classical S3/Hopf validation baseline only; no QIT, GStack, axis, nonclassical, or coupling admission",
+            "next_lego_target": "L0_s3_hopf_classical_baseline_receipt_only",
+            "promotion_condition": "Requires separate stage-gated coupling/coexistence/topology receipts outside this classical baseline.",
+            "blocked_until": "scientific coupling stage opens and exact downstream receipts exist",
+            "demotion_condition": "Demote if used as QIT, GStack, axis, nonclassical, or coupling proof.",
+            "out_of_scope": [
+                "QIT engine admission",
+                "GStack admission",
+                "axis promotion",
+                "nonclassical proof",
+                "scientific coupling proof",
+            ],
             "results": clean_results,
+            "summary": {"all_pass": bool(all_pass)},
+            "all_pass": bool(all_pass),
             "evidence_ledger": [t.__dict__ for t in tokens],
         }, f, indent=2, default=str)
     print(f"  Results saved: {outpath}")

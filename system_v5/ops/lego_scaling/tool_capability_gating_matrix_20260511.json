@@ -1,0 +1,505 @@
+{
+  "schema": "codex_ratchet_tool_capability_gating_matrix_v1",
+  "generated_at": "2026-05-11T00:00:00-07:00",
+  "generated_from": [
+    "scripts/verify_load_bearing_has_capability_probe.py --report-json",
+    "system_v4/probes/a2_state/sim_results/load_bearing_capability_audit.json"
+  ],
+  "active_stage": "lego_tool_capability_boundary",
+  "stage_gate": "Tool capability receipts permit bounded tool-lego fit and micro-integration rows only. Scientific lego couplings remain gated by coupling readiness evidence.",
+  "summary": {
+    "passing_capability_receipt": 16
+  },
+  "audit_totals": {
+    "audited_sims": 3596,
+    "load_bearing_violation_count": 124
+  },
+  "tools": [
+    {
+      "tool": "numpy",
+      "role": "classical_baseline",
+      "aliases_checked": [
+        "numpy"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_numpy_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/numpy_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "scipy",
+      "role": "classical_baseline",
+      "aliases_checked": [
+        "scipy"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_scipy_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/scipy_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        },
+        {
+          "probe": "system_v4/probes/sim_capability_scipy_isolated.py",
+          "result": null,
+          "result_pass": false,
+          "summary_keys": []
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "sympy",
+      "role": "classical_bridge",
+      "aliases_checked": [
+        "sympy"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_sympy_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/sympy_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        },
+        {
+          "probe": "system_v4/probes/sim_capability_sympy_isolated.py",
+          "result": null,
+          "result_pass": false,
+          "summary_keys": []
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "z3",
+      "role": "proof_fence",
+      "aliases_checked": [
+        "z3"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_z3_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/z3_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        },
+        {
+          "probe": "system_v4/probes/sim_capability_z3_isolated.py",
+          "result": null,
+          "result_pass": false,
+          "summary_keys": []
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "cvc5",
+      "role": "proof_fence",
+      "aliases_checked": [
+        "cvc5"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_cvc5_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/cvc5_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        },
+        {
+          "probe": "system_v4/probes/sim_capability_cvc5_isolated.py",
+          "result": null,
+          "result_pass": false,
+          "summary_keys": []
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "torch",
+      "role": "tensor_nonclassical_adjacent",
+      "aliases_checked": [
+        "pytorch",
+        "torch"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_pytorch_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/pytorch_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        },
+        {
+          "probe": "system_v4/probes/sim_pytorch_capability_isolated.py",
+          "result": null,
+          "result_pass": false,
+          "summary_keys": []
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "pyg",
+      "role": "graph_tensor_nonclassical_adjacent",
+      "aliases_checked": [
+        "pyg",
+        "torch_geometric"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_pyg_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/pyg_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        },
+        {
+          "probe": "system_v4/probes/sim_capability_pyg_isolated.py",
+          "result": null,
+          "result_pass": false,
+          "summary_keys": []
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "qutip",
+      "role": "density_matrix_quantum_witness",
+      "aliases_checked": [
+        "qutip"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_qutip_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/qutip_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "qiskit",
+      "role": "circuit_quantum_witness",
+      "aliases_checked": [
+        "qiskit"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_qiskit_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/qiskit_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "clifford",
+      "role": "geometric_algebra_nonclassical_adjacent",
+      "aliases_checked": [
+        "clifford"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_clifford_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/clifford_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        },
+        {
+          "probe": "system_v4/probes/sim_capability_clifford_isolated.py",
+          "result": "system_v4/probes/a2_state/sim_results/sim_capability_clifford_isolated_results.json",
+          "result_pass": true,
+          "summary_keys": []
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "rustworkx",
+      "role": "graph_topology",
+      "aliases_checked": [
+        "rustworkx"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_rustworkx_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/rustworkx_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        },
+        {
+          "probe": "system_v4/probes/sim_capability_rustworkx_isolated.py",
+          "result": null,
+          "result_pass": false,
+          "summary_keys": []
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "xgi",
+      "role": "hypergraph_topology",
+      "aliases_checked": [
+        "xgi"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_xgi_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/xgi_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        },
+        {
+          "probe": "system_v4/probes/sim_capability_xgi_isolated.py",
+          "result": null,
+          "result_pass": false,
+          "summary_keys": []
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "toponetx",
+      "role": "cell_complex_topology",
+      "aliases_checked": [
+        "toponetx"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_toponetx_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/toponetx_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        },
+        {
+          "probe": "system_v4/probes/sim_capability_toponetx_isolated.py",
+          "result": null,
+          "result_pass": false,
+          "summary_keys": []
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "gudhi",
+      "role": "persistent_topology",
+      "aliases_checked": [
+        "gudhi"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_gudhi_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/gudhi_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass"
+          ]
+        },
+        {
+          "probe": "system_v4/probes/sim_capability_gudhi_isolated.py",
+          "result": "system_v4/probes/a2_state/sim_results/sim_capability_gudhi_isolated_results.json",
+          "result_pass": true,
+          "summary_keys": []
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "geomstats",
+      "role": "manifold_geometry",
+      "aliases_checked": [
+        "geomstats"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_geomstats_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/geomstats_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass"
+          ]
+        },
+        {
+          "probe": "system_v4/probes/sim_capability_geomstats_isolated.py",
+          "result": "system_v4/probes/a2_state/sim_results/sim_capability_geomstats_isolated_results.json",
+          "result_pass": true,
+          "summary_keys": []
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    },
+    {
+      "tool": "e3nn",
+      "role": "equivariant_geometry",
+      "aliases_checked": [
+        "e3nn"
+      ],
+      "capability_status": "passing_capability_receipt",
+      "candidate_receipts": [
+        {
+          "probe": "system_v4/probes/sim_e3nn_capability.py",
+          "result": "system_v4/probes/a2_state/sim_results/e3nn_capability_results.json",
+          "result_pass": true,
+          "summary_keys": [
+            "all_pass",
+            "boundary_all_pass",
+            "importable",
+            "negative_all_pass",
+            "positive_all_pass"
+          ]
+        },
+        {
+          "probe": "system_v4/probes/sim_capability_e3nn_isolated.py",
+          "result": "system_v4/probes/a2_state/sim_results/sim_capability_e3nn_isolated_results.json",
+          "result_pass": true,
+          "summary_keys": []
+        }
+      ],
+      "load_bearing_violation_count": 0,
+      "sample_violations": [],
+      "allowed_next": "tool_lego_fit_or_micro_integration",
+      "claim_boundary": "Capability receipt only; does not admit lego coupling, QIT, GStack, axis, or nonclassical claims."
+    }
+  ],
+  "global_blockers": [
+    "124 current load-bearing declaration violations must be repaired or scoped before broad runner admission.",
+    "Some violations are standard-library pseudo-tools such as json/pathlib/python_stdlib and should be reclassified instead of capability-probed.",
+    "Optional optimizer/ML tools show stale capability probes and should not be used as load-bearing until repaired."
+  ],
+  "no_promotion_claims": [
+    "No QIT engine admission.",
+    "No GStack admission.",
+    "No full axis admission.",
+    "No strict nonclassical admission."
+  ]
+}

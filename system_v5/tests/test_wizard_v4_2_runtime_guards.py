@@ -379,7 +379,7 @@ def test_runtime_audit_rejects_empty_blocked_reason(tmp_path: Path) -> None:
 
     heartbeat_status = module_globals["heartbeat_status"]
     heartbeat_status.__globals__["ROOT"] = tmp_path
-    heartbeat = heartbeat_status({"lane_A": 0, "lane_B": 0, "lane_D": 0, "default": 0, "claimed": 0})
+    heartbeat = heartbeat_status({"_valid": 1, "lane_A": 0, "lane_B": 0, "lane_D": 0, "default": 0, "claimed": 0})
 
     assert heartbeat["status"] == "needs_next_micro_move_or_blocked_reason"
 
@@ -402,7 +402,7 @@ def test_runtime_audit_accepts_marked_blocked_reason(tmp_path: Path) -> None:
 
     heartbeat_status = module_globals["heartbeat_status"]
     heartbeat_status.__globals__["ROOT"] = tmp_path
-    heartbeat = heartbeat_status({"lane_A": 0, "lane_B": 0, "lane_D": 0, "default": 0, "claimed": 0})
+    heartbeat = heartbeat_status({"_valid": 1, "lane_A": 0, "lane_B": 0, "lane_D": 0, "default": 0, "claimed": 0})
 
     assert heartbeat["status"] == "idle_with_blocked_reason"
     assert heartbeat["blocked_reason_artifacts"] == ["system_v5/ops/lego_scaling/idle_blocked_note.json"]

@@ -53,6 +53,7 @@ OPS_REPORTS = [
     ROOT / "system_v5/ops/c1_classification_proposals.json",
     ROOT / "system_v5/ops/c4_divergence_log_proposals.json",
     ROOT / "system_v5/ops/c6_loadbearing_report.json",
+    ROOT / "system_v5/ops/c6_loadbearing_decision_table.json",
     ROOT / "system_v5/ops/proposal_apply_preview.json",
     ROOT / "system_v5/ops/runner_taxonomy_unknowns.json",
     ROOT / "system_v5/ops/never_run_cohorts.json",
@@ -311,6 +312,8 @@ def reports_freshness(now: datetime) -> dict[str, Any]:
         )
     return {
         "ok": not stale and not missing and not source_missing,
+        "freshness_rule": "each report mtime must be newer than the newest sim source or live queue JSON-like record",
+        "timestamp_source": "filesystem_mtime_utc",
         "generated_at": now.isoformat(),
         "source_file_count": len(source_files),
         "newest_source_mtime": newest_source.isoformat() if newest_source else None,
@@ -339,6 +342,7 @@ def contract_lint_summary() -> dict[str, Any]:
             violation_total += 1
     return {
         "ok": violation_total == 0,
+        "closeout_check": "python3 scripts/lint_sim_contract.py",
         "checked": checked,
         "violation_total": violation_total,
         "sims_with_violations": sims_with_violations,
@@ -354,6 +358,7 @@ def never_run_summary() -> dict[str, Any]:
     total = int(data.get("never_run_count") or 0)
     return {
         "ok": total == 0,
+        "closeout_check": "python3 scripts/never_run_cohort_report.py",
         "path": rel(path),
         "never_run_total": total,
         "top_families": dict(list(dict(data.get("family_counts") or {}).items())[:10]),
@@ -377,6 +382,7 @@ def taxonomy_allowlist_summary(now: datetime) -> dict[str, Any]:
     drift = len(rows) - len(allowlisted)
     return {
         "ok": drift == 0 and not review_due,
+        "closeout_check": "python3 scripts/runner_taxonomy_unknowns_report.py",
         "path": rel(allowlist_path),
         "unknown_count": len(rows),
         "allowlisted_count": len(allowlisted),

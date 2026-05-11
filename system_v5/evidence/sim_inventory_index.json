@@ -1,44 +1,44 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-11T19:07:09.304631+00:00",
+  "generated_at": "2026-05-11T19:13:29.926015+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3939,
-    "result_json_count": 720,
-    "linked_result_json_count": 684,
+    "source_count": 3940,
+    "result_json_count": 721,
+    "linked_result_json_count": 685,
     "unlinked_result_json_count": 36,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3256,
-      "rerun_or_admission_candidate": 466,
+      "rerun_or_admission_candidate": 467,
       "legacy_result_or_repair_needed": 26,
       "contract_shaped_but_tool_depth_thin": 180,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
     },
     "family_counts": {
-      "channel_operator": 782,
-      "entropy_information": 584,
-      "thermo_engine": 429,
+      "channel_operator": 783,
+      "entropy_information": 585,
+      "thermo_engine": 430,
       "uncategorized": 335,
-      "axis_bridge": 661,
-      "graveyard_negative": 1701,
-      "root_admission": 843,
+      "axis_bridge": 662,
+      "graveyard_negative": 1702,
+      "root_admission": 844,
       "hopf_torus": 592,
       "weyl_spinor_clifford": 781,
-      "geometry_gstack_gtower": 721,
+      "geometry_gstack_gtower": 722,
       "density_carrier": 480,
-      "classical_baseline": 1097,
+      "classical_baseline": 1098,
       "gerbe_dirac_mera_spectral": 670,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2710,
+      "numpy": 2711,
       "sympy": 2249,
-      "scipy": 251,
-      "pytorch": 1976,
+      "scipy": 252,
+      "pytorch": 1977,
       "pyg": 846,
       "cvc5": 1327,
       "qutip": 46,
@@ -56,7 +56,7 @@
     "load_bearing_tool_counts": {
       "numpy": 276,
       "cvc5": 509,
-      "pytorch": 1100,
+      "pytorch": 1101,
       "rustworkx": 283,
       "z3": 738,
       "sympy": 563,
@@ -64,7 +64,7 @@
       "xgi": 200,
       "geomstats": 109,
       "gudhi": 122,
-      "scipy": 63,
+      "scipy": 64,
       "toponetx": 121,
       "e3nn": 55,
       "pyg": 69,
@@ -78,15 +78,15 @@
       "supporting": 13,
       "exploratory": 30,
       "research_support": 6,
-      "tool_lego_fit_probe": 2,
-      "dependency_blocked": 2,
+      "tool_lego_fit_probe": 4,
       "controller_index": 2,
       "graveyard_negative": 1,
       "sidecar_probe": 2,
+      "dependency_blocked": 1,
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 672,
+    "repair_candidate_count": 673,
     "source_only_count": 3256
   },
   "admitted_stems": [
@@ -3136,6 +3136,46 @@
       "inventory_status": "contract_shaped_but_tool_depth_thin"
     },
     {
+      "stem": "sim_channel_operator_entropy_order_variant",
+      "source_path": "system_v4/probes/sim_channel_operator_entropy_order_variant.py",
+      "families": [
+        "root_admission",
+        "channel_operator",
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline",
+        "graveyard_negative"
+      ],
+      "tools": {
+        "numpy": "supportive",
+        "scipy": "load_bearing",
+        "pytorch": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "pytorch",
+        "scipy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/channel_operator_entropy_order_variant_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "tool_lego_fit_probe"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_channel_space_geometry",
       "source_path": "system_v4/probes/sim_channel_space_geometry.py",
       "families": [
@@ -3227,7 +3267,7 @@
       ],
       "result_count": 1,
       "result_classifications": [
-        "dependency_blocked"
+        "tool_lego_fit_probe"
       ],
       "result_has_contract_shape": true,
       "admission_path": "",
@@ -3319,44 +3359,6 @@
       "result_count": 1,
       "result_classifications": [
         "classical_baseline"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": false,
-      "has_contract_shape": true,
-      "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_chiral_density_bookkeeping",
-      "source_path": "system_v4/probes/sim_chiral_density_bookkeeping.py",
-      "families": [
-        "density_carrier",
-        "hopf_torus",
-        "weyl_spinor_clifford",
-        "axis_bridge"
-      ],
-      "tools": {
-        "numpy": "imported",
-        "pytorch": "load_bearing",
-        "z3": "load_bearing",
-        "sympy": "load_bearing"
-      },
-      "load_bearing_tools": [
-        "pytorch",
-        "sympy",
-        "z3"
-      ],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/chiral_density_bookkeeping_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "canonical"
       ],
       "result_has_contract_shape": true,
       "admission_path": "",
@@ -22618,6 +22620,46 @@
       "inventory_status": "contract_shaped_but_tool_depth_thin"
     },
     {
+      "stem": "sim_channel_operator_entropy_order_variant",
+      "source_path": "system_v4/probes/sim_channel_operator_entropy_order_variant.py",
+      "families": [
+        "root_admission",
+        "channel_operator",
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline",
+        "graveyard_negative"
+      ],
+      "tools": {
+        "numpy": "supportive",
+        "scipy": "load_bearing",
+        "pytorch": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "pytorch",
+        "scipy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/channel_operator_entropy_order_variant_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "tool_lego_fit_probe"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_channel_space_geometry",
       "source_path": "system_v4/probes/sim_channel_space_geometry.py",
       "families": [
@@ -22709,7 +22751,7 @@
       ],
       "result_count": 1,
       "result_classifications": [
-        "dependency_blocked"
+        "tool_lego_fit_probe"
       ],
       "result_has_contract_shape": true,
       "admission_path": "",

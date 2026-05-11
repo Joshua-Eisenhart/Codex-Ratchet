@@ -22,15 +22,22 @@ PROBE_DIR = pathlib.Path(__file__).resolve().parent
 if str(PROBE_DIR) not in sys.path:
     sys.path.insert(0, str(PROBE_DIR))
 
-import sim_qit_szilard_bidirectional_protocol as base  # noqa: E402
+BASE_IMPORT_ERROR = None
+try:
+    import sim_qit_szilard_bidirectional_protocol as base  # noqa: E402
+except ModuleNotFoundError as exc:
+    base = None
+    BASE_IMPORT_ERROR = str(exc)
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "dependency_blocked" if BASE_IMPORT_ERROR else "classical_baseline"
 divergence_log = (
     "Finite two-qubit Szilard reverse-recovery companion: exact density-operator "
     "bookkeeping stays intact for erase, naive reverse, and designed recovery, "
     "and the row remains a bridge companion over the same bounded carrier rather "
-    "than a broader demon theorem."
+    "than a broader demon theorem. If the shared bidirectional protocol import "
+    "is unavailable, this row writes an explicit blocked receipt instead of "
+    "claiming a canonical run."
 )
 CLASSIFICATION_NOTE = divergence_log
 
@@ -169,6 +176,41 @@ def run_row(steps: int) -> dict:
 
 
 def main() -> None:
+    if BASE_IMPORT_ERROR:
+        results = {
+            "name": "qit_szilard_reverse_recovery_companion",
+            "classification": "dependency_blocked",
+            "classification_note": CLASSIFICATION_NOTE,
+            "divergence_log": divergence_log,
+            "lego_ids": LEGO_IDS,
+            "primary_lego_ids": PRIMARY_LEGO_IDS,
+            "tool_manifest": TOOL_MANIFEST,
+            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+            "positive": {},
+            "negative": {},
+            "boundary": {
+                "shared_bidirectional_protocol_import": {
+                    "pass": False,
+                    "status": "blocked",
+                    "error": BASE_IMPORT_ERROR,
+                    "required_source": "system_v4/probes/sim_qit_szilard_bidirectional_protocol.py",
+                    "reason": "Companion depends on the shared bidirectional protocol; current environment is missing one of that protocol's import-time dependencies.",
+                }
+            },
+            "summary": {
+                "all_pass": False,
+                "status": "dependency_blocked",
+                "blocker": BASE_IMPORT_ERROR,
+            },
+            "rows": [],
+        }
+        out_path = PROBE_DIR / "a2_state" / "sim_results" / "qit_szilard_reverse_recovery_companion_results.json"
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(json.dumps(results, indent=2, default=str) + "\n")
+        print(out_path)
+        print(f"BLOCKED: {BASE_IMPORT_ERROR}")
+        raise SystemExit(2)
+
     rows = [run_row(steps) for steps in PROTOCOL_STEPS]
 
     mean_erase_mi = mean(row["erase_measurement_mutual_information"] for row in rows)

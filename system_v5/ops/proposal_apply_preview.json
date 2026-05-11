@@ -11,13 +11,13 @@
     {
       "proposal_family": "c4",
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 619,
+      "row_count": 609,
       "next_action": "owner_review_required_before_any_source_edit"
     },
     {
       "proposal_family": "c6",
       "path": "system_v5/ops/c6_loadbearing_report.json",
-      "row_count": 1522,
+      "row_count": 1511,
       "next_action": "owner_review_required_before_any_source_edit"
     }
   ],
@@ -478,7 +478,7 @@
     "c4": {
       "present": true,
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 619,
+      "row_count": 609,
       "sample": [
         {
           "sim": "system_v4/probes/sim_ab_cut_specification_canonical.py",
@@ -509,15 +509,6 @@
         },
         {
           "sim": "system_v4/probes/sim_araki_lieb_z3_canonical.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "classical",
-          "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
-          "sim": "system_v4/probes/sim_arthur_packet_multiplicity_formula_constraint_canonical.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
           "runner_class": "classical",
@@ -660,7 +651,16 @@
           "mode": "dry_run_no_source_edits"
         },
         {
-          "sim": "system_v4/probes/sim_bridge_axis0_gradient_autograd.py",
+          "sim": "system_v4/probes/sim_bridge_entropy_inequality_guardrails.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "bridge",
+          "current_divergence_log": null,
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_bridge_finite_blocklength_cut_states.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
           "runner_class": "bridge",
@@ -673,7 +673,7 @@
     "c6": {
       "present": true,
       "path": "system_v5/ops/c6_loadbearing_report.json",
-      "row_count": 1522,
+      "row_count": 1511,
       "sample": [
         {
           "sim": "system_v4/probes/sim_3qubit_bridge_prototype.py",
@@ -701,31 +701,7 @@
         },
         {
           "sim": "system_v4/probes/sim_L11_placement_admissibility.py",
-          "tool": "rustworkx",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_L11_placement_admissibility.py",
           "tool": "z3",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_ab_cut_specification_canonical.py",
-          "tool": "pytorch",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_ab_cut_specification_canonical.py",
-          "tool": "sympy",
           "bucket": "inconclusive_needs_owner",
           "result_path": null,
           "tool_integration_depth": null,
@@ -765,30 +741,6 @@
         },
         {
           "sim": "system_v4/probes/sim_araki_lieb_z3_canonical.py",
-          "tool": "cvc5",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_araki_lieb_z3_canonical.py",
-          "tool": "pytorch",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_araki_lieb_z3_canonical.py",
-          "tool": "sympy",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_araki_lieb_z3_canonical.py",
           "tool": "z3",
           "bucket": "inconclusive_needs_owner",
           "result_path": null,
@@ -820,7 +772,7 @@
           "evidence": "no_result_tool_evidence"
         },
         {
-          "sim": "system_v4/probes/sim_axiom_f01_finite_hilbert_dim.py",
+          "sim": "system_v4/probes/sim_axiom_f01_finite_state_set.py",
           "tool": "z3",
           "bucket": "inconclusive_needs_owner",
           "result_path": null,
@@ -828,12 +780,60 @@
           "evidence": "no_result_tool_evidence"
         },
         {
-          "sim": "system_v4/probes/sim_axiom_f01_finite_state_set.py",
+          "sim": "system_v4/probes/sim_axiom_f01_quotient_well_defined.py",
+          "tool": "z3",
+          "bucket": "inconclusive_needs_owner",
+          "result_path": null,
+          "tool_integration_depth": null,
+          "evidence": "no_result_tool_evidence"
+        },
+        {
+          "sim": "system_v4/probes/sim_axiom_n01_composition_order_distinguishes.py",
+          "tool": "pytorch",
+          "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
+          "result_path": "system_v4/probes/a2_state/sim_results/sim_axiom_n01_composition_order_distinguishes_results.json",
+          "tool_integration_depth": "load_bearing",
+          "evidence": "result_json_mentions_tool"
+        },
+        {
+          "sim": "system_v4/probes/sim_axiom_n01_identity_via_indistinguishability.py",
+          "tool": "z3",
+          "bucket": "inconclusive_needs_owner",
+          "result_path": null,
+          "tool_integration_depth": null,
+          "evidence": "no_result_tool_evidence"
+        },
+        {
+          "sim": "system_v4/probes/sim_axiom_n01_indiscernibility_implies_identity.py",
           "tool": "pytorch",
           "bucket": "inconclusive_needs_owner",
           "result_path": null,
           "tool_integration_depth": null,
           "evidence": "no_result_tool_evidence"
+        },
+        {
+          "sim": "system_v4/probes/sim_axiom_n01_indiscernibility_implies_identity.py",
+          "tool": "z3",
+          "bucket": "inconclusive_needs_owner",
+          "result_path": null,
+          "tool_integration_depth": null,
+          "evidence": "no_result_tool_evidence"
+        },
+        {
+          "sim": "system_v4/probes/sim_axiom_n01_noncommutation_generic.py",
+          "tool": "pytorch",
+          "bucket": "decorative_load_bearing_demote_tool",
+          "result_path": "system_v4/probes/a2_state/sim_results/sim_axiom_n01_noncommutation_generic_results.json",
+          "tool_integration_depth": "supportive",
+          "evidence": "result_json_mentions_tool"
+        },
+        {
+          "sim": "system_v4/probes/sim_axiom_n01_noncommutation_generic.py",
+          "tool": "sympy",
+          "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
+          "result_path": "system_v4/probes/a2_state/sim_results/sim_axiom_n01_noncommutation_generic_results.json",
+          "tool_integration_depth": "load_bearing",
+          "evidence": "result_json_mentions_tool"
         }
       ]
     }

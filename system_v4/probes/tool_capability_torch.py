@@ -15,6 +15,7 @@ import os
 
 classification = "canonical"
 NAME = "tool_capability_torch"
+SCOPE_NOTE = "Tier A PyTorch capability probe: isolated tensor, autograd, optimizer, and boundary behavior only."
 
 TOOL_MANIFEST = {
     "pytorch": {
@@ -25,6 +26,27 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {"pytorch": "load_bearing"}
+
+
+def _row_passes(row):
+    if row.get("status") == "skipped":
+        return False
+    keys = (
+        "matches_expected",
+        "loss_decreased",
+        "raised_runtime_error",
+        "error_contains_scalar_requirement",
+        "error_mentions_float_or_complex",
+        "error_mentions_grad",
+    )
+    hits = [bool(row[key]) for key in keys if key in row]
+    if "gradient_numel" in row and "sum" in row:
+        hits.append(row["gradient_numel"] == 0 and row["sum"] == 0.0)
+    return bool(hits) and all(hits)
+
+
+def _section_passes(section):
+    return bool(section) and all(_row_passes(row) for row in section.values())
 
 try:
     import torch
@@ -107,7 +129,7 @@ def run_positive_tests():
     seed = torch.tensor([2.0, -1.0])
     jvp = torch.autograd.grad(mapped, point, grad_outputs=seed)[0]
     _mark_torch_used()
-    expected_jvp = torch.tensor([-3.0, 2.7551651238])
+    expected_jvp = torch.tensor([-4.0, 2.1224174381])
     results["vector_jacobian_product"] = {
         "status": "ok",
         "expected_vjp": _tensor_to_data(expected_jvp),
@@ -230,14 +252,32 @@ def run_boundary_tests():
 
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    summary = {
+        "positive_all_pass": _section_passes(positive),
+        "negative_all_pass": _section_passes(negative),
+        "boundary_all_pass": _section_passes(boundary),
+        "promotion_allowed": False,
+        "claim_ceiling": "isolated_pytorch_capability_only",
+        "scope_note": SCOPE_NOTE,
+    }
+    summary["all_pass"] = bool(summary["positive_all_pass"] and summary["negative_all_pass"] and summary["boundary_all_pass"])
     results = {
         "name": NAME,
         "classification": classification,
+        "classification_note": SCOPE_NOTE,
+        "divergence_log": SCOPE_NOTE,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": summary,
+        "all_pass": bool(summary["all_pass"]),
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

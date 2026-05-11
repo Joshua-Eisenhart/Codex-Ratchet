@@ -28,6 +28,21 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {"cvc5": "load_bearing"}
 
 
+def _row_passes(row):
+    if row.get("status") == "skipped":
+        return False
+    if "pass" in row:
+        return bool(row["pass"])
+    if "expected" in row:
+        observed = row.get("status") or row.get("z3_result")
+        return str(observed) == str(row["expected"])
+    return False
+
+
+def _section_passes(section):
+    return bool(section) and all(_row_passes(row) for row in section.values())
+
+
 def _solver():
     solver = cvc5.Solver()
     solver.setLogic("QF_LIA")
@@ -133,15 +148,33 @@ def run_boundary_tests():
 
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    summary = {
+        "positive_all_pass": _section_passes(positive),
+        "negative_all_pass": _section_passes(negative),
+        "boundary_all_pass": _section_passes(boundary),
+        "promotion_allowed": False,
+        "claim_ceiling": "isolated_cvc5_capability_only",
+        "scope_note": SCOPE_NOTE,
+    }
+    summary["all_pass"] = bool(summary["positive_all_pass"] and summary["negative_all_pass"] and summary["boundary_all_pass"])
     results = {
         "name": NAME,
         "scope_note": SCOPE_NOTE,
         "classification": classification,
+        "classification_note": SCOPE_NOTE,
+        "divergence_log": SCOPE_NOTE,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": summary,
+        "all_pass": bool(summary["all_pass"]),
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

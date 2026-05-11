@@ -24,6 +24,9 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {"sympy": "load_bearing"}
+classification = "canonical"
+NAME = "tool_capability_sympy"
+SCOPE_NOTE = "Tier A SymPy capability probe: isolated exact symbolic algebra, solving, and limit behavior only."
 
 
 def _serialize(value):
@@ -36,6 +39,28 @@ def _serialize(value):
     if isinstance(value, sp.Basic):
         return sp.srepr(value) if value.is_Atom else str(value)
     return value
+
+
+def _row_passes(row):
+    if row.get("status") == "skipped":
+        return False
+    keys = (
+        "matches_expected",
+        "all_zero_residuals",
+        "roundtrip_exact",
+        "is_emptyset",
+        "nonzero_remainder",
+        "stays_zero",
+        "discriminant_zero",
+        "double_root_at_2",
+        "equals_one",
+    )
+    hits = [bool(row[key]) for key in keys if key in row]
+    return bool(hits) and all(hits)
+
+
+def _section_passes(section):
+    return bool(section) and all(_row_passes(row) for row in section.values())
 
 
 def run_positive_tests():
@@ -141,19 +166,37 @@ def run_boundary_tests():
 
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    summary = {
+        "positive_all_pass": _section_passes(positive),
+        "negative_all_pass": _section_passes(negative),
+        "boundary_all_pass": _section_passes(boundary),
+        "promotion_allowed": False,
+        "claim_ceiling": "isolated_sympy_capability_only",
+        "scope_note": SCOPE_NOTE,
+    }
+    summary["all_pass"] = bool(summary["positive_all_pass"] and summary["negative_all_pass"] and summary["boundary_all_pass"])
     results = {
-        "name": "tool_capability_sympy",
+        "name": NAME,
+        "classification": classification,
+        "classification_note": SCOPE_NOTE,
+        "divergence_log": SCOPE_NOTE,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
-        "classification": "canonical",
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": summary,
+        "all_pass": bool(summary["all_pass"]),
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "tool_capability_sympy_results.json")
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
     with open(out_path, "w") as f:
         json.dump(_serialize(results), f, indent=2)
     print(f"Results written to {out_path}")

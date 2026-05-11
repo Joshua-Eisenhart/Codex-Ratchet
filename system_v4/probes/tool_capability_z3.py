@@ -14,6 +14,8 @@ import json
 import os
 
 classification = "canonical"
+NAME = "tool_capability_z3"
+SCOPE_NOTE = "Tier A z3 capability probe: isolated SAT, UNSAT, optimization, and boundary solver behavior only."
 
 TOOL_MANIFEST = {
     "z3": {
@@ -24,6 +26,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {"z3": "load_bearing"}
+
+
+def _row_passes(row):
+    if row.get("status") == "skipped":
+        return False
+    if "expected" in row and "status" in row:
+        return str(row["status"]) == str(row["expected"])
+    return False
+
+
+def _section_passes(section):
+    return bool(section) and all(_row_passes(row) for row in section.values())
 
 try:
     from z3 import And, Bool, If, Int, Not, Optimize, Or, Solver, Sum, sat, unsat
@@ -219,19 +233,37 @@ def run_boundary_tests():
 
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    summary = {
+        "positive_all_pass": _section_passes(positive),
+        "negative_all_pass": _section_passes(negative),
+        "boundary_all_pass": _section_passes(boundary),
+        "promotion_allowed": False,
+        "claim_ceiling": "isolated_z3_capability_only",
+        "scope_note": SCOPE_NOTE,
+    }
+    summary["all_pass"] = bool(summary["positive_all_pass"] and summary["negative_all_pass"] and summary["boundary_all_pass"])
     results = {
-        "name": "tool_capability_z3",
+        "name": NAME,
         "classification": classification,
+        "classification_note": SCOPE_NOTE,
+        "divergence_log": SCOPE_NOTE,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": summary,
+        "all_pass": bool(summary["all_pass"]),
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "tool_capability_z3_results.json")
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
     with open(out_path, "w", encoding="utf-8") as handle:
         json.dump(results, handle, indent=2, sort_keys=True)
     print(f"Results written to {out_path}")

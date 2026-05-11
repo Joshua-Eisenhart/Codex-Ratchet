@@ -14,6 +14,7 @@ import os
 
 classification = "canonical"
 NAME = "tool_capability_toponetx"
+SCOPE_NOTE = "Tier A TopoNetX capability probe: isolated simplicial and cell complex behavior only."
 
 TOOL_MANIFEST = {
     "toponetx": {
@@ -24,6 +25,38 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {"toponetx": "load_bearing"}
+
+
+def _row_passes(row):
+    if row.get("status") == "skipped":
+        return False
+    if "pass" in row:
+        return bool(row["pass"])
+    if "claim_excluded" in row:
+        return bool(row["claim_excluded"])
+    if "expected" in row and "status" in row:
+        return str(row["status"]) == str(row["expected"])
+    if "node_count_matches" in row or "edge_count_positive" in row:
+        checks = []
+        if "node_count_matches" in row:
+            checks.append(bool(row["node_count_matches"]))
+        if "edge_count_positive" in row:
+            checks.append(bool(row["edge_count_positive"]))
+        return bool(checks) and all(checks)
+    if "shape_matches" in row:
+        checks = [bool(row["shape_matches"])]
+        if "node_count_matches" in row:
+            checks.append(bool(row["node_count_matches"]))
+        if "edge_count_positive" in row:
+            checks.append(bool(row["edge_count_positive"]))
+        if "shared_edge_present" in row:
+            checks.append(bool(row["shared_edge_present"]))
+        return all(checks)
+    return False
+
+
+def _section_passes(section):
+    return bool(section) and all(_row_passes(row) for row in section.values())
 
 try:
     from toponetx.classes import CellComplex, SimplicialComplex
@@ -216,14 +249,32 @@ def run_boundary_tests():
 
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    summary = {
+        "positive_all_pass": _section_passes(positive),
+        "negative_all_pass": _section_passes(negative),
+        "boundary_all_pass": _section_passes(boundary),
+        "promotion_allowed": False,
+        "claim_ceiling": "isolated_toponetx_capability_only",
+        "scope_note": SCOPE_NOTE,
+    }
+    summary["all_pass"] = bool(summary["positive_all_pass"] and summary["negative_all_pass"] and summary["boundary_all_pass"])
     results = {
         "name": NAME,
         "classification": classification,
+        "classification_note": SCOPE_NOTE,
+        "divergence_log": SCOPE_NOTE,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": summary,
+        "all_pass": bool(summary["all_pass"]),
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

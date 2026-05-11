@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-11T20:03:46.584255+00:00",
+  "generated_at": "2026-05-11T20:13:24.962877+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3946,
-    "result_json_count": 742,
-    "linked_result_json_count": 706,
+    "source_count": 3947,
+    "result_json_count": 743,
+    "linked_result_json_count": 707,
     "unlinked_result_json_count": 36,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3241,
-      "rerun_or_admission_candidate": 482,
+      "rerun_or_admission_candidate": 483,
       "legacy_result_or_repair_needed": 29,
       "contract_shaped_but_tool_depth_thin": 183,
       "admitted": 9,
@@ -20,23 +20,23 @@
     "family_counts": {
       "channel_operator": 785,
       "entropy_information": 585,
-      "thermo_engine": 434,
+      "thermo_engine": 435,
       "uncategorized": 335,
-      "axis_bridge": 665,
+      "axis_bridge": 666,
       "graveyard_negative": 1702,
-      "root_admission": 847,
+      "root_admission": 848,
       "hopf_torus": 593,
       "weyl_spinor_clifford": 781,
-      "geometry_gstack_gtower": 725,
-      "density_carrier": 485,
-      "classical_baseline": 1101,
+      "geometry_gstack_gtower": 726,
+      "density_carrier": 486,
+      "classical_baseline": 1102,
       "gerbe_dirac_mera_spectral": 670,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2716,
-      "sympy": 2252,
+      "numpy": 2717,
+      "sympy": 2253,
       "scipy": 254,
       "pytorch": 1979,
       "pyg": 846,
@@ -44,7 +44,7 @@
       "qutip": 46,
       "e3nn": 843,
       "gudhi": 899,
-      "z3": 1901,
+      "z3": 1902,
       "clifford": 1330,
       "rustworkx": 1075,
       "toponetx": 915,
@@ -59,7 +59,7 @@
       "pytorch": 1103,
       "rustworkx": 283,
       "z3": 741,
-      "sympy": 565,
+      "sympy": 566,
       "clifford": 274,
       "xgi": 200,
       "geomstats": 109,
@@ -78,7 +78,7 @@
       "supporting": 13,
       "exploratory": 30,
       "research_support": 6,
-      "tool_lego_fit_probe": 10,
+      "tool_lego_fit_probe": 11,
       "controller_index": 2,
       "graveyard_negative": 1,
       "sidecar_probe": 2,
@@ -86,7 +86,7 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 694,
+    "repair_candidate_count": 695,
     "source_only_count": 3241
   },
   "admitted_stems": [
@@ -79151,6 +79151,43 @@
       "late_stage_signal": false,
       "has_contract_shape": false,
       "inventory_status": "source_only"
+    },
+    {
+      "stem": "sim_hermiticity_constraint_sympy_z3_microfit",
+      "source_path": "system_v4/probes/sim_hermiticity_constraint_sympy_z3_microfit.py",
+      "families": [
+        "root_admission",
+        "density_carrier",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "supportive",
+        "z3": "supportive",
+        "sympy": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "sympy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/hermiticity_constraint_sympy_z3_microfit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "tool_lego_fit_probe"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_hilbert_schmidt_flatness_rejection",

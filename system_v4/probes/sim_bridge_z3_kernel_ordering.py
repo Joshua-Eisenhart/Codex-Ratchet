@@ -69,6 +69,26 @@ TOOL_INTEGRATION_DEPTH = {
     "z3": "load_bearing",
 }
 
+CLAIM_CEILING = "canonical_local_n01_kernel_ordering_lego_only"
+NEXT_LEGO_TARGET = "none"
+PROMOTION_CONDITION = (
+    "requires separate reconciled queue row before coupling, bridge, axis, engine, "
+    "GStack, QIT, or nonclassical use"
+)
+BLOCKED_UNTIL = "exact parent receipts, queue row, result JSON, and ledger loopback are reconciled"
+DEMOTION_CONDITION = (
+    "demote if any z3 ordering proof fails, prior metric binding is unavailable, "
+    "or this row is used for a higher-stage bridge or engine claim"
+)
+OUT_OF_SCOPE = [
+    "QIT engine admission",
+    "GStack admission",
+    "axis promotion",
+    "engine promotion",
+    "nonclassical proof",
+    "scientific coupling closure",
+]
+
 # ── imports ─────────────────────────────────────────────────────────
 try:
     import torch
@@ -569,6 +589,12 @@ if __name__ == "__main__":
             "loaded_from_json": loaded_from_json,
             "dag_json_path": dag_json_path,
         },
+        "claim_ceiling": CLAIM_CEILING,
+        "next_lego_target": NEXT_LEGO_TARGET,
+        "promotion_condition": PROMOTION_CONDITION,
+        "blocked_until": BLOCKED_UNTIL,
+        "demotion_condition": DEMOTION_CONDITION,
+        "out_of_scope": OUT_OF_SCOPE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "state_metrics_used": metrics,

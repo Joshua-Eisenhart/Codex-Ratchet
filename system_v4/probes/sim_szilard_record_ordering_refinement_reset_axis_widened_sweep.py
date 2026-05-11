@@ -34,7 +34,7 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {
     "numpy": "load_bearing",
-    "json": "load_bearing",
+    "json": "supportive",
     "pathlib": "supportive",
 }
 

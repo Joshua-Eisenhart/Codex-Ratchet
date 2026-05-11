@@ -46,7 +46,7 @@ TOOL_MANIFEST["python_stdlib"] = {
     "used": True,
     "reason": "load-bearing finite standard-library computation for this bounded support lego receipt",
 }
-TOOL_INTEGRATION_DEPTH["python_stdlib"] = "load_bearing"
+TOOL_INTEGRATION_DEPTH["python_stdlib"] = "supportive"
 TOOL_MANIFEST["numpy"] = {
     "tried": True,
     "used": True,

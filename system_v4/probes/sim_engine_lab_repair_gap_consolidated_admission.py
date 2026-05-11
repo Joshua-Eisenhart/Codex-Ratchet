@@ -23,7 +23,7 @@ TOOL_MANIFEST = {
     "json": {"tried": True, "used": True, "reason": "loads original and successor repair-gap receipts"},
     "pathlib": {"tried": True, "used": True, "reason": "resolves canonical receipt paths"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {tool: "supportive" for tool in TOOL_MANIFEST}
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"

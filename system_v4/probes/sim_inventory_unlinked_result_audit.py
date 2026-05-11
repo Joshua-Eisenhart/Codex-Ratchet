@@ -29,7 +29,7 @@ TOOL_MANIFEST = {
     "json": {"tried": True, "used": True, "reason": "load-bearing inventory/result parsing"},
     "pathlib": {"tried": True, "used": True, "reason": "load-bearing path existence and source matching"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {tool: "supportive" for tool in TOOL_MANIFEST}
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 PROJECT_DIR = PROBE_DIR.parents[1]

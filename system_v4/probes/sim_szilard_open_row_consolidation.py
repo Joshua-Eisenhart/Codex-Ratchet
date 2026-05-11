@@ -31,7 +31,7 @@ TOOL_MANIFEST = {
     "json": {"tried": True, "used": True, "reason": "loads exact Szilard source and successor receipts"},
     "pathlib": {"tried": True, "used": True, "reason": "resolves canonical result and visualizer paths"},
 }
-TOOL_INTEGRATION_DEPTH = {"json": "load_bearing", "pathlib": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {"json": "supportive", "pathlib": "supportive"}
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"

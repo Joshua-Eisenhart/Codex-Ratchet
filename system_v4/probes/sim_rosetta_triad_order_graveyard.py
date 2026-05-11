@@ -53,6 +53,10 @@ TOOL_MANIFEST = {
     "cvc5": {"tried": True, "used": True, "reason": "independent UNSAT fence for wrong Szilard precedence"},
 }
 TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["json"] = "supportive"
+TOOL_INTEGRATION_DEPTH["pathlib"] = "supportive"
+TOOL_INTEGRATION_DEPTH["python_stdlib"] = "supportive"
+TOOL_INTEGRATION_DEPTH["python_json"] = "supportive"
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"

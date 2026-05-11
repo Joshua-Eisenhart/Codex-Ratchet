@@ -32,7 +32,7 @@ TOOL_MANIFEST = {
     "json": {"tried": True, "used": True, "reason": "loads source result receipts"},
     "pathlib": {"tried": True, "used": True, "reason": "deterministic result-path handling"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {tool: "supportive" for tool in TOOL_MANIFEST}
 
 RESULT_DIR = pathlib.Path(__file__).resolve().parent / "a2_state" / "sim_results"
 

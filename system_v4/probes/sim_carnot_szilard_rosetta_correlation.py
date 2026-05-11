@@ -48,7 +48,7 @@ TOOL_MANIFEST = {
         "reason": "keeps receipt paths deterministic under the probe result surface",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {tool: "supportive" for tool in TOOL_MANIFEST}
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"

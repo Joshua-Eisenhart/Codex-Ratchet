@@ -28,7 +28,7 @@ TOOL_MANIFEST = {
     "z3": {"tried": False, "used": False, "reason": "not rerun; source receipts carry z3 exclusions"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "python_json": "load_bearing",
+    "python_json": "supportive",
     "numpy": None,
     "z3": None,
 }

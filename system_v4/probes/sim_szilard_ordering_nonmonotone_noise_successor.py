@@ -24,7 +24,7 @@ TOOL_MANIFEST = {
     "json": {"tried": True, "used": True, "reason": "loads source sensitivity sweep and writes successor receipt"},
     "pathlib": {"tried": True, "used": True, "reason": "resolves canonical receipt paths"},
 }
-TOOL_INTEGRATION_DEPTH = {"json": "load_bearing", "pathlib": "supportive"}
+TOOL_INTEGRATION_DEPTH = {"json": "supportive", "pathlib": "supportive"}
 
 RESULT_DIR = pathlib.Path(__file__).resolve().parent / "a2_state" / "sim_results"
 

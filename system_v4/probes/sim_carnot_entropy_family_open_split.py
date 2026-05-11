@@ -25,7 +25,7 @@ TOOL_MANIFEST = {
     "pathlib": {"tried": True, "used": True, "reason": "resolves canonical receipt paths"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "json": "load_bearing",
+    "json": "supportive",
     "pathlib": "supportive",
 }
 

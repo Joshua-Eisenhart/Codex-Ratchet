@@ -24,7 +24,7 @@ TOOL_MANIFEST = {
     "json": {"tried": True, "used": True, "reason": "loads queue/audit receipts and writes coverage audit"},
     "pathlib": {"tried": True, "used": True, "reason": "resolves canonical receipt paths"},
 }
-TOOL_INTEGRATION_DEPTH = {"json": "load_bearing", "pathlib": "supportive"}
+TOOL_INTEGRATION_DEPTH = {"json": "supportive", "pathlib": "supportive"}
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"

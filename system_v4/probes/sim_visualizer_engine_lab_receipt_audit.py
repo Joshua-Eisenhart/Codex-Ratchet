@@ -25,7 +25,7 @@ TOOL_MANIFEST = {
     "pathlib": {"tried": True, "used": True, "reason": "resolves repo-local visualizer/source paths"},
     "re": {"tried": True, "used": True, "reason": "extracts JS global assignments and script tags"},
 }
-TOOL_INTEGRATION_DEPTH = {"json": "load_bearing", "pathlib": "supportive", "re": "supportive"}
+TOOL_INTEGRATION_DEPTH = {"json": "supportive", "pathlib": "supportive", "re": "supportive"}
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 ROOT = PROBE_DIR.parents[1]

@@ -27,6 +27,30 @@ TOOL_INTEGRATION_DEPTH = {"sympy": "load_bearing"}
 classification = "canonical"
 NAME = "tool_capability_sympy"
 SCOPE_NOTE = "Tier A SymPy capability probe: isolated exact symbolic algebra, solving, and limit behavior only."
+CANONICAL_TOOL_NAMES = (
+    "pytorch",
+    "pyg",
+    "z3",
+    "cvc5",
+    "sympy",
+    "clifford",
+    "geomstats",
+    "e3nn",
+    "rustworkx",
+    "xgi",
+    "toponetx",
+    "gudhi",
+)
+for _tool_name in CANONICAL_TOOL_NAMES:
+    TOOL_MANIFEST.setdefault(
+        _tool_name,
+        {
+            "tried": False,
+            "used": False,
+            "reason": f"not used; {NAME} isolates sympy capability only",
+        },
+    )
+    TOOL_INTEGRATION_DEPTH.setdefault(_tool_name, None)
 
 
 def _serialize(value):

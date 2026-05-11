@@ -30,6 +30,30 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {"qutip": None}
+CANONICAL_TOOL_NAMES = (
+    "pytorch",
+    "pyg",
+    "z3",
+    "cvc5",
+    "sympy",
+    "clifford",
+    "geomstats",
+    "e3nn",
+    "rustworkx",
+    "xgi",
+    "toponetx",
+    "gudhi",
+)
+for _tool_name in CANONICAL_TOOL_NAMES:
+    TOOL_MANIFEST.setdefault(
+        _tool_name,
+        {
+            "tried": False,
+            "used": False,
+            "reason": f"not used; {NAME} isolates QuTiP capability only",
+        },
+    )
+    TOOL_INTEGRATION_DEPTH.setdefault(_tool_name, None)
 
 try:
     import qutip
@@ -235,12 +259,19 @@ if __name__ == "__main__":
         "positive_all_pass": _section_pass(positive, ("pass",)),
         "negative_all_pass": _section_pass(negative, ("claim_excluded",)),
         "boundary_all_pass": _section_pass(boundary, ("pass",)),
+        "promotion_allowed": False,
+        "claim_ceiling": "isolated_qutip_capability_only",
+        "scope_note": SCOPE_NOTE,
     }
-    summary["all_pass"] = all(summary.values())
+    summary["all_pass"] = bool(summary["positive_all_pass"] and summary["negative_all_pass"] and summary["boundary_all_pass"])
     results = {
         "name": NAME,
         "scope_note": SCOPE_NOTE,
         "classification": classification,
+        "classification_note": SCOPE_NOTE,
+        "divergence_log": SCOPE_NOTE,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

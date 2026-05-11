@@ -26,6 +26,30 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {"cvc5": "load_bearing"}
+CANONICAL_TOOL_NAMES = (
+    "pytorch",
+    "pyg",
+    "z3",
+    "cvc5",
+    "sympy",
+    "clifford",
+    "geomstats",
+    "e3nn",
+    "rustworkx",
+    "xgi",
+    "toponetx",
+    "gudhi",
+)
+for _tool_name in CANONICAL_TOOL_NAMES:
+    TOOL_MANIFEST.setdefault(
+        _tool_name,
+        {
+            "tried": False,
+            "used": False,
+            "reason": f"not used; {NAME} isolates cvc5 capability only",
+        },
+    )
+    TOOL_INTEGRATION_DEPTH.setdefault(_tool_name, None)
 
 
 def _row_passes(row):

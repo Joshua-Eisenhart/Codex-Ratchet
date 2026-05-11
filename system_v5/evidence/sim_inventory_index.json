@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-11T19:28:50.345446+00:00",
+  "generated_at": "2026-05-11T19:32:48.138316+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3941,
-    "result_json_count": 729,
-    "linked_result_json_count": 693,
+    "source_count": 3942,
+    "result_json_count": 730,
+    "linked_result_json_count": 694,
     "unlinked_result_json_count": 36,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3249,
-      "rerun_or_admission_candidate": 475,
+      "rerun_or_admission_candidate": 476,
       "legacy_result_or_repair_needed": 26,
       "contract_shaped_but_tool_depth_thin": 180,
       "admitted": 9,
@@ -20,7 +20,7 @@
     "family_counts": {
       "channel_operator": 784,
       "entropy_information": 585,
-      "thermo_engine": 431,
+      "thermo_engine": 432,
       "uncategorized": 335,
       "axis_bridge": 663,
       "graveyard_negative": 1702,
@@ -28,17 +28,17 @@
       "hopf_torus": 592,
       "weyl_spinor_clifford": 781,
       "geometry_gstack_gtower": 723,
-      "density_carrier": 480,
+      "density_carrier": 481,
       "classical_baseline": 1099,
       "gerbe_dirac_mera_spectral": 670,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2712,
+      "numpy": 2713,
       "sympy": 2249,
-      "scipy": 253,
-      "pytorch": 1978,
+      "scipy": 254,
+      "pytorch": 1979,
       "pyg": 846,
       "cvc5": 1327,
       "qutip": 46,
@@ -56,7 +56,7 @@
     "load_bearing_tool_counts": {
       "numpy": 276,
       "cvc5": 509,
-      "pytorch": 1102,
+      "pytorch": 1103,
       "rustworkx": 283,
       "z3": 738,
       "sympy": 563,
@@ -64,7 +64,7 @@
       "xgi": 200,
       "geomstats": 109,
       "gudhi": 122,
-      "scipy": 65,
+      "scipy": 66,
       "toponetx": 121,
       "e3nn": 55,
       "pyg": 69,
@@ -78,7 +78,7 @@
       "supporting": 13,
       "exploratory": 30,
       "research_support": 6,
-      "tool_lego_fit_probe": 5,
+      "tool_lego_fit_probe": 6,
       "controller_index": 2,
       "graveyard_negative": 1,
       "sidecar_probe": 2,
@@ -86,7 +86,7 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 681,
+    "repair_candidate_count": 682,
     "source_only_count": 3249
   },
   "admitted_stems": [
@@ -84172,6 +84172,40 @@
       "late_stage_signal": false,
       "has_contract_shape": false,
       "inventory_status": "source_only"
+    },
+    {
+      "stem": "sim_iching_szilard_initial_state_sweep",
+      "source_path": "system_v4/probes/sim_iching_szilard_initial_state_sweep.py",
+      "families": [
+        "density_carrier",
+        "thermo_engine"
+      ],
+      "tools": {
+        "numpy": "supportive",
+        "scipy": "load_bearing",
+        "pytorch": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "pytorch",
+        "scipy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/iching_szilard_initial_state_sweep_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "tool_lego_fit_probe"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_iching_szilard_measurement_rosetta",

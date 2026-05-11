@@ -42,6 +42,11 @@ import traceback
 import numpy as np
 import time
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical/autograd minimax baseline over coherent-information witnesses. "
+    "It explores adversarial optimization behavior in a fixed finite fixture "
+    "and does not admit QIT, GStack, axis, bridge, or nonclassical engine claims."
+)
 
 # =====================================================================
 # TOOL MANIFEST

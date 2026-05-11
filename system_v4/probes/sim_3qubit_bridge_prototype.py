@@ -38,6 +38,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # =====================================================================
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical finite 3-qubit density-matrix baseline for bridge-prototype "
+    "pressure only. It measures fixed bipartition coherent-information behavior "
+    "and does not admit QIT, GStack, axis, bridge, or nonclassical engine claims."
+)
 
 TOOL_MANIFEST = {
     "pytorch":    {"tried": True,  "used": True,  "reason": "load_bearing: d=8 density-matrix algebra, partial-trace reductions, and coherent-information evaluations driving the Axis-0 bridge prototype across all three bipartitions"},

@@ -19,7 +19,7 @@ import sympy as sp
 import z3
 
 
-CLASSIFICATION = "graveyard_negative"
+CLASSIFICATION = "tool_lego_fit_probe"
 classification = CLASSIFICATION
 divergence_log = (
     "Negative/control battery around prime_qit_sidecar_probe. It checks that "
@@ -235,6 +235,7 @@ def run(n_max: int = 256, seed: int = 1776) -> dict[str, Any]:
         "proof_fence": proof,
         "summary": {
             "all_pass": all_pass,
+            "battery_type": "negative_control",
             "variant_count": len(graveyard_rows),
             "killed_or_control_count": sum(row["graveyard_status"] == "killed_or_control" for row in graveyard_rows),
             "reference_survives": any(row["graveyard_status"] == "survives_as_reference" for row in graveyard_rows),
@@ -246,6 +247,21 @@ def run(n_max: int = 256, seed: int = 1776) -> dict[str, Any]:
             "visual_payload": "visualizer/prime-qit-sidecar-graveyard-data.js",
             "scope_note": divergence_log,
         },
+        "claim_ceiling": "sidecar_graveyard_control_only; negative/control battery for prime sidecar, not RH/PNT/QIT/GStack/axis evidence",
+        "next_lego_target": "prime_qit_sidecar_controls",
+        "promotion_condition": "None from this result alone; only downstream proof-grade controls may use it as negative evidence.",
+        "blocked_until": "control variants are interpreted only alongside a passing bounded prime sidecar probe and stage-gate review",
+        "demotion_condition": "Demote if hardcoded-prime controls are treated as emergence or if random/order controls are used as positive proof.",
+        "out_of_scope": [
+            "Riemann hypothesis",
+            "prime number theorem",
+            "zeta-zero derivation",
+            "prime prediction",
+            "QIT engine admission",
+            "GStack admission",
+            "axis admission",
+            "nonclassical proof",
+        ],
     }
     return result
 

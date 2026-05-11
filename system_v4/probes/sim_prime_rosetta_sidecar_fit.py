@@ -20,7 +20,7 @@ import sympy as sp
 import z3
 
 
-CLASSIFICATION = "sidecar_probe"
+CLASSIFICATION = "tool_lego_fit_probe"
 classification = CLASSIFICATION
 divergence_log = (
     "Diagnostic Rosetta fit for the bounded prime sidecar. It compares finite "
@@ -40,17 +40,26 @@ PRIMARY_LEGO_IDS = ["prime_qit_sidecar", "signature_fit"]
 
 TOOL_MANIFEST = {
     "json": {"tried": True, "used": True, "reason": "load-bearing receipt ingestion"},
+    "pathlib": {"tried": True, "used": True, "reason": "supportive canonical path handling for source and visual payloads"},
+    "python_stdlib": {"tried": True, "used": True, "reason": "supportive local control flow and data shaping"},
+    "python_json": {"tried": True, "used": True, "reason": "supportive JSON serialization mirror for receipt payloads"},
     "numpy": {"tried": True, "used": True, "reason": "load-bearing signature vectors and cosine fit"},
     "scipy": {"tried": True, "used": True, "reason": "independent cosine distance check"},
     "sympy": {"tried": True, "used": True, "reason": "symbolic bounded-score sanity check"},
     "rustworkx": {"tried": True, "used": True, "reason": "diagnostic sidecar-fit graph"},
     "z3": {"tried": True, "used": True, "reason": "UNSAT fence against sidecar-to-canon promotion"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
-TOOL_INTEGRATION_DEPTH["json"] = "supportive"
-TOOL_INTEGRATION_DEPTH["pathlib"] = "supportive"
-TOOL_INTEGRATION_DEPTH["python_stdlib"] = "supportive"
-TOOL_INTEGRATION_DEPTH["python_json"] = "supportive"
+TOOL_INTEGRATION_DEPTH = {
+    "json": "supportive",
+    "pathlib": "supportive",
+    "python_stdlib": "supportive",
+    "python_json": "supportive",
+    "numpy": "load_bearing",
+    "scipy": "load_bearing",
+    "sympy": "load_bearing",
+    "rustworkx": "load_bearing",
+    "z3": "load_bearing",
+}
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"
@@ -214,6 +223,21 @@ def run() -> dict[str, Any]:
             "all current prime-to-engine fits remain diagnostic-only",
         ],
         "forbidden_claims": ["RH", "PNT", "zeta proof", "prime prediction", "QIT admission", "GStack admission", "axis admission"],
+        "claim_ceiling": "sidecar_fit_diagnostic_only; no RH, PNT, zeta, prime prediction, QIT, GStack, axis, bridge, or nonclassical admission",
+        "next_lego_target": "prime_rosetta_sidecar_controls",
+        "promotion_condition": "Requires independent proof-grade prime sidecar controls and explicit stage-gate admission; this fit alone cannot promote.",
+        "blocked_until": "prime sidecar and graveyard controls are validated under current receipt schema and reviewed by stage gate",
+        "demotion_condition": "Demote if fit scores are used as proof or if diagnostic similarity is treated as Rosetta/QIT admission.",
+        "out_of_scope": [
+            "Riemann hypothesis",
+            "prime number theorem",
+            "zeta-zero derivation",
+            "prime prediction",
+            "QIT engine admission",
+            "GStack admission",
+            "axis admission",
+            "nonclassical proof",
+        ],
     }
     return result
 

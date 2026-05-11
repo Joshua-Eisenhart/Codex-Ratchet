@@ -20,7 +20,7 @@ import scipy.linalg
 import sympy as sp
 
 
-CLASSIFICATION = "sidecar_probe"
+CLASSIFICATION = "tool_lego_fit_probe"
 classification = CLASSIFICATION
 divergence_log = (
     "Finite-N prime/composite survivor probe.  The channel is built from "
@@ -377,6 +377,21 @@ def run_probe(n_max: int, seed: int, max_logm_dim: int) -> dict[str, Any]:
                 + sum(logm_skipped_channels["baselines"].values())
             ),
         },
+        "claim_ceiling": "sidecar_probe_candidate_prior_only; no RH, PNT, zeta, prime prediction, QIT, GStack, axis, bridge, or nonclassical admission",
+        "next_lego_target": "prime_qit_sidecar_controls",
+        "promotion_condition": "Requires separate proof-grade arithmetic emergence, stronger baselines, and explicit stage-gate admission.",
+        "blocked_until": "prime/composite emergence controls and proof fences are admitted by stage gate",
+        "demotion_condition": "Demote if primes are hardcoded into construction, baselines match, noncommuting order signal disappears, or claims exceed sidecar evidence.",
+        "out_of_scope": [
+            "Riemann hypothesis",
+            "prime number theorem",
+            "zeta-zero derivation",
+            "prime prediction",
+            "QIT engine admission",
+            "GStack admission",
+            "axis admission",
+            "nonclassical proof",
+        ],
     }
 
 

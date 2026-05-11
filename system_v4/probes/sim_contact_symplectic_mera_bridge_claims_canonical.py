@@ -21,7 +21,7 @@ import os
 import math
 import numpy as np
 
-classification = "classical_baseline"
+classification = "tool_lego_fit_probe"
 
 # =====================================================================
 # TOOL MANIFEST
@@ -482,9 +482,16 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_contact_symplectic_mera_bridge_claims_canonical",
-        "classification": "canonical",
+        "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "claim_ceiling": (
+            "bounded bridge-claim tool-lego fit probe only; axis-gradient diagnostics "
+            "do not promote QIT engine, GStack, axis, or nonclassical admission"
+        ),
+        "promotion_allowed": False,
+        "promotion_condition": "Requires separate stage-gate approval and downstream coupling/admission receipts.",
+        "out_of_scope": ["QIT engine admission", "GStack admission", "axis promotion", "nonclassical proof"],
         "positive": pos,
         "negative": neg,
         "boundary": bnd,

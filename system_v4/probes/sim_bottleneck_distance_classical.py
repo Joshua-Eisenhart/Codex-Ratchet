@@ -41,10 +41,12 @@ try:
     import torch
     TOOL_MANIFEST["pytorch"]["tried"] = True
     TOOL_MANIFEST["pytorch"]["used"] = True
-    TOOL_MANIFEST["pytorch"]["reason"] = "tensor of pairwise L-inf distances cross-check"
-    TOOL_INTEGRATION_DEPTH["pytorch"] = "supportive"
+    TOOL_MANIFEST["pytorch"]["reason"] = "load-bearing L-infinity point-distance kernel used by the bottleneck matching search"
+    TOOL_INTEGRATION_DEPTH["pytorch"] = "load_bearing"
+    HAS_TORCH = True
 except ImportError:
     TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
+    HAS_TORCH = False
 
 divergence_log = [
     "Implemented via binary search + bipartite feasibility; rejected LP formulation as over-heavy.",
@@ -54,6 +56,10 @@ divergence_log = [
 
 
 def linf(a, b):
+    if HAS_TORCH:
+        left = torch.tensor(a, dtype=torch.float64)
+        right = torch.tensor(b, dtype=torch.float64)
+        return float(torch.max(torch.abs(left - right)).item())
     return float(np.max(np.abs(np.asarray(a) - np.asarray(b))))
 
 
@@ -131,9 +137,14 @@ if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(v["pass"] for d in (pos,neg,bnd) for v in d.values())
     results = {"name": "bottleneck_distance_classical", "classification": classification,
+               "classification_note": "Classical persistence-diagram bottleneck baseline using PyTorch L-infinity distances as the decisive numeric kernel; no QIT, GStack, bridge, axis, or nonclassical admission.",
+               "TOOL_MANIFEST": TOOL_MANIFEST, "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "divergence_log": divergence_log, "positive": pos, "negative": neg, "boundary": bnd,
-               "all_pass": all_pass, "summary": {"all_pass": all_pass}}
+               "all_pass": all_pass,
+               "summary": {"all_pass": all_pass, "promotion_allowed": False,
+                           "load_bearing_tool": "pytorch" if HAS_TORCH else None,
+                           "claim_ceiling": "classical_persistence_bottleneck_distance_baseline_only"}}
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "bottleneck_distance_classical_results.json")

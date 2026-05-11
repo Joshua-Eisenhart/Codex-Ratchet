@@ -37,10 +37,12 @@ try:
     import torch
     TOOL_MANIFEST["pytorch"]["tried"] = True
     TOOL_MANIFEST["pytorch"]["used"] = True
-    TOOL_MANIFEST["pytorch"]["reason"] = "cross-check boundary rank via torch.linalg.matrix_rank"
-    TOOL_INTEGRATION_DEPTH["pytorch"] = "supportive"
+    TOOL_MANIFEST["pytorch"]["reason"] = "load-bearing boundary-rank computation via torch.linalg.matrix_rank"
+    TOOL_INTEGRATION_DEPTH["pytorch"] = "load_bearing"
+    HAS_TORCH = True
 except ImportError:
     TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
+    HAS_TORCH = False
 
 divergence_log = [
     "Chose minimal 7-vertex Császár torus triangulation over subdivision for speed.",
@@ -83,10 +85,17 @@ def boundary_matrices(V, E, T):
     return d1, d2
 
 
+def rank(matrix):
+    if HAS_TORCH:
+        tensor = torch.tensor(matrix, dtype=torch.float64)
+        return int(torch.linalg.matrix_rank(tensor).item())
+    return int(np.linalg.matrix_rank(matrix))
+
+
 def betti(d1, d2):
     n0 = d1.shape[0]
-    r1 = np.linalg.matrix_rank(d1)
-    r2 = np.linalg.matrix_rank(d2)
+    r1 = rank(d1)
+    r2 = rank(d2)
     b0 = n0 - r1
     b1 = d1.shape[1] - r1 - r2
     b2 = d2.shape[1] - r2
@@ -111,7 +120,7 @@ def run_negative_tests():
     ok = (b0 == 2 and b1 == 0)
     # And: corrupt d1 by zeroing a column should change rank
     d1c = np.zeros_like(d1)
-    ok2 = np.linalg.matrix_rank(d1c) < np.linalg.matrix_rank(d1)
+    ok2 = rank(d1c) < rank(d1)
     return {"disjoint_two_triangles": {"b0": int(b0), "b1": int(b1), "pass": bool(ok)},
             "rank_drops_on_zero_col": {"pass": bool(ok2)}}
 
@@ -138,12 +147,20 @@ if __name__ == "__main__":
     results = {
         "name": "betti_torus_classical",
         "classification": classification,
+        "classification_note": "Classical torus Betti baseline using PyTorch rank as the decisive numeric kernel; no QIT, GStack, bridge, axis, or nonclassical admission.",
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "divergence_log": divergence_log,
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
-        "summary": {"all_pass": all_pass},
+        "summary": {
+            "all_pass": all_pass,
+            "promotion_allowed": False,
+            "load_bearing_tool": "pytorch" if HAS_TORCH else None,
+            "claim_ceiling": "classical_torus_betti_boundary_rank_baseline_only",
+        },
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

@@ -10,6 +10,11 @@ import pathlib
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline contrast: finite Bures-geometry numeric checks are "
+    "geometry scaffolding only. They do not admit QIT, GStack, axis, or "
+    "nonclassical claims."
+)
 
 
 EPS = 1e-10

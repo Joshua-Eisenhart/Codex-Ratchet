@@ -15,6 +15,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline contrast: finite cvc5/sympy checks cover Arthur packet "
+    "multiplicity constraints only. This receipt does not admit bridge, QIT, "
+    "GStack, axis, or nonclassical claims."
+)
 
 # =====================================================================
 # TOOL MANIFEST

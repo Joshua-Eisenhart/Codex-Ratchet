@@ -25,6 +25,11 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline contrast: phi0 tool-penetration audit checks finite "
+    "tool coverage only. It does not admit bridge, QIT, GStack, axis, or "
+    "nonclassical claims."
+)
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 

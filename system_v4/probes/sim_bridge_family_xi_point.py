@@ -10,6 +10,11 @@ import pathlib
 
 import numpy as np
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline contrast: finite xi-family point checks are bridge "
+    "scaffolding only. They do not admit QIT, GStack, axis, or nonclassical "
+    "claims."
+)
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 

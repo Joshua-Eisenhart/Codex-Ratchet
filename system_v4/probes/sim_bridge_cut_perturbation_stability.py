@@ -41,6 +41,11 @@ from typing import Dict, List
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline contrast: finite perturbation-stability checks are "
+    "bridge scaffolding only. They do not admit QIT, GStack, axis, or "
+    "nonclassical claims."
+)
 
 np.random.seed(11)
 EPS = 1e-12

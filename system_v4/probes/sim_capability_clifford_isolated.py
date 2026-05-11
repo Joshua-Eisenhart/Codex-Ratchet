@@ -13,6 +13,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline contrast: isolated Clifford capability checks prove a "
+    "bounded tool surface only. They do not admit Clifford geometry, QIT, "
+    "GStack, axis, or nonclassical claims."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates the clifford geometric algebra library alone; "

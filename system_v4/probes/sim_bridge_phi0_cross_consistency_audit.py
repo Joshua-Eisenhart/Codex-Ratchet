@@ -28,6 +28,11 @@ from typing import Dict, List, Tuple
 
 import numpy as np
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline contrast: phi0 cross-consistency audit checks finite "
+    "repository evidence only. It does not admit bridge, QIT, GStack, axis, or "
+    "nonclassical claims."
+)
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 

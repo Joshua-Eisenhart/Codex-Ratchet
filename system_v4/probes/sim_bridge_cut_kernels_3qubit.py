@@ -26,6 +26,11 @@ from typing import Dict, List
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline contrast: finite three-qubit cut-kernel checks are "
+    "bridge scaffolding only. They do not admit QIT, GStack, axis, or "
+    "nonclassical claims."
+)
 
 EPS = 1e-12
 

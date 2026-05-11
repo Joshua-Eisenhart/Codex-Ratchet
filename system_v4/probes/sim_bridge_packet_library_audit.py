@@ -26,6 +26,11 @@ from datetime import datetime, timezone
 
 import numpy as np
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline contrast: packet-library audit checks repository "
+    "surface shape only. It does not admit bridge packets, QIT, GStack, axis, "
+    "or nonclassical claims."
+)
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 EPS = 1e-12

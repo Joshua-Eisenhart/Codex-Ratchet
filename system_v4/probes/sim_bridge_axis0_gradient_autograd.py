@@ -10,6 +10,11 @@ import torch
 from _doc_illum_common import build_manifest, write_results
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline contrast: finite autograd gradient checks are bridge "
+    "scaffolding only. They do not admit Axis0, QIT, GStack, or nonclassical "
+    "engine behavior."
+)
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},

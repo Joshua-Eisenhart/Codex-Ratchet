@@ -206,9 +206,30 @@ def heartbeat_status(counts: dict[str, int | str]) -> dict[str, Any]:
         "status": status,
         "idle": idle,
         "idle_keys": list(idle_keys),
+        "dominant_blocked_reason": dominant_blocked_reason(),
         "blocked_reason_artifacts": blocked_reasons,
         "blocked_reason_details": blocked_reason_details,
     }
+
+
+def dominant_blocked_reason() -> dict[str, Any] | None:
+    blocked_dir = ROOT / "system_v4/probes/a2_state/queue/blocked"
+    if not blocked_dir.exists():
+        return None
+    counts: dict[str, int] = {}
+    total = 0
+    for path in blocked_dir.glob("*.json"):
+        try:
+            data = json.loads(path.read_text())
+        except Exception:
+            continue
+        reason = str(data.get("blocked_reason") or "unknown")
+        counts[reason] = counts.get(reason, 0) + 1
+        total += 1
+    if not counts:
+        return None
+    reason, count = max(counts.items(), key=lambda item: item[1])
+    return {"reason": reason, "count": count, "total": total, "percent": round((count / total) * 100, 1)}
 
 
 def recent_worker_receipts(now: datetime) -> list[Path]:

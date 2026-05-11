@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-11T19:32:48.138316+00:00",
+  "generated_at": "2026-05-11T19:36:41.168581+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3942,
-    "result_json_count": 730,
-    "linked_result_json_count": 694,
+    "source_count": 3943,
+    "result_json_count": 731,
+    "linked_result_json_count": 695,
     "unlinked_result_json_count": 36,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3249,
-      "rerun_or_admission_candidate": 476,
+      "rerun_or_admission_candidate": 477,
       "legacy_result_or_repair_needed": 26,
       "contract_shaped_but_tool_depth_thin": 180,
       "admitted": 9,
@@ -28,14 +28,14 @@
       "hopf_torus": 592,
       "weyl_spinor_clifford": 781,
       "geometry_gstack_gtower": 723,
-      "density_carrier": 481,
+      "density_carrier": 482,
       "classical_baseline": 1099,
       "gerbe_dirac_mera_spectral": 670,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2713,
+      "numpy": 2714,
       "sympy": 2249,
       "scipy": 254,
       "pytorch": 1979,
@@ -44,7 +44,7 @@
       "qutip": 46,
       "e3nn": 843,
       "gudhi": 899,
-      "z3": 1897,
+      "z3": 1898,
       "clifford": 1330,
       "rustworkx": 1075,
       "toponetx": 915,
@@ -58,7 +58,7 @@
       "cvc5": 509,
       "pytorch": 1103,
       "rustworkx": 283,
-      "z3": 738,
+      "z3": 739,
       "sympy": 563,
       "clifford": 274,
       "xgi": 200,
@@ -78,7 +78,7 @@
       "supporting": 13,
       "exploratory": 30,
       "research_support": 6,
-      "tool_lego_fit_probe": 6,
+      "tool_lego_fit_probe": 7,
       "controller_index": 2,
       "graveyard_negative": 1,
       "sidecar_probe": 2,
@@ -86,7 +86,7 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 682,
+    "repair_candidate_count": 683,
     "source_only_count": 3249
   },
   "admitted_stems": [
@@ -100339,6 +100339,37 @@
       "result_count": 1,
       "result_classifications": [
         "canonical"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
+      "stem": "sim_positivity_constraint_z3_microfit",
+      "source_path": "system_v4/probes/sim_positivity_constraint_z3_microfit.py",
+      "families": [
+        "density_carrier"
+      ],
+      "tools": {
+        "numpy": "supportive",
+        "z3": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "z3"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/positivity_constraint_z3_microfit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "tool_lego_fit_probe"
       ],
       "result_has_contract_shape": true,
       "admission_path": "",

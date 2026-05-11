@@ -9,21 +9,28 @@ import numpy as np
 
 classification = "classical_baseline"
 
+DIVERGENCE_LOG = [
+    "Blackwell ordering on stochastic matrices is total up to sufficiency; quantum channel ordering (degradability) is strictly partial and basis-sensitive",
+    "no quantum sufficiency / Petz recovery map; classical sufficiency has no coherent-frame analog",
+    "misses entanglement-assisted information gaps where quantum B can exceed classical bound with side resource",
+    "ignores incompatible-measurement hierarchy where no single classical M unifies two measurement channels",
+]
+
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "stochastic matrix / lstsq garbling check"},
+    "numpy": {"tried": True, "used": True, "reason": "supportive stochastic matrix construction, residual norm, and row-sum checks"},
     "pytorch": {"tried": False, "used": False, "reason": "classical baseline"},
-    "scipy": {"tried": False, "used": False, "reason": "not required; used only if available"},
+    "scipy": {"tried": False, "used": False, "reason": "load-bearing if available; scipy.optimize.nnls decides nonnegative garbling rows"},
     "z3": {"tried": False, "used": False, "reason": "no proof claim"},
 }
 try:
     from scipy.optimize import nnls  # noqa: F401
     TOOL_MANIFEST["scipy"]["tried"] = True
     TOOL_MANIFEST["scipy"]["used"] = True
-    TOOL_MANIFEST["scipy"]["reason"] = "nnls to solve garbling M >=0 columnwise"
+    TOOL_MANIFEST["scipy"]["reason"] = "load-bearing scipy.optimize.nnls solves each nonnegative garbling row; pass/fail depends on its residual"
     HAS_SCIPY = True
 except Exception:
     HAS_SCIPY = False
-TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "scipy": "supportive" if HAS_SCIPY else None}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "scipy": "load_bearing" if HAS_SCIPY else None}
 
 def garbles(A, B, atol=1e-6):
     """Find stochastic M with B ~= M A (A: K_A x X, B: K_B x X)."""
@@ -90,16 +97,20 @@ if __name__ == "__main__":
     with open(out, "w") as f:
         json.dump({
             "name": "blackwell_comparison_classical",
-            "classification": "classical_baseline",
+            "classification": classification,
+            "classification_note": "Classical Blackwell garbling baseline; no quantum, bridge, QIT, GStack, axis, or nonclassical admission claim.",
+            "TOOL_MANIFEST": TOOL_MANIFEST,
+            "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
             "tool_manifest": TOOL_MANIFEST,
             "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "positive": pos, "negative": neg, "boundary": bnd,
-            "all_pass": all_pass, "summary": {"all_pass": all_pass},
-            "divergence_log": [
-                "Blackwell ordering on stochastic matrices is total up to sufficiency; quantum channel ordering (degradability) is strictly partial and basis-sensitive",
-                "no quantum sufficiency / Petz recovery map; classical sufficiency has no coherent-frame analog",
-                "misses entanglement-assisted information gaps where quantum B can exceed classical bound with side resource",
-                "ignores incompatible-measurement hierarchy where no single classical M unifies two measurement channels",
-            ],
+            "all_pass": all_pass,
+            "summary": {
+                "all_pass": all_pass,
+                "promotion_allowed": False,
+                "load_bearing_tool": "scipy" if HAS_SCIPY else None,
+                "claim_ceiling": "classical_blackwell_stochastic_garbling_baseline_only",
+            },
+            "divergence_log": DIVERGENCE_LOG,
         }, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

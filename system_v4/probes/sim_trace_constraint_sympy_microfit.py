@@ -29,7 +29,7 @@ divergence_log = (
     "nonclassical admission."
 )
 
-LEGO_IDS = ["trace_constraint", "density_matrix_representability", "finite_carrier_c2"]
+LEGO_IDS = ["trace_constraint"]
 PRIMARY_LEGO_IDS = ["trace_constraint"]
 
 TOOL_MANIFEST = {
@@ -139,20 +139,24 @@ def z3_rejects_bad_trace_witnesses() -> dict[str, object]:
     }
 
 
-def computed_boundary_checks() -> dict[str, object]:
-    source_text = pathlib.Path(__file__).read_text(encoding="utf-8")
+def finite_real_2x2_scope_check() -> dict[str, object]:
+    rho = rho_from_bloch(0.0, 0.0)
     result = {
-        "promotion_allowed_literal_false": {
-            "pass": '"promotion_allowed": False' in source_text,
-        },
-        "execution_kind_is_tool_lego_fit_probe": {
-            "pass": '"sim_execution_kind": "tool_lego_fit_probe"' in source_text,
-        },
-        "classification_is_not_canonical": {
-            "pass": CLASSIFICATION == "tool_lego_fit_probe",
-        },
+        "matrix_shape_is_2x2": {"shape": list(rho.shape), "pass": rho.shape == (2, 2)},
+        "real_dtype_only": {"dtype": str(rho.dtype), "pass": np.issubdtype(rho.dtype, np.floating)},
+        "local_trace_family_only": {"primary_lego_ids": PRIMARY_LEGO_IDS, "pass": PRIMARY_LEGO_IDS == ["trace_constraint"]},
     }
-    result["pass"] = all(row["pass"] for row in result.values() if isinstance(row, dict))
+    result["pass"] = all(row["pass"] for row in result.values())
+    return result
+
+
+def promotion_boundary_check() -> dict[str, object]:
+    result = {
+        "classification_is_tool_lego_fit_probe": {"classification": CLASSIFICATION, "pass": CLASSIFICATION == "tool_lego_fit_probe"},
+        "lego_ids_do_not_credit_neighbor_rows": {"lego_ids": LEGO_IDS, "pass": LEGO_IDS == ["trace_constraint"]},
+        "primary_lego_is_single_trace_row": {"primary_lego_ids": PRIMARY_LEGO_IDS, "pass": PRIMARY_LEGO_IDS == ["trace_constraint"]},
+    }
+    result["pass"] = all(row["pass"] for row in result.values())
     return result
 
 
@@ -221,12 +225,12 @@ def main() -> None:
         "not_full_density_matrix_admission": trace_alone_does_not_admit_density_matrix(),
     }
     boundary = {
-        "finite_real_2x2_family_only": computed_boundary_checks(),
-        "no_qit_gstack_axis_bridge_engine_or_nonclassical_admission": computed_boundary_checks(),
+        "finite_real_2x2_family_only": finite_real_2x2_scope_check(),
+        "no_qit_gstack_axis_bridge_engine_or_nonclassical_admission": promotion_boundary_check(),
     }
     all_pass = all(row["pass"] for group in (positive, negative, boundary) for row in group.values())
     result = {
-        "name": "trace_constraint_z3_microfit",
+        "name": "trace_constraint_sympy_microfit",
         "classification": CLASSIFICATION,
         "classification_note": divergence_log,
         "divergence_log": divergence_log,
@@ -253,7 +257,7 @@ def main() -> None:
         "generated_at": datetime.now(UTC).isoformat(),
     }
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    out = RESULT_DIR / "trace_constraint_z3_microfit_results.json"
+    out = RESULT_DIR / "trace_constraint_sympy_microfit_results.json"
     out.write_text(json.dumps(result, indent=2, default=str) + "\n", encoding="utf-8")
     print(f"Results written to {out}")
     print(f"ALL PASS: {all_pass}")

@@ -1,24 +1,24 @@
 # Sim Inventory Index
 
-Generated: `2026-05-11T18:31:32.408816+00:00`
+Generated: `2026-05-11T18:41:14.689750+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `3937`
-- Result JSON files seen: `694`
-- Linked result JSON files: `659`
-- Unlinked result JSON files: `35`
+- Result JSON files seen: `714`
+- Linked result JSON files: `678`
+- Unlinked result JSON files: `36`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `647`
-- Source-only rows: `3279`
+- Repair / rerun candidate rows: `666`
+- Source-only rows: `3260`
 
 ## Inventory Status Counts
 
-- `source_only`: 3279
-- `rerun_or_admission_candidate`: 442
-- `contract_shaped_but_tool_depth_thin`: 179
+- `source_only`: 3260
+- `rerun_or_admission_candidate`: 460
+- `contract_shaped_but_tool_depth_thin`: 180
 - `legacy_result_or_repair_needed`: 26
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2
@@ -45,11 +45,11 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 - `pytorch`: 1099
 - `z3`: 738
-- `sympy`: 563
+- `sympy`: 564
 - `cvc5`: 509
 - `rustworkx`: 283
+- `numpy`: 276
 - `clifford`: 274
-- `numpy`: 271
 - `xgi`: 200
 - `gudhi`: 122
 - `toponetx`: 121
@@ -82,6 +82,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json`
 - `system_v4/probes/a2_state/sim_results/rosetta_goal_completion_audit_results.json`
 - `system_v4/probes/a2_state/sim_results/runtime_hygiene_audit_results.json`
+- `system_v4/probes/a2_state/sim_results/sim_runner_taxonomy_audit_results.json`
 - `system_v4/probes/a2_state/sim_results/state_dir_ownership_audit_results.json`
 - `system_v4/probes/a2_state/sim_results/system_hygiene_repair_results.json`
 - `system_v4/probes/a2_state/sim_results/system_hygiene_supervisor_results.json`
@@ -128,7 +129,9 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | rerun_or_admission_candidate | `sim_a1_homotopy_6_chirality_coupling` | weyl_spinor_clifford, axis_bridge | sympy | canonical |
 | rerun_or_admission_candidate | `sim_admissibility_manifold_mc` | root_admission, density_carrier, geometry_gstack_gtower, thermo_engine, axis_bridge | numpy | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_admissibility_manifold_mc_classical` | root_admission, geometry_gstack_gtower, classical_baseline, graveyard_negative | - | classical_baseline |
+| rerun_or_admission_candidate | `sim_arakelov_intersection_constraint_canonical` | geometry_gstack_gtower, classical_baseline, graveyard_negative | pytorch, sympy, z3 | canonical |
 | rerun_or_admission_candidate | `sim_arith_geom_1_carrier` | root_admission | sympy | canonical |
+| rerun_or_admission_candidate | `sim_arith_geom_2_structure` | root_admission | sympy | canonical |
 | rerun_or_admission_candidate | `sim_assortativity_classical` | classical_baseline | pytorch | classical_baseline |
 | rerun_or_admission_candidate | `sim_axiom_n01_composition_order_distinguishes` | root_admission, density_carrier, channel_operator | pytorch | canonical |
 | rerun_or_admission_candidate | `sim_axis0_kernel_phi0` | axis_bridge | clifford, geomstats, gudhi, pytorch, rustworkx, scipy, sympy, toponetx, xgi, z3 | classical_baseline |
@@ -141,6 +144,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | legacy_result_or_repair_needed | `sim_axis_hopf_geometry` | density_carrier, hopf_torus, weyl_spinor_clifford, geometry_gstack_gtower, thermo_engine, axis_bridge | - | - |
 | rerun_or_admission_candidate | `sim_base_loop_law` | hopf_torus | numpy | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_bch_first_order_commutator_classical` | channel_operator, classical_baseline | - | classical_baseline |
+| rerun_or_admission_candidate | `sim_beilinson_regulator_constraint_canonical` | graveyard_negative | pytorch, sympy, z3 | canonical |
 | rerun_or_admission_candidate | `sim_berry_qfi_shell_paths` | density_carrier, entropy_information, hopf_torus, geometry_gstack_gtower | pytorch, sympy | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_betti_torus_classical` | channel_operator, hopf_torus, classical_baseline | - | classical_baseline |
 | rerun_or_admission_candidate | `sim_bipartite_entropy_topology_coexistence` | entropy_information, geometry_gstack_gtower, graph_topology, thermo_engine, axis_bridge | gudhi, numpy, pytorch, z3 | supporting |
@@ -162,6 +166,3 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | rerun_or_admission_candidate | `sim_bures_geometry` | uncategorized | numpy | canonical |
 | rerun_or_admission_candidate | `sim_c2_topology_remaining` | density_carrier, entropy_information, hopf_torus, graph_topology | pytorch, rustworkx | canonical |
 | rerun_or_admission_candidate | `sim_capability_clifford_isolated` | weyl_spinor_clifford, classical_baseline | clifford | classical_baseline |
-| contract_shaped_but_tool_depth_thin | `sim_capability_datasketch_isolated` | classical_baseline | - | classical_baseline |
-| contract_shaped_but_tool_depth_thin | `sim_capability_deap_isolated` | classical_baseline | - | classical_baseline |
-| rerun_or_admission_candidate | `sim_capability_e3nn_isolated` | classical_baseline | e3nn, pytorch | classical_baseline |

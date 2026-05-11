@@ -2,7 +2,8 @@
 """lint_sim_contract.py -- Static contract linter for system_v4/probes/sim_*.py.
 
 Checks, by AST parse only (no import side-effects):
-  C1: module-level `classification` in {"classical_baseline","canonical"}
+  C1: module-level `classification` in
+      {"classical_baseline","canonical","tool_lego_fit_probe"}
   C2: module-level `TOOL_MANIFEST` dict with non-empty `reason` per tool
   C3: module-level `TOOL_INTEGRATION_DEPTH` dict present, values in allowed set
   C4: if classification == "classical_baseline", non-empty `divergence_log`
@@ -32,7 +33,7 @@ REPO = Path(__file__).resolve().parent.parent
 PROBES_DIR = REPO / "system_v4" / "probes"
 RESULTS_DIR = PROBES_DIR / "a2_state" / "sim_results"
 
-VALID_CLASSIFICATIONS = {"classical_baseline", "canonical"}
+VALID_CLASSIFICATIONS = {"classical_baseline", "canonical", "tool_lego_fit_probe"}
 VALID_DEPTHS = {"load_bearing", "supportive", "decorative", None}
 
 ALIASES = {

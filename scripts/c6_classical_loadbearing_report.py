@@ -27,12 +27,23 @@ def load_result_for(path: Path) -> dict[str, Any]:
     return data if isinstance(data, dict) else {}
 
 
+def tool_depth(result: dict[str, Any], tool: str) -> str | None:
+    for key in ("tool_integration_depth", "TOOL_INTEGRATION_DEPTH"):
+        depth = result.get(key)
+        if isinstance(depth, dict) and tool in depth:
+            return str(depth[tool])
+    return None
+
+
 def bucket_for(path: Path, tool: str, result: dict[str, Any]) -> str:
     text = json.dumps(result).lower() if result else ""
     if not result:
         return "inconclusive_needs_owner"
-    if tool.lower() in text and any(token in text for token in ("load_bearing", "load-bearing", "used", "tool")):
+    depth = tool_depth(result, tool)
+    if depth == "load_bearing":
         return "genuinely_load_bearing_so_promote_to_canonical_candidate"
+    if depth in {"supportive", "None", "none", "null"}:
+        return "decorative_load_bearing_demote_tool"
     if tool.lower() in text:
         return "inconclusive_needs_owner"
     return "decorative_load_bearing_demote_tool"
@@ -62,6 +73,7 @@ def main() -> int:
                     "tool": tool,
                     "bucket": bucket,
                     "result_path": str(result_path.relative_to(ROOT)) if result_path else None,
+                    "tool_integration_depth": tool_depth(result, tool),
                     "evidence": "result_json_mentions_tool" if result and tool.lower() in json.dumps(result).lower() else "no_result_tool_evidence",
                 }
             )

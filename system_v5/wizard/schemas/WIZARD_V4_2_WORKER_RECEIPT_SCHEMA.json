@@ -59,5 +59,50 @@
       "type": "string"
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "counts_toward_topology": {
+            "const": true
+          }
+        },
+        "required": ["counts_toward_topology"]
+      },
+      "then": {
+        "properties": {
+          "terminal_status": {
+            "const": "completed"
+          },
+          "artifact_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "accepted_conclusion": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "pool": {
+            "enum": ["claude-bridge", "gemini", "omx", "tmux"]
+          }
+        },
+        "required": ["pool"]
+      },
+      "then": {
+        "properties": {
+          "external_worker": {
+            "const": true
+          }
+        },
+        "required": ["external_worker"]
+      }
+    }
+  ],
   "additionalProperties": true
 }

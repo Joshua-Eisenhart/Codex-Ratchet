@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 from pathlib import Path
 from typing import Any
 
@@ -51,7 +50,7 @@ def present(value: Any) -> bool:
     return isinstance(value, str) and bool(value.strip())
 
 
-def validate_receipt(receipt: dict[str, Any], label: str) -> list[str]:
+def validate_receipt(receipt: dict[str, Any], label: str, *, require_artifacts: bool = False) -> list[str]:
     errors: list[str] = []
     missing = sorted(REQUIRED - receipt.keys())
     if missing:
@@ -85,12 +84,20 @@ def validate_receipt(receipt: dict[str, Any], label: str) -> list[str]:
         if receipt.get("pool") == "codex-native" and not present(receipt.get("child_id", "controller")):
             errors.append(f"{label}: codex-native topology receipts require child_id or controller marker")
 
+    if require_artifacts and present(receipt.get("artifact_path")):
+        artifact = Path(str(receipt["artifact_path"])).expanduser()
+        if not artifact.is_absolute():
+            artifact = Path.cwd() / artifact
+        if not artifact.exists():
+            errors.append(f"{label}: artifact_path does not exist: {receipt['artifact_path']}")
+
     return errors
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("receipts", nargs="+", type=Path, help="JSON receipt file(s) to validate")
+    parser.add_argument("--require-artifacts", action="store_true", help="Require non-empty artifact_path values to exist.")
     args = parser.parse_args(argv)
 
     errors: list[str] = []
@@ -103,7 +110,7 @@ def main(argv: list[str] | None = None) -> int:
             continue
         for index, receipt in enumerate(receipts, start=1):
             count += 1
-            errors.extend(validate_receipt(receipt, f"{path}#{index}"))
+            errors.extend(validate_receipt(receipt, f"{path}#{index}", require_artifacts=args.require_artifacts))
 
     if errors:
         print(json.dumps({"ok": False, "checked": count, "errors": errors}, indent=2))

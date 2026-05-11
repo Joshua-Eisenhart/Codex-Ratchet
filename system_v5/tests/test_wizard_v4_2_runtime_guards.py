@@ -65,6 +65,33 @@ def test_worker_receipt_validator_rejects_uncounted_external_blur(tmp_path: Path
     assert any("artifact_path" in error for error in payload["errors"])
 
 
+def test_worker_receipt_validator_can_require_existing_artifacts(tmp_path: Path) -> None:
+    receipt = tmp_path / "receipt.json"
+    receipt.write_text(
+        json.dumps(
+            {
+                "schema": "wizard-v4.2-worker-receipt",
+                "wizard_version": "v4.2",
+                "route": "Follow-Up",
+                "parent_id": "parent-3",
+                "child_id": "child-3",
+                "pool": "tool",
+                "launch_surface": "local command",
+                "terminal_status": "completed",
+                "artifact_path": "missing/receipt.json",
+                "accepted_conclusion": "claimed result",
+                "counts_toward_topology": True,
+            }
+        )
+    )
+
+    result = run_python("scripts/validate_wizard_worker_receipts.py", "--require-artifacts", str(receipt))
+
+    assert result.returncode == 1
+    payload = json.loads(result.stdout)
+    assert any("does not exist" in error for error in payload["errors"])
+
+
 def test_runtime_audit_flags_live_v4_1_defaults() -> None:
     script = ROOT / "scripts/wizard_v4_2_runtime_audit.py"
     module_globals = runpy.run_path(str(script), run_name="wizard_v4_2_runtime_audit")

@@ -6,8 +6,8 @@
   "claim_boundary": "No QIT, GStack, axis, nonclassical, or assembly promotion is made here. This artifact records prerequisite receipt status only.",
   "summary": {
     "blocked_candidate_count": 3,
-    "prerequisite_scripts_run_or_checked": 12,
-    "prerequisite_receipts_all_pass_or_existing": 12,
+    "prerequisite_scripts_run_or_checked": 13,
+    "prerequisite_receipts_all_pass_or_existing": 13,
     "policy_unblocked_count": 0,
     "new_coupling_jobs_admitted": 0
   },
@@ -28,15 +28,16 @@
       "task_id": "lego-batch-024",
       "lego_or_pair": "gauge_group_falsifier",
       "queue_status": "blocked_from_assembly",
-      "current_interpretation": "Lower gauge/falsifier legos pass as bounded local receipts, but no coupling_probe or existing_anchor is defined for this candidate. It remains a falsifier/boundary lane, not an assembly coupling lane.",
+      "current_interpretation": "Lower gauge/falsifier legos pass as bounded local receipts, and gauge_group_falsifier_graveyard now records the finite U(1)-vs-Pauli nonabelian mismatch as boundary evidence. It remains a falsifier/boundary lane, not an assembly coupling lane.",
       "refreshed_or_checked_receipts": [
         "system_v4/probes/a2_state/sim_results/berry_phase_u1_abelian_results.json",
         "system_v4/probes/a2_state/sim_results/commutator_algebra_results.json",
         "system_v4/probes/a2_state/sim_results/gauge_group_correspondence_results.json",
+        "system_v4/probes/a2_state/sim_results/gauge_group_falsifier_graveyard_results.json",
         "system_v4/probes/a2_state/sim_results/lego_entropy_spectral_families_results.json",
         "system_v4/probes/a2_state/sim_results/sim_rosetta_su2_so3_double_cover_invariant_results.json"
       ],
-      "recommended_next_move": "If this lane should advance, create one bounded falsifier coupling probe with explicit pass/fail criteria and graveyard output. Do not mark it ready in lego_batch_queue until that probe exists and passes."
+      "recommended_next_move": "Keep as boundary/graveyard evidence. Do not mark it ready in lego_batch_queue or feed assembly unless a later stage-gated coupling receipt is explicitly admitted."
     },
     {
       "task_id": "lego-batch-025",
@@ -57,8 +58,10 @@
     "can_promote_gauge_group_falsifier_to_assembly": false,
     "can_promote_quantum_metric_nonuniqueness_to_assembly": false,
     "requires_new_probe_before_queue_unblock": [
-      "gauge_group_falsifier",
       "quantum_metric_nonuniqueness"
+    ],
+    "requires_stage_gated_coupling_before_queue_unblock": [
+      "gauge_group_falsifier"
     ]
   }
 }

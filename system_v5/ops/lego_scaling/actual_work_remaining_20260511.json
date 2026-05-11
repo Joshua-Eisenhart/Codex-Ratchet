@@ -1,0 +1,271 @@
+{
+  "schema": "actual_work_remaining_v1",
+  "generated_from": [
+    "system_v4/probes/a2_state/sim_results/actual_lego_work_matrix.json",
+    "system_v4/probes/a2_state/sim_results/actual_lego_frontier_closeout_ledger.json",
+    "system_v4/probes/a2_state/sim_results/engine_lab_next_work_queue_results.json"
+  ],
+  "stage_gate": {
+    "active_stage": "lego",
+    "allow_default_queue_late_stage": false,
+    "allow_tier_d_launch": false,
+    "notes": [
+      "Hard stage gate: tools -> tool integration -> all legos -> only then couplings.",
+      "Tier D launch stays blocked until the owner/controller explicitly advances the stage gate."
+    ]
+  },
+  "queue_counts": {
+    "lane_A": 0,
+    "lane_B": 0,
+    "claimed": 0,
+    "blocked": 710,
+    "done": 2161
+  },
+  "lego_summary": {
+    "row_count": 150,
+    "machine_coverage_counts": {
+      "blocked_as_late_surface": 2,
+      "canonical by process": 19,
+      "covered": 125,
+      "not_normalized_yet": 2,
+      "partial": 2
+    },
+    "next_action_counts": {
+      "blocked": 2,
+      "coupling_receipt_audited_closure_candidate": 10,
+      "indexed_receipt_audited": 90,
+      "indexed_receipt_boundary_warnings": 29,
+      "source_process_receipt_audited": 14,
+      "source_process_receipt_boundary_warnings": 5
+    },
+    "coverage_slot_counts": {
+      "bridge_tool_fit": 57,
+      "classical_baseline": 142,
+      "entropy": 42,
+      "nonclassical_adjacent_tool_fit": 54,
+      "operator": 58,
+      "order_variant_graveyard": 27,
+      "tool_coverage": 145,
+      "topology": 42
+    },
+    "result_exists_count": 149,
+    "missing_result_count": 0,
+    "late_surface_no_result_count": 1,
+    "result_missing_raw_count": 1,
+    "coupling_linked_row_count": 15,
+    "inventory_gap_count": 1,
+    "stale_label_risk_count": 0,
+    "negative_evidence_row_count": 22,
+    "promotion_allowed_count": 0
+  },
+  "frontier_summary": {
+    "row_count": 150,
+    "state_counts": {
+      "blocked": 2,
+      "done": 87,
+      "graveyard": 22,
+      "queued": 39
+    },
+    "result_exists_count": 149,
+    "missing_result_count": 0,
+    "late_surface_no_result_count": 1,
+    "result_missing_raw_count": 1,
+    "stale_label_risk_count": 0,
+    "graveyard_count": 22,
+    "coverage_slot_counts": {
+      "bridge_tool_fit": 57,
+      "classical_baseline": 142,
+      "entropy": 42,
+      "nonclassical_adjacent_tool_fit": 54,
+      "operator": 58,
+      "order_variant_graveyard": 27,
+      "tool_coverage": 145,
+      "topology": 42
+    },
+    "coupling_audit_summary": {
+      "row_count": 22,
+      "status_counts": {
+        "hard_green_closure_candidate": 15,
+        "hard_green_supporting_only": 7
+      },
+      "hard_blocked_count": 0,
+      "boundary_warning_row_count": 0,
+      "closure_candidate_count": 15,
+      "promotion_allowed_count": 0
+    },
+    "coupling_candidate_summary": {
+      "pairing_count": 25,
+      "existing_anchor_count": 20,
+      "missing_pairwise_count": 0,
+      "blocked_from_assembly_count": 3,
+      "supporting_only_count": 2
+    },
+    "normalization_ledger_summary": {
+      "row_count": 0,
+      "normalization_queue_lego_count": 0,
+      "stale_queue_overlap_count": 0,
+      "stale_not_queued_count": 0,
+      "queued_not_stale_count": 0,
+      "queue_covers_all_stale_labels": true,
+      "queue_has_only_stale_labels": true,
+      "source_coverage_counts": {},
+      "proposed_coverage_counts": {},
+      "section_counts": {},
+      "requires_human_markdown_acceptance_count": 0,
+      "promotion_allowed_count": 0
+    },
+    "promotion_allowed_count": 0,
+    "claim_ceiling": "frontier classified, not closed as admitted or promoted"
+  },
+  "engine_lab_next_work_summary": {
+    "queue_complete": true,
+    "open_row_count": 10,
+    "active_uncovered_row_count": 0,
+    "repair_gap_count": 3,
+    "open_lab_failure_count": 5,
+    "graveyard_covered_open_row_count": 7,
+    "top_row_id": "carnot_entropy_family_array",
+    "top_active_row_id": null,
+    "qit_or_axis_promotion_allowed": false,
+    "scope_note": "Controller queue derived from engine-lab open-row audit and repair-priority receipts. It does not claim row closure; it names bounded next sim moves."
+  },
+  "admissible_missing_lego_count": 0,
+  "raw_missing_lego_count": 1,
+  "blocked_late_surface_count": 2,
+  "partial_or_not_normalized_count": 4,
+  "interesting_rows": [
+    {
+      "lego_id": "bridge_weighted_entropy",
+      "coverage": "blocked_as_late_surface",
+      "result_exists": true,
+      "probe": null,
+      "result": "sim_lego_entropy_shell_history_weighted_results.json",
+      "next_action": {
+        "status": "blocked",
+        "reason": "late_surface_stage_gate",
+        "packet": null
+      },
+      "coverage_slots": {
+        "classical_baseline": true,
+        "bridge_tool_fit": false,
+        "nonclassical_adjacent_tool_fit": false,
+        "entropy": true,
+        "operator": true,
+        "topology": false,
+        "order_variant_graveyard": false,
+        "tool_coverage": false
+      }
+    },
+    {
+      "lego_id": "bridge_family_xi_point",
+      "coverage": "partial",
+      "result_exists": true,
+      "probe": "sim_bridge_family_xi_point.py",
+      "result": "bridge_family_xi_point_results.json",
+      "next_action": {
+        "status": "indexed_receipt_audited",
+        "reason": "indexed receipt is hard-green with no validator warnings",
+        "packet": null
+      },
+      "coverage_slots": {
+        "classical_baseline": true,
+        "bridge_tool_fit": false,
+        "nonclassical_adjacent_tool_fit": false,
+        "entropy": false,
+        "operator": false,
+        "topology": false,
+        "order_variant_graveyard": false,
+        "tool_coverage": true
+      }
+    },
+    {
+      "lego_id": "bridge_family_xi_shell",
+      "coverage": "not_normalized_yet",
+      "result_exists": true,
+      "probe": "sim_bridge_family_xi_shell.py",
+      "result": "bridge_family_xi_shell_results.json",
+      "next_action": {
+        "status": "indexed_receipt_audited",
+        "reason": "indexed receipt is hard-green with no validator warnings",
+        "packet": null
+      },
+      "coverage_slots": {
+        "classical_baseline": true,
+        "bridge_tool_fit": false,
+        "nonclassical_adjacent_tool_fit": false,
+        "entropy": false,
+        "operator": false,
+        "topology": false,
+        "order_variant_graveyard": false,
+        "tool_coverage": true
+      }
+    },
+    {
+      "lego_id": "bridge_family_xi_history",
+      "coverage": "not_normalized_yet",
+      "result_exists": true,
+      "probe": "sim_bridge_family_xi_history.py",
+      "result": "bridge_family_xi_history_results.json",
+      "next_action": {
+        "status": "indexed_receipt_audited",
+        "reason": "indexed receipt is hard-green with no validator warnings",
+        "packet": null
+      },
+      "coverage_slots": {
+        "classical_baseline": true,
+        "bridge_tool_fit": false,
+        "nonclassical_adjacent_tool_fit": false,
+        "entropy": false,
+        "operator": false,
+        "topology": false,
+        "order_variant_graveyard": false,
+        "tool_coverage": true
+      }
+    },
+    {
+      "lego_id": "axis0_kernel_phi0",
+      "coverage": "partial",
+      "result_exists": true,
+      "probe": "sim_axis0_kernel_phi0.py",
+      "result": "axis0_kernel_phi0_results.json",
+      "next_action": {
+        "status": "indexed_receipt_audited",
+        "reason": "indexed receipt is hard-green with no validator warnings",
+        "packet": null
+      },
+      "coverage_slots": {
+        "classical_baseline": true,
+        "bridge_tool_fit": true,
+        "nonclassical_adjacent_tool_fit": true,
+        "entropy": false,
+        "operator": false,
+        "topology": false,
+        "order_variant_graveyard": false,
+        "tool_coverage": true
+      }
+    },
+    {
+      "lego_id": "axis0_field_candidate",
+      "coverage": "blocked_as_late_surface",
+      "result_exists": false,
+      "probe": null,
+      "result": null,
+      "next_action": {
+        "status": "blocked",
+        "reason": "late_surface_stage_gate",
+        "packet": null
+      },
+      "coverage_slots": {
+        "classical_baseline": false,
+        "bridge_tool_fit": false,
+        "nonclassical_adjacent_tool_fit": false,
+        "entropy": false,
+        "operator": false,
+        "topology": false,
+        "order_variant_graveyard": false,
+        "tool_coverage": false
+      }
+    }
+  ],
+  "claim_boundary": "No QIT/GStack/axis/nonclassical promotion; active stage remains lego, coupling/axis/engine/tier_d blocked by stage gate."
+}

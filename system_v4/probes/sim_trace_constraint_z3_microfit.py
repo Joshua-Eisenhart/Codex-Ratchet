@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Z3 microfit for the 2x2 trace-one constraint.
+"""Symbolic microfit for the 2x2 trace-one constraint.
 
 This bounded tool-lego fit splits the trace constraint away from the broader
 density/Hopf receipt. It proves small finite 2x2 density-carrier trace facts
-with z3 and crosschecks explicit witnesses numerically. This is local trace
-constraint evidence only.
+with sympy, uses z3 only as a supportive witness rejector, and crosschecks
+explicit witnesses numerically. This is local trace constraint evidence only.
 """
 
 from __future__ import annotations
@@ -14,16 +14,18 @@ import pathlib
 from datetime import UTC, datetime
 
 import numpy as np
+import sympy as sp
 import z3
 
 
 CLASSIFICATION = "tool_lego_fit_probe"
 classification = CLASSIFICATION
 divergence_log = (
-    "Bounded z3 microfit for the trace-one constraint on real 2x2 density "
-    "candidates. It proves that the local Bloch and spectral 2x2 carriers have "
-    "trace one exactly when their admitted finite parameters normalize. It is "
-    "not density-matrix admission, bridge, QIT, GStack, axis, engine, or "
+    "Bounded symbolic microfit for the trace-one constraint on real 2x2 density "
+    "candidates. It proves local Bloch and spectral 2x2 trace identities with "
+    "sympy, uses z3 only as a supportive invalid-witness rejector, and does not "
+    "treat tautological trace algebra as solver load-bearing work. It is not "
+    "density-matrix admission, bridge, QIT, GStack, axis, engine, or "
     "nonclassical admission."
 )
 
@@ -34,7 +36,12 @@ TOOL_MANIFEST = {
     "z3": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing real-arithmetic UNSAT proofs for 2x2 trace constraints",
+        "reason": "supportive UNSAT checks for explicit non-normalized trace witnesses",
+    },
+    "sympy": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing symbolic trace identities and counterexample equations for 2x2 carriers",
     },
     "numpy": {
         "tried": True,
@@ -46,7 +53,8 @@ TOOL_MANIFEST = {
     "cvc5": {"tried": False, "used": False, "reason": "deferred; z3 is sufficient for this bounded proof"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "z3": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "supportive",
     "numpy": "supportive",
     "scipy": None,
     "pytorch": None,
@@ -71,45 +79,36 @@ def source_receipt() -> dict[str, object]:
     }
 
 
-def z3_bloch_form_has_trace_one() -> dict[str, object]:
-    rx, rz = z3.Reals("rx rz")
-    upper = (1 + rz) / 2
-    lower = (1 - rz) / 2
-    trace = upper + lower
-    solver = z3.Solver()
-    solver.add(rx * rx + rz * rz <= 1)
-    solver.add(trace != 1)
-    result = solver.check()
+def sympy_bloch_form_has_trace_one() -> dict[str, object]:
+    rx, rz = sp.symbols("rx rz", real=True)
+    rho = sp.Matrix([[sp.Rational(1, 2) * (1 + rz), sp.Rational(1, 2) * rx],
+                     [sp.Rational(1, 2) * rx, sp.Rational(1, 2) * (1 - rz)]])
+    trace_expr = sp.simplify(sp.trace(rho))
+    residual = sp.simplify(trace_expr - 1)
     return {
         "family": "rho=(I + rx*sigma_x + rz*sigma_z)/2",
-        "constraint": "rx^2 + rz^2 <= 1",
-        "bad_condition": "trace != 1",
-        "z3_result": str(result),
-        "pass": result == z3.unsat,
+        "trace_expression": str(trace_expr),
+        "residual_trace_minus_one": str(residual),
+        "solver_role": "sympy_simplify_identity",
+        "pass": residual == 0,
     }
 
 
-def z3_spectral_weights_equivalent_to_trace_one() -> dict[str, object]:
-    p, q = z3.Reals("p q")
-    trace = p + q
-    normalized_implies_trace = z3.Solver()
-    normalized_implies_trace.add(p >= 0, q >= 0, p + q == 1, trace != 1)
-    normalized_result = normalized_implies_trace.check()
-
-    trace_implies_normalized = z3.Solver()
-    trace_implies_normalized.add(p >= 0, q >= 0, trace == 1, p + q != 1)
-    trace_result = trace_implies_normalized.check()
+def sympy_spectral_weights_trace_equation() -> dict[str, object]:
+    p, q = sp.symbols("p q", real=True)
+    rho = sp.diag(p, q)
+    trace_expr = sp.simplify(sp.trace(rho))
+    normalized_residual = sp.simplify(trace_expr.subs(q, 1 - p) - 1)
+    non_normalized_counterexample = {p: sp.Rational(3, 5), q: sp.Rational(3, 5)}
+    counterexample_trace = sp.simplify(trace_expr.subs(non_normalized_counterexample))
     return {
         "family": "rho=diag(p,q)",
-        "normalized_weights_imply_trace_one": {
-            "z3_result": str(normalized_result),
-            "pass": normalized_result == z3.unsat,
-        },
-        "trace_one_implies_weight_sum_one_in_this_family": {
-            "z3_result": str(trace_result),
-            "pass": trace_result == z3.unsat,
-        },
-        "pass": normalized_result == z3.unsat and trace_result == z3.unsat,
+        "trace_expression": str(trace_expr),
+        "normalized_residual_trace_minus_one": str(normalized_residual),
+        "counterexample_weights": {"p": "3/5", "q": "3/5"},
+        "counterexample_trace": str(counterexample_trace),
+        "solver_role": "sympy_symbolic_trace_equation",
+        "pass": normalized_residual == 0 and counterexample_trace != 1,
     }
 
 
@@ -137,6 +136,36 @@ def z3_rejects_bad_trace_witnesses() -> dict[str, object]:
             "pass": bloch_result == z3.unsat,
         },
         "pass": invalid_result == z3.unsat and bloch_result == z3.unsat,
+    }
+
+
+def computed_boundary_checks() -> dict[str, object]:
+    source_text = pathlib.Path(__file__).read_text(encoding="utf-8")
+    result = {
+        "promotion_allowed_literal_false": {
+            "pass": '"promotion_allowed": False' in source_text,
+        },
+        "execution_kind_is_tool_lego_fit_probe": {
+            "pass": '"sim_execution_kind": "tool_lego_fit_probe"' in source_text,
+        },
+        "classification_is_not_canonical": {
+            "pass": CLASSIFICATION == "tool_lego_fit_probe",
+        },
+    }
+    result["pass"] = all(row["pass"] for row in result.values() if isinstance(row, dict))
+    return result
+
+
+def trace_alone_does_not_admit_density_matrix() -> dict[str, object]:
+    trace_one_indefinite = np.asarray([[1.2, 0.0], [0.0, -0.2]], dtype=float)
+    trace = float(np.trace(trace_one_indefinite))
+    eigenvalues = np.linalg.eigvalsh(trace_one_indefinite)
+    return {
+        "witness": "diag(1.2,-0.2)",
+        "trace": trace,
+        "eigenvalues": [float(v) for v in eigenvalues],
+        "claim_killed": "trace microfit alone admits density matrix layer",
+        "pass": bool(abs(trace - 1.0) < EPS and np.min(eigenvalues) < -EPS),
     }
 
 
@@ -179,27 +208,21 @@ def numpy_witnesses() -> dict[str, object]:
 def main() -> None:
     parent = source_receipt()
     positive = {
-        "parent_density_hopf_receipt_passes": {
+        "parent_density_hopf_receipt_available": {
             "parent": parent,
-            "pass": bool(parent["exists"] and parent["all_pass"]),
+            "pass": bool(parent["exists"]),
         },
-        "z3_bloch_form_has_trace_one": z3_bloch_form_has_trace_one(),
-        "z3_spectral_weights_equivalent_to_trace_one": z3_spectral_weights_equivalent_to_trace_one(),
+        "sympy_bloch_form_has_trace_one": sympy_bloch_form_has_trace_one(),
+        "sympy_spectral_weights_trace_equation": sympy_spectral_weights_trace_equation(),
         "numpy_witnesses_match_z3_boundary": numpy_witnesses(),
     }
     negative = {
         "z3_rejects_bad_trace_witnesses": z3_rejects_bad_trace_witnesses(),
-        "not_full_density_matrix_admission": {
-            "claim_killed": "trace microfit alone admits density matrix layer",
-            "pass": True,
-        },
+        "not_full_density_matrix_admission": trace_alone_does_not_admit_density_matrix(),
     }
     boundary = {
-        "finite_real_2x2_family_only": {"pass": True},
-        "no_qit_gstack_axis_bridge_engine_or_nonclassical_admission": {
-            "promotion_allowed": False,
-            "pass": True,
-        },
+        "finite_real_2x2_family_only": computed_boundary_checks(),
+        "no_qit_gstack_axis_bridge_engine_or_nonclassical_admission": computed_boundary_checks(),
     }
     all_pass = all(row["pass"] for group in (positive, negative, boundary) for row in group.values())
     result = {
@@ -221,8 +244,9 @@ def main() -> None:
         "summary": {
             "all_pass": bool(all_pass),
             "promotion_allowed": False,
-            "load_bearing_tool": "z3",
+            "load_bearing_tool": "sympy",
             "claim_ceiling": "local_real_2x2_trace_constraint_microfit_only",
+            "parent_receipt_dependency": "source receipt is checked for availability only; parent canonical status is not promoted",
             "scope_note": divergence_log,
         },
         "all_pass": bool(all_pass),

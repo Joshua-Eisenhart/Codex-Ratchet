@@ -1,51 +1,51 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-11T22:34:09.406778+00:00",
+  "generated_at": "2026-05-11T22:44:43.502964+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3956,
-    "result_json_count": 767,
-    "linked_result_json_count": 731,
+    "source_count": 3958,
+    "result_json_count": 769,
+    "linked_result_json_count": 733,
     "unlinked_result_json_count": 36,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3226,
-      "rerun_or_admission_candidate": 508,
+      "rerun_or_admission_candidate": 510,
       "legacy_result_or_repair_needed": 29,
       "contract_shaped_but_tool_depth_thin": 184,
       "admitted": 9
     },
     "family_counts": {
-      "channel_operator": 787,
-      "entropy_information": 593,
-      "thermo_engine": 444,
+      "channel_operator": 789,
+      "entropy_information": 595,
+      "thermo_engine": 446,
       "uncategorized": 335,
-      "axis_bridge": 675,
+      "axis_bridge": 677,
       "graveyard_negative": 1703,
-      "root_admission": 856,
-      "hopf_torus": 593,
+      "root_admission": 857,
+      "hopf_torus": 594,
       "weyl_spinor_clifford": 781,
-      "geometry_gstack_gtower": 735,
+      "geometry_gstack_gtower": 737,
       "density_carrier": 489,
-      "classical_baseline": 1111,
+      "classical_baseline": 1113,
       "gerbe_dirac_mera_spectral": 670,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2718,
+      "numpy": 2719,
       "sympy": 2259,
       "scipy": 254,
-      "pytorch": 1987,
+      "pytorch": 1988,
       "pyg": 846,
       "cvc5": 1328,
       "qutip": 47,
       "e3nn": 843,
       "gudhi": 899,
-      "z3": 1912,
+      "z3": 1913,
       "clifford": 1330,
-      "rustworkx": 1077,
+      "rustworkx": 1078,
       "toponetx": 915,
       "geomstats": 903,
       "xgi": 971,
@@ -53,9 +53,9 @@
       "qiskit": 14
     },
     "load_bearing_tool_counts": {
-      "numpy": 276,
+      "numpy": 277,
       "cvc5": 510,
-      "pytorch": 1112,
+      "pytorch": 1113,
       "rustworkx": 283,
       "z3": 742,
       "sympy": 566,
@@ -72,12 +72,12 @@
       "networkx": 4
     },
     "result_classification_counts": {
-      "classical_baseline": 251,
+      "classical_baseline": 250,
       "canonical": 377,
       "supporting": 13,
       "exploratory": 29,
       "audit": 3,
-      "tool_lego_fit_probe": 24,
+      "tool_lego_fit_probe": 27,
       "research_support": 6,
       "controller_index": 2,
       "controller_audit": 1,
@@ -85,7 +85,7 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 721,
+    "repair_candidate_count": 723,
     "source_only_count": 3226
   },
   "admitted_stems": [
@@ -51686,7 +51686,7 @@
       ],
       "result_count": 1,
       "result_classifications": [
-        "classical_baseline"
+        "tool_lego_fit_probe"
       ],
       "result_has_contract_shape": true,
       "admission_path": "",
@@ -83805,6 +83805,42 @@
       "inventory_status": "source_only"
     },
     {
+      "stem": "sim_hopf_torus_entropy_order_microfit",
+      "source_path": "system_v4/probes/sim_hopf_torus_entropy_order_microfit.py",
+      "families": [
+        "channel_operator",
+        "entropy_information",
+        "hopf_torus",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/hopf_torus_entropy_order_microfit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "tool_lego_fit_probe"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_hopf_torus_lego",
       "source_path": "system_v4/probes/sim_hopf_torus_lego.py",
       "families": [
@@ -94884,6 +94920,44 @@
       "late_stage_signal": false,
       "has_contract_shape": true,
       "inventory_status": "contract_shaped_but_tool_depth_thin"
+    },
+    {
+      "stem": "sim_min_max_entropy_operator_topology_controls",
+      "source_path": "system_v4/probes/sim_min_max_entropy_operator_topology_controls.py",
+      "families": [
+        "root_admission",
+        "channel_operator",
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "pytorch": "load_bearing",
+        "z3": "supportive",
+        "rustworkx": "supportive"
+      },
+      "load_bearing_tools": [
+        "pytorch"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/min_max_entropy_operator_topology_controls_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "tool_lego_fit_probe"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_min_max_entropy_torch_microfit",

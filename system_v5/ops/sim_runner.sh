@@ -36,6 +36,7 @@ STRICT_RECEIPT_ADMISSION="${STRICT_RECEIPT_ADMISSION:-1}"
 STRICT_WIZARD_QUEUE_ADMISSION="${STRICT_WIZARD_QUEUE_ADMISSION:-1}"
 ALLOW_HELPER_PROCESSES="${ALLOW_HELPER_PROCESSES:-0}"
 ADMISSION_BYPASS_SENTINEL="${ADMISSION_BYPASS_SENTINEL:-$OPS/.allow_admission_bypass_recovery}"
+BYPASS_RECEIPT_DIR="$OPS/wizard_admissions"
 # macOS ships without `timeout`; fall back to portable perl-alarm wrapper.
 TIMEOUT_BIN="$(command -v gtimeout || command -v timeout || echo '')"
 PERL_BIN="$(command -v perl)"
@@ -97,11 +98,44 @@ admission_bypass_preflight() {
   fi
   if [ -f "$ADMISSION_BYPASS_SENTINEL" ]; then
     log "Admission bypass recovery sentinel present: $ADMISSION_BYPASS_SENTINEL"
+    write_admission_bypass_receipt
     return 0
   fi
   log "Admission bypass refused: strict receipt and Wizard queue admission must stay enabled for normal sim runs."
   log "Create $ADMISSION_BYPASS_SENTINEL only for a bounded manual recovery run, then remove it immediately."
   exit 1
+}
+
+write_admission_bypass_receipt() {
+  mkdir -p "$BYPASS_RECEIPT_DIR"
+  local ts receipt
+  ts=$(date -u +%Y%m%dT%H%M%SZ)
+  receipt="$BYPASS_RECEIPT_DIR/bypass_${ts}.json"
+  "$PYTHON" - "$receipt" "$STRICT_RECEIPT_ADMISSION" "$STRICT_WIZARD_QUEUE_ADMISSION" "$ALLOW_HELPER_PROCESSES" "$ADMISSION_BYPASS_SENTINEL" "$THIS_LOG" <<'PY'
+import json
+import os
+import sys
+from datetime import datetime, timezone
+
+path, strict_receipt, strict_wizard, allow_helpers, sentinel, log_path = sys.argv[1:]
+payload = {
+    "schema": "wizard_v4_2_admission_bypass_receipt_v1",
+    "created_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+    "reason": "Strict admission bypass was enabled for a bounded recovery run.",
+    "strict_receipt_admission": strict_receipt,
+    "strict_wizard_queue_admission": strict_wizard,
+    "allow_helper_processes": allow_helpers,
+    "sentinel_path": sentinel,
+    "log_path": log_path,
+    "user": os.environ.get("USER", "unknown"),
+    "next_admissible_step": "Remove the bypass sentinel and restore STRICT_RECEIPT_ADMISSION=1 plus STRICT_WIZARD_QUEUE_ADMISSION=1 before normal sim runs.",
+}
+with open(path, "w", encoding="utf-8") as fh:
+    json.dump(payload, fh, indent=2)
+    fh.write("\n")
+print(path)
+PY
+  log "Admission bypass receipt written: $receipt"
 }
 
 check_stop() {
@@ -364,7 +398,8 @@ while :; do
   fi
 
   sim_count=$((sim_count + 1))
-  if [ $((sim_count % STATS_EVERY)) -eq 0 ]; then
+if [ $((sim_count % STATS_EVERY)) -eq 0 ]; then
+    helper_process_preflight
     log "Progress after $sim_count sims:"
     queue_stats | while read line; do log "$line"; done
   fi

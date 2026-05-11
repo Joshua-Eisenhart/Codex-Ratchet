@@ -19,6 +19,7 @@ VALID_CLASSIFICATIONS = {
     "tool_lego_fit_probe",
     "supporting",
     "audit",
+    "controller_audit",
 }
 
 VALID_DEPTHS = {

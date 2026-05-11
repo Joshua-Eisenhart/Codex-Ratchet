@@ -1,12 +1,12 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-11T22:44:43.502964+00:00",
+  "generated_at": "2026-05-11T22:58:01.955063+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 3958,
-    "result_json_count": 769,
+    "result_json_count": 770,
     "linked_result_json_count": 733,
-    "unlinked_result_json_count": 36,
+    "unlinked_result_json_count": 37,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
@@ -54,11 +54,11 @@
     },
     "load_bearing_tool_counts": {
       "numpy": 277,
-      "cvc5": 510,
-      "pytorch": 1113,
-      "rustworkx": 283,
-      "z3": 742,
-      "sympy": 566,
+      "cvc5": 509,
+      "pytorch": 1108,
+      "rustworkx": 282,
+      "z3": 741,
+      "sympy": 564,
       "clifford": 274,
       "xgi": 200,
       "geomstats": 109,
@@ -104,6 +104,7 @@
     "system_v4/a2_state/sim_results/deep_geometric_audit_results.json",
     "system_v4/a2_state/sim_results/holodeck_fep_results.json",
     "system_v4/a2_state/sim_results/type2_process_cycle_results.json",
+    "system_v4/probes/a2_state/sim_results/L0_hopf_manifold_results.json",
     "system_v4/probes/a2_state/sim_results/actual_lego_normalization_reprobe_runner_results.json",
     "system_v4/probes/a2_state/sim_results/berry_phase_u1_abelian_results.json",
     "system_v4/probes/a2_state/sim_results/clifford_weyl_transport_results.json",
@@ -11700,11 +11701,11 @@
         "geometry_gstack_gtower"
       ],
       "tools": {
-        "numpy": "imported"
+        "numpy": "supportive"
       },
       "load_bearing_tools": [],
       "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": false,
+      "source_has_tool_integration_depth": true,
       "result_paths": [],
       "result_count": 0,
       "result_classifications": [],
@@ -11778,10 +11779,9 @@
         "pytorch": "imported",
         "z3": "load_bearing",
         "sympy": "imported",
-        "rustworkx": "load_bearing"
+        "rustworkx": "supportive"
       },
       "load_bearing_tools": [
-        "rustworkx",
         "z3"
       ],
       "source_has_tool_manifest": true,
@@ -12735,11 +12735,11 @@
         "graveyard_negative"
       ],
       "tools": {
-        "pytorch": "load_bearing",
+        "pytorch": "supportive",
         "pyg": "imported",
         "z3": "load_bearing",
         "cvc5": "imported",
-        "sympy": "load_bearing",
+        "sympy": "supportive",
         "clifford": "imported",
         "rustworkx": "imported",
         "toponetx": "imported",
@@ -12749,8 +12749,6 @@
         "e3nn": "imported"
       },
       "load_bearing_tools": [
-        "pytorch",
-        "sympy",
         "z3"
       ],
       "source_has_tool_manifest": true,
@@ -13354,11 +13352,11 @@
         "graveyard_negative"
       ],
       "tools": {
-        "pytorch": "load_bearing",
+        "pytorch": "supportive",
         "pyg": "imported",
         "z3": "load_bearing",
-        "cvc5": "load_bearing",
-        "sympy": "load_bearing",
+        "cvc5": "supportive",
+        "sympy": "supportive",
         "clifford": "imported",
         "rustworkx": "imported",
         "toponetx": "imported",
@@ -13368,9 +13366,6 @@
         "e3nn": "imported"
       },
       "load_bearing_tools": [
-        "cvc5",
-        "pytorch",
-        "sympy",
         "z3"
       ],
       "source_has_tool_manifest": true,
@@ -14672,11 +14667,10 @@
       "tools": {
         "numpy": "imported",
         "pytorch": "load_bearing",
-        "z3": "load_bearing"
+        "z3": "supportive"
       },
       "load_bearing_tools": [
-        "pytorch",
-        "z3"
+        "pytorch"
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
@@ -14734,11 +14728,10 @@
       ],
       "tools": {
         "numpy": "imported",
-        "pytorch": "load_bearing",
+        "pytorch": "supportive",
         "z3": "load_bearing"
       },
       "load_bearing_tools": [
-        "pytorch",
         "z3"
       ],
       "source_has_tool_manifest": true,
@@ -14764,11 +14757,10 @@
       ],
       "tools": {
         "numpy": "imported",
-        "pytorch": "load_bearing",
+        "pytorch": "supportive",
         "z3": "load_bearing"
       },
       "load_bearing_tools": [
-        "pytorch",
         "z3"
       ],
       "source_has_tool_manifest": true,
@@ -14828,11 +14820,10 @@
       ],
       "tools": {
         "numpy": "imported",
-        "pytorch": "load_bearing",
+        "pytorch": "supportive",
         "z3": "load_bearing"
       },
       "load_bearing_tools": [
-        "pytorch",
         "z3"
       ],
       "source_has_tool_manifest": true,

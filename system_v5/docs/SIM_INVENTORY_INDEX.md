@@ -1,15 +1,15 @@
 # Sim Inventory Index
 
-Generated: `2026-05-11T22:44:43.502964+00:00`
+Generated: `2026-05-11T22:58:01.955063+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `3958`
-- Result JSON files seen: `769`
+- Result JSON files seen: `770`
 - Linked result JSON files: `733`
-- Unlinked result JSON files: `36`
+- Unlinked result JSON files: `37`
 - Wizard-admitted stems: `9`
 - Repair / rerun candidate rows: `723`
 - Source-only rows: `3226`
@@ -42,11 +42,11 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Load-Bearing Tool Counts
 
-- `pytorch`: 1113
-- `z3`: 742
-- `sympy`: 566
-- `cvc5`: 510
-- `rustworkx`: 283
+- `pytorch`: 1108
+- `z3`: 741
+- `sympy`: 564
+- `cvc5`: 509
+- `rustworkx`: 282
 - `numpy`: 277
 - `clifford`: 274
 - `xgi`: 200
@@ -65,6 +65,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `system_v4/a2_state/sim_results/deep_geometric_audit_results.json`
 - `system_v4/a2_state/sim_results/holodeck_fep_results.json`
 - `system_v4/a2_state/sim_results/type2_process_cycle_results.json`
+- `system_v4/probes/a2_state/sim_results/L0_hopf_manifold_results.json`
 - `system_v4/probes/a2_state/sim_results/actual_lego_normalization_reprobe_runner_results.json`
 - `system_v4/probes/a2_state/sim_results/berry_phase_u1_abelian_results.json`
 - `system_v4/probes/a2_state/sim_results/clifford_weyl_transport_results.json`

@@ -1,7 +1,11 @@
 {
   "name": "carnot_closure_diagnostic",
-  "classification": "supporting",
+  "classification": "tool_lego_fit_probe",
   "classification_note": "Closure diagnostic for the stochastic harmonic Carnot sidecar. It compares per-leg variance and energy mismatches across several step counts to locate where the forward return defect is accumulated.",
+  "divergence_log": [
+    "Tool-lego fit probe over a classical finite-time stochastic Carnot closure surface only; does not admit QIT, bridge, GStack, axis, or nonclassical engine claims.",
+    "z3 checks finite arithmetic constraints over the recorded closure residue; it does not prove thermodynamic closure or a continuum limit."
+  ],
   "parent_scope_note": "Operational finite-time stochastic Carnot sidecar on a 1D harmonic working substance. It exposes explicit hot/cold isothermal legs, adiabatic jumps, forward and reverse modes, and fast-vs-slow dissipation without claiming a runtime-engine realization.",
   "lego_ids": [
     "stochastic_thermodynamics",

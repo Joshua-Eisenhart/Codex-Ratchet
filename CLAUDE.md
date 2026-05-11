@@ -110,6 +110,11 @@ Every canonical sim must:
 
 At least one tool outside the numeric baseline must be `load_bearing`.
 
+Tool-lego fit probes may use `classification = "tool_lego_fit_probe"` only as
+pre-admission evidence. They must state `promotion_allowed: false` in the result
+summary or an equivalent claim ceiling, and they do not satisfy canonical,
+bridge, QIT, GStack, axis, or nonclassical admission by themselves.
+
 ---
 
 ## Known Stale State (2026-04-08)

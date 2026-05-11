@@ -76,6 +76,14 @@ Every lego sim must declare at least the following fields.
 - result key: `classification`
 - classical-baseline result key when applicable: `divergence_log`
 
+Allowed `classification` values:
+- `classical_baseline`: baseline/control evidence only.
+- `canonical`: admitted local sim evidence, still limited by its stated claim ceiling.
+- `tool_lego_fit_probe`: pre-admission tool-lego fit evidence only. This category
+  must keep `promotion_allowed: false` or an equivalent claim ceiling in its
+  result summary and cannot be cited as canonical, bridge, QIT, GStack, axis, or
+  nonclassical admission without a later admitted receipt.
+
 `sim_execution_kind` controls runner admission:
 - `classical` sims are baselines/controls and may use graph/proof tools only as baseline or comparison surfaces.
 - `nonclassical` sims require the claim-relevant nonclassical stack: PyTorch/PyG for tensor or graph dynamics, Clifford for geometric product/spinor/rotor claims, and z3/cvc5 for structural proof or UNSAT claims.

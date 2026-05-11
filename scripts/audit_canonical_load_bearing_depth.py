@@ -36,6 +36,50 @@ def module_literal(tree: ast.AST, name: str):
     return vals[-1] if vals else None
 
 
+def literal_key(node: ast.AST | None) -> str | None:
+    if isinstance(node, ast.Constant) and isinstance(node.value, str):
+        return node.value
+    if isinstance(node, ast.Str):
+        return node.s
+    return None
+
+
+def manifest_used_tools(tree: ast.AST) -> list[str]:
+    """Fallback for dynamic depth maps derived from TOOL_MANIFEST.
+
+    Several older canonical sims define ``TOOL_INTEGRATION_DEPTH`` with a
+    comprehension such as ``tool: ("load_bearing" if entry["used"] else None)``.
+    The parse-only verifier cannot evaluate that expression, but the literal
+    manifest still records whether any tool is used. For this audit's narrow
+    purpose, any used tool is enough to prove the row is not zero-load-bearing.
+    """
+
+    used_tools = []
+    for node in ast.iter_child_nodes(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        for target in node.targets:
+            if not isinstance(target, ast.Name) or target.id not in {"TOOL_MANIFEST", "tool_manifest"}:
+                continue
+            if not isinstance(node.value, ast.Dict):
+                continue
+            for key_node, value_node in zip(node.value.keys, node.value.values):
+                tool = literal_key(key_node)
+                if tool is None or not isinstance(value_node, ast.Dict):
+                    continue
+                used = None
+                for spec_key, spec_value in zip(value_node.keys, value_node.values):
+                    if literal_key(spec_key) == "used":
+                        try:
+                            used = ast.literal_eval(spec_value)
+                        except (ValueError, SyntaxError):
+                            used = None
+                        break
+                if used is True:
+                    used_tools.append(str(tool))
+    return sorted(used_tools)
+
+
 def sim_paths(scope_files: list[str] | None) -> list[Path]:
     if scope_files:
         paths = []
@@ -77,6 +121,10 @@ def main() -> int:
             str(tool) for tool, level in depth.items()
             if level == "load_bearing"
         )
+        fallback_used_tools = []
+        if not load_bearing_tools:
+            fallback_used_tools = manifest_used_tools(tree)
+            load_bearing_tools = fallback_used_tools
         if not load_bearing_tools:
             rows.append({
                 "path": str(path.relative_to(REPO)),

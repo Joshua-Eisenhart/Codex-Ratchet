@@ -11,6 +11,7 @@ This ruling checks whether `entropy_family_crosschecks` can move from a blocked/
 - `system_v4/probes/a2_state/sim_results/entanglement_entropy_results.json`
 - `system_v4/probes/a2_state/sim_results/lego_entropy_bipartite_cut_results.json`
 - `system_v4/probes/a2_state/sim_results/entropy_family_crosscheck_coexistence_results.json`
+- `system_v4/probes/a2_state/sim_results/entropy_geometry_subordination_probe_results.json`
 
 The coexistence receipt is `all_pass: true` and `classification: classical_baseline`. It shows:
 
@@ -22,14 +23,13 @@ The coexistence receipt is `all_pass: true` and `classification: classical_basel
 
 ## Ruling
 
-Classification: `inconclusive_for_geometry_subordination`.
+Classification: `introduces_independent_structure_on_tested_local_carrier`.
 
-The evidence supports a bounded finite-state entropy coexistence row. It does not yet prove that entropy-family choice is subordinate to geometry/operator decisions, and it does not prove that entropy introduces an independent admissible structure. The current result is useful as a local entropy-family witness, but it is not sufficient to unblock assembly or higher coupling by itself.
+The evidence supports a bounded finite-state entropy coexistence row. The added subordination probe tests Bell and classical-correlated states that share the same one-qubit local geometry carrier. Entropy/coherent-information readouts separate those same-carrier states, so entropy-family structure is not proven subordinate to that tested carrier. This remains useful local evidence, but it is not sufficient to unblock assembly or higher coupling.
 
 ## Consequence
 
 - Keep `entropy_family_crosschecks` blocked as an assembly surface.
 - Keep the existing bounded coexistence anchor usable as local evidence.
 - Do not edit the coupling catalog or queue readiness from this ruling alone.
-- A future unblocking attempt needs an explicit geometry/operator subordination test, with fixed geometry/operator carriers and varied entropy-family readouts.
-
+- A future unblocking attempt needs a stronger geometry/operator carrier than the tested local marginal carrier, with explicit proof that entropy readout does not add independent admissibility structure.

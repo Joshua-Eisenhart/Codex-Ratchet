@@ -42,6 +42,15 @@ PARENT_RESULT_NAMES = [
 ]
 OUT_PATH = RESULTS_DIR / "density_carrier_dependency_discrimination_results.json"
 TOL = 1e-6
+CLASSIFICATION = "tool_lego_fit_probe"
+classification = CLASSIFICATION
+divergence_log = (
+    "Finite density-carrier discrimination tool-lego fit probe. Load-bearing "
+    "NumPy, PyTorch, QuTiP, and Qiskit checks distinguish valid Bloch-shell "
+    "carrier agreement from invalid finite-matrix rejection. This is not "
+    "density-carrier admission, closure promotion, bridge, QIT, GStack, axis, "
+    "or nonclassical evidence."
+)
 
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
@@ -212,7 +221,7 @@ def main() -> int:
             "pass": True,
         },
         "not_admission_or_promotion": {
-            "classification": "classical_baseline",
+            "classification": CLASSIFICATION,
             "promotion_allowed": False,
             "pass": True,
         },
@@ -225,8 +234,8 @@ def main() -> int:
     all_pass = all(item["pass"] for group in (positive, negative, boundary) for item in group.values())
     result = {
         "name": "density_carrier_dependency_discrimination",
-        "classification": "classical_baseline",
-        "classification_note": "Finite discrimination probe before density-carrier closure; lego-stage evidence only.",
+        "classification": CLASSIFICATION,
+        "classification_note": divergence_log,
         "generated_at": datetime.now(UTC).isoformat(),
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
@@ -241,11 +250,7 @@ def main() -> int:
             "promotion_allowed": False,
             "scope_note": "Distinguishes density-shaped carrier checks from dependency-chain domain without admitting a new stage.",
         },
-        "divergence_log": (
-            "Valid Bloch-shell fixtures agree with integrated dependency-chain behavior, while raw invalid "
-            "finite matrices define a separate M_density rejection boundary. This permits a tool/probe "
-            "closure packet but not a stronger density-carrier admission claim."
-        ),
+        "divergence_log": divergence_log,
         "all_pass": all_pass,
     }
     result = apply_default_receipt_boundary(

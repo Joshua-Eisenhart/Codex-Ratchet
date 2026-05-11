@@ -26,6 +26,11 @@ TOOL_MANIFEST = {
     "xgi": {"tried": False, "used": False, "reason": "not needed"},
     "toponetx": {"tried": False, "used": False, "reason": "not needed"},
     "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing scipy.linalg.expm computes the matrix exponentials that decide all BCH pass/fail rows",
+    },
 }
 TOOL_INTEGRATION_DEPTH = {
     "clifford": None,
@@ -40,6 +45,7 @@ TOOL_INTEGRATION_DEPTH = {
     "toponetx": None,
     "xgi": None,
     "z3": None,
+    "scipy": "load_bearing",
 }
 
 try:
@@ -158,12 +164,23 @@ if __name__ == "__main__":
     all_pass = all(v.get("pass", False) for v in list(pos.values()) + list(neg.values()) + list(bnd.values()))
     results = {
         "name": NAME,
-        "classification": "classical_baseline",
+        "classification": classification,
+        "classification_note": "Classical first-order BCH baseline using scipy.linalg.expm as the decisive exponential kernel; no QIT, GStack, bridge, axis, or nonclassical admission.",
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
-        "summary": {"all_pass": all_pass, "n_positive": len(pos), "n_negative": len(neg), "n_boundary": len(bnd)},
+        "summary": {
+            "all_pass": all_pass,
+            "n_positive": len(pos),
+            "n_negative": len(neg),
+            "n_boundary": len(bnd),
+            "promotion_allowed": False,
+            "load_bearing_tool": "scipy",
+            "claim_ceiling": "classical_first_order_bch_commutator_baseline_only",
+        },
         "divergence_log": (
             "Classical first-order BCH captures only the leading [A,B] correction for generic "
             "real matrices. Lost relative to the nonclassical shell: higher-order nested "

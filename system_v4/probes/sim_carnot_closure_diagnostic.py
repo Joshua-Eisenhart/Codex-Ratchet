@@ -15,7 +15,8 @@ import pathlib
 import sys
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+import z3
+classification = "exploratory"
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -52,7 +53,11 @@ PRIMARY_LEGO_IDS = [
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
-    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing finite Real-arithmetic guard for temperature ordering, finite step grid, and nonzero closure residue classification",
+    },
     "cvc5": {"tried": False, "used": False, "reason": "not needed"},
     "sympy": {"tried": False, "used": False, "reason": "not needed"},
     "clifford": {"tried": False, "used": False, "reason": "not needed"},
@@ -65,6 +70,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
 
 STEP_GRID = [90, 260, 520, 1000, 2500, QUASISTATIC_STEPS, 8000]
 SEED_BASE = 20260410 + 1900
@@ -123,6 +129,38 @@ def detect_leg_concentration(step_row: dict) -> dict:
         "cold_share": float(cold_abs / total) if total else 0.0,
         "final_share": float(final_abs / total) if total else 0.0,
         "distributed_residue": bool(dominant != "final_return" and total > 0.0),
+    }
+
+
+def z3_closure_guard(rows: list[dict]) -> dict:
+    solver = z3.Solver()
+    t_hot = z3.Real("t_hot")
+    t_cold = z3.Real("t_cold")
+    step_count = z3.Int("step_count")
+    final_abs = z3.Real("final_abs")
+    solver.add(t_hot == z3.RealVal(str(T_HOT)))
+    solver.add(t_cold == z3.RealVal(str(T_COLD)))
+    solver.add(step_count == int(rows[-1]["steps"]))
+    solver.add(final_abs == z3.RealVal(str(rows[-1]["variance_mismatch_abs"])))
+    solver.add(t_hot > t_cold, t_cold > 0, step_count > 0, final_abs >= 0)
+    sat_result = solver.check()
+
+    contradiction = z3.Solver()
+    contradiction.add(t_hot == z3.RealVal(str(T_HOT)))
+    contradiction.add(t_cold == z3.RealVal(str(T_COLD)))
+    contradiction.add(t_hot <= t_cold)
+    contradiction_result = contradiction.check()
+
+    exact_closure = z3.Solver()
+    exact_closure.add(final_abs == z3.RealVal(str(rows[-1]["variance_mismatch_abs"])))
+    exact_closure.add(final_abs <= z3.RealVal("0.001"))
+    exact_closure_result = exact_closure.check()
+    return {
+        "temperature_and_closure_guard_sat": str(sat_result),
+        "hot_not_above_cold_contradiction": str(contradiction_result),
+        "high_step_exact_closure_claim": str(exact_closure_result),
+        "final_abs_variance_mismatch": rows[-1]["variance_mismatch_abs"],
+        "pass": sat_result == z3.sat and contradiction_result == z3.unsat and exact_closure_result == z3.unsat,
     }
 
 
@@ -223,6 +261,7 @@ def main() -> None:
             "initial_internal_energy": INIT_EQ_ENERGY,
             "pass": INIT_EQ_VARIANCE > 0.0 and INIT_EQ_ENERGY > 0.0,
         },
+        "z3_finite_closure_guard": z3_closure_guard(rows),
     }
 
     all_pass = (
@@ -238,6 +277,8 @@ def main() -> None:
         "parent_scope_note": PARENT_SCOPE_NOTE,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
@@ -252,6 +293,9 @@ def main() -> None:
             "worst_closure_steps": worst_closure["steps"],
             "worst_closure_abs_variance_mismatch": worst_closure["variance_mismatch_abs"],
             "dominant_closure_leg_at_best_row": best_closure["concentration"]["dominant_leg"],
+            "promotion_allowed": False,
+            "load_bearing_tool": "z3",
+            "claim_ceiling": "finite_classical_carnot_closure_diagnostic_only",
             "scope_note": (
                 "Diagnostic sweep that measures forward-cycle return mismatch at the level of leg-state summaries. "
                 "It is exploratory and isolates where the residue is accumulated."

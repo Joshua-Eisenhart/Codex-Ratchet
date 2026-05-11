@@ -1,6 +1,6 @@
 # Sim Inventory Index
 
-Generated: `2026-05-11T22:58:01.955063+00:00`
+Generated: `2026-05-11T23:15:50.990072+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
@@ -43,8 +43,8 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 ## Load-Bearing Tool Counts
 
 - `pytorch`: 1108
-- `z3`: 741
-- `sympy`: 564
+- `z3`: 742
+- `sympy`: 565
 - `cvc5`: 509
 - `rustworkx`: 282
 - `numpy`: 277

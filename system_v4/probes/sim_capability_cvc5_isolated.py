@@ -12,6 +12,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row only verifies finite cvc5 SMT capability "
+    "on ordinary SAT/UNSAT/model queries; it does not claim bridge, "
+    "nonclassical, or coupled-tool behavior."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates cvc5 SMT solver capability alone; "

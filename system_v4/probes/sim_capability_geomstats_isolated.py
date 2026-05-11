@@ -12,6 +12,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row isolates geomstats manifold API behavior "
+    "on finite numerical examples; it does not claim GStack, bridge, or "
+    "nonclassical geometry admission."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates geomstats differential geometry capabilities alone; "

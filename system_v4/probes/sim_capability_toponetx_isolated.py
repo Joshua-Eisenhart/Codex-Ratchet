@@ -12,6 +12,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row isolates TopoNetX finite cell/simplicial "
+    "operations; it does not promote nested geometry, GStack, or "
+    "nonclassical admission."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates toponetx topological complex capabilities alone; "

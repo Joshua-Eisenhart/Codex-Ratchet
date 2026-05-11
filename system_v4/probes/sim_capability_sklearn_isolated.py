@@ -12,6 +12,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row isolates sklearn finite ML/statistics "
+    "capability; it is not evidence for bridge, QIT, or nonclassical "
+    "engine behavior."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates sklearn capability alone; "

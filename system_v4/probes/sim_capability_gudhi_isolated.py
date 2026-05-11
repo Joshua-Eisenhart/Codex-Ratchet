@@ -12,6 +12,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row isolates GUDHI finite topology capability "
+    "on explicit complexes; it does not claim bridge coupling or "
+    "nonclassical topology admission."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates gudhi persistent homology capabilities alone; "

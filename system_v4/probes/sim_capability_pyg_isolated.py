@@ -12,6 +12,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row isolates PyG graph/tensor capability "
+    "on finite graph fixtures; it does not admit any QIT, GStack, or "
+    "nonclassical geometry claim."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates PyG (torch_geometric) graph learning capabilities alone; "

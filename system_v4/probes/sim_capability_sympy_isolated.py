@@ -12,6 +12,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row isolates SymPy symbolic manipulation "
+    "on finite algebraic fixtures; it does not claim proof admission, "
+    "bridge coupling, or nonclassical dynamics."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates sympy symbolic computation capability alone; "

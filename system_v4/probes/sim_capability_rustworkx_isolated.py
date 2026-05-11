@@ -12,6 +12,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row isolates rustworkx finite graph operations "
+    "and path/cycle checks; it does not claim bridge or nonclassical "
+    "operator coupling."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates rustworkx graph algorithm capabilities alone; "

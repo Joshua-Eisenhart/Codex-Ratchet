@@ -13,6 +13,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row isolates e3nn/PyTorch equivariance checks "
+    "as finite tensor computations; it does not promote geometric, bridge, "
+    "or nonclassical engine claims."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates e3nn equivariant neural network capabilities alone; "

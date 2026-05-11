@@ -13,6 +13,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row isolates HDBSCAN clustering capability "
+    "on finite data; it is not evidence for bridge or nonclassical "
+    "constraint dynamics."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates hdbscan clustering capability alone; "

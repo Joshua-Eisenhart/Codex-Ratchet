@@ -19,16 +19,22 @@ from pathlib import Path
 
 REPO = Path("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
 PROBES_DIR = REPO / "system_v4" / "probes"
+RESULTS_DIR = PROBES_DIR / "a2_state" / "sim_results"
 VERIFY_SCRIPT = REPO / "scripts" / "verify_load_bearing_has_capability_probe.py"
 
 
 def module_literal(tree: ast.AST, name: str):
     vals = []
     for node in ast.iter_child_nodes(tree):
-        if not isinstance(node, ast.Assign):
-            continue
-        for target in node.targets:
-            if isinstance(target, ast.Name) and target.id == name:
+        if isinstance(node, ast.Assign):
+            for target in node.targets:
+                if isinstance(target, ast.Name) and target.id == name:
+                    try:
+                        vals.append(ast.literal_eval(node.value))
+                    except (ValueError, SyntaxError):
+                        pass
+        elif isinstance(node, ast.AnnAssign):
+            if isinstance(node.target, ast.Name) and node.target.id == name and node.value is not None:
                 try:
                     vals.append(ast.literal_eval(node.value))
                 except (ValueError, SyntaxError):
@@ -88,6 +94,16 @@ def subscript_load_bearing_tools(tree: ast.AST) -> list[str]:
     contract evidence even when they are not in the initial literal dict.
     """
 
+    depth_aliases = {"TOOL_INTEGRATION_DEPTH", "tool_integration_depth"}
+    for node in ast.iter_child_nodes(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        for target in node.targets:
+            if not isinstance(target, ast.Name):
+                continue
+            if isinstance(node.value, ast.Name) and node.value.id in depth_aliases:
+                depth_aliases.add(target.id)
+
     tools = []
     for node in ast.walk(tree):
         if not isinstance(node, ast.Assign):
@@ -97,7 +113,7 @@ def subscript_load_bearing_tools(tree: ast.AST) -> list[str]:
                 continue
             if not isinstance(target.value, ast.Name):
                 continue
-            if target.value.id not in {"TOOL_INTEGRATION_DEPTH", "tool_integration_depth"}:
+            if target.value.id not in depth_aliases:
                 continue
             tool = literal_key(target.slice)
             if tool is None:
@@ -109,6 +125,32 @@ def subscript_load_bearing_tools(tree: ast.AST) -> list[str]:
             if value == "load_bearing":
                 tools.append(str(tool))
     return sorted(set(tools))
+
+
+def result_load_bearing_tools(path: Path) -> list[str]:
+    """Read existing result receipts when source declarations are dynamic."""
+    stems = [path.stem]
+    if path.stem.startswith("sim_"):
+        stems.append(path.stem[4:])
+    candidates = [RESULTS_DIR / f"{stem}_results.json" for stem in stems]
+    for result_path in candidates:
+        if not result_path.exists():
+            continue
+        try:
+            data = json.loads(result_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        depth = (
+            data.get("tool_integration_depth")
+            or data.get("TOOL_INTEGRATION_DEPTH")
+            or data.get("summary", {}).get("tool_integration_depth")
+        )
+        if not isinstance(depth, dict):
+            continue
+        tools = sorted(str(tool) for tool, level in depth.items() if level == "load_bearing")
+        if tools:
+            return tools
+    return []
 
 
 def sim_paths(scope_files: list[str] | None) -> list[Path]:
@@ -147,13 +189,15 @@ def main() -> int:
         classification = module_literal(tree, "CLASSIFICATION") or module_literal(tree, "classification")
         if classification != "canonical":
             continue
-        depth = extract_tool_integration_depth(path) or {}
+        depth = extract_tool_integration_depth(path) or module_literal(tree, "TOOL_INTEGRATION_DEPTH") or {}
         load_bearing_tools = sorted(
             str(tool) for tool, level in depth.items()
             if level == "load_bearing"
         )
         if not load_bearing_tools:
             load_bearing_tools = subscript_load_bearing_tools(tree)
+        if not load_bearing_tools:
+            load_bearing_tools = result_load_bearing_tools(path)
         fallback_used_tools = []
         if not load_bearing_tools:
             fallback_used_tools = manifest_used_tools(tree)

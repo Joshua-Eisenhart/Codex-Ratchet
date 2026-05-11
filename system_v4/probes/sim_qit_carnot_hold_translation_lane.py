@@ -13,7 +13,7 @@ import pathlib
 classification = "classical_baseline"
 
   # downgraded: systematic_batch_no_test_sections_2026-04-17
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "translation_lane"
 CLASSIFICATION_NOTE = (
     "Promoted QIT-aligned Carnot hold-translation lane built from the open "
     "adaptive-hold sweep and the strict hold-policy companion. It reuses the "

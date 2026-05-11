@@ -13,7 +13,7 @@ import pathlib
 classification = "classical_baseline"
 
   # downgraded: systematic_batch_no_test_sections_2026-04-17
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "translation_lane"
 divergence_log = (
     "Promoted QIT-aligned Carnot irreversibility translation lane built from "
     "the open duration sweep and the strict irreversibility companion. It "

@@ -13,7 +13,7 @@ import pathlib
 classification = "classical_baseline"  # auto-backfill  # downgraded: systematic_batch_no_test_sections_2026-04-17
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "translation_lane"
 divergence_log = (
     "Reconciled QIT-aligned record/reset translation lane for Szilard. It uses "
     "a calibrated reset-effect mapping on top of the existing record/reset "

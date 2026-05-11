@@ -13,7 +13,7 @@ import pathlib
 classification = "classical_baseline"  # auto-backfill  # downgraded: systematic_batch_no_test_sections_2026-04-17
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "translation_lane"
 divergence_log = (
     "Szilard record repair translation lane: it stays a translation surface "
     "for the improved open record/reset sweep, reuses the existing repair and "

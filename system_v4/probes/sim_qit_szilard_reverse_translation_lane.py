@@ -14,7 +14,7 @@ import pathlib
 classification = "classical_baseline"  # auto-backfill
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "translation_lane"
 divergence_log = (
     "QIT-aligned Szilard reverse/recovery translation lane built from the "
     "strict bidirectional base and the strict reverse/recovery companion. It "

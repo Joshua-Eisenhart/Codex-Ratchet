@@ -18,7 +18,7 @@ from statistics import mean
 classification = "classical_baseline"  # auto-backfill
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "translation_lane"
 divergence_log = (
     "QIT-aligned Szilard record-reset translation lane built from the open "
     "record/reset sweep and the strict record companion. It keeps the shared "

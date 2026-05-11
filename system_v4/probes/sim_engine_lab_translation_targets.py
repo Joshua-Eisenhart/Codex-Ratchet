@@ -10,10 +10,10 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "canonical"
+classification = "controller_index"
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "controller_index"
 divergence_log = (
     "Controller surface that converts the repair-priority queue into explicit "
     "translation targets. It is not a theorem surface."

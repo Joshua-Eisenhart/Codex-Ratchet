@@ -12,10 +12,10 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "canonical"
+classification = "companion_index"
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "companion_index"
 divergence_log = (
     "Companion array that keeps to tighter QIT-style carriers and readouts "
     "while pointing to the closest open-lab analogues for later repair."

@@ -20,7 +20,7 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "canonical"
+classification = "controller_overlay"
 divergence_log = (
     "Controller overlay for the Weyl/Hopf geometry lane. It compares base "
     "legos, composed numeric rows, graph/proof bridge rows, and alternate-"
@@ -30,7 +30,7 @@ divergence_log = (
 DEMOTE_REASON = "controller overlay only; not owner math"
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "controller_overlay"
 CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [

@@ -13,7 +13,7 @@ import pathlib
 classification = "classical_baseline"  # auto-backfill  # downgraded: systematic_batch_no_test_sections_2026-04-17
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "translation_lane"
 divergence_log = (
     "Ordering-focused translation lane for the open Szilard hard-reset record "
     "carrier. It reuses the existing ordering refinement results and compares "

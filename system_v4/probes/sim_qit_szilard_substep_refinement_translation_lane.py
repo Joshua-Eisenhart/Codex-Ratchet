@@ -13,7 +13,7 @@ import pathlib
 classification = "classical_baseline"  # auto-backfill  # downgraded: systematic_batch_no_test_sections_2026-04-17
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "translation_lane"
 divergence_log = (
     "Promoted QIT-aligned Szilard substep refinement translation lane built from "
     "the open stochastic substep carrier and the strict finite two-qubit "

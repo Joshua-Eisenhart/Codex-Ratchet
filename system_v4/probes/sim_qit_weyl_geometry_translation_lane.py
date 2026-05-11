@@ -16,7 +16,7 @@ import pathlib
 classification = "classical_baseline"
 
   # downgraded: systematic_batch_no_test_sections_2026-04-17
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "translation_lane"
 divergence_log = (
     "Open-vs-strict Weyl/Hopf translation lane built from the open composed "
     "geometry stack and the strict finite-state geometry companion. It is a "

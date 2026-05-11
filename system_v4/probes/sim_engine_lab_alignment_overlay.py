@@ -11,10 +11,10 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "canonical"
+classification = "controller_overlay"
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "controller_overlay"
 divergence_log = (
     "Controller overlay that compares the open engine lab against stricter "
     "QIT-aligned companion surfaces and entropy/readout arrays when available."

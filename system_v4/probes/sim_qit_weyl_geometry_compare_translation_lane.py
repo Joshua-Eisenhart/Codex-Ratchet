@@ -18,7 +18,7 @@ from typing import Any
 classification = "classical_baseline"
 
   # downgraded: systematic_batch_no_test_sections_2026-04-17
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "translation_lane"
 divergence_log = (
     "Bounded open-vs-strict translation lane for the Weyl geometry carrier "
     "compare row. It compares the open comparison surface against the strict "

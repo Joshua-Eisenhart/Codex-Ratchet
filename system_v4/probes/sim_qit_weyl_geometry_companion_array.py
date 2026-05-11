@@ -21,7 +21,7 @@ from typing import Any
 classification = "classical_baseline"
 
   # downgraded: systematic_batch_no_test_sections_2026-04-17
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "companion_index"
 divergence_log = (
     "Companion array for the Weyl/Hopf geometry lane. It keeps the strict "
     "finite-state anchor separate from the open companion-ready rows and the "

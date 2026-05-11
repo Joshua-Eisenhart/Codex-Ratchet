@@ -13,7 +13,7 @@ import pathlib
 classification = "classical_baseline"
 
   # downgraded: systematic_batch_no_test_sections_2026-04-17
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "translation_lane"
 CLASSIFICATION_NOTE = (
     "Promoted QIT-aligned Szilard record ordering translation lane built from "
     "the open hard-reset carrier and the strict record/reset companion. It "

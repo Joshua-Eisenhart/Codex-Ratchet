@@ -16,7 +16,7 @@ import pathlib
 classification = "classical_baseline"
 
   # downgraded: systematic_batch_no_test_sections_2026-04-17
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "translation_lane"
 divergence_log = (
     "Promoted QIT-aligned Weyl/Hopf carrier translation lane built from the "
     "open carrier-array row and the strict finite-state companion. It keeps "

@@ -13,7 +13,7 @@ import pathlib
 classification = "classical_baseline"
 
   # downgraded: systematic_batch_no_test_sections_2026-04-17
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "translation_lane"
 divergence_log = (
     "Balanced Szilard substep translation lane built from the existing "
     "balanced refinement sweep and the strict QIT substep companion. It keeps "

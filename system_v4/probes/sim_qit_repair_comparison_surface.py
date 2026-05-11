@@ -13,10 +13,10 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "canonical"
+classification = "comparison_surface"
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "comparison_surface"
 divergence_log = (
     "Direct comparison surface between open-lab repair rows and their QIT-"
     "aligned repair companions. It keeps the lanes paired so closure, ordering, "

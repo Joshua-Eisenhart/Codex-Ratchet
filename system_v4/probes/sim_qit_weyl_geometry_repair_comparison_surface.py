@@ -19,7 +19,7 @@ from typing import Any
 classification = "classical_baseline"
 
   # downgraded: systematic_batch_no_test_sections_2026-04-17
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "comparison_surface"
 divergence_log = (
     "Direct comparison surface between the Weyl/Hopf geometry rows that are "
     "ready for stricter companion work and the finite-state strict companion "

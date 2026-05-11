@@ -26,6 +26,26 @@ import os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+CLAIM_CEILING = "canonical_local_weyl_wigner_phase_space_lego_only"
+NEXT_LEGO_TARGET = "none"
+PROMOTION_CONDITION = (
+    "requires separate reconciled queue row before coupling, bridge, axis, engine, "
+    "GStack, QIT, or nonclassical use"
+)
+BLOCKED_UNTIL = "exact parent receipts, queue row, result JSON, and ledger loopback are reconciled"
+DEMOTION_CONDITION = (
+    "demote if Wigner normalization, reconstruction, negativity, star-product, "
+    "or phase-space boundary criteria fail, or if this row is used for a higher-stage claim"
+)
+OUT_OF_SCOPE = [
+    "QIT engine admission",
+    "GStack admission",
+    "axis promotion",
+    "engine promotion",
+    "nonclassical proof",
+    "scientific coupling closure",
+]
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -673,6 +693,12 @@ if __name__ == "__main__":
         "name": "Weyl-Wigner Phase Space -- Discrete Qubit Wigner Function",
         "probe": "lego_weyl_wigner_phase_space",
         "purpose": "Verify discrete qubit Wigner kernels, normalization, negativity, and Stratonovich-Weyl structure",
+        "claim_ceiling": CLAIM_CEILING,
+        "next_lego_target": NEXT_LEGO_TARGET,
+        "promotion_condition": PROMOTION_CONDITION,
+        "blocked_until": BLOCKED_UNTIL,
+        "demotion_condition": DEMOTION_CONDITION,
+        "out_of_scope": OUT_OF_SCOPE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "tools_used": collect_tools_used(),

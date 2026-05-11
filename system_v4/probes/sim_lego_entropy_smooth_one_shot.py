@@ -35,6 +35,27 @@ import traceback
 import torch
 classification = "classical_baseline"  # auto-backfill
 
+CLAIM_CEILING = "canonical_local_one_shot_entropy_proxy_lego_only"
+NEXT_LEGO_TARGET = "none"
+PROMOTION_CONDITION = (
+    "requires separate reconciled queue row before coupling, bridge, axis, engine, "
+    "GStack, QIT, or nonclassical use"
+)
+BLOCKED_UNTIL = "exact parent receipts, queue row, result JSON, and ledger loopback are reconciled"
+DEMOTION_CONDITION = (
+    "demote if epsilon-trimmed min/max proxy, monotonicity, negative controls, "
+    "or boundary criteria fail, or if this proxy row is used as an exact entropy solver"
+)
+OUT_OF_SCOPE = [
+    "QIT engine admission",
+    "GStack admission",
+    "axis promotion",
+    "engine promotion",
+    "exact smooth entropy proof",
+    "nonclassical proof",
+    "scientific coupling closure",
+]
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -396,6 +417,12 @@ if __name__ == "__main__":
         "schema_version": "1.0",
         "classification": "canonical",
         "proxy_note": "Hypothesis-testing style proxy only; not an exact smooth min/max entropy solver",
+        "claim_ceiling": CLAIM_CEILING,
+        "next_lego_target": NEXT_LEGO_TARGET,
+        "promotion_condition": PROMOTION_CONDITION,
+        "blocked_until": BLOCKED_UNTIL,
+        "demotion_condition": DEMOTION_CONDITION,
+        "out_of_scope": OUT_OF_SCOPE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

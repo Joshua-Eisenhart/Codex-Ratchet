@@ -11,7 +11,7 @@
     {
       "proposal_family": "c4",
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 623,
+      "row_count": 619,
       "next_action": "owner_review_required_before_any_source_edit"
     },
     {
@@ -478,35 +478,8 @@
     "c4": {
       "present": true,
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 623,
+      "row_count": 619,
       "sample": [
-        {
-          "sim": "system_v4/probes/sim_3qubit_bridge_prototype.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "bridge",
-          "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
-          "sim": "system_v4/probes/sim_3qubit_full_cascade.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "classical",
-          "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
-          "sim": "system_v4/probes/sim_4qubit_cascade.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "classical",
-          "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
         {
           "sim": "system_v4/probes/sim_ab_cut_specification_canonical.py",
           "rule": "C4_divergence_log_missing",
@@ -518,15 +491,6 @@
         },
         {
           "sim": "system_v4/probes/sim_adams_spectral_sequence_constraint_canonical.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "classical",
-          "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
-          "sim": "system_v4/probes/sim_adversarial_ratchet.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
           "runner_class": "classical",
@@ -661,6 +625,46 @@
             "Considered Smith normal form for integer homology; used numpy real rank mod-2 agnostic because torus has free Z homology.",
             "Rejected gudhi because classification demands classical-baseline with numpy-only decisive path."
           ],
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_bishop_gromov_constraint_canonical.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "classical",
+          "current_divergence_log": null,
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_blackwell_comparison_classical.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "classical",
+          "current_divergence_log": null,
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_bottleneck_distance_classical.py",
+          "rule": "C4_divergence_log_empty",
+          "classification": "classical_baseline",
+          "runner_class": "classical",
+          "current_divergence_log": [
+            "Implemented via binary search + bipartite feasibility; rejected LP formulation as over-heavy.",
+            "Diagonal-matching modeled as per-point phantom nodes with cost (d-b)/2.",
+            "Used scipy not required; plain Hungarian-style greedy augmentation is adequate for N<=20 points."
+          ],
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_bridge_axis0_gradient_autograd.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "bridge",
+          "current_divergence_log": null,
           "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
           "mode": "dry_run_no_source_edits"
         }

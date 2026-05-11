@@ -1,41 +1,41 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-10T21:51:10.719972+00:00",
+  "generated_at": "2026-05-11T02:00:12.898432+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3932,
-    "result_json_count": 440,
-    "linked_result_json_count": 409,
-    "unlinked_result_json_count": 31,
+    "source_count": 3934,
+    "result_json_count": 446,
+    "linked_result_json_count": 411,
+    "unlinked_result_json_count": 35,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3525,
-      "rerun_or_admission_candidate": 308,
+      "rerun_or_admission_candidate": 310,
       "legacy_result_or_repair_needed": 14,
       "contract_shaped_but_tool_depth_thin": 74,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
     },
     "family_counts": {
-      "channel_operator": 777,
-      "entropy_information": 580,
-      "thermo_engine": 424,
+      "channel_operator": 778,
+      "entropy_information": 581,
+      "thermo_engine": 425,
       "uncategorized": 335,
-      "axis_bridge": 656,
+      "axis_bridge": 658,
       "graveyard_negative": 1699,
-      "root_admission": 839,
+      "root_admission": 841,
       "hopf_torus": 591,
       "weyl_spinor_clifford": 781,
-      "geometry_gstack_gtower": 716,
-      "density_carrier": 478,
+      "geometry_gstack_gtower": 718,
+      "density_carrier": 479,
       "classical_baseline": 1094,
-      "gerbe_dirac_mera_spectral": 668,
+      "gerbe_dirac_mera_spectral": 669,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2703,
+      "numpy": 2705,
       "sympy": 2236,
       "scipy": 249,
       "pytorch": 1973,
@@ -44,7 +44,7 @@
       "qutip": 44,
       "e3nn": 840,
       "gudhi": 897,
-      "z3": 1894,
+      "z3": 1895,
       "clifford": 1329,
       "rustworkx": 1074,
       "toponetx": 915,
@@ -54,11 +54,11 @@
       "qiskit": 12
     },
     "load_bearing_tool_counts": {
-      "numpy": 262,
+      "numpy": 264,
       "cvc5": 505,
       "pytorch": 1128,
       "rustworkx": 282,
-      "z3": 729,
+      "z3": 730,
       "sympy": 552,
       "clifford": 274,
       "xgi": 200,
@@ -74,7 +74,7 @@
     },
     "result_classification_counts": {
       "classical_baseline": 89,
-      "canonical": 250,
+      "canonical": 252,
       "supporting": 11,
       "exploratory": 30,
       "research_support": 6,
@@ -84,7 +84,7 @@
       "sidecar_probe": 2,
       "exploratory_signal": 2
     },
-    "repair_candidate_count": 396,
+    "repair_candidate_count": 398,
     "source_only_count": 3525
   },
   "admitted_stems": [
@@ -103,6 +103,7 @@
     "system_v4/a2_state/sim_results/deep_geometric_audit_results.json",
     "system_v4/a2_state/sim_results/holodeck_fep_results.json",
     "system_v4/a2_state/sim_results/type2_process_cycle_results.json",
+    "system_v4/probes/a2_state/sim_results/actual_lego_normalization_reprobe_runner_results.json",
     "system_v4/probes/a2_state/sim_results/berry_phase_u1_abelian_results.json",
     "system_v4/probes/a2_state/sim_results/clifford_weyl_transport_results.json",
     "system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json",
@@ -111,6 +112,9 @@
     "system_v4/probes/a2_state/sim_results/lego_stack_audit_results.json",
     "system_v4/probes/a2_state/sim_results/lego_tool_reporting_audit_results.json",
     "system_v4/probes/a2_state/sim_results/migration_contract_audit_results.json",
+    "system_v4/probes/a2_state/sim_results/prime_qit_sidecar_probe_N128_results.json",
+    "system_v4/probes/a2_state/sim_results/prime_qit_sidecar_probe_N256_results.json",
+    "system_v4/probes/a2_state/sim_results/prime_qit_sidecar_probe_N64_results.json",
     "system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json",
     "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
     "system_v4/probes/a2_state/sim_results/rosetta_goal_completion_audit_results.json",
@@ -284,6 +288,40 @@
       "late_stage_signal": false,
       "has_contract_shape": false,
       "inventory_status": "legacy_result_or_repair_needed"
+    },
+    {
+      "stem": "sim_admissibility_manifold_mc",
+      "source_path": "system_v4/probes/sim_admissibility_manifold_mc.py",
+      "families": [
+        "root_admission",
+        "density_carrier",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge"
+      ],
+      "tools": {
+        "numpy": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/admissibility_manifold_mc_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_axiom_n01_composition_order_distinguishes",
@@ -3557,41 +3595,6 @@
       "source_has_tool_integration_depth": true,
       "result_paths": [
         "system_v4/probes/a2_state/sim_results/sim_e3nn_irreps_tensor_product_micro_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "canonical"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": false,
-      "has_contract_shape": true,
-      "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_e3nn_relay_equivariance",
-      "source_path": "system_v4/probes/sim_e3nn_relay_equivariance.py",
-      "families": [
-        "density_carrier",
-        "channel_operator",
-        "graveyard_negative"
-      ],
-      "tools": {
-        "numpy": "imported",
-        "pytorch": "load_bearing",
-        "e3nn": "load_bearing"
-      },
-      "load_bearing_tools": [
-        "e3nn",
-        "pytorch"
-      ],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/e3nn_relay_equivariance_results.json"
       ],
       "result_count": 1,
       "result_classifications": [
@@ -13085,6 +13088,40 @@
       "late_stage_signal": false,
       "has_contract_shape": false,
       "inventory_status": "source_only"
+    },
+    {
+      "stem": "sim_admissibility_manifold_mc",
+      "source_path": "system_v4/probes/sim_admissibility_manifold_mc.py",
+      "families": [
+        "root_admission",
+        "density_carrier",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge"
+      ],
+      "tools": {
+        "numpy": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/admissibility_manifold_mc_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_admissibility_manifold_mc_classical",
@@ -56664,6 +56701,43 @@
       "late_stage_signal": false,
       "has_contract_shape": false,
       "inventory_status": "source_only"
+    },
+    {
+      "stem": "sim_f01_finitude_constraint",
+      "source_path": "system_v4/probes/sim_f01_finitude_constraint.py",
+      "families": [
+        "root_admission",
+        "channel_operator",
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "gerbe_dirac_mera_spectral",
+        "axis_bridge"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "numpy",
+        "z3"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/f01_finitude_constraint_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_f01_finitude_constraint_classical",

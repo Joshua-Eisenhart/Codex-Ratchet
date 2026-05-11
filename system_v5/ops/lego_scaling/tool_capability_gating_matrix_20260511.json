@@ -6,7 +6,7 @@
     "system_v4/probes/a2_state/sim_results/load_bearing_capability_audit.json"
   ],
   "active_stage": "lego_tool_capability_boundary",
-  "stage_gate": "Load-bearing tool declaration gate is green for audited sim sources. Capability receipts permit bounded tool-lego fit and bounded micro-integration rows, but scientific lego couplings remain gated by coupling readiness evidence.",
+  "stage_gate": "Capability-probe gate is green for load-bearing declarations in audited sim sources: every declared load_bearing tool has a passing capability receipt. A separate canonical-zero-load-bearing estate audit remains a broader contract concern and is not closed by this matrix. Scientific lego couplings remain gated by coupling readiness evidence.",
   "summary": {
     "passing_capability_receipt": 27
   },
@@ -714,9 +714,10 @@
   "resolved_blockers": [
     "Standard-library pseudo-tools json/pathlib/python_stdlib/python_json reclassified as supportive in source.",
     "Optional isolated capability probes refreshed for datasketch, deap, evotorch, hdbscan, hypothesis, optuna, pymoo, pynndescent, ribs, sklearn, and umap.",
-    "verify_load_bearing_has_capability_probe.py reports 0 violations."
+    "verify_load_bearing_has_capability_probe.py reports 0 declaration/probe violations."
   ],
   "remaining_blockers": [
+    "The capability-probe gate does not prove every canonical sim has at least one load-bearing tool; this broader estate audit remains open outside the touched source set.",
     "Queue remains idle with blocked coupling prerequisite artifact; this matrix does not itself open scientific coupling stage.",
     "Generated result receipts for refreshed optional probes must be treated as evidence snapshots if committed."
   ],

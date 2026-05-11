@@ -4,8 +4,8 @@ window.PRIME_ROSETTA_SIDECAR_FIT_DATA = {
     "all_pass": true,
     "fit_count": 3,
     "all_fits_diagnostic_only": true,
-    "max_fit": 0.5610885491338921,
-    "min_fit": 0.5515185173721441,
+    "max_fit": 0.5677268648857039,
+    "min_fit": 0.55804360876269,
     "claim_ceiling": "sidecar_fit_diagnostic_only",
     "recommendation": "retool",
     "visual_payload": "visualizer/prime-rosetta-sidecar-fit-data.js",
@@ -14,17 +14,17 @@ window.PRIME_ROSETTA_SIDECAR_FIT_DATA = {
   "fits": [
     {
       "lego_id": "carnot",
-      "cosine_fit": 0.5546486727204895,
-      "scipy_cosine_fit": 0.5546486727204893,
-      "fit_delta": 1.1102230246251565e-16,
+      "cosine_fit": 0.5612107974092314,
+      "scipy_cosine_fit": 0.5612107974092314,
+      "fit_delta": 0.0,
       "allowed_next": false,
       "status": "diagnostic_sidecar_only",
       "reason": "Prime sidecar has no prime proof, QIT gate, GStack gate, or axis admission."
     },
     {
       "lego_id": "szilard",
-      "cosine_fit": 0.5515185173721441,
-      "scipy_cosine_fit": 0.5515185173721441,
+      "cosine_fit": 0.55804360876269,
+      "scipy_cosine_fit": 0.55804360876269,
       "fit_delta": 0.0,
       "allowed_next": false,
       "status": "diagnostic_sidecar_only",
@@ -32,9 +32,9 @@ window.PRIME_ROSETTA_SIDECAR_FIT_DATA = {
     },
     {
       "lego_id": "iching_64",
-      "cosine_fit": 0.5610885491338921,
-      "scipy_cosine_fit": 0.561088549133892,
-      "fit_delta": 1.1102230246251565e-16,
+      "cosine_fit": 0.5677268648857039,
+      "scipy_cosine_fit": 0.5677268648857039,
+      "fit_delta": 0.0,
       "allowed_next": false,
       "status": "diagnostic_sidecar_only",
       "reason": "Prime sidecar has no prime proof, QIT gate, GStack gate, or axis admission."
@@ -47,17 +47,17 @@ window.PRIME_ROSETTA_SIDECAR_FIT_DATA = {
       {
         "left": "prime_sidecar",
         "right": "carnot",
-        "weight": 0.5546486727204895
+        "weight": 0.5612107974092314
       },
       {
         "left": "prime_sidecar",
         "right": "szilard",
-        "weight": 0.5515185173721441
+        "weight": 0.55804360876269
       },
       {
         "left": "prime_sidecar",
         "right": "iching_64",
-        "weight": 0.5610885491338921
+        "weight": 0.5677268648857039
       }
     ]
   }

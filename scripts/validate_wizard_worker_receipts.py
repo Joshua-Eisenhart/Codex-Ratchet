@@ -11,7 +11,7 @@ from typing import Any
 import jsonschema
 
 
-REQUIRED = {
+REQUIRED_ALWAYS = {
     "schema",
     "wizard_version",
     "route",
@@ -19,10 +19,9 @@ REQUIRED = {
     "pool",
     "launch_surface",
     "terminal_status",
-    "artifact_path",
-    "accepted_conclusion",
     "counts_toward_topology",
 }
+REQUIRED_WHEN_COUNTED = {"artifact_path", "accepted_conclusion"}
 
 POOLS = {"codex-native", "claude-bridge", "gemini", "omx", "tmux", "tool"}
 EXTERNAL_POOLS = {"claude-bridge", "gemini", "omx", "tmux"}
@@ -63,7 +62,9 @@ def validate_receipt(receipt: dict[str, Any], label: str, *, require_artifacts: 
     except Exception as exc:  # noqa: BLE001 - keep validator failures user-facing.
         errors.append(f"{label}: could not load receipt schema: {exc}")
 
-    missing = sorted(REQUIRED - receipt.keys())
+    missing = sorted(REQUIRED_ALWAYS - receipt.keys())
+    if receipt.get("counts_toward_topology") is True:
+        missing.extend(sorted(REQUIRED_WHEN_COUNTED - receipt.keys()))
     if missing:
         errors.append(f"{label}: missing required fields: {', '.join(missing)}")
 

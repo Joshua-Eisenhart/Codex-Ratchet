@@ -40,6 +40,8 @@ LIVE_SURFACE_GLOBS = [
 WORKER_RECEIPT_GLOBS = [
     (ROOT / "system_v5/wizard/receipts", "**/*.json"),
 ]
+BYPASS_RECEIPT_GLOB = ROOT / "system_v5/ops/wizard_admissions"
+BYPASS_SENTINEL = ROOT / "system_v5/ops/.allow_admission_bypass_recovery"
 
 LEGACY_ALLOWED = {
     ROOT / "scripts/wizard_full_matrix_run.py",
@@ -229,6 +231,17 @@ def worker_receipt_check(now: datetime) -> dict[str, Any]:
     return check
 
 
+def recent_admission_bypass_receipts(now: datetime) -> list[str]:
+    if not BYPASS_RECEIPT_GLOB.exists():
+        return []
+    cutoff = now - timedelta(hours=24)
+    return [
+        rel(path)
+        for path in sorted(BYPASS_RECEIPT_GLOB.glob("bypass_*.json"))
+        if datetime.fromtimestamp(path.stat().st_mtime, timezone.utc) >= cutoff
+    ]
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--skip-preflight", action="store_true", help="Skip packet/helper subprocess checks.")
@@ -240,21 +253,34 @@ def main(argv: list[str] | None = None) -> int:
     heartbeat = heartbeat_status(counts)
     checks: dict[str, Any] = {}
 
+    now = datetime.now(timezone.utc)
+    checks["worker_pool_receipts"] = worker_receipt_check(now)
+
     if not args.skip_preflight:
         checks["packet_conformance"] = run(
             ["python3", str(HOME / "wiki/wizard/packet-v4-2-current/conformance/validate_v4_2_packet.py")]
         )
         checks["helper_processes"] = run(["python3", "scripts/helper_process_audit.py", "--strict"])
-        checks["worker_pool_receipts"] = worker_receipt_check(datetime.now(timezone.utc))
+
+    recent_bypass_receipts = recent_admission_bypass_receipts(now)
+    bypass_sentinel_present = BYPASS_SENTINEL.exists()
+    worker_pool_receipts_warning = None
+    if checks.get("worker_pool_receipts", {}).get("checked") == 0:
+        worker_pool_receipts_warning = "no_recent_receipts_present_topology_counts_not_independently_validated"
 
     hard_failures = bool(findings)
     hard_failures = hard_failures or any(not check.get("ok") for check in checks.values())
     hard_failures = hard_failures or heartbeat["status"] == "needs_next_micro_move_or_blocked_reason"
     hard_failures = hard_failures or (args.skip_preflight and not args.accept_skipped_preflight)
+    hard_failures = hard_failures or bypass_sentinel_present
 
     report = {
         "ok": not hard_failures,
         "skipped_preflight": args.skip_preflight,
+        "bypass_sentinel_present": bypass_sentinel_present,
+        "bypass_sentinel_path": rel(BYPASS_SENTINEL),
+        "recent_admission_bypass_receipts": recent_bypass_receipts,
+        "worker_pool_receipts_warning": worker_pool_receipts_warning,
         "legacy_allowed_files": [rel(path) for path in sorted(LEGACY_ALLOWED)],
         "version_drift_findings": findings,
         "queue_counts": counts,

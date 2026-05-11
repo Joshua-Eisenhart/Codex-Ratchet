@@ -11,8 +11,6 @@
     "pool",
     "launch_surface",
     "terminal_status",
-    "artifact_path",
-    "accepted_conclusion",
     "counts_toward_topology"
   ],
   "properties": {
@@ -31,7 +29,8 @@
       "minLength": 1
     },
     "child_id": {
-      "type": ["string", "null"]
+      "type": "string",
+      "minLength": 1
     },
     "pool": {
       "enum": ["codex-native", "claude-bridge", "gemini", "omx", "tmux", "tool"]
@@ -63,6 +62,40 @@
     },
     "notes": {
       "type": "string"
+    },
+    "proposed_queue_entries": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "model": {
+      "type": "string"
+    },
+    "cost_usd": {
+      "type": ["number", "string"]
+    },
+    "prompt_hash": {
+      "type": "string"
+    },
+    "route_local_mini_mmm_path": {
+      "type": "string"
+    },
+    "task_card": {
+      "type": "object"
+    },
+    "voice_method_check": {
+      "type": "string"
+    },
+    "closeout_check": {
+      "type": "string"
+    },
+    "receipt_id": {
+      "type": "string"
+    },
+    "parent_receipt_id": {
+      "type": "string"
     }
   },
   "allOf": [
@@ -76,6 +109,7 @@
         "required": ["counts_toward_topology"]
       },
       "then": {
+        "required": ["artifact_path", "accepted_conclusion"],
         "properties": {
           "terminal_status": {
             "const": "completed"
@@ -135,6 +169,34 @@
         "not": {
           "required": ["child_id"]
         }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "pool": {
+            "const": "codex-native"
+          },
+          "counts_toward_topology": {
+            "const": true
+          }
+        },
+        "required": ["pool", "counts_toward_topology"]
+      },
+      "then": {
+        "anyOf": [
+          {
+            "required": ["child_id"]
+          },
+          {
+            "properties": {
+              "controller_marker": {
+                "const": true
+              }
+            },
+            "required": ["controller_marker"]
+          }
+        ]
       }
     }
   ],

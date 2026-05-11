@@ -38,6 +38,136 @@ def test_worker_receipt_validator_accepts_counted_codex_receipt(tmp_path: Path) 
     assert json.loads(result.stdout)["ok"] is True
 
 
+def test_worker_receipt_validator_accepts_documented_extras(tmp_path: Path) -> None:
+    receipt = tmp_path / "receipt.json"
+    receipt.write_text(
+        json.dumps(
+            {
+                "schema": "wizard-v4.2-worker-receipt",
+                "wizard_version": "v4.2",
+                "route": "Decision",
+                "parent_id": "parent-extra",
+                "child_id": "child-extra",
+                "pool": "codex-native",
+                "launch_surface": "spawn_agent",
+                "terminal_status": "completed",
+                "artifact_path": "system_v5/wizard/receipts/example.json",
+                "accepted_conclusion": "usable route result",
+                "counts_toward_topology": True,
+                "proposed_queue_entries": ["tool_capability_z3"],
+                "model": "claude-opus-4-7",
+                "prompt_hash": "abc123",
+            }
+        )
+    )
+
+    result = run_python("scripts/validate_wizard_worker_receipts.py", str(receipt))
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert json.loads(result.stdout)["ok"] is True
+
+
+def test_worker_receipt_validator_rejects_unknown_field(tmp_path: Path) -> None:
+    receipt = tmp_path / "receipt.json"
+    receipt.write_text(
+        json.dumps(
+            {
+                "schema": "wizard-v4.2-worker-receipt",
+                "wizard_version": "v4.2",
+                "route": "Decision",
+                "parent_id": "parent-unknown",
+                "child_id": "child-unknown",
+                "pool": "codex-native",
+                "launch_surface": "spawn_agent",
+                "terminal_status": "completed",
+                "artifact_path": "system_v5/wizard/receipts/example.json",
+                "accepted_conclusion": "usable route result",
+                "counts_toward_topology": True,
+                "frobnicate": True,
+            }
+        )
+    )
+
+    result = run_python("scripts/validate_wizard_worker_receipts.py", str(receipt))
+
+    assert result.returncode == 1
+    assert "Additional properties are not allowed" in result.stdout
+
+
+def test_worker_receipt_validator_accepts_blocked_external_without_artifact(tmp_path: Path) -> None:
+    receipt = tmp_path / "receipt.json"
+    receipt.write_text(
+        json.dumps(
+            {
+                "schema": "wizard-v4.2-worker-receipt",
+                "wizard_version": "v4.2",
+                "route": "Failure",
+                "parent_id": "parent-blocked",
+                "pool": "claude-bridge",
+                "launch_surface": "claude task",
+                "terminal_status": "blocked",
+                "counts_toward_topology": False,
+                "external_worker": True,
+            }
+        )
+    )
+
+    result = run_python("scripts/validate_wizard_worker_receipts.py", str(receipt))
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert json.loads(result.stdout)["ok"] is True
+
+
+def test_worker_receipt_validator_rejects_counted_missing_artifact_key(tmp_path: Path) -> None:
+    receipt = tmp_path / "receipt.json"
+    receipt.write_text(
+        json.dumps(
+            {
+                "schema": "wizard-v4.2-worker-receipt",
+                "wizard_version": "v4.2",
+                "route": "Decision",
+                "parent_id": "parent-missing-artifact",
+                "child_id": "child-missing-artifact",
+                "pool": "codex-native",
+                "launch_surface": "spawn_agent",
+                "terminal_status": "completed",
+                "accepted_conclusion": "usable route result",
+                "counts_toward_topology": True,
+            }
+        )
+    )
+
+    result = run_python("scripts/validate_wizard_worker_receipts.py", str(receipt))
+
+    assert result.returncode == 1
+    assert "artifact_path" in result.stdout
+
+
+def test_worker_receipt_validator_schema_requires_codex_child_or_controller(tmp_path: Path) -> None:
+    receipt = tmp_path / "receipt.json"
+    receipt.write_text(
+        json.dumps(
+            {
+                "schema": "wizard-v4.2-worker-receipt",
+                "wizard_version": "v4.2",
+                "route": "Decision",
+                "parent_id": "parent-schema",
+                "pool": "codex-native",
+                "launch_surface": "spawn_agent",
+                "terminal_status": "completed",
+                "artifact_path": "system_v5/wizard/receipts/example.json",
+                "accepted_conclusion": "usable route result",
+                "counts_toward_topology": True,
+            }
+        )
+    )
+
+    result = run_python("scripts/validate_wizard_worker_receipts.py", str(receipt))
+
+    assert result.returncode == 1
+    assert "schema validation failed" in result.stdout
+
+
 def test_worker_receipt_validator_rejects_uncounted_external_blur(tmp_path: Path) -> None:
     receipt = tmp_path / "receipt.json"
     receipt.write_text(
@@ -308,6 +438,43 @@ def test_runtime_audit_worker_receipt_check_rejects_bad_recent_receipt(tmp_path:
 
     assert result["ok"] is False
     assert result["checked"] == 1
+
+
+def test_runtime_audit_flags_live_bypass_sentinel(tmp_path: Path) -> None:
+    script = ROOT / "scripts/wizard_v4_2_runtime_audit.py"
+    module_globals = runpy.run_path(str(script), run_name="wizard_v4_2_runtime_audit")
+    sentinel = tmp_path / "system_v5/ops/.allow_admission_bypass_recovery"
+    sentinel.parent.mkdir(parents=True)
+    sentinel.write_text("manual recovery\n")
+    main = module_globals["main"]
+    main.__globals__["BYPASS_SENTINEL"] = sentinel
+    main.__globals__["BYPASS_RECEIPT_GLOB"] = tmp_path / "system_v5/ops/wizard_admissions"
+
+    result = main(["--skip-preflight", "--accept-skipped-preflight"])
+
+    assert result == 1
+
+
+def test_runtime_audit_surfaces_recent_bypass_receipt(tmp_path: Path) -> None:
+    script = ROOT / "scripts/wizard_v4_2_runtime_audit.py"
+    module_globals = runpy.run_path(str(script), run_name="wizard_v4_2_runtime_audit")
+    bypass_dir = tmp_path / "system_v5/ops/wizard_admissions"
+    bypass_dir.mkdir(parents=True)
+    receipt = bypass_dir / "bypass_20260511T000000Z.json"
+    receipt.write_text("{}")
+    recent = module_globals["recent_admission_bypass_receipts"]
+    recent.__globals__["BYPASS_RECEIPT_GLOB"] = bypass_dir
+
+    paths = recent(datetime.now(timezone.utc))
+
+    assert str(receipt) in paths or "system_v5/ops/wizard_admissions/bypass_20260511T000000Z.json" in paths
+
+
+def test_runtime_audit_empty_worker_pool_zero_pass_emits_warning() -> None:
+    result = run_python("scripts/wizard_v4_2_runtime_audit.py", "--skip-preflight", "--accept-skipped-preflight")
+
+    payload = json.loads(result.stdout)
+    assert payload["worker_pool_receipts_warning"] == "no_recent_receipts_present_topology_counts_not_independently_validated"
 
 
 def test_sim_runner_bypass_receipt_uses_json_booleans_and_rechecks() -> None:

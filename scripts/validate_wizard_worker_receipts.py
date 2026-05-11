@@ -8,6 +8,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+import jsonschema
+
 
 REQUIRED = {
     "schema",
@@ -33,6 +35,7 @@ TERMINAL_STATUSES = {
     "not_launched",
     "superseded",
 }
+SCHEMA_PATH = Path(__file__).resolve().parents[1] / "system_v5/wizard/schemas/WIZARD_V4_2_WORKER_RECEIPT_SCHEMA.json"
 
 
 def load_receipts(path: Path) -> list[dict[str, Any]]:
@@ -52,6 +55,14 @@ def present(value: Any) -> bool:
 
 def validate_receipt(receipt: dict[str, Any], label: str, *, require_artifacts: bool = False) -> list[str]:
     errors: list[str] = []
+    try:
+        schema = json.loads(SCHEMA_PATH.read_text())
+        jsonschema.validate(receipt, schema)
+    except jsonschema.ValidationError as exc:
+        errors.append(f"{label}: schema validation failed: {exc.message}")
+    except Exception as exc:  # noqa: BLE001 - keep validator failures user-facing.
+        errors.append(f"{label}: could not load receipt schema: {exc}")
+
     missing = sorted(REQUIRED - receipt.keys())
     if missing:
         errors.append(f"{label}: missing required fields: {', '.join(missing)}")
@@ -73,6 +84,8 @@ def validate_receipt(receipt: dict[str, Any], label: str, *, require_artifacts: 
 
     if receipt.get("pool") in EXTERNAL_POOLS and receipt.get("external_worker") is not True:
         errors.append(f"{label}: external pool receipts must set external_worker=true")
+    if receipt.get("pool") == "tool" and receipt.get("counts_toward_topology") is True:
+        errors.append(f"{label}: tool receipts cannot count toward Wizard topology")
 
     if receipt.get("counts_toward_topology") is True:
         if receipt.get("terminal_status") != "completed":
@@ -81,8 +94,11 @@ def validate_receipt(receipt: dict[str, Any], label: str, *, require_artifacts: 
             errors.append(f"{label}: topology-counted receipts require artifact_path")
         if not present(receipt.get("accepted_conclusion")):
             errors.append(f"{label}: topology-counted receipts require accepted_conclusion")
-        if receipt.get("pool") == "codex-native" and not present(receipt.get("child_id", "controller")):
-            errors.append(f"{label}: codex-native topology receipts require child_id or controller marker")
+        if receipt.get("pool") == "codex-native":
+            has_child = present(receipt.get("child_id"))
+            has_controller_marker = receipt.get("controller_marker") is True
+            if not has_child and not has_controller_marker:
+                errors.append(f"{label}: codex-native topology receipts require child_id or controller_marker=true")
 
     if require_artifacts and present(receipt.get("artifact_path")):
         artifact = Path(str(receipt["artifact_path"])).expanduser()
@@ -102,6 +118,7 @@ def main(argv: list[str] | None = None) -> int:
 
     errors: list[str] = []
     count = 0
+    topology_keys: dict[tuple[str, str], str] = {}
     for path in args.receipts:
         try:
             receipts = load_receipts(path)
@@ -110,7 +127,14 @@ def main(argv: list[str] | None = None) -> int:
             continue
         for index, receipt in enumerate(receipts, start=1):
             count += 1
-            errors.extend(validate_receipt(receipt, f"{path}#{index}", require_artifacts=args.require_artifacts))
+            label = f"{path}#{index}"
+            errors.extend(validate_receipt(receipt, label, require_artifacts=args.require_artifacts))
+            if receipt.get("counts_toward_topology") is True:
+                key = (str(receipt.get("parent_id", "")), str(receipt.get("child_id", receipt.get("controller_marker", ""))))
+                if key in topology_keys:
+                    errors.append(f"{label}: duplicate topology receipt for parent/child also seen at {topology_keys[key]}")
+                else:
+                    topology_keys[key] = label
 
     if errors:
         print(json.dumps({"ok": False, "checked": count, "errors": errors}, indent=2))

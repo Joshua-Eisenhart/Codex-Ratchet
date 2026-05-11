@@ -1,34 +1,39 @@
 {
   "schema": "blocked_reason_breakdown_v1",
-  "blocked_count": 564,
-  "wizard_admission_blocked_count": 485,
+  "blocked_count": 710,
+  "wizard_admission_blocked_count": 629,
   "all_rows_have_subreasons": true,
   "blocked_reasons": {
-    "wizard_admission_blocked": 485,
-    "stage_gate_blocked": 79
+    "wizard_admission_blocked": 629,
+    "gate_denied": 1,
+    "stage_gate_blocked": 79,
+    "stale_claim": 1
   },
   "contract_subreasons": {
-    "C1_classification_missing": 165,
-    "C4_divergence_log_missing": 150,
-    "C6_classical_has_load_bearing": 122,
-    "contract_clean_or_not_static_lint_blocked": 193,
-    "C2_manifest_missing": 65,
-    "C4_divergence_log_empty": 28,
-    "C3_depth_missing": 46,
+    "C1_classification_missing": 193,
+    "C4_divergence_log_missing": 160,
+    "C6_classical_has_load_bearing": 220,
+    "contract_clean_or_not_static_lint_blocked": 209,
+    "C2_manifest_missing": 72,
+    "C3_depth_missing": 49,
+    "C4_divergence_log_empty": 116,
     "C1_classification_invalid": 3,
     "C5_missing_probe": 4
   },
   "by_blocked_reason": {
     "wizard_admission_blocked": {
-      "C1_classification_missing": 156,
-      "C4_divergence_log_missing": 116,
-      "C6_classical_has_load_bearing": 101,
-      "contract_clean_or_not_static_lint_blocked": 162,
-      "C2_manifest_missing": 63,
-      "C4_divergence_log_empty": 24,
-      "C3_depth_missing": 44,
+      "C1_classification_missing": 183,
+      "C4_divergence_log_missing": 126,
+      "C6_classical_has_load_bearing": 198,
+      "contract_clean_or_not_static_lint_blocked": 178,
+      "C2_manifest_missing": 70,
+      "C3_depth_missing": 47,
+      "C4_divergence_log_empty": 111,
       "C1_classification_invalid": 2,
       "C5_missing_probe": 4
+    },
+    "gate_denied": {
+      "C1_classification_missing": 1
     },
     "stage_gate_blocked": {
       "C4_divergence_log_missing": 34,
@@ -39,9 +44,31 @@
       "C2_manifest_missing": 2,
       "C3_depth_missing": 2,
       "C1_classification_invalid": 1
+    },
+    "stale_claim": {
+      "C4_divergence_log_empty": 1,
+      "C6_classical_has_load_bearing": 1
     }
   },
   "rows": [
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/00180fb13a1bddaf.json.43866.Joshuas-MacBook-Pro.laneA_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pyg_hopf_graph_deep_capability.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/00180fb13a1bddaf.json.49086.Joshuas-MacBook-Pro.laneA_w2",
+      "blocked_reason": "gate_denied",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pyg_hopf_graph_deep_capability.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
     {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/006f8385d32a6f60.json",
       "blocked_reason": "wizard_admission_blocked",
@@ -59,6 +86,15 @@
       "subreasons": [
         "C4_divergence_log_missing",
         "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/01719bf93606356d.json.54863.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_sigma_algebra_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
       ]
     },
     {
@@ -105,6 +141,15 @@
       "sim_path": "system_v4/probes/sim_min_max_entropy_classical.py",
       "subreasons": [
         "C4_divergence_log_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/053dcd466f2aac06.json.54859.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_u1_link_variable_exactness_shell_canonical.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -155,6 +200,16 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/07f943f0bc7d85c8.json.54863.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_le_cam_deficiency_classical.py",
+      "subreasons": [
+        "C2_manifest_missing",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/088e2fcf9f484e87.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -179,6 +234,26 @@
       "sim_path": "system_v4/probes/sim_correlation_tensor_principal_directions_classical.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/0a12ac42337d1451.json.54863.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_correlation_tensor_principal_directions_classical.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/0ae740ed0cfce46a.json.54856.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_triple_holodeck_leviathan_fep.py",
+      "subreasons": [
+        "C1_classification_missing",
+        "C2_manifest_missing",
+        "C3_depth_missing"
       ]
     },
     {
@@ -231,12 +306,30 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/0c97ce071ab7c30f.json.54859.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_contextuality_witness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_missing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/0cbfd2897f1506da.json",
       "blocked_reason": "stage_gate_blocked",
       "blocked_stage_claim": "scientific_coupling",
       "sim_path": "system_v4/probes/sim_integration_classical_nonclassical_entropy_stack.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/0d763614f528a9cd.json.54852.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_rank_nullity_theorem_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
       ]
     },
     {
@@ -325,6 +418,24 @@
         "C1_classification_missing",
         "C2_manifest_missing",
         "C3_depth_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/0fbcc3806cab071e.json.54852.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_weil_conjectures_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/109610289eaa26bc.json.54852.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_rectangle_bound_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
       ]
     },
     {
@@ -430,6 +541,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/14f7ec17ee465190.json.54859.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_tarski_undefinability_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/1511448e36ef9f40.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -472,6 +592,15 @@
       "sim_path": "system_v4/probes/sim_theta_degeneracy_investigation.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/18240040982a1eef.json.54856.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_wrt_invariant_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
       ]
     },
     {
@@ -634,6 +763,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/1e65df5d6c6e156e.json.54863.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_shellability_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/1edbdef55e9a377e.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -647,6 +785,16 @@
       "blocked_reason": "stage_gate_blocked",
       "blocked_stage_claim": "scientific_coupling",
       "sim_path": "system_v4/probes/sim_coupling_141_25shell_fisherinfo_classical.py",
+      "subreasons": [
+        "C4_divergence_log_missing",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/1f1cd0ee3a387594.json.54852.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_twilight_zone.py",
       "subreasons": [
         "C4_divergence_log_missing",
         "C6_classical_has_load_bearing"
@@ -705,6 +853,16 @@
       "sim_path": "system_v4/probes/sim_xgi_deep_hyperedge_motif_count.py",
       "subreasons": [
         "C4_divergence_log_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/22235537aa8a6b65.json.54856.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_bottleneck_distance_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
       ]
     },
     {
@@ -799,6 +957,15 @@
       "sim_path": "system_v4/probes/sim_rao_distance_gaussian_classical.py",
       "subreasons": [
         "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/26c9f8bfd7ca2e5e.json.54852.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_riemann_zeta_constraint_canonical.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -970,6 +1137,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/317c1318230a8f1c.json.54859.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_syntomic_cohomology_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/31c7e269f1f56910.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -1065,6 +1241,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/346d5053b642b56d.json.54859.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_quantum_discord_canonical.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/3476646566309a45.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -1157,6 +1342,15 @@
       "sim_path": "system_v4/probes/sim_spinor_harmonics_constraint.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/37f1aac61b0a86f1.json.54852.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_contextuality_witness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_missing"
       ]
     },
     {
@@ -1281,6 +1475,51 @@
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_shimura_reciprocity_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/3f144bf417f3cfda.json.41652.Joshuas-MacBook-Pro.laneA_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pyg_hopf_graph_deep_capability.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/3f144bf417f3cfda.json.43786.Joshuas-MacBook-Pro.laneA_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pyg_hopf_graph_deep_capability.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/3f144bf417f3cfda.json.65680.Joshuas-MacBook-Pro.laneA_w3",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pyg_hopf_graph_deep_capability.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/3f144bf417f3cfda.json.87657.Joshuas-MacBook-Pro.laneA_w3",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pyg_hopf_graph_deep_capability.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/3f144bf417f3cfda.json.96477.Joshuas-MacBook-Pro.laneA_w3",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pyg_hopf_graph_deep_capability.py",
       "subreasons": [
         "C1_classification_missing"
       ]
@@ -1463,6 +1702,16 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/492def179ef7531e.json.54852.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_svd_truncation_spectral_tv_crosscouple_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/4a17d1652d0b58f8.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -1565,6 +1814,25 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/4fd0fc2ef86e38a0.json.54863.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_shell_hist_unification_probe.py",
+      "subreasons": [
+        "C4_divergence_log_missing",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/4ff161f0ac6ad247.json.54859.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_quillen_adjunction_derived_functor_constraint_canonical.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/508e0b3ad32ca6e8.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -1593,6 +1861,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/5289f2abb8d5181b.json.54856.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_werner_topology_boundary.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/5361adf0bcf57ca1.json",
       "blocked_reason": "stage_gate_blocked",
       "blocked_stage_claim": "scientific_coupling",
@@ -1617,6 +1894,15 @@
       "sim_path": "system_v4/probes/sim_admissibility_manifold_mc_classical.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/53fd886c60ddcd88.json.54863.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_rsa_correctness_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
       ]
     },
     {
@@ -1734,6 +2020,96 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/57f913c9573a0a89.json.38100.Joshuas-MacBook-Pro.laneB_w3",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pagerank_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/57f913c9573a0a89.json.41439.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pagerank_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/57f913c9573a0a89.json.49150.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pagerank_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/57f913c9573a0a89.json.57495.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pagerank_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/57f913c9573a0a89.json.65657.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pagerank_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/57f913c9573a0a89.json.75871.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pagerank_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/57f913c9573a0a89.json.87635.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pagerank_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/57f913c9573a0a89.json.93867.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pagerank_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/57f913c9573a0a89.json.96592.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pagerank_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/5823d926054e0a75.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -1797,6 +2173,26 @@
       "blocked_reason": "stage_gate_blocked",
       "blocked_stage_claim": "default_late_stage",
       "sim_path": "system_v4/probes/sim_entropy_bregman_crosscouple_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/5be36f6a8a62289d.json.40677.Joshuas-MacBook-Pro.laneB_w3",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_assortativity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/5be36f6a8a62289d.json.43789.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_assortativity_classical.py",
       "subreasons": [
         "C4_divergence_log_empty",
         "C6_classical_has_load_bearing"
@@ -1894,6 +2290,15 @@
       "sim_path": "system_v4/probes/sim_majorization_doubly_stochastic_coupling_classical.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/614bdab89360cb01.json.54856.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_topological_insulator_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
       ]
     },
     {
@@ -2039,6 +2444,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/66b8da52448c77c5.json.54863.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_theta_degeneracy_investigation.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/673708c261f09f43.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -2062,6 +2476,15 @@
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_channel_cptp_classical.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/68699e7096b6b4ad.json.54371.Joshuas-MacBook-Pro.laneA_w3",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_numpy_capability.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
       ]
@@ -2132,12 +2555,31 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/69bd974dbf88712e.json.54863.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_vqe_ratchet.py",
+      "subreasons": [
+        "C4_divergence_log_missing",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/69d4cf562de4e89f.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_principal_bundle_connection_classical.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/6a1f994489405836.json.54859.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_science_method_lego_hypothesis_generator.py",
+      "subreasons": [
+        "C1_classification_missing"
       ]
     },
     {
@@ -2311,12 +2753,30 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/77484b27052aabce.json.54863.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_characteristic_representation_classical.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/77d5da0239424ce7.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_tools_load_bearing.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/78384b1ac88c6ed7.json.54863.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_sympy_det_product_4x4.py",
+      "subreasons": [
+        "C1_classification_missing"
       ]
     },
     {
@@ -2336,6 +2796,15 @@
       "sim_path": "system_v4/probes/sim_rosetta_lego_coupled_array_graveyard.py",
       "subreasons": [
         "C5_missing_probe"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/78b0cefeae7e9e21.json.54856.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_quadratic_reciprocity_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
       ]
     },
     {
@@ -2882,6 +3351,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/8fc44add0819b66f.json.3516.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_spectral_triple_dirac_gap_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/8ff33b7cf31e6e4c.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -2918,6 +3396,16 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/9185682435d9ef95.json.54859.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_chebyshev_distinguishability_classical.py",
+      "subreasons": [
+        "C2_manifest_missing",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/919d00f001eccf2b.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -2936,6 +3424,116 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/91f02f0db55cbb01.json.38116.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_triangle_count_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/91f02f0db55cbb01.json.41367.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_triangle_count_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/91f02f0db55cbb01.json.43831.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_triangle_count_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/91f02f0db55cbb01.json.49147.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_triangle_count_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/91f02f0db55cbb01.json.54859.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_triangle_count_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/91f02f0db55cbb01.json.59835.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_triangle_count_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/91f02f0db55cbb01.json.65639.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_triangle_count_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/91f02f0db55cbb01.json.75870.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_triangle_count_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/91f02f0db55cbb01.json.87636.Joshuas-MacBook-Pro.laneB_w3",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_triangle_count_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/91f02f0db55cbb01.json.93861.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_triangle_count_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/91f02f0db55cbb01.json.96597.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_triangle_count_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/91fba3730395f88a.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -2951,6 +3549,106 @@
       "sim_path": "system_v4/probes/sim_husimi_phase_space_representation_classical.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/92613a137894f238.json.38100.Joshuas-MacBook-Pro.laneB_w3",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_hypergraph_laplacian_spectrum_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/92613a137894f238.json.41365.Joshuas-MacBook-Pro.laneB_w3",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_hypergraph_laplacian_spectrum_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/92613a137894f238.json.43766.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_hypergraph_laplacian_spectrum_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/92613a137894f238.json.49150.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_hypergraph_laplacian_spectrum_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/92613a137894f238.json.57506.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_hypergraph_laplacian_spectrum_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/92613a137894f238.json.65657.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_hypergraph_laplacian_spectrum_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/92613a137894f238.json.75870.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_hypergraph_laplacian_spectrum_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/92613a137894f238.json.87643.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_hypergraph_laplacian_spectrum_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/92613a137894f238.json.93846.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_hypergraph_laplacian_spectrum_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/92613a137894f238.json.96585.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_hypergraph_laplacian_spectrum_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
       ]
     },
     {
@@ -3016,6 +3714,26 @@
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_telescopic_localization_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/9647ea8c4300ed38.json.54852.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_triple_igt_leviathan_sci_method.py",
+      "subreasons": [
+        "C1_classification_missing",
+        "C2_manifest_missing",
+        "C3_depth_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/964efe2d837a8183.json.54856.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_cobordism_ring_graded_constraint_canonical.py",
       "subreasons": [
         "C1_classification_missing"
       ]
@@ -3161,6 +3879,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/9ceb9ba8a76d47c3.json.35182.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_weyl_group_a2_root_system.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/9d94bec793c0ad81.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -3185,6 +3912,15 @@
       "sim_path": "system_v4/probes/sim_xi_packet_expansion_stress.py",
       "subreasons": [
         "C4_divergence_log_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/9e317071f1ec1ea8.json.54856.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_spinor_torch_foundation.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -3415,6 +4151,16 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/a75bffc4ece5e069.json.54863.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_sufficient_statistics_expfam_classical.py",
+      "subreasons": [
+        "C2_manifest_missing",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/a849a52b6aa81629.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -3478,6 +4224,46 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ad1d85f34708a752.json.37692.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_assortativity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ad1d85f34708a752.json.40670.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_assortativity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ad1d85f34708a752.json.54856.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_assortativity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ad1d85f34708a752.json.56846.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_assortativity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/ad759fa4b26cb33a.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -3506,12 +4292,121 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/adc6526ace9bc3b9.json.54856.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_verlinde_formula_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/afd62c51197d60b7.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_hellinger_categorical_classical.py",
       "subreasons": [
         "C2_manifest_missing",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/b0ae64cfcfe6704d.json.37704.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_clique_complex_flagness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/b0ae64cfcfe6704d.json.40686.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_clique_complex_flagness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/b0ae64cfcfe6704d.json.43492.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_clique_complex_flagness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/b0ae64cfcfe6704d.json.49007.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_clique_complex_flagness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/b0ae64cfcfe6704d.json.54856.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_clique_complex_flagness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/b0ae64cfcfe6704d.json.56846.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_clique_complex_flagness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/b0ae64cfcfe6704d.json.65676.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_clique_complex_flagness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/b0ae64cfcfe6704d.json.75871.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_clique_complex_flagness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/b0ae64cfcfe6704d.json.93851.Joshuas-MacBook-Pro.laneB_w3",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_clique_complex_flagness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/b0ae64cfcfe6704d.json.96592.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_clique_complex_flagness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
         "C6_classical_has_load_bearing"
       ]
     },
@@ -3730,6 +4625,16 @@
       "blocked_reason": "stage_gate_blocked",
       "blocked_stage_claim": "scientific_coupling",
       "sim_path": "system_v4/probes/sim_coupling_141_25shell_fisherinfo_classical.py",
+      "subreasons": [
+        "C4_divergence_log_missing",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/b8ad83be7457d76b.json.54863.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_ultraproduct_constraint_canonical.py",
       "subreasons": [
         "C4_divergence_log_missing",
         "C6_classical_has_load_bearing"
@@ -4008,6 +4913,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/c0871c75a6bcfe4a.json.54859.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_choi_matrix_classical.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/c1878c89ca9e13fc.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -4034,6 +4948,26 @@
       "subreasons": [
         "C3_depth_missing",
         "C4_divergence_log_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/c33d28cbc1c182bc.json.40675.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_clique_complex_flagness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/c33d28cbc1c182bc.json.43789.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_clique_complex_flagness_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
       ]
     },
     {
@@ -4371,6 +5305,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/cc2f5b39bb273972.json.54852.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_wiggle_exploration.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/cce1c4ff725bee99.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -4418,12 +5361,112 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/cd8b44d2895314d3.json.54852.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_bch_first_order_commutator_classical.py",
+      "subreasons": [
+        "C4_divergence_log_missing",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/cdc74ad9048b19ca.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_fiber_bundle_triviality_classical.py",
       "subreasons": [
         "C4_divergence_log_missing",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ce248c469df6be80.json.38116.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_network_modularity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ce248c469df6be80.json.41376.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_network_modularity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ce248c469df6be80.json.49125.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_network_modularity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ce248c469df6be80.json.57501.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_network_modularity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ce248c469df6be80.json.65681.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_network_modularity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ce248c469df6be80.json.75873.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_network_modularity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ce248c469df6be80.json.87620.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_network_modularity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ce248c469df6be80.json.93868.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_network_modularity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ce248c469df6be80.json.96588.Joshuas-MacBook-Pro.laneB_w3",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_network_modularity_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
         "C6_classical_has_load_bearing"
       ]
     },
@@ -4697,6 +5740,16 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/d90ad7b6962a1874.json.54859.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_empirical_bayes_james_stein_classical.py",
+      "subreasons": [
+        "C2_manifest_missing",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/d948a415a291ab9e.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -4818,6 +5871,17 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/de3b3df34bc21ded.json.54852.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_signed_operator_variant_classical.py",
+      "subreasons": [
+        "C2_manifest_missing",
+        "C3_depth_missing",
+        "C4_divergence_log_missing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/de52abafc328770d.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -4852,6 +5916,96 @@
       "sim_path": "system_v4/probes/sim_state_representations_L0.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/df747a17cd5afb7c.json.38112.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_simplicial_fvector_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/df747a17cd5afb7c.json.41434.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_simplicial_fvector_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/df747a17cd5afb7c.json.43783.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_simplicial_fvector_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/df747a17cd5afb7c.json.49147.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_simplicial_fvector_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/df747a17cd5afb7c.json.65686.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_simplicial_fvector_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/df747a17cd5afb7c.json.75870.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_simplicial_fvector_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/df747a17cd5afb7c.json.87669.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_simplicial_fvector_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/df747a17cd5afb7c.json.93859.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_simplicial_fvector_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/df747a17cd5afb7c.json.96611.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_simplicial_fvector_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
       ]
     },
     {
@@ -4910,6 +6064,116 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/e2710375e3f67d6e.json.38112.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_line_graph_hitting_time_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/e2710375e3f67d6e.json.41439.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_line_graph_hitting_time_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/e2710375e3f67d6e.json.43813.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_line_graph_hitting_time_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/e2710375e3f67d6e.json.49144.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_line_graph_hitting_time_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/e2710375e3f67d6e.json.57477.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_line_graph_hitting_time_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/e2710375e3f67d6e.json.65639.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_line_graph_hitting_time_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/e2710375e3f67d6e.json.68029.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "stale_claim",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_line_graph_hitting_time_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/e2710375e3f67d6e.json.75873.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_line_graph_hitting_time_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/e2710375e3f67d6e.json.87635.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_line_graph_hitting_time_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/e2710375e3f67d6e.json.93844.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_line_graph_hitting_time_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/e2710375e3f67d6e.json.96592.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_line_graph_hitting_time_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/e297ba44c5c6f114.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -4947,6 +6211,15 @@
       "sim_path": "system_v4/probes/sim_f01_finitude_constraint_classical.py",
       "subreasons": [
         "C4_divergence_log_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/e41a8d71e82a898e.json.54852.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_branch_weight_classical.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -5029,6 +6302,25 @@
       "sim_path": "system_v4/probes/sim_sequential_admission_wald_boundaries_classical.py",
       "subreasons": [
         "C2_manifest_missing",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ebba88c12afe598a.json.54856.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_vertex_operator_algebra_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ebde0513d4e8b34b.json.54859.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_tn_mpo_operator_family.py",
+      "subreasons": [
+        "C4_divergence_log_missing",
         "C6_classical_has_load_bearing"
       ]
     },
@@ -5144,6 +6436,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f10f8301fdc4594f.json.54852.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_tropical_semiring_constraint_canonical.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/f12f675410c5b99e.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -5177,6 +6478,114 @@
       "sim_path": "system_v4/probes/sim_z3_negative_quasiprob_exclusion.py",
       "subreasons": [
         "C1_classification_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f41d697318458b63.json.38112.Joshuas-MacBook-Pro.laneB_w4",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_graph_cheeger_inequality_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f41d697318458b63.json.41367.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_graph_cheeger_inequality_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f41d697318458b63.json.43492.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_graph_cheeger_inequality_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f41d697318458b63.json.49150.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_graph_cheeger_inequality_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f41d697318458b63.json.57501.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_graph_cheeger_inequality_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f41d697318458b63.json.65638.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_graph_cheeger_inequality_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f41d697318458b63.json.75873.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_graph_cheeger_inequality_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f41d697318458b63.json.87669.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_graph_cheeger_inequality_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f41d697318458b63.json.96599.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_graph_cheeger_inequality_classical.py",
+      "subreasons": [
+        "C4_divergence_log_empty",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f4801ca9f72cc010.json.54847.Joshuas-MacBook-Pro.laneB_w3",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_xgi_deep_hyperedge_motif_count.py",
+      "subreasons": [
+        "C4_divergence_log_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f5e76ca9837de25b.json.54856.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_spinor_torus_wiggle.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -5217,6 +6626,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f873c330c07eb883.json.54863.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_terrain_law_audit.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/f8afbff99facc1b7.json",
       "blocked_reason": "stage_gate_blocked",
       "blocked_stage_claim": "scientific_coupling",
@@ -5233,6 +6651,15 @@
       "sim_path": "system_v4/probes/sim_channel_space_geometry_classical.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/f901eb8883f3cbf4.json.54859.Joshuas-MacBook-Pro.laneB_w5",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_closed_graph_constraint_canonical.py",
+      "subreasons": [
+        "C1_classification_missing"
       ]
     },
     {

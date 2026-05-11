@@ -25,7 +25,7 @@ def load_json(path: Path) -> dict[str, Any] | None:
 
 
 def blocked_files() -> list[Path]:
-    return sorted(path for path in BLOCKED_DIR.glob("*.json") if path.is_file())
+    return sorted(path for path in BLOCKED_DIR.iterdir() if path.is_file() and ".json" in path.name)
 
 
 def sim_path_from_record(record: dict[str, Any]) -> Path | None:

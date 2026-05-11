@@ -43,6 +43,16 @@ WORKER_RECEIPT_GLOBS = [
 BYPASS_RECEIPT_GLOB = ROOT / "system_v5/ops/wizard_admissions"
 BYPASS_SENTINEL = ROOT / "system_v5/ops/.allow_admission_bypass_recovery"
 
+OPS_REPORTS = [
+    ROOT / "system_v5/ops/blocked_reason_breakdown.json",
+    ROOT / "system_v5/ops/c1_classification_proposals.json",
+    ROOT / "system_v5/ops/c4_divergence_log_proposals.json",
+    ROOT / "system_v5/ops/c6_loadbearing_report.json",
+    ROOT / "system_v5/ops/proposal_apply_preview.json",
+    ROOT / "system_v5/ops/runner_taxonomy_unknowns.json",
+    ROOT / "system_v5/ops/never_run_cohorts.json",
+]
+
 LEGACY_ALLOWED = {
     ROOT / "scripts/wizard_full_matrix_run.py",
     ROOT / "scripts/wizard_topology.py",
@@ -141,6 +151,19 @@ def int_count(counts: dict[str, int | str], key: str) -> int:
         return 0
 
 
+def iter_jsonish_files(base: Path) -> list[Path]:
+    if not base.exists():
+        return []
+    return sorted(path for path in base.iterdir() if path.is_file() and ".json" in path.name)
+
+
+def newest_mtime(paths: list[Path]) -> datetime | None:
+    existing = [path for path in paths if path.exists()]
+    if not existing:
+        return None
+    return max(datetime.fromtimestamp(path.stat().st_mtime, timezone.utc) for path in existing)
+
+
 def parse_time(value: str) -> datetime | None:
     try:
         return datetime.fromisoformat(value.replace("Z", "+00:00"))
@@ -220,11 +243,9 @@ def heartbeat_status(counts: dict[str, int | str]) -> dict[str, Any]:
 
 def dominant_blocked_reason() -> dict[str, Any] | None:
     blocked_dir = ROOT / "system_v4/probes/a2_state/queue/blocked"
-    if not blocked_dir.exists():
-        return None
     counts: dict[str, int] = {}
     total = 0
-    for path in blocked_dir.glob("*.json"):
+    for path in iter_jsonish_files(blocked_dir):
         try:
             data = json.loads(path.read_text())
         except Exception:
@@ -236,6 +257,50 @@ def dominant_blocked_reason() -> dict[str, Any] | None:
         return None
     reason, count = max(counts.items(), key=lambda item: item[1])
     return {"reason": reason, "count": count, "total": total, "percent": round((count / total) * 100, 1)}
+
+
+def reports_freshness(now: datetime) -> dict[str, Any]:
+    source_dirs = [
+        ROOT / "system_v4/probes",
+        ROOT / "system_v4/probes/a2_state/queue/blocked",
+        ROOT / "system_v4/probes/a2_state/queue/lane_A",
+        ROOT / "system_v4/probes/a2_state/queue/lane_B",
+        ROOT / "system_v4/probes/a2_state/queue/claimed",
+    ]
+    source_files: list[Path] = []
+    for base in source_dirs:
+        if not base.exists():
+            continue
+        if base.name == "probes":
+            source_files.extend(path for path in base.glob("sim_*.py") if path.is_file())
+        else:
+            source_files.extend(iter_jsonish_files(base))
+    newest_source = newest_mtime(source_files)
+    reports = []
+    stale = False
+    missing = False
+    for path in OPS_REPORTS:
+        exists = path.exists()
+        report_mtime = datetime.fromtimestamp(path.stat().st_mtime, timezone.utc) if exists else None
+        is_stale = bool(exists and newest_source and report_mtime and report_mtime < newest_source)
+        missing = missing or not exists
+        stale = stale or is_stale
+        reports.append(
+            {
+                "path": rel(path),
+                "exists": exists,
+                "mtime": report_mtime.isoformat() if report_mtime else None,
+                "stale_vs_newest_source": is_stale,
+            }
+        )
+    return {
+        "ok": not stale and not missing,
+        "generated_at": now.isoformat(),
+        "newest_source_mtime": newest_source.isoformat() if newest_source else None,
+        "missing": missing,
+        "stale": stale,
+        "reports": reports,
+    }
 
 
 def recent_worker_receipts(now: datetime) -> list[Path]:
@@ -282,6 +347,7 @@ def main(argv: list[str] | None = None) -> int:
 
     now = datetime.now(timezone.utc)
     checks["worker_pool_receipts"] = worker_receipt_check(now)
+    checks["ops_reports_freshness"] = reports_freshness(now)
 
     if not args.skip_preflight:
         checks["packet_conformance"] = run(

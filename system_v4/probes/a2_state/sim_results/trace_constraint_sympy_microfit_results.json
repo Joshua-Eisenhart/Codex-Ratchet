@@ -1,12 +1,10 @@
 {
-  "name": "trace_constraint_z3_microfit",
+  "name": "trace_constraint_sympy_microfit",
   "classification": "tool_lego_fit_probe",
   "classification_note": "Bounded symbolic microfit for the trace-one constraint on real 2x2 density candidates. It proves local Bloch and spectral 2x2 trace identities with sympy, uses z3 only as a supportive invalid-witness rejector, and does not treat tautological trace algebra as solver load-bearing work. It is not density-matrix admission, bridge, QIT, GStack, axis, engine, or nonclassical admission.",
   "divergence_log": "Bounded symbolic microfit for the trace-one constraint on real 2x2 density candidates. It proves local Bloch and spectral 2x2 trace identities with sympy, uses z3 only as a supportive invalid-witness rejector, and does not treat tautological trace algebra as solver load-bearing work. It is not density-matrix admission, bridge, QIT, GStack, axis, engine, or nonclassical admission.",
   "lego_ids": [
-    "trace_constraint",
-    "density_matrix_representability",
-    "finite_carrier_c2"
+    "trace_constraint"
   ],
   "primary_lego_ids": [
     "trace_constraint"
@@ -197,25 +195,40 @@
   },
   "boundary": {
     "finite_real_2x2_family_only": {
-      "promotion_allowed_literal_false": {
+      "matrix_shape_is_2x2": {
+        "shape": [
+          2,
+          2
+        ],
         "pass": true
       },
-      "execution_kind_is_tool_lego_fit_probe": {
+      "real_dtype_only": {
+        "dtype": "float64",
         "pass": true
       },
-      "classification_is_not_canonical": {
+      "local_trace_family_only": {
+        "primary_lego_ids": [
+          "trace_constraint"
+        ],
         "pass": true
       },
       "pass": true
     },
     "no_qit_gstack_axis_bridge_engine_or_nonclassical_admission": {
-      "promotion_allowed_literal_false": {
+      "classification_is_tool_lego_fit_probe": {
+        "classification": "tool_lego_fit_probe",
         "pass": true
       },
-      "execution_kind_is_tool_lego_fit_probe": {
+      "lego_ids_do_not_credit_neighbor_rows": {
+        "lego_ids": [
+          "trace_constraint"
+        ],
         "pass": true
       },
-      "classification_is_not_canonical": {
+      "primary_lego_is_single_trace_row": {
+        "primary_lego_ids": [
+          "trace_constraint"
+        ],
         "pass": true
       },
       "pass": true
@@ -230,5 +243,5 @@
     "scope_note": "Bounded symbolic microfit for the trace-one constraint on real 2x2 density candidates. It proves local Bloch and spectral 2x2 trace identities with sympy, uses z3 only as a supportive invalid-witness rejector, and does not treat tautological trace algebra as solver load-bearing work. It is not density-matrix admission, bridge, QIT, GStack, axis, engine, or nonclassical admission."
   },
   "all_pass": true,
-  "generated_at": "2026-05-11T19:45:20.227881+00:00"
+  "generated_at": "2026-05-11T19:52:54.966637+00:00"
 }

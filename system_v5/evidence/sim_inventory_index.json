@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-11T19:46:26.817228+00:00",
+  "generated_at": "2026-05-11T19:51:34.063389+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3944,
-    "result_json_count": 740,
-    "linked_result_json_count": 704,
+    "source_count": 3945,
+    "result_json_count": 741,
+    "linked_result_json_count": 705,
     "unlinked_result_json_count": 36,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3241,
-      "rerun_or_admission_candidate": 480,
+      "rerun_or_admission_candidate": 481,
       "legacy_result_or_repair_needed": 29,
       "contract_shaped_but_tool_depth_thin": 183,
       "admitted": 9,
@@ -20,23 +20,23 @@
     "family_counts": {
       "channel_operator": 784,
       "entropy_information": 585,
-      "thermo_engine": 432,
+      "thermo_engine": 433,
       "uncategorized": 335,
-      "axis_bridge": 663,
+      "axis_bridge": 664,
       "graveyard_negative": 1702,
-      "root_admission": 845,
+      "root_admission": 846,
       "hopf_torus": 593,
       "weyl_spinor_clifford": 781,
-      "geometry_gstack_gtower": 723,
-      "density_carrier": 483,
-      "classical_baseline": 1099,
+      "geometry_gstack_gtower": 724,
+      "density_carrier": 484,
+      "classical_baseline": 1100,
       "gerbe_dirac_mera_spectral": 670,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2715,
-      "sympy": 2250,
+      "numpy": 2716,
+      "sympy": 2251,
       "scipy": 254,
       "pytorch": 1979,
       "pyg": 846,
@@ -44,7 +44,7 @@
       "qutip": 46,
       "e3nn": 843,
       "gudhi": 899,
-      "z3": 1899,
+      "z3": 1900,
       "clifford": 1330,
       "rustworkx": 1075,
       "toponetx": 915,
@@ -59,7 +59,7 @@
       "pytorch": 1103,
       "rustworkx": 283,
       "z3": 741,
-      "sympy": 564,
+      "sympy": 565,
       "clifford": 274,
       "xgi": 200,
       "geomstats": 109,
@@ -78,7 +78,7 @@
       "supporting": 13,
       "exploratory": 30,
       "research_support": 6,
-      "tool_lego_fit_probe": 8,
+      "tool_lego_fit_probe": 9,
       "controller_index": 2,
       "graveyard_negative": 1,
       "sidecar_probe": 2,
@@ -86,7 +86,7 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 692,
+    "repair_candidate_count": 693,
     "source_only_count": 3241
   },
   "admitted_stems": [
@@ -98026,6 +98026,43 @@
       "inventory_status": "rerun_or_admission_candidate"
     },
     {
+      "stem": "sim_normalization_constraint_sympy_microfit",
+      "source_path": "system_v4/probes/sim_normalization_constraint_sympy_microfit.py",
+      "families": [
+        "root_admission",
+        "density_carrier",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "supportive",
+        "z3": "supportive",
+        "sympy": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "sympy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/normalization_constraint_sympy_microfit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "tool_lego_fit_probe"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_nullstellensatz_constraint_canonical",
       "source_path": "system_v4/probes/sim_nullstellensatz_constraint_canonical.py",
       "families": [
@@ -121851,8 +121888,8 @@
       "inventory_status": "rerun_or_admission_candidate"
     },
     {
-      "stem": "sim_trace_constraint_z3_microfit",
-      "source_path": "system_v4/probes/sim_trace_constraint_z3_microfit.py",
+      "stem": "sim_trace_constraint_sympy_microfit",
+      "source_path": "system_v4/probes/sim_trace_constraint_sympy_microfit.py",
       "families": [
         "density_carrier",
         "hopf_torus"
@@ -121868,7 +121905,7 @@
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
       "result_paths": [
-        "system_v4/probes/a2_state/sim_results/trace_constraint_z3_microfit_results.json"
+        "system_v4/probes/a2_state/sim_results/trace_constraint_sympy_microfit_results.json"
       ],
       "result_count": 1,
       "result_classifications": [

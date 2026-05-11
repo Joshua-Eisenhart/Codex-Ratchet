@@ -1,23 +1,23 @@
 # Sim Inventory Index
 
-Generated: `2026-05-11T19:46:26.817228+00:00`
+Generated: `2026-05-11T19:51:34.063389+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
-- Sim source files indexed: `3944`
-- Result JSON files seen: `740`
-- Linked result JSON files: `704`
+- Sim source files indexed: `3945`
+- Result JSON files seen: `741`
+- Linked result JSON files: `705`
 - Unlinked result JSON files: `36`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `692`
+- Repair / rerun candidate rows: `693`
 - Source-only rows: `3241`
 
 ## Inventory Status Counts
 
 - `source_only`: 3241
-- `rerun_or_admission_candidate`: 480
+- `rerun_or_admission_candidate`: 481
 - `contract_shaped_but_tool_depth_thin`: 183
 - `legacy_result_or_repair_needed`: 29
 - `admitted`: 9
@@ -26,17 +26,17 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 ## Family Counts
 
 - `graveyard_negative`: 1702
-- `classical_baseline`: 1099
-- `root_admission`: 845
+- `classical_baseline`: 1100
+- `root_admission`: 846
 - `channel_operator`: 784
 - `weyl_spinor_clifford`: 781
-- `geometry_gstack_gtower`: 723
+- `geometry_gstack_gtower`: 724
 - `gerbe_dirac_mera_spectral`: 670
-- `axis_bridge`: 663
+- `axis_bridge`: 664
 - `hopf_torus`: 593
 - `entropy_information`: 585
-- `density_carrier`: 483
-- `thermo_engine`: 432
+- `density_carrier`: 484
+- `thermo_engine`: 433
 - `graph_topology`: 402
 - `uncategorized`: 335
 - `fep_holodeck_igt`: 237
@@ -45,7 +45,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 - `pytorch`: 1103
 - `z3`: 741
-- `sympy`: 564
+- `sympy`: 565
 - `cvc5`: 509
 - `rustworkx`: 283
 - `numpy`: 276

@@ -1,0 +1,40 @@
+{
+  "name": "min_max_entropy_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "max/support on pmf"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "uniform_min_equals_max": true,
+    "uniform_min_is_2": true,
+    "delta_min_zero": true
+  },
+  "negative": {
+    "delta_max_zero": true,
+    "nonneg_min": true
+  },
+  "boundary": {
+    "ordering_min_le_shan_le_max": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "no smooth epsilon-ball around state (one-shot quantum notion)",
+    "no operational channel-compression meaning",
+    "cannot distinguish commuting vs noncommuting support"
+  ]
+}

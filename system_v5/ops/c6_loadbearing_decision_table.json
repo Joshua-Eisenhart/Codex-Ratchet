@@ -12,10 +12,10 @@
   "blocked_c6_sim_count": 93,
   "decision_row_count": 168,
   "action_counts": {
-    "promote_to_canonical_candidate_after_owner_review": 55,
+    "promote_to_canonical_candidate_after_owner_review": 62,
     "remove_or_demote_tool_depth_candidate": 39,
-    "owner_review_missing_result_before_edit": 73,
-    "owner_review_inconclusive": 1
+    "owner_review_missing_result_before_edit": 64,
+    "owner_review_inconclusive": 3
   },
   "tool_counts": {
     "pytorch": 65,
@@ -32,9 +32,9 @@
     "cvc5": 2
   },
   "bucket_counts": {
-    "genuinely_load_bearing_so_promote_to_canonical_candidate": 55,
+    "genuinely_load_bearing_so_promote_to_canonical_candidate": 62,
     "decorative_load_bearing_demote_tool": 39,
-    "inconclusive_needs_owner": 74
+    "inconclusive_needs_owner": 67
   },
   "rows": [
     {
@@ -1251,9 +1251,9 @@
       "sim": "system_v4/probes/sim_temporal_cascade.py",
       "tool": "pytorch",
       "bucket": "inconclusive_needs_owner",
-      "result_path": null,
-      "evidence": "no_result_tool_evidence",
-      "candidate_action": "owner_review_missing_result_before_edit",
+      "result_path": "system_v4/probes/a2_state/sim_results/temporal_cascade_results.json",
+      "evidence": "result_json_mentions_tool",
+      "candidate_action": "owner_review_inconclusive",
       "owner_review_required": true,
       "source_edit_allowed": false,
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
@@ -1262,9 +1262,9 @@
       "sim": "system_v4/probes/sim_temporal_cascade_flipped.py",
       "tool": "pytorch",
       "bucket": "inconclusive_needs_owner",
-      "result_path": null,
-      "evidence": "no_result_tool_evidence",
-      "candidate_action": "owner_review_missing_result_before_edit",
+      "result_path": "system_v4/probes/a2_state/sim_results/temporal_cascade_results.json",
+      "evidence": "result_json_mentions_tool",
+      "candidate_action": "owner_review_inconclusive",
       "owner_review_required": true,
       "source_edit_allowed": false,
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
@@ -1404,10 +1404,10 @@
     {
       "sim": "system_v4/probes/sim_tn_gtower_bond_dimension.py",
       "tool": "sympy",
-      "bucket": "inconclusive_needs_owner",
-      "result_path": null,
-      "evidence": "no_result_tool_evidence",
-      "candidate_action": "owner_review_missing_result_before_edit",
+      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
+      "result_path": "system_v4/probes/a2_state/sim_results/tn_gtower_bond_dimension_results.json",
+      "evidence": "result_json_mentions_tool",
+      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
       "owner_review_required": true,
       "source_edit_allowed": false,
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
@@ -1415,10 +1415,10 @@
     {
       "sim": "system_v4/probes/sim_tn_gtower_bond_dimension.py",
       "tool": "z3",
-      "bucket": "inconclusive_needs_owner",
-      "result_path": null,
-      "evidence": "no_result_tool_evidence",
-      "candidate_action": "owner_review_missing_result_before_edit",
+      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
+      "result_path": "system_v4/probes/a2_state/sim_results/tn_gtower_bond_dimension_results.json",
+      "evidence": "result_json_mentions_tool",
+      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
       "owner_review_required": true,
       "source_edit_allowed": false,
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
@@ -1426,10 +1426,10 @@
     {
       "sim": "system_v4/probes/sim_tn_mera_gtower_layers.py",
       "tool": "z3",
-      "bucket": "inconclusive_needs_owner",
-      "result_path": null,
-      "evidence": "no_result_tool_evidence",
-      "candidate_action": "owner_review_missing_result_before_edit",
+      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
+      "result_path": "system_v4/probes/a2_state/sim_results/tn_mera_gtower_layers_results.json",
+      "evidence": "result_json_mentions_tool",
+      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
       "owner_review_required": true,
       "source_edit_allowed": false,
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
@@ -1437,10 +1437,10 @@
     {
       "sim": "system_v4/probes/sim_tn_mpo_operator_family.py",
       "tool": "sympy",
-      "bucket": "inconclusive_needs_owner",
-      "result_path": null,
-      "evidence": "no_result_tool_evidence",
-      "candidate_action": "owner_review_missing_result_before_edit",
+      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
+      "result_path": "system_v4/probes/a2_state/sim_results/tn_mpo_operator_family_results.json",
+      "evidence": "result_json_mentions_tool",
+      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
       "owner_review_required": true,
       "source_edit_allowed": false,
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
@@ -1448,10 +1448,10 @@
     {
       "sim": "system_v4/probes/sim_tn_mpo_operator_family.py",
       "tool": "z3",
-      "bucket": "inconclusive_needs_owner",
-      "result_path": null,
-      "evidence": "no_result_tool_evidence",
-      "candidate_action": "owner_review_missing_result_before_edit",
+      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
+      "result_path": "system_v4/probes/a2_state/sim_results/tn_mpo_operator_family_results.json",
+      "evidence": "result_json_mentions_tool",
+      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
       "owner_review_required": true,
       "source_edit_allowed": false,
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
@@ -1536,10 +1536,10 @@
     {
       "sim": "system_v4/probes/sim_ultraproduct_constraint_canonical.py",
       "tool": "cvc5",
-      "bucket": "inconclusive_needs_owner",
-      "result_path": null,
-      "evidence": "no_result_tool_evidence",
-      "candidate_action": "owner_review_missing_result_before_edit",
+      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
+      "result_path": "system_v4/probes/a2_state/sim_results/sim_ultraproduct_constraint_canonical_results.json",
+      "evidence": "result_json_mentions_tool",
+      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
       "owner_review_required": true,
       "source_edit_allowed": false,
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
@@ -1547,10 +1547,10 @@
     {
       "sim": "system_v4/probes/sim_virtual_fundamental_class_constraint_canonical.py",
       "tool": "cvc5",
-      "bucket": "inconclusive_needs_owner",
-      "result_path": null,
-      "evidence": "no_result_tool_evidence",
-      "candidate_action": "owner_review_missing_result_before_edit",
+      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
+      "result_path": "system_v4/probes/a2_state/sim_results/sim_virtual_fundamental_class_constraint_canonical_results.json",
+      "evidence": "result_json_mentions_tool",
+      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
       "owner_review_required": true,
       "source_edit_allowed": false,
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."

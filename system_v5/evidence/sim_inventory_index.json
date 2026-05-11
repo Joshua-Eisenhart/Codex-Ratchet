@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-11T21:19:37.451927+00:00",
+  "generated_at": "2026-05-11T21:30:30.360668+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3949,
-    "result_json_count": 758,
-    "linked_result_json_count": 722,
+    "source_count": 3950,
+    "result_json_count": 759,
+    "linked_result_json_count": 723,
     "unlinked_result_json_count": 36,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3228,
-      "rerun_or_admission_candidate": 499,
+      "rerun_or_admission_candidate": 500,
       "legacy_result_or_repair_needed": 29,
       "contract_shaped_but_tool_depth_thin": 182,
       "admitted": 9,
@@ -19,32 +19,32 @@
     },
     "family_counts": {
       "channel_operator": 785,
-      "entropy_information": 586,
-      "thermo_engine": 437,
+      "entropy_information": 587,
+      "thermo_engine": 438,
       "uncategorized": 335,
-      "axis_bridge": 668,
+      "axis_bridge": 669,
       "graveyard_negative": 1702,
-      "root_admission": 850,
+      "root_admission": 851,
       "hopf_torus": 593,
       "weyl_spinor_clifford": 781,
-      "geometry_gstack_gtower": 728,
+      "geometry_gstack_gtower": 729,
       "density_carrier": 488,
-      "classical_baseline": 1104,
+      "classical_baseline": 1105,
       "gerbe_dirac_mera_spectral": 670,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
       "numpy": 2718,
-      "sympy": 2254,
+      "sympy": 2255,
       "scipy": 254,
-      "pytorch": 1980,
+      "pytorch": 1981,
       "pyg": 846,
       "cvc5": 1328,
       "qutip": 47,
       "e3nn": 843,
       "gudhi": 899,
-      "z3": 1905,
+      "z3": 1906,
       "clifford": 1330,
       "rustworkx": 1075,
       "toponetx": 915,
@@ -56,7 +56,7 @@
     "load_bearing_tool_counts": {
       "numpy": 276,
       "cvc5": 510,
-      "pytorch": 1105,
+      "pytorch": 1106,
       "rustworkx": 283,
       "z3": 742,
       "sympy": 566,
@@ -77,7 +77,7 @@
       "canonical": 381,
       "supporting": 13,
       "exploratory": 29,
-      "tool_lego_fit_probe": 14,
+      "tool_lego_fit_probe": 15,
       "research_support": 6,
       "controller_index": 2,
       "graveyard_negative": 1,
@@ -86,7 +86,7 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 710,
+    "repair_candidate_count": 711,
     "source_only_count": 3228
   },
   "admitted_stems": [
@@ -27212,6 +27212,43 @@
       "late_stage_signal": false,
       "has_contract_shape": false,
       "inventory_status": "source_only"
+    },
+    {
+      "stem": "sim_conditional_entropy_torch_separation_microfit",
+      "source_path": "system_v4/probes/sim_conditional_entropy_torch_separation_microfit.py",
+      "families": [
+        "root_admission",
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "pytorch": "load_bearing",
+        "z3": "supportive",
+        "sympy": "supportive"
+      },
+      "load_bearing_tools": [
+        "pytorch"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/conditional_entropy_torch_separation_microfit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "tool_lego_fit_probe"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_conditional_mutual_information_classical",

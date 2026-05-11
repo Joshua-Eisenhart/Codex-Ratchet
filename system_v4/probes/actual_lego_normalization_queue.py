@@ -73,14 +73,14 @@ NORMALIZATION_TARGETS = {
         "note": "Direct local carrier/probe compatibility lego on bounded qubit carriers and finite effect families.",
     },
     "f01_finitude_constraint": {
-        "probe": "sim_constraint_manifold_L0_L1.py",
+        "probe": "sim_f01_finitude_constraint.py",
         "confidence": "high",
-        "note": "Best current early manifold/finitude surface.",
+        "note": "Direct local F01 finitude lego with finite carrier, finite probe family, finite state set, and explicit excluded instances.",
     },
     "admissibility_manifold_mc": {
-        "probe": "sim_constraint_manifold_L0_L1.py",
+        "probe": "sim_admissibility_manifold_mc.py",
         "confidence": "high",
-        "note": "Direct match for early admissibility manifold work.",
+        "note": "Direct local finite admitted-set lego under trace, PSD, Hermiticity, and probe-boundedness constraints.",
     },
     "helstrom_guess_bound": {
         "probe": "sim_helstrom_guess_bound.py",

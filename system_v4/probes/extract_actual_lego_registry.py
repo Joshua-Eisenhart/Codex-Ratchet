@@ -33,6 +33,8 @@ QUEUE_PATH = RESULTS_DIR / "actual_lego_normalization_queue.json"
 SUPPLEMENT_PATH = RESULTS_DIR / "actual_lego_registry_supplement.json"
 
 DIRECT_PROBE_PREFERENCES = {
+    "f01_finitude_constraint": "sim_f01_finitude_constraint.py",
+    "admissibility_manifold_mc": "sim_admissibility_manifold_mc.py",
     "bures_geometry": "sim_bures_geometry.py",
     "fubini_study_geometry": "sim_fubini_study_geometry.py",
     "nested_torus_geometry": "sim_nested_torus_geometry.py",

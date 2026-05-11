@@ -8,8 +8,9 @@ import pathlib
 from typing import Any
 
 
-CLASSIFICATION = "graveyard_audit"
-classification = CLASSIFICATION
+SOURCE_CLASSIFICATION = "tool_lego_fit_probe"
+RESULT_CLASSIFICATION = "audit"
+classification = SOURCE_CLASSIFICATION
 divergence_log = (
     "Controller graveyard for open Szilard ordering, record/reset, and substep "
     "repair rows. It preserves killed assumptions and surviving local variants "
@@ -190,7 +191,7 @@ def main() -> None:
     )
     result = {
         "name": "szilard_open_failure_graveyard",
-        "classification": CLASSIFICATION,
+        "classification": RESULT_CLASSIFICATION,
         "sim_execution_kind": "controller_index",
         "controller_index_exempt": True,
         "controller_index_exemption_reason": (
@@ -203,6 +204,12 @@ def main() -> None:
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "claim_ceiling": "audit-only graveyard partition for open Szilard failure/survival variants; no source-row closure or promotion",
+        "next_lego_target": "szilard_open_row_consolidation",
+        "promotion_condition": "Requires separate stage-gated coupling/admission evidence outside this audit result.",
+        "blocked_until": "active stage permits scientific coupling or source-row closure with exact receipts",
+        "demotion_condition": "Demote if used as QIT, GStack, axis, runtime-engine, or nonclassical admission evidence.",
+        "out_of_scope": ["QIT admission", "GStack admission", "axis promotion", "runtime-engine promotion", "source-row closure"],
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

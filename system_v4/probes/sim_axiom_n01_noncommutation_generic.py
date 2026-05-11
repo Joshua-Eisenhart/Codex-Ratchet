@@ -10,6 +10,11 @@ Pauli relations sigma_x sigma_y = i sigma_z).
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical finite Pauli-matrix noncommutation baseline only: it witnesses "
+    "operator order sensitivity in a fixed algebraic fixture and does not admit "
+    "QIT, axis, GStack, or nonclassical engine claims."
+)
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},

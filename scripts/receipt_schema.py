@@ -16,6 +16,7 @@ from typing import Any
 VALID_CLASSIFICATIONS = {
     "canonical",
     "classical_baseline",
+    "tool_lego_fit_probe",
     "supporting",
     "audit",
 }

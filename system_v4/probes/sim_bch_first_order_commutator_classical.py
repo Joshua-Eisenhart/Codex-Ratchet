@@ -12,6 +12,11 @@ import scipy.linalg as sla
 
 classification = "classical_baseline"
 NAME = "bch_first_order_commutator"
+divergence_log = (
+    "Classical BCH matrix-exponential baseline only: it checks finite matrix "
+    "commutator scaling with scipy/torch numerics and does not admit QIT, "
+    "axis, GStack, or nonclassical engine claims."
+)
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},

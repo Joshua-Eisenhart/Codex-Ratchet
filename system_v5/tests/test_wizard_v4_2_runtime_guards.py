@@ -209,3 +209,13 @@ def test_runtime_audit_rejects_empty_blocked_reason(tmp_path: Path) -> None:
     heartbeat = heartbeat_status({"lane_A": 0, "lane_B": 0, "lane_D": 0, "default": 0, "claimed": 0})
 
     assert heartbeat["status"] == "needs_next_micro_move_or_blocked_reason"
+
+
+def test_sim_runner_bypass_receipt_uses_json_booleans_and_rechecks() -> None:
+    runner = (ROOT / "system_v5/ops/sim_runner.sh").read_text()
+
+    assert '"strict_receipt_admission": shell_bool(strict_receipt)' in runner
+    assert '"strict_wizard_queue_admission": shell_bool(strict_wizard)' in runner
+    assert '"allow_helper_processes": shell_bool(allow_helpers)' in runner
+    assert "admission_bypass_recheck" in runner
+    assert "Admission bypass recovery sentinel disappeared during run" in runner

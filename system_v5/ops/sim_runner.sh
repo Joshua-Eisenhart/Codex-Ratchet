@@ -106,6 +106,18 @@ admission_bypass_preflight() {
   exit 1
 }
 
+admission_bypass_recheck() {
+  if [ "$STRICT_RECEIPT_ADMISSION" = "1" ] && [ "$STRICT_WIZARD_QUEUE_ADMISSION" = "1" ]; then
+    return 0
+  fi
+  if [ -f "$ADMISSION_BYPASS_SENTINEL" ]; then
+    return 0
+  fi
+  log "Admission bypass recovery sentinel disappeared during run: $ADMISSION_BYPASS_SENTINEL"
+  log "Stopping rather than continuing with non-strict admission silently."
+  exit 1
+}
+
 write_admission_bypass_receipt() {
   mkdir -p "$BYPASS_RECEIPT_DIR"
   local ts receipt
@@ -118,13 +130,16 @@ import sys
 from datetime import datetime, timezone
 
 path, strict_receipt, strict_wizard, allow_helpers, sentinel, log_path = sys.argv[1:]
+def shell_bool(value: str) -> bool:
+    return value == "1"
+
 payload = {
     "schema": "wizard_v4_2_admission_bypass_receipt_v1",
     "created_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
     "reason": "Strict admission bypass was enabled for a bounded recovery run.",
-    "strict_receipt_admission": strict_receipt,
-    "strict_wizard_queue_admission": strict_wizard,
-    "allow_helper_processes": allow_helpers,
+    "strict_receipt_admission": shell_bool(strict_receipt),
+    "strict_wizard_queue_admission": shell_bool(strict_wizard),
+    "allow_helper_processes": shell_bool(allow_helpers),
     "sentinel_path": sentinel,
     "log_path": log_path,
     "user": os.environ.get("USER", "unknown"),
@@ -400,6 +415,7 @@ while :; do
   sim_count=$((sim_count + 1))
   if [ $((sim_count % STATS_EVERY)) -eq 0 ]; then
     helper_process_preflight
+    admission_bypass_recheck
     log "Progress after $sim_count sims:"
     queue_stats | while read line; do log "$line"; done
   fi

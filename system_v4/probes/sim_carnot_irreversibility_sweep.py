@@ -15,6 +15,11 @@ import json
 import pathlib
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row sweeps finite Carnot irreversibility "
+    "inside a classical thermodynamic model; it does not claim QIT, "
+    "GStack, or nonclassical engine admission."
+)
 
 from sim_stoch_harmonic_carnot_finite_time import (
     CLASSIFICATION_NOTE as PARENT_SCOPE_NOTE,

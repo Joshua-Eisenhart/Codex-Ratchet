@@ -13,6 +13,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row isolates UMAP finite-dimensional embedding "
+    "capability on ordinary data; it does not claim bridge, QIT, or "
+    "nonclassical attractor evidence."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates umap dimensionality reduction capability alone; "

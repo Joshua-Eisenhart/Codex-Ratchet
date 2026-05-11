@@ -20,6 +20,11 @@ import z3
 
 import sim_qit_carnot_two_bath_cycle as base
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this row aligns finite Carnot graph/proof views "
+    "without admitting bridge or nonclassical coupling; any stronger "
+    "claim remains deferred to later gated evidence."
+)
 
 
 CLASSIFICATION = "research_support"

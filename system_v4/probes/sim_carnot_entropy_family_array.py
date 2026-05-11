@@ -11,6 +11,11 @@ from __future__ import annotations
 import json
 import pathlib
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this row compares finite Carnot entropy/readout "
+    "families against existing classical receipts; it does not claim "
+    "bridge or nonclassical entropy admission."
+)
 
 
 CLASSIFICATION = "exploratory"

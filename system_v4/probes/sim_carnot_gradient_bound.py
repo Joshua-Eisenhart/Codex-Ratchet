@@ -31,6 +31,11 @@ a useful structural constraint on the runtime.
 import numpy as np
 import json, os, sys
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this row measures finite Carnot-like gradient/bound "
+    "behavior in classical numeric terms; it does not promote axis, QIT, "
+    "or nonclassical gradient claims."
+)
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

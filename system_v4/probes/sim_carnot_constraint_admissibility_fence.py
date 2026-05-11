@@ -54,7 +54,7 @@ import json
 import os
 import sys
 from fractions import Fraction
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST
@@ -63,9 +63,23 @@ classification = "classical_baseline"  # auto-backfill
 TOOL_MANIFEST = {
     "pytorch":  {"tried": False, "used": False, "reason": "no tensor computation needed for symbolic proof"},
     "pyg":      {"tried": False, "used": False, "reason": "no graph transport in this bridge"},
-    "z3":       {"tried": False, "used": False, "reason": ""},
+    "z3":       {
+        "tried": True,
+        "used": True,
+        "reason": (
+            "load-bearing: z3 encodes the Carnot admissibility fence as SMT "
+            "queries and refutes outside-fence tuples by UNSAT."
+        ),
+    },
     "cvc5":     {"tried": False, "used": False, "reason": "z3 chosen as primary SMT; cvc5 reserved for cross-check in later sim"},
-    "sympy":    {"tried": False, "used": False, "reason": ""},
+    "sympy":    {
+        "tried": True,
+        "used": True,
+        "reason": (
+            "load-bearing: sympy derives the Carnot efficiency bound and "
+            "distinguishability-transfer identities symbolically."
+        ),
+    },
     "clifford": {"tried": False, "used": False, "reason": "thermodynamic variables are scalar, no rotor algebra required"},
     "geomstats":{"tried": False, "used": False, "reason": "no manifold learning"},
     "e3nn":     {"tried": False, "used": False, "reason": "no equivariance"},
@@ -76,7 +90,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None, "pyg": None, "z3": None, "cvc5": None, "sympy": None,
+    "pytorch": None, "pyg": None, "z3": "load_bearing", "cvc5": None, "sympy": "load_bearing",
     "clifford": None, "geomstats": None, "e3nn": None,
     "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
 }

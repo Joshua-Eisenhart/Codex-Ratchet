@@ -17,6 +17,11 @@ import sys
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this Carnot sweep varies hot/cold isotherm durations "
+    "inside a stochastic harmonic model; it does not admit bridge or "
+    "nonclassical thermodynamic structure."
+)
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent

@@ -19,6 +19,11 @@ from typing import Dict, List, Optional
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this stochastic Carnot hold sweep measures finite-time "
+    "thermalization and closure behavior with numpy dynamics; it does not "
+    "promote bridge, QIT, or nonclassical engine claims."
+)
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent

@@ -12,6 +12,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row isolates z3 SMT capability on finite "
+    "SAT/UNSAT/model checks; it does not claim proof admission, bridge, "
+    "or nonclassical engine behavior."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates z3 SMT solver capability alone; "

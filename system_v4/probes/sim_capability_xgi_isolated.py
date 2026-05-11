@@ -13,6 +13,11 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this row isolates XGI hypergraph API behavior "
+    "on explicit finite hyperedges; it does not admit bridge, GStack, "
+    "or nonclassical hypergraph coupling."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates xgi hypergraph capabilities alone; "

@@ -1,6 +1,6 @@
 # Sim Inventory Index
 
-Generated: `2026-05-11T20:53:20.851957+00:00`
+Generated: `2026-05-11T20:56:54.004588+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
@@ -17,8 +17,8 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 ## Inventory Status Counts
 
 - `source_only`: 3229
-- `rerun_or_admission_candidate`: 493
-- `contract_shaped_but_tool_depth_thin`: 187
+- `rerun_or_admission_candidate`: 494
+- `contract_shaped_but_tool_depth_thin`: 186
 - `legacy_result_or_repair_needed`: 29
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2
@@ -55,7 +55,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `toponetx`: 121
 - `geomstats`: 109
 - `pyg`: 69
-- `scipy`: 66
+- `scipy`: 67
 - `e3nn`: 55
 - `qutip`: 37
 - `qiskit`: 12
@@ -159,7 +159,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | contract_shaped_but_tool_depth_thin | `sim_betti_torus_classical` | channel_operator, hopf_torus, classical_baseline | - | classical_baseline |
 | rerun_or_admission_candidate | `sim_bipartite_entropy_topology_coexistence` | entropy_information, geometry_gstack_gtower, graph_topology, thermo_engine, axis_bridge | gudhi, numpy, pytorch, z3 | supporting |
 | rerun_or_admission_candidate | `sim_bipartite_phase_entropy_closure` | entropy_information, geometry_gstack_gtower, thermo_engine, axis_bridge, classical_baseline | gudhi, numpy, pytorch | classical_baseline |
-| contract_shaped_but_tool_depth_thin | `sim_blackwell_comparison_classical` | channel_operator, classical_baseline | - | classical_baseline |
+| rerun_or_admission_candidate | `sim_blackwell_comparison_classical` | channel_operator, classical_baseline | scipy | classical_baseline |
 | rerun_or_admission_candidate | `sim_blackwell_style_comparison` | root_admission, channel_operator, classical_baseline | cvc5 | canonical |
 | rerun_or_admission_candidate | `sim_blackwell_sufficiency_order_classical` | classical_baseline | numpy, scipy | classical_baseline |
 | rerun_or_admission_candidate | `sim_bootstrap_variance_classical` | classical_baseline | numpy, scipy | classical_baseline |

@@ -1,6 +1,6 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-11T20:53:20.851957+00:00",
+  "generated_at": "2026-05-11T20:56:54.004588+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 3949,
@@ -11,9 +11,9 @@
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3229,
-      "rerun_or_admission_candidate": 493,
+      "rerun_or_admission_candidate": 494,
       "legacy_result_or_repair_needed": 29,
-      "contract_shaped_but_tool_depth_thin": 187,
+      "contract_shaped_but_tool_depth_thin": 186,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
     },
@@ -64,7 +64,7 @@
       "xgi": 200,
       "geomstats": 109,
       "gudhi": 122,
-      "scipy": 66,
+      "scipy": 67,
       "toponetx": 121,
       "e3nn": 55,
       "pyg": 69,
@@ -1584,9 +1584,11 @@
       ],
       "tools": {
         "numpy": "supportive",
-        "scipy": "supportive"
+        "scipy": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "scipy"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
       "result_paths": [
@@ -1603,7 +1605,7 @@
       "admitted": false,
       "late_stage_signal": false,
       "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_blackwell_style_comparison",
@@ -18663,9 +18665,11 @@
       ],
       "tools": {
         "numpy": "supportive",
-        "scipy": "supportive"
+        "scipy": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "scipy"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
       "result_paths": [
@@ -18682,7 +18686,7 @@
       "admitted": false,
       "late_stage_signal": false,
       "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_blackwell_style_comparison",

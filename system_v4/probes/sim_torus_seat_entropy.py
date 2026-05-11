@@ -8,6 +8,26 @@ CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = "Canonical local torus-seat entropy row on one bounded seat-allocation distribution."
 LEGO_IDS = ["torus_seat_entropy"]
 PRIMARY_LEGO_IDS = ["torus_seat_entropy"]
+CLAIM_CEILING = "canonical_local_torus_seat_entropy_lego_only"
+NEXT_LEGO_TARGET = "none"
+PROMOTION_CONDITION = (
+    "requires separate reconciled queue row before coupling, bridge, axis, engine, "
+    "GStack, QIT, or nonclassical use"
+)
+BLOCKED_UNTIL = "exact parent receipts, queue row, result JSON, and ledger loopback are reconciled"
+DEMOTION_CONDITION = (
+    "demote if bounded seat-distribution entropy checks fail, distributions are not "
+    "normalized, or this row is used as torus geometry, axis, or engine evidence"
+)
+OUT_OF_SCOPE = [
+    "QIT engine admission",
+    "GStack admission",
+    "axis promotion",
+    "engine promotion",
+    "torus geometry admission",
+    "nonclassical proof",
+    "scientific coupling closure",
+]
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": "not needed"} for k in [
     "pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"
 ]}
@@ -43,7 +63,7 @@ def main():
         "all_distributions_are_normalized": {"pass": abs(np.sum(seat_balanced)-1.0)<1e-10 and abs(np.sum(seat_skewed)-1.0)<1e-10},
     }
     all_pass = all(v["pass"] for sec in [positive,negative,boundary] for v in sec.values())
-    results = {"name":"torus_seat_entropy","classification":CLASSIFICATION if all_pass else "supporting","classification_note":CLASSIFICATION_NOTE,"lego_ids":LEGO_IDS,"primary_lego_ids":PRIMARY_LEGO_IDS,"tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH,"positive":positive,"negative":negative,"boundary":boundary,"all_pass":all_pass,"summary":{"all_pass":all_pass,"scope_note":"Direct local torus-seat entropy row on one bounded seat-allocation distribution."}}
+    results = {"name":"torus_seat_entropy","classification":CLASSIFICATION if all_pass else "supporting","classification_note":CLASSIFICATION_NOTE,"lego_ids":LEGO_IDS,"primary_lego_ids":PRIMARY_LEGO_IDS,"claim_ceiling":CLAIM_CEILING,"next_lego_target":NEXT_LEGO_TARGET,"promotion_condition":PROMOTION_CONDITION,"blocked_until":BLOCKED_UNTIL,"demotion_condition":DEMOTION_CONDITION,"out_of_scope":OUT_OF_SCOPE,"tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH,"positive":positive,"negative":negative,"boundary":boundary,"all_pass":all_pass,"summary":{"all_pass":all_pass,"scope_note":"Direct local torus-seat entropy row on one bounded seat-allocation distribution."}}
     out = pathlib.Path(__file__).resolve().parent / "a2_state" / "sim_results" / "torus_seat_entropy_results.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(results, indent=2, default=str))

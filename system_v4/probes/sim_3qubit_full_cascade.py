@@ -29,6 +29,12 @@ import traceback
 import time
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical-baseline cascade scaling probe for a 3-qubit density-matrix carrier. "
+    "PyTorch remains load-bearing and is intentionally left visible as C6 debt; "
+    "this C4 note records the contrast scope without promoting bridge, QIT, GStack, "
+    "axis, or nonclassical admission."
+)
 
 # =====================================================================
 # TOOL MANIFEST

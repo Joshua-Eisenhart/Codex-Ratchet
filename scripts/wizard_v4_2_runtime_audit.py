@@ -196,7 +196,11 @@ def heartbeat_status(counts: dict[str, int | str]) -> dict[str, Any]:
             valid, reason = blocked_reason_valid(path, now=now)
             blocked_reason_details.append({"path": str(path.relative_to(ROOT)), "valid": valid, "reason": reason})
     blocked_reasons = [item["path"] for item in blocked_reason_details if item["valid"]]
-    if not idle:
+    blocked_count = int_count(counts, "blocked")
+    runner_idle_with_backlog = idle and blocked_count > 0
+    if runner_idle_with_backlog:
+        status = "runner_idle_with_backlog"
+    elif not idle:
         status = "active_or_queued"
     elif blocked_reasons:
         status = "idle_with_blocked_reason"
@@ -206,6 +210,8 @@ def heartbeat_status(counts: dict[str, int | str]) -> dict[str, Any]:
         "status": status,
         "idle": idle,
         "idle_keys": list(idle_keys),
+        "blocked_count": blocked_count,
+        "runner_idle_with_backlog": runner_idle_with_backlog,
         "dominant_blocked_reason": dominant_blocked_reason(),
         "blocked_reason_artifacts": blocked_reasons,
         "blocked_reason_details": blocked_reason_details,
@@ -291,7 +297,7 @@ def main(argv: list[str] | None = None) -> int:
 
     hard_failures = bool(findings)
     hard_failures = hard_failures or any(not check.get("ok") for check in checks.values())
-    hard_failures = hard_failures or heartbeat["status"] == "needs_next_micro_move_or_blocked_reason"
+    hard_failures = hard_failures or heartbeat["status"] in {"needs_next_micro_move_or_blocked_reason", "runner_idle_with_backlog"}
     hard_failures = hard_failures or (args.skip_preflight and not args.accept_skipped_preflight)
     hard_failures = hard_failures or bypass_sentinel_present
 

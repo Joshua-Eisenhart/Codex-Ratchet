@@ -30,6 +30,8 @@ Tools:
 import json
 import os
 import math
+import time
+from datetime import datetime
 import numpy as np
 classification = "canonical"
 
@@ -702,6 +704,7 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    start_time = time.time()
     print("Running sim_pyg_dynamic_edge_werner.py ...")
 
     pos_results = run_positive_tests()
@@ -754,9 +757,12 @@ if __name__ == "__main__":
         and summary["xgi_intersection_pos_sep"] == []
     )
     summary["all_pass"] = all_pass
+    elapsed_seconds = round(time.time() - start_time, 6)
 
     results = {
         "name": "sim_pyg_dynamic_edge_werner",
+        "timestamp": datetime.now().isoformat(timespec="seconds"),
+        "elapsed_seconds": elapsed_seconds,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos_results,
@@ -804,6 +810,7 @@ if __name__ == "__main__":
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
+    print(f"Elapsed: {elapsed_seconds}s")
     print(f"\n=== SUMMARY ===")
     print(f"I_c>0 subgraph: {summary['ic_positive_subgraph_nodes']} nodes, {summary['ic_positive_subgraph_edges']} edges")
     print(f"Quantum bottleneck: node {summary['quantum_bottleneck_node_idx']} (p={summary['quantum_bottleneck_p']}, centrality={summary['quantum_bottleneck_centrality']})")

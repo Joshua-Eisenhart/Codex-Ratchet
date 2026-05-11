@@ -2,6 +2,7 @@ window.PRIME_QIT_SIDECAR_GRAVEYARD_DATA = {
   "name": "prime_qit_sidecar_graveyard",
   "summary": {
     "all_pass": true,
+    "battery_type": "negative_control",
     "variant_count": 6,
     "killed_or_control_count": 5,
     "reference_survives": true,

@@ -19,10 +19,10 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "canonical"
+classification = "controller_routing_surface"
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "controller_routing_surface"
 divergence_log = (
     "Controller-facing translation-target surface for the Weyl/Hopf geometry "
     "lane. It ranks foundation rows, companion-ready rows, graph/proof bridges, "
@@ -184,12 +184,37 @@ def all_pass(result: dict[str, Any] | None) -> bool:
 
 
 def load_sources() -> dict[str, dict[str, Any]]:
+    missing_sources: list[str] = []
+    matrix = load_optional_json(MATRIX_PATH)
+    overlay = load_optional_json(OVERLAY_PATH)
+    audit = load_optional_json(AUDIT_PATH)
+    supplement = load_optional_json(SUPPLEMENT_PATH)
+
+    if matrix is None:
+        missing_sources.append(str(MATRIX_PATH))
+        matrix = {"rows": []}
+    if overlay is None:
+        missing_sources.append(str(OVERLAY_PATH))
+        overlay = {"rows": []}
+    if audit is None:
+        missing_sources.append(str(AUDIT_PATH))
+        audit = {"rows": []}
+    if supplement is None:
+        missing_sources.append(str(SUPPLEMENT_PATH))
+        supplement = {"rows": [] , "summary": {"registry_gap_concepts": []}}
+
+    registry = load_optional_json(REGISTRY_PATH)
+    if registry is None:
+        missing_sources.append(str(REGISTRY_PATH))
+        registry = {"rows": []}
+
     return {
-        "matrix": load_json(MATRIX_PATH),
-        "overlay": load_json(OVERLAY_PATH),
-        "audit": load_json(AUDIT_PATH),
-        "supplement": load_json(SUPPLEMENT_PATH),
-        "registry": load_optional_json(REGISTRY_PATH) or {"rows": []},
+        "matrix": matrix,
+        "overlay": overlay,
+        "audit": audit,
+        "supplement": supplement,
+        "registry": registry,
+        "missing_sources": missing_sources,
     }
 
 
@@ -482,6 +507,8 @@ def main() -> None:
             "supplement_row_count": len(supplement_rows),
             "registry_gap_concept_count": len(sources["supplement"]["summary"].get("existing_registry_gaps", [])),
             "registry_new_concept_count": len(sources["supplement"]["summary"].get("new_concepts_not_in_actual_registry", [])),
+            "missing_sources": sources["missing_sources"],
+            "missing_source_count": len(sources["missing_sources"]),
             "scope_note": (
                 "Translation-target surface for the Weyl/Hopf lane. Foundation rows stay reusable, companion-ready rows are the next strict-companion targets, "
                 "graph/proof rows stay bridge-only, and sidecars stay diagnostic or legacy."

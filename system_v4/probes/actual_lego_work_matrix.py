@@ -95,6 +95,15 @@ def result_path(result_name: str | None) -> Path | None:
     return RESULTS_DIR / result_name
 
 
+def normalize_result_candidate(value: str | None) -> str | None:
+    if not value:
+        return None
+    value = value.strip()
+    if not value or value.lower() in {"none", "null", "nan"}:
+        return None
+    return value
+
+
 def inventory_by_stem(inventory: dict) -> dict[str, dict]:
     return {row.get("stem", ""): row for row in inventory.get("rows", [])}
 
@@ -437,34 +446,62 @@ def main() -> int:
         lego_id = reg_row.get("lego_id")
         norm_row = norm_by_id.get(lego_id, {})
         probe = reg_row.get("machine_best_probe") or norm_row.get("reusable_probe")
-        result_name = (
+        result_name = normalize_result_candidate(
             reg_row.get("machine_best_result")
+            or reg_row.get("best_existing_result")
             or norm_row.get("existing_result_json")
-            or result_name_for_probe(probe)
         )
         if not probe and lego_id in LEGO_PROBE_ALIASES:
             alias_probe = LEGO_PROBE_ALIASES[lego_id]
             if (SCRIPT_DIR / alias_probe).exists():
                 probe = alias_probe
-                result_name = result_name_for_probe(probe)
         if lego_id in LEGO_RESULT_ALIASES:
             alias_result = LEGO_RESULT_ALIASES[lego_id]
             if result_path(alias_result) and result_path(alias_result).exists():
                 result_name = alias_result
-        if result_name and not (result_path(result_name) and result_path(result_name).exists()) and probe:
-            probe_stem_result = f"{stem_from_probe(probe)}_results.json"
-            if result_path(probe_stem_result) and result_path(probe_stem_result).exists():
-                result_name = probe_stem_result
-        if not result_name and lego_id:
-            lego_result_name = f"{lego_id}_results.json"
-            if result_path(lego_result_name) and result_path(lego_result_name).exists():
-                result_name = lego_result_name
         if not probe and lego_id:
             lego_probe = f"sim_{lego_id}.py"
             if (SCRIPT_DIR / lego_probe).exists():
                 probe = lego_probe
+
+        if (
+            not result_name
+            or (result_name and not (result_path(result_name) and result_path(result_name).exists()))
+            or result_name == "sim_gudhi_concurrence_filtration_results.json"
+        ):
+            if probe:
+                probe_stem = stem_from_probe(probe)
+                if probe_stem:
+                    probe_stem_result = f"{probe_stem}_results.json"
+                    if result_path(probe_stem_result) and result_path(probe_stem_result).exists():
+                        result_name = probe_stem_result
+            if (
+                not result_name
+                or not (result_path(result_name) and result_path(result_name).exists())
+            ) and lego_id:
+                lego_result_name = f"{lego_id}_results.json"
+                if result_path(lego_result_name) and result_path(lego_result_name).exists():
+                    result_name = lego_result_name
+
+        if not result_name and probe:
+            result_name = result_name_for_probe(probe)
         stem = stem_from_probe(probe) or stem_from_result_name(result_name) or ""
         inv_row = inv_by_stem.get(stem, {})
+        if (
+            result_name
+            and result_path(result_name)
+            and not result_path(result_name).exists()
+            and inv_row
+        ):
+            for candidate in inv_row.get("result_paths", []):
+                candidate_name = result_path(candidate).name if isinstance(candidate, str) else ""
+                if candidate_name and result_path(candidate_name).exists():
+                    result_name = candidate_name
+                    break
+
+        if not result_name or (result_path(result_name) and not result_path(result_name).exists()):
+            result_name = normalize_result_candidate(result_name)
+
         result = load_result_summary(result_name)
         couplings = []
         couplings.extend(coupling_by_family.get(lego_id, []))
@@ -607,7 +644,19 @@ def main() -> int:
             "next_action_counts": dict(sorted(next_counts.items())),
             "coverage_slot_counts": dict(sorted(slot_counts.items())),
             "result_exists_count": sum(1 for row in rows if row["result_exists"]),
-            "missing_result_count": sum(1 for row in rows if not row["result_exists"]),
+            "missing_result_count": sum(
+                1
+                for row in rows
+                if not row["result_exists"]
+                and row.get("machine_current_coverage") != "blocked_as_late_surface"
+            ),
+            "late_surface_no_result_count": sum(
+                1
+                for row in rows
+                if not row["result_exists"]
+                and row.get("machine_current_coverage") == "blocked_as_late_surface"
+            ),
+            "result_missing_raw_count": sum(1 for row in rows if not row["result_exists"]),
             "coupling_linked_row_count": sum(1 for row in rows if row["coupling_task_ids"]),
             "inventory_gap_count": sum(1 for row in rows if row["inventory_gap"]),
             "stale_label_risk_count": sum(1 for row in rows if row["stale_label_risk"]),

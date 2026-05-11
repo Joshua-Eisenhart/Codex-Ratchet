@@ -117,7 +117,19 @@ def main() -> int:
             "row_count": len(rows),
             "state_counts": dict(sorted(state_counts.items())),
             "result_exists_count": sum(1 for row in rows if row["result_exists"]),
-            "missing_result_count": sum(1 for row in rows if not row["result_exists"]),
+            "missing_result_count": sum(
+                1
+                for row in rows
+                if not row["result_exists"]
+                and row.get("machine_current_coverage") != "blocked_as_late_surface"
+            ),
+            "late_surface_no_result_count": sum(
+                1
+                for row in rows
+                if not row["result_exists"]
+                and row.get("machine_current_coverage") == "blocked_as_late_surface"
+            ),
+            "result_missing_raw_count": sum(1 for row in rows if not row["result_exists"]),
             "stale_label_risk_count": sum(1 for row in rows if row["stale_label_risk"]),
             "graveyard_count": sum(1 for row in rows if row["use_as_negative_evidence"]),
             "coverage_slot_counts": dict(sorted(slot_counts.items())),

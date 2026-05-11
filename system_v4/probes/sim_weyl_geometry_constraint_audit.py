@@ -20,7 +20,6 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
@@ -104,6 +103,12 @@ ROW_SOURCES = [
 
 def load_json(path: pathlib.Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_optional_json(path: pathlib.Path, *, default: dict[str, Any] | None = None) -> dict[str, Any] | None:
+    if not path.exists():
+        return default
+    return load_json(path)
 
 
 def load_registry_lookup() -> dict[str, dict[str, Any]]:
@@ -299,6 +304,7 @@ def metric_pick(row_id: str, result: dict[str, Any], route: str) -> dict[str, An
 
 def main() -> None:
     registry_lookup = load_registry_lookup()
+    missing_result_files: list[str] = []
 
     rows: list[dict[str, Any]] = []
     route_counts: dict[str, int] = {}
@@ -306,7 +312,19 @@ def main() -> None:
 
     for spec in ROW_SOURCES:
         result_path = RESULT_DIR / spec["result_file"]
-        result = load_json(result_path)
+        result = load_optional_json(result_path)
+        if result is None:
+            missing_result_files.append(spec["result_file"])
+            result = {
+                "name": spec["row_id"],
+                "classification": "incomplete",
+                "summary": {"all_pass": False},
+                "positive": {},
+                "negative": {},
+                "boundary": {},
+                "tool_integration_depth": {},
+            }
+
         route, route_reason = route_row(spec["row_id"], result)
 
         registry_hit = registry_lookup.get(spec["result_file"]) or registry_lookup.get(result.get("name", ""))
@@ -339,6 +357,8 @@ def main() -> None:
         "all_pass": all(row["all_pass"] for row in rows),
         "row_count": len(rows),
         "registry_matched_rows": registry_matched,
+        "missing_result_files": missing_result_files,
+        "missing_result_file_count": len(missing_result_files),
         "route_counts": route_counts,
         "reusable_base_lego_count": route_counts.get("reusable base lego", 0),
         "graph_proof_bridge_count": route_counts.get("graph/proof bridge", 0),

@@ -11,6 +11,26 @@ import os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+CLAIM_CEILING = "canonical_local_coherence_vector_lego_only"
+NEXT_LEGO_TARGET = "none"
+PROMOTION_CONDITION = (
+    "requires separate reconciled queue row before coupling, bridge, axis, engine, "
+    "GStack, QIT, or nonclassical use"
+)
+BLOCKED_UNTIL = "exact parent receipts, queue row, result JSON, and ledger loopback are reconciled"
+DEMOTION_CONDITION = (
+    "demote if L1 coherence, zero/maximal coherence, autograd, symbolic, "
+    "or boundary criteria fail, or if this row is used for a higher-stage claim"
+)
+OUT_OF_SCOPE = [
+    "QIT engine admission",
+    "GStack admission",
+    "axis promotion",
+    "engine promotion",
+    "nonclassical proof",
+    "scientific coupling closure",
+]
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -348,6 +368,12 @@ if __name__ == "__main__":
     results = {
         "name": "torch_l1_coherence",
         "description": "L1Coherence: C_l1(rho) = sum |rho_ij| for i!=j, zero for incoherent states",
+        "claim_ceiling": CLAIM_CEILING,
+        "next_lego_target": NEXT_LEGO_TARGET,
+        "promotion_condition": PROMOTION_CONDITION,
+        "blocked_until": BLOCKED_UNTIL,
+        "demotion_condition": DEMOTION_CONDITION,
+        "out_of_scope": OUT_OF_SCOPE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive, "negative": negative,

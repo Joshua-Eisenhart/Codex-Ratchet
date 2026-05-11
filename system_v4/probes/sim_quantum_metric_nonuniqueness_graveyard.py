@@ -17,7 +17,7 @@ from pathlib import Path
 import numpy as np
 
 
-classification = "graveyard_control"
+classification = "supporting"
 CLASSIFICATION = classification
 divergence_log = (
     "Finite qubit metric-choice graveyard: Bures, trace, Hilbert-Schmidt, and "

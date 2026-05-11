@@ -3,7 +3,7 @@
   "generated_at": "2026-05-11T17:48:18.090720Z",
   "source_script": "system_v4/probes/sim_gauge_group_falsifier_graveyard.py",
   "raw_result_path": "system_v4/probes/a2_state/sim_results/gauge_group_falsifier_graveyard_results.json",
-  "classification": "supporting",
+  "classification": "classical_baseline",
   "lego_ids": [
     "gauge_group_falsifier",
     "berry_phase_u1_abelian",
@@ -23,7 +23,8 @@
   "positive_pass": {
     "prerequisite_receipts_pass": true,
     "u1_phase_composition_is_abelian": true,
-    "pauli_commutator_surface_is_nonabelian": true
+    "pauli_commutator_surface_is_nonabelian": true,
+    "sympy_exact_rank_obstruction_matches_numeric_obstruction": true
   },
   "negative_pass": {
     "single_u1_generator_cannot_span_su2_bracket_surface": true,

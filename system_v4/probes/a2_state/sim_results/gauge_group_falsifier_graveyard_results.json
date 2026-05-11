@@ -1,9 +1,9 @@
 {
   "name": "gauge_group_falsifier_graveyard",
-  "classification": "supporting",
+  "classification": "classical_baseline",
   "classification_note": "Finite gauge/group graveyard probe: abelian U(1) phase composition and nonabelian Pauli commutator closure are compared on fixed bounded carriers. This records a falsifier/boundary only; it does not admit a coupling, assembly, QIT, GStack, axis, or nonclassical claim.",
   "divergence_log": "Finite gauge/group graveyard probe: abelian U(1) phase composition and nonabelian Pauli commutator closure are compared on fixed bounded carriers. This records a falsifier/boundary only; it does not admit a coupling, assembly, QIT, GStack, axis, or nonclassical claim.",
-  "generated_at": "2026-05-11T17:48:30.511715+00:00",
+  "generated_at": "2026-05-11T17:51:51.134173+00:00",
   "lego_ids": [
     "gauge_group_falsifier",
     "berry_phase_u1_abelian",
@@ -40,12 +40,18 @@
       "tried": true,
       "used": true,
       "reason": "load-bearing finite matrix, rank, and commutator calculations"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing exact symbolic rank and commutator obstruction check"
     }
   },
   "tool_integration_depth": {
     "json": "supportive",
     "pathlib": "supportive",
-    "numpy": "load_bearing"
+    "numpy": "load_bearing",
+    "sympy": "load_bearing"
   },
   "source_receipts": {
     "berry_phase_u1_abelian": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/berry_phase_u1_abelian_results.json",
@@ -74,6 +80,13 @@
     },
     "pauli_commutator_surface_is_nonabelian": {
       "xy_commutator_norm": 2.8284271247461903,
+      "pass": true
+    },
+    "sympy_exact_rank_obstruction_matches_numeric_obstruction": {
+      "u1_rank": 1,
+      "pauli_rank": 3,
+      "u1_self_commutator_zero": true,
+      "xy_bracket_nonzero": true,
       "pass": true
     }
   },

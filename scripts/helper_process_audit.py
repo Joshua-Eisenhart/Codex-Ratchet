@@ -12,7 +12,14 @@ import json
 import os
 import subprocess
 import sys
-import tomllib
+try:
+    import tomllib
+except ImportError:
+    try:
+        import tomli as tomllib
+    except ImportError:
+        tomllib = None
+import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Iterable
@@ -44,25 +51,76 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def _ps_rows() -> Iterable[tuple[int, int, str, str]]:
-    proc = subprocess.run(
-        ["ps", "-axo", "pid=", "-o", "ppid=", "-o", "etime=", "-o", "command="],
-        check=False,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-    )
-    if proc.returncode != 0:
-        raise RuntimeError(proc.stderr.strip() or "ps command failed")
-    for line in proc.stdout.splitlines():
-        parts = line.strip().split(maxsplit=3)
-        if len(parts) < 4:
-            continue
-        pid_text, ppid_text, etime, command = parts
+def _format_elapsed(elapsed: float) -> str:
+    secs = max(0, int(elapsed))
+    minutes, seconds = divmod(secs, 60)
+    hours, minutes = divmod(minutes, 60)
+    days, hours = divmod(hours, 24)
+    if days:
+        return f"{days}d{hours:02d}:{minutes:02d}:{seconds:02d}"
+    return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+
+
+def _ps_rows_from_psutil() -> Iterable[tuple[int, int, str, str]]:
+    try:
+        import psutil
+    except Exception as exc:
+        raise RuntimeError(f"psutil_import_failed: {exc}") from exc
+
+    now = time.time()
+    for proc in psutil.process_iter(["pid", "ppid", "create_time", "cmdline"]):
         try:
-            yield int(pid_text), int(ppid_text), etime, command
-        except ValueError:
+            info = proc.info
+            pid = int(info.get("pid", 0) or 0)
+            ppid = int(info.get("ppid", 0) or 0)
+            create_time = info.get("create_time")
+            etime = _format_elapsed(now - create_time) if create_time else ""
+            cmdline = info.get("cmdline") or []
+            command = " ".join(cmdline).strip()
+            yield pid, ppid, etime, command
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess, TypeError, ValueError):
             continue
+
+
+def _ps_rows() -> Iterable[tuple[int, int, str, str]]:
+    try:
+        yield from _ps_rows_from_psutil()
+        return
+    except Exception:
+        pass
+
+    ps_cmds = [
+        ["/bin/ps", "-axo", "pid=", "-o", "ppid=", "-o", "etime=", "-o", "command="],
+        ["ps", "-axo", "pid=", "-o", "ppid=", "-o", "etime=", "-o", "command="],
+        ["/usr/bin/ps", "-axo", "pid=", "-o", "ppid=", "-o", "etime=", "-o", "command="],
+    ]
+
+    for ps_cmd in ps_cmds:
+        try:
+            proc = subprocess.run(
+                ps_cmd,
+                check=False,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
+        except OSError as exc:
+            continue
+        if proc.returncode != 0:
+            continue
+
+        for line in proc.stdout.splitlines():
+            parts = line.strip().split(maxsplit=3)
+            if len(parts) < 4:
+                continue
+            pid_text, ppid_text, etime, command = parts
+            try:
+                yield int(pid_text), int(ppid_text), etime, command
+            except ValueError:
+                continue
+        return
+
+    raise RuntimeError("process_audit_unavailable: no usable ps backend")
 
 
 def audit_processes() -> dict[str, object]:
@@ -113,6 +171,18 @@ def audit_mcp_config(config_path: Path | None = None) -> dict[str, object]:
     config_path = config_path or Path.home() / ".codex" / "config.toml"
     if not config_path.exists():
         return {"config_path": str(config_path), "findings": [], "parse_error": None}
+    if tomllib is None:
+        return {
+            "config_path": str(config_path),
+            "findings": [
+                {
+                    "kind": "codex_config_toml_parser_unavailable",
+                    "error": "tomllib/tomli not available in runtime",
+                }
+            ],
+            "parse_error": "tomllib/tomli missing",
+        }
+
     try:
         payload = tomllib.loads(config_path.read_text(encoding="utf-8"))
     except Exception as exc:

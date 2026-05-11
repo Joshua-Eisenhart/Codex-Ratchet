@@ -7,12 +7,15 @@ set -uo pipefail
 ROOT="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
 PY="${PY:-/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3}"
 LOCK="/tmp/codex_ratchet_overnight.lock"
+LOCK_META="/tmp/codex_ratchet_overnight.lock.meta"
+RUNNER_COMMAND_GREP="overnight_two_runner.sh"
 QUEUE_CLAIM="$ROOT/scripts/queue_claim.py"
 GATE="$ROOT/scripts/verify_load_bearing_has_capability_probe.py"
 LANE_A_DIR="$ROOT/system_v4/probes/a2_state/queue/lane_A"
 LANE_B_DIR="$ROOT/system_v4/probes/a2_state/queue/lane_B"
-LOG_DIR="$ROOT/overnight_logs"
 STAMP=$(date +%Y%m%d_%H%M%S)
+LOG_DIR="${LOG_DIR:-$ROOT/overnight_logs}"
+TRACKED_REPAIR_REPORT_DIR="${TRACKED_REPAIR_REPORT_DIR:-$ROOT/system_v5/ops/queue_cleanup}"
 
 MINUTES=0
 K1=2
@@ -22,6 +25,7 @@ STRICT_RECEIPT_ADMISSION="${STRICT_RECEIPT_ADMISSION:-1}"
 STRICT_WIZARD_QUEUE_ADMISSION="${STRICT_WIZARD_QUEUE_ADMISSION:-1}"
 ALLOW_HELPER_PROCESSES="${ALLOW_HELPER_PROCESSES:-0}"
 ADMISSION_BYPASS_SENTINEL="${ADMISSION_BYPASS_SENTINEL:-$ROOT/system_v5/ops/.allow_admission_bypass_recovery}"
+ALLOW_ADMISSION_BYPASS_RECOVERY="${ALLOW_ADMISSION_BYPASS_RECOVERY:-0}"
 SIM_TIMEOUT=900  # seconds; kill any single sim that runs longer than this
 
 # Sims that must never enter the overnight queue (meta-benchmarks, harnesses).
@@ -42,11 +46,19 @@ while [ $# -gt 0 ]; do
 done
 [ "$MINUTES" -gt 0 ] 2>/dev/null || usage
 
+if [ "$DRY" -eq 1 ]; then
+  LOG_DIR="${DRY_LOG_DIR:-/tmp/codex_ratchet_overnight_dry}"
+  TRACKED_REPAIR_REPORT_DIR="${DRY_REPAIR_REPORT_DIR:-/tmp/codex_ratchet_overnight_dry/queue_cleanup}"
+fi
+
 mkdir -p "$LOG_DIR"
+mkdir -p "$TRACKED_REPAIR_REPORT_DIR"
 MANIFEST="$LOG_DIR/queue_manifest_${STAMP}.json"
 DENIALS="$LOG_DIR/gate_denials_${STAMP}.json"
 TOOLSTATE="$LOG_DIR/tool_capability_state_${STAMP}.json"
 SUCCESS="$LOG_DIR/success_eval_${STAMP}.json"
+DUP_REPAIR_REPORT="$LOG_DIR/queue_done_duplicate_repair_${STAMP}.json"
+DUP_REPAIR_REPORT_TRACKED="$TRACKED_REPAIR_REPORT_DIR/queue_done_duplicate_repair_${STAMP}.json"
 EVENTS="$LOG_DIR/events_${STAMP}.ndjson"
 : > "$EVENTS"
 
@@ -66,11 +78,45 @@ helper_process_preflight() {
   "$PY" "$ROOT/scripts/helper_process_audit.py" --strict >/dev/null
 }
 
+is_overnight_process() {
+  local pid="$1"
+  [ -n "$pid" ] || return 1
+  local cmd
+  cmd="$(ps -p "$pid" -o command= 2>/dev/null | tr -d '\r')"
+  case "$cmd" in
+    *"$RUNNER_COMMAND_GREP"*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+assert_single_controller_preflight() {
+  local pid others=0
+  local current_pid="$$"
+  for pid in $(pgrep -f "overnight_two_runner\\.sh" 2>/dev/null || true); do
+    [ -z "$pid" ] && continue
+    [ "$pid" = "$current_pid" ] && continue
+    if is_overnight_process "$pid"; then
+      others=$((others + 1))
+      say "Another overnight_two_runner controller is already active (pid=$pid)."
+    fi
+  done
+  [ "$others" -eq 0 ]
+}
+
 admission_bypass_preflight() {
   if [ "$STRICT_RECEIPT_ADMISSION" = "1" ] && [ "$STRICT_WIZARD_QUEUE_ADMISSION" = "1" ]; then
+    if [ -f "$ADMISSION_BYPASS_SENTINEL" ] && [ "$ALLOW_ADMISSION_BYPASS_RECOVERY" != "1" ]; then
+      say "Admission bypass sentinel present at $ADMISSION_BYPASS_SENTINEL; blocked unless ALLOW_ADMISSION_BYPASS_RECOVERY=1."
+      return 1
+    fi
     return 0
   fi
-  [ -f "$ADMISSION_BYPASS_SENTINEL" ]
+  if [ "$ALLOW_ADMISSION_BYPASS_RECOVERY" = "1" ] && [ -f "$ADMISSION_BYPASS_SENTINEL" ]; then
+    say "Recovery bypass allowed by ALLOW_ADMISSION_BYPASS_RECOVERY=1"
+    return 0
+  fi
+  say "Admission bypass preflight failed: strict admission and wizard-queue gates are not both enabled."
+  return 1
 }
 
 run_sim_with_timeout() { # $1=sim $2=artifact
@@ -114,18 +160,101 @@ stage_gate_allows_sim() {
 }
 
 # --- atomic O_EXCL lock via python ------------------------------------------
+is_pid_alive() {
+  local pid="$1"
+  [ -n "$pid" ] || return 1
+  kill -0 "$pid" 2>/dev/null
+}
+
+cleanup_orphan_lock() {
+  [ -f "$LOCK" ] || return 0
+  local holder
+  holder=$(awk 'NR==1 {print $1}' "$LOCK" 2>/dev/null | tr -cd '0-9')
+  if is_pid_alive "$holder" && is_overnight_process "$holder"; then
+    return 1
+  fi
+  say "Removing stale overnight lock: $LOCK (holder=$holder)"
+  rm -f "$LOCK"
+  rm -f "$LOCK_META"
+}
+
 acquire_lock() {
-  "$PY" - "$LOCK" <<'PY' || return 1
+  assert_single_controller_preflight || return 1
+  cleanup_orphan_lock || return 1
+  "$PY" - "$LOCK" "$$" <<'PY' || return 1
 import os, sys
 p = sys.argv[1]
+pid = sys.argv[2]
 try:
     fd = os.open(p, os.O_CREAT|os.O_EXCL|os.O_WRONLY, 0o644)
 except FileExistsError:
     print(f"LOCK HELD: {p}", file=sys.stderr); sys.exit(1)
-os.write(fd, f"{os.getppid()}\n".encode()); os.close(fd)
+os.write(fd, f"{pid}\n".encode()); os.close(fd)
 PY
 }
-release_lock() { rm -f "$LOCK"; }
+
+owns_lock() {
+  local holder
+  holder=$(awk 'NR==1 {print $1}' "$LOCK" 2>/dev/null | tr -cd '0-9')
+  [ "$holder" = "$$" ] && return 0
+  return 1
+}
+
+release_lock() {
+  if [ -f "$LOCK" ] && ! owns_lock; then
+    return 0
+  fi
+  rm -f "$LOCK"
+  rm -f "$LOCK_META"
+}
+
+record_lock_meta() {
+  cat > "$LOCK_META" <<EOF
+{
+  "pid": $$,
+  "started_at": "$(date -Iseconds)",
+  "command": "$0 --minutes $MINUTES --lane-a-parallel $K1 --lane-b-parallel $K2",
+  "host": "$(hostname)"
+}
+EOF
+}
+
+repair_duplicate_done_records() {
+  emit duplicate_repair_queued "\"phase\":\"preflight\""
+  local repair_mode="scan"
+  local repair_stdout repair_stderr
+  local -a repair_cmd
+  repair_cmd=("$PY" "$ROOT/scripts/repair_queue_done_duplicates.py" --keep-newest --report-path "$DUP_REPAIR_REPORT_TRACKED")
+  if [ "$DRY" -eq 0 ]; then
+    repair_mode="apply"
+    repair_cmd+=(--apply)
+  fi
+  repair_stdout="/tmp/codex_ratchet_duplicate_repair_${STAMP}.stdout"
+  repair_stderr="/tmp/codex_ratchet_duplicate_repair_${STAMP}.stderr"
+  if ! "${repair_cmd[@]}" > "$repair_stdout" 2>"$repair_stderr"; then
+    say "FAILED duplicate-done repair preflight"
+    [ -s "$repair_stderr" ] && tail -20 "$repair_stderr"
+    return 1
+  fi
+
+  mkdir -p "$TRACKED_REPAIR_REPORT_DIR"
+  cp "$DUP_REPAIR_REPORT_TRACKED" "$DUP_REPAIR_REPORT" 2>/dev/null || true
+
+  local duplicates total_bases
+  read -r duplicates total_bases < <("$PY" - "$DUP_REPAIR_REPORT_TRACKED" <<'PY'
+import json, sys
+report = json.loads(open(sys.argv[1], encoding="utf-8").read())
+print(report.get("total_duplicate_files", 0), report.get("total_duplicate_bases", 0))
+PY
+)
+  if [ "${duplicates:-0}" -gt 0 ]; then
+    say "queue_done_duplicate_repair: $repair_mode completed with $duplicates duplicates across $total_bases ids"
+    emit duplicate_repair_done "\"phase\":\"preflight\",\"mode\":\"$repair_mode\",\"duplicates\":$duplicates,\"bases\":$total_bases,\"report\":\"$DUP_REPAIR_REPORT_TRACKED\",\"legacy_report\":\"$DUP_REPAIR_REPORT\""
+  else
+    emit duplicate_repair_done "\"phase\":\"preflight\",\"mode\":\"$repair_mode\",\"duplicates\":0"
+  fi
+  return 0
+}
 
 stop_workers() {
   for p in "${pids[@]:-}"; do kill "$p" 2>/dev/null || true; done
@@ -225,7 +354,7 @@ write_reports() {
   EVENTS_PATH="$EVENTS" MANIFEST_PATH="$MANIFEST" DENIALS_PATH="$DENIALS" \
   TOOLSTATE_PATH="$TOOLSTATE" SUCCESS_PATH="$SUCCESS" ROOT="$ROOT" \
   "$PY" - <<'PY'
-import json, os, hashlib, glob
+import json, os, hashlib, sys
 from pathlib import Path
 root = Path(os.environ["ROOT"])
 events = [json.loads(l) for l in Path(os.environ["EVENTS_PATH"]).read_text().splitlines() if l.strip()]
@@ -258,17 +387,36 @@ Path(os.environ["TOOLSTATE_PATH"]).write_text(json.dumps(tools, indent=2))
 lane_a = [e for e in claimed if e.get("lane") == "A"]
 lane_b = [e for e in claimed if e.get("lane") == "B"]
 summary = {
-    "lane_a": {"claimed": len(lane_a),
-               "pass": sum(1 for e in lane_a if e["exit"] == 0),
-               "fail": sum(1 for e in lane_a if e["exit"] != 0),
-               "gate_denied": len(denied)},
-    "lane_b": {"claimed": len(lane_b),
-               "pass": sum(1 for e in lane_b if e["exit"] == 0),
-               "fail": sum(1 for e in lane_b if e["exit"] != 0)},
+    "lane_a": {
+        "claimed": len(lane_a),
+        "pass": sum(1 for e in lane_a if e["exit"] == 0),
+        "fail": sum(1 for e in lane_a if e["exit"] != 0),
+        "gate_denied": len(denied),
+    },
+    "lane_b": {
+        "claimed": len(lane_b),
+        "pass": sum(1 for e in lane_b if e["exit"] == 0),
+        "fail": sum(1 for e in lane_b if e["exit"] != 0),
+    },
     "total_events": len(events),
 }
+if summary["total_events"] == 0:
+    summary["status"] = "blocked_no_events"
+    events.append(
+        {
+            "ts": "",
+            "kind": "batch_complete",
+            "reason": "no_events_claimed_or_reported",
+            "lane_a_claims": summary["lane_a"]["claimed"],
+            "lane_b_claims": summary["lane_b"]["claimed"],
+            "wallclock": "no_movement",
+        }
+    )
+else:
+    summary["status"] = "complete"
 Path(os.environ["SUCCESS_PATH"]).write_text(json.dumps(summary, indent=2))
 print(json.dumps(summary, indent=2))
+sys.exit(0 if summary["status"] == "complete" else 1)
 PY
 }
 
@@ -285,8 +433,19 @@ if ! admission_bypass_preflight; then
   exit 1
 fi
 
+if ! acquire_lock; then
+  say "FAILED to acquire $LOCK"
+  exit 1
+fi
+record_lock_meta
+trap cleanup EXIT
+trap 'cleanup; exit 130' INT TERM
+
 if [ "$DRY" -eq 1 ]; then
-  echo "DRY: acquire_lock $LOCK"
+  if ! repair_duplicate_done_records; then
+    exit 1
+  fi
+  echo "DRY: controller lock $LOCK held by $$"
   echo "DRY: spawn $K1 Lane A workers loop(claim lane_A -> gate -> run -> complete) until $MINUTES min"
   echo "DRY: spawn $K2 Lane B workers loop(claim lane_B -> run -> complete) until $MINUTES min"
   if [ "$K1" -gt 0 ]; then
@@ -303,9 +462,9 @@ if [ "$DRY" -eq 1 ]; then
   exit 0
 fi
 
-acquire_lock || { say "FAILED to acquire $LOCK"; exit 1; }
-trap cleanup EXIT
-trap 'cleanup; exit 130' INT TERM
+if ! repair_duplicate_done_records; then
+  exit 1
+fi
 
 END_TS=$(( $(date +%s) + MINUTES * 60 ))
 pids=()
@@ -328,5 +487,8 @@ while [ "$(date +%s)" -lt "$END_TS" ]; do sleep 30; done
 say "budget expired; terminating pools"
 stop_workers
 
-write_reports
+if ! write_reports; then
+  say "batch produced no events; stop by policy"
+  exit 1
+fi
 say "reports written: $MANIFEST $DENIALS $TOOLSTATE $SUCCESS"

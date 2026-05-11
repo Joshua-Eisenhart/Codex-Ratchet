@@ -33,7 +33,54 @@ QUEUE_ROOT = ROOT / "system_v4" / "probes" / "a2_state" / "queue"
 STAGE_GATE_SCRIPT = ROOT / "scripts" / "stage_gate.py"
 WIZARD_ADMISSION_SCRIPT = SCRIPT_DIR / "wizard_sim_admission.py"
 STRICT_WIZARD_QUEUE_ADMISSION = os.environ.get("STRICT_WIZARD_QUEUE_ADMISSION", "1") == "1"
-CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION = True
+ADMISSION_BYPASS_SENTINEL = (
+    ROOT / "system_v5" / "ops" / ".allow_admission_bypass_recovery"
+)
+ALLOW_ADMISSION_BYPASS_RECOVERY = (
+    os.environ.get("ALLOW_ADMISSION_BYPASS_RECOVERY", "0") == "1"
+)
+
+
+def _is_truthy(value: object) -> bool:
+    if isinstance(value, bool):
+        return bool(value)
+    text = str(value).strip().lower()
+    return text in {"1", "true", "yes", "on", "enabled"}
+
+
+def _admission_bypass_marker_allows_recovery() -> bool:
+    if not ALLOW_ADMISSION_BYPASS_RECOVERY:
+        return False
+    if not ADMISSION_BYPASS_SENTINEL.exists():
+        return False
+    try:
+        raw = json.loads(ADMISSION_BYPASS_SENTINEL.read_text(encoding="utf-8"))
+    except Exception:
+        return False
+    if not isinstance(raw, dict):
+        return False
+    scope = str(raw.get("scope", "")).strip().lower()
+    if scope and scope not in {"all", "queue", "queue_claim", "queue-claim", "overnight"}:
+        return False
+    if not _is_truthy(raw.get("enabled", raw.get("allow", ""))):
+        return False
+
+    expires_at = raw.get("expires_at")
+    if expires_at is not None:
+        try:
+            expiry = float(expires_at)
+        except (TypeError, ValueError):
+            return False
+        if time.time() > expiry:
+            return False
+
+    return True
+
+
+CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION = (
+    STRICT_WIZARD_QUEUE_ADMISSION
+    and not _admission_bypass_marker_allows_recovery()
+)
 
 LANES = ("lane_A", "lane_B")
 PRIORITY_RANK = {"high": 0, "normal": 1, "low": 2}
@@ -305,6 +352,19 @@ def _claim_order(item: Path) -> tuple[int, int, int, float, str]:
     )
 
 
+def _base_done_id(claim_path: Path) -> str:
+    name = claim_path.name
+    if ".json." not in name:
+        return name
+    return name.split(".json.")[0]
+
+
+def _done_duplicate_candidates(claim_path: Path) -> list[Path]:
+    base = _base_done_id(claim_path)
+    pattern = f"{base}.json.*"
+    return sorted((QUEUE_ROOT / "done").glob(pattern))
+
+
 def claim(lane: str, worker_id: str) -> Path | None:
     """Atomic claim via os.rename. Returns claimed path or None if queue empty."""
     _ensure_dirs()
@@ -353,6 +413,14 @@ def claim(lane: str, worker_id: str) -> Path | None:
 
 
 def _write_terminal(claim_path: Path, data: dict, subdir: str) -> Path:
+    if subdir == "done":
+        duplicates = _done_duplicate_candidates(claim_path)
+        if duplicates:
+            data["blocked_reason"] = "done_duplicate_conflict"
+            data["blocked_done_ids"] = [str(d) for d in duplicates]
+            data["blocked_at"] = time.time()
+            return _write_terminal(claim_path, data, "blocked")
+
     target = QUEUE_ROOT / subdir / claim_path.name
     tmp = claim_path.with_suffix(claim_path.suffix + ".tmp")
     tmp.write_text(json.dumps(data, sort_keys=True))

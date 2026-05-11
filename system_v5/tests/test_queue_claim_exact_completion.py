@@ -22,6 +22,57 @@ def _load_queue_claim_module():
     return module
 
 
+def test_recovery_bypass_marker_must_be_valid(tmp_path: Path) -> None:
+    marker = tmp_path / ".allow_admission_bypass_recovery"
+    spec = importlib.util.spec_from_file_location("queue_claim_under_test_marker", QUEUE_CLAIM_PATH)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    module.STRICT_WIZARD_QUEUE_ADMISSION = True
+    module.ALLOW_ADMISSION_BYPASS_RECOVERY = True
+    module.ADMISSION_BYPASS_SENTINEL = marker
+
+    marker.write_text("invalid json", encoding="utf-8")
+    module.CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION = (
+        module.STRICT_WIZARD_QUEUE_ADMISSION
+        and not module._admission_bypass_marker_allows_recovery()
+    )
+    assert module.CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION is True
+
+    marker.write_text(
+        json.dumps(
+            {
+                "scope": "queue_claim",
+                "enabled": True,
+                "expires_at": 0,
+            }
+        ),
+        encoding="utf-8",
+    )
+    module.CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION = (
+        module.STRICT_WIZARD_QUEUE_ADMISSION
+        and not module._admission_bypass_marker_allows_recovery()
+    )
+    assert module.CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION is True
+
+    marker.write_text(
+        json.dumps(
+            {
+                "scope": "queue_claim",
+                "enabled": True,
+                "expires_at": 9999999999,
+            }
+        ),
+        encoding="utf-8",
+    )
+    module.CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION = (
+        module.STRICT_WIZARD_QUEUE_ADMISSION
+        and not module._admission_bypass_marker_allows_recovery()
+    )
+    assert module.CLAIM_REQUIRES_WIZARD_QUEUE_ADMISSION is False
+
+
 def test_complete_uses_exact_claim_path(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     module = _load_queue_claim_module()
     monkeypatch.setattr(module, "QUEUE_ROOT", tmp_path / "queue")
@@ -42,6 +93,43 @@ def test_complete_uses_exact_claim_path(tmp_path: Path, monkeypatch: pytest.Monk
     assert done_payload["sim_path"] == second_payload["sim_path"]
     assert done_payload["artifact_path"] == "/tmp/artifact-second.log"
     assert Path(first_claim).exists(), f"stale claim for {first_payload['sim_path']} should remain untouched"
+
+
+def test_complete_blocks_duplicate_done_records(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    module = _load_queue_claim_module()
+    monkeypatch.setattr(module, "QUEUE_ROOT", tmp_path / "queue")
+
+    module.enqueue("lane_A", "system_v4/probes/sim_first.py")
+    first_claim = module.claim("lane_A", "laneA_w1")
+    assert first_claim is not None
+
+    claimed_dir = tmp_path / "queue" / "claimed"
+    claimed_dir.mkdir(parents=True, exist_ok=True)
+    base = Path(first_claim).name.split(".json.")[0]
+    duplicate_claim = claimed_dir / f"{base}.json.99999.test-host.dup-w1"
+    duplicate_claim.write_text(Path(first_claim).read_text(encoding="utf-8"), encoding="utf-8")
+
+    first_done = module.complete(first_claim, 0, "/tmp/artifact-first.log")
+
+    done_dir = tmp_path / "queue" / "done"
+    done_dir.mkdir(parents=True, exist_ok=True)
+    (done_dir / f"{base}.json.11111.test-host.w2").write_text(
+        first_done.read_text(encoding="utf-8"), encoding="utf-8"
+    )
+    done_count_before = len(list((tmp_path / "queue" / "done").glob("*.json.*")))
+    second_blocked = module.complete(duplicate_claim, 0, "/tmp/artifact-second.log")
+
+    assert first_done.parent.name == "done"
+    assert second_blocked.parent.name == "blocked"
+
+    blocked_payload = json.loads(Path(second_blocked).read_text(encoding="utf-8"))
+    assert blocked_payload["blocked_reason"] == "done_duplicate_conflict"
+    assert blocked_payload["artifact_path"] == "/tmp/artifact-second.log"
+
+    done_count = len(list((tmp_path / "queue" / "done").glob("*.json.*")))
+    blocked_count = len(list((tmp_path / "queue" / "blocked").glob("*.json*")))
+    assert done_count == done_count_before
+    assert blocked_count == 1
 
 
 def test_resolve_claim_path_fails_closed_when_worker_is_ambiguous(

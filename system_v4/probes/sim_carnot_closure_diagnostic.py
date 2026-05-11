@@ -16,7 +16,7 @@ import sys
 
 import numpy as np
 import z3
-classification = "supporting"
+classification = "tool_lego_fit_probe"
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -34,12 +34,16 @@ from sim_stoch_harmonic_carnot_finite_time import (  # noqa: E402
 )
 
 
-CLASSIFICATION = "supporting"
+CLASSIFICATION = "tool_lego_fit_probe"
 CLASSIFICATION_NOTE = (
     "Closure diagnostic for the stochastic harmonic Carnot sidecar. "
     "It compares per-leg variance and energy mismatches across several step "
     "counts to locate where the forward return defect is accumulated."
 )
+divergence_log = [
+    "Tool-lego fit probe over a classical finite-time stochastic Carnot closure surface only; does not admit QIT, bridge, GStack, axis, or nonclassical engine claims.",
+    "z3 checks finite arithmetic constraints over the recorded closure residue; it does not prove thermodynamic closure or a continuum limit.",
+]
 
 LEGO_IDS = [
     "stochastic_thermodynamics",
@@ -274,6 +278,7 @@ def main() -> None:
         "name": "carnot_closure_diagnostic",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "parent_scope_note": PARENT_SCOPE_NOTE,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,

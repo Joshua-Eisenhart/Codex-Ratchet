@@ -233,8 +233,10 @@ def run(n_max: int = 256, seed: int = 1776) -> dict[str, Any]:
         "variants": graveyard_rows,
         "order_distribution_l1": order_l1,
         "proof_fence": proof,
+        "all_pass": bool(all_pass),
+        "battery_type": "negative_control",
         "summary": {
-            "all_pass": all_pass,
+            "all_pass": bool(all_pass),
             "battery_type": "negative_control",
             "variant_count": len(graveyard_rows),
             "killed_or_control_count": sum(row["graveyard_status"] == "killed_or_control" for row in graveyard_rows),

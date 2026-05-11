@@ -357,6 +357,7 @@ def run_probe(n_max: int, seed: int, max_logm_dim: int) -> dict[str, Any]:
         "noncommuting_sieve_order_test": order_report,
         "prime_gap_statistics": gap_statistics(primes),
         "baselines": baselines,
+        "all_pass": bool(all_pass),
         "summary": {
             "all_pass": bool(all_pass),
             "fixed_states_match_primes": bool(sidecar_eval["exact_fixed_state_match"]),
@@ -377,6 +378,7 @@ def run_probe(n_max: int, seed: int, max_logm_dim: int) -> dict[str, Any]:
                 + sum(logm_skipped_channels["baselines"].values())
             ),
         },
+        "battery_type": "sidecar_probe",
         "claim_ceiling": "sidecar_probe_candidate_prior_only; no RH, PNT, zeta, prime prediction, QIT, GStack, axis, bridge, or nonclassical admission",
         "next_lego_target": "prime_qit_sidecar_controls",
         "promotion_condition": "Requires separate proof-grade arithmetic emergence, stronger baselines, and explicit stage-gate admission.",

@@ -15,7 +15,7 @@ import numpy as np
 
 from toponetx import CellComplex
 from receipt_boundary import apply_default_receipt_boundary
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
 EPS = 1e-8
@@ -237,6 +237,12 @@ def main():
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "claim_ceiling": "finite local topology/tool-depth receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+        "next_lego_target": "Use as a bounded source receipt for later tool-lego or coupling work only after exact downstream checks.",
+        "promotion_condition": "Requires separate bridge/nonclassical/topology/operator coupling receipts and explicit stage-gate approval.",
+        "blocked_until": "tool-lego fit; coupling/coexistence evidence; stage-gate admission",
+        "demotion_condition": "Demote if rerun fails, TopoNetX use is not load-bearing, or result claims exceed this finite receipt.",
+        "out_of_scope": ["QIT engine admission", "GStack admission", "axis promotion", "nonclassical proof"],
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

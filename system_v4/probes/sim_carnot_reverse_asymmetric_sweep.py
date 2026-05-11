@@ -14,6 +14,11 @@ import sys
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this reverse stochastic Carnot sweep maps finite-time "
+    "hot/cold thermalization-budget asymmetry with numpy trajectory dynamics; "
+    "it does not promote bridge, QIT, or nonclassical engine claims."
+)
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -215,6 +220,7 @@ def main() -> None:
         "name": "carnot_reverse_asymmetric_sweep",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "parent_scope_note": PARENT_SCOPE_NOTE,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,

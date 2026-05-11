@@ -25,6 +25,11 @@ from typing import Callable, Dict, List
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this stochastic Carnot topology array compares finite "
+    "1D working-substance geometries with numpy trajectory dynamics; it is a "
+    "lab matrix for later variants, not bridge, QIT, or nonclassical admission."
+)
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -565,6 +570,7 @@ def main() -> None:
         "name": "carnot_topology_array",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

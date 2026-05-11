@@ -80,6 +80,37 @@ def manifest_used_tools(tree: ast.AST) -> list[str]:
     return sorted(used_tools)
 
 
+def subscript_load_bearing_tools(tree: ast.AST) -> list[str]:
+    """Find ``TOOL_INTEGRATION_DEPTH["tool"] = "load_bearing"`` assignments.
+
+    Older sims often set tool depth inside top-level try blocks or inside
+    functions after a tool succeeds. Those assignments are still parse-visible
+    contract evidence even when they are not in the initial literal dict.
+    """
+
+    tools = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        for target in node.targets:
+            if not isinstance(target, ast.Subscript):
+                continue
+            if not isinstance(target.value, ast.Name):
+                continue
+            if target.value.id not in {"TOOL_INTEGRATION_DEPTH", "tool_integration_depth"}:
+                continue
+            tool = literal_key(target.slice)
+            if tool is None:
+                continue
+            try:
+                value = ast.literal_eval(node.value)
+            except (ValueError, SyntaxError):
+                continue
+            if value == "load_bearing":
+                tools.append(str(tool))
+    return sorted(set(tools))
+
+
 def sim_paths(scope_files: list[str] | None) -> list[Path]:
     if scope_files:
         paths = []
@@ -121,6 +152,8 @@ def main() -> int:
             str(tool) for tool, level in depth.items()
             if level == "load_bearing"
         )
+        if not load_bearing_tools:
+            load_bearing_tools = subscript_load_bearing_tools(tree)
         fallback_used_tools = []
         if not load_bearing_tools:
             fallback_used_tools = manifest_used_tools(tree)

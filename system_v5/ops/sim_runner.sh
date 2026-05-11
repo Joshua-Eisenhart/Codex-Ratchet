@@ -398,7 +398,7 @@ while :; do
   fi
 
   sim_count=$((sim_count + 1))
-if [ $((sim_count % STATS_EVERY)) -eq 0 ]; then
+  if [ $((sim_count % STATS_EVERY)) -eq 0 ]; then
     helper_process_preflight
     log "Progress after $sim_count sims:"
     queue_stats | while read line; do log "$line"; done

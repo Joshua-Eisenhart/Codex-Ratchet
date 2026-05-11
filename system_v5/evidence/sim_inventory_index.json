@@ -1,47 +1,47 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-11T18:41:14.689750+00:00",
+  "generated_at": "2026-05-11T18:46:48.141132+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 3937,
-    "result_json_count": 714,
-    "linked_result_json_count": 678,
+    "source_count": 3938,
+    "result_json_count": 715,
+    "linked_result_json_count": 679,
     "unlinked_result_json_count": 36,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
       "source_only": 3260,
-      "rerun_or_admission_candidate": 460,
+      "rerun_or_admission_candidate": 461,
       "legacy_result_or_repair_needed": 26,
       "contract_shaped_but_tool_depth_thin": 180,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
     },
     "family_counts": {
-      "channel_operator": 780,
-      "entropy_information": 582,
-      "thermo_engine": 427,
+      "channel_operator": 781,
+      "entropy_information": 583,
+      "thermo_engine": 428,
       "uncategorized": 335,
-      "axis_bridge": 659,
+      "axis_bridge": 660,
       "graveyard_negative": 1701,
-      "root_admission": 841,
+      "root_admission": 842,
       "hopf_torus": 592,
       "weyl_spinor_clifford": 781,
-      "geometry_gstack_gtower": 719,
-      "density_carrier": 479,
-      "classical_baseline": 1095,
+      "geometry_gstack_gtower": 720,
+      "density_carrier": 480,
+      "classical_baseline": 1096,
       "gerbe_dirac_mera_spectral": 670,
       "graph_topology": 402,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2708,
+      "numpy": 2709,
       "sympy": 2249,
-      "scipy": 249,
-      "pytorch": 1974,
+      "scipy": 250,
+      "pytorch": 1975,
       "pyg": 846,
       "cvc5": 1327,
-      "qutip": 44,
+      "qutip": 45,
       "e3nn": 843,
       "gudhi": 899,
       "z3": 1896,
@@ -51,12 +51,12 @@
       "geomstats": 903,
       "xgi": 971,
       "networkx": 25,
-      "qiskit": 12
+      "qiskit": 13
     },
     "load_bearing_tool_counts": {
       "numpy": 276,
       "cvc5": 509,
-      "pytorch": 1099,
+      "pytorch": 1100,
       "rustworkx": 283,
       "z3": 738,
       "sympy": 564,
@@ -64,12 +64,12 @@
       "xgi": 200,
       "geomstats": 109,
       "gudhi": 122,
-      "scipy": 61,
+      "scipy": 62,
       "toponetx": 121,
       "e3nn": 55,
       "pyg": 69,
-      "qutip": 33,
-      "qiskit": 10,
+      "qutip": 34,
+      "qiskit": 11,
       "networkx": 4
     },
     "result_classification_counts": {
@@ -78,7 +78,7 @@
       "supporting": 13,
       "exploratory": 30,
       "research_support": 6,
-      "tool_lego_fit_probe": 1,
+      "tool_lego_fit_probe": 2,
       "controller_index": 2,
       "graveyard_negative": 1,
       "sidecar_probe": 2,
@@ -86,7 +86,7 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 666,
+    "repair_candidate_count": 667,
     "source_only_count": 3260
   },
   "admitted_stems": [
@@ -3152,6 +3152,50 @@
       "inventory_status": "contract_shaped_but_tool_depth_thin"
     },
     {
+      "stem": "sim_channel_space_geometry_torch_bridge_fit",
+      "source_path": "system_v4/probes/sim_channel_space_geometry_torch_bridge_fit.py",
+      "families": [
+        "root_admission",
+        "density_carrier",
+        "channel_operator",
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "supportive",
+        "scipy": "load_bearing",
+        "pytorch": "load_bearing",
+        "qutip": "load_bearing",
+        "qiskit": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "pytorch",
+        "qiskit",
+        "qutip",
+        "scipy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/channel_space_geometry_torch_bridge_fit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "tool_lego_fit_probe"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": true,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_characteristic_representation",
       "source_path": "system_v4/probes/sim_characteristic_representation.py",
       "families": [
@@ -3299,34 +3343,6 @@
       "result_count": 1,
       "result_classifications": [
         "classical_baseline"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": false,
-      "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
-    },
-    {
-      "stem": "sim_cirq_capability",
-      "source_path": "system_v4/probes/sim_cirq_capability.py",
-      "families": [
-        "uncategorized"
-      ],
-      "tools": {
-        "numpy": "supportive"
-      },
-      "load_bearing_tools": [],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/cirq_capability_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "canonical"
       ],
       "result_has_contract_shape": true,
       "admission_path": "",
@@ -22602,6 +22618,50 @@
       "late_stage_signal": false,
       "has_contract_shape": true,
       "inventory_status": "contract_shaped_but_tool_depth_thin"
+    },
+    {
+      "stem": "sim_channel_space_geometry_torch_bridge_fit",
+      "source_path": "system_v4/probes/sim_channel_space_geometry_torch_bridge_fit.py",
+      "families": [
+        "root_admission",
+        "density_carrier",
+        "channel_operator",
+        "entropy_information",
+        "geometry_gstack_gtower",
+        "thermo_engine",
+        "axis_bridge",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "supportive",
+        "scipy": "load_bearing",
+        "pytorch": "load_bearing",
+        "qutip": "load_bearing",
+        "qiskit": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "pytorch",
+        "qiskit",
+        "qutip",
+        "scipy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/channel_space_geometry_torch_bridge_fit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "tool_lego_fit_probe"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": true,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_chaos_lyapunov_constraint_canonical",

@@ -18,6 +18,7 @@ Named cohort rules:
 - `weyl`: require baseline and admissibility boundary.
 - `lego`: run only after tool/function evidence exists for the lego target.
 - `fep`: require a concrete observable and killed/open/survived status.
+- `igt`: require a finite game/payoff observable plus an explicit bridge/no-promotion boundary.
 - `gerbestack`: require topology/coexistence evidence before bridge claims.
 - `gerbe`: require topology evidence and no axis promotion language.
 - `integration`: require exact source receipts for each integrated component.

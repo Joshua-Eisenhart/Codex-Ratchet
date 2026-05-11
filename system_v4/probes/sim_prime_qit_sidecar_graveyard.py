@@ -8,6 +8,7 @@ or nonclassical admission result.
 
 from __future__ import annotations
 
+import argparse
 import json
 import math
 import pathlib
@@ -249,9 +250,8 @@ def run(n_max: int = 256, seed: int = 1776) -> dict[str, Any]:
     return result
 
 
-def write_outputs(result: dict[str, Any]) -> None:
+def write_outputs(result: dict[str, Any], out: pathlib.Path) -> None:
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    out = RESULT_DIR / "prime_qit_sidecar_graveyard_results.json"
     out.write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
     VIS_DIR.mkdir(parents=True, exist_ok=True)
     payload = {
@@ -266,9 +266,18 @@ def write_outputs(result: dict[str, Any]) -> None:
     )
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--N", type=int, default=256)
+    parser.add_argument("--seed", type=int, default=1776)
+    parser.add_argument("--out", type=pathlib.Path, default=RESULT_DIR / "prime_qit_sidecar_graveyard_results.json")
+    return parser.parse_args()
+
+
 def main() -> None:
-    result = run()
-    write_outputs(result)
+    args = parse_args()
+    result = run(n_max=args.N, seed=args.seed)
+    write_outputs(result, args.out)
     print("PRIME QIT SIDECAR GRAVEYARD")
     print(f"ALL PASS: {result['summary']['all_pass']}")
     print(f"VARIANTS: {result['summary']['variant_count']}")

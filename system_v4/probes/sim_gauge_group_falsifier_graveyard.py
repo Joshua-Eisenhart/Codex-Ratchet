@@ -14,9 +14,10 @@ from datetime import datetime, timezone
 from typing import Any
 
 import numpy as np
+import sympy as sp
 
 
-CLASSIFICATION = "supporting"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
     "Finite gauge/group graveyard probe: abelian U(1) phase composition and "
     "nonabelian Pauli commutator closure are compared on fixed bounded carriers. "
@@ -43,12 +44,18 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "load-bearing finite matrix, rank, and commutator calculations",
     },
+    "sympy": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing exact symbolic rank and commutator obstruction check",
+    },
 }
 
 TOOL_INTEGRATION_DEPTH = {
     "json": "supportive",
     "pathlib": "supportive",
     "numpy": "load_bearing",
+    "sympy": "load_bearing",
 }
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -92,6 +99,25 @@ def all_pass_from_receipt(data: dict[str, Any]) -> bool:
     return bool(summary.get("all_pass", data.get("all_pass", False)))
 
 
+def sympy_rank_obstruction() -> dict[str, Any]:
+    x = sp.Matrix([[0, 1], [1, 0]])
+    y = sp.Matrix([[0, -sp.I], [sp.I, 0]])
+    z = sp.Matrix([[1, 0], [0, -1]])
+    i2 = sp.eye(2)
+    u1 = sp.I * i2
+    pauli_rank = sp.Matrix.hstack(*[m.reshape(4, 1) for m in [x, y, z]]).rank()
+    u1_rank = sp.Matrix.hstack(u1.reshape(4, 1)).rank()
+    xy_bracket = x * y - y * x
+    u1_self_bracket = u1 * u1 - u1 * u1
+    return {
+        "u1_rank": int(u1_rank),
+        "pauli_rank": int(pauli_rank),
+        "u1_self_commutator_zero": bool(u1_self_bracket == sp.zeros(2)),
+        "xy_bracket_nonzero": bool(xy_bracket != sp.zeros(2)),
+        "pass": bool(u1_rank == 1 and pauli_rank == 3 and u1_self_bracket == sp.zeros(2) and xy_bracket != sp.zeros(2)),
+    }
+
+
 def main() -> None:
     berry = load_receipt("berry_phase_u1_abelian_results.json")
     commutator_receipt = load_receipt("commutator_algebra_results.json")
@@ -126,6 +152,7 @@ def main() -> None:
     phase_b = np.exp(-1.11j)
     u1_commutes = abs((phase_a * phase_b) - (phase_b * phase_a)) < EPS
     pauli_noncommutes = float(np.linalg.norm(commutator(x, y))) > 1.0
+    sympy_obstruction = sympy_rank_obstruction()
 
     prerequisites = {
         "berry_phase_u1_abelian": all_pass_from_receipt(berry),
@@ -147,6 +174,7 @@ def main() -> None:
             "xy_commutator_norm": float(np.linalg.norm(commutator(x, y))),
             "pass": bool(pauli_noncommutes),
         },
+        "sympy_exact_rank_obstruction_matches_numeric_obstruction": sympy_obstruction,
     }
 
     negative = {

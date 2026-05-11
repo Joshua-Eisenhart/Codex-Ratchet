@@ -16,7 +16,7 @@ import sys
 
 import numpy as np
 import z3
-classification = "exploratory"
+classification = "supporting"
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -34,7 +34,7 @@ from sim_stoch_harmonic_carnot_finite_time import (  # noqa: E402
 )
 
 
-CLASSIFICATION = "exploratory"
+CLASSIFICATION = "supporting"
 CLASSIFICATION_NOTE = (
     "Closure diagnostic for the stochastic harmonic Carnot sidecar. "
     "It compares per-leg variance and energy mismatches across several step "

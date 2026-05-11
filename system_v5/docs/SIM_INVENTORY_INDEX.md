@@ -1,6 +1,6 @@
 # Sim Inventory Index
 
-Generated: `2026-05-11T20:56:54.004588+00:00`
+Generated: `2026-05-11T20:59:34.456162+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
@@ -17,8 +17,8 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 ## Inventory Status Counts
 
 - `source_only`: 3229
-- `rerun_or_admission_candidate`: 494
-- `contract_shaped_but_tool_depth_thin`: 186
+- `rerun_or_admission_candidate`: 496
+- `contract_shaped_but_tool_depth_thin`: 184
 - `legacy_result_or_repair_needed`: 29
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2
@@ -43,7 +43,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Load-Bearing Tool Counts
 
-- `pytorch`: 1104
+- `pytorch`: 1106
 - `z3`: 741
 - `sympy`: 566
 - `cvc5`: 510
@@ -156,13 +156,13 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | contract_shaped_but_tool_depth_thin | `sim_bch_first_order_commutator_classical` | channel_operator, classical_baseline | - | classical_baseline |
 | rerun_or_admission_candidate | `sim_beilinson_regulator_constraint_canonical` | graveyard_negative | pytorch, sympy, z3 | canonical |
 | rerun_or_admission_candidate | `sim_berry_qfi_shell_paths` | density_carrier, entropy_information, hopf_torus, geometry_gstack_gtower | pytorch, sympy | canonical |
-| contract_shaped_but_tool_depth_thin | `sim_betti_torus_classical` | channel_operator, hopf_torus, classical_baseline | - | classical_baseline |
+| rerun_or_admission_candidate | `sim_betti_torus_classical` | channel_operator, hopf_torus, classical_baseline | pytorch | classical_baseline |
 | rerun_or_admission_candidate | `sim_bipartite_entropy_topology_coexistence` | entropy_information, geometry_gstack_gtower, graph_topology, thermo_engine, axis_bridge | gudhi, numpy, pytorch, z3 | supporting |
 | rerun_or_admission_candidate | `sim_bipartite_phase_entropy_closure` | entropy_information, geometry_gstack_gtower, thermo_engine, axis_bridge, classical_baseline | gudhi, numpy, pytorch | classical_baseline |
 | rerun_or_admission_candidate | `sim_blackwell_comparison_classical` | channel_operator, classical_baseline | scipy | classical_baseline |
 | rerun_or_admission_candidate | `sim_blackwell_style_comparison` | root_admission, channel_operator, classical_baseline | cvc5 | canonical |
 | rerun_or_admission_candidate | `sim_blackwell_sufficiency_order_classical` | classical_baseline | numpy, scipy | classical_baseline |
 | rerun_or_admission_candidate | `sim_bootstrap_variance_classical` | classical_baseline | numpy, scipy | classical_baseline |
-| contract_shaped_but_tool_depth_thin | `sim_bottleneck_distance_classical` | root_admission, graph_topology, classical_baseline | - | classical_baseline |
+| rerun_or_admission_candidate | `sim_bottleneck_distance_classical` | root_admission, graph_topology, classical_baseline | pytorch | classical_baseline |
 | rerun_or_admission_candidate | `sim_branch_weight` | uncategorized | numpy | canonical |
 | contract_shaped_but_tool_depth_thin | `sim_branch_weight_classical` | density_carrier, channel_operator, classical_baseline, graveyard_negative | - | classical_baseline |

@@ -1,23 +1,23 @@
 # Sim Inventory Index
 
-Generated: `2026-05-11T18:46:48.141132+00:00`
+Generated: `2026-05-11T19:07:09.304631+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
-- Sim source files indexed: `3938`
-- Result JSON files seen: `715`
-- Linked result JSON files: `679`
+- Sim source files indexed: `3939`
+- Result JSON files seen: `720`
+- Linked result JSON files: `684`
 - Unlinked result JSON files: `36`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `667`
-- Source-only rows: `3260`
+- Repair / rerun candidate rows: `672`
+- Source-only rows: `3256`
 
 ## Inventory Status Counts
 
-- `source_only`: 3260
-- `rerun_or_admission_candidate`: 461
+- `source_only`: 3256
+- `rerun_or_admission_candidate`: 466
 - `contract_shaped_but_tool_depth_thin`: 180
 - `legacy_result_or_repair_needed`: 26
 - `admitted`: 9
@@ -26,17 +26,17 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 ## Family Counts
 
 - `graveyard_negative`: 1701
-- `classical_baseline`: 1096
-- `root_admission`: 842
-- `channel_operator`: 781
+- `classical_baseline`: 1097
+- `root_admission`: 843
+- `channel_operator`: 782
 - `weyl_spinor_clifford`: 781
-- `geometry_gstack_gtower`: 720
+- `geometry_gstack_gtower`: 721
 - `gerbe_dirac_mera_spectral`: 670
-- `axis_bridge`: 660
+- `axis_bridge`: 661
 - `hopf_torus`: 592
-- `entropy_information`: 583
+- `entropy_information`: 584
 - `density_carrier`: 480
-- `thermo_engine`: 428
+- `thermo_engine`: 429
 - `graph_topology`: 402
 - `uncategorized`: 335
 - `fep_holodeck_igt`: 237
@@ -45,7 +45,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 - `pytorch`: 1100
 - `z3`: 738
-- `sympy`: 564
+- `sympy`: 563
 - `cvc5`: 509
 - `rustworkx`: 283
 - `numpy`: 276
@@ -55,10 +55,10 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `toponetx`: 121
 - `geomstats`: 109
 - `pyg`: 69
-- `scipy`: 62
+- `scipy`: 63
 - `e3nn`: 55
-- `qutip`: 34
-- `qiskit`: 11
+- `qutip`: 35
+- `qiskit`: 12
 - `networkx`: 4
 
 ## Unlinked Result Samples

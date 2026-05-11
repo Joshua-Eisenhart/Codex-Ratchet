@@ -1,10 +1,10 @@
 {
   "schema": "coupling_readiness_boundary_v1",
   "generated_from": [
-    "actual_lego_frontier_closeout_ledger.json",
-    "actual_lego_coupling_receipt_audit.json",
-    "actual_lego_work_matrix.json",
-    "engine_lab_next_work_queue_results.json",
+    "system_v4/probes/a2_state/sim_results/actual_lego_frontier_closeout_ledger.json",
+    "system_v4/probes/a2_state/sim_results/actual_lego_coupling_receipt_audit.json",
+    "system_v4/probes/a2_state/sim_results/actual_lego_work_matrix.json",
+    "system_v4/probes/a2_state/sim_results/engine_lab_next_work_queue_results.json",
     "system_v5/ops/stage_gate.json"
   ],
   "stage_gate": {
@@ -90,7 +90,29 @@
     "supporting_only_count": 7,
     "hard_blocked_count": 0,
     "promotion_allowed_count": 0,
-    "decision": "do_not_expand_scientific_coupling_until_stage_gate_active_stage_reaches_coupling"
+    "decision": "do_not_expand_scientific_coupling_until_stage_gate_active_stage_reaches_coupling",
+    "closure_candidate_row_count": 15,
+    "closure_candidate_unique_lego_count": 7,
+    "supporting_only_row_count": 7,
+    "supporting_only_unique_lego_count": 6,
+    "unique_closure_candidate_lego_ids": [
+      "bipartite_structure_local",
+      "carrier_admission_density_matrix",
+      "constraint_probe_admissibility",
+      "entropy_family_crosschecks",
+      "geometry_crosschecks_same_carrier",
+      "graph_cell_complex_geometry",
+      "operator_family_admission"
+    ],
+    "unique_supporting_only_lego_ids": [
+      "bipartite_structure_local",
+      "carrier_admission_density_matrix",
+      "constraint_probe_admissibility",
+      "geometry_crosschecks_same_carrier",
+      "graph_cell_complex_geometry",
+      "operator_family_admission"
+    ],
+    "receipt_row_semantics": "receipt_rows are coupling-audit rows; result:null means this row is audit metadata and not a direct sim result path. Frontier-level result counts come from actual_lego_frontier_closeout_ledger.json."
   },
   "receipt_rows": [
     {
@@ -442,5 +464,32 @@
     "tool-lego fit or tool-integration micro probes only",
     "repair/negative/graveyard evidence for engine-lab open rows without promotion",
     "do not launch QIT/GStack/axis/nonclassical or scientific coupling claims"
-  ]
+  ],
+  "receipt_row_semantics": {
+    "receipt_row_count": 22,
+    "unique_lego_count": 7,
+    "closure_candidate_row_count": 15,
+    "closure_candidate_unique_lego_count": 7,
+    "supporting_only_row_count": 7,
+    "supporting_only_unique_lego_count": 6,
+    "unique_closure_candidate_lego_ids": [
+      "bipartite_structure_local",
+      "carrier_admission_density_matrix",
+      "constraint_probe_admissibility",
+      "entropy_family_crosschecks",
+      "geometry_crosschecks_same_carrier",
+      "graph_cell_complex_geometry",
+      "operator_family_admission"
+    ],
+    "unique_supporting_only_lego_ids": [
+      "bipartite_structure_local",
+      "carrier_admission_density_matrix",
+      "constraint_probe_admissibility",
+      "geometry_crosschecks_same_carrier",
+      "graph_cell_complex_geometry",
+      "operator_family_admission"
+    ],
+    "result_field_note": "receipt_rows are coupling-audit rows; result:null means this row is audit metadata and not a direct sim result path. Frontier-level result counts come from actual_lego_frontier_closeout_ledger.json.",
+    "duplicate_row_note": "duplicate lego_id values are retained as receipt rows because the upstream audit surface is row-granular; use unique_* counts for lego-level planning."
+  }
 }

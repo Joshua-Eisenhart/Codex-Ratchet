@@ -9,7 +9,7 @@ import re
 from typing import Any
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "controller_audit"
 classification = CLASSIFICATION
 divergence_log = (
     "Controller audit for engine-lab visualizer receipt wiring. It verifies "

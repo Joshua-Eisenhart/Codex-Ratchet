@@ -12,8 +12,8 @@ import json
 import pathlib
 from typing import Any
 
-classification = "canonical"
-CLASSIFICATION = "canonical"
+classification = "diagnostic_only"
+CLASSIFICATION = "diagnostic_only"
 divergence_log = (
     "Strict QIT entropy/readout companion array over finite-carrier anchor rows. "
     "It preserves the open-vs-strict gap explicitly and does not promote missing "

@@ -8,7 +8,7 @@ import pathlib
 from typing import Any
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "controller_audit"
 classification = CLASSIFICATION
 divergence_log = (
     "Controller-index consolidated re-check for engine-lab repair-gap rows. "

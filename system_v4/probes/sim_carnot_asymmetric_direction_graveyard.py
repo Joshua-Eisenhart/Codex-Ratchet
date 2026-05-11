@@ -8,7 +8,7 @@ import pathlib
 from typing import Any
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "graveyard_audit"
 classification = CLASSIFICATION
 divergence_log = (
     "Controller graveyard for Carnot asymmetric isotherm sweeps. It records "

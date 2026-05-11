@@ -8,7 +8,7 @@ import pathlib
 from typing import Any
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "graveyard_audit"
 classification = CLASSIFICATION
 divergence_log = (
     "Controller claim-level graveyard for engine-lab readout and topology "

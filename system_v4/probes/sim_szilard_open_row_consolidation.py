@@ -8,7 +8,7 @@ import pathlib
 from typing import Any
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "controller_audit"
 classification = CLASSIFICATION
 divergence_log = (
     "Controller consolidation for four open Szilard rows. It preserves the "

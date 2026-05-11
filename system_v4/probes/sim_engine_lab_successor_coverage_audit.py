@@ -8,7 +8,7 @@ import pathlib
 from datetime import datetime, timezone
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "controller_audit"
 classification = CLASSIFICATION
 divergence_log = (
     "Controller audit proving the current engine-lab open-row queue has no "

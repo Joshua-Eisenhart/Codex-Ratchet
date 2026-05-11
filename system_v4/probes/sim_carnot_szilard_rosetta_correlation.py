@@ -16,7 +16,7 @@ import pathlib
 from typing import Any
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "rosetta_receipt_audit"
 classification = CLASSIFICATION
 divergence_log = (
     "Rosetta correlation layer over the Carnot and Szilard dual-stack rows. "

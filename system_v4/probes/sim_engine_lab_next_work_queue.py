@@ -8,7 +8,7 @@ import pathlib
 from typing import Any
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "controller_queue_audit"
 classification = CLASSIFICATION
 divergence_log = (
     "Controller queue derived from engine-lab open-row audit and repair-priority "

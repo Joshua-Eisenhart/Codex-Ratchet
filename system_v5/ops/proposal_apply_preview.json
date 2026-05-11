@@ -11,13 +11,13 @@
     {
       "proposal_family": "c4",
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 626,
+      "row_count": 623,
       "next_action": "owner_review_required_before_any_source_edit"
     },
     {
       "proposal_family": "c6",
       "path": "system_v5/ops/c6_loadbearing_report.json",
-      "row_count": 1521,
+      "row_count": 1522,
       "next_action": "owner_review_required_before_any_source_edit"
     }
   ],
@@ -478,7 +478,7 @@
     "c4": {
       "present": true,
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 626,
+      "row_count": 623,
       "sample": [
         {
           "sim": "system_v4/probes/sim_3qubit_bridge_prototype.py",
@@ -634,15 +634,6 @@
           "mode": "dry_run_no_source_edits"
         },
         {
-          "sim": "system_v4/probes/sim_axiom_n01_noncommutation_generic.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "bridge",
-          "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
           "sim": "system_v4/probes/sim_axis6_e3nn_fe_bridge.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
@@ -659,13 +650,26 @@
           "current_divergence_log": null,
           "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
           "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_betti_torus_classical.py",
+          "rule": "C4_divergence_log_empty",
+          "classification": "classical_baseline",
+          "runner_class": "classical",
+          "current_divergence_log": [
+            "Chose minimal 7-vertex Cs\u00e1sz\u00e1r torus triangulation over subdivision for speed.",
+            "Considered Smith normal form for integer homology; used numpy real rank mod-2 agnostic because torus has free Z homology.",
+            "Rejected gudhi because classification demands classical-baseline with numpy-only decisive path."
+          ],
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
         }
       ]
     },
     "c6": {
       "present": true,
       "path": "system_v5/ops/c6_loadbearing_report.json",
-      "row_count": 1521,
+      "row_count": 1522,
       "sample": [
         {
           "sim": "system_v4/probes/sim_3qubit_bridge_prototype.py",

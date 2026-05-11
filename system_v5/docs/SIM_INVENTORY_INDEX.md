@@ -1,24 +1,24 @@
 # Sim Inventory Index
 
-Generated: `2026-05-11T20:59:34.456162+00:00`
+Generated: `2026-05-11T21:19:37.451927+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `3949`
-- Result JSON files seen: `757`
-- Linked result JSON files: `721`
+- Result JSON files seen: `758`
+- Linked result JSON files: `722`
 - Unlinked result JSON files: `36`
 - Wizard-admitted stems: `9`
-- Repair / rerun candidate rows: `709`
-- Source-only rows: `3229`
+- Repair / rerun candidate rows: `710`
+- Source-only rows: `3228`
 
 ## Inventory Status Counts
 
-- `source_only`: 3229
-- `rerun_or_admission_candidate`: 496
-- `contract_shaped_but_tool_depth_thin`: 184
+- `source_only`: 3228
+- `rerun_or_admission_candidate`: 499
+- `contract_shaped_but_tool_depth_thin`: 182
 - `legacy_result_or_repair_needed`: 29
 - `admitted`: 9
 - `sidecar_probe_not_admitted`: 2
@@ -43,8 +43,8 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Load-Bearing Tool Counts
 
-- `pytorch`: 1106
-- `z3`: 741
+- `pytorch`: 1105
+- `z3`: 742
 - `sympy`: 566
 - `cvc5`: 510
 - `rustworkx`: 283
@@ -55,7 +55,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `toponetx`: 121
 - `geomstats`: 109
 - `pyg`: 69
-- `scipy`: 67
+- `scipy`: 68
 - `e3nn`: 55
 - `qutip`: 37
 - `qiskit`: 12
@@ -142,6 +142,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | rerun_or_admission_candidate | `sim_assortativity_classical` | classical_baseline | pytorch | classical_baseline |
 | rerun_or_admission_candidate | `sim_axiom_f01_finite_measurement_set` | root_admission, graveyard_negative | z3 | canonical |
 | rerun_or_admission_candidate | `sim_axiom_n01_composition_order_distinguishes` | root_admission, density_carrier, channel_operator | pytorch | canonical |
+| rerun_or_admission_candidate | `sim_axiom_n01_noncommutation_generic` | root_admission, channel_operator, graveyard_negative | sympy | canonical |
 | rerun_or_admission_candidate | `sim_axis0_kernel_phi0` | axis_bridge | clifford, geomstats, gudhi, pytorch, rustworkx, scipy, sympy, toponetx, xgi, z3 | classical_baseline |
 | legacy_result_or_repair_needed | `sim_axis3_fiber_base` | density_carrier, hopf_torus, weyl_spinor_clifford, thermo_engine, axis_bridge | - | - |
 | rerun_or_admission_candidate | `sim_axis6_e3nn_fe_bridge` | density_carrier, axis_bridge, graveyard_negative | e3nn, geomstats, pytorch, z3 | canonical |
@@ -153,7 +154,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | legacy_result_or_repair_needed | `sim_axis_hopf_geometry` | density_carrier, hopf_torus, weyl_spinor_clifford, geometry_gstack_gtower, thermo_engine, axis_bridge | - | - |
 | rerun_or_admission_candidate | `sim_base_loop_law` | hopf_torus | numpy | canonical |
 | legacy_result_or_repair_needed | `sim_bc1_fence_investigation` | thermo_engine, graveyard_negative | - | - |
-| contract_shaped_but_tool_depth_thin | `sim_bch_first_order_commutator_classical` | channel_operator, classical_baseline | - | classical_baseline |
+| rerun_or_admission_candidate | `sim_bch_first_order_commutator_classical` | channel_operator, classical_baseline | scipy | classical_baseline |
 | rerun_or_admission_candidate | `sim_beilinson_regulator_constraint_canonical` | graveyard_negative | pytorch, sympy, z3 | canonical |
 | rerun_or_admission_candidate | `sim_berry_qfi_shell_paths` | density_carrier, entropy_information, hopf_torus, geometry_gstack_gtower | pytorch, sympy | canonical |
 | rerun_or_admission_candidate | `sim_betti_torus_classical` | channel_operator, hopf_torus, classical_baseline | pytorch | classical_baseline |
@@ -165,4 +166,3 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 | rerun_or_admission_candidate | `sim_bootstrap_variance_classical` | classical_baseline | numpy, scipy | classical_baseline |
 | rerun_or_admission_candidate | `sim_bottleneck_distance_classical` | root_admission, graph_topology, classical_baseline | pytorch | classical_baseline |
 | rerun_or_admission_candidate | `sim_branch_weight` | uncategorized | numpy | canonical |
-| contract_shaped_but_tool_depth_thin | `sim_branch_weight_classical` | density_carrier, channel_operator, classical_baseline, graveyard_negative | - | classical_baseline |

@@ -1,11 +1,11 @@
 {
   "schema": "c6_classical_loadbearing_report_v1",
   "mode": "audit_no_source_edits",
-  "row_count": 1521,
+  "row_count": 1522,
   "bucket_counts": {
-    "inconclusive_needs_owner": 1273,
-    "genuinely_load_bearing_so_promote_to_canonical_candidate": 200,
-    "decorative_load_bearing_demote_tool": 48
+    "inconclusive_needs_owner": 1271,
+    "genuinely_load_bearing_so_promote_to_canonical_candidate": 202,
+    "decorative_load_bearing_demote_tool": 49
   },
   "rows": [
     {
@@ -243,18 +243,18 @@
     {
       "sim": "system_v4/probes/sim_axiom_n01_noncommutation_generic.py",
       "tool": "pytorch",
-      "bucket": "inconclusive_needs_owner",
-      "result_path": null,
-      "tool_integration_depth": null,
-      "evidence": "no_result_tool_evidence"
+      "bucket": "decorative_load_bearing_demote_tool",
+      "result_path": "system_v4/probes/a2_state/sim_results/sim_axiom_n01_noncommutation_generic_results.json",
+      "tool_integration_depth": "supportive",
+      "evidence": "result_json_mentions_tool"
     },
     {
       "sim": "system_v4/probes/sim_axiom_n01_noncommutation_generic.py",
       "tool": "sympy",
-      "bucket": "inconclusive_needs_owner",
-      "result_path": null,
-      "tool_integration_depth": null,
-      "evidence": "no_result_tool_evidence"
+      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
+      "result_path": "system_v4/probes/a2_state/sim_results/sim_axiom_n01_noncommutation_generic_results.json",
+      "tool_integration_depth": "load_bearing",
+      "evidence": "result_json_mentions_tool"
     },
     {
       "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
@@ -2942,6 +2942,14 @@
       "bucket": "decorative_load_bearing_demote_tool",
       "result_path": "system_v4/probes/a2_state/sim_results/bch_first_order_commutator_classical_results.json",
       "tool_integration_depth": "supportive",
+      "evidence": "result_json_mentions_tool"
+    },
+    {
+      "sim": "system_v4/probes/sim_bch_first_order_commutator_classical.py",
+      "tool": "scipy",
+      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
+      "result_path": "system_v4/probes/a2_state/sim_results/bch_first_order_commutator_classical_results.json",
+      "tool_integration_depth": "load_bearing",
       "evidence": "result_json_mentions_tool"
     },
     {

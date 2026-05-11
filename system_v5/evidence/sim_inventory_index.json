@@ -1,19 +1,19 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-11T20:59:34.456162+00:00",
+  "generated_at": "2026-05-11T21:19:37.451927+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 3949,
-    "result_json_count": 757,
-    "linked_result_json_count": 721,
+    "result_json_count": 758,
+    "linked_result_json_count": 722,
     "unlinked_result_json_count": 36,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
-      "source_only": 3229,
-      "rerun_or_admission_candidate": 496,
+      "source_only": 3228,
+      "rerun_or_admission_candidate": 499,
       "legacy_result_or_repair_needed": 29,
-      "contract_shaped_but_tool_depth_thin": 184,
+      "contract_shaped_but_tool_depth_thin": 182,
       "admitted": 9,
       "sidecar_probe_not_admitted": 2
     },
@@ -44,7 +44,7 @@
       "qutip": 47,
       "e3nn": 843,
       "gudhi": 899,
-      "z3": 1904,
+      "z3": 1905,
       "clifford": 1330,
       "rustworkx": 1075,
       "toponetx": 915,
@@ -56,15 +56,15 @@
     "load_bearing_tool_counts": {
       "numpy": 276,
       "cvc5": 510,
-      "pytorch": 1106,
+      "pytorch": 1105,
       "rustworkx": 283,
-      "z3": 741,
+      "z3": 742,
       "sympy": 566,
       "clifford": 274,
       "xgi": 200,
       "geomstats": 109,
       "gudhi": 122,
-      "scipy": 67,
+      "scipy": 68,
       "toponetx": 121,
       "e3nn": 55,
       "pyg": 69,
@@ -74,11 +74,11 @@
     },
     "result_classification_counts": {
       "classical_baseline": 249,
-      "canonical": 380,
+      "canonical": 381,
       "supporting": 13,
-      "exploratory": 30,
+      "exploratory": 29,
+      "tool_lego_fit_probe": 14,
       "research_support": 6,
-      "tool_lego_fit_probe": 13,
       "controller_index": 2,
       "graveyard_negative": 1,
       "sidecar_probe": 2,
@@ -86,8 +86,8 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 709,
-    "source_only_count": 3229
+    "repair_candidate_count": 710,
+    "source_only_count": 3228
   },
   "admitted_stems": [
     "sim_clifford_capability",
@@ -985,6 +985,41 @@
       "inventory_status": "rerun_or_admission_candidate"
     },
     {
+      "stem": "sim_axiom_n01_noncommutation_generic",
+      "source_path": "system_v4/probes/sim_axiom_n01_noncommutation_generic.py",
+      "families": [
+        "root_admission",
+        "channel_operator",
+        "graveyard_negative"
+      ],
+      "tools": {
+        "numpy": "imported",
+        "pytorch": "supportive",
+        "z3": "tried",
+        "sympy": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "sympy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_axiom_n01_noncommutation_generic_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
       "stem": "sim_axis0_kernel_phi0",
       "source_path": "system_v4/probes/sim_axis0_kernel_phi0.py",
       "families": [
@@ -1353,10 +1388,12 @@
       ],
       "tools": {
         "numpy": "imported",
-        "scipy": "imported",
+        "scipy": "load_bearing",
         "pytorch": "supportive"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "scipy"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
       "result_paths": [
@@ -1373,7 +1410,7 @@
       "admitted": false,
       "late_stage_signal": false,
       "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_beilinson_regulator_constraint_canonical",
@@ -2898,9 +2935,12 @@
         "thermo_engine"
       ],
       "tools": {
-        "numpy": "imported"
+        "numpy": "imported",
+        "z3": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "z3"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
       "result_paths": [
@@ -2908,7 +2948,7 @@
       ],
       "result_count": 1,
       "result_classifications": [
-        "exploratory"
+        "tool_lego_fit_probe"
       ],
       "result_has_contract_shape": true,
       "admission_path": "",
@@ -2917,7 +2957,7 @@
       "admitted": false,
       "late_stage_signal": false,
       "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_carnot_dual_stacked_engine",
@@ -3310,38 +3350,6 @@
       "late_stage_signal": false,
       "has_contract_shape": true,
       "inventory_status": "rerun_or_admission_candidate"
-    },
-    {
-      "stem": "sim_carrier_probe_support_classical",
-      "source_path": "system_v4/probes/sim_carrier_probe_support_classical.py",
-      "families": [
-        "root_admission",
-        "density_carrier",
-        "channel_operator",
-        "classical_baseline",
-        "graveyard_negative"
-      ],
-      "tools": {
-        "numpy": "supportive"
-      },
-      "load_bearing_tools": [],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/carrier_probe_support_classical_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "classical_baseline"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": false,
-      "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
     }
   ],
   "source_only_samples": [
@@ -14882,27 +14890,30 @@
       ],
       "tools": {
         "numpy": "imported",
-        "pytorch": "load_bearing",
-        "z3": "imported",
+        "pytorch": "supportive",
+        "z3": "tried",
         "sympy": "load_bearing"
       },
       "load_bearing_tools": [
-        "pytorch",
         "sympy"
       ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_axiom_n01_noncommutation_generic_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_axiom_n01_pauli_algebra_closure",
@@ -18047,10 +18058,12 @@
       ],
       "tools": {
         "numpy": "imported",
-        "scipy": "imported",
+        "scipy": "load_bearing",
         "pytorch": "supportive"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "scipy"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
       "result_paths": [
@@ -18067,7 +18080,7 @@
       "admitted": false,
       "late_stage_signal": false,
       "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_beilinson_regulator_constraint_canonical",
@@ -21709,9 +21722,12 @@
         "thermo_engine"
       ],
       "tools": {
-        "numpy": "imported"
+        "numpy": "imported",
+        "z3": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "z3"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
       "result_paths": [
@@ -21719,7 +21735,7 @@
       ],
       "result_count": 1,
       "result_classifications": [
-        "exploratory"
+        "tool_lego_fit_probe"
       ],
       "result_has_contract_shape": true,
       "admission_path": "",
@@ -21728,7 +21744,7 @@
       "admitted": false,
       "late_stage_signal": false,
       "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_carnot_constraint_admissibility_fence",

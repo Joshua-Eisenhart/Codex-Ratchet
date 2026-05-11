@@ -125,6 +125,7 @@ Worker pool truth:
 - Gemini may be used directly or through `omx ask gemini` for bounded scout, compare, and liveness lanes. Count it only when the command returns a durable receipt or artifact containing prompt hash/route, model, exit status, stdout/stderr or JSON output, and conclusion/open fields.
 - OMX `ask` and `sparkshell` are valid worker/tool surfaces from the Codex App shell when they return artifacts or bounded command output. OMX `team` is valid only inside a tmux leader pane with a running tmux server/session; outside that environment, mark the team wave `blocked` and use another honest pool for independent work.
 - Tmux presence alone is not team execution. A tmux/OMX route counts only when a pane/session id, command, exit state, and output/receipt artifact are recorded.
+- Mixed-pool worker receipts must pass `scripts/validate_wizard_worker_receipts.py` before their counts are accepted into Wizard v4.2 topology. External pools stay external evidence even when accepted; they do not become Codex-native subagents.
 - Header counts must always show completed/required parent subagents and completed/current-obligation child subsubagents. If child routes were expected but not launched, do not write `children:0/0 not-run`; show the missed obligation, such as `children:0/3 not-run`. When a response relies on more than one pool, put the pool split in Results or an optional diagnostic line: `codex-native`, `claude-bridge`, `gemini`, `omx/tmux`, and `tools`.
 - A rerouted duplicate can keep the work moving, but the original stalled route remains pending/blocked until its own receipt resolves or it is explicitly abandoned.
 
@@ -247,6 +248,8 @@ Respect the hard stage gate:
 6. only after coupling/coexistence/topology/emergence evidence, bridge or axis-level claims.
 
 Do not relaunch broad sim queues when contract lint or queue safety is red. Use small batches.
+
+If helper preflight is green but `lane_A`, `lane_B`, and `claimed` are all empty, do not call the loop healthy without movement. Either select/enqueue the smallest admissible micro tool/function probe or write a tracked blocked-reason artifact under `system_v5/ops/lego_scaling/` or `system_v5/ops/wizard_admissions/`. `scripts/wizard_v4_2_runtime_audit.py` is the local guard for v4.2 drift, helper regression, and idle-without-blocker state.
 
 ## Git Hygiene
 

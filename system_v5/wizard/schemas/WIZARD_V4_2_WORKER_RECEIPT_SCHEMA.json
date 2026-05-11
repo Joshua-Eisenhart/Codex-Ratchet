@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex-ratchet.local/schemas/wizard-v4-2-worker-receipt.schema.json",
+  "title": "Wizard v4.2 worker receipt",
+  "type": "object",
+  "required": [
+    "schema",
+    "wizard_version",
+    "route",
+    "parent_id",
+    "pool",
+    "launch_surface",
+    "terminal_status",
+    "artifact_path",
+    "accepted_conclusion",
+    "counts_toward_topology"
+  ],
+  "properties": {
+    "schema": {
+      "const": "wizard-v4.2-worker-receipt"
+    },
+    "wizard_version": {
+      "const": "v4.2"
+    },
+    "route": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "child_id": {
+      "type": ["string", "null"]
+    },
+    "pool": {
+      "enum": ["codex-native", "claude-bridge", "gemini", "omx", "tmux", "tool"]
+    },
+    "launch_surface": {
+      "type": "string",
+      "minLength": 1
+    },
+    "terminal_status": {
+      "enum": ["completed", "failed", "timed_out", "blocked", "abandoned", "not_launched", "superseded"]
+    },
+    "artifact_path": {
+      "type": "string"
+    },
+    "accepted_conclusion": {
+      "type": "string"
+    },
+    "counts_toward_topology": {
+      "type": "boolean"
+    },
+    "external_worker": {
+      "type": "boolean"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

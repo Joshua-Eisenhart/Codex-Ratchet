@@ -261,9 +261,9 @@ else
   log "Strict receipt admission is bypassed by STRICT_RECEIPT_ADMISSION=0; DONE means process exit only."
 fi
 if [ "$STRICT_WIZARD_QUEUE_ADMISSION" = "1" ]; then
-  log "Strict Wizard queue admission is enabled; queued rows require v4.1 admission artifacts before execution."
+  log "Strict Wizard queue admission is enabled; queued rows require v4.2 admission artifacts before execution."
 else
-  log "Strict Wizard queue admission is bypassed by STRICT_WIZARD_QUEUE_ADMISSION=0; rows may run without v4.1 queue admission."
+  log "Strict Wizard queue admission is bypassed by STRICT_WIZARD_QUEUE_ADMISSION=0; rows may run without v4.2 queue admission."
 fi
 log "Initial queue state:"
 queue_stats | while read line; do log "$line"; done
@@ -295,7 +295,7 @@ while :; do
   fi
 
   if ! wizard_queue_admitted "$basename" "$probe"; then
-    log "INELIGIBLE (wizard admission): $basename lacks v4.1 queue-ready admission"
+    log "INELIGIBLE (wizard admission): $basename lacks v4.2 queue-ready admission"
     mark_line "$queue_file" "$basename" "INELIGIBLE" "0"
     continue
   fi

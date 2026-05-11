@@ -37,6 +37,10 @@ LIVE_SURFACE_GLOBS = [
     (HOME / "wiki/wizard/packet-v4-2-current", "**/*.json"),
 ]
 
+WORKER_RECEIPT_GLOBS = [
+    (ROOT / "system_v5/wizard/receipts", "**/*.json"),
+]
+
 LEGACY_ALLOWED = {
     ROOT / "scripts/wizard_full_matrix_run.py",
     ROOT / "scripts/wizard_topology.py",
@@ -57,7 +61,7 @@ DISALLOWED = [
 ]
 
 ALLOW_LINE = re.compile(
-    r"(legacy v4\.1[^.]*reference-only|v4\.1[^.]*reference-only|explicitly names? v4\.1|recovery run explicitly names? v4\.1)",
+    r"(legacy v4\.1[^.]*reference-only|v4\.1[^.]*reference-only|explicitly names? v4\.1|recovery run explicitly names? v4\.1|^(banned|contrast|negative-example|do not use):|^#?\s*[A-Z0-9_]+v4_1$)",
     re.IGNORECASE,
 )
 
@@ -159,6 +163,11 @@ def blocked_reason_valid(path: Path, *, now: datetime) -> tuple[bool, str]:
         parsed = parsed.replace(tzinfo=timezone.utc)
     if now - parsed > timedelta(hours=24):
         return False, "blocked reason is older than 24h"
+    schema = str(data.get("schema", ""))
+    kind = str(data.get("kind", ""))
+    is_blocked_reason = kind == "blocked_reason" or schema.startswith("wizard_v4_2_blocked_reason")
+    if not is_blocked_reason:
+        return False, "missing kind=blocked_reason or wizard_v4_2_blocked_reason schema"
     has_reason = bool(str(data.get("reason") or data.get("scope") or data.get("claim_boundary") or "").strip())
     has_next = bool(str(data.get("next_admissible_step") or data.get("recommended_next_move") or "").strip())
     if not has_next and isinstance(data.get("blocked_candidates"), list):
@@ -200,6 +209,26 @@ def heartbeat_status(counts: dict[str, int | str]) -> dict[str, Any]:
     }
 
 
+def recent_worker_receipts(now: datetime) -> list[Path]:
+    receipts: list[Path] = []
+    for base, pattern in WORKER_RECEIPT_GLOBS:
+        if base.exists():
+            receipts.extend(path for path in base.glob(pattern) if path.is_file())
+    cutoff = now - timedelta(hours=24)
+    return sorted(path for path in receipts if datetime.fromtimestamp(path.stat().st_mtime, timezone.utc) >= cutoff)
+
+
+def worker_receipt_check(now: datetime) -> dict[str, Any]:
+    receipts = recent_worker_receipts(now)
+    if not receipts:
+        return {"ok": True, "checked": 0, "receipt_paths": []}
+    command = ["python3", "scripts/validate_wizard_worker_receipts.py", "--require-artifacts", *[str(path) for path in receipts]]
+    check = run(command)
+    check["checked"] = len(receipts)
+    check["receipt_paths"] = [rel(path) for path in receipts]
+    return check
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--skip-preflight", action="store_true", help="Skip packet/helper subprocess checks.")
@@ -216,6 +245,7 @@ def main(argv: list[str] | None = None) -> int:
             ["python3", str(HOME / "wiki/wizard/packet-v4-2-current/conformance/validate_v4_2_packet.py")]
         )
         checks["helper_processes"] = run(["python3", "scripts/helper_process_audit.py", "--strict"])
+        checks["worker_pool_receipts"] = worker_receipt_check(datetime.now(timezone.utc))
 
     hard_failures = bool(findings)
     hard_failures = hard_failures or any(not check.get("ok") for check in checks.values())

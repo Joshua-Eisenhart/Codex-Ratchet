@@ -58,6 +58,9 @@
     "controller_marker": {
       "type": "boolean"
     },
+    "controller_marker_justification": {
+      "type": "string"
+    },
     "notes": {
       "type": "string"
     }
@@ -104,6 +107,34 @@
           }
         },
         "required": ["external_worker"]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "pool": {
+            "const": "codex-native"
+          },
+          "counts_toward_topology": {
+            "const": true
+          },
+          "controller_marker": {
+            "const": true
+          }
+        },
+        "required": ["pool", "counts_toward_topology", "controller_marker"]
+      },
+      "then": {
+        "required": ["controller_marker_justification"],
+        "properties": {
+          "controller_marker_justification": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "not": {
+          "required": ["child_id"]
+        }
       }
     }
   ],

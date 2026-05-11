@@ -97,8 +97,13 @@ def validate_receipt(receipt: dict[str, Any], label: str, *, require_artifacts: 
         if receipt.get("pool") == "codex-native":
             has_child = present(receipt.get("child_id"))
             has_controller_marker = receipt.get("controller_marker") is True
+            has_controller_justification = present(receipt.get("controller_marker_justification"))
             if not has_child and not has_controller_marker:
                 errors.append(f"{label}: codex-native topology receipts require child_id or controller_marker=true")
+            if has_controller_marker and not has_controller_justification:
+                errors.append(f"{label}: controller_marker=true requires controller_marker_justification")
+            if has_child and has_controller_marker:
+                errors.append(f"{label}: controller_marker=true cannot be combined with child_id")
 
     if require_artifacts and present(receipt.get("artifact_path")):
         artifact = Path(str(receipt["artifact_path"])).expanduser()
@@ -130,7 +135,8 @@ def main(argv: list[str] | None = None) -> int:
             label = f"{path}#{index}"
             errors.extend(validate_receipt(receipt, label, require_artifacts=args.require_artifacts))
             if receipt.get("counts_toward_topology") is True:
-                key = (str(receipt.get("parent_id", "")), str(receipt.get("child_id", receipt.get("controller_marker", ""))))
+                child_key = receipt.get("child_id") or ("controller" if receipt.get("controller_marker") is True else "")
+                key = (str(receipt.get("parent_id", "")), str(child_key))
                 if key in topology_keys:
                     errors.append(f"{label}: duplicate topology receipt for parent/child also seen at {topology_keys[key]}")
                 else:

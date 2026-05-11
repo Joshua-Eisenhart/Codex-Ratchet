@@ -249,7 +249,7 @@ Respect the hard stage gate:
 
 Do not relaunch broad sim queues when contract lint or queue safety is red. Use small batches.
 
-If helper preflight is green but `lane_A`, `lane_B`, and `claimed` are all empty, do not call the loop healthy without movement. Either select/enqueue the smallest admissible micro tool/function probe or write a tracked blocked-reason artifact under `system_v5/ops/lego_scaling/` or `system_v5/ops/wizard_admissions/`. `scripts/wizard_v4_2_runtime_audit.py` is the local guard for v4.2 drift, helper regression, and idle-without-blocker state.
+If helper preflight is green but `lane_A`, `lane_B`, and `claimed` are all empty, do not call the loop healthy without movement. Either select/enqueue the smallest admissible micro tool/function probe or write a tracked blocked-reason artifact under `system_v5/ops/lego_scaling/` or `system_v5/ops/wizard_admissions/`. Blocked-reason artifacts must be JSON with `kind: "blocked_reason"`, an ISO `created_at` or `generated_at`, a non-empty reason/scope, and a concrete `next_admissible_step` or `recommended_next_move`. `scripts/wizard_v4_2_runtime_audit.py` is the local guard for v4.2 drift, helper regression, and idle-without-blocker state.
 
 Admission bypass is a recovery-only path. If `STRICT_RECEIPT_ADMISSION=0` or `STRICT_WIZARD_QUEUE_ADMISSION=0` is used, the runner must require the recovery sentinel and write a timestamped bypass receipt under `system_v5/ops/wizard_admissions/`; remove the sentinel before normal sim work resumes. `ALLOW_HELPER_PROCESSES=1` requires an active same-session browser/computer-use task and should not be inherited into unattended sim runs.
 

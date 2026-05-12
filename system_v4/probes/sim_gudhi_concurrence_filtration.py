@@ -11,21 +11,33 @@ Compares concurrence filtration vs I_c filtration.
 import json
 import os
 import numpy as np
+
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 
+NAME = "gudhi_concurrence_filtration"
+PROBE_FAMILY = "gudhi_concurrence_filtration"
+CONSTRAINT_SET = "two_qubit_concurrence_filtration_vs_coherent_information"
+
+_NOT_USED_REASON = (
+    "not used: this bounded receipt isolates PyTorch density bookkeeping plus "
+    "GUDHI persistence on a fixed two-qubit concurrence family."
+)
+
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": ""},
-    "pyg": {"tried": False, "used": False, "reason": ""},
-    "z3": {"tried": False, "used": False, "reason": ""},
-    "cvc5": {"tried": False, "used": False, "reason": ""},
-    "sympy": {"tried": False, "used": False, "reason": ""},
-    "clifford": {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn": {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi": {"tried": False, "used": False, "reason": ""},
-    "toponetx": {"tried": False, "used": False, "reason": ""},
-    "gudhi": {"tried": False, "used": False, "reason": ""},
+    "pytorch": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "pyg": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "z3": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "cvc5": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "sympy": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "clifford": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "geomstats": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "e3nn": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "rustworkx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "xgi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "toponetx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "gudhi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -135,8 +147,7 @@ def partial_trace_system(rho_AB: "torch.Tensor", keep: str, dimA: int, dimB: int
     rho = rho_AB.reshape(dimA, dimB, dimA, dimB)
     if keep == "A":
         return torch.einsum("ibjb->ij", rho)
-    else:
-        return torch.einsum("iajb->ab", rho.permute(1, 0, 3, 2))
+    return torch.einsum("abad->bd", rho)
 
 
 def concurrence_from_state(alpha: float) -> float:
@@ -409,6 +420,33 @@ def run_boundary_tests():
     return results
 
 
+def summarize_results(pos: dict, neg: dict, bnd: dict) -> dict:
+    state_sample = pos.get("state_sample", [])
+    entropy_pairs_match = all(
+        abs(sample.get("S_A", 0.0) - sample.get("S_B", 0.0)) < 1e-8
+        for sample in state_sample
+    )
+    checks = {
+        "has_20_states": pos.get("n_states") == 20,
+        "concurrence_spans_unit_interval": (
+            abs(pos.get("kernel_range", {}).get("C_min", 1.0)) < 1e-12
+            and abs(pos.get("kernel_range", {}).get("C_max", 0.0) - 1.0) < 1e-12
+        ),
+        "bipartite_entropy_symmetric": entropy_pairs_match,
+        "gudhi_concurrence_filtration_ran": "error" not in pos.get("concurrence_filtration", {}),
+        "gudhi_ic_filtration_ran": "error" not in pos.get("I_c_filtration", {}),
+        "negative_separable_cloud_degenerate": bool(neg.get("all_separable_degenerate")),
+        "ic_family_monotone": bool(neg.get("I_c_monotone")),
+        "boundary_partition_detected": bnd.get("n_separable") == 1 and bnd.get("n_entangled") == 19,
+    }
+    return {
+        "passed": sum(1 for passed in checks.values() if passed),
+        "total": len(checks),
+        "checks": checks,
+        "all_pass": all(checks.values()),
+    }
+
+
 # =====================================================================
 # MAIN
 # =====================================================================
@@ -417,6 +455,7 @@ if __name__ == "__main__":
     pos = run_positive_tests()
     neg = run_negative_tests()
     bnd = run_boundary_tests()
+    summary = summarize_results(pos, neg, bnd)
 
     # Extract key results for summary
     conc_filt = pos.get("concurrence_filtration", {})
@@ -424,18 +463,45 @@ if __name__ == "__main__":
     rips_k = pos.get("rips_kernel", {})
 
     results = {
-        "name": "gudhi_concurrence_filtration",
+        "name": NAME,
         "description": (
             "Filtration by concurrence C in [0,1] on 20 two-qubit states. "
             "Tests for persistent H0 gap at C=0 boundary. "
             "Compares concurrence filtration vs I_c filtration persistence diagrams."
         ),
+        "probe_family": PROBE_FAMILY,
+        "constraint_set": CONSTRAINT_SET,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,
         "negative": neg,
         "boundary": bnd,
         "classification": "canonical",
+        "surviving_alternatives": [
+            "This receipt only shows that GUDHI persistence distinguishes the fixed concurrence-family filtration data supplied by PyTorch; it does not prove broader entanglement topology."
+        ],
+        "demotion_condition": (
+            "Demote this receipt if the PyTorch reduced-state entropy check fails, "
+            "if GUDHI filtration construction errors, or if reruns no longer span "
+            "the intended concurrence interval."
+        ),
+        "out_of_scope": [
+            "no QIT engine claim",
+            "no nonclassical admission by itself",
+            "no bridge claim",
+            "no axis claim",
+            "no GStack claim",
+            "no general entanglement-topology theorem",
+        ],
+        "criteria_checked": [
+            "PyTorch density matrices and partial traces preserve equal reduced entropies for the pure two-qubit family",
+            "concurrence spans C=0 to C=1 over the fixed state family",
+            "GUDHI SimplexTree persistence runs on concurrence and I_c filtrations",
+            "all-separable negative cloud remains degenerate",
+            "boundary partition contains one C=0 state and nineteen C>0 states",
+        ],
+        "summary": summary,
+        "all_pass": bool(summary["all_pass"]),
         "topology_verdict": {
             "concurrence_filtration_H0": conc_filt.get("H0"),
             "concurrence_filtration_H1": conc_filt.get("H1"),
@@ -447,10 +513,19 @@ if __name__ == "__main__":
             "filtrations_differ": bnd.get("filtration_comparison", {}).get("filtrations_produce_different_diagrams", False),
         },
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target=(
+            "Use as bounded GUDHI plus PyTorch concurrence-filtration lego-fit "
+            "evidence before topology/entropy coupling packets."
+        ),
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "gudhi_concurrence_filtration_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
+    print(f"Summary: {summary['passed']}/{summary['total']} passed")

@@ -147,6 +147,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["persistence_geometry", "cell_complex_geometry"],
     },
     {
+        "tool": "gudhi",
+        "function_api": "gudhi.SimplexTree insert/make_filtration_non_decreasing/compute_persistence over PyTorch-derived concurrence and I_c filtrations",
+        "receipt": "system_v4/probes/a2_state/sim_results/gudhi_concurrence_filtration_results.json",
+        "role": "nonclassical_adjacent",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["concurrence_measure", "persistence_geometry"],
+    },
+    {
         "tool": "toponetx",
         "function_api": "CellComplex/SimplicialComplex rank cells and incidence_matrix",
         "receipt": "system_v4/probes/a2_state/sim_results/toponetx_capability_results.json",

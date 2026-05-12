@@ -15,6 +15,8 @@ import os
 from math import isclose
 from typing import Any, Dict, List
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 NAME = "tool_integration_clifford_weyl"
 
@@ -234,16 +236,75 @@ def run_boundary_tests():
     return results
 
 
+def _case_passed(case: Dict[str, Any]) -> bool:
+    if case.get("status") == "skipped":
+        return False
+    if "claim_excluded" in case:
+        return bool(case["claim_excluded"])
+    if "matches_target" in case:
+        return bool(case["matches_target"])
+    if "boundary_match" in case:
+        return bool(case["boundary_match"])
+    if "identity_rotor_expected" in case:
+        return bool(case["identity_rotor_expected"])
+    return False
+
+
+def _summarize(*sections: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
+    cases = []
+    for section in sections:
+        cases.extend(section.values())
+    passed = sum(1 for case in cases if _case_passed(case))
+    total = len(cases)
+    return {"passed": passed, "total": total, "all_pass": passed == total}
+
+
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    summary = _summarize(positive, negative, boundary)
     results = {
         "name": NAME,
         "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "surviving_alternatives": [
+            "This receipt covers only the named SymPy Weyl spinor fixtures feeding clifford Cl(3) rotor transport; it does not prove broad Weyl transport, bridge, axis, or GStack behavior."
+        ],
+        "demotion_condition": (
+            "Demote this integration surface if SymPy symbolic Bloch vectors no longer "
+            "match clifford rotor transport, if wrong azimuth signs are not excluded, "
+            "or if unnormalized spinor targets are accepted."
+        ),
+        "out_of_scope": [
+            "no bridge promotion",
+            "no axis claim",
+            "no GStack claim",
+            "no proof of broad Weyl transport",
+            "no coupling-stage promotion",
+        ],
+        "criteria_checked": [
+            "SymPy Weyl spinor amplitudes feed clifford equatorial rotor transport",
+            "SymPy Weyl spinor amplitudes feed clifford generic rotor transport",
+            "wrong azimuth sign is excluded",
+            "unnormalized spinor target is excluded",
+            "north-pole and south-pole boundary transports survive",
+        ],
+        "summary": summary,
+        "all_pass": bool(summary["all_pass"]),
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target=(
+            "Use as bounded clifford plus SymPy Weyl tool-integration evidence "
+            "before any Weyl transport lego-fit or coupling-stage packet."
+        ),
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

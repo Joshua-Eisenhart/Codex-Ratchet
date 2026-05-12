@@ -123,6 +123,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["clifford_generator_basis", "clifford_geometry"],
     },
     {
+        "tool": "clifford",
+        "function_api": "clifford Cl(3) rotor transport over SymPy-derived Weyl Bloch-vector fixtures",
+        "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_clifford_weyl_results.json",
+        "role": "nonclassical_adjacent",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["clifford_weyl_transport", "weyl_spinor_geometry"],
+    },
+    {
         "tool": "gudhi",
         "function_api": "SimplexTree, Rips/filtration persistence and Betti summaries",
         "receipt": "system_v4/probes/a2_state/sim_results/gudhi_capability_results.json",

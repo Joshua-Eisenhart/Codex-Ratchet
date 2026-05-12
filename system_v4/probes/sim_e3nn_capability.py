@@ -19,19 +19,26 @@ import json
 import math
 import os
 
+from receipt_boundary import apply_default_receipt_boundary
+
+_NOT_USED_REASON = (
+    "not used: this bounded e3nn capability receipt isolates SO(3) irrep, "
+    "tensor-product, and equivariance APIs; other tool families require separate receipts."
+)
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "used as e3nn backend (not under test)"},
-    "pyg":       {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "z3":        {"tried": False, "used": False, "reason": "not SMT-relevant"},
-    "cvc5":      {"tried": False, "used": False, "reason": "not SMT-relevant"},
-    "sympy":     {"tried": False, "used": False, "reason": "not needed"},
-    "clifford":  {"tried": False, "used": False, "reason": "separate clifford probe"},
-    "geomstats": {"tried": False, "used": False, "reason": "separate probe"},
+    "pyg":       {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "z3":        {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "cvc5":      {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "sympy":     {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "clifford":  {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "geomstats": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
     "e3nn":      {"tried": False, "used": False, "reason": "under test"},
-    "rustworkx": {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "xgi":       {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "toponetx":  {"tried": False, "used": False, "reason": "not topology-relevant"},
-    "gudhi":     {"tried": False, "used": False, "reason": "not topology-relevant"},
+    "rustworkx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "xgi":       {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "toponetx":  {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "gudhi":     {"tried": False, "used": False, "reason": _NOT_USED_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -65,7 +72,11 @@ try:
     from e3nn import o3
     TOOL_MANIFEST["e3nn"]["tried"] = True
     TOOL_MANIFEST["e3nn"]["used"] = True
-    TOOL_MANIFEST["e3nn"]["reason"] = "capability under test -- SO(3) equivariance, irrep parsing, CG sanity"
+    TOOL_MANIFEST["e3nn"]["reason"] = (
+        "load-bearing capability under test: e3nn SO(3) Irreps, "
+        "FullyConnectedTensorProduct, D_from_matrix, tensor-product decomposition, "
+        "and equivariance residuals decide the receipt verdicts."
+    )
     E3NN_OK = True
     E3NN_VERSION = getattr(e3nn, "__version__", "unknown")
 except Exception as exc:
@@ -287,12 +298,33 @@ if __name__ == "__main__":
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
         "classification": "canonical",
+        "surviving_alternatives": [
+            "This receipt covers only bounded e3nn equivariance API capability; it does not promote spinor geometry, graph equivariance, bridge, axis, GStack, or nonclassical admission."
+        ],
+        "demotion_condition": (
+            "Demote this e3nn capability receipt if irrep parsing, CG decomposition, "
+            "SO(3) equivariance residuals, D-matrix orthogonality, malformed input rejection, "
+            "or boundary rotation controls fail on rerun."
+        ),
+        "out_of_scope": [
+            "no spinor-geometry lego promotion",
+            "no graph-equivariance promotion",
+            "no bridge claim",
+            "no axis claim",
+            "no GStack claim",
+            "no nonclassical admission",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_e3nn_capability",
+        target="Use as bounded e3nn SO(3)-equivariance capability evidence before exact equivariance lego-fit or coupling packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "e3nn_capability_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
     print(f"summary.all_pass = {summary['all_pass']}")

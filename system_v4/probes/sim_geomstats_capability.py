@@ -23,23 +23,30 @@ import json
 import os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
 
+_NOT_USED_REASON = (
+    "not used: this bounded geomstats capability receipt isolates manifold "
+    "geodesic, metric, and Frechet-mean APIs; other tool families require separate receipts."
+)
+
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": "not needed for isolated geomstats capability probe"},
-    "pyg":       {"tried": False, "used": False, "reason": "no graph message passing in manifold capability test"},
-    "z3":        {"tried": False, "used": False, "reason": "no proof obligation in a capability probe"},
-    "cvc5":      {"tried": False, "used": False, "reason": "no proof obligation in a capability probe"},
-    "sympy":     {"tried": False, "used": False, "reason": "no symbolic derivation required"},
-    "clifford":  {"tried": False, "used": False, "reason": "no geometric algebra needed for SPD/hypersphere checks"},
+    "pytorch":   {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "pyg":       {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "z3":        {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "cvc5":      {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "sympy":     {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "clifford":  {"tried": False, "used": False, "reason": _NOT_USED_REASON},
     "geomstats": {"tried": False, "used": False, "reason": "tool under capability test -- overwritten on import"},
-    "e3nn":      {"tried": False, "used": False, "reason": "no equivariant NN required"},
-    "rustworkx": {"tried": False, "used": False, "reason": "no graph structure probed here"},
-    "xgi":       {"tried": False, "used": False, "reason": "no hypergraph / multi-way interaction"},
-    "toponetx":  {"tried": False, "used": False, "reason": "no cell/simplicial complex needed"},
-    "gudhi":     {"tried": False, "used": False, "reason": "no persistent homology in this probe"},
+    "e3nn":      {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "rustworkx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "xgi":       {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "toponetx":  {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "gudhi":     {"tried": False, "used": False, "reason": _NOT_USED_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -65,7 +72,8 @@ try:
     TOOL_MANIFEST["geomstats"]["tried"] = True
     TOOL_MANIFEST["geomstats"]["used"] = True
     TOOL_MANIFEST["geomstats"]["reason"] = (
-        "load-bearing: computes geodesic, exp/log, SPD distance, Frechet mean"
+        "load-bearing capability under test: geomstats Hypersphere metric, "
+        "exp/log, SPD affine distance, and FrechetMean APIs decide the receipt verdicts."
     )
     GEOMSTATS_OK = True
 except Exception as e:
@@ -268,6 +276,14 @@ if __name__ == "__main__":
             "error": "geomstats not importable",
             "all_pass": False,
             "summary": {"all_pass": False},
+            "out_of_scope": [
+                "no manifold lego promotion",
+                "no Hopf geometry promotion",
+                "no bridge claim",
+                "no axis claim",
+                "no GStack claim",
+                "no nonclassical admission",
+            ],
         }
     else:
         pos = run_positive_tests()
@@ -295,12 +311,33 @@ if __name__ == "__main__":
             "pass_count": int(sum(flags)),
             "total_count": int(len(flags)),
             "summary": {"all_pass": all_pass},
+            "surviving_alternatives": [
+                "This receipt covers only bounded geomstats manifold-metric capability; it does not promote Hopf geometry, manifold lego status, bridge, axis, GStack, or nonclassical admission."
+            ],
+            "demotion_condition": (
+                "Demote this geomstats capability receipt if hypersphere distance, "
+                "exp/log roundtrip, SPD affine distance, Frechet mean, slerp comparison, "
+                "or off-manifold/cut-locus controls fail on rerun."
+            ),
+            "out_of_scope": [
+                "no manifold lego promotion",
+                "no Hopf geometry promotion",
+                "no bridge claim",
+                "no axis claim",
+                "no GStack claim",
+                "no nonclassical admission",
+            ],
         }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_geomstats_capability",
+        target="Use as bounded geomstats manifold-metric capability evidence before exact manifold lego-fit or coupling packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "geomstats_capability_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
     print(f"all_pass={results.get('all_pass')} "

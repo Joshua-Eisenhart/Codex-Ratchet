@@ -128,7 +128,8 @@ def validate_admission(
         findings.append("schema_not_wizard_sim_admission_v4_1")
     if payload.get("basename") != basename:
         findings.append("basename_mismatch")
-    if payload.get("sim_path") != sim_path:
+    payload_sim_path = str(payload.get("sim_path") or "")
+    if rel_or_abs(root, payload_sim_path).resolve() != rel_or_abs(root, sim_path).resolve():
         findings.append("sim_path_mismatch")
     if payload.get("status") != "queue_ready":
         findings.append("status_not_queue_ready")

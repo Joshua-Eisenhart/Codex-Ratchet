@@ -11,23 +11,33 @@ import json
 import os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
+NAME = "sim_rank_nullity_theorem_constraint_canonical"
+classification = "canonical"
+divergence_log = (
+    "cvc5 is load-bearing for bounded integer rank/nullity constraint checks; "
+    "SymPy is supportive for concrete matrix rank and nullspace examples, while "
+    "numpy is only a classical array baseline."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": "not required for constraint proof"},
-    "pyg": {"tried": False, "used": False, "reason": "not required for constraint proof"},
-    "z3": {"tried": False, "used": False, "reason": "cvc5 is preferred for QF_LIA"},
-    "cvc5": {"tried": False, "used": False, "reason": ""},
-    "sympy": {"tried": False, "used": False, "reason": ""},
-    "clifford": {"tried": False, "used": False, "reason": "not required for linear algebra"},
-    "geomstats": {"tried": False, "used": False, "reason": "not required for linear algebra"},
-    "e3nn": {"tried": False, "used": False, "reason": "not required for linear algebra"},
-    "rustworkx": {"tried": False, "used": False, "reason": "not required for linear algebra"},
-    "xgi": {"tried": False, "used": False, "reason": "not required for linear algebra"},
-    "toponetx": {"tried": False, "used": False, "reason": "not required for linear algebra"},
-    "gudhi": {"tried": False, "used": False, "reason": "not required for linear algebra"},
+    "pytorch": {"tried": False, "used": False, "reason": "PyTorch is not used because this packet checks exact integer rank/nullity constraints rather than tensor optimization"},
+    "pyg": {"tried": False, "used": False, "reason": "PyG is not used because rank-nullity is not a graph message-passing or graph batching problem"},
+    "z3": {"tried": False, "used": False, "reason": "Z3 is not used in this packet because cvc5 is the selected QF_LIA constraint solver"},
+    "cvc5": {"tried": False, "used": False, "reason": "cvc5 is attempted as the exact QF_LIA solver for bounded rank/nullity constraints"},
+    "sympy": {"tried": False, "used": False, "reason": "SymPy is attempted for concrete matrix rank and nullspace boundary examples"},
+    "clifford": {"tried": False, "used": False, "reason": "Clifford algebra is not used because no multivector product or rotor identity is involved"},
+    "geomstats": {"tried": False, "used": False, "reason": "Geomstats is not used because no manifold metric, geodesic, or Lie-group distance is evaluated"},
+    "e3nn": {"tried": False, "used": False, "reason": "e3nn is not used because no equivariant tensor representation appears in the rank/nullity check"},
+    "rustworkx": {"tried": False, "used": False, "reason": "rustworkx is not used because no graph traversal or DAG invariant is part of the theorem"},
+    "xgi": {"tried": False, "used": False, "reason": "XGI is not used because there is no hypergraph incidence or higher-order network structure"},
+    "toponetx": {"tried": False, "used": False, "reason": "TopoNetX is not used because no cell-complex boundary or cochain calculation is required"},
+    "gudhi": {"tried": False, "used": False, "reason": "GUDHI is not used because no filtration, simplex tree, or persistent homology is present"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -71,25 +81,24 @@ def run_positive_tests():
         return results
 
     try:
-        import cvc5
+        from cvc5 import Kind, Solver
+
+        def rank_nullity_solver(rank: int, nullity: int, dim: int):
+            solver = Solver()
+            solver.setLogic("QF_LIA")
+            r = solver.mkInteger(rank)
+            k = solver.mkInteger(nullity)
+            n = solver.mkInteger(dim)
+            solver.assertFormula(solver.mkTerm(Kind.EQUAL, solver.mkTerm(Kind.ADD, r, k), n))
+            solver.assertFormula(solver.mkTerm(Kind.GEQ, r, solver.mkInteger(0)))
+            solver.assertFormula(solver.mkTerm(Kind.GEQ, k, solver.mkInteger(0)))
+            solver.assertFormula(solver.mkTerm(Kind.LEQ, r, n))
+            solver.assertFormula(solver.mkTerm(Kind.LEQ, k, n))
+            return solver
 
         # Test 1: 3x3 identity matrix
         # rank(I_3) = 3, nullity(I_3) = 0, sum = 3
-        solver = cvc5.Solver()
-        solver.setLogic("QF_LIA")
-
-        rank_i3 = cvc5.IntVal(3)
-        nullity_i3 = cvc5.IntVal(0)
-        n = cvc5.IntVal(3)
-
-        constraint = cvc5.And(
-            rank_i3 + nullity_i3 == n,
-            rank_i3 >= 0,
-            nullity_i3 >= 0,
-            rank_i3 <= n,
-            nullity_i3 <= n
-        )
-        solver.assertFormula(constraint)
+        solver = rank_nullity_solver(3, 0, 3)
         result_i3 = solver.checkSat()
         results["identity_3x3"] = {
             "rank": 3, "nullity": 0, "n": 3,
@@ -97,24 +106,11 @@ def run_positive_tests():
             "valid": str(result_i3) == "sat"
         }
         TOOL_MANIFEST["cvc5"]["used"] = True
+        TOOL_MANIFEST["cvc5"]["reason"] = "cvc5 is load-bearing for SAT/UNSAT checks of the bounded rank + nullity = dimension constraint"
 
         # Test 2: 4x4 matrix with rank 2, nullity 2
         # Full rank + full nullity = dimension
-        solver2 = cvc5.Solver()
-        solver2.setLogic("QF_LIA")
-
-        rank_r2 = cvc5.IntVal(2)
-        nullity_r2 = cvc5.IntVal(2)
-        n2 = cvc5.IntVal(4)
-
-        constraint2 = cvc5.And(
-            rank_r2 + nullity_r2 == n2,
-            rank_r2 >= 0,
-            nullity_r2 >= 0,
-            rank_r2 <= n2,
-            nullity_r2 <= n2
-        )
-        solver2.assertFormula(constraint2)
+        solver2 = rank_nullity_solver(2, 2, 4)
         result_r2 = solver2.checkSat()
         results["rank2_nullity2_4x4"] = {
             "rank": 2, "nullity": 2, "n": 4,
@@ -123,21 +119,7 @@ def run_positive_tests():
         }
 
         # Test 3: 5x5 singular matrix, rank 3, nullity 2
-        solver3 = cvc5.Solver()
-        solver3.setLogic("QF_LIA")
-
-        rank_sing = cvc5.IntVal(3)
-        nullity_sing = cvc5.IntVal(2)
-        n3 = cvc5.IntVal(5)
-
-        constraint3 = cvc5.And(
-            rank_sing + nullity_sing == n3,
-            rank_sing >= 0,
-            nullity_sing >= 0,
-            rank_sing <= n3,
-            nullity_sing <= n3
-        )
-        solver3.assertFormula(constraint3)
+        solver3 = rank_nullity_solver(3, 2, 5)
         result_sing = solver3.checkSat()
         results["rank3_nullity2_5x5"] = {
             "rank": 3, "nullity": 2, "n": 5,
@@ -163,26 +145,28 @@ def run_negative_tests():
         return results
 
     try:
-        import cvc5
+        from cvc5 import Kind, Solver
+
+        def rank_nullity_solver(rank: int, nullity: int, dim: int, violation: str | None = None):
+            solver = Solver()
+            solver.setLogic("QF_LIA")
+            r = solver.mkInteger(rank)
+            k = solver.mkInteger(nullity)
+            n = solver.mkInteger(dim)
+            total = solver.mkTerm(Kind.ADD, r, k)
+            solver.assertFormula(solver.mkTerm(Kind.EQUAL, total, n))
+            solver.assertFormula(solver.mkTerm(Kind.GEQ, r, solver.mkInteger(0)))
+            solver.assertFormula(solver.mkTerm(Kind.GEQ, k, solver.mkInteger(0)))
+            solver.assertFormula(solver.mkTerm(Kind.LEQ, r, n))
+            solver.assertFormula(solver.mkTerm(Kind.LEQ, k, n))
+            if violation == "lt":
+                solver.assertFormula(solver.mkTerm(Kind.LT, total, n))
+            if violation == "gt":
+                solver.assertFormula(solver.mkTerm(Kind.GT, total, n))
+            return solver
 
         # Negative Test 1: rank + nullity < n (impossible)
-        solver_neg1 = cvc5.Solver()
-        solver_neg1.setLogic("QF_LIA")
-
-        rank_n1 = cvc5.IntVal(2)
-        nullity_n1 = cvc5.IntVal(1)
-        n1 = cvc5.IntVal(4)
-
-        # Claim: rank + nullity < n, but we enforce the constraint
-        constraint_neg1 = cvc5.And(
-            rank_n1 + nullity_n1 < n1,  # Violation
-            rank_n1 + nullity_n1 == n1,  # Constraint
-            rank_n1 >= 0,
-            nullity_n1 >= 0,
-            rank_n1 <= n1,
-            nullity_n1 <= n1
-        )
-        solver_neg1.assertFormula(constraint_neg1)
+        solver_neg1 = rank_nullity_solver(2, 1, 4, "lt")
         result_neg1 = solver_neg1.checkSat()
         results["violation_less_than"] = {
             "rank": 2, "nullity": 1, "n": 4,
@@ -192,22 +176,7 @@ def run_negative_tests():
         }
 
         # Negative Test 2: rank + nullity > n (impossible)
-        solver_neg2 = cvc5.Solver()
-        solver_neg2.setLogic("QF_LIA")
-
-        rank_n2 = cvc5.IntVal(3)
-        nullity_n2 = cvc5.IntVal(3)
-        n2 = cvc5.IntVal(5)
-
-        constraint_neg2 = cvc5.And(
-            rank_n2 + nullity_n2 > n2,  # Violation
-            rank_n2 + nullity_n2 == n2,  # Constraint
-            rank_n2 >= 0,
-            nullity_n2 >= 0,
-            rank_n2 <= n2,
-            nullity_n2 <= n2
-        )
-        solver_neg2.assertFormula(constraint_neg2)
+        solver_neg2 = rank_nullity_solver(3, 3, 5, "gt")
         result_neg2 = solver_neg2.checkSat()
         results["violation_greater_than"] = {
             "rank": 3, "nullity": 3, "n": 5,
@@ -217,21 +186,7 @@ def run_negative_tests():
         }
 
         # Negative Test 3: rank > n (impossible given dimension constraint)
-        solver_neg3 = cvc5.Solver()
-        solver_neg3.setLogic("QF_LIA")
-
-        rank_n3 = cvc5.IntVal(6)
-        nullity_n3 = cvc5.IntVal(0)
-        n3 = cvc5.IntVal(5)
-
-        constraint_neg3 = cvc5.And(
-            rank_n3 + nullity_n3 == n3,  # Constraint
-            rank_n3 >= 0,
-            nullity_n3 >= 0,
-            rank_n3 <= n3,  # rank cannot exceed dimension
-            nullity_n3 <= n3
-        )
-        solver_neg3.assertFormula(constraint_neg3)
+        solver_neg3 = rank_nullity_solver(6, 0, 5)
         result_neg3 = solver_neg3.checkSat()
         results["violation_rank_exceeds_dim"] = {
             "rank": 6, "nullity": 0, "n": 5,
@@ -271,6 +226,7 @@ def run_boundary_tests():
             "sum_equals_n": int(rank_zero + nullity_zero) == 3
         }
         TOOL_MANIFEST["sympy"]["used"] = True
+        TOOL_MANIFEST["sympy"]["reason"] = "SymPy is supportive for concrete matrix rank and nullspace calculations used as boundary examples"
 
         # Test 2: Identity matrix (rank n, nullity 0)
         A_id = sp.eye(4)
@@ -340,14 +296,29 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    all_pass = (
+        all(item.get("valid") is True for item in positive.values() if isinstance(item, dict))
+        and all(item.get("unsat") is True for item in negative.values() if isinstance(item, dict))
+        and all(
+            item.get("sum_equals_n") is True or item.get("constraint_holds") is True
+            for item in boundary.values()
+            if isinstance(item, dict)
+        )
+    )
     results = {
-        "name": "Rank-Nullity Theorem Constraint Canonical Sim",
+        "name": NAME,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
-        "classification": "canonical",
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "classification": classification,
+        "divergence_log": divergence_log,
+        "summary": {"all_pass": bool(all_pass)},
+        "all_pass": bool(all_pass),
     }
 
     # Update integration depth based on actual usage
@@ -360,7 +331,12 @@ if __name__ == "__main__":
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "sim_rank_nullity_theorem_constraint_canonical_results.json")
-    with open(out_path, "w") as f:
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded cvc5/SymPy rank-nullity constraint evidence before later linear-algebra lego-fit packets.",
+    )
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")

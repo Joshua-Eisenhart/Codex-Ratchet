@@ -3,14 +3,16 @@
 import json, os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True,
-                "reason": "cross-check Pearson r of endpoint degrees using torch.corrcoef"},
+                "reason": "supportive cross-check of endpoint-degree Pearson r using torch.corrcoef"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": "load_bearing",
+    "pytorch": "supportive",
 }
 
 try:
@@ -19,7 +21,10 @@ except ImportError:
     TOOL_MANIFEST["pytorch"] = {"tried": False, "used": False, "reason": "not installed"}
     TOOL_INTEGRATION_DEPTH["pytorch"] = None
 
-divergence_log = []
+divergence_log = (
+    "classical graph assortativity baseline only; no QIT, bridge, axis, "
+    "or nonclassical admission claim"
+)
 
 
 def assortativity(A):
@@ -94,7 +99,6 @@ def run_negative_tests():
         A[0, i] = A[i, 0] = 1
     rv = assortativity(A)
     r["star_not_assortative"] = {"r": rv, "pass": rv < 0}
-    divergence_log.append("negative-case: star correctly disassortative")
     return r
 
 
@@ -110,7 +114,6 @@ def run_boundary_tests():
         A[i, (i+1) % 6] = A[(i+1) % 6, i] = 1
     rv = assortativity(A)
     r["regular_cycle"] = {"r": rv, "pass": abs(rv) < 1e-9}
-    divergence_log.append("boundary: regular graph -> undefined, returned 0")
     return r
 
 
@@ -124,9 +127,17 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "summary": {"all_pass": bool(all_pass)}, "all_pass": bool(all_pass),
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_assortativity_classical",
+        target=(
+            "Use as bounded classical graph-assortativity baseline evidence before "
+            "any graph-topology or tool-lego fit comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "sim_assortativity_classical_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}  all_pass={all_pass}")

@@ -334,6 +334,10 @@ if __name__ == "__main__":
         source_name="sim_geomstats_capability",
         target="Use as bounded geomstats manifold-metric capability evidence before exact manifold lego-fit or coupling packets.",
     )
+    results["claim_ceiling"] = (
+        "finite sim_geomstats_capability lego receipt only; "
+        "no bridge, GStack, axis, or promoted admission"
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

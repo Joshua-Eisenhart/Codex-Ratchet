@@ -14,7 +14,10 @@ Classification: canonical.
 import json, os
 import numpy as np
 from itertools import combinations
-classification = "classical_baseline"  # auto-added by adaptive_controller
+
+from receipt_boundary import apply_default_receipt_boundary
+
+classification = "canonical"
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "purely combinatorial, no tensor compute"},
@@ -83,7 +86,10 @@ def run_positive_tests():
     H = random_hypergraph(seed=42)
     motif_count = count_motif_two_triads_share_one_node(H)
     TOOL_MANIFEST["xgi"]["used"] = True
-    TOOL_MANIFEST["xgi"]["reason"] = "true triadic edges enumerable; projection cannot distinguish"
+    TOOL_MANIFEST["xgi"]["reason"] = (
+        "XGI hyperedge membership is load-bearing: genuine triadic edges "
+        "are enumerated directly and compared against the dyadic projection."
+    )
     TOOL_INTEGRATION_DEPTH["xgi"] = "load_bearing"
     return {"motif_count_positive": {"pass": motif_count > 0, "count": motif_count}}
 
@@ -107,7 +113,10 @@ def run_negative_tests():
     g_real = projection(H_real); g_fake = projection(H_fake)
     proj_equal = nx.is_isomorphic(g_real, g_fake)
     TOOL_MANIFEST["networkx"]["used"] = True
-    TOOL_MANIFEST["networkx"]["reason"] = "verify projection isomorphism while motif count differs"
+    TOOL_MANIFEST["networkx"]["reason"] = (
+        "supportive projection ablation verifies projection isomorphism while "
+        "the genuine triadic motif count differs"
+    )
     TOOL_INTEGRATION_DEPTH["networkx"] = "supportive"
     return {"dyadic_version_zero_motif": {"pass": (mc_fake == 0 and proj_equal),
                                            "motif_count_fake": mc_fake,
@@ -126,11 +135,27 @@ if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(v.get("pass") for v in {**pos, **neg, **bnd}.values())
     out = {"name": "sim_xgi_deep_hyperedge_motif_count",
-           "classification": "canonical",
+           "classification": classification,
            "tool_manifest": TOOL_MANIFEST,
            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
            "positive": pos, "negative": neg, "boundary": bnd,
-           "overall_pass": all_pass}
+           "criteria_checked": [
+               "XGI triadic hyperedge membership enumeration",
+               "two-triad one-shared-node motif count is positive on a fixed fixture",
+               "dyadic replacement has zero genuine triadic motifs",
+               "NetworkX pairwise projection remains isomorphic under dyadic replacement",
+               "empty hypergraph boundary has zero motifs",
+           ],
+           "summary": {"all_pass": bool(all_pass)},
+           "all_pass": bool(all_pass)}
+    out = apply_default_receipt_boundary(
+        out,
+        source_name="sim_xgi_deep_hyperedge_motif_count",
+        target=(
+            "Use as bounded XGI hyperedge-motif tool-lego fit evidence before "
+            "hypergraph geometry or dual-hypergraph packets."
+        ),
+    )
     d = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(d, exist_ok=True)
     p = os.path.join(d, "sim_xgi_deep_hyperedge_motif_count_results.json")

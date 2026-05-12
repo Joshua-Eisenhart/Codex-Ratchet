@@ -12,15 +12,15 @@ import json
 import pathlib
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "tool_lego_fit_probe"
 
 
 EPS = 1e-10
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "tool_lego_fit_probe"
 CLASSIFICATION_NOTE = (
-    "Canonical local lego for bipartite Pauli correlation tensors on bounded "
-    "two-qubit state families."
+    "Pre-admission local lego fit probe for bipartite Pauli correlation tensors "
+    "on bounded two-qubit state families."
 )
 
 LEGO_IDS = [
@@ -137,7 +137,11 @@ def main():
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "claim_ceiling": "finite classical baseline/tool-depth receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+        "claim_ceiling": (
+            "tool_lego_fit_probe_only; finite numpy correlation-tensor receipt only; "
+            "no canonical, bridge, GStack, axis, QIT, or nonclassical admission"
+        ),
+        "promotion_allowed": False,
         "next_lego_target": "Use as a bounded source receipt for later tool-lego or coupling work only after exact downstream checks.",
         "promotion_condition": "Requires separate bridge/nonclassical/topology/operator coupling receipts and explicit stage-gate approval.",
         "blocked_until": "tool-lego fit; coupling/coexistence evidence; stage-gate admission",

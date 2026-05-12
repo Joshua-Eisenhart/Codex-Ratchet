@@ -9,7 +9,7 @@ import json
 import pathlib
 
 import xgi
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
 CLASSIFICATION = "canonical"
@@ -120,6 +120,14 @@ def main():
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "claim_ceiling": "canonical_local_dual_hypergraph_geometry_lego_only; no bridge, GStack, axis, QIT, or nonclassical admission",
+        "promotion_allowed": False,
+        "promotion_condition": "Requires separate bridge/nonclassical/topology/operator coupling receipts and explicit stage-gate approval.",
+        "blocked_until": "tool-lego fit; coupling/coexistence evidence; stage-gate admission",
+        "demotion_condition": "Demote if the named positive, negative, or boundary criteria fail, or if this row is used for a higher-stage claim.",
+        "out_of_scope": ["QIT engine admission", "GStack admission", "axis promotion", "nonclassical proof"],
+        "all_pass": all_pass,
+        "criteria_checked": list(positive) + list(negative) + list(boundary),
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

@@ -9,15 +9,16 @@ import json
 import pathlib
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "tool_lego_fit_probe"
 
 
 EPS = 1e-10
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "tool_lego_fit_probe"
 CLASSIFICATION_NOTE = (
-    "Canonical local lego for principal directions of bounded two-qubit correlation tensors, "
-    "kept separate from graph proxies and later coupling surfaces."
+    "Pre-admission local lego fit probe for principal directions of bounded "
+    "two-qubit correlation tensors, kept separate from graph proxies and later "
+    "coupling surfaces."
 )
 
 LEGO_IDS = [
@@ -159,7 +160,8 @@ def main():
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "claim_ceiling": "canonical_local_correlation_tensor_principal_directions_lego_only",
+        "claim_ceiling": "tool_lego_fit_probe_only; finite numpy principal-direction receipt only; no canonical, bridge, GStack, axis, QIT, or nonclassical admission",
+        "promotion_allowed": False,
         "next_lego_target": "none",
         "promotion_condition": "requires separate reconciled queue row before coupling, bridge, axis, engine, or QIT use",
         "blocked_until": "exact parent receipts, queue row, result JSON, and ledger loopback are reconciled",

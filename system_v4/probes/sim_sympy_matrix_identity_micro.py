@@ -20,6 +20,7 @@ from receipt_boundary import apply_default_receipt_boundary
 
 
 CLASSIFICATION = "canonical"
+classification = CLASSIFICATION
 NAME = "sim_sympy_matrix_identity_micro"
 
 TOOL_MANIFEST = {

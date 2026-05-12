@@ -6,6 +6,16 @@ import json, os
 import numpy as np
 import sympy as sp
 
+from receipt_boundary import apply_default_receipt_boundary
+
+NAME = "sim_sympy_jacobi_su2"
+classification = "canonical"
+divergence_log = (
+    "SymPy is load-bearing for exact symbolic Jacobi identity simplification; "
+    "the numpy ablation checks only one floating-point draw and cannot certify "
+    "all symbolic coefficients."
+)
+
 TOOL_MANIFEST = {
     "pytorch":{"tried":False,"used":False,"reason":"random numeric matrices cannot prove identity for all coefficients"},
     "pyg":{"tried":False,"used":False,"reason":"not graph"},
@@ -75,19 +85,33 @@ def run_ablation():
 
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    all_pass = all(positive.values()) and bool(negative.get("qdeformed_bracket_violates_jacobi")) and all(
+        bool(v) for k, v in boundary.items()
+    )
     results = {
-        "name": "sympy_jacobi_su2",
+        "name": NAME,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
         "ablation": run_ablation(),
-        "classification": "canonical",
+        "classification": classification,
+        "divergence_log": divergence_log,
+        "summary": {"all_pass": bool(all_pass)},
+        "all_pass": bool(all_pass),
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded SymPy exact Lie/Jacobi identity evidence before algebraic operator lego-fit packets.",
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "sympy_jacobi_su2_results.json")
-    with open(out_path, "w") as f:
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")

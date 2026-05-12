@@ -27,6 +27,16 @@ import json
 import os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
+NAME = "sim_quadratic_reciprocity_constraint_canonical"
+classification = "canonical"
+divergence_log = (
+    "Z3 is load-bearing for the finite parity/product constraint check; SymPy "
+    "is supportive for concrete Legendre-symbol arithmetic, while numpy is only "
+    "a classical enumeration/parameter baseline and cannot certify UNSAT."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -478,16 +488,16 @@ if __name__ == "__main__":
         TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
 
     # Mark other tools as not used
-    TOOL_MANIFEST["pytorch"]["reason"] = "not needed for Legendre symbol constraints"
-    TOOL_MANIFEST["pyg"]["reason"] = "not needed for prime reciprocity"
-    TOOL_MANIFEST["cvc5"]["reason"] = "z3 sufficient for reciprocity law"
-    TOOL_MANIFEST["clifford"]["reason"] = "not needed for number theory"
-    TOOL_MANIFEST["geomstats"]["reason"] = "not needed for Legendre symbols"
-    TOOL_MANIFEST["e3nn"]["reason"] = "not needed for modular arithmetic"
-    TOOL_MANIFEST["rustworkx"]["reason"] = "not needed for symbol pairs"
-    TOOL_MANIFEST["xgi"]["reason"] = "not needed for reciprocity"
-    TOOL_MANIFEST["toponetx"]["reason"] = "not needed for Legendre symbols"
-    TOOL_MANIFEST["gudhi"]["reason"] = "not needed for prime constraints"
+    TOOL_MANIFEST["pytorch"]["reason"] = "PyTorch tensors are not used because the packet is an exact integer/parity constraint check"
+    TOOL_MANIFEST["pyg"]["reason"] = "PyG is not used because the reciprocity law is not a graph message-passing problem"
+    TOOL_MANIFEST["cvc5"]["reason"] = "cvc5 is not used in this packet because Z3 already supplies the bounded parity UNSAT check"
+    TOOL_MANIFEST["clifford"]["reason"] = "Clifford algebra is not used because no multivector product or rotor identity is involved"
+    TOOL_MANIFEST["geomstats"]["reason"] = "Geomstats is not used because no manifold metric or geodesic computation is required"
+    TOOL_MANIFEST["e3nn"]["reason"] = "e3nn is not used because no equivariant tensor representation appears in the number-theory check"
+    TOOL_MANIFEST["rustworkx"]["reason"] = "rustworkx is not used because no graph traversal or combinatorial graph invariant is involved"
+    TOOL_MANIFEST["xgi"]["reason"] = "XGI is not used because there is no hypergraph incidence or hyperedge motif structure"
+    TOOL_MANIFEST["toponetx"]["reason"] = "TopoNetX is not used because no cell-complex boundary or cochain calculation is needed"
+    TOOL_MANIFEST["gudhi"]["reason"] = "GUDHI is not used because no filtration, simplex tree, or persistent-homology computation is present"
 
     # Count passes
     all_pass = True
@@ -497,21 +507,27 @@ if __name__ == "__main__":
                 all_pass = False
 
     results = {
-        "name": "Quadratic Reciprocity Constraint Canonical",
+        "name": NAME,
         "description": "Quadratic reciprocity: for odd primes p≠q, (p/q)(q/p) = (-1)^{(p-1)/2 * (q-1)/2}; foundational to number theory; constraint surface is prime pairs satisfying reciprocal law; z3 encodes QF_LIA to enforce Legendre symbol values and parity-product coupling; proves violating reciprocity leads to impossible prime configurations; validates supplementary laws and symbol pair constraints; determines solvability of quadratic congruences across primes",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "classification": "canonical",
+        "classification": classification,
+        "divergence_log": divergence_log,
         "all_pass": all_pass,
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded Z3/SymPy number-theory constraint evidence before later algebraic constraint lego-fit packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "sim_quadratic_reciprocity_constraint_canonical_results.json")
-    with open(out_path, "w") as f:
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
 
     status = "✓ all_pass=True" if all_pass else "✗ some failures"

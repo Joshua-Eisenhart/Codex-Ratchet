@@ -19,23 +19,33 @@ import json
 import os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
+NAME = "sim_sigma_algebra_constraint_canonical"
+classification = "canonical"
+divergence_log = (
+    "cvc5 is load-bearing for bounded Boolean closure constraints over the "
+    "sigma-algebra axioms; SymPy is supportive for concrete interval/set "
+    "examples, while numpy is only a classical enumeration baseline."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": ""},
-    "pyg": {"tried": False, "used": False, "reason": ""},
-    "z3": {"tried": False, "used": False, "reason": ""},
-    "cvc5": {"tried": False, "used": False, "reason": ""},
-    "sympy": {"tried": False, "used": False, "reason": ""},
-    "clifford": {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn": {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi": {"tried": False, "used": False, "reason": ""},
-    "toponetx": {"tried": False, "used": False, "reason": ""},
-    "gudhi": {"tried": False, "used": False, "reason": ""},
+    "pytorch": {"tried": False, "used": False, "reason": "PyTorch is not used because this packet checks Boolean closure constraints rather than tensor optimization"},
+    "pyg": {"tried": False, "used": False, "reason": "PyG is not used because sigma-algebra closure is not a graph message-passing problem"},
+    "z3": {"tried": False, "used": False, "reason": "Z3 is not used in this packet because cvc5 is the selected Boolean constraint solver"},
+    "cvc5": {"tried": False, "used": False, "reason": "cvc5 is attempted for bounded Boolean SAT/UNSAT checks of sigma-algebra closure axioms"},
+    "sympy": {"tried": False, "used": False, "reason": "SymPy is attempted for supportive interval and set examples of Borel-style closure"},
+    "clifford": {"tried": False, "used": False, "reason": "Clifford algebra is not used because no multivector product or rotor identity appears"},
+    "geomstats": {"tried": False, "used": False, "reason": "Geomstats is not used because no manifold metric, geodesic, or Lie-group distance is evaluated"},
+    "e3nn": {"tried": False, "used": False, "reason": "e3nn is not used because no equivariant tensor representation appears in the closure check"},
+    "rustworkx": {"tried": False, "used": False, "reason": "rustworkx is not used because no graph traversal or DAG invariant is part of the axioms"},
+    "xgi": {"tried": False, "used": False, "reason": "XGI is not used because there is no hypergraph incidence or higher-order network structure"},
+    "toponetx": {"tried": False, "used": False, "reason": "TopoNetX is not used because no cell-complex boundary or cochain calculation is required"},
+    "gudhi": {"tried": False, "used": False, "reason": "GUDHI is not used because no filtration, simplex tree, or persistent homology is present"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -170,6 +180,7 @@ def run_positive_tests():
             }
 
             TOOL_MANIFEST["cvc5"]["used"] = True
+            TOOL_MANIFEST["cvc5"]["reason"] = "cvc5 is load-bearing for SAT/UNSAT checks of bounded sigma-algebra closure constraints"
             TOOL_INTEGRATION_DEPTH["cvc5"] = "load_bearing"
 
         except Exception as e:
@@ -210,6 +221,7 @@ def run_positive_tests():
             }
 
             TOOL_MANIFEST["cvc5"]["used"] = True
+            TOOL_MANIFEST["cvc5"]["reason"] = "cvc5 is load-bearing for SAT/UNSAT checks of bounded sigma-algebra closure constraints"
             TOOL_INTEGRATION_DEPTH["cvc5"] = "load_bearing"
 
         except Exception as e:
@@ -252,6 +264,7 @@ def run_positive_tests():
             }
 
             TOOL_MANIFEST["sympy"]["used"] = True
+            TOOL_MANIFEST["sympy"]["reason"] = "SymPy is supportive for concrete interval and set-algebra examples used as boundary checks"
             TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
 
         except Exception as e:
@@ -488,6 +501,7 @@ def run_boundary_tests():
             }
 
             TOOL_MANIFEST["sympy"]["used"] = True
+            TOOL_MANIFEST["sympy"]["reason"] = "SymPy is supportive for concrete interval and set-algebra examples used as boundary checks"
             TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
 
         except Exception as e:
@@ -501,19 +515,35 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    all_pass = (
+        all(item.get("passed") is True for item in positive.values() if isinstance(item, dict))
+        and all(item.get("passed") is True for item in negative.values() if isinstance(item, dict))
+        and all(item.get("passed") is True for item in boundary.values() if isinstance(item, dict))
+    )
     results = {
-        "name": "Sigma-Algebra Constraint Canonical",
+        "name": NAME,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
-        "classification": "canonical",
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "classification": classification,
+        "divergence_log": divergence_log,
+        "summary": {"all_pass": bool(all_pass)},
+        "all_pass": bool(all_pass),
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded cvc5/SymPy sigma-algebra closure evidence before later measure-theory lego-fit packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "sim_sigma_algebra_constraint_canonical_results.json")
-    with open(out_path, "w") as f:
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")

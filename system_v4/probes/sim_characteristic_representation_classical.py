@@ -4,6 +4,9 @@ Characteristic polynomial / function of a matrix via numpy. Tests Cayley-Hamilto
 coefficient sign pattern, and degeneracy edge case. Classical captures the
 polynomial; innately misses noncommutative operator-algebra structure."""
 import json, os, numpy as np
+
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 divergence_log = "Classical baseline: characteristic representation is modeled here by matrix-polynomial numerics, not a canonical nonclassical witness."
 TOOL_MANIFEST = {
@@ -11,7 +14,7 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
-NAME = "characteristic_representation"
+NAME = "sim_characteristic_representation_classical"
 
 def char_poly(A):
     # Leverrier-Faddeev-free: use eigenvalues then expand
@@ -78,6 +81,7 @@ if __name__ == "__main__":
     results = {
         "name": NAME,
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),
@@ -87,8 +91,16 @@ if __name__ == "__main__":
         "innately_missing": "operator-algebra / noncommutative characteristic structure, constraint-admissibility of representation choice",
     }
     results["all_pass"] = all(v for section in ("positive", "negative", "boundary") for v in results[section].values())
-    out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results", f"{NAME}_classical_results.json")
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target=(
+            "Use as bounded classical characteristic-polynomial baseline "
+            "evidence before operator or representation tool-lego comparison."
+        ),
+    )
+    out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results", f"{NAME}_results.json")
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    with open(out, "w") as f:
+    with open(out, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"all_pass={results['all_pass']} -> {out}")

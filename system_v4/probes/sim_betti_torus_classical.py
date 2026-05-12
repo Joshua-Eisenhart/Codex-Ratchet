@@ -3,6 +3,8 @@
 import json, os, numpy as np
 from itertools import combinations
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 
 TOOL_MANIFEST = {
@@ -26,7 +28,7 @@ TOOL_INTEGRATION_DEPTH = {
     "geomstats": None,
     "gudhi": None,
     "pyg": None,
-    "pytorch": "load_bearing",
+    "pytorch": "supportive",
     "rustworkx": None,
     "sympy": None,
     "toponetx": None,
@@ -37,18 +39,22 @@ try:
     import torch
     TOOL_MANIFEST["pytorch"]["tried"] = True
     TOOL_MANIFEST["pytorch"]["used"] = True
-    TOOL_MANIFEST["pytorch"]["reason"] = "load-bearing boundary-rank computation via torch.linalg.matrix_rank"
-    TOOL_INTEGRATION_DEPTH["pytorch"] = "load_bearing"
+    TOOL_MANIFEST["pytorch"]["reason"] = "supportive boundary-rank cross-check via torch.linalg.matrix_rank"
+    TOOL_INTEGRATION_DEPTH["pytorch"] = "supportive"
     HAS_TORCH = True
 except ImportError:
     TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
     HAS_TORCH = False
 
-divergence_log = [
+divergence_details = [
     "Chose minimal 7-vertex Császár torus triangulation over subdivision for speed.",
     "Considered Smith normal form for integer homology; used numpy real rank mod-2 agnostic because torus has free Z homology.",
     "Rejected gudhi because classification demands classical-baseline with numpy-only decisive path.",
 ]
+divergence_log = (
+    "Classical torus Betti boundary-rank baseline only; no bridge, QIT, "
+    "GStack, axis, or nonclassical admission claim."
+)
 
 
 def csaszar_torus():
@@ -145,26 +151,35 @@ if __name__ == "__main__":
     bnd = run_boundary_tests()
     all_pass = all(v.get("pass", False) for d in (pos, neg, bnd) for v in d.values())
     results = {
-        "name": "betti_torus_classical",
+        "name": "sim_betti_torus_classical",
         "classification": classification,
-        "classification_note": "Classical torus Betti baseline using PyTorch rank as the decisive numeric kernel; no QIT, GStack, bridge, axis, or nonclassical admission.",
+        "classification_note": "Classical torus Betti baseline using numeric boundary-rank checks; no QIT, GStack, bridge, axis, or nonclassical admission.",
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "divergence_log": divergence_log,
+        "divergence_details": divergence_details,
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {
             "all_pass": all_pass,
             "promotion_allowed": False,
-            "load_bearing_tool": "pytorch" if HAS_TORCH else None,
+            "supportive_tool": "pytorch" if HAS_TORCH else None,
             "claim_ceiling": "classical_torus_betti_boundary_rank_baseline_only",
         },
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_betti_torus_classical",
+        target=(
+            "Use as bounded classical torus Betti baseline evidence before any "
+            "topology, persistence, graph-shell, or cell-complex tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "betti_torus_classical_results.json")
-    with open(out_path, "w") as f:
+    out_path = os.path.join(out_dir, "sim_betti_torus_classical_results.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}; all_pass={all_pass}")

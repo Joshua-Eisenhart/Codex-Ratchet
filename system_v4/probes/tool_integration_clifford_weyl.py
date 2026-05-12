@@ -20,7 +20,16 @@ from receipt_boundary import apply_default_receipt_boundary
 classification = "canonical"
 NAME = "tool_integration_clifford_weyl"
 
+_NOT_USED_REASON = (
+    "not used: this integration probe isolates SymPy Weyl symbolic data and "
+    "clifford Cl(3) rotor transport; other tools and promotion surfaces are out of scope."
+)
+
 TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "pyg": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "z3": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "cvc5": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
     "clifford": {
         "tried": False,
         "used": False,
@@ -31,6 +40,12 @@ TOOL_MANIFEST = {
         "used": False,
         "reason": "SymPy is the load-bearing symbolic layer: it constructs exact Weyl spinors, extracts Bloch-vector expectations, and provides the half-angle coefficients that feed clifford rotor construction.",
     },
+    "geomstats": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "e3nn": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "rustworkx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "xgi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "toponetx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "gudhi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {

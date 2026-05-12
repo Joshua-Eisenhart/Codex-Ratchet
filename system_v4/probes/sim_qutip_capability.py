@@ -167,7 +167,7 @@ if __name__ == "__main__":
     )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "qutip_capability_results.json")
+    out_path = os.path.join(out_dir, "sim_qutip_capability_results.json")
     with open(out_path, "w", encoding="utf-8") as handle:
         json.dump(results, handle, indent=2, default=_json_default)
     print(f"Results written to {out_path}")

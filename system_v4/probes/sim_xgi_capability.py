@@ -50,6 +50,8 @@ import os
 
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -62,7 +64,7 @@ TOOL_MANIFEST = {
     "sympy":     {"tried": False, "used": False, "reason": "no symbolic derivation required"},
     "clifford":  {"tried": False, "used": False, "reason": "no geometric algebra needed"},
     "geomstats": {"tried": False, "used": False, "reason": "no manifold/geodesic needed"},
-    "e3nn":      {"tried": False, "used": False, "reason": "no equivariance needed"},
+    "e3nn":      {"tried": False, "used": False, "reason": "not used: this XGI capability receipt exercises discrete hypergraph incidence and connected components, not SO(3)-equivariant neural operations."},
     "rustworkx": {"tried": False, "used": False, "reason": "xgi is the graph library under test"},
     "xgi":       {"tried": False, "used": False, "reason": ""},
     "toponetx":  {"tried": False, "used": False, "reason": "not topology-relevant here; separate probe"},
@@ -427,12 +429,33 @@ if __name__ == "__main__":
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
         "classification": "canonical",
+        "surviving_alternatives": [
+            "This receipt covers only bounded XGI hypergraph construction, incidence, connected components, and simplicial-lift behavior; it does not prove downstream hypergraph lego claims."
+        ],
+        "demotion_condition": (
+            "Demote this XGI capability receipt if Hypergraph construction, degree "
+            "queries, incidence lookups, connected-component agreement, or boundary "
+            "edge behavior fails on rerun."
+        ),
+        "out_of_scope": [
+            "no graph-cell lego promotion",
+            "no topology coupling claim",
+            "no QIT engine claim",
+            "no bridge claim",
+            "no axis claim",
+            "no GStack claim",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_xgi_capability",
+        target="Use as bounded XGI hypergraph capability evidence before exact hypergraph lego-fit or coupling packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "xgi_capability_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
     print(f"summary.all_pass = {summary['all_pass']}")

@@ -1,24 +1,24 @@
 {
   "schema": "blocked_reason_breakdown_v1",
-  "blocked_count": 739,
+  "blocked_count": 743,
   "wizard_admission_blocked_count": 630,
   "all_rows_have_subreasons": true,
   "blocked_reasons": {
     "wizard_admission_blocked": 630,
     "gate_denied": 1,
     "stage_gate_blocked": 81,
-    "done_duplicate_conflict": 25,
+    "done_duplicate_conflict": 29,
     "receipt_validation_failed": 1,
     "stale_claim": 1
   },
   "contract_subreasons": {
     "C1_classification_missing": 193,
-    "C4_divergence_log_missing": 130,
+    "C4_divergence_log_missing": 133,
     "C6_classical_has_load_bearing": 110,
-    "contract_clean_or_not_static_lint_blocked": 370,
+    "contract_clean_or_not_static_lint_blocked": 374,
     "C2_manifest_missing": 70,
     "C3_depth_missing": 43,
-    "C4_divergence_log_empty": 12,
+    "C4_divergence_log_empty": 9,
     "C1_classification_invalid": 3,
     "C5_missing_probe": 4
   },
@@ -26,11 +26,11 @@
     "wizard_admission_blocked": {
       "C1_classification_missing": 183,
       "C4_divergence_log_missing": 104,
-      "C6_classical_has_load_bearing": 87,
-      "contract_clean_or_not_static_lint_blocked": 304,
+      "C6_classical_has_load_bearing": 84,
+      "contract_clean_or_not_static_lint_blocked": 307,
       "C2_manifest_missing": 66,
       "C3_depth_missing": 41,
-      "C4_divergence_log_empty": 8,
+      "C4_divergence_log_empty": 5,
       "C1_classification_invalid": 2,
       "C5_missing_probe": 4
     },
@@ -48,10 +48,10 @@
       "C1_classification_invalid": 1
     },
     "done_duplicate_conflict": {
-      "contract_clean_or_not_static_lint_blocked": 21,
+      "contract_clean_or_not_static_lint_blocked": 22,
       "C2_manifest_missing": 2,
-      "C4_divergence_log_missing": 2,
-      "C6_classical_has_load_bearing": 2
+      "C4_divergence_log_missing": 5,
+      "C6_classical_has_load_bearing": 5
     },
     "receipt_validation_failed": {
       "contract_clean_or_not_static_lint_blocked": 1
@@ -1068,8 +1068,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_hodge_decomposition_classical.py",
       "subreasons": [
-        "C4_divergence_log_empty",
-        "C6_classical_has_load_bearing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -1134,6 +1133,16 @@
       "sim_path": "system_v4/probes/sim_entanglement_distillation_classical.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/2e95b9a3692d5c6e.json.14639.Joshuas-MacBook-Pro.laneB_w3",
+      "blocked_reason": "done_duplicate_conflict",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_pca_variance_explained_classical.py",
+      "subreasons": [
+        "C4_divergence_log_missing",
+        "C6_classical_has_load_bearing"
       ]
     },
     {
@@ -1393,8 +1402,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_mayer_vietoris_classical.py",
       "subreasons": [
-        "C4_divergence_log_empty",
-        "C6_classical_has_load_bearing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -1421,6 +1429,15 @@
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_spinor_harmonics_constraint.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/37f1aac61b0a86f1.json.10393.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "done_duplicate_conflict",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_contextuality_witness_classical.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
       ]
@@ -2785,6 +2802,16 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/72a1e51284f85354.json.14640.Joshuas-MacBook-Pro.laneB_w2",
+      "blocked_reason": "done_duplicate_conflict",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_rayleigh_quotient_extremum_classical.py",
+      "subreasons": [
+        "C4_divergence_log_missing",
+        "C6_classical_has_load_bearing"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/7376d14557e464a3.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -2809,8 +2836,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_persistent_homology_circle_classical.py",
       "subreasons": [
-        "C4_divergence_log_empty",
-        "C6_classical_has_load_bearing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -6820,6 +6846,16 @@
       "sim_path": "system_v4/probes/sim_qit_weyl_geometry_compare_translation_lane.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/fac785c57470e86c.json.14635.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "done_duplicate_conflict",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_schur_triangularization_classical.py",
+      "subreasons": [
+        "C4_divergence_log_missing",
+        "C6_classical_has_load_bearing"
       ]
     },
     {

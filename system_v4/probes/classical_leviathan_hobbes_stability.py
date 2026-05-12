@@ -6,7 +6,12 @@ wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 import numpy as np
 from _doc_illum_common import build_manifest, write_results
+from receipt_boundary import apply_default_receipt_boundary
 SCOPE = "Leviathan Hobbesian stability test. Classical only."
+divergence_log = (
+    "Classical Hobbesian stability baseline only; checks a scalar dominance "
+    "inequality and does not support bridge, QIT, GStack, axis, or nonclassical claims."
+)
 
 def pos():
     sovereign = 10.; rivals = np.array([2.,3.,1.]); ok = sovereign > rivals.sum()
@@ -21,8 +26,19 @@ def bnd():
 if __name__ == "__main__":
     tm,d = build_manifest(); p,n,b = pos(),neg(),bnd()
     ap = all(v["status"]=="PASS" for x in (p,n,b) for v in x.values())
-    write_results("classical_leviathan_hobbes_stability",{
+    results = {
         "name":"classical_leviathan_hobbes_stability","classification":"classical_baseline",
-        "scope_note":SCOPE,"numpy_load_bearing":True,
+        "scope_note":SCOPE,"numpy_load_bearing":False,
+        "divergence_log": divergence_log,
         "tool_manifest":tm,"tool_integration_depth":d,
-        "positive":p,"negative":n,"boundary":b,"pass":ap})
+        "positive":p,"negative":n,"boundary":b,"pass":ap,
+        "all_pass": bool(ap), "summary": {"all_pass": bool(ap)}}
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="classical_leviathan_hobbes_stability",
+        target=(
+            "Use as bounded classical doc-illumination baseline before any "
+            "governance/stability analogy is compared to admitted lego receipts."
+        ),
+    )
+    write_results("classical_leviathan_hobbes_stability", results)

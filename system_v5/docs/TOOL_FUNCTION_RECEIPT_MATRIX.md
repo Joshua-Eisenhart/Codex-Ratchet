@@ -1,13 +1,13 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-12T04:52:28.127265+00:00`
+Generated: `2026-05-12T04:58:54.248486+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `30`
-- Passing rows: `30`
+- Rows: `32`
+- Passing rows: `32`
 - Missing receipts: `0`
 
 ## Matrix
@@ -18,6 +18,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `pytorch` | torch.autograd.grad(outputs, inputs, create_graph=True) first/second derivative fixture | `system_v4/probes/a2_state/sim_results/sim_pytorch_autograd_gradient_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `differentiable_constraint_micro`, `entropy_gradient_fit` |
 | `pyg` | torch_geometric.nn.GCNConv MessagePassing over Hopf-fiber edge_index | `system_v4/probes/a2_state/sim_results/sim_pyg_hopf_graph_deep_capability_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `graph_shell_geometry`, `werner_local_structure` |
 | `pyg` | torch_geometric.nn.MessagePassing.propagate directed additive aggregation | `system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_cell_complex_geometry`, `operator_family_admission` |
+| `pyg` | torch_geometric.data.Data/Batch, MessagePassing.propagate, global_mean_pool over SymPy-derived graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_sympy_pyg_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_symbolic_fit`, `graph_shell_geometry` |
 | `qutip` | qutip.basis, ket2dm, sigmax/sigmaz expectation | `system_v4/probes/a2_state/sim_results/qutip_capability_results.json` | `canonical` | `bridge_useful` | `load_bearing` | `True` | `channel_cptp_map`, `lindbladian_evolution` |
 | `qutip` | qutip.mesolve Lindblad open-system evolution | `system_v4/probes/a2_state/sim_results/qutip_open_system_bridge_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `lindbladian_evolution`, `channel_cptp_map` |
 | `qutip` | qutip entropy_vn / tensor density operators for mutual-information microfit | `system_v4/probes/a2_state/sim_results/mutual_information_qutip_microfit_results.json` | `tool_lego_fit_probe` | `bridge_useful` | `load_bearing` | `True` | `mutual_information_measure`, `density_matrix_object` |
@@ -39,6 +40,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `sympy` | sympy symbolic expression/matrix simplification and exact algebra | `system_v4/probes/a2_state/sim_results/sympy_capability_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `entropy_family_crosschecks`, `operator_family_admission` |
 | `sympy` | sympy.diff/integrate/factor/simplify exact scalar identity checks | `system_v4/probes/a2_state/sim_results/sim_sympy_symbolic_identity_micro_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `exact_algebra_crosschecks`, `operator_family_admission` |
 | `sympy` | sympy Matrix.inv / exact matrix equality inverse identity checks | `system_v4/probes/a2_state/sim_results/sim_sympy_matrix_identity_micro_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `exact_matrix_identity`, `operator_family_admission` |
+| `sympy` | sympy roots/discriminant/exact rational edge-weight construction feeding PyG graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_sympy_pyg_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `graph_symbolic_fit`, `exact_algebra_crosschecks` |
 | `geomstats` | geomstats metric.geodesic, exp/log, SPD distance, Frechet mean | `system_v4/probes/a2_state/sim_results/geomstats_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `geometry_crosschecks_same_carrier`, `quantum_metric_nonuniqueness` |
 | `geomstats` | geomstats SO(3) metric distance/log/exp consistency on tiny rotations | `system_v4/probes/a2_state/sim_results/sim_geomstats_so3_distance_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `geometry_crosschecks_same_carrier`, `gtower_so3_geometry` |
 | `e3nn` | e3nn.o3.Irreps and D_from_matrix vector representation | `system_v4/probes/a2_state/sim_results/e3nn_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `operator_family_admission`, `graph_cell_complex_geometry` |

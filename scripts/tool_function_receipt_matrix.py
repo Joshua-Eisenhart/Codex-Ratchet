@@ -76,6 +76,22 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "pyg",
+        "function_api": "torch_geometric.data.Data.validate and MessagePassing.propagate consuming exact NetworkX DiGraph node/edge fixtures",
+        "receipt": "system_v4/probes/a2_state/sim_results/sim_integration_networkx_pyg_graph_roundtrip_micro_results.json",
+        "role": "nonclassical_adjacent",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["graph_cell_handoff", "density_graph_carrier"],
+    },
+    {
+        "tool": "networkx",
+        "function_api": "networkx.DiGraph nodes/edges/predecessors as exact source graph for PyG Data handoff",
+        "receipt": "system_v4/probes/a2_state/sim_results/sim_integration_networkx_pyg_graph_roundtrip_micro_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["graph_cell_handoff", "density_graph_carrier"],
+    },
+    {
+        "tool": "pyg",
         "function_api": "torch_geometric.data.Batch.from_data_list tensor concatenation, edge-index offsetting, batch vector, and ptr",
         "receipt": "system_v4/probes/a2_state/sim_results/sim_pyg_batching_micro_results.json",
         "role": "nonclassical_adjacent",

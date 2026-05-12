@@ -160,6 +160,10 @@ if __name__ == "__main__":
             "hypergraph geometry or projection-ablation lego fit packets."
         ),
     )
+    out["claim_ceiling"] = (
+        "finite sim_xgi_deep_hypergraph_clustering lego receipt only; "
+        "no bridge, GStack, axis, or promoted admission"
+    )
     d = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(d, exist_ok=True)
     p = os.path.join(d, "sim_xgi_deep_hypergraph_clustering_results.json")

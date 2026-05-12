@@ -227,6 +227,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["constraint_probe_admissibility", "probe_object"],
     },
     {
+        "tool": "z3",
+        "function_api": "z3 SolverFor('QF_NIA') consuming exact SymPy polynomial coefficients and derivatives for bounded integer-root fixtures",
+        "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_z3_sympy_results.json",
+        "role": "classical_bridge",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["constraint_probe_admissibility", "exact_algebra_crosschecks"],
+    },
+    {
         "tool": "cvc5",
         "function_api": "cvc5 Solver.assertFormula/checkSat/getValue QF_LIA fixture",
         "receipt": "system_v4/probes/a2_state/sim_results/cvc5_capability_results.json",
@@ -265,6 +273,14 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_bridge",
         "depth": "load_bearing",
         "candidate_lego_targets": ["exact_algebra_crosschecks", "operator_family_admission"],
+    },
+    {
+        "tool": "sympy",
+        "function_api": "sympy Poly/all_coeffs/diff/factor/gcd/discriminant feeding z3 bounded integer-root fixtures",
+        "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_z3_sympy_results.json",
+        "role": "classical_bridge",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["constraint_probe_admissibility", "exact_algebra_crosschecks"],
     },
     {
         "tool": "sympy",

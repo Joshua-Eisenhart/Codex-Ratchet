@@ -12,6 +12,8 @@ CHSH=2*sqrt(2), KCBS > 4 on qutrit, Kochen-Specker colorings forbidden.
 import json, os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 divergence_log = (
     "Classical baseline: this witness uses context-independent hidden-variable "
@@ -77,14 +79,23 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
+        "divergence_details": [
             "context-independent assignments bound CHSH by 2 (never reach Tsirelson)",
             "no Kochen-Specker obstruction; every observable has a global value",
             "KCBS and similar witnesses saturated only by quantum contextual models",
         ],
+        "divergence_log": divergence_log,
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="contextuality_witness_classical",
+        target=(
+            "Use as bounded classical contextuality-witness baseline evidence "
+            "before contextuality or operator-algebra tool-lego comparison."
+        ),
+    )
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
-                       "contextuality_witness_classical_results.json")
+                       "sim_contextuality_witness_classical_results.json")
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    with open(out, "w") as f: json.dump(results, f, indent=2, default=str)
+    with open(out, "w", encoding="utf-8") as f: json.dump(results, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

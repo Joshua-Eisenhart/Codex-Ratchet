@@ -3,6 +3,8 @@
 import json, os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 
 TOOL_MANIFEST = {
@@ -10,7 +12,7 @@ TOOL_MANIFEST = {
                 "reason": "cross-check PageRank vector via torch.linalg eigendecomposition"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": "load_bearing",
+    "pytorch": "supportive",
 }
 
 try:
@@ -19,7 +21,11 @@ except ImportError:
     TOOL_MANIFEST["pytorch"] = {"tried": False, "used": False, "reason": "not installed"}
     TOOL_INTEGRATION_DEPTH["pytorch"] = None
 
-divergence_log = []
+divergence_details = []
+divergence_log = (
+    "Classical PageRank power-iteration baseline only; no bridge, QIT, "
+    "GStack, axis, or nonclassical admission claim."
+)
 
 
 def pagerank(A, d=0.85, tol=1e-10, maxit=500):
@@ -52,7 +58,7 @@ def run_positive_tests():
     r["star_center_highest"] = {"pr": v.tolist(),
                                 "center_max": bool(v[0] == v.max()), "pass": bool(v[0] == v.max())}
     # torch cross-check via eigenvector of Google matrix
-    if TOOL_INTEGRATION_DEPTH["pytorch"] == "supportive":
+    if TOOL_INTEGRATION_DEPTH["pytorch"] == "supportive" and "torch" in globals():
         n = 5
         out_deg = A.sum(axis=1); out_deg[out_deg == 0] = 1
         M = (A / out_deg[:, None]).T
@@ -79,7 +85,7 @@ def run_negative_tests():
     v, _ = pagerank(A0)
     r["empty_graph_nonuniform_fails"] = {"uniform": bool(np.allclose(v, 0.25)),
                                          "pass": bool(np.allclose(v, 0.25))}
-    divergence_log.append("negative-case: raw adjacency isn't stochastic as expected")
+    divergence_details.append("negative-case: raw adjacency isn't stochastic as expected")
     return r
 
 
@@ -94,7 +100,7 @@ def run_boundary_tests():
     v, _ = pagerank(A)
     r["dangling"] = {"pr": v.tolist(), "sum": float(v.sum()),
                      "pass": bool(abs(v.sum() - 1) < 1e-6)}
-    divergence_log.append("boundary: dangling handled via uniform teleport row")
+    divergence_details.append("boundary: dangling handled via uniform teleport row")
     return r
 
 
@@ -111,13 +117,22 @@ if __name__ == "__main__":
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "divergence_log": divergence_log,
+        "divergence_details": divergence_details,
         "positive": pos, "negative": neg, "boundary": bnd,
         "summary": {"all_pass": bool(all_pass)},
         "all_pass": bool(all_pass),
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_pagerank_classical",
+        target=(
+            "Use as bounded classical PageRank baseline evidence before "
+            "graph-shell, order, or network tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "sim_pagerank_classical_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}  all_pass={all_pass}")

@@ -1,13 +1,13 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-12T04:58:54.248486+00:00`
+Generated: `2026-05-12T05:02:07.056596+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `32`
-- Passing rows: `32`
+- Rows: `34`
+- Passing rows: `34`
 - Missing receipts: `0`
 
 ## Matrix
@@ -19,6 +19,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `pyg` | torch_geometric.nn.GCNConv MessagePassing over Hopf-fiber edge_index | `system_v4/probes/a2_state/sim_results/sim_pyg_hopf_graph_deep_capability_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `graph_shell_geometry`, `werner_local_structure` |
 | `pyg` | torch_geometric.nn.MessagePassing.propagate directed additive aggregation | `system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_cell_complex_geometry`, `operator_family_admission` |
 | `pyg` | torch_geometric.data.Data/Batch, MessagePassing.propagate, global_mean_pool over SymPy-derived graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_sympy_pyg_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_symbolic_fit`, `graph_shell_geometry` |
+| `pyg` | torch_geometric.data.Data/Batch, MessagePassing.propagate, global_mean_pool over TopoNetX Hasse graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `topology_to_graph_fit`, `cell_complex_geometry` |
 | `qutip` | qutip.basis, ket2dm, sigmax/sigmaz expectation | `system_v4/probes/a2_state/sim_results/qutip_capability_results.json` | `canonical` | `bridge_useful` | `load_bearing` | `True` | `channel_cptp_map`, `lindbladian_evolution` |
 | `qutip` | qutip.mesolve Lindblad open-system evolution | `system_v4/probes/a2_state/sim_results/qutip_open_system_bridge_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `lindbladian_evolution`, `channel_cptp_map` |
 | `qutip` | qutip entropy_vn / tensor density operators for mutual-information microfit | `system_v4/probes/a2_state/sim_results/mutual_information_qutip_microfit_results.json` | `tool_lego_fit_probe` | `bridge_useful` | `load_bearing` | `True` | `mutual_information_measure`, `density_matrix_object` |
@@ -28,6 +29,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `gudhi` | gudhi.SimplexTree insert/assign_filtration/persistence on a tiny filtered complex | `system_v4/probes/a2_state/sim_results/sim_gudhi_simplex_persistence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `persistence_geometry`, `cell_complex_geometry` |
 | `toponetx` | CellComplex/SimplicialComplex rank cells and incidence_matrix | `system_v4/probes/a2_state/sim_results/toponetx_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `state_class_binding_geometry`, `cell_complex_geometry` |
 | `toponetx` | CellComplex rank-2 cell incidence_matrix(2) | `system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `cell_complex_geometry`, `hypergraph_shell_geometry` |
+| `toponetx` | SimplicialComplex.to_hasse_graph node/edge carrier feeding PyG graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `topology_to_graph_fit`, `cell_complex_geometry` |
 | `xgi` | xgi.Hypergraph hyperedge membership and shared incidence intersection | `system_v4/probes/a2_state/sim_results/xgi_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `dual_hypergraph_geometry` |
 | `xgi` | xgi.Hypergraph incidence matrix and node/edge membership on a tiny hypergraph | `system_v4/probes/a2_state/sim_results/sim_xgi_hypergraph_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `cell_complex_geometry` |
 | `xgi` | XGI hyperedge incidence matched to TopoNetX rank-2 cells | `system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `cell_complex_geometry` |

@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T04:58:54.248486+00:00",
+  "generated_at": "2026-05-12T05:02:07.056596+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -130,6 +130,33 @@
         "bridge admission"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_sympy_pyg_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "canonical",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "nonclassical_adjacent",
+      "tool": "pyg"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "topology_to_graph_fit",
+        "cell_complex_geometry"
+      ],
+      "claim_ceiling": "finite tool_integration_toponetx_pyg lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+      "depth": "load_bearing",
+      "function_api": "torch_geometric.data.Data/Batch, MessagePassing.propagate, global_mean_pool over TopoNetX Hasse graph fixtures",
+      "manifest_reason": "PyG realizes the TopoNetX-derived carrier as Data objects, validates graph integrity, propagates simplex-dimension features, and pools graph summaries; removing PyG excludes the integration claim rather than leaving a decorative import.",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "QIT engine admission",
+        "GStack promotion",
+        "axis promotion",
+        "nonclassical admission",
+        "bridge admission"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "canonical",
       "receipt_exists": true,
@@ -374,6 +401,33 @@
         "no proof of whole XGI or TopoNetX libraries"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "canonical",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "nonclassical_adjacent",
+      "tool": "toponetx"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "topology_to_graph_fit",
+        "cell_complex_geometry"
+      ],
+      "claim_ceiling": "finite tool_integration_toponetx_pyg lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+      "depth": "load_bearing",
+      "function_api": "SimplicialComplex.to_hasse_graph node/edge carrier feeding PyG graph fixtures",
+      "manifest_reason": "TopoNetX admits the simplicial complexes, exposes the Hasse-graph carrier, and supplies the node/edge structure that PyG consumes; without those topology outputs the graph-side claim is under-specified.",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "QIT engine admission",
+        "GStack promotion",
+        "axis promotion",
+        "nonclassical admission",
+        "bridge admission"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "canonical",
       "receipt_exists": true,
@@ -875,10 +929,10 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 32,
+    "passing_count": 34,
     "receipt_boundary_gap_count": 9,
-    "receipt_schema_missing_count": 32,
-    "row_count": 32,
+    "receipt_schema_missing_count": 34,
+    "row_count": 34,
     "tools": [
       "clifford",
       "cvc5",

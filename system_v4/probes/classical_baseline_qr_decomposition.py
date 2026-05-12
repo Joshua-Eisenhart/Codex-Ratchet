@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """classical_baseline_qr_decomposition.py -- non-canon, lane_B-eligible
-Generated classical baseline. numpy load_bearing. pos/neg/boundary all required PASS.
+Generated classical baseline. numpy supportive. pos/neg/boundary all required PASS.
 """
 import json, os, numpy as np
+
+from receipt_boundary import apply_default_receipt_boundary
+
+classification = "classical_baseline"
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for classical baseline"},
@@ -17,10 +21,14 @@ TOOL_MANIFEST = {
     "xgi": {"tried": False, "used": False, "reason": "no hypergraph"},
     "toponetx": {"tried": False, "used": False, "reason": "no cell complex"},
     "gudhi": {"tried": False, "used": False, "reason": "no persistence"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing numeric core for qr_decomposition"},
+    "numpy": {"tried": True, "used": True, "reason": "supportive classical baseline numeric core for qr_decomposition"},
 }
-divergence_log = "Classical baseline: QR decomposition of a real matrix via numpy, not a canonical nonclassical witness."
-TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+divergence_log = (
+    "Classical QR decomposition baseline only; checks finite real-matrix "
+    "orthonormal factorization and does not support bridge, QIT, GStack, axis, "
+    "or nonclassical claims."
+)
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 
 def run_positive_tests():
@@ -46,16 +54,25 @@ if __name__ == "__main__":
     all_pass = all(v for v in list(pos.values())+list(neg.values())+list(bnd.values()))
     results = {
         "name": "classical_baseline_qr_decomposition",
+        "classification": classification,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": bool(all_pass),
-        "classification": "classical_baseline",
         "lane": "lane_B",
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="classical_baseline_qr_decomposition",
+        target=(
+            "Use as bounded classical QR baseline evidence before any "
+            "operator-subspace, factorization, or spectral tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "classical_baseline_qr_decomposition_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"{'PASS' if all_pass else 'FAIL'} qr_decomposition -> {out_path}")

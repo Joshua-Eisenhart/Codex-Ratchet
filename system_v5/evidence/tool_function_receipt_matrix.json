@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T05:59:24.495751+00:00",
+  "generated_at": "2026-05-12T06:01:34.041581+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -520,23 +520,24 @@
       "tool": "gudhi"
     },
     {
-      "boundary_gap": true,
-      "boundary_source": "matrix_default",
+      "boundary_gap": false,
+      "boundary_source": "receipt",
       "candidate_lego_targets": [
         "state_class_binding_geometry",
         "cell_complex_geometry"
       ],
-      "claim_ceiling": "tool_function_receipt_only_not_admission_or_promotion",
+      "claim_ceiling": "finite sim_toponetx_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
       "depth": "load_bearing",
       "function_api": "CellComplex/SimplicialComplex rank cells and incidence_matrix",
-      "manifest_reason": "capability under test -- SimplicialComplex / CellComplex / boundary operator / Hodge Laplacian / face incidence",
+      "manifest_reason": "load-bearing capability under test: TopoNetX SimplicialComplex, CellComplex, incidence_matrix, Hodge Laplacian, and face-incidence APIs decide the receipt verdicts.",
       "observed_depth": "load_bearing",
       "out_of_scope": [
-        "no QIT admission",
-        "no GStack admission",
-        "no axis admission",
-        "no bridge or engine claim",
-        "no scientific lego coupling promotion"
+        "no cell-complex lego promotion",
+        "no topology coupling promotion",
+        "no bridge claim",
+        "no axis claim",
+        "no GStack claim",
+        "no nonclassical admission"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/toponetx_capability_results.json",
       "receipt_all_pass": true,
@@ -687,23 +688,24 @@
       "tool": "xgi"
     },
     {
-      "boundary_gap": true,
-      "boundary_source": "matrix_default",
+      "boundary_gap": false,
+      "boundary_source": "receipt",
       "candidate_lego_targets": [
         "graph_shell_geometry",
         "dependency_dag_and_collapse"
       ],
-      "claim_ceiling": "tool_function_receipt_only_not_admission_or_promotion",
+      "claim_ceiling": "finite sim_rustworkx_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
       "depth": "load_bearing",
       "function_api": "rustworkx PyDiGraph DAG construction, topological_sort, transitive_reduction, dijkstra_shortest_paths, cycle detection",
-      "manifest_reason": "capability under test -- DAG / toposort / transitive reduction / Dijkstra / cycle detection",
+      "manifest_reason": "load-bearing capability under test: rustworkx PyDiGraph, topological_sort, transitive_reduction, Dijkstra path lengths, DAG longest path, and cycle APIs decide the receipt verdicts.",
       "observed_depth": "load_bearing",
       "out_of_scope": [
-        "no QIT admission",
-        "no GStack admission",
-        "no axis admission",
-        "no bridge or engine claim",
-        "no scientific lego coupling promotion"
+        "no graph-shell lego promotion",
+        "no dependency-collapse promotion",
+        "no bridge claim",
+        "no axis claim",
+        "no GStack claim",
+        "no nonclassical admission"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/rustworkx_capability_results.json",
       "receipt_all_pass": true,
@@ -1263,7 +1265,7 @@
   "summary": {
     "missing_receipt_count": 0,
     "passing_count": 46,
-    "receipt_boundary_gap_count": 6,
+    "receipt_boundary_gap_count": 4,
     "receipt_schema_missing_count": 46,
     "row_count": 46,
     "tools": [

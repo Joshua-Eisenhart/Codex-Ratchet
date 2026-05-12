@@ -22,6 +22,8 @@ import os
 
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 
 TOOL_MANIFEST = {
@@ -352,6 +354,37 @@ if __name__ == "__main__":
         if isinstance(v, dict)
     )
     results["overall_pass"] = all_pass
+    results["all_pass"] = all_pass
+    results["claim_ceiling"] = "tool_tool_micro_integration_only"
+    results["next_lego_target"] = (
+        "bounded spectral-triple/Hopf/contact fixture before any bridge, axis, "
+        "GStack, QIT engine, or nonclassical promotion"
+    )
+    results["promotion_condition"] = (
+        "requires a later admitted downstream row that names exact parent "
+        "receipts and passes coupling-stage admission; this micro row does not "
+        "promote bridge, axis, GStack, QIT engine, or nonclassical claims"
+    )
+    results["blocked_until"] = (
+        "blocked from bridge, axis, GStack, QIT engine, and nonclassical "
+        "promotion until exact parent receipts and a downstream coupling target pass strict admission"
+    )
+    results["demotion_condition"] = (
+        "Demote this bounded spectral-triple/Hopf/contact surface if Q does not "
+        "collapse under any zero factor, if z3 admits positive Q under a zero "
+        "factor, or if the quantized Hopf/contact boundary checks fail."
+    )
+    results["out_of_scope"] = [
+        "no bridge admission",
+        "no axis, GStack, QIT engine, or nonclassical admission",
+        "no scientific lego promotion",
+        "no proof of the whole spectral-triple/Hopf/contact program",
+        "no replacement for downstream coupling/coexistence receipts",
+    ]
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_spectral_triple_hopf_contact_canonical",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

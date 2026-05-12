@@ -11,13 +11,13 @@
     {
       "proposal_family": "c4",
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 544,
+      "row_count": 531,
       "next_action": "owner_review_required_before_any_source_edit"
     },
     {
       "proposal_family": "c6",
       "path": "system_v5/ops/c6_loadbearing_report.json",
-      "row_count": 1503,
+      "row_count": 1491,
       "next_action": "owner_review_required_before_any_source_edit"
     }
   ],
@@ -478,7 +478,7 @@
     "c4": {
       "present": true,
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 544,
+      "row_count": 531,
       "sample": [
         {
           "sim": "system_v4/probes/sim_adams_spectral_sequence_constraint_canonical.py",
@@ -517,15 +517,6 @@
           "mode": "dry_run_no_source_edits"
         },
         {
-          "sim": "system_v4/probes/sim_assortativity_classical.py",
-          "rule": "C4_divergence_log_empty",
-          "classification": "classical_baseline",
-          "runner_class": "classical",
-          "current_divergence_log": [],
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
           "sim": "system_v4/probes/sim_axis6_e3nn_fe_bridge.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
@@ -544,29 +535,7 @@
           "mode": "dry_run_no_source_edits"
         },
         {
-          "sim": "system_v4/probes/sim_betti_torus_classical.py",
-          "rule": "C4_divergence_log_empty",
-          "classification": "classical_baseline",
-          "runner_class": "classical",
-          "current_divergence_log": [
-            "Chose minimal 7-vertex Cs\u00e1sz\u00e1r torus triangulation over subdivision for speed.",
-            "Considered Smith normal form for integer homology; used numpy real rank mod-2 agnostic because torus has free Z homology.",
-            "Rejected gudhi because classification demands classical-baseline with numpy-only decisive path."
-          ],
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
           "sim": "system_v4/probes/sim_bishop_gromov_constraint_canonical.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "classical",
-          "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
-          "sim": "system_v4/probes/sim_blackwell_comparison_classical.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
           "runner_class": "classical",
@@ -671,13 +640,40 @@
           ],
           "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
           "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_chiral_density_bookkeeping.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "classical",
+          "current_divergence_log": null,
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_cl3_basis.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "classical",
+          "current_divergence_log": null,
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_cl6_chirality.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "classical",
+          "current_divergence_log": null,
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
         }
       ]
     },
     "c6": {
       "present": true,
       "path": "system_v5/ops/c6_loadbearing_report.json",
-      "row_count": 1503,
+      "row_count": 1491,
       "sample": [
         {
           "sim": "system_v4/probes/sim_3qubit_bridge_prototype.py",
@@ -750,14 +746,6 @@
           "result_path": null,
           "tool_integration_depth": null,
           "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_assortativity_classical.py",
-          "tool": "pytorch",
-          "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
-          "result_path": "system_v4/probes/a2_state/sim_results/sim_assortativity_classical_results.json",
-          "tool_integration_depth": "load_bearing",
-          "evidence": "result_json_mentions_tool"
         },
         {
           "sim": "system_v4/probes/sim_axiom_n01_noncommutation_generic.py",
@@ -834,6 +822,14 @@
         {
           "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
           "tool": "gudhi",
+          "bucket": "inconclusive_needs_owner",
+          "result_path": null,
+          "tool_integration_depth": null,
+          "evidence": "no_result_tool_evidence"
+        },
+        {
+          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
+          "tool": "sympy",
           "bucket": "inconclusive_needs_owner",
           "result_path": null,
           "tool_integration_depth": null,

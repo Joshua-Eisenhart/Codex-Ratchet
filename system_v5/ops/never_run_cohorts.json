@@ -1,10 +1,10 @@
 {
   "schema": "never_run_cohorts_v1",
   "mode": "audit_no_queue_mutation",
-  "never_run_count": 3023,
+  "never_run_count": 3013,
   "family_counts": {
     "coupling": 361,
-    "cvc5": 335,
+    "cvc5": 334,
     "geometry": 167,
     "gtower": 100,
     "pure": 75,
@@ -15,7 +15,7 @@
     "fep": 41,
     "gerbestack": 41,
     "gerbe": 39,
-    "integration": 38,
+    "integration": 37,
     "leviathan": 35,
     "other": 27,
     "igt": 27,
@@ -46,14 +46,14 @@
     "fence": 12,
     "mera": 12,
     "qit": 12,
-    "sympy": 12,
-    "gudhi": 11,
     "assoc": 10,
     "couple": 10,
     "cross": 10,
     "em": 10,
+    "gudhi": 10,
     "ladder": 10,
     "spectraltriple": 10,
+    "sympy": 10,
     "u1": 10,
     "holographic": 9,
     "sci": 9,
@@ -77,7 +77,6 @@
     "neg": 6,
     "rosetta": 6,
     "triple": 6,
-    "xgi": 6,
     "axis7": 5,
     "carnot": 5,
     "iching": 5,
@@ -91,6 +90,7 @@
     "st": 5,
     "symp": 5,
     "werner": 5,
+    "xgi": 5,
     "3qubit": 4,
     "c1": 4,
     "capability": 4,
@@ -106,7 +106,6 @@
     "max": 4,
     "moment": 4,
     "motivic": 4,
-    "pyg": 4,
     "riemann": 4,
     "topological": 4,
     "torch": 4,
@@ -130,6 +129,7 @@
     "newton": 3,
     "p": 3,
     "perfect": 3,
+    "pyg": 3,
     "quillen": 3,
     "recon": 3,
     "relative": 3,
@@ -200,7 +200,6 @@
     "pigeonhole": 2,
     "poisson": 2,
     "principal": 2,
-    "pytorch": 2,
     "root": 2,
     "rustworkx": 2,
     "shimura": 2,
@@ -246,7 +245,6 @@
     "axis9": 1,
     "banach": 1,
     "band": 1,
-    "bayesian": 1,
     "bbd": 1,
     "bell": 1,
     "berkovich": 1,
@@ -610,15 +608,15 @@
     "zermelo": 1
   },
   "bucket_counts": {
-    "exploratory": 1993,
-    "core_ladder": 897,
+    "exploratory": 1988,
+    "core_ladder": 892,
     "framework_doctrine": 133
   },
   "contract_rule_counts": {
-    "C1_classification_missing": 1715,
-    "contract_clean": 874,
-    "C4_divergence_log_missing": 342,
-    "C6_classical_has_load_bearing": 307,
+    "C1_classification_missing": 1714,
+    "contract_clean": 867,
+    "C4_divergence_log_missing": 341,
+    "C6_classical_has_load_bearing": 306,
     "C2_manifest_missing": 173,
     "C3_depth_missing": 117,
     "C4_divergence_log_empty": 4,
@@ -1969,15 +1967,6 @@
       "runner_class": "nonclassical",
       "contract_rules": [
         "C1_classification_missing"
-      ]
-    },
-    {
-      "sim": "system_v4/probes/sim_bayesian_sufficiency_dpi_classical.py",
-      "family": "bayesian",
-      "bucket": "exploratory",
-      "runner_class": "classical",
-      "contract_rules": [
-        "C6_classical_has_load_bearing"
       ]
     },
     {
@@ -10118,13 +10107,6 @@
       ]
     },
     {
-      "sim": "system_v4/probes/sim_cvc5_sygus_synthesis_micro.py",
-      "family": "cvc5",
-      "bucket": "core_ladder",
-      "runner_class": "nonclassical",
-      "contract_rules": []
-    },
-    {
       "sim": "system_v4/probes/sim_cvc5_symplectic_capacity_constraint.py",
       "family": "cvc5",
       "bucket": "core_ladder",
@@ -16999,13 +16981,6 @@
       ]
     },
     {
-      "sim": "system_v4/probes/sim_gudhi_concurrence_filtration.py",
-      "family": "gudhi",
-      "bucket": "core_ladder",
-      "runner_class": "nonclassical",
-      "contract_rules": []
-    },
-    {
       "sim": "system_v4/probes/sim_gudhi_deep_persistent_h1_excludes_trivial_homology.py",
       "family": "gudhi",
       "bucket": "core_ladder",
@@ -18672,13 +18647,6 @@
     },
     {
       "sim": "system_v4/probes/sim_integration_deap_clifford_rotor_evolution.py",
-      "family": "integration",
-      "bucket": "core_ladder",
-      "runner_class": "nonclassical",
-      "contract_rules": []
-    },
-    {
-      "sim": "system_v4/probes/sim_integration_e3nn_pyg_equivariance_under_mp_micro.py",
       "family": "integration",
       "bucket": "core_ladder",
       "runner_class": "nonclassical",
@@ -22636,13 +22604,6 @@
       ]
     },
     {
-      "sim": "system_v4/probes/sim_pyg_batching_micro.py",
-      "family": "pyg",
-      "bucket": "core_ladder",
-      "runner_class": "nonclassical",
-      "contract_rules": []
-    },
-    {
       "sim": "system_v4/probes/sim_pyg_deep_hopf_u1_equivariant_conservation.py",
       "family": "pyg",
       "bucket": "core_ladder",
@@ -22673,20 +22634,6 @@
     {
       "sim": "system_v4/probes/sim_pymoo_nsga2_pareto_admissibility.py",
       "family": "pymoo",
-      "bucket": "exploratory",
-      "runner_class": "nonclassical",
-      "contract_rules": []
-    },
-    {
-      "sim": "system_v4/probes/sim_pytorch_autograd_gradient_micro.py",
-      "family": "pytorch",
-      "bucket": "exploratory",
-      "runner_class": "nonclassical",
-      "contract_rules": []
-    },
-    {
-      "sim": "system_v4/probes/sim_pytorch_density_entropy_gradient_micro.py",
-      "family": "pytorch",
       "bucket": "exploratory",
       "runner_class": "nonclassical",
       "contract_rules": []
@@ -24866,15 +24813,6 @@
       ]
     },
     {
-      "sim": "system_v4/probes/sim_sympy_matrix_identity_micro.py",
-      "family": "sympy",
-      "bucket": "exploratory",
-      "runner_class": "nonclassical",
-      "contract_rules": [
-        "C1_classification_missing"
-      ]
-    },
-    {
       "sim": "system_v4/probes/sim_sympy_partial_fraction.py",
       "family": "sympy",
       "bucket": "exploratory",
@@ -24891,13 +24829,6 @@
       "contract_rules": [
         "C1_classification_missing"
       ]
-    },
-    {
-      "sim": "system_v4/probes/sim_sympy_symbolic_identity_micro.py",
-      "family": "sympy",
-      "bucket": "exploratory",
-      "runner_class": "nonclassical",
-      "contract_rules": []
     },
     {
       "sim": "system_v4/probes/sim_syntomic_cohomology_constraint_canonical.py",
@@ -26272,15 +26203,6 @@
       "runner_class": "nonclassical",
       "contract_rules": [
         "C1_classification_missing"
-      ]
-    },
-    {
-      "sim": "system_v4/probes/sim_xgi_deep_hyperedge_motif_count.py",
-      "family": "xgi",
-      "bucket": "core_ladder",
-      "runner_class": "classical",
-      "contract_rules": [
-        "C4_divergence_log_missing"
       ]
     },
     {

@@ -6868,6 +6868,7 @@ def _run_wizard_autoresearch_receipt_fixture(
     *,
     run_runner: bool,
     runner_allowed: bool,
+    dry_runner: bool = False,
     runner_returncode: int = 0,
 ) -> tuple[dict[str, object], dict[str, object], dict[str, object]]:
     module = _load_module(
@@ -6916,6 +6917,8 @@ def _run_wizard_autoresearch_receipt_fixture(
             return {"command": command, "returncode": 0, "stdout": json.dumps(stage_summary)}
         if command[:2] == ["make", "parallel-runner-dry"]:
             return {"command": command, "returncode": runner_returncode, "stdout": "dry runner ok", "status": "allowed"}
+        if command[:2] == ["make", "parallel-runner"]:
+            return {"command": command, "returncode": runner_returncode, "stdout": "live runner ok", "status": "allowed"}
         return {"command": command, "returncode": 0, "stdout": "{}"}
 
     def fake_decide_next(*args, **kwargs):
@@ -6944,6 +6947,8 @@ def _run_wizard_autoresearch_receipt_fixture(
     ]
     if run_runner:
         argv.append("--run-runner")
+    if dry_runner:
+        argv.append("--dry-runner")
 
     monkeypatch.setattr(module, "run", fake_run)
     monkeypatch.setattr(module, "qit_evidence_summary", lambda path: qit_summary)
@@ -7019,15 +7024,39 @@ def test_wizard_autoresearch_runner_allowed_main_loop_receipt_marks_runner_allow
     assert decision["runner_status"] == "allowed"
     assert decision["runner_launch_allowed"] is True
     assert decision["runner"]["authorization_status"] == "permitted"
-    assert decision["runner"]["outcome_status"] == "dry_run_completed"
-    assert decision["runner"]["execution_mode"] == "dry_run"
-    assert decision["runner"]["dry_run"] is True
+    assert decision["runner"]["outcome_status"] == "live_run_completed"
+    assert decision["runner"]["execution_mode"] == "live"
+    assert decision["runner"]["dry_run"] is False
     assert decision["runner"]["returncode"] == 0
+    assert decision["runner"]["command"][:2] == ["make", "parallel-runner"]
     assert manifest["runner_summary"]["requested"] is True
     assert manifest["runner_summary"]["status"] == "allowed"
 
 
-def test_wizard_autoresearch_runner_allowed_main_loop_marks_failed_dry_runner(
+def test_wizard_autoresearch_runner_allowed_main_loop_can_use_dry_runner(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _council, manifest, decision = _run_wizard_autoresearch_receipt_fixture(
+        tmp_path,
+        monkeypatch,
+        run_runner=True,
+        runner_allowed=True,
+        dry_runner=True,
+    )
+
+    assert decision["runner_status"] == "allowed"
+    assert decision["runner_launch_allowed"] is True
+    assert decision["runner"]["authorization_status"] == "permitted"
+    assert decision["runner"]["outcome_status"] == "dry_run_completed"
+    assert decision["runner"]["execution_mode"] == "dry_run"
+    assert decision["runner"]["dry_run"] is True
+    assert decision["runner"]["command"][:2] == ["make", "parallel-runner-dry"]
+    assert manifest["runner_summary"]["requested"] is True
+    assert manifest["runner_summary"]["status"] == "allowed"
+
+
+def test_wizard_autoresearch_runner_allowed_main_loop_marks_failed_live_runner(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -7042,9 +7071,9 @@ def test_wizard_autoresearch_runner_allowed_main_loop_marks_failed_dry_runner(
     assert decision["runner_status"] == "allowed"
     assert decision["runner_launch_allowed"] is True
     assert decision["runner"]["authorization_status"] == "permitted"
-    assert decision["runner"]["execution_mode"] == "dry_run"
-    assert decision["runner"]["dry_run"] is True
-    assert decision["runner"]["outcome_status"] == "dry_run_failed"
+    assert decision["runner"]["execution_mode"] == "live"
+    assert decision["runner"]["dry_run"] is False
+    assert decision["runner"]["outcome_status"] == "live_run_failed"
     assert decision["runner"]["returncode"] == 2
     assert manifest["runner_summary"]["status"] == "allowed"
 
@@ -7075,6 +7104,18 @@ def test_wizard_autoresearch_runner_receipt_state_machine_is_enumerated() -> Non
             "dry_run": True,
             "outcome_status": "dry_run_failed",
         },
+        {
+            "authorization_status": "permitted",
+            "execution_mode": "live",
+            "dry_run": False,
+            "outcome_status": "live_run_completed",
+        },
+        {
+            "authorization_status": "permitted",
+            "execution_mode": "live",
+            "dry_run": False,
+            "outcome_status": "live_run_failed",
+        },
     ]
 
     for runner in valid_shapes:
@@ -7086,6 +7127,10 @@ def test_wizard_autoresearch_runner_receipt_state_machine_is_enumerated() -> Non
             assert runner["dry_run"] is True
             assert runner["authorization_status"] == "permitted"
             assert runner["outcome_status"] in {"dry_run_completed", "dry_run_failed"}
+        elif runner["execution_mode"] == "live":
+            assert runner["dry_run"] is False
+            assert runner["authorization_status"] == "permitted"
+            assert runner["outcome_status"] in {"live_run_completed", "live_run_failed"}
         else:
             raise AssertionError(f"unexpected execution mode: {runner['execution_mode']}")
 

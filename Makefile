@@ -235,11 +235,11 @@ mass-lego-batch:
 
 # Bounded Wizard/autoresearch sim loop: broad exploration, strict admission, no runner launch by default
 wizard-autoresearch-loop:
-	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/wizard_autoresearch_sim_loop.py --iterations $(or $(ITERATIONS),1) $(if $(RUN_TAG),--run-tag $(RUN_TAG),) $(if $(OUT_DIR),--out-dir $(OUT_DIR),) $(if $(OUT_DIR),--evidence-index-out $(OUT_DIR)/qit_engine_evidence_index.json,) $(if $(OPUS_AUDIT),--opus-audit,) $(if $(RUN_RUNNER),--run-runner,) $(if $(RUNNER_MINUTES),--runner-minutes $(RUNNER_MINUTES),) $(if $(LANE_A_PARALLEL),--lane-a-parallel $(LANE_A_PARALLEL),) $(if $(LANE_B_PARALLEL),--lane-b-parallel $(LANE_B_PARALLEL),) $(if $(ATTEMPT_GEMINI),--attempt-gemini,) $(if $(INCLUDE_HAIKU),--include-haiku,) $(if $(SKIP_WIZARD_MATRIX),--skip-wizard-matrix,) $(if $(EXTERNAL_COUNCIL_RECEIPTS),--external-council-receipts $(EXTERNAL_COUNCIL_RECEIPTS),)
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/wizard_autoresearch_sim_loop.py --iterations $(or $(ITERATIONS),1) $(if $(RUN_TAG),--run-tag $(RUN_TAG),) $(if $(OUT_DIR),--out-dir $(OUT_DIR),) $(if $(OUT_DIR),--evidence-index-out $(OUT_DIR)/qit_engine_evidence_index.json,) $(if $(OPUS_AUDIT),--opus-audit,) $(if $(RUN_RUNNER),--run-runner,) $(if $(DRY_RUNNER),--dry-runner,) $(if $(RUNNER_MINUTES),--runner-minutes $(RUNNER_MINUTES),) $(if $(LANE_A_PARALLEL),--lane-a-parallel $(LANE_A_PARALLEL),) $(if $(LANE_B_PARALLEL),--lane-b-parallel $(LANE_B_PARALLEL),) $(if $(ATTEMPT_GEMINI),--attempt-gemini,) $(if $(INCLUDE_HAIKU),--include-haiku,) $(if $(SKIP_WIZARD_MATRIX),--skip-wizard-matrix,) $(if $(EXTERNAL_COUNCIL_RECEIPTS),--external-council-receipts $(EXTERNAL_COUNCIL_RECEIPTS),)
 
 # One safe disposable smoke loop: preflight only, no model matrix, no repo evidence writes
 wizard-autoresearch-loop-dry:
-	$(MAKE) wizard-autoresearch-loop ITERATIONS=$(or $(ITERATIONS),1) RUN_TAG=$(or $(RUN_TAG),dry) OUT_DIR=$(or $(OUT_DIR),/tmp/codex_ratchet_wizard_autoresearch_dry) SKIP_WIZARD_MATRIX=1 RUN_RUNNER=1 RUNNER_MINUTES=$(or $(RUNNER_MINUTES),1) LANE_A_PARALLEL=$(or $(LANE_A_PARALLEL),2) LANE_B_PARALLEL=$(or $(LANE_B_PARALLEL),4)
+	$(MAKE) wizard-autoresearch-loop ITERATIONS=$(or $(ITERATIONS),1) RUN_TAG=$(or $(RUN_TAG),dry) OUT_DIR=$(or $(OUT_DIR),/tmp/codex_ratchet_wizard_autoresearch_dry) SKIP_WIZARD_MATRIX=1 RUN_RUNNER=1 DRY_RUNNER=1 RUNNER_MINUTES=$(or $(RUNNER_MINUTES),1) LANE_A_PARALLEL=$(or $(LANE_A_PARALLEL),2) LANE_B_PARALLEL=$(or $(LANE_B_PARALLEL),4)
 
 # Rehearse strict QIT micro-admission in /tmp without writing canonical evidence
 qit-admission-rehearsal:

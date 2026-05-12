@@ -968,6 +968,7 @@ def main() -> int:
     parser.add_argument("--evidence-index-out", help="Override QIT evidence index write path for disposable loop probes.")
     parser.add_argument("--opus-audit", action="store_true")
     parser.add_argument("--run-runner", action="store_true")
+    parser.add_argument("--dry-runner", action="store_true", help="When --run-runner is allowed, rehearse with make parallel-runner-dry instead of launching live workers.")
     parser.add_argument("--skip-wizard-matrix", action="store_true")
     parser.add_argument("--attempt-gemini", action="store_true", default=True)
     parser.add_argument("--skip-gemini", action="store_true")
@@ -1104,11 +1105,15 @@ def main() -> int:
             matrix_receipts=matrix_receipts,
         )
         if latest_decision["runner_launch_allowed"]:
-            latest_decision["runner"] = run(["make", "parallel-runner-dry", f"MINUTES={args.runner_minutes}", f"LANE_A_PARALLEL={args.lane_a_parallel}", f"LANE_B_PARALLEL={args.lane_b_parallel}"])
-            latest_decision["runner"]["execution_mode"] = "dry_run"
-            latest_decision["runner"]["dry_run"] = True
+            runner_target = "parallel-runner-dry" if args.dry_runner else "parallel-runner"
+            latest_decision["runner"] = run(["make", runner_target, f"MINUTES={args.runner_minutes}", f"LANE_A_PARALLEL={args.lane_a_parallel}", f"LANE_B_PARALLEL={args.lane_b_parallel}"])
+            latest_decision["runner"]["execution_mode"] = "dry_run" if args.dry_runner else "live"
+            latest_decision["runner"]["dry_run"] = bool(args.dry_runner)
             latest_decision["runner"]["authorization_status"] = "permitted"
-            latest_decision["runner"]["outcome_status"] = "dry_run_completed" if not latest_decision["runner"].get("returncode") else "dry_run_failed"
+            if args.dry_runner:
+                latest_decision["runner"]["outcome_status"] = "dry_run_completed" if not latest_decision["runner"].get("returncode") else "dry_run_failed"
+            else:
+                latest_decision["runner"]["outcome_status"] = "live_run_completed" if not latest_decision["runner"].get("returncode") else "live_run_failed"
         else:
             latest_decision["runner"] = runner_deferred_receipt(latest_decision)
         matrix_route_summaries = {

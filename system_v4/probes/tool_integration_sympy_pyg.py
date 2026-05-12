@@ -33,12 +33,66 @@ TOOL_MANIFEST = {
         "used": False,
         "reason": "PyG realizes the SymPy-derived graph, validates it, propagates weighted messages, and pools graph-level summaries; removing PyG breaks the integration claim rather than leaving a decorative import behind.",
     },
+    "z3": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this packet checks symbolic-to-graph tensor integration, not SMT satisfiability.",
+    },
+    "cvc5": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this packet checks symbolic-to-graph tensor integration, not cvc5 solver constraints.",
+    },
+    "clifford": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: no geometric algebra surface is exercised.",
+    },
+    "geomstats": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: no manifold metric or geodesic surface is exercised.",
+    },
+    "e3nn": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: no equivariant representation surface is exercised.",
+    },
+    "rustworkx": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: graph realization is through PyG, not rustworkx DAG algorithms.",
+    },
+    "xgi": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: the fixture is pairwise graph structure, not a hypergraph.",
+    },
+    "toponetx": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: no cell-complex incidence surface is exercised.",
+    },
+    "gudhi": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: no persistence or simplex-tree surface is exercised.",
+    },
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "sympy": "load_bearing",
-    "pytorch": "supportive",
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
     "pyg": "load_bearing",
+    "pytorch": "supportive",
+    "rustworkx": None,
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
 }
 
 try:

@@ -35,6 +35,8 @@ import os
 
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -467,12 +469,38 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
+        "divergence_log": (
+            "Classical-baseline divergence controls: Hopf-fiber graph message passing is compared "
+            "against identity-weight/no-information-flow, same-density random graph, near-zero threshold "
+            "no-edge behavior, and near-full threshold saturation; failures demote this baseline receipt."
+        ),
+        "surviving_alternatives": [
+            "This receipt covers only bounded PyG Hopf-graph message-passing behavior as a classical baseline; it does not promote graph-shell geometry, Werner structure, bridge, axis, GStack, or nonclassical admission."
+        ],
+        "demotion_condition": (
+            "Demote this PyG Hopf-graph baseline receipt if Hopf-edge message-passing deltas, "
+            "edge removal controls, random-graph controls, near-zero threshold behavior, "
+            "or near-full threshold behavior fail on rerun."
+        ),
+        "out_of_scope": [
+            "no graph-shell lego promotion",
+            "no Werner-local-structure promotion",
+            "no bridge claim",
+            "no axis claim",
+            "no GStack claim",
+            "no nonclassical admission",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_pyg_hopf_graph_deep_capability",
+        target="Use as bounded PyG Hopf-graph classical-baseline capability evidence before exact graph lego-fit or coupling packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "sim_pyg_hopf_graph_deep_capability_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
     print(f"overall_pass: {overall_pass}")

@@ -16,19 +16,26 @@ classification = "canonical"
 import json
 import os
 
+from receipt_boundary import apply_default_receipt_boundary
+
+_NOT_USED_REASON = (
+    "not used: this bounded PyTorch capability receipt isolates tensor, autograd, "
+    "nn.Module, optimizer, and shape APIs; other tool families require separate receipts."
+)
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "under test"},
-    "pyg":       {"tried": False, "used": False, "reason": "separate pyg probe"},
-    "z3":        {"tried": False, "used": False, "reason": "not needed"},
-    "cvc5":      {"tried": False, "used": False, "reason": "not needed"},
-    "sympy":     {"tried": False, "used": False, "reason": "not needed"},
-    "clifford":  {"tried": False, "used": False, "reason": "not geometry-relevant"},
-    "geomstats": {"tried": False, "used": False, "reason": "not geometry-relevant"},
-    "e3nn":      {"tried": False, "used": False, "reason": "not geometry-relevant"},
-    "rustworkx": {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "xgi":       {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "toponetx":  {"tried": False, "used": False, "reason": "not topology-relevant"},
-    "gudhi":     {"tried": False, "used": False, "reason": "not topology-relevant"},
+    "pyg":       {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "z3":        {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "cvc5":      {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "sympy":     {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "clifford":  {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "geomstats": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "e3nn":      {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "rustworkx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "xgi":       {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "toponetx":  {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "gudhi":     {"tried": False, "used": False, "reason": _NOT_USED_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -50,7 +57,10 @@ try:
     import torch
     TOOL_MANIFEST["pytorch"]["tried"] = True
     TOOL_MANIFEST["pytorch"]["used"] = True
-    TOOL_MANIFEST["pytorch"]["reason"] = "capability under test -- autograd, nn.Module, tensor ops"
+    TOOL_MANIFEST["pytorch"]["reason"] = (
+        "load-bearing capability under test: PyTorch autograd backward/grad, "
+        "nn.Module forward/backward, optimizer step, tensor shape, and matmul APIs decide the receipt verdicts."
+    )
     TORCH_OK = True
     TORCH_VERSION = torch.__version__
 except Exception as exc:
@@ -228,12 +238,33 @@ if __name__ == "__main__":
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
         "classification": "canonical",
+        "surviving_alternatives": [
+            "This receipt covers only bounded PyTorch primitive capability; it does not promote density-matrix, QIT, bridge, axis, GStack, or nonclassical admission claims."
+        ],
+        "demotion_condition": (
+            "Demote this PyTorch capability receipt if scalar/vector autograd, "
+            "module training step, tensor shape/matmul checks, gradient error controls, "
+            "empty tensor behavior, high-dimensional gradient, or double-backward controls fail on rerun."
+        ),
+        "out_of_scope": [
+            "no density-matrix lego promotion",
+            "no QIT engine claim",
+            "no bridge claim",
+            "no axis claim",
+            "no GStack claim",
+            "no nonclassical admission",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_pytorch_capability",
+        target="Use as bounded PyTorch primitive capability evidence before exact tensor/autograd lego-fit or coupling packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "pytorch_capability_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
     print(f"summary.all_pass = {summary['all_pass']}")

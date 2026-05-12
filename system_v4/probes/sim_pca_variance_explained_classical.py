@@ -7,10 +7,14 @@ sum of top eigenvalues divided by trace, and residual variance equals tail sum.
 import json, os, numpy as np
 import scipy.linalg as sla
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
-NAME = "pca_variance_explained"
+NAME = "sim_pca_variance_explained_classical"
 
 TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "sample covariance, trace, and variance-fraction array calculations"},
+    "scipy": {"tried": True, "used": True, "reason": "scipy.linalg.eigvalsh computes covariance eigenvalues for pass/fail checks"},
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
     "z3": {"tried": False, "used": False, "reason": "not needed for numeric PCA baseline"},
@@ -30,9 +34,11 @@ TOOL_INTEGRATION_DEPTH = {
     "e3nn": None,
     "geomstats": None,
     "gudhi": None,
+    "numpy": "supportive",
     "pyg": None,
     "pytorch": "load_bearing",
     "rustworkx": None,
+    "scipy": "supportive",
     "sympy": None,
     "toponetx": None,
     "xgi": None,
@@ -153,7 +159,15 @@ if __name__ == "__main__":
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, f"{NAME}_classical_results.json")
-    with open(out_path, "w") as f:
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target=(
+            "Use as bounded classical PCA variance baseline evidence before "
+            "subspace or covariance tool-lego comparison."
+        ),
+    )
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"{NAME} all_pass={all_pass} -> {out_path}")

@@ -9,9 +9,12 @@ contractible at large scales).
 """
 import json, os, numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 
 TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "distance matrix, union-find inputs, and noisy-circle geometry"},
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": "no learning"},
     "z3": {"tried": False, "used": False, "reason": "no SAT"},
@@ -31,8 +34,9 @@ TOOL_INTEGRATION_DEPTH = {
     "e3nn": None,
     "geomstats": None,
     "gudhi": None,
+    "numpy": "supportive",
     "pyg": None,
-    "pytorch": "load_bearing",
+    "pytorch": None,
     "rustworkx": None,
     "sympy": None,
     "toponetx": None,
@@ -48,11 +52,12 @@ try:
 except ImportError:
     TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
 
-divergence_log = [
+divergence_details = [
     "Chose 1-skeleton persistence (H0 merges + H1 birth/death via cycle detection).",
     "Considered full Rips up to triangles; limited to edge-skeleton for speed and clarity.",
     "H1 death approximated as filtration value at which complete graph is reached (triangles kill all cycles conservatively).",
 ]
+divergence_log = "Classical numpy Vietoris-Rips circle baseline only; it does not prove GUDHI, nonclassical topology, bridge, axis, or GStack claims."
 
 
 class UF:
@@ -143,12 +148,22 @@ def run_boundary_tests():
 if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(v["pass"] for d in (pos,neg,bnd) for v in d.values())
-    results = {"name": "persistent_homology_circle_classical", "classification": classification,
+    name = "sim_persistent_homology_circle_classical"
+    results = {"name": name, "classification": classification,
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-               "divergence_log": divergence_log, "positive": pos, "negative": neg, "boundary": bnd,
+               "divergence_log": divergence_log, "divergence_details": divergence_details,
+               "positive": pos, "negative": neg, "boundary": bnd,
                "all_pass": all_pass, "summary": {"all_pass": all_pass}}
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=name,
+        target=(
+            "Use as bounded classical persistent-homology circle baseline "
+            "before GUDHI or topology tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "persistent_homology_circle_classical_results.json")
-    with open(out_path, "w") as f: json.dump(results, f, indent=2, default=str)
+    out_path = os.path.join(out_dir, f"{name}_results.json")
+    with open(out_path, "w", encoding="utf-8") as f: json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}; all_pass={all_pass}")

@@ -18,6 +18,8 @@ import os
 import numpy as np
 from geomstats.geometry.special_orthogonal import SpecialOrthogonal
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 NAME = "sim_geomstats_so3_distance_micro"
 PROBE_FAMILY = "geomstats_so3_distance_micro"
@@ -231,6 +233,11 @@ if __name__ == "__main__":
         },
         "all_pass": all_pass,
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_geomstats_so3_distance_micro",
+        target="Use as bounded geomstats SO(3) metric-distance function evidence before geometry lego fit packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

@@ -28,6 +28,8 @@ import numpy as np
 import qutip
 from scipy.linalg import expm
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 divergence_log = (
     "Classical open-system baseline: a single-qubit amplitude-damping Lindblad "
@@ -244,6 +246,17 @@ if __name__ == "__main__":
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_integration_qutip_open_system_bridge",
+        target="Use as bounded classical-baseline QuTiP mesolve open-system reference evidence before channel-local fit packets.",
+    )
+    results["claim_ceiling"] = (
+        "classical_baseline_only_qutip_mesolve_vs_scipy_liouvillian_reference; "
+        "no bridge, GStack, axis, QIT, or nonclassical admission"
+    )
+    results["nonclassical_claim_ceiling"] = "baseline_only_no_nonclassical_promotion"
+    results["blocked_until"] = "separate nonclassical-suitable canonical receipt and explicit stage-gate approval"
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

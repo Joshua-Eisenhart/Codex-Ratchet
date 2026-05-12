@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -13,6 +14,10 @@ from typing import Any
 
 NONCLASSICAL_LOAD_BEARING_TOOLS = {"z3", "cvc5", "clifford", "torch", "pytorch", "pyg", "qiskit", "qutip"}
 HIDDEN_NONCLASSICAL_TOKENS = ("rho_ab", "rho_AB", "Phi0", "phi0", "Xi", "xi", "coupling witness")
+_HIDDEN_NONCLASSICAL_PATTERNS = tuple(
+    re.compile(rf"(?<![A-Za-z0-9_]){re.escape(token.lower())}(?![A-Za-z0-9_])")
+    for token in HIDDEN_NONCLASSICAL_TOKENS
+)
 
 
 def repo_root() -> Path:
@@ -112,7 +117,7 @@ def _has_hidden_nonclassical_signal(root: Path, sim_path: str, result_payload: d
         except UnicodeDecodeError:
             pass
     lowered = text.lower()
-    return any(token.lower() in lowered for token in HIDDEN_NONCLASSICAL_TOKENS)
+    return any(pattern.search(lowered) for pattern in _HIDDEN_NONCLASSICAL_PATTERNS)
 
 
 def validate_admission(

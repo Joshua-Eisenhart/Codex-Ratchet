@@ -11106,6 +11106,26 @@ def test_wizard_sim_admission_rejects_hidden_coupling_result_without_nonclassica
     assert "nonclassical_suitable_load_bearing_tool_missing" in findings
 
 
+def test_wizard_sim_admission_hidden_signal_does_not_match_substrings(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_hidden_substring_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    sim_path = repo / "system_v4" / "probes" / "sim_symbolic_exact.py"
+    sim_path.parent.mkdir(parents=True)
+    sim_path.write_text(
+        "def explain():\n    return 'explicit matrix symbolic fixture'\n",
+        encoding="utf-8",
+    )
+
+    assert not module._has_hidden_nonclassical_signal(
+        repo,
+        "system_v4/probes/sim_symbolic_exact.py",
+        {"note": "explicit matrix symbolic fixture"},
+    )
+
+
 def test_wizard_sim_admission_accepts_nonclassical_tool_family_suffix(tmp_path) -> None:
     module = _load_module(
         "wizard_sim_admission_tool_family_suffix_under_test",

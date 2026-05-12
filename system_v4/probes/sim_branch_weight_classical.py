@@ -14,6 +14,8 @@ import json, os
 from itertools import product
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 divergence_log = (
     "Classical foundation baseline: branch-weight classical paths are "
@@ -82,7 +84,7 @@ if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(pos.values()) and all(neg.values()) and all(bnd.values())
     results = {
-        "name": "branch_weight_classical",
+        "name": "sim_branch_weight_classical",
         "classification": "classical_baseline",
         "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": divergence_log,
@@ -92,8 +94,16 @@ if __name__ == "__main__":
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_branch_weight_classical",
+        target=(
+            "Use as bounded classical branch-weight baseline evidence before "
+            "trajectory, probability, or branch-structure tool-lego comparison."
+        ),
+    )
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
-                       "branch_weight_classical_results.json")
+                       "sim_branch_weight_classical_results.json")
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    with open(out, "w") as f: json.dump(results, f, indent=2, default=str)
+    with open(out, "w", encoding="utf-8") as f: json.dump(results, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

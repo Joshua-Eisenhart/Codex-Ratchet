@@ -2,12 +2,13 @@
 """
 sim_geomstats_capability -- Tool-capability isolation probe for geomstats.
 
-Governing rule (owner+Hermes 2026-04-13): geomstats is load_bearing in 8 sims
-but has no capability probe. This sim is the bounded isolation probe that
-unblocks geomstats for nonclassical use.
+Governing rule (owner+Hermes 2026-04-13): geomstats is load_bearing in
+candidate sims and needs an exact capability receipt before any later
+tool-lego fit or coupling packet can rely on its manifold APIs.
 
-Witness load-bearing use: system_v4/probes/sim_foundation_hopf_torus_geomstats_clifford.py
-(uses geomstats Hypersphere for S^3 Hopf geodesic structure).
+Witness load-bearing use: system_v4/probes/sim_density_hopf_geometry.py
+(uses geomstats manifold distance/geometry APIs in a bounded density/Hopf
+geometry receipt).
 
 Contract: ~/wiki/concepts/tool-capability-sim-program.md
   - job: geodesic/metric computations on Riemannian manifolds

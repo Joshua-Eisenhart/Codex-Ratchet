@@ -1,10 +1,31 @@
 #!/usr/bin/env python3
 """Classical baseline: spectral_decomposition of symmetric matrices."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
+from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"
 
-NAME = "spectral_decomposition"
+NAME = "sim_spectral_decomposition_classical"
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not selected because this receipt is a numpy-only real symmetric spectral baseline"},
+    "pyg": {"tried": False, "used": False, "reason": "not selected because no graph tensor or message-passing structure is tested"},
+    "z3": {"tried": False, "used": False, "reason": "not selected because symmetric eigendecomposition is checked numerically, not as an SMT constraint"},
+    "cvc5": {"tried": False, "used": False, "reason": "not selected because no SMT proof or algebraic datatype reasoning is required"},
+    "sympy": {"tried": False, "used": False, "reason": "not selected because this receipt uses numerical eigendecomposition rather than symbolic algebra"},
+    "clifford": {"tried": False, "used": False, "reason": "not selected because no geometric algebra carrier is part of this baseline"},
+    "geomstats": {"tried": False, "used": False, "reason": "not selected because no manifold metric or geodesic structure is evaluated"},
+    "e3nn": {"tried": False, "used": False, "reason": "not selected because equivariant tensor features are outside this baseline"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not selected because no graph dependency or traversal computation is needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not selected because no hypergraph incidence structure is tested"},
+    "toponetx": {"tried": False, "used": False, "reason": "not selected because no cell-complex boundary or incidence matrix is tested"},
+    "gudhi": {"tried": False, "used": False, "reason": "not selected because no filtration or persistence computation is needed"},
+    "numpy": {"tried": True, "used": True, "reason": "supportive classical baseline: numpy.linalg.eigh supplies real symmetric eigenpairs and reconstruction checks"},
+}
+TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
+divergence_log = (
+    "Classical baseline covers finite real symmetric matrix eigendecomposition, orthonormal eigenvectors, and reconstruction only. "
+    "It does not decide non-normal operators, Jordan structure, non-Hermitian effective Hamiltonians, nonclassical admissibility, or any bridge/QIT/GStack claim."
+)
 
 def run_positive_tests():
     r = {}
@@ -56,19 +77,28 @@ def run_boundary_tests():
     d = np.array([1e-12, 0.1, 1.0, 2.0, 3.0])
     A = U @ np.diag(d) @ U.T
     w, _ = np.linalg.eigh(A)
-    r["near_zero_eig_recovered"] = {"min_eig": float(w.min()), "pass": abs(w.min()) < 1e-8}
+    r["near_zero_eig_recovered"] = {"min_eig": float(w.min()), "pass": bool(abs(w.min()) < 1e-8)}
     return r
 
 if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(v.get("pass", False) for v in list(pos.values()) + list(neg.values()) + list(bnd.values()))
     results = {
-        "name": NAME, "classification": "classical_baseline",
+        "name": NAME, "classification": classification,
         "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "divergence_log": divergence_log,
         "positive": pos, "negative": neg, "boundary": bnd, "all_pass": all_pass,
         "note": "classical captures: eigh on real sym matrices, reconstruction, orthonormality. Innately fails: non-normal operators, complex Jordan blocks, non-Hermitian effective Hamiltonians."
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target=(
+            "Use as bounded classical spectral-decomposition baseline evidence "
+            "before any operator-family or spectral tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results"); os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, f"{NAME}_classical_results.json")
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
     with open(out_path, "w") as f: json.dump(results, f, indent=2, default=str)
     print(f"{NAME} all_pass={all_pass} -> {out_path}")

@@ -18,6 +18,8 @@ import json
 import os
 import sys
 
+from receipt_boundary import apply_default_receipt_boundary
+
 
 classification = "canonical"
 NAME = "sim_sympy_symbolic_identity_micro"
@@ -234,6 +236,11 @@ if __name__ == "__main__":
         },
         "all_pass": all_pass,
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_sympy_symbolic_identity_micro",
+        target="Use as bounded SymPy scalar symbolic identity function evidence before exact-algebra or operator-family lego fit packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

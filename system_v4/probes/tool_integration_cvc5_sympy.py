@@ -15,10 +15,20 @@ import json
 import os
 from typing import Any, Dict, List
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 NAME = "tool_integration_cvc5_sympy"
 
+_NOT_USED_REASON = (
+    "not used: this integration probe isolates SymPy polynomial data feeding "
+    "cvc5 integer root constraints; other tools and promotion surfaces are out of scope."
+)
+
 TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "pyg": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "z3": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
     "cvc5": {
         "tried": False,
         "used": False,
@@ -29,6 +39,13 @@ TOOL_MANIFEST = {
         "used": False,
         "reason": "SymPy is the load-bearing symbolic layer that constructs exact polynomials, derivatives, discriminants, and gcd data whose outputs are fed directly into cvc5 constraints.",
     },
+    "clifford": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "geomstats": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "e3nn": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "rustworkx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "xgi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "toponetx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "gudhi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -86,6 +103,34 @@ def _gate_results(section: str) -> Dict[str, Any]:
     if not TOOL_MANIFEST["sympy"]["tried"]:
         missing.append("sympy")
     return {f"{section}_import_gate": {"status": "skipped", "missing": missing}}
+
+
+def _case_passed(case: Dict[str, Any]) -> bool:
+    if case.get("status") == "skipped":
+        return False
+    if "roundtrip_exact" in case:
+        return bool(case["roundtrip_exact"])
+    if "gcd_matches_expected" in case:
+        return bool(case["gcd_matches_expected"])
+    if "boundary_exact" in case:
+        return bool(case["boundary_exact"])
+    if "expected" in case and "status" in case:
+        observed = str(case["status"])
+        expected = str(case["expected"])
+        extra_ok = True
+        if "squarefree_under_sympy" in case:
+            extra_ok = extra_ok and bool(case["squarefree_under_sympy"])
+        return observed == expected and extra_ok
+    return False
+
+
+def _summarize(*sections: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
+    cases = []
+    for section in sections:
+        cases.extend(section.values())
+    passed = sum(1 for case in cases if _case_passed(case))
+    total = len(cases)
+    return {"passed": passed, "total": total, "all_pass": passed == total}
 
 
 def _solver() -> "cvc5.Solver":
@@ -325,15 +370,54 @@ def run_boundary_tests() -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    summary = _summarize(positive, negative, boundary)
     results = {
         "name": NAME,
+        "probe_family": "cvc5_sympy_polynomial_root_integration",
+        "constraint_set": "exact_polynomial_coefficients_to_cvc5_integer_root_constraints",
         "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "surviving_alternatives": [
+            "This receipt covers only exact SymPy polynomial coefficient and derivative data feeding cvc5 integer root constraints; it does not prove broad symbolic-SMT equivalence."
+        ],
+        "demotion_condition": (
+            "Demote this integration surface if SymPy polynomial coefficients no longer "
+            "roundtrip through cvc5 root constraints, if nonroots or squarefree repeated-root "
+            "claims are admitted, or if singleton interval boundary roots fail."
+        ),
+        "out_of_scope": [
+            "no broad solver equivalence",
+            "no nonlinear completeness claim",
+            "no lego promotion",
+            "no bridge claim",
+            "no axis claim",
+            "no GStack claim",
+        ],
+        "criteria_checked": [
+            "SymPy polynomial coefficients feed cvc5 Vieta root solver",
+            "SymPy derivative coefficients feed cvc5 repeated-root witness",
+            "SymPy polynomial excludes a forced nonroot in cvc5",
+            "squarefree SymPy data blocks repeated-root witness in cvc5",
+            "double-root and singleton-interval boundary behavior survive",
+        ],
+        "summary": summary,
+        "all_pass": bool(summary["all_pass"]),
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target=(
+            "Use as bounded cvc5 plus SymPy polynomial-root tool-integration evidence "
+            "before constraint-probe lego-fit or later solver-coupling packets."
+        ),
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

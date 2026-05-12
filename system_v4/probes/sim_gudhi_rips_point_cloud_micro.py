@@ -255,6 +255,16 @@ if __name__ == "__main__":
             "GUDHI RipsComplex filled triangle H1 exclusion",
             "GUDHI RipsComplex boundary finite simplices and singleton no-H1 check",
         ],
+        "claim_ceiling": "tool_function_micro_only",
+        "next_lego_target": "minimal GUDHI RipsComplex point-cloud fixture before topology coupling or graph-cell promotion",
+        "promotion_condition": (
+            "requires a later admitted downstream row that names this exact GUDHI RipsComplex receipt and passes strict runner admission; "
+            "this MICRO row does not promote any lego, topology program, bridge, axis, GStack, QIT engine, or nonclassical claim"
+        ),
+        "blocked_until": (
+            "blocked from topology, bridge, axis, GStack, QIT engine, and nonclassical promotion until a downstream queue row "
+            "declares the exact parent receipt use and active stage gate for promotion"
+        ),
         "summary": {
             "passed": sum(1 for test in flat_tests if test.get("passed")),
             "total": len(flat_tests),

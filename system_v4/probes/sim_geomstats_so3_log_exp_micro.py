@@ -184,6 +184,16 @@ if __name__ == "__main__":
             "ambient additive update exclusion",
             "tiny-angle and near-pi boundary behavior",
         ],
+        "claim_ceiling": "tool_function_micro_only",
+        "next_lego_target": "bounded geomstats SO(3) log-exp fixture before manifold, bridge, axis, or coupling promotion",
+        "promotion_condition": (
+            "requires a later admitted downstream row that names this exact geomstats function receipt, "
+            "declares the target manifold/coupling scope, and passes strict runner admission; this MICRO row does not promote any lego"
+        ),
+        "blocked_until": (
+            "blocked from manifold, bridge, axis, GStack, QIT engine, and nonclassical promotion until a downstream queue row "
+            "declares the exact parent receipt use and active stage gate for promotion"
+        ),
         "summary": {"passed": sum(1 for test in flat_tests if test.get("passed")), "total": len(flat_tests)},
         "all_pass": all_pass,
     }

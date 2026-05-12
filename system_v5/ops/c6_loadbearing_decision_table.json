@@ -7,24 +7,24 @@
   ],
   "source_report_row_counts": {
     "blocked_reason_breakdown": 754,
-    "c6_loadbearing_report": 1465
+    "c6_loadbearing_report": 1461
   },
-  "blocked_c6_sim_count": 65,
-  "decision_row_count": 137,
+  "blocked_c6_sim_count": 63,
+  "decision_row_count": 133,
   "action_counts": {
-    "promote_to_canonical_candidate_after_owner_review": 52,
-    "remove_or_demote_tool_depth_candidate": 18,
+    "promote_to_canonical_candidate_after_owner_review": 49,
+    "remove_or_demote_tool_depth_candidate": 17,
     "owner_review_missing_result_before_edit": 64,
     "owner_review_inconclusive": 3
   },
   "tool_counts": {
     "pytorch": 41,
     "sympy": 18,
-    "z3": 17,
-    "xgi": 14,
+    "z3": 16,
     "numpy": 12,
-    "rustworkx": 10,
+    "xgi": 12,
     "scipy": 9,
+    "rustworkx": 9,
     "clifford": 7,
     "gudhi": 3,
     "pyg": 2,
@@ -32,8 +32,8 @@
     "cvc5": 2
   },
   "bucket_counts": {
-    "genuinely_load_bearing_so_promote_to_canonical_candidate": 52,
-    "decorative_load_bearing_demote_tool": 18,
+    "genuinely_load_bearing_so_promote_to_canonical_candidate": 49,
+    "decorative_load_bearing_demote_tool": 17,
     "inconclusive_needs_owner": 67
   },
   "rows": [
@@ -1402,54 +1402,10 @@
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
     },
     {
-      "sim": "system_v4/probes/sim_xgi_isolate_investigation.py",
-      "tool": "xgi",
-      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
-      "result_path": "system_v4/probes/a2_state/sim_results/xgi_isolate_investigation_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_xgi_isolate_investigation.py",
-      "tool": "z3",
-      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
-      "result_path": "system_v4/probes/a2_state/sim_results/xgi_isolate_investigation_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
       "sim": "system_v4/probes/sim_xgi_l7_marginal.py",
       "tool": "xgi",
       "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
       "result_path": "system_v4/probes/a2_state/sim_results/xgi_l7_marginal_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_xgi_shell_hypergraph.py",
-      "tool": "rustworkx",
-      "bucket": "decorative_load_bearing_demote_tool",
-      "result_path": "system_v4/probes/a2_state/sim_results/xgi_shell_hypergraph_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "remove_or_demote_tool_depth_candidate",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_xgi_shell_hypergraph.py",
-      "tool": "xgi",
-      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
-      "result_path": "system_v4/probes/a2_state/sim_results/xgi_shell_hypergraph_results.json",
       "evidence": "result_json_mentions_tool",
       "candidate_action": "promote_to_canonical_candidate_after_owner_review",
       "owner_review_required": true,

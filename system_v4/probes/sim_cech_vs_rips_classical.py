@@ -9,6 +9,8 @@ Verify inclusion and that both recover H1 of a noisy circle at the right scale.
 import json, os, numpy as np
 from itertools import combinations
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 
 TOOL_MANIFEST = {
@@ -32,7 +34,7 @@ TOOL_INTEGRATION_DEPTH = {
     "geomstats": None,
     "gudhi": None,
     "pyg": None,
-    "pytorch": "load_bearing",
+    "pytorch": None,
     "rustworkx": None,
     "sympy": None,
     "toponetx": None,
@@ -48,11 +50,15 @@ try:
 except ImportError:
     TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
 
-divergence_log = [
+divergence_details = [
     "Restricted to 2-simplex level; higher-dim nerve checks omitted.",
     "Cech triangle admission computed via miniball (smallest enclosing circle) of 3 points.",
     "Jung constant sqrt(2 d/(d+1)) = sqrt(4/3) in R^2 used for Rips upper bound.",
 ]
+divergence_log = (
+    "Classical Cech-vs-Rips inclusion baseline only; no bridge, QIT, "
+    "GStack, axis, or nonclassical admission claim."
+)
 
 
 def pairwise(pts):
@@ -116,10 +122,16 @@ def run_positive_tests():
     rt = set(rips_triangles(D, r_small))
     ct = set(cech_triangles(pts, r_big))
     inclusion_ok = rt.issubset(ct)
+    torch_crosscheck = True
+    if TOOL_INTEGRATION_DEPTH["pytorch"] == "supportive" and "torch" in globals():
+        pt = torch.tensor(pts, dtype=torch.float64)
+        torch_d = torch.cdist(pt, pt).numpy()
+        torch_crosscheck = bool(np.allclose(torch_d, D))
     return {"equilateral_rips_triangle": {"pass": bool(rips_has_it)},
             "equilateral_cech_excludes_at_r05": {"pass": bool(cech_excludes)},
             "equilateral_cech_includes_at_r06": {"pass": bool(cech_gets_it)},
-            "jung_inclusion": {"pass": bool(inclusion_ok)}}
+            "jung_inclusion": {"pass": bool(inclusion_ok)},
+            "torch_distance_supportive_crosscheck": {"pass": torch_crosscheck}}
 
 
 def run_negative_tests():
@@ -156,12 +168,21 @@ def run_boundary_tests():
 if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(v["pass"] for d in (pos,neg,bnd) for v in d.values())
-    results = {"name": "cech_vs_rips_classical", "classification": classification,
+    results = {"name": "sim_cech_vs_rips_classical", "classification": classification,
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-               "divergence_log": divergence_log, "positive": pos, "negative": neg, "boundary": bnd,
+               "divergence_log": divergence_log, "divergence_details": divergence_details,
+               "positive": pos, "negative": neg, "boundary": bnd,
                "all_pass": all_pass, "summary": {"all_pass": all_pass}}
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_cech_vs_rips_classical",
+        target=(
+            "Use as bounded classical Cech-vs-Rips baseline evidence before "
+            "persistence, topology, or geometry tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "cech_vs_rips_classical_results.json")
-    with open(out_path, "w") as f: json.dump(results, f, indent=2, default=str)
+    with open(out_path, "w", encoding="utf-8") as f: json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}; all_pass={all_pass}")

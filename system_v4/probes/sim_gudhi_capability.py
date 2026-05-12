@@ -22,22 +22,29 @@ import os
 
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
 
+_NOT_USED_REASON = (
+    "not used: this bounded GUDHI capability receipt isolates persistent-homology "
+    "APIs on fixed point-cloud and SimplexTree controls; other tool families require separate receipts."
+)
+
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": "not needed for tool-capability isolation"},
-    "pyg":       {"tried": False, "used": False, "reason": "not needed for tool-capability isolation"},
-    "z3":        {"tried": False, "used": False, "reason": "no proof obligation in a capability probe"},
-    "cvc5":      {"tried": False, "used": False, "reason": "no proof obligation in a capability probe"},
-    "sympy":     {"tried": False, "used": False, "reason": "no symbolic derivation required"},
-    "clifford":  {"tried": False, "used": False, "reason": "no geometric algebra needed"},
-    "geomstats": {"tried": False, "used": False, "reason": "no manifold/geodesic needed"},
-    "e3nn":      {"tried": False, "used": False, "reason": "no equivariance needed"},
-    "rustworkx": {"tried": False, "used": False, "reason": "numpy CC baseline suffices"},
-    "xgi":       {"tried": False, "used": False, "reason": "no multi-way interaction in probe"},
-    "toponetx":  {"tried": False, "used": False, "reason": "not the tool under test"},
+    "pytorch":   {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "pyg":       {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "z3":        {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "cvc5":      {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "sympy":     {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "clifford":  {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "geomstats": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "e3nn":      {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "rustworkx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "xgi":       {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "toponetx":  {"tried": False, "used": False, "reason": _NOT_USED_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": ""},
 }
 
@@ -52,7 +59,10 @@ try:
     import gudhi  # noqa
     TOOL_MANIFEST["gudhi"]["tried"] = True
     TOOL_MANIFEST["gudhi"]["used"] = True
-    TOOL_MANIFEST["gudhi"]["reason"] = "tool under capability test; persistence decisive"
+    TOOL_MANIFEST["gudhi"]["reason"] = (
+        "load-bearing capability under test: GUDHI RipsComplex, AlphaComplex, "
+        "SimplexTree persistence, intervals, and persistent Betti APIs decide the receipt verdicts."
+    )
     GUDHI_OK = True
 except ImportError as e:
     TOOL_MANIFEST["gudhi"]["reason"] = f"not installed: {e}"
@@ -338,12 +348,33 @@ if __name__ == "__main__":
         "all_pass": all_pass,
         "classification": "canonical",
         "summary": {"all_pass": all_pass},
+        "surviving_alternatives": [
+            "This receipt covers only bounded GUDHI persistent-homology API capability; it does not prove topology lego promotion, QIT admission, bridge behavior, or general persistence correctness."
+        ],
+        "demotion_condition": (
+            "Demote this GUDHI capability receipt if Rips/Alpha circle homology, "
+            "barcode extraction, persistent Betti queries, H0-vs-baseline comparison, "
+            "or degenerate boundary controls fail on rerun."
+        ),
+        "out_of_scope": [
+            "no topology lego promotion",
+            "no concurrence-measure promotion",
+            "no QIT engine claim",
+            "no bridge claim",
+            "no axis claim",
+            "no GStack claim",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_gudhi_capability",
+        target="Use as bounded GUDHI persistent-homology capability evidence before exact topology lego-fit or coupling packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "gudhi_capability_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
     print(f"all_pass={all_pass}")

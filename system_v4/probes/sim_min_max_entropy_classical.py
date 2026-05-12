@@ -12,6 +12,11 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Numpy-only probability-vector baseline: no smooth one-shot quantum "
+    "entropy, no CPTP operational task, no noncommuting support semantics, "
+    "and no bridge or nonclassical admission."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "max/support on pmf"},

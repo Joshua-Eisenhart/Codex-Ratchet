@@ -10,14 +10,20 @@ import pathlib
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Numpy-only finite pure-state matrix baseline: no CPTP channel dynamics, "
+    "no noncommuting measurement schedule, no topology/operator coupling, and "
+    "no bridge or nonclassical admission."
+)
 
 
 EPS = 1e-10
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
-    "Canonical local lego for entanglement entropy on bounded pure two-qubit states, "
-    "kept separate from entanglement spectrum, negativity, and broad bipartite bundles."
+    "Classical baseline lego for entanglement entropy on bounded pure two-qubit states, "
+    "kept separate from bridge/nonclassical entropy, entanglement spectrum, negativity, "
+    "and broad bipartite bundles."
 )
 
 LEGO_IDS = [
@@ -47,9 +53,9 @@ TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 TOOL_MANIFEST["numpy"] = {
     "tried": True,
     "used": True,
-    "reason": "load-bearing finite array/matrix computation for this bounded classical lego receipt",
+    "reason": "supportive finite array/matrix computation for this bounded classical baseline receipt",
 }
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
+TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
 
 
 def density_from_pure(psi):
@@ -150,6 +156,7 @@ def main():
         "name": "entanglement_entropy",
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

@@ -10,14 +10,19 @@ import pathlib
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Numpy-only finite witness-operator matrix baseline: no SDP/proof solver "
+    "certificate, no CPTP/channel dynamics, no topology/operator coupling, "
+    "and no bridge or nonclassical admission."
+)
 
 
 EPS = 1e-10
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
-    "Canonical local lego for bounded two-qubit entanglement witnesses, kept separate "
-    "from scalar entanglement summaries like concurrence or negativity."
+    "Classical baseline lego for bounded two-qubit entanglement witnesses, kept separate "
+    "from proof-backed, SDP-backed, bridge, or nonclassical witness rows."
 )
 
 LEGO_IDS = [
@@ -44,6 +49,12 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_MANIFEST["numpy"] = {
+    "tried": True,
+    "used": True,
+    "reason": "supportive finite matrix arithmetic for this bounded classical baseline receipt",
+}
+TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
 
 
 def dm(v):
@@ -126,6 +137,7 @@ def main():
         "name": "entanglement_witness_family",
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

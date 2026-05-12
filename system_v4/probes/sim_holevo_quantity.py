@@ -10,14 +10,19 @@ import pathlib
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Numpy-only finite cq-ensemble matrix baseline: no channel optimization, "
+    "no CPTP witness, no noncommuting measurement schedule, and no bridge or "
+    "nonclassical admission."
+)
 
 
 EPS = 1e-10
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
-    "Canonical local lego for Holevo quantity on bounded qubit ensembles, kept separate "
-    "from mutual information and full channel-capacity rows."
+    "Classical baseline lego for Holevo quantity on bounded qubit ensembles, kept separate "
+    "from bridge/nonclassical Holevo witnesses, mutual information, and full channel-capacity rows."
 )
 
 LEGO_IDS = [
@@ -47,9 +52,9 @@ TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 TOOL_MANIFEST["numpy"] = {
     "tried": True,
     "used": True,
-    "reason": "load-bearing finite array/matrix computation for this bounded classical lego receipt",
+    "reason": "supportive finite array/matrix computation for this bounded classical baseline receipt",
 }
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
+TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
 
 
 def pure_state(vec):
@@ -148,6 +153,7 @@ def main():
         "name": "holevo_quantity",
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

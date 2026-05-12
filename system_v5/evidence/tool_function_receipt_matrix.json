@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T04:49:04.550141+00:00",
+  "generated_at": "2026-05-12T04:52:28.127265+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -22,6 +22,33 @@
         "no scientific lego coupling promotion"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/pytorch_capability_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "canonical",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "nonclassical_adjacent",
+      "tool": "pytorch"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "differentiable_constraint_micro",
+        "entropy_gradient_fit"
+      ],
+      "claim_ceiling": "finite sim_pytorch_autograd_gradient_micro lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+      "depth": "load_bearing",
+      "function_api": "torch.autograd.grad(outputs, inputs, create_graph=True) first/second derivative fixture",
+      "manifest_reason": "tool under micro test: torch.autograd.grad first/second derivatives",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "QIT engine admission",
+        "GStack promotion",
+        "axis promotion",
+        "nonclassical admission",
+        "bridge admission"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/sim_pytorch_autograd_gradient_micro_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "canonical",
       "receipt_exists": true,
@@ -794,10 +821,10 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 29,
+    "passing_count": 30,
     "receipt_boundary_gap_count": 9,
-    "receipt_schema_missing_count": 29,
-    "row_count": 29,
+    "receipt_schema_missing_count": 30,
+    "row_count": 30,
     "tools": [
       "clifford",
       "cvc5",

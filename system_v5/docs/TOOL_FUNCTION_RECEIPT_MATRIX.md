@@ -1,13 +1,13 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-12T04:49:04.550141+00:00`
+Generated: `2026-05-12T04:52:28.127265+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `29`
-- Passing rows: `29`
+- Rows: `30`
+- Passing rows: `30`
 - Missing receipts: `0`
 
 ## Matrix
@@ -15,6 +15,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | tool | exact function/API surface | receipt | classification | role | depth | pass | candidate lego targets |
 |---|---|---|---|---|---|---|---|
 | `pytorch` | torch.autograd.grad/backward, torch.nn.Module, torch.matmul/tensor shape ops | `system_v4/probes/a2_state/sim_results/pytorch_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `density_matrix_representability`, `operator_family_admission` |
+| `pytorch` | torch.autograd.grad(outputs, inputs, create_graph=True) first/second derivative fixture | `system_v4/probes/a2_state/sim_results/sim_pytorch_autograd_gradient_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `differentiable_constraint_micro`, `entropy_gradient_fit` |
 | `pyg` | torch_geometric.nn.GCNConv MessagePassing over Hopf-fiber edge_index | `system_v4/probes/a2_state/sim_results/sim_pyg_hopf_graph_deep_capability_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `graph_shell_geometry`, `werner_local_structure` |
 | `pyg` | torch_geometric.nn.MessagePassing.propagate directed additive aggregation | `system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_cell_complex_geometry`, `operator_family_admission` |
 | `qutip` | qutip.basis, ket2dm, sigmax/sigmaz expectation | `system_v4/probes/a2_state/sim_results/qutip_capability_results.json` | `canonical` | `bridge_useful` | `load_bearing` | `True` | `channel_cptp_map`, `lindbladian_evolution` |

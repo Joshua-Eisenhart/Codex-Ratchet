@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-12T00:39:05.151927+00:00",
+  "generated_at": "2026-05-12T01:23:48.938036+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 3958,
-    "result_json_count": 779,
-    "linked_result_json_count": 742,
+    "result_json_count": 780,
+    "linked_result_json_count": 743,
     "unlinked_result_json_count": 37,
     "admitted_count": 9,
     "admission_repair_count": 0,
     "status_counts": {
-      "source_only": 3217,
-      "rerun_or_admission_candidate": 511,
+      "source_only": 3216,
+      "rerun_or_admission_candidate": 512,
       "legacy_result_or_repair_needed": 29,
       "contract_shaped_but_tool_depth_thin": 192,
       "admitted": 9
@@ -65,15 +65,15 @@
       "gudhi": 122,
       "scipy": 68,
       "toponetx": 121,
-      "e3nn": 55,
-      "pyg": 69,
+      "e3nn": 56,
+      "pyg": 70,
       "qutip": 37,
       "qiskit": 12,
       "networkx": 4
     },
     "result_classification_counts": {
       "classical_baseline": 258,
-      "canonical": 378,
+      "canonical": 379,
       "supporting": 13,
       "exploratory": 29,
       "audit": 3,
@@ -85,8 +85,8 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 732,
-    "source_only_count": 3217
+    "repair_candidate_count": 733,
+    "source_only_count": 3216
   },
   "admitted_stems": [
     "sim_clifford_capability",
@@ -86030,24 +86030,31 @@
         "axis_bridge"
       ],
       "tools": {
-        "pytorch": "imported",
-        "pyg": "imported",
-        "e3nn": "imported"
+        "pytorch": "supportive",
+        "pyg": "load_bearing",
+        "e3nn": "load_bearing"
       },
-      "load_bearing_tools": [],
+      "load_bearing_tools": [
+        "e3nn",
+        "pyg"
+      ],
       "source_has_tool_manifest": true,
       "source_has_tool_integration_depth": true,
-      "result_paths": [],
-      "result_count": 0,
-      "result_classifications": [],
-      "result_has_contract_shape": false,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "canonical"
+      ],
+      "result_has_contract_shape": true,
       "admission_path": "",
       "admission_expected_result_path": "",
       "admission_status": "no_admission",
       "admitted": false,
       "late_stage_signal": false,
-      "has_contract_shape": false,
-      "inventory_status": "source_only"
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_integration_e3nn_spectral_triple_dirac_equivariance",

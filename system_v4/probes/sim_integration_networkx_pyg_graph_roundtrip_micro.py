@@ -20,6 +20,8 @@ import torch
 from torch_geometric.data import Data
 from torch_geometric.nn import MessagePassing
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 NAME = "sim_integration_networkx_pyg_graph_roundtrip_micro"
 PROBE_FAMILY = "networkx_pyg_graph_roundtrip_micro"
@@ -279,12 +281,24 @@ if __name__ == "__main__":
             "edge-orientation exclusion",
             "isolated-node boundary preservation",
         ],
+        "claim_ceiling": "tool_tool_micro_integration_only",
+        "next_lego_target": "bounded NetworkX-to-PyG graph handoff fixture before graph-cell or density-carrier lego promotion",
+        "promotion_condition": (
+            "requires a later admitted downstream row that names this exact "
+            "NetworkX-PyG handoff receipt plus its PyG parent receipt; this micro "
+            "row does not promote a lego or broad graph-learning claim"
+        ),
+        "blocked_until": (
+            "blocked from lego, bridge, axis, engine, or nonclassical promotion until "
+            "a downstream target passes strict admission with this receipt as a named parent"
+        ),
         "summary": {
             "passed": sum(1 for test in flat_tests if test.get("passed")),
             "total": len(flat_tests),
         },
         "all_pass": all_pass,
     }
+    results = apply_default_receipt_boundary(results, source_name=NAME)
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T05:29:47.614265+00:00",
+  "generated_at": "2026-05-12T05:35:58.574532+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -429,6 +429,34 @@
         "no proof of the whole GUDHI library"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/sim_gudhi_simplex_persistence_micro_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "canonical",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "nonclassical_adjacent",
+      "tool": "gudhi"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "concurrence_measure",
+        "persistence_geometry"
+      ],
+      "claim_ceiling": "finite gudhi_concurrence_filtration lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+      "depth": "load_bearing",
+      "function_api": "gudhi.SimplexTree insert/make_filtration_non_decreasing/compute_persistence over PyTorch-derived concurrence and I_c filtrations",
+      "manifest_reason": "Simplex tree filtration (by concurrence and I_c) -- primary topological analysis",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "no QIT engine claim",
+        "no nonclassical admission by itself",
+        "no bridge claim",
+        "no axis claim",
+        "no GStack claim",
+        "no general entanglement-topology theorem"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/gudhi_concurrence_filtration_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "canonical",
       "receipt_exists": true,
@@ -1150,10 +1178,10 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 42,
+    "passing_count": 43,
     "receipt_boundary_gap_count": 9,
-    "receipt_schema_missing_count": 42,
-    "row_count": 42,
+    "receipt_schema_missing_count": 43,
+    "row_count": 43,
     "tools": [
       "clifford",
       "cvc5",

@@ -1,13 +1,13 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-12T05:29:47.614265+00:00`
+Generated: `2026-05-12T05:35:58.574532+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `42`
-- Passing rows: `42`
+- Rows: `43`
+- Passing rows: `43`
 - Missing receipts: `0`
 
 ## Matrix
@@ -30,6 +30,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `clifford` | clifford Cl(3) rotor transport over SymPy-derived Weyl Bloch-vector fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_clifford_weyl_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `clifford_weyl_transport`, `weyl_spinor_geometry` |
 | `gudhi` | SimplexTree, Rips/filtration persistence and Betti summaries | `system_v4/probes/a2_state/sim_results/gudhi_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `persistence_geometry`, `concurrence_measure` |
 | `gudhi` | gudhi.SimplexTree insert/assign_filtration/persistence on a tiny filtered complex | `system_v4/probes/a2_state/sim_results/sim_gudhi_simplex_persistence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `persistence_geometry`, `cell_complex_geometry` |
+| `gudhi` | gudhi.SimplexTree insert/make_filtration_non_decreasing/compute_persistence over PyTorch-derived concurrence and I_c filtrations | `system_v4/probes/a2_state/sim_results/gudhi_concurrence_filtration_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `concurrence_measure`, `persistence_geometry` |
 | `toponetx` | CellComplex/SimplicialComplex rank cells and incidence_matrix | `system_v4/probes/a2_state/sim_results/toponetx_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `state_class_binding_geometry`, `cell_complex_geometry` |
 | `toponetx` | CellComplex rank-2 cell incidence_matrix(2) | `system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `cell_complex_geometry`, `hypergraph_shell_geometry` |
 | `toponetx` | SimplicialComplex.to_hasse_graph node/edge carrier feeding PyG graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `topology_to_graph_fit`, `cell_complex_geometry` |

@@ -1,25 +1,26 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T06:04:36.651549+00:00",
+  "generated_at": "2026-05-12T06:07:34.999836+00:00",
   "rows": [
     {
-      "boundary_gap": true,
-      "boundary_source": "matrix_default",
+      "boundary_gap": false,
+      "boundary_source": "receipt",
       "candidate_lego_targets": [
         "density_matrix_representability",
         "operator_family_admission"
       ],
-      "claim_ceiling": "tool_function_receipt_only_not_admission_or_promotion",
+      "claim_ceiling": "finite sim_pytorch_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
       "depth": "load_bearing",
       "function_api": "torch.autograd.grad/backward, torch.nn.Module, torch.matmul/tensor shape ops",
-      "manifest_reason": "capability under test -- autograd, nn.Module, tensor ops",
+      "manifest_reason": "load-bearing capability under test: PyTorch autograd backward/grad, nn.Module forward/backward, optimizer step, tensor shape, and matmul APIs decide the receipt verdicts.",
       "observed_depth": "load_bearing",
       "out_of_scope": [
-        "no QIT admission",
-        "no GStack admission",
-        "no axis admission",
-        "no bridge or engine claim",
-        "no scientific lego coupling promotion"
+        "no density-matrix lego promotion",
+        "no QIT engine claim",
+        "no bridge claim",
+        "no axis claim",
+        "no GStack claim",
+        "no nonclassical admission"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/pytorch_capability_results.json",
       "receipt_all_pass": true,
@@ -84,23 +85,24 @@
       "tool": "pytorch"
     },
     {
-      "boundary_gap": true,
-      "boundary_source": "matrix_default",
+      "boundary_gap": false,
+      "boundary_source": "receipt",
       "candidate_lego_targets": [
         "graph_shell_geometry",
         "werner_local_structure"
       ],
-      "claim_ceiling": "tool_function_receipt_only_not_admission_or_promotion",
+      "claim_ceiling": "finite sim_pyg_hopf_graph_deep_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
       "depth": "load_bearing",
       "function_api": "torch_geometric.nn.GCNConv MessagePassing over Hopf-fiber edge_index",
       "manifest_reason": "GCNConv MessagePassing computes neighbourhood-aggregated node embeddings on the Hopf-fiber graph; the admitted node set is defined by thresholding GCN output norms, making PyG load-bearing for the admissibility claim",
       "observed_depth": "load_bearing",
       "out_of_scope": [
-        "no QIT admission",
-        "no GStack admission",
-        "no axis admission",
-        "no bridge or engine claim",
-        "no scientific lego coupling promotion"
+        "no graph-shell lego promotion",
+        "no Werner-local-structure promotion",
+        "no bridge claim",
+        "no axis claim",
+        "no GStack claim",
+        "no nonclassical admission"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/sim_pyg_hopf_graph_deep_capability_results.json",
       "receipt_all_pass": true,
@@ -1267,7 +1269,7 @@
   "summary": {
     "missing_receipt_count": 0,
     "passing_count": 46,
-    "receipt_boundary_gap_count": 2,
+    "receipt_boundary_gap_count": 0,
     "receipt_schema_missing_count": 46,
     "row_count": 46,
     "tools": [

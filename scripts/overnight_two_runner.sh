@@ -145,6 +145,7 @@ stage_gate_claim_for_sim() {
   base=$(basename "$sim" .py)
   base=${base#sim_}
   case "$base" in
+    classical_baseline_*) return 1 ;;
     *tier_d*|*boundary_flux*) echo "tier_d"; return 0 ;;
     *bridge*|*coupling*|*pairwise*|*coexistence*|*rho_ab*|*phi0*|*kernel*|*emergence*) echo "scientific_coupling"; return 0 ;;
     axis*|axis0*) echo "axis"; return 0 ;;

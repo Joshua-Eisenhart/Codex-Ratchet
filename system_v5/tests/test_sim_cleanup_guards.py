@@ -6094,6 +6094,8 @@ def test_autonomous_reseed_loop_blocks_stage_gated_enqueue() -> None:
     assert "stage_gate_allows_sim" in text
     assert 'scripts/stage_gate.py --claim "$claim"' in text
     assert "stage gate blocked enqueue" in text
+    assert "classical_baseline_*) echo \"early_core\"; return 0 ;;" in text
+    assert "classical_baseline_*) return 1 ;;" in text
 
 
 def test_overnight_two_runner_blocks_stage_gated_claims() -> None:
@@ -6102,6 +6104,7 @@ def test_overnight_two_runner_blocks_stage_gated_claims() -> None:
     assert 'scripts/stage_gate.py" --claim "$claim"' in text
     assert "stage_gate_blocked" in text
     assert "QUEUE_CLAIM\" block" in text
+    assert "classical_baseline_*) return 1 ;;" in text
 
 
 def test_parallel_runner_has_helper_and_admission_preflight() -> None:

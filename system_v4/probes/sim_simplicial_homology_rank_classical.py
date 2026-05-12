@@ -8,6 +8,8 @@ Verified across several complexes against known homology groups.
 import json, os, numpy as np
 from itertools import combinations
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 
 TOOL_MANIFEST = {
@@ -31,7 +33,7 @@ TOOL_INTEGRATION_DEPTH = {
     "geomstats": None,
     "gudhi": None,
     "pyg": None,
-    "pytorch": "load_bearing",
+    "pytorch": "supportive",
     "rustworkx": None,
     "sympy": None,
     "toponetx": None,
@@ -47,11 +49,15 @@ try:
 except ImportError:
     TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
 
-divergence_log = [
+divergence_details = [
     "Computed homology over R; integer torsion not detected (acceptable for listed test complexes).",
     "Rejected computing via explicit cycle bases; rank arithmetic is equivalent and faster.",
     "Selected S^2 (octahedron), circle (triangle boundary), and Klein-bottle-free orientable cases to avoid mod-2 subtlety.",
 ]
+divergence_log = (
+    "Classical simplicial homology rank baseline only; no bridge, QIT, "
+    "GStack, axis, or nonclassical admission claim."
+)
 
 
 def boundary_k(simplices_k, simplices_km1):
@@ -136,12 +142,21 @@ def run_boundary_tests():
 if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(v["pass"] for d in (pos,neg,bnd) for v in d.values())
-    results = {"name": "simplicial_homology_rank_classical", "classification": classification,
+    results = {"name": "sim_simplicial_homology_rank_classical", "classification": classification,
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-               "divergence_log": divergence_log, "positive": pos, "negative": neg, "boundary": bnd,
+               "divergence_log": divergence_log, "divergence_details": divergence_details,
+               "positive": pos, "negative": neg, "boundary": bnd,
                "all_pass": all_pass, "summary": {"all_pass": all_pass}}
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_simplicial_homology_rank_classical",
+        target=(
+            "Use as bounded classical simplicial homology rank baseline evidence "
+            "before topology, persistence, graph-shell, or cell-complex tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "simplicial_homology_rank_classical_results.json")
-    with open(out_path, "w") as f: json.dump(results, f, indent=2, default=str)
+    out_path = os.path.join(out_dir, "sim_simplicial_homology_rank_classical_results.json")
+    with open(out_path, "w", encoding="utf-8") as f: json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}; all_pass={all_pass}")

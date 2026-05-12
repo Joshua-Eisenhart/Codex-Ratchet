@@ -21,19 +21,13 @@ divergence_log = (
     "constraints. This baseline elides CP and complete positivity."
 )
 
-try:
-    import torch  # noqa: F401
-    _torch_ok = True
-except Exception:
-    _torch_ok = False
-
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "matrix operations and TV"},
     "scipy": {"tried": True, "used": True, "reason": "linprog for LP subroutine"},
     "pytorch": {
-        "tried": _torch_ok,
-        "used": _torch_ok,
-        "reason": "supportive import only",
+        "tried": False,
+        "used": False,
+        "reason": "optional supportive import only",
     },
     "z3": {"tried": False, "used": False, "reason": "no SMT proof"},
 }
@@ -44,6 +38,14 @@ TOOL_INTEGRATION_DEPTH = {
     "scipy": "supportive",
     "z3": None,
 }
+
+try:
+    import torch  # noqa: F401
+    TOOL_MANIFEST["pytorch"]["tried"] = True
+    TOOL_MANIFEST["pytorch"]["used"] = True
+    TOOL_MANIFEST["pytorch"]["reason"] = "supportive import only"
+except Exception:
+    TOOL_MANIFEST["pytorch"]["reason"] = "not installed; baseline uses numpy/scipy"
 
 
 def tv_rows(P, Q):

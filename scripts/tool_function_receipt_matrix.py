@@ -35,6 +35,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["differentiable_constraint_micro", "entropy_gradient_fit"],
     },
     {
+        "tool": "pytorch",
+        "function_api": "torch.linalg.eigvalsh plus torch.autograd.grad entropy gradient over normalized 2x2 PSD density fixture",
+        "receipt": "system_v4/probes/a2_state/sim_results/sim_pytorch_density_entropy_gradient_micro_results.json",
+        "role": "nonclassical_adjacent",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["density_matrix_representability", "entropy_gradient_fit"],
+    },
+    {
         "tool": "pyg",
         "function_api": "torch_geometric.nn.GCNConv MessagePassing over Hopf-fiber edge_index",
         "receipt": "system_v4/probes/a2_state/sim_results/sim_pyg_hopf_graph_deep_capability_results.json",

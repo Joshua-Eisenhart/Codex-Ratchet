@@ -11,10 +11,14 @@ This is pre-lego evidence. It does not promote a lego, coupling, bridge, or
 stack claim.
 """
 
+from __future__ import annotations
+
 import json
 import os
 
 import torch
+
+from receipt_boundary import apply_default_receipt_boundary
 
 classification = "canonical"
 NAME = "sim_pytorch_density_entropy_gradient_micro"
@@ -235,6 +239,14 @@ if __name__ == "__main__":
         "summary": {"passed": sum(1 for test in flat_tests if test.get("passed")), "total": len(flat_tests)},
         "all_pass": all_pass,
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target=(
+            "Use as bounded PyTorch eigvalsh/autograd entropy-gradient function evidence "
+            "before density-matrix or entropy-gradient lego-fit packets."
+        ),
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

@@ -16,6 +16,8 @@ import sympy as sp
 import torch
 from z3 import Real, Solver, sat, unsat
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 
 TOOL_MANIFEST = {
@@ -131,15 +133,48 @@ def run_boundary_tests():
 
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    sections = [positive, negative, boundary]
+    passed = sum(1 for section in sections for value in section.values() if value.get("pass"))
+    total = sum(1 for section in sections for value in section.values() if "pass" in value)
+    all_pass = passed == total and total > 0
     results = {
         "name": "sim_weyl_affine_a2_alcove_shell_local",
         "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": {"passed": passed, "total": total, "all_pass": all_pass},
+        "all_pass": all_pass,
+        "claim_ceiling": "tool_lego_fit_probe_only",
+        "next_lego_target": "bounded affine A2 alcove shell fixture before Weyl coupling, bridge, axis, or QIT promotion",
+        "promotion_condition": (
+            "requires later admitted downstream Weyl coupling rows with exact parent receipts and stage-gate approval; "
+            "this receipt does not promote a bridge, axis, GStack, QIT engine, or nonclassical claim"
+        ),
+        "blocked_until": (
+            "blocked from bridge, axis, GStack, QIT engine, and nonclassical promotion until exact parent receipts "
+            "and downstream coupling/admission packets pass strict validation"
+        ),
+        "demotion_condition": (
+            "Demote this bounded affine A2 alcove surface if torch wall checks fail, z3 admits contradictory wall constraints, "
+            "sympy highest-root/area checks fail, or boundary wall/vertex fixtures fail."
+        ),
+        "out_of_scope": [
+            "no bridge, axis, GStack, QIT engine, or nonclassical admission",
+            "no proof of a full affine Weyl group program",
+            "no scientific lego promotion from this receipt alone",
+            "no replacement for downstream Weyl coupling receipts",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_weyl_affine_a2_alcove_shell_local",
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "sim_weyl_affine_a2_alcove_shell_local_results.json")

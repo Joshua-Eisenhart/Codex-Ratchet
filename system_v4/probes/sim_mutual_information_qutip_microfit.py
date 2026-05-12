@@ -17,6 +17,8 @@ import numpy as np
 import qutip
 import z3
 
+from receipt_boundary import apply_default_receipt_boundary
+
 
 CLASSIFICATION = "tool_lego_fit_probe"
 classification = CLASSIFICATION
@@ -287,6 +289,11 @@ def main() -> None:
         "all_pass": all_pass,
         "generated_at": datetime.now(UTC).isoformat(),
     }
+    result = apply_default_receipt_boundary(
+        result,
+        source_name="mutual_information_qutip_microfit",
+        target="Use as bounded qutip -> mutual_information_measure tool-lego fit evidence; no coupling or promotion without companion receipts.",
+    )
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(result, indent=2, default=str) + "\n", encoding="utf-8")
     print(f"Results written to {OUT_PATH}")

@@ -16,25 +16,87 @@ import json
 import os
 from typing import Any, Dict, Iterable, List, Sequence
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 NAME = "tool_integration_toponetx_pyg"
 
 TOOL_MANIFEST = {
-    "toponetx": {
+    "pytorch": {
         "tried": False,
         "used": False,
-        "reason": "TopoNetX admits the simplicial complexes, exposes the Hasse-graph carrier, and supplies the node/edge structure that PyG consumes; without those topology outputs the graph-side claim is under-specified.",
+        "reason": "supportive dependency for PyG tensor construction; not the load-bearing integration surface in this packet.",
     },
     "pyg": {
         "tried": False,
         "used": False,
         "reason": "PyG realizes the TopoNetX-derived carrier as Data objects, validates graph integrity, propagates simplex-dimension features, and pools graph summaries; removing PyG excludes the integration claim rather than leaving a decorative import.",
     },
+    "z3": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this packet checks topology-to-graph tensor integration, not SMT satisfiability.",
+    },
+    "cvc5": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this packet checks topology-to-graph tensor integration, not cvc5 solver constraints.",
+    },
+    "sympy": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: no symbolic algebra surface is exercised.",
+    },
+    "clifford": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: no geometric algebra surface is exercised.",
+    },
+    "geomstats": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: no manifold metric or geodesic surface is exercised.",
+    },
+    "e3nn": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: no equivariant representation surface is exercised.",
+    },
+    "rustworkx": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: graph realization is through PyG, not rustworkx DAG algorithms.",
+    },
+    "xgi": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: the fixture is a simplicial-complex Hasse graph, not a hypergraph.",
+    },
+    "toponetx": {
+        "tried": False,
+        "used": False,
+        "reason": "TopoNetX admits the simplicial complexes, exposes the Hasse-graph carrier, and supplies the node/edge structure that PyG consumes; without those topology outputs the graph-side claim is under-specified.",
+    },
+    "gudhi": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: no persistence or simplex-tree surface is exercised.",
+    },
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "toponetx": "load_bearing",
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
     "pyg": "load_bearing",
+    "pytorch": "supportive",
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": "load_bearing",
+    "xgi": None,
+    "z3": None,
 }
 
 try:
@@ -51,10 +113,13 @@ try:
     from torch_geometric.nn import MessagePassing, global_mean_pool
 
     TOOL_MANIFEST["pyg"]["tried"] = True
+    TOOL_MANIFEST["pytorch"]["tried"] = True
+    TOOL_MANIFEST["pytorch"]["used"] = True
 except ImportError:
     torch = None
     Batch = Data = MessagePassing = global_mean_pool = None
     TOOL_MANIFEST["pyg"]["reason"] = "PyG import failed on this machine; queued execution will decide whether graph realization, validation, and message passing over TopoNetX-derived carriers are available."
+    TOOL_MANIFEST["pytorch"]["reason"] = "PyTorch import failed with PyG; tensor substrate unavailable."
 
 
 class SimplexNeighborSum(MessagePassing if MessagePassing is not None else object):
@@ -310,16 +375,55 @@ def run_boundary_tests():
     return results
 
 
+def _case_pass(case: Dict[str, Any]) -> bool:
+    if case.get("status") == "skipped":
+        return False
+    if "matches_expected" in case:
+        return bool(case["matches_expected"])
+    if "expected" in case and "status" in case:
+        return case.get("status") == case.get("expected")
+    if "pyg_validate_flag" in case:
+        return bool((not case.get("pyg_validate_flag")) and case.get("raised_value_error"))
+    return False
+
+
+def _section_all_pass(section: Dict[str, Dict[str, Any]]) -> bool:
+    return bool(section) and all(_case_pass(case) for case in section.values())
+
+
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    summary = {
+        "positive_all_pass": _section_all_pass(positive),
+        "negative_all_pass": _section_all_pass(negative),
+        "boundary_all_pass": _section_all_pass(boundary),
+    }
+    summary["all_pass"] = all(summary.values())
     results = {
         "name": NAME,
         "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": summary,
+        "all_pass": bool(summary["all_pass"]),
+        "criteria_checked": [
+            "TopoNetX Hasse graph feeds PyG message passing",
+            "TopoNetX complex family feeds PyG batch pooling",
+            "Invalid duplicate-vertex simplex is excluded before PyG realization",
+            "Truncated TopoNetX export is excluded by PyG validation",
+            "Singleton and minimal-edge TopoNetX boundaries survive PyG realization",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded TopoNetX to PyG tool-integration evidence before topology-to-graph lego fit packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
@@ -327,3 +431,6 @@ if __name__ == "__main__":
     with open(out_path, "w", encoding="utf-8") as handle:
         json.dump(_serialize(results), handle, indent=2, sort_keys=True)
     print(f"Results written to {out_path}")
+    print(f"summary.all_pass = {summary['all_pass']}")
+    if not summary["all_pass"]:
+        raise SystemExit(1)

@@ -59,6 +59,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["graph_symbolic_fit", "graph_shell_geometry"],
     },
     {
+        "tool": "pyg",
+        "function_api": "torch_geometric.data.Data/Batch, MessagePassing.propagate, global_mean_pool over TopoNetX Hasse graph fixtures",
+        "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json",
+        "role": "nonclassical_adjacent",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["topology_to_graph_fit", "cell_complex_geometry"],
+    },
+    {
         "tool": "qutip",
         "function_api": "qutip.basis, ket2dm, sigmax/sigmaz expectation",
         "receipt": "system_v4/probes/a2_state/sim_results/qutip_capability_results.json",
@@ -129,6 +137,14 @@ TARGETS: list[dict[str, Any]] = [
         "role": "nonclassical_adjacent",
         "depth": "load_bearing",
         "candidate_lego_targets": ["cell_complex_geometry", "hypergraph_shell_geometry"],
+    },
+    {
+        "tool": "toponetx",
+        "function_api": "SimplicialComplex.to_hasse_graph node/edge carrier feeding PyG graph fixtures",
+        "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json",
+        "role": "nonclassical_adjacent",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["topology_to_graph_fit", "cell_complex_geometry"],
     },
     {
         "tool": "xgi",

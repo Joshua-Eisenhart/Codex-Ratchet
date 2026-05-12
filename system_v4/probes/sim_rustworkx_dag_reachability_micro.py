@@ -20,6 +20,8 @@ import json
 import os
 from collections import deque
 
+from receipt_boundary import apply_default_receipt_boundary
+
 
 classification = "canonical"
 
@@ -354,7 +356,32 @@ if __name__ == "__main__":
         ],
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
+        "claim_ceiling": "tool_lego_fit_probe_only",
+        "next_lego_target": "bounded rustworkx graph-shell reachability fixture before graph-cell lego promotion",
+        "promotion_condition": (
+            "requires later admitted graph-cell or dependency-DAG lego rows with exact parent receipts and stage-gate approval; "
+            "this receipt does not promote graph-cell geometry, bridge, axis, GStack, QIT engine, or nonclassical claims"
+        ),
+        "blocked_until": (
+            "blocked from graph-cell lego promotion, bridge, axis, GStack, QIT engine, and nonclassical promotion until exact "
+            "parent receipts and downstream admission packets pass strict validation"
+        ),
+        "demotion_condition": (
+            "Demote this rustworkx reachability surface if PyDiGraph has_path, descendants, or ancestors disagree with the "
+            "hand-written BFS baseline on any positive, negative, or boundary fixture."
+        ),
+        "out_of_scope": [
+            "no graph-cell lego promotion",
+            "no bridge, axis, GStack, QIT engine, or nonclassical admission",
+            "no hypergraph incidence or cell-complex boundary claim",
+            "no proof of the whole rustworkx library",
+            "no replacement for downstream graph-cell or dependency-DAG receipts",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_rustworkx_dag_reachability_micro",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

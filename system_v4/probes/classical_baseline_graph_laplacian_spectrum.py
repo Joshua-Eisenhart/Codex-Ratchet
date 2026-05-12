@@ -5,8 +5,12 @@ numpy-only baseline sim. Non-canonical.
 import os, json
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
+classification = "classical_baseline"
+
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing: all numerics (Graph Laplacian spectrum)"},
+    "numpy": {"tried": True, "used": True, "reason": "supportive classical baseline numeric core for graph_laplacian_spectrum"},
     "pytorch": {"tried": False, "used": False, "reason": "not needed for classical baseline"},
     "pyg": {"tried": False, "used": False, "reason": "no graph learning in this sim"},
     "z3": {"tried": False, "used": False, "reason": "no SMT claim in classical baseline"},
@@ -21,9 +25,13 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "no persistent homology needed"},
 }
 
-divergence_log = "Classical baseline: Graph Laplacian spectrum, not a canonical nonclassical witness."
+divergence_log = (
+    "Classical graph Laplacian spectrum baseline only; checks finite adjacency "
+    "matrix spectral properties and does not support bridge, QIT, GStack, axis, "
+    "or nonclassical claims."
+)
 
-TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 def run_positive_tests():
     rng=np.random.default_rng(4); N=20
@@ -41,19 +49,37 @@ def run_boundary_tests():
     return {"single_node_zero_L": {"pass": True}}
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    all_pass = all(
+        v.get("pass", False)
+        for sect in (positive, negative, boundary)
+        for v in sect.values()
+    )
     results = {
         "name": "classical_baseline_graph_laplacian_spectrum",
-        "classification": "classical_baseline",
+        "classification": classification,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "all_pass": bool(all_pass),
+        "lane": "lane_B",
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="classical_baseline_graph_laplacian_spectrum",
+        target=(
+            "Use as bounded classical graph Laplacian spectrum baseline evidence "
+            "before any spectral, graph-shell, or topology tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "classical_baseline_graph_laplacian_spectrum_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
-    overall = all(v.get("pass", False) for sect in (results["positive"], results["negative"], results["boundary"]) for v in sect.values())
-    print(f"{'PASS' if overall else 'FAIL'} classical_baseline_graph_laplacian_spectrum")
+    print(f"{'PASS' if all_pass else 'FAIL'} classical_baseline_graph_laplacian_spectrum")

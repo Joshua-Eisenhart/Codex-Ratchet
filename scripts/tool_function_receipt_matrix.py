@@ -51,6 +51,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["graph_cell_complex_geometry", "operator_family_admission"],
     },
     {
+        "tool": "pyg",
+        "function_api": "torch_geometric.data.Data/Batch, MessagePassing.propagate, global_mean_pool over SymPy-derived graph fixtures",
+        "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_sympy_pyg_results.json",
+        "role": "nonclassical_adjacent",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["graph_symbolic_fit", "graph_shell_geometry"],
+    },
+    {
         "tool": "qutip",
         "function_api": "qutip.basis, ket2dm, sigmax/sigmaz expectation",
         "receipt": "system_v4/probes/a2_state/sim_results/qutip_capability_results.json",
@@ -217,6 +225,14 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_bridge",
         "depth": "load_bearing",
         "candidate_lego_targets": ["exact_matrix_identity", "operator_family_admission"],
+    },
+    {
+        "tool": "sympy",
+        "function_api": "sympy roots/discriminant/exact rational edge-weight construction feeding PyG graph fixtures",
+        "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_sympy_pyg_results.json",
+        "role": "classical_bridge",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["graph_symbolic_fit", "exact_algebra_crosschecks"],
     },
     {
         "tool": "geomstats",

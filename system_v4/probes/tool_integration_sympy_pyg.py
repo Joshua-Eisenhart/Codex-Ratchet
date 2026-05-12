@@ -12,6 +12,8 @@ import json
 import os
 from typing import Any, Dict, List
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 NAME = "tool_integration_sympy_pyg"
 
@@ -20,6 +22,11 @@ TOOL_MANIFEST = {
         "tried": False,
         "used": False,
         "reason": "SymPy derives the exact real roots, discriminants, and symbolic edge weights that the graph side consumes; without those symbolic outputs the graph instances in every section are under-specified.",
+    },
+    "pytorch": {
+        "tried": False,
+        "used": False,
+        "reason": "supportive dependency for PyG tensor construction; not the load-bearing integration surface in this packet.",
     },
     "pyg": {
         "tried": False,
@@ -30,6 +37,7 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing",
+    "pytorch": "supportive",
     "pyg": "load_bearing",
 }
 
@@ -47,10 +55,13 @@ try:
     from torch_geometric.nn import MessagePassing, global_mean_pool
 
     TOOL_MANIFEST["pyg"]["tried"] = True
+    TOOL_MANIFEST["pytorch"]["tried"] = True
+    TOOL_MANIFEST["pytorch"]["used"] = True
 except ImportError:
     torch = None
     Batch = Data = MessagePassing = global_mean_pool = None
     TOOL_MANIFEST["pyg"]["reason"] = "PyG import failed on this machine; queue execution will decide whether graph realization and propagation over SymPy-derived structures are available."
+    TOOL_MANIFEST["pytorch"]["reason"] = "PyTorch import failed with PyG; tensor substrate unavailable."
 
 
 class WeightedNeighborPass(MessagePassing if MessagePassing is not None else object):
@@ -259,16 +270,68 @@ def run_boundary_tests():
     return results
 
 
+def _case_pass(case: Dict[str, Any]) -> bool:
+    if case.get("status") == "skipped":
+        return False
+    if "matches_expected" in case:
+        return bool(case["matches_expected"] or _nested_numeric_close(case.get("pyg_output"), case.get("expected")))
+    if "counterfactual_excluded" in case:
+        return bool(
+            case.get("discriminant_zero")
+            and case.get("zero_weight_edge_present")
+            and case.get("counterfactual_excluded")
+        )
+    if "is_emptyset" in case:
+        return bool(case.get("is_emptyset") and not case.get("pyg_graph_built"))
+    return False
+
+
+def _nested_numeric_close(left: Any, right: Any, tol: float = 1e-6) -> bool:
+    if isinstance(left, list) and isinstance(right, list) and len(left) == len(right):
+        return all(_nested_numeric_close(a, b, tol=tol) for a, b in zip(left, right))
+    try:
+        return abs(float(left) - float(right)) <= tol
+    except (TypeError, ValueError):
+        return False
+
+
+def _section_all_pass(section: Dict[str, Dict[str, Any]]) -> bool:
+    return bool(section) and all(_case_pass(case) for case in section.values())
+
+
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    summary = {
+        "positive_all_pass": _section_all_pass(positive),
+        "negative_all_pass": _section_all_pass(negative),
+        "boundary_all_pass": _section_all_pass(boundary),
+    }
+    summary["all_pass"] = all(summary.values())
     results = {
         "name": NAME,
         "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": summary,
+        "all_pass": bool(summary["all_pass"]),
+        "criteria_checked": [
+            "SymPy real roots feed PyG weighted message passing",
+            "SymPy exact roots feed PyG batched pooling",
+            "Repeated roots produce a zero-gap edge and exclude distinct-chain behavior",
+            "A polynomial with no real roots blocks graph construction",
+            "Singleton and small-gap symbolic boundaries survive graph realization",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded SymPy to PyG tool-integration evidence before graph-symbolic lego fit packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
@@ -276,3 +339,6 @@ if __name__ == "__main__":
     with open(out_path, "w", encoding="utf-8") as handle:
         json.dump(_to_serializable(results), handle, indent=2, sort_keys=True)
     print(f"Results written to {out_path}")
+    print(f"summary.all_pass = {summary['all_pass']}")
+    if not summary["all_pass"]:
+        raise SystemExit(1)

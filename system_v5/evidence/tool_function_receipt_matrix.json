@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T05:35:58.574532+00:00",
+  "generated_at": "2026-05-12T05:39:05.496707+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -190,6 +190,60 @@
       "receipt_schema": null,
       "role": "nonclassical_adjacent",
       "tool": "pyg"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "graph_cell_handoff",
+        "density_graph_carrier"
+      ],
+      "claim_ceiling": "tool_tool_micro_integration_only",
+      "depth": "load_bearing",
+      "function_api": "torch_geometric.data.Data.validate and MessagePassing.propagate consuming exact NetworkX DiGraph node/edge fixtures",
+      "manifest_reason": "PyG is load-bearing: Data.validate and MessagePassing.propagate produce the graph-handoff verdicts.",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "no graph-cell lego promotion",
+        "no density-matrix or bridge claim",
+        "no GNN training claim",
+        "no proof of the whole NetworkX or PyG libraries",
+        "no tool-tool coupling beyond this exact graph handoff"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/sim_integration_networkx_pyg_graph_roundtrip_micro_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "canonical",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "nonclassical_adjacent",
+      "tool": "pyg"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "graph_cell_handoff",
+        "density_graph_carrier"
+      ],
+      "claim_ceiling": "tool_tool_micro_integration_only",
+      "depth": "load_bearing",
+      "function_api": "networkx.DiGraph nodes/edges/predecessors as exact source graph for PyG Data handoff",
+      "manifest_reason": "NetworkX is load-bearing: DiGraph nodes, features, and directed edges are the source graph that PyG must preserve.",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "no graph-cell lego promotion",
+        "no density-matrix or bridge claim",
+        "no GNN training claim",
+        "no proof of the whole NetworkX or PyG libraries",
+        "no tool-tool coupling beyond this exact graph handoff"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/sim_integration_networkx_pyg_graph_roundtrip_micro_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "canonical",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "classical_baseline",
+      "tool": "networkx"
     },
     {
       "boundary_gap": false,
@@ -1178,16 +1232,17 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 43,
+    "passing_count": 45,
     "receipt_boundary_gap_count": 9,
-    "receipt_schema_missing_count": 43,
-    "row_count": 43,
+    "receipt_schema_missing_count": 45,
+    "row_count": 45,
     "tools": [
       "clifford",
       "cvc5",
       "e3nn",
       "geomstats",
       "gudhi",
+      "networkx",
       "pyg",
       "pytorch",
       "qiskit",

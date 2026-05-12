@@ -1,13 +1,13 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-12T05:35:58.574532+00:00`
+Generated: `2026-05-12T05:39:05.496707+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `43`
-- Passing rows: `43`
+- Rows: `45`
+- Passing rows: `45`
 - Missing receipts: `0`
 
 ## Matrix
@@ -21,6 +21,8 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `pyg` | torch_geometric.nn.MessagePassing.propagate directed additive aggregation | `system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_cell_complex_geometry`, `operator_family_admission` |
 | `pyg` | torch_geometric.data.Data/Batch, MessagePassing.propagate, global_mean_pool over SymPy-derived graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_sympy_pyg_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_symbolic_fit`, `graph_shell_geometry` |
 | `pyg` | torch_geometric.data.Data/Batch, MessagePassing.propagate, global_mean_pool over TopoNetX Hasse graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `topology_to_graph_fit`, `cell_complex_geometry` |
+| `pyg` | torch_geometric.data.Data.validate and MessagePassing.propagate consuming exact NetworkX DiGraph node/edge fixtures | `system_v4/probes/a2_state/sim_results/sim_integration_networkx_pyg_graph_roundtrip_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_cell_handoff`, `density_graph_carrier` |
+| `networkx` | networkx.DiGraph nodes/edges/predecessors as exact source graph for PyG Data handoff | `system_v4/probes/a2_state/sim_results/sim_integration_networkx_pyg_graph_roundtrip_micro_results.json` | `canonical` | `classical_baseline` | `load_bearing` | `True` | `graph_cell_handoff`, `density_graph_carrier` |
 | `pyg` | torch_geometric.data.Batch.from_data_list tensor concatenation, edge-index offsetting, batch vector, and ptr | `system_v4/probes/a2_state/sim_results/sim_pyg_batching_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_batching_fixture`, `graph_shell_geometry` |
 | `qutip` | qutip.basis, ket2dm, sigmax/sigmaz expectation | `system_v4/probes/a2_state/sim_results/qutip_capability_results.json` | `canonical` | `bridge_useful` | `load_bearing` | `True` | `channel_cptp_map`, `lindbladian_evolution` |
 | `qutip` | qutip.mesolve Lindblad open-system evolution | `system_v4/probes/a2_state/sim_results/qutip_open_system_bridge_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `lindbladian_evolution`, `channel_cptp_map` |

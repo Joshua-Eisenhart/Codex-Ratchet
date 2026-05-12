@@ -2,9 +2,21 @@
 """Classical baseline: low_rank_psd_approximation."""
 import json, os, numpy as np
 from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
+from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"
 
-NAME = "low_rank_psd_approximation"
+NAME = "sim_low_rank_psd_approximation_classical"
+TOOL_MANIFEST["numpy"] = {"tried": True, "used": True, "reason": "PSD eigendecomposition, low-rank projection, and Loewner checks"}
+TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
+divergence_details = [
+    "Classical captures PSD low-rank via eigh plus clipping, Frobenius Eckart-Young, and Loewner dominance.",
+    "Trace-preserving CP-map approximation and density-matrix trace=1 constraints are not imposed.",
+]
+divergence_log = (
+    "Classical PSD low-rank approximation baseline only; no CP-map, "
+    "density-matrix, bridge, GStack, axis, QIT, or nonclassical admission "
+    "claim."
+)
 
 def psd_low_rank(A, k):
     A = (A + A.T) / 2
@@ -65,8 +77,14 @@ if __name__ == "__main__":
     results = {"name": NAME, "classification": "classical_baseline",
         "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd, "all_pass": all_pass,
-        "note": "classical captures: PSD low-rank via eigh+clip, Frobenius Eckart-Young, Loewner dominance. Innately fails: trace-preserving CP-map approximation; density-matrix approximation needs trace=1 constraint not imposed here."}
+        "divergence_log": divergence_log, "divergence_details": divergence_details}
+    results["summary"] = {"all_pass": all_pass}
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded classical PSD low-rank baseline before CP-map or density-matrix comparison packets.",
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results"); os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, f"{NAME}_classical_results.json")
-    with open(out_path, "w") as f: json.dump(results, f, indent=2, default=str)
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
+    with open(out_path, "w", encoding="utf-8") as f: json.dump(results, f, indent=2, default=str)
     print(f"{NAME} all_pass={all_pass} -> {out_path}")

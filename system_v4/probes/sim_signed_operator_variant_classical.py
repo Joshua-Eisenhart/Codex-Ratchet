@@ -4,8 +4,20 @@ Signed variants A_+ = A, A_- = -A. Checks: spectrum negation, eigenvector
 preservation, composition A_+ A_- = -A^2, and sign-flip idempotence."""
 import json, os, numpy as np
 from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
+from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"
-NAME = "signed_operator_variant"
+NAME = "sim_signed_operator_variant_classical"
+TOOL_MANIFEST["numpy"] = {"tried": True, "used": True, "reason": "symmetric spectra, eigenspace, and sign-flip checks"}
+TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
+divergence_details = [
+    "Classical captures spectrum negation, eigenspace preservation, and sign-flip involution.",
+    "Nonclassical signed-operator admissibility under coupling or charge-like constraints is not represented.",
+]
+divergence_log = (
+    "Classical signed-operator variant baseline only; no coupled admissibility, "
+    "charge-like constraint, bridge, GStack, axis, QIT, or nonclassical "
+    "admission claim."
+)
 
 def run_positive_tests():
     r = {}; rng = np.random.default_rng(0)
@@ -49,10 +61,15 @@ if __name__ == "__main__":
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": run_positive_tests(), "negative": run_negative_tests(),
                "boundary": run_boundary_tests(),
-               "classical_captured": "spectrum negation, eigenspace preservation, sign-flip involution",
-               "innately_missing": "nonclassical signed-operator admissibility under coupling / charge-like constraints"}
+               "divergence_log": divergence_log, "divergence_details": divergence_details}
     results["all_pass"] = all(v for s in ("positive","negative","boundary") for v in results[s].values())
-    out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results", f"{NAME}_classical_results.json")
+    results["summary"] = {"all_pass": results["all_pass"]}
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded classical signed-operator baseline before coupled operator-admissibility packets.",
+    )
+    out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results", f"{NAME}_results.json")
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    with open(out,"w") as f: json.dump(results,f,indent=2,default=str)
+    with open(out,"w", encoding="utf-8") as f: json.dump(results,f,indent=2,default=str)
     print(f"all_pass={results['all_pass']} -> {out}")

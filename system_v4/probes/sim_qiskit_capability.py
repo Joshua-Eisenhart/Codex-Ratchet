@@ -16,6 +16,8 @@ import qiskit
 from qiskit import QuantumCircuit
 from qiskit.quantum_info import DensityMatrix, Operator, Statevector
 
+from receipt_boundary import apply_default_receipt_boundary
+
 
 classification = "canonical"
 divergence_log = (
@@ -137,6 +139,19 @@ if __name__ == "__main__":
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
         "claim_ceiling": "tool_micro_qiskit_capability_only",
+        "next_lego_target": "bounded qiskit statevector-density fixture before any QIT or density-carrier lego promotion",
+        "promotion_condition": (
+            "requires a later admitted downstream row that names this exact Qiskit "
+            "capability receipt; this micro row proves only tool availability"
+        ),
+        "blocked_until": (
+            "blocked from QIT, GStack, axis, bridge, engine, and nonclassical promotion "
+            "until a downstream target passes strict admission with this receipt as a named parent"
+        ),
+        "demotion_condition": (
+            "Demote Qiskit for this surface if one-qubit circuit construction, "
+            "statevector/density conversion, normalization, or X/Z expectation checks fail."
+        ),
         "out_of_scope": [
             "no QIT admission",
             "no GStack admission",
@@ -145,6 +160,7 @@ if __name__ == "__main__":
             "no scientific lego coupling claim",
         ],
     }
+    results = apply_default_receipt_boundary(results, source_name="sim_qiskit_capability")
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "qiskit_capability_results.json")

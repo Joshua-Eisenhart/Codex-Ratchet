@@ -24,6 +24,8 @@ import cvc5
 from cvc5 import Kind
 import z3
 
+from receipt_boundary import apply_default_receipt_boundary
+
 
 classification = "canonical"
 NAME = "sim_integration_cvc5_z3_unsat_agreement_micro"
@@ -357,12 +359,24 @@ if __name__ == "__main__":
             "cvc5 and z3 agree on exact boundary SAT/UNSAT fixtures",
             "fake agreement from different fixture identities is excluded",
         ],
+        "claim_ceiling": "tool_tool_micro_integration_only",
+        "next_lego_target": "bounded solver-agreement fixture row before any symbolic constraint lego promotion",
+        "promotion_condition": (
+            "requires a later admitted downstream row that names this exact cvc5-z3 "
+            "agreement receipt plus its exact parent function receipts; this micro "
+            "row does not promote a lego or broad solver-equivalence claim"
+        ),
+        "blocked_until": (
+            "blocked from lego, bridge, axis, engine, or nonclassical promotion until "
+            "a downstream target passes strict admission with this receipt as a named parent"
+        ),
         "summary": {
             "passed": sum(1 for test in flat_tests if test.get("passed")),
             "total": len(flat_tests),
         },
         "all_pass": all_pass,
     }
+    results = apply_default_receipt_boundary(results, source_name=NAME)
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

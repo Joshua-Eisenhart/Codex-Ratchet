@@ -12,6 +12,8 @@ import json
 import os
 from math import isclose, sqrt
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 NAME = "tool_capability_clifford"
 SCOPE_NOTE = "Tier A clifford capability probe: isolated blade, rotor, reverse, and norm behavior only."
@@ -280,7 +282,27 @@ if __name__ == "__main__":
         "boundary": boundary,
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
+        "claim_ceiling": "isolated_clifford_capability_only",
+        "next_lego_target": "bounded Clifford blade-rotor fixture before any spinor, Weyl, bridge, or topology promotion",
+        "promotion_condition": (
+            "requires a later admitted downstream row that names this exact Clifford "
+            "capability receipt; this micro row proves only isolated tool availability"
+        ),
+        "blocked_until": (
+            "blocked from lego, bridge, axis, GStack, QIT engine, and nonclassical "
+            "promotion until a downstream target passes strict admission with this receipt as a named parent"
+        ),
+        "demotion_condition": (
+            "Demote Clifford for this surface if blade multiplication, rotor sandwich, "
+            "reverse, or norm-preservation boundary checks fail."
+        ),
+        "out_of_scope": [
+            "no spinor or Weyl promotion",
+            "no bridge, axis, GStack, QIT engine, or nonclassical claim",
+            "no proof of the whole clifford package",
+        ],
     }
+    results = apply_default_receipt_boundary(results, source_name=NAME)
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

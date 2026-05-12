@@ -76,6 +76,7 @@
     }
   },
   "all_pass": true,
+  "blocked_until": "blocked from lego, bridge, axis, GStack, QIT engine, and nonclassical promotion until a downstream target passes strict admission with this receipt as a named parent",
   "boundary": {
     "half_turn_rotor_flips_e1": {
       "expected": "-(1^e1)",
@@ -95,8 +96,10 @@
       "zero": "0"
     }
   },
+  "claim_ceiling": "isolated_clifford_capability_only",
   "classification": "canonical",
   "classification_note": "Tier A clifford capability probe: isolated blade, rotor, reverse, and norm behavior only.",
+  "demotion_condition": "Demote Clifford for this surface if blade multiplication, rotor sandwich, reverse, or norm-preservation boundary checks fail.",
   "divergence_log": "Tier A clifford capability probe: isolated blade, rotor, reverse, and norm behavior only.",
   "name": "tool_capability_clifford",
   "negative": {
@@ -125,6 +128,12 @@
       "image_norm_sq": 4.0
     }
   },
+  "next_lego_target": "bounded Clifford blade-rotor fixture before any spinor, Weyl, bridge, or topology promotion",
+  "out_of_scope": [
+    "no spinor or Weyl promotion",
+    "no bridge, axis, GStack, QIT engine, or nonclassical claim",
+    "no proof of the whole clifford package"
+  ],
   "positive": {
     "basis_metric_and_orientation": {
       "e12_sq": "-1",
@@ -166,6 +175,7 @@
       ]
     }
   },
+  "promotion_condition": "requires a later admitted downstream row that names this exact Clifford capability receipt; this micro row proves only isolated tool availability",
   "summary": {
     "all_pass": true,
     "boundary_all_pass": true,

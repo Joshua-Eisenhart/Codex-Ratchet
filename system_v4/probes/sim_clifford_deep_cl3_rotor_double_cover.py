@@ -34,6 +34,7 @@ If `clifford` not importable -> report blocker, do NOT fall back to numpy.
 import json
 import os
 import math
+from receipt_boundary import apply_default_receipt_boundary
 classification = "canonical"
 
 # =====================================================================
@@ -343,6 +344,19 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "overall_pass": overall_pass,
+        "all_pass": overall_pass,
+        "claim_ceiling": "finite Clifford Cl(3) rotor double-cover micro receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+        "next_lego_target": "Use as bounded Clifford operator-family evidence after exact downstream receipts.",
+        "promotion_condition": "Requires later admitted tool-lego or coupling packets and explicit stage-gate approval.",
+        "blocked_until": "strict downstream admission cites this exact Clifford receipt and passes its own stage gate",
+        "demotion_condition": "Demote if clifford import fails, rotor identities fail, boundary controls fail, or strict receipt lint fails.",
+        "out_of_scope": [
+            "no bridge claim",
+            "no GStack claim",
+            "no axis claim",
+            "no QIT engine claim",
+            "no nonclassical admission",
+        ],
         "identities_proved": [
             "SU(2)->SO(3) double cover: R and -R induce identical vector rotation",
             "Rotor exponential: exp(-B*theta/2) composition about same axis is additive in angle",
@@ -350,6 +364,7 @@ if __name__ == "__main__":
             "Spin(3) 4pi-periodicity: R(2pi)=-1, R(4pi)=+1",
         ],
     }
+    results = apply_default_receipt_boundary(results, source_name="sim_clifford_deep_cl3_rotor_double_cover")
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

@@ -11,7 +11,7 @@ satisfies all three; UNSAT for models that break transitivity.
 
 import json, os
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -71,7 +71,7 @@ def run_positive_tests():
     TOOL_MANIFEST["z3"]["used"] = True
     TOOL_MANIFEST["z3"]["reason"] = "load-bearing: axiomatizes ~_M as equivalence relation, checks SAT/UNSAT"
     TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
-    # torch supportive: numeric partition count via union-find on 4-state toy example
+    # pure-Python supportive cross-check: numeric partition count via union-find on 4-state toy example
     # States 0,1 give same outcomes on M; 2 alone; 3 alone. Expected classes = 3.
     parent = list(range(4))
     def find(x):
@@ -83,9 +83,9 @@ def run_positive_tests():
     union(0, 1)
     classes = len({find(i) for i in range(4)})
     res["num_classes"] = classes
-    TOOL_MANIFEST["pytorch"]["used"] = True
-    TOOL_MANIFEST["pytorch"]["reason"] = "supportive (numpy/torch): union-find cross-check of partition count"
-    TOOL_INTEGRATION_DEPTH["pytorch"] = "supportive"
+    TOOL_MANIFEST["pytorch"]["used"] = False
+    TOOL_MANIFEST["pytorch"]["reason"] = "not used -- partition count cross-check is pure Python; z3 carries the proof obligation"
+    TOOL_INTEGRATION_DEPTH["pytorch"] = None
     res["pass"] = (res["equiv_sat"] == "sat" and classes == 3)
     return res
 

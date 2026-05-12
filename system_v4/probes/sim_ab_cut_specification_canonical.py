@@ -34,7 +34,7 @@ import json
 import os
 import math
 
-classification = "classical_baseline"
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST

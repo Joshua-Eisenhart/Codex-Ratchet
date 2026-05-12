@@ -17,21 +17,25 @@ Classification: canonical.
 import json, os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
+classification = "canonical"
+
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": "stochastic sim, numpy rng"},
-    "pyg": {"tried": False, "used": False, "reason": "pairwise graph only"},
-    "z3": {"tried": False, "used": False, "reason": "stochastic"},
-    "cvc5": {"tried": False, "used": False, "reason": "stochastic"},
-    "sympy": {"tried": False, "used": False, "reason": "no closed form tested"},
-    "clifford": {"tried": False, "used": False, "reason": "no GA"},
-    "geomstats": {"tried": False, "used": False, "reason": "no manifold"},
-    "e3nn": {"tried": False, "used": False, "reason": "no equivariance"},
-    "rustworkx": {"tried": False, "used": False, "reason": "pairwise only"},
+    "pytorch": {"tried": False, "used": False, "reason": "not used: stochastic SIS updates use NumPy arrays, not tensor autograd"},
+    "pyg": {"tried": False, "used": False, "reason": "not used: native XGI hyperedges are required, not PyG message passing"},
+    "z3": {"tried": False, "used": False, "reason": "not used: stochastic prevalence comparison is simulated, not encoded as SMT"},
+    "cvc5": {"tried": False, "used": False, "reason": "not used: no solver-side arithmetic or synthesis claim is made"},
+    "sympy": {"tried": False, "used": False, "reason": "not used: no symbolic closed form or exact algebra transformation is tested"},
+    "clifford": {"tried": False, "used": False, "reason": "not used: no geometric algebra blades or rotor products are evaluated"},
+    "geomstats": {"tried": False, "used": False, "reason": "not used: no manifold metric, geodesic, or group operation is evaluated"},
+    "e3nn": {"tried": False, "used": False, "reason": "not used: no equivariant neural representation is part of this packet"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not used: graph projection baseline is handled by NetworkX; hyperedges need XGI"},
     "xgi": {"tried": False, "used": False, "reason": ""},
-    "toponetx": {"tried": False, "used": False, "reason": "not cell complex"},
-    "gudhi": {"tried": False, "used": False, "reason": "no homology"},
-    "networkx": {"tried": False, "used": False, "reason": "projection SIS baseline"},
-    "numpy": {"tried": True, "used": True, "reason": "rng only"},
+    "toponetx": {"tried": False, "used": False, "reason": "not used: this packet does not construct a cell complex or boundary operator"},
+    "gudhi": {"tried": False, "used": False, "reason": "not used: no simplex tree, filtration, or persistent homology is computed"},
+    "networkx": {"tried": False, "used": False, "reason": "supportive projection baseline for pairwise SIS comparison"},
+    "numpy": {"tried": True, "used": True, "reason": "supportive random-number and array state updates for the stochastic SIS fixture"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
@@ -158,7 +162,10 @@ def run_negative_tests():
     # They won't be identical (projection adds extra pairwise edges from triads)
     # but without triad channel, hyper should NOT exceed pair by a lot.
     TOOL_MANIFEST["networkx"]["used"] = True
-    TOOL_MANIFEST["networkx"]["reason"] = "pairwise projection baseline SIS"
+    TOOL_MANIFEST["networkx"]["reason"] = (
+        "NetworkX supplies the pairwise projection baseline SIS process used "
+        "as the negative-control comparison"
+    )
     TOOL_INTEGRATION_DEPTH["networkx"] = "supportive"
     return {"no_triad_matches_pair": {"pass": (p_hyper - p_pair) < 0.05,
                                        "p_hyper": p_hyper, "p_pair": p_pair,
@@ -176,13 +183,33 @@ if __name__ == "__main__":
     if xgi is None:
         raise SystemExit("BLOCKER: xgi missing")
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
-    all_pass = all(v.get("pass") for v in {**pos, **neg, **bnd}.values())
+    flat = {**pos, **neg, **bnd}
+    all_pass = all(v.get("pass") for v in flat.values())
+    summary = {
+        "all_pass": all_pass,
+        "total_tests": len(flat),
+        "passed": sum(1 for v in flat.values() if v.get("pass")),
+    }
     out = {"name": "sim_xgi_deep_higher_order_contagion",
-           "classification": "canonical",
+           "classification": classification,
            "tool_manifest": TOOL_MANIFEST,
            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
            "positive": pos, "negative": neg, "boundary": bnd,
+           "summary": summary,
+           "all_pass": all_pass,
            "overall_pass": all_pass}
+    out = apply_default_receipt_boundary(
+        out,
+        source_name="sim_xgi_deep_higher_order_contagion",
+        target=(
+            "Use as bounded XGI higher-order contagion evidence before "
+            "hypergraph dynamics or projection-ablation lego fit packets."
+        ),
+    )
+    out["claim_ceiling"] = (
+        "finite sim_xgi_deep_higher_order_contagion lego receipt only; "
+        "no bridge, GStack, axis, or promoted admission"
+    )
     d = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(d, exist_ok=True)
     p = os.path.join(d, "sim_xgi_deep_higher_order_contagion_results.json")

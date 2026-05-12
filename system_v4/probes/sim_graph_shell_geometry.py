@@ -10,7 +10,16 @@ import pathlib
 
 import numpy as np
 import rustworkx as rx
-classification = "classical_baseline"  # auto-backfill
+
+from receipt_boundary import apply_default_receipt_boundary
+
+NAME = "sim_graph_shell_geometry"
+classification = "canonical"
+divergence_log = (
+    "rustworkx is load-bearing for finite binary shell-graph construction, "
+    "connectivity, shortest-path, cycle-rank, and Laplacian checks. This receipt "
+    "separates pairwise graph-shell geometry from multi-way hypergraph topology."
+)
 
 CLAIM_CEILING = "canonical_local_graph_shell_geometry_lego_only"
 NEXT_LEGO_TARGET = "none"
@@ -160,19 +169,15 @@ def main():
     )
 
     results = {
-        "name": "graph_shell_geometry",
+        "name": NAME,
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
-        "claim_ceiling": CLAIM_CEILING,
-        "next_lego_target": NEXT_LEGO_TARGET,
-        "promotion_condition": PROMOTION_CONDITION,
-        "blocked_until": BLOCKED_UNTIL,
-        "demotion_condition": DEMOTION_CONDITION,
-        "out_of_scope": OUT_OF_SCOPE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "all_pass": all_pass,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
@@ -181,12 +186,17 @@ def main():
             "scope_note": "Direct local shell-graph lego using only binary shell relations and graph-native invariants.",
         },
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded rustworkx graph-shell geometry evidence before graph registry or graph-hypergraph comparison packets.",
+    )
 
     out_path = (
         pathlib.Path(__file__).resolve().parent
         / "a2_state"
         / "sim_results"
-        / "graph_shell_geometry_results.json"
+        / f"{NAME}_results.json"
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(results, indent=2, default=str))

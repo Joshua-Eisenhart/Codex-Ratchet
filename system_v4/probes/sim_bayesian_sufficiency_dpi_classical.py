@@ -9,6 +9,8 @@ import json, os
 from typing import Literal, Optional
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification: Literal["classical_baseline", "canonical"] = "classical_baseline"
 divergence_log: Optional[str] = (
     "Classical Fisher-Neyman sufficiency uses factorization p(x|theta)=g(T(x),theta)h(x); "
@@ -37,8 +39,7 @@ TOOL_MANIFEST = {
 try:
     import torch
     TOOL_MANIFEST["pytorch"]["tried"] = True
-    TOOL_MANIFEST["pytorch"]["used"] = True
-    TOOL_MANIFEST["pytorch"]["reason"] = "torch tensor joint-marginal reductions"
+    TOOL_MANIFEST["pytorch"]["reason"] = "available but not used; this receipt is a numpy-only classical MI/coarse-graining baseline"
 except ImportError:
     TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
 
@@ -49,7 +50,7 @@ TOOL_INTEGRATION_DEPTH = {
     "geomstats": None,
     "gudhi": None,
     "pyg": None,
-    "pytorch": "load_bearing",
+    "pytorch": None,
     "rustworkx": None,
     "sympy": None,
     "toponetx": None,
@@ -163,10 +164,18 @@ if __name__ == "__main__":
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_bayesian_sufficiency_dpi_classical",
+        target=(
+            "Use as bounded classical Bayesian-sufficiency/DPI baseline "
+            "before any quantum sufficiency or recovery-channel packet."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "bayesian_sufficiency_dpi_classical_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out_path}")
     assert all_pass, results

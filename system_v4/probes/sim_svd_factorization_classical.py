@@ -1,21 +1,26 @@
 #!/usr/bin/env python3
 """Classical baseline: svd_factorization."""
-import copy
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST as COMMON_TOOL_MANIFEST
-from _classical_baseline_common import TOOL_INTEGRATION_DEPTH
 from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"
 
 NAME = "sim_svd_factorization_classical"
-TOOL_MANIFEST = copy.deepcopy(COMMON_TOOL_MANIFEST)
-TOOL_MANIFEST.setdefault("numpy", {"tried": False, "used": False, "reason": ""})
-TOOL_MANIFEST["numpy"]["tried"] = True
-TOOL_MANIFEST["numpy"]["used"] = True
-TOOL_MANIFEST["numpy"]["reason"] = (
-    "supportive classical baseline: numpy.linalg.svd supplies all singular "
-    "values, orthonormal factors, and reconstruction checks in this receipt"
-)
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not selected because this receipt is a numpy-only finite real-matrix SVD baseline"},
+    "pyg": {"tried": False, "used": False, "reason": "not selected because no graph tensor or message-passing structure is tested"},
+    "z3": {"tried": False, "used": False, "reason": "not selected because SVD reconstruction is checked numerically, not as an SMT constraint"},
+    "cvc5": {"tried": False, "used": False, "reason": "not selected because no SMT proof or algebraic datatype reasoning is required"},
+    "sympy": {"tried": False, "used": False, "reason": "not selected because this receipt uses numerical SVD rather than symbolic factorization"},
+    "clifford": {"tried": False, "used": False, "reason": "not selected because no geometric algebra carrier is part of this baseline"},
+    "geomstats": {"tried": False, "used": False, "reason": "not selected because no manifold metric or geodesic structure is evaluated"},
+    "e3nn": {"tried": False, "used": False, "reason": "not selected because equivariant tensor features are outside this baseline"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not selected because no graph dependency or traversal computation is needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not selected because no hypergraph incidence structure is tested"},
+    "toponetx": {"tried": False, "used": False, "reason": "not selected because no cell-complex boundary or incidence matrix is tested"},
+    "gudhi": {"tried": False, "used": False, "reason": "not selected because no filtration or persistence computation is needed"},
+    "numpy": {"tried": True, "used": True, "reason": "supportive classical baseline: numpy.linalg.svd supplies singular values, orthonormal factors, and reconstruction checks"},
+}
+TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
 
 divergence_log = (
@@ -92,5 +97,5 @@ if __name__ == "__main__":
     )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results"); os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, f"{NAME}_results.json")
-    with open(out_path, "w") as f: json.dump(results, f, indent=2, default=str)
+    with open(out_path, "w", encoding="utf-8") as f: json.dump(results, f, indent=2, default=str)
     print(f"{NAME} all_pass={all_pass} -> {out_path}")

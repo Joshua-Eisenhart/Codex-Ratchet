@@ -12,15 +12,23 @@ import json
 import pathlib
 
 import numpy as np
-classification = "tool_lego_fit_probe"
+classification = "classical_baseline"
 
 
 EPS = 1e-10
 
-CLASSIFICATION = "tool_lego_fit_probe"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
-    "Pre-admission local lego fit probe for bipartite Pauli correlation tensors "
-    "on bounded two-qubit state families."
+    "Classical numpy baseline for bipartite Pauli correlation tensors on "
+    "bounded two-qubit state families."
+)
+
+divergence_log = (
+    "Classical baseline: finite numpy arrays compute Pauli correlation tensors "
+    "for fixed toy density matrices. This does not prove nonclassical dynamics, "
+    "operator emergence, bridge admission, GStack behavior, axis structure, or "
+    "QIT-engine behavior; those require separate tool-bearing bridge and "
+    "nonclassical receipts."
 )
 
 LEGO_IDS = [
@@ -53,7 +61,7 @@ TOOL_MANIFEST["numpy"] = {
     "reason": "load-bearing finite array/matrix computation for this bounded classical lego receipt",
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
+TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
 
 
 SX = np.array([[0, 1], [1, 0]], dtype=complex)
@@ -137,8 +145,9 @@ def main():
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "divergence_log": divergence_log,
         "claim_ceiling": (
-            "tool_lego_fit_probe_only; finite numpy correlation-tensor receipt only; "
+            "classical_numpy_baseline_only; finite correlation-tensor receipt only; "
             "no canonical, bridge, GStack, axis, QIT, or nonclassical admission"
         ),
         "promotion_allowed": False,
@@ -148,7 +157,7 @@ def main():
         "demotion_condition": "Demote if rerun fails, tool use is not load-bearing, or result claims exceed this finite receipt.",
         "out_of_scope": ["QIT engine admission", "GStack admission", "axis promotion", "nonclassical proof"],
         "all_pass": all_pass,
-        "criteria_checked": ["finite computation completed", "load-bearing numpy path exercised", "local pass/fail criteria satisfied"],
+        "criteria_checked": ["finite computation completed", "numpy baseline path exercised", "local pass/fail criteria satisfied"],
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

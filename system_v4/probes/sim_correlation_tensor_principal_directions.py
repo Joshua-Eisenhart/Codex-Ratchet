@@ -9,16 +9,23 @@ import json
 import pathlib
 
 import numpy as np
-classification = "tool_lego_fit_probe"
+classification = "classical_baseline"
 
 
 EPS = 1e-10
 
-CLASSIFICATION = "tool_lego_fit_probe"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
-    "Pre-admission local lego fit probe for principal directions of bounded "
-    "two-qubit correlation tensors, kept separate from graph proxies and later "
-    "coupling surfaces."
+    "Classical numpy baseline for principal directions of bounded two-qubit "
+    "correlation tensors, kept separate from graph proxies and later coupling "
+    "surfaces."
+)
+
+divergence_log = (
+    "Classical baseline: numpy SVD exposes finite correlation-tensor principal "
+    "directions for fixed toy states. This is useful classical lego coverage, "
+    "but it does not prove bridge admission, nonclassical geometry, operator "
+    "coupling, GStack behavior, axis structure, or QIT-engine behavior."
 )
 
 LEGO_IDS = [
@@ -46,7 +53,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
+TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
 
 SX = np.array([[0, 1], [1, 0]], dtype=complex)
 SY = np.array([[0, -1j], [1j, 0]], dtype=complex)
@@ -160,7 +167,8 @@ def main():
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "claim_ceiling": "tool_lego_fit_probe_only; finite numpy principal-direction receipt only; no canonical, bridge, GStack, axis, QIT, or nonclassical admission",
+        "divergence_log": divergence_log,
+        "claim_ceiling": "classical_numpy_baseline_only; finite principal-direction receipt only; no canonical, bridge, GStack, axis, QIT, or nonclassical admission",
         "promotion_allowed": False,
         "next_lego_target": "none",
         "promotion_condition": "requires separate reconciled queue row before coupling, bridge, axis, engine, or QIT use",

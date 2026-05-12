@@ -9,16 +9,23 @@ import json
 import pathlib
 
 import numpy as np
-classification = "tool_lego_fit_probe"
+classification = "classical_baseline"
 
 
 EPS = 1e-10
 
-CLASSIFICATION = "tool_lego_fit_probe"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
-    "Pre-admission local lego fit probe for the eigenvalue-only state view, "
-    "showing where spectral descriptions track mixedness and where they collapse "
-    "distinct states with the same spectrum."
+    "Classical numpy baseline for the eigenvalue-only state view, showing where "
+    "spectral descriptions track mixedness and where they collapse distinct "
+    "states with the same spectrum."
+)
+
+divergence_log = (
+    "Classical baseline: numpy eigenspectra describe fixed finite matrices and "
+    "show what eigenvalue-only views preserve or collapse. This does not prove "
+    "nonclassical dynamics, density-matrix engine behavior, bridge admission, "
+    "operator coupling, GStack behavior, axis structure, or QIT-engine behavior."
 )
 
 LEGO_IDS = [
@@ -46,7 +53,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
+TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
 
 
 def ket(v):
@@ -138,7 +145,8 @@ def main():
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "claim_ceiling": "tool_lego_fit_probe_only; finite numpy eigenvalue-spectrum receipt only; no canonical, bridge, GStack, axis, QIT, or nonclassical admission",
+        "divergence_log": divergence_log,
+        "claim_ceiling": "classical_numpy_baseline_only; finite eigenvalue-spectrum receipt only; no canonical, bridge, GStack, axis, QIT, or nonclassical admission",
         "promotion_allowed": False,
         "next_lego_target": "none",
         "promotion_condition": "requires separate reconciled queue row before coupling, bridge, axis, engine, or QIT use",

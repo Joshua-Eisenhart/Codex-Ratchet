@@ -11,6 +11,8 @@ import os
 import numpy as np
 from scipy.optimize import linprog
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 divergence_log = (
     "Classical Le Cam deficiency between two probability experiments drops to "
@@ -37,9 +39,9 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
+    "numpy": "supportive",
     "pytorch": None,
-    "scipy": "load_bearing",
+    "scipy": "supportive",
     "z3": None,
 }
 
@@ -139,9 +141,10 @@ if __name__ == "__main__":
     all_pass = all(pos.values()) and all(neg.values()) and all(bnd.values())
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "le_cam_deficiency_classical_results.json")
+    name = "sim_le_cam_deficiency_classical"
+    out_path = os.path.join(out_dir, f"{name}_results.json")
     payload = {
-        "name": "le_cam_deficiency_classical",
+        "name": name,
         "classification": classification,
         "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
@@ -152,6 +155,14 @@ if __name__ == "__main__":
         "all_pass": bool(all_pass),
         "summary": {"all_pass": bool(all_pass)},
     }
-    with open(out_path, "w") as f:
+    payload = apply_default_receipt_boundary(
+        payload,
+        source_name=name,
+        target=(
+            "Use as bounded classical Le Cam-deficiency baseline evidence "
+            "before statistical experiment or channel comparison packets."
+        ),
+    )
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, default=str)
     print(f"Results written to {out_path} all_pass={all_pass}")

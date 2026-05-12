@@ -20,20 +20,20 @@ from receipt_boundary import apply_default_receipt_boundary
 classification = "canonical"
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": "purely combinatorial, no tensor compute"},
-    "pyg": {"tried": False, "used": False, "reason": "pairwise hyperedge count, no tensor ops"},
-    "z3": {"tried": False, "used": False, "reason": "enumeration approach, no first-order logic"},
-    "cvc5": {"tried": False, "used": False, "reason": "enumeration only, no Clifford algebra"},
-    "sympy": {"tried": False, "used": False, "reason": "numeric motif count, no manifold needed"},
-    "clifford": {"tried": False, "used": False, "reason": "no geometric algebra in this motif probe"},
-    "geomstats": {"tried": False, "used": False, "reason": "no manifold geometry in this sim scope"},
-    "e3nn": {"tried": False, "used": False, "reason": "no equivariance constraint in this probe"},
-    "rustworkx": {"tried": False, "used": False, "reason": "hypergraph structure required, not graph ops"},
+    "pytorch": {"tried": False, "used": False, "reason": "not selected because the receipt checks discrete hyperedge membership, not differentiable tensor computation"},
+    "pyg": {"tried": False, "used": False, "reason": "not selected because message-passing graph tensors would erase the triadic hyperedge identity under test"},
+    "z3": {"tried": False, "used": False, "reason": "not selected because the witness is direct finite enumeration rather than satisfiability over symbolic constraints"},
+    "cvc5": {"tried": False, "used": False, "reason": "not selected because the packet does not require SMT proof or algebraic datatype reasoning"},
+    "sympy": {"tried": False, "used": False, "reason": "not selected because the motif witness is combinatorial incidence data rather than symbolic algebra"},
+    "clifford": {"tried": False, "used": False, "reason": "not selected because no geometric algebra carrier is part of this hyperedge motif fixture"},
+    "geomstats": {"tried": False, "used": False, "reason": "not selected because no manifold metric, geodesic, or Lie-group geometry is evaluated"},
+    "e3nn": {"tried": False, "used": False, "reason": "not selected because equivariant tensor features are outside this hyperedge membership receipt"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not selected as load-bearing because ordinary graph structure cannot preserve genuine triadic hyperedges"},
     "xgi": {"tried": False, "used": False, "reason": "not used in this simulation"},
-    "toponetx": {"tried": False, "used": False, "reason": "not a cell complex sim, hypergraph only"},
-    "gudhi": {"tried": False, "used": False, "reason": "no persistent homology in this motif sim"},
+    "toponetx": {"tried": False, "used": False, "reason": "not selected because this packet isolates XGI hyperedges rather than cell-complex incidence"},
+    "gudhi": {"tried": False, "used": False, "reason": "not selected because no filtration, persistence interval, or homology computation is needed"},
     "networkx": {"tried": False, "used": False, "reason": "projection triangle count ablation"},
-    "numpy": {"tried": True, "used": True, "reason": "random seeding only, no algebra needed"},
+    "numpy": {"tried": True, "used": True, "reason": "supportive deterministic random fixture generation for the finite hypergraph sample"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"

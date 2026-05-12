@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Classical baseline: correlation_tensor_principal_directions (HOSVD / mode-n SVD)."""
 import json, os, numpy as np
+
+from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"
 divergence_log = "Classical baseline: correlation-tensor principal directions are modeled here by HOSVD numerics, not a canonical nonclassical witness."
 TOOL_MANIFEST = {
@@ -12,7 +14,7 @@ TOOL_INTEGRATION_DEPTH = {
     "sympy": None,
 }
 
-NAME = "correlation_tensor_principal_directions"
+NAME = "sim_correlation_tensor_principal_directions_classical"
 
 def unfold(T, mode):
     return np.moveaxis(T, mode, 0).reshape(T.shape[mode], -1)
@@ -83,10 +85,19 @@ if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(v.get("pass", False) for v in list(pos.values()) + list(neg.values()) + list(bnd.values()))
     results = {"name": NAME, "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd, "all_pass": all_pass,
         "note": "classical captures: HOSVD per-mode orthonormal factors, Tucker-rank recovery. Innately fails: no tensor Eckart-Young (truncated HOSVD is only quasi-optimal); ill-posed best rank-r tensor approx in general."}
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target=(
+            "Use as bounded classical HOSVD/correlation-tensor baseline "
+            "evidence before tensor tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results"); os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, f"{NAME}_classical_results.json")
-    with open(out_path, "w") as f: json.dump(results, f, indent=2, default=str)
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
+    with open(out_path, "w", encoding="utf-8") as f: json.dump(results, f, indent=2, default=str)
     print(f"{NAME} all_pass={all_pass} -> {out_path}")

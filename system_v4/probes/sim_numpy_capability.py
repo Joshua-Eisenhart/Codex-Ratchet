@@ -10,15 +10,16 @@ import os
 
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
 
-classification = "canonical"
+classification = "classical_baseline"
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "capability under test -- dense array algebra"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
+    "numpy": "supportive",
 }
 
 WITNESS_INFO = {
@@ -99,17 +100,27 @@ if __name__ == "__main__":
     results = {
         "name": "sim_numpy_capability",
         "classification": classification,
+        "classification_note": "Numpy is admitted only as a classical baseline/supportive numerical tool, not as load-bearing evidence for QIT, bridge, axis, GStack, or nonclassical claims.",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "divergence_log": "Classical numpy dense-array capability baseline only; it checks local array algebra behavior and cannot prove nonclassical, bridge, axis, GStack, or QIT claims.",
         "positive": pos,
         "negative": neg,
         "boundary": bnd,
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_numpy_capability",
+        target=(
+            "Use only as bounded classical numpy capability baseline before "
+            "tool-lego rows that require separate non-numpy receipts."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "numpy_capability_results.json")
+    out_path = os.path.join(out_dir, "sim_numpy_capability_results.json")
     with open(out_path, "w", encoding="utf-8") as handle:
         json.dump(results, handle, indent=2, default=_json_default)
     print(f"Results written to {out_path}")

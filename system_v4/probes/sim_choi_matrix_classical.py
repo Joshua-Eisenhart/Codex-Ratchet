@@ -10,6 +10,8 @@ partial trace over output = I.
 import json, os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 divergence_log = (
     "Classical Choi is block-diagonal; misses off-diagonal coherences that "
@@ -87,17 +89,27 @@ def run_boundary_tests():
 if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(pos.values()) and all(neg.values()) and all(bnd.values())
+    name = "sim_choi_matrix_classical"
+    results = {
+        "name": name,
+        "classification": "classical_baseline",
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "positive": pos, "negative": neg, "boundary": bnd,
+        "all_pass": all_pass, "summary": {"all_pass": all_pass},
+        "divergence_log": divergence_log,
+    }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=name,
+        target=(
+            "Use as bounded classical Choi-matrix baseline evidence before "
+            "channel/tool-lego comparison."
+        ),
+    )
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
-                       "choi_matrix_classical_results.json")
+                       f"{name}_results.json")
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    with open(out, "w") as f:
-        json.dump({
-            "name": "choi_matrix_classical",
-            "classification": "classical_baseline",
-            "tool_manifest": TOOL_MANIFEST,
-            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-            "positive": pos, "negative": neg, "boundary": bnd,
-            "all_pass": all_pass, "summary": {"all_pass": all_pass},
-            "divergence_log": divergence_log,
-        }, f, indent=2, default=str)
+    with open(out, "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

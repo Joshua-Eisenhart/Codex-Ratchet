@@ -1,21 +1,21 @@
 {
   "schema": "blocked_reason_breakdown_v1",
-  "blocked_count": 754,
+  "blocked_count": 755,
   "wizard_admission_blocked_count": 630,
   "all_rows_have_subreasons": true,
   "blocked_reasons": {
     "wizard_admission_blocked": 630,
     "gate_denied": 1,
-    "done_duplicate_conflict": 39,
+    "done_duplicate_conflict": 40,
     "stage_gate_blocked": 82,
     "receipt_validation_failed": 1,
     "stale_claim": 1
   },
   "contract_subreasons": {
-    "C1_classification_missing": 182,
+    "C1_classification_missing": 180,
     "C4_divergence_log_missing": 119,
     "C6_classical_has_load_bearing": 98,
-    "contract_clean_or_not_static_lint_blocked": 412,
+    "contract_clean_or_not_static_lint_blocked": 415,
     "C2_manifest_missing": 65,
     "C3_depth_missing": 45,
     "C4_divergence_log_empty": 9,
@@ -24,10 +24,10 @@
   },
   "by_blocked_reason": {
     "wizard_admission_blocked": {
-      "C1_classification_missing": 172,
+      "C1_classification_missing": 170,
       "C4_divergence_log_missing": 91,
       "C6_classical_has_load_bearing": 72,
-      "contract_clean_or_not_static_lint_blocked": 335,
+      "contract_clean_or_not_static_lint_blocked": 337,
       "C2_manifest_missing": 60,
       "C3_depth_missing": 41,
       "C4_divergence_log_empty": 5,
@@ -38,7 +38,7 @@
       "C1_classification_missing": 1
     },
     "done_duplicate_conflict": {
-      "contract_clean_or_not_static_lint_blocked": 32,
+      "contract_clean_or_not_static_lint_blocked": 33,
       "C2_manifest_missing": 2,
       "C4_divergence_log_missing": 5,
       "C6_classical_has_load_bearing": 5,
@@ -804,7 +804,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_rsa_correctness_constraint_canonical.py",
       "subreasons": [
-        "C1_classification_missing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -2055,7 +2055,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_rsa_correctness_constraint_canonical.py",
       "subreasons": [
-        "C1_classification_missing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -4709,6 +4709,15 @@
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_sympy_jacobi_su2.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/b4f6c870a79a2272.json.24452.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "done_duplicate_conflict",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_rsa_correctness_constraint_canonical.py",
       "subreasons": [
         "contract_clean_or_not_static_lint_blocked"
       ]

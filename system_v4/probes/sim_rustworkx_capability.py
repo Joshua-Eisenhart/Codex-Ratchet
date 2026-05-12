@@ -56,23 +56,30 @@ import os
 import time
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
 
+_NOT_USED_REASON = (
+    "not used: this bounded rustworkx capability receipt isolates graph ordering, "
+    "path, reduction, and cycle APIs; other tool families require separate receipts."
+)
+
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": "not needed -- pure graph capability probe"},
-    "pyg":       {"tried": False, "used": False, "reason": "not needed -- pure graph capability probe"},
-    "z3":        {"tried": False, "used": False, "reason": "not needed -- numeric ground truth is enough for capability probe"},
-    "cvc5":      {"tried": False, "used": False, "reason": "not needed"},
-    "sympy":     {"tried": False, "used": False, "reason": "not needed"},
-    "clifford":  {"tried": False, "used": False, "reason": "not geometry-relevant"},
-    "geomstats": {"tried": False, "used": False, "reason": "not geometry-relevant"},
-    "e3nn":      {"tried": False, "used": False, "reason": "not geometry-relevant"},
+    "pytorch":   {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "pyg":       {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "z3":        {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "cvc5":      {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "sympy":     {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "clifford":  {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "geomstats": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "e3nn":      {"tried": False, "used": False, "reason": _NOT_USED_REASON},
     "rustworkx": {"tried": False, "used": False, "reason": "under test"},
-    "xgi":       {"tried": False, "used": False, "reason": "baseline is networkx, not xgi"},
-    "toponetx":  {"tried": False, "used": False, "reason": "not topology-relevant here"},
-    "gudhi":     {"tried": False, "used": False, "reason": "not topology-relevant here"},
+    "xgi":       {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "toponetx":  {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "gudhi":     {"tried": False, "used": False, "reason": _NOT_USED_REASON},
     "networkx":  {"tried": False, "used": False, "reason": "classical baseline for cross-check"},
 }
 
@@ -88,7 +95,10 @@ try:
     import rustworkx as rx
     TOOL_MANIFEST["rustworkx"]["tried"] = True
     TOOL_MANIFEST["rustworkx"]["used"] = True
-    TOOL_MANIFEST["rustworkx"]["reason"] = "capability under test -- DAG / toposort / transitive reduction / Dijkstra / cycle detection"
+    TOOL_MANIFEST["rustworkx"]["reason"] = (
+        "load-bearing capability under test: rustworkx PyDiGraph, topological_sort, "
+        "transitive_reduction, Dijkstra path lengths, DAG longest path, and cycle APIs decide the receipt verdicts."
+    )
     RX_OK = True
     RX_VERSION = getattr(rx, "__version__", "unknown")
 except Exception as exc:
@@ -413,12 +423,33 @@ if __name__ == "__main__":
         "all_pass": bool(summary["all_pass"]),
         "witness_file": "system_v4/probes/sim_foundation_shell_graph_topology.py",
         "classification": "canonical",
+        "surviving_alternatives": [
+            "This receipt covers only bounded rustworkx graph-ordering capability; it does not promote graph-shell geometry, dependency collapse, bridge, axis, GStack, or nonclassical admission."
+        ],
+        "demotion_condition": (
+            "Demote this rustworkx capability receipt if DAG topological ordering, "
+            "transitive reduction, Dijkstra distance, cycle rejection, witness shell DAG, "
+            "or boundary graph controls fail on rerun."
+        ),
+        "out_of_scope": [
+            "no graph-shell lego promotion",
+            "no dependency-collapse promotion",
+            "no bridge claim",
+            "no axis claim",
+            "no GStack claim",
+            "no nonclassical admission",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_rustworkx_capability",
+        target="Use as bounded rustworkx graph-ordering capability evidence before exact graph lego-fit or coupling packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "rustworkx_capability_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
     print(f"summary.all_pass = {summary['all_pass']}")

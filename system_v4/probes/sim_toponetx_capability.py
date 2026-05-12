@@ -48,24 +48,31 @@ import os
 
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
 
+_NOT_USED_REASON = (
+    "not used: this bounded TopoNetX capability receipt isolates simplicial/cell "
+    "complex incidence and Hodge Laplacian APIs; other tool families require separate receipts."
+)
+
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": "not needed -- pure topology capability probe"},
-    "pyg":       {"tried": False, "used": False, "reason": "not needed -- pure topology capability probe"},
-    "z3":        {"tried": False, "used": False, "reason": "no proof obligation in a capability probe"},
-    "cvc5":      {"tried": False, "used": False, "reason": "no proof obligation in a capability probe"},
-    "sympy":     {"tried": False, "used": False, "reason": "no symbolic derivation required"},
-    "clifford":  {"tried": False, "used": False, "reason": "no geometric algebra needed"},
-    "geomstats": {"tried": False, "used": False, "reason": "no manifold/geodesic needed"},
-    "e3nn":      {"tried": False, "used": False, "reason": "no equivariance needed"},
-    "rustworkx": {"tried": False, "used": False, "reason": "graph library not under test"},
-    "xgi":       {"tried": False, "used": False, "reason": "hypergraph lib not under test; separate probe"},
+    "pytorch":   {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "pyg":       {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "z3":        {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "cvc5":      {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "sympy":     {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "clifford":  {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "geomstats": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "e3nn":      {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "rustworkx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "xgi":       {"tried": False, "used": False, "reason": _NOT_USED_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": ""},
-    "gudhi":     {"tried": False, "used": False, "reason": "persistence not the subject here"},
-    "networkx":  {"tried": False, "used": False, "reason": "numpy is the baseline for boundary matrices"},
+    "gudhi":     {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "networkx":  {"tried": False, "used": False, "reason": _NOT_USED_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -80,8 +87,8 @@ try:
     TOOL_MANIFEST["toponetx"]["tried"] = True
     TOOL_MANIFEST["toponetx"]["used"] = True
     TOOL_MANIFEST["toponetx"]["reason"] = (
-        "capability under test -- SimplicialComplex / CellComplex / "
-        "boundary operator / Hodge Laplacian / face incidence"
+        "load-bearing capability under test: TopoNetX SimplicialComplex, CellComplex, "
+        "incidence_matrix, Hodge Laplacian, and face-incidence APIs decide the receipt verdicts."
     )
     TNX_OK = True
     TNX_VERSION = getattr(tnx, "__version__", "unknown")
@@ -391,12 +398,33 @@ if __name__ == "__main__":
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
         "classification": "canonical",
+        "surviving_alternatives": [
+            "This receipt covers only bounded TopoNetX complex/incidence capability; it does not promote a cell-complex lego, topology coupling, bridge, axis, GStack, or nonclassical admission."
+        ],
+        "demotion_condition": (
+            "Demote this TopoNetX capability receipt if filled-triangle shape, "
+            "boundary rank/sign checks, boundary-of-boundary zero, Hodge spectrum, "
+            "cell-complex square incidence, or degenerate simplex controls fail on rerun."
+        ),
+        "out_of_scope": [
+            "no cell-complex lego promotion",
+            "no topology coupling promotion",
+            "no bridge claim",
+            "no axis claim",
+            "no GStack claim",
+            "no nonclassical admission",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_toponetx_capability",
+        target="Use as bounded TopoNetX simplicial/cell-complex capability evidence before exact topology lego-fit or coupling packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "toponetx_capability_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
     print(f"summary.all_pass = {summary['all_pass']}")

@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T05:05:56.814607+00:00",
+  "generated_at": "2026-05-12T05:08:18.717134+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -710,6 +710,32 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
+        "constraint_probe_admissibility",
+        "sygus_integer_grammar_fixture"
+      ],
+      "claim_ceiling": "tool_function_micro_only",
+      "depth": "load_bearing",
+      "function_api": "cvc5 Solver.synthFun/addSygusConstraint/checkSynth/getSynthSolution bounded LIA SyGuS fixture",
+      "manifest_reason": "cvc5 is load-bearing: synthFun, addSygusConstraint, checkSynth, and getSynthSolution determine the synthesis/no-synthesis verdicts.",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "no lego promotion",
+        "no tool-tool coupling",
+        "no bridge claim",
+        "no proof of the whole cvc5 SyGuS surface"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/sim_cvc5_sygus_synthesis_micro_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "canonical",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "nonclassical_adjacent",
+      "tool": "cvc5"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
         "entropy_family_crosschecks",
         "operator_family_admission"
       ],
@@ -958,10 +984,10 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 35,
+    "passing_count": 36,
     "receipt_boundary_gap_count": 9,
-    "receipt_schema_missing_count": 35,
-    "row_count": 35,
+    "receipt_schema_missing_count": 36,
+    "row_count": 36,
     "tools": [
       "clifford",
       "cvc5",

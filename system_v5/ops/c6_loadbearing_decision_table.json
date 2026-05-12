@@ -6,19 +6,19 @@
     "system_v5/ops/c6_loadbearing_report.json"
   ],
   "source_report_row_counts": {
-    "blocked_reason_breakdown": 739,
+    "blocked_reason_breakdown": 743,
     "c6_loadbearing_report": 1478
   },
-  "blocked_c6_sim_count": 76,
-  "decision_row_count": 150,
+  "blocked_c6_sim_count": 73,
+  "decision_row_count": 147,
   "action_counts": {
     "promote_to_canonical_candidate_after_owner_review": 56,
-    "remove_or_demote_tool_depth_candidate": 27,
+    "remove_or_demote_tool_depth_candidate": 24,
     "owner_review_missing_result_before_edit": 64,
     "owner_review_inconclusive": 3
   },
   "tool_counts": {
-    "pytorch": 50,
+    "pytorch": 47,
     "sympy": 18,
     "z3": 17,
     "numpy": 14,
@@ -33,7 +33,7 @@
   },
   "bucket_counts": {
     "genuinely_load_bearing_so_promote_to_canonical_candidate": 56,
-    "decorative_load_bearing_demote_tool": 27,
+    "decorative_load_bearing_demote_tool": 24,
     "inconclusive_needs_owner": 67
   },
   "rows": [
@@ -192,17 +192,6 @@
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
     },
     {
-      "sim": "system_v4/probes/sim_hodge_decomposition_classical.py",
-      "tool": "pytorch",
-      "bucket": "decorative_load_bearing_demote_tool",
-      "result_path": "system_v4/probes/a2_state/sim_results/hodge_decomposition_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "remove_or_demote_tool_depth_candidate",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
       "sim": "system_v4/probes/sim_homogeneous_space_so3_mod_so2_classical.py",
       "tool": "pytorch",
       "bucket": "decorative_load_bearing_demote_tool",
@@ -218,17 +207,6 @@
       "tool": "pytorch",
       "bucket": "decorative_load_bearing_demote_tool",
       "result_path": "system_v4/probes/a2_state/sim_results/maurer_cartan_abelian_closure_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "remove_or_demote_tool_depth_candidate",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_mayer_vietoris_classical.py",
-      "tool": "pytorch",
-      "bucket": "decorative_load_bearing_demote_tool",
-      "result_path": "system_v4/probes/a2_state/sim_results/mayer_vietoris_classical_results.json",
       "evidence": "result_json_mentions_tool",
       "candidate_action": "remove_or_demote_tool_depth_candidate",
       "owner_review_required": true,
@@ -306,17 +284,6 @@
       "tool": "pytorch",
       "bucket": "decorative_load_bearing_demote_tool",
       "result_path": "system_v4/probes/a2_state/sim_results/pca_variance_explained_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "remove_or_demote_tool_depth_candidate",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_persistent_homology_circle_classical.py",
-      "tool": "pytorch",
-      "bucket": "decorative_load_bearing_demote_tool",
-      "result_path": "system_v4/probes/a2_state/sim_results/persistent_homology_circle_classical_results.json",
       "evidence": "result_json_mentions_tool",
       "candidate_action": "remove_or_demote_tool_depth_candidate",
       "owner_review_required": true,

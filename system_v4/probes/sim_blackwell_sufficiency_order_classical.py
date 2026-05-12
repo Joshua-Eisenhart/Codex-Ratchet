@@ -12,36 +12,40 @@ import os
 import numpy as np
 from scipy.optimize import linprog
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
+NAME = "sim_blackwell_sufficiency_order_classical"
 divergence_log = (
     "Classical Blackwell ordering is a partial order on stochastic kernels via "
     "post-processing. Quantum Blackwell (Shmaya / Buscemi) requires CPTP "
     "post-processing between bipartite states, which this baseline drops."
 )
 
-try:
-    import torch  # noqa: F401
-    _torch_ok = True
-except Exception:
-    _torch_ok = False
-
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "convex risk evaluation"},
     "scipy": {"tried": True, "used": True, "reason": "LP garbling feasibility"},
     "pytorch": {
-        "tried": _torch_ok,
-        "used": _torch_ok,
-        "reason": "supportive import only",
+        "tried": False,
+        "used": False,
+        "reason": "optional supportive import only",
     },
     "z3": {"tried": False, "used": False, "reason": "no SMT claim"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
+    "numpy": "supportive",
     "pytorch": None,
-    "scipy": "load_bearing",
+    "scipy": "supportive",
     "z3": None,
 }
+
+try:
+    import torch  # noqa: F401
+    TOOL_MANIFEST["pytorch"]["tried"] = True
+    TOOL_MANIFEST["pytorch"]["reason"] = "supportive import only"
+except Exception:
+    TOOL_MANIFEST["pytorch"]["reason"] = "not installed; baseline uses numpy/scipy"
 
 
 def garbles(A, B, tol=1e-6):
@@ -152,9 +156,9 @@ if __name__ == "__main__":
     all_pass = all(pos.values()) and all(neg.values()) and all(bnd.values())
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "blackwell_sufficiency_order_classical_results.json")
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
     payload = {
-        "name": "blackwell_sufficiency_order_classical",
+        "name": NAME,
         "classification": classification,
         "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
@@ -165,6 +169,14 @@ if __name__ == "__main__":
         "all_pass": bool(all_pass),
         "summary": {"all_pass": bool(all_pass)},
     }
-    with open(out_path, "w") as f:
+    payload = apply_default_receipt_boundary(
+        payload,
+        source_name=NAME,
+        target=(
+            "Use as bounded classical Blackwell sufficiency-order baseline "
+            "before experiment-comparison or channel preorder packets."
+        ),
+    )
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, default=str)
     print(f"Results written to {out_path} all_pass={all_pass}")

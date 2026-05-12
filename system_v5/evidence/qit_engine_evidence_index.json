@@ -369,6 +369,22 @@
       }
     },
     {
+      "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_toponetx_hopf_crosscheck.json",
+      "admission_status": "admitted",
+      "basename": "sim_toponetx_hopf_crosscheck",
+      "blockers": [],
+      "parent_receipt_sha256": {},
+      "receipt_schema_ok": true,
+      "result_name": "sim_toponetx_hopf_crosscheck",
+      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/toponetx_hopf_crosscheck_results.json",
+      "result_sha256": "634d5e9301d653f8ba2a99b2062a47012917cb17c16d91782f9b02b569f84494",
+      "status": "accepted",
+      "tool_function_ancestry": {
+        "function_surface": "pytorch.micro_fixture",
+        "tool_target": "pytorch"
+      }
+    },
+    {
       "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_pure_lego_wilczek_zee_holonomy.json",
       "admission_status": "admitted",
       "basename": "sim_pure_lego_wilczek_zee_holonomy",
@@ -960,7 +976,7 @@
       "receipt_schema_ok": true,
       "result_name": "sim_pure_lego_clifford_weyl_transport",
       "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/clifford_weyl_transport_results.json",
-      "result_sha256": "7bcff73ada662078b188621afeaa90e7c66ebad75c9b0f1786d3fd1564e73c7a",
+      "result_sha256": "cb4cfd3138cc6d3cae900bd395c4d7f23fcf9cafcd1ce75fc1ffd1e53a65af10",
       "status": "blocked",
       "tool_function_ancestry": {
         "function_surface": null,
@@ -5080,21 +5096,19 @@
       }
     },
     {
-      "admission_artifact": null,
-      "admission_status": "missing_or_invalid",
+      "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_toponetx_hopf_crosscheck.json",
+      "admission_status": "admitted",
       "basename": "sim_toponetx_hopf_crosscheck",
-      "blockers": [
-        "admission:admission_missing"
-      ],
+      "blockers": [],
       "parent_receipt_sha256": {},
       "receipt_schema_ok": true,
       "result_name": "sim_toponetx_hopf_crosscheck",
       "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/toponetx_hopf_crosscheck_results.json",
-      "result_sha256": "53697056b644a4cc0bda1bc5fe9983a42dcad10225e441201592734e5c5bf51d",
-      "status": "blocked",
+      "result_sha256": "634d5e9301d653f8ba2a99b2062a47012917cb17c16d91782f9b02b569f84494",
+      "status": "accepted",
       "tool_function_ancestry": {
-        "function_surface": null,
-        "tool_target": null
+        "function_surface": "pytorch.micro_fixture",
+        "tool_target": "pytorch"
       }
     },
     {
@@ -5836,12 +5850,6 @@
       "next_action": "do_not_promote_use_as_classical_or_bridge_tool_reference_only",
       "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sympy_capability_results.json",
       "sim_path": "system_v4/probes/sim_sympy_capability.py"
-    },
-    {
-      "basename": "sim_toponetx_hopf_crosscheck",
-      "next_action": "create_or_repair_wizard_sim_admission",
-      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/toponetx_hopf_crosscheck_results.json",
-      "sim_path": "system_v4/probes/sim_toponetx_hopf_crosscheck.py"
     },
     {
       "basename": "sim_torch_clifford_ga_bridge",
@@ -8386,7 +8394,7 @@
       "receipt_schema_ok": true,
       "result_name": "sim_pure_lego_clifford_weyl_transport",
       "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/clifford_weyl_transport_results.json",
-      "result_sha256": "7bcff73ada662078b188621afeaa90e7c66ebad75c9b0f1786d3fd1564e73c7a",
+      "result_sha256": "cb4cfd3138cc6d3cae900bd395c4d7f23fcf9cafcd1ce75fc1ffd1e53a65af10",
       "status": "blocked",
       "tool_function_ancestry": {
         "function_surface": null,
@@ -12156,24 +12164,6 @@
     {
       "admission_artifact": null,
       "admission_status": "missing_or_invalid",
-      "basename": "sim_toponetx_hopf_crosscheck",
-      "blockers": [
-        "admission:admission_missing"
-      ],
-      "parent_receipt_sha256": {},
-      "receipt_schema_ok": true,
-      "result_name": "sim_toponetx_hopf_crosscheck",
-      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/toponetx_hopf_crosscheck_results.json",
-      "result_sha256": "53697056b644a4cc0bda1bc5fe9983a42dcad10225e441201592734e5c5bf51d",
-      "status": "blocked",
-      "tool_function_ancestry": {
-        "function_surface": null,
-        "tool_target": null
-      }
-    },
-    {
-      "admission_artifact": null,
-      "admission_status": "missing_or_invalid",
       "basename": "toponetx_state_class_binding",
       "blockers": [
         "admission:admission_missing"
@@ -12831,13 +12821,13 @@
   },
   "status_reason": "accepted_qit_entries_present",
   "summary": {
-    "accepted": 25,
-    "admitted_micro_entries": 26,
-    "blocked": 269,
-    "candidate_entries": 25,
-    "missing_or_invalid_admission": 268,
+    "accepted": 26,
+    "admitted_micro_entries": 27,
+    "blocked": 268,
+    "candidate_entries": 26,
+    "missing_or_invalid_admission": 267,
     "qit_signal_result_count": 294,
-    "quarantine_entries": 269,
+    "quarantine_entries": 268,
     "scanned_result_count": 704,
     "total_entries": 294
   }

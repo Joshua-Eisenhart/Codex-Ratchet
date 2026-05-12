@@ -34,6 +34,8 @@ import traceback
 
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 
 # =====================================================================
@@ -822,7 +824,32 @@ if __name__ == "__main__":
             "BC6 sympy: purification identity S(BC) = S(A) for pure |psi>_ABC",
             "BC5 bound tightened to 2*log(chi) (not log(chi)) reflecting bipartite max entanglement",
         ],
+        "claim_ceiling": "tool_tool_micro_integration_only",
+        "next_lego_target": "bounded HCW density-matrix and information-bound fixture before bridge, axis, or QIT promotion",
+        "promotion_condition": (
+            "requires later admitted downstream bridge/coupling rows with exact parent "
+            "receipts and stage-gate approval; this receipt does not itself promote a bridge, axis, GStack, QIT engine, or nonclassical claim"
+        ),
+        "blocked_until": (
+            "blocked from bridge, axis, GStack, QIT engine, and nonclassical promotion "
+            "until exact parent receipts and downstream coupling/admission packets pass strict validation"
+        ),
+        "demotion_condition": (
+            "Demote this bounded HCW surface if rho_HCW is not PSD trace-one, if "
+            "z3 admits the excluded eigenvalue/information-bound claims, or if the sympy purification identity fails."
+        ),
+        "out_of_scope": [
+            "no bridge promotion from this receipt alone",
+            "no axis, GStack, QIT engine, or nonclassical admission",
+            "no scientific lego promotion",
+            "no proof of full holographic-Clifford-Weyl coexistence",
+            "no replacement for downstream bridge/coupling receipts",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_holographic_clifford_weyl_bridge_claims_canonical",
+    )
 
     out_dir = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),

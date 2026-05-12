@@ -67,6 +67,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["topology_to_graph_fit", "cell_complex_geometry"],
     },
     {
+        "tool": "pyg",
+        "function_api": "torch_geometric.data.Batch.from_data_list tensor concatenation, edge-index offsetting, batch vector, and ptr",
+        "receipt": "system_v4/probes/a2_state/sim_results/sim_pyg_batching_micro_results.json",
+        "role": "nonclassical_adjacent",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["graph_batching_fixture", "graph_shell_geometry"],
+    },
+    {
         "tool": "qutip",
         "function_api": "qutip.basis, ket2dm, sigmax/sigmaz expectation",
         "receipt": "system_v4/probes/a2_state/sim_results/qutip_capability_results.json",

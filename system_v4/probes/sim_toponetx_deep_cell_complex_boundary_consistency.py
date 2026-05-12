@@ -16,19 +16,26 @@ Classification: canonical (tool-integration depth sim).
 import json, os, sys
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
+_NOT_USED_REASON = (
+    "not used: this bounded TopoNetX boundary-consistency receipt isolates "
+    "CellComplex incidence matrices and d^2=0 controls; other tool families require separate receipts."
+)
+
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": ""},
-    "pyg": {"tried": False, "used": False, "reason": ""},
-    "z3": {"tried": False, "used": False, "reason": ""},
-    "cvc5": {"tried": False, "used": False, "reason": ""},
-    "sympy": {"tried": False, "used": False, "reason": ""},
-    "clifford": {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn": {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi": {"tried": False, "used": False, "reason": ""},
+    "pytorch": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "pyg": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "z3": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "cvc5": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "sympy": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "clifford": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "geomstats": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "e3nn": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "rustworkx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "xgi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
     "toponetx": {"tried": False, "used": False, "reason": ""},
-    "gudhi": {"tried": False, "used": False, "reason": ""},
+    "gudhi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 
@@ -145,10 +152,33 @@ if __name__ == "__main__":
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,
         "ALL_PASS": all_pass,
+        "all_pass": all_pass,
+        "surviving_alternatives": [
+            "This receipt covers only bounded TopoNetX CellComplex boundary consistency; it does not promote graph-cell geometry, bridge, axis, GStack, QIT engine, or nonclassical admission."
+        ],
+        "demotion_condition": (
+            "Demote this TopoNetX boundary-consistency receipt if B1@B2 zero checks, "
+            "orientation-violation exclusion, rank mismatch exclusion, triangle boundary, "
+            "or no-2-cell boundary controls fail on rerun."
+        ),
+        "out_of_scope": [
+            "no graph-cell lego promotion",
+            "no boundary-fence promotion",
+            "no bridge claim",
+            "no axis claim",
+            "no GStack claim",
+            "no QIT engine claim",
+            "no nonclassical admission",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=name,
+        target="Use as bounded TopoNetX CellComplex boundary-consistency evidence before exact graph-cell or boundary-fence lego-fit packets.",
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, f"{name}_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"{name}: ALL_PASS={all_pass} -> {out_path}")

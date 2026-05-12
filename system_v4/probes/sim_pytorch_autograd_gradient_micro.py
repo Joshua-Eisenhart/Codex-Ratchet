@@ -21,6 +21,8 @@ import json
 import os
 from typing import Any
 
+from receipt_boundary import apply_default_receipt_boundary
+
 
 classification = "canonical"
 
@@ -301,6 +303,11 @@ def build_results() -> dict[str, Any]:
 
 if __name__ == "__main__":
     results = build_results()
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_pytorch_autograd_gradient_micro",
+        target="Use as bounded PyTorch autograd.grad function evidence before differentiable constraint or entropy-gradient lego fit packets.",
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "sim_pytorch_autograd_gradient_micro_results.json")

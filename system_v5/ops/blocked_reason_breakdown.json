@@ -1,34 +1,35 @@
 {
   "schema": "blocked_reason_breakdown_v1",
-  "blocked_count": 710,
-  "wizard_admission_blocked_count": 629,
+  "blocked_count": 715,
+  "wizard_admission_blocked_count": 630,
   "all_rows_have_subreasons": true,
   "blocked_reasons": {
-    "wizard_admission_blocked": 629,
+    "wizard_admission_blocked": 630,
     "gate_denied": 1,
-    "stage_gate_blocked": 79,
+    "stage_gate_blocked": 81,
+    "done_duplicate_conflict": 2,
     "stale_claim": 1
   },
   "contract_subreasons": {
     "C1_classification_missing": 193,
-    "C4_divergence_log_missing": 133,
-    "C6_classical_has_load_bearing": 220,
-    "contract_clean_or_not_static_lint_blocked": 233,
-    "C2_manifest_missing": 72,
-    "C3_depth_missing": 49,
-    "C4_divergence_log_empty": 116,
+    "C4_divergence_log_missing": 127,
+    "C6_classical_has_load_bearing": 213,
+    "contract_clean_or_not_static_lint_blocked": 251,
+    "C2_manifest_missing": 68,
+    "C3_depth_missing": 45,
+    "C4_divergence_log_empty": 109,
     "C1_classification_invalid": 3,
     "C5_missing_probe": 4
   },
   "by_blocked_reason": {
     "wizard_admission_blocked": {
       "C1_classification_missing": 183,
-      "C4_divergence_log_missing": 109,
-      "C6_classical_has_load_bearing": 198,
-      "contract_clean_or_not_static_lint_blocked": 192,
-      "C2_manifest_missing": 70,
-      "C3_depth_missing": 47,
-      "C4_divergence_log_empty": 111,
+      "C4_divergence_log_missing": 103,
+      "C6_classical_has_load_bearing": 191,
+      "contract_clean_or_not_static_lint_blocked": 206,
+      "C2_manifest_missing": 66,
+      "C3_depth_missing": 43,
+      "C4_divergence_log_empty": 104,
       "C1_classification_invalid": 2,
       "C5_missing_probe": 4
     },
@@ -36,7 +37,7 @@
       "C1_classification_missing": 1
     },
     "stage_gate_blocked": {
-      "contract_clean_or_not_static_lint_blocked": 41,
+      "contract_clean_or_not_static_lint_blocked": 43,
       "C4_divergence_log_missing": 24,
       "C6_classical_has_load_bearing": 21,
       "C1_classification_missing": 9,
@@ -44,6 +45,9 @@
       "C2_manifest_missing": 2,
       "C3_depth_missing": 2,
       "C1_classification_invalid": 1
+    },
+    "done_duplicate_conflict": {
+      "contract_clean_or_not_static_lint_blocked": 2
     },
     "stale_claim": {
       "C4_divergence_log_empty": 1,
@@ -262,8 +266,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_assortativity_classical.py",
       "subreasons": [
-        "C4_divergence_log_empty",
-        "C6_classical_has_load_bearing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -851,7 +854,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_xgi_deep_hyperedge_motif_count.py",
       "subreasons": [
-        "C4_divergence_log_missing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -1173,6 +1176,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/32756e1bc3c65249.json",
+      "blocked_reason": "stage_gate_blocked",
+      "blocked_stage_claim": "default_late_stage",
+      "sim_path": "system_v4/probes/classical_baseline_gram_schmidt.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/3304c841d2b023f9.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -1395,9 +1407,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_svd_factorization_classical.py",
       "subreasons": [
-        "C2_manifest_missing",
-        "C3_depth_missing",
-        "C4_divergence_log_missing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -2182,8 +2192,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_assortativity_classical.py",
       "subreasons": [
-        "C4_divergence_log_empty",
-        "C6_classical_has_load_bearing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -2192,8 +2201,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_assortativity_classical.py",
       "subreasons": [
-        "C4_divergence_log_empty",
-        "C6_classical_has_load_bearing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -4227,8 +4235,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_assortativity_classical.py",
       "subreasons": [
-        "C4_divergence_log_empty",
-        "C6_classical_has_load_bearing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -4237,8 +4244,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_assortativity_classical.py",
       "subreasons": [
-        "C4_divergence_log_empty",
-        "C6_classical_has_load_bearing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -4247,8 +4253,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_assortativity_classical.py",
       "subreasons": [
-        "C4_divergence_log_empty",
-        "C6_classical_has_load_bearing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -4257,8 +4262,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_assortativity_classical.py",
       "subreasons": [
-        "C4_divergence_log_empty",
-        "C6_classical_has_load_bearing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -4432,9 +4436,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_operator_low_rank_factorization_classical.py",
       "subreasons": [
-        "C2_manifest_missing",
-        "C3_depth_missing",
-        "C4_divergence_log_missing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -4740,9 +4742,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_spectral_decomposition_classical.py",
       "subreasons": [
-        "C2_manifest_missing",
-        "C3_depth_missing",
-        "C4_divergence_log_missing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -5195,9 +5195,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_principal_subspace_classical.py",
       "subreasons": [
-        "C2_manifest_missing",
-        "C3_depth_missing",
-        "C4_divergence_log_missing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -5605,6 +5603,24 @@
       "subreasons": [
         "C4_divergence_log_missing",
         "C6_classical_has_load_bearing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/d29f3f35c272ae01.json.46899.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "wizard_admission_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_principal_subspace_classical.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/d29f3f35c272ae01.json.56947.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "done_duplicate_conflict",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_principal_subspace_classical.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -6424,6 +6440,15 @@
       ]
     },
     {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/efdde67495cf1693.json.40930.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "done_duplicate_conflict",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/sim_principal_subspace_classical.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
+      ]
+    },
+    {
       "blocked_file": "system_v4/probes/a2_state/queue/blocked/f09a35f9b98630b8.json",
       "blocked_reason": "wizard_admission_blocked",
       "blocked_stage_claim": null,
@@ -6573,7 +6598,7 @@
       "blocked_stage_claim": null,
       "sim_path": "system_v4/probes/sim_xgi_deep_hyperedge_motif_count.py",
       "subreasons": [
-        "C4_divergence_log_missing"
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {
@@ -6734,6 +6759,15 @@
       "sim_path": "system_v4/probes/sim_ramsey_theory_constraint_canonical.py",
       "subreasons": [
         "C1_classification_missing"
+      ]
+    },
+    {
+      "blocked_file": "system_v4/probes/a2_state/queue/blocked/ff11807ec550b3c7.json.65977.Joshuas-MacBook-Pro.laneB_w1",
+      "blocked_reason": "stage_gate_blocked",
+      "blocked_stage_claim": null,
+      "sim_path": "system_v4/probes/classical_baseline_gram_schmidt.py",
+      "subreasons": [
+        "contract_clean_or_not_static_lint_blocked"
       ]
     },
     {

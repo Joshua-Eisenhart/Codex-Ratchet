@@ -3,6 +3,8 @@
 import json, os, numpy as np
 from itertools import combinations
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 
 TOOL_MANIFEST = {
@@ -42,11 +44,15 @@ try:
 except ImportError:
     TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
 
-divergence_log = [
+divergence_details = [
     "Chose face-count alternating sum over boundary-rank formula for transparency.",
     "Considered general polyhedra; restricted to tetrahedron (sphere) and triangulated torus for canonical chi values.",
     "Rejected using Betti numbers to verify chi as circular.",
 ]
+divergence_log = (
+    "Classical Euler characteristic face-count baseline only; no bridge, QIT, "
+    "GStack, axis, or nonclassical admission claim."
+)
 
 def chi_from_counts(V, E, F):
     return len(V) - len(E) + len(F)
@@ -100,12 +106,21 @@ def run_boundary_tests():
 if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(v["pass"] for d in (pos,neg,bnd) for v in d.values())
-    results = {"name": "euler_characteristic_classical", "classification": classification,
+    results = {"name": "sim_euler_characteristic_classical", "classification": classification,
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-               "divergence_log": divergence_log, "positive": pos, "negative": neg, "boundary": bnd,
+               "divergence_log": divergence_log, "divergence_details": divergence_details,
+               "positive": pos, "negative": neg, "boundary": bnd,
                "all_pass": all_pass, "summary": {"all_pass": all_pass}}
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_euler_characteristic_classical",
+        target=(
+            "Use as bounded classical Euler characteristic baseline evidence "
+            "before topology, persistence, graph-shell, or cell-complex tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "euler_characteristic_classical_results.json")
-    with open(out_path, "w") as f: json.dump(results, f, indent=2, default=str)
+    out_path = os.path.join(out_dir, "sim_euler_characteristic_classical_results.json")
+    with open(out_path, "w", encoding="utf-8") as f: json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}; all_pass={all_pass}")

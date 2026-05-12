@@ -16,6 +16,8 @@ import json
 import os
 import sys
 
+from receipt_boundary import apply_default_receipt_boundary
+
 
 CLASSIFICATION = "canonical"
 NAME = "sim_sympy_matrix_identity_micro"
@@ -213,6 +215,11 @@ if __name__ == "__main__":
             "operator-family admission beyond this exact matrix inverse identity fixture",
         ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_sympy_matrix_identity_micro",
+        target="Use as bounded SymPy exact matrix-inverse identity function evidence before operator-family lego fit packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

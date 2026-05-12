@@ -32,6 +32,8 @@ import traceback
 
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 
 # =====================================================================
@@ -429,7 +431,41 @@ if __name__ == "__main__":
             "passed_bool_count": sum(bool_pos.values()) + sum(bool_neg.values()) + sum(bool_bnd.values()),
             "total_bool_count": len(bool_pos) + len(bool_neg) + len(bool_bnd),
         },
+        "divergence_log": [
+            "canonical: pytorch + z3 + sympy all load_bearing for this bounded HGH bridge-claim fixture",
+            "rho_HGH is a 64x64 tensor-product pure-state density matrix; PSD and trace-one are checked with torch.linalg.eigvalsh",
+            "Q_HGH/MI covariance uses a fixed H_holo*H_gerbe*H_hopf factor so the receipt only checks bounded functional wiring",
+            "Axis-0 monotonicity is limited to Bell-state dephasing layers across the 20 seeded fixture runs",
+            "z3 negative-eigenvalue exclusion is a scalar PSD admissibility sanity check, not a full matrix proof",
+            "sympy factorization proves only the stated symbolic product identity used by this micro fixture",
+        ],
+        "claim_ceiling": "tool_tool_micro_integration_only",
+        "next_lego_target": "bounded HGH density-matrix and information-bound fixture before bridge, axis, or QIT promotion",
+        "promotion_condition": (
+            "requires later admitted downstream bridge/coupling rows with exact parent "
+            "receipts and stage-gate approval; this receipt does not itself promote a bridge, axis, GStack, QIT engine, or nonclassical claim"
+        ),
+        "blocked_until": (
+            "blocked from bridge, axis, GStack, QIT engine, and nonclassical promotion "
+            "until exact parent receipts and downstream coupling/admission packets pass strict validation"
+        ),
+        "demotion_condition": (
+            "Demote this bounded HGH surface if rho_HGH is not Hermitian PSD trace-one with shape 64x64, "
+            "if z3 admits the negative-eigenvalue claim, if sympy factorization fails, "
+            "or if the MI covariance/monotonicity checks fail on the seeded fixture."
+        ),
+        "out_of_scope": [
+            "no bridge promotion from this receipt alone",
+            "no axis, GStack, QIT engine, or nonclassical admission",
+            "no scientific lego promotion",
+            "no proof of full holographic-Gerbe-Hopf coexistence",
+            "no replacement for downstream bridge/coupling receipts",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_holographic_gerbe_hopf_bridge_claims_canonical",
+    )
 
     out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

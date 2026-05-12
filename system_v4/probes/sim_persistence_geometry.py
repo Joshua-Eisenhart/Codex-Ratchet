@@ -15,13 +15,20 @@ import pathlib
 import gudhi
 import numpy as np
 from receipt_boundary import apply_default_receipt_boundary
-classification = "classical_baseline"  # auto-backfill
 
 
+NAME = "sim_persistence_geometry"
+classification = "canonical"
 CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
     "Canonical local lego for persistence geometry on bounded sampled carriers "
     "using GUDHI as the load-bearing topology tool."
+)
+divergence_log = (
+    "GUDHI is load-bearing for bounded Rips-complex persistence on sampled "
+    "classical carriers. This receipt distinguishes finite H1 persistence "
+    "fixtures only and does not promote bridge, axis, GStack, QIT, or "
+    "nonclassical topology claims."
 )
 
 LEGO_IDS = [
@@ -148,13 +155,15 @@ def main():
     )
 
     results = {
-        "name": "persistence_geometry",
+        "name": NAME,
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "all_pass": all_pass,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
@@ -164,13 +173,17 @@ def main():
         },
     }
 
-    results = apply_default_receipt_boundary(results, source_name=pathlib.Path(__file__).stem)
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded GUDHI persistence-geometry evidence before persistence registry or topology comparison packets.",
+    )
 
     out_path = (
         pathlib.Path(__file__).resolve().parent
         / "a2_state"
         / "sim_results"
-        / "persistence_geometry_results.json"
+        / f"{NAME}_results.json"
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(results, indent=2, default=str))

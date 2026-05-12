@@ -7,6 +7,16 @@ import json, os
 import numpy as np
 import sympy as sp
 
+from receipt_boundary import apply_default_receipt_boundary
+
+NAME = "sim_sympy_bch_4th_order"
+classification = "canonical"
+divergence_log = (
+    "SymPy is load-bearing for exact noncommutative BCH coefficient checks; "
+    "the numpy/scipy ablation is a classical numeric approximation and cannot "
+    "certify the symbolic identity."
+)
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "numeric-only; BCH identity requires symbolic noncommutative expansion"},
     "pyg":     {"tried": False, "used": False, "reason": "not a graph problem"},
@@ -133,19 +143,35 @@ def run_ablation():
 
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    all_pass = (
+        positive["bch_up_to_order_4_vanishes"]["residual_low_order_is_zero"]
+        and negative["corrupted_coefficient_detected"]["residual_nonzero"]
+        and boundary["commuting_case_collapses"]["residual_zero"]
+    )
     results = {
-        "name": "sympy_bch_4th_order",
+        "name": NAME,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
         "ablation": run_ablation(),
-        "classification": "canonical",
+        "classification": classification,
+        "divergence_log": divergence_log,
+        "summary": {"all_pass": bool(all_pass)},
+        "all_pass": bool(all_pass),
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded SymPy exact BCH coefficient evidence before operator/algebra lego-fit packets.",
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "sympy_bch_4th_order_results.json")
-    with open(out_path, "w") as f:
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")

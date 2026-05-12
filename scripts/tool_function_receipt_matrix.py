@@ -227,6 +227,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["constraint_probe_admissibility", "probe_object"],
     },
     {
+        "tool": "cvc5",
+        "function_api": "cvc5 Solver.synthFun/addSygusConstraint/checkSynth/getSynthSolution bounded LIA SyGuS fixture",
+        "receipt": "system_v4/probes/a2_state/sim_results/sim_cvc5_sygus_synthesis_micro_results.json",
+        "role": "nonclassical_adjacent",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["constraint_probe_admissibility", "sygus_integer_grammar_fixture"],
+    },
+    {
         "tool": "sympy",
         "function_api": "sympy symbolic expression/matrix simplification and exact algebra",
         "receipt": "system_v4/probes/a2_state/sim_results/sympy_capability_results.json",

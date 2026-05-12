@@ -20,6 +20,8 @@ import z3
 import cvc5
 from cvc5 import Kind
 
+from receipt_boundary import apply_default_receipt_boundary
+
 
 CLASSIFICATION = "tool_lego_fit_probe"
 classification = CLASSIFICATION
@@ -266,6 +268,11 @@ def main() -> None:
         "all_pass": bool(all_pass),
         "generated_at": datetime.now(UTC).isoformat(),
     }
+    result = apply_default_receipt_boundary(
+        result,
+        source_name="constraint_admissibility_fence_cvc5_microfit",
+        target="Use as bounded cvc5 -> constraint_probe_admissibility tool-lego fit evidence; no full lego or QIT promotion without companion receipts.",
+    )
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
     out = RESULT_DIR / "constraint_admissibility_fence_cvc5_microfit_results.json"
     out.write_text(json.dumps(result, indent=2, default=str) + "\n", encoding="utf-8")

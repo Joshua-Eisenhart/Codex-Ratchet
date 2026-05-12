@@ -5,67 +5,67 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "classical baseline: numpy only"
+      "reason": "not selected because this receipt is a numpy-only finite real-matrix SVD baseline"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "classical baseline: numpy only"
+      "reason": "not selected because no graph tensor or message-passing structure is tested"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed for numeric spectral baseline"
+      "reason": "not selected because SVD reconstruction is checked numerically, not as an SMT constraint"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not selected because no SMT proof or algebraic datatype reasoning is required"
     },
     "sympy": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "optional symbolic; not load-bearing"
+      "reason": "not selected because this receipt uses numerical SVD rather than symbolic factorization"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not selected because no geometric algebra carrier is part of this baseline"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not selected because no manifold metric or geodesic structure is evaluated"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not selected because equivariant tensor features are outside this baseline"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not selected because no graph dependency or traversal computation is needed"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not selected because no hypergraph incidence structure is tested"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not selected because no cell-complex boundary or incidence matrix is tested"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not selected because no filtration or persistence computation is needed"
     },
     "numpy": {
       "tried": true,
       "used": true,
-      "reason": "supportive classical baseline: numpy.linalg.svd supplies all singular values, orthonormal factors, and reconstruction checks in this receipt"
+      "reason": "supportive classical baseline: numpy.linalg.svd supplies singular values, orthonormal factors, and reconstruction checks"
     }
   },
   "tool_integration_depth": {

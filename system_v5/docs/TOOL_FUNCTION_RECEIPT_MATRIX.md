@@ -1,13 +1,13 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-12T03:56:48.579501+00:00`
+Generated: `2026-05-12T04:49:04.550141+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `21`
-- Passing rows: `21`
+- Rows: `29`
+- Passing rows: `29`
 - Missing receipts: `0`
 
 ## Matrix
@@ -19,19 +19,27 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `pyg` | torch_geometric.nn.MessagePassing.propagate directed additive aggregation | `system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_cell_complex_geometry`, `operator_family_admission` |
 | `qutip` | qutip.basis, ket2dm, sigmax/sigmaz expectation | `system_v4/probes/a2_state/sim_results/qutip_capability_results.json` | `canonical` | `bridge_useful` | `load_bearing` | `True` | `channel_cptp_map`, `lindbladian_evolution` |
 | `qutip` | qutip.mesolve Lindblad open-system evolution | `system_v4/probes/a2_state/sim_results/qutip_open_system_bridge_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `lindbladian_evolution`, `channel_cptp_map` |
+| `qutip` | qutip entropy_vn / tensor density operators for mutual-information microfit | `system_v4/probes/a2_state/sim_results/mutual_information_qutip_microfit_results.json` | `tool_lego_fit_probe` | `bridge_useful` | `load_bearing` | `True` | `mutual_information_measure`, `density_matrix_object` |
 | `qiskit` | QuantumCircuit, Statevector, DensityMatrix, Operator expectation_value | `system_v4/probes/a2_state/sim_results/qiskit_capability_results.json` | `canonical` | `bridge_useful` | `load_bearing` | `True` | `unitary_channel_map`, `density_matrix_object` |
 | `clifford` | Cl(3)/Cl(6) layout blades, rotor products, grade/scalar extraction | `system_v4/probes/a2_state/sim_results/clifford_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `clifford_generator_basis`, `clifford_geometry` |
 | `gudhi` | SimplexTree, Rips/filtration persistence and Betti summaries | `system_v4/probes/a2_state/sim_results/gudhi_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `persistence_geometry`, `concurrence_measure` |
+| `gudhi` | gudhi.SimplexTree insert/assign_filtration/persistence on a tiny filtered complex | `system_v4/probes/a2_state/sim_results/sim_gudhi_simplex_persistence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `persistence_geometry`, `cell_complex_geometry` |
 | `toponetx` | CellComplex/SimplicialComplex rank cells and incidence_matrix | `system_v4/probes/a2_state/sim_results/toponetx_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `state_class_binding_geometry`, `cell_complex_geometry` |
 | `toponetx` | CellComplex rank-2 cell incidence_matrix(2) | `system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `cell_complex_geometry`, `hypergraph_shell_geometry` |
 | `xgi` | xgi.Hypergraph hyperedge membership and shared incidence intersection | `system_v4/probes/a2_state/sim_results/xgi_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `dual_hypergraph_geometry` |
+| `xgi` | xgi.Hypergraph incidence matrix and node/edge membership on a tiny hypergraph | `system_v4/probes/a2_state/sim_results/sim_xgi_hypergraph_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `cell_complex_geometry` |
 | `xgi` | XGI hyperedge incidence matched to TopoNetX rank-2 cells | `system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `cell_complex_geometry` |
 | `rustworkx` | rustworkx PyDiGraph DAG construction, topological_sort, transitive_reduction, dijkstra_shortest_paths, cycle detection | `system_v4/probes/a2_state/sim_results/rustworkx_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_shell_geometry`, `dependency_dag_and_collapse` |
+| `rustworkx` | rustworkx PyDiGraph descendants/topological_sort/shortest_path reachability on a tiny DAG | `system_v4/probes/a2_state/sim_results/sim_rustworkx_dag_reachability_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `dependency_dag_and_collapse`, `graph_shell_geometry` |
 | `z3` | z3 Solver/SolverFor QF_LIA add/check/model and UNSAT witness | `system_v4/probes/a2_state/sim_results/z3_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `distinguishability_relation` |
 | `z3` | z3 SolverFor('QF_LIA') shared SAT/UNSAT agreement fixture | `system_v4/probes/a2_state/sim_results/sim_integration_cvc5_z3_unsat_agreement_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `probe_object` |
 | `cvc5` | cvc5 Solver.assertFormula/checkSat/getValue QF_LIA fixture | `system_v4/probes/a2_state/sim_results/cvc5_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `carrier_admission_density_matrix` |
 | `cvc5` | cvc5 shared QF_LIA SAT/UNSAT agreement with z3 | `system_v4/probes/a2_state/sim_results/sim_integration_cvc5_z3_unsat_agreement_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `probe_object` |
 | `sympy` | sympy symbolic expression/matrix simplification and exact algebra | `system_v4/probes/a2_state/sim_results/sympy_capability_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `entropy_family_crosschecks`, `operator_family_admission` |
+| `sympy` | sympy.diff/integrate/factor/simplify exact scalar identity checks | `system_v4/probes/a2_state/sim_results/sim_sympy_symbolic_identity_micro_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `exact_algebra_crosschecks`, `operator_family_admission` |
+| `sympy` | sympy Matrix.inv / exact matrix equality inverse identity checks | `system_v4/probes/a2_state/sim_results/sim_sympy_matrix_identity_micro_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `exact_matrix_identity`, `operator_family_admission` |
 | `geomstats` | geomstats metric.geodesic, exp/log, SPD distance, Frechet mean | `system_v4/probes/a2_state/sim_results/geomstats_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `geometry_crosschecks_same_carrier`, `quantum_metric_nonuniqueness` |
+| `geomstats` | geomstats SO(3) metric distance/log/exp consistency on tiny rotations | `system_v4/probes/a2_state/sim_results/sim_geomstats_so3_distance_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `geometry_crosschecks_same_carrier`, `gtower_so3_geometry` |
 | `e3nn` | e3nn.o3.Irreps and D_from_matrix vector representation | `system_v4/probes/a2_state/sim_results/e3nn_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `operator_family_admission`, `graph_cell_complex_geometry` |
+| `e3nn` | e3nn.o3.spherical_harmonics equivariance under a tiny SO(3) rotation fixture | `system_v4/probes/a2_state/sim_results/sim_e3nn_spherical_harmonics_equivariance_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `operator_family_admission`, `gtower_so3_geometry` |
 | `e3nn` | e3nn vector irrep action commuting with PyG MessagePassing.propagate | `system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `operator_family_admission`, `graph_cell_complex_geometry` |

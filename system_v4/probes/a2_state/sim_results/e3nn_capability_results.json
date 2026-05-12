@@ -1,0 +1,187 @@
+{
+  "name": "sim_e3nn_capability",
+  "purpose": "Tool-capability isolation probe for e3nn -- SO(3) equivariance, irrep parsing, CG sanity.",
+  "e3nn_version": "0.6.0",
+  "importable": true,
+  "torch_available": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "used as e3nn backend (not under test)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded e3nn capability receipt isolates SO(3) irrep, tensor-product, and equivariance APIs; other tool families require separate receipts."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded e3nn capability receipt isolates SO(3) irrep, tensor-product, and equivariance APIs; other tool families require separate receipts."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded e3nn capability receipt isolates SO(3) irrep, tensor-product, and equivariance APIs; other tool families require separate receipts."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded e3nn capability receipt isolates SO(3) irrep, tensor-product, and equivariance APIs; other tool families require separate receipts."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded e3nn capability receipt isolates SO(3) irrep, tensor-product, and equivariance APIs; other tool families require separate receipts."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded e3nn capability receipt isolates SO(3) irrep, tensor-product, and equivariance APIs; other tool families require separate receipts."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing capability under test: e3nn SO(3) Irreps, FullyConnectedTensorProduct, D_from_matrix, tensor-product decomposition, and equivariance residuals decide the receipt verdicts."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded e3nn capability receipt isolates SO(3) irrep, tensor-product, and equivariance APIs; other tool families require separate receipts."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded e3nn capability receipt isolates SO(3) irrep, tensor-product, and equivariance APIs; other tool families require separate receipts."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded e3nn capability receipt isolates SO(3) irrep, tensor-product, and equivariance APIs; other tool families require separate receipts."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this bounded e3nn capability receipt isolates SO(3) irrep, tensor-product, and equivariance APIs; other tool families require separate receipts."
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": "load_bearing",
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "witness_file": "system_v4/probes/sim_e3nn_hopf_spinor_equivariance.py",
+  "positive": {
+    "e3nn_available": {
+      "pass": true,
+      "version": "0.6.0"
+    },
+    "irrep_parsing": {
+      "pass": true,
+      "in_dim": 4,
+      "out_dim": 3
+    },
+    "cg_1ox1o_decomp": {
+      "pass": true,
+      "got": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    "so3_equivariance": {
+      "pass": true,
+      "max_abs_err": 0.0
+    },
+    "D_matrix_orthogonal": {
+      "pass": true,
+      "max_abs_err": 8.344650268554688e-07
+    }
+  },
+  "negative": {
+    "bad_irrep_raises": {
+      "pass": true,
+      "error_type": "ValueError"
+    },
+    "non_rotation_breaks_equivariance": {
+      "pass": true,
+      "max_abs_err": 0.179094597697258
+    },
+    "wrong_input_dim_raises": {
+      "pass": true,
+      "error_type": "AssertionError"
+    }
+  },
+  "boundary": {
+    "identity_rotation_exact": {
+      "pass": true,
+      "max_abs_err": 0.0
+    },
+    "scalar_irrep_invariant": {
+      "pass": true,
+      "max_abs_err": 0.0
+    },
+    "D_homomorphism": {
+      "pass": true,
+      "max_abs_err": 1.9073486328125e-06
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "importable": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "classification": "canonical",
+  "surviving_alternatives": [
+    "This receipt covers only bounded e3nn equivariance API capability; it does not promote spinor geometry, graph equivariance, bridge, axis, GStack, or nonclassical admission."
+  ],
+  "demotion_condition": "Demote this e3nn capability receipt if irrep parsing, CG decomposition, SO(3) equivariance residuals, D-matrix orthogonality, malformed input rejection, or boundary rotation controls fail on rerun.",
+  "out_of_scope": [
+    "no spinor-geometry lego promotion",
+    "no graph-equivariance promotion",
+    "no bridge claim",
+    "no axis claim",
+    "no GStack claim",
+    "no nonclassical admission"
+  ],
+  "claim_ceiling": "finite sim_e3nn_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+  "next_lego_target": "Use as bounded e3nn SO(3)-equivariance capability evidence before exact equivariance lego-fit or coupling packets.",
+  "promotion_condition": "Requires separate coupling/coexistence receipts and explicit stage-gate approval.",
+  "blocked_until": "explicit coupling-stage admission and companion receipts"
+}

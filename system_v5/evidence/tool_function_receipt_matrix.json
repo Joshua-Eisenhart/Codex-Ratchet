@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T06:01:34.041581+00:00",
+  "generated_at": "2026-05-12T06:04:36.651549+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -1122,23 +1122,24 @@
       "tool": "sympy"
     },
     {
-      "boundary_gap": true,
-      "boundary_source": "matrix_default",
+      "boundary_gap": false,
+      "boundary_source": "receipt",
       "candidate_lego_targets": [
         "geometry_crosschecks_same_carrier",
         "quantum_metric_nonuniqueness"
       ],
-      "claim_ceiling": "tool_function_receipt_only_not_admission_or_promotion",
+      "claim_ceiling": "finite sim_geomstats_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
       "depth": "load_bearing",
       "function_api": "geomstats metric.geodesic, exp/log, SPD distance, Frechet mean",
-      "manifest_reason": "load-bearing: computes geodesic, exp/log, SPD distance, Frechet mean",
+      "manifest_reason": "load-bearing capability under test: geomstats Hypersphere metric, exp/log, SPD affine distance, and FrechetMean APIs decide the receipt verdicts.",
       "observed_depth": "load_bearing",
       "out_of_scope": [
-        "no QIT admission",
-        "no GStack admission",
-        "no axis admission",
-        "no bridge or engine claim",
-        "no scientific lego coupling promotion"
+        "no manifold lego promotion",
+        "no Hopf geometry promotion",
+        "no bridge claim",
+        "no axis claim",
+        "no GStack claim",
+        "no nonclassical admission"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/geomstats_capability_results.json",
       "receipt_all_pass": true,
@@ -1176,23 +1177,24 @@
       "tool": "geomstats"
     },
     {
-      "boundary_gap": true,
-      "boundary_source": "matrix_default",
+      "boundary_gap": false,
+      "boundary_source": "receipt",
       "candidate_lego_targets": [
         "operator_family_admission",
         "graph_cell_complex_geometry"
       ],
-      "claim_ceiling": "tool_function_receipt_only_not_admission_or_promotion",
+      "claim_ceiling": "finite sim_e3nn_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
       "depth": "load_bearing",
       "function_api": "e3nn.o3.Irreps and D_from_matrix vector representation",
-      "manifest_reason": "capability under test -- SO(3) equivariance, irrep parsing, CG sanity",
+      "manifest_reason": "load-bearing capability under test: e3nn SO(3) Irreps, FullyConnectedTensorProduct, D_from_matrix, tensor-product decomposition, and equivariance residuals decide the receipt verdicts.",
       "observed_depth": "load_bearing",
       "out_of_scope": [
-        "no QIT admission",
-        "no GStack admission",
-        "no axis admission",
-        "no bridge or engine claim",
-        "no scientific lego coupling promotion"
+        "no spinor-geometry lego promotion",
+        "no graph-equivariance promotion",
+        "no bridge claim",
+        "no axis claim",
+        "no GStack claim",
+        "no nonclassical admission"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/e3nn_capability_results.json",
       "receipt_all_pass": true,
@@ -1265,7 +1267,7 @@
   "summary": {
     "missing_receipt_count": 0,
     "passing_count": 46,
-    "receipt_boundary_gap_count": 4,
+    "receipt_boundary_gap_count": 2,
     "receipt_schema_missing_count": 46,
     "row_count": 46,
     "tools": [

@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T05:02:07.056596+00:00",
+  "generated_at": "2026-05-12T05:05:56.814607+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -157,6 +157,35 @@
         "bridge admission"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "canonical",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "nonclassical_adjacent",
+      "tool": "pyg"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "graph_batching_fixture",
+        "graph_shell_geometry"
+      ],
+      "claim_ceiling": "tool_function_micro_only",
+      "depth": "load_bearing",
+      "function_api": "torch_geometric.data.Batch.from_data_list tensor concatenation, edge-index offsetting, batch vector, and ptr",
+      "manifest_reason": "PyG is load-bearing: Batch.from_data_list is the only API surface under test and supplies the offset edge_index, batch vector, and ptr.",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "no training",
+        "no HeteroData use",
+        "no e3nn coupling",
+        "no graph-cell promotion",
+        "no bridge claim",
+        "no axis claim",
+        "no proof of the whole PyG library"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/sim_pyg_batching_micro_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "canonical",
       "receipt_exists": true,
@@ -929,10 +958,10 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 34,
+    "passing_count": 35,
     "receipt_boundary_gap_count": 9,
-    "receipt_schema_missing_count": 34,
-    "row_count": 34,
+    "receipt_schema_missing_count": 35,
+    "row_count": 35,
     "tools": [
       "clifford",
       "cvc5",

@@ -1,13 +1,13 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-12T05:26:48.506324+00:00`
+Generated: `2026-05-12T05:29:47.614265+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `40`
-- Passing rows: `40`
+- Rows: `42`
+- Passing rows: `42`
 - Missing receipts: `0`
 
 ## Matrix
@@ -44,9 +44,11 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `cvc5` | cvc5 Solver.assertFormula/checkSat/getValue QF_LIA fixture | `system_v4/probes/a2_state/sim_results/cvc5_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `carrier_admission_density_matrix` |
 | `cvc5` | cvc5 shared QF_LIA SAT/UNSAT agreement with z3 | `system_v4/probes/a2_state/sim_results/sim_integration_cvc5_z3_unsat_agreement_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `probe_object` |
 | `cvc5` | cvc5 Solver.synthFun/addSygusConstraint/checkSynth/getSynthSolution bounded LIA SyGuS fixture | `system_v4/probes/a2_state/sim_results/sim_cvc5_sygus_synthesis_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `sygus_integer_grammar_fixture` |
+| `cvc5` | cvc5 QF_NIA constraints consuming exact SymPy polynomial coefficients and derivatives for bounded integer-root fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_cvc5_sympy_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `exact_algebra_crosschecks` |
 | `sympy` | sympy symbolic expression/matrix simplification and exact algebra | `system_v4/probes/a2_state/sim_results/sympy_capability_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `entropy_family_crosschecks`, `operator_family_admission` |
 | `sympy` | sympy.diff/integrate/factor/simplify exact scalar identity checks | `system_v4/probes/a2_state/sim_results/sim_sympy_symbolic_identity_micro_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `exact_algebra_crosschecks`, `operator_family_admission` |
 | `sympy` | sympy Poly/all_coeffs/diff/factor/gcd/discriminant feeding z3 bounded integer-root fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_z3_sympy_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `constraint_probe_admissibility`, `exact_algebra_crosschecks` |
+| `sympy` | sympy Poly/all_coeffs/diff/factor/gcd/discriminant feeding cvc5 bounded integer-root fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_cvc5_sympy_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `exact_algebra_crosschecks` |
 | `sympy` | sympy Matrix.inv / exact matrix equality inverse identity checks | `system_v4/probes/a2_state/sim_results/sim_sympy_matrix_identity_micro_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `exact_matrix_identity`, `operator_family_admission` |
 | `sympy` | sympy roots/discriminant/exact rational edge-weight construction feeding PyG graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_sympy_pyg_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `graph_symbolic_fit`, `exact_algebra_crosschecks` |
 | `geomstats` | geomstats metric.geodesic, exp/log, SPD distance, Frechet mean | `system_v4/probes/a2_state/sim_results/geomstats_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `geometry_crosschecks_same_carrier`, `quantum_metric_nonuniqueness` |

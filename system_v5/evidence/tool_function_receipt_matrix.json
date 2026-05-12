@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T05:26:48.506324+00:00",
+  "generated_at": "2026-05-12T05:29:47.614265+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -818,6 +818,34 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
+        "constraint_probe_admissibility",
+        "exact_algebra_crosschecks"
+      ],
+      "claim_ceiling": "finite tool_integration_cvc5_sympy lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+      "depth": "load_bearing",
+      "function_api": "cvc5 QF_NIA constraints consuming exact SymPy polynomial coefficients and derivatives for bounded integer-root fixtures",
+      "manifest_reason": "cvc5 is the load-bearing SMT layer that admits or excludes integer root configurations using exact coefficient and derivative data supplied by SymPy.",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "no broad solver equivalence",
+        "no nonlinear completeness claim",
+        "no lego promotion",
+        "no bridge claim",
+        "no axis claim",
+        "no GStack claim"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_cvc5_sympy_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "canonical",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "nonclassical_adjacent",
+      "tool": "cvc5"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
         "entropy_family_crosschecks",
         "operator_family_admission"
       ],
@@ -895,6 +923,34 @@
       "receipt_exists": true,
       "receipt_schema": null,
       "role": "classical_bridge",
+      "tool": "sympy"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "constraint_probe_admissibility",
+        "exact_algebra_crosschecks"
+      ],
+      "claim_ceiling": "finite tool_integration_cvc5_sympy lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+      "depth": "load_bearing",
+      "function_api": "sympy Poly/all_coeffs/diff/factor/gcd/discriminant feeding cvc5 bounded integer-root fixtures",
+      "manifest_reason": "SymPy is the load-bearing symbolic layer that constructs exact polynomials, derivatives, discriminants, and gcd data whose outputs are fed directly into cvc5 constraints.",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "no broad solver equivalence",
+        "no nonlinear completeness claim",
+        "no lego promotion",
+        "no bridge claim",
+        "no axis claim",
+        "no GStack claim"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_cvc5_sympy_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "canonical",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "nonclassical_adjacent",
       "tool": "sympy"
     },
     {
@@ -1094,10 +1150,10 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 40,
+    "passing_count": 42,
     "receipt_boundary_gap_count": 9,
-    "receipt_schema_missing_count": 40,
-    "row_count": 40,
+    "receipt_schema_missing_count": 42,
+    "row_count": 42,
     "tools": [
       "clifford",
       "cvc5",

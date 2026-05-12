@@ -3,6 +3,8 @@
 import json, os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 
 TOOL_MANIFEST = {
@@ -10,7 +12,7 @@ TOOL_MANIFEST = {
                 "reason": "cross-check triangle count via torch.matrix_power(A,3).diagonal()/2"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": "load_bearing",
+    "pytorch": "supportive",
 }
 
 try:
@@ -19,7 +21,11 @@ except ImportError:
     TOOL_MANIFEST["pytorch"] = {"tried": False, "used": False, "reason": "not installed"}
     TOOL_INTEGRATION_DEPTH["pytorch"] = None
 
-divergence_log = []
+divergence_details = []
+divergence_log = (
+    "Classical triangle-count and clustering baseline only; no bridge, QIT, "
+    "GStack, axis, or nonclassical admission claim."
+)
 
 
 def triangles(A):
@@ -58,7 +64,7 @@ def run_positive_tests():
     t = triangles(A)
     r["C5_0_triangles"] = {"count": t, "pass": t == 0}
     # torch cross-check
-    if TOOL_INTEGRATION_DEPTH["pytorch"] == "supportive":
+    if TOOL_INTEGRATION_DEPTH["pytorch"] == "supportive" and "torch" in globals():
         At = torch.tensor(A)
         tri_t = int(torch.linalg.matrix_power(At, 3).diagonal().sum().item() // 6)
         r["torch_cycle_agrees"] = {"torch": tri_t, "np": t, "pass": tri_t == t}
@@ -76,7 +82,7 @@ def run_negative_tests():
     # disconnected 2K2: no triangles
     A = np.array([[0,1,0,0],[1,0,0,0],[0,0,0,1],[0,0,1,0]], float)
     r["2K2_no_tri"] = {"count": triangles(A), "pass": triangles(A) == 0}
-    divergence_log.append("negative-case: triangle-free graphs give 0 as expected")
+    divergence_details.append("negative-case: triangle-free graphs give 0 as expected")
     return r
 
 
@@ -89,7 +95,7 @@ def run_boundary_tests():
     A = np.zeros((1, 1))
     c = local_clustering(A)
     r["n1_zero_clust"] = {"c": c.tolist(), "pass": bool(c[0] == 0.0)}
-    divergence_log.append("boundary: deg<2 yields c=0 by convention")
+    divergence_details.append("boundary: deg<2 yields c=0 by convention")
     return r
 
 
@@ -102,12 +108,21 @@ if __name__ == "__main__":
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "divergence_log": divergence_log,
+        "divergence_details": divergence_details,
         "positive": pos, "negative": neg, "boundary": bnd,
         "summary": {"all_pass": bool(all_pass)}, "all_pass": bool(all_pass),
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_triangle_count_classical",
+        target=(
+            "Use as bounded classical triangle-count baseline evidence before "
+            "graph-shell, topology, or cell-complex tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "sim_triangle_count_classical_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}  all_pass={all_pass}")

@@ -10,8 +10,10 @@ We verify the O(t^2) coefficient numerically and confirm the residual scales as 
 import json, os, numpy as np
 import scipy.linalg as sla
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
-NAME = "bch_first_order_commutator"
+NAME = "sim_bch_first_order_commutator_classical"
 divergence_log = (
     "Classical BCH matrix-exponential baseline only: it checks finite matrix "
     "commutator scaling with scipy/torch numerics and does not admit QIT, "
@@ -44,13 +46,13 @@ TOOL_INTEGRATION_DEPTH = {
     "geomstats": None,
     "gudhi": None,
     "pyg": None,
-    "pytorch": "load_bearing",
+    "pytorch": "supportive",
     "rustworkx": None,
     "sympy": None,
     "toponetx": None,
     "xgi": None,
     "z3": None,
-    "scipy": "load_bearing",
+    "scipy": "supportive",
 }
 
 try:
@@ -195,9 +197,17 @@ if __name__ == "__main__":
             "coupled-generator evolution beyond the perturbative window."
         ),
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target=(
+            "Use as bounded classical BCH commutator baseline evidence before "
+            "operator, Lie-algebra, or matrix-exponential tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, f"{NAME}_classical_results.json")
-    with open(out_path, "w") as f:
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"{NAME} all_pass={all_pass} -> {out_path}")

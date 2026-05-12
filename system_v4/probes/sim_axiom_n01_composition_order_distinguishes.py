@@ -11,7 +11,7 @@ sympy supportive (symbolic confirmation).
 import json, os
 import numpy as np
 from receipt_boundary import apply_default_receipt_boundary
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},

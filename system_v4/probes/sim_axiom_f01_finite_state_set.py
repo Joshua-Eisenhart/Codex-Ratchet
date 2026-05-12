@@ -9,7 +9,7 @@ negation (an injection N -> S exists).
 
 import json, os
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},

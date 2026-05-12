@@ -4,6 +4,8 @@ Q = (1/2m) sum_ij [A_ij - k_i k_j / 2m] delta(c_i, c_j)
 """
 import json, os, numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 
 TOOL_MANIFEST = {
@@ -27,7 +29,7 @@ TOOL_INTEGRATION_DEPTH = {
     "geomstats": None,
     "gudhi": None,
     "pyg": None,
-    "pytorch": "load_bearing",
+    "pytorch": "supportive",
     "rustworkx": None,
     "sympy": None,
     "toponetx": None,
@@ -42,10 +44,14 @@ try:
 except Exception:
     _HAS_TORCH = False
 
-divergence_log = [
+divergence_details = [
     "Classical Newman-Girvan Q assumes static partition labels; nonclassical constraint flows absent.",
     "Null model (k_i k_j / 2m) is classical; does not reflect coupling-admissibility null.",
 ]
+divergence_log = (
+    "Classical Newman-Girvan modularity baseline only; no bridge, QIT, "
+    "GStack, axis, or nonclassical admission claim."
+)
 
 def modularity(A, labels):
     m = A.sum() / 2.0
@@ -116,13 +122,22 @@ if __name__ == "__main__":
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "divergence_log": divergence_log,
+        "divergence_details": divergence_details,
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_network_modularity_classical",
+        target=(
+            "Use as bounded classical graph modularity baseline evidence before "
+            "community-structure or graph spectral tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "sim_network_modularity_classical_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out_path}")

@@ -10,6 +10,8 @@ import numpy as np
 import sympy as sp
 from z3 import Solver, Real, Or, And, unsat
 
+from receipt_boundary import apply_default_receipt_boundary
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed; finite-dim Dirac handled symbolically"},
     "pyg":     {"tried": False, "used": False, "reason": "no message passing here"},
@@ -112,19 +114,60 @@ def run_boundary_tests():
 
 
 if __name__ == "__main__":
+    pos = run_positive_tests()
+    neg = run_negative_tests()
+    bnd = run_boundary_tests()
+    all_pass = all(r.get("pass") for r in [pos, neg, bnd])
     results = {
         "name": "sim_spectral_triple_hopf_dirac_spectrum",
         "classification": "canonical",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": pos,
+        "negative": neg,
+        "boundary": bnd,
+        "all_pass": all_pass,
+        "summary": {
+            "all_pass": all_pass,
+            "positive_pass": pos.get("pass"),
+            "negative_pass": neg.get("pass"),
+            "boundary_pass": bnd.get("pass"),
+            "claim": "Finite-dimensional symbolic Hopf-fiber Dirac operator is self-adjoint with +/- spectrum symmetry in this bounded fixture.",
+            "diagnosis": "spectral_triple_hopf_dirac_micro_pass" if all_pass else "FAIL",
+        },
+        "divergence_log": [
+            "canonical: sympy constructs the finite-dimensional Dirac matrix and checks self-adjointness/eigenvalue pairing",
+            "z3 excludes all-positive and asymmetric paired spectra only for the bounded trace-free symbolic fixture",
+            "boundary N=2 case permits symmetric nonzero spectrum or the trivial zero operator as an admissible degenerate fixture",
+        ],
+        "claim_ceiling": "tool_lego_fit_probe_only",
+        "next_lego_target": "bounded spectral-triple Hopf Dirac fixture with explicit parent receipts before topology, bridge, or axis promotion",
+        "promotion_condition": (
+            "requires later admitted downstream spectral-triple/Hopf coupling rows with exact parent "
+            "receipts and stage-gate approval; this receipt does not itself promote topology, bridge, axis, GStack, QIT engine, or nonclassical claims"
+        ),
+        "blocked_until": (
+            "blocked from topology, bridge, axis, GStack, QIT engine, and nonclassical promotion "
+            "until exact parent receipts and downstream coupling/admission packets pass strict validation"
+        ),
+        "demotion_condition": (
+            "Demote this bounded spectral-triple Hopf Dirac surface if the symbolic Dirac matrix is not self-adjoint, "
+            "if its seeded spectrum is not +/- symmetric, if z3 admits the forbidden spectra, or if the N=2 boundary fixture fails."
+        ),
+        "out_of_scope": [
+            "no topology, bridge, axis, GStack, QIT engine, or nonclassical admission",
+            "no proof of a full Connes spectral triple for Hopf geometry",
+            "no scientific lego promotion from this receipt alone",
+            "no replacement for downstream bridge/coupling receipts",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_spectral_triple_hopf_dirac_spectrum",
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "spectral_triple_hopf_dirac_spectrum_results.json")
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2, default=str)
-    all_pass = all(r.get("pass") for r in [results["positive"], results["negative"], results["boundary"]])
     print(f"PASS={all_pass} -> {out_path}")

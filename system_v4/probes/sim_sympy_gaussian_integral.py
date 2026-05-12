@@ -17,18 +17,18 @@ divergence_log = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":{"tried":False,"used":False,"reason":"no symbolic integration"},
-    "pyg":{"tried":False,"used":False,"reason":"n/a"},
+    "pytorch":{"tried":False,"used":False,"reason":"PyTorch is not used because tensor numerics cannot certify the exact symbolic Gaussian integral"},
+    "pyg":{"tried":False,"used":False,"reason":"The packet has no graph data, edge index, or message-passing computation for PyG to evaluate"},
     "z3":{"tried":False,"used":False,"reason":"transcendental integrals outside SMT"},
-    "cvc5":{"tried":False,"used":False,"reason":"same"},
+    "cvc5":{"tried":False,"used":False,"reason":"cvc5 is not used because transcendental integral evaluation is outside this SMT check"},
     "sympy":{"tried":True,"used":True,"reason":"sympy.integrate returns sqrt(pi) exactly; equality tested symbolically"},
-    "clifford":{"tried":False,"used":False,"reason":"n/a"},
-    "geomstats":{"tried":False,"used":False,"reason":"n/a"},
-    "e3nn":{"tried":False,"used":False,"reason":"n/a"},
-    "rustworkx":{"tried":False,"used":False,"reason":"n/a"},
-    "xgi":{"tried":False,"used":False,"reason":"n/a"},
-    "toponetx":{"tried":False,"used":False,"reason":"n/a"},
-    "gudhi":{"tried":False,"used":False,"reason":"n/a"},
+    "clifford":{"tried":False,"used":False,"reason":"No Clifford product, rotor, or multivector identity is involved in the integral proof"},
+    "geomstats":{"tried":False,"used":False,"reason":"No manifold metric, geodesic, or statistical manifold operation is required for this integral"},
+    "e3nn":{"tried":False,"used":False,"reason":"No equivariant tensor operation or representation constraint appears in the Gaussian integral"},
+    "rustworkx":{"tried":False,"used":False,"reason":"No graph traversal, connectivity, or graph invariant is part of the symbolic integration packet"},
+    "xgi":{"tried":False,"used":False,"reason":"No hypergraph incidence, hyperedge motif, or combinatorial hypergraph computation is involved"},
+    "toponetx":{"tried":False,"used":False,"reason":"No cell-complex boundary, cochain, or topological incidence calculation is needed here"},
+    "gudhi":{"tried":False,"used":False,"reason":"No filtration, simplex tree, or persistent-homology calculation is part of this packet"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 TOOL_INTEGRATION_DEPTH["sympy"] = "load_bearing"

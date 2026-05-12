@@ -19,17 +19,17 @@ divergence_log = (
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "numeric-only; BCH identity requires symbolic noncommutative expansion"},
-    "pyg":     {"tried": False, "used": False, "reason": "not a graph problem"},
-    "z3":      {"tried": False, "used": False, "reason": "noncommutative polynomial identities not native to SMT"},
-    "cvc5":    {"tried": False, "used": False, "reason": "same as z3"},
+    "pyg":     {"tried": False, "used": False, "reason": "BCH coefficient certification has no graph or message-passing structure for PyG to evaluate"},
+    "z3":      {"tried": False, "used": False, "reason": "Z3 is not used because this check needs noncommutative series algebra rather than SMT satisfiability"},
+    "cvc5":    {"tried": False, "used": False, "reason": "cvc5 is not used because the packet certifies symbolic noncommutative expansion coefficients"},
     "sympy":   {"tried": True,  "used": True,  "reason": "noncommutative Symbol + series expansion proves identity coefficient-by-coefficient"},
     "clifford":{"tried": False, "used": False, "reason": "BCH holds for arbitrary associative algebra; Clifford is a special case"},
     "geomstats":{"tried": False,"used": False, "reason": "no Riemannian structure needed"},
-    "e3nn":    {"tried": False, "used": False, "reason": "no equivariant tensor op"},
-    "rustworkx":{"tried": False,"used": False, "reason": "no graph"},
-    "xgi":     {"tried": False, "used": False, "reason": "no hypergraph"},
-    "toponetx":{"tried": False, "used": False, "reason": "no topology"},
-    "gudhi":   {"tried": False, "used": False, "reason": "no persistence"},
+    "e3nn":    {"tried": False, "used": False, "reason": "The BCH identity is algebraic and does not require equivariant tensor representation checks"},
+    "rustworkx":{"tried": False,"used": False, "reason": "No graph traversal, reachability, or combinatorial graph invariant is part of this packet"},
+    "xgi":     {"tried": False, "used": False, "reason": "No hyperedge incidence or hypergraph motif calculation is needed for BCH coefficients"},
+    "toponetx":{"tried": False, "used": False, "reason": "No cell-complex boundary or topological incidence operator is involved in this packet"},
+    "gudhi":   {"tried": False, "used": False, "reason": "No filtration, simplex tree, or persistent-homology computation is part of this packet"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 TOOL_INTEGRATION_DEPTH["sympy"] = "load_bearing"

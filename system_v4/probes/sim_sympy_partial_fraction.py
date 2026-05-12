@@ -18,18 +18,18 @@ divergence_log = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":{"tried":False,"used":False,"reason":"no symbolic rationals"},
-    "pyg":{"tried":False,"used":False,"reason":"n/a"},
-    "z3":{"tried":False,"used":False,"reason":"rational identity better in sympy"},
-    "cvc5":{"tried":False,"used":False,"reason":"same"},
+    "pytorch":{"tried":False,"used":False,"reason":"PyTorch is not used because floating tensors cannot certify exact rational residues"},
+    "pyg":{"tried":False,"used":False,"reason":"The packet has no graph structure, edge index, or message-passing operation for PyG"},
+    "z3":{"tried":False,"used":False,"reason":"Z3 is not used because SymPy directly certifies the rational-function recombination identity"},
+    "cvc5":{"tried":False,"used":False,"reason":"cvc5 is not used because this packet needs exact rational decomposition, not SMT solving"},
     "sympy":{"tried":True,"used":True,"reason":"apart() yields exact rational residues; together() recombines to original exactly"},
-    "clifford":{"tried":False,"used":False,"reason":"n/a"},
-    "geomstats":{"tried":False,"used":False,"reason":"n/a"},
-    "e3nn":{"tried":False,"used":False,"reason":"n/a"},
-    "rustworkx":{"tried":False,"used":False,"reason":"n/a"},
-    "xgi":{"tried":False,"used":False,"reason":"n/a"},
-    "toponetx":{"tried":False,"used":False,"reason":"n/a"},
-    "gudhi":{"tried":False,"used":False,"reason":"n/a"},
+    "clifford":{"tried":False,"used":False,"reason":"No Clifford algebra product, rotor, or multivector relation is part of this rational identity"},
+    "geomstats":{"tried":False,"used":False,"reason":"No manifold metric, geodesic, or Riemannian structure is needed for partial fractions"},
+    "e3nn":{"tried":False,"used":False,"reason":"No equivariant tensor representation or tensor product calculation is involved"},
+    "rustworkx":{"tried":False,"used":False,"reason":"No graph traversal, shortest path, or graph invariant is relevant to rational recombination"},
+    "xgi":{"tried":False,"used":False,"reason":"No hypergraph incidence, hyperedge motif, or hypergraph invariant is involved"},
+    "toponetx":{"tried":False,"used":False,"reason":"No cell-complex boundary, cochain, or topological incidence operator is used"},
+    "gudhi":{"tried":False,"used":False,"reason":"No simplex-tree filtration or persistent homology calculation is part of this packet"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 TOOL_INTEGRATION_DEPTH["sympy"] = "load_bearing"

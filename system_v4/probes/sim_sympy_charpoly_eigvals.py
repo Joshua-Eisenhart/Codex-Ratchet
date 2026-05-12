@@ -18,17 +18,17 @@ divergence_log = (
 
 TOOL_MANIFEST = {
     "pytorch":{"tried":False,"used":False,"reason":"numeric eigvals float only; cannot equate to exact radicals"},
-    "pyg":{"tried":False,"used":False,"reason":"n/a"},
-    "z3":{"tried":False,"used":False,"reason":"algebraic-number equality native to sympy"},
-    "cvc5":{"tried":False,"used":False,"reason":"same"},
+    "pyg":{"tried":False,"used":False,"reason":"The check concerns exact matrix algebraic eigenvalues, not graph message passing or graph data"},
+    "z3":{"tried":False,"used":False,"reason":"Z3 is not used because SymPy directly represents the algebraic roots and multiplicities"},
+    "cvc5":{"tried":False,"used":False,"reason":"cvc5 is not used because the packet requires exact algebraic-number manipulation, not SMT"},
     "sympy":{"tried":True,"used":True,"reason":"charpoly.roots and Matrix.eigenvals produce identical exact algebraic multisets"},
-    "clifford":{"tried":False,"used":False,"reason":"n/a"},
-    "geomstats":{"tried":False,"used":False,"reason":"n/a"},
-    "e3nn":{"tried":False,"used":False,"reason":"n/a"},
-    "rustworkx":{"tried":False,"used":False,"reason":"n/a"},
-    "xgi":{"tried":False,"used":False,"reason":"n/a"},
-    "toponetx":{"tried":False,"used":False,"reason":"n/a"},
-    "gudhi":{"tried":False,"used":False,"reason":"n/a"},
+    "clifford":{"tried":False,"used":False,"reason":"No geometric algebra basis, rotor, or Clifford product is involved in the matrix eigenvalue check"},
+    "geomstats":{"tried":False,"used":False,"reason":"No manifold metric, geodesic, or Riemannian optimization surface is involved here"},
+    "e3nn":{"tried":False,"used":False,"reason":"No equivariant representation or tensor product operation is part of the eigenvalue proof"},
+    "rustworkx":{"tried":False,"used":False,"reason":"No graph algorithm or graph invariant is required for exact characteristic-polynomial roots"},
+    "xgi":{"tried":False,"used":False,"reason":"No hypergraph incidence or hyperedge motif calculation is needed for this matrix identity"},
+    "toponetx":{"tried":False,"used":False,"reason":"No cell-complex boundary or incidence topology is involved in the characteristic polynomial check"},
+    "gudhi":{"tried":False,"used":False,"reason":"No simplex-tree filtration or persistence calculation is relevant to exact eigenvalue equality"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 TOOL_INTEGRATION_DEPTH["sympy"] = "load_bearing"

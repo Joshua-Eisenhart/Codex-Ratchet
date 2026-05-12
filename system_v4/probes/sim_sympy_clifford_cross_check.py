@@ -18,6 +18,10 @@ import json
 import os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -491,7 +495,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_sympy_clifford_cross_check",
-        "classification": "canonical",
+        "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
@@ -507,6 +511,15 @@ if __name__ == "__main__":
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "sim_sympy_clifford_cross_check_results.json")
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_sympy_clifford_cross_check",
+        target=(
+            "Use as bounded SymPy/Clifford/Z3 algebra consistency evidence "
+            "before any Clifford transport or symbolic algebra coupling packet."
+        ),
+    )
+
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")

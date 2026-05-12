@@ -3,9 +3,21 @@
 import json, os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
+NAME = "sim_principal_bundle_structure_constants_classical"
+divergence_details = [
+    "Classical so(3) structure constants; noncanonical bracket variants not explored.",
+    "Shell-coupling effects on principal bundle are omitted.",
+]
+divergence_log = (
+    "Classical so(3) structure-constant baseline only; no bundle shell "
+    "coupling, bridge, GStack, axis, QIT, or nonclassical admission claim."
+)
 
 TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "so(3) bracket matrices, epsilon structure constants, and Jacobi checks"},
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
     "z3": {"tried": False, "used": False, "reason": ""},
@@ -25,8 +37,9 @@ TOOL_INTEGRATION_DEPTH = {
     "e3nn": None,
     "geomstats": None,
     "gudhi": None,
+    "numpy": "supportive",
     "pyg": None,
-    "pytorch": "load_bearing",
+    "pytorch": None,
     "rustworkx": None,
     "sympy": None,
     "toponetx": None,
@@ -100,10 +113,8 @@ if __name__ == "__main__":
     bnd = run_boundary_tests()
     all_pass = all(pos.values()) and all(neg.values()) and all(bnd.values())
 
-    divergence_log = ["Classical so(3) structure constants; noncanonical bracket variants not explored.", "Shell-coupling effects on principal bundle omitted."]
-
     results = {
-        "name": "principal_bundle_structure_constants_classical",
+        "name": NAME,
         "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
@@ -111,13 +122,19 @@ if __name__ == "__main__":
         "negative": neg,
         "boundary": bnd,
         "divergence_log": divergence_log,
+        "divergence_details": divergence_details,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded classical so(3) structure-constant baseline before bundle shell-coupling packets.",
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "principal_bundle_structure_constants_classical_results.json")
-    with open(out_path, "w") as f:
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
     print(f"all_pass={all_pass}")

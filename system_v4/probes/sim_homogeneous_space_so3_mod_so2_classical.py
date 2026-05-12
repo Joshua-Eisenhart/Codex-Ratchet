@@ -8,9 +8,21 @@ stabilizer of that point is SO(2).
 import json, os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
+NAME = "sim_homogeneous_space_so3_mod_so2_classical"
+divergence_details = [
+    "SO(3)/SO(2) classical baseline: no obstruction expected; classical quotient is S^2.",
+    "No nonclassical admissibility probe applied here; this is Lane-B baseline only.",
+]
+divergence_log = (
+    "Classical SO(3)/SO(2) quotient baseline only; no geomstats, bridge, "
+    "GStack, axis, QIT, or nonclassical admission claim."
+)
 
 TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "SO(3) sampling, stabilizer checks, and norm preservation tests"},
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
     "z3": {"tried": False, "used": False, "reason": ""},
@@ -30,8 +42,9 @@ TOOL_INTEGRATION_DEPTH = {
     "e3nn": None,
     "geomstats": None,
     "gudhi": None,
+    "numpy": "supportive",
     "pyg": None,
-    "pytorch": "load_bearing",
+    "pytorch": None,
     "rustworkx": None,
     "sympy": None,
     "toponetx": None,
@@ -125,13 +138,8 @@ if __name__ == "__main__":
     bnd = run_boundary_tests()
     all_pass = all(pos.values()) and all(neg.values()) and all(bnd.values())
 
-    divergence_log = [
-        "SO(3)/SO(2) classical baseline: no obstruction expected; classical quotient is S^2.",
-        "No nonclassical admissibility probe applied here — this is Lane-B baseline only.",
-    ]
-
     results = {
-        "name": "homogeneous_space_so3_mod_so2_classical",
+        "name": NAME,
         "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
@@ -139,13 +147,19 @@ if __name__ == "__main__":
         "negative": neg,
         "boundary": bnd,
         "divergence_log": divergence_log,
+        "divergence_details": divergence_details,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded classical homogeneous-space quotient baseline before geomstats or bundle-coupling packets.",
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "homogeneous_space_so3_mod_so2_classical_results.json")
-    with open(out_path, "w") as f:
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
     print(f"all_pass={all_pass}")

@@ -33,6 +33,22 @@
       }
     },
     {
+      "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_axiom_n01_composition_order_distinguishes.json",
+      "admission_status": "admitted",
+      "basename": "sim_axiom_n01_composition_order_distinguishes",
+      "blockers": [],
+      "parent_receipt_sha256": {},
+      "receipt_schema_ok": true,
+      "result_name": "sim_axiom_n01_composition_order_distinguishes",
+      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_axiom_n01_composition_order_distinguishes_results.json",
+      "result_sha256": "136156a84a969a708249bfbe74216a40e5db91d50c051023cc452582bd6f21a9",
+      "status": "accepted",
+      "tool_function_ancestry": {
+        "function_surface": "torch.Tensor.__matmul__",
+        "tool_target": "pytorch"
+      }
+    },
+    {
       "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_gtower_e_class_cartan_admissibility_shell_local.json",
       "admission_status": "admitted",
       "basename": "sim_gtower_e_class_cartan_admissibility_shell_local",
@@ -3850,21 +3866,19 @@
       }
     },
     {
-      "admission_artifact": null,
-      "admission_status": "missing_or_invalid",
+      "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_axiom_n01_composition_order_distinguishes.json",
+      "admission_status": "admitted",
       "basename": "sim_axiom_n01_composition_order_distinguishes",
-      "blockers": [
-        "admission:admission_missing"
-      ],
+      "blockers": [],
       "parent_receipt_sha256": {},
       "receipt_schema_ok": true,
       "result_name": "sim_axiom_n01_composition_order_distinguishes",
       "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_axiom_n01_composition_order_distinguishes_results.json",
       "result_sha256": "136156a84a969a708249bfbe74216a40e5db91d50c051023cc452582bd6f21a9",
-      "status": "blocked",
+      "status": "accepted",
       "tool_function_ancestry": {
-        "function_surface": null,
-        "tool_target": null
+        "function_surface": "torch.Tensor.__matmul__",
+        "tool_target": "pytorch"
       }
     },
     {
@@ -5503,12 +5517,6 @@
     }
   ],
   "next_acceptance_targets": [
-    {
-      "basename": "sim_axiom_n01_composition_order_distinguishes",
-      "next_action": "create_or_repair_wizard_sim_admission",
-      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_axiom_n01_composition_order_distinguishes_results.json",
-      "sim_path": "system_v4/probes/sim_axiom_n01_composition_order_distinguishes.py"
-    },
     {
       "basename": "sim_axis0_kernel_phi0",
       "next_action": "do_not_promote_reclassify_or_replace_with_canonical_qit_result",
@@ -11398,24 +11406,6 @@
     {
       "admission_artifact": null,
       "admission_status": "missing_or_invalid",
-      "basename": "sim_axiom_n01_composition_order_distinguishes",
-      "blockers": [
-        "admission:admission_missing"
-      ],
-      "parent_receipt_sha256": {},
-      "receipt_schema_ok": true,
-      "result_name": "sim_axiom_n01_composition_order_distinguishes",
-      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_axiom_n01_composition_order_distinguishes_results.json",
-      "result_sha256": "136156a84a969a708249bfbe74216a40e5db91d50c051023cc452582bd6f21a9",
-      "status": "blocked",
-      "tool_function_ancestry": {
-        "function_surface": null,
-        "tool_target": null
-      }
-    },
-    {
-      "admission_artifact": null,
-      "admission_status": "missing_or_invalid",
       "basename": "sim_axis0_kernel_phi0",
       "blockers": [
         "admission:admission_missing",
@@ -13001,13 +12991,13 @@
   },
   "status_reason": "accepted_qit_entries_present",
   "summary": {
-    "accepted": 8,
-    "admitted_micro_entries": 9,
-    "blocked": 286,
-    "candidate_entries": 8,
-    "missing_or_invalid_admission": 285,
+    "accepted": 9,
+    "admitted_micro_entries": 10,
+    "blocked": 285,
+    "candidate_entries": 9,
+    "missing_or_invalid_admission": 284,
     "qit_signal_result_count": 294,
-    "quarantine_entries": 286,
+    "quarantine_entries": 285,
     "scanned_result_count": 704,
     "total_entries": 294
   }

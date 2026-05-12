@@ -11,6 +11,8 @@ import os
 import numpy as np
 import qutip
 
+from receipt_boundary import apply_default_receipt_boundary
+
 
 classification = "canonical"
 divergence_log = (
@@ -19,14 +21,43 @@ divergence_log = (
     "admitted nonclassical witness instead of an ad hoc runtime dependency."
 )
 
+_NOT_USED_REASON = (
+    "not used: this bounded QuTiP capability receipt isolates ket, density-matrix, "
+    "expectation-value, and tiny rotation APIs; other tool families require separate receipts."
+)
+
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "supportive numeric checks for qutip capability"},
-    "qutip": {"tried": True, "used": True, "reason": "capability under test -- ket, density matrix, expectation"},
+    "numpy": {"tried": True, "used": True, "reason": "supportive numeric finite-value checks for the bounded QuTiP ket, density-matrix, and expectation-value controls"},
+    "qutip": {"tried": True, "used": True, "reason": "load-bearing capability under test: qutip.basis, ket2dm, sigmax/sigmaz expectation, and matrix exponential state rotation decide every pass/fail verdict"},
+    "pytorch": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "pyg": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "z3": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "cvc5": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "sympy": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "clifford": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "geomstats": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "e3nn": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "rustworkx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "xgi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "toponetx": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
+    "gudhi": {"tried": False, "used": False, "reason": _NOT_USED_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
     "numpy": "supportive",
     "qutip": "load_bearing",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
 }
 
 WITNESS_INFO = {
@@ -113,7 +144,27 @@ if __name__ == "__main__":
         "boundary": bnd,
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
+        "surviving_alternatives": [
+            "This receipt isolates bounded QuTiP ket, density-matrix, expectation, and tiny rotation APIs; it does not prove open-system, channel, or mutual-information lego behavior."
+        ],
+        "demotion_condition": (
+            "Demote this QuTiP capability receipt if basis vectors, density "
+            "matrix construction, Pauli expectations, or the small-rotation "
+            "boundary control fail on rerun."
+        ),
+        "out_of_scope": [
+            "no mutual-information lego promotion",
+            "no channel or Lindblad bridge claim",
+            "no QIT engine claim",
+            "no axis claim",
+            "no GStack claim",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_qutip_capability",
+        target="Use as bounded QuTiP capability evidence before exact QuTiP lego-fit or integration packets.",
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "qutip_capability_results.json")

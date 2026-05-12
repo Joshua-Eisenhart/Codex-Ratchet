@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T05:08:18.717134+00:00",
+  "generated_at": "2026-05-12T05:11:37.173943+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -49,6 +49,33 @@
         "bridge admission"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/sim_pytorch_autograd_gradient_micro_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "canonical",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "nonclassical_adjacent",
+      "tool": "pytorch"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "density_matrix_representability",
+        "entropy_gradient_fit"
+      ],
+      "claim_ceiling": "finite sim_pytorch_density_entropy_gradient_micro lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+      "depth": "load_bearing",
+      "function_api": "torch.linalg.eigvalsh plus torch.autograd.grad entropy gradient over normalized 2x2 PSD density fixture",
+      "manifest_reason": "PyTorch is load-bearing: torch.linalg.eigvalsh and torch.autograd.grad produce the entropy and gradient verdicts.",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "no PyG message passing",
+        "no density-matrix lego promotion",
+        "no tool-tool coupling",
+        "no bridge claim",
+        "no proof of the whole PyTorch linear algebra surface"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/sim_pytorch_density_entropy_gradient_micro_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "canonical",
       "receipt_exists": true,
@@ -984,10 +1011,10 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 36,
+    "passing_count": 37,
     "receipt_boundary_gap_count": 9,
-    "receipt_schema_missing_count": 36,
-    "row_count": 36,
+    "receipt_schema_missing_count": 37,
+    "row_count": 37,
     "tools": [
       "clifford",
       "cvc5",

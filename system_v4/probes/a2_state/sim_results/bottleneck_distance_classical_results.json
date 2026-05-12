@@ -1,12 +1,12 @@
 {
-  "name": "bottleneck_distance_classical",
+  "name": "sim_bottleneck_distance_classical",
   "classification": "classical_baseline",
-  "classification_note": "Classical persistence-diagram bottleneck baseline using PyTorch L-infinity distances as the decisive numeric kernel; no QIT, GStack, bridge, axis, or nonclassical admission.",
+  "classification_note": "Classical persistence-diagram bottleneck baseline using NumPy L-infinity distances; PyTorch is supportive only. No QIT, GStack, bridge, axis, or nonclassical admission.",
   "TOOL_MANIFEST": {
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "load-bearing L-infinity point-distance kernel used by the bottleneck matching search"
+      "reason": "supportive L-infinity point-distance cross-check"
     },
     "pyg": {
       "tried": false,
@@ -71,7 +71,7 @@
     "geomstats": null,
     "gudhi": null,
     "pyg": null,
-    "pytorch": "load_bearing",
+    "pytorch": "supportive",
     "rustworkx": null,
     "sympy": null,
     "toponetx": null,
@@ -82,7 +82,7 @@
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "load-bearing L-infinity point-distance kernel used by the bottleneck matching search"
+      "reason": "supportive L-infinity point-distance cross-check"
     },
     "pyg": {
       "tried": false,
@@ -147,14 +147,15 @@
     "geomstats": null,
     "gudhi": null,
     "pyg": null,
-    "pytorch": "load_bearing",
+    "pytorch": "supportive",
     "rustworkx": null,
     "sympy": null,
     "toponetx": null,
     "xgi": null,
     "z3": null
   },
-  "divergence_log": [
+  "divergence_log": "Classical persistence-diagram bottleneck baseline only; no bridge, QIT, GStack, axis, or nonclassical admission claim.",
+  "divergence_details": [
     "Implemented via binary search + bipartite feasibility; rejected LP formulation as over-heavy.",
     "Diagonal-matching modeled as per-point phantom nodes with cost (d-b)/2.",
     "Used scipy not required; plain Hungarian-style greedy augmentation is adequate for N<=20 points."
@@ -172,6 +173,11 @@
     "drop_matches_diagonal": {
       "d": 0.5,
       "expected": 0.5,
+      "pass": true
+    },
+    "torch_linf_supportive_crosscheck": {
+      "torch": 0.09999999999999998,
+      "numpy": 0.09999999999999998,
       "pass": true
     }
   },
@@ -199,7 +205,19 @@
   "summary": {
     "all_pass": true,
     "promotion_allowed": false,
-    "load_bearing_tool": "pytorch",
+    "load_bearing_tool": null,
     "claim_ceiling": "classical_persistence_bottleneck_distance_baseline_only"
-  }
+  },
+  "claim_ceiling": "finite sim_bottleneck_distance_classical lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+  "next_lego_target": "Use as bounded classical bottleneck-distance baseline evidence before persistence, topology, or geometry tool-lego comparison.",
+  "promotion_condition": "Requires separate coupling/coexistence receipts and explicit stage-gate approval.",
+  "blocked_until": "explicit coupling-stage admission and companion receipts",
+  "demotion_condition": "Demote if rerun fails, tool-depth evidence disappears, or boundary controls fail.",
+  "out_of_scope": [
+    "QIT engine admission",
+    "GStack promotion",
+    "axis promotion",
+    "nonclassical admission",
+    "bridge admission"
+  ]
 }

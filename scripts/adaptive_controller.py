@@ -577,6 +577,8 @@ def plan_stage(name: str) -> str:
     stem = pathlib.Path(name).stem
     if stem.startswith("sim_"):
         stem = stem[4:]
+    if stem.startswith("classical_baseline_"):
+        return "early_core"
     family = sim_family(name)
     if family in {"axis", "axis0"}:
         return "late_axis"

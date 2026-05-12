@@ -274,6 +274,8 @@ def _plan_stage_from_sim_path(sim_path: str) -> str:
     stem = Path(sim_path).stem
     if stem.startswith("sim_"):
         stem = stem[4:]
+    if stem.startswith("classical_baseline_"):
+        return "early_core"
     family = _sim_family(sim_path)
     if family in {"axis", "axis0"}:
         return "late_axis"
@@ -286,6 +288,8 @@ def _stage_gate_claim_for_sim(sim_path: str | Path) -> str | None:
     stem = Path(sim_path).stem.lower()
     if stem.startswith("sim_"):
         stem = stem[4:]
+    if stem.startswith("classical_baseline_"):
+        return None
     family = _sim_family(str(sim_path))
     if "tier_d" in stem or "boundary_flux" in stem or (
         "boundary" in stem and "admissibility" in stem

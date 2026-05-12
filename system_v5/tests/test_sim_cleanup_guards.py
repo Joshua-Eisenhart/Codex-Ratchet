@@ -6007,6 +6007,19 @@ def test_queue_claim_stage_gate_sees_engine_qit_and_nonclassical_tokens() -> Non
     assert module._stage_gate_claim_for_sim("sim_nonclassical_smoke.py") == "scientific_coupling"
 
 
+def test_queue_claim_does_not_late_gate_classical_baseline_gram_schmidt() -> None:
+    module = _load_module(
+        "queue_claim_classical_baseline_token_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+
+    sim = "system_v4/probes/classical_baseline_gram_schmidt.py"
+
+    assert module._plan_stage_from_sim_path(sim) == "early_core"
+    assert module._stage_gate_claim_for_sim(sim) is None
+    assert module._stage_gate_claim_for_sim("system_v4/probes/sim_schmidt_decomposition_classical.py") == "default_late_stage"
+
+
 def test_queue_claim_classifies_coherent_info_as_late_info(tmp_path) -> None:
     module = _load_module(
         "queue_claim_coherent_info_under_test",
@@ -6206,6 +6219,35 @@ def test_runner_queue_preflight_blocks_late_rows_in_priority_queues(tmp_path) ->
     assert report["blocked_stage_gate_queue_count"] == 1
     assert report["findings"][0]["queue"] == "system_v5/ops/queue_tier_a.txt"
     assert report["findings"][0]["claim"] == "scientific_coupling"
+
+
+def test_runner_queue_preflight_allows_classical_baseline_gram_schmidt(tmp_path) -> None:
+    module = _load_module(
+        "runner_queue_preflight_classical_baseline_under_test",
+        REPO_ROOT / "scripts" / "runner_queue_preflight.py",
+    )
+    repo = tmp_path / "repo"
+    ops = repo / "system_v5" / "ops"
+    ops.mkdir(parents=True)
+    (ops / "stage_gate.json").write_text(
+        json.dumps({"active_stage": "lego", "allow_default_queue_late_stage": False}),
+        encoding="utf-8",
+    )
+    (ops / "queue_default.txt").write_text(
+        "system_v4/probes/classical_baseline_gram_schmidt.py\n",
+        encoding="utf-8",
+    )
+    (ops / "queue_tier_a.txt").write_text(
+        "system_v4/probes/classical_baseline_gram_schmidt.py\n",
+        encoding="utf-8",
+    )
+
+    report = module.audit(root=repo)
+
+    assert report["all_pass"] is True
+    assert report["blocked_default_queue_count"] == 0
+    assert report["blocked_stage_gate_queue_count"] == 0
+    assert module.claim_for_row("system_v4/probes/classical_baseline_gram_schmidt.py") is None
 
 
 def test_runner_preflight_runs_queue_stage_gate_audit() -> None:

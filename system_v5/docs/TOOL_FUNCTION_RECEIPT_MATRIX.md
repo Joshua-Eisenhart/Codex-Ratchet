@@ -1,13 +1,13 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-12T05:11:37.173943+00:00`
+Generated: `2026-05-12T05:17:38.551359+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `37`
-- Passing rows: `37`
+- Rows: `38`
+- Passing rows: `38`
 - Missing receipts: `0`
 
 ## Matrix
@@ -27,6 +27,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `qutip` | qutip entropy_vn / tensor density operators for mutual-information microfit | `system_v4/probes/a2_state/sim_results/mutual_information_qutip_microfit_results.json` | `tool_lego_fit_probe` | `bridge_useful` | `load_bearing` | `True` | `mutual_information_measure`, `density_matrix_object` |
 | `qiskit` | QuantumCircuit, Statevector, DensityMatrix, Operator expectation_value | `system_v4/probes/a2_state/sim_results/qiskit_capability_results.json` | `canonical` | `bridge_useful` | `load_bearing` | `True` | `unitary_channel_map`, `density_matrix_object` |
 | `clifford` | Cl(3)/Cl(6) layout blades, rotor products, grade/scalar extraction | `system_v4/probes/a2_state/sim_results/clifford_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `clifford_generator_basis`, `clifford_geometry` |
+| `clifford` | clifford Cl(3) rotor transport over SymPy-derived Weyl Bloch-vector fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_clifford_weyl_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `clifford_weyl_transport`, `weyl_spinor_geometry` |
 | `gudhi` | SimplexTree, Rips/filtration persistence and Betti summaries | `system_v4/probes/a2_state/sim_results/gudhi_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `persistence_geometry`, `concurrence_measure` |
 | `gudhi` | gudhi.SimplexTree insert/assign_filtration/persistence on a tiny filtered complex | `system_v4/probes/a2_state/sim_results/sim_gudhi_simplex_persistence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `persistence_geometry`, `cell_complex_geometry` |
 | `toponetx` | CellComplex/SimplicialComplex rank cells and incidence_matrix | `system_v4/probes/a2_state/sim_results/toponetx_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `state_class_binding_geometry`, `cell_complex_geometry` |

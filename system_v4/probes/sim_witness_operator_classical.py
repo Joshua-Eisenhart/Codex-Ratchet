@@ -10,7 +10,19 @@ entangled rho with Tr(W rho) < 0; partial-transpose based witnesses.
 import json, os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
+NAME = "sim_witness_operator_classical"
+divergence_details = [
+    "Classical witnesses always yield nonnegative expectation on classical joint distributions.",
+    "Cannot encode W = a I - |phi><phi| operator witnesses.",
+    "No partial-transpose or PPT-based witness machinery.",
+]
+divergence_log = (
+    "Classical joint-distribution witness baseline only; no entanglement "
+    "witness, PPT, bridge, GStack, axis, QIT, or nonclassical admission claim."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "linear algebra"},
@@ -60,21 +72,23 @@ if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(pos.values()) and all(neg.values()) and all(bnd.values())
     results = {
-        "name": "witness_operator_classical",
+        "name": NAME,
         "classification": "classical_baseline",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "classical witnesses always yield nonneg expectation on classical joints",
-            "cannot encode W = a I - |phi><phi| operator witnesses",
-            "no partial-transpose / PPT-based witness machinery",
-        ],
+        "divergence_log": divergence_log,
+        "divergence_details": divergence_details,
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded classical witness baseline before operator/PPT witness comparison packets.",
+    )
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
-                       "witness_operator_classical_results.json")
+                       f"{NAME}_results.json")
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    with open(out, "w") as f: json.dump(results, f, indent=2, default=str)
+    with open(out, "w", encoding="utf-8") as f: json.dump(results, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

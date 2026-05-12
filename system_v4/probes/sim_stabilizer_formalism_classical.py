@@ -11,7 +11,20 @@ conjugation, measurement-induced stabilizer updates with random outcomes.
 import json, os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
+NAME = "sim_stabilizer_formalism_classical"
+divergence_details = [
+    "X and Y generators absent; only Z-diagonal tableau is represented.",
+    "No symplectic inner product structure over F_2^{2n}.",
+    "Measurement outcomes deterministic; no Born-rule branching.",
+]
+divergence_log = (
+    "Classical Z-only bit-tableau baseline only; no Clifford stabilizer, "
+    "symplectic tableau, measurement branching, bridge, GStack, axis, QIT, "
+    "or nonclassical admission claim."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "bit tableau arithmetic"},
@@ -66,21 +79,23 @@ if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(pos.values()) and all(neg.values()) and all(bnd.values())
     results = {
-        "name": "stabilizer_formalism_classical",
+        "name": NAME,
         "classification": "classical_baseline",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "X and Y generators absent; only Z-diagonal tableau",
-            "no symplectic inner product structure over F_2^{2n}",
-            "measurement outcomes deterministic, no Born-rule branching",
-        ],
+        "divergence_log": divergence_log,
+        "divergence_details": divergence_details,
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use as bounded classical bit-tableau baseline before Clifford/stabilizer comparison packets.",
+    )
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
-                       "stabilizer_formalism_classical_results.json")
+                       f"{NAME}_results.json")
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    with open(out, "w") as f: json.dump(results, f, indent=2, default=str)
+    with open(out, "w", encoding="utf-8") as f: json.dump(results, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

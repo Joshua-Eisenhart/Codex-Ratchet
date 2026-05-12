@@ -12,6 +12,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical diagonal-state baseline collapses coherence to zero: no "
+    "off-diagonal resource, no coherence distillation, no basis-dependent "
+    "incoherent set, and no coherence-to-entanglement conversion."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "diagonal-matrix arithmetic and entropy"},

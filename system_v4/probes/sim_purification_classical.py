@@ -13,6 +13,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical copy-map lift is not quantum purification: no canonical "
+    "state-vector purification, no Schmidt rank invariant, no Uhlmann theorem, "
+    "and no unitary equivalence on the environment."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "pmf arithmetic"},

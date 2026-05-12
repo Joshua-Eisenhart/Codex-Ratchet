@@ -13,6 +13,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical SVD baseline treats Schmidt rank as matrix factorization only: "
+    "no entanglement-as-resource distinction, no nonlocality, and no reduced "
+    "state entropy under quantum partial trace."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "SVD"},

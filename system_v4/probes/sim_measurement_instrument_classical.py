@@ -8,6 +8,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical Bayesian measurement baseline has commuting observations only: "
+    "no noncommuting back-action, no weak/continuous measurement coherence "
+    "loss, and no POVM/Kraus ambiguity."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "Bayes/pmf arithmetic"},

@@ -12,6 +12,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical monogamy is vacuous because classical joints are separable under "
+    "entanglement monotones; mutual information can violate analogous "
+    "monogamy and cannot substitute for a quantum entanglement witness."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "classical joint sampling and MI evaluation"},

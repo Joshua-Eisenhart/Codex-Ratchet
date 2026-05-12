@@ -13,6 +13,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical reversible-channel baseline is only finite permutation dynamics: "
+    "no continuous U(d), no noncommuting infinitesimal generators, no Berry "
+    "phase, and no conjugation of off-diagonal coherence."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "permutation evolution"},

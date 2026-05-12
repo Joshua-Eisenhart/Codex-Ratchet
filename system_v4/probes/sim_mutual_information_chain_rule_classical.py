@@ -8,6 +8,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical Shannon chain rule rests on a joint pmf and Bayes conditioning; "
+    "it does not witness quantum strong-subadditivity structure, "
+    "noncommuting observables, or genuinely quantum tripartite correlations."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "pmf arithmetic and Shannon entropy evaluation"},

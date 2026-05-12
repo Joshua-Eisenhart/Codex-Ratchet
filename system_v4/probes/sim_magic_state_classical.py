@@ -12,6 +12,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical bit-string baseline has zero magic by construction: no T/H-state "
+    "representation, no robustness or mana witness, and no magic-state "
+    "distillation or universal quantum-computation resource."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "bit arithmetic"},

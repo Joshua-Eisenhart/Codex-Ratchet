@@ -15,19 +15,23 @@ Classification: canonical.
 import json, os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
+classification = "canonical"
+
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": "numeric not needed"},
-    "pyg": {"tried": False, "used": False, "reason": "hypergraph, not pairwise graph"},
-    "z3": {"tried": False, "used": False, "reason": "spectral claim, not FOL"},
-    "cvc5": {"tried": False, "used": False, "reason": "spectral claim, not FOL"},
-    "sympy": {"tried": False, "used": False, "reason": "numeric eigenvalues"},
-    "clifford": {"tried": False, "used": False, "reason": "no GA"},
-    "geomstats": {"tried": False, "used": False, "reason": "no manifold"},
-    "e3nn": {"tried": False, "used": False, "reason": "no equivariance"},
-    "rustworkx": {"tried": False, "used": False, "reason": "hypergraph-native tool required"},
+    "pytorch": {"tried": False, "used": False, "reason": "not used: this packet has no tensor gradient or autograd claim"},
+    "pyg": {"tried": False, "used": False, "reason": "not used: native XGI hyperedge incidence is required, not PyG message passing"},
+    "z3": {"tried": False, "used": False, "reason": "not used: spectral distinguishability is computed numerically, not encoded as SMT"},
+    "cvc5": {"tried": False, "used": False, "reason": "not used: no solver-side arithmetic or synthesis claim is made"},
+    "sympy": {"tried": False, "used": False, "reason": "not used: no symbolic polynomial or exact algebra transformation is needed"},
+    "clifford": {"tried": False, "used": False, "reason": "not used: no geometric algebra blades or rotor products are evaluated"},
+    "geomstats": {"tried": False, "used": False, "reason": "not used: no manifold metric, geodesic, or group operation is evaluated"},
+    "e3nn": {"tried": False, "used": False, "reason": "not used: no equivariant neural representation is part of this packet"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not used: graph skeleton baseline is handled by NetworkX; hyperedges need XGI"},
     "xgi": {"tried": False, "used": False, "reason": ""},
-    "toponetx": {"tried": False, "used": False, "reason": "not cell complex"},
-    "gudhi": {"tried": False, "used": False, "reason": "no persistent homology"},
+    "toponetx": {"tried": False, "used": False, "reason": "not used: this packet does not construct a cell complex or boundary operator"},
+    "gudhi": {"tried": False, "used": False, "reason": "not used: no simplex tree, filtration, or persistent homology is computed"},
     "networkx": {"tried": False, "used": False, "reason": "graph baseline for negative test"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
@@ -169,14 +173,34 @@ if __name__ == "__main__":
     all_pass = (all(v["pass"] for v in pos.values())
                 and all(v["pass"] for v in neg.values())
                 and all(v["pass"] for v in bnd.values()))
+    flat = {**pos, **neg, **bnd}
+    summary = {
+        "all_pass": all_pass,
+        "total_tests": len(flat),
+        "passed": sum(1 for v in flat.values() if v.get("pass")),
+    }
     results = {
         "name": "sim_xgi_deep_leviathan_hyperlap",
-        "classification": "canonical",
+        "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,
+        "summary": summary,
+        "all_pass": all_pass,
         "overall_pass": all_pass,
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_xgi_deep_leviathan_hyperlap",
+        target=(
+            "Use as bounded XGI hypergraph-Laplacian evidence before "
+            "projection-ablation or graph-shell geometry lego fit packets."
+        ),
+    )
+    results["claim_ceiling"] = (
+        "finite sim_xgi_deep_leviathan_hyperlap lego receipt only; "
+        "no bridge, GStack, axis, or promoted admission"
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "sim_xgi_deep_leviathan_hyperlap_results.json")

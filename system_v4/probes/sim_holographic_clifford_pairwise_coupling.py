@@ -38,6 +38,8 @@ import traceback
 
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 
 # =====================================================================
@@ -118,6 +120,9 @@ TOOL_INTEGRATION_DEPTH = {
     "xgi": None,
     "z3": None,
 }
+TOOL_INTEGRATION_DEPTH["pytorch"] = "load_bearing"
+TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
+TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
 
 # =====================================================================
 # IMPORTS
@@ -455,7 +460,34 @@ if __name__ == "__main__":
             "z3 UNSAT uses real arithmetic proxy; not full quantum information proof",
             "RT bound S <= n_cut*log(chi) held with tolerance 1e-6 for float comparison",
         ],
+        "claim_ceiling": "tool_tool_micro_integration_only",
+        "next_lego_target": "bounded PyTorch-Z3-SymPy entropy-invariance fixture before any holographic, Clifford, bridge, or QIT promotion",
+        "promotion_condition": (
+            "requires a later admitted downstream row that names exact parent "
+            "receipts for holographic entropy and Clifford rotor functions; this "
+            "micro row does not promote bridge, axis, GStack, QIT engine, or nonclassical claims"
+        ),
+        "blocked_until": (
+            "blocked from lego, bridge, axis, GStack, QIT engine, and nonclassical "
+            "promotion until exact parent receipts and a downstream target pass strict admission"
+        ),
+        "demotion_condition": (
+            "Demote this bounded coupling surface if entropy changes under the "
+            "orthogonal rotor fixture, if z3 admits post-rotation RT-bound violation, "
+            "or if the identity boundary case changes entropy."
+        ),
+        "out_of_scope": [
+            "no holographic bridge admission",
+            "no Clifford package or full Cl(3) proof",
+            "no QIT, GStack, axis, engine, or nonclassical admission",
+            "no scientific lego promotion",
+            "no full RT or quantum-information proof",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_holographic_clifford_pairwise_coupling",
+    )
 
     out_dir = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),

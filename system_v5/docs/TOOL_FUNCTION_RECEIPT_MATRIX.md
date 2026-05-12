@@ -1,13 +1,13 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-12T05:39:05.496707+00:00`
+Generated: `2026-05-12T05:43:16.069443+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `45`
-- Passing rows: `45`
+- Rows: `46`
+- Passing rows: `46`
 - Missing receipts: `0`
 
 ## Matrix
@@ -41,6 +41,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `xgi` | XGI hyperedge incidence matched to TopoNetX rank-2 cells | `system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `cell_complex_geometry` |
 | `rustworkx` | rustworkx PyDiGraph DAG construction, topological_sort, transitive_reduction, dijkstra_shortest_paths, cycle detection | `system_v4/probes/a2_state/sim_results/rustworkx_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_shell_geometry`, `dependency_dag_and_collapse` |
 | `rustworkx` | rustworkx PyDiGraph descendants/topological_sort/shortest_path reachability on a tiny DAG | `system_v4/probes/a2_state/sim_results/sim_rustworkx_dag_reachability_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `dependency_dag_and_collapse`, `graph_shell_geometry` |
+| `scipy` | scipy.linalg.eigvalsh, scipy.optimize.minimize, scipy.spatial.distance.cdist, and scipy.stats.entropy baseline controls | `system_v4/probes/a2_state/sim_results/sim_capability_scipy_isolated_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `classical_spectral_baseline`, `classical_distance_entropy_baseline` |
 | `z3` | z3 Solver/SolverFor QF_LIA add/check/model and UNSAT witness | `system_v4/probes/a2_state/sim_results/z3_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `distinguishability_relation` |
 | `z3` | z3 SolverFor('QF_LIA') shared SAT/UNSAT agreement fixture | `system_v4/probes/a2_state/sim_results/sim_integration_cvc5_z3_unsat_agreement_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `probe_object` |
 | `z3` | z3 SolverFor('QF_NIA') consuming exact SymPy polynomial coefficients and derivatives for bounded integer-root fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_z3_sympy_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `constraint_probe_admissibility`, `exact_algebra_crosschecks` |

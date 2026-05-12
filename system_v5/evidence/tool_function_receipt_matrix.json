@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T05:39:05.496707+00:00",
+  "generated_at": "2026-05-12T05:43:16.069443+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -742,6 +742,34 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
+        "classical_spectral_baseline",
+        "classical_distance_entropy_baseline"
+      ],
+      "claim_ceiling": "classical SciPy capability baseline only",
+      "depth": "load_bearing",
+      "function_api": "scipy.linalg.eigvalsh, scipy.optimize.minimize, scipy.spatial.distance.cdist, and scipy.stats.entropy baseline controls",
+      "manifest_reason": "target_tool: eigvalsh for symmetric eigenvalues, minimize for scalar optimization, cdist for pairwise distances, entropy for information measures \u2014 all load-bearing for this isolation probe.",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "no QIT engine evidence",
+        "no nonclassical admission",
+        "no bridge claim",
+        "no axis claim",
+        "no GStack claim",
+        "no coupling claim"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/sim_capability_scipy_isolated_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "classical_baseline",
+      "tool": "scipy"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
         "constraint_probe_admissibility",
         "distinguishability_relation"
       ],
@@ -1232,10 +1260,10 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 45,
+    "passing_count": 46,
     "receipt_boundary_gap_count": 9,
-    "receipt_schema_missing_count": 45,
-    "row_count": 45,
+    "receipt_schema_missing_count": 46,
+    "row_count": 46,
     "tools": [
       "clifford",
       "cvc5",
@@ -1248,6 +1276,7 @@
       "qiskit",
       "qutip",
       "rustworkx",
+      "scipy",
       "sympy",
       "toponetx",
       "xgi",

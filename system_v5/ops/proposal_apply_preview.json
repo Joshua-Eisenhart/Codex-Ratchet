@@ -11,13 +11,13 @@
     {
       "proposal_family": "c4",
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 531,
+      "row_count": 524,
       "next_action": "owner_review_required_before_any_source_edit"
     },
     {
       "proposal_family": "c6",
       "path": "system_v5/ops/c6_loadbearing_report.json",
-      "row_count": 1491,
+      "row_count": 1478,
       "next_action": "owner_review_required_before_any_source_edit"
     }
   ],
@@ -478,7 +478,7 @@
     "c4": {
       "present": true,
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 531,
+      "row_count": 524,
       "sample": [
         {
           "sim": "system_v4/probes/sim_adams_spectral_sequence_constraint_canonical.py",
@@ -540,19 +540,6 @@
           "classification": "classical_baseline",
           "runner_class": "classical",
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
-          "sim": "system_v4/probes/sim_bottleneck_distance_classical.py",
-          "rule": "C4_divergence_log_empty",
-          "classification": "classical_baseline",
-          "runner_class": "classical",
-          "current_divergence_log": [
-            "Implemented via binary search + bipartite feasibility; rejected LP formulation as over-heavy.",
-            "Diagonal-matching modeled as per-point phantom nodes with cost (d-b)/2.",
-            "Used scipy not required; plain Hungarian-style greedy augmentation is adequate for N<=20 points."
-          ],
           "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
           "mode": "dry_run_no_source_edits"
         },
@@ -629,19 +616,6 @@
           "mode": "dry_run_no_source_edits"
         },
         {
-          "sim": "system_v4/probes/sim_cech_vs_rips_classical.py",
-          "rule": "C4_divergence_log_empty",
-          "classification": "classical_baseline",
-          "runner_class": "classical",
-          "current_divergence_log": [
-            "Restricted to 2-simplex level; higher-dim nerve checks omitted.",
-            "Cech triangle admission computed via miniball (smallest enclosing circle) of 3 points.",
-            "Jung constant sqrt(2 d/(d+1)) = sqrt(4/3) in R^2 used for Rips upper bound."
-          ],
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
           "sim": "system_v4/probes/sim_chiral_density_bookkeeping.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
@@ -667,13 +641,31 @@
           "current_divergence_log": null,
           "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
           "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_cl6_spin_group_embedding.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "classical",
+          "current_divergence_log": null,
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_clifford_holo_dirac_emergence_quantities.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "classical",
+          "current_divergence_log": null,
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
         }
       ]
     },
     "c6": {
       "present": true,
       "path": "system_v5/ops/c6_loadbearing_report.json",
-      "row_count": 1491,
+      "row_count": 1478,
       "sample": [
         {
           "sim": "system_v4/probes/sim_3qubit_bridge_prototype.py",

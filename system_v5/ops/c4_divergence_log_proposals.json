@@ -1,10 +1,10 @@
 {
   "schema": "c4_divergence_log_proposals_v1",
   "mode": "dry_run_no_source_edits",
-  "proposal_count": 531,
+  "proposal_count": 524,
   "rules": {
-    "C4_divergence_log_empty": 19,
-    "C4_divergence_log_missing": 512
+    "C4_divergence_log_empty": 11,
+    "C4_divergence_log_missing": 513
   },
   "proposals": [
     {
@@ -67,19 +67,6 @@
       "classification": "classical_baseline",
       "runner_class": "classical",
       "current_divergence_log": null,
-      "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-      "mode": "dry_run_no_source_edits"
-    },
-    {
-      "sim": "system_v4/probes/sim_bottleneck_distance_classical.py",
-      "rule": "C4_divergence_log_empty",
-      "classification": "classical_baseline",
-      "runner_class": "classical",
-      "current_divergence_log": [
-        "Implemented via binary search + bipartite feasibility; rejected LP formulation as over-heavy.",
-        "Diagonal-matching modeled as per-point phantom nodes with cost (d-b)/2.",
-        "Used scipy not required; plain Hungarian-style greedy augmentation is adequate for N<=20 points."
-      ],
       "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
       "mode": "dry_run_no_source_edits"
     },
@@ -152,19 +139,6 @@
       "classification": "classical_baseline",
       "runner_class": "classical",
       "current_divergence_log": null,
-      "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-      "mode": "dry_run_no_source_edits"
-    },
-    {
-      "sim": "system_v4/probes/sim_cech_vs_rips_classical.py",
-      "rule": "C4_divergence_log_empty",
-      "classification": "classical_baseline",
-      "runner_class": "classical",
-      "current_divergence_log": [
-        "Restricted to 2-simplex level; higher-dim nerve checks omitted.",
-        "Cech triangle admission computed via miniball (smallest enclosing circle) of 3 points.",
-        "Jung constant sqrt(2 d/(d+1)) = sqrt(4/3) in R^2 used for Rips upper bound."
-      ],
       "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
       "mode": "dry_run_no_source_edits"
     },
@@ -1217,18 +1191,6 @@
       "mode": "dry_run_no_source_edits"
     },
     {
-      "sim": "system_v4/probes/sim_graph_cheeger_inequality_classical.py",
-      "rule": "C4_divergence_log_empty",
-      "classification": "classical_baseline",
-      "runner_class": "classical",
-      "current_divergence_log": [
-        "Cheeger h(G) via brute-force cut enumeration; constraint-admissible subsets not probed.",
-        "Spectral bound is classical; no nonclassical coupling terms included."
-      ],
-      "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-      "mode": "dry_run_no_source_edits"
-    },
-    {
       "sim": "system_v4/probes/sim_graph_geometry.py",
       "rule": "C4_divergence_log_missing",
       "classification": "classical_baseline",
@@ -1616,19 +1578,6 @@
       "classification": "classical_baseline",
       "runner_class": "classical",
       "current_divergence_log": null,
-      "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-      "mode": "dry_run_no_source_edits"
-    },
-    {
-      "sim": "system_v4/probes/sim_hypergraph_laplacian_spectrum_classical.py",
-      "rule": "C4_divergence_log_empty",
-      "classification": "classical_baseline",
-      "runner_class": "classical",
-      "current_divergence_log": [
-        "Classical star-expansion Laplacian diverges from canonical constraint-admissibility because",
-        "eigenvalue ordering is treated as complete descriptor; nonclassical coupling behavior absent.",
-        "Hyperedge weights are unit-classical; constraint-surviving weights not probed."
-      ],
       "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
       "mode": "dry_run_no_source_edits"
     },
@@ -2272,18 +2221,6 @@
       "mode": "dry_run_no_source_edits"
     },
     {
-      "sim": "system_v4/probes/sim_line_graph_hitting_time_classical.py",
-      "rule": "C4_divergence_log_empty",
-      "classification": "classical_baseline",
-      "runner_class": "classical",
-      "current_divergence_log": [
-        "Hitting-time via classical Markov kernel; constraint-admissibility of transitions not probed.",
-        "Line-graph conversion assumes classical edge-incidence; nonclassical coupling omitted."
-      ],
-      "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-      "mode": "dry_run_no_source_edits"
-    },
-    {
       "sim": "system_v4/probes/sim_local_operator_action.py",
       "rule": "C4_divergence_log_missing",
       "classification": "classical_baseline",
@@ -2652,14 +2589,11 @@
       "mode": "dry_run_no_source_edits"
     },
     {
-      "sim": "system_v4/probes/sim_network_modularity_classical.py",
-      "rule": "C4_divergence_log_empty",
+      "sim": "system_v4/probes/sim_numpy_capability.py",
+      "rule": "C4_divergence_log_missing",
       "classification": "classical_baseline",
       "runner_class": "classical",
-      "current_divergence_log": [
-        "Classical Newman-Girvan Q assumes static partition labels; nonclassical constraint flows absent.",
-        "Null model (k_i k_j / 2m) is classical; does not reflect coupling-admissibility null."
-      ],
+      "current_divergence_log": null,
       "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
       "mode": "dry_run_no_source_edits"
     },
@@ -2696,15 +2630,6 @@
       "classification": "classical_baseline",
       "runner_class": "classical",
       "current_divergence_log": null,
-      "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-      "mode": "dry_run_no_source_edits"
-    },
-    {
-      "sim": "system_v4/probes/sim_pagerank_classical.py",
-      "rule": "C4_divergence_log_empty",
-      "classification": "classical_baseline",
-      "runner_class": "classical",
-      "current_divergence_log": [],
       "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
       "mode": "dry_run_no_source_edits"
     },
@@ -3494,18 +3419,6 @@
       "classification": "classical_baseline",
       "runner_class": "bridge",
       "current_divergence_log": null,
-      "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-      "mode": "dry_run_no_source_edits"
-    },
-    {
-      "sim": "system_v4/probes/sim_simplicial_fvector_classical.py",
-      "rule": "C4_divergence_log_empty",
-      "classification": "classical_baseline",
-      "runner_class": "classical",
-      "current_divergence_log": [
-        "Classical f-vector counts ignore constraint-admissibility of simplices under probe coupling.",
-        "Euler characteristic alternating-sum treated as complete invariant; nonclassical probes excluded."
-      ],
       "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
       "mode": "dry_run_no_source_edits"
     },

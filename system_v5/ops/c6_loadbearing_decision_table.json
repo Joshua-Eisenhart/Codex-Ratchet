@@ -6,24 +6,24 @@
     "system_v5/ops/c6_loadbearing_report.json"
   ],
   "source_report_row_counts": {
-    "blocked_reason_breakdown": 720,
-    "c6_loadbearing_report": 1491
+    "blocked_reason_breakdown": 728,
+    "c6_loadbearing_report": 1478
   },
-  "blocked_c6_sim_count": 88,
-  "decision_row_count": 163,
+  "blocked_c6_sim_count": 81,
+  "decision_row_count": 150,
   "action_counts": {
-    "remove_or_demote_tool_depth_candidate": 34,
-    "promote_to_canonical_candidate_after_owner_review": 62,
+    "promote_to_canonical_candidate_after_owner_review": 56,
+    "remove_or_demote_tool_depth_candidate": 27,
     "owner_review_missing_result_before_edit": 64,
     "owner_review_inconclusive": 3
   },
   "tool_counts": {
-    "pytorch": 59,
+    "pytorch": 50,
     "sympy": 18,
     "z3": 17,
-    "numpy": 16,
+    "numpy": 14,
     "xgi": 14,
-    "scipy": 13,
+    "scipy": 11,
     "rustworkx": 10,
     "clifford": 7,
     "gudhi": 3,
@@ -32,34 +32,12 @@
     "cvc5": 2
   },
   "bucket_counts": {
-    "decorative_load_bearing_demote_tool": 34,
-    "genuinely_load_bearing_so_promote_to_canonical_candidate": 62,
+    "genuinely_load_bearing_so_promote_to_canonical_candidate": 56,
+    "decorative_load_bearing_demote_tool": 27,
     "inconclusive_needs_owner": 67
   },
   "rows": [
     {
-      "sim": "system_v4/probes/sim_bch_first_order_commutator_classical.py",
-      "tool": "pytorch",
-      "bucket": "decorative_load_bearing_demote_tool",
-      "result_path": "system_v4/probes/a2_state/sim_results/bch_first_order_commutator_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "remove_or_demote_tool_depth_candidate",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_bch_first_order_commutator_classical.py",
-      "tool": "scipy",
-      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
-      "result_path": "system_v4/probes/a2_state/sim_results/bch_first_order_commutator_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
       "sim": "system_v4/probes/sim_blackwell_sufficiency_order_classical.py",
       "tool": "numpy",
       "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
@@ -97,39 +75,6 @@
       "tool": "scipy",
       "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
       "result_path": "system_v4/probes/a2_state/sim_results/bootstrap_variance_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_bottleneck_distance_classical.py",
-      "tool": "pytorch",
-      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
-      "result_path": "system_v4/probes/a2_state/sim_results/bottleneck_distance_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_cech_vs_rips_classical.py",
-      "tool": "pytorch",
-      "bucket": "decorative_load_bearing_demote_tool",
-      "result_path": "system_v4/probes/a2_state/sim_results/cech_vs_rips_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "remove_or_demote_tool_depth_candidate",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_chebyshev_distinguishability_classical.py",
-      "tool": "numpy",
-      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
-      "result_path": "system_v4/probes/a2_state/sim_results/chebyshev_distinguishability_classical_results.json",
       "evidence": "result_json_mentions_tool",
       "candidate_action": "promote_to_canonical_candidate_after_owner_review",
       "owner_review_required": true,
@@ -184,7 +129,7 @@
       "sim": "system_v4/probes/sim_eckart_young_truncated_svd_classical.py",
       "tool": "pytorch",
       "bucket": "decorative_load_bearing_demote_tool",
-      "result_path": "system_v4/probes/a2_state/sim_results/eckart_young_truncated_svd_classical_results.json",
+      "result_path": "system_v4/probes/a2_state/sim_results/sim_eckart_young_truncated_svd_classical_results.json",
       "evidence": "result_json_mentions_tool",
       "candidate_action": "remove_or_demote_tool_depth_candidate",
       "owner_review_required": true,
@@ -228,18 +173,7 @@
       "sim": "system_v4/probes/sim_fiedler_spectral_clustering_classical.py",
       "tool": "pytorch",
       "bucket": "decorative_load_bearing_demote_tool",
-      "result_path": "system_v4/probes/a2_state/sim_results/fiedler_spectral_clustering_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "remove_or_demote_tool_depth_candidate",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_graph_cheeger_inequality_classical.py",
-      "tool": "pytorch",
-      "bucket": "decorative_load_bearing_demote_tool",
-      "result_path": "system_v4/probes/a2_state/sim_results/sim_graph_cheeger_inequality_classical_results.json",
+      "result_path": "system_v4/probes/a2_state/sim_results/sim_fiedler_spectral_clustering_classical_results.json",
       "evidence": "result_json_mentions_tool",
       "candidate_action": "remove_or_demote_tool_depth_candidate",
       "owner_review_required": true,
@@ -273,50 +207,6 @@
       "tool": "pytorch",
       "bucket": "decorative_load_bearing_demote_tool",
       "result_path": "system_v4/probes/a2_state/sim_results/homogeneous_space_so3_mod_so2_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "remove_or_demote_tool_depth_candidate",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_hypergraph_laplacian_spectrum_classical.py",
-      "tool": "pytorch",
-      "bucket": "decorative_load_bearing_demote_tool",
-      "result_path": "system_v4/probes/a2_state/sim_results/sim_hypergraph_laplacian_spectrum_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "remove_or_demote_tool_depth_candidate",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_le_cam_deficiency_classical.py",
-      "tool": "numpy",
-      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
-      "result_path": "system_v4/probes/a2_state/sim_results/le_cam_deficiency_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_le_cam_deficiency_classical.py",
-      "tool": "scipy",
-      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
-      "result_path": "system_v4/probes/a2_state/sim_results/le_cam_deficiency_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_line_graph_hitting_time_classical.py",
-      "tool": "pytorch",
-      "bucket": "decorative_load_bearing_demote_tool",
-      "result_path": "system_v4/probes/a2_state/sim_results/sim_line_graph_hitting_time_classical_results.json",
       "evidence": "result_json_mentions_tool",
       "candidate_action": "remove_or_demote_tool_depth_candidate",
       "owner_review_required": true,
@@ -390,17 +280,6 @@
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
     },
     {
-      "sim": "system_v4/probes/sim_network_modularity_classical.py",
-      "tool": "pytorch",
-      "bucket": "decorative_load_bearing_demote_tool",
-      "result_path": "system_v4/probes/a2_state/sim_results/sim_network_modularity_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "remove_or_demote_tool_depth_candidate",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
       "sim": "system_v4/probes/sim_neyman_pearson_roc_classical.py",
       "tool": "numpy",
       "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
@@ -416,17 +295,6 @@
       "tool": "scipy",
       "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
       "result_path": "system_v4/probes/a2_state/sim_results/neyman_pearson_roc_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "promote_to_canonical_candidate_after_owner_review",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_pagerank_classical.py",
-      "tool": "pytorch",
-      "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
-      "result_path": "system_v4/probes/a2_state/sim_results/sim_pagerank_classical_results.json",
       "evidence": "result_json_mentions_tool",
       "candidate_action": "promote_to_canonical_candidate_after_owner_review",
       "owner_review_required": true,
@@ -869,17 +737,6 @@
       "result_path": null,
       "evidence": "no_result_tool_evidence",
       "candidate_action": "owner_review_missing_result_before_edit",
-      "owner_review_required": true,
-      "source_edit_allowed": false,
-      "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."
-    },
-    {
-      "sim": "system_v4/probes/sim_simplicial_fvector_classical.py",
-      "tool": "pytorch",
-      "bucket": "decorative_load_bearing_demote_tool",
-      "result_path": "system_v4/probes/a2_state/sim_results/sim_simplicial_fvector_classical_results.json",
-      "evidence": "result_json_mentions_tool",
-      "candidate_action": "remove_or_demote_tool_depth_candidate",
       "owner_review_required": true,
       "source_edit_allowed": false,
       "stop_condition": "Do not edit source until owner review selects remove/demote, prove, or promote path."

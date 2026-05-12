@@ -18,7 +18,14 @@ import json
 import os
 import numpy as np
 from receipt_boundary import apply_default_receipt_boundary
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
+divergence_log = (
+    "XGI is load-bearing for representing multi-way shell co-constraints as "
+    "hyperedges; the pairwise expansion is an explicit negative control that "
+    "changes the centrality/ranking signal. This is a finite canonical "
+    "tool-lego fit receipt only and does not promote shell, axis, bridge, "
+    "engine, or nonclassical claims."
+)
 
 # =====================================================================
 # TOOL MANIFEST
@@ -543,15 +550,23 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "classification": "canonical",
+        "divergence_log": divergence_log,
         "all_pass": all_pass,
     }
 
-    results = apply_default_receipt_boundary(results, source_name="sim_xgi_shell_hypergraph")
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_xgi_shell_hypergraph",
+        target=(
+            "Use as bounded XGI hypergraph tool-lego fit evidence before "
+            "higher-order incidence or registry-consistency packets."
+        ),
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "xgi_shell_hypergraph_results.json")
-    with open(out_path, "w") as f:
+    out_path = os.path.join(out_dir, "sim_xgi_shell_hypergraph_results.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
 

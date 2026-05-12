@@ -19,6 +19,10 @@ Classification: canonical.
 import json, os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "no grads"},
     "pyg": {"tried": False, "used": False, "reason": "hypergraph native required"},
@@ -135,12 +139,27 @@ if __name__ == "__main__":
         raise SystemExit("BLOCKER: xgi missing")
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(v.get("pass") for v in {**pos, **neg, **bnd}.values())
+    summary = {
+        "all_pass": all_pass,
+        "total_tests": len({**pos, **neg, **bnd}),
+        "passed": sum(1 for v in {**pos, **neg, **bnd}.values() if v.get("pass")),
+    }
     out = {"name": "sim_xgi_deep_hypergraph_clustering",
-           "classification": "canonical",
+           "classification": classification,
            "tool_manifest": TOOL_MANIFEST,
            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
            "positive": pos, "negative": neg, "boundary": bnd,
+           "summary": summary,
+           "all_pass": all_pass,
            "overall_pass": all_pass}
+    out = apply_default_receipt_boundary(
+        out,
+        source_name="sim_xgi_deep_hypergraph_clustering",
+        target=(
+            "Use as bounded XGI hyperedge-clustering evidence before "
+            "hypergraph geometry or projection-ablation lego fit packets."
+        ),
+    )
     d = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(d, exist_ok=True)
     p = os.path.join(d, "sim_xgi_deep_hypergraph_clustering_results.json")

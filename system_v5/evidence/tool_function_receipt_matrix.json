@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T01:24:49.595460+00:00",
+  "generated_at": "2026-05-12T03:56:48.579501+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -379,13 +379,13 @@
       "tool": "z3"
     },
     {
-      "boundary_gap": true,
+      "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
         "constraint_probe_admissibility",
         "probe_object"
       ],
-      "claim_ceiling": "tool_function_receipt_only_not_admission_or_promotion",
+      "claim_ceiling": "tool_tool_micro_integration_only",
       "depth": "load_bearing",
       "function_api": "z3 SolverFor('QF_LIA') shared SAT/UNSAT agreement fixture",
       "manifest_reason": "z3 is load-bearing: SolverFor('QF_LIA').add/check/model supplies one side of every shared SAT/UNSAT verdict and witness comparison.",
@@ -431,13 +431,13 @@
       "tool": "cvc5"
     },
     {
-      "boundary_gap": true,
+      "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
         "constraint_probe_admissibility",
         "probe_object"
       ],
-      "claim_ceiling": "tool_function_receipt_only_not_admission_or_promotion",
+      "claim_ceiling": "tool_tool_micro_integration_only",
       "depth": "load_bearing",
       "function_api": "cvc5 shared QF_LIA SAT/UNSAT agreement with z3",
       "manifest_reason": "cvc5 is load-bearing: Solver.assertFormula/checkSat/getValue supplies the other side of every shared SAT/UNSAT verdict and witness comparison.",
@@ -568,7 +568,7 @@
   "summary": {
     "missing_receipt_count": 0,
     "passing_count": 21,
-    "receipt_boundary_gap_count": 12,
+    "receipt_boundary_gap_count": 10,
     "receipt_schema_missing_count": 21,
     "row_count": 21,
     "tools": [

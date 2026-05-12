@@ -28,7 +28,7 @@ TOOL_INTEGRATION_DEPTH = {
     "geomstats": None,
     "gudhi": None,
     "pyg": None,
-    "pytorch": "load_bearing",
+    "pytorch": None,
     "rustworkx": None,
     "sympy": None,
     "toponetx": None,

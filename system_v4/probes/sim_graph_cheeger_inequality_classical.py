@@ -5,6 +5,8 @@ Checks lambda_2/2 <= h(G) <= sqrt(2*lambda_2*d_max).
 import json, os, numpy as np
 from itertools import combinations
 
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "classical_baseline"
 
 TOOL_MANIFEST = {
@@ -28,7 +30,7 @@ TOOL_INTEGRATION_DEPTH = {
     "geomstats": None,
     "gudhi": None,
     "pyg": None,
-    "pytorch": "load_bearing",
+    "pytorch": "supportive",
     "rustworkx": None,
     "sympy": None,
     "toponetx": None,
@@ -43,10 +45,14 @@ try:
 except Exception:
     _HAS_TORCH = False
 
-divergence_log = [
+divergence_details = [
     "Cheeger h(G) via brute-force cut enumeration; constraint-admissible subsets not probed.",
     "Spectral bound is classical; no nonclassical coupling terms included.",
 ]
+divergence_log = (
+    "Classical graph Cheeger inequality baseline only; no bridge, QIT, "
+    "GStack, axis, or nonclassical admission claim."
+)
 
 def laplacian(A):
     d = A.sum(axis=1)
@@ -126,13 +132,22 @@ if __name__ == "__main__":
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "divergence_log": divergence_log,
+        "divergence_details": divergence_details,
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_graph_cheeger_inequality_classical",
+        target=(
+            "Use as bounded classical graph Cheeger inequality baseline "
+            "evidence before graph spectral or expansion tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "sim_graph_cheeger_inequality_classical_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out_path}")

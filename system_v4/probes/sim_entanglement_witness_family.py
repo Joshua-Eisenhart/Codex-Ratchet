@@ -142,6 +142,12 @@ def main():
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "all_pass": all_pass,
+        "criteria_checked": [
+            "finite witness-operator arithmetic completed",
+            "classical baseline divergence declared",
+            "local pass/fail criteria satisfied",
+        ],
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

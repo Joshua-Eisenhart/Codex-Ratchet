@@ -1,13 +1,13 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-12T05:17:38.551359+00:00`
+Generated: `2026-05-12T05:26:48.506324+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `38`
-- Passing rows: `38`
+- Rows: `40`
+- Passing rows: `40`
 - Missing receipts: `0`
 
 ## Matrix
@@ -40,11 +40,13 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `rustworkx` | rustworkx PyDiGraph descendants/topological_sort/shortest_path reachability on a tiny DAG | `system_v4/probes/a2_state/sim_results/sim_rustworkx_dag_reachability_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `dependency_dag_and_collapse`, `graph_shell_geometry` |
 | `z3` | z3 Solver/SolverFor QF_LIA add/check/model and UNSAT witness | `system_v4/probes/a2_state/sim_results/z3_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `distinguishability_relation` |
 | `z3` | z3 SolverFor('QF_LIA') shared SAT/UNSAT agreement fixture | `system_v4/probes/a2_state/sim_results/sim_integration_cvc5_z3_unsat_agreement_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `probe_object` |
+| `z3` | z3 SolverFor('QF_NIA') consuming exact SymPy polynomial coefficients and derivatives for bounded integer-root fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_z3_sympy_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `constraint_probe_admissibility`, `exact_algebra_crosschecks` |
 | `cvc5` | cvc5 Solver.assertFormula/checkSat/getValue QF_LIA fixture | `system_v4/probes/a2_state/sim_results/cvc5_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `carrier_admission_density_matrix` |
 | `cvc5` | cvc5 shared QF_LIA SAT/UNSAT agreement with z3 | `system_v4/probes/a2_state/sim_results/sim_integration_cvc5_z3_unsat_agreement_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `probe_object` |
 | `cvc5` | cvc5 Solver.synthFun/addSygusConstraint/checkSynth/getSynthSolution bounded LIA SyGuS fixture | `system_v4/probes/a2_state/sim_results/sim_cvc5_sygus_synthesis_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `sygus_integer_grammar_fixture` |
 | `sympy` | sympy symbolic expression/matrix simplification and exact algebra | `system_v4/probes/a2_state/sim_results/sympy_capability_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `entropy_family_crosschecks`, `operator_family_admission` |
 | `sympy` | sympy.diff/integrate/factor/simplify exact scalar identity checks | `system_v4/probes/a2_state/sim_results/sim_sympy_symbolic_identity_micro_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `exact_algebra_crosschecks`, `operator_family_admission` |
+| `sympy` | sympy Poly/all_coeffs/diff/factor/gcd/discriminant feeding z3 bounded integer-root fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_z3_sympy_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `constraint_probe_admissibility`, `exact_algebra_crosschecks` |
 | `sympy` | sympy Matrix.inv / exact matrix equality inverse identity checks | `system_v4/probes/a2_state/sim_results/sim_sympy_matrix_identity_micro_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `exact_matrix_identity`, `operator_family_admission` |
 | `sympy` | sympy roots/discriminant/exact rational edge-weight construction feeding PyG graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_sympy_pyg_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `graph_symbolic_fit`, `exact_algebra_crosschecks` |
 | `geomstats` | geomstats metric.geodesic, exp/log, SPD distance, Frechet mean | `system_v4/probes/a2_state/sim_results/geomstats_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `geometry_crosschecks_same_carrier`, `quantum_metric_nonuniqueness` |

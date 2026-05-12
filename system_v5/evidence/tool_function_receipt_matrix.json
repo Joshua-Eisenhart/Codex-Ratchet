@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T05:17:38.551359+00:00",
+  "generated_at": "2026-05-12T05:26:48.506324+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -713,6 +713,34 @@
       "boundary_source": "receipt",
       "candidate_lego_targets": [
         "constraint_probe_admissibility",
+        "exact_algebra_crosschecks"
+      ],
+      "claim_ceiling": "finite tool_integration_z3_sympy lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+      "depth": "load_bearing",
+      "function_api": "z3 SolverFor('QF_NIA') consuming exact SymPy polynomial coefficients and derivatives for bounded integer-root fixtures",
+      "manifest_reason": "z3 is the load-bearing solver for SAT and UNSAT checks over integer root patterns induced by exact SymPy polynomial data.",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "no broad solver equivalence",
+        "no nonlinear completeness claim",
+        "no lego promotion",
+        "no bridge claim",
+        "no axis claim",
+        "no GStack claim"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_z3_sympy_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "canonical",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "classical_bridge",
+      "tool": "z3"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "constraint_probe_admissibility",
         "carrier_admission_density_matrix"
       ],
       "claim_ceiling": "tool_micro_cvc5_capability_only",
@@ -834,6 +862,34 @@
         "no proof of the whole SymPy library"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/sim_sympy_symbolic_identity_micro_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "canonical",
+      "receipt_exists": true,
+      "receipt_schema": null,
+      "role": "classical_bridge",
+      "tool": "sympy"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "constraint_probe_admissibility",
+        "exact_algebra_crosschecks"
+      ],
+      "claim_ceiling": "finite tool_integration_z3_sympy lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+      "depth": "load_bearing",
+      "function_api": "sympy Poly/all_coeffs/diff/factor/gcd/discriminant feeding z3 bounded integer-root fixtures",
+      "manifest_reason": "SymPy is the load-bearing symbolic layer that constructs exact polynomials, derivatives, and factor forms whose outputs are fed into z3 constraints.",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "no broad solver equivalence",
+        "no nonlinear completeness claim",
+        "no lego promotion",
+        "no bridge claim",
+        "no axis claim",
+        "no GStack claim"
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_z3_sympy_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "canonical",
       "receipt_exists": true,
@@ -1038,10 +1094,10 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 38,
+    "passing_count": 40,
     "receipt_boundary_gap_count": 9,
-    "receipt_schema_missing_count": 38,
-    "row_count": 38,
+    "receipt_schema_missing_count": 40,
+    "row_count": 40,
     "tools": [
       "clifford",
       "cvc5",

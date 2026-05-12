@@ -23,7 +23,10 @@ import os
 import sys
 import traceback
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+
+from receipt_boundary import apply_default_receipt_boundary
+
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST
@@ -506,7 +509,9 @@ if __name__ == "__main__":
         "z3_unsat_for_contractible_chi0": (z3_neg.get("z3_result") == "unsat"),
         "sympy_chi_torus": sympy_neg.get("chi_torus_sympy"),
         "tests_passed": f"{passed}/{total}",
+        "all_pass": passed == total and total > 0,
     }
+    all_pass = summary["all_pass"]
 
     results = {
         "name": "sim_toponetx_hopf_crosscheck",
@@ -517,7 +522,39 @@ if __name__ == "__main__":
         "boundary": boundary,
         "summary": summary,
         "classification": "canonical",
+        "all_pass": all_pass,
+        "divergence_log": [
+            "canonical: TopoNetX CellComplex and Hodge Laplacian checks are load-bearing for this bounded torus fixture",
+            "pytorch encodes only the Betti-vector separation against a contractible baseline",
+            "xgi encodes the two fundamental cycle families as hyperedges for this fixture only",
+            "z3 and sympy provide bounded Euler-characteristic exclusions against contractible and sphere baselines",
+            "numpy eigenvalue work is a numerical baseline for Hodge-Laplacian zero-mode counting, not standalone nonclassical evidence",
+        ],
+        "claim_ceiling": "tool_lego_fit_probe_only",
+        "next_lego_target": "bounded TopoNetX Hopf torus cell-complex fixture with explicit GUDHI parent receipt before topology or bridge promotion",
+        "promotion_condition": (
+            "requires later admitted downstream topology/coupling rows with exact parent receipts and stage-gate approval; "
+            "this receipt does not itself promote topology, bridge, axis, GStack, QIT engine, or nonclassical claims"
+        ),
+        "blocked_until": (
+            "blocked from topology, bridge, axis, GStack, QIT engine, and nonclassical promotion until exact parent "
+            "receipts and downstream coupling/admission packets pass strict validation"
+        ),
+        "demotion_condition": (
+            "Demote this bounded TopoNetX Hopf torus surface if CellComplex counts, Hodge-Laplacian Betti numbers, "
+            "Euler characteristic checks, relabeling stability, xgi cycle representation, or z3/sympy exclusions fail."
+        ),
+        "out_of_scope": [
+            "no topology, bridge, axis, GStack, QIT engine, or nonclassical admission",
+            "no proof of a full Hopf torus topology program",
+            "no scientific lego promotion from this receipt alone",
+            "no replacement for downstream bridge/coupling receipts",
+        ],
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_toponetx_hopf_crosscheck",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

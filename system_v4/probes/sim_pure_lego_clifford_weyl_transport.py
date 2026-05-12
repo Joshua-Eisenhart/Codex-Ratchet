@@ -13,6 +13,9 @@ import json
 import os
 
 import numpy as np
+
+from receipt_boundary import apply_default_receipt_boundary
+
 classification = "canonical"
 
 # =====================================================================
@@ -423,8 +426,41 @@ if __name__ == "__main__":
             "claim": "Cl(3) rotor transport R·e1·~R matches SU(2) adjoint U·σ_x·U†; double-cover R(2π)=-1 confirmed; non-commutativity confirmed",
             "diagnosis": "clifford_weyl_bridge_consistent" if all_pass else "FAIL",
         },
+        "all_pass": all_pass,
+        "divergence_log": [
+            "canonical: clifford Cl(3) rotor sandwich products are load-bearing for this bounded transport fixture",
+            "sympy proves only the stated rotor transport identity for the fixture formula",
+            "z3 checks only the rational rotor-norm boundary case and is supportive, not primary",
+            "numpy/SU(2) matrix calculations are a classical cross-check baseline for coefficient agreement",
+            "the bridge language is restricted to this local e_i to Pauli-matrix dictionary and does not promote a bridge claim",
+        ],
+        "claim_ceiling": "tool_lego_fit_probe_only",
+        "next_lego_target": "bounded Clifford rotor transport fixture with explicit parent receipts before Weyl, bridge, axis, or QIT promotion",
+        "promotion_condition": (
+            "requires later admitted downstream Clifford/Weyl transport and coupling rows with exact parent receipts "
+            "and stage-gate approval; this receipt does not itself promote a bridge, axis, GStack, QIT engine, or nonclassical claim"
+        ),
+        "blocked_until": (
+            "blocked from bridge, axis, GStack, QIT engine, and nonclassical promotion until exact parent receipts "
+            "and downstream coupling/admission packets pass strict validation"
+        ),
+        "demotion_condition": (
+            "Demote this bounded Clifford-Weyl transport surface if rotor sandwich transport fails, SU(2) cross-check "
+            "diverges, double-cover/norm/noncommutativity checks fail, or sympy/z3 boundary checks fail."
+        ),
+        "out_of_scope": [
+            "no bridge promotion from this receipt alone",
+            "no axis, GStack, QIT engine, or nonclassical admission",
+            "no scientific lego promotion",
+            "no proof of a full Clifford-Weyl transport program",
+            "no replacement for downstream bridge/coupling receipts",
+        ],
         "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name="sim_pure_lego_clifford_weyl_transport",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

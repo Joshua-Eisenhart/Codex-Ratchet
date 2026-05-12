@@ -235,6 +235,20 @@ if __name__ == "__main__":
     results = {
         "name": "sim_capability_pyg_isolated",
         "classification": classification,
+        "claim_ceiling": "classical_baseline_capability_only",
+        "next_lego_target": "graph_shell_geometry",
+        "promotion_condition": "No promotion from this receipt; use only as isolated PyG capability evidence before separate tool-lego fit probes.",
+        "demotion_condition": "Demote or block if torch_geometric import, Data validation, GCNConv forward pass, or batching fixture fails.",
+        "blocked_until": None,
+        "out_of_scope": [
+            "QIT claims",
+            "GStack claims",
+            "axis claims",
+            "bridge claims",
+            "nonclassical graph-geometry claims",
+            "tool-lego promotion",
+        ],
+        "divergence_log": divergence_log,
         "overall_pass": overall,
         "capability_summary": {
             "CAN": [

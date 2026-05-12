@@ -1,10 +1,27 @@
 #!/usr/bin/env python3
 """Classical baseline: svd_factorization."""
+import copy
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
+from _classical_baseline_common import TOOL_MANIFEST as COMMON_TOOL_MANIFEST
+from _classical_baseline_common import TOOL_INTEGRATION_DEPTH
+from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"
 
-NAME = "svd_factorization"
+NAME = "sim_svd_factorization_classical"
+TOOL_MANIFEST = copy.deepcopy(COMMON_TOOL_MANIFEST)
+TOOL_MANIFEST.setdefault("numpy", {"tried": False, "used": False, "reason": ""})
+TOOL_MANIFEST["numpy"]["tried"] = True
+TOOL_MANIFEST["numpy"]["used"] = True
+TOOL_MANIFEST["numpy"]["reason"] = (
+    "supportive classical baseline: numpy.linalg.svd supplies all singular "
+    "values, orthonormal factors, and reconstruction checks in this receipt"
+)
+TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
+
+divergence_log = (
+    "Classical baseline covers finite real-matrix SVD reconstruction, orthonormal factors, and singular-value ordering only. "
+    "It does not decide operator-tensor gauge choices, phase conventions inside degenerate subspaces, nonclassical admissibility, or any bridge/QIT/GStack claim."
+)
 
 def run_positive_tests():
     r = {}
@@ -60,11 +77,20 @@ def run_boundary_tests():
 if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(v.get("pass", False) for v in list(pos.values()) + list(neg.values()) + list(bnd.values()))
-    results = {"name": NAME, "classification": "classical_baseline",
+    results = {"name": NAME, "classification": classification,
         "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "divergence_log": divergence_log,
         "positive": pos, "negative": neg, "boundary": bnd, "all_pass": all_pass,
         "note": "classical captures: real SVD existence, orthonormality, Eckart-Young singular value ordering. Innately fails: SVD of operator-tensors with gauge, complex phases on degenerate singvals."}
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target=(
+            "Use as bounded classical SVD baseline evidence before any "
+            "operator-factorization or spectral tool-lego comparison."
+        ),
+    )
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results"); os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, f"{NAME}_classical_results.json")
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
     with open(out_path, "w") as f: json.dump(results, f, indent=2, default=str)
     print(f"{NAME} all_pass={all_pass} -> {out_path}")

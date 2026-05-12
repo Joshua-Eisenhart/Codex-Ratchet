@@ -148,6 +148,24 @@ def get_grade_bivector_components(mv) -> list:
     return [float(mv.value[4]), float(mv.value[5]), float(mv.value[6])]
 
 
+def finalize_tool_manifest() -> None:
+    """Ensure every installed-but-unused tool has a specific non-use reason."""
+    non_use_reasons = {
+        "pytorch": "not used: this packet checks exact symbolic/numeric Clifford algebra products, not tensor autograd",
+        "pyg": "not used: this packet has no graph message-passing or graph tensor carrier",
+        "cvc5": "not used: Z3 provides the bounded grade-mismatch SMT guard in this packet",
+        "geomstats": "not used: no manifold metric, geodesic, or Lie-group distance is evaluated",
+        "e3nn": "not used: no equivariant neural representation is part of the algebra cross-check",
+        "rustworkx": "not used: no graph traversal, DAG, or path property is evaluated",
+        "xgi": "not used: no hypergraph incidence or higher-order network structure is evaluated",
+        "toponetx": "not used: no cell complex, cochain, or boundary operator is evaluated",
+        "gudhi": "not used: no filtration, simplex tree, or persistent homology computation is evaluated",
+    }
+    for tool, reason in non_use_reasons.items():
+        if TOOL_MANIFEST[tool]["tried"] and not TOOL_MANIFEST[tool]["used"]:
+            TOOL_MANIFEST[tool]["reason"] = reason
+
+
 # =====================================================================
 # POSITIVE TESTS
 # =====================================================================
@@ -492,6 +510,7 @@ if __name__ == "__main__":
 
     all_sections = {**positive, **negative, **boundary}
     all_pass = all(v.get("pass", False) for v in all_sections.values())
+    finalize_tool_manifest()
 
     results = {
         "name": "sim_sympy_clifford_cross_check",

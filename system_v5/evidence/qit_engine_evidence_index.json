@@ -65,6 +65,22 @@
       }
     },
     {
+      "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_clifford_rotor_norm_micro.json",
+      "admission_status": "admitted",
+      "basename": "sim_clifford_rotor_norm_micro",
+      "blockers": [],
+      "parent_receipt_sha256": {},
+      "receipt_schema_ok": true,
+      "result_name": "sim_clifford_rotor_norm_micro",
+      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_clifford_rotor_norm_micro_results.json",
+      "result_sha256": "d9797c4301c09024aaf553d5638a751849ca91ece02a4ef0ee5d3af7cb89989a",
+      "status": "accepted",
+      "tool_function_ancestry": {
+        "function_surface": "clifford.Cl(3) MultiVector geometric product, reverse (~), and rotor sandwich R*v*~R",
+        "tool_target": "clifford"
+      }
+    },
+    {
       "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_gtower_e_class_cartan_admissibility_shell_local.json",
       "admission_status": "admitted",
       "basename": "sim_gtower_e_class_cartan_admissibility_shell_local",
@@ -3952,21 +3968,19 @@
       }
     },
     {
-      "admission_artifact": null,
-      "admission_status": "missing_or_invalid",
+      "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_clifford_rotor_norm_micro.json",
+      "admission_status": "admitted",
       "basename": "sim_clifford_rotor_norm_micro",
-      "blockers": [
-        "admission:admission_missing"
-      ],
+      "blockers": [],
       "parent_receipt_sha256": {},
       "receipt_schema_ok": true,
       "result_name": "sim_clifford_rotor_norm_micro",
       "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_clifford_rotor_norm_micro_results.json",
       "result_sha256": "d9797c4301c09024aaf553d5638a751849ca91ece02a4ef0ee5d3af7cb89989a",
-      "status": "blocked",
+      "status": "accepted",
       "tool_function_ancestry": {
-        "function_surface": null,
-        "tool_target": null
+        "function_surface": "clifford.Cl(3) MultiVector geometric product, reverse (~), and rotor sandwich R*v*~R",
+        "tool_target": "clifford"
       }
     },
     {
@@ -5542,12 +5556,6 @@
       "next_action": "do_not_promote_reclassify_or_replace_with_canonical_qit_result",
       "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_capability_clifford_isolated_results.json",
       "sim_path": "system_v4/probes/sim_capability_clifford_isolated.py"
-    },
-    {
-      "basename": "sim_clifford_rotor_norm_micro",
-      "next_action": "create_or_repair_wizard_sim_admission",
-      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_clifford_rotor_norm_micro_results.json",
-      "sim_path": "system_v4/probes/sim_clifford_rotor_norm_micro.py"
     },
     {
       "basename": "sim_clifford_spinor_double_cover_micro",
@@ -11452,24 +11460,6 @@
     {
       "admission_artifact": null,
       "admission_status": "missing_or_invalid",
-      "basename": "sim_clifford_rotor_norm_micro",
-      "blockers": [
-        "admission:admission_missing"
-      ],
-      "parent_receipt_sha256": {},
-      "receipt_schema_ok": true,
-      "result_name": "sim_clifford_rotor_norm_micro",
-      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_clifford_rotor_norm_micro_results.json",
-      "result_sha256": "d9797c4301c09024aaf553d5638a751849ca91ece02a4ef0ee5d3af7cb89989a",
-      "status": "blocked",
-      "tool_function_ancestry": {
-        "function_surface": null,
-        "tool_target": null
-      }
-    },
-    {
-      "admission_artifact": null,
-      "admission_status": "missing_or_invalid",
       "basename": "sim_clifford_spinor_double_cover_micro",
       "blockers": [
         "admission:admission_missing"
@@ -12981,13 +12971,13 @@
   },
   "status_reason": "accepted_qit_entries_present",
   "summary": {
-    "accepted": 10,
-    "admitted_micro_entries": 11,
-    "blocked": 284,
-    "candidate_entries": 10,
-    "missing_or_invalid_admission": 283,
+    "accepted": 11,
+    "admitted_micro_entries": 12,
+    "blocked": 283,
+    "candidate_entries": 11,
+    "missing_or_invalid_admission": 282,
     "qit_signal_result_count": 294,
-    "quarantine_entries": 284,
+    "quarantine_entries": 283,
     "scanned_result_count": 704,
     "total_entries": 294
   }

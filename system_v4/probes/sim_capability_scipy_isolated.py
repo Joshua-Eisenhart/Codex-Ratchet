@@ -16,6 +16,10 @@ import json
 import os
 import numpy as np
 
+from receipt_boundary import apply_default_receipt_boundary
+
+NAME = "sim_capability_scipy_isolated"
+
 # =====================================================================
 # TOOL MANIFEST -- 12 standard tools + target_tool
 # =====================================================================
@@ -254,22 +258,86 @@ if __name__ == "__main__":
 
     all_tests = list(pos.values()) + list(neg.values()) + list(bnd.values())
     overall_pass = all(t.get("pass", False) for t in all_tests)
+    divergence_controls = [
+        {
+            "surface": "scipy.linalg.eigvalsh",
+            "baseline_or_control": "non_symmetric_input",
+            "observed": neg["A_eigvalsh_negative"]["note"],
+            "interpretation": "SciPy eigvalsh is a classical numerical baseline that requires a Hermitian/symmetric input precondition.",
+        },
+        {
+            "surface": "scipy.optimize.minimize",
+            "baseline_or_control": "non_smooth_absolute_value",
+            "observed": neg["B_minimize_negative"]["note"],
+            "interpretation": "BFGS convergence flags are treated as baseline diagnostics, not proof of global optimization behavior.",
+        },
+        {
+            "surface": "scipy.spatial.distance.cdist",
+            "baseline_or_control": "mismatched_feature_dimensions",
+            "observed": neg["C_cdist_negative"].get("error"),
+            "interpretation": "Shape validation is part of the classical baseline contract.",
+        },
+        {
+            "surface": "scipy.stats.entropy",
+            "baseline_or_control": "degenerate_distribution",
+            "observed": neg["D_entropy_negative"]["note"],
+            "interpretation": "Entropy is used only as a classical numerical reference.",
+        },
+    ]
 
     results = {
-        "name": "sim_capability_scipy_isolated",
+        "name": NAME,
         "classification": "classical_baseline",
         "overall_pass": overall_pass,
+        "all_pass": overall_pass,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,
         "negative": neg,
         "boundary": bnd,
+        "divergence_log": (
+            "Classical SciPy baseline only: eigvalsh requires symmetric/Hermitian "
+            "inputs, BFGS is only a local smooth optimizer diagnostic, cdist is "
+            "shape-preconditioned Euclidean distance, and entropy is a classical "
+            "probability-vector reference. No QIT, bridge, axis, GStack, or "
+            "nonclassical claim follows from this receipt."
+        ),
+        "divergence_controls": divergence_controls,
+        "surviving_alternatives": [
+            "This receipt is only a classical SciPy capability baseline; it does not provide nonclassical, QIT, bridge, axis, or coupling evidence."
+        ],
+        "demotion_condition": (
+            "Demote this baseline if scipy eigvalsh/minimize/cdist/entropy no longer "
+            "match the fixed positive controls or if the negative/boundary controls "
+            "stop exposing the expected classical limitations."
+        ),
+        "out_of_scope": [
+            "no QIT engine evidence",
+            "no nonclassical admission",
+            "no bridge claim",
+            "no axis claim",
+            "no GStack claim",
+            "no coupling claim",
+        ],
+        "claim_ceiling": "classical SciPy capability baseline only",
+        "next_lego_target": "Use only as a classical numerical reference before separate tool-integration or lego-fit receipts.",
+        "promotion_condition": "Not promotable by itself; requires separate nonclassical-suitable load-bearing receipts for any higher-stage claim.",
+        "blocked_until": "separate admitted tool-integration or lego-fit receipt names this baseline as a control",
+        "summary": {
+            "passed": sum(1 for test in all_tests if test.get("pass", False)),
+            "total": len(all_tests),
+        },
     }
+    results = apply_default_receipt_boundary(
+        results,
+        source_name=NAME,
+        target="Use only as a classical SciPy baseline control for later bounded integration packets.",
+    )
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "sim_capability_scipy_isolated_results.json")
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
     print(f"overall_pass: {overall_pass}")

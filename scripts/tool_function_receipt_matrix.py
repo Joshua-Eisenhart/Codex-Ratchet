@@ -235,6 +235,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["dependency_dag_and_collapse", "graph_shell_geometry"],
     },
     {
+        "tool": "scipy",
+        "function_api": "scipy.linalg.eigvalsh, scipy.optimize.minimize, scipy.spatial.distance.cdist, and scipy.stats.entropy baseline controls",
+        "receipt": "system_v4/probes/a2_state/sim_results/sim_capability_scipy_isolated_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["classical_spectral_baseline", "classical_distance_entropy_baseline"],
+    },
+    {
         "tool": "z3",
         "function_api": "z3 Solver/SolverFor QF_LIA add/check/model and UNSAT witness",
         "receipt": "system_v4/probes/a2_state/sim_results/z3_capability_results.json",

@@ -11,13 +11,13 @@
     {
       "proposal_family": "c4",
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 559,
+      "row_count": 556,
       "next_action": "owner_review_required_before_any_source_edit"
     },
     {
       "proposal_family": "c6",
       "path": "system_v5/ops/c6_loadbearing_report.json",
-      "row_count": 1507,
+      "row_count": 1503,
       "next_action": "owner_review_required_before_any_source_edit"
     }
   ],
@@ -478,7 +478,7 @@
     "c4": {
       "present": true,
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 559,
+      "row_count": 556,
       "sample": [
         {
           "sim": "system_v4/probes/sim_adams_spectral_sequence_constraint_canonical.py",
@@ -522,33 +522,6 @@
           "classification": "classical_baseline",
           "runner_class": "classical",
           "current_divergence_log": [],
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
-          "sim": "system_v4/probes/sim_axiom_f01_finite_state_set.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "bridge",
-          "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
-          "sim": "system_v4/probes/sim_axiom_n01_composition_order_distinguishes.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "bridge",
-          "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
-          "sim": "system_v4/probes/sim_axiom_n01_indiscernibility_implies_identity.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "bridge",
-          "current_divergence_log": null,
           "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
           "mode": "dry_run_no_source_edits"
         },
@@ -667,13 +640,44 @@
           "current_divergence_log": null,
           "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
           "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_c2_c4_independence_crosscheck.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "classical",
+          "current_divergence_log": null,
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_c2_topology_remaining.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "classical",
+          "current_divergence_log": null,
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_cech_vs_rips_classical.py",
+          "rule": "C4_divergence_log_empty",
+          "classification": "classical_baseline",
+          "runner_class": "classical",
+          "current_divergence_log": [
+            "Restricted to 2-simplex level; higher-dim nerve checks omitted.",
+            "Cech triangle admission computed via miniball (smallest enclosing circle) of 3 points.",
+            "Jung constant sqrt(2 d/(d+1)) = sqrt(4/3) in R^2 used for Rips upper bound."
+          ],
+          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "mode": "dry_run_no_source_edits"
         }
       ]
     },
     "c6": {
       "present": true,
       "path": "system_v5/ops/c6_loadbearing_report.json",
-      "row_count": 1507,
+      "row_count": 1503,
       "sample": [
         {
           "sim": "system_v4/probes/sim_3qubit_bridge_prototype.py",
@@ -756,38 +760,6 @@
           "evidence": "result_json_mentions_tool"
         },
         {
-          "sim": "system_v4/probes/sim_axiom_f01_finite_state_set.py",
-          "tool": "z3",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_axiom_n01_composition_order_distinguishes.py",
-          "tool": "pytorch",
-          "bucket": "genuinely_load_bearing_so_promote_to_canonical_candidate",
-          "result_path": "system_v4/probes/a2_state/sim_results/sim_axiom_n01_composition_order_distinguishes_results.json",
-          "tool_integration_depth": "load_bearing",
-          "evidence": "result_json_mentions_tool"
-        },
-        {
-          "sim": "system_v4/probes/sim_axiom_n01_indiscernibility_implies_identity.py",
-          "tool": "pytorch",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_axiom_n01_indiscernibility_implies_identity.py",
-          "tool": "z3",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
           "sim": "system_v4/probes/sim_axiom_n01_noncommutation_generic.py",
           "tool": "pytorch",
           "bucket": "decorative_load_bearing_demote_tool",
@@ -830,6 +802,38 @@
         {
           "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
           "tool": "torch_ga",
+          "bucket": "inconclusive_needs_owner",
+          "result_path": null,
+          "tool_integration_depth": null,
+          "evidence": "no_result_tool_evidence"
+        },
+        {
+          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
+          "tool": "rustworkx",
+          "bucket": "inconclusive_needs_owner",
+          "result_path": null,
+          "tool_integration_depth": null,
+          "evidence": "no_result_tool_evidence"
+        },
+        {
+          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
+          "tool": "xgi",
+          "bucket": "inconclusive_needs_owner",
+          "result_path": null,
+          "tool_integration_depth": null,
+          "evidence": "no_result_tool_evidence"
+        },
+        {
+          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
+          "tool": "toponetx",
+          "bucket": "inconclusive_needs_owner",
+          "result_path": null,
+          "tool_integration_depth": null,
+          "evidence": "no_result_tool_evidence"
+        },
+        {
+          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
+          "tool": "gudhi",
           "bucket": "inconclusive_needs_owner",
           "result_path": null,
           "tool_integration_depth": null,

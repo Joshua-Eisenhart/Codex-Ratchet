@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-12T05:54:37.306119+00:00",
+  "generated_at": "2026-05-12T05:59:24.495751+00:00",
   "rows": [
     {
       "boundary_gap": true,
@@ -435,23 +435,24 @@
       "tool": "clifford"
     },
     {
-      "boundary_gap": true,
-      "boundary_source": "matrix_default",
+      "boundary_gap": false,
+      "boundary_source": "receipt",
       "candidate_lego_targets": [
         "persistence_geometry",
         "concurrence_measure"
       ],
-      "claim_ceiling": "tool_function_receipt_only_not_admission_or_promotion",
+      "claim_ceiling": "finite sim_gudhi_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
       "depth": "load_bearing",
       "function_api": "SimplexTree, Rips/filtration persistence and Betti summaries",
-      "manifest_reason": "tool under capability test; persistence decisive",
+      "manifest_reason": "load-bearing capability under test: GUDHI RipsComplex, AlphaComplex, SimplexTree persistence, intervals, and persistent Betti APIs decide the receipt verdicts.",
       "observed_depth": "load_bearing",
       "out_of_scope": [
-        "no QIT admission",
-        "no GStack admission",
-        "no axis admission",
-        "no bridge or engine claim",
-        "no scientific lego coupling promotion"
+        "no topology lego promotion",
+        "no concurrence-measure promotion",
+        "no QIT engine claim",
+        "no bridge claim",
+        "no axis claim",
+        "no GStack claim"
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/gudhi_capability_results.json",
       "receipt_all_pass": true,
@@ -1262,7 +1263,7 @@
   "summary": {
     "missing_receipt_count": 0,
     "passing_count": 46,
-    "receipt_boundary_gap_count": 7,
+    "receipt_boundary_gap_count": 6,
     "receipt_schema_missing_count": 46,
     "row_count": 46,
     "tools": [

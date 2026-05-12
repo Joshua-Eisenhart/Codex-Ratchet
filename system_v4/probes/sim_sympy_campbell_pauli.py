@@ -18,17 +18,17 @@ divergence_log = (
 
 TOOL_MANIFEST = {
     "pytorch":{"tried":False,"used":False,"reason":"numeric expm won't certify closed-form equality"},
-    "pyg":{"tried":False,"used":False,"reason":"no graph"},
+    "pyg":{"tried":False,"used":False,"reason":"PyG is not used because the Pauli conjugation identity is not a graph learning or message-passing problem"},
     "z3":{"tried":False,"used":False,"reason":"trigonometric identities beyond nonlinear SMT"},
-    "cvc5":{"tried":False,"used":False,"reason":"same"},
+    "cvc5":{"tried":False,"used":False,"reason":"cvc5 is not used because nonlinear symbolic trigonometric simplification is handled directly by SymPy here"},
     "sympy":{"tried":True,"used":True,"reason":"symbolic matrix exponentials + simplify prove rotation-conjugation identity exactly"},
     "clifford":{"tried":False,"used":False,"reason":"cross-check only; identity is purely algebraic"},
-    "geomstats":{"tried":False,"used":False,"reason":"not needed"},
-    "e3nn":{"tried":False,"used":False,"reason":"not needed"},
-    "rustworkx":{"tried":False,"used":False,"reason":"not needed"},
-    "xgi":{"tried":False,"used":False,"reason":"not needed"},
-    "toponetx":{"tried":False,"used":False,"reason":"not needed"},
-    "gudhi":{"tried":False,"used":False,"reason":"not needed"},
+    "geomstats":{"tried":False,"used":False,"reason":"Geomstats is not used because the packet checks exact symbolic matrices, not manifold distances or geodesics"},
+    "e3nn":{"tried":False,"used":False,"reason":"e3nn is not used because no equivariant neural representation or spherical tensor feature is involved"},
+    "rustworkx":{"tried":False,"used":False,"reason":"rustworkx is not used because no graph traversal, DAG, or graph invariant is part of the identity"},
+    "xgi":{"tried":False,"used":False,"reason":"XGI is not used because the packet has no hypergraph incidence, hyperedge, or higher-order network structure"},
+    "toponetx":{"tried":False,"used":False,"reason":"TopoNetX is not used because no cell complex, cochain, or boundary operator is evaluated"},
+    "gudhi":{"tried":False,"used":False,"reason":"GUDHI is not used because no simplex tree, filtration, or persistent homology calculation is present"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 TOOL_INTEGRATION_DEPTH["sympy"] = "load_bearing"

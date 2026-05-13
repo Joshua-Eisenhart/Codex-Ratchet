@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T05:17:34.370057+00:00",
+  "generated_at": "2026-05-13T05:20:16.163980+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -1672,6 +1672,62 @@
         "No QIT, GStack, axis, bridge, or nonclassical admission."
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/clifford_hopf_outer_rotation_readout_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "clifford"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "hopf_weyl_carrier_loop_geometry_baseline",
+        "clifford_vertical_horizontal_tangent_metric_baseline"
+      ],
+      "claim_ceiling": "Clifford Cl(4) tangent inner-product baseline for declared Hopf/Weyl vertical fiber and horizontal base-lift directions only; this is local S3 carrier tangent geometry, not physical loop independence in a full nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
+      "depth": "load_bearing",
+      "function_api": "clifford Cl(4) basis vectors and inner products over Hopf/Weyl vertical fiber, raw base, and horizontal base-lift tangent fixtures",
+      "manifest_reason": "builds Cl(4) carrier tangent vectors and computes inner products for vertical fiber, raw base, and horizontal base-lift directions",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+        "No flux representation or Pauli-boundary shortcut.",
+        "No Lindblad, Hamiltonian, thermodynamic, or information-cycle mechanics.",
+        "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/clifford_hopf_weyl_fiber_horizontal_base_tangent_inner_product_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "classical_baseline",
       "receipt_contract_fields": [
@@ -5188,11 +5244,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 96,
+    "passing_count": 97,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 96,
+    "receipt_schema_observed_missing_count": 97,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 96,
+    "row_count": 97,
     "tools": [
       "clifford",
       "cvc5",

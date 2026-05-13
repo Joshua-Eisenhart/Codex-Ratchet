@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T05:17:34.370057+00:00`
+Generated: `2026-05-13T05:20:16.163980+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `96`
-- Passing rows: `96`
+- Rows: `97`
+- Passing rows: `97`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `96`
+- Explicit receipt schemas missing: `97`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -49,6 +49,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `clifford` | Cl(3)/Cl(6) layout blades, rotor products, grade/scalar extraction | `system_v4/probes/a2_state/sim_results/clifford_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `clifford_generator_basis`, `clifford_geometry` |
 | `clifford` | clifford Cl(3) rotor transport over SymPy-derived Weyl Bloch-vector fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_clifford_weyl_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `clifford_weyl_transport`, `weyl_spinor_geometry` |
 | `clifford` | clifford Cl(3) blades, MultiVector.exp, rotor sandwich transport, and coefficient readout over projected Hopf outer-loop vector fixtures | `system_v4/probes/a2_state/sim_results/clifford_hopf_outer_rotation_readout_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `clifford_projected_loop_transport_baseline` |
+| `clifford` | clifford Cl(4) basis vectors and inner products over Hopf/Weyl vertical fiber, raw base, and horizontal base-lift tangent fixtures | `system_v4/probes/a2_state/sim_results/clifford_hopf_weyl_fiber_horizontal_base_tangent_inner_product_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_weyl_carrier_loop_geometry_baseline`, `clifford_vertical_horizontal_tangent_metric_baseline` |
 | `gudhi` | SimplexTree, Rips/filtration persistence and Betti summaries | `system_v4/probes/a2_state/sim_results/gudhi_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `persistence_geometry`, `concurrence_measure` |
 | `gudhi` | gudhi.SimplexTree insert/assign_filtration/persistence on a tiny filtered complex | `system_v4/probes/a2_state/sim_results/sim_gudhi_simplex_persistence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `persistence_geometry`, `cell_complex_geometry` |
 | `gudhi` | gudhi.SimplexTree insert/make_filtration_non_decreasing/compute_persistence over PyTorch-derived concurrence and I_c filtrations | `system_v4/probes/a2_state/sim_results/gudhi_concurrence_filtration_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `concurrence_measure`, `persistence_geometry` |

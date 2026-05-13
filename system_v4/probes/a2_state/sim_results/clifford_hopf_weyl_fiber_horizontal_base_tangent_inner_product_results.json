@@ -1,0 +1,125 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "exact symbolic Clifford algebra for the same tangent vectors",
+    "QuTiP density-object transport along vertical and horizontal carrier paths",
+    "GUDHI/TopoNetX finite-cell carrier topology controls",
+    "physical operator-evolution fixture over vertical and horizontal tangent generators"
+  ],
+  "baselines": [
+    "SymPy Hopf/Weyl fiber-horizontal-base loop independence identities",
+    "Geomstats Hopf/Weyl fiber-horizontal-base loop distance baseline",
+    "Clifford projected Hopf outer-loop rotor readout baseline"
+  ],
+  "blocked_until": "blocked from target-system claims until full carrier/topology and physical-evolution receipts exist",
+  "carrier_topology": "local tangent vectors on a two-component Hopf-coordinate carrier embedded in S3; no full nested-torus manifold",
+  "claim_ceiling": "Clifford Cl(4) tangent inner-product baseline for declared Hopf/Weyl vertical fiber and horizontal base-lift directions only; this is local S3 carrier tangent geometry, not physical loop independence in a full nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if raw base is treated as independent from fiber, if horizontal base tangent is not orthogonal to fiber, if the wrong connection sign also passes, or if pole/equator/sheet controls do not collapse.",
+  "divergence_log": "This Cl(4) packet cross-checks the exact SymPy and Geomstats vertical/horizontal geometry receipts using carrier tangent inner products. It remains local tangent geometry and does not implement the full carrier stack.",
+  "exact_tool_function_needs": {
+    "clifford": [
+      "Cl(4)",
+      "basis blade construction",
+      "vector inner product"
+    ],
+    "numpy": [
+      "array",
+      "linalg.norm",
+      "finite differences"
+    ]
+  },
+  "graveyards": [
+    "raw base tangent is not fiber independent",
+    "horizontal base tangent is fiber independent",
+    "wrong connection sign fails horizontal independence",
+    "horizontal base tangent collapses at projection pole",
+    "equator raw-base independence is accidental",
+    "sheet reversal flips raw connection sign not horizontal independence"
+  ],
+  "graveyards_detail": {
+    "equator_raw_base_independence_is_accidental": {
+      "equator_raw_base_fiber_inner_product": -8.055667244377673e-12,
+      "non_equator_raw_base_fiber_inner_product": 0.12500000002634734,
+      "passed": true
+    },
+    "horizontal_base_tangent_collapses_at_projection_pole": {
+      "passed": true,
+      "pole_horizontal_base_norm_squared": 0.0
+    },
+    "horizontal_base_tangent_is_fiber_independent": {
+      "horizontal_base_fiber_inner_product": -5.0682513741406865e-12,
+      "passed": true
+    },
+    "raw_base_tangent_is_not_fiber_independent": {
+      "passed": true,
+      "raw_base_fiber_inner_product": 0.12500000002634734
+    },
+    "sheet_reversal_flips_raw_connection_sign_not_horizontal_independence": {
+      "negative_horizontal_base_fiber_inner_product": -1.5654616492000173e-11,
+      "negative_raw_base_fiber_inner_product": -0.12499999999823685,
+      "passed": true,
+      "positive_raw_base_fiber_inner_product": 0.12500000002634734
+    },
+    "wrong_connection_sign_fails_horizontal_independence": {
+      "passed": true,
+      "wrong_sign_horizontal_fiber_inner_product": 0.24999999997601097
+    }
+  },
+  "lego_or_coupling_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "name": "clifford_hopf_weyl_fiber_horizontal_base_tangent_inner_product",
+  "next_lego_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "observable": "Cl(4) tangent squared norms and tangent inner products between fiber, raw base, and horizontal base-lift directions",
+  "operation_sequence": [
+    "construct finite-difference S3 carrier tangents for fiber, raw base, and horizontal base-lift directions",
+    "embed the four carrier-coordinate tangent arrays as Cl(4) vectors",
+    "compute Clifford inner products and squared norms",
+    "compare raw-base, horizontal-base, wrong-sign, pole, equator, and sheet-reversal controls"
+  ],
+  "out_of_scope": [
+    "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+    "No flux representation or Pauli-boundary shortcut.",
+    "No Lindblad, Hamiltonian, thermodynamic, or information-cycle mechanics.",
+    "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "fiber and raw-base tangent norms equal 1/4, horizontal-base norm equals sin(theta)^2/4, raw-base/fiber inner product equals cos(theta)/4, horizontal-base/fiber inner product is zero, and adjacent controls fail or collapse",
+  "positive": {
+    "chi": 0.4487989505128276,
+    "clifford_tangent_controls_pass": true,
+    "expected_fiber_norm_squared": 0.25,
+    "expected_horizontal_base_norm_squared": 0.18749999999999997,
+    "expected_raw_base_fiber_inner_product": 0.12500000000000003,
+    "expected_raw_base_norm_squared": 0.25,
+    "phi": 0.6283185307179586,
+    "sheet_orientation": 1,
+    "tangent_inner_products": {
+      "fiber_norm_squared": 0.2499999999893303,
+      "horizontal_base_fiber_inner_product": -5.0682513741406865e-12,
+      "horizontal_base_norm_squared": 0.18750000000752895,
+      "raw_base_fiber_inner_product": 0.12500000002634734,
+      "raw_base_norm_squared": 0.2500000000621675,
+      "wrong_sign_horizontal_fiber_inner_product": 0.24999999997601097,
+      "wrong_sign_horizontal_norm_squared": 0.4374999999456596
+    },
+    "theta": 1.0471975511965976
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later geometry planning after symbolic, numerical distance, topology, and physical operator-evolution receipts reproduce compatible vertical/horizontal separation with adjacent controls.",
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "numpy": "supportive"
+  },
+  "tool_manifest": {
+    "clifford": {
+      "reason": "builds Cl(4) carrier tangent vectors and computes inner products for vertical fiber, raw base, and horizontal base-lift directions",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "constructs sampled finite-difference tangent arrays before Cl(4) vector embedding",
+      "tried": true,
+      "used": true
+    }
+  }
+}

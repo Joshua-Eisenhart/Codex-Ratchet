@@ -203,6 +203,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["concurrence_measure", "persistence_geometry"],
     },
     {
+        "tool": "gudhi",
+        "function_api": "gudhi.SimplexTree insert/compute_persistence(persistence_dim_max=True)/betti_numbers over explicit torus and cycle complexes",
+        "receipt": "system_v4/probes/a2_state/sim_results/gudhi_hopf_torus_fiber_base_homology_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "hopf_torus_fiber_base_homology_baseline"],
+    },
+    {
         "tool": "toponetx",
         "function_api": "CellComplex/SimplicialComplex rank cells and incidence_matrix",
         "receipt": "system_v4/probes/a2_state/sim_results/toponetx_capability_results.json",

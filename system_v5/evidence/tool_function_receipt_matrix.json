@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T23:44:50.051662+00:00",
+  "generated_at": "2026-05-13T23:51:04.212365+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -374,7 +374,7 @@
         "graph_shell_geometry",
         "werner_local_structure"
       ],
-      "candidate_spec_complete": false,
+      "candidate_spec_complete": true,
       "candidate_spec_contract_fields": [
         "alternative_formulations",
         "baselines",
@@ -387,17 +387,8 @@
         "pass_fail_predicate",
         "tool_function_needs"
       ],
-      "candidate_spec_missing_fields": [
-        "operation_sequence",
-        "carrier_topology",
-        "observable",
-        "pass_fail_predicate",
-        "graveyards",
-        "baselines",
-        "alternative_formulations",
-        "tool_function_needs"
-      ],
-      "claim_ceiling": "finite sim_pyg_hopf_graph_deep_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+      "candidate_spec_missing_fields": [],
+      "claim_ceiling": "finite sim_pyg_hopf_graph_deep_capability classical-baseline receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
       "depth": "load_bearing",
       "function_api": "torch_geometric.nn.GCNConv MessagePassing over Hopf-fiber edge_index",
       "manifest_reason": "GCNConv MessagePassing computes neighbourhood-aggregated node embeddings on the Hopf-fiber graph; the admitted node set is defined by thresholding GCN output norms, making PyG load-bearing for the admissibility claim",
@@ -414,20 +405,29 @@
       "receipt_all_pass": true,
       "receipt_classification": "classical_baseline",
       "receipt_contract_fields": [
+        "alternative_formulations",
+        "baselines",
         "blocked_until",
         "boundary",
+        "carrier_topology",
         "claim_ceiling",
         "classification",
         "demotion_condition",
         "divergence_log",
+        "graveyards",
+        "lego_coupling_target",
         "name",
         "negative",
         "next_lego_target",
+        "observable",
+        "operation_sequence",
         "out_of_scope",
         "overall_pass",
+        "pass_fail_predicate",
         "positive",
         "promotion_condition",
         "surviving_alternatives",
+        "tool_function_needs",
         "tool_integration_depth",
         "tool_manifest"
       ],
@@ -7806,8 +7806,8 @@
   ],
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
-    "candidate_spec_complete_count": 79,
-    "candidate_spec_incomplete_count": 29,
+    "candidate_spec_complete_count": 80,
+    "candidate_spec_incomplete_count": 28,
     "missing_receipt_count": 0,
     "passing_count": 108,
     "receipt_boundary_gap_count": 0,

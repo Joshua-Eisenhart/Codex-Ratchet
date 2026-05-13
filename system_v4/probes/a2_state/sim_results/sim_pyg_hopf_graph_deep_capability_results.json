@@ -2,6 +2,52 @@
   "name": "sim_pyg_hopf_graph_deep_capability",
   "classification": "classical_baseline",
   "overall_pass": true,
+  "operation_sequence": [
+    "sample 32 unit quaternions in R4",
+    "project each quaternion to S2 with the Hopf map",
+    "build a sparse undirected edge_index from pairwise Hopf-image distance below a fixed threshold",
+    "run two GCNConv MessagePassing layers over the node features and edge_index",
+    "threshold output-vector norms to form an admitted node set",
+    "compare admitted sets and output tensors against no-edge, fully-connected, zero-weight, random-graph, near-zero-threshold, and near-full-threshold controls"
+  ],
+  "carrier_topology": "Finite 32-node graph fixture whose nodes are sampled on S3 and whose edges are induced by great-circle distance between Hopf-map images on S2; this is a classical graph fixture, not a GStack, bridge, axis, QIT, or nonclassical carrier admission.",
+  "observable": {
+    "primary": "admitted node set after thresholding GCNConv output norms",
+    "secondary": [
+      "Frobenius relative change between Hopf-edge and no-edge GCN outputs",
+      "Frobenius relative difference between sparse Hopf-edge and fully-connected GCN outputs",
+      "exact admitted-set agreement count for same-density random graph controls",
+      "near-zero threshold edge count and no-edge relative change",
+      "near-full threshold edge count and full-graph relative difference"
+    ]
+  },
+  "pass_fail_predicate": "Pass iff all positive tests pass, all negative controls fail to reproduce the claimed message-passing effect, and both boundary thresholds collapse to their expected no-edge or fully-connected baselines.",
+  "graveyards": [
+    "zero-weight GCNConv control should remove edge-dependent output deltas",
+    "same-density Erdos-Renyi graph controls should not reproduce the exact Hopf-edge admitted partition across trials",
+    "near-zero edge threshold should collapse to the no-edge graph baseline",
+    "near-full edge threshold should collapse to the complete graph baseline",
+    "no-edge graph should change the admitted node set relative to the Hopf-edge graph if PyG message passing is load-bearing"
+  ],
+  "baselines": [
+    "no-edge graph baseline",
+    "fully-connected graph baseline",
+    "same-density Erdos-Renyi graph baseline",
+    "zero-weight GCNConv baseline",
+    "near-zero and near-full threshold boundary baselines"
+  ],
+  "alternative_formulations": [
+    "replace GCNConv with a different PyG MessagePassing operator while preserving the same edge_index controls",
+    "construct the edge_index from Euclidean S3 chord distance instead of Hopf-image S2 distance",
+    "replace random node features with deterministic Hopf-coordinate features"
+  ],
+  "tool_function_needs": [
+    "torch_geometric.nn.GCNConv.forward(x, edge_index) for neighbourhood aggregation",
+    "torch_geometric.data.Data-compatible edge_index tensor structure",
+    "torch.Tensor indexing and torch.linalg.norm for output-delta observables"
+  ],
+  "lego_coupling_target": "bounded PyG graph-message-passing capability evidence for later graph-structured lego-fit probes",
+  "claim_ceiling": "finite sim_pyg_hopf_graph_deep_capability classical-baseline receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -144,7 +190,6 @@
     "no GStack claim",
     "no nonclassical admission"
   ],
-  "claim_ceiling": "finite sim_pyg_hopf_graph_deep_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
   "next_lego_target": "Use as bounded PyG Hopf-graph classical-baseline capability evidence before exact graph lego-fit or coupling packets.",
   "promotion_condition": "Requires separate coupling/coexistence receipts and explicit stage-gate approval.",
   "blocked_until": "explicit coupling-stage admission and companion receipts"

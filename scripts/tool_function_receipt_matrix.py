@@ -302,6 +302,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "toponetx",
+        "function_api": "TopoNetX CellComplex connected two-layer torus cells with interlayer rank-2 cells and Hodge-Laplacian zero-mode proxies",
+        "receipt": "system_v4/probes/a2_state/sim_results/toponetx_connected_hopf_torus_layer_incidence_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "nested_hopf_torus_loop_geometry_baseline",
+            "connected_layer_cell_complex_baseline",
+        ],
+    },
+    {
+        "tool": "toponetx",
         "function_api": "SimplicialComplex.to_hasse_graph node/edge carrier feeding PyG graph fixtures",
         "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json",
         "role": "nonclassical_adjacent",

@@ -137,6 +137,8 @@ if __name__ == "__main__":
     results = {
         "name": "sim_qutip_capability",
         "classification": classification,
+        "divergence_log": divergence_log,
+        "witness_info": WITNESS_INFO,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,
@@ -144,6 +146,52 @@ if __name__ == "__main__":
         "boundary": bnd,
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
+        "operation_sequence": [
+            "construct a two-level QuTiP ket with qutip.basis",
+            "convert the ket to a density matrix with qutip.ket2dm",
+            "construct a plus-state superposition and compute sigmax/sigmaz expectations",
+            "run an adjacent ket-one negative expectation check for sigmaz",
+            "apply a tiny sigmay-generated matrix exponential rotation and check fidelity stability",
+        ],
+        "carrier_topology": "finite two-level Hilbert-space carrier represented by QuTiP Qobj kets and 2x2 density matrices; no open-system, bridge, axis, GStack, or QIT-engine topology is claimed",
+        "observable": {
+            "density_shape": "ket2dm(|0>) returns a 2x2 density matrix",
+            "z_expectation_zero": "expect(sigmaz, |0>) equals +1",
+            "x_expectation_plus": "expect(sigmax, |+>) equals +1",
+            "z_expectation_one_not_plus_one": "expect(sigmaz, |1>) equals -1",
+            "small_rotation_stable": "tiny sigmay rotation keeps fidelity with |0> above the declared boundary threshold",
+        },
+        "pass_fail_predicate": "positive_all_pass, negative_all_pass, and boundary_all_pass must all be true; QuTiP basis, ket2dm, expectation, and small matrix-exponential rotation results must match the finite two-level expected values",
+        "graveyards": [
+            "|1> treated as having sigmaz expectation +1 -- must fail the negative expectation check",
+            "ket2dm returns a non-2x2 object for a two-level ket -- must fail density_shape",
+            "tiny sigmay rotation produces non-finite or low-fidelity output -- must fail boundary stability",
+        ],
+        "baselines": [
+            "manual Pauli-Z expectations for |0> and |1>",
+            "manual Pauli-X expectation for |+>",
+            "NumPy finite-value and fidelity checks as supportive numeric baseline only",
+        ],
+        "alternative_formulations": [
+            "NumPy 2x2 matrices for the same Pauli expectation checks",
+            "Qiskit one-qubit statevector/density fixture for a later tool-tool agreement packet",
+            "QuTiP mesolve Lindblad evolution in a separate open-system packet, not this capability receipt",
+        ],
+        "tool_function_needs": [
+            "qutip.basis",
+            "qutip.ket2dm",
+            "qutip.sigmax",
+            "qutip.sigmay",
+            "qutip.sigmaz",
+            "qutip.expect",
+            "Qobj.expm",
+            "Qobj.overlap",
+        ],
+        "lego_coupling_target": [
+            "channel_cptp_map",
+            "lindbladian_evolution",
+            "two_level_thermal_and_measurement_calibration",
+        ],
         "surviving_alternatives": [
             "This receipt isolates bounded QuTiP ket, density-matrix, expectation, and tiny rotation APIs; it does not prove open-system, channel, or mutual-information lego behavior."
         ],
@@ -168,7 +216,10 @@ if __name__ == "__main__":
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "sim_qutip_capability_results.json")
-    with open(out_path, "w", encoding="utf-8") as handle:
-        json.dump(results, handle, indent=2, default=_json_default)
+    matrix_path = os.path.join(out_dir, "qutip_capability_results.json")
+    for path in (out_path, matrix_path):
+        with open(path, "w", encoding="utf-8") as handle:
+            json.dump(results, handle, indent=2, default=_json_default)
     print(f"Results written to {out_path}")
+    print(f"Matrix-compatible results written to {matrix_path}")
     print(f"summary.all_pass = {summary['all_pass']}")

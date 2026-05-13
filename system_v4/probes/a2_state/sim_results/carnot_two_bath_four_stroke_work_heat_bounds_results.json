@@ -77,6 +77,7 @@
     "reversed direction consumes work",
     "super-bound efficiency claim is rejected"
   ],
+  "lego_coupling_target": "work_heat_cycle_calibration_fixture",
   "lego_or_coupling_target": "work_heat_cycle_calibration_fixture",
   "name": "carnot_two_bath_four_stroke_work_heat_bounds",
   "negative": {
@@ -242,6 +243,11 @@
   },
   "promotion_allowed": false,
   "promotion_condition": "May only support later calibration planning after a non-scalar bath/dynamics formulation reproduces these bounds with the same graveyards.",
+  "tool_function_needs": {
+    "numpy": [
+      "isclose"
+    ]
+  },
   "tool_integration_depth": {
     "numpy": "supportive"
   },

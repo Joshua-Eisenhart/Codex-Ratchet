@@ -78,6 +78,7 @@
     "random feedback has zero correlation",
     "no erasure flags repeated-cycle surplus"
   ],
+  "lego_coupling_target": "information_work_erasure_cycle_calibration_fixture",
   "lego_or_coupling_target": "information_work_erasure_cycle_calibration_fixture",
   "name": "szilard_measure_feedback_erasure_landauer_bounds",
   "negative": {
@@ -337,6 +338,15 @@
   },
   "promotion_allowed": false,
   "promotion_condition": "May only support later calibration planning after an explicit state-update formulation reproduces these bounds with the same graveyards.",
+  "tool_function_needs": {
+    "numpy": [
+      "log",
+      "sum",
+      "isclose",
+      "outer",
+      "dot"
+    ]
+  },
   "tool_integration_depth": {
     "numpy": "supportive"
   },

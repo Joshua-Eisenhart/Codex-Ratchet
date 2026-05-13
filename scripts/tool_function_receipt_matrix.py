@@ -311,6 +311,17 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "clifford_projected_loop_transport_baseline"],
     },
     {
+        "tool": "clifford",
+        "function_api": "clifford Cl(4) basis vectors and inner products over Hopf/Weyl vertical fiber, raw base, and horizontal base-lift tangent fixtures",
+        "receipt": "system_v4/probes/a2_state/sim_results/clifford_hopf_weyl_fiber_horizontal_base_tangent_inner_product_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_carrier_loop_geometry_baseline",
+            "clifford_vertical_horizontal_tangent_metric_baseline",
+        ],
+    },
+    {
         "tool": "gudhi",
         "function_api": "SimplexTree, Rips/filtration persistence and Betti summaries",
         "receipt": "system_v4/probes/a2_state/sim_results/gudhi_capability_results.json",

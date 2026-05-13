@@ -123,6 +123,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["mutual_information_measure", "density_matrix_object"],
     },
     {
+        "tool": "qutip",
+        "function_api": "qutip Qobj/ket2dm/expect/sigmax/sigmay/sigmaz density readouts over sampled Hopf-coordinate carrier paths",
+        "receipt": "system_v4/probes/a2_state/sim_results/qutip_hopf_inner_outer_density_readout_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "density_object_path_readout_baseline"],
+    },
+    {
         "tool": "qiskit",
         "function_api": "QuantumCircuit, Statevector, DensityMatrix, Operator expectation_value",
         "receipt": "system_v4/probes/a2_state/sim_results/qiskit_capability_results.json",

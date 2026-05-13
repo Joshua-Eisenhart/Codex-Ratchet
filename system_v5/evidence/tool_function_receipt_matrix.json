@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T04:23:32.208537+00:00",
+  "generated_at": "2026-05-13T04:28:56.829814+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -177,6 +177,62 @@
         "No claim that flux is represented."
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/pytorch_hopf_inner_outer_density_gradient_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "pytorch"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "hopf_weyl_carrier_loop_geometry_baseline",
+        "differentiable_density_readout_baseline"
+      ],
+      "claim_ceiling": "PyTorch complex-tensor Hopf/Weyl fiber-base gradient-readout baseline only; this compares autograd sensitivities of declared carrier density readouts under phi and chi coordinates; no physical fiber/base loop independence proof, no full nested Hopf-torus manifold, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+      "depth": "load_bearing",
+      "function_api": "torch complex tensors, density construction, Bloch readout, autograd.grad, and finite-difference checks over declared Hopf/Weyl fiber-base carrier coordinates",
+      "manifest_reason": "constructs complex two-component carrier tensors and uses autograd.grad for density-readout sensitivities",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+        "No flux representation or Pauli-boundary shortcut.",
+        "No Lindblad, Hamiltonian, or thermodynamic cycle mechanics.",
+        "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/pytorch_hopf_weyl_fiber_base_gradient_readout_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "classical_baseline",
       "receipt_contract_fields": [
@@ -4457,11 +4513,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 83,
+    "passing_count": 84,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 83,
+    "receipt_schema_observed_missing_count": 84,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 83,
+    "row_count": 84,
     "tools": [
       "clifford",
       "cvc5",

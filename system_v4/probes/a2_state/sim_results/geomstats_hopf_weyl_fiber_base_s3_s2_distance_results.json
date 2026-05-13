@@ -1,0 +1,210 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "symbolic S3 and S2 path-length identities for the same coordinates",
+    "QuTiP carrier-state distance with density projection controls",
+    "triangulated S3-to-S2 bundle approximation with finite-cell incidence",
+    "physical operator-evolution fixture over the same carrier samples"
+  ],
+  "baselines": [
+    "Geomstats S2 projected Hopf loop distance baseline",
+    "QuTiP/Qiskit/PyTorch Hopf/Weyl fiber-base carrier transport baselines",
+    "SciPy Hopf horizontal-lift chi-shift baseline",
+    "SymPy Hopf loop holonomy area-dependence baseline"
+  ],
+  "blocked_until": "blocked from target-system claims until fuller carrier/topology and physical-evolution fixtures exist",
+  "carrier_topology": "sampled Hopf-coordinate two-component carrier embedded in S3 with projected S2 Bloch readout; no full nested-torus manifold",
+  "claim_ceiling": "Geomstats S3-carrier and S2-projection distance baseline for declared Hopf/Weyl fiber-base loop samples only; this is local metric geometry, not full nested Hopf-torus dynamics; no physical fiber/base independence proof, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if S2 projection does not hide fiber carrier motion, if base projection motion fails away from the pole, if pole projection does not collapse, or if same-path and S2-only graveyards do not fail.",
+  "divergence_log": "This uses Geomstats metric distances on S3 carrier samples and S2 projection samples. It improves over S2-only projection baselines by keeping carrier motion visible, but it is still a sampled local geometry baseline.",
+  "exact_tool_function_needs": {
+    "geomstats": [
+      "Hypersphere(dim=3).metric.dist",
+      "Hypersphere(dim=2).metric.dist"
+    ],
+    "numpy": [
+      "array",
+      "exp",
+      "linspace",
+      "linalg.norm"
+    ]
+  },
+  "graveyards": [
+    "projection to S2 hides fiber carrier motion",
+    "base loop at pole collapses projection motion",
+    "forcing both paths to fiber collapses candidate",
+    "forcing both paths to base collapses candidate",
+    "sheet reversal preserves metric lengths but reverses sample orientation",
+    "S2-only readout is insufficient for fiber path"
+  ],
+  "graveyards_detail": {
+    "base_loop_at_pole_collapses_projection_motion": {
+      "passed": true,
+      "pole_base_s2_path_length": 0.0,
+      "pole_base_s3_path_length": 3.1415926535895244
+    },
+    "forcing_both_paths_to_base_collapses_candidate": {
+      "candidate_passed": false,
+      "passed": true
+    },
+    "forcing_both_paths_to_fiber_collapses_candidate": {
+      "candidate_passed": false,
+      "passed": true
+    },
+    "projection_to_s2_hides_fiber_carrier_motion": {
+      "fiber_s2_path_length": 0.0,
+      "fiber_s3_path_length": 3.1415926535893166,
+      "passed": true
+    },
+    "s2_only_readout_is_insufficient_for_fiber_path": {
+      "has_s3_carrier": false,
+      "passed": true,
+      "s2_only_fiber": {
+        "s2_max_displacement": 0.0,
+        "s2_path_length": 0.0
+      }
+    },
+    "sheet_reversal_preserves_metric_lengths_but_reverses_sample_orientation": {
+      "negative_base_s2_path_length": 5.4412614915750535,
+      "passed": true,
+      "positive_base_s2_path_length": 5.4412614915750535
+    }
+  },
+  "lego_or_coupling_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "name": "geomstats_hopf_weyl_fiber_base_s3_s2_distance",
+  "next_lego_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "observable": "Geomstats intrinsic S3 carrier path length, S2 projection path length, maximum displacement, and endpoint distance",
+  "operation_sequence": [
+    "construct complex two-component Hopf/Weyl carrier samples from theta, phi, and chi",
+    "embed each carrier as a real point on S3",
+    "project each carrier sample to an S2 Bloch readout",
+    "sample a fiber loop by varying chi at fixed theta and phi",
+    "sample a base loop by varying phi at fixed theta and chi",
+    "compute Geomstats S3 and S2 intrinsic path lengths and endpoint distances",
+    "run projection-hidden, pole-collapse, same-path, sheet-reversal, and S2-only graveyards"
+  ],
+  "out_of_scope": [
+    "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+    "No flux representation or Pauli-boundary shortcut.",
+    "No Lindblad, Hamiltonian, thermodynamic, or information-cycle mechanics.",
+    "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "fiber loop has nonzero S3 carrier length but zero S2 projection length; base loop has nonzero S3 carrier length and nonzero S2 projection length away from the pole; pole and same-path controls collapse as predicted",
+  "positive": {
+    "base_loop": {
+      "s2_end": [
+        0.8660254037844386,
+        -2.1211504774498136e-16,
+        0.5000000000000001
+      ],
+      "s2_max_displacement": 2.0943951023931953,
+      "s2_path_length": 5.4412614915750535,
+      "s2_start": [
+        0.8660254037844386,
+        0.0,
+        0.5000000000000001
+      ],
+      "s2_start_end_distance": 0.0,
+      "s3_end": [
+        -0.8443123388079836,
+        -0.1927087816800075,
+        -0.48746395609091175,
+        -0.11126046697815724
+      ],
+      "s3_max_displacement": 3.141592653589793,
+      "s3_path_length": 3.141592653589262,
+      "s3_start": [
+        0.8443123388079836,
+        0.1927087816800076,
+        0.48746395609091175,
+        0.11126046697815718
+      ],
+      "s3_start_end_distance": 3.141592653589793
+    },
+    "chi": 0.4487989505128276,
+    "fiber_loop": {
+      "s2_end": [
+        0.7006292692220367,
+        0.5090369604551271,
+        0.5000000000000001
+      ],
+      "s2_max_displacement": 0.0,
+      "s2_path_length": 0.0,
+      "s2_start": [
+        0.7006292692220367,
+        0.5090369604551271,
+        0.5000000000000001
+      ],
+      "s2_start_end_distance": 0.0,
+      "s3_end": [
+        -0.8236391035463321,
+        -0.26761656732981737,
+        -0.4755282581475767,
+        0.15450849718747373
+      ],
+      "s3_max_displacement": 3.141592653589793,
+      "s3_path_length": 3.1415926535893166,
+      "s3_start": [
+        0.8236391035463321,
+        0.2676165673298175,
+        0.47552825814757677,
+        -0.1545084971874737
+      ],
+      "s3_start_end_distance": 3.141592653589793
+    },
+    "phi": 0.6283185307179586,
+    "reversed_sheet_base_loop": {
+      "s2_end": [
+        0.8660254037844386,
+        2.1211504774498136e-16,
+        0.5000000000000001
+      ],
+      "s2_max_displacement": 2.0943951023931953,
+      "s2_path_length": 5.4412614915750535,
+      "s2_start": [
+        0.8660254037844386,
+        -0.0,
+        0.5000000000000001
+      ],
+      "s2_start_end_distance": 0.0,
+      "s3_end": [
+        -0.8443123388079836,
+        -0.19270878168000768,
+        -0.48746395609091175,
+        -0.11126046697815713
+      ],
+      "s3_max_displacement": 3.141592653589793,
+      "s3_path_length": 3.1415926535893073,
+      "s3_start": [
+        0.8443123388079836,
+        0.1927087816800076,
+        0.48746395609091175,
+        0.11126046697815718
+      ],
+      "s3_start_end_distance": 3.141592653589793
+    },
+    "samples": 129,
+    "survives_geomstats_s3_s2_distance": true,
+    "theta": 1.0471975511965976
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later carrier-geometry planning after symbolic, object-level, topology, and physical operator-evolution receipts reproduce compatible S3/S2 fiber-base behavior with adjacent controls.",
+  "tool_integration_depth": {
+    "geomstats": "load_bearing",
+    "numpy": "supportive"
+  },
+  "tool_manifest": {
+    "geomstats": {
+      "reason": "computes intrinsic S3 carrier distances and S2 projection distances for declared Hopf/Weyl fiber-base loop samples",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "constructs sampled Hopf-coordinate carrier arrays and projection readouts",
+      "tried": true,
+      "used": true
+    }
+  }
+}

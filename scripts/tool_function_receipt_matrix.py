@@ -472,6 +472,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "sympy",
+        "function_api": "sympy symbols/cos/integrate/simplify exact Hopf connection loop integrals and horizontal-lift chi shifts",
+        "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_loop_holonomy_area_dependence_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_loop_holonomy_geometry_baseline",
+            "inner_outer_hopf_weyl_loop_geometry_fit",
+        ],
+    },
+    {
+        "tool": "sympy",
         "function_api": "sympy Matrix partition of Pauli matrices into diagonal and off-diagonal labels",
         "receipt": "system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json",
         "role": "classical_baseline",

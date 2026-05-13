@@ -1,7 +1,8 @@
 {
   "name": "sim_z3_tuple_component_readout_pair_separation",
-  "classification": "canonical",
+  "classification": "tool_lego_fit_probe",
   "all_pass": true,
+  "promotion_allowed": false,
   "claim_ceiling": "local z3 finite-tuple readout separation only: 16 abstract 4x2x2 tuples are pairwise separated by the declared full component readout; no engine, QIT, GStack, bridge, axis, Weyl-sheet, flux, bundle, or nonclassical admission",
   "next_lego_target": "none; use as bounded tuple-readout separation evidence before any separate placement distinguishability or sheet-loop candidate authorship",
   "promotion_condition": "No promotion from this receipt; downstream candidates must supply exact carrier/topology, observable, and graveyard receipts beyond abstract tuple labels.",
@@ -24,6 +25,16 @@
     "drop operator_id from the readout",
     "drop path_id from the readout",
     "drop sheet_id from the readout"
+  ],
+  "graveyard_companions": [
+    "drop operator_id from the readout",
+    "drop path_id from the readout",
+    "drop sheet_id from the readout"
+  ],
+  "graveyard_limitations": [
+    "coordinate-dropped graveyards test declared tuple-label separation only",
+    "not a physical-evolution distinguishability sweep",
+    "bare-Pauli/no-bundle, swapped-chirality, superposed-chirality, and anti-orientation-flux companions remain unrun"
   ],
   "baselines": [
     "abstract tuple-label readout only",
@@ -2035,5 +2046,5 @@
       "passed": true
     }
   },
-  "elapsed_seconds": 0.200119
+  "elapsed_seconds": 0.198906
 }

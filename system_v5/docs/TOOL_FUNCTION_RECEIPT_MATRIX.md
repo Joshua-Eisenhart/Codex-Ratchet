@@ -1,6 +1,6 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T00:34:59.561624+00:00`
+Generated: `2026-05-13T00:39:20.020196+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 

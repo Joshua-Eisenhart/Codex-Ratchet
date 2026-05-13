@@ -211,6 +211,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "qiskit",
+        "function_api": "qiskit Statevector, DensityMatrix, Operator expectation_value, and trace readouts over declared Hopf/Weyl fiber-base loop paths",
+        "receipt": "system_v4/probes/a2_state/sim_results/qiskit_hopf_weyl_fiber_base_carrier_transport_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_carrier_loop_geometry_baseline",
+            "density_object_path_readout_baseline",
+        ],
+    },
+    {
+        "tool": "qiskit",
         "function_api": "qiskit DensityMatrix/Operator projectors and unitary branch updates over two-level measurement-feedback-erasure calibration",
         "receipt": "system_v4/probes/a2_state/sim_results/qiskit_two_level_measure_feedback_erasure_bounds_results.json",
         "role": "classical_baseline",

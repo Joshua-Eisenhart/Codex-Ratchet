@@ -1,0 +1,142 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "TopoNetX connected two-layer carrier fixture",
+    "XGI higher-order layer-incidence hypergraph fixture",
+    "nested horizontal-lift ODE integration over multiple theta layers",
+    "density-object evolution over connected carrier coordinates"
+  ],
+  "baselines": [
+    "TopoNetX connected Hopf-torus layer incidence fixture",
+    "TopoNetX two disjoint Hopf-torus layer incidence fixture",
+    "GUDHI Hopf torus fiber/base homology fixture",
+    "three-formulation Hopf phase-generator density transport packet"
+  ],
+  "blocked_until": "blocked from target-system claims until fuller Hopf/Weyl carrier topology and physical-evolution fixtures exist",
+  "carrier_topology": "two fixed-theta Hopf torus layers connected by triangulated interlayer faces over a periodic grid, with sampled S3 embeddings at corresponding grid coordinates",
+  "claim_ceiling": "GUDHI finite triangulated connected two-layer Hopf-torus homology baseline only; the H2 count reflects this finite triangulated fixture and is not a promoted manifold theorem; no physical inner/outer loop independence, no full S3 bundle, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if GUDHI connected-layer Betti readouts drift, if single-direction controls do not retain extra loops, if disjoint/duplicate-theta/collapsed controls do not collapse, or if S3 embedding norms fail.",
+  "divergence_log": "This baseline tests a finite triangulated connected two-layer carrier fixture and GUDHI Betti readouts. It does not simulate a full nested carrier manifold or prove inner/outer loop independence.",
+  "exact_tool_function_needs": {
+    "gudhi": [
+      "SimplexTree.insert",
+      "SimplexTree.compute_persistence",
+      "SimplexTree.betti_numbers"
+    ],
+    "numpy": [
+      "exp",
+      "linalg.norm",
+      "mean"
+    ]
+  },
+  "graveyards": [
+    "disjoint layers keep two components",
+    "single interlayer direction keeps extra loops",
+    "duplicated theta values remove interlayer embedding separation",
+    "collapsed point is not connected layer carrier",
+    "rank-2 faces removed do not have torus layer homology"
+  ],
+  "graveyards_detail": {
+    "collapsed_point_is_not_connected_layer_carrier": {
+      "betti": [
+        1
+      ],
+      "passed": true
+    },
+    "disjoint_layers_keep_two_components": {
+      "betti": [
+        2,
+        4,
+        2
+      ],
+      "passed": true
+    },
+    "duplicated_theta_values_remove_interlayer_embedding_separation": {
+      "interlayer_distance_max": 0.0,
+      "passed": true
+    },
+    "rank2_faces_removed_do_not_have_torus_layer_homology": {
+      "num_simplices": 1,
+      "passed": true
+    },
+    "single_interlayer_direction_keeps_extra_loops": {
+      "chi_only_betti": [
+        1,
+        6,
+        5
+      ],
+      "connected_betti": [
+        1,
+        2,
+        17
+      ],
+      "passed": true,
+      "phi_only_betti": [
+        1,
+        6,
+        5
+      ]
+    }
+  },
+  "lego_or_coupling_target": "nested_hopf_torus_loop_geometry_baseline",
+  "name": "gudhi_connected_hopf_torus_layer_homology",
+  "next_lego_target": "nested_hopf_torus_loop_geometry_baseline",
+  "observable": "GUDHI Betti numbers, simplex counts, S3 norm error, and interlayer S3 distance diagnostics",
+  "operation_sequence": [
+    "triangulate two periodic fixed-theta Hopf torus layers",
+    "triangulate interlayer rectangular faces in both torus coordinate directions",
+    "compute GUDHI persistence and Betti readouts",
+    "compute S3 norm and interlayer-distance embedding diagnostics",
+    "run disjoint-layer, single-direction-connection, duplicate-theta, collapsed-point, and no-face graveyards"
+  ],
+  "out_of_scope": [
+    "No full geometric-constraint-manifold implementation.",
+    "No flux representation or Pauli shortcut.",
+    "No Lindblad evolution, Hamiltonian dynamics, or target-system admission.",
+    "No QIT, GStack, axis, bridge, or nonclassical admission."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "connected layers have Betti [1,2,17] in this finite fixture, expected vertex count, unit S3 embeddings, and separated theta layers; adjacent controls collapse or expose missing connection/layer geometry",
+  "positive": {
+    "connected_layer_complex": {
+      "betti": [
+        1,
+        2,
+        17
+      ],
+      "num_simplices": 304,
+      "num_vertices": 32
+    },
+    "embedding": {
+      "interlayer_distance_max": 0.5176380902050415,
+      "interlayer_distance_mean": 0.5176380902050415,
+      "interlayer_distance_min": 0.5176380902050415,
+      "max_s3_norm_error": 1.1102230246251565e-16,
+      "theta_values": [
+        1.0471975511965976,
+        2.0943951023931953
+      ]
+    },
+    "size": 4,
+    "survives_connected_layer_homology": true
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later carrier-geometry planning after independent TopoNetX, connection, Weyl-spinor, and operator-evolution receipts reproduce compatible connected-layer readouts with physical graveyards.",
+  "tool_integration_depth": {
+    "gudhi": "load_bearing",
+    "numpy": "supportive"
+  },
+  "tool_manifest": {
+    "gudhi": {
+      "reason": "SimplexTree insert/compute_persistence/betti_numbers encode two triangulated torus layers plus triangulated interlayer faces",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "computes sampled Hopf S3 embeddings and interlayer distance diagnostics",
+      "tried": true,
+      "used": true
+    }
+  }
+}

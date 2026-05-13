@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T04:04:17.555588+00:00`
+Generated: `2026-05-13T04:07:07.985288+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `79`
-- Passing rows: `79`
+- Rows: `80`
+- Passing rows: `80`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `79`
+- Explicit receipt schemas missing: `80`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -47,6 +47,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `gudhi` | gudhi.SimplexTree insert/assign_filtration/persistence on a tiny filtered complex | `system_v4/probes/a2_state/sim_results/sim_gudhi_simplex_persistence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `persistence_geometry`, `cell_complex_geometry` |
 | `gudhi` | gudhi.SimplexTree insert/make_filtration_non_decreasing/compute_persistence over PyTorch-derived concurrence and I_c filtrations | `system_v4/probes/a2_state/sim_results/gudhi_concurrence_filtration_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `concurrence_measure`, `persistence_geometry` |
 | `gudhi` | gudhi.SimplexTree insert/compute_persistence(persistence_dim_max=True)/betti_numbers over explicit torus and cycle complexes | `system_v4/probes/a2_state/sim_results/gudhi_hopf_torus_fiber_base_homology_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `hopf_torus_fiber_base_homology_baseline` |
+| `gudhi` | gudhi.SimplexTree insert/compute_persistence/betti_numbers over triangulated connected two-layer Hopf-torus carrier fixture | `system_v4/probes/a2_state/sim_results/gudhi_connected_hopf_torus_layer_homology_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `connected_layer_simplicial_homology_baseline` |
 | `toponetx` | CellComplex/SimplicialComplex rank cells and incidence_matrix | `system_v4/probes/a2_state/sim_results/toponetx_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `state_class_binding_geometry`, `cell_complex_geometry` |
 | `toponetx` | CellComplex rank-2 cell incidence_matrix(2) | `system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `cell_complex_geometry`, `hypergraph_shell_geometry` |
 | `toponetx` | TopoNetX CellComplex periodic rank-2 torus layers with incidence_matrix and hodge_laplacian_matrix zero-mode readouts | `system_v4/probes/a2_state/sim_results/toponetx_two_hopf_torus_layer_incidence_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |

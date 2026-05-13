@@ -227,13 +227,14 @@ def main() -> int:
         "classification": CLASSIFICATION,
         "all_pass": all_pass,
         "claim_ceiling": (
-            "Clifford Cl(3) rotor readout baseline for a projected Hopf-style outer loop only; no QIT, GStack, "
-            "axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission"
+            "Clifford Cl(3) rotor readout baseline for a declared projected Hopf-style outer path only; no physical "
+            "inner/outer loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, "
+            "target-system, or full geometric-constraint-manifold admission"
         ),
         "next_lego_target": "inner_outer_hopf_weyl_loop_geometry_fit",
         "promotion_condition": (
             "May only support later carrier-geometry planning after independent full-bundle and operator-evolution "
-            "receipts reproduce the same inner/outer distinction with physical graveyards."
+            "receipts reproduce compatible projected-path readouts with physical graveyards."
         ),
         "demotion_condition": (
             "Demote if Clifford rotor transport fails to match the projected Bloch latitude, if the inner readout "
@@ -247,8 +248,9 @@ def main() -> int:
             "No QIT, GStack, axis, bridge, or nonclassical admission.",
         ],
         "divergence_log": (
-            "This is a Clifford rotor baseline on projected S2/Bloch readouts. It does not simulate the full carrier "
-            "bundle, nested tori, flux, or target geometric constraint manifold."
+            "This is a Clifford rotor baseline on projected S2/Bloch readouts. It does not simulate physical "
+            "inner/outer loop independence, the full carrier bundle, nested tori, flux, or target geometric "
+            "constraint manifold."
         ),
         "operation_sequence": [
             "build Cl(3) blades e1,e2,e3 and the unit bivector e1e2",

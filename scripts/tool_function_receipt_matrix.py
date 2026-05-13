@@ -184,6 +184,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "qutip",
+        "function_api": "qutip Qobj ket carriers, density objects, Pauli expectation readouts, and path metrics over Hopf/Weyl vertical fiber and horizontal base-lift paths",
+        "receipt": "system_v4/probes/a2_state/sim_results/qutip_hopf_weyl_vertical_horizontal_density_transport_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_carrier_loop_geometry_baseline",
+            "density_object_vertical_horizontal_transport_baseline",
+        ],
+    },
+    {
+        "tool": "qutip",
         "function_api": "qutip basis/ket2dm/projector/Qobj branch updates/sigmax/expect over two-level measurement-feedback-erasure calibration",
         "receipt": "system_v4/probes/a2_state/sim_results/qutip_two_level_measure_feedback_erasure_bounds_results.json",
         "role": "classical_baseline",

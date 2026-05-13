@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T04:36:39.591331+00:00",
+  "generated_at": "2026-05-13T04:39:32.785466+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -3057,6 +3057,62 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
+        "bare_pauli_no_carrier_negative_control",
+        "hopf_weyl_carrier_loop_geometry_baseline"
+      ],
+      "claim_ceiling": "Z3 bare-Pauli/no-carrier negative-control baseline only; this formalizes that label-only Pauli predicates cannot supply declared Hopf/Weyl S3-carrier and S2-projection metric facts; no physical geometry, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+      "depth": "load_bearing",
+      "function_api": "z3 Bool/And/Not/Implies/Solver.check SAT/UNSAT negative control for bare Pauli labels versus Hopf/Weyl carrier-projection metric predicates",
+      "manifest_reason": "checks SAT/UNSAT controls for whether bare Pauli labels can satisfy declared carrier/projection metric predicates",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No Hopf/Weyl carrier is constructed.",
+        "No S3 or S2 metric is computed.",
+        "No flux representation or Pauli-boundary shortcut.",
+        "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/z3_bare_pauli_no_carrier_fiber_base_metric_unsat_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "z3"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
         "sheet_loop_product_readout_separation_baseline",
         "inner_outer_hopf_weyl_loop_geometry_fit"
       ],
@@ -4625,11 +4681,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 86,
+    "passing_count": 87,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 86,
+    "receipt_schema_observed_missing_count": 87,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 86,
+    "row_count": 87,
     "tools": [
       "clifford",
       "cvc5",

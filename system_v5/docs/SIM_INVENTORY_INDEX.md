@@ -1,15 +1,15 @@
 # Sim Inventory Index
 
-Generated: `2026-05-13T08:06:14.916598+00:00`
+Generated: `2026-05-13T08:26:21.069092+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `4023`
-- Result JSON files seen: `1569`
+- Result JSON files seen: `1801`
 - Linked result JSON files: `905`
-- Unlinked result JSON files: `664`
+- Unlinked result JSON files: `896`
 - Wizard-admitted stems: `112`
 - Repair / rerun candidate rows: `742`
 - Source-only rows: `3168`
@@ -26,17 +26,17 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 ## Family Counts
 
 - `graveyard_negative`: 1708
-- `classical_baseline`: 1145
+- `classical_baseline`: 1146
 - `root_admission`: 858
 - `weyl_spinor_clifford`: 806
-- `channel_operator`: 796
+- `channel_operator`: 797
 - `geometry_gstack_gtower`: 740
 - `axis_bridge`: 680
 - `gerbe_dirac_mera_spectral`: 671
 - `hopf_torus`: 645
 - `entropy_information`: 595
 - `density_carrier`: 503
-- `thermo_engine`: 453
+- `thermo_engine`: 452
 - `graph_topology`: 411
 - `uncategorized`: 342
 - `fep_holodeck_igt`: 237

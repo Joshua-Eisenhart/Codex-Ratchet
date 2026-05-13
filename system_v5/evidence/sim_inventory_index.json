@@ -1,12 +1,12 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-13T08:06:14.916598+00:00",
+  "generated_at": "2026-05-13T08:26:21.069092+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
     "source_count": 4023,
-    "result_json_count": 1569,
+    "result_json_count": 1801,
     "linked_result_json_count": 905,
-    "unlinked_result_json_count": 664,
+    "unlinked_result_json_count": 896,
     "admitted_count": 112,
     "admission_repair_count": 1,
     "status_counts": {
@@ -18,9 +18,9 @@
       "admission_missing_result_link": 1
     },
     "family_counts": {
-      "channel_operator": 796,
+      "channel_operator": 797,
       "entropy_information": 595,
-      "thermo_engine": 453,
+      "thermo_engine": 452,
       "uncategorized": 342,
       "axis_bridge": 680,
       "graveyard_negative": 1708,
@@ -29,7 +29,7 @@
       "weyl_spinor_clifford": 806,
       "geometry_gstack_gtower": 740,
       "density_carrier": 503,
-      "classical_baseline": 1145,
+      "classical_baseline": 1146,
       "gerbe_dirac_mera_spectral": 671,
       "graph_topology": 411,
       "fep_holodeck_igt": 237
@@ -55735,50 +55735,6 @@
       "inventory_status": "source_only"
     },
     {
-      "stem": "sim_engine_16_placements",
-      "source_path": "system_v4/probes/sim_engine_16_placements.py",
-      "families": [
-        "density_carrier",
-        "entropy_information",
-        "hopf_torus",
-        "weyl_spinor_clifford",
-        "thermo_engine"
-      ],
-      "tools": {
-        "numpy": "imported",
-        "pytorch": "supportive",
-        "pyg": "tried",
-        "z3": "supportive",
-        "cvc5": "tried",
-        "sympy": "supportive",
-        "clifford": "supportive",
-        "rustworkx": "tried",
-        "toponetx": "tried",
-        "gudhi": "supportive",
-        "geomstats": "tried",
-        "xgi": "tried",
-        "e3nn": "tried"
-      },
-      "load_bearing_tools": [],
-      "source_has_tool_manifest": true,
-      "source_has_tool_integration_depth": true,
-      "result_paths": [
-        "system_v4/probes/a2_state/sim_results/engine_16_placements_results.json"
-      ],
-      "result_count": 1,
-      "result_classifications": [
-        "classical_baseline"
-      ],
-      "result_has_contract_shape": true,
-      "admission_path": "",
-      "admission_expected_result_path": "",
-      "admission_status": "no_admission",
-      "admitted": false,
-      "late_stage_signal": true,
-      "has_contract_shape": true,
-      "inventory_status": "contract_shaped_but_tool_depth_thin"
-    },
-    {
       "stem": "sim_engine_4_operators",
       "source_path": "system_v4/probes/sim_engine_4_operators.py",
       "families": [
@@ -84179,6 +84135,51 @@
       "late_stage_signal": false,
       "has_contract_shape": false,
       "inventory_status": "source_only"
+    },
+    {
+      "stem": "sim_hopf_spinor_density_inner_outer_operator_placement_baseline",
+      "source_path": "system_v4/probes/sim_hopf_spinor_density_inner_outer_operator_placement_baseline.py",
+      "families": [
+        "density_carrier",
+        "channel_operator",
+        "entropy_information",
+        "hopf_torus",
+        "weyl_spinor_clifford",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "imported",
+        "pytorch": "supportive",
+        "pyg": "tried",
+        "z3": "supportive",
+        "cvc5": "tried",
+        "sympy": "supportive",
+        "clifford": "supportive",
+        "rustworkx": "tried",
+        "toponetx": "tried",
+        "gudhi": "supportive",
+        "geomstats": "tried",
+        "xgi": "tried",
+        "e3nn": "tried"
+      },
+      "load_bearing_tools": [],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/hopf_spinor_density_inner_outer_operator_placement_baseline_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "contract_shaped_but_tool_depth_thin"
     },
     {
       "stem": "sim_hopf_symplectic_clifford_bridge_claims_canonical",

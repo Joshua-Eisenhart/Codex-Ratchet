@@ -1,41 +1,41 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-13T08:26:21.069092+00:00",
+  "generated_at": "2026-05-13T08:48:43.599522+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 4023,
-    "result_json_count": 1801,
-    "linked_result_json_count": 905,
-    "unlinked_result_json_count": 896,
+    "source_count": 4024,
+    "result_json_count": 2075,
+    "linked_result_json_count": 906,
+    "unlinked_result_json_count": 1169,
     "admitted_count": 112,
     "admission_repair_count": 1,
     "status_counts": {
       "source_only": 3168,
-      "rerun_or_admission_candidate": 536,
+      "rerun_or_admission_candidate": 537,
       "admitted": 112,
       "legacy_result_or_repair_needed": 24,
       "contract_shaped_but_tool_depth_thin": 182,
       "admission_missing_result_link": 1
     },
     "family_counts": {
-      "channel_operator": 797,
+      "channel_operator": 798,
       "entropy_information": 595,
       "thermo_engine": 452,
       "uncategorized": 342,
       "axis_bridge": 680,
       "graveyard_negative": 1708,
       "root_admission": 858,
-      "hopf_torus": 645,
-      "weyl_spinor_clifford": 806,
+      "hopf_torus": 646,
+      "weyl_spinor_clifford": 807,
       "geometry_gstack_gtower": 740,
-      "density_carrier": 503,
-      "classical_baseline": 1146,
+      "density_carrier": 504,
+      "classical_baseline": 1147,
       "gerbe_dirac_mera_spectral": 671,
       "graph_topology": 411,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2755,
+      "numpy": 2756,
       "sympy": 2272,
       "scipy": 256,
       "pytorch": 1993,
@@ -44,7 +44,7 @@
       "qutip": 55,
       "e3nn": 846,
       "gudhi": 902,
-      "z3": 1920,
+      "z3": 1921,
       "clifford": 1333,
       "rustworkx": 1081,
       "toponetx": 918,
@@ -54,7 +54,7 @@
       "qiskit": 21
     },
     "load_bearing_tool_counts": {
-      "numpy": 259,
+      "numpy": 260,
       "e3nn": 59,
       "qutip": 43,
       "cvc5": 515,
@@ -73,7 +73,7 @@
       "networkx": 5
     },
     "result_classification_counts": {
-      "classical_baseline": 334,
+      "classical_baseline": 335,
       "tool_lego_fit_probe": 36,
       "canonical": 406,
       "supporting": 13,
@@ -86,7 +86,7 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 742,
+    "repair_candidate_count": 743,
     "source_only_count": 3168
   },
   "admitted_stems": [
@@ -84180,6 +84180,41 @@
       "late_stage_signal": false,
       "has_contract_shape": true,
       "inventory_status": "contract_shaped_but_tool_depth_thin"
+    },
+    {
+      "stem": "sim_hopf_spinor_density_operator_placement_readout_collision_audit",
+      "source_path": "system_v4/probes/sim_hopf_spinor_density_operator_placement_readout_collision_audit.py",
+      "families": [
+        "density_carrier",
+        "channel_operator",
+        "hopf_torus",
+        "weyl_spinor_clifford",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "z3": "supportive"
+      },
+      "load_bearing_tools": [
+        "numpy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/hopf_spinor_density_operator_placement_readout_collision_audit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_hopf_symplectic_clifford_bridge_claims_canonical",

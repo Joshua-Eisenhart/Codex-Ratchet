@@ -946,6 +946,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "e3nn",
+        "function_api": "e3nn.o3.spherical_harmonics/matrix_to_angles/wigner_D/angles_to_matrix l=1 SO(3) equivariance over Hopf/Weyl vertical fiber and horizontal base-lift Bloch-density readouts",
+        "receipt": "system_v4/probes/a2_state/sim_results/e3nn_hopf_weyl_vertical_horizontal_density_so3_equivariance_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_carrier_loop_geometry_baseline",
+            "density_readout_so3_equivariance_baseline",
+        ],
+    },
+    {
+        "tool": "e3nn",
         "function_api": "e3nn vector irrep action commuting with PyG MessagePassing.propagate",
         "receipt": "system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json",
         "role": "nonclassical_adjacent",

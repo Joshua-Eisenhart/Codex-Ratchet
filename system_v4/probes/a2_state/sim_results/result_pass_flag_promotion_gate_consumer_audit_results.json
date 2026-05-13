@@ -1,0 +1,1016 @@
+{
+  "name": "result_pass_flag_promotion_gate_consumer_audit",
+  "classification": "audit",
+  "all_pass": true,
+  "promotion_allowed": false,
+  "claim_ceiling": "consumer-side guard only: verifies selected controller readers do not promote the Hopf placement collision audit from all_pass alone; no placement distinguishability, QIT, GStack, axis, bridge, engine, flux, bundle, or nonclassical claim",
+  "next_lego_target": "none; controller guard for blocking baseline receipt consumers",
+  "promotion_condition": "No promotion from this audit; it only records selected consumer guard behavior.",
+  "blocked_until": "future consumers that route on all_pass for blocking baseline receipts must also check classification, promotion_allowed, and admission status",
+  "demotion_condition": "Demote if cited as placement distinguishability or admission evidence.",
+  "target_result": "system_v4/probes/a2_state/sim_results/hopf_spinor_density_operator_placement_readout_collision_audit_results.json",
+  "operation_sequence": [
+    "load the Hopf placement collision audit receipt",
+    "parse selected controller consumer scripts with Python ast",
+    "record all_pass, classification, promotion_allowed, and target-name references",
+    "verify non-canonical/classical-baseline gates protect against all_pass-only promotion"
+  ],
+  "carrier_topology": "controller result-consumer graph over selected index and validation scripts",
+  "observable": "AST-level references to all_pass, classification, canonical, classical_baseline, and promotion_allowed",
+  "pass_fail_predicate": "pass iff the target receipt is explicitly guarded, QIT evidence indexing blocks non-canonical receipts, inventory records classification, the tool-function matrix does not target this receipt, and receipt validation does not imply promotion",
+  "graveyards": [
+    "target receipt lacks promotion_allowed=false or all_pass_meaning",
+    "QIT evidence index accepts all_pass without classification/admission blocking",
+    "tool-function matrix includes the target receipt as a passing target row",
+    "inventory drops classification when linking results"
+  ],
+  "baselines": [
+    "target collision audit receipt",
+    "QIT evidence index non-canonical blocker",
+    "sim inventory classification recording",
+    "receipt schema pass validation"
+  ],
+  "alternative_formulations": [
+    "dynamic import instrumentation of consumer functions",
+    "golden snapshot of target receipt status in each generated index",
+    "repo-wide AST taint pass from target result path to admission candidates"
+  ],
+  "exact_tool_function_needs": {
+    "python_ast": [
+      "ast.parse",
+      "ast.walk"
+    ],
+    "json": [
+      "json.loads"
+    ],
+    "pathlib": [
+      "Path.read_text"
+    ]
+  },
+  "lego_or_coupling_target": "controller promotion-gate safety for blocking baseline receipts",
+  "tool_manifest": {
+    "python_ast": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing for static inspection of result consumer code paths"
+    },
+    "numpy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this is static controller-code audit, not numeric simulation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: consumer guard is syntactic and path-specific"
+    }
+  },
+  "tool_integration_depth": {
+    "python_ast": "load_bearing",
+    "numpy": null,
+    "z3": null
+  },
+  "summary": {
+    "target_guarded": true,
+    "qit_blocks_noncanonical": true,
+    "inventory_records_classification": true,
+    "tool_matrix_not_targeted": true,
+    "receipt_schema_validates_pass_but_not_promotion": true,
+    "consumer_count": 4,
+    "all_pass": true,
+    "promotion_allowed": false
+  },
+  "positive": {
+    "target_guard_fields_present": {
+      "passed": true
+    },
+    "qit_index_noncanonical_gate_present": {
+      "passed": true
+    },
+    "tool_matrix_not_targeted": {
+      "passed": true
+    }
+  },
+  "negative": {
+    "all_pass_only_promotion_path": {
+      "passed": true,
+      "target_name_refs_in_tool_matrix": []
+    }
+  },
+  "consumer_features": [
+    {
+      "path": "scripts/qit_engine_evidence_index.py",
+      "target_name_refs": [],
+      "all_pass_ref_count": 0,
+      "all_pass_refs": [],
+      "promotion_allowed_ref_count": 0,
+      "classification_ref_count": 54,
+      "classification_refs": [
+        {
+          "line": 0,
+          "node": "Module",
+          "literals": [
+            "canonical",
+            "classical_baseline",
+            "classification"
+          ]
+        },
+        {
+          "line": 111,
+          "node": "FunctionDef",
+          "literals": [
+            "canonical",
+            "classical_baseline",
+            "classification"
+          ]
+        },
+        {
+          "line": 164,
+          "node": "FunctionDef",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 245,
+          "node": "FunctionDef",
+          "literals": [
+            "canonical",
+            "classification"
+          ]
+        },
+        {
+          "line": 114,
+          "node": "Assign",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 127,
+          "node": "If",
+          "literals": [
+            "canonical",
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 148,
+          "node": "Return",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 184,
+          "node": "For",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 261,
+          "node": "For",
+          "literals": [
+            "canonical",
+            "classification"
+          ]
+        },
+        {
+          "line": 114,
+          "node": "Call",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 127,
+          "node": "Compare",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 130,
+          "node": "If",
+          "literals": [
+            "canonical"
+          ]
+        },
+        {
+          "line": 148,
+          "node": "Dict",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 189,
+          "node": "For",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 275,
+          "node": "If",
+          "literals": [
+            "canonical",
+            "classification"
+          ]
+        },
+        {
+          "line": 309,
+          "node": "If",
+          "literals": [
+            "canonical",
+            "classification"
+          ]
+        },
+        {
+          "line": 114,
+          "node": "BoolOp",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 127,
+          "node": "Constant",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 133,
+          "node": "If",
+          "literals": [
+            "canonical"
+          ]
+        },
+        {
+          "line": 152,
+          "node": "Constant",
+          "literals": [
+            "classification"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "scripts/sim_inventory_index.py",
+      "target_name_refs": [],
+      "all_pass_ref_count": 0,
+      "all_pass_refs": [],
+      "promotion_allowed_ref_count": 0,
+      "classification_ref_count": 12,
+      "classification_refs": [
+        {
+          "line": 0,
+          "node": "Module",
+          "literals": [
+            "classical_baseline",
+            "classification"
+          ]
+        },
+        {
+          "line": 45,
+          "node": "Assign",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 275,
+          "node": "FunctionDef",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 45,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 279,
+          "node": "Return",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 58,
+          "node": "Constant",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 279,
+          "node": "Call",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 279,
+          "node": "BoolOp",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 279,
+          "node": "Call",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 279,
+          "node": "Call",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 279,
+          "node": "Constant",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 279,
+          "node": "Constant",
+          "literals": [
+            "classification"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "scripts/tool_function_receipt_matrix.py",
+      "target_name_refs": [],
+      "all_pass_ref_count": 28,
+      "all_pass_refs": [
+        {
+          "line": 0,
+          "node": "Module",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "overall_pass",
+            "passed"
+          ]
+        },
+        {
+          "line": 1010,
+          "node": "FunctionDef",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "overall_pass",
+            "passed"
+          ]
+        },
+        {
+          "line": 1024,
+          "node": "FunctionDef",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "overall_pass"
+          ]
+        },
+        {
+          "line": 1011,
+          "node": "If",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "overall_pass"
+          ]
+        },
+        {
+          "line": 1014,
+          "node": "If",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "passed"
+          ]
+        },
+        {
+          "line": 1031,
+          "node": "Assign",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "overall_pass"
+          ]
+        },
+        {
+          "line": 1011,
+          "node": "BoolOp",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "overall_pass"
+          ]
+        },
+        {
+          "line": 1015,
+          "node": "Return",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "passed"
+          ]
+        },
+        {
+          "line": 1032,
+          "node": "BoolOp",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "overall_pass"
+          ]
+        },
+        {
+          "line": 1011,
+          "node": "Compare",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 1011,
+          "node": "Compare",
+          "call": "",
+          "literals": [
+            "overall_pass"
+          ]
+        },
+        {
+          "line": 1015,
+          "node": "Call",
+          "call": "bool",
+          "literals": [
+            "all_pass",
+            "passed"
+          ]
+        },
+        {
+          "line": 1032,
+          "node": "Compare",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 1033,
+          "node": "Compare",
+          "call": "",
+          "literals": [
+            "overall_pass"
+          ]
+        },
+        {
+          "line": 1011,
+          "node": "Call",
+          "call": "payload.get",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 1011,
+          "node": "Call",
+          "call": "payload.get",
+          "literals": [
+            "overall_pass"
+          ]
+        },
+        {
+          "line": 1015,
+          "node": "BoolOp",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "passed"
+          ]
+        },
+        {
+          "line": 1032,
+          "node": "Call",
+          "call": "payload.get",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 1033,
+          "node": "Call",
+          "call": "payload.get",
+          "literals": [
+            "overall_pass"
+          ]
+        },
+        {
+          "line": 1011,
+          "node": "Constant",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        }
+      ],
+      "promotion_allowed_ref_count": 0,
+      "classification_ref_count": 144,
+      "classification_refs": [
+        {
+          "line": 0,
+          "node": "Module",
+          "literals": [
+            "classical_baseline",
+            "classification"
+          ]
+        },
+        {
+          "line": 20,
+          "node": "AnnAssign",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 1019,
+          "node": "FunctionDef",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 1024,
+          "node": "FunctionDef",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 20,
+          "node": "List",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 1020,
+          "node": "Assign",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 1030,
+          "node": "Assign",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 45,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 53,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 64,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 104,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 112,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 139,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 155,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 163,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 174,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 185,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 196,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 207,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 218,
+          "node": "Dict",
+          "literals": [
+            "classical_baseline"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "scripts/receipt_schema.py",
+      "target_name_refs": [],
+      "all_pass_ref_count": 46,
+      "all_pass_refs": [
+        {
+          "line": 0,
+          "node": "Module",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "overall_pass",
+            "passed"
+          ]
+        },
+        {
+          "line": 67,
+          "node": "FunctionDef",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "overall_pass",
+            "passed"
+          ]
+        },
+        {
+          "line": 96,
+          "node": "FunctionDef",
+          "call": "",
+          "literals": [
+            "passed"
+          ]
+        },
+        {
+          "line": 142,
+          "node": "FunctionDef",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 476,
+          "node": "FunctionDef",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 69,
+          "node": "If",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "passed"
+          ]
+        },
+        {
+          "line": 88,
+          "node": "For",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "overall_pass",
+            "passed"
+          ]
+        },
+        {
+          "line": 99,
+          "node": "If",
+          "call": "",
+          "literals": [
+            "passed"
+          ]
+        },
+        {
+          "line": 153,
+          "node": "AnnAssign",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 206,
+          "node": "Assign",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 352,
+          "node": "For",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 479,
+          "node": "Return",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 70,
+          "node": "Assign",
+          "call": "",
+          "literals": [
+            "passed"
+          ]
+        },
+        {
+          "line": 83,
+          "node": "For",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 88,
+          "node": "Tuple",
+          "call": "",
+          "literals": [
+            "all_pass",
+            "overall_pass",
+            "passed"
+          ]
+        },
+        {
+          "line": 100,
+          "node": "For",
+          "call": "",
+          "literals": [
+            "passed"
+          ]
+        },
+        {
+          "line": 153,
+          "node": "Dict",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 206,
+          "node": "Subscript",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 354,
+          "node": "AnnAssign",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        },
+        {
+          "line": 380,
+          "node": "If",
+          "call": "",
+          "literals": [
+            "all_pass"
+          ]
+        }
+      ],
+      "promotion_allowed_ref_count": 0,
+      "classification_ref_count": 42,
+      "classification_refs": [
+        {
+          "line": 0,
+          "node": "Module",
+          "literals": [
+            "canonical",
+            "classical_baseline",
+            "classification"
+          ]
+        },
+        {
+          "line": 16,
+          "node": "Assign",
+          "literals": [
+            "canonical",
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 142,
+          "node": "FunctionDef",
+          "literals": [
+            "canonical",
+            "classical_baseline",
+            "classification"
+          ]
+        },
+        {
+          "line": 16,
+          "node": "Set",
+          "literals": [
+            "canonical",
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 153,
+          "node": "AnnAssign",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 185,
+          "node": "Assign",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 186,
+          "node": "Assign",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 317,
+          "node": "If",
+          "literals": [
+            "canonical"
+          ]
+        },
+        {
+          "line": 343,
+          "node": "If",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 352,
+          "node": "For",
+          "literals": [
+            "canonical",
+            "classification"
+          ]
+        },
+        {
+          "line": 17,
+          "node": "Constant",
+          "literals": [
+            "canonical"
+          ]
+        },
+        {
+          "line": 18,
+          "node": "Constant",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 153,
+          "node": "Dict",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 185,
+          "node": "Call",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 186,
+          "node": "Subscript",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 317,
+          "node": "Compare",
+          "literals": [
+            "canonical"
+          ]
+        },
+        {
+          "line": 343,
+          "node": "Compare",
+          "literals": [
+            "classical_baseline"
+          ]
+        },
+        {
+          "line": 354,
+          "node": "AnnAssign",
+          "literals": [
+            "classification"
+          ]
+        },
+        {
+          "line": 380,
+          "node": "If",
+          "literals": [
+            "canonical",
+            "classification"
+          ]
+        },
+        {
+          "line": 156,
+          "node": "Constant",
+          "literals": [
+            "classification"
+          ]
+        }
+      ]
+    }
+  ],
+  "out_of_scope": [
+    "No proof that every possible future consumer checks promotion_allowed.",
+    "No proof of 16-placement distinguishability.",
+    "No canonical or nonclassical admission."
+  ],
+  "elapsed_seconds": 0.064655,
+  "timestamp": "2026-05-13T09:09:10Z"
+}

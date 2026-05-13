@@ -1,12 +1,12 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-13T08:59:31.224547+00:00",
+  "generated_at": "2026-05-13T09:10:46.978779+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 4024,
-    "result_json_count": 2228,
-    "linked_result_json_count": 906,
-    "unlinked_result_json_count": 1322,
+    "source_count": 4025,
+    "result_json_count": 2283,
+    "linked_result_json_count": 907,
+    "unlinked_result_json_count": 1376,
     "admitted_count": 112,
     "admission_repair_count": 1,
     "status_counts": {
@@ -14,21 +14,21 @@
       "rerun_or_admission_candidate": 537,
       "admitted": 112,
       "legacy_result_or_repair_needed": 24,
-      "contract_shaped_but_tool_depth_thin": 182,
+      "contract_shaped_but_tool_depth_thin": 183,
       "admission_missing_result_link": 1
     },
     "family_counts": {
-      "channel_operator": 798,
+      "channel_operator": 799,
       "entropy_information": 595,
       "thermo_engine": 452,
       "uncategorized": 342,
       "axis_bridge": 680,
       "graveyard_negative": 1708,
       "root_admission": 858,
-      "hopf_torus": 646,
-      "weyl_spinor_clifford": 807,
+      "hopf_torus": 647,
+      "weyl_spinor_clifford": 808,
       "geometry_gstack_gtower": 740,
-      "density_carrier": 504,
+      "density_carrier": 505,
       "classical_baseline": 1147,
       "gerbe_dirac_mera_spectral": 671,
       "graph_topology": 411,
@@ -78,7 +78,7 @@
       "canonical": 406,
       "supporting": 13,
       "exploratory": 28,
-      "audit": 4,
+      "audit": 5,
       "research_support": 6,
       "controller_audit": 3,
       "controller_index": 1,
@@ -86,7 +86,7 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 743,
+    "repair_candidate_count": 744,
     "source_only_count": 3168
   },
   "admitted_stems": [
@@ -109479,6 +109479,35 @@
       "result_count": 1,
       "result_classifications": [
         "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "contract_shaped_but_tool_depth_thin"
+    },
+    {
+      "stem": "sim_result_pass_flag_promotion_gate_consumer_audit",
+      "source_path": "system_v4/probes/sim_result_pass_flag_promotion_gate_consumer_audit.py",
+      "families": [
+        "density_carrier",
+        "channel_operator",
+        "hopf_torus",
+        "weyl_spinor_clifford"
+      ],
+      "tools": {},
+      "load_bearing_tools": [],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/result_pass_flag_promotion_gate_consumer_audit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "audit"
       ],
       "result_has_contract_shape": true,
       "admission_path": "",

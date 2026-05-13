@@ -404,6 +404,14 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "sympy",
+        "function_api": "sympy diff/integrate/simplify exact Hopf U(1) connection curvature and first-Chern integral",
+        "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_connection_curvature_c1_integral_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["hopf_connection_curvature_geometry_baseline", "curvature_integral_baseline"],
+    },
+    {
+        "tool": "sympy",
         "function_api": "sympy Matrix partition of Pauli matrices into diagonal and off-diagonal labels",
         "receipt": "system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json",
         "role": "classical_baseline",

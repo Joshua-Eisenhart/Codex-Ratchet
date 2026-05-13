@@ -1,24 +1,24 @@
 # Sim Inventory Index
 
-Generated: `2026-05-13T16:15:38.875219+00:00`
+Generated: `2026-05-13T16:20:31.782960+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
-- Sim source files indexed: `4031`
-- Result JSON files seen: `2952`
-- Linked result JSON files: `913`
-- Unlinked result JSON files: `2039`
+- Sim source files indexed: `4033`
+- Result JSON files seen: `2970`
+- Linked result JSON files: `915`
+- Unlinked result JSON files: `2055`
 - Wizard-admitted stems: `112`
-- Repair / rerun candidate rows: `750`
+- Repair / rerun candidate rows: `752`
 - Source-only rows: `3168`
 
 ## Inventory Status Counts
 
 - `source_only`: 3168
-- `rerun_or_admission_candidate`: 541
-- `contract_shaped_but_tool_depth_thin`: 185
+- `rerun_or_admission_candidate`: 542
+- `contract_shaped_but_tool_depth_thin`: 186
 - `admitted`: 112
 - `legacy_result_or_repair_needed`: 24
 - `admission_missing_result_link`: 1
@@ -35,7 +35,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `gerbe_dirac_mera_spectral`: 671
 - `hopf_torus`: 652
 - `entropy_information`: 595
-- `density_carrier`: 510
+- `density_carrier`: 512
 - `thermo_engine`: 452
 - `graph_topology`: 411
 - `uncategorized`: 342
@@ -58,7 +58,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `scipy`: 65
 - `e3nn`: 59
 - `qutip`: 44
-- `qiskit`: 19
+- `qiskit`: 20
 - `networkx`: 5
 
 ## Unlinked Result Samples

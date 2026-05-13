@@ -1,20 +1,20 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-13T16:15:38.875219+00:00",
+  "generated_at": "2026-05-13T16:20:31.782960+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 4031,
-    "result_json_count": 2952,
-    "linked_result_json_count": 913,
-    "unlinked_result_json_count": 2039,
+    "source_count": 4033,
+    "result_json_count": 2970,
+    "linked_result_json_count": 915,
+    "unlinked_result_json_count": 2055,
     "admitted_count": 112,
     "admission_repair_count": 1,
     "status_counts": {
       "source_only": 3168,
-      "rerun_or_admission_candidate": 541,
+      "rerun_or_admission_candidate": 542,
       "admitted": 112,
       "legacy_result_or_repair_needed": 24,
-      "contract_shaped_but_tool_depth_thin": 185,
+      "contract_shaped_but_tool_depth_thin": 186,
       "admission_missing_result_link": 1
     },
     "family_counts": {
@@ -28,14 +28,14 @@
       "hopf_torus": 652,
       "weyl_spinor_clifford": 811,
       "geometry_gstack_gtower": 740,
-      "density_carrier": 510,
+      "density_carrier": 512,
       "classical_baseline": 1149,
       "gerbe_dirac_mera_spectral": 671,
       "graph_topology": 411,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2760,
+      "numpy": 2761,
       "sympy": 2272,
       "scipy": 256,
       "pytorch": 1994,
@@ -51,7 +51,7 @@
       "geomstats": 907,
       "xgi": 972,
       "networkx": 26,
-      "qiskit": 21
+      "qiskit": 22
     },
     "load_bearing_tool_counts": {
       "numpy": 263,
@@ -69,16 +69,16 @@
       "scipy": 65,
       "toponetx": 124,
       "pyg": 71,
-      "qiskit": 19,
+      "qiskit": 20,
       "networkx": 5
     },
     "result_classification_counts": {
-      "classical_baseline": 338,
+      "classical_baseline": 339,
       "tool_lego_fit_probe": 36,
       "canonical": 406,
       "supporting": 13,
       "exploratory": 28,
-      "audit": 8,
+      "audit": 9,
       "research_support": 6,
       "controller_audit": 3,
       "controller_index": 1,
@@ -86,7 +86,7 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 750,
+    "repair_candidate_count": 752,
     "source_only_count": 3168
   },
   "admitted_stems": [
@@ -74054,6 +74054,32 @@
       "inventory_status": "source_only"
     },
     {
+      "stem": "sim_global_relative_phase_density_transport_nonpole_sweep_backend_agreement_audit",
+      "source_path": "system_v4/probes/sim_global_relative_phase_density_transport_nonpole_sweep_backend_agreement_audit.py",
+      "families": [
+        "density_carrier"
+      ],
+      "tools": {},
+      "load_bearing_tools": [],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/global_relative_phase_density_transport_nonpole_sweep_backend_agreement_audit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "audit"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "contract_shaped_but_tool_depth_thin"
+    },
+    {
       "stem": "sim_global_shell_cut_coherent_info",
       "source_path": "system_v4/probes/sim_global_shell_cut_coherent_info.py",
       "families": [
@@ -105797,6 +105823,37 @@
       "late_stage_signal": false,
       "has_contract_shape": true,
       "inventory_status": "admitted"
+    },
+    {
+      "stem": "sim_qiskit_global_relative_phase_density_transport_nonpole_sweep",
+      "source_path": "system_v4/probes/sim_qiskit_global_relative_phase_density_transport_nonpole_sweep.py",
+      "families": [
+        "density_carrier"
+      ],
+      "tools": {
+        "numpy": "supportive",
+        "qiskit": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "qiskit"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/qiskit_global_relative_phase_density_transport_nonpole_sweep_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_qiskit_hopf_fiber_base_density_readout",

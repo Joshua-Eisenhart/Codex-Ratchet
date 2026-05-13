@@ -329,6 +329,71 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
+        "operation_sequence": [
+            "load and check the prior e3nn irrep tensor-product function receipt",
+            "load and check the prior PyG MessagePassing autograd function receipt",
+            "construct a three-node directed vector-feature graph with e3nn 1o feature width",
+            "compute the e3nn SO(3) vector representation matrix from a bounded rotation",
+            "run PyG additive MessagePassing before and after applying the shared irrep action",
+            "compare rotate-then-message against message-then-rotate equivariance residual",
+            "run adjacent negative fixtures for fixed unrotated bias, wrong output representation, and malformed feature width",
+            "run boundary fixtures for isolated-node zero vector output and zero-batch vector-width preservation",
+        ],
+        "carrier_topology": (
+            "finite directed PyG graph with three-dimensional e3nn 1o vector "
+            "features on each node and a shared SO(3) irrep action; no learned "
+            "GNN layer, graph/operator lego, bridge, axis, GStack, QIT, or "
+            "nonclassical carrier is claimed"
+        ),
+        "observable": {
+            "prior_receipt_gate": "parent e3nn and PyG function receipts exist, are canonical, all_pass, load-bearing, and fresh for source",
+            "equivariance_residual": "max absolute difference between rotate-then-message and message-then-rotate paths",
+            "biased_message_control": "fixed unrotated vector bias must break equivariance",
+            "wrong_representation_control": "identity output representation must disagree with the shared e3nn vector action path",
+            "malformed_width_control": "node features not matching the e3nn vector irrep width must raise",
+            "boundary_controls": "isolated node receives zero vector and zero-node batch preserves vector width",
+        },
+        "pass_fail_predicate": (
+            "Prior e3nn and PyG function receipts must be canonical, all_pass, "
+            "load-bearing, and fresh. The additive PyG message pass must commute "
+            "with the shared e3nn vector irrep action below tolerance, while fixed "
+            "unrotated bias, wrong output representation, and malformed-width "
+            "controls must fail or raise as expected. Isolated-node and zero-batch "
+            "boundaries must preserve the declared vector-feature semantics."
+        ),
+        "graveyards": [
+            "missing, stale, noncanonical, or non-load-bearing parent receipt -- must block the integration claim",
+            "fixed unrotated vector bias in the message map -- must produce residual above threshold",
+            "wrong output representation on the message-then-rotate path -- must produce residual above threshold",
+            "malformed feature width accepted silently -- must raise instead",
+            "isolated node receives nonzero vector under additive aggregation -- must fail boundary",
+        ],
+        "baselines": [
+            "manual directed additive message-passing over a three-node cycle",
+            "shared e3nn 1o vector representation applied uniformly to every node feature",
+            "zero-vector additive identity for nodes with no incoming edges",
+            "zero-node graph preserving the declared e3nn vector feature width",
+        ],
+        "alternative_formulations": [
+            "manual PyTorch scatter-add over edge_index compared to e3nn rotation",
+            "NetworkX predecessor aggregation on vector features with explicit rotation matrices",
+            "learned e3nn/PyG convolutional equivariance tested in a later separate API-surface packet",
+        ],
+        "tool_function_needs": [
+            "e3nn.o3.Irreps",
+            "Irreps.D_from_matrix",
+            "torch_geometric.nn.MessagePassing",
+            "MessagePassing.propagate",
+            "MessagePassing.message",
+            "torch.tensor",
+            "torch.empty",
+            "torch.allclose",
+        ],
+        "lego_coupling_target": [
+            "e3nn_pyg_vector_message_fixture",
+            "graph_operator_equivariance_handoff_rows",
+            "later graph/operator lego-fit packets with named parent receipts",
+        ],
         "surviving_alternatives": [
             "Learned GNN layers, e3nn convolutions, batching, heterogeneous "
             "graphs, and graph/operator lego promotion remain separate receipts."

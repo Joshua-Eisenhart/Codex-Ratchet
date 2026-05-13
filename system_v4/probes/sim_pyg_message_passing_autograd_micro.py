@@ -179,6 +179,67 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
+        "operation_sequence": [
+            "define a minimal torch_geometric.nn.MessagePassing subclass with additive aggregation",
+            "construct a three-node directed cycle edge_index and scalar node-feature tensor",
+            "call MessagePassing.propagate through the subclass forward method",
+            "compare propagated output to the manual source-to-target aggregation baseline",
+            "backpropagate a squared-output loss through the PyG propagation result",
+            "run negative fixtures for reversed edge orientation and malformed edge_index shape",
+            "run boundary fixtures for an isolated node receiving the additive identity and zero gradient",
+        ],
+        "carrier_topology": (
+            "finite directed graph fixture with scalar PyTorch node features and "
+            "PyG source-to-target edge_index semantics; no density matrix, graph-cell, "
+            "bridge, axis, GStack, QIT, or nonclassical carrier is claimed"
+        ),
+        "observable": {
+            "directed_aggregation": "output node features equal manual incoming-neighbor source sums",
+            "autograd_gradient": "PyTorch gradients flow from squared propagated output back to input node features",
+            "edge_orientation_control": "reversing edge_index changes the propagated output",
+            "malformed_edge_control": "edge_index not shaped [2, num_edges] raises",
+            "isolated_node_boundary": "node with no incoming edge receives zero under additive aggregation",
+            "isolated_node_gradient_boundary": "node not contributing to output sum has zero gradient",
+        },
+        "pass_fail_predicate": (
+            "All positive, negative, and boundary checks must pass: propagate must "
+            "match manual directed aggregation, preserve autograd gradients through "
+            "the output, distinguish reversed-edge orientation, reject malformed "
+            "edge_index input, and handle isolated-node additive identity and "
+            "gradient boundaries as expected."
+        ),
+        "graveyards": [
+            "edge_index orientation treated as decorative -- reversed edges would match the forward cycle and must fail",
+            "malformed one-row edge_index accepted silently -- must raise instead",
+            "isolated node receives a nonzero additive message -- must fail boundary",
+            "input feature gradients do not propagate through MessagePassing output -- must fail autograd check",
+        ],
+        "baselines": [
+            "manual source-to-target aggregation for directed cycle 0->1, 1->2, 2->0",
+            "manual gradient of squared outputs under the directed cycle fixture",
+            "manual additive identity for a node with no incoming edges",
+            "manual isolated-node gradient expectation under out.sum()",
+        ],
+        "alternative_formulations": [
+            "manual PyTorch scatter-add implementation over edge_index",
+            "NetworkX predecessor-sum computation followed by tensor comparison",
+            "PyG GCNConv or SAGEConv message-passing checks in separate API-surface packets",
+        ],
+        "tool_function_needs": [
+            "torch_geometric.nn.MessagePassing",
+            "MessagePassing.propagate",
+            "MessagePassing.message",
+            "torch.tensor",
+            "Tensor.square",
+            "Tensor.sum",
+            "Tensor.backward",
+            "torch.allclose",
+        ],
+        "lego_coupling_target": [
+            "pyg_message_passing_fixture",
+            "graph_autograd_handoff_rows",
+            "later density_or_graph_carrier_micro_packets",
+        ],
         "surviving_alternatives": [
             "Other PyG layers, batching, heterogeneous graphs, and density-matrix gradients remain separate future micro surfaces."
         ],

@@ -139,6 +139,92 @@ if __name__ == "__main__":
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
         "claim_ceiling": "tool_micro_qiskit_capability_only",
+        "operation_sequence": [
+            "construct a one-qubit QuantumCircuit",
+            "apply a Hadamard gate to prepare the plus state",
+            "derive a Statevector from the circuit instruction",
+            "convert the statevector to a DensityMatrix",
+            "evaluate X and Z Operator expectation values on the statevector",
+            "run adjacent negative and boundary fixtures for a bit-flip state, a small rotation, normalization, and purity",
+        ],
+        "carrier_topology": {
+            "carrier": "one-qubit complex Hilbert space with 2x2 density matrix representation",
+            "positive_fixture": "Hadamard-prepared plus state",
+            "graveyard_fixture": "bit-flipped computational basis state compared against plus-state amplitudes",
+            "boundary_fixture": "small-angle Ry rotation with statevector norm and density purity checks",
+        },
+        "observable": {
+            "primary": "statevector amplitudes and one-qubit operator expectation values",
+            "secondary": [
+                "density trace",
+                "statevector norm",
+                "density-matrix purity",
+            ],
+        },
+        "pass_fail_predicate": {
+            "pass": [
+                "Hadamard circuit statevector equals the plus state within tolerance",
+                "derived density matrix has trace 1",
+                "plus state has X expectation 1",
+                "plus state has Z expectation 0",
+                "bit-flipped basis state is not equal to the plus state",
+                "small Ry rotation remains normalized",
+                "pure-state density matrix has purity 1",
+            ],
+            "fail": [
+                "Qiskit circuit construction or state conversion fails",
+                "statevector, density trace, expectation, normalization, or purity checks miss tolerance",
+                "negative bit-flip fixture is indistinguishable from the plus state",
+            ],
+        },
+        "graveyards": [
+            {
+                "name": "bit_flip_basis_state",
+                "change": "replace the Hadamard preparation with an X gate on |0>",
+                "expected_death": "amplitude equality with the plus state fails",
+            }
+        ],
+        "baselines": [
+            {
+                "name": "small_rotation_normalization_boundary",
+                "role": "near-identity one-qubit rotation baseline for norm and purity preservation",
+            }
+        ],
+        "alternative_formulations": [
+            "manual numpy one-qubit matrix multiplication for the same Hadamard and Pauli expectation checks",
+            "qiskit Operator expectation evaluated through density-matrix trace rather than Statevector.expectation_value",
+            "two-qubit separable extension with tensor-product density checks",
+        ],
+        "tool_function_needs": [
+            {
+                "tool": "qiskit",
+                "functions": [
+                    "QuantumCircuit",
+                    "QuantumCircuit.h",
+                    "QuantumCircuit.x",
+                    "QuantumCircuit.ry",
+                    "Statevector.from_instruction",
+                    "DensityMatrix",
+                    "Operator",
+                    "Statevector.expectation_value",
+                ],
+                "depth": "load_bearing",
+            },
+            {
+                "tool": "numpy",
+                "functions": [
+                    "np.allclose",
+                    "np.sqrt",
+                    "np.trace",
+                    "np.linalg.norm",
+                ],
+                "depth": "supportive",
+            },
+        ],
+        "lego_coupling_target": [
+            "unitary_channel_map",
+            "density_matrix_object",
+        ],
         "next_lego_target": "bounded qiskit statevector-density fixture before any QIT or density-carrier lego promotion",
         "promotion_condition": (
             "requires a later admitted downstream row that names this exact Qiskit "

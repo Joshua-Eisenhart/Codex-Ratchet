@@ -311,6 +311,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["hypergraph_shell_geometry", "cell_complex_geometry"],
     },
     {
+        "tool": "xgi",
+        "function_api": "XGI Hypergraph named hyperedges, node memberships, edge memberships, incidence_matrix, and connected_components over Hopf receipt groups",
+        "receipt": "system_v4/probes/a2_state/sim_results/xgi_hopf_receipt_hyperedge_incidence_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["nested_hopf_torus_loop_geometry_baseline", "inner_outer_hopf_weyl_loop_geometry_fit"],
+    },
+    {
         "tool": "rustworkx",
         "function_api": "rustworkx PyDiGraph DAG construction, topological_sort, transitive_reduction, dijkstra_shortest_paths, cycle detection",
         "receipt": "system_v4/probes/a2_state/sim_results/rustworkx_capability_results.json",

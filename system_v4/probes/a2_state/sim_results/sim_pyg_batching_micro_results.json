@@ -256,6 +256,56 @@
       "error_type": "IndexError"
     }
   },
+  "operation_sequence": [
+    "construct two tiny torch_geometric.data.Data graph fixtures with local edge indexes",
+    "call torch_geometric.data.Batch.from_data_list on the fixture list",
+    "compare batched node-feature concatenation to the manual tensor baseline",
+    "compare batched edge_index to the expected PyG graph-local offset baseline",
+    "compare batch and ptr graph-membership metadata to expected tensors",
+    "run adjacent negative fixtures for raw unoffset concatenation and a single unlabeled membership vector",
+    "run boundary fixtures for one empty-edge graph and an empty input list"
+  ],
+  "carrier_topology": "finite disjoint graph fixtures represented as PyG Data objects and batched into one disconnected graph carrier with explicit node membership metadata; no topology, graph-cell, bridge, axis, GStack, or nonclassical carrier is claimed",
+  "observable": {
+    "node_feature_tensor": "batched x tensor equals manual concatenation of graph_a.x and graph_b.x",
+    "offset_edge_index": "second graph local edge 0->1 is shifted to global edge 3->4",
+    "graph_membership": "batch vector and ptr delimit graph membership after batching",
+    "graph_level_targets": "y values are preserved as graph-level targets",
+    "negative_controls": "raw unoffset edge concatenation and all-zero graph membership must not match PyG output",
+    "boundary_controls": "single empty-edge graph remains well-formed and empty input list raises"
+  },
+  "pass_fail_predicate": "All positive, negative, and boundary checks must pass: Batch.from_data_list must concatenate node features, offset later graph edge indexes, preserve graph membership metadata and targets, reject raw-unoffset and unlabeled membership alternatives, accept a one-node empty-edge graph, and reject an empty data-list input.",
+  "graveyards": [
+    "raw concatenation of edge_index without node-offset correction -- must differ from PyG output",
+    "single all-zero membership vector for all nodes -- must differ from PyG batch metadata",
+    "empty data list treated as a meaningful batch -- must raise instead",
+    "graph-level target y dropped during batching -- must fail target preservation"
+  ],
+  "baselines": [
+    "manual torch.cat node-feature concatenation",
+    "manual edge_index offset for graph_b by graph_a.num_nodes",
+    "manual graph-membership batch vector [0, 0, 0, 1, 1]",
+    "manual ptr vector [0, 3, 5]"
+  ],
+  "alternative_formulations": [
+    "NetworkX disjoint_union node relabeling followed by PyG Data conversion",
+    "manual PyTorch-only batching dictionary with x, edge_index, batch, and ptr",
+    "PyG Batch.from_data_list over more than two fixtures in a later boundary packet"
+  ],
+  "tool_function_needs": [
+    "torch_geometric.data.Data",
+    "torch_geometric.data.Batch.from_data_list",
+    "Batch.edge_index offsetting",
+    "Batch.batch graph-membership vector",
+    "Batch.ptr graph-boundary vector",
+    "torch.equal",
+    "torch.tensor"
+  ],
+  "lego_coupling_target": [
+    "pyg_data_batching_fixture",
+    "graph_fixture_handoff_rows",
+    "later graph-message-passing micro packets"
+  ],
   "surviving_alternatives": [
     "PyG Data loaders, HeteroData batching, message passing, training loops, and graph-cell uses remain separate future surfaces."
   ],

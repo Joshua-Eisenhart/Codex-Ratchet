@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T23:32:58.527335+00:00",
+  "generated_at": "2026-05-13T23:36:57.275141+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -885,7 +885,7 @@
         "graph_batching_fixture",
         "graph_shell_geometry"
       ],
-      "candidate_spec_complete": false,
+      "candidate_spec_complete": true,
       "candidate_spec_contract_fields": [
         "alternative_formulations",
         "baselines",
@@ -898,16 +898,7 @@
         "pass_fail_predicate",
         "tool_function_needs"
       ],
-      "candidate_spec_missing_fields": [
-        "operation_sequence",
-        "carrier_topology",
-        "observable",
-        "pass_fail_predicate",
-        "graveyards",
-        "baselines",
-        "alternative_formulations",
-        "tool_function_needs"
-      ],
+      "candidate_spec_missing_fields": [],
       "claim_ceiling": "tool_function_micro_only",
       "depth": "load_bearing",
       "function_api": "torch_geometric.data.Batch.from_data_list tensor concatenation, edge-index offsetting, batch vector, and ptr",
@@ -927,23 +918,32 @@
       "receipt_classification": "canonical",
       "receipt_contract_fields": [
         "all_pass",
+        "alternative_formulations",
+        "baselines",
         "blocked_until",
         "boundary",
+        "carrier_topology",
         "claim_ceiling",
         "classification",
         "constraint_set",
         "criteria_checked",
         "demotion_condition",
+        "graveyards",
+        "lego_coupling_target",
         "name",
         "negative",
         "next_lego_target",
+        "observable",
+        "operation_sequence",
         "out_of_scope",
+        "pass_fail_predicate",
         "positive",
         "probe_family",
         "promotion_condition",
         "scope",
         "summary",
         "surviving_alternatives",
+        "tool_function_needs",
         "tool_integration_depth",
         "tool_manifest"
       ],
@@ -7806,8 +7806,8 @@
   ],
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
-    "candidate_spec_complete_count": 75,
-    "candidate_spec_incomplete_count": 33,
+    "candidate_spec_complete_count": 76,
+    "candidate_spec_incomplete_count": 32,
     "missing_receipt_count": 0,
     "passing_count": 108,
     "receipt_boundary_gap_count": 0,

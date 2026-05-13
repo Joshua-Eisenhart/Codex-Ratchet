@@ -118,6 +118,30 @@ def test_worker_receipt_validator_accepts_blocked_external_without_artifact(tmp_
     assert json.loads(result.stdout)["ok"] is True
 
 
+def test_worker_receipt_validator_rejects_omx_pool_when_disabled(tmp_path: Path) -> None:
+    receipt = tmp_path / "receipt.json"
+    receipt.write_text(
+        json.dumps(
+            {
+                "schema": "wizard-v4.2-worker-receipt",
+                "wizard_version": "v4.2",
+                "route": "Scout",
+                "parent_id": "parent-omx",
+                "pool": "omx",
+                "launch_surface": "omx ask",
+                "terminal_status": "blocked",
+                "counts_toward_topology": False,
+                "external_worker": True,
+            }
+        )
+    )
+
+    result = run_python("scripts/validate_wizard_worker_receipts.py", str(receipt))
+
+    assert result.returncode == 1
+    assert "pool must be one of" in result.stdout
+
+
 def test_worker_receipt_validator_rejects_counted_missing_artifact_key(tmp_path: Path) -> None:
     receipt = tmp_path / "receipt.json"
     receipt.write_text(

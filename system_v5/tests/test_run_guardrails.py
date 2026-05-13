@@ -52,6 +52,54 @@ def _canonical_payload(**extra):
     return payload
 
 
+def test_direct_sim_semantic_guard_rejects_claim_layer_basename(tmp_path: Path) -> None:
+    guard = _load_module(
+        "direct_sim_semantic_guard_under_test",
+        SCRIPTS / "direct_sim_semantic_guard.py",
+    )
+    probes = tmp_path / "probes"
+    probes.mkdir()
+    (probes / "sim_carnot_axis4_cycle_ordering_bridge.py").write_text(
+        "print('must not run')\n",
+        encoding="utf-8",
+    )
+
+    result = guard.main(
+        [
+            "--name",
+            "sim_carnot_axis4_cycle_ordering_bridge",
+            "--probes-dir",
+            str(probes),
+        ]
+    )
+
+    assert result == 1
+
+
+def test_direct_sim_semantic_guard_accepts_literal_cycle_basename(tmp_path: Path) -> None:
+    guard = _load_module(
+        "direct_sim_semantic_guard_accept_under_test",
+        SCRIPTS / "direct_sim_semantic_guard.py",
+    )
+    probes = tmp_path / "probes"
+    probes.mkdir()
+    (probes / "sim_carnot_cycle_direction_work_sign_closure.py").write_text(
+        "print('fixture')\n",
+        encoding="utf-8",
+    )
+
+    result = guard.main(
+        [
+            "--name",
+            "sim_carnot_cycle_direction_work_sign_closure",
+            "--probes-dir",
+            str(probes),
+        ]
+    )
+
+    assert result == 0
+
+
 def test_receipt_run_boundary_fields_are_separate_from_existing_strict_scope() -> None:
     receipt_schema = _load_module("receipt_schema_under_test", SCRIPTS / "receipt_schema.py")
 

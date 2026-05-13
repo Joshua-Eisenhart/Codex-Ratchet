@@ -267,7 +267,7 @@ def test_wizard_chat_contract_accepts_plain_text_followup_prework(tmp_path: Path
         tmp_path,
         [deferred_row("Audit")],
         "Wizard: FULL | subagents: spawned 0 / blocked 0 / deferred 1 | subsubagents: spawned 0 / blocked 0 / deferred 0 | waves: worker 1 / controller 0 / not-run 10\n"
-        "Pools: codex-native 0/0/1; claude-bridge 0/0/0; gemini 0/0/0; omx/tmux 0/0/0; tools ran/0\n"
+        "Pools: codex-native 0/0/1; claude-bridge 0/0/0; gemini 0/0/0; tmux 0/0/0; tools ran/0\n"
         "Routes: voices 0/0/0; lanes 0/0/0; council not-run; checks 0/0/1; compositions 0/0/0; follow-up scout not-run\n\n"
         "🧙 Main Answer\n"
         "The current answer is a chat output, not a report.\n\n"

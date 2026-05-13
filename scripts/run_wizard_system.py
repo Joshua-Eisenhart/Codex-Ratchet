@@ -1302,7 +1302,7 @@ def _final_answer(
     return "\n".join(
         [
             f"Wizard: {size.upper()} | subagents: spawned {spawned_total} / blocked {blocked_total} / deferred {deferred_total} | subsubagents: spawned 0 / blocked 0 / deferred 0 | waves: worker {worker_waves} / controller {controller_waves} / not-run {not_run_waves}",
-            f"Pools: codex-native {spawned_total}/{blocked_total}/{deferred_total}; claude-bridge {external['claude_total']}/0/0; gemini {external['gemini_total']}/0/0; omx/tmux 0/0/0; tools ran/0",
+            f"Pools: codex-native {spawned_total}/{blocked_total}/{deferred_total}; claude-bridge {external['claude_total']}/0/0; gemini {external['gemini_total']}/0/0; tmux 0/0/0; tools ran/0",
             f"Routes: voices {voice_counts['spawned']}/{voice_counts['blocked']}/{voice_counts['deferred']}; lanes {lane_counts['spawned']}/{lane_counts['blocked']}/{lane_counts['deferred']}; council {council_state}; checks {check_counts['spawned']}/{check_counts['blocked']}/{check_counts['deferred']}; compositions {composition_counts['spawned']}/{composition_counts['blocked']}/{composition_counts['deferred']}; follow-up scout {followup_state}",
             "",
             "🧙 Main Answer",

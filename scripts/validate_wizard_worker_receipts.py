@@ -23,8 +23,8 @@ REQUIRED_ALWAYS = {
 }
 REQUIRED_WHEN_COUNTED = {"artifact_path", "accepted_conclusion"}
 
-POOLS = {"codex-native", "claude-bridge", "gemini", "omx", "tmux", "tool"}
-EXTERNAL_POOLS = {"claude-bridge", "gemini", "omx", "tmux"}
+POOLS = {"codex-native", "claude-bridge", "gemini", "tmux", "tool"}
+EXTERNAL_POOLS = {"claude-bridge", "gemini", "tmux"}
 TERMINAL_STATUSES = {
     "completed",
     "failed",

@@ -14,6 +14,7 @@ sim:
 	@test -n "$(NAME)" || (echo "NAME is required, e.g. make sim NAME=sim_layer_triple_catalog"; exit 2)
 	@case "$(NAME)" in *..*|*/*|*\\*) echo "invalid NAME: $(NAME)"; exit 2;; esac
 	@test -f "$(PROBES)/$(NAME).py" || (echo "missing sim: $(PROBES)/$(NAME).py"; exit 2)
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/direct_sim_semantic_guard.py --name "$(NAME)" --probes-dir "$(PROBES)"
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/cleanup_first_guard.py --context sim
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/$(NAME).py
 

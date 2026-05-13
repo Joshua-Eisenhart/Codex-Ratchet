@@ -12,7 +12,7 @@ Wizard is the default Codex Ratchet alignment layer. Run Wizard preflight on eve
 
 Use real subagents whenever a visible voice, lane, check, council, composition, or preworked follow-up option is claimed. If a route did not run, mark it blocked, deferred, or future-only. Ordinary sim and repo cleanup turns should still stay compact and task-focused; internal Wizard alignment is not a license to print worker logs.
 
-Keep worker pools distinct. Codex native subagents require `spawn_agent` receipts and are the authority for Codex-native route truth. Claude Bridge, Gemini, OMX, tmux panes, and tools can provide external worker receipts, scout evidence, or reroutes, but they must be counted under their own pool names and must not be renamed as Codex subagents. OMX team routes require a live tmux leader pane/session; tmux installed on the machine is not team execution.
+Keep worker pools distinct. Codex native subagents require `spawn_agent` receipts and are the authority for Codex-native route truth. Claude Bridge, direct Gemini, tmux panes, and tools can provide external worker receipts, scout evidence, or reroutes, but they must be counted under their own pool names and must not be renamed as Codex subagents. OMX is disabled for this repository: do not use or count `omx ask`, `omx sparkshell`, `omx team`, or OMX-managed Gemini routes. Tmux installed on the machine is not team execution.
 
 ## Codex Memory Boundary
 

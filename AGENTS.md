@@ -119,14 +119,14 @@ Parallelism and reroute rule:
 
 Worker pool truth:
 
-- Keep Codex native subagents, Claude Bridge Task/Agent workers, Gemini CLI/OMX workers, and tmux/OMX team panes as separate pools. Do not count one pool as another.
+- Keep Codex native subagents, Claude Bridge Task/Agent workers, Gemini CLI workers, tmux panes, and tools as separate pools. Do not count one pool as another.
 - Codex native subagents are the primary repo-edit and route-truth surface. They require the `spawn_agent` tool receipt, not a shell transcript or worker self-report.
 - Claude Bridge may run Opus/Sonnet/Haiku fanout for advisory, scout, audit, or external worker lanes. Count only stream-mode Task/Agent evidence with completed task notifications, receipt paths, model/cost metadata, and a usable returned artifact. Treat Claude output as external worker evidence, not Codex-native subagent evidence.
-- Gemini may be used directly or through `omx ask gemini` for bounded scout, compare, and liveness lanes. Count it only when the command returns a durable receipt or artifact containing prompt hash/route, model, exit status, stdout/stderr or JSON output, and conclusion/open fields.
-- OMX `ask` and `sparkshell` are valid worker/tool surfaces from the Codex App shell when they return artifacts or bounded command output. OMX `team` is valid only inside a tmux leader pane with a running tmux server/session; outside that environment, mark the team wave `blocked` and use another honest pool for independent work.
-- Tmux presence alone is not team execution. A tmux/OMX route counts only when a pane/session id, command, exit state, and output/receipt artifact are recorded.
+- Gemini may be used directly for bounded scout, compare, and liveness lanes. Count it only when the command returns a durable receipt or artifact containing prompt hash/route, model, exit status, stdout/stderr or JSON output, and conclusion/open fields.
+- OMX is disabled for this repository. Do not use `omx ask`, `omx sparkshell`, `omx team`, or OMX-managed Gemini routes for worker, scout, tool, or receipt evidence. If a task proposes OMX, mark that route `blocked_disabled` and use Codex native subagents, Claude Bridge, direct Gemini, tmux with explicit non-OMX receipts, or local tools instead.
+- Tmux presence alone is not team execution. A tmux route counts only when a pane/session id, command, exit state, and output/receipt artifact are recorded.
 - Mixed-pool worker receipts must pass `scripts/validate_wizard_worker_receipts.py` before their counts are accepted into Wizard v4.2 topology. External pools stay external evidence even when accepted; they do not become Codex-native subagents.
-- Header counts must always show completed/required parent subagents and completed/current-obligation child subsubagents. If child routes were expected but not launched, do not write `children:0/0 not-run`; show the missed obligation, such as `children:0/3 not-run`. When a response relies on more than one pool, put the pool split in Results or an optional diagnostic line: `codex-native`, `claude-bridge`, `gemini`, `omx/tmux`, and `tools`.
+- Header counts must always show completed/required parent subagents and completed/current-obligation child subsubagents. If child routes were expected but not launched, do not write `children:0/0 not-run`; show the missed obligation, such as `children:0/3 not-run`. When a response relies on more than one pool, put the pool split in Results or an optional diagnostic line: `codex-native`, `claude-bridge`, `gemini`, `tmux`, and `tools`.
 - A rerouted duplicate can keep the work moving, but the original stalled route remains pending/blocked until its own receipt resolves or it is explicitly abandoned.
 
 Parent/child authority:

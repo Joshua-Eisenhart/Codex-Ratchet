@@ -1,15 +1,15 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T02:21:54.761838+00:00`
+Generated: `2026-05-13T02:26:18.395231+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `55`
-- Passing rows: `55`
+- Rows: `56`
+- Passing rows: `56`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `55`
+- Explicit receipt schemas missing: `56`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -39,6 +39,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `gudhi` | SimplexTree, Rips/filtration persistence and Betti summaries | `system_v4/probes/a2_state/sim_results/gudhi_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `persistence_geometry`, `concurrence_measure` |
 | `gudhi` | gudhi.SimplexTree insert/assign_filtration/persistence on a tiny filtered complex | `system_v4/probes/a2_state/sim_results/sim_gudhi_simplex_persistence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `persistence_geometry`, `cell_complex_geometry` |
 | `gudhi` | gudhi.SimplexTree insert/make_filtration_non_decreasing/compute_persistence over PyTorch-derived concurrence and I_c filtrations | `system_v4/probes/a2_state/sim_results/gudhi_concurrence_filtration_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `concurrence_measure`, `persistence_geometry` |
+| `gudhi` | gudhi.SimplexTree insert/compute_persistence(persistence_dim_max=True)/betti_numbers over explicit torus and cycle complexes | `system_v4/probes/a2_state/sim_results/gudhi_hopf_torus_fiber_base_homology_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `hopf_torus_fiber_base_homology_baseline` |
 | `toponetx` | CellComplex/SimplicialComplex rank cells and incidence_matrix | `system_v4/probes/a2_state/sim_results/toponetx_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `state_class_binding_geometry`, `cell_complex_geometry` |
 | `toponetx` | CellComplex rank-2 cell incidence_matrix(2) | `system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `cell_complex_geometry`, `hypergraph_shell_geometry` |
 | `toponetx` | SimplicialComplex.to_hasse_graph node/edge carrier feeding PyG graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `topology_to_graph_fit`, `cell_complex_geometry` |

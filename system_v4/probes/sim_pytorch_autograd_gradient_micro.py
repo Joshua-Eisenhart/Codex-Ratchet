@@ -292,6 +292,51 @@ def build_results() -> dict[str, Any]:
             "C5 non-scalar output without grad_outputs is excluded",
             "C6 flat-axis zero gradient is admitted as boundary",
         ],
+        "operation_sequence": [
+            "construct a three-coordinate float64 tensor with requires_grad=True",
+            "evaluate one weighted quadratic scalar constraint with a cross term",
+            "call torch.autograd.grad with create_graph=True for the first derivative",
+            "differentiate first-derivative coordinates to read second-derivative diagonal entries",
+            "run detached-input and non-scalar-output misuse controls",
+            "run a zero-weight coordinate boundary control",
+        ],
+        "carrier_topology": (
+            "three-coordinate real tensor carrier for one scalar differentiable constraint; "
+            "no graph, density matrix, manifold, or coupled tool carrier"
+        ),
+        "observable": (
+            "first-derivative vector, second-derivative diagonal entries, input .grad mutation state, "
+            "runtime misuse exceptions, and zero-gradient boundary value"
+        ),
+        "pass_fail_predicate": (
+            "autograd gradient equals analytic gradient, second derivatives match the weighted quadratic diagonal, "
+            "input .grad remains unset, misuse controls raise RuntimeError, and zero-weight coordinate gives zero gradient"
+        ),
+        "graveyards": [
+            "detached tensor input is rejected",
+            "non-scalar output without grad_outputs is rejected",
+            "zero-weight coordinate remains zero rather than inventing sensitivity",
+        ],
+        "baselines": [
+            "closed-form weighted quadratic gradient",
+            "closed-form weighted quadratic Hessian diagonal",
+            "PyTorch runtime error behavior for invalid autograd requests",
+        ],
+        "alternative_formulations": [
+            "torch.Tensor.backward scalar-gradient fixture",
+            "torch.func jacrev/hessian fixture",
+            "SymPy exact derivative companion for the same scalar constraint",
+            "downstream density-entropy gradient fixture",
+        ],
+        "tool_function_needs": {
+            "pytorch": [
+                "torch.tensor",
+                "Tensor.square",
+                "torch.autograd.grad",
+                "torch.allclose",
+            ]
+        },
+        "lego_coupling_target": "differentiable_constraint_micro",
         "surviving_alternatives": [
             "PyG MessagePassing/autograd should remain a separate MICRO row",
             "density-matrix entropy gradients should remain a downstream fixture",

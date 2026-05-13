@@ -1,15 +1,15 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T03:06:11.054815+00:00`
+Generated: `2026-05-13T03:09:20.937823+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `68`
-- Passing rows: `68`
+- Rows: `69`
+- Passing rows: `69`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `68`
+- Explicit receipt schemas missing: `69`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -53,6 +53,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `xgi` | XGI hyperedge incidence matched to TopoNetX rank-2 cells | `system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `cell_complex_geometry` |
 | `rustworkx` | rustworkx PyDiGraph DAG construction, topological_sort, transitive_reduction, dijkstra_shortest_paths, cycle detection | `system_v4/probes/a2_state/sim_results/rustworkx_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_shell_geometry`, `dependency_dag_and_collapse` |
 | `rustworkx` | rustworkx PyDiGraph descendants/topological_sort/shortest_path reachability on a tiny DAG | `system_v4/probes/a2_state/sim_results/sim_rustworkx_dag_reachability_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `dependency_dag_and_collapse`, `graph_shell_geometry` |
+| `rustworkx` | rustworkx PyDiGraph topological_sort/ancestors/descendants/transitive_reduction over Hopf receipt dependency DAG | `system_v4/probes/a2_state/sim_results/rustworkx_hopf_receipt_dependency_reduction_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `receipt_dependency_dag_controls` |
 | `scipy` | scipy.linalg.eigvalsh, scipy.optimize.minimize, scipy.spatial.distance.cdist, and scipy.stats.entropy baseline controls | `system_v4/probes/a2_state/sim_results/sim_capability_scipy_isolated_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `classical_spectral_baseline`, `classical_distance_entropy_baseline` |
 | `scipy` | scipy.integrate.solve_ivp numerical Hopf horizontal-lift chi-shift ODE over base latitude loops | `system_v4/probes/a2_state/sim_results/scipy_hopf_horizontal_lift_chi_shift_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_loop_holonomy_geometry_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `numpy` | numpy complex arrays, exp, outer, trace, linalg.norm, and unwrap over sampled Hopf-coordinate carrier paths | `system_v4/probes/a2_state/sim_results/hopf_weyl_inner_outer_loop_readout_geometry_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `classical_hopf_path_metric_baseline` |

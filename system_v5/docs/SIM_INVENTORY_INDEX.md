@@ -1,23 +1,23 @@
 # Sim Inventory Index
 
-Generated: `2026-05-13T16:05:36.640064+00:00`
+Generated: `2026-05-13T16:15:38.875219+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
-- Sim source files indexed: `4030`
-- Result JSON files seen: `2951`
-- Linked result JSON files: `912`
+- Sim source files indexed: `4031`
+- Result JSON files seen: `2952`
+- Linked result JSON files: `913`
 - Unlinked result JSON files: `2039`
 - Wizard-admitted stems: `112`
-- Repair / rerun candidate rows: `749`
+- Repair / rerun candidate rows: `750`
 - Source-only rows: `3168`
 
 ## Inventory Status Counts
 
 - `source_only`: 3168
-- `rerun_or_admission_candidate`: 540
+- `rerun_or_admission_candidate`: 541
 - `contract_shaped_but_tool_depth_thin`: 185
 - `admitted`: 112
 - `legacy_result_or_repair_needed`: 24
@@ -35,7 +35,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `gerbe_dirac_mera_spectral`: 671
 - `hopf_torus`: 652
 - `entropy_information`: 595
-- `density_carrier`: 509
+- `density_carrier`: 510
 - `thermo_engine`: 452
 - `graph_topology`: 411
 - `uncategorized`: 342
@@ -57,7 +57,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `pyg`: 71
 - `scipy`: 65
 - `e3nn`: 59
-- `qutip`: 43
+- `qutip`: 44
 - `qiskit`: 19
 - `networkx`: 5
 

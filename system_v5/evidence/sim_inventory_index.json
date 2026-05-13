@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-13T16:05:36.640064+00:00",
+  "generated_at": "2026-05-13T16:15:38.875219+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 4030,
-    "result_json_count": 2951,
-    "linked_result_json_count": 912,
+    "source_count": 4031,
+    "result_json_count": 2952,
+    "linked_result_json_count": 913,
     "unlinked_result_json_count": 2039,
     "admitted_count": 112,
     "admission_repair_count": 1,
     "status_counts": {
       "source_only": 3168,
-      "rerun_or_admission_candidate": 540,
+      "rerun_or_admission_candidate": 541,
       "admitted": 112,
       "legacy_result_or_repair_needed": 24,
       "contract_shaped_but_tool_depth_thin": 185,
@@ -28,20 +28,20 @@
       "hopf_torus": 652,
       "weyl_spinor_clifford": 811,
       "geometry_gstack_gtower": 740,
-      "density_carrier": 509,
+      "density_carrier": 510,
       "classical_baseline": 1149,
       "gerbe_dirac_mera_spectral": 671,
       "graph_topology": 411,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2759,
+      "numpy": 2760,
       "sympy": 2272,
       "scipy": 256,
       "pytorch": 1994,
       "pyg": 846,
       "cvc5": 1331,
-      "qutip": 55,
+      "qutip": 56,
       "e3nn": 846,
       "gudhi": 902,
       "z3": 1921,
@@ -56,7 +56,7 @@
     "load_bearing_tool_counts": {
       "numpy": 263,
       "e3nn": 59,
-      "qutip": 43,
+      "qutip": 44,
       "cvc5": 515,
       "pytorch": 1105,
       "rustworkx": 285,
@@ -73,7 +73,7 @@
       "networkx": 5
     },
     "result_classification_counts": {
-      "classical_baseline": 337,
+      "classical_baseline": 338,
       "tool_lego_fit_probe": 36,
       "canonical": 406,
       "supporting": 13,
@@ -86,7 +86,7 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 749,
+    "repair_candidate_count": 750,
     "source_only_count": 3168
   },
   "admitted_stems": [
@@ -108367,6 +108367,37 @@
       "late_stage_signal": true,
       "has_contract_shape": true,
       "inventory_status": "contract_shaped_but_tool_depth_thin"
+    },
+    {
+      "stem": "sim_qutip_global_relative_phase_density_transport_nonpole_sweep",
+      "source_path": "system_v4/probes/sim_qutip_global_relative_phase_density_transport_nonpole_sweep.py",
+      "families": [
+        "density_carrier"
+      ],
+      "tools": {
+        "numpy": "supportive",
+        "qutip": "load_bearing"
+      },
+      "load_bearing_tools": [
+        "qutip"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/qutip_global_relative_phase_density_transport_nonpole_sweep_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
     },
     {
       "stem": "sim_qutip_hopf_fiber_base_density_readout",

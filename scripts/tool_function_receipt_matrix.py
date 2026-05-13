@@ -508,6 +508,17 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["nested_hopf_torus_loop_geometry_baseline", "receipt_dependency_dag_controls"],
     },
     {
+        "tool": "rustworkx",
+        "function_api": "rustworkx PyGraph add_node/add_edge/number_connected_components/is_connected/cycle_basis over Hopf/Weyl vertical fiber and horizontal base-lift Bloch-density readout cycle graphs",
+        "receipt": "system_v4/probes/a2_state/sim_results/rustworkx_hopf_weyl_vertical_horizontal_density_readout_cycle_graph_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_carrier_loop_geometry_baseline",
+            "density_readout_cycle_graph_baseline",
+        ],
+    },
+    {
         "tool": "scipy",
         "function_api": "scipy.linalg.eigvalsh, scipy.optimize.minimize, scipy.spatial.distance.cdist, and scipy.stats.entropy baseline controls",
         "receipt": "system_v4/probes/a2_state/sim_results/sim_capability_scipy_isolated_results.json",

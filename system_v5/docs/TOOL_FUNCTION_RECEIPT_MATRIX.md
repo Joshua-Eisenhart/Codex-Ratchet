@@ -1,15 +1,15 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T02:40:39.023937+00:00`
+Generated: `2026-05-13T02:43:40.963175+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `61`
-- Passing rows: `61`
+- Rows: `62`
+- Passing rows: `62`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `61`
+- Explicit receipt schemas missing: `62`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -32,6 +32,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `qutip` | qutip entropy_vn / tensor density operators for mutual-information microfit | `system_v4/probes/a2_state/sim_results/mutual_information_qutip_microfit_results.json` | `tool_lego_fit_probe` | `bridge_useful` | `load_bearing` | `True` | `mutual_information_measure`, `density_matrix_object` |
 | `qutip` | qutip Qobj/ket2dm/expect/sigmax/sigmay/sigmaz density readouts over sampled Hopf-coordinate carrier paths | `system_v4/probes/a2_state/sim_results/qutip_hopf_inner_outer_density_readout_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `density_object_path_readout_baseline` |
 | `qutip` | qutip basis/ket2dm/projector/Qobj branch updates/sigmax/expect over two-level measurement-feedback-erasure calibration | `system_v4/probes/a2_state/sim_results/qutip_two_level_measure_feedback_erasure_bounds_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `information_work_erasure_cycle_calibration_fixture`, `two_level_density_branch_feedback_baseline` |
+| `qutip` | qutip basis/ket2dm/destroy/mesolve/expect/entropy_vn over two-level thermal-reset erasure-floor calibration | `system_v4/probes/a2_state/sim_results/qutip_two_level_thermal_reset_erasure_floor_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `thermal_reset_erasure_floor_calibration_fixture`, `two_level_dissipative_reset_baseline` |
 | `qiskit` | QuantumCircuit, Statevector, DensityMatrix, Operator expectation_value | `system_v4/probes/a2_state/sim_results/qiskit_capability_results.json` | `canonical` | `bridge_useful` | `load_bearing` | `True` | `unitary_channel_map`, `density_matrix_object` |
 | `qiskit` | qiskit Statevector, DensityMatrix, and Operator expectation_value density readouts over sampled Hopf-coordinate carrier paths | `system_v4/probes/a2_state/sim_results/qiskit_hopf_inner_outer_density_readout_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `density_object_path_readout_baseline` |
 | `qiskit` | qiskit DensityMatrix/Operator projectors and unitary branch updates over two-level measurement-feedback-erasure calibration | `system_v4/probes/a2_state/sim_results/qiskit_two_level_measure_feedback_erasure_bounds_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `information_work_erasure_cycle_calibration_fixture`, `two_level_density_branch_feedback_baseline` |

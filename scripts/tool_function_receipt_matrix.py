@@ -528,6 +528,14 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "sympy",
+        "function_api": "sympy Matrix/exp/diff/simplify/subs for declared Weyl-sheet orientation signs in Hopf-coordinate density derivative ratios",
+        "receipt": "system_v4/probes/a2_state/sim_results/sympy_weyl_sheet_hopf_loop_derivative_sign_results.json",
+        "role": "classical_baseline",
+        "depth": "supportive",
+        "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "sheet_loop_product_readout_separation_baseline"],
+    },
+    {
+        "tool": "sympy",
         "function_api": "sympy diff/integrate/simplify exact Hopf U(1) connection curvature and first-Chern integral",
         "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_connection_curvature_c1_integral_results.json",
         "role": "classical_baseline",

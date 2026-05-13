@@ -139,6 +139,17 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "density_object_path_readout_baseline"],
     },
     {
+        "tool": "qutip",
+        "function_api": "qutip basis/ket2dm/projector/Qobj branch updates/sigmax/expect over two-level measurement-feedback-erasure calibration",
+        "receipt": "system_v4/probes/a2_state/sim_results/qutip_two_level_measure_feedback_erasure_bounds_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "information_work_erasure_cycle_calibration_fixture",
+            "two_level_density_branch_feedback_baseline",
+        ],
+    },
+    {
         "tool": "qiskit",
         "function_api": "QuantumCircuit, Statevector, DensityMatrix, Operator expectation_value",
         "receipt": "system_v4/probes/a2_state/sim_results/qiskit_capability_results.json",

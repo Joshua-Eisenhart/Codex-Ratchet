@@ -8,6 +8,7 @@ import math
 from pathlib import Path
 
 import numpy as np
+from receipt_boundary import apply_default_receipt_boundary
 
 
 NAME = "hopf_weyl_inner_outer_loop_readout_geometry"
@@ -194,13 +195,14 @@ def main() -> int:
         "classification": CLASSIFICATION,
         "all_pass": all_pass,
         "claim_ceiling": (
-            "classical sampled Hopf-coordinate carrier geometry baseline only; no QIT, GStack, axis, "
-            "bridge, nonclassical, target-system, or full geometric-constraint-manifold admission"
+            "classical sampled Hopf-coordinate carrier readout baseline only; no physical inner/outer loop "
+            "independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, "
+            "or full geometric-constraint-manifold admission"
         ),
         "next_lego_target": "inner_outer_hopf_weyl_loop_geometry_fit",
         "promotion_condition": (
             "May only support later geometry planning after independent symbolic or operator-evolution receipts "
-            "reproduce the inner density-stationary and outer density-traversing distinction with the same graveyards."
+            "reproduce compatible declared-path readouts with the same graveyards."
         ),
         "demotion_condition": (
             "Demote if the inner loop varies in density, if the outer loop stops traversing density away from the pole, "
@@ -216,8 +218,9 @@ def main() -> int:
             "No claim that flux is represented; only a carrier-loop readout baseline is represented.",
         ],
         "divergence_log": (
-            "Numpy sampled complex-vector geometry is a classical baseline. It can show that the declared Hopf-coordinate "
-            "inner and outer paths have different density readouts, but it cannot admit a target-system structure."
+            "Numpy sampled complex-vector geometry is a classical baseline. It can show different readouts for "
+            "declared Hopf-coordinate paths, but it does not prove physical loop independence or admit a "
+            "target-system structure."
         ),
         "operation_sequence": [
             "construct normalized two-component complex carrier states in Hopf-style coordinates",
@@ -262,6 +265,7 @@ def main() -> int:
         "promotion_allowed": False,
         "pass": all_pass,
     }
+    results = apply_default_receipt_boundary(results, source_name=f"sim_{NAME}")
     out_path = RESULTS_DIR / f"{NAME}_results.json"
     out_path.write_text(json.dumps(results, indent=2, sort_keys=True), encoding="utf-8")
     print(f"Results written to {out_path}")

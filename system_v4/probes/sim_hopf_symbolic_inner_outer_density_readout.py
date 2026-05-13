@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 import sympy as sp
+from receipt_boundary import apply_default_receipt_boundary
 
 
 NAME = "hopf_symbolic_inner_outer_density_readout"
@@ -105,8 +106,9 @@ def main() -> int:
         "classification": CLASSIFICATION,
         "all_pass": all_pass,
         "claim_ceiling": (
-            "classical symbolic Hopf-coordinate density-readout baseline only; no QIT, GStack, axis, "
-            "bridge, nonclassical, target-system, or full geometric-constraint-manifold admission"
+            "classical symbolic Hopf-coordinate density-readout identity baseline only; no physical inner/outer "
+            "loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, "
+            "or full geometric-constraint-manifold admission"
         ),
         "next_lego_target": "inner_outer_hopf_weyl_loop_geometry_fit",
         "promotion_condition": (
@@ -128,7 +130,7 @@ def main() -> int:
         ],
         "divergence_log": (
             "SymPy exact coordinate algebra is a classical baseline. It proves only local coordinate identities for "
-            "the declared Hopf-style carrier."
+            "the declared Hopf-style carrier and does not prove physical loop independence."
         ),
         "operation_sequence": [
             "construct symbolic normalized two-component carrier in Hopf-style coordinates",
@@ -168,6 +170,7 @@ def main() -> int:
         "promotion_allowed": False,
         "pass": all_pass,
     }
+    results = apply_default_receipt_boundary(results, source_name=f"sim_{NAME}")
     out_path = RESULTS_DIR / f"{NAME}_results.json"
     out_path.write_text(json.dumps(results, indent=2, sort_keys=True), encoding="utf-8")
     print(f"Results written to {out_path}")

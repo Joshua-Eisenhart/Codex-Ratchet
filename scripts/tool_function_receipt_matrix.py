@@ -265,6 +265,17 @@ TARGETS: list[dict[str, Any]] = [
         ],
     },
     {
+        "tool": "qiskit",
+        "function_api": "qiskit DensityMatrix/Operator over two-level thermal endpoint states and hot/cold Hamiltonian gap-change work/heat accounting",
+        "receipt": "system_v4/probes/a2_state/sim_results/qiskit_two_level_two_bath_gap_change_work_heat_bounds_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "work_heat_cycle_calibration_fixture",
+            "two_level_density_work_heat_baseline",
+        ],
+    },
+    {
         "tool": "clifford",
         "function_api": "Cl(3)/Cl(6) layout blades, rotor products, grade/scalar extraction",
         "receipt": "system_v4/probes/a2_state/sim_results/clifford_capability_results.json",

@@ -19,7 +19,6 @@ CLAIM_LABEL_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("bridge", re.compile(r"^bridge$")),
     ("qit", re.compile(r"^qit$")),
     ("gstack", re.compile(r"^gstack$")),
-    ("flux", re.compile(r"^flux$")),
     ("engine", re.compile(r"^engine$")),
     ("type1", re.compile(r"^type1$")),
     ("type2", re.compile(r"^type2$")),
@@ -30,6 +29,10 @@ CLAIM_LABEL_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("iching", re.compile(r"^iching$")),
     ("igt", re.compile(r"^igt$")),
     ("fep", re.compile(r"^fep$")),
+)
+
+CLAIM_PHRASE_PATTERNS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("flux_to_pauli", ("flux", "to", "pauli")),
 )
 
 
@@ -43,6 +46,11 @@ def matched_claim_labels(name: str) -> list[str]:
     for label, pattern in CLAIM_LABEL_PATTERNS:
         if any(pattern.match(token) for token in tokens):
             matches.append(label)
+    for label, phrase in CLAIM_PHRASE_PATTERNS:
+        for idx in range(0, len(tokens) - len(phrase) + 1):
+            if tuple(tokens[idx : idx + len(phrase)]) == phrase:
+                matches.append(label)
+                break
     return matches
 
 

@@ -76,9 +76,9 @@ def test_direct_sim_semantic_guard_rejects_claim_layer_basename(tmp_path: Path) 
     assert result == 1
 
 
-def test_direct_sim_semantic_guard_rejects_flux_basename(tmp_path: Path) -> None:
+def test_direct_sim_semantic_guard_rejects_flux_to_pauli_shortcut_basename(tmp_path: Path) -> None:
     guard = _load_module(
-        "direct_sim_semantic_guard_flux_under_test",
+        "direct_sim_semantic_guard_flux_to_pauli_under_test",
         SCRIPTS / "direct_sim_semantic_guard.py",
     )
     probes = tmp_path / "probes"
@@ -98,6 +98,30 @@ def test_direct_sim_semantic_guard_rejects_flux_basename(tmp_path: Path) -> None
     )
 
     assert result == 1
+
+
+def test_direct_sim_semantic_guard_accepts_geometric_flux_basename(tmp_path: Path) -> None:
+    guard = _load_module(
+        "direct_sim_semantic_guard_geometric_flux_under_test",
+        SCRIPTS / "direct_sim_semantic_guard.py",
+    )
+    probes = tmp_path / "probes"
+    probes.mkdir()
+    (probes / "sim_geometric_constraint_flux_orientation_fixture.py").write_text(
+        "print('fixture')\n",
+        encoding="utf-8",
+    )
+
+    result = guard.main(
+        [
+            "--name",
+            "sim_geometric_constraint_flux_orientation_fixture",
+            "--probes-dir",
+            str(probes),
+        ]
+    )
+
+    assert result == 0
 
 
 def test_direct_sim_semantic_guard_accepts_literal_cycle_basename(tmp_path: Path) -> None:

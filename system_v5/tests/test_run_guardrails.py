@@ -100,6 +100,54 @@ def test_direct_sim_semantic_guard_rejects_axis3_basename(tmp_path: Path) -> Non
     assert result == 1
 
 
+def test_direct_sim_semantic_guard_rejects_ax4_shorthand_basename(tmp_path: Path) -> None:
+    guard = _load_module(
+        "direct_sim_semantic_guard_ax4_under_test",
+        SCRIPTS / "direct_sim_semantic_guard.py",
+    )
+    probes = tmp_path / "probes"
+    probes.mkdir()
+    (probes / "sim_ax4_loop_ordering_probe.py").write_text(
+        "print('must not run')\n",
+        encoding="utf-8",
+    )
+
+    result = guard.main(
+        [
+            "--name",
+            "sim_ax4_loop_ordering_probe",
+            "--probes-dir",
+            str(probes),
+        ]
+    )
+
+    assert result == 1
+
+
+def test_direct_sim_semantic_guard_rejects_axes_plural_basename(tmp_path: Path) -> None:
+    guard = _load_module(
+        "direct_sim_semantic_guard_axes_under_test",
+        SCRIPTS / "direct_sim_semantic_guard.py",
+    )
+    probes = tmp_path / "probes"
+    probes.mkdir()
+    (probes / "sim_both_engines_axes_0_to_7_full_geometry.py").write_text(
+        "print('must not run')\n",
+        encoding="utf-8",
+    )
+
+    result = guard.main(
+        [
+            "--name",
+            "sim_both_engines_axes_0_to_7_full_geometry",
+            "--probes-dir",
+            str(probes),
+        ]
+    )
+
+    assert result == 1
+
+
 def test_direct_sim_semantic_guard_rejects_type_sheet_as_sim_label(tmp_path: Path) -> None:
     guard = _load_module(
         "direct_sim_semantic_guard_type_sheet_under_test",

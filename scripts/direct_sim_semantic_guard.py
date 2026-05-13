@@ -16,6 +16,8 @@ BYPASS_SENTINEL = REPO_ROOT / "system_v5" / "ops" / "wizard_admissions" / "direc
 
 CLAIM_LABEL_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("axis", re.compile(r"^axis\d*$")),
+    ("axes", re.compile(r"^axes$")),
+    ("ax", re.compile(r"^ax\d+$")),
     ("bridge", re.compile(r"^bridge$")),
     ("qit", re.compile(r"^qit$")),
     ("gstack", re.compile(r"^gstack$")),

@@ -194,6 +194,17 @@ TARGETS: list[dict[str, Any]] = [
         ],
     },
     {
+        "tool": "qutip",
+        "function_api": "qutip basis/ket2dm/expect/Qobj.tr over two-level thermal endpoint states and hot/cold Hamiltonian gap-change work/heat accounting",
+        "receipt": "system_v4/probes/a2_state/sim_results/qutip_two_level_two_bath_gap_change_work_heat_bounds_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "work_heat_cycle_calibration_fixture",
+            "two_level_density_work_heat_baseline",
+        ],
+    },
+    {
         "tool": "qiskit",
         "function_api": "QuantumCircuit, Statevector, DensityMatrix, Operator expectation_value",
         "receipt": "system_v4/probes/a2_state/sim_results/qiskit_capability_results.json",

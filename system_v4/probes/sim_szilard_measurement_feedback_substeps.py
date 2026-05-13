@@ -16,11 +16,12 @@ import pathlib
 import numpy as np
 
 
-CLASSIFICATION = "exploratory"
+CLASSIFICATION = "classical_baseline"
 classification = CLASSIFICATION
 divergence_log = (
     "Open-lab Szilard substep baseline for measurement, feedback, and reset "
-    "ordering. It is a classical binary-control baseline, not a QIT carrier."
+    "ordering. It is a classical binary-control baseline, not a QIT carrier "
+    "or feedback-engine admission."
 )
 
 LEGO_IDS = ["szilard_cycle", "landauer_erasure", "stochastic_thermodynamics"]
@@ -29,7 +30,7 @@ PRIMARY_LEGO_IDS = ["szilard_cycle"]
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "binary probability and entropy bookkeeping"},
 }
-TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"
@@ -131,7 +132,58 @@ def main() -> None:
         "name": "szilard_measurement_feedback_substeps",
         "classification": CLASSIFICATION,
         "classification_note": divergence_log,
+        "all_pass": bool(all_pass),
         "divergence_log": divergence_log,
+        "claim_ceiling": (
+            "classical binary measurement-feedback-reset ordering calibration only; "
+            "no QIT, GStack, bridge, axis, nonclassical, or runtime-engine admission"
+        ),
+        "next_lego_target": (
+            "explicit measurement-feedback-erasure calibration with work and erasure-cost observables "
+            "plus no-measurement, no-feedback, no-erasure, and random-feedback companions"
+        ),
+        "promotion_condition": (
+            "No promotion from this receipt; downstream calibration must couple ordering, work extraction, "
+            "and erasure cost with independent graveyard controls."
+        ),
+        "demotion_condition": (
+            "Demote if scrambled orderings are not worse than ordered measurement-feedback-reset, "
+            "or if this receipt is used as QIT/GStack/axis/nonclassical evidence."
+        ),
+        "blocked_until": (
+            "blocked from engine, QIT, GStack, bridge, axis, nonclassical, or feedback-cycle claims "
+            "until separate exact calibration receipts close those gates"
+        ),
+        "out_of_scope": [
+            "No quantum carrier.",
+            "No erasure heat integral.",
+            "No QIT, GStack, bridge, axis, engine, or nonclassical claim.",
+        ],
+        "operation_sequence": [
+            "measurement updates record quality",
+            "feedback reads record quality into system bias",
+            "reset decays record quality",
+            "scrambled order controls compare final entropy",
+        ],
+        "carrier_topology": "classical binary system plus classical binary record",
+        "observable": "measurement mutual information, mean work proxy, final entropy, record quality, and scrambled-order entropy",
+        "pass_fail_predicate": "ordered measurement-feedback-reset creates useful record and beats feedback-first, reset-first, and measurement-reset-feedback controls",
+        "graveyards": [
+            "feedback before measurement",
+            "reset before feedback",
+            "measurement then reset then feedback",
+        ],
+        "baselines": [
+            "classical binary entropy bookkeeping",
+            "zero-record feedback control",
+        ],
+        "alternative_formulations": [
+            "explicit Landauer erasure heat stage",
+            "random-feedback companion",
+            "repeated-cycle no-erasure companion",
+        ],
+        "exact_tool_function_needs": {"numpy": ["isfinite"]},
+        "lego_or_coupling_target": "classical measurement-feedback-reset ordering calibration support",
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

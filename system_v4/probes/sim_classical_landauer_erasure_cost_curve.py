@@ -21,11 +21,12 @@ SCOPE_NOTE = (
     "Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md "
     "(Landauer section): E_erase >= kT * Delta H."
 )
-classification = "canonical"
+classification = "classical_baseline"
 divergence_log = (
     "Landauer erasure curve: the bit-erase cost is H(p) for a one-bit "
     "carrier, and qutip/cirq/pennylane witness the same diagonal carrier "
-    "state instead of redefining the cost."
+    "state instead of redefining the cost. This is classical erasure-cost "
+    "calibration only, not feedback-cycle or QIT-engine evidence."
 )
 
 TOOL_MANIFEST = {
@@ -52,10 +53,10 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
-    "qutip": "load_bearing",
-    "cirq": "load_bearing",
-    "pennylane": "load_bearing",
+    "numpy": "supportive",
+    "qutip": "supportive",
+    "cirq": "supportive",
+    "pennylane": "supportive",
 }
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
@@ -244,7 +245,70 @@ if __name__ == "__main__":
         "name": NAME,
         "scope_note": SCOPE_NOTE,
         "classification": classification,
+        "all_pass": bool(ok),
+        "claim_ceiling": (
+            "classical one-bit erasure-cost curve only: E >= kT Delta H with density-carrier "
+            "entropy witnesses; no Szilard feedback cycle, QIT, GStack, bridge, axis, or nonclassical claim"
+        ),
+        "next_lego_target": (
+            "none; use as a baseline before measurement-feedback-erasure calibration with explicit "
+            "record, feedback, erasure, and Landauer graveyard companions"
+        ),
+        "promotion_condition": (
+            "No promotion from this receipt; downstream calibration must implement explicit "
+            "feedback-cycle ordering and no-measurement/no-feedback/no-erasure/random-feedback graveyards."
+        ),
+        "demotion_condition": (
+            "Demote if free erasure is not rejected, entropy witnesses disagree with H(p), "
+            "or this receipt is used as evidence for QIT or cycle admission."
+        ),
+        "blocked_until": (
+            "blocked from engine, QIT, GStack, bridge, axis, nonclassical, or feedback-cycle claims "
+            "until separate exact calibration receipts close those gates"
+        ),
+        "out_of_scope": [
+            "No measurement-feedback loop.",
+            "No repeated-cycle accounting.",
+            "No QIT, GStack, bridge, axis, engine, or nonclassical claim.",
+        ],
         "divergence_log": divergence_log,
+        "divergence_details": [
+            "The cost value is a classical entropy formula over a diagonal one-bit carrier.",
+            "qutip, cirq, and pennylane witness the same density carrier but do not make the claim nonclassical.",
+            "A later calibration must add explicit record, feedback, erasure, and graveyard controls.",
+        ],
+        "operation_sequence": [
+            "construct diagonal one-bit carrier for population p",
+            "compute binary entropy H(p)",
+            "compare density-carrier entropy witnesses",
+            "reject free erasure at p = 0.5",
+            "check p approximately zero and p approximately one boundaries",
+        ],
+        "carrier_topology": "single classical bit represented by a 2x2 diagonal density carrier",
+        "observable": "erasure cost, density entropy, witness agreement, free-erasure rejection, and boundary costs",
+        "pass_fail_predicate": "classical cost and all witnesses equal H(p), free erasure below ln2 is rejected, and boundary states have near-zero entropy",
+        "graveyards": [
+            "free-erasure claim at p = 0.5",
+            "deterministic-bit boundary states",
+        ],
+        "baselines": [
+            "numpy binary entropy cost curve",
+            "qutip density entropy witness",
+            "cirq density entropy witness",
+            "pennylane density entropy witness",
+        ],
+        "alternative_formulations": [
+            "measurement-feedback-erasure calibration cycle",
+            "no-erasure repeated-cycle graveyard",
+            "random-feedback graveyard",
+        ],
+        "exact_tool_function_needs": {
+            "numpy": ["clip", "log", "isclose", "eigvalsh"],
+            "qutip": ["Qobj", "entropy_vn"],
+            "cirq": ["DensityMatrixSimulator"],
+            "pennylane": ["QubitDensityMatrix", "density_matrix"],
+        },
+        "lego_or_coupling_target": "none; classical erasure-cost calibration baseline only",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "load_bearing_tool": "numpy+qutip+cirq+pennylane",

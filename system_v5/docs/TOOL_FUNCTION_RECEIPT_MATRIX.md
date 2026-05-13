@@ -1,15 +1,15 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T02:08:29.549046+00:00`
+Generated: `2026-05-13T02:10:59.392045+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `51`
-- Passing rows: `51`
+- Rows: `52`
+- Passing rows: `52`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `51`
+- Explicit receipt schemas missing: `52`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -31,6 +31,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `qutip` | qutip entropy_vn / tensor density operators for mutual-information microfit | `system_v4/probes/a2_state/sim_results/mutual_information_qutip_microfit_results.json` | `tool_lego_fit_probe` | `bridge_useful` | `load_bearing` | `True` | `mutual_information_measure`, `density_matrix_object` |
 | `qutip` | qutip Qobj/ket2dm/expect/sigmax/sigmay/sigmaz density readouts over sampled Hopf-coordinate carrier paths | `system_v4/probes/a2_state/sim_results/qutip_hopf_inner_outer_density_readout_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `density_object_path_readout_baseline` |
 | `qiskit` | QuantumCircuit, Statevector, DensityMatrix, Operator expectation_value | `system_v4/probes/a2_state/sim_results/qiskit_capability_results.json` | `canonical` | `bridge_useful` | `load_bearing` | `True` | `unitary_channel_map`, `density_matrix_object` |
+| `qiskit` | qiskit Statevector, DensityMatrix, and Operator expectation_value density readouts over sampled Hopf-coordinate carrier paths | `system_v4/probes/a2_state/sim_results/qiskit_hopf_inner_outer_density_readout_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `density_object_path_readout_baseline` |
 | `clifford` | Cl(3)/Cl(6) layout blades, rotor products, grade/scalar extraction | `system_v4/probes/a2_state/sim_results/clifford_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `clifford_generator_basis`, `clifford_geometry` |
 | `clifford` | clifford Cl(3) rotor transport over SymPy-derived Weyl Bloch-vector fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_clifford_weyl_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `clifford_weyl_transport`, `weyl_spinor_geometry` |
 | `gudhi` | SimplexTree, Rips/filtration persistence and Betti summaries | `system_v4/probes/a2_state/sim_results/gudhi_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `persistence_geometry`, `concurrence_measure` |

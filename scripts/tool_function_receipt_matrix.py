@@ -419,6 +419,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["geometry_crosschecks_same_carrier", "gtower_so3_geometry"],
     },
     {
+        "tool": "geomstats",
+        "function_api": "geomstats Hypersphere(dim=2).metric.dist intrinsic path-length readouts over projected Hopf-coordinate loops",
+        "receipt": "system_v4/probes/a2_state/sim_results/geomstats_hopf_inner_outer_sphere_distance_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "projected_sphere_distance_baseline"],
+    },
+    {
         "tool": "e3nn",
         "function_api": "e3nn.o3.Irreps and D_from_matrix vector representation",
         "receipt": "system_v4/probes/a2_state/sim_results/e3nn_capability_results.json",

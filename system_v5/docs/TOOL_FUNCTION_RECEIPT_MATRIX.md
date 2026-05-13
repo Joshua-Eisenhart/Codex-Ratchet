@@ -1,15 +1,15 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T03:14:56.615628+00:00`
+Generated: `2026-05-13T03:20:18.837027+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `70`
-- Passing rows: `70`
+- Rows: `71`
+- Passing rows: `71`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `70`
+- Explicit receipt schemas missing: `71`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -51,6 +51,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `xgi` | xgi.Hypergraph hyperedge membership and shared incidence intersection | `system_v4/probes/a2_state/sim_results/xgi_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `dual_hypergraph_geometry` |
 | `xgi` | xgi.Hypergraph incidence matrix and node/edge membership on a tiny hypergraph | `system_v4/probes/a2_state/sim_results/sim_xgi_hypergraph_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `cell_complex_geometry` |
 | `xgi` | XGI hyperedge incidence matched to TopoNetX rank-2 cells | `system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `cell_complex_geometry` |
+| `xgi` | XGI Hypergraph named hyperedges, node memberships, edge memberships, incidence_matrix, and connected_components over Hopf receipt groups | `system_v4/probes/a2_state/sim_results/xgi_hopf_receipt_hyperedge_incidence_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `rustworkx` | rustworkx PyDiGraph DAG construction, topological_sort, transitive_reduction, dijkstra_shortest_paths, cycle detection | `system_v4/probes/a2_state/sim_results/rustworkx_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_shell_geometry`, `dependency_dag_and_collapse` |
 | `rustworkx` | rustworkx PyDiGraph descendants/topological_sort/shortest_path reachability on a tiny DAG | `system_v4/probes/a2_state/sim_results/sim_rustworkx_dag_reachability_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `dependency_dag_and_collapse`, `graph_shell_geometry` |
 | `rustworkx` | rustworkx PyDiGraph topological_sort/ancestors/descendants/transitive_reduction over Hopf receipt dependency DAG | `system_v4/probes/a2_state/sim_results/rustworkx_hopf_receipt_dependency_reduction_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `receipt_dependency_dag_controls` |

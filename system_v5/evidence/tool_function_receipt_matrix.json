@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T03:14:56.615628+00:00",
+  "generated_at": "2026-05-13T03:20:18.837027+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -1842,6 +1842,65 @@
       "receipt_schema_resolved": true,
       "receipt_schema_source": "inferred_from_required_receipt_fields",
       "role": "nonclassical_adjacent",
+      "tool": "xgi"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "nested_hopf_torus_loop_geometry_baseline",
+        "inner_outer_hopf_weyl_loop_geometry_fit"
+      ],
+      "claim_ceiling": "XGI hyperedge incidence baseline over Hopf receipt dependency groups only; no physical inner/outer loop independence, no full geometric-constraint-manifold, no QIT, GStack, axis, bridge, nonclassical, flux-to-Pauli, or target-system claim",
+      "depth": "load_bearing",
+      "function_api": "XGI Hypergraph named hyperedges, node memberships, edge memberships, incidence_matrix, and connected_components over Hopf receipt groups",
+      "manifest_reason": "Hypergraph, named hyperedges, edge memberships, node memberships, connected_components, and incidence_matrix check higher-order receipt grouping",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No physical Hopf/Weyl evolution.",
+        "No inner/outer loop independence result.",
+        "No full geometric-constraint-manifold implementation.",
+        "No flux representation or Pauli shortcut.",
+        "No QIT, GStack, axis, bridge, or nonclassical admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/xgi_hopf_receipt_hyperedge_incidence_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "hyperedges",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "receipts",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
       "tool": "xgi"
     },
     {
@@ -3725,11 +3784,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 70,
+    "passing_count": 71,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 70,
+    "receipt_schema_observed_missing_count": 71,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 70,
+    "row_count": 71,
     "tools": [
       "clifford",
       "cvc5",

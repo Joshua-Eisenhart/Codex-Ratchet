@@ -1,0 +1,256 @@
+{
+  "name": "sim_integration_networkx_pyg_graph_roundtrip_micro",
+  "probe_family": "networkx_pyg_graph_roundtrip_micro",
+  "constraint_set": "bounded_directed_graph_roundtrip_fixture",
+  "classification": "canonical",
+  "operation_sequence": [
+    "construct a bounded NetworkX DiGraph with node features and directed edges",
+    "convert NetworkX node order, features, and directed edges into PyG Data tensors",
+    "validate the PyG Data object",
+    "apply PyG MessagePassing.propagate with source-to-target sum aggregation",
+    "compare PyG incoming-neighbour sums against NetworkX predecessor sums",
+    "run reversed-orientation, duplicate/missing node-order, isolated-node, and empty-graph controls"
+  ],
+  "carrier_topology": "Finite directed graph fixture: NetworkX is the source graph representation, PyG Data is the tensor carrier, and edge orientation is preserved as edge_index source-to-target order.",
+  "observable": {
+    "primary": "PyG message output compared to NetworkX incoming-predecessor feature sums",
+    "secondary": [
+      "node and edge count preservation",
+      "node-order mapping dictionary",
+      "reversed edge-orientation output",
+      "duplicate and missing node-order rejection",
+      "isolated-node zero incoming message",
+      "empty graph Data shape"
+    ]
+  },
+  "pass_fail_predicate": "Pass iff NetworkX-to-PyG conversion preserves node mapping, edge orientation, node/edge counts, isolated nodes, and empty graph shape, while reversed orientation and invalid node-order controls are excluded.",
+  "graveyards": [
+    "reversed PyG edge orientation should not reproduce the NetworkX incoming-neighbour sums",
+    "duplicate node-order mapping should be rejected",
+    "missing node-order mapping should be rejected",
+    "isolated node should survive conversion with zero incoming message",
+    "empty NetworkX graph should become valid zero-node zero-edge PyG Data"
+  ],
+  "baselines": [
+    "NetworkX predecessor-sum baseline",
+    "PyG Data.validate baseline",
+    "reversed edge_index orientation baseline",
+    "invalid node-order mapping baseline",
+    "isolated-node and empty-graph boundary baselines"
+  ],
+  "alternative_formulations": [
+    "use an undirected NetworkX Graph converted to two directed PyG edges per edge",
+    "include edge attributes and compare weighted message passing",
+    "batch multiple NetworkX-derived PyG Data fixtures before pooling"
+  ],
+  "tool_function_needs": [
+    "networkx.DiGraph node and edge APIs for source fixture construction",
+    "DiGraph.predecessors for incoming-neighbour reference sums",
+    "torch_geometric.data.Data and Data.validate for graph tensor realization",
+    "torch_geometric.nn.MessagePassing.propagate for source-to-target aggregation"
+  ],
+  "lego_coupling_target": "bounded NetworkX-to-PyG graph handoff fixture before graph-cell or density-carrier lego promotion",
+  "claim_ceiling": "tool_tool_micro_integration_only",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "PyTorch is supportive: tensor storage, equality checks, and numeric message values carry the PyG execution."
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "PyG is load-bearing: Data.validate and MessagePassing.propagate produce the graph-handoff verdicts."
+    },
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "NetworkX is load-bearing: DiGraph nodes, features, and directed edges are the source graph that PyG must preserve."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates NetworkX-to-PyG graph conversion and message passing on a tiny directed fixture; proof, geometry, topology, optimization, lego, and bridge claims are out of scope."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates NetworkX-to-PyG graph conversion and message passing on a tiny directed fixture; proof, geometry, topology, optimization, lego, and bridge claims are out of scope."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates NetworkX-to-PyG graph conversion and message passing on a tiny directed fixture; proof, geometry, topology, optimization, lego, and bridge claims are out of scope."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates NetworkX-to-PyG graph conversion and message passing on a tiny directed fixture; proof, geometry, topology, optimization, lego, and bridge claims are out of scope."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates NetworkX-to-PyG graph conversion and message passing on a tiny directed fixture; proof, geometry, topology, optimization, lego, and bridge claims are out of scope."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates NetworkX-to-PyG graph conversion and message passing on a tiny directed fixture; proof, geometry, topology, optimization, lego, and bridge claims are out of scope."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates NetworkX-to-PyG graph conversion and message passing on a tiny directed fixture; proof, geometry, topology, optimization, lego, and bridge claims are out of scope."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates NetworkX-to-PyG graph conversion and message passing on a tiny directed fixture; proof, geometry, topology, optimization, lego, and bridge claims are out of scope."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates NetworkX-to-PyG graph conversion and message passing on a tiny directed fixture; proof, geometry, topology, optimization, lego, and bridge claims are out of scope."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this micro probe isolates NetworkX-to-PyG graph conversion and message passing on a tiny directed fixture; proof, geometry, topology, optimization, lego, and bridge claims are out of scope."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": "load_bearing",
+    "networkx": "load_bearing",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "prior_function_receipts": {
+    "pyg": "system_v4/probes/a2_state/sim_results/sim_pyg_message_passing_autograd_micro_results.json"
+  },
+  "positive": {
+    "networkx_edges_roundtrip_into_pyg_messages": {
+      "passed": true,
+      "networkx_reference": [
+        3.0,
+        1.0,
+        2.0
+      ],
+      "pyg_output": [
+        3.0,
+        1.0,
+        2.0
+      ],
+      "node_order": [
+        "a",
+        "b",
+        "c"
+      ],
+      "node_index": {
+        "a": 0,
+        "b": 1,
+        "c": 2
+      },
+      "edge_semantics": "NetworkX edge src->dst becomes PyG edge_index[0]->edge_index[1]"
+    },
+    "pyg_data_preserves_node_and_edge_counts": {
+      "passed": true,
+      "networkx_nodes": 3,
+      "pyg_num_nodes": 3,
+      "networkx_edges": 3,
+      "pyg_edge_index_shape": [
+        2,
+        3
+      ]
+    }
+  },
+  "negative": {
+    "reversed_orientation_excluded": {
+      "passed": true,
+      "forward_expected_output": [
+        3.0,
+        1.0,
+        2.0
+      ],
+      "reversed_edge_output": [
+        2.0,
+        3.0,
+        1.0
+      ],
+      "exclusion_note": "The NetworkX-to-PyG edge orientation is load-bearing."
+    },
+    "duplicate_or_missing_node_mapping_excluded": {
+      "passed": true,
+      "duplicate_error": "node_order must contain each NetworkX node exactly once",
+      "missing_error": "node_order must contain each NetworkX node exactly once",
+      "exclusion_note": "A node mapping must cover each graph node exactly once."
+    }
+  },
+  "boundary": {
+    "isolated_node_is_preserved_with_zero_incoming_message": {
+      "passed": true,
+      "node_order": [
+        "source",
+        "target",
+        "isolated"
+      ],
+      "expected_output": [
+        0.0,
+        5.0,
+        0.0
+      ],
+      "pyg_output": [
+        0.0,
+        5.0,
+        0.0
+      ],
+      "boundary_note": "The isolated NetworkX node survives the PyG Data handoff through num_nodes."
+    },
+    "empty_graph_handoff_is_valid_zero_edge_data": {
+      "passed": true,
+      "pyg_num_nodes": 0,
+      "pyg_edge_index_shape": [
+        2,
+        0
+      ],
+      "pyg_x_shape": [
+        0
+      ]
+    }
+  },
+  "surviving_alternatives": [
+    "NetworkX algorithm coverage, PyG batching, heterogeneous graphs, graph neural networks, and lego graph-cell promotion remain separate future receipts.",
+    "The older NetworkX capability JSON is treated as contextual history, not as a strict prior receipt for this clean integration micro."
+  ],
+  "demotion_condition": "Demote this NetworkX-PyG handoff if node mappings are not exact, edge orientation is not preserved, isolated nodes disappear, or PyG messages diverge from NetworkX incoming-neighbor sums.",
+  "out_of_scope": [
+    "no graph-cell lego promotion",
+    "no density-matrix or bridge claim",
+    "no GNN training claim",
+    "no proof of the whole NetworkX or PyG libraries",
+    "no tool-tool coupling beyond this exact graph handoff"
+  ],
+  "criteria_checked": [
+    "NetworkX directed graph node/edge extraction",
+    "exact node-order mapping into PyG Data",
+    "PyG source-to-target message passing",
+    "edge-orientation exclusion",
+    "isolated-node boundary preservation"
+  ],
+  "next_lego_target": "bounded NetworkX-to-PyG graph handoff fixture before graph-cell or density-carrier lego promotion",
+  "promotion_condition": "requires a later admitted downstream row that names this exact NetworkX-PyG handoff receipt plus its PyG parent receipt; this micro row does not promote a lego or broad graph-learning claim",
+  "blocked_until": "blocked from lego, bridge, axis, engine, or nonclassical promotion until a downstream target passes strict admission with this receipt as a named parent",
+  "summary": {
+    "passed": 6,
+    "total": 6
+  },
+  "all_pass": true
+}

@@ -24,7 +24,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/pytorch_capability_results.json",
         "role": "nonclassical_adjacent",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["density_matrix_representability", "operator_family_admission"],
+        "candidate_lego_targets": ["density_matrix_representability", "operator_family_fixture"],
     },
     {
         "tool": "pytorch",
@@ -75,7 +75,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json",
         "role": "nonclassical_adjacent",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["graph_cell_complex_geometry", "operator_family_admission"],
+        "candidate_lego_targets": ["graph_cell_complex_geometry", "operator_family_fixture"],
     },
     {
         "tool": "pyg",
@@ -322,7 +322,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_clifford_weyl_results.json",
         "role": "nonclassical_adjacent",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["clifford_weyl_transport", "weyl_spinor_geometry"],
+        "candidate_lego_targets": ["clifford_bloch_vector_rotor_fixture", "two_component_spinor_coordinate_fixture"],
     },
     {
         "tool": "clifford",
@@ -414,7 +414,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/toponetx_capability_results.json",
         "role": "nonclassical_adjacent",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["state_class_binding_geometry", "cell_complex_geometry"],
+        "candidate_lego_targets": ["cell_rank_binding_fixture", "cell_complex_geometry"],
     },
     {
         "tool": "toponetx",
@@ -675,7 +675,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/cvc5_capability_results.json",
         "role": "nonclassical_adjacent",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["constraint_probe_admissibility", "carrier_admission_density_matrix"],
+        "candidate_lego_targets": ["constraint_probe_fixture", "density_matrix_carrier_fixture"],
     },
     {
         "tool": "cvc5",
@@ -737,7 +737,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/sympy_capability_results.json",
         "role": "classical_bridge",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["entropy_family_crosschecks", "operator_family_admission"],
+        "candidate_lego_targets": ["entropy_family_crosschecks", "operator_family_fixture"],
     },
     {
         "tool": "sympy",
@@ -745,7 +745,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/sim_sympy_symbolic_identity_micro_results.json",
         "role": "classical_bridge",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["exact_algebra_crosschecks", "operator_family_admission"],
+        "candidate_lego_targets": ["exact_algebra_crosschecks", "operator_family_fixture"],
     },
     {
         "tool": "sympy",
@@ -769,7 +769,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/sim_sympy_matrix_identity_micro_results.json",
         "role": "classical_bridge",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["exact_matrix_identity", "operator_family_admission"],
+        "candidate_lego_targets": ["exact_matrix_identity", "operator_family_fixture"],
     },
     {
         "tool": "sympy",
@@ -910,7 +910,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/sim_geomstats_so3_distance_micro_results.json",
         "role": "nonclassical_adjacent",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["geometry_crosschecks_same_carrier", "gtower_so3_geometry"],
+        "candidate_lego_targets": ["geometry_crosschecks_same_carrier", "so3_rotation_geometry_fixture"],
     },
     {
         "tool": "geomstats",
@@ -959,7 +959,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/e3nn_capability_results.json",
         "role": "nonclassical_adjacent",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["operator_family_admission", "graph_cell_complex_geometry"],
+        "candidate_lego_targets": ["operator_family_fixture", "graph_cell_complex_geometry"],
     },
     {
         "tool": "e3nn",
@@ -967,7 +967,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/sim_e3nn_spherical_harmonics_equivariance_micro_results.json",
         "role": "nonclassical_adjacent",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["operator_family_admission", "gtower_so3_geometry"],
+        "candidate_lego_targets": ["operator_family_fixture", "so3_rotation_geometry_fixture"],
     },
     {
         "tool": "e3nn",
@@ -994,7 +994,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json",
         "role": "nonclassical_adjacent",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["operator_family_admission", "graph_cell_complex_geometry"],
+        "candidate_lego_targets": ["operator_family_fixture", "graph_cell_complex_geometry"],
     },
 ]
 

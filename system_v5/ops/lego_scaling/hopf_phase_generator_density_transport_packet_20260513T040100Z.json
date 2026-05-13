@@ -1,0 +1,99 @@
+{
+  "kind": "bounded_tool_integration_packet_summary",
+  "created_at": "2026-05-13T04:01:00Z",
+  "status": "classical_baseline_packet_complete",
+  "topic": "hopf_phase_generator_density_transport",
+  "literal_math_description": "Compare global-phase density invariance with relative-phase density transport on the same two-component carrier using three independent tool formulations.",
+  "operation_sequence": [
+    "construct a two-component non-pole carrier density",
+    "define the inner loop as global-phase transport exp(i chi I/2)",
+    "define the outer loop as relative-phase transport exp(i phi sigma_z/2)",
+    "transport or symbolically differentiate the same carrier under both loop families",
+    "read density path length, Bloch/Pauli readouts, trace, purity, or exact off-diagonal derivatives",
+    "run same-generator, pole-state, hidden-readout, and no-carrier graveyards"
+  ],
+  "carrier_topology": "two-component density carrier with Hopf-style phase-generator loop families; no full nested Hopf-torus carrier",
+  "observable": "density transport, Bloch/Pauli readouts, trace, purity, and symbolic off-diagonal derivative ratios",
+  "pass_fail_predicate": "global-phase transport leaves density readouts invariant; relative-phase transport moves non-pole off-diagonal/Bloch readouts; adjacent graveyards collapse or become insufficient",
+  "graveyards": [
+    "both transports use inner/global-phase generator",
+    "both transports use outer/relative-phase generator",
+    "outer relative phase on pole state degenerates",
+    "diagonal-only readout hides outer transport",
+    "bare generators or operators without carrier density are insufficient"
+  ],
+  "baselines": [
+    "sampled NumPy Hopf inner/outer path metric fixture",
+    "SymPy Hopf density derivative identity",
+    "QuTiP Hopf inner/outer density path readout fixture",
+    "Qiskit Hopf inner/outer density path readout fixture",
+    "bare Pauli no-carrier negative control"
+  ],
+  "alternative_formulations": [
+    "Clifford projected rotor transport control already present as clifford_hopf_outer_rotation_readout",
+    "nested Hopf-torus carrier transport fixture",
+    "density-object evolution over a fuller carrier topology"
+  ],
+  "tool_function_receipts": [
+    {
+      "tool": "qutip",
+      "exact_function_api": "Qobj, qeye, sigmaz, sigmax, sigmay, ket2dm, Qobj.expm, expect",
+      "source": "system_v4/probes/sim_qutip_hopf_loop_phase_generator_density_transport.py",
+      "receipt": "system_v4/probes/a2_state/sim_results/qutip_hopf_loop_phase_generator_density_transport_results.json",
+      "classification": "classical_baseline",
+      "tool_integration_depth": "load_bearing"
+    },
+    {
+      "tool": "qiskit",
+      "exact_function_api": "Statevector, DensityMatrix, Operator, DensityMatrix.expectation_value",
+      "source": "system_v4/probes/sim_qiskit_hopf_loop_phase_generator_density_transport.py",
+      "receipt": "system_v4/probes/a2_state/sim_results/qiskit_hopf_loop_phase_generator_density_transport_results.json",
+      "classification": "classical_baseline",
+      "tool_integration_depth": "load_bearing"
+    },
+    {
+      "tool": "sympy",
+      "exact_function_api": "Matrix, diag, eye, exp, diff, trace, trigsimp, simplify, subs",
+      "source": "system_v4/probes/sim_sympy_hopf_loop_phase_generator_density_transport.py",
+      "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_loop_phase_generator_density_transport_results.json",
+      "classification": "classical_baseline",
+      "tool_integration_depth": "supportive"
+    }
+  ],
+  "lego_or_coupling_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+  "claim_ceiling": "three-formulation classical baseline packet only; no physical inner/outer loop independence, no full S3 bundle, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+  "promotion_allowed": false,
+  "blocked_until": [
+    "explicit nested Hopf-torus carrier topology exists",
+    "declared physical or geometric observables are fixed before the run",
+    "physical-evolution or carrier-topology graveyards reproduce compatible collapse behavior"
+  ],
+  "verification_commands": [
+    "make sim NAME=sim_qutip_hopf_loop_phase_generator_density_transport",
+    "make sim NAME=sim_qiskit_hopf_loop_phase_generator_density_transport",
+    "make sim NAME=sim_sympy_hopf_loop_phase_generator_density_transport",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/validate_receipt.py system_v4/probes/a2_state/sim_results/qutip_hopf_loop_phase_generator_density_transport_results.json",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/validate_receipt.py system_v4/probes/a2_state/sim_results/qiskit_hopf_loop_phase_generator_density_transport_results.json",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/validate_receipt.py system_v4/probes/a2_state/sim_results/sympy_hopf_loop_phase_generator_density_transport_results.json",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/tool_function_receipt_matrix.py",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 -m pytest system_v5/tests/test_run_guardrails.py -q",
+    "make runner-preflight",
+    "make parallel-runner-dry"
+  ],
+  "verification_summary": {
+    "all_three_sims_passed": true,
+    "all_three_receipts_validated": true,
+    "tool_function_matrix_rows_after_packet": 78,
+    "tool_function_matrix_missing_receipts": 0,
+    "tool_function_matrix_boundary_gaps": 0,
+    "guardrail_tests": "27 passed",
+    "runner_preflight": "green",
+    "parallel_runner_dry": "green"
+  },
+  "next_admissible_step": {
+    "name": "nested_hopf_torus_carrier_transport_fixture",
+    "type": "geometry_micro_fixture",
+    "description": "Move from two-component phase-generator transport to an explicit nested Hopf-torus carrier fixture before any stronger inner/outer independence claim.",
+    "filename_rule": "Use literal math names such as sim_toponetx_connected_hopf_torus_layer_transport.py or sim_gudhi_nested_hopf_torus_loop_transport.py; do not use axis labels."
+  }
+}

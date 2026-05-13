@@ -11,6 +11,7 @@ LOCK_META="/tmp/codex_ratchet_overnight.lock.meta"
 RUNNER_COMMAND_GREP="overnight_two_runner.sh"
 QUEUE_CLAIM="$ROOT/scripts/queue_claim.py"
 GATE="$ROOT/scripts/verify_load_bearing_has_capability_probe.py"
+SEMANTIC_GUARD="$ROOT/scripts/direct_sim_semantic_guard.py"
 LANE_A_DIR="$ROOT/system_v4/probes/a2_state/queue/lane_A"
 LANE_B_DIR="$ROOT/system_v4/probes/a2_state/queue/lane_B"
 STAMP=$(date +%Y%m%d_%H%M%S)
@@ -280,6 +281,7 @@ worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
     else
       echo "DRY:  no lane-specific capability gate"
     fi
+    echo "DRY:  semantic guard $PY $SEMANTIC_GUARD --name <basename> --probes-dir $ROOT/system_v4/probes"
     echo "DRY:  run sim, then $PY $QUEUE_CLAIM complete --worker $wid"
     return 1  # signal empty to stop dry loop
   fi
@@ -301,6 +303,12 @@ worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
   if ! stage_gate_allows_sim "$sim"; then
     "$PY" "$QUEUE_CLAIM" block --claim-path "$claim_path" --reason "stage_gate_blocked" >/dev/null 2>&1 || true
     emit gate_denied "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"reason\":\"stage_gate_blocked\""
+    return 0
+  fi
+
+  if ! "$PY" "$SEMANTIC_GUARD" --name "$(basename "$sim" .py)" --probes-dir "$ROOT/system_v4/probes" >/dev/null 2>&1; then
+    "$PY" "$QUEUE_CLAIM" block --claim-path "$claim_path" --reason "semantic_name_blocked" >/dev/null 2>&1 || true
+    emit gate_denied "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"reason\":\"semantic_name_blocked\""
     return 0
   fi
 

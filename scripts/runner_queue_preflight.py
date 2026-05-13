@@ -71,14 +71,15 @@ def audit(root: Path | None = None) -> dict[str, Any]:
     blocked_default = 0
     if not gate.get("allow_default_queue_late_stage"):
         for row in rows(ops / "queue_default.txt"):
-            if claim_for_row(row) == "default_late_stage":
+            claim = claim_for_row(row)
+            if claim:
                 blocked_default += 1
                 findings.append(
                     {
                         "kind": "default_queue_late_stage_blocked",
                         "queue": "system_v5/ops/queue_default.txt",
                         "row": row,
-                        "claim": "default_late_stage",
+                        "claim": claim,
                     }
                 )
 

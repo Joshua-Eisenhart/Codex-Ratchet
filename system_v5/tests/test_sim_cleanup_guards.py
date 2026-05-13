@@ -6107,6 +6107,16 @@ def test_overnight_two_runner_blocks_stage_gated_claims() -> None:
     assert "classical_baseline_*) return 1 ;;" in text
 
 
+def test_overnight_two_runner_blocks_semantic_claim_names_before_execution() -> None:
+    text = (REPO_ROOT / "scripts" / "overnight_two_runner.sh").read_text(encoding="utf-8")
+    guard_idx = text.index("direct_sim_semantic_guard.py")
+    admission_idx = text.index('if [ "$STRICT_WIZARD_QUEUE_ADMISSION" = "1" ]; then', guard_idx)
+    run_idx = text.index('run_sim_with_timeout "$sim" "$artifact"')
+    assert guard_idx < admission_idx < run_idx
+    assert "semantic_name_blocked" in text
+    assert '--name "$(basename "$sim" .py)"' in text
+
+
 def test_parallel_runner_has_helper_and_admission_preflight() -> None:
     text = (REPO_ROOT / "scripts" / "overnight_two_runner.sh").read_text(encoding="utf-8")
     assert "helper_process_preflight()" in text
@@ -11737,6 +11747,15 @@ def test_live_sim_runner_requires_wizard_queue_admission_before_execution() -> N
     assert "wizard_queue_admitted()" in text
     assert "scripts/wizard_sim_admission.py" in text
     assert 'mark_line "$queue_file" "$basename" "INELIGIBLE" "0"' in text
+
+
+def test_live_sim_runner_blocks_semantic_claim_names_before_execution() -> None:
+    text = (REPO_ROOT / "system_v5" / "ops" / "sim_runner.sh").read_text(encoding="utf-8")
+    guard_idx = text.index("direct_sim_semantic_guard.py")
+    run_idx = text.index('if "${RUN_CMD[@]}" >/dev/null 2>&1; then')
+    assert guard_idx < run_idx
+    assert "INELIGIBLE (semantic name)" in text
+    assert '--name "$basename"' in text
 
 
 def test_live_sim_runner_requires_recovery_sentinel_for_admission_bypass() -> None:

@@ -11,6 +11,7 @@ LOCK_DIR="$OPS/.sim_runner.lock"
 STAGE_GATE="$OPS/stage_gate.json"
 LOG_DIR="$REPO/overnight_logs"
 RESULT_DIR="$REPO/system_v4/probes/a2_state/sim_results"
+SEMANTIC_GUARD="$REPO/scripts/direct_sim_semantic_guard.py"
 PYTHON="$(awk -F':=' '/^PYTHON[[:space:]]*:=/ {gsub(/^[[:space:]]+|[[:space:]]+$/, "", $2); print $2; exit}' "$REPO/Makefile")"
 [ -n "$PYTHON" ] || PYTHON="$(which python3)"
 
@@ -345,6 +346,12 @@ while :; do
 
   if ! wizard_queue_admitted "$basename" "$probe"; then
     log "INELIGIBLE (wizard admission): $basename lacks v4.2 queue-ready admission"
+    mark_line "$queue_file" "$basename" "INELIGIBLE" "0"
+    continue
+  fi
+
+  if ! "$PYTHON" "$SEMANTIC_GUARD" --name "$basename" --probes-dir "$REPO/system_v4/probes" >/dev/null 2>&1; then
+    log "INELIGIBLE (semantic name): $basename contains claim-layer labels; rename or quarantine before execution"
     mark_line "$queue_file" "$basename" "INELIGIBLE" "0"
     continue
   fi

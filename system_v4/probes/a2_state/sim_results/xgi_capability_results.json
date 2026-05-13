@@ -6,37 +6,37 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- pure hypergraph capability probe"
+      "reason": "not used: this XGI capability fixture does not need tensor autodiff, torch modules, or dense tensor kernels."
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- pure hypergraph capability probe"
+      "reason": "not used: no PyG Data object, edge index, message passing, batching, or graph pooling API is exercised."
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "no proof obligation in a capability probe"
+      "reason": "not used: no SMT satisfiability, model extraction, or constraint proof obligation is part of this fixture."
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "no proof obligation in a capability probe"
+      "reason": "not used: no cvc5 formula assertion, SAT check, value extraction, or SyGuS synthesis surface is needed."
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic derivation required"
+      "reason": "not used: no symbolic algebra, polynomial manipulation, or exact matrix identity proof is required."
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no geometric algebra needed"
+      "reason": "not used: no Clifford basis, multivector product, rotor, or grade projection is represented."
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no manifold/geodesic needed"
+      "reason": "not used: no manifold metric, geodesic computation, or Lie group geometry API is part of this probe."
     },
     "e3nn": {
       "tried": false,
@@ -46,7 +46,7 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "xgi is the graph library under test"
+      "reason": "not used: no DAG, graph traversal, shortest path, or dependency graph API is part of this hypergraph fixture."
     },
     "xgi": {
       "tried": true,
@@ -56,17 +56,17 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not topology-relevant here; separate probe"
+      "reason": "not used: no cell complex, simplicial complex, Hasse graph, or incidence-matrix API from TopoNetX is exercised."
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "persistence not needed for hypergraph probe"
+      "reason": "not used: no persistent homology, simplex tree, filtration, or Betti-number computation is needed."
     },
     "networkx": {
       "tried": false,
       "used": false,
-      "reason": "union-find baseline suffices"
+      "reason": "not used: the connected-component baseline is a local union-find implementation, not a NetworkX graph call."
     }
   },
   "tool_integration_depth": {
@@ -233,6 +233,111 @@
   },
   "all_pass": true,
   "classification": "canonical",
+  "operation_sequence": [
+    "construct a finite XGI Hypergraph with six nodes and four mixed-size hyperedges",
+    "read node and hyperedge counts",
+    "compute node degree sequence",
+    "compute hyperedge size sequence",
+    "query incident hyperedges for a selected node",
+    "compare XGI connected components against a manual union-find baseline over hyperedge co-membership",
+    "exercise simplicial-lift behavior or a downward-closed hypergraph fallback depending on installed XGI API surface",
+    "run adjacent negative and boundary fixtures for disconnected components, invalid edge insertion, missing node degree query, empty hypergraph, singleton component, singleton hyperedge behavior, and one large hyperedge"
+  ],
+  "carrier_topology": {
+    "carrier": "finite hypergraph with arbitrary-arity hyperedges",
+    "positive_fixture": "six-node connected hypergraph with four mixed-size hyperedges",
+    "graveyard_fixtures": [
+      "two disconnected hyperedges",
+      "non-iterable hyperedge",
+      "missing node degree query"
+    ],
+    "boundary_fixtures": [
+      "empty hypergraph",
+      "singleton node",
+      "singleton hyperedge",
+      "one hyperedge containing fifty nodes"
+    ]
+  },
+  "observable": {
+    "primary": "hyperedge incidence, degree sequence, edge size sequence, and connected-component partition",
+    "secondary": [
+      "node and edge counts",
+      "incident edge membership for a selected node",
+      "simplicial-lift or downward-closed face containment",
+      "large-edge degree and size behavior"
+    ]
+  },
+  "pass_fail_predicate": {
+    "pass": [
+      "constructed hypergraph has six nodes and four hyperedges",
+      "degree sequence equals the hand-computed node membership counts",
+      "edge-size sequence equals the hand-computed hyperedge sizes",
+      "node 2 belongs to exactly two incident hyperedges and each contains node 2",
+      "XGI connected components match manual union-find co-membership components",
+      "simplicial-lift or fallback downward-closed hypergraph contains required faces",
+      "disconnected two-edge hypergraph has two components",
+      "non-iterable edge insertion raises",
+      "degree query for missing node raises",
+      "empty, singleton, singleton-hyperedge, and one-big-hyperedge boundary checks pass"
+    ],
+    "fail": [
+      "XGI import is unavailable",
+      "any construction, degree, incidence, component, invalid-input, or boundary check misses its expected hypergraph invariant"
+    ]
+  },
+  "graveyards": [
+    {
+      "name": "disconnected_two_hyperedges",
+      "change": "replace the connected hyperedge chain with two disjoint size-2 hyperedges",
+      "expected_death": "connected-component count becomes two instead of one"
+    },
+    {
+      "name": "non_iterable_edge",
+      "change": "attempt to add integer 42 as a hyperedge",
+      "expected_death": "XGI raises rather than constructing a decorative edge"
+    },
+    {
+      "name": "missing_node_degree",
+      "change": "query degree for a node not present in the hypergraph",
+      "expected_death": "degree lookup raises instead of inventing a value"
+    }
+  ],
+  "baselines": [
+    {
+      "name": "manual_union_find_components",
+      "role": "pure Python baseline for hyperedge co-membership connected components"
+    },
+    {
+      "name": "hand_counted_degree_and_size_sequences",
+      "role": "manual baseline for node memberships and hyperedge arities"
+    }
+  ],
+  "alternative_formulations": [
+    "NetworkX clique expansion followed by connected-component comparison",
+    "TopoNetX rank-2 cell incidence representation of the same hyperedge families",
+    "manual incidence matrix with rows as nodes and columns as hyperedges"
+  ],
+  "tool_function_needs": [
+    {
+      "tool": "xgi",
+      "functions": [
+        "Hypergraph",
+        "Hypergraph.add_nodes_from",
+        "Hypergraph.add_edges_from",
+        "Hypergraph.add_edge",
+        "Hypergraph.degree",
+        "Hypergraph.nodes.memberships",
+        "Hypergraph.edges.members",
+        "xgi.connected_components",
+        "xgi.SimplicialComplex"
+      ],
+      "depth": "load_bearing"
+    }
+  ],
+  "lego_coupling_target": [
+    "hypergraph_shell_geometry",
+    "dual_hypergraph_geometry"
+  ],
   "surviving_alternatives": [
     "This receipt covers only bounded XGI hypergraph construction, incidence, connected components, and simplicial-lift behavior; it does not prove downstream hypergraph lego claims."
   ],

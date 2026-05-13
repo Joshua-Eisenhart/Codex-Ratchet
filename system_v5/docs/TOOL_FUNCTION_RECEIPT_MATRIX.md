@@ -1,6 +1,6 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T17:57:20.291016+00:00`
+Generated: `2026-05-13T17:59:55.302416+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
@@ -12,8 +12,8 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 - Missing receipts: `0`
 - Explicit receipt schemas missing: `108`
 - Receipt contract shapes unresolved: `0`
-- Candidate spec complete rows: `68`
-- Candidate spec incomplete rows: `40`
+- Candidate spec complete rows: `69`
+- Candidate spec incomplete rows: `39`
 
 ## Matrix
 

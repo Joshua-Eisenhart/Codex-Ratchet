@@ -138,6 +138,7 @@ def run_positive() -> dict[str, object]:
     raw_base = path_metrics(raw_base_path(theta, phi0, chi0, 1, samples))
     horizontal_base = path_metrics(horizontal_base_path(theta, phi0, chi0, 1, samples))
     controls = tangent_controls(theta, phi0, chi0, 1)
+    expected_holonomy_gap = math.acos(math.cos(math.pi * (1.0 - math.cos(theta))))
     return {
         "theta": theta,
         "phi0": phi0,
@@ -146,15 +147,17 @@ def run_positive() -> dict[str, object]:
         "expected_fiber_s3_length": math.pi,
         "expected_horizontal_base_s3_length": math.pi * math.sin(theta),
         "expected_base_s2_length": 2.0 * math.pi * math.sin(theta),
+        "expected_horizontal_base_s3_holonomy_gap": expected_holonomy_gap,
         "fiber_loop": fiber,
         "raw_base_loop": raw_base,
         "horizontal_base_loop": horizontal_base,
         "finite_difference_tangent_controls": controls,
-        "survives_geomstats_horizontal_distance": bool(
+        "horizontal_distance_controls_pass": bool(
             abs(fiber["s3_path_length"] - math.pi) < 0.02
             and fiber["s2_path_length"] < 1e-9
             and abs(horizontal_base["s3_path_length"] - math.pi * math.sin(theta)) < 0.02
             and abs(horizontal_base["s2_path_length"] - 2.0 * math.pi * math.sin(theta)) < 0.04
+            and abs(horizontal_base["s3_start_end_distance"] - expected_holonomy_gap) < 0.02
             and abs(controls["raw_base_fiber_dot"]) > 0.1
             and abs(controls["horizontal_base_fiber_dot"]) < 1e-9
         ),
@@ -173,6 +176,7 @@ def run_graveyards() -> dict[str, object]:
     equator_controls = tangent_controls(math.pi / 2.0, phi0, chi0, 1)
     reversed_horizontal = path_metrics(horizontal_base_path(theta, phi0, chi0, -1, samples))
     controls = tangent_controls(theta, phi0, chi0, 1)
+    expected_holonomy_gap = math.acos(math.cos(math.pi * (1.0 - math.cos(theta))))
     return {
         "raw_base_path_has_same_length_as_fiber_but_not_same_connection_component": {
             "raw_base_s3_path_length": raw_base["s3_path_length"],
@@ -194,6 +198,15 @@ def run_graveyards() -> dict[str, object]:
             "fiber_s2_path_length": fiber["s2_path_length"],
             "passed": bool(fiber["s3_path_length"] > 3.0 and fiber["s2_path_length"] < 1e-9),
         },
+        "horizontal_base_s3_loop_has_holonomy_gap": {
+            "horizontal_base_s3_start_end_distance": horizontal_base["s3_start_end_distance"],
+            "expected_holonomy_gap": expected_holonomy_gap,
+            "horizontal_base_s2_start_end_distance": horizontal_base["s2_start_end_distance"],
+            "passed": bool(
+                abs(horizontal_base["s3_start_end_distance"] - expected_holonomy_gap) < 0.02
+                and horizontal_base["s2_start_end_distance"] < 1e-9
+            ),
+        },
         "equator_raw_base_orthogonality_is_accidental": {
             "equator_raw_base_fiber_dot": equator_controls["raw_base_fiber_dot"],
             "non_equator_raw_base_fiber_dot": controls["raw_base_fiber_dot"],
@@ -211,7 +224,7 @@ def main() -> int:
     positive = run_positive()
     graveyards = run_graveyards()
     all_pass = bool(
-        positive["survives_geomstats_horizontal_distance"]
+        positive["horizontal_distance_controls_pass"]
         and all(row["passed"] for row in graveyards.values())
     )
     results = {
@@ -250,20 +263,21 @@ def main() -> int:
             "sample horizontal base lift by varying phi while applying the Hopf connection chi correction",
             "compute Geomstats S3 carrier and S2 projection path lengths",
             "compute finite-difference tangent dot products for fiber, raw base, and horizontal base",
-            "run raw-base, horizontal-orthogonal, pole, projection-hidden, equator, and sheet-reversal controls",
+            "run raw-base, horizontal-orthogonal, pole, projection-hidden, holonomy-gap, equator, and sheet-reversal controls",
         ],
         "carrier_topology": "sampled two-component Hopf-coordinate carrier embedded in S3 with S2 projection; no full nested-torus manifold",
         "observable": "S3/S2 intrinsic path lengths, endpoint distances, finite-difference tangent norms, and tangent dot products",
         "pass_fail_predicate": (
             "fiber S3 length approximates pi and has zero S2 length; horizontal base S3 length approximates pi*sin(theta) "
-            "and S2 length approximates 2*pi*sin(theta); raw base has nonzero fiber dot product while horizontal base dot "
-            "fiber is zero; adjacent controls collapse as predicted"
+            "and S2 length approximates 2*pi*sin(theta); horizontal base closes on S2 but has the expected S3 holonomy gap; "
+            "raw base has nonzero fiber dot product while horizontal base dot fiber is zero; adjacent controls collapse as predicted"
         ),
         "graveyards": [
             "raw base path has same length as fiber but not same connection component",
             "horizontal base is metric-orthogonal to fiber",
             "horizontal base collapses at projection pole",
             "fiber motion is hidden by S2 projection",
+            "horizontal base S3 loop has holonomy gap",
             "equator raw-base orthogonality is accidental",
             "sheet reversal preserves horizontal metric lengths",
         ],

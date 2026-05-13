@@ -51,6 +51,17 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "differentiable_coordinate_readout_baseline"],
     },
     {
+        "tool": "pytorch",
+        "function_api": "torch complex tensors, density construction, Bloch readout, autograd.grad, and finite-difference checks over declared Hopf/Weyl fiber-base carrier coordinates",
+        "receipt": "system_v4/probes/a2_state/sim_results/pytorch_hopf_weyl_fiber_base_gradient_readout_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_carrier_loop_geometry_baseline",
+            "differentiable_density_readout_baseline",
+        ],
+    },
+    {
         "tool": "pyg",
         "function_api": "torch_geometric.nn.GCNConv MessagePassing over Hopf-fiber edge_index",
         "receipt": "system_v4/probes/a2_state/sim_results/sim_pyg_hopf_graph_deep_capability_results.json",

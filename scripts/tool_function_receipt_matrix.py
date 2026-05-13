@@ -110,6 +110,17 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["graph_cell_handoff", "density_graph_carrier"],
     },
     {
+        "tool": "networkx",
+        "function_api": "networkx DiGraph/topological_sort/ancestors/descendants/transitive_reduction over Hopf receipt dependency DAG",
+        "receipt": "system_v4/probes/a2_state/sim_results/networkx_hopf_receipt_dependency_reduction_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "nested_hopf_torus_loop_geometry_baseline",
+            "receipt_dependency_dag_controls",
+        ],
+    },
+    {
         "tool": "pyg",
         "function_api": "torch_geometric.data.Batch.from_data_list tensor concatenation, edge-index offsetting, batch vector, and ptr",
         "receipt": "system_v4/probes/a2_state/sim_results/sim_pyg_batching_micro_results.json",

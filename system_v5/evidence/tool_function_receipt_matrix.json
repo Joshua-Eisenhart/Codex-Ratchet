@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T02:26:18.395231+00:00",
+  "generated_at": "2026-05-13T02:29:12.313758+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -2511,6 +2511,62 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
+        "hopf_connection_curvature_geometry_baseline",
+        "curvature_integral_baseline"
+      ],
+      "claim_ceiling": "Exact SymPy differential-form coefficient baseline for the Hopf U(1) connection curvature and first-Chern integral only; no QIT, GStack, axis, bridge, nonclassical, Pauli-flux shortcut, or target-system admission",
+      "depth": "load_bearing",
+      "function_api": "sympy diff/integrate/simplify exact Hopf U(1) connection curvature and first-Chern integral",
+      "manifest_reason": "computes exact differential-form coefficients, curvature, and first-Chern integral for the Hopf U(1) connection",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No full geometric-constraint-manifold implementation.",
+        "No Pauli flux representation or flux-to-Pauli shortcut.",
+        "No Lindblad evolution, Hamiltonian dynamics, or target-system admission.",
+        "No QIT, GStack, axis, bridge, or nonclassical admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_connection_curvature_c1_integral_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "sympy"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
         "bare_pauli_no_carrier_negative_control",
         "inner_outer_hopf_weyl_loop_geometry_fit"
       ],
@@ -2936,11 +2992,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 56,
+    "passing_count": 57,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 56,
+    "receipt_schema_observed_missing_count": 57,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 56,
+    "row_count": 57,
     "tools": [
       "clifford",
       "cvc5",

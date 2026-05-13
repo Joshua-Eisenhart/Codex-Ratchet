@@ -18,14 +18,16 @@ import os
 import time
 
 import z3
+from receipt_boundary import apply_default_receipt_boundary
 
 
-classification = "canonical"
+CLASSIFICATION = "classical_baseline"
+NAME = "z3_sheet_loop_flip_product_readout_separation"
 
 CLAIM_CEILING = (
-    "local z3 finite-product readout only: two abstract Z2 coordinates have "
-    "independent sheet and loop flips under the declared full readout; no Weyl, "
-    "Hopf, flux, bundle, engine, QIT, GStack, bridge, axis, or nonclassical admission"
+    "local z3 finite-product readout separation only: two abstract Z2 coordinates separate four declared "
+    "flip transformations under the full readout; no physical sheet/loop independence, Weyl spinor, Hopf "
+    "fibration, flux, bundle, engine, QIT, GStack, bridge, axis, or nonclassical admission"
 )
 
 TOOL_MANIFEST = {
@@ -190,19 +192,24 @@ def main() -> dict:
         and all(row["passed"] for row in boundary.values())
     )
     result = {
-        "name": "sim_z3_sheet_loop_flip_product_readout_independence",
-        "classification": classification,
+        "name": NAME,
+        "classification": CLASSIFICATION,
         "all_pass": all_pass,
         "claim_ceiling": CLAIM_CEILING,
-        "next_lego_target": "none; use as finite-product boundary evidence before any sheet-loop or placement candidate with real carrier topology",
+        "next_lego_target": "sheet_loop_product_readout_separation_baseline",
         "promotion_condition": "No promotion from this receipt; downstream candidates need exact carrier/topology, observable, and graveyard receipts.",
-        "demotion_condition": "Demote or block if full readout no longer separates the four transformations, if projection graveyards stop colliding, or if used as geometry evidence.",
+        "demotion_condition": "Demote or block if full readout no longer separates the four transformations, if projection graveyards stop colliding, or if used as physical geometry evidence.",
         "blocked_until": "blocked from Weyl, Hopf, flux, bundle, engine, QIT, GStack, bridge, axis, or nonclassical claims until separate exact receipts close those gates",
         "out_of_scope": [
             "No Weyl spinor, Hopf fibration, flux, bundle, engine, QIT, GStack, bridge, axis, or nonclassical claim.",
             "No assertion that physical sheet/loop operations exist or are represented.",
             "No placement-lego admission beyond this finite readout fixture.",
         ],
+        "divergence_log": (
+            "This is a finite Boolean-product SMT baseline. It separates declared labels in Z2 x Z2, but it does "
+            "not simulate Hopf/Weyl geometry, physical inner/outer loops, flux, bundle structure, or any target "
+            "geometric-constraint manifold."
+        ),
         "operation_sequence": [
             "define two abstract Z2 coordinates",
             "define identity, sheet flip, loop flip, and double flip transformations",
@@ -227,7 +234,7 @@ def main() -> dict:
             "Hopf-fiber/base-lift observable probe",
         ],
         "exact_tool_function_needs": {"z3": ["Solver", "And", "Or", "If", "IntVal"]},
-        "lego_or_coupling_target": "none; pre-lego finite-product boundary evidence",
+        "lego_or_coupling_target": "sheet_loop_product_readout_separation_baseline",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "transforms": TRANSFORMS,
@@ -235,10 +242,12 @@ def main() -> dict:
         "negative": negative,
         "boundary": boundary,
         "elapsed_seconds": round(time.time() - started, 6),
+        "promotion_allowed": False,
     }
+    result = apply_default_receipt_boundary(result, source_name=f"sim_{NAME}")
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "sim_z3_sheet_loop_flip_product_readout_independence_results.json")
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
     with open(out_path, "w") as f:
         json.dump(result, f, indent=2)
     print(f"Results written to {out_path}")

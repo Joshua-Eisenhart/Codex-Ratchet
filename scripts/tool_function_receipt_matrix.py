@@ -416,6 +416,14 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "z3",
+        "function_api": "z3 finite Z2 x Z2 product readout SAT/UNSAT separation for sheet-flip and loop-flip labels",
+        "receipt": "system_v4/probes/a2_state/sim_results/z3_sheet_loop_flip_product_readout_separation_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["sheet_loop_product_readout_separation_baseline", "inner_outer_hopf_weyl_loop_geometry_fit"],
+    },
+    {
+        "tool": "z3",
         "function_api": "z3 SolverFor('QF_LIA') SAT/UNSAT equality checks over selected Hopf-torus integer readout vector fields",
         "receipt": "system_v4/probes/a2_state/sim_results/z3_hopf_torus_readout_vector_separation_results.json",
         "role": "classical_baseline",

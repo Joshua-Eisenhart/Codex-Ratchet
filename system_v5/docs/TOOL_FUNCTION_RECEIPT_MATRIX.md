@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T05:20:16.163980+00:00`
+Generated: `2026-05-13T05:23:26.319003+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `97`
-- Passing rows: `97`
+- Rows: `98`
+- Passing rows: `98`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `97`
+- Explicit receipt schemas missing: `98`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -79,6 +79,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `z3` | z3 SolverFor('QF_NIA') consuming exact SymPy polynomial coefficients and derivatives for bounded integer-root fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_z3_sympy_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `constraint_probe_admissibility`, `exact_algebra_crosschecks` |
 | `z3` | z3 Solver with integer Pauli-label orientation predicate SAT/UNSAT controls | `system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `bare_pauli_no_carrier_negative_control`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `z3` | z3 Bool/And/Not/Implies/Solver.check SAT/UNSAT negative control for bare Pauli labels versus Hopf/Weyl carrier-projection metric predicates | `system_v4/probes/a2_state/sim_results/z3_bare_pauli_no_carrier_fiber_base_metric_unsat_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `bare_pauli_no_carrier_negative_control`, `hopf_weyl_carrier_loop_geometry_baseline` |
+| `z3` | z3 Real/Q/Solver.check bounded rational SAT/UNSAT controls for Hopf/Weyl vertical fiber and horizontal base-lift metric predicates | `system_v4/probes/a2_state/sim_results/z3_hopf_weyl_vertical_horizontal_metric_predicate_controls_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_weyl_carrier_loop_geometry_baseline`, `vertical_horizontal_metric_predicate_controls` |
 | `z3` | z3 finite Z2 x Z2 product readout SAT/UNSAT separation for sheet-flip and loop-flip labels | `system_v4/probes/a2_state/sim_results/z3_sheet_loop_flip_product_readout_separation_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `sheet_loop_product_readout_separation_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `z3` | z3 SolverFor('QF_LIA') SAT/UNSAT equality checks over selected Hopf-torus integer readout vector fields | `system_v4/probes/a2_state/sim_results/z3_hopf_torus_readout_vector_separation_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `readout_vector_separation_controls` |
 | `z3` | z3 SolverFor('QF_LIA') bounded integer partial-order constraints over Hopf receipt dependency DAG | `system_v4/probes/a2_state/sim_results/z3_hopf_receipt_dependency_partial_order_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `receipt_dependency_dag_controls` |

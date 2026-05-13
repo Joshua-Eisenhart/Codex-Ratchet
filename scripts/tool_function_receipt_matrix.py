@@ -344,6 +344,17 @@ TARGETS: list[dict[str, Any]] = [
         ],
     },
     {
+        "tool": "clifford",
+        "function_api": "clifford Cl(4) basis-vector MultiVector inner products over Hopf/Weyl vertical fiber, raw base, horizontal base-lift, and wrong-sign tangent projection sweeps",
+        "receipt": "system_v4/probes/a2_state/sim_results/clifford_hopf_weyl_vertical_horizontal_tangent_projection_sweep_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_vertical_horizontal_carrier_loop_tangent_projection_baseline",
+            "hopf_weyl_carrier_loop_geometry_baseline",
+        ],
+    },
+    {
         "tool": "gudhi",
         "function_api": "SimplexTree, Rips/filtration persistence and Betti summaries",
         "receipt": "system_v4/probes/a2_state/sim_results/gudhi_capability_results.json",

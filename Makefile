@@ -79,6 +79,10 @@ helper-process-audit:
 helper-process-audit-strict:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/helper_process_audit.py --strict
 
+# Advisory audit for legacy executable/result filenames with claim-layer labels
+semantic-naming-audit:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/sim_name_claim_label_audit.py
+
 # Fail-closed runner launch preflight for non-browser sim execution
 runner-preflight:
 	$(MAKE) helper-process-audit-strict
@@ -145,6 +149,7 @@ system-hygiene-report:
 	$(MAKE) migration-audit-strict
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/repo_hygiene_audit.py
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/runtime_hygiene_audit.py
+	$(MAKE) semantic-naming-audit
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/state_dir_ownership_audit.py
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/lego_tool_reporting_audit.py
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/source_dirty_checkpoint_plan.py
@@ -337,4 +342,4 @@ telegram:
 telegram-log:
 	tail -f /tmp/telegram_bot.log
 
-.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit helper-process-audit helper-process-audit-strict runner-preflight state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue mass-lego-batch runner-taxonomy-audit receipt-validate receipt-validate-strict receipt-validate-run-boundary receipt-reconcile receipt-reconcile-all-c receipt-reconcile-strict receipt-reconcile-all-c-strict receipt-reconcile-scope-strict receipt-reconcile-all-c-scope-strict receipt-reconcile-run-boundary-strict receipt-reconcile-all-c-run-boundary-strict receipt-reconcile-all-c-with-tier-d stage-gate stage-gate-claim lego-registry lego-normalize
+.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit helper-process-audit helper-process-audit-strict semantic-naming-audit runner-preflight state-dir-ownership-audit lego-tool-reporting-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue mass-lego-batch runner-taxonomy-audit receipt-validate receipt-validate-strict receipt-validate-run-boundary receipt-reconcile receipt-reconcile-all-c receipt-reconcile-strict receipt-reconcile-all-c-strict receipt-reconcile-scope-strict receipt-reconcile-all-c-scope-strict receipt-reconcile-run-boundary-strict receipt-reconcile-all-c-run-boundary-strict receipt-reconcile-all-c-with-tier-d stage-gate stage-gate-claim lego-registry lego-normalize

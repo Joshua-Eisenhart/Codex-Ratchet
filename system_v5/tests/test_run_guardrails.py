@@ -76,6 +76,78 @@ def test_direct_sim_semantic_guard_rejects_claim_layer_basename(tmp_path: Path) 
     assert result == 1
 
 
+def test_direct_sim_semantic_guard_rejects_axis3_basename(tmp_path: Path) -> None:
+    guard = _load_module(
+        "direct_sim_semantic_guard_axis3_under_test",
+        SCRIPTS / "direct_sim_semantic_guard.py",
+    )
+    probes = tmp_path / "probes"
+    probes.mkdir()
+    (probes / "sim_axis3_inner_outer_loop_geometry.py").write_text(
+        "print('must not run')\n",
+        encoding="utf-8",
+    )
+
+    result = guard.main(
+        [
+            "--name",
+            "sim_axis3_inner_outer_loop_geometry",
+            "--probes-dir",
+            str(probes),
+        ]
+    )
+
+    assert result == 1
+
+
+def test_direct_sim_semantic_guard_rejects_type_sheet_as_sim_label(tmp_path: Path) -> None:
+    guard = _load_module(
+        "direct_sim_semantic_guard_type_sheet_under_test",
+        SCRIPTS / "direct_sim_semantic_guard.py",
+    )
+    probes = tmp_path / "probes"
+    probes.mkdir()
+    (probes / "sim_type1_type2_hopf_loop_comparison.py").write_text(
+        "print('must not run')\n",
+        encoding="utf-8",
+    )
+
+    result = guard.main(
+        [
+            "--name",
+            "sim_type1_type2_hopf_loop_comparison",
+            "--probes-dir",
+            str(probes),
+        ]
+    )
+
+    assert result == 1
+
+
+def test_direct_sim_semantic_guard_accepts_literal_inner_outer_hopf_basename(tmp_path: Path) -> None:
+    guard = _load_module(
+        "direct_sim_semantic_guard_inner_outer_under_test",
+        SCRIPTS / "direct_sim_semantic_guard.py",
+    )
+    probes = tmp_path / "probes"
+    probes.mkdir()
+    (probes / "sim_hopf_inner_outer_loop_density_readout.py").write_text(
+        "print('fixture')\n",
+        encoding="utf-8",
+    )
+
+    result = guard.main(
+        [
+            "--name",
+            "sim_hopf_inner_outer_loop_density_readout",
+            "--probes-dir",
+            str(probes),
+        ]
+    )
+
+    assert result == 0
+
+
 def test_direct_sim_semantic_guard_rejects_flux_to_pauli_shortcut_basename(tmp_path: Path) -> None:
     guard = _load_module(
         "direct_sim_semantic_guard_flux_to_pauli_under_test",

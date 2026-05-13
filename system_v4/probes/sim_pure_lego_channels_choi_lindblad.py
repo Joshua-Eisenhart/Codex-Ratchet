@@ -814,6 +814,41 @@ def main():
             "6_z3_proofs (4 structural theorems)",
         ]
     }
+    RESULTS.update({
+        "name": "pure_lego_channels_choi_lindblad",
+        "classification": classification,
+        "all_pass": all_pass,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "divergence_log": divergence_log,
+        "claim_ceiling": (
+            "classical_baseline channel-lego receipt for finite CPTP, Choi, "
+            "Kraus, Lindblad, Stinespring, and z3 structural checks only; "
+            "no QuTiP-specific, QIT, GStack, axis, bridge, or nonclassical claim"
+        ),
+        "next_lego_target": "channel_cptp_map / kraus_operator_sum / lindbladian_evolution registry artifact repair",
+        "promotion_condition": (
+            "No promotion from this receipt alone; registry rows may cite it only as "
+            "the exact on-disk classical channel-lego artifact named by those rows."
+        ),
+        "demotion_condition": (
+            "Demote or block if any channel validity, Choi CP/TP, Kraus roundtrip, "
+            "Lindblad fixed point, Stinespring reconstruction, or z3 structural proof fails."
+        ),
+        "blocked_until": (
+            "blocked from QuTiP-specific, QIT, GStack, axis, bridge, nonclassical, "
+            "or tool-coupling claims until separate exact downstream receipts exist"
+        ),
+        "out_of_scope": [
+            "QuTiP-specific channel evidence",
+            "QIT claims",
+            "GStack claims",
+            "axis claims",
+            "bridge claims",
+            "nonclassical claims",
+            "tool-tool coupling",
+        ],
+    })
 
     print(f"\n{'=' * 70}")
     print(f"ALL PASS: {all_pass}   Time: {elapsed:.2f}s")

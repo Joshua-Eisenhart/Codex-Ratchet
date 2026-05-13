@@ -139,6 +139,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["unitary_channel_map", "density_matrix_object"],
     },
     {
+        "tool": "qiskit",
+        "function_api": "qiskit Statevector, DensityMatrix, and Operator expectation_value density readouts over sampled Hopf-coordinate carrier paths",
+        "receipt": "system_v4/probes/a2_state/sim_results/qiskit_hopf_inner_outer_density_readout_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "density_object_path_readout_baseline"],
+    },
+    {
         "tool": "clifford",
         "function_api": "Cl(3)/Cl(6) layout blades, rotor products, grade/scalar extraction",
         "receipt": "system_v4/probes/a2_state/sim_results/clifford_capability_results.json",

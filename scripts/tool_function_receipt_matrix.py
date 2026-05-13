@@ -403,6 +403,17 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["hopf_loop_holonomy_geometry_baseline", "inner_outer_hopf_weyl_loop_geometry_fit"],
     },
     {
+        "tool": "scipy",
+        "function_api": "scipy.integrate.solve_ivp horizontal-lift chi-shift ODE over connected two-theta-layer Hopf-torus coordinates",
+        "receipt": "system_v4/probes/a2_state/sim_results/scipy_connected_hopf_torus_horizontal_transport_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "nested_hopf_torus_loop_geometry_baseline",
+            "connected_layer_horizontal_transport_baseline",
+        ],
+    },
+    {
         "tool": "numpy",
         "function_api": "numpy complex arrays, exp, outer, trace, linalg.norm, and unwrap over sampled Hopf-coordinate carrier paths",
         "receipt": "system_v4/probes/a2_state/sim_results/hopf_weyl_inner_outer_loop_readout_geometry_results.json",

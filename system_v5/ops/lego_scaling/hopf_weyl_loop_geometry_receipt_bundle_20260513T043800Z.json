@@ -1,0 +1,83 @@
+{
+  "kind": "hopf_weyl_loop_geometry_receipt_bundle",
+  "generated_at": "2026-05-13T04:38:00Z",
+  "status": "partial_geometry_baselines_only",
+  "user_correction_preserved": {
+    "axis3_label_policy": "Do not use axis3 as a new executable sim label or as the claim being closed.",
+    "candidate_math_reading": "Treat the live question as fiber/base or inner/outer loop geometry on explicit Hopf/Weyl carrier objects.",
+    "geometry_warning": "Outer-vs-inner loop tests without a fuller running geometric carrier remain weak and must not promote target-system claims.",
+    "flux_ordering": "Flux/orientation readout is downstream of nested Hopf tori, Weyl spinors, and Pauli-matrix boundary representations."
+  },
+  "accepted_local_baseline_receipts": [
+    {
+      "sim": "system_v4/probes/sim_numpy_weyl_sheet_hopf_loop_readout_separation.py",
+      "result": "system_v4/probes/a2_state/sim_results/numpy_weyl_sheet_hopf_loop_readout_separation_results.json",
+      "tool": "numpy",
+      "role": "classical_baseline",
+      "actual_math": "sampled two-component Hopf-coordinate spinors with a declared sheet-orientation sign; compares fiber-loop density-stationary readouts with base-loop density-traversing signed-area readouts",
+      "claim_ceiling": "declared sheet and loop readout separation baseline only; no physical independence, no full S3 bundle, no flux, no QIT, no GStack, no axis, no bridge, no nonclassical admission"
+    },
+    {
+      "sim": "system_v4/probes/sim_sympy_weyl_sheet_hopf_loop_derivative_sign.py",
+      "result": "system_v4/probes/a2_state/sim_results/sympy_weyl_sheet_hopf_loop_derivative_sign_results.json",
+      "tool": "sympy",
+      "role": "classical_baseline",
+      "actual_math": "symbolic Hopf-coordinate Weyl spinor derivative signs for declared sheet orientations and loop families",
+      "claim_ceiling": "symbolic derivative-sign baseline only; no physical independence, no full S3 bundle, no flux, no QIT, no GStack, no axis, no bridge, no nonclassical admission"
+    },
+    {
+      "sim": "system_v4/probes/sim_clifford_hopf_outer_rotation_readout.py",
+      "result": "system_v4/probes/a2_state/sim_results/clifford_hopf_outer_rotation_readout_results.json",
+      "tool": "clifford",
+      "role": "classical_baseline",
+      "actual_math": "Cl(3) unit-bivector rotor sandwich transport of a projected Hopf base-loop Bloch vector and coefficient readout",
+      "claim_ceiling": "projected outer-path rotor readout baseline only; no physical inner/outer loop independence, no full S3 bundle, no flux, no QIT, no GStack, no axis, no bridge, no nonclassical admission"
+    },
+    {
+      "sim": "system_v4/probes/sim_scipy_connected_hopf_torus_horizontal_transport.py",
+      "result": "system_v4/probes/a2_state/sim_results/scipy_connected_hopf_torus_horizontal_transport_results.json",
+      "tool": "scipy",
+      "role": "classical_baseline",
+      "actual_math": "solve_ivp integration of Hopf horizontal-lift ODE dchi/dphi = -cos(theta) across two connected fixed-theta Hopf-torus layers",
+      "claim_ceiling": "local connected Hopf-torus horizontal-transport baseline only; no full carrier dynamics, no physical inner/outer independence, no flux, no QIT, no GStack, no axis, no bridge, no nonclassical admission"
+    }
+  ],
+  "verification_commands": [
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/validate_receipt.py system_v4/probes/a2_state/sim_results/numpy_weyl_sheet_hopf_loop_readout_separation_results.json",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/validate_receipt.py system_v4/probes/a2_state/sim_results/sympy_weyl_sheet_hopf_loop_derivative_sign_results.json",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/validate_receipt.py system_v4/probes/a2_state/sim_results/clifford_hopf_outer_rotation_readout_results.json",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/direct_sim_semantic_guard.py --name sim_numpy_weyl_sheet_hopf_loop_readout_separation",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/direct_sim_semantic_guard.py --name sim_sympy_weyl_sheet_hopf_loop_derivative_sign",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/direct_sim_semantic_guard.py --name sim_clifford_hopf_outer_rotation_readout",
+    "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/direct_sim_semantic_guard.py --name sim_scipy_connected_hopf_torus_horizontal_transport"
+  ],
+  "verification_result": {
+    "receipt_validation_hard_findings": 0,
+    "semantic_guard_failures": 0
+  },
+  "blocked_claims": [
+    "axis3 closure",
+    "flux representation",
+    "Pauli boundary shortcut",
+    "full geometric-constraint-manifold implementation",
+    "physical inner/outer loop independence",
+    "QIT engine mechanics",
+    "GStack admission",
+    "bridge or nonclassical admission"
+  ],
+  "next_admissible_packets": [
+    {
+      "packet": "fuller_hopf_weyl_carrier_state_transport",
+      "description": "evolve explicit two-component carrier states along both loop families, compare density and connection readouts, and include pole, no-carrier, constant-connection, and wrong-orientation controls"
+    },
+    {
+      "packet": "nested_hopf_torus_layer_connection_crosscheck",
+      "description": "cross-check the two-theta-layer horizontal transport with symbolic connection integrals or triangulated Stokes-area readouts"
+    },
+    {
+      "packet": "clifford_sheet_orientation_rotor_readout",
+      "description": "extend the projected Clifford rotor fixture to orientation-reversed sheet readouts without naming it axis or flux"
+    }
+  ],
+  "promotion_allowed": false
+}

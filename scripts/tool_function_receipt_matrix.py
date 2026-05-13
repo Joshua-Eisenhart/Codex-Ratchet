@@ -717,6 +717,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "sympy",
+        "function_api": "sympy Rational/log/simplify exact two-level binary measurement information, conditional feedback work, and Landauer erasure-floor identities",
+        "receipt": "system_v4/probes/a2_state/sim_results/sympy_two_level_measure_feedback_erasure_identities_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "information_work_erasure_cycle_calibration_fixture",
+            "exact_measure_feedback_erasure_identity_baseline",
+        ],
+    },
+    {
+        "tool": "sympy",
         "function_api": "sympy Matrix partition of Pauli matrices into diagonal and off-diagonal labels",
         "receipt": "system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json",
         "role": "classical_baseline",

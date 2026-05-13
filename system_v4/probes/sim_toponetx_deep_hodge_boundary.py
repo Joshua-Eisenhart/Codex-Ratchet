@@ -74,8 +74,8 @@ for _mod, _key, _reason in [
     ("cvc5",           "cvc5",      "same as z3: algebraic identity, not a decision procedure question"),
     ("sympy",          "sympy",     "integer incidence matrices make numeric check exact"),
     ("clifford",       "clifford",  "no geometric-algebra rotors in chain-complex identity"),
-    ("geomstats",      "geomstats", "no Riemannian manifold here; combinatorial topology only"),
-    ("e3nn",           "e3nn",      "no equivariant features"),
+    ("geomstats",      "geomstats", "not used: this TopoNetX Hodge-boundary receipt is combinatorial incidence algebra, not a Riemannian manifold metric or geodesic computation"),
+    ("e3nn",           "e3nn",      "not used: this TopoNetX Hodge-boundary receipt has no equivariant tensor, irreducible representation, or Wigner-D fixture"),
     ("rustworkx",      "rustworkx", "TopoNetX carries its own simplicial/cell structure"),
     ("xgi",            "xgi",       "hypergraph layer not exercised here"),
     ("gudhi",          "gudhi",     "persistence not in scope; Betti via Hodge kernel via TopoNetX"),
@@ -289,13 +289,41 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_toponetx_deep_hodge_boundary",
-        "classification": "canonical",
+        "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,
         "negative": neg,
         "boundary": bnd,
+        "all_pass": bool(all_passed),
         "all_passed": bool(all_passed),
+        "claim_ceiling": (
+            "finite TopoNetX Hodge-boundary receipt only: SimplicialComplex and "
+            "CellComplex incidence_matrix and hodge_laplacian_matrix checks; "
+            "no graph-cell promotion, bridge, axis, GStack, QIT, or nonclassical admission"
+        ),
+        "next_lego_target": "cell_complex_geometry / graph_cell_complex_geometry TopoNetX-local fit evidence only",
+        "promotion_condition": (
+            "No promotion from this receipt alone; any later lego/coupling row must "
+            "cite this exact receipt and pass its own stage gate."
+        ),
+        "demotion_condition": (
+            "Demote or block if boundary-of-boundary, Hodge decomposition, Betti, "
+            "corrupted-boundary exclusion, disk/sphere exclusion, or boundary controls fail."
+        ),
+        "blocked_until": (
+            "blocked from graph-cell promotion, bridge, axis, GStack, QIT, "
+            "nonclassical, or tool-coupling claims until separate downstream receipts exist"
+        ),
+        "out_of_scope": [
+            "graph-cell lego promotion",
+            "tool-tool coupling",
+            "bridge claims",
+            "axis claims",
+            "GStack claims",
+            "QIT claims",
+            "nonclassical claims",
+        ],
         "identities_verified": [
             "B_{k-1} @ B_k == 0  (chain complex axiom)",
             "L_k = L_k^T and spectrum(L_k) >= 0",

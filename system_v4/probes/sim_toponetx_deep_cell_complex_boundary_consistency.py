@@ -18,6 +18,8 @@ import numpy as np
 
 from receipt_boundary import apply_default_receipt_boundary
 
+classification = "canonical"
+
 _NOT_USED_REASON = (
     "not used: this bounded TopoNetX boundary-consistency receipt isolates "
     "CellComplex incidence matrices and d^2=0 controls; other tool families require separate receipts."

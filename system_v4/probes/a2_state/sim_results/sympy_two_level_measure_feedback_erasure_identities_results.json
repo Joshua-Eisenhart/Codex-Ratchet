@@ -1,0 +1,130 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "density-matrix projective branch update with QuTiP",
+    "density-matrix projective branch update with Qiskit",
+    "Lindblad thermal reset erasure stroke"
+  ],
+  "baselines": [
+    "numpy binary entropy feedback work bound and Landauer erasure-floor receipt",
+    "QuTiP two-level measurement-feedback-erasure receipt",
+    "Qiskit two-level measurement-feedback-erasure receipt"
+  ],
+  "blocked_until": "blocked from target feedback-cycle mechanics until thermal erasure dynamics and work-reservoir fixtures exist",
+  "carrier_topology": "finite two-outcome classical branch record coupled to a two-level energy label",
+  "claim_ceiling": "SymPy exact two-level measurement-feedback-erasure bookkeeping identities only; this is a symbolic classical baseline for one-bit information/work/erasure accounting, not a thermal erasure dynamics simulation; no QIT, GStack, axis, bridge, nonclassical, runtime-engine, or target-system admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if exact entropy/work/floor identities fail, if conditional work exceeds kBT*I, or if deterministic/no-feedback/wrong-feedback/no-erasure controls fail.",
+  "divergence_log": "This SymPy fixture is an exact scalar identity baseline for the same measurement-feedback-erasure calibration surface as the QuTiP and Qiskit density-matrix receipts. It intentionally omits physical branch-state evolution and thermal reset dynamics.",
+  "exact_identities": {
+    "checks": {
+      "binary_unbiased_entropy_identity": true,
+      "conditional_feedback_work_identity": true,
+      "deterministic_entropy_identity": true,
+      "landauer_floor_identity": true
+    },
+    "conditional_work_unbiased": "1/2",
+    "erasure_floor_unbiased": "log(4)",
+    "information_deterministic": "0",
+    "information_unbiased": "log(2)"
+  },
+  "exact_tool_function_needs": {
+    "sympy": [
+      "Rational",
+      "log",
+      "simplify",
+      "N"
+    ]
+  },
+  "graveyard_companions": {
+    "deterministic_record_has_zero_information_and_zero_work": {
+      "conditional_work": "0",
+      "information_nats": "0",
+      "passed": true
+    },
+    "identity_feedback_extracts_no_work": {
+      "passed": true,
+      "work": "0"
+    },
+    "omitting_erasure_flags_repeated_cycle_surplus": {
+      "erasure_floor": "log(4)",
+      "passed": true,
+      "work_without_record_erasure": "1/2"
+    },
+    "too_cold_erasure_bound_rejects_unit_work_claim": {
+      "bound": "log(4)",
+      "claimed_work": "1",
+      "passed": true
+    },
+    "wrong_same_flip_feedback_extracts_no_average_work": {
+      "passed": true,
+      "work": "0"
+    }
+  },
+  "graveyards": [
+    "deterministic record has zero information and zero work",
+    "identity feedback extracts no work",
+    "wrong same-flip feedback extracts no average work",
+    "omitting erasure flags repeated-cycle surplus",
+    "unit work overclaim rejected by kBT ln2 bound at kBT=2"
+  ],
+  "lego_or_coupling_target": "exact_measure_feedback_erasure_identity_baseline",
+  "name": "sympy_two_level_measure_feedback_erasure_identities",
+  "next_lego_target": "exact_measure_feedback_erasure_identity_baseline",
+  "observable": "record probabilities, information in nats, conditional feedback work, erasure heat floor, and net-after-erasure bound",
+  "operation_sequence": [
+    "declare an unbiased two-outcome record and a deterministic one-outcome record",
+    "compute binary Shannon information in nats",
+    "compute conditional feedback work under H = |1><1| from the excited branch probability",
+    "compute the Landauer erasure floor kBT times measurement information",
+    "compare conditional work to the information bound",
+    "run deterministic-record, identity-feedback, wrong-feedback, no-erasure, and overclaim graveyards"
+  ],
+  "out_of_scope": [
+    "No density-matrix branch update.",
+    "No Lindblad thermal erasure stroke.",
+    "No physical work reservoir.",
+    "No repeated memory register dynamics.",
+    "No QIT, GStack, axis, bridge, nonclassical, runtime-engine, or target-system admission."
+  ],
+  "pass_fail_predicate": "unbiased record has I=ln2, conditional feedback extracts positive work no greater than kBT*I, erasure floor equals kBT*I, net-after-erasure is not positive, and adjacent graveyards collapse or flag",
+  "positive_case": {
+    "conditional_feedback_work": "1/2",
+    "erasure_floor": "log(4)",
+    "information_nats": "log(2)",
+    "kBT": "2",
+    "net_after_erasure_bound": "1/2 - log(4)",
+    "numeric": {
+      "conditional_feedback_work": 0.5,
+      "erasure_floor": 1.3862943611198906,
+      "information_nats": 0.6931471805599453,
+      "net_after_erasure_bound": -0.8862943611198906,
+      "unit_kBT_erasure_floor": 0.6931471805599453
+    },
+    "probabilities": [
+      "1/2",
+      "1/2"
+    ],
+    "unit_kBT_erasure_floor": "log(2)"
+  },
+  "positive_checks": {
+    "conditional_work_positive": true,
+    "erasure_floor_matches_kbt_information": true,
+    "information_equals_ln2": true,
+    "net_after_erasure_not_positive": true,
+    "unit_kbt_erasure_floor_numeric_ln2": true,
+    "work_respects_information_bound": true
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later calibration planning after explicit density-matrix branch updates and thermal erasure dynamics reproduce compatible bounds with adjacent graveyards.",
+  "tool_integration_depth": {
+    "sympy": "load_bearing"
+  },
+  "tool_manifest": {
+    "sympy": {
+      "reason": "proves exact binary measurement information, conditional feedback work, and Landauer-floor identities",
+      "tried": true,
+      "used": true
+    }
+  }
+}

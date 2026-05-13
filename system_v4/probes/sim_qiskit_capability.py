@@ -28,7 +28,19 @@ divergence_log = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "supportive numeric tolerances for Qiskit arrays"},
+    "pytorch": {"tried": False, "used": False, "reason": "not used: this Qiskit capability fixture does not require tensor autodiff, torch modules, or tensor-kernel execution."},
+    "pyg": {"tried": False, "used": False, "reason": "not used: no graph carrier, edge index, message passing, batching, or graph pooling surface is exercised."},
+    "z3": {"tried": False, "used": False, "reason": "not used: no SMT satisfiability, model extraction, or symbolic constraint admissibility query is part of this fixture."},
+    "cvc5": {"tried": False, "used": False, "reason": "not used: no cvc5 formula assertion, SAT check, value extraction, or SyGuS synthesis surface is needed."},
+    "sympy": {"tried": False, "used": False, "reason": "not used: no symbolic simplification, polynomial algebra, or exact matrix identity proof is exercised here."},
+    "clifford": {"tried": False, "used": False, "reason": "not used: this probe checks circuit and density APIs rather than Clifford multivector algebra."},
+    "geomstats": {"tried": False, "used": False, "reason": "not used: no manifold metric, geodesic, or Lie group geometry API is part of this one-qubit fixture."},
+    "e3nn": {"tried": False, "used": False, "reason": "not used: no equivariant neural network, irreducible representation tensor, or learned layer is exercised."},
+    "rustworkx": {"tried": False, "used": False, "reason": "not used: no graph traversal, DAG, shortest path, or dependency graph structure is involved."},
+    "xgi": {"tried": False, "used": False, "reason": "not used: no hypergraph incidence, hyperedge membership, or higher-order relation is represented."},
+    "toponetx": {"tried": False, "used": False, "reason": "not used: no cell complex, simplicial complex, Hasse graph, or incidence-matrix API is exercised."},
+    "gudhi": {"tried": False, "used": False, "reason": "not used: no persistent homology, simplex tree, filtration, or Betti-number computation is needed."},
+    "numpy": {"tried": True, "used": True, "reason": "supportive numeric tolerances, trace checks, norms, and reference arrays for Qiskit state data"},
     "qiskit": {
         "tried": True,
         "used": True,
@@ -37,6 +49,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
     "numpy": "supportive",
     "qiskit": "load_bearing",
 }

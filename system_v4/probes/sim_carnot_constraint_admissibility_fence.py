@@ -54,7 +54,13 @@ import json
 import os
 import sys
 from fractions import Fraction
-classification = "canonical"
+classification = "tool_lego_fit_probe"
+divergence_log = (
+    "Finite symbolic/SMT Carnot-bound constraint fence only: sympy derives "
+    "classical efficiency and distinguishability-transfer identities, and z3 "
+    "rejects super-Carnot and single-bath violator tuples. No bridge, QIT, "
+    "GStack, axis, nonclassical, or runtime-engine admission."
+)
 
 # =====================================================================
 # TOOL MANIFEST
@@ -342,7 +348,68 @@ def main():
 
     results = {
         "name": "sim_carnot_constraint_admissibility_fence",
-        "classification": "canonical",
+        "classification": classification,
+        "all_pass": overall,
+        "divergence_log": divergence_log,
+        "claim_ceiling": (
+            "local Carnot-bound constraint fence only: sympy derives classical "
+            "efficiency identities and z3 rejects declared violator tuples; no "
+            "bridge, QIT, GStack, axis, nonclassical, or runtime-engine admission"
+        ),
+        "next_lego_target": "classical two-bath cycle calibration support only",
+        "promotion_condition": (
+            "No promotion from this receipt; downstream cycle calibration must supply "
+            "explicit stroke dynamics, heat/work observables, and graveyard receipts."
+        ),
+        "demotion_condition": (
+            "Demote if symbolic residuals become nonzero, if z3 admits a violator tuple, "
+            "or if this receipt is used as bridge/QIT/GStack/axis/nonclassical evidence."
+        ),
+        "blocked_until": (
+            "blocked from bridge, QIT, GStack, axis, nonclassical, runtime-engine, or cycle "
+            "claims until separate exact receipts close those gates"
+        ),
+        "out_of_scope": [
+            "No cycle dynamics.",
+            "No quantum carrier.",
+            "No bridge, QIT, GStack, axis, runtime-engine, or nonclassical admission.",
+        ],
+        "operation_sequence": [
+            "derive Carnot efficiency bound from first law and Clausius inequality",
+            "derive first-order distinguishability-transfer identity",
+            "z3-check reversible witness satisfiability",
+            "z3-reject super-Carnot, single-bath, and reversible-non-Carnot violators",
+            "check temperature boundary limits",
+        ],
+        "carrier_topology": "finite scalar symbolic/SMT constraint system over heat, work, and temperature variables",
+        "observable": "sympy residuals, z3 SAT/UNSAT verdicts, and temperature-boundary limits",
+        "pass_fail_predicate": "symbolic residuals are zero, reversible witness is SAT, violator formulas are UNSAT, and boundary limits match zero/one",
+        "graveyards": [
+            "super-Carnot violator tuple",
+            "single-bath positive-work violator",
+            "reversible equality with non-Carnot work",
+        ],
+        "graveyard_companions": [
+            "super-Carnot violator tuple",
+            "single-bath positive-work violator",
+            "reversible equality with non-Carnot work",
+        ],
+        "baselines": [
+            "sympy algebraic Carnot-bound derivation",
+            "z3 real-arithmetic violator fence",
+            "temperature-boundary symbolic limits",
+        ],
+        "alternative_formulations": [
+            "numpy reservoir-bound arithmetic",
+            "z3 scalar Carnot admissibility fence",
+            "two-bath stroke calibration cycle",
+        ],
+        "exact_tool_function_needs": {
+            "sympy": ["symbols", "Eq", "Ge", "solve", "simplify", "limit"],
+            "z3": ["Reals", "Solver"],
+        },
+        "lego_or_coupling_target": "classical two-bath cycle constraint fence support",
+        "promotion_allowed": False,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "bridge_claims": {
@@ -363,9 +430,9 @@ def main():
     }
 
     out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                           "..", "a2_state", "sim_results")
+                           "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "carnot_constraint_admissibility_fence.json")
+    out_path = os.path.join(out_dir, "carnot_constraint_admissibility_fence_results.json")
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"overall_pass = {overall}")

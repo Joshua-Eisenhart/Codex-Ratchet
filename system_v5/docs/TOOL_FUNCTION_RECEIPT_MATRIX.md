@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T03:56:41.123011+00:00`
+Generated: `2026-05-13T03:59:34.935666+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `77`
-- Passing rows: `77`
+- Rows: `78`
+- Passing rows: `78`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `77`
+- Explicit receipt schemas missing: `78`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -82,6 +82,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `sympy` | sympy Matrix.inv / exact matrix equality inverse identity checks | `system_v4/probes/a2_state/sim_results/sim_sympy_matrix_identity_micro_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `exact_matrix_identity`, `operator_family_admission` |
 | `sympy` | sympy Matrix/exp/diff/simplify/subs for exact Hopf-coordinate density derivative readouts | `system_v4/probes/a2_state/sim_results/hopf_symbolic_inner_outer_density_readout_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `exact_hopf_coordinate_identity_baseline` |
 | `sympy` | sympy Matrix/exp/diff/simplify/subs for declared Weyl-sheet orientation signs in Hopf-coordinate density derivative ratios | `system_v4/probes/a2_state/sim_results/sympy_weyl_sheet_hopf_loop_derivative_sign_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `sheet_loop_product_readout_separation_baseline` |
+| `sympy` | sympy Matrix/diag/eye/exp/diff/trace/trigsimp for exact phase-generator density transport | `system_v4/probes/a2_state/sim_results/sympy_hopf_loop_phase_generator_density_transport_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `density_operator_phase_generator_transport_baseline` |
 | `sympy` | sympy diff/integrate/simplify exact Hopf U(1) connection curvature and first-Chern integral | `system_v4/probes/a2_state/sim_results/sympy_hopf_connection_curvature_c1_integral_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_connection_curvature_geometry_baseline`, `curvature_integral_baseline` |
 | `sympy` | sympy Matrix/diff/integrate/simplify contrast between Hopf connection curvature and carrier-free Pauli-label controls | `system_v4/probes/a2_state/sim_results/sympy_hopf_connection_curvature_pauli_label_gap_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `bare_pauli_no_carrier_negative_control`, `hopf_connection_curvature_geometry_baseline` |
 | `sympy` | sympy symbols/cos/integrate/simplify exact Hopf connection loop integrals and horizontal-lift chi shifts | `system_v4/probes/a2_state/sim_results/sympy_hopf_loop_holonomy_area_dependence_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_loop_holonomy_geometry_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |

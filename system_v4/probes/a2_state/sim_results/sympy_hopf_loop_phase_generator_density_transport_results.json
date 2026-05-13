@@ -1,0 +1,122 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "QuTiP Qobj.expm phase-generator transport",
+    "Qiskit Operator/DensityMatrix phase-generator transport",
+    "Clifford rotor relative-phase transport control",
+    "nested Hopf-torus carrier transport fixture"
+  ],
+  "baselines": [
+    "sampled NumPy Hopf inner/outer path metric fixture",
+    "SymPy Hopf density derivative identity",
+    "QuTiP phase-generator density transport fixture",
+    "Qiskit phase-generator density transport fixture"
+  ],
+  "blocked_until": "blocked from target-system claims until explicit nested carrier geometry, declared observables, and physical-evolution graveyards exist",
+  "carrier_topology": "symbolic two-component density carrier with Hopf-style phase-generator loop families; no full nested-tori manifold",
+  "claim_ceiling": "SymPy exact phase-generator density-transport baseline for Hopf-style inner/global-phase and outer/relative-phase loop transports only; no physical inner/outer loop independence, no full S3 bundle, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if global-phase transport changes density, if relative-phase off-diagonal derivative is not I times the off-diagonal entry away from the pole, or if pole, diagonal-hidden, duplicate-generator, and no-carrier graveyards do not collapse.",
+  "divergence_log": "This is exact symbolic coordinate/operator algebra. It distinguishes global-phase density invariance from relative-phase off-diagonal transport, but it does not prove full geometric inner/outer independence.",
+  "exact_tool_function_needs": {
+    "sympy": [
+      "Matrix",
+      "diag",
+      "eye",
+      "exp",
+      "diff",
+      "trace",
+      "simplify",
+      "subs"
+    ]
+  },
+  "graveyards": [
+    "inner global-phase density derivative collapses",
+    "outer relative phase on pole state degenerates",
+    "diagonal-only readout hides outer transport",
+    "same outer generator duplicates have same derivative ratio",
+    "bare generators without density carrier are insufficient"
+  ],
+  "graveyards_detail": {
+    "bare_generators_without_density_carrier_are_insufficient": {
+      "can_compare_transport_readout": false,
+      "has_density_carrier": false,
+      "has_loop_family": false,
+      "passed": true
+    },
+    "diagonal_only_readout_hides_outer_transport": {
+      "diagonal_phi_derivatives": [
+        "0",
+        "0"
+      ],
+      "passed": true
+    },
+    "inner_global_phase_density_derivative_collapses": {
+      "inner_derivative_zero": true,
+      "passed": true
+    },
+    "outer_relative_phase_on_pole_state_degenerates": {
+      "outer_offdiag_derivative_at_pole": "0",
+      "passed": true
+    },
+    "same_outer_generator_duplicates_have_same_derivative_ratio": {
+      "passed": true,
+      "ratio_a": "I",
+      "ratio_b": "I"
+    }
+  },
+  "lego_or_coupling_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+  "name": "sympy_hopf_loop_phase_generator_density_transport",
+  "next_lego_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+  "observable": "symbolic density entries, trace, purity, and loop-coordinate derivatives",
+  "operation_sequence": [
+    "construct an exact two-component non-pole carrier density",
+    "define the inner loop as global-phase unitary exp(i chi I/2)",
+    "define the outer loop as relative-phase unitary exp(i phi sigma_z/2)",
+    "transport the same symbolic density by both unitary families",
+    "differentiate density readouts by the inner and outer loop coordinates",
+    "run pole-state, diagonal-hidden, duplicate-generator, and no-carrier graveyards"
+  ],
+  "out_of_scope": [
+    "No full nested Hopf-torus carrier.",
+    "No flux representation or Pauli shortcut.",
+    "No Lindblad dynamics or target-system admission.",
+    "No QIT, GStack, axis, bridge, nonclassical, or target-system claim."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "inner/global-phase transport leaves density invariant; outer/relative-phase off-diagonal derivative is I times the off-diagonal entry away from the pole; trace and purity remain one; adjacent graveyards collapse or become insufficient",
+  "positive": {
+    "inner_density": [
+      [
+        "cos(theta/2)**2",
+        "sin(theta)/2"
+      ],
+      [
+        "sin(theta)/2",
+        "sin(theta/2)**2"
+      ]
+    ],
+    "inner_derivative_zero": true,
+    "outer_derivative_nonzero_at_theta_pi_over_3": true,
+    "outer_derivative_over_offdiag": "I",
+    "outer_offdiag": "exp(I*phi)*sin(theta)/2",
+    "outer_offdiag_derivative": "I*exp(I*phi)*sin(theta)/2",
+    "purity_inner": "1",
+    "purity_outer": "1",
+    "survives_phase_generator_density_transport": true,
+    "trace_inner": "1",
+    "trace_outer": "1"
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later geometry planning after a fuller carrier/topology fixture and physical graveyards reproduce compatible generator/path readouts.",
+  "tool_integration_depth": {
+    "sympy": "supportive"
+  },
+  "tool_manifest": {
+    "sympy": {
+      "reason": "constructs exact two-component density matrices and differentiates inner/global-phase and outer/relative-phase unitary transport readouts",
+      "tried": true,
+      "used": true
+    }
+  }
+}

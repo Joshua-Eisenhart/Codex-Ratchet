@@ -84,6 +84,10 @@ except Exception as exc:
     TOOL_MANIFEST["e3nn"]["reason"] = f"not installed: {exc}"
 
 
+def _max_abs_float(tensor):
+    return float(tensor.detach().abs().max())
+
+
 # =====================================================================
 # POSITIVE TESTS
 # =====================================================================
@@ -147,7 +151,7 @@ def run_positive_tests():
     y = tp(x1, x2)
     y_rot = tp(x1 @ D_in.T, x2 @ D_in.T)
     y_then_rot = y @ D_out.T
-    err = float((y_rot - y_then_rot).abs().max())
+    err = _max_abs_float(y_rot - y_then_rot)
     r["so3_equivariance"] = {
         "pass": err < 1e-4,
         "max_abs_err": err,
@@ -156,7 +160,7 @@ def run_positive_tests():
     # 4. D-matrix preserves norm (orthogonality check on irrep rep).
     D_1o = o3.Irreps("1x1o").D_from_matrix(R)
     I_approx = D_1o @ D_1o.T
-    err_id = float((I_approx - torch.eye(3)).abs().max())
+    err_id = _max_abs_float(I_approx - torch.eye(3))
     r["D_matrix_orthogonal"] = {
         "pass": err_id < 1e-5,
         "max_abs_err": err_id,
@@ -198,7 +202,7 @@ def run_negative_tests():
     y = tp(x1, x2)
     y_rot = tp(x1 @ M.T, x2 @ M.T)
     y_then_rot = y @ M.T
-    err_val = float((y_rot - y_then_rot).abs().max())
+    err_val = _max_abs_float(y_rot - y_then_rot)
     # Expected to be noticeably NONZERO for generic non-rotation.
     r["non_rotation_breaks_equivariance"] = {
         "pass": err_val > 1e-2,
@@ -240,12 +244,12 @@ def run_boundary_tests():
     x2 = torch.randn(1, 3)
     y = tp(x1, x2)
     y_rot = tp(x1 @ D_in.T, x2 @ D_in.T)
-    err = float((y_rot - y @ D_out.T).abs().max())
+    err = _max_abs_float(y_rot - y @ D_out.T)
     r["identity_rotation_exact"] = {"pass": err < 1e-6, "max_abs_err": err}
 
     # 2. Scalar (0e) irrep is rotation-invariant.
     D_0e = o3.Irreps("1x0e").D_from_matrix(o3.rand_matrix())
-    err_scalar = float((D_0e - torch.eye(1)).abs().max())
+    err_scalar = _max_abs_float(D_0e - torch.eye(1))
     r["scalar_irrep_invariant"] = {"pass": err_scalar < 1e-6, "max_abs_err": err_scalar}
 
     # 3. Composition of rotations: D(R1 R2) = D(R1) D(R2) on 1o irrep.
@@ -253,7 +257,7 @@ def run_boundary_tests():
     R2 = o3.rand_matrix()
     D_comp = o3.Irreps("1x1o").D_from_matrix(R1 @ R2)
     D_prod = o3.Irreps("1x1o").D_from_matrix(R1) @ o3.Irreps("1x1o").D_from_matrix(R2)
-    err_comp = float((D_comp - D_prod).abs().max())
+    err_comp = _max_abs_float(D_comp - D_prod)
     r["D_homomorphism"] = {"pass": err_comp < 1e-5, "max_abs_err": err_comp}
 
     return r
@@ -298,6 +302,55 @@ if __name__ == "__main__":
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
         "classification": "canonical",
+        "operation_sequence": [
+            "parse the e3nn irreps string '1x0e + 1x1o' and check representation dimensions",
+            "compute the Clebsch-Gordan product support for 1o x 1o",
+            "construct a FullyConnectedTensorProduct over vector irreps and check SO(3) equivariance under a random rotation",
+            "verify D_from_matrix produces an orthogonal l=1 representation matrix",
+            "run negative fixtures for malformed irreps, non-rotation transforms, and wrong input dimension",
+            "run boundary fixtures for identity rotation, scalar irrep invariance, and D(R1 R2)=D(R1)D(R2)",
+        ],
+        "carrier_topology": "finite SO(3) representation fixtures carried by e3nn o3 irreps and PyTorch tensors; no spinor geometry, bridge, axis, GStack, or nonclassical carrier is claimed",
+        "observable": {
+            "irrep_dimensions": "parsed irrep dimensions for 0e and 1o components",
+            "tensor_product_support": "Clebsch-Gordan l/parity support for 1o x 1o",
+            "equivariance_residual": "max absolute residual between rotate-then-map and map-then-rotate",
+            "D_matrix_orthogonality": "max absolute residual from D D^T = I",
+            "negative_controls": "malformed irrep, non-rotation, and wrong-dimension fixtures must fail or raise",
+            "boundary_controls": "identity, scalar, and representation homomorphism checks must hold",
+        },
+        "pass_fail_predicate": "E3NN_OK, TORCH_OK, positive_all_pass, negative_all_pass, and boundary_all_pass must all be true; equivariance and representation residuals must stay below thresholds while adjacent non-rotation and malformed-input controls fail as expected",
+        "graveyards": [
+            "non-rotation matrix treated as SO(3) equivariant -- must produce residual above threshold",
+            "malformed irrep string accepted -- must raise instead of parsing",
+            "wrong tensor-product input dimension accepted -- must raise",
+            "D_from_matrix representation fails orthogonality or homomorphism -- must fail boundary checks",
+        ],
+        "baselines": [
+            "manual irrep dimension count for 0e plus 1o",
+            "manual Clebsch-Gordan support expectation for 1o x 1o",
+            "identity rotation equivariance as a trivial boundary baseline",
+            "scalar 0e irrep invariance under rotation",
+        ],
+        "alternative_formulations": [
+            "direct PyTorch rotation matrices for l=1 vector representation residuals",
+            "SymPy symbolic SO(3) matrix checks in later algebra packets",
+            "e3nn spherical-harmonics equivariance micro packet for a separate API surface",
+        ],
+        "tool_function_needs": [
+            "e3nn.o3.Irreps",
+            "Irreps.D_from_matrix",
+            "e3nn.o3.FullyConnectedTensorProduct",
+            "e3nn.o3.rand_matrix",
+            "Irrep tensor-product decomposition",
+            "torch.manual_seed",
+            "torch.randn",
+        ],
+        "lego_coupling_target": [
+            "so3_equivariance_fixture",
+            "operator_family_equivariance_checks",
+            "e3nn_pyg_tool_integration_packets",
+        ],
         "surviving_alternatives": [
             "This receipt covers only bounded e3nn equivariance API capability; it does not promote spinor geometry, graph equivariance, bridge, axis, GStack, or nonclassical admission."
         ],

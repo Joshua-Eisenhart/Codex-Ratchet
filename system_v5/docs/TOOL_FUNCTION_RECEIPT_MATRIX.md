@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T05:41:22.376473+00:00`
+Generated: `2026-05-13T05:45:41.543083+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `103`
-- Passing rows: `103`
+- Rows: `104`
+- Passing rows: `104`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `103`
+- Explicit receipt schemas missing: `104`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -71,6 +71,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `rustworkx` | rustworkx PyDiGraph DAG construction, topological_sort, transitive_reduction, dijkstra_shortest_paths, cycle detection | `system_v4/probes/a2_state/sim_results/rustworkx_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_shell_geometry`, `dependency_dag_and_collapse` |
 | `rustworkx` | rustworkx PyDiGraph descendants/topological_sort/shortest_path reachability on a tiny DAG | `system_v4/probes/a2_state/sim_results/sim_rustworkx_dag_reachability_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `dependency_dag_and_collapse`, `graph_shell_geometry` |
 | `rustworkx` | rustworkx PyDiGraph topological_sort/ancestors/descendants/transitive_reduction over Hopf receipt dependency DAG | `system_v4/probes/a2_state/sim_results/rustworkx_hopf_receipt_dependency_reduction_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `receipt_dependency_dag_controls` |
+| `rustworkx` | rustworkx PyGraph add_node/add_edge/number_connected_components/is_connected/cycle_basis over Hopf/Weyl vertical fiber and horizontal base-lift Bloch-density readout cycle graphs | `system_v4/probes/a2_state/sim_results/rustworkx_hopf_weyl_vertical_horizontal_density_readout_cycle_graph_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_weyl_carrier_loop_geometry_baseline`, `density_readout_cycle_graph_baseline` |
 | `scipy` | scipy.linalg.eigvalsh, scipy.optimize.minimize, scipy.spatial.distance.cdist, and scipy.stats.entropy baseline controls | `system_v4/probes/a2_state/sim_results/sim_capability_scipy_isolated_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `classical_spectral_baseline`, `classical_distance_entropy_baseline` |
 | `scipy` | scipy.integrate.solve_ivp numerical Hopf horizontal-lift chi-shift ODE over base latitude loops | `system_v4/probes/a2_state/sim_results/scipy_hopf_horizontal_lift_chi_shift_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_loop_holonomy_geometry_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `scipy` | scipy.integrate.solve_ivp horizontal-lift chi-shift ODE over connected two-theta-layer Hopf-torus coordinates | `system_v4/probes/a2_state/sim_results/scipy_connected_hopf_torus_horizontal_transport_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `connected_layer_horizontal_transport_baseline` |

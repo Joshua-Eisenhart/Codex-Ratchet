@@ -1,0 +1,190 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "NetworkX cycle graph and connected-component baseline",
+    "TopoNetX SimplicialComplex path-cycle fixture",
+    "GUDHI SimplexTree explicit cycle/collapsed fixture",
+    "physical Hamiltonian generator evolution over vertical and horizontal path families"
+  ],
+  "baselines": [
+    "TopoNetX Hopf/Weyl vertical-horizontal density readout cycle incidence baseline",
+    "GUDHI Hopf/Weyl vertical-horizontal density readout Rips homology baseline",
+    "QuTiP/Qiskit Hopf/Weyl vertical-horizontal density transport baselines",
+    "SymPy/Geomstats/Clifford Hopf/Weyl vertical-horizontal metric baselines",
+    "z3/cvc5 Hopf/Weyl vertical-horizontal metric predicate controls"
+  ],
+  "blocked_until": "blocked from target-system claims until full carrier/topology and physical-evolution receipts exist",
+  "carrier_topology": "sampled two-component Hopf/Weyl carrier projected to Bloch-density readout paths and then to finite graph fixtures",
+  "claim_ceiling": "rustworkx PyGraph baseline for Bloch-density readout cycle fixtures from declared Hopf/Weyl vertical fiber and horizontal base-lift paths only; this represents fiber collapse versus density-loop readout but does not distinguish raw base from horizontal base or connection sign; no full nested Hopf-torus geometric-constraint manifold, no physical evolution, no flux, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if vertical fiber density readout does not collapse, if horizontal/base readouts do not form one-cycle graphs, or if pole/equator/raw-horizontal/wrong-sign/open-path/isolated-node controls do not collapse or coincide.",
+  "divergence_log": "This rustworkx packet is a graph-cycle formulation of the density-readout topology limit. It detects collapsed-fiber versus one-cycle readouts and records raw-base/horizontal-base and connection-sign indistinguishability as controls.",
+  "exact_tool_function_needs": {
+    "numpy": [
+      "linspace",
+      "exp",
+      "asarray",
+      "linalg.norm",
+      "linalg.svd"
+    ],
+    "rustworkx": [
+      "PyGraph",
+      "PyGraph.add_node",
+      "PyGraph.add_edge",
+      "number_connected_components",
+      "is_connected",
+      "cycle_basis"
+    ]
+  },
+  "graveyards": [
+    "vertical fiber density readout collapses to one-node graph",
+    "horizontal base density readout has one cycle",
+    "cycle graph does not distinguish raw from horizontal base",
+    "wrong-sign cycle graph is not a connection-sign detector",
+    "pole horizontal base density readout collapses",
+    "equator raw and horizontal cycle graphs coincide",
+    "open path has no cycle",
+    "isolated nodes are not one connected cycle"
+  ],
+  "graveyards_detail": {
+    "cycle_graph_does_not_distinguish_raw_from_horizontal_base": {
+      "horizontal_base_cycle_basis_count": 1,
+      "passed": true,
+      "raw_base_cycle_basis_count": 1
+    },
+    "equator_raw_and_horizontal_cycle_graphs_coincide": {
+      "horizontal_base_cycle_basis_count": 1,
+      "passed": true,
+      "raw_base_cycle_basis_count": 1
+    },
+    "horizontal_base_density_readout_has_one_cycle": {
+      "cycle_basis_count": 1,
+      "graph_kind": "cycle_graph",
+      "passed": true
+    },
+    "isolated_nodes_are_not_one_connected_cycle": {
+      "connected_component_count": 32,
+      "cycle_basis_count": 0,
+      "edge_count": 0,
+      "node_count": 32,
+      "passed": true
+    },
+    "open_path_has_no_cycle": {
+      "cycle_basis_count": 0,
+      "edge_count": 31,
+      "node_count": 32,
+      "passed": true
+    },
+    "pole_horizontal_base_density_readout_collapses": {
+      "cycle_basis_count": 0,
+      "graph_kind": "collapsed_point",
+      "passed": true
+    },
+    "vertical_fiber_density_readout_collapses_to_one_node_graph": {
+      "cycle_basis_count": 0,
+      "graph_kind": "collapsed_point",
+      "passed": true
+    },
+    "wrong_sign_cycle_graph_is_not_a_connection_sign_detector": {
+      "horizontal_base_cycle_basis_count": 1,
+      "passed": true,
+      "wrong_sign_cycle_basis_count": 1
+    }
+  },
+  "lego_or_coupling_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "name": "rustworkx_hopf_weyl_vertical_horizontal_density_readout_cycle_graph",
+  "next_lego_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "observable": "rustworkx PyGraph node/edge counts, connected-component counts, connectivity, cycle-basis counts, and density-readout displacement",
+  "operation_sequence": [
+    "construct two-component Hopf/Weyl spinor samples from theta, phi, and chi",
+    "project each carrier sample to a three-coordinate Bloch-density readout",
+    "sample vertical fiber, raw base, horizontal base lift, and wrong-sign horizontal base paths",
+    "collapse near-constant density readout paths to one-node rustworkx PyGraph fixtures",
+    "encode non-collapsed density readout paths as rustworkx one-cycle PyGraph fixtures",
+    "compute connected-component counts, connectivity, and cycle-basis readouts",
+    "run fiber-collapse, horizontal-cycle, pole-collapse, equator-coincidence, raw-horizontal, wrong-sign, open-path, and isolated-node graveyards"
+  ],
+  "out_of_scope": [
+    "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+    "No flux representation or Pauli-boundary shortcut.",
+    "No Lindblad, Hamiltonian, thermodynamic, or information-cycle mechanics.",
+    "No distinction between raw base and horizontal base by graph cycle structure alone.",
+    "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "vertical fiber density readout collapses to a point graph, horizontal/raw/wrong-sign base density readouts form one-cycle graphs, and adjacent controls collapse or become indistinguishable as predicted",
+  "positive": {
+    "density_readout_cycle_graph_pass": true,
+    "readouts": {
+      "horizontal_base": {
+        "connected_component_count": 1,
+        "cycle_basis_count": 1,
+        "cycle_basis_lengths": [
+          32
+        ],
+        "edge_count": 32,
+        "graph_kind": "cycle_graph",
+        "is_connected": true,
+        "max_pairwise_displacement": 1.7320508075688772,
+        "node_count": 32,
+        "rank_proxy_singular_value_count": 2
+      },
+      "raw_base": {
+        "connected_component_count": 1,
+        "cycle_basis_count": 1,
+        "cycle_basis_lengths": [
+          32
+        ],
+        "edge_count": 32,
+        "graph_kind": "cycle_graph",
+        "is_connected": true,
+        "max_pairwise_displacement": 1.7320508075688772,
+        "node_count": 32,
+        "rank_proxy_singular_value_count": 2
+      },
+      "vertical_fiber": {
+        "connected_component_count": 1,
+        "cycle_basis_count": 0,
+        "cycle_basis_lengths": [],
+        "edge_count": 0,
+        "graph_kind": "collapsed_point",
+        "is_connected": true,
+        "max_pairwise_displacement": 3.7238012298709097e-16,
+        "node_count": 1,
+        "rank_proxy_singular_value_count": 0
+      },
+      "wrong_sign_horizontal_base": {
+        "connected_component_count": 1,
+        "cycle_basis_count": 1,
+        "cycle_basis_lengths": [
+          32
+        ],
+        "edge_count": 32,
+        "graph_kind": "cycle_graph",
+        "is_connected": true,
+        "max_pairwise_displacement": 1.7320508075688772,
+        "node_count": 32,
+        "rank_proxy_singular_value_count": 2
+      }
+    },
+    "theta": 1.0471975511965976
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later geometry planning after full carrier, connection, topology, solver, density-object, and physical operator-evolution receipts reproduce compatible vertical/horizontal separation with adjacent controls.",
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "rustworkx": "load_bearing"
+  },
+  "tool_manifest": {
+    "numpy": {
+      "reason": "samples Hopf/Weyl carrier paths and computes Bloch-density readouts and displacement controls",
+      "tried": true,
+      "used": true
+    },
+    "rustworkx": {
+      "reason": "builds PyGraph cycle/collapsed fixtures from Bloch-density readout path families and computes connected-component and cycle-basis readouts",
+      "tried": true,
+      "used": true
+    }
+  }
+}

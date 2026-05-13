@@ -272,6 +272,14 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "toponetx",
+        "function_api": "TopoNetX CellComplex periodic rank-2 torus layers with incidence_matrix and hodge_laplacian_matrix zero-mode readouts",
+        "receipt": "system_v4/probes/a2_state/sim_results/toponetx_two_hopf_torus_layer_incidence_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["nested_hopf_torus_loop_geometry_baseline", "inner_outer_hopf_weyl_loop_geometry_fit"],
+    },
+    {
+        "tool": "toponetx",
         "function_api": "SimplicialComplex.to_hasse_graph node/edge carrier feeding PyG graph fixtures",
         "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json",
         "role": "nonclassical_adjacent",

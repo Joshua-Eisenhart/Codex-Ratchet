@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T04:42:57.556939+00:00",
+  "generated_at": "2026-05-13T04:45:47.764757+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -1405,6 +1405,61 @@
         "No QIT, GStack, axis, bridge, nonclassical, runtime-engine, feedback-cycle, or target-system admission."
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/qiskit_two_level_kraus_reset_erasure_floor_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "qiskit"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "work_heat_cycle_calibration_fixture",
+        "two_level_density_work_heat_baseline"
+      ],
+      "claim_ceiling": "Qiskit two-level two-bath gap-change work/heat calibration only; this is a reversible finite-carrier classical baseline for heat/work accounting, not a full Carnot theorem; no QIT, GStack, axis, bridge, nonclassical, runtime-engine, or target-system admission",
+      "depth": "load_bearing",
+      "function_api": "qiskit DensityMatrix/Operator over two-level thermal endpoint states and hot/cold Hamiltonian gap-change work/heat accounting",
+      "manifest_reason": "builds two-level DensityMatrix carriers, Operator Hamiltonians, and energy expectation readouts",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No Lindblad bath thermalization dynamics.",
+        "No finite-time irreversibility model.",
+        "No measurement, feedback, QIT, GStack, axis, bridge, nonclassical, runtime-engine, or target-system admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/qiskit_two_level_two_bath_gap_change_work_heat_bounds_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "classical_baseline",
       "receipt_contract_fields": [
@@ -4736,11 +4791,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 88,
+    "passing_count": 89,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 88,
+    "receipt_schema_observed_missing_count": 89,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 88,
+    "row_count": 89,
     "tools": [
       "clifford",
       "cvc5",

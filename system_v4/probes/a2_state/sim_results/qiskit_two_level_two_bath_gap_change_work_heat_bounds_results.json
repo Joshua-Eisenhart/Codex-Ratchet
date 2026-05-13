@@ -1,0 +1,177 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "Lindblad two-bath thermalization stroke schedule",
+    "finite-time irreversible gap-change schedule",
+    "SymPy closed-form population and efficiency identities"
+  ],
+  "baselines": [
+    "scalar two-bath four-stroke work/heat bound receipt",
+    "QuTiP two-level two-bath gap-change work/heat receipt",
+    "Qiskit two-level Kraus reset erasure-floor receipt"
+  ],
+  "blocked_until": "blocked from target cycle mechanics until explicit stroke dynamics and work-reservoir fixtures exist",
+  "carrier_topology": "finite two-level density matrix with two ideal thermal endpoint states and two Hamiltonian gaps",
+  "claim_ceiling": "Qiskit two-level two-bath gap-change work/heat calibration only; this is a reversible finite-carrier classical baseline for heat/work accounting, not a full Carnot theorem; no QIT, GStack, axis, bridge, nonclassical, runtime-engine, or target-system admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if density validity fails, if heat/work accounting does not close, if reversed or matched-population graveyards do not collapse/invert, or if efficiency exceeds the Carnot bound.",
+  "divergence_log": "This Qiskit fixture cross-checks the QuTiP two-level gap-change endpoint accounting with independent DensityMatrix and Operator APIs, but it still uses ideal thermal endpoint states rather than simulating bath strokes.",
+  "exact_tool_function_needs": {
+    "numpy": [
+      "array",
+      "trace",
+      "isclose",
+      "eigvalsh"
+    ],
+    "qiskit": [
+      "DensityMatrix",
+      "Operator"
+    ]
+  },
+  "graveyards": [
+    "no gap change gives zero work",
+    "matching scaled gaps equalize populations and zero work",
+    "reversed temperature assignment consumes work",
+    "same temperature with gap change violates hot/cold population order",
+    "super-Carnot efficiency claim rejected"
+  ],
+  "graveyards_detail": {
+    "matching_scaled_gaps_equalize_populations_and_zero_work": {
+      "W_out": 0.0,
+      "cold_population": 0.2689414213699951,
+      "hot_population": 0.2689414213699951,
+      "passed": true
+    },
+    "no_gap_change_gives_zero_work": {
+      "W_out": 0.0,
+      "passed": true
+    },
+    "reversed_temperature_assignment_consumes_work": {
+      "W_out": -0.7666522598509129,
+      "passed": true
+    },
+    "same_temperature_with_gap_change_violates_hot_cold_population_order": {
+      "cold_population": 0.2689414213699951,
+      "hot_population": 0.11920292202211755,
+      "passed": true
+    },
+    "super_carnot_efficiency_claim_rejected": {
+      "carnot_bound": 0.8,
+      "claimed_efficiency": 0.8500000000000001,
+      "efficiency": 0.5,
+      "passed": true
+    }
+  },
+  "lego_or_coupling_target": "work_heat_cycle_calibration_fixture",
+  "name": "qiskit_two_level_two_bath_gap_change_work_heat_bounds",
+  "next_lego_target": "work_heat_cycle_calibration_fixture",
+  "observable": "excited populations, endpoint energies, Q_hot, Q_cold, W_out, efficiency, Carnot bound, density validity",
+  "operation_sequence": [
+    "construct two-level thermal DensityMatrix carriers for hot and cold inverse temperatures",
+    "construct hot-gap and cold-gap Operator Hamiltonians H = gap * |1><1|",
+    "read hot-state energy at hot and cold gaps",
+    "read cold-state energy at cold and hot gaps",
+    "compute expansion work, cold heat rejection, compression work input, and hot heat absorption",
+    "check net work, efficiency, Carnot bound, energy accounting, and adjacent graveyards"
+  ],
+  "out_of_scope": [
+    "No Lindblad bath thermalization dynamics.",
+    "No finite-time irreversibility model.",
+    "No measurement, feedback, QIT, GStack, axis, bridge, nonclassical, runtime-engine, or target-system admission."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "hot population exceeds cold population, W_out and Q_hot are positive, Q_cold is negative, accounting closes, efficiency respects the Carnot bound, and graveyards collapse or invert",
+  "positive": {
+    "absorbs_hot_heat": true,
+    "cycle": {
+      "Q_cold": -0.38164519370054,
+      "Q_hot": 0.76329038740108,
+      "W_out": 0.38164519370054,
+      "beta_cold": 1.0,
+      "beta_hot": 0.2,
+      "carnot_bound": 0.8,
+      "cold_density_ok": true,
+      "cold_excited_population": 0.11920292202211755,
+      "cold_state": [
+        [
+          [
+            0.8807970779778824,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.11920292202211755,
+            0.0
+          ]
+        ]
+      ],
+      "efficiency": 0.5,
+      "energy_accounting_residual": 0.0,
+      "energy_cold_state_cold_gap": 0.2384058440442351,
+      "energy_cold_state_hot_gap": 0.4768116880884702,
+      "energy_hot_state_cold_gap": 0.6200510377447751,
+      "energy_hot_state_hot_gap": 1.2401020754895502,
+      "gap_cold": 2.0,
+      "gap_hot": 4.0,
+      "hot_density_ok": true,
+      "hot_excited_population": 0.31002551887238755,
+      "hot_state": [
+        [
+          [
+            0.6899744811276125,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.31002551887238755,
+            0.0
+          ]
+        ]
+      ],
+      "work_in_compression": 0.2384058440442351,
+      "work_out_expansion": 0.6200510377447751
+    },
+    "densities_valid": true,
+    "efficiency_respects_carnot_bound": true,
+    "energy_accounting_closes": true,
+    "hot_population_exceeds_cold_population": true,
+    "rejects_cold_heat": true,
+    "work_positive": true
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later calibration planning after explicit stroke dynamics, finite-time controls, and independent tool receipts reproduce compatible heat/work bounds with adjacent graveyards.",
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "qiskit": "load_bearing"
+  },
+  "tool_manifest": {
+    "numpy": {
+      "reason": "computes thermal populations, scalar work/heat checks, and density eigenvalue validity",
+      "tried": true,
+      "used": true
+    },
+    "qiskit": {
+      "reason": "builds two-level DensityMatrix carriers, Operator Hamiltonians, and energy expectation readouts",
+      "tried": true,
+      "used": true
+    }
+  }
+}

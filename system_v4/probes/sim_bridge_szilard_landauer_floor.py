@@ -13,7 +13,12 @@ NAME = "bridge_szilard_landauer_floor"
 SCOPE_NOTE = ("Bridge: Landauer floor as admissibility constraint. "
               "z3 UNSAT for Ev < F01 * ln2 under F01 > 0, Ev >= 0. "
               "Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md Landauer section.")
-classification = "canonical"
+classification = "tool_lego_fit_probe"
+divergence_log = (
+    "z3 finite-arithmetic Landauer-floor fence only: rejects sub-floor erasure "
+    "under declared positive distinguishability unit cost; no bridge, QIT, "
+    "GStack, axis, nonclassical, or feedback-cycle admission."
+)
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
@@ -100,6 +105,59 @@ if __name__ == "__main__":
     results = {
         "name": NAME, "scope_note": SCOPE_NOTE,
         "classification": classification,
+        "all_pass": bool(ok),
+        "divergence_log": divergence_log,
+        "claim_ceiling": (
+            "local z3 Landauer-floor constraint fence only: sub-floor erasure is UNSAT "
+            "under declared F01 > 0; no bridge, QIT, GStack, axis, nonclassical, "
+            "or Szilard feedback-cycle admission"
+        ),
+        "next_lego_target": "classical erasure-cost calibration support only",
+        "promotion_condition": (
+            "No promotion from this receipt; downstream feedback-cycle calibration must "
+            "supply explicit record, feedback, erasure, and graveyard receipts."
+        ),
+        "demotion_condition": (
+            "Demote if sub-floor erasure becomes SAT under the declared floor, or if this "
+            "receipt is used as bridge/QIT/GStack/axis/nonclassical evidence."
+        ),
+        "blocked_until": (
+            "blocked from bridge, QIT, GStack, axis, nonclassical, or feedback-cycle claims "
+            "until separate exact receipts close those gates"
+        ),
+        "out_of_scope": [
+            "No feedback cycle.",
+            "No quantum carrier.",
+            "No bridge, QIT, GStack, axis, or nonclassical admission.",
+        ],
+        "operation_sequence": [
+            "declare positive distinguishability unit F01 and nonnegative erasure energy Ev",
+            "assert Landauer floor Ev >= F01 ln2",
+            "ask z3 for sub-floor Ev < F01 ln2",
+            "check floor-attainable and F01-zero boundaries",
+        ],
+        "carrier_topology": "finite scalar real-arithmetic constraint system",
+        "observable": "z3 SAT/UNSAT verdicts for sub-floor, floor, and degenerate-boundary formulas",
+        "pass_fail_predicate": "sub-floor erasure is UNSAT, exact floor is SAT, and F01-zero degenerate boundary is SAT",
+        "graveyards": [
+            "sub-floor erasure contradiction",
+            "exact-floor attainable boundary",
+            "zero-distinguishability degenerate boundary",
+        ],
+        "graveyard_companions": [
+            "sub-floor erasure contradiction",
+            "exact-floor attainable boundary",
+            "zero-distinguishability degenerate boundary",
+        ],
+        "baselines": ["z3 real-arithmetic Landauer floor"],
+        "alternative_formulations": [
+            "numpy binary entropy cost curve",
+            "measurement-feedback-erasure calibration cycle",
+            "random-feedback graveyard",
+        ],
+        "exact_tool_function_needs": {"z3": ["Reals", "RealVal", "Solver"]},
+        "lego_or_coupling_target": "classical erasure-cost constraint fence support",
+        "promotion_allowed": False,
         "tool_manifest": TM, "tool_integration_depth": DEPTH,
         "load_bearing_tool": "z3",
         "positive": pos, "negative": neg, "boundary": bnd,

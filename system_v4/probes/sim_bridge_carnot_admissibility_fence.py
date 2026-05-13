@@ -14,7 +14,12 @@ SCOPE_NOTE = ("Bridge: Carnot as admissibility fence; z3 UNSAT that an engine "
               "with eta > 1 - Tc/Th is admissible under Tc<Th, Qh>0, Qc>=0, "
               "W=Qh-Qc, second law Qc/Tc >= Qh/Th. "
               "Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md Landauer section.")
-classification = "canonical"
+classification = "tool_lego_fit_probe"
+divergence_log = (
+    "z3 finite-arithmetic Carnot-bound fence only: rejects super-Carnot "
+    "efficiency under declared heat/work and second-law constraints; no bridge, "
+    "QIT, GStack, axis, nonclassical, or runtime-engine admission."
+)
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
@@ -114,6 +119,60 @@ if __name__ == "__main__":
     results = {
         "name": NAME, "scope_note": SCOPE_NOTE,
         "classification": classification,
+        "all_pass": bool(ok),
+        "divergence_log": divergence_log,
+        "claim_ceiling": (
+            "local z3 Carnot-bound constraint fence only: super-Carnot efficiency is UNSAT "
+            "under declared classical heat/work and second-law constraints; no bridge, QIT, "
+            "GStack, axis, nonclassical, or runtime-engine admission"
+        ),
+        "next_lego_target": "classical two-bath cycle calibration support only",
+        "promotion_condition": (
+            "No promotion from this receipt; downstream cycle calibration must supply explicit "
+            "strokes, heat/work observables, and same-bath/reversed/no-work graveyards."
+        ),
+        "demotion_condition": (
+            "Demote if super-Carnot becomes SAT under the declared constraints, or if this "
+            "receipt is used as bridge/QIT/GStack/axis/nonclassical evidence."
+        ),
+        "blocked_until": (
+            "blocked from bridge, QIT, GStack, axis, nonclassical, runtime-engine, or cycle "
+            "claims until separate exact receipts close those gates"
+        ),
+        "out_of_scope": [
+            "No cycle dynamics.",
+            "No quantum carrier.",
+            "No bridge, QIT, GStack, axis, runtime-engine, or nonclassical admission.",
+        ],
+        "operation_sequence": [
+            "declare positive hot/cold temperatures with Tc < Th",
+            "declare heat/work variables and W = Qh - Qc",
+            "assert Clausius second-law inequality",
+            "ask z3 for eta > 1 - Tc/Th",
+            "check attainable-bound and equal-temperature boundaries",
+        ],
+        "carrier_topology": "finite scalar real-arithmetic constraint system",
+        "observable": "z3 SAT/UNSAT verdicts for super-Carnot, bound-attainment, and isothermal-positive-work formulas",
+        "pass_fail_predicate": "super-Carnot and equal-temperature positive work are UNSAT while exact bound attainment is SAT",
+        "graveyards": [
+            "super-Carnot efficiency contradiction",
+            "exact-bound attainable boundary",
+            "equal-temperature positive-work contradiction",
+        ],
+        "graveyard_companions": [
+            "super-Carnot efficiency contradiction",
+            "exact-bound attainable boundary",
+            "equal-temperature positive-work contradiction",
+        ],
+        "baselines": ["z3 real-arithmetic Carnot bound"],
+        "alternative_formulations": [
+            "numpy reservoir-bound arithmetic",
+            "two-bath stroke calibration cycle",
+            "same-bath no-work companion",
+        ],
+        "exact_tool_function_needs": {"z3": ["Reals", "Real", "Solver"]},
+        "lego_or_coupling_target": "classical two-bath cycle constraint fence support",
+        "promotion_allowed": False,
         "tool_manifest": TM, "tool_integration_depth": DEPTH,
         "load_bearing_tool": "z3",
         "positive": pos, "negative": neg, "boundary": bnd,

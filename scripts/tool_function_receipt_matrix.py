@@ -150,6 +150,17 @@ TARGETS: list[dict[str, Any]] = [
         ],
     },
     {
+        "tool": "qutip",
+        "function_api": "qutip basis/ket2dm/destroy/mesolve/expect/entropy_vn over two-level thermal-reset erasure-floor calibration",
+        "receipt": "system_v4/probes/a2_state/sim_results/qutip_two_level_thermal_reset_erasure_floor_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "thermal_reset_erasure_floor_calibration_fixture",
+            "two_level_dissipative_reset_baseline",
+        ],
+    },
+    {
         "tool": "qiskit",
         "function_api": "QuantumCircuit, Statevector, DensityMatrix, Operator expectation_value",
         "receipt": "system_v4/probes/a2_state/sim_results/qiskit_capability_results.json",

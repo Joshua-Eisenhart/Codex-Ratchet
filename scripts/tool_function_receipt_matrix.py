@@ -140,6 +140,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "qutip",
+        "function_api": "qutip Qobj.expm/qeye/sigmaz unitary phase-generator transport over a two-component density carrier",
+        "receipt": "system_v4/probes/a2_state/sim_results/qutip_hopf_loop_phase_generator_density_transport_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "inner_outer_hopf_weyl_loop_geometry_fit",
+            "density_operator_phase_generator_transport_baseline",
+        ],
+    },
+    {
+        "tool": "qutip",
         "function_api": "qutip basis/ket2dm/projector/Qobj branch updates/sigmax/expect over two-level measurement-feedback-erasure calibration",
         "receipt": "system_v4/probes/a2_state/sim_results/qutip_two_level_measure_feedback_erasure_bounds_results.json",
         "role": "classical_baseline",

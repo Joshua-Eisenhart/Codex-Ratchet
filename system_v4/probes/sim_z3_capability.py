@@ -29,18 +29,18 @@ import os
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": "not needed -- proof-layer probe"},
-    "pyg":       {"tried": False, "used": False, "reason": "not needed"},
+    "pytorch":   {"tried": False, "used": False, "reason": "not used: this Z3 capability fixture exercises SMT solver checks, not tensor autodiff or torch kernels."},
+    "pyg":       {"tried": False, "used": False, "reason": "not used: no graph Data object, edge index, message passing, batching, or graph pooling API is exercised."},
     "z3":        {"tried": False, "used": False, "reason": "under test"},
-    "cvc5":      {"tried": False, "used": False, "reason": "separate cvc5 probe handles parity"},
-    "sympy":     {"tried": False, "used": False, "reason": "not needed -- pure SMT"},
-    "clifford":  {"tried": False, "used": False, "reason": "not geometry-relevant"},
-    "geomstats": {"tried": False, "used": False, "reason": "not geometry-relevant"},
-    "e3nn":      {"tried": False, "used": False, "reason": "not geometry-relevant"},
-    "rustworkx": {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "xgi":       {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "toponetx":  {"tried": False, "used": False, "reason": "not topology-relevant"},
-    "gudhi":     {"tried": False, "used": False, "reason": "not topology-relevant"},
+    "cvc5":      {"tried": False, "used": False, "reason": "not used: this fixture isolates Z3; cvc5 parity and agreement are covered by separate tool-integration receipts."},
+    "sympy":     {"tried": False, "used": False, "reason": "not used: formulas are built directly through Z3 constructors rather than symbolic algebra conversion."},
+    "clifford":  {"tried": False, "used": False, "reason": "not used: no Clifford basis, multivector product, rotor, or grade projection appears in this SMT fixture."},
+    "geomstats": {"tried": False, "used": False, "reason": "not used: no manifold metric, geodesic, or Lie group geometry API is part of this proof-layer probe."},
+    "e3nn":      {"tried": False, "used": False, "reason": "not used: no equivariant neural operation, representation tensor, or learned layer is exercised."},
+    "rustworkx": {"tried": False, "used": False, "reason": "not used: no DAG, graph traversal, shortest path, or dependency graph API is involved."},
+    "xgi":       {"tried": False, "used": False, "reason": "not used: no hypergraph incidence, hyperedge membership, or higher-order relation is represented."},
+    "toponetx":  {"tried": False, "used": False, "reason": "not used: no cell complex, simplicial complex, Hasse graph, or incidence matrix is exercised."},
+    "gudhi":     {"tried": False, "used": False, "reason": "not used: no persistent homology, simplex tree, filtration, or Betti computation is needed."},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -251,6 +251,123 @@ if __name__ == "__main__":
         "all_pass": bool(summary["all_pass"]),
         "classification": "canonical",
         "claim_ceiling": "tool_micro_z3_capability_only",
+        "operation_sequence": [
+            "construct Boolean, integer, and real Z3 variables",
+            "check satisfiability of a Boolean conjunction and read the model",
+            "encode a contradiction between commutative and noncommutative integer products",
+            "encode a five-cycle binary exclusion bound and require an impossible sum",
+            "verify solver push/pop state isolation",
+            "run adjacent negative fixtures for direct contradiction, tautology satisfiability, and ill-formed mixed Bool/Int construction",
+            "run boundary fixtures for empty solver satisfiability, a small linear integer model, and real nonnegativity",
+        ],
+        "carrier_topology": {
+            "carrier": "finite SMT constraint systems over Boolean, integer, and real sorts",
+            "positive_fixtures": [
+                "Boolean conjunction model",
+                "integer commutation contradiction",
+                "five-cycle binary exclusion bound",
+                "push/pop scoped constraint stack",
+            ],
+            "graveyard_fixtures": [
+                "p and not p contradiction",
+                "tautology p or not p",
+                "ill-formed Bool/Int And expression",
+            ],
+            "boundary_fixtures": [
+                "empty solver",
+                "two-equation linear integer system",
+                "real x squared less than zero",
+            ],
+        },
+        "observable": {
+            "primary": "Z3 check result values sat or unsat",
+            "secondary": [
+                "model values for Boolean and integer SAT cases",
+                "exception type for ill-formed expression",
+                "push/pop result transition",
+            ],
+        },
+        "pass_fail_predicate": {
+            "pass": [
+                "Boolean conjunction is SAT and model sets both variables true",
+                "commute and not-commute integer product constraints are UNSAT",
+                "five-cycle exclusion with sum at least three is UNSAT",
+                "push frame contradiction is UNSAT and popped solver returns SAT",
+                "direct p and not p contradiction is UNSAT",
+                "tautology p or not p is SAT",
+                "mixed Bool/Int And raises",
+                "empty solver is SAT",
+                "linear integer system model is x=7 and y=3",
+                "real x squared less than zero is UNSAT",
+            ],
+            "fail": [
+                "Z3 import is unavailable",
+                "any expected SAT/UNSAT result changes",
+                "model extraction returns wrong values",
+                "ill-formed expression is accepted silently",
+            ],
+        },
+        "graveyards": [
+            {
+                "name": "direct_boolean_contradiction",
+                "change": "assert p and not p in the same solver",
+                "expected_death": "solver returns UNSAT",
+            },
+            {
+                "name": "ill_formed_bool_int_and",
+                "change": "combine an Int expression and Bool expression through And",
+                "expected_death": "Z3 raises instead of constructing a valid formula",
+            },
+            {
+                "name": "real_negative_square",
+                "change": "assert x*x < 0 over real sort",
+                "expected_death": "solver returns UNSAT",
+            },
+        ],
+        "baselines": [
+            {
+                "name": "manual_boolean_truth_table",
+                "role": "baseline for p and not p contradiction and p or not p tautology",
+            },
+            {
+                "name": "manual_five_cycle_independent_set_bound",
+                "role": "baseline that the maximum independent set of C5 has size 2",
+            },
+            {
+                "name": "manual_linear_system_solution",
+                "role": "baseline solving x+y=10 and x-y=4 as x=7, y=3",
+            },
+        ],
+        "alternative_formulations": [
+            "cvc5 QF_LIA and Boolean encoding of the same SAT/UNSAT fixtures",
+            "truth-table enumeration for the Boolean fixtures",
+            "integer linear programming formulation of the five-cycle exclusion bound",
+        ],
+        "tool_function_needs": [
+            {
+                "tool": "z3",
+                "functions": [
+                    "z3.Solver",
+                    "z3.Bools",
+                    "z3.Ints",
+                    "z3.Real",
+                    "z3.And",
+                    "z3.Or",
+                    "z3.Not",
+                    "z3.Sum",
+                    "Solver.add",
+                    "Solver.check",
+                    "Solver.model",
+                    "Solver.push",
+                    "Solver.pop",
+                ],
+                "depth": "load_bearing",
+            }
+        ],
+        "lego_coupling_target": [
+            "constraint_probe_admissibility",
+            "distinguishability_relation",
+        ],
         "out_of_scope": [
             "no lego admission",
             "no tool-tool coupling claim",

@@ -257,6 +257,124 @@
   },
   "all_pass": true,
   "classification": "canonical",
+  "operation_sequence": [
+    "construct a filled 2-simplex as a SimplicialComplex",
+    "read simplex counts by rank from downward closure",
+    "compute the rank-1 incidence matrix from edges to vertices",
+    "compute the rank-2 incidence matrix from the triangle to edges",
+    "verify boundary-of-boundary zero by multiplying B1 and B2",
+    "compute the rank-0 Hodge Laplacian spectrum",
+    "read edge faces from the rank-1 skeleton",
+    "construct a square CellComplex 2-cell and verify induced node, edge, and cell counts",
+    "run adjacent negative and boundary fixtures for edge-only, duplicate-vertex, disconnected, empty, singleton, duplicate-insertion, and permutation-invariant complexes"
+  ],
+  "carrier_topology": {
+    "carrier": "finite simplicial and cell complexes",
+    "positive_fixtures": [
+      "filled triangle simplicial complex",
+      "square rank-2 cell complex"
+    ],
+    "graveyard_fixtures": [
+      "edge-only simplicial complex",
+      "duplicate-vertex simplex",
+      "disconnected triangle plus isolated vertex"
+    ],
+    "boundary_fixtures": [
+      "empty simplicial complex",
+      "singleton vertex",
+      "duplicate simplex insertion",
+      "permuted vertex ordering of the same simplex"
+    ]
+  },
+  "observable": {
+    "primary": "incidence-matrix rank, sign structure, boundary composition, and Hodge-Laplacian spectrum",
+    "secondary": [
+      "cell counts by rank",
+      "rank-1 skeleton edge membership",
+      "zero-eigenvalue multiplicity for disconnected components",
+      "shape invariance under duplicate and permuted simplex insertion"
+    ]
+  },
+  "pass_fail_predicate": {
+    "pass": [
+      "filled triangle has shape prefix [3, 3, 1]",
+      "B1 has rank 2 and each edge column has balanced signs",
+      "B1 @ B2 is zero",
+      "rank-0 Hodge Laplacian spectrum equals [0, 3, 3]",
+      "rank-1 skeleton contains exactly the three triangle edges",
+      "manual signed-incidence baseline has one positive and one negative entry per edge column",
+      "square CellComplex induces four nodes, four boundary edges, and one rank-2 cell",
+      "edge-only complex has no 2-simplex",
+      "duplicate-vertex simplex is rejected or normalized without a degenerate 2-simplex",
+      "disconnected triangle plus isolated vertex has two zero L0 eigenvalues",
+      "empty, singleton, duplicate-insertion, and permutation boundary checks pass"
+    ],
+    "fail": [
+      "TopoNetX import is unavailable",
+      "any incidence, Hodge spectrum, cell count, negative, or boundary check misses its expected finite-complex invariant"
+    ]
+  },
+  "graveyards": [
+    {
+      "name": "edges_only_no_2simplex",
+      "change": "insert only two edges without the filling 2-simplex",
+      "expected_death": "triangle rank-2 cell does not appear"
+    },
+    {
+      "name": "duplicate_vertex_simplex",
+      "change": "attempt simplex insertion with repeated vertex [0, 0, 1]",
+      "expected_death": "degenerate 2-simplex is rejected or normalized away"
+    },
+    {
+      "name": "disconnected_triangle_plus_vertex",
+      "change": "add an isolated vertex to the filled triangle",
+      "expected_death": "L0 zero-eigenvalue multiplicity changes from one to two"
+    }
+  ],
+  "baselines": [
+    {
+      "name": "manual_signed_boundary_matrix",
+      "role": "numpy baseline checking that each B1 edge column has one +1 and one -1 entry"
+    },
+    {
+      "name": "triangle_graph_laplacian_spectrum",
+      "role": "hand-computed boundary baseline for L0 eigenvalues [0, 3, 3]"
+    }
+  ],
+  "alternative_formulations": [
+    "NetworkX graph Laplacian for the triangle 1-skeleton",
+    "GUDHI SimplexTree with the same filled triangle filtration",
+    "manual chain-complex boundary matrices for C2 -> C1 -> C0"
+  ],
+  "tool_function_needs": [
+    {
+      "tool": "toponetx",
+      "functions": [
+        "SimplicialComplex",
+        "SimplicialComplex.add_simplex",
+        "SimplicialComplex.incidence_matrix",
+        "SimplicialComplex.hodge_laplacian_matrix",
+        "SimplicialComplex.skeleton",
+        "CellComplex",
+        "CellComplex.add_cell"
+      ],
+      "depth": "load_bearing"
+    },
+    {
+      "tool": "numpy",
+      "functions": [
+        "np.asarray",
+        "np.linalg.matrix_rank",
+        "np.allclose",
+        "np.linalg.eigvalsh"
+      ],
+      "depth": "supportive"
+    }
+  ],
+  "lego_coupling_target": [
+    "cell_rank_binding_fixture",
+    "cell_complex_geometry"
+  ],
   "surviving_alternatives": [
     "This receipt covers only bounded TopoNetX complex/incidence capability; it does not promote a cell-complex lego, topology coupling, bridge, axis, GStack, or nonclassical admission."
   ],

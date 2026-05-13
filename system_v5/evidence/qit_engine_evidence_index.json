@@ -673,22 +673,6 @@
       }
     },
     {
-      "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_toponetx_capability.json",
-      "admission_status": "admitted",
-      "basename": "sim_toponetx_capability",
-      "blockers": [],
-      "parent_receipt_sha256": {},
-      "receipt_schema_ok": true,
-      "result_name": "sim_toponetx_capability",
-      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_toponetx_capability_results.json",
-      "result_sha256": "10f64e845da1e7fe1827dd28bc72a9ee9a107986c0958cbbd596bcec6e55132a",
-      "status": "accepted",
-      "tool_function_ancestry": {
-        "function_surface": "toponetx_simplicial_cell_boundary_capability",
-        "tool_target": "toponetx.SimplicialComplex"
-      }
-    },
-    {
       "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_weyl_affine_a2_alcove_shell_local.json",
       "admission_status": "admitted",
       "basename": "sim_weyl_affine_a2_alcove_shell_local",
@@ -942,6 +926,22 @@
       "tool_function_ancestry": {
         "function_surface": "pyg.micro_fixture",
         "tool_target": "pyg"
+      }
+    },
+    {
+      "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_toponetx_capability.json",
+      "admission_status": "admitted",
+      "basename": "sim_toponetx_capability",
+      "blockers": [],
+      "parent_receipt_sha256": {},
+      "receipt_schema_ok": true,
+      "result_name": "sim_toponetx_capability",
+      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/toponetx_capability_results.json",
+      "result_sha256": "3e305b1b93be66ad6c7cafbe86649a954389097d9aca1e8f8ed0ba16c728f75d",
+      "status": "accepted",
+      "tool_function_ancestry": {
+        "function_surface": "toponetx_simplicial_cell_boundary_capability",
+        "tool_target": "toponetx.SimplicialComplex"
       }
     },
     {
@@ -7889,19 +7889,23 @@
       }
     },
     {
-      "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_toponetx_capability.json",
-      "admission_status": "admitted",
+      "admission_artifact": null,
+      "admission_status": "missing_or_invalid",
       "basename": "sim_toponetx_capability",
-      "blockers": [],
+      "blockers": [
+        "admission:admission_artifact_result_sha256_mismatch",
+        "admission:controller_read_artifacts_missing_expected_result",
+        "admission:formal_sim_profile_expected_result_path_not_canonical"
+      ],
       "parent_receipt_sha256": {},
       "receipt_schema_ok": true,
       "result_name": "sim_toponetx_capability",
       "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_toponetx_capability_results.json",
       "result_sha256": "10f64e845da1e7fe1827dd28bc72a9ee9a107986c0958cbbd596bcec6e55132a",
-      "status": "accepted",
+      "status": "blocked",
       "tool_function_ancestry": {
-        "function_surface": "toponetx_simplicial_cell_boundary_capability",
-        "tool_target": "toponetx.SimplicialComplex"
+        "function_surface": null,
+        "tool_target": null
       }
     },
     {
@@ -9048,22 +9052,19 @@
       }
     },
     {
-      "admission_artifact": null,
-      "admission_status": "missing_or_invalid",
+      "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_toponetx_capability.json",
+      "admission_status": "admitted",
       "basename": "sim_toponetx_capability",
-      "blockers": [
-        "admission:controller_read_artifacts_missing_expected_result",
-        "admission:formal_sim_profile_expected_result_path_not_canonical"
-      ],
+      "blockers": [],
       "parent_receipt_sha256": {},
       "receipt_schema_ok": true,
       "result_name": "sim_toponetx_capability",
       "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/toponetx_capability_results.json",
-      "result_sha256": "10f64e845da1e7fe1827dd28bc72a9ee9a107986c0958cbbd596bcec6e55132a",
-      "status": "blocked",
+      "result_sha256": "3e305b1b93be66ad6c7cafbe86649a954389097d9aca1e8f8ed0ba16c728f75d",
+      "status": "accepted",
       "tool_function_ancestry": {
-        "function_surface": null,
-        "tool_target": null
+        "function_surface": "toponetx_simplicial_cell_boundary_capability",
+        "tool_target": "toponetx.SimplicialComplex"
       }
     },
     {
@@ -10448,7 +10449,7 @@
     {
       "basename": "sim_toponetx_capability",
       "next_action": "create_or_repair_wizard_sim_admission",
-      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/toponetx_capability_results.json",
+      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_toponetx_capability_results.json",
       "sim_path": "system_v4/probes/sim_toponetx_capability.py"
     },
     {
@@ -12519,8 +12520,8 @@
   "operational_status": "has_accepted_qit_entry",
   "out_of_scope_qit_result_scan": {
     "admission_boundary": "diagnostic_only_not_accepted_evidence",
-    "external_qit_signal_count": 2322,
-    "external_result_count": 2362,
+    "external_qit_signal_count": 2338,
+    "external_result_count": 2378,
     "sample": [
       {
         "classification": "",
@@ -12784,8 +12785,8 @@
       "bucket_counts": {
         "already_admitted_duplicate_reference": 1,
         "classical_baseline_reference_only": 37,
-        "late_stage_or_coupling_blocked": 349,
-        "unclassified_or_legacy_shape": 1935
+        "late_stage_or_coupling_blocked": 352,
+        "unclassified_or_legacy_shape": 1948
       },
       "bucket_samples": {
         "already_admitted_duplicate_reference": [
@@ -19557,6 +19558,26 @@
     {
       "admission_artifact": null,
       "admission_status": "missing_or_invalid",
+      "basename": "sim_toponetx_capability",
+      "blockers": [
+        "admission:admission_artifact_result_sha256_mismatch",
+        "admission:controller_read_artifacts_missing_expected_result",
+        "admission:formal_sim_profile_expected_result_path_not_canonical"
+      ],
+      "parent_receipt_sha256": {},
+      "receipt_schema_ok": true,
+      "result_name": "sim_toponetx_capability",
+      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_toponetx_capability_results.json",
+      "result_sha256": "10f64e845da1e7fe1827dd28bc72a9ee9a107986c0958cbbd596bcec6e55132a",
+      "status": "blocked",
+      "tool_function_ancestry": {
+        "function_surface": null,
+        "tool_target": null
+      }
+    },
+    {
+      "admission_artifact": null,
+      "admission_status": "missing_or_invalid",
       "basename": "sim_toponetx_deep_cell_complex_boundary_consistency",
       "blockers": [
         "admission:admission_missing"
@@ -20435,25 +20456,6 @@
       "result_name": "tool_integration_z3_sympy",
       "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/tool_integration_z3_sympy_results.json",
       "result_sha256": "ccc9fb106bd5c8bc768df6fd290d66f2ae5ae07501138da38d39efb10229799a",
-      "status": "blocked",
-      "tool_function_ancestry": {
-        "function_surface": null,
-        "tool_target": null
-      }
-    },
-    {
-      "admission_artifact": null,
-      "admission_status": "missing_or_invalid",
-      "basename": "sim_toponetx_capability",
-      "blockers": [
-        "admission:controller_read_artifacts_missing_expected_result",
-        "admission:formal_sim_profile_expected_result_path_not_canonical"
-      ],
-      "parent_receipt_sha256": {},
-      "receipt_schema_ok": true,
-      "result_name": "sim_toponetx_capability",
-      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/toponetx_capability_results.json",
-      "result_sha256": "10f64e845da1e7fe1827dd28bc72a9ee9a107986c0958cbbd596bcec6e55132a",
       "status": "blocked",
       "tool_function_ancestry": {
         "function_surface": null,

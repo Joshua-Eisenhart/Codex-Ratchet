@@ -9,6 +9,7 @@ from pathlib import Path
 
 import numpy as np
 import qutip as qt
+from receipt_boundary import apply_default_receipt_boundary
 
 
 NAME = "qutip_hopf_inner_outer_density_readout"
@@ -156,8 +157,9 @@ def main() -> int:
         "classification": CLASSIFICATION,
         "all_pass": all_pass,
         "claim_ceiling": (
-            "QuTiP density-object Hopf-coordinate readout baseline only; no QIT, GStack, axis, bridge, "
-            "nonclassical, target-system, or full geometric-constraint-manifold admission"
+            "QuTiP density-object readout baseline over declared Hopf-coordinate paths only; no physical "
+            "inner/outer loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, "
+            "target-system, or full geometric-constraint-manifold admission"
         ),
         "next_lego_target": "inner_outer_hopf_weyl_loop_geometry_fit",
         "promotion_condition": (
@@ -175,8 +177,8 @@ def main() -> int:
             "No claim that flux is represented.",
         ],
         "divergence_log": (
-            "This is a QuTiP object-level baseline for density readouts along declared paths. It is not a dynamical "
-            "or target-system proof."
+            "This is a QuTiP object-level baseline for density readouts along declared paths. It is not a physical "
+            "inner/outer independence result, dynamical proof, or target-system proof."
         ),
         "operation_sequence": [
             "construct Qobj two-component carrier states in Hopf-style coordinates",
@@ -219,6 +221,7 @@ def main() -> int:
         "promotion_allowed": False,
         "pass": all_pass,
     }
+    results = apply_default_receipt_boundary(results, source_name=f"sim_{NAME}")
     out_path = RESULTS_DIR / f"{NAME}_results.json"
     out_path.write_text(json.dumps(results, indent=2, sort_keys=True), encoding="utf-8")
     print(f"Results written to {out_path}")

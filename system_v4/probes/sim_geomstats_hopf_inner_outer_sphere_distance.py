@@ -9,6 +9,7 @@ from pathlib import Path
 
 import numpy as np
 from geomstats.geometry.hypersphere import Hypersphere
+from receipt_boundary import apply_default_receipt_boundary
 
 
 NAME = "geomstats_hopf_inner_outer_sphere_distance"
@@ -133,8 +134,9 @@ def main() -> int:
         "classification": CLASSIFICATION,
         "all_pass": all_pass,
         "claim_ceiling": (
-            "Geomstats S2 distance readout baseline for projected Hopf-coordinate loops only; no QIT, GStack, "
-            "axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission"
+            "Geomstats S2 distance readout baseline for declared projected Hopf-coordinate paths only; no full "
+            "S3 bundle, physical inner/outer loop independence, QIT, GStack, axis, bridge, nonclassical, "
+            "target-system, or full geometric-constraint-manifold admission"
         ),
         "next_lego_target": "inner_outer_hopf_weyl_loop_geometry_fit",
         "promotion_condition": (
@@ -153,8 +155,8 @@ def main() -> int:
             "No claim that flux is represented.",
         ],
         "divergence_log": (
-            "This is a geomstats intrinsic-distance baseline on the projected S2 readout. It does not simulate the full "
-            "carrier bundle or target geometric constraint manifold."
+            "This is a geomstats intrinsic-distance baseline on a projected S2 readout. It does not simulate the "
+            "full carrier bundle, physical loop dynamics, or target geometric constraint manifold."
         ),
         "operation_sequence": [
             "project declared Hopf-style carrier coordinates to S2 Bloch readout points",
@@ -197,6 +199,7 @@ def main() -> int:
         "promotion_allowed": False,
         "pass": all_pass,
     }
+    results = apply_default_receipt_boundary(results, source_name=f"sim_{NAME}")
     out_path = RESULTS_DIR / f"{NAME}_results.json"
     out_path.write_text(json.dumps(results, indent=2, sort_keys=True), encoding="utf-8")
     print(f"Results written to {out_path}")

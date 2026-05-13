@@ -106,10 +106,40 @@ def run_boundary() -> dict[str, object]:
     }
 
 
+def run_parameter_sweep() -> dict[str, object]:
+    cases = []
+    for kbt in [0.5, 1.0, 3.0, 7.0]:
+        for probabilities in [
+            np.array([0.5, 0.5]),
+            np.array([0.75, 0.25]),
+            np.array([0.9, 0.1]),
+            np.array([1.0, 0.0]),
+        ]:
+            cycle = szilard_cycle(kbt, probabilities)
+            cases.append(
+                {
+                    "kBT": float(kbt),
+                    "probabilities": probabilities.tolist(),
+                    **cycle,
+                    "bounds_close": bool(
+                        np.isclose(cycle["feedback_work_bound"], kbt * cycle["information_nats"])
+                        and np.isclose(cycle["erasure_heat_floor"], kbt * cycle["information_nats"])
+                        and np.isclose(cycle["net_cycle_surplus_bound"], 0.0)
+                    ),
+                }
+            )
+    return {
+        "case_count": len(cases),
+        "bounds_hold": bool(all(row["bounds_close"] for row in cases)),
+        "cases": cases,
+    }
+
+
 def main() -> int:
     positive = run_positive()
     negative = run_negative()
     boundary = run_boundary()
+    parameter_sweep = run_parameter_sweep()
     all_pass = (
         positive["information_equals_ln2"]
         and positive["work_bound_equals_kbt_ln2"]
@@ -121,6 +151,7 @@ def main() -> int:
         and negative["no_erasure_repeated_cycle_surplus_flagged"]
         and boundary["zero_temperature_zero_work_and_heat"]
         and boundary["deterministic_record_zero_information"]
+        and parameter_sweep["bounds_hold"]
     )
     results = {
         "name": NAME,
@@ -199,21 +230,21 @@ def main() -> int:
             "Landauer floor Q_erase >= kBT * I",
             "feedback work bound W <= kBT * I",
             "explicit random-feedback joint distribution with zero mutual information",
+            "finite sweep over kBT values and binary probability distributions",
         ],
         "alternative_formulations": [
             "explicit density-matrix projective measurement update",
             "conditional unitary feedback map",
             "Lindblad erasure stroke",
         ],
-        "exact_tool_function_needs": {"numpy": ["log", "sum", "isclose"]},
-        "tool_function_needs": {"numpy": ["log", "sum", "isclose", "outer", "dot"]},
+        "exact_tool_function_needs": {"numpy": ["log", "sum", "isclose", "outer", "dot"]},
         "lego_or_coupling_target": "information_work_erasure_cycle_calibration_fixture",
-        "lego_coupling_target": "information_work_erasure_cycle_calibration_fixture",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
+        "parameter_sweep": parameter_sweep,
         "promotion_allowed": False,
         "pass": bool(all_pass),
     }

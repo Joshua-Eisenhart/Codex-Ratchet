@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T03:33:32.884657+00:00`
+Generated: `2026-05-13T03:37:12.917381+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `72`
-- Passing rows: `72`
+- Rows: `73`
+- Passing rows: `73`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `72`
+- Explicit receipt schemas missing: `73`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -59,6 +59,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `scipy` | scipy.linalg.eigvalsh, scipy.optimize.minimize, scipy.spatial.distance.cdist, and scipy.stats.entropy baseline controls | `system_v4/probes/a2_state/sim_results/sim_capability_scipy_isolated_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `classical_spectral_baseline`, `classical_distance_entropy_baseline` |
 | `scipy` | scipy.integrate.solve_ivp numerical Hopf horizontal-lift chi-shift ODE over base latitude loops | `system_v4/probes/a2_state/sim_results/scipy_hopf_horizontal_lift_chi_shift_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_loop_holonomy_geometry_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `numpy` | numpy complex arrays, exp, outer, trace, linalg.norm, and unwrap over sampled Hopf-coordinate carrier paths | `system_v4/probes/a2_state/sim_results/hopf_weyl_inner_outer_loop_readout_geometry_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `classical_hopf_path_metric_baseline` |
+| `numpy` | numpy complex carrier sampling with declared Weyl-sheet orientation sign, Hopf fiber/base loop families, density readouts, and signed xy area | `system_v4/probes/a2_state/sim_results/numpy_weyl_sheet_hopf_loop_readout_separation_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `sheet_loop_product_readout_separation_baseline` |
 | `numpy` | numpy isclose scalar heat/work/efficiency accounting for reversible two-bath four-stroke cycle calibration | `system_v4/probes/a2_state/sim_results/carnot_two_bath_four_stroke_work_heat_bounds_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `work_heat_cycle_calibration_fixture`, `carnot_scalar_bound_baseline` |
 | `numpy` | numpy log/sum/isclose binary entropy, feedback work bound, and Landauer erasure floor for one-bit cycle calibration | `system_v4/probes/a2_state/sim_results/szilard_measure_feedback_erasure_landauer_bounds_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `information_work_erasure_cycle_calibration_fixture`, `szilard_landauer_scalar_baseline` |
 | `z3` | z3 Solver/SolverFor QF_LIA add/check/model and UNSAT witness | `system_v4/probes/a2_state/sim_results/z3_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `distinguishability_relation` |

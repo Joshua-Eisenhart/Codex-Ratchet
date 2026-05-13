@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
-Szilard <-> Constraint-Admissibility Bridge
-===========================================
-Classification: canonical
+Szilard distinguishability admission-floor fence
+================================================
+Classification: tool_lego_fit_probe
 
-This sim bridges the classical Szilard-engine thermodynamics row
-(sim_qit_szilard_landauer_cycle) into the nonclassical constraint-
-admissibility frame used by the rest of the system.
+This sim is a bounded one-bit numeric/z3 fence. It maps a classical
+Szilard-Landauer bookkeeping tuple into declared admission-floor variables
+and checks only that the stated arithmetic constraints are internally
+consistent. It does not admit a bridge, engine, QIT, GStack, axis, or
+nonclassical claim.
 
 Nominalist framing (required by project doctrine):
   - Distinguishability is not "fuel"; it is the probe-relative admission
@@ -26,18 +28,16 @@ The bridge is operationalized with a small set of identifications:
            (encoded as F01 = T * D, the Landauer floor in this row)
   - dF : system free-energy gain extractable from the admitted record
 
-Load-bearing proof (z3):
+Load-bearing fence (z3):
   The pass gate requires z3 to certify that the forbidden region
     "a record was admitted (D > 0, G = 1) AND the record was
      subsequently erased without paying the floor (E < F01)"
-  is UNSAT under the bridge axioms. This encodes the nonclassical
-  reading of Landauer as a structural impossibility on the admissible
-  manifold, not as a classical dissipation inequality.
+  is UNSAT under the declared admission-floor axioms.
 
 Counterpart numeric check: the measured row from the Szilard-Landauer
 cycle is re-derived here (one-bit ideal case) and passed into the z3
-solver so the bridge is anchored to the same numeric tuple as the
-classical row.
+solver so the fence is anchored to the same numeric tuple as the
+classical one-bit row.
 """
 
 import json
@@ -45,20 +45,23 @@ import pathlib
 
 import numpy as np
 
-classification = "classical_baseline"
-DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+classification = "tool_lego_fit_probe"
+DEMOTE_REASON = (
+    "No promotion from this receipt: it is a one-bit numeric/z3 "
+    "admission-floor consistency fence only."
+)
 
 
 LN2 = float(np.log(2.0))
 EPS = 1e-10
 
-CLASSIFICATION = "classical_baseline"
+CLASSIFICATION = classification
 CLASSIFICATION_NOTE = (
-    "Canonical bridge row: maps the classical Szilard-Landauer bookkeeping "
-    "(mutual information / free-energy / erasure cost) onto the constraint-"
-    "admissibility frame (distinguishability / admission-gate / F01 floor). "
-    "The nonclassical claim is that free-erasure-after-admission is not "
-    "'expensive' but 'inadmissible' -- certified as UNSAT by z3."
+    "Tool-lego fit probe: maps classical one-bit Szilard-Landauer "
+    "bookkeeping (mutual information / free-energy / erasure cost) onto "
+    "declared distinguishability/admission-floor variables and checks the "
+    "local z3 constraints. This is not bridge, QIT, GStack, axis, runtime-"
+    "engine, or nonclassical admission evidence."
 )
 
 LEGO_IDS = [
@@ -75,7 +78,12 @@ PRIMARY_LEGO_IDS = [
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "2-qubit bookkeeping row uses numpy; no gradient surface needed for the bridge"},
     "pyg":       {"tried": False, "used": False, "reason": "no graph carrier in this bridge row"},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": True, "used": True, "reason": (
+        "Encodes the declared one-bit admission-floor constraints "
+        "(F01 = T*D, dF<=E, admission-gated floor), rejects the declared "
+        "forbidden region (admitted AND Ev < F01), and checks a no-admission "
+        "independence row."
+    )},
     "cvc5":      {"tried": False, "used": False, "reason": "z3 already covers the Real-arithmetic admission encoding"},
     "sympy":     {"tried": False, "used": False, "reason": "closed-form one-bit values are numeric-exact; no symbolic step needed"},
     "clifford":  {"tried": False, "used": False, "reason": "no geometric-algebra carrier in this bridge row"},
@@ -87,7 +95,20 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": "no persistence computation"},
 }
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": "load_bearing",
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 
 # ---------------------------------------------------------------------------
@@ -144,17 +165,17 @@ def one_bit_szilard_anchor(temperature: float = 1.0) -> dict:
 
 def z3_admission_bridge_proof(D_nats: float, dF: float, E: float,
                                temperature: float) -> dict:
-    """Load-bearing z3 certification of the Szilard <-> admissibility bridge.
+    """Load-bearing z3 check for the one-bit admission-floor fence.
 
     Real variables:
       D   : distinguishability admitted by measurement (nats)
       G   : admission-gate (0 = closed, 1 = open); encoded as Real in [0,1]
-      F01 : floor = T * D  (Landauer floor in the nonclassical reading)
+      F01 : floor = T * D  (Landauer floor in this local arithmetic row)
       dF  : system free-energy gain
       E   : erasure cost / record-removal magnitude
       T   : reservoir temperature
 
-    Bridge axioms:
+    Declared fence axioms:
       A1  (measurement-as-admission): a record is admitted iff G = 1 AND D > 0
       A2  (F01 floor):                F01 = T * D
       A3  (demon inequality):         dF <= E
@@ -163,8 +184,7 @@ def z3_admission_bridge_proof(D_nats: float, dF: float, E: float,
     Positive: the measured tuple (D, dF, E, T) + axioms is SAT with G=1.
     Negative (primary, load-bearing):
       "record admitted AND erasure strictly below floor" is UNSAT under
-      the axioms. This is the nonclassical claim: free-erasure of an
-      admitted record is structurally inadmissible, not merely expensive.
+      the declared axioms.
     Counterfactual:
       "record admitted AND erasure completely free (E = 0)" is UNSAT,
       proving the floor is load-bearing (not vacuous at zero).
@@ -178,63 +198,6 @@ def z3_admission_bridge_proof(D_nats: float, dF: float, E: float,
     TOL = 1e-9
     SLACK = 10 * TOL
 
-    D   = z3.Real("D")
-    G   = z3.Real("G")
-    F01 = z3.Real("F01")
-    dF  = z3.Real("dF")
-    E   = z3.Real("E")
-    T   = z3.Real("T")
-
-    # Numeric anchoring of the measured tuple (within tolerance).
-    measured = z3.And(
-        D >= D_nats - TOL,        D <= D_nats + TOL,
-        dF >= dF - 0,             # placeholder, replaced below
-    )
-    # Rebuild (the placeholder above was a typo-guard); use the real anchors:
-    measured = z3.And(
-        D >= D_nats - TOL,  D <= D_nats + TOL,
-        T >= temperature - TOL, T <= temperature + TOL,
-    )
-
-    # Axioms A1..A4 (A1 parametrized by concrete G below)
-    axioms_common = z3.And(
-        F01 == T * D,
-        dF <= E,
-        G >= 0, G <= 1,
-    )
-
-    def admission_monotonicity(G_val):
-        # If G = 1 and D > 0, E >= F01.
-        return z3.Implies(z3.And(G_val == 1, D > 0), E >= F01)
-
-    # ---- Positive: measured tuple with G = 1 is consistent -----------------
-    s_pos = z3.Solver()
-    s_pos.add(measured, axioms_common)
-    s_pos.add(G == 1)
-    s_pos.add(admission_monotonicity(G))
-    s_pos.add(dF >= dF_numeric_lo(dF), dF <= dF_numeric_hi(dF))  # anchor dF
-    # Swap the hack above for direct numeric anchors on dF and E:
-    s_pos = z3.Solver()
-    s_pos.add(
-        D >= D_nats - TOL,  D <= D_nats + TOL,
-        T >= temperature - TOL, T <= temperature + TOL,
-        dF >= (dF_val := dF) - 0,  # no-op to keep z3 happy; real anchors next
-    )
-    # Clean anchor (rebuild s_pos cleanly):
-    s_pos = z3.Solver()
-    s_pos.add(
-        D >= D_nats - TOL,  D <= D_nats + TOL,
-        T >= temperature - TOL, T <= temperature + TOL,
-    )
-    s_pos.add(axioms_common)
-    s_pos.add(G == 1)
-    s_pos.add(admission_monotonicity(G))
-    # anchor dF and E (z3.Real variables shadow the python floats -- use fresh names)
-    # To avoid the shadowing pitfall, rename python floats:
-    pos_res = s_pos.check()  # without dF/E anchors: we only check axiom consistency shape
-    _ = pos_res  # will re-check with anchors in the clean block below
-
-    # -------------- CLEAN IMPLEMENTATION (discard scratch above) -----------
     D   = z3.Real("D")
     G   = z3.Real("G")
     F01 = z3.Real("F01")
@@ -319,19 +282,13 @@ def z3_admission_bridge_proof(D_nats: float, dF: float, E: float,
         "independence_result":                str(ind_res),
         "pass": bool(pos_sat and neg_unsat and cf_unsat and ind_sat),
         "note": (
-            "z3 is load-bearing: the bridge's nonclassical claim (free-erasure "
-            "of an admitted record is structurally inadmissible, not merely "
-            "expensive) is certified by UNSAT of (admitted AND Ev < F01). The "
-            "independence SAT row gates the forbidden region to the admission "
-            "branch, preventing a vacuous global constraint."
+            "z3 is load-bearing for this local fence: the declared forbidden "
+            "region (admitted AND Ev < F01) is UNSAT under the stated "
+            "admission-floor axioms. The independence SAT row gates the "
+            "forbidden region to the admission branch, preventing a vacuous "
+            "global constraint."
         ),
     }
-
-
-def dF_numeric_lo(x):  # unused after clean-rebuild, kept to satisfy earlier ref
-    return x
-def dF_numeric_hi(x):
-    return x
 
 
 # ---------------------------------------------------------------------------
@@ -355,7 +312,8 @@ def main():
         "f01_floor_equals_T_times_D_in_the_one_bit_row": {
             "F01": temperature * D,
             "T_times_D": temperature * D,
-            "pass": abs((temperature * D) - (temperature * D)) < 1e-12,
+            "expected_T_ln2": temperature * LN2,
+            "pass": abs((temperature * D) - (temperature * LN2)) < 1e-12,
         },
         "demon_inequality_holds_as_equality_in_ideal_one_bit_row": {
             "dF": dF,
@@ -368,15 +326,6 @@ def main():
     proof = z3_admission_bridge_proof(
         D_nats=D, dF=dF, E=E, temperature=temperature,
     )
-    TOOL_MANIFEST["z3"]["tried"] = True
-    TOOL_MANIFEST["z3"]["used"] = True
-    TOOL_MANIFEST["z3"]["reason"] = (
-        "Encodes the Szilard<->admissibility bridge axioms (F01 = T*D, "
-        "demon dF<=E, admission-gated floor) and certifies the nonclassical "
-        "forbidden region (admitted AND Ev < F01) is UNSAT; plus a "
-        "counterfactual-UNSAT and an independence-SAT row."
-    )
-    TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
 
     negative = {
         "free_erasure_of_admitted_record_is_inadmissible_unsat": {
@@ -415,7 +364,83 @@ def main():
 
     results = {
         "name": "szilard_distinguishability_admission_bridge",
-        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
+        "classification": CLASSIFICATION,
+        "all_pass": all_pass,
+        "promotion_allowed": False,
+        "demote_reason": DEMOTE_REASON,
+        "claim_ceiling": (
+            "one-bit numeric/z3 admission-floor consistency fence only; no "
+            "bridge, QIT, GStack, axis, nonclassical, runtime-engine, or "
+            "cycle admission"
+        ),
+        "next_lego_target": "one-bit measurement/erasure calibration support only",
+        "promotion_condition": (
+            "No promotion from this receipt; downstream cycle or bridge work "
+            "requires exact dynamics, coupling/coexistence receipts, physical "
+            "graveyards, and independent admission."
+        ),
+        "demotion_condition": (
+            "Demote if the z3 independence row fails, if the one-bit numeric "
+            "anchor diverges from ln2, or if this receipt is used as bridge, "
+            "QIT, GStack, axis, runtime-engine, or nonclassical evidence."
+        ),
+        "blocked_until": (
+            "blocked from bridge, QIT, GStack, axis, nonclassical, runtime-"
+            "engine, or cycle claims until separate exact receipts close "
+            "those gates"
+        ),
+        "out_of_scope": [
+            "No runtime cycle dynamics.",
+            "No physical bridge admission.",
+            "No QIT, GStack, axis, nonclassical, runtime-engine, reservoir, or universal-demon claim.",
+        ],
+        "operation_sequence": [
+            "construct maximally mixed one-bit system and pure memory state",
+            "apply CNOT measurement fixture",
+            "compute mutual information distinguishability D",
+            "set one-bit ideal dF and E equal to T*D",
+            "z3-check admitted measured tuple satisfiability",
+            "z3-reject admitted erasure below F01 and free-erasure counterfactual",
+            "z3-check no-admission independence row is SAT",
+        ],
+        "carrier_topology": (
+            "finite two-qubit density-matrix fixture plus scalar z3 real-"
+            "arithmetic admission-floor variables"
+        ),
+        "observable": (
+            "mutual information in nats, free-energy/erasure scalar equality, "
+            "and z3 SAT/UNSAT verdicts"
+        ),
+        "pass_fail_predicate": (
+            "D equals ln2, dF and E equal T*D, admitted below-floor erasure is "
+            "UNSAT, free-erasure counterfactual is UNSAT, and no-admission "
+            "independence row is SAT"
+        ),
+        "graveyards": [
+            "admitted erasure below F01",
+            "admitted free erasure",
+            "no-admission zero-erasure independence row",
+        ],
+        "graveyard_companions": [
+            "admitted erasure below F01",
+            "admitted free erasure",
+            "no-admission zero-erasure independence row",
+        ],
+        "baselines": [
+            "numpy two-qubit one-bit measurement fixture",
+            "Landauer one-bit T*ln2 scalar anchor",
+            "z3 real-arithmetic admission-floor fence",
+        ],
+        "alternative_formulations": [
+            "explicit branch/ensemble Szilard cycle",
+            "Petz-style reverse measurement candidate",
+            "finite-temperature Lindblad erasure calibration",
+        ],
+        "exact_tool_function_needs": {
+            "numpy": ["kron", "eye", "array", "linalg.eigvalsh", "trace", "log"],
+            "z3": ["Real", "And", "Implies", "Solver"],
+        },
+        "lego_or_coupling_target": "one-bit measurement/erasure calibration support",
         "classification_note": CLASSIFICATION_NOTE,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
@@ -432,10 +457,12 @@ def main():
             "D_nats": D,
             "dF": dF,
             "E": E,
+            "promotion_allowed": False,
             "scope_note": (
-                "Bridge row only: identifies Szilard quantities with "
-                "admission-gate variables on a two-qubit carrier. No "
-                "engine-runtime, reservoir, or universal-demon claim."
+                "One-bit admission-floor fence only: maps Szilard quantities "
+                "to declared admission-gate variables on a two-qubit fixture. "
+                "No bridge, QIT, GStack, axis, nonclassical, engine-runtime, "
+                "reservoir, or universal-demon claim."
             ),
         },
     }

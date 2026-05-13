@@ -1,15 +1,15 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T02:47:22.996316+00:00`
+Generated: `2026-05-13T02:50:36.879988+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `63`
-- Passing rows: `63`
+- Rows: `64`
+- Passing rows: `64`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `63`
+- Explicit receipt schemas missing: `64`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -71,6 +71,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `sympy` | sympy Matrix.inv / exact matrix equality inverse identity checks | `system_v4/probes/a2_state/sim_results/sim_sympy_matrix_identity_micro_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `exact_matrix_identity`, `operator_family_admission` |
 | `sympy` | sympy Matrix/exp/diff/simplify/subs for exact Hopf-coordinate density derivative readouts | `system_v4/probes/a2_state/sim_results/hopf_symbolic_inner_outer_density_readout_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `exact_hopf_coordinate_identity_baseline` |
 | `sympy` | sympy diff/integrate/simplify exact Hopf U(1) connection curvature and first-Chern integral | `system_v4/probes/a2_state/sim_results/sympy_hopf_connection_curvature_c1_integral_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_connection_curvature_geometry_baseline`, `curvature_integral_baseline` |
+| `sympy` | sympy symbols/cos/integrate/simplify exact Hopf connection loop integrals and horizontal-lift chi shifts | `system_v4/probes/a2_state/sim_results/sympy_hopf_loop_holonomy_area_dependence_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_loop_holonomy_geometry_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `sympy` | sympy Matrix partition of Pauli matrices into diagonal and off-diagonal labels | `system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `bare_pauli_no_carrier_negative_control`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `sympy` | sympy roots/discriminant/exact rational edge-weight construction feeding PyG graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_sympy_pyg_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `graph_symbolic_fit`, `exact_algebra_crosschecks` |
 | `geomstats` | geomstats metric.geodesic, exp/log, SPD distance, Frechet mean | `system_v4/probes/a2_state/sim_results/geomstats_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `geometry_crosschecks_same_carrier`, `quantum_metric_nonuniqueness` |

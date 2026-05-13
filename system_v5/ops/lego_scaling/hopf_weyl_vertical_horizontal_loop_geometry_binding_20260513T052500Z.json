@@ -1,0 +1,111 @@
+{
+  "kind": "tool_lego_fit_binding_receipt",
+  "created_at": "2026-05-13T05:25:00Z",
+  "status": "classical_baseline_support_only",
+  "promotion_allowed": false,
+  "lego_or_coupling_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "candidate_math_object": "Hopf/Weyl two-component carrier vertical fiber generator and horizontal base-lift generator metric separation",
+  "plain_math_description": "The local carrier chart has a vertical fiber direction and a base direction. The raw base coordinate is not globally independent from the fiber because it carries a connection component. The horizontal base lift subtracts that component, making its tangent metric-orthogonal to the fiber direction in the local S3 carrier chart.",
+  "receipts": [
+    {
+      "tool": "sympy",
+      "function_api": "Matrix/diff/conjugate/re/trigsimp/simplify exact vertical fiber and horizontal base-lift metric identities",
+      "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_weyl_fiber_horizontal_base_loop_independence_results.json",
+      "sim": "system_v4/probes/sim_sympy_hopf_weyl_fiber_horizontal_base_loop_independence.py",
+      "role": "classical_baseline",
+      "load_bearing": true,
+      "observables": [
+        "fiber speed squared",
+        "raw-base/fiber metric inner product",
+        "horizontal-base/fiber metric inner product",
+        "horizontal-base speed squared",
+        "S2 projection fiber/base speeds"
+      ],
+      "graveyards": [
+        "raw base coordinate is not generically independent from fiber",
+        "horizontal lift makes base generator metric-independent from fiber",
+        "base lift collapses at projection pole",
+        "fiber motion is hidden by S2 projection",
+        "equator raw-base independence is accidental not global",
+        "sheet sign changes raw connection sign but not horizontal independence"
+      ]
+    },
+    {
+      "tool": "geomstats",
+      "function_api": "Hypersphere(dim=3).metric.dist and Hypersphere(dim=2).metric.dist sampled vertical fiber and horizontal base-lift loop distances",
+      "receipt": "system_v4/probes/a2_state/sim_results/geomstats_hopf_weyl_fiber_horizontal_base_loop_distance_results.json",
+      "sim": "system_v4/probes/sim_geomstats_hopf_weyl_fiber_horizontal_base_loop_distance.py",
+      "role": "classical_baseline",
+      "load_bearing": true,
+      "observables": [
+        "S3 carrier path length",
+        "S2 projection path length",
+        "finite-difference tangent dot products",
+        "horizontal base S3 holonomy gap"
+      ],
+      "graveyards": [
+        "raw base path has same length as fiber but not same connection component",
+        "horizontal base is metric-orthogonal to fiber",
+        "horizontal base collapses at projection pole",
+        "fiber motion is hidden by S2 projection",
+        "horizontal base S3 loop has holonomy gap",
+        "equator raw-base orthogonality is accidental",
+        "sheet reversal preserves horizontal metric lengths"
+      ]
+    },
+    {
+      "tool": "clifford",
+      "function_api": "Cl(4) basis vectors and inner products over vertical fiber, raw base, and horizontal base-lift tangent fixtures",
+      "receipt": "system_v4/probes/a2_state/sim_results/clifford_hopf_weyl_fiber_horizontal_base_tangent_inner_product_results.json",
+      "sim": "system_v4/probes/sim_clifford_hopf_weyl_fiber_horizontal_base_tangent_inner_product.py",
+      "role": "classical_baseline",
+      "load_bearing": true,
+      "observables": [
+        "Cl(4) tangent squared norms",
+        "raw-base/fiber tangent inner product",
+        "horizontal-base/fiber tangent inner product",
+        "wrong-connection-sign tangent inner product"
+      ],
+      "graveyards": [
+        "raw base tangent is not fiber independent",
+        "horizontal base tangent is fiber independent",
+        "wrong connection sign fails horizontal independence",
+        "horizontal base tangent collapses at projection pole",
+        "equator raw-base independence is accidental",
+        "sheet reversal flips raw connection sign not horizontal independence"
+      ]
+    }
+  ],
+  "claim_ceiling": "Three independent tool receipts support the local coordinate-geometry statement that the horizontal base lift is metric-independent from the vertical fiber direction in the declared Hopf/Weyl S3 carrier chart. This does not prove physical loop independence in a full nested Hopf-torus geometric-constraint manifold and does not admit flux, QIT, GStack, axis, bridge, nonclassical, engine, or target-system claims.",
+  "not_proven": [
+    "No full nested Hopf-torus geometric-constraint manifold.",
+    "No physical operator evolution along the vertical and horizontal generators.",
+    "No flux representation.",
+    "No QIT, GStack, axis, bridge, nonclassical, engine, or target-system admission.",
+    "No placement distinguishability closure."
+  ],
+  "next_admissible_steps": [
+    {
+      "name": "qutip_hopf_weyl_vertical_horizontal_density_transport",
+      "purpose": "Run density-object transport along vertical and horizontal carrier paths and check whether operator-level readouts preserve the same separation.",
+      "claim_ceiling": "classical density-transport baseline only"
+    },
+    {
+      "name": "gudhi_hopf_weyl_vertical_horizontal_path_neighborhood_homology",
+      "purpose": "Use finite neighborhoods around the vertical and horizontal paths to test topology-adjacent controls without pretending circle homology distinguishes the two loops alone.",
+      "claim_ceiling": "finite topology baseline only"
+    },
+    {
+      "name": "z3_hopf_weyl_vertical_horizontal_metric_predicate_controls",
+      "purpose": "Encode the exact metric predicates and adjacent controls as bounded SAT/UNSAT checks.",
+      "claim_ceiling": "symbolic predicate control only"
+    }
+  ],
+  "verification": {
+    "tool_function_matrix_row_count": 97,
+    "tool_function_matrix_passing_count": 97,
+    "guardrail_tests": "pytest system_v5/tests/test_run_guardrails.py -q -> 27 passed",
+    "runner_preflight": "make runner-preflight -> all_pass true",
+    "runner_dry_run": "make parallel-runner-dry -> exits 0"
+  }
+}

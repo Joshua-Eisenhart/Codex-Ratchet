@@ -154,8 +154,8 @@ def main() -> int:
         ),
         "next_lego_target": "nested_hopf_torus_loop_geometry_baseline",
         "promotion_condition": (
-            "May only support later receipt audits after physical carrier-evolution and independent topology "
-            "receipts produce the readout vectors being checked."
+            "May only support later receipt audits after physical carrier-evolution receipts and exact topology "
+            "parent receipts produce the readout vectors being checked."
         ),
         "demotion_condition": (
             "Demote if full readout vectors become SAT-equal to adjacent controls, or if coordinate-hiding "

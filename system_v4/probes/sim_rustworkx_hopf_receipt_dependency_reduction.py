@@ -141,8 +141,9 @@ def run_graveyards() -> dict[str, object]:
             "error_type": cycle_error,
             "passed": cycle_error is not None,
         },
-        "reversed_edges_put_layer_before_parents": {
+        "reversed_edges_invert_parent_order_as_expected_bad_control": {
             "topological_order": reversed_order,
+            "expected_inversion": True,
             "passed": reversed_order.index("toponetx_two_hopf_torus_layer_incidence")
             < reversed_order.index("sympy_hopf_loop_holonomy_area_dependence"),
         },
@@ -214,7 +215,7 @@ def main() -> int:
         "graveyards": [
             "missing TopoNetX parent removes readout ancestor",
             "cycle input is rejected by checked graph",
-            "reversed edges put layer before parents",
+            "reversed edges invert parent order as expected bad control",
             "isolated single receipt has no dependencies",
             "transitive reduction keeps direct parent edges",
         ],

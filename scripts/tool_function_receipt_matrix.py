@@ -579,6 +579,14 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "e3nn",
+        "function_api": "e3nn.o3.spherical_harmonics, matrix_to_angles, and wigner_D l=1 SO(3) equivariance over projected Hopf base-loop samples",
+        "receipt": "system_v4/probes/a2_state/sim_results/e3nn_hopf_base_loop_so3_equivariance_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["hopf_base_loop_so3_readout_equivariance_baseline", "inner_outer_hopf_weyl_loop_geometry_fit"],
+    },
+    {
+        "tool": "e3nn",
         "function_api": "e3nn vector irrep action commuting with PyG MessagePassing.propagate",
         "receipt": "system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json",
         "role": "nonclassical_adjacent",

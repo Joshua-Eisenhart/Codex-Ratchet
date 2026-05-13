@@ -171,6 +171,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["clifford_weyl_transport", "weyl_spinor_geometry"],
     },
     {
+        "tool": "clifford",
+        "function_api": "clifford Cl(3) blades, MultiVector.exp, rotor sandwich transport, and coefficient readout over projected Hopf outer-loop vector fixtures",
+        "receipt": "system_v4/probes/a2_state/sim_results/clifford_hopf_outer_rotation_readout_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "clifford_projected_loop_transport_baseline"],
+    },
+    {
         "tool": "gudhi",
         "function_api": "SimplexTree, Rips/filtration persistence and Betti summaries",
         "receipt": "system_v4/probes/a2_state/sim_results/gudhi_capability_results.json",

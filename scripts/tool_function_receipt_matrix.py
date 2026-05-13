@@ -43,6 +43,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["density_matrix_representability", "entropy_gradient_fit"],
     },
     {
+        "tool": "pytorch",
+        "function_api": "torch complex tensor density construction and autograd.grad derivative readouts over Hopf-coordinate carrier variables",
+        "receipt": "system_v4/probes/a2_state/sim_results/pytorch_hopf_inner_outer_density_gradient_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "differentiable_coordinate_readout_baseline"],
+    },
+    {
         "tool": "pyg",
         "function_api": "torch_geometric.nn.GCNConv MessagePassing over Hopf-fiber edge_index",
         "receipt": "system_v4/probes/a2_state/sim_results/sim_pyg_hopf_graph_deep_capability_results.json",

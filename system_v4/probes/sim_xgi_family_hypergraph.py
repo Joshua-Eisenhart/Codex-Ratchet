@@ -30,8 +30,8 @@ TOOL_MANIFEST = {
     "e3nn":       {"tried": False, "used": False, "reason": "not relevant — no equivariant networks needed"},
     "rustworkx":  {"tried": False, "used": False, "reason": "not relevant — xgi handles hypergraph natively"},
     "xgi":        {"tried": True,  "used": True,  "reason": "primary tool — hypergraph + simplicial complex construction and analysis"},
-    "toponetx":   {"tried": True,  "used": False, "reason": "CellComplex lift supplies a coequal topological witness for the same higher-order family structure"},
-    "gudhi":      {"tried": True,  "used": False, "reason": "tried persistence comparison — see boundary tests"},
+    "toponetx":   {"tried": True,  "used": True, "reason": "CellComplex lift supplies a coequal topological witness for the same higher-order family structure"},
+    "gudhi":      {"tried": True,  "used": True, "reason": "persistence boundary test checks the incidence-distance filtration for the same higher-order family structure"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -656,6 +656,58 @@ if __name__ == "__main__":
     results = {
         "name": "xgi_family_hypergraph",
         "classification": "canonical",
+        "all_pass": n_pass == n_total,
+        "claim_ceiling": "local hypergraph, cell-complex, and persistence consistency receipt for higher-order family incidence structure only",
+        "next_lego_target": "bounded higher-order incidence lego candidate requiring separate admission, baselines, and graveyard controls",
+        "promotion_condition": (
+            "No automatic promotion from this receipt; a downstream lego row must cite this exact result, "
+            "declare its probe family, and pass its own admission gate."
+        ),
+        "demotion_condition": (
+            "Demote or block if XGI construction, CellComplex lift, persistence boundary control, "
+            "or any negative/boundary companion fails."
+        ),
+        "blocked_until": (
+            "blocked from QIT, GStack, axis, bridge, nonclassical, or scientific coupling claims "
+            "until separate downstream receipts close those gates"
+        ),
+        "out_of_scope": [
+            "No QIT, GStack, axis, bridge, or nonclassical claim.",
+            "No proof that the named family partition is canonical outside this local fixture.",
+            "No claim that persistence or cell-complex witnesses promote a lego without separate admission.",
+        ],
+        "operation_sequence": [
+            "construct finite higher-order incidence hypergraph",
+            "measure hyperedge overlap and s-connectivity",
+            "compare simplicial and cell-complex lifts",
+            "run negative and boundary controls",
+        ],
+        "carrier_topology": "finite hypergraph with simplicial-complex, cell-complex, and incidence-distance filtration witnesses",
+        "observable": "test-pass vector over hypergraph statistics, lift consistency, negative controls, and persistence boundary checks",
+        "pass_fail_predicate": "all positive, negative, and boundary checks pass exactly as declared",
+        "graveyards": [
+            "pairwise-only collapse control",
+            "scrambled membership control",
+            "removed-overlap control",
+            "incidence-distance persistence boundary control",
+        ],
+        "baselines": [
+            "pairwise graph collapse baseline",
+            "simplicial lift comparison",
+            "cell-complex lift comparison",
+        ],
+        "alternative_formulations": [
+            "native XGI hypergraph statistics",
+            "simplicial-complex lift",
+            "cell-complex lift",
+            "incidence-distance persistence filtration",
+        ],
+        "exact_tool_function_needs": {
+            "xgi": ["Hypergraph", "SimplicialComplex"],
+            "toponetx": ["CellComplex"],
+            "gudhi": ["RipsComplex", "SimplexTree.persistence"],
+        },
+        "lego_or_coupling_target": "bounded higher-order incidence lego candidate",
         "tool_manifest": TOOL_MANIFEST,
         "summary": {
             "tests_passed": n_pass,

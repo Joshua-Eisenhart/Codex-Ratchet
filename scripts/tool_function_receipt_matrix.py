@@ -291,6 +291,22 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "classical_hopf_path_metric_baseline"],
     },
     {
+        "tool": "numpy",
+        "function_api": "numpy isclose scalar heat/work/efficiency accounting for reversible two-bath four-stroke cycle calibration",
+        "receipt": "system_v4/probes/a2_state/sim_results/carnot_two_bath_four_stroke_work_heat_bounds_results.json",
+        "role": "classical_baseline",
+        "depth": "supportive",
+        "candidate_lego_targets": ["work_heat_cycle_calibration_fixture", "carnot_scalar_bound_baseline"],
+    },
+    {
+        "tool": "numpy",
+        "function_api": "numpy log/sum/isclose binary entropy, feedback work bound, and Landauer erasure floor for one-bit cycle calibration",
+        "receipt": "system_v4/probes/a2_state/sim_results/szilard_measure_feedback_erasure_landauer_bounds_results.json",
+        "role": "classical_baseline",
+        "depth": "supportive",
+        "candidate_lego_targets": ["information_work_erasure_cycle_calibration_fixture", "szilard_landauer_scalar_baseline"],
+    },
+    {
         "tool": "z3",
         "function_api": "z3 Solver/SolverFor QF_LIA add/check/model and UNSAT witness",
         "receipt": "system_v4/probes/a2_state/sim_results/z3_capability_results.json",

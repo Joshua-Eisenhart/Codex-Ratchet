@@ -18,18 +18,18 @@ import math
 import os
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": "not needed -- pure GA probe"},
-    "pyg":       {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "z3":        {"tried": False, "used": False, "reason": "not SMT-relevant"},
-    "cvc5":      {"tried": False, "used": False, "reason": "not SMT-relevant"},
-    "sympy":     {"tried": False, "used": False, "reason": "not needed -- numeric GA"},
+    "pytorch":   {"tried": False, "used": False, "reason": "not used: this capability probe isolates Clifford multivector algebra and does not need tensor autodiff or dense tensor kernels."},
+    "pyg":       {"tried": False, "used": False, "reason": "not used: no graph message-passing, batching, or edge-index carrier is part of this Clifford algebra fixture."},
+    "z3":        {"tried": False, "used": False, "reason": "not used: the tested claims are numeric Clifford identities, not SMT satisfiability or model extraction."},
+    "cvc5":      {"tried": False, "used": False, "reason": "not used: no cvc5 formula assertion, SAT query, or SyGuS synthesis surface is needed for this fixture."},
+    "sympy":     {"tried": False, "used": False, "reason": "not used: the probe intentionally exercises clifford runtime products rather than symbolic algebra rewrites."},
     "clifford":  {"tried": False, "used": False, "reason": "under test"},
-    "geomstats": {"tried": False, "used": False, "reason": "separate geomstats probe"},
-    "e3nn":      {"tried": False, "used": False, "reason": "separate e3nn probe"},
-    "rustworkx": {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "xgi":       {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "toponetx":  {"tried": False, "used": False, "reason": "not topology-relevant"},
-    "gudhi":     {"tried": False, "used": False, "reason": "not topology-relevant"},
+    "geomstats": {"tried": False, "used": False, "reason": "not used: no manifold metric, geodesic, or Lie group geometry API is part of this Clifford capability check."},
+    "e3nn":      {"tried": False, "used": False, "reason": "not used: no equivariant neural network or representation-learning layer is exercised in this algebra fixture."},
+    "rustworkx": {"tried": False, "used": False, "reason": "not used: no graph traversal, DAG, shortest path, or dependency graph structure is involved."},
+    "xgi":       {"tried": False, "used": False, "reason": "not used: no hypergraph incidence, edge membership, or higher-order relation is represented here."},
+    "toponetx":  {"tried": False, "used": False, "reason": "not used: no cell complex, Hasse graph, rank-cell incidence, or topology handoff is exercised."},
+    "gudhi":     {"tried": False, "used": False, "reason": "not used: no persistent homology, filtration, simplex tree, or Betti-number computation is needed."},
 }
 
 TOOL_INTEGRATION_DEPTH = {

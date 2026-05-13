@@ -1,0 +1,264 @@
+{
+  "name": "sim_qiskit_capability",
+  "classification": "canonical",
+  "classification_note": "Capability isolation witness for qiskit: one-qubit circuit, statevector, density-matrix, and operator-expectation surfaces are exercised so later bounded bridge sims can treat qiskit as an available quantum-circuit tool. No QIT, GStack, axis, bridge, or engine claim is admitted here.",
+  "divergence_log": "Capability isolation witness for qiskit: one-qubit circuit, statevector, density-matrix, and operator-expectation surfaces are exercised so later bounded bridge sims can treat qiskit as an available quantum-circuit tool. No QIT, GStack, axis, bridge, or engine claim is admitted here.",
+  "qiskit_version": "2.4.1",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this Qiskit capability fixture does not require tensor autodiff, torch modules, or tensor-kernel execution."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no graph carrier, edge index, message passing, batching, or graph pooling surface is exercised."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no SMT satisfiability, model extraction, or symbolic constraint admissibility query is part of this fixture."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no cvc5 formula assertion, SAT check, value extraction, or SyGuS synthesis surface is needed."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no symbolic simplification, polynomial algebra, or exact matrix identity proof is exercised here."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe checks circuit and density APIs rather than Clifford multivector algebra."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no manifold metric, geodesic, or Lie group geometry API is part of this one-qubit fixture."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no equivariant neural network, irreducible representation tensor, or learned layer is exercised."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no graph traversal, DAG, shortest path, or dependency graph structure is involved."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no hypergraph incidence, hyperedge membership, or higher-order relation is represented."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no cell complex, simplicial complex, Hasse graph, or incidence-matrix API is exercised."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no persistent homology, simplex tree, filtration, or Betti-number computation is needed."
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive numeric tolerances, trace checks, norms, and reference arrays for Qiskit state data"
+    },
+    "qiskit": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- circuit, statevector, density matrix, operator expectation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "supportive",
+    "qiskit": "load_bearing"
+  },
+  "positive": {
+    "statevector_plus_state": {
+      "pass": true,
+      "statevector": [
+        {
+          "real": 0.7071067811865475,
+          "imag": 0.0
+        },
+        {
+          "real": 0.7071067811865475,
+          "imag": 0.0
+        }
+      ]
+    },
+    "density_trace_one": {
+      "pass": true,
+      "trace": {
+        "real": 0.9999999999999998,
+        "imag": 0.0
+      }
+    },
+    "plus_has_x_expectation_one": {
+      "pass": true,
+      "value": {
+        "real": 0.9999999999999998,
+        "imag": 0.0
+      }
+    },
+    "plus_has_z_expectation_zero": {
+      "pass": true,
+      "value": {
+        "real": -2.2371143170757382e-17,
+        "imag": 0.0
+      }
+    }
+  },
+  "negative": {
+    "bit_flip_is_not_plus_state": {
+      "pass": true,
+      "statevector": [
+        {
+          "real": 0.0,
+          "imag": 0.0
+        },
+        {
+          "real": 1.0,
+          "imag": 0.0
+        }
+      ]
+    }
+  },
+  "boundary": {
+    "small_rotation_remains_normalized": {
+      "pass": true,
+      "norm": 1.0
+    },
+    "pure_density_purity_stable": {
+      "pass": true,
+      "purity": {
+        "real": 1.0,
+        "imag": 0.0
+      }
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "claim_ceiling": "tool_micro_qiskit_capability_only",
+  "operation_sequence": [
+    "construct a one-qubit QuantumCircuit",
+    "apply a Hadamard gate to prepare the plus state",
+    "derive a Statevector from the circuit instruction",
+    "convert the statevector to a DensityMatrix",
+    "evaluate X and Z Operator expectation values on the statevector",
+    "run adjacent negative and boundary fixtures for a bit-flip state, a small rotation, normalization, and purity"
+  ],
+  "carrier_topology": {
+    "carrier": "one-qubit complex Hilbert space with 2x2 density matrix representation",
+    "positive_fixture": "Hadamard-prepared plus state",
+    "graveyard_fixture": "bit-flipped computational basis state compared against plus-state amplitudes",
+    "boundary_fixture": "small-angle Ry rotation with statevector norm and density purity checks"
+  },
+  "observable": {
+    "primary": "statevector amplitudes and one-qubit operator expectation values",
+    "secondary": [
+      "density trace",
+      "statevector norm",
+      "density-matrix purity"
+    ]
+  },
+  "pass_fail_predicate": {
+    "pass": [
+      "Hadamard circuit statevector equals the plus state within tolerance",
+      "derived density matrix has trace 1",
+      "plus state has X expectation 1",
+      "plus state has Z expectation 0",
+      "bit-flipped basis state is not equal to the plus state",
+      "small Ry rotation remains normalized",
+      "pure-state density matrix has purity 1"
+    ],
+    "fail": [
+      "Qiskit circuit construction or state conversion fails",
+      "statevector, density trace, expectation, normalization, or purity checks miss tolerance",
+      "negative bit-flip fixture is indistinguishable from the plus state"
+    ]
+  },
+  "graveyards": [
+    {
+      "name": "bit_flip_basis_state",
+      "change": "replace the Hadamard preparation with an X gate on |0>",
+      "expected_death": "amplitude equality with the plus state fails"
+    }
+  ],
+  "baselines": [
+    {
+      "name": "small_rotation_normalization_boundary",
+      "role": "near-identity one-qubit rotation baseline for norm and purity preservation"
+    }
+  ],
+  "alternative_formulations": [
+    "manual numpy one-qubit matrix multiplication for the same Hadamard and Pauli expectation checks",
+    "qiskit Operator expectation evaluated through density-matrix trace rather than Statevector.expectation_value",
+    "two-qubit separable extension with tensor-product density checks"
+  ],
+  "tool_function_needs": [
+    {
+      "tool": "qiskit",
+      "functions": [
+        "QuantumCircuit",
+        "QuantumCircuit.h",
+        "QuantumCircuit.x",
+        "QuantumCircuit.ry",
+        "Statevector.from_instruction",
+        "DensityMatrix",
+        "Operator",
+        "Statevector.expectation_value"
+      ],
+      "depth": "load_bearing"
+    },
+    {
+      "tool": "numpy",
+      "functions": [
+        "np.allclose",
+        "np.sqrt",
+        "np.trace",
+        "np.linalg.norm"
+      ],
+      "depth": "supportive"
+    }
+  ],
+  "lego_coupling_target": [
+    "unitary_channel_map",
+    "density_matrix_object"
+  ],
+  "next_lego_target": "bounded qiskit statevector-density fixture before any QIT or density-carrier lego promotion",
+  "promotion_condition": "requires a later admitted downstream row that names this exact Qiskit capability receipt; this micro row proves only tool availability",
+  "blocked_until": "blocked from QIT, GStack, axis, bridge, engine, and nonclassical promotion until a downstream target passes strict admission with this receipt as a named parent",
+  "demotion_condition": "Demote Qiskit for this surface if one-qubit circuit construction, statevector/density conversion, normalization, or X/Z expectation checks fail.",
+  "out_of_scope": [
+    "no QIT admission",
+    "no GStack admission",
+    "no axis admission",
+    "no bridge or engine claim",
+    "no scientific lego coupling claim"
+  ]
+}

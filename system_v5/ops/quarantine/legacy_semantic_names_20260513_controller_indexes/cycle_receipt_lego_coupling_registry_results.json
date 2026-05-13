@@ -1,18 +1,67 @@
-window.ROSETTA_LEGO_REGISTRY_DATA = {
-  "name": "rosetta_lego_registry",
-  "summary": {
-    "all_pass": true,
-    "registry_row_count": 3,
-    "coupling_candidate_count": 3,
-    "allowed_coupling_count": 3,
-    "blocked_coupling_count": 0,
-    "visual_payload": "visualizer/rosetta-lego-registry-data.js",
-    "scope_note": "Machine-readable Rosetta lego registry over current Carnot, Szilard, and I Ching-64 receipts. It indexes lego coverage and next coupling candidates without promoting any row to QIT/GStack/axis admission."
+{
+  "name": "cycle_receipt_lego_coupling_registry",
+  "classification": "controller_audit",
+  "classification_note": "Machine-readable Rosetta lego registry over current Carnot, Szilard, and I Ching-64 receipts. It indexes lego coverage and next coupling candidates without promoting any row to QIT/GStack/axis admission.",
+  "divergence_log": "Machine-readable Rosetta lego registry over current Carnot, Szilard, and I Ching-64 receipts. It indexes lego coverage and next coupling candidates without promoting any row to QIT/GStack/axis admission.",
+  "lego_ids": [
+    "carnot_cycle",
+    "szilard_cycle",
+    "iching_64_schedule",
+    "dual_stacked_engine",
+    "axis_schedule",
+    "entropy_family",
+    "operator_order",
+    "graph_topology",
+    "density_matrix",
+    "proof_fence",
+    "rosetta_correlation",
+    "graveyard_variant"
+  ],
+  "primary_lego_ids": [
+    "rosetta_correlation",
+    "entropy_family",
+    "operator_order"
+  ],
+  "sim_execution_kind": "controller_audit",
+  "allowed_claims": [
+    "current Rosetta engine legos have machine-readable registry rows",
+    "pairwise coupling candidates are classified by shared modes, tools, axes, entropy, and receipts",
+    "allowed couplings remain candidate Rosetta surfaces only"
+  ],
+  "promotion_status": "keep_but_open",
+  "promotion_blockers": [
+    "no QIT runtime admission",
+    "no GStack nesting receipt",
+    "no full axis admission"
+  ],
+  "tool_manifest": {
+    "json": {
+      "tried": true,
+      "used": true,
+      "reason": "loads exact source receipts and writes registry"
+    },
+    "pathlib": {
+      "tried": true,
+      "used": true,
+      "reason": "deterministic receipt paths"
+    }
+  },
+  "tool_integration_depth": {
+    "json": "supportive",
+    "pathlib": "supportive"
+  },
+  "source_receipts": {
+    "two_bath_heat_work_reversible_cycle_pair": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/two_bath_heat_work_reversible_cycle_pair_results.json",
+    "measure_feedback_erasure_recovery_cycle_pair": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/measure_feedback_erasure_recovery_cycle_pair_results.json",
+    "six_bit_gray_code_single_flip_cycle_invariant": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/six_bit_gray_code_single_flip_cycle_invariant_results.json",
+    "rosetta_triad_modes": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/rosetta_triad_modes_results.json",
+    "rosetta_triad_entropy_topology_sweep": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/rosetta_triad_entropy_topology_sweep_results.json",
+    "rosetta_triad_order_graveyard": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/rosetta_triad_order_graveyard_results.json"
   },
   "registry_rows": [
     {
       "lego_id": "carnot",
-      "source_receipt": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_dual_stacked_engine_results.json",
+      "source_receipt": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/two_bath_heat_work_reversible_cycle_pair_results.json",
       "source_all_pass": true,
       "sim_type_coverage": {
         "classical": true,
@@ -35,8 +84,8 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
         "z3"
       ],
       "lego_ids": [
-        "carnot_cycle",
-        "dual_stacked_engine",
+        "two_bath_heat_work_cycle",
+        "opposite_direction_cycle_pair",
         "quantum_thermodynamics",
         "density_matrix",
         "graph_topology",
@@ -66,15 +115,7 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
         "count": 4,
         "readout": "reservoir entropy plus heat/work efficiency"
       },
-      "axis_slots": [
-        "Ax0",
-        "Ax1",
-        "Ax2",
-        "Ax3",
-        "Ax4",
-        "Ax5",
-        "Ax6"
-      ],
+      "axis_slots": [],
       "graveyard_variants": [
         {
           "variant": "canonical_forward",
@@ -105,7 +146,7 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
     },
     {
       "lego_id": "szilard",
-      "source_receipt": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_dual_stacked_engine_results.json",
+      "source_receipt": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/measure_feedback_erasure_recovery_cycle_pair_results.json",
       "source_all_pass": true,
       "sim_type_coverage": {
         "classical": true,
@@ -128,9 +169,9 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
         "z3"
       ],
       "lego_ids": [
-        "szilard_cycle",
+        "measure_feedback_erasure_cycle",
         "landauer_erasure",
-        "dual_stacked_engine",
+        "opposite_direction_cycle_pair",
         "density_matrix",
         "graph_topology",
         "proof_fence"
@@ -159,15 +200,7 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
         "count": 3,
         "readout": "record entropy, mutual information, erasure cost"
       },
-      "axis_slots": [
-        "Ax0",
-        "Ax1",
-        "Ax2",
-        "Ax3",
-        "Ax4",
-        "Ax5",
-        "Ax6"
-      ],
+      "axis_slots": [],
       "graveyard_variants": [
         {
           "variant": "canonical_measure_feedback_erase",
@@ -198,7 +231,7 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
     },
     {
       "lego_id": "iching_64",
-      "source_receipt": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/iching_64_engine_rosetta_results.json",
+      "source_receipt": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/six_bit_gray_code_single_flip_cycle_invariant_results.json",
       "source_all_pass": true,
       "sim_type_coverage": {
         "classical": true,
@@ -210,6 +243,7 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
         "gudhi",
         "numpy",
         "pyg",
+        "pytorch",
         "qiskit",
         "qutip",
         "rustworkx",
@@ -219,12 +253,12 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
         "z3"
       ],
       "lego_ids": [
-        "iching_64_schedule",
-        "axis_schedule",
-        "dual_stacked_engine",
+        "six_bit_gray_code_schedule",
+        "single_flip_cycle",
+        "opposite_direction_cycle_pair",
         "graph_topology",
         "density_matrix",
-        "rosetta_correlation",
+        "cycle_invariant_correlation",
         "graveyard_variant"
       ],
       "entropy_families": [
@@ -251,15 +285,7 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
         "count": 64,
         "readout": "uniform state entropy plus parity polarity"
       },
-      "axis_slots": [
-        "Ax0",
-        "Ax1",
-        "Ax2",
-        "Ax3",
-        "Ax4",
-        "Ax5",
-        "Ax6"
-      ],
+      "axis_slots": [],
       "graveyard_variants": [
         {
           "variant": "canonical_gray_cycle",
@@ -299,7 +325,7 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
     {
       "left": "carnot",
       "right": "szilard",
-      "allowed_next": true,
+      "allowed_next": false,
       "shared_modes": [
         "bridge",
         "classical",
@@ -321,15 +347,7 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
         "xgi",
         "z3"
       ],
-      "shared_axis_slots": [
-        "Ax0",
-        "Ax1",
-        "Ax2",
-        "Ax3",
-        "Ax4",
-        "Ax5",
-        "Ax6"
-      ],
+      "shared_axis_slots": [],
       "shared_entropy_families": [
         "max_entropy",
         "min_entropy",
@@ -342,24 +360,27 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
         "tsallis_2"
       ],
       "coupling_type": "bounded_rosetta_coupling",
-      "blocked_or_deferred": [],
+      "blocked_or_deferred": [
+        "missing full Ax0-Ax6 comparison-slot overlap"
+      ],
       "claim_ceiling": "couple_as_candidate_rosetta_surface_only"
     },
     {
       "left": "carnot",
       "right": "iching_64",
-      "allowed_next": true,
+      "allowed_next": false,
       "shared_modes": [
         "bridge",
         "classical",
         "nonclassical_adjacent"
       ],
-      "shared_tool_count": 10,
+      "shared_tool_count": 11,
       "shared_tools": [
         "cvc5",
         "gudhi",
         "numpy",
         "pyg",
+        "pytorch",
         "qiskit",
         "qutip",
         "rustworkx",
@@ -367,15 +388,7 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
         "xgi",
         "z3"
       ],
-      "shared_axis_slots": [
-        "Ax0",
-        "Ax1",
-        "Ax2",
-        "Ax3",
-        "Ax4",
-        "Ax5",
-        "Ax6"
-      ],
+      "shared_axis_slots": [],
       "shared_entropy_families": [
         "max_entropy",
         "min_entropy",
@@ -388,24 +401,27 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
         "tsallis_2"
       ],
       "coupling_type": "bounded_rosetta_coupling",
-      "blocked_or_deferred": [],
+      "blocked_or_deferred": [
+        "missing full Ax0-Ax6 comparison-slot overlap"
+      ],
       "claim_ceiling": "couple_as_candidate_rosetta_surface_only"
     },
     {
       "left": "szilard",
       "right": "iching_64",
-      "allowed_next": true,
+      "allowed_next": false,
       "shared_modes": [
         "bridge",
         "classical",
         "nonclassical_adjacent"
       ],
-      "shared_tool_count": 10,
+      "shared_tool_count": 11,
       "shared_tools": [
         "cvc5",
         "gudhi",
         "numpy",
         "pyg",
+        "pytorch",
         "qiskit",
         "qutip",
         "rustworkx",
@@ -413,15 +429,7 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
         "xgi",
         "z3"
       ],
-      "shared_axis_slots": [
-        "Ax0",
-        "Ax1",
-        "Ax2",
-        "Ax3",
-        "Ax4",
-        "Ax5",
-        "Ax6"
-      ],
+      "shared_axis_slots": [],
       "shared_entropy_families": [
         "max_entropy",
         "min_entropy",
@@ -434,8 +442,19 @@ window.ROSETTA_LEGO_REGISTRY_DATA = {
         "tsallis_2"
       ],
       "coupling_type": "bounded_rosetta_coupling",
-      "blocked_or_deferred": [],
+      "blocked_or_deferred": [
+        "missing full Ax0-Ax6 comparison-slot overlap"
+      ],
       "claim_ceiling": "couple_as_candidate_rosetta_surface_only"
     }
-  ]
-};
+  ],
+  "summary": {
+    "all_pass": false,
+    "registry_row_count": 3,
+    "coupling_candidate_count": 3,
+    "allowed_coupling_count": 0,
+    "blocked_coupling_count": 3,
+    "visual_payload": "visualizer/cycle-receipt-lego-coupling-registry-data.js",
+    "scope_note": "Machine-readable Rosetta lego registry over current Carnot, Szilard, and I Ching-64 receipts. It indexes lego coverage and next coupling candidates without promoting any row to QIT/GStack/axis admission."
+  }
+}

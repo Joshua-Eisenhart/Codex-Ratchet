@@ -14,12 +14,12 @@ window.ENGINE_LAB_SUCCESSOR_COVERAGE_DATA = {
     "scope_note": "Controller audit proving the current engine-lab open-row queue has no active uncovered rows. It accepts only successor-covered, consolidated-closed, or superseded lanes, preserves source negatives, and does not admit QIT, GStack, axis, or runtime-engine claims."
   },
   "source_receipts": {
-    "engine_lab_matrix": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/engine_lab_matrix_results.json",
+    "cycle_protocol_receipt_status_matrix": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/cycle_protocol_receipt_status_matrix_results.json",
     "engine_lab_open_row_audit": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/engine_lab_open_row_audit_results.json",
     "engine_lab_next_work_queue": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/engine_lab_next_work_queue_results.json"
   },
   "source_receipt_mtimes": {
-    "engine_lab_matrix_results.json": 1778400210.9422123,
+    "cycle_protocol_receipt_status_matrix_results.json": 1778400210.9422123,
     "engine_lab_open_row_audit_results.json": 1778400211.073278,
     "engine_lab_next_work_queue_results.json": 1778398582.870418
   },

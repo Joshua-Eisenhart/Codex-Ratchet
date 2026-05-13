@@ -1,15 +1,15 @@
 # Sim Inventory Index
 
-Generated: `2026-05-13T07:52:56.710649+00:00`
+Generated: `2026-05-13T08:06:14.916598+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
 - Sim source files indexed: `4023`
-- Result JSON files seen: `1453`
+- Result JSON files seen: `1569`
 - Linked result JSON files: `905`
-- Unlinked result JSON files: `548`
+- Unlinked result JSON files: `664`
 - Wizard-admitted stems: `112`
 - Repair / rerun candidate rows: `742`
 - Source-only rows: `3168`

@@ -99,6 +99,69 @@ TOOL_INTEGRATION_DEPTH = {
     "z3": None,
 }
 
+CANDIDATE_SIM_SPEC = {
+    "operation_sequence": [
+        "admit finite simplicial-complex fixtures with TopoNetX",
+        "convert each complex to its TopoNetX Hasse graph",
+        "sort Hasse nodes and encode simplex dimension as a one-column PyTorch feature tensor",
+        "translate Hasse graph edges into a directed PyG edge_index",
+        "apply a custom PyG MessagePassing layer that sums neighbouring simplex-dimension features",
+        "batch independent TopoNetX-derived PyG Data fixtures with Batch.from_data_list",
+        "pool batched simplex-dimension features with global_mean_pool",
+        "compare PyG outputs against manual neighbour sums and validation controls",
+    ],
+    "carrier_topology": (
+        "Finite simplicial-complex Hasse graph fixtures: TopoNetX supplies simplex nodes and "
+        "incidence edges, while PyG consumes the directed graph tensor representation."
+    ),
+    "observable": {
+        "primary": "PyG message-passing output over TopoNetX-derived Hasse graph edge_index",
+        "secondary": [
+            "batched graph mean of simplex-dimension features",
+            "PyG validation status for truncated Hasse graph export",
+            "duplicate-simplex rejection before graph construction",
+            "singleton complex empty-edge output",
+            "minimal-edge complex neighbour-sum output",
+        ],
+    },
+    "pass_fail_predicate": (
+        "Pass iff TopoNetX-derived Hasse graph tensors make PyG MessagePassing and "
+        "global_mean_pool match manual expectations, while invalid duplicate, truncated, "
+        "singleton, and minimal-edge controls behave as declared."
+    ),
+    "graveyards": [
+        "duplicate-vertex simplex should be rejected before PyG graph realization",
+        "truncated Hasse export should fail PyG Data validation",
+        "singleton TopoNetX complex should produce an empty edge_index and zero message output",
+        "single-edge TopoNetX complex should match manual neighbour-sum output",
+    ],
+    "baselines": [
+        "manual neighbour-sum baseline over the directed Hasse edge_index",
+        "manual batched simplex-dimension mean baseline",
+        "invalid duplicate-simplex baseline",
+        "truncated PyG Data validation baseline",
+        "singleton no-edge baseline",
+    ],
+    "alternative_formulations": [
+        "encode simplex cardinality and orientation as multi-column node features instead of dimension only",
+        "use only PyG Data validation without MessagePassing to isolate graph-realization behaviour",
+        "replace the custom MessagePassing layer with a standard PyG convolution over the same Hasse edge_index",
+    ],
+    "tool_function_needs": [
+        "toponetx.classes.SimplicialComplex for finite complex admission",
+        "SimplicialComplex.to_hasse_graph for topology-derived graph structure",
+        "torch_geometric.data.Data for Hasse graph tensor fixtures",
+        "torch_geometric.data.Batch.from_data_list for batched fixtures",
+        "torch_geometric.nn.MessagePassing.propagate for neighbour aggregation",
+        "torch_geometric.nn.global_mean_pool for graph-level pooling",
+    ],
+    "lego_coupling_target": "bounded topology-to-graph tool-integration evidence for later topology-to-graph lego-fit packets",
+    "claim_ceiling": (
+        "finite tool_integration_toponetx_pyg tool-integration receipt only; no bridge, "
+        "GStack, axis, QIT, or nonclassical admission"
+    ),
+}
+
 try:
     from toponetx.classes import SimplicialComplex
 
@@ -404,6 +467,7 @@ if __name__ == "__main__":
     results = {
         "name": NAME,
         "classification": classification,
+        **CANDIDATE_SIM_SPEC,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

@@ -16,18 +16,18 @@ import json
 import os
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": "not needed"},
-    "pyg":       {"tried": False, "used": False, "reason": "not needed"},
-    "z3":        {"tried": False, "used": False, "reason": "separate z3 probe"},
+    "pytorch":   {"tried": False, "used": False, "reason": "not used: this cvc5 capability fixture exercises SMT solver checks, not tensor autodiff or torch kernels."},
+    "pyg":       {"tried": False, "used": False, "reason": "not used: no graph Data object, edge index, message passing, batching, or graph pooling API is exercised."},
+    "z3":        {"tried": False, "used": False, "reason": "not used: this fixture isolates cvc5; z3 parity and agreement are covered by separate tool-integration receipts."},
     "cvc5":      {"tried": False, "used": False, "reason": "under test"},
-    "sympy":     {"tried": False, "used": False, "reason": "not needed"},
-    "clifford":  {"tried": False, "used": False, "reason": "not geometry-relevant"},
-    "geomstats": {"tried": False, "used": False, "reason": "not geometry-relevant"},
-    "e3nn":      {"tried": False, "used": False, "reason": "not geometry-relevant"},
-    "rustworkx": {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "xgi":       {"tried": False, "used": False, "reason": "not graph-relevant"},
-    "toponetx":  {"tried": False, "used": False, "reason": "not topology-relevant"},
-    "gudhi":     {"tried": False, "used": False, "reason": "not topology-relevant"},
+    "sympy":     {"tried": False, "used": False, "reason": "not used: terms are constructed through cvc5 APIs directly rather than symbolic algebra conversion."},
+    "clifford":  {"tried": False, "used": False, "reason": "not used: no Clifford basis, multivector product, rotor, or grade projection appears in this SMT fixture."},
+    "geomstats": {"tried": False, "used": False, "reason": "not used: no manifold metric, geodesic, or Lie group geometry API is part of this proof-layer probe."},
+    "e3nn":      {"tried": False, "used": False, "reason": "not used: no equivariant neural operation, representation tensor, or learned layer is exercised."},
+    "rustworkx": {"tried": False, "used": False, "reason": "not used: no DAG, graph traversal, shortest path, or dependency graph API is involved."},
+    "xgi":       {"tried": False, "used": False, "reason": "not used: no hypergraph incidence, hyperedge membership, or higher-order relation is represented."},
+    "toponetx":  {"tried": False, "used": False, "reason": "not used: no cell complex, simplicial complex, Hasse graph, or incidence matrix is exercised."},
+    "gudhi":     {"tried": False, "used": False, "reason": "not used: no persistent homology, simplex tree, filtration, or Betti computation is needed."},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -249,6 +249,124 @@ if __name__ == "__main__":
         "all_pass": bool(summary["all_pass"]),
         "classification": "canonical",
         "claim_ceiling": "tool_micro_cvc5_capability_only",
+        "operation_sequence": [
+            "construct fresh cvc5 solvers with declared logics",
+            "build Boolean, integer, and real cvc5 sorts and constants",
+            "assert a Boolean conjunction and check SAT",
+            "assert a linear integer system and read model values",
+            "encode a five-cycle binary exclusion bound with impossible sum",
+            "assert real nonnegativity contradiction x*x < 0",
+            "run adjacent negative fixtures for direct contradiction, tautology satisfiability, and ill-formed non-Boolean assertion",
+            "run boundary fixtures for empty assertion set, contradictory integer ranges, and multi-variable witness extraction",
+        ],
+        "carrier_topology": {
+            "carrier": "finite cvc5 SMT constraint systems over Boolean, integer, and real sorts",
+            "positive_fixtures": [
+                "Boolean conjunction",
+                "linear integer model",
+                "five-cycle binary exclusion bound",
+                "real nonnegativity contradiction",
+            ],
+            "graveyard_fixtures": [
+                "p and not p contradiction",
+                "tautology p or not p",
+                "integer term asserted as formula",
+            ],
+            "boundary_fixtures": [
+                "empty solver",
+                "x greater than zero and x less than zero",
+                "two-variable positive integer sum witness",
+            ],
+        },
+        "observable": {
+            "primary": "cvc5 checkSat result values SAT or UNSAT",
+            "secondary": [
+                "integer model values from getValue",
+                "exception type for ill-formed assertion",
+                "witness validity for bounded integer model",
+            ],
+        },
+        "pass_fail_predicate": {
+            "pass": [
+                "Boolean conjunction is SAT",
+                "linear integer system is SAT with x=7 and y=3",
+                "five-cycle exclusion with sum at least three is UNSAT",
+                "real x*x < 0 is UNSAT",
+                "direct p and not p contradiction is UNSAT",
+                "tautology p or not p is SAT",
+                "non-Boolean assertion raises",
+                "empty assertion set is SAT",
+                "contradictory integer ranges are UNSAT",
+                "multi-variable witness satisfies lower bounds and sum constraint",
+            ],
+            "fail": [
+                "cvc5 import is unavailable",
+                "any expected SAT/UNSAT result changes",
+                "model extraction returns wrong integer values",
+                "ill-formed assertion is accepted silently",
+            ],
+        },
+        "graveyards": [
+            {
+                "name": "direct_boolean_contradiction",
+                "change": "assert p and not p in the same cvc5 solver",
+                "expected_death": "solver returns UNSAT",
+            },
+            {
+                "name": "ill_formed_non_boolean_assertion",
+                "change": "assert an integer term as a formula",
+                "expected_death": "cvc5 raises instead of accepting the assertion",
+            },
+            {
+                "name": "contradictory_integer_range",
+                "change": "assert x > 0 and x < 0",
+                "expected_death": "solver returns UNSAT",
+            },
+        ],
+        "baselines": [
+            {
+                "name": "manual_boolean_truth_table",
+                "role": "baseline for p and not p contradiction and p or not p tautology",
+            },
+            {
+                "name": "manual_five_cycle_independent_set_bound",
+                "role": "baseline that the maximum independent set of C5 has size 2",
+            },
+            {
+                "name": "manual_linear_system_solution",
+                "role": "baseline solving x+y=10 and x-y=4 as x=7, y=3",
+            },
+        ],
+        "alternative_formulations": [
+            "Z3 QF_LIA and Boolean encoding of the same SAT/UNSAT fixtures",
+            "truth-table enumeration for the Boolean fixtures",
+            "integer linear programming formulation of the five-cycle exclusion bound",
+        ],
+        "tool_function_needs": [
+            {
+                "tool": "cvc5",
+                "functions": [
+                    "cvc5.Solver",
+                    "Solver.setOption",
+                    "Solver.setLogic",
+                    "Solver.getBooleanSort",
+                    "Solver.getIntegerSort",
+                    "Solver.getRealSort",
+                    "Solver.mkConst",
+                    "Solver.mkTerm",
+                    "Solver.mkInteger",
+                    "Solver.mkReal",
+                    "Solver.assertFormula",
+                    "Solver.checkSat",
+                    "Solver.getValue",
+                ],
+                "depth": "load_bearing",
+            }
+        ],
+        "lego_coupling_target": [
+            "constraint_probe_fixture",
+            "density_matrix_carrier_fixture",
+        ],
         "out_of_scope": [
             "no lego admission",
             "no tool-tool coupling claim",

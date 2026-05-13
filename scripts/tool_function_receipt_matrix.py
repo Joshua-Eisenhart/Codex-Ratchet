@@ -16,6 +16,19 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT_JSON = ROOT / "system_v5" / "evidence" / "tool_function_receipt_matrix.json"
 OUT_MD = ROOT / "system_v5" / "docs" / "TOOL_FUNCTION_RECEIPT_MATRIX.md"
 
+SPEC_FIELD_ALIASES: dict[str, tuple[str, ...]] = {
+    "operation_sequence": ("operation_sequence",),
+    "carrier_topology": ("carrier_topology", "carrier/topology"),
+    "observable": ("observable", "observables"),
+    "pass_fail_predicate": ("pass_fail_predicate", "pass/fail_predicate"),
+    "graveyards": ("graveyards", "graveyard_companions"),
+    "baselines": ("baselines", "baseline_variants"),
+    "alternative_formulations": ("alternative_formulations",),
+    "tool_function_needs": ("tool_function_needs", "exact_tool_function_needs"),
+    "lego_coupling_target": ("lego_coupling_target", "lego_or_coupling_target", "next_lego_target"),
+    "claim_ceiling": ("claim_ceiling",),
+}
+
 
 TARGETS: list[dict[str, Any]] = [
     {
@@ -1054,6 +1067,14 @@ def infer_receipt_schema(payload: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def candidate_spec_missing_fields(payload: dict[str, Any]) -> list[str]:
+    missing = []
+    for field, aliases in SPEC_FIELD_ALIASES.items():
+        if not any(alias in payload and payload.get(alias) not in (None, "", [], {}) for alias in aliases):
+            missing.append(field)
+    return missing
+
+
 def build_rows() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for target in TARGETS:
@@ -1063,6 +1084,7 @@ def build_rows() -> list[dict[str, Any]]:
         depth = payload.get("tool_integration_depth") if isinstance(payload.get("tool_integration_depth"), dict) else {}
         tool = target["tool"]
         receipt_schema = infer_receipt_schema(payload)
+        missing_spec_fields = candidate_spec_missing_fields(payload)
         rows.append(
             {
                 **target,
@@ -1074,6 +1096,9 @@ def build_rows() -> list[dict[str, Any]]:
                 "receipt_schema_source": receipt_schema["source"],
                 "receipt_schema_resolved": receipt_schema["resolved"],
                 "receipt_contract_fields": receipt_schema["fields"],
+                "candidate_spec_contract_fields": sorted(SPEC_FIELD_ALIASES),
+                "candidate_spec_missing_fields": missing_spec_fields,
+                "candidate_spec_complete": not missing_spec_fields,
                 "manifest_reason": (manifest.get(tool) or {}).get("reason") if isinstance(manifest.get(tool), dict) else None,
                 "observed_depth": depth.get(tool),
                 "boundary_source": "receipt" if payload.get("claim_ceiling") or payload.get("out_of_scope") else "matrix_default",
@@ -1107,6 +1132,8 @@ def write_markdown(rows: list[dict[str, Any]], generated_at: str) -> None:
         f"- Missing receipts: `{sum(1 for row in rows if not row['receipt_exists'])}`",
         f"- Explicit receipt schemas missing: `{sum(1 for row in rows if row['receipt_schema_observed'] is None)}`",
         f"- Receipt contract shapes unresolved: `{sum(1 for row in rows if not row['receipt_schema_resolved'])}`",
+        f"- Candidate spec complete rows: `{sum(1 for row in rows if row['candidate_spec_complete'])}`",
+        f"- Candidate spec incomplete rows: `{sum(1 for row in rows if not row['candidate_spec_complete'])}`",
         "",
         "## Matrix",
         "",
@@ -1138,6 +1165,8 @@ def main() -> int:
             "receipt_boundary_gap_count": sum(1 for row in rows if row["boundary_gap"]),
             "receipt_schema_observed_missing_count": sum(1 for row in rows if row["receipt_schema_observed"] is None),
             "receipt_schema_unresolved_count": sum(1 for row in rows if not row["receipt_schema_resolved"]),
+            "candidate_spec_complete_count": sum(1 for row in rows if row["candidate_spec_complete"]),
+            "candidate_spec_incomplete_count": sum(1 for row in rows if not row["candidate_spec_complete"]),
             "tools": sorted({row["tool"] for row in rows}),
         },
         "rows": rows,

@@ -61,12 +61,24 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "z3": "load_bearing",
-    "sympy": "load_bearing",
+    "z3": "supportive",
+    "sympy": "supportive",
     "cvc5": "supportive",
     "pytorch": None,
     "clifford": None,
 }
+
+divergence_log = (
+    "Classical baseline only: Pauli axes are encoded as integer labels and "
+    "orientation is a toy predicate, so this receipt cannot admit flux, bundle, "
+    "Weyl, Clifford, QIT, GStack, bridge, axis, or nonclassical claims."
+)
+
+divergence_details = [
+    "Uses SymPy only to partition Pauli matrices into diagonal/off-diagonal labels.",
+    "Uses z3 only to sanity-check SAT/UNSAT outcomes of the toy integer predicate.",
+    "A real candidate must replace this baseline with exact carrier/topology and graveyard receipts.",
+]
 
 
 # ---------------------------------------------------------------------------
@@ -365,6 +377,62 @@ def main() -> dict:
     result = {
         "name": "boundary_flux_to_pauli_admissibility",
         "classification": classification,
+        "claim_ceiling": (
+            "classical baseline only: toy integer SMT encoding of a bare Pauli-axis orientation boundary; "
+            "no flux, bundle, Weyl, Clifford, QIT, GStack, bridge, axis, or nonclassical admission"
+        ),
+        "next_lego_target": (
+            "none; use only as a negative-control baseline before any separate pure-math flux, bundle, "
+            "or Pauli-boundary candidate authorship"
+        ),
+        "promotion_condition": (
+            "No promotion from this receipt; a later candidate must replace the toy integer encoding with exact "
+            "lower receipts for the claimed carrier/topology and run adjacent graveyards."
+        ),
+        "demotion_condition": (
+            "Demote or block if the SAT/UNSAT expectations fail, if the divergence log is removed, "
+            "or if the receipt is used as evidence for flux/bundle/Weyl/Clifford structure."
+        ),
+        "blocked_until": (
+            "blocked from QIT, GStack, axis, bridge, nonclassical, flux, bundle, Weyl, or Clifford claims "
+            "until separate exact receipts close those gates"
+        ),
+        "out_of_scope": [
+            "No real flux or bundle geometry is represented.",
+            "No Weyl spinor, Hopf carrier, Clifford algebra, or Pauli-boundary proof is admitted.",
+            "No QIT, GStack, bridge, axis, or nonclassical claim.",
+        ],
+        "divergence_log": divergence_log,
+        "divergence_details": divergence_details,
+        "operation_sequence": [
+            "classify Pauli matrices as diagonal or off-diagonal with SymPy",
+            "encode a toy orientation predicate over integer axis ids",
+            "check SAT witnesses and UNSAT controls with z3",
+            "record downgrade boundary as a classical baseline",
+        ],
+        "carrier_topology": "none; finite integer encoding of Pauli-axis labels only",
+        "observable": "SAT/UNSAT vector for toy axis/orientation predicates",
+        "pass_fail_predicate": "declared SAT witnesses and UNSAT controls match expected solver outcomes",
+        "graveyards": [
+            "invalid axis id controls",
+            "off-diagonal axis without orientation controls",
+            "diagonal axis without orientation survival control",
+        ],
+        "baselines": [
+            "bare integer axis-label encoding",
+            "SymPy diagonal/off-diagonal partition",
+            "z3 SAT/UNSAT sanity check",
+        ],
+        "alternative_formulations": [
+            "real Clifford algebra boundary receipt",
+            "bundle-carrier orientation receipt",
+            "Weyl spinor sheet/orientation receipt",
+        ],
+        "exact_tool_function_needs": {
+            "sympy": ["Matrix"],
+            "z3": ["Int", "Solver", "And", "Or", "If"],
+        },
+        "lego_or_coupling_target": "none; baseline control only",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "boundary": "flux_to_pauli",

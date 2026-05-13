@@ -701,6 +701,17 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "projected_sphere_distance_baseline"],
     },
     {
+        "tool": "geomstats",
+        "function_api": "geomstats Hypersphere(dim=3).metric.dist and Hypersphere(dim=2).metric.dist over sampled Hopf/Weyl S3 carrier and S2 projection loops",
+        "receipt": "system_v4/probes/a2_state/sim_results/geomstats_hopf_weyl_fiber_base_s3_s2_distance_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_carrier_loop_geometry_baseline",
+            "carrier_projection_distance_baseline",
+        ],
+    },
+    {
         "tool": "e3nn",
         "function_api": "e3nn.o3.Irreps and D_from_matrix vector representation",
         "receipt": "system_v4/probes/a2_state/sim_results/e3nn_capability_results.json",

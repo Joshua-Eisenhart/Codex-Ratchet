@@ -80,6 +80,64 @@ TOOL_INTEGRATION_DEPTH["networkx"] = "load_bearing"
 TOOL_INTEGRATION_DEPTH["pyg"] = "load_bearing"
 TOOL_INTEGRATION_DEPTH["pytorch"] = "supportive"
 
+CANDIDATE_SIM_SPEC = {
+    "operation_sequence": [
+        "construct a bounded NetworkX DiGraph with node features and directed edges",
+        "convert NetworkX node order, features, and directed edges into PyG Data tensors",
+        "validate the PyG Data object",
+        "apply PyG MessagePassing.propagate with source-to-target sum aggregation",
+        "compare PyG incoming-neighbour sums against NetworkX predecessor sums",
+        "run reversed-orientation, duplicate/missing node-order, isolated-node, and empty-graph controls",
+    ],
+    "carrier_topology": (
+        "Finite directed graph fixture: NetworkX is the source graph representation, "
+        "PyG Data is the tensor carrier, and edge orientation is preserved as edge_index source-to-target order."
+    ),
+    "observable": {
+        "primary": "PyG message output compared to NetworkX incoming-predecessor feature sums",
+        "secondary": [
+            "node and edge count preservation",
+            "node-order mapping dictionary",
+            "reversed edge-orientation output",
+            "duplicate and missing node-order rejection",
+            "isolated-node zero incoming message",
+            "empty graph Data shape",
+        ],
+    },
+    "pass_fail_predicate": (
+        "Pass iff NetworkX-to-PyG conversion preserves node mapping, edge orientation, "
+        "node/edge counts, isolated nodes, and empty graph shape, while reversed orientation "
+        "and invalid node-order controls are excluded."
+    ),
+    "graveyards": [
+        "reversed PyG edge orientation should not reproduce the NetworkX incoming-neighbour sums",
+        "duplicate node-order mapping should be rejected",
+        "missing node-order mapping should be rejected",
+        "isolated node should survive conversion with zero incoming message",
+        "empty NetworkX graph should become valid zero-node zero-edge PyG Data",
+    ],
+    "baselines": [
+        "NetworkX predecessor-sum baseline",
+        "PyG Data.validate baseline",
+        "reversed edge_index orientation baseline",
+        "invalid node-order mapping baseline",
+        "isolated-node and empty-graph boundary baselines",
+    ],
+    "alternative_formulations": [
+        "use an undirected NetworkX Graph converted to two directed PyG edges per edge",
+        "include edge attributes and compare weighted message passing",
+        "batch multiple NetworkX-derived PyG Data fixtures before pooling",
+    ],
+    "tool_function_needs": [
+        "networkx.DiGraph node and edge APIs for source fixture construction",
+        "DiGraph.predecessors for incoming-neighbour reference sums",
+        "torch_geometric.data.Data and Data.validate for graph tensor realization",
+        "torch_geometric.nn.MessagePassing.propagate for source-to-target aggregation",
+    ],
+    "lego_coupling_target": "bounded NetworkX-to-PyG graph handoff fixture before graph-cell or density-carrier lego promotion",
+    "claim_ceiling": "tool_tool_micro_integration_only",
+}
+
 
 class SumMessage(MessagePassing):
     def __init__(self):
@@ -252,6 +310,7 @@ if __name__ == "__main__":
         "probe_family": PROBE_FAMILY,
         "constraint_set": CONSTRAINT_SET,
         "classification": classification,
+        **CANDIDATE_SIM_SPEC,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "prior_function_receipts": {"pyg": PYG_PRIOR_RECEIPT},

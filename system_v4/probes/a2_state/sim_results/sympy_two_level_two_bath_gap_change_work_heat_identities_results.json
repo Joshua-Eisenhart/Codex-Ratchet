@@ -1,0 +1,122 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "Lindblad two-bath thermalization stroke schedule",
+    "finite-time irreversible gap-change schedule",
+    "density-matrix endpoint accounting with QuTiP or Qiskit"
+  ],
+  "baselines": [
+    "QuTiP two-level two-bath gap-change work/heat receipt",
+    "Qiskit two-level two-bath gap-change work/heat receipt",
+    "scalar two-bath four-stroke work/heat bound receipt"
+  ],
+  "blocked_until": "blocked from target cycle mechanics until explicit stroke dynamics and work-reservoir fixtures exist",
+  "carrier_topology": "finite two-level symbolic thermal endpoint populations with two Hamiltonian gaps",
+  "claim_ceiling": "SymPy exact two-level thermal endpoint gap-change work/heat identities only; this is a symbolic classical baseline for finite-carrier heat/work accounting, not a full Carnot theorem; no simulated bath dynamics, QIT, GStack, axis, bridge, nonclassical, runtime-engine, or target-system admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if exact identities fail, if numeric hot/cold ordering does not produce positive bounded work, or if any adjacent graveyard does not collapse or invert.",
+  "divergence_log": "This SymPy fixture proves closed-form endpoint identities for the same two-level gap-change calibration surface as the QuTiP and Qiskit receipts, but does not simulate stroke dynamics or physical bath coupling.",
+  "exact_identities": {
+    "Q_cold": "-gap_c*(exp(beta_c*gap_c) - exp(beta_h*gap_h))/((exp(beta_c*gap_c) + 1)*(exp(beta_h*gap_h) + 1))",
+    "Q_hot": "gap_h*(exp(beta_c*gap_c) - exp(beta_h*gap_h))/((exp(beta_c*gap_c) + 1)*(exp(beta_h*gap_h) + 1))",
+    "W_out": "-(gap_c - gap_h)*(exp(beta_c*gap_c) - exp(beta_h*gap_h))/((exp(beta_c*gap_c) + 1)*(exp(beta_h*gap_h) + 1))",
+    "checks": {
+      "efficiency_identity": true,
+      "energy_accounting_identity": true,
+      "work_factorization_identity": true
+    },
+    "efficiency": "(-gap_c + gap_h)/gap_h",
+    "energy_accounting_residual": "0",
+    "p_cold": "1/(exp(beta_c*gap_c) + 1)",
+    "p_hot": "1/(exp(beta_h*gap_h) + 1)"
+  },
+  "exact_tool_function_needs": {
+    "sympy": [
+      "symbols",
+      "exp",
+      "simplify",
+      "subs",
+      "Rational"
+    ]
+  },
+  "graveyard_companions": {
+    "matching_scaled_gaps_equalize_populations_and_zero_work": {
+      "passed": true,
+      "symbolic_W_out": "0",
+      "symbolic_population_delta": "0"
+    },
+    "no_gap_change_gives_zero_work": {
+      "passed": true,
+      "symbolic_W_out": "0"
+    },
+    "reversed_temperature_assignment_consumes_work": {
+      "W_out": -0.7666522598509129,
+      "passed": true
+    },
+    "same_temperature_with_gap_change_violates_hot_cold_population_order": {
+      "cold_population": 0.2689414213699951,
+      "hot_population": 0.11920292202211756,
+      "passed": true
+    },
+    "super_carnot_efficiency_claim_rejected": {
+      "carnot_bound": 0.8,
+      "claimed_efficiency": 0.8500000000000001,
+      "efficiency": 0.5,
+      "passed": true
+    }
+  },
+  "graveyards": [
+    "no gap change gives zero work",
+    "matching scaled gaps equalize populations and zero work",
+    "reversed temperature assignment consumes work",
+    "same temperature with gap change violates hot/cold population order",
+    "super-Carnot efficiency claim rejected"
+  ],
+  "lego_or_coupling_target": "exact_two_level_work_heat_identity_baseline",
+  "name": "sympy_two_level_two_bath_gap_change_work_heat_identities",
+  "next_lego_target": "exact_two_level_work_heat_identity_baseline",
+  "observable": "symbolic excited populations, Q_hot, Q_cold, W_out, efficiency, Carnot-bound comparison, and exact residuals",
+  "operation_sequence": [
+    "declare positive inverse-temperature and Hamiltonian-gap symbols",
+    "define two-level thermal excited population p(beta, gap) = 1 / (1 + exp(beta * gap))",
+    "compute hot and cold endpoint population difference",
+    "derive Q_hot, Q_cold, W_out, efficiency, and energy-accounting residual",
+    "prove exact efficiency and accounting identities",
+    "check numeric positive case and adjacent graveyard substitutions"
+  ],
+  "out_of_scope": [
+    "No Lindblad bath thermalization dynamics.",
+    "No finite-time irreversibility model.",
+    "No measurement, feedback, QIT, GStack, axis, bridge, nonclassical, runtime-engine, or target-system admission."
+  ],
+  "pass_fail_predicate": "efficiency equals 1 - gap_c/gap_h, heat/work accounting closes exactly, the numeric hot/cold case produces positive bounded work, and graveyards collapse or invert",
+  "positive_case": {
+    "Q_cold": -0.38164519370054,
+    "Q_hot": 0.76329038740108,
+    "W_out": 0.38164519370054,
+    "carnot_bound": 0.8,
+    "cold_excited_population": 0.11920292202211756,
+    "efficiency": 0.5,
+    "energy_accounting_residual": 0.0,
+    "hot_excited_population": 0.31002551887238755
+  },
+  "positive_checks": {
+    "absorbs_hot_heat": true,
+    "efficiency_respects_carnot_bound": true,
+    "energy_accounting_closes": true,
+    "hot_population_exceeds_cold_population": true,
+    "rejects_cold_heat": true,
+    "work_positive": true
+  },
+  "promotion_condition": "May only support later calibration planning after explicit stroke dynamics and independent tool receipts reproduce compatible heat/work bounds with adjacent graveyards.",
+  "tool_integration_depth": {
+    "sympy": "load_bearing"
+  },
+  "tool_manifest": {
+    "sympy": {
+      "reason": "proves exact two-level thermal population, work/heat accounting, and efficiency identities",
+      "tried": true,
+      "used": true
+    }
+  }
+}

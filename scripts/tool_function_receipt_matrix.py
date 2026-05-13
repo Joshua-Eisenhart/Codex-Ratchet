@@ -706,6 +706,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "sympy",
+        "function_api": "sympy symbols/exp/simplify/subs exact two-level thermal population and two-bath gap-change work/heat identities",
+        "receipt": "system_v4/probes/a2_state/sim_results/sympy_two_level_two_bath_gap_change_work_heat_identities_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "work_heat_cycle_calibration_fixture",
+            "exact_two_level_work_heat_identity_baseline",
+        ],
+    },
+    {
+        "tool": "sympy",
         "function_api": "sympy Matrix partition of Pauli matrices into diagonal and off-diagonal labels",
         "receipt": "system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json",
         "role": "classical_baseline",

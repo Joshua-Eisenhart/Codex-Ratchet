@@ -377,6 +377,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "gudhi",
+        "function_api": "gudhi.RipsComplex/create_simplex_tree/compute_persistence/persistence_intervals_in_dimension over Hopf/Weyl vertical fiber and horizontal base-lift Bloch-density readout point clouds",
+        "receipt": "system_v4/probes/a2_state/sim_results/gudhi_hopf_weyl_vertical_horizontal_density_readout_rips_homology_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_carrier_loop_geometry_baseline",
+            "density_readout_loop_homology_baseline",
+        ],
+    },
+    {
+        "tool": "gudhi",
         "function_api": "gudhi.SimplexTree insert/compute_persistence/betti_numbers over triangulated connected two-layer Hopf-torus carrier fixture",
         "receipt": "system_v4/probes/a2_state/sim_results/gudhi_connected_hopf_torus_layer_homology_results.json",
         "role": "classical_baseline",

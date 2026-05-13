@@ -25,12 +25,12 @@ NAME = "bridge_landauer_erasure_bit_distinguishability"
 SCOPE_NOTE = ("Bridge: sympy derives E_erase = F01 * H(p) for Bernoulli p, "
               "and z3 proves UNSAT for E_erase < F01 * H(p). Illuminates "
               "CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md Landauer section.")
-classification = "canonical"
+classification = "tool_lego_fit_probe"
 divergence_log = (
-    "Landauer distinguishability bridge: sympy keeps the erasure-floor "
-    "identity E_erase = F01 * H(p) and z3 enforces the admissibility fence, "
-    "while qutip/cirq/pennylane witness the same one-bit carrier entropy "
-    "floor (ln2 at p=1/2) on a supportive surface."
+    "Finite symbolic/SMT Landauer-floor fence only: sympy derives "
+    "E_erase = F01 * H(p), z3 rejects sub-floor erasure, and "
+    "qutip/cirq/pennylane only witness the same one-bit carrier entropy. "
+    "No bridge, QIT, GStack, axis, nonclassical, or feedback-cycle admission."
 )
 
 TOOL_MANIFEST = {
@@ -222,7 +222,71 @@ if __name__ == "__main__":
     results = {
         "name": NAME, "scope_note": SCOPE_NOTE,
         "classification": classification,
+        "all_pass": bool(ok),
         "divergence_log": divergence_log,
+        "claim_ceiling": (
+            "local Landauer distinguishability-cost constraint fence only: sympy derives "
+            "E_erase = F01 * H(p) and z3 rejects E_erase < F01 * H(p); no bridge, "
+            "QIT, GStack, axis, nonclassical, or feedback-cycle admission"
+        ),
+        "next_lego_target": "classical erasure-cost and measurement-feedback-erasure calibration support only",
+        "promotion_condition": (
+            "No promotion from this receipt; downstream calibration must supply explicit "
+            "record, feedback, erasure, and adjacent graveyard receipts."
+        ),
+        "demotion_condition": (
+            "Demote if the sympy residual is nonzero, if z3 admits sub-floor erasure, "
+            "or if this receipt is used as bridge/QIT/GStack/axis/nonclassical evidence."
+        ),
+        "blocked_until": (
+            "blocked from bridge, QIT, GStack, axis, nonclassical, or feedback-cycle claims "
+            "until separate exact receipts close those gates"
+        ),
+        "out_of_scope": [
+            "No feedback cycle.",
+            "No nonclassical carrier admission.",
+            "No bridge, QIT, GStack, axis, or runtime-engine claim.",
+        ],
+        "operation_sequence": [
+            "derive E_erase = F01 * H(p) symbolically",
+            "check p=1/2 residual against F01 ln2",
+            "witness one-bit density entropy with qutip, cirq, and pennylane",
+            "ask z3 whether sub-floor erasure can satisfy the declared floor",
+            "check p -> 0 boundary entropy",
+        ],
+        "carrier_topology": "single diagonal one-bit carrier plus scalar symbolic/SMT constraint surface",
+        "observable": "sympy residual, z3 SAT/UNSAT verdict, density entropy witnesses, and boundary entropy",
+        "pass_fail_predicate": "sympy residual is zero, density witnesses equal ln2 at p=1/2, z3 sub-floor claim is UNSAT, and p->0 limit is zero",
+        "graveyards": [
+            "sub-floor erasure contradiction",
+            "p equals one-half entropy floor",
+            "p approaches zero entropy boundary",
+        ],
+        "graveyard_companions": [
+            "sub-floor erasure contradiction",
+            "p equals one-half entropy floor",
+            "p approaches zero entropy boundary",
+        ],
+        "baselines": [
+            "sympy symbolic Bernoulli entropy identity",
+            "z3 real-arithmetic sub-floor fence",
+            "qutip/cirq/pennylane one-bit density entropy witnesses",
+        ],
+        "alternative_formulations": [
+            "numpy binary entropy cost curve",
+            "z3 Landauer-floor scalar fence",
+            "measurement-feedback-erasure calibration cycle",
+        ],
+        "exact_tool_function_needs": {
+            "sympy": ["symbols", "log", "simplify", "limit"],
+            "z3": ["Reals", "Solver"],
+            "numpy": ["clip", "log"],
+            "qutip": ["Qobj", "entropy_vn"],
+            "cirq": ["DensityMatrixSimulator"],
+            "pennylane": ["QubitDensityMatrix", "density_matrix"],
+        },
+        "lego_or_coupling_target": "classical erasure-cost constraint fence support",
+        "promotion_allowed": False,
         "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "load_bearing_tool": "sympy+z3",
         "positive": pos, "negative": neg, "boundary": bnd,

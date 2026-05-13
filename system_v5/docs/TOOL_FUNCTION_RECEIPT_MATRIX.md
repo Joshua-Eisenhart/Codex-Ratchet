@@ -1,15 +1,15 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T02:55:15.477122+00:00`
+Generated: `2026-05-13T03:01:03.442186+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `65`
-- Passing rows: `65`
+- Rows: `66`
+- Passing rows: `66`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `65`
+- Explicit receipt schemas missing: `66`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -46,6 +46,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `gudhi` | gudhi.SimplexTree insert/compute_persistence(persistence_dim_max=True)/betti_numbers over explicit torus and cycle complexes | `system_v4/probes/a2_state/sim_results/gudhi_hopf_torus_fiber_base_homology_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `hopf_torus_fiber_base_homology_baseline` |
 | `toponetx` | CellComplex/SimplicialComplex rank cells and incidence_matrix | `system_v4/probes/a2_state/sim_results/toponetx_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `state_class_binding_geometry`, `cell_complex_geometry` |
 | `toponetx` | CellComplex rank-2 cell incidence_matrix(2) | `system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `cell_complex_geometry`, `hypergraph_shell_geometry` |
+| `toponetx` | TopoNetX CellComplex periodic rank-2 torus layers with incidence_matrix and hodge_laplacian_matrix zero-mode readouts | `system_v4/probes/a2_state/sim_results/toponetx_two_hopf_torus_layer_incidence_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `toponetx` | SimplicialComplex.to_hasse_graph node/edge carrier feeding PyG graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `topology_to_graph_fit`, `cell_complex_geometry` |
 | `xgi` | xgi.Hypergraph hyperedge membership and shared incidence intersection | `system_v4/probes/a2_state/sim_results/xgi_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `dual_hypergraph_geometry` |
 | `xgi` | xgi.Hypergraph incidence matrix and node/edge membership on a tiny hypergraph | `system_v4/probes/a2_state/sim_results/sim_xgi_hypergraph_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `cell_complex_geometry` |

@@ -243,6 +243,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["classical_spectral_baseline", "classical_distance_entropy_baseline"],
     },
     {
+        "tool": "numpy",
+        "function_api": "numpy complex arrays, exp, outer, trace, linalg.norm, and unwrap over sampled Hopf-coordinate carrier paths",
+        "receipt": "system_v4/probes/a2_state/sim_results/hopf_weyl_inner_outer_loop_readout_geometry_results.json",
+        "role": "classical_baseline",
+        "depth": "supportive",
+        "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "classical_hopf_path_metric_baseline"],
+    },
+    {
         "tool": "z3",
         "function_api": "z3 Solver/SolverFor QF_LIA add/check/model and UNSAT witness",
         "receipt": "system_v4/probes/a2_state/sim_results/z3_capability_results.json",
@@ -265,6 +273,14 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_bridge",
         "depth": "load_bearing",
         "candidate_lego_targets": ["constraint_probe_admissibility", "exact_algebra_crosschecks"],
+    },
+    {
+        "tool": "z3",
+        "function_api": "z3 Solver with integer Pauli-label orientation predicate SAT/UNSAT controls",
+        "receipt": "system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json",
+        "role": "classical_baseline",
+        "depth": "supportive",
+        "candidate_lego_targets": ["bare_pauli_no_carrier_negative_control", "inner_outer_hopf_weyl_loop_geometry_fit"],
     },
     {
         "tool": "cvc5",
@@ -337,6 +353,22 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_bridge",
         "depth": "load_bearing",
         "candidate_lego_targets": ["exact_matrix_identity", "operator_family_admission"],
+    },
+    {
+        "tool": "sympy",
+        "function_api": "sympy Matrix/exp/diff/simplify/subs for exact Hopf-coordinate density derivative readouts",
+        "receipt": "system_v4/probes/a2_state/sim_results/hopf_symbolic_inner_outer_density_readout_results.json",
+        "role": "classical_baseline",
+        "depth": "supportive",
+        "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "exact_hopf_coordinate_identity_baseline"],
+    },
+    {
+        "tool": "sympy",
+        "function_api": "sympy Matrix partition of Pauli matrices into diagonal and off-diagonal labels",
+        "receipt": "system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json",
+        "role": "classical_baseline",
+        "depth": "supportive",
+        "candidate_lego_targets": ["bare_pauli_no_carrier_negative_control", "inner_outer_hopf_weyl_loop_geometry_fit"],
     },
     {
         "tool": "sympy",

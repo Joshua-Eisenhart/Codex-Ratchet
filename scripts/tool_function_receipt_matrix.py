@@ -327,6 +327,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["dependency_dag_and_collapse", "graph_shell_geometry"],
     },
     {
+        "tool": "rustworkx",
+        "function_api": "rustworkx PyDiGraph topological_sort/ancestors/descendants/transitive_reduction over Hopf receipt dependency DAG",
+        "receipt": "system_v4/probes/a2_state/sim_results/rustworkx_hopf_receipt_dependency_reduction_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["nested_hopf_torus_loop_geometry_baseline", "receipt_dependency_dag_controls"],
+    },
+    {
         "tool": "scipy",
         "function_api": "scipy.linalg.eigvalsh, scipy.optimize.minimize, scipy.spatial.distance.cdist, and scipy.stats.entropy baseline controls",
         "receipt": "system_v4/probes/a2_state/sim_results/sim_capability_scipy_isolated_results.json",

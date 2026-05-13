@@ -277,6 +277,17 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "hopf_torus_fiber_base_homology_baseline"],
     },
     {
+        "tool": "gudhi",
+        "function_api": "gudhi.SimplexTree insert/compute_persistence/betti_numbers over triangulated connected two-layer Hopf-torus carrier fixture",
+        "receipt": "system_v4/probes/a2_state/sim_results/gudhi_connected_hopf_torus_layer_homology_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "nested_hopf_torus_loop_geometry_baseline",
+            "connected_layer_simplicial_homology_baseline",
+        ],
+    },
+    {
         "tool": "toponetx",
         "function_api": "CellComplex/SimplicialComplex rank cells and incidence_matrix",
         "receipt": "system_v4/probes/a2_state/sim_results/toponetx_capability_results.json",

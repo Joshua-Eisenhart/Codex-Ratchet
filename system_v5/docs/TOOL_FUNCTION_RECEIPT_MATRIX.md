@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T04:55:55.083813+00:00`
+Generated: `2026-05-13T04:59:58.363501+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `91`
-- Passing rows: `91`
+- Rows: `92`
+- Passing rows: `92`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `91`
+- Explicit receipt schemas missing: `92`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -84,6 +84,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `cvc5` | cvc5 Solver.synthFun/addSygusConstraint/checkSynth/getSynthSolution bounded LIA SyGuS fixture | `system_v4/probes/a2_state/sim_results/sim_cvc5_sygus_synthesis_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `sygus_integer_grammar_fixture` |
 | `cvc5` | cvc5 QF_NIA constraints consuming exact SymPy polynomial coefficients and derivatives for bounded integer-root fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_cvc5_sympy_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `exact_algebra_crosschecks` |
 | `cvc5` | cvc5 QF_LIA SAT/UNSAT equality checks over selected Hopf-torus integer readout vector fields | `system_v4/probes/a2_state/sim_results/cvc5_hopf_torus_readout_vector_separation_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `readout_vector_separation_controls` |
+| `cvc5` | cvc5 Boolean SAT/UNSAT negative control for bare Pauli labels versus Hopf/Weyl carrier-projection metric predicates | `system_v4/probes/a2_state/sim_results/cvc5_bare_pauli_no_carrier_fiber_base_metric_unsat_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `bare_pauli_no_carrier_negative_control`, `hopf_weyl_carrier_loop_geometry_baseline` |
 | `sympy` | sympy symbolic expression/matrix simplification and exact algebra | `system_v4/probes/a2_state/sim_results/sympy_capability_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `entropy_family_crosschecks`, `operator_family_admission` |
 | `sympy` | sympy.diff/integrate/factor/simplify exact scalar identity checks | `system_v4/probes/a2_state/sim_results/sim_sympy_symbolic_identity_micro_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `exact_algebra_crosschecks`, `operator_family_admission` |
 | `sympy` | sympy Poly/all_coeffs/diff/factor/gcd/discriminant feeding z3 bounded integer-root fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_z3_sympy_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `constraint_probe_admissibility`, `exact_algebra_crosschecks` |

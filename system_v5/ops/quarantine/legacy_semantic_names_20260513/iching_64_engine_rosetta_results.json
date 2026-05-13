@@ -1,15 +1,161 @@
-window.ICHING_64_ROSETTA_DATA = {
+{
   "name": "iching_64_engine_rosetta",
-  "summary": {
-    "all_pass": true,
-    "state_count": 64,
-    "axis_count": 7,
-    "rosetta_row_count": 4,
-    "graveyard_variant_count": 3,
-    "load_bearing_tool_count": 11,
-    "tool_count": 11,
-    "visual_payload": "visualizer/iching-64-rosetta-data.js",
-    "scope_note": "I Ching / 64-state symbolic engine Rosetta. It tests a six-bit, one-line-transition schedule as a comparison surface for Carnot/Szilard/QIT-adjacent engine grammar. It is symbolic and pre-admission, not I Ching proof or QIT engine promotion."
+  "classification": "canonical",
+  "classification_note": "I Ching / 64-state symbolic engine Rosetta. It tests a six-bit, one-line-transition schedule as a comparison surface for Carnot/Szilard/QIT-adjacent engine grammar. It is symbolic and pre-admission, not I Ching proof or QIT engine promotion.",
+  "divergence_log": "I Ching / 64-state symbolic engine Rosetta. It tests a six-bit, one-line-transition schedule as a comparison surface for Carnot/Szilard/QIT-adjacent engine grammar. It is symbolic and pre-admission, not I Ching proof or QIT engine promotion.",
+  "lego_ids": [
+    "iching_64_schedule",
+    "axis_schedule",
+    "dual_stacked_engine",
+    "graph_topology",
+    "density_matrix",
+    "rosetta_correlation",
+    "graveyard_variant"
+  ],
+  "primary_lego_ids": [
+    "iching_64_schedule",
+    "rosetta_correlation"
+  ],
+  "sim_execution_kind": "bridge",
+  "TOOL_MANIFEST": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "six-bit states, Gray schedule, parity/readout arrays"
+    },
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "entropy and tensor carrier checks over 64 states"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "graph tensor carrier for the 64-state walk"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "directed 64-cycle schedule graph"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hyperedges grouping upper/lower trigram families"
+    },
+    "qiskit": {
+      "tried": true,
+      "used": true,
+      "reason": "64-dimensional density-matrix witness"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "six-qubit density carrier witness"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT fence for a concrete multi-line binary-count jump under the single-line gate"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "independent UNSAT fence for a concrete multi-line binary-count jump under the single-line gate"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "simplex-tree witness over local adjacency edges"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex witness over local adjacency edges"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "numpy": "load_bearing",
+    "torch": "load_bearing",
+    "pyg": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "qiskit": "load_bearing",
+    "qutip": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "gudhi": "load_bearing",
+    "toponetx": "load_bearing"
+  },
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "six-bit states, Gray schedule, parity/readout arrays"
+    },
+    "torch": {
+      "tried": true,
+      "used": true,
+      "reason": "entropy and tensor carrier checks over 64 states"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "graph tensor carrier for the 64-state walk"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "directed 64-cycle schedule graph"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hyperedges grouping upper/lower trigram families"
+    },
+    "qiskit": {
+      "tried": true,
+      "used": true,
+      "reason": "64-dimensional density-matrix witness"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "six-qubit density carrier witness"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT fence for a concrete multi-line binary-count jump under the single-line gate"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "independent UNSAT fence for a concrete multi-line binary-count jump under the single-line gate"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "simplex-tree witness over local adjacency edges"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex witness over local adjacency edges"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "torch": "load_bearing",
+    "pyg": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "qiskit": "load_bearing",
+    "qutip": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "gudhi": "load_bearing",
+    "toponetx": "load_bearing"
   },
   "hexagrams": [
     {
@@ -1270,5 +1416,115 @@ window.ICHING_64_ROSETTA_DATA = {
       "survives_single_line_gate": false,
       "status": "killed"
     }
-  ]
-};
+  ],
+  "positive": {
+    "gray_walk_is_64_state_single_line_cycle": {
+      "unique_states": 64,
+      "max_hamming_step": 1,
+      "min_hamming_step": 1,
+      "polarity_counts": {
+        "inductive": 32,
+        "deductive": 32
+      },
+      "pass": true
+    },
+    "graph_and_density_witnesses_pass": {
+      "rustworkx_nodes": 64,
+      "rustworkx_edges": 64,
+      "pyg_nodes": 64,
+      "pyg_edges": 64,
+      "uniform_entropy": 4.1588830833596715,
+      "expected_entropy": 4.1588830833596715,
+      "qiskit_trace": 1.0,
+      "qutip_trace": 1.0,
+      "xgi_edges": 63,
+      "gudhi_simplices": 128,
+      "toponetx_shape": [
+        64,
+        64,
+        0
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "z3_blocks_binary_count_jump_as_single_line_step": {
+      "bad_transition": [
+        31,
+        32
+      ],
+      "bad_hamming_distance": 6,
+      "required_hamming_distance": 1,
+      "result": "unsat",
+      "pass": true
+    },
+    "cvc5_blocks_binary_count_jump_as_single_line_step": {
+      "bad_transition": [
+        31,
+        32
+      ],
+      "bad_hamming_distance": 6,
+      "required_hamming_distance": 1,
+      "result": "unsat",
+      "pass": true
+    },
+    "graveyard_variants_are_killed": {
+      "variants": [
+        {
+          "variant": "binary_count_order",
+          "reason": "ordinary binary count causes multi-line jumps",
+          "unique_states": 64,
+          "max_hamming_step": 6,
+          "survives_single_line_gate": false,
+          "status": "killed"
+        },
+        {
+          "variant": "collapsed_single_state",
+          "reason": "all structure collapses to one state",
+          "unique_states": 1,
+          "max_hamming_step": 0,
+          "survives_single_line_gate": false,
+          "status": "killed"
+        },
+        {
+          "variant": "seeded_random_order",
+          "reason": "random order loses local line-flip grammar",
+          "unique_states": 64,
+          "max_hamming_step": 6,
+          "survives_single_line_gate": false,
+          "status": "killed"
+        }
+      ],
+      "pass": true
+    }
+  },
+  "boundary": {
+    "axis_model_has_ax0_through_ax6": {
+      "axis_ids": [
+        "Ax0",
+        "Ax1",
+        "Ax2",
+        "Ax3",
+        "Ax4",
+        "Ax5",
+        "Ax6"
+      ],
+      "pass": true
+    },
+    "symbolic_not_qit_admission": {
+      "pass": true,
+      "scope_note": "I Ching / 64-state symbolic engine Rosetta. It tests a six-bit, one-line-transition schedule as a comparison surface for Carnot/Szilard/QIT-adjacent engine grammar. It is symbolic and pre-admission, not I Ching proof or QIT engine promotion."
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "state_count": 64,
+    "axis_count": 7,
+    "rosetta_row_count": 4,
+    "graveyard_variant_count": 3,
+    "load_bearing_tool_count": 11,
+    "tool_count": 11,
+    "visual_payload": "visualizer/iching-64-rosetta-data.js",
+    "scope_note": "I Ching / 64-state symbolic engine Rosetta. It tests a six-bit, one-line-transition schedule as a comparison surface for Carnot/Szilard/QIT-adjacent engine grammar. It is symbolic and pre-admission, not I Ching proof or QIT engine promotion."
+  }
+}

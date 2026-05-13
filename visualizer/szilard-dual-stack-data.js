@@ -1,15 +1,15 @@
 window.SZILARD_DUAL_STACK_DATA = {
-  "name": "szilard_dual_stacked_engine",
+  "name": "measure_feedback_erasure_recovery_cycle_pair",
   "summary": {
     "all_pass": true,
     "information_gain": 0.6931471805599453,
     "system_free_energy_gain": 0.6931471805599453,
     "erasure_cost": 0.6931471805599453,
     "net_after_erasure": 0.0,
-    "tool_count": 13,
+    "tool_count": 16,
     "load_bearing_tool_count": 13,
     "visual_payload": "visualizer/szilard-dual-stack-data.js",
-    "scope_note": "Dual-stacked Szilard-Landauer row on a finite two-qubit carrier.  It models measurement/feedback/erasure and the reverse recovery bookkeeping as opposite information-engine traversals without claiming a universal demon."
+    "scope_note": "Measurement/feedback/erasure recovery cycle-pair row on a finite two-qubit carrier. It models measurement/feedback/erasure and the reverse recovery bookkeeping as opposite information-cycle traversals without claiming a universal demon."
   },
   "loops": {
     "inductive_heating_loop": {
@@ -135,42 +135,42 @@ window.SZILARD_DUAL_STACK_DATA = {
       "trace": 1.0
     }
   },
-  "axes_candidate_model": {
-    "boundary": "candidate_correlative_mapping_not_axis_promotion",
-    "axes": {
-      "Ax0": {
+  "cycle_step_invariant_map": {
+    "boundary": "local_cycle_invariant_map_not_admitted_axis_promotion",
+    "invariants": {
+      "entropy_transfer_polarity": {
         "local_name": "information_entropy_polarity",
         "degree_of_freedom": "record/correlation entropy created versus erased",
         "observable": "record_entropy_delta and mutual_information",
         "inductive_value": 0.0,
         "deductive_value": 0.0
       },
-      "Ax1": {
+      "record_branch_partition": {
         "local_name": "record_branch",
         "degree_of_freedom": "system side versus memory side",
         "observable": "partial traces rho_system and rho_memory"
       },
-      "Ax2": {
+      "system_memory_control_frame": {
         "local_name": "control_frame",
         "degree_of_freedom": "unmeasured, measured, feedback-conditioned, erased frame",
         "observable": "protocol state label"
       },
-      "Ax3": {
+      "cycle_traversal_family": {
         "local_name": "loop_family",
         "degree_of_freedom": "demon/work-extraction versus recovery/reset traversal",
         "observable": "free_energy_gain and erasure_cost signs"
       },
-      "Ax4": {
+      "step_sequence_parity": {
         "local_name": "protocol_order_class",
         "degree_of_freedom": "measurement-feedback-erasure ordering",
         "observable": "directed protocol DAG"
       },
-      "Ax5": {
+      "measurement_feedback_reset_operator_family": {
         "local_name": "operator_mode",
         "degree_of_freedom": "correlate, conditionally flip, reset",
         "observable": "CNOT, controlled-X, reset CPTP map"
       },
-      "Ax6": {
+      "stage_precedence_orientation": {
         "local_name": "precedence_orientation",
         "degree_of_freedom": "which operation can legally precede another",
         "observable": "measurement before feedback before erasure"
@@ -197,7 +197,7 @@ window.SZILARD_DUAL_STACK_DATA = {
     },
     "not_a_universal_demon_claim": {
       "pass": true,
-      "scope_note": "Dual-stacked Szilard-Landauer row on a finite two-qubit carrier.  It models measurement/feedback/erasure and the reverse recovery bookkeeping as opposite information-engine traversals without claiming a universal demon."
+      "scope_note": "Measurement/feedback/erasure recovery cycle-pair row on a finite two-qubit carrier. It models measurement/feedback/erasure and the reverse recovery bookkeeping as opposite information-cycle traversals without claiming a universal demon."
     }
   }
 };

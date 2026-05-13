@@ -1,0 +1,497 @@
+window.CYCLE_INVARIANT_CORRELATION_DATA = {
+  "name": "heat_work_measure_feedback_cycle_invariant_correlation",
+  "summary": {
+    "all_pass": true,
+    "shared_load_bearing_tool_count": 13,
+    "shared_load_bearing_tools": [
+      "cvc5",
+      "gudhi",
+      "numpy",
+      "pyg",
+      "pytorch",
+      "qiskit",
+      "qutip",
+      "rustworkx",
+      "scipy",
+      "sympy",
+      "toponetx",
+      "xgi",
+      "z3"
+    ],
+    "shared_lego_count": 4,
+    "shared_legos": [
+      "density_matrix",
+      "graph_topology",
+      "opposite_direction_cycle_pair",
+      "proof_fence"
+    ],
+    "shared_invariant_slots": [
+      "cycle_traversal_family",
+      "entropy_transfer_polarity",
+      "stage_precedence_orientation",
+      "step_sequence_parity"
+    ],
+    "cycle_invariant_row_count": 9,
+    "tier_count": 8,
+    "degree_pair_count": 8,
+    "triadic_qit_row_count": 6,
+    "qit_companion_all_pass": true,
+    "qit_missing_strict_subset_count": 0,
+    "qit_entropy_all_pass": true,
+    "qit_entropy_missing_strict_row_count": 0,
+    "iching_64_all_pass": true,
+    "iching_64_state_count": 64,
+    "iching_64_graveyard_variant_count": 3,
+    "clifford_capability_all_pass": true,
+    "weyl_topology_passed": 8,
+    "graveyard_row_count": 3,
+    "visual_payload": "visualizer/cycle-invariant-correlation-data.js",
+    "scope_note": "Cycle-invariant correlation layer over the heat-work and measurement-feedback cycle-pair rows. It compares loop polarity, tools, legos, graph/proof/density receipts, and local cycle-step invariant maps. It is not a QIT runtime promotion."
+  },
+  "cycle_invariant_rows": [
+    {
+      "row": "dual_stack_polarity",
+      "relation": "shared_mechanism_surface",
+      "carnot": "work-producing versus work-consuming heat-work traversal",
+      "szilard": "measurement-feedback-erasure vs reverse recovery bookkeeping",
+      "status": "shared_two_direction_bookkeeping",
+      "boundary": "opposite traversals do not make either row a QIT runtime"
+    },
+    {
+      "row": "entropy_carrier",
+      "relation": "analogy_with_different_observable",
+      "carnot": "reservoir entropy, heat, work",
+      "szilard": "record entropy, mutual information, erasure cost",
+      "status": "shared_gradient_shape_different_readout",
+      "boundary": "thermodynamic and information readouts are not collapsed"
+    },
+    {
+      "row": "carrier_geometry",
+      "relation": "density_matrix_overlap",
+      "carnot": "finite qubit working substance",
+      "szilard": "finite two-qubit system-memory carrier",
+      "status": "shared_density_carrier_family",
+      "boundary": "one-qubit thermal carrier is not the same topology as two-qubit memory"
+    },
+    {
+      "row": "operator_schedule",
+      "relation": "ordered_stage_surface",
+      "carnot": "isothermal/adiabatic four-cycle",
+      "szilard": "measurement/feedback/erasure protocol",
+      "status": "ordered_operators_but_different_arity",
+      "boundary": "heat-work is a closed four-cycle; measurement-feedback is a protocol path plus reverse bookkeeping"
+    },
+    {
+      "row": "proof_fence",
+      "relation": "shared_forbidden_region_gate",
+      "carnot": "super-Carnot blocked by z3/cvc5",
+      "szilard": "free Landauer erasure blocked by z3/cvc5",
+      "status": "shared_negative_gate_shape",
+      "boundary": "different forbidden claims, same proof-fence role"
+    },
+    {
+      "row": "cycle_traversal_family",
+      "relation": "local_invariant_candidate",
+      "carnot": "loop_family",
+      "szilard": "loop_family",
+      "status": "candidate_analogy_not_identity",
+      "boundary": "same invariant row is only a local comparison slot"
+    },
+    {
+      "row": "entropy_transfer_polarity",
+      "relation": "local_invariant_candidate",
+      "carnot": "entropy_gradient_polarity",
+      "szilard": "information_entropy_polarity",
+      "status": "candidate_analogy_not_identity",
+      "boundary": "same invariant row is only a local comparison slot"
+    },
+    {
+      "row": "stage_precedence_orientation",
+      "relation": "local_invariant_candidate",
+      "carnot": "precedence_orientation",
+      "szilard": "precedence_orientation",
+      "status": "candidate_analogy_not_identity",
+      "boundary": "same invariant row is only a local comparison slot"
+    },
+    {
+      "row": "step_sequence_parity",
+      "relation": "local_invariant_candidate",
+      "carnot": "leg_order_class",
+      "szilard": "protocol_order_class",
+      "status": "candidate_analogy_not_identity",
+      "boundary": "same invariant row is only a local comparison slot"
+    }
+  ],
+  "tier_correlations": [
+    {
+      "tier": 0,
+      "name": "receipt_source",
+      "carnot": "two_bath_heat_work_reversible_cycle_pair_results.json",
+      "szilard": "measure_feedback_erasure_recovery_cycle_pair_results.json",
+      "evidence": "both source rows pass and keep their own scope boundaries",
+      "next_allowed": "compare receipts; do not promote either row"
+    },
+    {
+      "tier": 1,
+      "name": "micro_carrier",
+      "carnot": "one finite qubit Gibbs carrier",
+      "szilard": "finite two-qubit system-memory carrier",
+      "evidence": "qutip/qiskit density witnesses pass on both rows",
+      "next_allowed": "add more density-matrix operator probes"
+    },
+    {
+      "tier": 2,
+      "name": "graph_topology",
+      "carnot": "closed four-state directed cycle plus leg hyperedges",
+      "szilard": "directed protocol path plus operation hyperedges",
+      "evidence": "rustworkx/PyG/XGI receipts pass on both rows",
+      "next_allowed": "test graph nesting and stretchy topology variants"
+    },
+    {
+      "tier": 3,
+      "name": "operator_schedule",
+      "carnot": "isothermal and adiabatic operators",
+      "szilard": "measurement, feedback, erasure operators",
+      "evidence": "ordered stage traces exist for both directions",
+      "next_allowed": "cross-test schedule reorderings and negative variants"
+    },
+    {
+      "tier": 4,
+      "name": "entropy_gradient",
+      "carnot": "heat/work reservoir entropy gradient",
+      "szilard": "record entropy, mutual information, erasure cost gradient",
+      "evidence": "opposite inductive/deductive loop bookkeeping passes",
+      "next_allowed": "couple more entropy families to each geometry"
+    },
+    {
+      "tier": 5,
+      "name": "proof_fence",
+      "carnot": "super-Carnot forbidden region",
+      "szilard": "free Landauer erasure forbidden region",
+      "evidence": "z3 and cvc5 fences pass on both rows",
+      "next_allowed": "add proof-tool variants and contradiction/graveyard rows"
+    },
+    {
+      "tier": 6,
+      "name": "local_invariant_surface",
+      "carnot": "local heat-work degrees of freedom",
+      "szilard": "local measurement-feedback degrees of freedom",
+      "evidence": "both rows expose seven comparison slots",
+      "next_allowed": "compare against QIT axis candidates as priors only"
+    },
+    {
+      "tier": 7,
+      "name": "blocked_qit_runtime",
+      "carnot": "not a QIT runtime",
+      "szilard": "not a QIT runtime",
+      "evidence": "no GStack, Weyl/spinor/Hopf/torus/Clifford stack receipt",
+      "next_allowed": "micro-test those missing nonclassical operator stacks before promotion"
+    }
+  ],
+  "degree_of_freedom_comparison": [
+    {
+      "carnot_degree": "temperature_ratio",
+      "szilard_degree": "erasure_cost",
+      "relation": "constraint intensity",
+      "carnot_present": true,
+      "szilard_present": true,
+      "status": "candidate_pair"
+    },
+    {
+      "carnot_degree": "gap_ratio",
+      "szilard_degree": "system_state",
+      "relation": "carrier state spacing",
+      "carnot_present": true,
+      "szilard_present": true,
+      "status": "candidate_pair"
+    },
+    {
+      "carnot_degree": "cycle_direction",
+      "szilard_degree": "cycle_direction",
+      "relation": "loop orientation",
+      "carnot_present": true,
+      "szilard_present": true,
+      "status": "candidate_pair"
+    },
+    {
+      "carnot_degree": "bath_contact_branch",
+      "szilard_degree": "memory_state",
+      "relation": "branch/contact carrier",
+      "carnot_present": true,
+      "szilard_present": true,
+      "status": "candidate_pair"
+    },
+    {
+      "carnot_degree": "leg_order",
+      "szilard_degree": "feedback_order",
+      "relation": "operator order",
+      "carnot_present": true,
+      "szilard_present": true,
+      "status": "candidate_pair"
+    },
+    {
+      "carnot_degree": "heat_work_mode",
+      "szilard_degree": "record_correlation",
+      "relation": "entropy/work-information exchange",
+      "carnot_present": true,
+      "szilard_present": true,
+      "status": "candidate_pair"
+    },
+    {
+      "carnot_degree": "stage_precedence",
+      "szilard_degree": "protocol_precedence",
+      "relation": "precedence constraint",
+      "carnot_present": true,
+      "szilard_present": true,
+      "status": "candidate_pair"
+    },
+    {
+      "carnot_degree": "entropy_gradient_sign",
+      "szilard_degree": "record_correlation",
+      "relation": "gradient polarity",
+      "carnot_present": true,
+      "szilard_present": true,
+      "status": "candidate_pair"
+    }
+  ],
+  "triadic_information_rows": [
+    {
+      "row": "finite_carrier",
+      "carnot": "finite qubit thermal working substance",
+      "szilard": "finite two-qubit system-memory carrier",
+      "qit_adjacent": "strict finite-carrier subset is partial",
+      "status": "open",
+      "evidence": {
+        "carnot_pass": true,
+        "szilard_pass": true,
+        "qit_strict_subset_count": 4,
+        "missing_qit_strict_count": 0
+      },
+      "boundary": "QIT carrier coverage is not complete because strict Szilard/QIT receipts are missing"
+    },
+    {
+      "row": "operator_basis",
+      "carnot": "thermal contact and adiabatic work operators",
+      "szilard": "measurement, feedback, erasure operations",
+      "qit_adjacent": "Clifford rotor/sandwich capability",
+      "status": "supported_tool_micro_only",
+      "evidence": {
+        "clifford_capability_all_pass": true,
+        "clifford_scope": "tool_micro_clifford_capability_only"
+      },
+      "boundary": "Clifford capability does not yet couple the cycle loops to Weyl/spinor geometry"
+    },
+    {
+      "row": "topology_variants",
+      "carnot": "cycle/path graph and hypergraph leg grouping",
+      "szilard": "protocol DAG/path and operation hyperedges",
+      "qit_adjacent": "Weyl/holographic/symplectic topology-variant entropy stability",
+      "status": "supported_topology_variant_only",
+      "evidence": {
+        "weyl_topology_passed": 8,
+        "weyl_topology_total": 8
+      },
+      "boundary": "Topology variants are not the GStack nesting order"
+    },
+    {
+      "row": "entropy_readout_family",
+      "carnot": "efficiency, COP, reservoir entropy and closure defects",
+      "szilard": "record entropy, mutual information, free-energy gain, erasure cost",
+      "qit_adjacent": "QIT entropy companion array is partial",
+      "status": "open",
+      "evidence": {
+        "qit_entropy_all_pass": true,
+        "qit_entropy_present_rows": 11,
+        "qit_entropy_missing_rows": 0
+      },
+      "boundary": "Entropy/readout coverage is not complete until missing QIT Szilard/readout receipts exist"
+    },
+    {
+      "row": "local_invariant_schedule",
+      "carnot": "local heat-work invariant comparison slots",
+      "szilard": "local measurement-feedback invariant comparison slots",
+      "qit_adjacent": "six-bit single-flip row supplies symbolic invariant comparison slots; active QIT axis doctrine remains open",
+      "status": "sim_supported_symbolic_only",
+      "evidence": {
+        "shared_invariant_slots": [
+          "cycle_traversal_family",
+          "entropy_transfer_polarity",
+          "stage_precedence_orientation",
+          "step_sequence_parity"
+        ],
+        "gray_code_invariant_slots": [
+          "line_count_polarity",
+          "line_flip_operator_family",
+          "lower_three_bit_branch",
+          "parity_loop_family",
+          "single_line_change_order",
+          "successor_precedence_orientation",
+          "upper_three_bit_frame"
+        ],
+        "iching_all_pass": true,
+        "qit_admitted_axis_status": "blocked_until_QIT_grounded_and_negative_tested"
+      },
+      "boundary": "Local invariant labels are comparison slots, not admitted QIT axes"
+    },
+    {
+      "row": "sixty_four_schedule",
+      "carnot": "four heat-work legs times two traversals as a small cycle grammar",
+      "szilard": "three operation protocol plus reverse bookkeeping as a small cycle grammar",
+      "qit_adjacent": "six-bit Gray-code schedule with one-line flip operators and killed graveyard variants",
+      "status": "sim_supported_symbolic_only",
+      "evidence": {
+        "iching_result": "six_bit_gray_code_single_flip_cycle_invariant_results.json",
+        "iching_all_pass": true,
+        "state_count": 64,
+        "invariant_count": 7,
+        "cycle_invariant_row_count": 4,
+        "graveyard_variant_count": 3,
+        "cycle_microsteps_claim": "not admitted here"
+      },
+      "boundary": "The 64-state schedule is a symbolic cycle-invariant sim, not I Ching proof or QIT runtime admission"
+    }
+  ],
+  "qit_companion_summary": {
+    "all_pass": true,
+    "strict_qit_subset_count": 4,
+    "missing_strict_qit_subset_count": 0,
+    "qit_repair_row_count": 7,
+    "missing_qit_repair_row_count": 0,
+    "open_lab_companion_count": 19,
+    "missing_open_lab_companion_count": 0,
+    "strict_subset_families": [
+      "carnot",
+      "control_recovery",
+      "szilard"
+    ],
+    "strict_subset_row_ids": [
+      "qit_szilard_landauer_cycle",
+      "qit_strong_coupling_landauer",
+      "qit_carnot_two_bath_cycle",
+      "qit_attractor_basin_recovery"
+    ],
+    "missing_strict_subset_row_ids": [],
+    "closest_open_lab_match_count": 19,
+    "scope_note": "QIT-aligned companion array that separates a strict finite-carrier subset from the current open-lab rows. Use it as the comparison surface for later constraint repair."
+  },
+  "qit_entropy_summary": {
+    "all_pass": true,
+    "strict_row_count": 11,
+    "missing_strict_row_count": 0,
+    "missing_row_ids": [],
+    "families_present": [
+      "carnot",
+      "carnot_repair_closure",
+      "carnot_repair_finite_time",
+      "carnot_repair_hold_policy",
+      "carnot_repair_irreversibility",
+      "control_recovery",
+      "strong_coupling_landauer",
+      "szilard",
+      "szilard_repair",
+      "szilard_repair_reverse_recovery",
+      "szilard_repair_substeps"
+    ],
+    "scope_note": "Strict QIT readout-family companion array over finite-carrier anchors. This result is partial until the missing entropy/readout source receipts exist."
+  },
+  "iching_64_summary": {
+    "all_pass": true,
+    "state_count": 64,
+    "invariant_count": 7,
+    "cycle_invariant_row_count": 4,
+    "graveyard_variant_count": 3,
+    "load_bearing_tool_count": 12,
+    "tool_count": 16,
+    "visual_payload": "visualizer/six-bit-gray-code-cycle-data.js",
+    "scope_note": "Six-bit Gray-code single-flip cycle invariant row. It tests a six-bit, one-line-transition schedule as a comparison surface for heat/work and measurement/feedback cycle grammar. It is symbolic and pre-admission, not QIT runtime promotion."
+  },
+  "iching_64_cycle_invariant_rows": [
+    {
+      "slot": "dual_loop",
+      "heat_work_cycle": "work-producing/work-consuming traversal",
+      "measure_feedback_cycle": "measurement-feedback-erasure/recovery traversal",
+      "six_bit_cycle": "odd/even parity loop family on a 64-state walk",
+      "boundary": "shared two-direction grammar, not identity"
+    },
+    {
+      "slot": "operator",
+      "heat_work_cycle": "thermal contact or adiabatic work leg",
+      "measure_feedback_cycle": "correlate, feedback, reset",
+      "six_bit_cycle": "single-line flip operator",
+      "boundary": "symbolic line flips are not physical operators"
+    },
+    {
+      "slot": "geometry",
+      "heat_work_cycle": "four-state cycle",
+      "measure_feedback_cycle": "protocol path and memory carrier",
+      "six_bit_cycle": "six-bit hypercube Hamiltonian cycle",
+      "boundary": "hypercube schedule is not a GStack"
+    },
+    {
+      "slot": "local_invariant_map",
+      "heat_work_cycle": "local thermodynamic invariant slots",
+      "measure_feedback_cycle": "local information invariant slots",
+      "six_bit_cycle": "six lines plus derived precedence relation",
+      "boundary": "invariant slots are comparison slots only"
+    }
+  ],
+  "iching_64_graveyard_variants": [
+    {
+      "variant": "binary_count_order",
+      "reason": "ordinary binary count causes multi-line jumps",
+      "unique_states": 64,
+      "max_hamming_step": 6,
+      "survives_single_line_gate": false,
+      "status": "killed"
+    },
+    {
+      "variant": "collapsed_single_state",
+      "reason": "all structure collapses to one state",
+      "unique_states": 1,
+      "max_hamming_step": 0,
+      "survives_single_line_gate": false,
+      "status": "killed"
+    },
+    {
+      "variant": "seeded_random_order",
+      "reason": "random order loses local line-flip grammar",
+      "unique_states": 64,
+      "max_hamming_step": 6,
+      "survives_single_line_gate": false,
+      "status": "killed"
+    }
+  ],
+  "information_theoretic_analogue_map": {
+    "boundary": "candidate_search_prior_not_qit_runtime_admission",
+    "shared_candidates": {
+      "dual_loop_family": "both rows expose inductive_heating_loop and deductive_cooling_loop",
+      "density_carrier": "both rows use density-matrix witnesses through qutip and qiskit",
+      "graph_carrier": "both rows use rustworkx, PyG, XGI, and optional topology tools",
+      "proof_fence": "both rows use z3 and cvc5 to block an impossible/free-lunch variant",
+      "invariant_slots": "both rows expose local cycle-step invariant comparison slots"
+    },
+    "not_yet_claimed": [
+      "no GStack nesting",
+      "no Weyl/spinor/Hopf/torus/Clifford operator stack",
+      "no final QIT runtime",
+      "no bridge or admitted-axis claim"
+    ]
+  },
+  "graveyard_rows": [
+    {
+      "claim": "heat-work and measurement-feedback cycles are identical",
+      "status": "rejected",
+      "reason": "the cycle-invariant layer finds shared slots and tool roles, not identity"
+    },
+    {
+      "claim": "local invariant slots are admitted QIT axes",
+      "status": "blocked",
+      "reason": "the source rows label local invariants as candidate correlative mappings only"
+    },
+    {
+      "claim": "graph topology is already a GStack",
+      "status": "blocked",
+      "reason": "current receipts show cycle/path/hypergraph carriers, not nested GStack constraint manifolds"
+    }
+  ]
+};

@@ -1,55 +1,64 @@
-window.ENGINE_ROSETTA_DATA = {
+{
   "name": "carnot_szilard_rosetta_correlation",
-  "summary": {
-    "all_pass": true,
-    "shared_load_bearing_tool_count": 13,
-    "shared_load_bearing_tools": [
-      "cvc5",
-      "gudhi",
-      "numpy",
-      "pyg",
-      "pytorch",
-      "qiskit",
-      "qutip",
-      "rustworkx",
-      "scipy",
-      "sympy",
-      "toponetx",
-      "xgi",
-      "z3"
-    ],
-    "shared_lego_count": 4,
-    "shared_legos": [
-      "density_matrix",
-      "dual_stacked_engine",
-      "graph_topology",
-      "proof_fence"
-    ],
-    "shared_axis_slots": [
-      "Ax0",
-      "Ax1",
-      "Ax2",
-      "Ax3",
-      "Ax4",
-      "Ax5",
-      "Ax6"
-    ],
-    "rosetta_row_count": 12,
-    "tier_count": 8,
-    "degree_pair_count": 8,
-    "triadic_qit_row_count": 6,
-    "qit_companion_all_pass": null,
-    "qit_missing_strict_subset_count": null,
-    "qit_entropy_all_pass": null,
-    "qit_entropy_missing_strict_row_count": null,
-    "iching_64_all_pass": true,
-    "iching_64_state_count": 64,
-    "iching_64_graveyard_variant_count": 3,
-    "clifford_capability_all_pass": null,
-    "weyl_topology_passed": 8,
-    "graveyard_row_count": 3,
-    "visual_payload": "visualizer/engine-rosetta-data.js",
-    "scope_note": "Rosetta correlation layer over the Carnot and Szilard dual-stack rows. It compares loop polarity, tools, legos, graph/proof/density receipts, and local Ax0-Ax6 candidate mappings. It is not a QIT-engine promotion."
+  "classification": "canonical",
+  "classification_note": "Rosetta correlation layer over the Carnot and Szilard dual-stack rows. It compares loop polarity, tools, legos, graph/proof/density receipts, and local Ax0-Ax6 candidate mappings. It is not a QIT-engine promotion.",
+  "divergence_log": "Rosetta correlation layer over the Carnot and Szilard dual-stack rows. It compares loop polarity, tools, legos, graph/proof/density receipts, and local Ax0-Ax6 candidate mappings. It is not a QIT-engine promotion.",
+  "lego_ids": [
+    "carnot_cycle",
+    "szilard_cycle",
+    "landauer_erasure",
+    "dual_stacked_engine",
+    "density_matrix",
+    "graph_topology",
+    "proof_fence",
+    "rosetta_correlation"
+  ],
+  "primary_lego_ids": [
+    "dual_stacked_engine",
+    "rosetta_correlation"
+  ],
+  "sim_execution_kind": "bridge",
+  "allowed_claims": [
+    "Carnot and Szilard dual-stack rows can be compared through a Rosetta surface",
+    "both rows share tool, proof, density, graph, and local axis-slot receipts",
+    "shared structure is a candidate search prior, not identity or QIT admission"
+  ],
+  "promotion_status": "keep_but_open",
+  "promotion_blockers": [
+    "no GStack nesting receipt",
+    "no nonclassical operator-stack coupling receipt",
+    "no admitted QIT-engine runtime"
+  ],
+  "tool_manifest": {
+    "json": {
+      "tried": true,
+      "used": true,
+      "reason": "loads the exact Carnot and Szilard result receipts"
+    },
+    "pathlib": {
+      "tried": true,
+      "used": true,
+      "reason": "keeps receipt paths deterministic under the probe result surface"
+    }
+  },
+  "tool_integration_depth": {
+    "json": "load_bearing",
+    "pathlib": "load_bearing"
+  },
+  "source_receipts": {
+    "carnot": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_dual_stacked_engine_results.json",
+    "szilard": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_dual_stacked_engine_results.json",
+    "iching_64": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/iching_64_engine_rosetta_results.json"
+  },
+  "evidence_flags": {
+    "both_source_rows_pass": true,
+    "both_have_inductive_and_deductive_loops": true,
+    "both_have_density_receipts": true,
+    "both_have_graph_receipts": true,
+    "both_have_symbolic_receipts": true,
+    "both_have_proof_fences": true,
+    "same_axis_slot_count": true,
+    "iching_64_symbolic_rosetta_pass": true
   },
   "rosetta_rows": [
     {
@@ -488,5 +497,56 @@ window.ENGINE_ROSETTA_DATA = {
       "status": "blocked",
       "reason": "current receipts show cycle/path/hypergraph carriers, not nested GStack constraint manifolds"
     }
-  ]
-};
+  ],
+  "summary": {
+    "all_pass": true,
+    "shared_load_bearing_tool_count": 13,
+    "shared_load_bearing_tools": [
+      "cvc5",
+      "gudhi",
+      "numpy",
+      "pyg",
+      "pytorch",
+      "qiskit",
+      "qutip",
+      "rustworkx",
+      "scipy",
+      "sympy",
+      "toponetx",
+      "xgi",
+      "z3"
+    ],
+    "shared_lego_count": 4,
+    "shared_legos": [
+      "density_matrix",
+      "dual_stacked_engine",
+      "graph_topology",
+      "proof_fence"
+    ],
+    "shared_axis_slots": [
+      "Ax0",
+      "Ax1",
+      "Ax2",
+      "Ax3",
+      "Ax4",
+      "Ax5",
+      "Ax6"
+    ],
+    "rosetta_row_count": 12,
+    "tier_count": 8,
+    "degree_pair_count": 8,
+    "triadic_qit_row_count": 6,
+    "qit_companion_all_pass": null,
+    "qit_missing_strict_subset_count": null,
+    "qit_entropy_all_pass": null,
+    "qit_entropy_missing_strict_row_count": null,
+    "iching_64_all_pass": true,
+    "iching_64_state_count": 64,
+    "iching_64_graveyard_variant_count": 3,
+    "clifford_capability_all_pass": null,
+    "weyl_topology_passed": 8,
+    "graveyard_row_count": 3,
+    "visual_payload": "visualizer/engine-rosetta-data.js",
+    "scope_note": "Rosetta correlation layer over the Carnot and Szilard dual-stack rows. It compares loop polarity, tools, legos, graph/proof/density receipts, and local Ax0-Ax6 candidate mappings. It is not a QIT-engine promotion."
+  }
+}

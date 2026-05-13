@@ -1,5 +1,5 @@
 window.CARNOT_DUAL_STACK_DATA = {
-  "name": "carnot_dual_stacked_engine",
+  "name": "two_bath_heat_work_reversible_cycle_pair",
   "summary": {
     "all_pass": true,
     "forward_efficiency": 0.5000000000000001,
@@ -9,15 +9,15 @@ window.CARNOT_DUAL_STACK_DATA = {
     "q_hot_absorbed": 0.3755915097737852,
     "q_cold_rejected": 0.1877957548868926,
     "q_cold_absorbed_reverse": 0.1877957548868926,
-    "tool_count": 13,
+    "tool_count": 16,
     "load_bearing_tool_count": 13,
     "visual_payload": "visualizer/carnot-dual-stack-data.js",
-    "scope_note": "Dual-stacked Carnot row: same finite qubit working substance, two opposite cycle directions.  It supports Carnot-loop visualization and tool coupling; it does not promote a final QIT engine or axis claim."
+    "scope_note": "Two-bath heat/work reversible cycle-pair row: same finite qubit working substance, two opposite cycle directions. It supports cycle visualization and tool coupling; it does not promote a final QIT runtime or admitted-axis claim."
   },
   "loops": {
     "inductive_heating_loop": {
       "loop_id": "inductive_heating_loop",
-      "role": "forward_heat_engine",
+      "role": "forward_work_producing_cycle",
       "step_labels": [
         "B_hot_low_gap",
         "C_cold_low_gap",
@@ -158,10 +158,10 @@ window.CARNOT_DUAL_STACK_DATA = {
       "free_energy": -0.20141327798275238
     }
   ],
-  "axes_candidate_model": {
-    "boundary": "candidate_correlative_mapping_not_axis_promotion",
-    "axes": {
-      "Ax0": {
+  "cycle_step_invariant_map": {
+    "boundary": "local_cycle_invariant_map_not_admitted_axis_promotion",
+    "invariants": {
+      "entropy_transfer_polarity": {
         "local_name": "entropy_gradient_polarity",
         "degree_of_freedom": "sign and magnitude of reservoir entropy transfer",
         "observable": "cold_reservoir_entropy_delta",
@@ -169,7 +169,7 @@ window.CARNOT_DUAL_STACK_DATA = {
         "deductive_value": -0.1877957548868926,
         "correlation_hint": "closest to thermodynamic entropy-drive intuition, not a QIT cut kernel"
       },
-      "Ax1": {
+      "bath_contact_branch": {
         "local_name": "bath_branch",
         "degree_of_freedom": "hot-contact versus cold-contact branch",
         "observable": "isothermal leg bath label",
@@ -179,7 +179,7 @@ window.CARNOT_DUAL_STACK_DATA = {
         ],
         "correlation_hint": "terrain/topology split analogue"
       },
-      "Ax2": {
+      "temperature_gap_frame": {
         "local_name": "working_frame",
         "degree_of_freedom": "temperature-scaled gap frame",
         "observable": "gap / temperature invariant along adiabats",
@@ -189,9 +189,9 @@ window.CARNOT_DUAL_STACK_DATA = {
         "cold_low_ratio": 0.5,
         "correlation_hint": "frame-change analogue; adiabats preserve occupation probability"
       },
-      "Ax3": {
+      "cycle_traversal_family": {
         "local_name": "loop_family",
-        "degree_of_freedom": "engine versus refrigerator traversal family",
+        "degree_of_freedom": "work-producing versus work-consuming traversal family",
         "observable": "work sign and cold entropy sign",
         "values": {
           "inductive_heating": {
@@ -203,9 +203,9 @@ window.CARNOT_DUAL_STACK_DATA = {
             "cold_entropy_delta": -0.1877957548868926
           }
         },
-        "correlation_hint": "engine-family split analogue"
+        "correlation_hint": "work-cycle-family split analogue"
       },
-      "Ax4": {
+      "step_sequence_parity": {
         "local_name": "leg_order_class",
         "degree_of_freedom": "isothermal/adiabatic composition order",
         "observable": "I-A-I-A versus reversed A-I-A-I",
@@ -223,7 +223,7 @@ window.CARNOT_DUAL_STACK_DATA = {
         ],
         "correlation_hint": "loop-order family analogue"
       },
-      "Ax5": {
+      "heat_work_operator_family": {
         "local_name": "operator_mode",
         "degree_of_freedom": "heat-exchange leg versus work-only leg",
         "observable": "nonzero heat_into_system versus zero heat_into_system",
@@ -233,7 +233,7 @@ window.CARNOT_DUAL_STACK_DATA = {
         ],
         "correlation_hint": "operator-family split analogue"
       },
-      "Ax6": {
+      "stage_precedence_orientation": {
         "local_name": "precedence_orientation",
         "degree_of_freedom": "which leg precedes which under traversal direction",
         "observable": "directed cycle order",
@@ -264,7 +264,7 @@ window.CARNOT_DUAL_STACK_DATA = {
     ]
   },
   "tool_summary": {
-    "tool_count": 13,
+    "tool_count": 16,
     "load_bearing_tool_count": 13
   },
   "boundaries": {

@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T05:56:08.544331+00:00",
+  "generated_at": "2026-05-13T05:59:10.314450+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -4933,6 +4933,63 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
+        "hopf_weyl_vertical_horizontal_carrier_loop_tangent_projection_baseline",
+        "hopf_weyl_carrier_loop_geometry_baseline"
+      ],
+      "claim_ceiling": "SymPy exact local Hopf/Weyl carrier tangent-projection baseline only: vertical fiber, raw base, horizontal base-lift, and wrong-sign tangents are compared by exact projection coefficients in a declared two-component carrier chart; this may support geometry planning for vertical/horizontal loop separation, but it does not prove physical loop independence, flux, GStack, QIT, axis closure, bridge, nonclassical evidence, or target-system admission",
+      "depth": "load_bearing",
+      "function_api": "sympy Matrix/diff/conjugate/re/trigsimp/simplify exact Hopf/Weyl vertical fiber, raw base, horizontal base-lift, and wrong-sign tangent projection coefficient identities",
+      "manifest_reason": "Matrix/diff/conjugate/re/trigsimp/simplify derive exact vertical projection coefficients for Hopf/Weyl raw base, horizontal base-lift, and wrong-sign tangent generators",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+        "No flux representation or Pauli-boundary shortcut.",
+        "No Lindblad, Hamiltonian, thermodynamic, information-cycle, or target-system mechanics.",
+        "No physical inner/outer loop independence proof.",
+        "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_weyl_vertical_horizontal_tangent_projection_identities_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "sympy"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
         "work_heat_cycle_calibration_fixture",
         "exact_two_level_work_heat_identity_baseline"
       ],
@@ -5753,11 +5810,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 106,
+    "passing_count": 107,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 106,
+    "receipt_schema_observed_missing_count": 107,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 106,
+    "row_count": 107,
     "tools": [
       "clifford",
       "cvc5",

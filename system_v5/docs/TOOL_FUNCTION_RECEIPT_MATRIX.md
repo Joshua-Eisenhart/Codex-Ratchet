@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T05:56:08.544331+00:00`
+Generated: `2026-05-13T05:59:10.314450+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `106`
-- Passing rows: `106`
+- Rows: `107`
+- Passing rows: `107`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `106`
+- Explicit receipt schemas missing: `107`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -108,6 +108,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `sympy` | sympy symbols/cos/integrate/simplify exact Hopf connection loop integrals and horizontal-lift chi shifts | `system_v4/probes/a2_state/sim_results/sympy_hopf_loop_holonomy_area_dependence_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_loop_holonomy_geometry_baseline`, `hopf_weyl_fiber_base_loop_geometry_baseline` |
 | `sympy` | sympy Matrix/diff/trigsimp/simplify exact S3 carrier and S2 projection speed identities for Hopf/Weyl fiber-base coordinates | `system_v4/probes/a2_state/sim_results/sympy_hopf_weyl_fiber_base_s3_s2_distance_identities_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_weyl_carrier_loop_geometry_baseline`, `exact_carrier_projection_identity_baseline` |
 | `sympy` | sympy Matrix/diff/conjugate/re/trigsimp/simplify exact Hopf/Weyl vertical fiber and horizontal base-lift metric independence identities | `system_v4/probes/a2_state/sim_results/sympy_hopf_weyl_fiber_horizontal_base_loop_independence_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_weyl_carrier_loop_geometry_baseline`, `exact_vertical_horizontal_loop_metric_baseline` |
+| `sympy` | sympy Matrix/diff/conjugate/re/trigsimp/simplify exact Hopf/Weyl vertical fiber, raw base, horizontal base-lift, and wrong-sign tangent projection coefficient identities | `system_v4/probes/a2_state/sim_results/sympy_hopf_weyl_vertical_horizontal_tangent_projection_identities_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_weyl_vertical_horizontal_carrier_loop_tangent_projection_baseline`, `hopf_weyl_carrier_loop_geometry_baseline` |
 | `sympy` | sympy symbols/exp/simplify/subs exact two-level thermal population and two-bath gap-change work/heat identities | `system_v4/probes/a2_state/sim_results/sympy_two_level_two_bath_gap_change_work_heat_identities_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `work_heat_cycle_calibration_fixture`, `exact_two_level_work_heat_identity_baseline` |
 | `sympy` | sympy Rational/log/simplify exact two-level binary measurement information, conditional feedback work, and Landauer erasure-floor identities | `system_v4/probes/a2_state/sim_results/sympy_two_level_measure_feedback_erasure_identities_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `information_work_erasure_cycle_calibration_fixture`, `exact_measure_feedback_erasure_identity_baseline` |
 | `sympy` | sympy Matrix partition of Pauli matrices into diagonal and off-diagonal labels | `system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `bare_pauli_no_carrier_negative_control`, `hopf_weyl_fiber_base_loop_geometry_baseline` |

@@ -703,6 +703,7 @@ def write_markdown(rows: list[dict[str, Any]], generated_at: str) -> None:
         f"Generated: `{generated_at}`",
         "",
         "Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.",
+        "Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.",
         "",
         "## Summary",
         "",

@@ -268,6 +268,14 @@ def test_direct_sim_semantic_guard_accepts_literal_cycle_basename(tmp_path: Path
     assert result == 0
 
 
+def test_makefile_has_staged_sim_name_gate_before_commit() -> None:
+    text = (REPO_ROOT / "Makefile").read_text(encoding="utf-8")
+    block = text.split("sim-name-gate:", 1)[1].split("\n\n", 1)[0]
+    assert "git diff --cached --name-only --diff-filter=ACM" in block
+    assert "'$(PROBES)/*.py'" in block
+    assert "direct_sim_semantic_guard.py" in block
+
+
 def test_receipt_run_boundary_fields_are_separate_from_existing_strict_scope() -> None:
     receipt_schema = _load_module("receipt_schema_under_test", SCRIPTS / "receipt_schema.py")
 

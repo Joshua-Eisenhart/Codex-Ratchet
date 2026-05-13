@@ -18,6 +18,13 @@ sim:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/cleanup_first_guard.py --context sim
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/$(NAME).py
 
+# Check newly staged direct sim filenames before commit without re-auditing legacy debt.
+sim-name-gate:
+	@git diff --cached --name-only --diff-filter=ACM -- '$(PROBES)/*.py' | while IFS= read -r path; do \
+		name=$$(basename "$$path" .py); \
+		MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) scripts/direct_sim_semantic_guard.py --name "$$name" --probes-dir "$(PROBES)" || exit $$?; \
+	done
+
 # Run the tools load-bearing check
 tools:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/cleanup_first_guard.py --context tools

@@ -1,0 +1,130 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "exact SymPy connected-layer connection integral",
+    "density-object transport over connected carrier coordinates",
+    "Stokes theorem over triangulated base strips between theta layers",
+    "Clifford or SU(2) transport over projected layer coordinates"
+  ],
+  "baselines": [
+    "SciPy Hopf horizontal-lift chi-shift fixture",
+    "SymPy Hopf loop holonomy area-dependence fixture",
+    "TopoNetX connected Hopf-torus layer incidence fixture",
+    "GUDHI connected Hopf-torus layer homology fixture"
+  ],
+  "blocked_until": "blocked from target-system claims until fuller Hopf/Weyl carrier topology and physical-evolution fixtures exist",
+  "carrier_topology": "two declared fixed-theta Hopf-torus layers with an interlayer coordinate path; no full nested-tori manifold",
+  "claim_ceiling": "SciPy connected two-theta-layer Hopf horizontal-transport baseline only; this integrates a local connection ODE over declared layer coordinates and does not implement full carrier dynamics; no physical inner/outer loop independence, no full S3 bundle, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if solve_ivp misses analytic horizontal shifts, if connection residuals are nonzero, if distinct theta layers do not separate, or if duplicate-theta/zero-traversal/no-lift/constant/disconnected graveyards do not collapse.",
+  "divergence_log": "This is a local ODE transport fixture over two connected theta layers. It can support connected-carrier planning, but it does not close inner/outer independence or implement full nested geometry.",
+  "exact_tool_function_needs": {
+    "numpy": [
+      "linspace",
+      "exp",
+      "linalg.norm",
+      "max",
+      "abs"
+    ],
+    "scipy": [
+      "integrate.solve_ivp"
+    ]
+  },
+  "graveyards": [
+    "duplicate theta layers have no transport difference",
+    "zero base traversal has zero horizontal shift",
+    "base loop without horizontal lift accumulates connection",
+    "constant connection without theta dependence hides layers",
+    "disconnected layers without interlayer path are insufficient"
+  ],
+  "graveyards_detail": {
+    "base_loop_without_horizontal_lift_accumulates_connection": {
+      "high_layer_connection_integral": -1.5707963267948961,
+      "low_layer_connection_integral": 1.570796326794897,
+      "passed": true
+    },
+    "constant_connection_without_theta_dependence_hides_layers": {
+      "constant_high": 3.141592653589793,
+      "constant_low": 3.141592653589793,
+      "passed": true
+    },
+    "disconnected_layers_without_interlayer_path_are_insufficient": {
+      "can_test_connected_layer_transport": false,
+      "has_interlayer_transport_path": false,
+      "passed": true
+    },
+    "duplicate_theta_layers_have_no_transport_difference": {
+      "interlayer_theta_distance": 0.0,
+      "passed": true,
+      "shift_difference": 0.0
+    },
+    "zero_base_traversal_has_zero_horizontal_shift": {
+      "final_chi_shift": 0.0,
+      "passed": true
+    }
+  },
+  "lego_or_coupling_target": "nested_hopf_torus_loop_geometry_baseline",
+  "name": "scipy_connected_hopf_torus_horizontal_transport",
+  "next_lego_target": "nested_hopf_torus_loop_geometry_baseline",
+  "observable": "final chi shifts, analytic shift errors, connection residuals, and interlayer S3 distance",
+  "operation_sequence": [
+    "declare the local Hopf connection A = 1/2(dchi + cos(theta)dphi)",
+    "choose two distinct theta layers corresponding to connected Hopf-torus carrier layers",
+    "integrate the horizontal-lift ODE dchi/dphi = -cos(theta) over a base loop on each layer",
+    "compute the interlayer S3 distance at a shared grid coordinate",
+    "compare the two horizontal chi shifts and connection residuals",
+    "run duplicate-theta, zero-traversal, no-horizontal-lift, constant-connection, and disconnected-layer graveyards"
+  ],
+  "out_of_scope": [
+    "No full geometric-constraint-manifold implementation.",
+    "No flux representation or Pauli shortcut.",
+    "No Lindblad evolution, Hamiltonian dynamics, or target-system admission.",
+    "No QIT, GStack, axis, bridge, or nonclassical admission."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "solve_ivp chi shifts match -2pi cos(theta), residuals vanish, distinct connected theta layers have different shifts and nonzero interlayer distance, and adjacent controls collapse or expose missing connection/layer dependence",
+  "positive": {
+    "high_layer_horizontal_loop": {
+      "abs_error": 0.0,
+      "expected_chi_shift": 3.1415926535897922,
+      "final_chi_shift": 3.1415926535897922,
+      "max_connection_residual": 0.0,
+      "nfev": 38,
+      "phi_end": 6.283185307179586,
+      "theta": 2.0943951023931953
+    },
+    "horizontal_chi_shift_difference": 6.283185307179585,
+    "interlayer_theta_distance": 0.5176380902050415,
+    "low_layer_horizontal_loop": {
+      "abs_error": 8.881784197001252e-16,
+      "expected_chi_shift": -3.141592653589794,
+      "final_chi_shift": -3.141592653589793,
+      "max_connection_residual": 0.0,
+      "nfev": 38,
+      "phi_end": 6.283185307179586,
+      "theta": 1.0471975511965976
+    },
+    "phi_end": 6.283185307179586,
+    "survives_connected_layer_horizontal_transport": true,
+    "theta_high": 2.0943951023931953,
+    "theta_low": 1.0471975511965976
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later carrier-geometry planning after connected topology, density-object transport, and physical graveyard receipts reproduce compatible connected-layer readouts.",
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing"
+  },
+  "tool_manifest": {
+    "numpy": {
+      "reason": "supports sampled residuals, tolerance checks, and interlayer distance diagnostics",
+      "tried": true,
+      "used": true
+    },
+    "scipy": {
+      "reason": "solve_ivp integrates Hopf horizontal-lift ODEs over two connected theta-layer base loops and their interlayer theta transport",
+      "tried": true,
+      "used": true
+    }
+  }
+}

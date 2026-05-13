@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T04:07:07.985288+00:00",
+  "generated_at": "2026-05-13T04:10:54.030404+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -2403,6 +2403,62 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
+        "nested_hopf_torus_loop_geometry_baseline",
+        "connected_layer_horizontal_transport_baseline"
+      ],
+      "claim_ceiling": "SciPy connected two-theta-layer Hopf horizontal-transport baseline only; this integrates a local connection ODE over declared layer coordinates and does not implement full carrier dynamics; no physical inner/outer loop independence, no full S3 bundle, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+      "depth": "load_bearing",
+      "function_api": "scipy.integrate.solve_ivp horizontal-lift chi-shift ODE over connected two-theta-layer Hopf-torus coordinates",
+      "manifest_reason": "solve_ivp integrates Hopf horizontal-lift ODEs over two connected theta-layer base loops and their interlayer theta transport",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No full geometric-constraint-manifold implementation.",
+        "No flux representation or Pauli shortcut.",
+        "No Lindblad evolution, Hamiltonian dynamics, or target-system admission.",
+        "No QIT, GStack, axis, bridge, or nonclassical admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/scipy_connected_hopf_torus_horizontal_transport_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "scipy"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
         "inner_outer_hopf_weyl_loop_geometry_fit",
         "classical_hopf_path_metric_baseline"
       ],
@@ -4289,11 +4345,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 80,
+    "passing_count": 81,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 80,
+    "receipt_schema_observed_missing_count": 81,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 80,
+    "row_count": 81,
     "tools": [
       "clifford",
       "cvc5",

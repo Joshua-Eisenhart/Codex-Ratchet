@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T04:07:07.985288+00:00`
+Generated: `2026-05-13T04:10:54.030404+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `80`
-- Passing rows: `80`
+- Rows: `81`
+- Passing rows: `81`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `80`
+- Explicit receipt schemas missing: `81`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -62,6 +62,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `rustworkx` | rustworkx PyDiGraph topological_sort/ancestors/descendants/transitive_reduction over Hopf receipt dependency DAG | `system_v4/probes/a2_state/sim_results/rustworkx_hopf_receipt_dependency_reduction_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `receipt_dependency_dag_controls` |
 | `scipy` | scipy.linalg.eigvalsh, scipy.optimize.minimize, scipy.spatial.distance.cdist, and scipy.stats.entropy baseline controls | `system_v4/probes/a2_state/sim_results/sim_capability_scipy_isolated_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `classical_spectral_baseline`, `classical_distance_entropy_baseline` |
 | `scipy` | scipy.integrate.solve_ivp numerical Hopf horizontal-lift chi-shift ODE over base latitude loops | `system_v4/probes/a2_state/sim_results/scipy_hopf_horizontal_lift_chi_shift_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_loop_holonomy_geometry_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
+| `scipy` | scipy.integrate.solve_ivp horizontal-lift chi-shift ODE over connected two-theta-layer Hopf-torus coordinates | `system_v4/probes/a2_state/sim_results/scipy_connected_hopf_torus_horizontal_transport_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `connected_layer_horizontal_transport_baseline` |
 | `numpy` | numpy complex arrays, exp, outer, trace, linalg.norm, and unwrap over sampled Hopf-coordinate carrier paths | `system_v4/probes/a2_state/sim_results/hopf_weyl_inner_outer_loop_readout_geometry_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `classical_hopf_path_metric_baseline` |
 | `numpy` | numpy complex carrier sampling with declared Weyl-sheet orientation sign, Hopf fiber/base loop families, density readouts, and signed xy area | `system_v4/probes/a2_state/sim_results/numpy_weyl_sheet_hopf_loop_readout_separation_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `sheet_loop_product_readout_separation_baseline` |
 | `numpy` | numpy isclose scalar heat/work/efficiency accounting for reversible two-bath four-stroke cycle calibration | `system_v4/probes/a2_state/sim_results/carnot_two_bath_four_stroke_work_heat_bounds_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `work_heat_cycle_calibration_fixture`, `carnot_scalar_bound_baseline` |

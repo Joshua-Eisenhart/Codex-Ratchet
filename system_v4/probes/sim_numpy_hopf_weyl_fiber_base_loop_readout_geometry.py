@@ -11,7 +11,7 @@ import numpy as np
 from receipt_boundary import apply_default_receipt_boundary
 
 
-NAME = "hopf_weyl_inner_outer_loop_readout_geometry"
+NAME = "numpy_hopf_weyl_fiber_base_loop_readout_geometry"
 RESULTS_DIR = Path(__file__).resolve().parent / "a2_state" / "sim_results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -90,7 +90,7 @@ def sample_outer_loop(theta: float, chi: float, samples: int) -> list[np.ndarray
     return [spinor(theta, phi, chi) for phi in np.linspace(0.0, 2.0 * math.pi, samples)]
 
 
-def survives_inner_outer_readout(inner: dict[str, object], outer: dict[str, object]) -> bool:
+def survives_fiber_base_readout(inner: dict[str, object], outer: dict[str, object]) -> bool:
     density_tol = 1e-9
     traversing_tol = 1.0
     return bool(
@@ -114,7 +114,7 @@ def run_positive() -> dict[str, object]:
         "samples": samples,
         "inner_loop": inner,
         "outer_loop": outer,
-        "survives_inner_outer_readout": survives_inner_outer_readout(inner, outer),
+        "survives_fiber_base_readout": survives_fiber_base_readout(inner, outer),
     }
 
 
@@ -125,8 +125,8 @@ def run_graveyards() -> dict[str, object]:
 
     inner_as_outer = path_metrics(sample_outer_loop(theta=theta, chi=0.0, samples=samples))
     outer_as_inner = path_metrics(sample_inner_loop(theta=theta, phi=phi, samples=samples))
-    both_inner = survives_inner_outer_readout(outer_as_inner, outer_as_inner)
-    both_outer = survives_inner_outer_readout(inner_as_outer, inner_as_outer)
+    both_inner = survives_fiber_base_readout(outer_as_inner, outer_as_inner)
+    both_outer = survives_fiber_base_readout(inner_as_outer, inner_as_outer)
 
     bare_pauli_only = {
         "has_carrier_path": False,
@@ -185,7 +185,7 @@ def main() -> int:
     boundary = run_boundary()
     all_graveyards_pass = all(row["passed"] for row in graveyards.values())
     all_pass = bool(
-        positive["survives_inner_outer_readout"]
+        positive["survives_fiber_base_readout"]
         and all_graveyards_pass
         and boundary["equator_outer_density_traverses"]
         and boundary["near_pole_outer_density_nearly_collapses"]
@@ -195,17 +195,17 @@ def main() -> int:
         "classification": CLASSIFICATION,
         "all_pass": all_pass,
         "claim_ceiling": (
-            "classical sampled Hopf-coordinate carrier readout baseline only; no physical inner/outer loop "
+            "classical sampled Hopf-coordinate carrier readout baseline only; no physical fiber/base loop "
             "independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, "
             "or full geometric-constraint-manifold admission"
         ),
-        "next_lego_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+        "next_lego_target": "declared_fiber_base_coordinate_readout_baseline",
         "promotion_condition": (
             "May only support later geometry planning after independent symbolic or operator-evolution receipts "
             "reproduce compatible declared-path readouts with the same graveyards."
         ),
         "demotion_condition": (
-            "Demote if the inner loop varies in density, if the outer loop stops traversing density away from the pole, "
+            "Demote if the fiber loop varies in density, if the base loop stops traversing density away from the pole, "
             "or if same-path and hidden-readout graveyards do not collapse the distinction."
         ),
         "blocked_until": (
@@ -235,7 +235,7 @@ def main() -> int:
             "density displacement from start, density path length, Bloch path length, state path length, and phase span"
         ),
         "pass_fail_predicate": (
-            "inner loop has zero density/Bloch traversal while state path is nonzero; outer loop has nonzero "
+            "fiber loop has zero density/Bloch traversal while state path is nonzero; base loop has nonzero "
             "density/Bloch traversal away from the pole; adjacent graveyards collapse or become insufficient"
         ),
         "graveyards": [
@@ -243,7 +243,7 @@ def main() -> int:
             "both paths forced to the base-lift loop collapse the distinction",
             "bare Pauli matrices without carrier path have no loop readout",
             "hidden density readout cannot separate stationary from traversing behavior",
-            "outer loop at the pole degenerates to zero density traversal",
+            "base loop at the pole degenerates to zero density traversal",
         ],
         "baselines": [
             "finite z3 product-coordinate readout is lower than this geometry baseline",
@@ -256,7 +256,7 @@ def main() -> int:
             "cell-complex or graph approximation of loop transport",
         ],
         "exact_tool_function_needs": {"numpy": ["array", "exp", "outer", "trace", "linalg.norm", "unwrap"]},
-        "lego_or_coupling_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+        "lego_or_coupling_target": "declared_fiber_base_coordinate_readout_baseline",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

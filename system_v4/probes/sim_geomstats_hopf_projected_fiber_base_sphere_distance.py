@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Geomstats S2 distance readout for Hopf inner and outer loops."""
+"""Geomstats S2 distance readout for Hopf fiber and base loops."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from geomstats.geometry.hypersphere import Hypersphere
 from receipt_boundary import apply_default_receipt_boundary
 
 
-NAME = "geomstats_hopf_inner_outer_sphere_distance"
+NAME = "geomstats_hopf_projected_fiber_base_sphere_distance"
 RESULTS_DIR = Path(__file__).resolve().parent / "a2_state" / "sim_results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -135,16 +135,16 @@ def main() -> int:
         "all_pass": all_pass,
         "claim_ceiling": (
             "Geomstats S2 distance readout baseline for declared projected Hopf-coordinate paths only; no full "
-            "S3 bundle, physical inner/outer loop independence, QIT, GStack, axis, bridge, nonclassical, "
+            "S3 bundle, physical fiber/base loop independence, QIT, GStack, axis, bridge, nonclassical, "
             "target-system, or full geometric-constraint-manifold admission"
         ),
-        "next_lego_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+        "next_lego_target": "declared_fiber_base_coordinate_readout_baseline",
         "promotion_condition": (
             "May only support later manifold/path planning after independent carrier and operator-evolution receipts "
             "reproduce the same distinction with physical graveyards."
         ),
         "demotion_condition": (
-            "Demote if geomstats intrinsic S2 distances vary on the inner projected path, fail to detect the outer "
+            "Demote if geomstats intrinsic S2 distances vary on the fiber projected path, fail to detect the outer "
             "projected path away from degeneracy, or if same-path/pole/ambient-chord graveyards do not collapse."
         ),
         "blocked_until": "blocked from target-system claims until fuller carrier/topology and physical-evolution fixtures exist",
@@ -172,9 +172,9 @@ def main() -> int:
             "length away from the pole, and adjacent graveyards collapse"
         ),
         "graveyards": [
-            "both paths forced to inner loop collapse distinction",
-            "both paths forced to outer loop collapse distinction",
-            "outer loop at pole degenerates",
+            "both paths forced to fiber loop collapse distinction",
+            "both paths forced to base loop collapse distinction",
+            "base loop at pole degenerates",
             "ambient start-end chord hides closed outer path",
         ],
         "baselines": [
@@ -191,7 +191,7 @@ def main() -> int:
             "geomstats": ["Hypersphere(dim=2).metric.dist"],
             "numpy": ["array", "linspace", "linalg.norm"],
         },
-        "lego_or_coupling_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+        "lego_or_coupling_target": "declared_fiber_base_coordinate_readout_baseline",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

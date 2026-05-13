@@ -45,10 +45,10 @@ TARGETS: list[dict[str, Any]] = [
     {
         "tool": "pytorch",
         "function_api": "torch complex tensor density construction and autograd.grad derivative readouts over Hopf-coordinate carrier variables",
-        "receipt": "system_v4/probes/a2_state/sim_results/pytorch_hopf_inner_outer_density_gradient_results.json",
+        "receipt": "system_v4/probes/a2_state/sim_results/pytorch_hopf_fiber_base_density_gradient_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["hopf_weyl_fiber_base_loop_geometry_baseline", "differentiable_coordinate_readout_baseline"],
+        "candidate_lego_targets": ["declared_fiber_base_coordinate_readout_baseline", "differentiable_coordinate_readout_baseline"],
     },
     {
         "tool": "pytorch",
@@ -57,7 +57,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "differentiable_density_readout_baseline",
         ],
     },
@@ -116,7 +116,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "nested_hopf_torus_loop_geometry_baseline",
+            "finite_hopf_torus_fixture_controls_baseline",
             "receipt_dependency_dag_controls",
         ],
     },
@@ -155,10 +155,10 @@ TARGETS: list[dict[str, Any]] = [
     {
         "tool": "qutip",
         "function_api": "qutip Qobj/ket2dm/expect/sigmax/sigmay/sigmaz density readouts over sampled Hopf-coordinate carrier paths",
-        "receipt": "system_v4/probes/a2_state/sim_results/qutip_hopf_inner_outer_density_readout_results.json",
+        "receipt": "system_v4/probes/a2_state/sim_results/qutip_hopf_fiber_base_density_readout_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["hopf_weyl_fiber_base_loop_geometry_baseline", "density_object_path_readout_baseline"],
+        "candidate_lego_targets": ["declared_fiber_base_coordinate_readout_baseline", "density_object_path_readout_baseline"],
     },
     {
         "tool": "qutip",
@@ -167,7 +167,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_fiber_base_loop_geometry_baseline",
+            "declared_fiber_base_coordinate_readout_baseline",
             "density_operator_phase_generator_transport_baseline",
         ],
     },
@@ -178,7 +178,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "density_object_path_readout_baseline",
         ],
     },
@@ -189,7 +189,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "density_object_vertical_horizontal_transport_baseline",
         ],
     },
@@ -237,10 +237,10 @@ TARGETS: list[dict[str, Any]] = [
     {
         "tool": "qiskit",
         "function_api": "qiskit Statevector, DensityMatrix, and Operator expectation_value density readouts over sampled Hopf-coordinate carrier paths",
-        "receipt": "system_v4/probes/a2_state/sim_results/qiskit_hopf_inner_outer_density_readout_results.json",
+        "receipt": "system_v4/probes/a2_state/sim_results/qiskit_hopf_fiber_base_density_readout_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["hopf_weyl_fiber_base_loop_geometry_baseline", "density_object_path_readout_baseline"],
+        "candidate_lego_targets": ["declared_fiber_base_coordinate_readout_baseline", "density_object_path_readout_baseline"],
     },
     {
         "tool": "qiskit",
@@ -249,7 +249,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_fiber_base_loop_geometry_baseline",
+            "declared_fiber_base_coordinate_readout_baseline",
             "density_operator_phase_generator_transport_baseline",
         ],
     },
@@ -260,7 +260,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "density_object_path_readout_baseline",
         ],
     },
@@ -271,7 +271,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "density_object_vertical_horizontal_transport_baseline",
         ],
     },
@@ -330,7 +330,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/clifford_hopf_outer_rotation_readout_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["hopf_weyl_fiber_base_loop_geometry_baseline", "clifford_projected_loop_transport_baseline"],
+        "candidate_lego_targets": ["declared_fiber_base_coordinate_readout_baseline", "clifford_projected_loop_transport_baseline"],
     },
     {
         "tool": "clifford",
@@ -339,7 +339,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "clifford_vertical_horizontal_tangent_metric_baseline",
         ],
     },
@@ -351,7 +351,7 @@ TARGETS: list[dict[str, Any]] = [
         "depth": "load_bearing",
         "candidate_lego_targets": [
             "hopf_weyl_vertical_horizontal_carrier_loop_tangent_projection_baseline",
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
         ],
     },
     {
@@ -384,7 +384,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/gudhi_hopf_torus_fiber_base_homology_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["hopf_weyl_fiber_base_loop_geometry_baseline", "hopf_torus_fiber_base_homology_baseline"],
+        "candidate_lego_targets": ["declared_fiber_base_coordinate_readout_baseline", "hopf_torus_fiber_base_homology_baseline"],
     },
     {
         "tool": "gudhi",
@@ -393,7 +393,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "density_readout_loop_homology_baseline",
         ],
     },
@@ -404,7 +404,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "nested_hopf_torus_loop_geometry_baseline",
+            "finite_hopf_torus_fixture_controls_baseline",
             "connected_layer_simplicial_homology_baseline",
         ],
     },
@@ -430,7 +430,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/toponetx_two_hopf_torus_layer_incidence_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["nested_hopf_torus_loop_geometry_baseline", "hopf_weyl_fiber_base_loop_geometry_baseline"],
+        "candidate_lego_targets": ["finite_hopf_torus_fixture_controls_baseline", "declared_fiber_base_coordinate_readout_baseline"],
     },
     {
         "tool": "toponetx",
@@ -439,7 +439,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "nested_hopf_torus_loop_geometry_baseline",
+            "finite_hopf_torus_fixture_controls_baseline",
             "connected_layer_cell_complex_baseline",
         ],
     },
@@ -450,7 +450,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "density_readout_cycle_incidence_baseline",
         ],
     },
@@ -492,7 +492,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/xgi_hopf_receipt_hyperedge_incidence_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["nested_hopf_torus_loop_geometry_baseline", "hopf_weyl_fiber_base_loop_geometry_baseline"],
+        "candidate_lego_targets": ["finite_hopf_torus_fixture_controls_baseline", "declared_fiber_base_coordinate_readout_baseline"],
     },
     {
         "tool": "rustworkx",
@@ -516,7 +516,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/rustworkx_hopf_receipt_dependency_reduction_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["nested_hopf_torus_loop_geometry_baseline", "receipt_dependency_dag_controls"],
+        "candidate_lego_targets": ["finite_hopf_torus_fixture_controls_baseline", "receipt_dependency_dag_controls"],
     },
     {
         "tool": "rustworkx",
@@ -525,7 +525,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "density_readout_cycle_graph_baseline",
         ],
     },
@@ -543,7 +543,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/scipy_hopf_horizontal_lift_chi_shift_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["hopf_loop_holonomy_geometry_baseline", "hopf_weyl_fiber_base_loop_geometry_baseline"],
+        "candidate_lego_targets": ["hopf_loop_holonomy_geometry_baseline", "declared_fiber_base_coordinate_readout_baseline"],
     },
     {
         "tool": "scipy",
@@ -552,17 +552,17 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "nested_hopf_torus_loop_geometry_baseline",
+            "finite_hopf_torus_fixture_controls_baseline",
             "connected_layer_horizontal_transport_baseline",
         ],
     },
     {
         "tool": "numpy",
         "function_api": "numpy complex arrays, exp, outer, trace, linalg.norm, and unwrap over sampled Hopf-coordinate carrier paths",
-        "receipt": "system_v4/probes/a2_state/sim_results/hopf_weyl_inner_outer_loop_readout_geometry_results.json",
+        "receipt": "system_v4/probes/a2_state/sim_results/numpy_hopf_weyl_fiber_base_loop_readout_geometry_results.json",
         "role": "classical_baseline",
         "depth": "supportive",
-        "candidate_lego_targets": ["hopf_weyl_fiber_base_loop_geometry_baseline", "classical_hopf_path_metric_baseline"],
+        "candidate_lego_targets": ["declared_fiber_base_coordinate_readout_baseline", "classical_hopf_path_metric_baseline"],
     },
     {
         "tool": "numpy",
@@ -570,7 +570,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/numpy_weyl_sheet_hopf_loop_readout_separation_results.json",
         "role": "classical_baseline",
         "depth": "supportive",
-        "candidate_lego_targets": ["hopf_weyl_fiber_base_loop_geometry_baseline", "sheet_loop_product_readout_separation_baseline"],
+        "candidate_lego_targets": ["declared_fiber_base_coordinate_readout_baseline", "z2x_z2_product_label_readout_baseline"],
     },
     {
         "tool": "numpy",
@@ -618,7 +618,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json",
         "role": "classical_baseline",
         "depth": "supportive",
-        "candidate_lego_targets": ["bare_pauli_no_carrier_negative_control", "hopf_weyl_fiber_base_loop_geometry_baseline"],
+        "candidate_lego_targets": ["bare_pauli_label_partition_negative_control", "declared_fiber_base_coordinate_readout_baseline"],
     },
     {
         "tool": "z3",
@@ -627,8 +627,8 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "bare_pauli_no_carrier_negative_control",
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "bare_pauli_label_partition_negative_control",
+            "declared_two_component_carrier_readout_baseline",
         ],
     },
     {
@@ -638,7 +638,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "vertical_horizontal_metric_predicate_controls",
         ],
     },
@@ -648,7 +648,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/z3_sheet_loop_flip_product_readout_separation_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["sheet_loop_product_readout_separation_baseline", "hopf_weyl_fiber_base_loop_geometry_baseline"],
+        "candidate_lego_targets": ["z2x_z2_product_label_readout_baseline", "declared_fiber_base_coordinate_readout_baseline"],
     },
     {
         "tool": "z3",
@@ -656,7 +656,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/z3_hopf_torus_readout_vector_separation_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["nested_hopf_torus_loop_geometry_baseline", "readout_vector_separation_controls"],
+        "candidate_lego_targets": ["finite_hopf_torus_fixture_controls_baseline", "readout_vector_separation_controls"],
     },
     {
         "tool": "z3",
@@ -665,7 +665,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "nested_hopf_torus_loop_geometry_baseline",
+            "finite_hopf_torus_fixture_controls_baseline",
             "receipt_dependency_dag_controls",
         ],
     },
@@ -707,7 +707,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/cvc5_hopf_torus_readout_vector_separation_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["nested_hopf_torus_loop_geometry_baseline", "readout_vector_separation_controls"],
+        "candidate_lego_targets": ["finite_hopf_torus_fixture_controls_baseline", "readout_vector_separation_controls"],
     },
     {
         "tool": "cvc5",
@@ -716,8 +716,8 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "bare_pauli_no_carrier_negative_control",
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "bare_pauli_label_partition_negative_control",
+            "declared_two_component_carrier_readout_baseline",
         ],
     },
     {
@@ -727,7 +727,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "vertical_horizontal_metric_predicate_controls",
         ],
     },
@@ -774,10 +774,10 @@ TARGETS: list[dict[str, Any]] = [
     {
         "tool": "sympy",
         "function_api": "sympy Matrix/exp/diff/simplify/subs for exact Hopf-coordinate density derivative readouts",
-        "receipt": "system_v4/probes/a2_state/sim_results/hopf_symbolic_inner_outer_density_readout_results.json",
+        "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_fiber_base_density_readout_identities_results.json",
         "role": "classical_baseline",
         "depth": "supportive",
-        "candidate_lego_targets": ["hopf_weyl_fiber_base_loop_geometry_baseline", "exact_hopf_coordinate_identity_baseline"],
+        "candidate_lego_targets": ["declared_fiber_base_coordinate_readout_baseline", "exact_hopf_coordinate_identity_baseline"],
     },
     {
         "tool": "sympy",
@@ -785,7 +785,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/sympy_weyl_sheet_hopf_loop_derivative_sign_results.json",
         "role": "classical_baseline",
         "depth": "supportive",
-        "candidate_lego_targets": ["hopf_weyl_fiber_base_loop_geometry_baseline", "sheet_loop_product_readout_separation_baseline"],
+        "candidate_lego_targets": ["declared_fiber_base_coordinate_readout_baseline", "z2x_z2_product_label_readout_baseline"],
     },
     {
         "tool": "sympy",
@@ -794,7 +794,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "supportive",
         "candidate_lego_targets": [
-            "hopf_weyl_fiber_base_loop_geometry_baseline",
+            "declared_fiber_base_coordinate_readout_baseline",
             "density_operator_phase_generator_transport_baseline",
         ],
     },
@@ -812,7 +812,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_connection_curvature_pauli_label_gap_results.json",
         "role": "classical_baseline",
         "depth": "supportive",
-        "candidate_lego_targets": ["bare_pauli_no_carrier_negative_control", "hopf_connection_curvature_geometry_baseline"],
+        "candidate_lego_targets": ["bare_pauli_label_partition_negative_control", "hopf_connection_curvature_geometry_baseline"],
     },
     {
         "tool": "sympy",
@@ -822,7 +822,7 @@ TARGETS: list[dict[str, Any]] = [
         "depth": "load_bearing",
         "candidate_lego_targets": [
             "hopf_loop_holonomy_geometry_baseline",
-            "hopf_weyl_fiber_base_loop_geometry_baseline",
+            "declared_fiber_base_coordinate_readout_baseline",
         ],
     },
     {
@@ -832,7 +832,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "exact_carrier_projection_identity_baseline",
         ],
     },
@@ -843,7 +843,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "exact_vertical_horizontal_loop_metric_baseline",
         ],
     },
@@ -855,7 +855,7 @@ TARGETS: list[dict[str, Any]] = [
         "depth": "load_bearing",
         "candidate_lego_targets": [
             "hopf_weyl_vertical_horizontal_carrier_loop_tangent_projection_baseline",
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
         ],
     },
     {
@@ -886,7 +886,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json",
         "role": "classical_baseline",
         "depth": "supportive",
-        "candidate_lego_targets": ["bare_pauli_no_carrier_negative_control", "hopf_weyl_fiber_base_loop_geometry_baseline"],
+        "candidate_lego_targets": ["bare_pauli_label_partition_negative_control", "declared_fiber_base_coordinate_readout_baseline"],
     },
     {
         "tool": "sympy",
@@ -915,10 +915,10 @@ TARGETS: list[dict[str, Any]] = [
     {
         "tool": "geomstats",
         "function_api": "geomstats Hypersphere(dim=2).metric.dist intrinsic path-length readouts over projected Hopf-coordinate loops",
-        "receipt": "system_v4/probes/a2_state/sim_results/geomstats_hopf_inner_outer_sphere_distance_results.json",
+        "receipt": "system_v4/probes/a2_state/sim_results/geomstats_hopf_projected_fiber_base_sphere_distance_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["hopf_weyl_fiber_base_loop_geometry_baseline", "projected_sphere_distance_baseline"],
+        "candidate_lego_targets": ["declared_fiber_base_coordinate_readout_baseline", "projected_sphere_distance_baseline"],
     },
     {
         "tool": "geomstats",
@@ -927,7 +927,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "carrier_projection_distance_baseline",
         ],
     },
@@ -938,7 +938,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "vertical_horizontal_loop_metric_distance_baseline",
         ],
     },
@@ -950,7 +950,7 @@ TARGETS: list[dict[str, Any]] = [
         "depth": "load_bearing",
         "candidate_lego_targets": [
             "hopf_weyl_vertical_horizontal_carrier_loop_tangent_projection_baseline",
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
         ],
     },
     {
@@ -975,7 +975,7 @@ TARGETS: list[dict[str, Any]] = [
         "receipt": "system_v4/probes/a2_state/sim_results/e3nn_hopf_base_loop_so3_equivariance_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
-        "candidate_lego_targets": ["hopf_base_loop_so3_readout_equivariance_baseline", "hopf_weyl_fiber_base_loop_geometry_baseline"],
+        "candidate_lego_targets": ["hopf_base_loop_so3_readout_equivariance_baseline", "declared_fiber_base_coordinate_readout_baseline"],
     },
     {
         "tool": "e3nn",
@@ -984,7 +984,7 @@ TARGETS: list[dict[str, Any]] = [
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": [
-            "hopf_weyl_carrier_loop_geometry_baseline",
+            "declared_two_component_carrier_readout_baseline",
             "density_readout_so3_equivariance_baseline",
         ],
     },

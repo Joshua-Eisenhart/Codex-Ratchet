@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Symbolic Hopf-coordinate density readout for inner and outer loops."""
+"""Symbolic Hopf-coordinate density readout for fiber and base loops."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ import sympy as sp
 from receipt_boundary import apply_default_receipt_boundary
 
 
-NAME = "hopf_symbolic_inner_outer_density_readout"
+NAME = "sympy_hopf_fiber_base_density_readout_identities"
 RESULTS_DIR = Path(__file__).resolve().parent / "a2_state" / "sim_results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -106,11 +106,11 @@ def main() -> int:
         "classification": CLASSIFICATION,
         "all_pass": all_pass,
         "claim_ceiling": (
-            "classical symbolic Hopf-coordinate density-readout identity baseline only; no physical inner/outer "
+            "classical symbolic Hopf-coordinate density-readout identity baseline only; no physical fiber/base "
             "loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, "
             "or full geometric-constraint-manifold admission"
         ),
-        "next_lego_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+        "next_lego_target": "declared_fiber_base_coordinate_readout_baseline",
         "promotion_condition": (
             "May support later geometry planning only as an exact coordinate identity companion to sampled or "
             "operator-evolution receipts with adjacent graveyards."
@@ -148,7 +148,7 @@ def main() -> int:
         ),
         "graveyards": [
             "diagonal-only density readout hides base-lift change",
-            "outer loop at the pole degenerates",
+            "base loop at the pole degenerates",
             "bare Pauli matrices without Hopf coordinates cannot test loop dependence",
         ],
         "baselines": [
@@ -162,7 +162,7 @@ def main() -> int:
             "cell-complex approximation to loop transport",
         ],
         "exact_tool_function_needs": {"sympy": ["Matrix", "exp", "diff", "simplify", "subs"]},
-        "lego_or_coupling_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+        "lego_or_coupling_target": "declared_fiber_base_coordinate_readout_baseline",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "symbolic": symbolic,

@@ -44,6 +44,18 @@ def szilard_cycle(kbt: float, probabilities: np.ndarray) -> dict[str, float]:
     }
 
 
+def mutual_information(joint: np.ndarray) -> float:
+    joint = np.asarray(joint, dtype=float)
+    px = np.sum(joint, axis=1)
+    py = np.sum(joint, axis=0)
+    total = 0.0
+    for i in range(joint.shape[0]):
+        for j in range(joint.shape[1]):
+            if joint[i, j] > 0.0:
+                total += float(joint[i, j] * np.log(joint[i, j] / (px[i] * py[j])))
+    return total
+
+
 def run_positive() -> dict[str, object]:
     cycle = szilard_cycle(3.0, np.array([0.5, 0.5]))
     return {
@@ -57,9 +69,13 @@ def run_positive() -> dict[str, object]:
 
 def run_negative() -> dict[str, object]:
     no_measurement = szilard_cycle(3.0, np.array([1.0, 0.0]))
-    no_feedback_work = 0.0
-    random_feedback_correlation = 0.0
-    no_erasure_surplus = 3.0 * LN2
+    measurement_record = np.array([0.5, 0.5])
+    random_feedback_joint = np.outer(measurement_record, measurement_record)
+    random_feedback_correlation = mutual_information(random_feedback_joint)
+    no_feedback_action = np.array([0.0, 0.0])
+    no_feedback_work = float(np.dot(measurement_record, no_feedback_action))
+    repeated_cycles_without_erasure = 4
+    no_erasure_surplus = repeated_cycles_without_erasure * 3.0 * LN2
     return {
         "no_measurement_zero_information": bool(np.isclose(no_measurement["information_nats"], 0.0)),
         "no_feedback_zero_work": bool(np.isclose(no_feedback_work, 0.0)),
@@ -69,6 +85,8 @@ def run_negative() -> dict[str, object]:
             "no_measurement": no_measurement,
             "no_feedback_work": no_feedback_work,
             "random_feedback_correlation": random_feedback_correlation,
+            "random_feedback_joint": random_feedback_joint.tolist(),
+            "repeated_cycles_without_erasure": repeated_cycles_without_erasure,
             "no_erasure_surplus": no_erasure_surplus,
         },
     }
@@ -149,10 +167,38 @@ def main() -> int:
             "random feedback has zero correlation",
             "no erasure flags repeated-cycle surplus",
         ],
+        "graveyard_companions": [
+            {
+                "name": "no_measurement_zero_information",
+                "expected_failure_mode": "record entropy collapses",
+                "predicate": "I == 0",
+            },
+            {
+                "name": "no_feedback_zero_work",
+                "expected_failure_mode": "conditional action missing",
+                "predicate": "W == 0",
+            },
+            {
+                "name": "random_feedback_zero_correlation",
+                "expected_failure_mode": "record/action independence",
+                "predicate": "mutual_information(record; action) == 0",
+            },
+            {
+                "name": "no_erasure_repeated_cycle_surplus_flagged",
+                "expected_failure_mode": "unpaid memory entropy accumulates",
+                "predicate": "unpaid_surplus > 0",
+            },
+        ],
         "baselines": [
             "binary Shannon entropy in nats",
             "Landauer floor Q_erase >= kBT * I",
             "feedback work bound W <= kBT * I",
+        ],
+        "baseline_variants": [
+            "binary Shannon entropy in nats",
+            "Landauer floor Q_erase >= kBT * I",
+            "feedback work bound W <= kBT * I",
+            "explicit random-feedback joint distribution with zero mutual information",
         ],
         "alternative_formulations": [
             "explicit density-matrix projective measurement update",
@@ -160,12 +206,15 @@ def main() -> int:
             "Lindblad erasure stroke",
         ],
         "exact_tool_function_needs": {"numpy": ["log", "sum", "isclose"]},
+        "tool_function_needs": {"numpy": ["log", "sum", "isclose", "outer", "dot"]},
         "lego_or_coupling_target": "information_work_erasure_cycle_calibration_fixture",
+        "lego_coupling_target": "information_work_erasure_cycle_calibration_fixture",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
+        "promotion_allowed": False,
         "pass": bool(all_pass),
     }
     out_path = RESULTS_DIR / f"{NAME}_results.json"

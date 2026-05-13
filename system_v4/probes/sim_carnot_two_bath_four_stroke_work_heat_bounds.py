@@ -82,6 +82,26 @@ def run_negative() -> dict[str, object]:
     }
 
 
+def run_parameter_sweep() -> dict[str, object]:
+    cases = [
+        carnot_cycle(th, tc, delta_s)
+        for th, tc in [(450.0, 300.0), (600.0, 300.0), (900.0, 450.0)]
+        for delta_s in [0.25, 1.0, 2.0]
+    ]
+    forward_bounds_hold = all(
+        row["T_hot"] > row["T_cold"] > 0.0
+        and row["delta_entropy"] >= 0.0
+        and row["W_out"] >= 0.0
+        and row["eta"] <= row["eta_bound"] + 1e-12
+        for row in cases
+    )
+    return {
+        "case_count": len(cases),
+        "forward_bounds_hold": bool(forward_bounds_hold),
+        "cases": cases,
+    }
+
+
 def run_boundary() -> dict[str, object]:
     equal_temperature = carnot_cycle(500.0, 500.0, 1.0)
     cold_near_zero = carnot_cycle(500.0, 1e-9, 1.0)
@@ -96,6 +116,7 @@ def run_boundary() -> dict[str, object]:
 def main() -> int:
     positive = run_positive()
     negative = run_negative()
+    parameter_sweep = run_parameter_sweep()
     boundary = run_boundary()
     all_pass = (
         positive["work_positive"]
@@ -105,6 +126,7 @@ def main() -> int:
         and negative["no_entropy_change_zero_work"]
         and negative["reversed_cycle_consumes_work"]
         and negative["super_bound_claim_rejected"]
+        and parameter_sweep["forward_bounds_hold"]
         and boundary["equal_temperature_eta_zero"]
         and boundary["cold_near_zero_eta_near_one"]
     )
@@ -152,9 +174,36 @@ def main() -> int:
             "reversed direction consumes work",
             "super-bound efficiency claim is rejected",
         ],
+        "graveyard_companions": [
+            {
+                "name": "same_bath_zero_work",
+                "expected_failure_mode": "thermal asymmetry collapses",
+                "predicate": "W_out == 0",
+            },
+            {
+                "name": "no_entropy_change_zero_work",
+                "expected_failure_mode": "stroke displacement collapses",
+                "predicate": "W_out == 0",
+            },
+            {
+                "name": "reversed_cycle_consumes_work",
+                "expected_failure_mode": "direction inverts",
+                "predicate": "W_out < 0",
+            },
+            {
+                "name": "super_bound_claim_rejected",
+                "expected_failure_mode": "bound violation rejected",
+                "predicate": "claimed_eta > eta_bound",
+            },
+        ],
         "baselines": [
             "closed-form Carnot bound eta = 1 - T_cold/T_hot",
             "scalar heat/work conservation W = Q_hot + Q_cold",
+        ],
+        "baseline_variants": [
+            "closed-form Carnot bound eta = 1 - T_cold/T_hot",
+            "scalar heat/work conservation W = Q_hot + Q_cold",
+            "finite parameter sweep over T_hot > T_cold > 0 and delta_entropy >= 0",
         ],
         "alternative_formulations": [
             "finite-time irreversible stroke schedule",
@@ -162,12 +211,16 @@ def main() -> int:
             "Hamiltonian parameter-change work integral",
         ],
         "exact_tool_function_needs": {"numpy": ["isclose"]},
+        "tool_function_needs": {"numpy": ["isclose"]},
         "lego_or_coupling_target": "work_heat_cycle_calibration_fixture",
+        "lego_coupling_target": "work_heat_cycle_calibration_fixture",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
+        "parameter_sweep": parameter_sweep,
         "boundary": boundary,
+        "promotion_allowed": False,
         "pass": bool(all_pass),
     }
     out_path = RESULTS_DIR / f"{NAME}_results.json"

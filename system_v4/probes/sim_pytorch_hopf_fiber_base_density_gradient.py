@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PyTorch gradient readout for Hopf inner and outer density coordinates."""
+"""PyTorch gradient readout for Hopf fiber and base density coordinates."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from pathlib import Path
 import torch
 
 
-NAME = "pytorch_hopf_inner_outer_density_gradient"
+NAME = "pytorch_hopf_fiber_base_density_gradient"
 RESULTS_DIR = Path(__file__).resolve().parent / "a2_state" / "sim_results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -99,7 +99,7 @@ def run_graveyards() -> dict[str, object]:
         },
         "constant_readout_has_no_path_derivative": {
             "requires_grad": bool(constant_no_path.requires_grad),
-            "can_distinguish_inner_outer": False,
+            "can_distinguish_fiber_base": False,
             "passed": True,
         },
     }
@@ -121,7 +121,7 @@ def main() -> int:
             "PyTorch autograd Hopf-coordinate density-gradient baseline only; no QIT, GStack, axis, bridge, "
             "nonclassical, target-system, or full geometric-constraint-manifold admission"
         ),
-        "next_lego_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+        "next_lego_target": "declared_fiber_base_coordinate_readout_baseline",
         "promotion_condition": (
             "May only support later differentiable-geometry planning after independent carrier and operator-evolution "
             "receipts reproduce the same distinction with physical graveyards."
@@ -171,7 +171,7 @@ def main() -> int:
         "exact_tool_function_needs": {
             "pytorch": ["tensor", "complex exp", "conj", "stack", "autograd.grad"]
         },
-        "lego_or_coupling_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+        "lego_or_coupling_target": "declared_fiber_base_coordinate_readout_baseline",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

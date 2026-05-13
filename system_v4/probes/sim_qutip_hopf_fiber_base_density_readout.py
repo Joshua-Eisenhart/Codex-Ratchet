@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""QuTiP density readout for Hopf inner and outer carrier loops."""
+"""QuTiP density readout for Hopf fiber and base carrier loops."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ import qutip as qt
 from receipt_boundary import apply_default_receipt_boundary
 
 
-NAME = "qutip_hopf_inner_outer_density_readout"
+NAME = "qutip_hopf_fiber_base_density_readout"
 RESULTS_DIR = Path(__file__).resolve().parent / "a2_state" / "sim_results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -139,7 +139,7 @@ def run_graveyards() -> dict[str, object]:
         },
         "qutip_state_without_path_is_insufficient": {
             "has_path_family": False,
-            "can_distinguish_inner_outer": False,
+            "can_distinguish_fiber_base": False,
             "passed": True,
         },
     }
@@ -158,16 +158,16 @@ def main() -> int:
         "all_pass": all_pass,
         "claim_ceiling": (
             "QuTiP density-object readout baseline over declared Hopf-coordinate paths only; no physical "
-            "inner/outer loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, "
+            "fiber/base loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, "
             "target-system, or full geometric-constraint-manifold admission"
         ),
-        "next_lego_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+        "next_lego_target": "declared_fiber_base_coordinate_readout_baseline",
         "promotion_condition": (
             "May only support later operator/path planning after independent carrier and dynamics receipts reproduce "
             "the same distinction with physical graveyards."
         ),
         "demotion_condition": (
-            "Demote if QuTiP density readouts vary on the inner loop, fail to vary on the outer loop away from the pole, "
+            "Demote if QuTiP density readouts vary on the fiber loop, fail to vary on the base loop away from the pole, "
             "or if same-path and pole graveyards do not collapse."
         ),
         "blocked_until": "blocked from target-system claims until a fuller carrier/topology and physical-evolution fixture exists",
@@ -178,25 +178,25 @@ def main() -> int:
         ],
         "divergence_log": (
             "This is a QuTiP object-level baseline for density readouts along declared paths. It is not a physical "
-            "inner/outer independence result, dynamical proof, or target-system proof."
+            "fiber/base independence result, dynamical proof, or target-system proof."
         ),
         "operation_sequence": [
             "construct Qobj two-component carrier states in Hopf-style coordinates",
             "convert each carrier state to a QuTiP density matrix",
-            "sample an inner loop by varying chi at fixed theta and phi",
-            "sample an outer loop by varying phi at fixed theta and chi",
+            "sample an fiber loop by varying chi at fixed theta and phi",
+            "sample an base loop by varying phi at fixed theta and chi",
             "compute sigmax, sigmay, and sigmaz expectation readouts",
             "run same-path, pole-degenerate, and no-path graveyards",
         ],
         "carrier_topology": "QuTiP two-component state path with density projection; no full nested-tori manifold",
         "observable": "QuTiP density Frobenius path length and Pauli expectation path length",
         "pass_fail_predicate": (
-            "inner density and Pauli readout path lengths collapse while outer readout path lengths survive away from degeneracy"
+            "fiber density and Pauli readout path lengths collapse while base readout path lengths survive away from degeneracy"
         ),
         "graveyards": [
-            "both paths forced to inner loop collapse distinction",
-            "both paths forced to outer loop collapse distinction",
-            "outer loop at pole degenerates",
+            "both paths forced to fiber loop collapse distinction",
+            "both paths forced to base loop collapse distinction",
+            "base loop at pole degenerates",
             "single QuTiP state without path is insufficient",
         ],
         "baselines": [
@@ -213,7 +213,7 @@ def main() -> int:
             "qutip": ["Qobj", "ket2dm", "expect", "sigmax", "sigmay", "sigmaz"],
             "numpy": ["linspace", "exp", "linalg.norm"],
         },
-        "lego_or_coupling_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+        "lego_or_coupling_target": "declared_fiber_base_coordinate_readout_baseline",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

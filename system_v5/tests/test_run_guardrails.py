@@ -76,6 +76,30 @@ def test_direct_sim_semantic_guard_rejects_claim_layer_basename(tmp_path: Path) 
     assert result == 1
 
 
+def test_direct_sim_semantic_guard_rejects_flux_basename(tmp_path: Path) -> None:
+    guard = _load_module(
+        "direct_sim_semantic_guard_flux_under_test",
+        SCRIPTS / "direct_sim_semantic_guard.py",
+    )
+    probes = tmp_path / "probes"
+    probes.mkdir()
+    (probes / "boundary_flux_to_pauli_admissibility.py").write_text(
+        "print('must not run')\n",
+        encoding="utf-8",
+    )
+
+    result = guard.main(
+        [
+            "--name",
+            "boundary_flux_to_pauli_admissibility",
+            "--probes-dir",
+            str(probes),
+        ]
+    )
+
+    assert result == 1
+
+
 def test_direct_sim_semantic_guard_accepts_literal_cycle_basename(tmp_path: Path) -> None:
     guard = _load_module(
         "direct_sim_semantic_guard_accept_under_test",

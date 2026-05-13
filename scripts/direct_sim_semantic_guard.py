@@ -19,6 +19,7 @@ CLAIM_LABEL_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("bridge", re.compile(r"^bridge$")),
     ("qit", re.compile(r"^qit$")),
     ("gstack", re.compile(r"^gstack$")),
+    ("flux", re.compile(r"^flux$")),
     ("engine", re.compile(r"^engine$")),
     ("type1", re.compile(r"^type1$")),
     ("type2", re.compile(r"^type2$")),

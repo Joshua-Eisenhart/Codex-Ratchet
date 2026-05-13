@@ -368,6 +368,14 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "numpy",
+        "function_api": "numpy complex carrier sampling with declared Weyl-sheet orientation sign, Hopf fiber/base loop families, density readouts, and signed xy area",
+        "receipt": "system_v4/probes/a2_state/sim_results/numpy_weyl_sheet_hopf_loop_readout_separation_results.json",
+        "role": "classical_baseline",
+        "depth": "supportive",
+        "candidate_lego_targets": ["inner_outer_hopf_weyl_loop_geometry_fit", "sheet_loop_product_readout_separation_baseline"],
+    },
+    {
+        "tool": "numpy",
         "function_api": "numpy isclose scalar heat/work/efficiency accounting for reversible two-bath four-stroke cycle calibration",
         "receipt": "system_v4/probes/a2_state/sim_results/carnot_two_bath_four_stroke_work_heat_bounds_results.json",
         "role": "classical_baseline",

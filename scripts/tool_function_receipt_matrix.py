@@ -399,6 +399,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["bare_pauli_no_carrier_negative_control", "inner_outer_hopf_weyl_loop_geometry_fit"],
     },
     {
+        "tool": "z3",
+        "function_api": "z3 SolverFor('QF_LIA') SAT/UNSAT equality checks over selected Hopf-torus integer readout vector fields",
+        "receipt": "system_v4/probes/a2_state/sim_results/z3_hopf_torus_readout_vector_separation_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["nested_hopf_torus_loop_geometry_baseline", "readout_vector_separation_controls"],
+    },
+    {
         "tool": "cvc5",
         "function_api": "cvc5 Solver.assertFormula/checkSat/getValue QF_LIA fixture",
         "receipt": "system_v4/probes/a2_state/sim_results/cvc5_capability_results.json",

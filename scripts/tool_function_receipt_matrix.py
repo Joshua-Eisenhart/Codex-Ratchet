@@ -567,6 +567,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "z3",
+        "function_api": "z3 Real/Q/Solver.check bounded rational SAT/UNSAT controls for Hopf/Weyl vertical fiber and horizontal base-lift metric predicates",
+        "receipt": "system_v4/probes/a2_state/sim_results/z3_hopf_weyl_vertical_horizontal_metric_predicate_controls_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_carrier_loop_geometry_baseline",
+            "vertical_horizontal_metric_predicate_controls",
+        ],
+    },
+    {
+        "tool": "z3",
         "function_api": "z3 finite Z2 x Z2 product readout SAT/UNSAT separation for sheet-flip and loop-flip labels",
         "receipt": "system_v4/probes/a2_state/sim_results/z3_sheet_loop_flip_product_readout_separation_results.json",
         "role": "classical_baseline",

@@ -1,0 +1,290 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "GUDHI AlphaComplex over S2/Bloch readout point clouds",
+    "TopoNetX cycle-cell fixture for density readout loops",
+    "Geomstats path-neighborhood distance sweep around fiber and horizontal base paths",
+    "physical Hamiltonian generator evolution over vertical and horizontal path families"
+  ],
+  "baselines": [
+    "SymPy Hopf/Weyl fiber-horizontal-base loop independence identities",
+    "Geomstats Hopf/Weyl fiber-horizontal-base loop distance baseline",
+    "Clifford Hopf/Weyl fiber-horizontal-base tangent inner-product baseline",
+    "QuTiP/Qiskit Hopf/Weyl vertical-horizontal density transport baselines",
+    "z3/cvc5 Hopf/Weyl vertical-horizontal metric predicate controls"
+  ],
+  "blocked_until": "blocked from target-system claims until full carrier/topology and physical-evolution receipts exist",
+  "carrier_topology": "sampled two-component Hopf/Weyl carrier projected to Bloch-density point clouds; no full nested-torus manifold",
+  "claim_ceiling": "GUDHI Vietoris-Rips persistent homology baseline for Bloch-density readout point clouds from declared Hopf/Weyl vertical fiber and horizontal base-lift paths only; this shows density topology sees loop presence versus fiber collapse, but it does not distinguish raw base from horizontal base or connection sign; no full nested Hopf-torus geometric-constraint manifold, no physical evolution, no flux, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if vertical fiber density readout has persistent H1, if horizontal/base density readouts have no loop, or if pole/equator/raw-horizontal/wrong-sign controls do not collapse or coincide as predicted.",
+  "divergence_log": "This GUDHI packet is deliberately weaker than the metric and density-object transport packets: it detects fiber-collapse versus density-loop topology but records raw-base/horizontal-base and connection-sign indistinguishability as graveyard limits.",
+  "exact_tool_function_needs": {
+    "gudhi": [
+      "RipsComplex",
+      "RipsComplex.create_simplex_tree",
+      "SimplexTree.compute_persistence",
+      "SimplexTree.persistence_intervals_in_dimension"
+    ],
+    "numpy": [
+      "linspace",
+      "exp",
+      "asarray",
+      "linalg.norm",
+      "linalg.svd",
+      "isfinite"
+    ]
+  },
+  "graveyards": [
+    "vertical fiber density readout has no loop",
+    "horizontal base density readout has loop",
+    "density topology does not distinguish raw from horizontal base",
+    "wrong-sign density topology is not a connection-sign detector",
+    "pole horizontal base density readout collapses",
+    "equator raw and horizontal density topology coincide"
+  ],
+  "graveyards_detail": {
+    "density_topology_does_not_distinguish_raw_from_horizontal_base": {
+      "horizontal_base_persistent_h1_count": 1,
+      "horizontal_base_rank_proxy": 2,
+      "passed": true,
+      "raw_base_persistent_h1_count": 1,
+      "raw_base_rank_proxy": 2
+    },
+    "equator_raw_and_horizontal_density_topology_coincide": {
+      "horizontal_base_persistent_h1_count": 1,
+      "passed": true,
+      "raw_base_persistent_h1_count": 1
+    },
+    "horizontal_base_density_readout_has_loop": {
+      "passed": true,
+      "persistent_h1_count": 1,
+      "rank_proxy_singular_value_count": 2
+    },
+    "pole_horizontal_base_density_readout_collapses": {
+      "passed": true,
+      "persistent_h1_count": 0,
+      "rank_proxy_singular_value_count": 0
+    },
+    "vertical_fiber_density_readout_has_no_loop": {
+      "passed": true,
+      "persistent_h1_count": 0,
+      "rank_proxy_singular_value_count": 0
+    },
+    "wrong_sign_density_topology_is_not_a_connection_sign_detector": {
+      "horizontal_base_persistent_h1_count": 1,
+      "passed": true,
+      "wrong_sign_persistent_h1_count": 1
+    }
+  },
+  "lego_or_coupling_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "name": "gudhi_hopf_weyl_vertical_horizontal_density_readout_rips_homology",
+  "next_lego_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "observable": "Vietoris-Rips H0/H1 persistence intervals, persistent-H1 counts, pairwise displacement, and coordinate-rank proxies",
+  "operation_sequence": [
+    "construct two-component Hopf/Weyl spinor samples from theta, phi, and chi",
+    "project each carrier sample to a three-coordinate Bloch-density readout",
+    "sample vertical fiber, raw base, horizontal base lift, and wrong-sign horizontal base paths",
+    "build GUDHI Vietoris-Rips complexes over each density readout point cloud",
+    "compute H0 and H1 persistence intervals and rank-proxy coordinate span diagnostics",
+    "run fiber-collapse, horizontal-loop, pole-collapse, equator-coincidence, raw-horizontal, and wrong-sign graveyards"
+  ],
+  "out_of_scope": [
+    "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+    "No flux representation or Pauli-boundary shortcut.",
+    "No Lindblad, Hamiltonian, thermodynamic, or information-cycle mechanics.",
+    "No distinction between raw base and horizontal base by density topology alone.",
+    "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "vertical fiber density readout has no persistent H1 and collapses in coordinate span, horizontal/raw/wrong-sign base density readouts have persistent H1, and adjacent controls collapse or become indistinguishable as predicted",
+  "positive": {
+    "chi0": 0.4487989505128276,
+    "density_readout_topology_pass": true,
+    "phi0": 0.6283185307179586,
+    "readouts": {
+      "horizontal_base": {
+        "finite_h1_intervals": [
+          [
+            0.04217721113072183,
+            1.4999999999999998,
+            1.4578227888692779
+          ]
+        ],
+        "h0_interval_count": 129,
+        "h1_interval_count": 1,
+        "infinite_h1_intervals": [],
+        "max_pairwise_displacement": 1.7319224014856178,
+        "persistent_h1_count": 1,
+        "point_count": 129,
+        "rank_proxy_singular_value_count": 2,
+        "rank_proxy_singular_values": [
+          6.955213871621778,
+          6.955213871621776,
+          3.0234792251209203e-15
+        ],
+        "simplex_count": 357889
+      },
+      "raw_base": {
+        "finite_h1_intervals": [
+          [
+            0.04217721113072156,
+            1.4999999999999998,
+            1.4578227888692783
+          ]
+        ],
+        "h0_interval_count": 129,
+        "h1_interval_count": 1,
+        "infinite_h1_intervals": [],
+        "max_pairwise_displacement": 1.7319224014856176,
+        "persistent_h1_count": 1,
+        "point_count": 129,
+        "rank_proxy_singular_value_count": 2,
+        "rank_proxy_singular_values": [
+          6.955213871621778,
+          6.955213871621776,
+          2.052484802693125e-15
+        ],
+        "simplex_count": 357889
+      },
+      "vertical_fiber": {
+        "finite_h1_intervals": [
+          [
+            1.1102230246251565e-16,
+            1.2412670766236366e-16,
+            1.3104405199848002e-17
+          ],
+          [
+            1.1102230246251565e-16,
+            1.2412670766236366e-16,
+            1.3104405199848002e-17
+          ],
+          [
+            1.1102230246251565e-16,
+            1.5700924586837752e-16,
+            4.598694340586186e-17
+          ],
+          [
+            1.1102230246251565e-16,
+            1.5700924586837752e-16,
+            4.598694340586186e-17
+          ],
+          [
+            1.1102230246251565e-16,
+            1.5700924586837752e-16,
+            4.598694340586186e-17
+          ],
+          [
+            1.1102230246251565e-16,
+            1.5700924586837752e-16,
+            4.598694340586186e-17
+          ],
+          [
+            1.1102230246251565e-16,
+            1.5700924586837752e-16,
+            4.598694340586186e-17
+          ],
+          [
+            1.2412670766236366e-16,
+            1.5700924586837752e-16,
+            3.288253820601386e-17
+          ],
+          [
+            1.2412670766236366e-16,
+            1.5700924586837752e-16,
+            3.288253820601386e-17
+          ],
+          [
+            2.220446049250313e-16,
+            2.482534153247273e-16,
+            2.6208810399696004e-17
+          ],
+          [
+            2.220446049250313e-16,
+            2.482534153247273e-16,
+            2.6208810399696004e-17
+          ],
+          [
+            2.220446049250313e-16,
+            2.482534153247273e-16,
+            2.6208810399696004e-17
+          ],
+          [
+            2.220446049250313e-16,
+            2.482534153247273e-16,
+            2.6208810399696004e-17
+          ],
+          [
+            2.220446049250313e-16,
+            2.482534153247273e-16,
+            2.6208810399696004e-17
+          ],
+          [
+            2.220446049250313e-16,
+            2.482534153247273e-16,
+            2.6208810399696004e-17
+          ],
+          [
+            2.220446049250313e-16,
+            2.482534153247273e-16,
+            2.6208810399696004e-17
+          ]
+        ],
+        "h0_interval_count": 26,
+        "h1_interval_count": 16,
+        "infinite_h1_intervals": [],
+        "max_pairwise_displacement": 3.7238012298709097e-16,
+        "persistent_h1_count": 0,
+        "point_count": 129,
+        "rank_proxy_singular_value_count": 0,
+        "rank_proxy_singular_values": [
+          1.667144879504309e-14,
+          1.836581490755066e-15,
+          6.835064458543267e-16
+        ],
+        "simplex_count": 357889
+      },
+      "wrong_sign_horizontal_base": {
+        "finite_h1_intervals": [
+          [
+            0.0421772111307219,
+            1.4999999999999998,
+            1.4578227888692779
+          ]
+        ],
+        "h0_interval_count": 129,
+        "h1_interval_count": 1,
+        "infinite_h1_intervals": [],
+        "max_pairwise_displacement": 1.7319224014856176,
+        "persistent_h1_count": 1,
+        "point_count": 129,
+        "rank_proxy_singular_value_count": 2,
+        "rank_proxy_singular_values": [
+          6.955213871621778,
+          6.955213871621775,
+          3.1389810621086968e-15
+        ],
+        "simplex_count": 357889
+      }
+    },
+    "theta": 1.0471975511965976
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later geometry planning after full carrier, connection, topology, solver, density-object, and physical operator-evolution receipts reproduce compatible vertical/horizontal separation with adjacent controls.",
+  "tool_integration_depth": {
+    "gudhi": "load_bearing",
+    "numpy": "supportive"
+  },
+  "tool_manifest": {
+    "gudhi": {
+      "reason": "builds Vietoris-Rips complexes over Bloch-density readout point clouds and computes persistent homology intervals",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "samples Hopf/Weyl carrier paths and computes Bloch-density point clouds and distance controls",
+      "tried": true,
+      "used": true
+    }
+  }
+}

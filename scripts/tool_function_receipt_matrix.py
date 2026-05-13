@@ -921,6 +921,17 @@ TARGETS: list[dict[str, Any]] = [
         ],
     },
     {
+        "tool": "geomstats",
+        "function_api": "geomstats Hypersphere(dim=3).metric.inner_product and Hypersphere(dim=2).metric.inner_product over Hopf/Weyl vertical fiber, raw base, and horizontal base-lift tangent projection sweeps",
+        "receipt": "system_v4/probes/a2_state/sim_results/geomstats_hopf_weyl_vertical_horizontal_tangent_projection_sweep_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_vertical_horizontal_carrier_loop_tangent_projection_baseline",
+            "hopf_weyl_carrier_loop_geometry_baseline",
+        ],
+    },
+    {
         "tool": "e3nn",
         "function_api": "e3nn.o3.Irreps and D_from_matrix vector representation",
         "receipt": "system_v4/probes/a2_state/sim_results/e3nn_capability_results.json",

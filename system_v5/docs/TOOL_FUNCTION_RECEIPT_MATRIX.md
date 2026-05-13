@@ -1,15 +1,15 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T02:13:29.693408+00:00`
+Generated: `2026-05-13T02:16:43.111233+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `53`
-- Passing rows: `53`
+- Rows: `54`
+- Passing rows: `54`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `53`
+- Explicit receipt schemas missing: `54`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -66,6 +66,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `sympy` | sympy roots/discriminant/exact rational edge-weight construction feeding PyG graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_sympy_pyg_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `graph_symbolic_fit`, `exact_algebra_crosschecks` |
 | `geomstats` | geomstats metric.geodesic, exp/log, SPD distance, Frechet mean | `system_v4/probes/a2_state/sim_results/geomstats_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `geometry_crosschecks_same_carrier`, `quantum_metric_nonuniqueness` |
 | `geomstats` | geomstats SO(3) metric distance/log/exp consistency on tiny rotations | `system_v4/probes/a2_state/sim_results/sim_geomstats_so3_distance_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `geometry_crosschecks_same_carrier`, `gtower_so3_geometry` |
+| `geomstats` | geomstats Hypersphere(dim=2).metric.dist intrinsic path-length readouts over projected Hopf-coordinate loops | `system_v4/probes/a2_state/sim_results/geomstats_hopf_inner_outer_sphere_distance_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `projected_sphere_distance_baseline` |
 | `e3nn` | e3nn.o3.Irreps and D_from_matrix vector representation | `system_v4/probes/a2_state/sim_results/e3nn_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `operator_family_admission`, `graph_cell_complex_geometry` |
 | `e3nn` | e3nn.o3.spherical_harmonics equivariance under a tiny SO(3) rotation fixture | `system_v4/probes/a2_state/sim_results/sim_e3nn_spherical_harmonics_equivariance_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `operator_family_admission`, `gtower_so3_geometry` |
 | `e3nn` | e3nn vector irrep action commuting with PyG MessagePassing.propagate | `system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `operator_family_admission`, `graph_cell_complex_geometry` |

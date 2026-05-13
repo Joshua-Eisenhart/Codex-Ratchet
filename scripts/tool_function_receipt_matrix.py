@@ -655,6 +655,17 @@ TARGETS: list[dict[str, Any]] = [
         ],
     },
     {
+        "tool": "cvc5",
+        "function_api": "cvc5 QF_LRA rational SAT/UNSAT controls for Hopf/Weyl vertical fiber and horizontal base-lift metric predicates",
+        "receipt": "system_v4/probes/a2_state/sim_results/cvc5_hopf_weyl_vertical_horizontal_metric_predicate_controls_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_carrier_loop_geometry_baseline",
+            "vertical_horizontal_metric_predicate_controls",
+        ],
+    },
+    {
         "tool": "sympy",
         "function_api": "sympy symbolic expression/matrix simplification and exact algebra",
         "receipt": "system_v4/probes/a2_state/sim_results/sympy_capability_results.json",

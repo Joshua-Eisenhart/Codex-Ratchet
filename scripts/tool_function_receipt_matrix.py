@@ -411,6 +411,39 @@ def result_classification(payload: dict[str, Any]) -> str | None:
     return str(value) if value is not None else None
 
 
+def infer_receipt_schema(payload: dict[str, Any]) -> dict[str, Any]:
+    """Describe the receipt contract without pretending an explicit schema exists."""
+    observed = payload.get("schema")
+    fields = sorted(k for k in payload.keys() if not k.startswith("_"))
+    has_manifest = isinstance(payload.get("tool_manifest"), dict)
+    has_depth = isinstance(payload.get("tool_integration_depth"), dict)
+    has_classification = payload.get("classification") is not None
+    has_pass = (
+        payload.get("all_pass") is not None
+        or payload.get("overall_pass") is not None
+        or isinstance(payload.get("summary"), dict)
+    )
+    if observed:
+        schema = str(observed)
+        source = "explicit_receipt_schema"
+        resolved = True
+    elif has_manifest and has_depth and has_classification and has_pass:
+        schema = "implicit_sim_result_receipt.v1"
+        source = "inferred_from_required_receipt_fields"
+        resolved = True
+    else:
+        schema = None
+        source = "unresolved_missing_required_receipt_fields"
+        resolved = False
+    return {
+        "schema": schema,
+        "observed": observed,
+        "source": source,
+        "resolved": resolved,
+        "fields": fields,
+    }
+
+
 def build_rows() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for target in TARGETS:
@@ -419,13 +452,18 @@ def build_rows() -> list[dict[str, Any]]:
         manifest = payload.get("tool_manifest") if isinstance(payload.get("tool_manifest"), dict) else {}
         depth = payload.get("tool_integration_depth") if isinstance(payload.get("tool_integration_depth"), dict) else {}
         tool = target["tool"]
+        receipt_schema = infer_receipt_schema(payload)
         rows.append(
             {
                 **target,
                 "receipt_exists": path.exists(),
                 "receipt_all_pass": all_pass(payload),
                 "receipt_classification": result_classification(payload),
-                "receipt_schema": payload.get("schema"),
+                "receipt_schema": receipt_schema["schema"],
+                "receipt_schema_observed": receipt_schema["observed"],
+                "receipt_schema_source": receipt_schema["source"],
+                "receipt_schema_resolved": receipt_schema["resolved"],
+                "receipt_contract_fields": receipt_schema["fields"],
                 "manifest_reason": (manifest.get(tool) or {}).get("reason") if isinstance(manifest.get(tool), dict) else None,
                 "observed_depth": depth.get(tool),
                 "boundary_source": "receipt" if payload.get("claim_ceiling") or payload.get("out_of_scope") else "matrix_default",
@@ -456,6 +494,8 @@ def write_markdown(rows: list[dict[str, Any]], generated_at: str) -> None:
         f"- Rows: `{len(rows)}`",
         f"- Passing rows: `{sum(1 for row in rows if row['receipt_all_pass'])}`",
         f"- Missing receipts: `{sum(1 for row in rows if not row['receipt_exists'])}`",
+        f"- Explicit receipt schemas missing: `{sum(1 for row in rows if row['receipt_schema_observed'] is None)}`",
+        f"- Receipt contract shapes unresolved: `{sum(1 for row in rows if not row['receipt_schema_resolved'])}`",
         "",
         "## Matrix",
         "",
@@ -485,7 +525,8 @@ def main() -> int:
             "passing_count": sum(1 for row in rows if row["receipt_all_pass"]),
             "missing_receipt_count": sum(1 for row in rows if not row["receipt_exists"]),
             "receipt_boundary_gap_count": sum(1 for row in rows if row["boundary_gap"]),
-            "receipt_schema_missing_count": sum(1 for row in rows if row["receipt_schema"] is None),
+            "receipt_schema_observed_missing_count": sum(1 for row in rows if row["receipt_schema_observed"] is None),
+            "receipt_schema_unresolved_count": sum(1 for row in rows if not row["receipt_schema_resolved"]),
             "tools": sorted({row["tool"] for row in rows}),
         },
         "rows": rows,

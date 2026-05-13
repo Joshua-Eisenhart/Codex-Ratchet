@@ -1,15 +1,15 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T03:04:11.889872+00:00`
+Generated: `2026-05-13T03:06:11.054815+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `67`
-- Passing rows: `67`
+- Rows: `68`
+- Passing rows: `68`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `67`
+- Explicit receipt schemas missing: `68`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -62,6 +62,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `z3` | z3 SolverFor('QF_LIA') shared SAT/UNSAT agreement fixture | `system_v4/probes/a2_state/sim_results/sim_integration_cvc5_z3_unsat_agreement_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `probe_object` |
 | `z3` | z3 SolverFor('QF_NIA') consuming exact SymPy polynomial coefficients and derivatives for bounded integer-root fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_z3_sympy_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `constraint_probe_admissibility`, `exact_algebra_crosschecks` |
 | `z3` | z3 Solver with integer Pauli-label orientation predicate SAT/UNSAT controls | `system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `bare_pauli_no_carrier_negative_control`, `inner_outer_hopf_weyl_loop_geometry_fit` |
+| `z3` | z3 SolverFor('QF_LIA') SAT/UNSAT equality checks over selected Hopf-torus integer readout vector fields | `system_v4/probes/a2_state/sim_results/z3_hopf_torus_readout_vector_separation_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `readout_vector_separation_controls` |
 | `cvc5` | cvc5 Solver.assertFormula/checkSat/getValue QF_LIA fixture | `system_v4/probes/a2_state/sim_results/cvc5_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `carrier_admission_density_matrix` |
 | `cvc5` | cvc5 shared QF_LIA SAT/UNSAT agreement with z3 | `system_v4/probes/a2_state/sim_results/sim_integration_cvc5_z3_unsat_agreement_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `probe_object` |
 | `cvc5` | cvc5 Solver.synthFun/addSygusConstraint/checkSynth/getSynthSolution bounded LIA SyGuS fixture | `system_v4/probes/a2_state/sim_results/sim_cvc5_sygus_synthesis_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `sygus_integer_grammar_fixture` |

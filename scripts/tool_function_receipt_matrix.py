@@ -188,6 +188,17 @@ TARGETS: list[dict[str, Any]] = [
         ],
     },
     {
+        "tool": "qiskit",
+        "function_api": "qiskit DensityMatrix/Kraus/Operator over two-level amplitude-damping reset erasure-floor calibration",
+        "receipt": "system_v4/probes/a2_state/sim_results/qiskit_two_level_kraus_reset_erasure_floor_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "thermal_reset_erasure_floor_calibration_fixture",
+            "two_level_dissipative_reset_baseline",
+        ],
+    },
+    {
         "tool": "clifford",
         "function_api": "Cl(3)/Cl(6) layout blades, rotor products, grade/scalar extraction",
         "receipt": "system_v4/probes/a2_state/sim_results/clifford_capability_results.json",

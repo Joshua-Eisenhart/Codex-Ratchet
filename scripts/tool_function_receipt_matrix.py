@@ -431,6 +431,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["constraint_probe_admissibility", "exact_algebra_crosschecks"],
     },
     {
+        "tool": "cvc5",
+        "function_api": "cvc5 QF_LIA SAT/UNSAT equality checks over selected Hopf-torus integer readout vector fields",
+        "receipt": "system_v4/probes/a2_state/sim_results/cvc5_hopf_torus_readout_vector_separation_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["nested_hopf_torus_loop_geometry_baseline", "readout_vector_separation_controls"],
+    },
+    {
         "tool": "sympy",
         "function_api": "sympy symbolic expression/matrix simplification and exact algebra",
         "receipt": "system_v4/probes/a2_state/sim_results/sympy_capability_results.json",

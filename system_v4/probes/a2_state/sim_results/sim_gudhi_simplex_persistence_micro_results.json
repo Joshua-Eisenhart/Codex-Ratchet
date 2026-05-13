@@ -156,6 +156,81 @@
     "GUDHI SimplexTree immediate-fill H1 exclusion",
     "GUDHI persistent Betti boundary before and after face filtration"
   ],
+  "operation_sequence": [
+    "construct a filtered SimplexTree with three vertices and three boundary edges at filtration 0",
+    "insert the filling 2-simplex at filtration 1",
+    "make the filtration non-decreasing",
+    "compute persistence over field 2",
+    "read H1 intervals and persistent Betti values before, during, and after the face-filtration boundary"
+  ],
+  "carrier_topology": {
+    "carrier": "finite filtered 2-dimensional simplicial complex",
+    "positive_fixture": "one delayed-filled triangle with boundary at filtration 0 and face at filtration 1",
+    "graveyard_fixtures": [
+      "immediately filled triangle",
+      "single 0-simplex"
+    ],
+    "topological_dimension_checked": "H1 only"
+  },
+  "observable": {
+    "primary": "positive-length H1 interval lifetime",
+    "secondary": "persistent Betti number beta1 at selected filtration values",
+    "boundary_readout": "beta1 exists immediately before face filtration and is absent after it"
+  },
+  "pass_fail_predicate": {
+    "pass": [
+      "delayed-filled triangle has exactly one finite H1 interval with lifetime 1.0",
+      "persistent Betti at filtration 0.5 reports beta0=1 and beta1=1",
+      "beta1 is present before filtration 1.0 and absent after filtration 1.0",
+      "single vertex has no H1 interval"
+    ],
+    "fail": [
+      "GUDHI fails to report the delayed H1 interval",
+      "immediately filled triangle reports a positive-length H1 interval",
+      "persistent Betti readout misses the face-filtration boundary transition"
+    ]
+  },
+  "graveyards": [
+    {
+      "name": "immediately_filled_triangle",
+      "change": "move the filling 2-simplex to the same filtration as its boundary",
+      "expected_death": "no positive-length H1 interval survives"
+    },
+    {
+      "name": "single_vertex",
+      "change": "remove all edges and faces",
+      "expected_death": "no H1 surface exists"
+    }
+  ],
+  "baselines": [
+    {
+      "name": "manual_interval_expectation",
+      "role": "classical baseline for the tiny fixture",
+      "expected": "H1 lifetime equals face_filtration minus boundary_filtration"
+    }
+  ],
+  "alternative_formulations": [
+    "RipsComplex construction on points chosen to induce the same delayed 1-cycle",
+    "TopoNetX or NetworkX representation of the same boundary/fill incidence before GUDHI persistence",
+    "manual boundary-matrix reduction for the same filtered triangle"
+  ],
+  "tool_function_needs": [
+    {
+      "tool": "gudhi",
+      "functions": [
+        "SimplexTree.insert",
+        "SimplexTree.make_filtration_non_decreasing",
+        "SimplexTree.persistence",
+        "SimplexTree.persistence_intervals_in_dimension",
+        "SimplexTree.persistent_betti_numbers"
+      ],
+      "depth": "load_bearing"
+    }
+  ],
+  "lego_coupling_target": [
+    "persistence_geometry",
+    "cell_complex_geometry"
+  ],
   "summary": {
     "passed": 6,
     "total": 6

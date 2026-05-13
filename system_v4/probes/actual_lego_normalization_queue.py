@@ -253,7 +253,7 @@ NORMALIZATION_TARGETS = {
         "note": "Direct local unitary basis-change row preserving local geometry on a bounded state family.",
     },
     "terrain_family_fourfold": {
-        "probe": "sim_engine_16_placements.py",
+        "probe": "sim_hopf_spinor_density_inner_outer_operator_placement_baseline.py",
         "confidence": "high",
         "note": "Best direct terrain-family match.",
     },
@@ -268,7 +268,7 @@ NORMALIZATION_TARGETS = {
         "note": "Direct local base-loop lego on one fixed sample showing density traversal and closure.",
     },
     "placement_law": {
-        "probe": "sim_engine_16_placements.py",
+        "probe": "sim_hopf_spinor_density_inner_outer_operator_placement_baseline.py",
         "confidence": "high",
         "note": "Direct placement-table surface.",
     },
@@ -278,7 +278,7 @@ NORMALIZATION_TARGETS = {
         "note": "Direct local loop-order row on one bounded carrier with two noncommuting steps.",
     },
     "signed_operator_variant": {
-        "probe": "sim_engine_16_placements.py",
+        "probe": "sim_hopf_spinor_density_inner_outer_operator_placement_baseline.py",
         "confidence": "medium",
         "note": "Closest current surface to the signed operator table.",
     },
@@ -471,7 +471,7 @@ TOOL_TARGETS = {
     "sim_lego_povm_measurement.py": ["cvc5"],
     "sim_lego_choi_state_duality.py": ["z3"],
     "sim_lego_lindblad_dissipator.py": ["sympy", "z3"],
-    "sim_engine_16_placements.py": ["sympy"],
+    "sim_hopf_spinor_density_inner_outer_operator_placement_baseline.py": ["sympy"],
     "sim_fiber_base_transport_test.py": ["geomstats"],
     "sim_dissipative_kraus_shell_compatibility.py": ["cvc5"],
     "sim_pyg_dynamic_edge_werner.py": ["pyg"],

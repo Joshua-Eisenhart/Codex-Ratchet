@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Engine 16 Placements: (terrain, loop, chirality) → (spinor evolution, density evolution)
-========================================================================================
-All 16 placement tuples from the engine docs.
+Hopf Spinor-Density Inner/Outer Operator Placement Baseline
+===========================================================
+All 16 local tuples from the terrain/operator loop schedule.
 
 Spinor parameterization:
   ψ_s(φ,χ;η) = (e^{i(φ+χ)} cos η, e^{i(φ-χ)} sin η)
@@ -19,8 +19,8 @@ For each of the 16 placements (8 terrains × 2 loops):
 
 Key test: fiber (inner) placements show NO density change. Base (outer) shows traversal.
 
-Classification: canonical
-Output: sim_results/engine_16_placements_results.json
+Classification: classical_baseline
+Output: sim_results/hopf_spinor_density_inner_outer_operator_placement_baseline_results.json
 """
 
 import json
@@ -30,7 +30,7 @@ import time
 from typing import Dict, List, Tuple, Any
 
 import numpy as np
-classification = "classical_baseline"  # downgraded: classical numeric placement baseline, not engine admission
+classification = "classical_baseline"  # classical numeric placement baseline, not admission
 
 CLAIM_CEILING = (
     "classical baseline only: finite numeric loop/placement fixture over spinor-density paths; "
@@ -899,7 +899,7 @@ if __name__ == "__main__":
 
     # --- Assemble final results ---
     results = {
-        "name": "engine_16_placements",
+        "name": "hopf_spinor_density_inner_outer_operator_placement_baseline",
         "description": "All 16 (terrain, loop) placement tuples with spinor evolution on Hopf torus",
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "elapsed_seconds": elapsed,
@@ -956,7 +956,7 @@ if __name__ == "__main__":
     # --- Write output ---
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "engine_16_placements_results.json")
+    out_path = os.path.join(out_dir, "hopf_spinor_density_inner_outer_operator_placement_baseline_results.json")
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"\nResults written to {out_path}")

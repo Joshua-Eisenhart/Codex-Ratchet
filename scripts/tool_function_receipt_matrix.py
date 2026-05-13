@@ -327,6 +327,14 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["classical_spectral_baseline", "classical_distance_entropy_baseline"],
     },
     {
+        "tool": "scipy",
+        "function_api": "scipy.integrate.solve_ivp numerical Hopf horizontal-lift chi-shift ODE over base latitude loops",
+        "receipt": "system_v4/probes/a2_state/sim_results/scipy_hopf_horizontal_lift_chi_shift_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": ["hopf_loop_holonomy_geometry_baseline", "inner_outer_hopf_weyl_loop_geometry_fit"],
+    },
+    {
         "tool": "numpy",
         "function_api": "numpy complex arrays, exp, outer, trace, linalg.norm, and unwrap over sampled Hopf-coordinate carrier paths",
         "receipt": "system_v4/probes/a2_state/sim_results/hopf_weyl_inner_outer_loop_readout_geometry_results.json",

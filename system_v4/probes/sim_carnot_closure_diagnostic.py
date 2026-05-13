@@ -277,8 +277,69 @@ def main() -> None:
     out = {
         "name": "carnot_closure_diagnostic",
         "classification": CLASSIFICATION,
+        "all_pass": bool(all_pass),
         "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": divergence_log,
+        "claim_ceiling": (
+            "finite classical stochastic Carnot closure diagnostic only: locates forward-cycle "
+            "state-return residue with z3 finite-arithmetic guards; no engine, QIT, GStack, "
+            "bridge, axis, or nonclassical admission"
+        ),
+        "next_lego_target": (
+            "two-bath cycle calibration support only; use with separate same-bath, broken-leg, "
+            "reversed-direction, and exact-closure companions before any cycle-mechanics claim"
+        ),
+        "promotion_condition": (
+            "No promotion from this receipt; downstream cycle calibration must close heat/work "
+            "bounds and surrounding graveyards under exact receipts."
+        ),
+        "demotion_condition": (
+            "Demote if exact closure is claimed from this diagnostic, if the high-step residue "
+            "guard becomes SAT, or if this receipt is used as QIT/GStack/axis/nonclassical evidence."
+        ),
+        "blocked_until": (
+            "blocked from engine, QIT, GStack, bridge, axis, runtime-cycle, or nonclassical claims "
+            "until separate exact calibration receipts close those gates"
+        ),
+        "out_of_scope": [
+            "No quantum carrier.",
+            "No continuum-limit thermodynamic proof.",
+            "No engine, QIT, GStack, bridge, axis, or nonclassical admission.",
+        ],
+        "operation_sequence": [
+            "run forward harmonic hot/cold cycle over a finite step grid",
+            "summarize variance and internal-energy mismatch per leg",
+            "identify best and worst closure rows",
+            "use z3 to guard temperature ordering and reject exact high-step closure",
+        ],
+        "carrier_topology": "classical stochastic harmonic-trap state samples over finite step grid",
+        "observable": "variance mismatch, internal-energy mismatch, cycle delta-u, dominant residue leg, and z3 closure verdicts",
+        "pass_fail_predicate": "higher steps reduce return mismatch, quasistatic row is closest, residue is not exact closure, finite statistics hold, and z3 rejects hot<=cold and exact high-step closure",
+        "graveyards": [
+            "hot-not-above-cold contradiction",
+            "high-step exact-closure claim",
+            "single-bad-adiabatic-jump explanation",
+        ],
+        "graveyard_companions": [
+            "hot-not-above-cold contradiction",
+            "high-step exact-closure claim",
+            "single-bad-adiabatic-jump explanation",
+        ],
+        "baselines": [
+            "finite stochastic harmonic closure sweep",
+            "z3 finite arithmetic guard over recorded residue",
+        ],
+        "alternative_formulations": [
+            "same-bath no-work closure companion",
+            "broken-leg closure companion",
+            "reversed-direction closure companion",
+        ],
+        "exact_tool_function_needs": {
+            "numpy": ["mean", "isfinite", "asarray"],
+            "z3": ["Solver", "Real", "Int", "RealVal"],
+        },
+        "lego_or_coupling_target": "classical two-bath cycle closure diagnostic support",
+        "promotion_allowed": False,
         "parent_scope_note": PARENT_SCOPE_NOTE,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,

@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T05:38:03.166619+00:00`
+Generated: `2026-05-13T05:41:22.376473+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `102`
-- Passing rows: `102`
+- Rows: `103`
+- Passing rows: `103`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `102`
+- Explicit receipt schemas missing: `103`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -62,6 +62,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `toponetx` | CellComplex rank-2 cell incidence_matrix(2) | `system_v4/probes/a2_state/sim_results/sim_integration_xgi_toponetx_higher_order_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `cell_complex_geometry`, `hypergraph_shell_geometry` |
 | `toponetx` | TopoNetX CellComplex periodic rank-2 torus layers with incidence_matrix and hodge_laplacian_matrix zero-mode readouts | `system_v4/probes/a2_state/sim_results/toponetx_two_hopf_torus_layer_incidence_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `toponetx` | TopoNetX CellComplex connected two-layer torus cells with interlayer rank-2 cells and Hodge-Laplacian zero-mode proxies | `system_v4/probes/a2_state/sim_results/toponetx_connected_hopf_torus_layer_incidence_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `connected_layer_cell_complex_baseline` |
+| `toponetx` | TopoNetX CellComplex add_node/add_cell/incidence_matrix/hodge_laplacian_matrix over Hopf/Weyl vertical fiber and horizontal base-lift Bloch-density readout cycle fixtures | `system_v4/probes/a2_state/sim_results/toponetx_hopf_weyl_vertical_horizontal_density_readout_cycle_incidence_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_weyl_carrier_loop_geometry_baseline`, `density_readout_cycle_incidence_baseline` |
 | `toponetx` | SimplicialComplex.to_hasse_graph node/edge carrier feeding PyG graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `topology_to_graph_fit`, `cell_complex_geometry` |
 | `xgi` | xgi.Hypergraph hyperedge membership and shared incidence intersection | `system_v4/probes/a2_state/sim_results/xgi_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `dual_hypergraph_geometry` |
 | `xgi` | xgi.Hypergraph incidence matrix and node/edge membership on a tiny hypergraph | `system_v4/probes/a2_state/sim_results/sim_xgi_hypergraph_incidence_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `hypergraph_shell_geometry`, `cell_complex_geometry` |

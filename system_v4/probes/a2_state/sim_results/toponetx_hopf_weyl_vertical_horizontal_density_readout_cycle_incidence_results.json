@@ -1,0 +1,289 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "TopoNetX SimplicialComplex path-cycle fixture",
+    "GUDHI SimplexTree explicit cycle/collapsed fixture",
+    "NetworkX cycle graph and connected-component baseline",
+    "physical Hamiltonian generator evolution over vertical and horizontal path families"
+  ],
+  "baselines": [
+    "GUDHI Hopf/Weyl vertical-horizontal density readout Rips homology baseline",
+    "QuTiP/Qiskit Hopf/Weyl vertical-horizontal density transport baselines",
+    "SymPy/Geomstats/Clifford Hopf/Weyl vertical-horizontal metric baselines",
+    "z3/cvc5 Hopf/Weyl vertical-horizontal metric predicate controls"
+  ],
+  "blocked_until": "blocked from target-system claims until full carrier/topology and physical-evolution receipts exist",
+  "carrier_topology": "sampled two-component Hopf/Weyl carrier projected to Bloch-density readout paths and then to finite CellComplex fixtures",
+  "claim_ceiling": "TopoNetX CellComplex incidence baseline for Bloch-density readout cycle fixtures from declared Hopf/Weyl vertical fiber and horizontal base-lift paths only; this represents fiber collapse versus density-loop readout but does not distinguish raw base from horizontal base or connection sign; no full nested Hopf-torus geometric-constraint manifold, no physical evolution, no flux, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if vertical fiber density readout does not collapse, if horizontal/base readouts do not form one-cycle incidence fixtures, or if pole/equator/raw-horizontal/wrong-sign controls do not collapse or coincide as predicted.",
+  "divergence_log": "This TopoNetX packet is a cell-incidence formulation of the density-readout topology limit. It detects collapsed-fiber versus one-cycle readouts and records raw-base/horizontal-base and connection-sign indistinguishability as controls.",
+  "exact_tool_function_needs": {
+    "numpy": [
+      "linspace",
+      "exp",
+      "asarray",
+      "linalg.norm",
+      "linalg.eigvalsh",
+      "linalg.svd"
+    ],
+    "toponetx": [
+      "CellComplex",
+      "CellComplex.add_node",
+      "CellComplex.add_cell",
+      "CellComplex.incidence_matrix",
+      "CellComplex.hodge_laplacian_matrix"
+    ]
+  },
+  "graveyards": [
+    "vertical fiber density readout collapses to point complex",
+    "horizontal base density readout is cycle complex",
+    "cell incidence does not distinguish raw from horizontal base",
+    "wrong-sign cell incidence is not a connection-sign detector",
+    "pole horizontal base density readout collapses",
+    "equator raw and horizontal cell incidence coincide",
+    "node cloud without edges is not cycle complex"
+  ],
+  "graveyards_detail": {
+    "cell_incidence_does_not_distinguish_raw_from_horizontal_base": {
+      "horizontal_base_zero_mode_proxy": {
+        "0": 1,
+        "1": 1
+      },
+      "passed": true,
+      "raw_base_zero_mode_proxy": {
+        "0": 1,
+        "1": 1
+      }
+    },
+    "equator_raw_and_horizontal_cell_incidence_coincide": {
+      "horizontal_base_zero_mode_proxy": {
+        "0": 1,
+        "1": 1
+      },
+      "passed": true,
+      "raw_base_zero_mode_proxy": {
+        "0": 1,
+        "1": 1
+      }
+    },
+    "horizontal_base_density_readout_is_cycle_complex": {
+      "complex_kind": "cycle_graph",
+      "passed": true,
+      "zero_mode_proxy": {
+        "0": 1,
+        "1": 1
+      }
+    },
+    "node_cloud_without_edges_is_not_cycle_complex": {
+      "edge_count": 0,
+      "node_count": 32,
+      "passed": true,
+      "zero_mode_proxy": {
+        "0": 32,
+        "1": 0
+      }
+    },
+    "pole_horizontal_base_density_readout_collapses": {
+      "complex_kind": "collapsed_point",
+      "passed": true,
+      "zero_mode_proxy": {
+        "0": 1,
+        "1": 0
+      }
+    },
+    "vertical_fiber_density_readout_collapses_to_point_complex": {
+      "complex_kind": "collapsed_point",
+      "passed": true,
+      "zero_mode_proxy": {
+        "0": 1,
+        "1": 0
+      }
+    },
+    "wrong_sign_cell_incidence_is_not_a_connection_sign_detector": {
+      "horizontal_base_zero_mode_proxy": {
+        "0": 1,
+        "1": 1
+      },
+      "passed": true,
+      "wrong_sign_zero_mode_proxy": {
+        "0": 1,
+        "1": 1
+      }
+    }
+  },
+  "lego_or_coupling_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "name": "toponetx_hopf_weyl_vertical_horizontal_density_readout_cycle_incidence",
+  "next_lego_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "observable": "TopoNetX CellComplex node/edge counts, incidence matrix shapes, Hodge-Laplacian zero-mode proxies, and density-readout displacement",
+  "operation_sequence": [
+    "construct two-component Hopf/Weyl spinor samples from theta, phi, and chi",
+    "project each carrier sample to a three-coordinate Bloch-density readout",
+    "sample vertical fiber, raw base, horizontal base lift, and wrong-sign horizontal base paths",
+    "collapse near-constant density readout paths to one-node CellComplex fixtures",
+    "encode non-collapsed density readout paths as TopoNetX one-cycle CellComplex fixtures",
+    "compute incidence matrix shapes and Hodge-Laplacian zero-mode proxies",
+    "run fiber-collapse, horizontal-cycle, pole-collapse, equator-coincidence, raw-horizontal, wrong-sign, and no-edge graveyards"
+  ],
+  "out_of_scope": [
+    "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+    "No flux representation or Pauli-boundary shortcut.",
+    "No Lindblad, Hamiltonian, thermodynamic, or information-cycle mechanics.",
+    "No distinction between raw base and horizontal base by cell incidence alone.",
+    "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "vertical fiber density readout collapses to a point fixture, horizontal/raw/wrong-sign base density readouts form one-cycle fixtures, and adjacent controls collapse or become indistinguishable as predicted",
+  "positive": {
+    "density_readout_cycle_incidence_pass": true,
+    "readouts": {
+      "horizontal_base": {
+        "complex_kind": "cycle_graph",
+        "edge_count": 32,
+        "incidence_shapes": {
+          "0": [
+            0,
+            32
+          ],
+          "1": [
+            32,
+            32
+          ]
+        },
+        "laplacian_shapes": {
+          "0": [
+            32,
+            32
+          ],
+          "1": [
+            32,
+            32
+          ]
+        },
+        "max_pairwise_displacement": 1.7320508075688772,
+        "node_count": 32,
+        "rank2_cell_count": 0,
+        "rank_proxy_singular_value_count": 2,
+        "zero_mode_proxy": {
+          "0": 1,
+          "1": 1
+        }
+      },
+      "raw_base": {
+        "complex_kind": "cycle_graph",
+        "edge_count": 32,
+        "incidence_shapes": {
+          "0": [
+            0,
+            32
+          ],
+          "1": [
+            32,
+            32
+          ]
+        },
+        "laplacian_shapes": {
+          "0": [
+            32,
+            32
+          ],
+          "1": [
+            32,
+            32
+          ]
+        },
+        "max_pairwise_displacement": 1.7320508075688772,
+        "node_count": 32,
+        "rank2_cell_count": 0,
+        "rank_proxy_singular_value_count": 2,
+        "zero_mode_proxy": {
+          "0": 1,
+          "1": 1
+        }
+      },
+      "vertical_fiber": {
+        "complex_kind": "collapsed_point",
+        "edge_count": 0,
+        "incidence_shapes": {
+          "0": [
+            0,
+            1
+          ],
+          "1": [
+            1,
+            0
+          ]
+        },
+        "laplacian_shapes": {
+          "0": [
+            1,
+            1
+          ],
+          "1": [
+            0,
+            0
+          ]
+        },
+        "max_pairwise_displacement": 3.7238012298709097e-16,
+        "node_count": 1,
+        "rank2_cell_count": 0,
+        "rank_proxy_singular_value_count": 0,
+        "zero_mode_proxy": {
+          "0": 1,
+          "1": 0
+        }
+      },
+      "wrong_sign_horizontal_base": {
+        "complex_kind": "cycle_graph",
+        "edge_count": 32,
+        "incidence_shapes": {
+          "0": [
+            0,
+            32
+          ],
+          "1": [
+            32,
+            32
+          ]
+        },
+        "laplacian_shapes": {
+          "0": [
+            32,
+            32
+          ],
+          "1": [
+            32,
+            32
+          ]
+        },
+        "max_pairwise_displacement": 1.7320508075688772,
+        "node_count": 32,
+        "rank2_cell_count": 0,
+        "rank_proxy_singular_value_count": 2,
+        "zero_mode_proxy": {
+          "0": 1,
+          "1": 1
+        }
+      }
+    },
+    "theta": 1.0471975511965976
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later geometry planning after full carrier, connection, topology, solver, density-object, and physical operator-evolution receipts reproduce compatible vertical/horizontal separation with adjacent controls.",
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "toponetx": "load_bearing"
+  },
+  "tool_manifest": {
+    "numpy": {
+      "reason": "samples Hopf/Weyl carrier paths, computes Bloch-density readouts, displacement controls, and Laplacian eigenspectrum proxies",
+      "tried": true,
+      "used": true
+    },
+    "toponetx": {
+      "reason": "builds CellComplex cycle/collapsed fixtures from Bloch-density readout path families and computes incidence/Hodge-Laplacian zero-mode proxies",
+      "tried": true,
+      "used": true
+    }
+  }
+}

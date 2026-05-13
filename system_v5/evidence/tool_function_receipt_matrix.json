@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T05:38:03.166619+00:00",
+  "generated_at": "2026-05-13T05:41:22.376473+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -2386,6 +2386,63 @@
         "No QIT, GStack, axis, bridge, or nonclassical admission."
       ],
       "receipt": "system_v4/probes/a2_state/sim_results/toponetx_connected_hopf_torus_layer_incidence_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "toponetx"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "hopf_weyl_carrier_loop_geometry_baseline",
+        "density_readout_cycle_incidence_baseline"
+      ],
+      "claim_ceiling": "TopoNetX CellComplex incidence baseline for Bloch-density readout cycle fixtures from declared Hopf/Weyl vertical fiber and horizontal base-lift paths only; this represents fiber collapse versus density-loop readout but does not distinguish raw base from horizontal base or connection sign; no full nested Hopf-torus geometric-constraint manifold, no physical evolution, no flux, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
+      "depth": "load_bearing",
+      "function_api": "TopoNetX CellComplex add_node/add_cell/incidence_matrix/hodge_laplacian_matrix over Hopf/Weyl vertical fiber and horizontal base-lift Bloch-density readout cycle fixtures",
+      "manifest_reason": "builds CellComplex cycle/collapsed fixtures from Bloch-density readout path families and computes incidence/Hodge-Laplacian zero-mode proxies",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+        "No flux representation or Pauli-boundary shortcut.",
+        "No Lindblad, Hamiltonian, thermodynamic, or information-cycle mechanics.",
+        "No distinction between raw base and horizontal base by cell incidence alone.",
+        "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/toponetx_hopf_weyl_vertical_horizontal_density_readout_cycle_incidence_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "classical_baseline",
       "receipt_contract_fields": [
@@ -5525,11 +5582,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 102,
+    "passing_count": 103,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 102,
+    "receipt_schema_observed_missing_count": 103,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 102,
+    "row_count": 103,
     "tools": [
       "clifford",
       "cvc5",

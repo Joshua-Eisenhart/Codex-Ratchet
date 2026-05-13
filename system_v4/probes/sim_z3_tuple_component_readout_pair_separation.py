@@ -16,7 +16,7 @@ import time
 import z3
 
 
-classification = "canonical"
+classification = "tool_lego_fit_probe"
 
 CLAIM_CEILING = (
     "local z3 finite-tuple readout separation only: 16 abstract 4x2x2 tuples are "
@@ -205,6 +205,7 @@ def main() -> dict:
         "name": "sim_z3_tuple_component_readout_pair_separation",
         "classification": classification,
         "all_pass": all_pass,
+        "promotion_allowed": False,
         "claim_ceiling": CLAIM_CEILING,
         "next_lego_target": (
             "none; use as bounded tuple-readout separation evidence before any separate placement "
@@ -239,6 +240,16 @@ def main() -> dict:
             "drop operator_id from the readout",
             "drop path_id from the readout",
             "drop sheet_id from the readout",
+        ],
+        "graveyard_companions": [
+            "drop operator_id from the readout",
+            "drop path_id from the readout",
+            "drop sheet_id from the readout",
+        ],
+        "graveyard_limitations": [
+            "coordinate-dropped graveyards test declared tuple-label separation only",
+            "not a physical-evolution distinguishability sweep",
+            "bare-Pauli/no-bundle, swapped-chirality, superposed-chirality, and anti-orientation-flux companions remain unrun",
         ],
         "baselines": [
             "abstract tuple-label readout only",

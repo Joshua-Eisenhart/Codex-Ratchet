@@ -544,6 +544,14 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "sympy",
+        "function_api": "sympy Matrix/diff/integrate/simplify contrast between Hopf connection curvature and carrier-free Pauli-label controls",
+        "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_connection_curvature_pauli_label_gap_results.json",
+        "role": "classical_baseline",
+        "depth": "supportive",
+        "candidate_lego_targets": ["bare_pauli_no_carrier_negative_control", "hopf_connection_curvature_geometry_baseline"],
+    },
+    {
+        "tool": "sympy",
         "function_api": "sympy symbols/cos/integrate/simplify exact Hopf connection loop integrals and horizontal-lift chi shifts",
         "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_loop_holonomy_area_dependence_results.json",
         "role": "classical_baseline",

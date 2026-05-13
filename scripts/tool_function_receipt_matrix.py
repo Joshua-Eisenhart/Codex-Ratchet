@@ -571,6 +571,17 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["nested_hopf_torus_loop_geometry_baseline", "readout_vector_separation_controls"],
     },
     {
+        "tool": "z3",
+        "function_api": "z3 SolverFor('QF_LIA') bounded integer partial-order constraints over Hopf receipt dependency DAG",
+        "receipt": "system_v4/probes/a2_state/sim_results/z3_hopf_receipt_dependency_partial_order_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "nested_hopf_torus_loop_geometry_baseline",
+            "receipt_dependency_dag_controls",
+        ],
+    },
+    {
         "tool": "cvc5",
         "function_api": "cvc5 Solver.assertFormula/checkSat/getValue QF_LIA fixture",
         "receipt": "system_v4/probes/a2_state/sim_results/cvc5_capability_results.json",

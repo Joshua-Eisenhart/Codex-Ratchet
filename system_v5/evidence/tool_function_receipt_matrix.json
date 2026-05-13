@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T03:41:56.321060+00:00",
+  "generated_at": "2026-05-13T03:44:58.680423+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -3416,6 +3416,62 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
+        "bare_pauli_no_carrier_negative_control",
+        "hopf_connection_curvature_geometry_baseline"
+      ],
+      "claim_ceiling": "SymPy Hopf connection curvature versus bare Pauli-label negative-control baseline only; shows that constant Pauli matrices and diagonal/off-diagonal labels do not carry the base-coordinate curvature form by themselves; no flux admission, no Pauli-to-flux shortcut, no physical dynamics, no QIT, GStack, axis, bridge, nonclassical, or target-system claim",
+      "depth": "supportive",
+      "function_api": "sympy Matrix/diff/integrate/simplify contrast between Hopf connection curvature and carrier-free Pauli-label controls",
+      "manifest_reason": "computes exact Hopf connection curvature and compares it with zero-coordinate Pauli-label controls",
+      "observed_depth": "supportive",
+      "out_of_scope": [
+        "No flux representation or Pauli-to-flux map.",
+        "No physical Weyl-sheet dynamics.",
+        "No nested Hopf-torus geometric-constraint-manifold implementation.",
+        "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_connection_curvature_pauli_label_gap_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "sympy"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
         "hopf_loop_holonomy_geometry_baseline",
         "inner_outer_hopf_weyl_loop_geometry_fit"
       ],
@@ -3953,11 +4009,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 74,
+    "passing_count": 75,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 74,
+    "receipt_schema_observed_missing_count": 75,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 74,
+    "row_count": 75,
     "tools": [
       "clifford",
       "cvc5",

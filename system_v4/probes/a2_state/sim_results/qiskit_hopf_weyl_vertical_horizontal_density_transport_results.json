@@ -1,0 +1,216 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "QuTiP Qobj ket and density-object formulation",
+    "Qiskit Operator generator evolution over the same carrier paths",
+    "Clifford Spin/SU(2) carrier phase formulation",
+    "finite-cell topology controls around vertical and horizontal path neighborhoods"
+  ],
+  "baselines": [
+    "SymPy Hopf/Weyl fiber-horizontal-base loop independence identities",
+    "Geomstats Hopf/Weyl fiber-horizontal-base loop distance baseline",
+    "Clifford Hopf/Weyl fiber-horizontal-base tangent inner-product baseline",
+    "z3/cvc5 Hopf/Weyl vertical-horizontal metric predicate controls"
+  ],
+  "blocked_until": "blocked from target-system claims until full carrier/topology and physical-evolution receipts exist",
+  "carrier_topology": "sampled two-component Hopf-coordinate Statevector carrier with DensityMatrix readout; no full nested-torus manifold",
+  "claim_ceiling": "Qiskit Statevector/DensityMatrix transport baseline for declared Hopf/Weyl vertical fiber and horizontal base-lift paths only; this compares carrier statevector, density object, and Pauli expectation readouts in one local chart, not physical operator evolution or full loop independence in a nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if vertical fiber moves density, if horizontal base does not move density away from pole, if horizontal base does not close on density while keeping a carrier phase gap, or if pole/equator/wrong-sign controls fail.",
+  "divergence_log": "This Qiskit packet adds Statevector/DensityMatrix transport along the horizontal base-lift path. It is still a local coordinate carrier readout and does not run a physical Hamiltonian or Lindblad evolution.",
+  "exact_tool_function_needs": {
+    "numpy": [
+      "linspace",
+      "exp",
+      "unwrap",
+      "angle",
+      "roll",
+      "linalg.norm",
+      "dot"
+    ],
+    "qiskit": [
+      "Statevector",
+      "DensityMatrix",
+      "Operator",
+      "DensityMatrix.expectation_value"
+    ]
+  },
+  "graveyards": [
+    "vertical fiber density hides carrier phase",
+    "horizontal base closes on density not statevector",
+    "wrong-sign horizontal has different carrier phase span",
+    "pole horizontal base collapses density transport",
+    "equator raw and horizontal base coincide",
+    "Bloch density readout cannot see fiber tangent"
+  ],
+  "graveyards_detail": {
+    "bloch_density_readout_cannot_see_fiber_tangent": {
+      "fiber_bloch_tangent_norm": 5.551115123125783e-11,
+      "horizontal_base_bloch_tangent_norm": 0.8660254037866549,
+      "passed": true,
+      "raw_base_bloch_tangent_norm": 0.866025403864193
+    },
+    "equator_raw_and_horizontal_base_coincide": {
+      "equator_horizontal_density_path_length": 4.442771423960525,
+      "equator_raw_density_path_length": 4.442771423960525,
+      "passed": true
+    },
+    "horizontal_base_closes_on_density_not_statevector": {
+      "horizontal_start_end_density_distance": 3.685054203581842e-16,
+      "horizontal_start_end_statevector_distance": 1.414213562373095,
+      "passed": true
+    },
+    "pole_horizontal_base_collapses_density_transport": {
+      "passed": true,
+      "pole_horizontal_density_path_length": 2.490954163013478e-15
+    },
+    "vertical_fiber_density_hides_carrier_phase": {
+      "fiber_density_path_length": 3.481982120195277e-14,
+      "fiber_statevector_path_length": 3.1415729403670913,
+      "passed": true
+    },
+    "wrong_sign_horizontal_has_different_carrier_phase_span": {
+      "horizontal_phase_span": 1.5707963267948961,
+      "passed": true,
+      "wrong_sign_phase_span": 4.71238898038469
+    }
+  },
+  "lego_or_coupling_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "name": "qiskit_hopf_weyl_vertical_horizontal_density_transport",
+  "next_lego_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "observable": "statevector path length, density path length, start-end density/statevector distances, Pauli expectation path, signed xy area, and phase span",
+  "operation_sequence": [
+    "construct normalized two-component Qiskit Statevector carriers from Hopf coordinates theta, phi, chi",
+    "sample vertical fiber by varying chi at fixed theta and phi",
+    "sample raw base by varying phi at fixed theta and chi",
+    "sample horizontal base lift by varying phi while applying the Hopf connection chi correction",
+    "sample a wrong-sign horizontal base control",
+    "compute DensityMatrix objects, Pauli Operator expectation readouts, density path lengths, statevector path lengths, and phase spans",
+    "run phase-hidden, density-closure, wrong-sign, pole, equator, and Bloch-fiber-hidden graveyards"
+  ],
+  "out_of_scope": [
+    "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+    "No flux representation or Pauli-boundary shortcut.",
+    "No Lindblad, Hamiltonian, thermodynamic, or information-cycle mechanics.",
+    "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "vertical fiber moves statevector phase but not density, horizontal base moves density away from pole and closes on density with a carrier phase gap, wrong-sign connection differs in carrier phase, and adjacent controls collapse as predicted",
+  "positive": {
+    "chi0": 0.4487989505128276,
+    "density_transport_controls_pass": true,
+    "finite_difference_bloch_tangent_controls": {
+      "fiber_bloch_tangent_norm": 5.551115123125783e-11,
+      "horizontal_base_bloch_tangent_norm": 0.8660254037866549,
+      "horizontal_base_fiber_bloch_dot": 0.0,
+      "raw_base_bloch_tangent_norm": 0.866025403864193,
+      "raw_base_fiber_bloch_dot": 3.0814879110195774e-21
+    },
+    "phi0": 0.6283185307179586,
+    "readouts": {
+      "horizontal_base": {
+        "density_path_length": 3.8475529163573783,
+        "end_bloch": [
+          0.700629269222037,
+          -0.5090369604551267,
+          0.5000000000000001
+        ],
+        "first_component_phase_span": 1.5707963267948961,
+        "max_bloch_displacement": 1.7320508075688772,
+        "max_density_displacement": 1.224744871391589,
+        "signed_xy_area": -2.3559579381995794,
+        "start_bloch": [
+          0.7006292692220368,
+          -0.5090369604551271,
+          0.5000000000000002
+        ],
+        "start_end_density_distance": 3.685054203581842e-16,
+        "start_end_statevector_distance": 1.414213562373095,
+        "statevector_path_length": 2.7206691701923953,
+        "trace": 1.0
+      },
+      "raw_base": {
+        "density_path_length": 3.8475529163573787,
+        "end_bloch": [
+          0.7006292692220368,
+          -0.509036960455127,
+          0.5000000000000002
+        ],
+        "first_component_phase_span": 3.1415926535897927,
+        "max_bloch_displacement": 1.7320508075688772,
+        "max_density_displacement": 1.224744871391589,
+        "signed_xy_area": -2.3559579381995794,
+        "start_bloch": [
+          0.7006292692220368,
+          -0.5090369604551271,
+          0.5000000000000002
+        ],
+        "start_end_density_distance": 1.712165886464794e-16,
+        "start_end_statevector_distance": 2.0,
+        "statevector_path_length": 3.1415729403670913,
+        "trace": 1.0
+      },
+      "vertical_fiber": {
+        "density_path_length": 3.481982120195277e-14,
+        "end_bloch": [
+          0.7006292692220367,
+          -0.5090369604551271,
+          0.5000000000000001
+        ],
+        "first_component_phase_span": 3.1415926535897927,
+        "max_bloch_displacement": 3.7238012298709097e-16,
+        "max_density_displacement": 3.7504413363859817e-16,
+        "signed_xy_area": 0.0,
+        "start_bloch": [
+          0.7006292692220368,
+          -0.5090369604551271,
+          0.5000000000000002
+        ],
+        "start_end_density_distance": 1.3892546388954084e-16,
+        "start_end_statevector_distance": 2.0,
+        "statevector_path_length": 3.1415729403670913,
+        "trace": 1.0
+      },
+      "wrong_sign_horizontal_base": {
+        "density_path_length": 3.8475529163573787,
+        "end_bloch": [
+          0.7006292692220369,
+          -0.5090369604551267,
+          0.5
+        ],
+        "first_component_phase_span": 4.71238898038469,
+        "max_bloch_displacement": 1.7320508075688772,
+        "max_density_displacement": 1.224744871391589,
+        "signed_xy_area": -2.3559579381995794,
+        "start_bloch": [
+          0.7006292692220368,
+          -0.5090369604551271,
+          0.5000000000000002
+        ],
+        "start_end_density_distance": 3.9390733113382353e-16,
+        "start_end_statevector_distance": 1.4142135623730951,
+        "statevector_path_length": 4.15587962808117,
+        "trace": 1.0
+      }
+    },
+    "theta": 1.0471975511965976
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later geometry planning after symbolic, numerical, Clifford, topology, solver, and physical operator-evolution receipts reproduce compatible vertical/horizontal separation with adjacent controls.",
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "qiskit": "load_bearing"
+  },
+  "tool_manifest": {
+    "numpy": {
+      "reason": "samples Hopf-coordinate paths and computes density, Bloch, and phase path metrics",
+      "tried": true,
+      "used": true
+    },
+    "qiskit": {
+      "reason": "constructs two-component Statevector carriers, DensityMatrix objects, and Operator Pauli expectation readouts along vertical fiber and horizontal base-lift paths",
+      "tried": true,
+      "used": true
+    }
+  }
+}

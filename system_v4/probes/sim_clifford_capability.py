@@ -52,6 +52,10 @@ except Exception as exc:
     TOOL_MANIFEST["clifford"]["reason"] = f"not installed: {exc}"
 
 
+def _scalar_value(mv):
+    return float(mv.value[0]) if hasattr(mv, "value") else float(mv)
+
+
 # =====================================================================
 # POSITIVE TESTS
 # =====================================================================
@@ -107,7 +111,7 @@ def run_positive_tests():
     grade2 = Bsq(2)
     r["cl6_bivector_square"] = {
         "pass": float(abs(grade0 - (-1.0))) < 1e-9 and float(abs(grade2)) < 1e-9,
-        "grade0": float(grade0[0]) if hasattr(grade0, "__getitem__") else float(grade0),
+        "grade0": _scalar_value(grade0),
         "grade2_norm": float(abs(grade2)),
     }
 
@@ -201,7 +205,7 @@ def run_boundary_tests():
     # 2. Pseudo-scalar I = e1*e2*e3 in Cl(3) squares to -1.
     I = e1 * e2 * e3
     Isq = I * I
-    val = float(Isq[0])
+    val = _scalar_value(Isq)
     r["pseudoscalar_square_minus_one"] = {
         "pass": abs(val + 1.0) < 1e-9,
         "value": val,
@@ -221,7 +225,7 @@ def run_boundary_tests():
     v = 1.0 * e1
     v_out = R2pi * v * ~R2pi
     # R(2pi) has scalar part approx -1.
-    scalar_part = float(R2pi[0])
+    scalar_part = _scalar_value(R2pi)
     r["double_cover_2pi"] = {
         "pass": float(abs(v_out - v)) < 1e-9 and abs(scalar_part + 1.0) < 1e-9,
         "scalar_part": scalar_part,
@@ -265,6 +269,112 @@ if __name__ == "__main__":
         "all_pass": bool(summary["all_pass"]),
         "classification": "canonical",
         "claim_ceiling": "tool_micro_clifford_capability_only",
+        "operation_sequence": [
+            "construct Cl(3) basis blades",
+            "build a bivector-plane rotor and apply the rotor sandwich to a vector",
+            "compare composed rotor transport with sequential rotor transport",
+            "construct a Cl(6) bivector and read scalar and grade-2 projections of its square",
+            "check reversion antihomomorphism on multivector products",
+            "run adjacent negative and boundary fixtures for anticommutation, bad blades, non-rotor sandwiches, scalar multiplication, pseudoscalar square, identity rotor, and 2pi rotor double cover",
+        ],
+        "carrier_topology": {
+            "carrier": "finite real Clifford algebras Cl(3,0) and Cl(6,0)",
+            "positive_fixtures": [
+                "unit rotor in the e1^e2 plane",
+                "composed rotors in e1^e2 and e2^e3 planes",
+                "Cl(6) simple bivector",
+                "mixed-grade multivectors for reversion",
+            ],
+            "graveyard_fixtures": [
+                "basis blade anticommutation check",
+                "missing blade lookup",
+                "non-unit mixed-grade sandwich",
+            ],
+            "boundary_fixtures": [
+                "scalar times vector",
+                "Cl(3) pseudoscalar square",
+                "identity rotor",
+                "2pi rotor acting trivially on vectors while the rotor scalar part is -1",
+            ],
+        },
+        "observable": {
+            "primary": "norm error between Clifford algebra identities and expected multivectors",
+            "secondary": [
+                "grade projection norms",
+                "basis anticommutation residual",
+                "pseudoscalar scalar value",
+                "2pi rotor scalar part and vector-action error",
+            ],
+        },
+        "pass_fail_predicate": {
+            "pass": [
+                "90 degree rotor sandwich maps e1 to e2 within tolerance",
+                "composed rotor transport equals sequential rotor transport within tolerance",
+                "Cl(6) bivector square has scalar part -1 and no grade-2 part",
+                "reversion reverses product order within tolerance",
+                "basis blades anticommute",
+                "bad blade lookup raises",
+                "non-unit mixed-grade sandwich exposes non-vector-grade content",
+                "scalar-vector product stays grade 1",
+                "pseudoscalar squares to -1",
+                "identity rotor leaves vector unchanged",
+                "2pi rotor leaves vector action unchanged while rotor scalar part is -1",
+            ],
+            "fail": [
+                "clifford import is unavailable",
+                "any rotor, grade projection, reversion, negative, or boundary check fails its tolerance",
+            ],
+        },
+        "graveyards": [
+            {
+                "name": "basis_anticommute",
+                "change": "reverse the order of e1 and e2 multiplication",
+                "expected_death": "commutative multiplication is rejected by nonzero difference and near-zero anticommutator sum",
+            },
+            {
+                "name": "bad_blade_lookup",
+                "change": "request a blade not present in the finite basis dictionary",
+                "expected_death": "lookup raises instead of producing a decorative placeholder blade",
+            },
+            {
+                "name": "non_unit_mixed_grade_sandwich",
+                "change": "replace the unit rotor with a non-unit mixed-grade multivector",
+                "expected_death": "grade preservation collapses through nonzero grade-3 content",
+            },
+        ],
+        "baselines": [
+            {
+                "name": "scalar_vector_boundary",
+                "role": "boundary baseline for grade-1 preservation under scalar multiplication",
+            },
+            {
+                "name": "identity_rotor_boundary",
+                "role": "zero-angle rotor baseline for no-op vector action",
+            },
+        ],
+        "alternative_formulations": [
+            "matrix representation of Cl(3) generators with rotor action checked by conjugation",
+            "sympy exact symbolic Clifford identities for the same small basis products",
+            "manual geometric algebra multiplication table for Cl(3)",
+        ],
+        "tool_function_needs": [
+            {
+                "tool": "clifford",
+                "functions": [
+                    "clifford.Cl",
+                    "basis blade multiplication",
+                    "outer product",
+                    "multivector reversion",
+                    "grade projection",
+                    "multivector norm",
+                ],
+                "depth": "load_bearing",
+            }
+        ],
+        "lego_coupling_target": [
+            "clifford_generator_basis",
+            "clifford_geometry",
+        ],
         "out_of_scope": [
             "no lego admission",
             "no tool-tool coupling claim",

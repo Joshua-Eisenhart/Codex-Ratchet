@@ -558,6 +558,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "sympy",
+        "function_api": "sympy Matrix/diag/eye/exp/diff/trace/trigsimp for exact phase-generator density transport",
+        "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_loop_phase_generator_density_transport_results.json",
+        "role": "classical_baseline",
+        "depth": "supportive",
+        "candidate_lego_targets": [
+            "inner_outer_hopf_weyl_loop_geometry_fit",
+            "density_operator_phase_generator_transport_baseline",
+        ],
+    },
+    {
+        "tool": "sympy",
         "function_api": "sympy diff/integrate/simplify exact Hopf U(1) connection curvature and first-Chern integral",
         "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_connection_curvature_c1_integral_results.json",
         "role": "classical_baseline",

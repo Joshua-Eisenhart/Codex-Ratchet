@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T04:20:26.473068+00:00`
+Generated: `2026-05-13T04:23:32.208537+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `82`
-- Passing rows: `82`
+- Rows: `83`
+- Passing rows: `83`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `82`
+- Explicit receipt schemas missing: `83`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -39,6 +39,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `qiskit` | QuantumCircuit, Statevector, DensityMatrix, Operator expectation_value | `system_v4/probes/a2_state/sim_results/qiskit_capability_results.json` | `canonical` | `bridge_useful` | `load_bearing` | `True` | `unitary_channel_map`, `density_matrix_object` |
 | `qiskit` | qiskit Statevector, DensityMatrix, and Operator expectation_value density readouts over sampled Hopf-coordinate carrier paths | `system_v4/probes/a2_state/sim_results/qiskit_hopf_inner_outer_density_readout_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `density_object_path_readout_baseline` |
 | `qiskit` | qiskit Statevector/DensityMatrix/Operator phase-generator transport over a two-component density carrier | `system_v4/probes/a2_state/sim_results/qiskit_hopf_loop_phase_generator_density_transport_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `density_operator_phase_generator_transport_baseline` |
+| `qiskit` | qiskit Statevector, DensityMatrix, Operator expectation_value, and trace readouts over declared Hopf/Weyl fiber-base loop paths | `system_v4/probes/a2_state/sim_results/qiskit_hopf_weyl_fiber_base_carrier_transport_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_weyl_carrier_loop_geometry_baseline`, `density_object_path_readout_baseline` |
 | `qiskit` | qiskit DensityMatrix/Operator projectors and unitary branch updates over two-level measurement-feedback-erasure calibration | `system_v4/probes/a2_state/sim_results/qiskit_two_level_measure_feedback_erasure_bounds_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `information_work_erasure_cycle_calibration_fixture`, `two_level_density_branch_feedback_baseline` |
 | `qiskit` | qiskit DensityMatrix/Kraus/Operator over two-level amplitude-damping reset erasure-floor calibration | `system_v4/probes/a2_state/sim_results/qiskit_two_level_kraus_reset_erasure_floor_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `thermal_reset_erasure_floor_calibration_fixture`, `two_level_dissipative_reset_baseline` |
 | `clifford` | Cl(3)/Cl(6) layout blades, rotor products, grade/scalar extraction | `system_v4/probes/a2_state/sim_results/clifford_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `clifford_generator_basis`, `clifford_geometry` |

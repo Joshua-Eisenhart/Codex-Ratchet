@@ -1,0 +1,237 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "Clifford Spin/SU(2) half-period carrier sign formulation",
+    "PyTorch differentiable density-readout sensitivity formulation",
+    "symbolic connection integral over the same carrier chart",
+    "triangulated nested Hopf-torus layer carrier"
+  ],
+  "baselines": [
+    "QuTiP Hopf/Weyl fiber-base carrier transport",
+    "NumPy Weyl-sheet Hopf-loop readout separation",
+    "SymPy Weyl-sheet Hopf-loop derivative sign",
+    "Clifford Hopf outer rotation readout",
+    "SciPy connected Hopf-torus horizontal transport"
+  ],
+  "blocked_until": "blocked from target-system claims until full carrier/topology implementation and physical-evolution graveyards exist",
+  "carrier_topology": "sampled two-component Hopf-coordinate Statevector carrier with DensityMatrix readout; no full S3 bundle or nested-torus manifold",
+  "claim_ceiling": "Qiskit Statevector/DensityMatrix Hopf/Weyl fiber-base transport baseline only; this compares statevector, density, and Operator-expectation readouts for declared loop families and sheet orientations; no physical inner/outer independence, no full nested Hopf-torus manifold, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if fiber loops move density readouts, if base loops do not move density away from the pole, if sheet-orientation reversal does not invert signed base-loop area, or if pole/duplicate/no-carrier graveyards do not collapse.",
+  "divergence_log": "This is a Qiskit carrier-state and density-object baseline over declared Hopf coordinates. It cross-checks the QuTiP version but still does not implement full geometry or prove physical independence.",
+  "exact_tool_function_needs": {
+    "numpy": [
+      "linspace",
+      "exp",
+      "unwrap",
+      "angle",
+      "roll",
+      "linalg.norm"
+    ],
+    "qiskit": [
+      "Statevector",
+      "DensityMatrix",
+      "Operator",
+      "DensityMatrix.expectation_value"
+    ]
+  },
+  "graveyards": [
+    "fiber loop density hides global phase",
+    "dropping density path length collapses loop family",
+    "dropping signed area collapses sheet orientation",
+    "base loop at pole collapses orientation and transport",
+    "same-sheet duplicate base loops are indistinguishable",
+    "bare loop labels without Qiskit carrier are insufficient"
+  ],
+  "graveyards_detail": {
+    "bare_loop_labels_without_qiskit_carrier_are_insufficient": {
+      "has_density_matrix": false,
+      "has_qiskit_statevector": false,
+      "passed": true
+    },
+    "base_loop_at_pole_collapses_orientation_and_transport": {
+      "negative_pole_base": {
+        "density_path_length": 6.6914793853089516e-15,
+        "end_bloch": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "first_component_phase_span": -3.141592653589793,
+        "max_bloch_displacement": 2.220446049250313e-16,
+        "max_density_displacement": 2.234416423911378e-16,
+        "signed_xy_area": 0.0,
+        "start_bloch": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "statevector_path_length": 3.141513801144301,
+        "trace": 1.0
+      },
+      "passed": true,
+      "positive_pole_base": {
+        "density_path_length": 6.6914793853089516e-15,
+        "end_bloch": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "first_component_phase_span": 3.141592653589793,
+        "max_bloch_displacement": 2.220446049250313e-16,
+        "max_density_displacement": 2.234416423911378e-16,
+        "signed_xy_area": 0.0,
+        "start_bloch": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "statevector_path_length": 3.141513801144301,
+        "trace": 1.0
+      }
+    },
+    "dropping_density_path_length_collapses_loop_family": {
+      "base_density_path_length": 3.847263202698983,
+      "fiber_density_path_length": 1.609917253318224e-14,
+      "passed": true,
+      "start_bloch_gap": 0.0
+    },
+    "dropping_signed_area_collapses_sheet_orientation": {
+      "negative_base_density_path_length": 3.847263202698983,
+      "negative_signed_area": 2.3552483677160643,
+      "passed": true,
+      "positive_base_density_path_length": 3.847263202698983,
+      "positive_signed_area": -2.3552483677160643
+    },
+    "fiber_loop_density_hides_global_phase": {
+      "fiber_density_path_length": 1.609917253318224e-14,
+      "fiber_statevector_path_length": 3.141513801144301,
+      "passed": true
+    },
+    "same_sheet_duplicate_base_loops_are_indistinguishable": {
+      "density_path_gap": 0.0,
+      "passed": true,
+      "signed_area_gap": 0.0
+    }
+  },
+  "lego_or_coupling_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "name": "qiskit_hopf_weyl_fiber_base_carrier_transport",
+  "next_lego_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "observable": "statevector path length, density path length, Pauli expectation path, signed xy area, density trace, and pole degeneracy",
+  "operation_sequence": [
+    "construct normalized two-component Qiskit Statevector objects from Hopf coordinates theta, phi, chi",
+    "apply a declared sheet-orientation sign to the base-loop phi coordinate",
+    "sample fiber loops by varying chi at fixed theta and phi",
+    "sample base loops by varying phi at fixed theta and chi",
+    "convert each Statevector to a DensityMatrix and compute Pauli Operator expectations",
+    "compare statevector path length, density path length, signed xy area, trace, and pole degeneracy",
+    "run density-hidden, signed-area-hidden, pole, duplicate, and no-carrier graveyards"
+  ],
+  "out_of_scope": [
+    "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+    "No flux representation or Pauli-boundary shortcut.",
+    "No Lindblad, Hamiltonian, or thermodynamic cycle mechanics.",
+    "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "fiber loops traverse statevector phase while density remains stationary, base loops traverse density away from the pole, base-loop signed area flips under declared sheet orientation, density traces stay normalized, and adjacent controls collapse or become indistinguishable",
+  "positive": {
+    "readouts": {
+      "negative_sheet__base_loop": {
+        "density_path_length": 3.847263202698983,
+        "end_bloch": [
+          0.8660254037844386,
+          -2.1211504774498136e-16,
+          0.5000000000000002
+        ],
+        "first_component_phase_span": -3.141592653589793,
+        "max_bloch_displacement": 1.7320508075688772,
+        "max_density_displacement": 1.224744871391589,
+        "signed_xy_area": 2.3552483677160643,
+        "start_bloch": [
+          0.8660254037844386,
+          0.0,
+          0.5000000000000002
+        ],
+        "statevector_path_length": 3.141513801144301,
+        "trace": 1.0
+      },
+      "negative_sheet__fiber_loop": {
+        "density_path_length": 1.609917253318224e-14,
+        "end_bloch": [
+          0.8660254037844386,
+          2.0270916582310988e-33,
+          0.5000000000000002
+        ],
+        "first_component_phase_span": 3.141592653589793,
+        "max_bloch_displacement": 2.5271935473618964e-16,
+        "max_density_displacement": 2.4235365330999115e-16,
+        "signed_xy_area": -8.77756435913827e-34,
+        "start_bloch": [
+          0.8660254037844386,
+          0.0,
+          0.5000000000000002
+        ],
+        "statevector_path_length": 3.141513801144301,
+        "trace": 1.0
+      },
+      "positive_sheet__base_loop": {
+        "density_path_length": 3.847263202698983,
+        "end_bloch": [
+          0.8660254037844386,
+          2.1211504774498136e-16,
+          0.5000000000000002
+        ],
+        "first_component_phase_span": 3.141592653589793,
+        "max_bloch_displacement": 1.7320508075688772,
+        "max_density_displacement": 1.224744871391589,
+        "signed_xy_area": -2.3552483677160643,
+        "start_bloch": [
+          0.8660254037844386,
+          0.0,
+          0.5000000000000002
+        ],
+        "statevector_path_length": 3.141513801144301,
+        "trace": 1.0
+      },
+      "positive_sheet__fiber_loop": {
+        "density_path_length": 1.609917253318224e-14,
+        "end_bloch": [
+          0.8660254037844386,
+          2.0270916582310988e-33,
+          0.5000000000000002
+        ],
+        "first_component_phase_span": 3.141592653589793,
+        "max_bloch_displacement": 2.5271935473618964e-16,
+        "max_density_displacement": 2.4235365330999115e-16,
+        "signed_xy_area": -8.77756435913827e-34,
+        "start_bloch": [
+          0.8660254037844386,
+          0.0,
+          0.5000000000000002
+        ],
+        "statevector_path_length": 3.141513801144301,
+        "trace": 1.0
+      }
+    },
+    "survives_qiskit_carrier_transport": true
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later carrier-geometry planning after QuTiP, symbolic, Clifford, topology, and physical operator-evolution fixtures reproduce compatible fiber/base readouts with adjacent graveyards.",
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "qiskit": "load_bearing"
+  },
+  "tool_manifest": {
+    "numpy": {
+      "reason": "samples Hopf loop coordinates and computes path metrics and signed projected areas",
+      "tried": true,
+      "used": true
+    },
+    "qiskit": {
+      "reason": "constructs Statevector carriers, DensityMatrix readouts, Operator Pauli expectations, and trace diagnostics",
+      "tried": true,
+      "used": true
+    }
+  }
+}

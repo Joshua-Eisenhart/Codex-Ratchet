@@ -1,0 +1,64 @@
+{
+  "admission_artifact": "system_v5/ops/wizard_admission_receipts/sim_sympy_capability_admission_artifact.json",
+  "admitted_by": "guard.receipt_audit",
+  "basename": "sim_sympy_capability",
+  "bounded_work_compile_gate": {
+    "status": "ready_for_execution"
+  },
+  "controller_read_artifacts": [
+    "system_v5/ops/wizard_admission_receipts/sim_sympy_capability_admission_artifact.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sympy_capability_results.json"
+  ],
+  "formal_sim_profile": {
+    "carrier_fixture": "sim_sympy_capability",
+    "claim": "tool_micro_sympy_capability_only",
+    "exact_tool_or_function": "sympy.Matrix.eigenvals|sympy.simplify|sympy.solve",
+    "expected_result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sympy_capability_results.json",
+    "negative_or_boundary_check": "non-identity, non-real roots, noncommuting, trivial solve, zero matrix, and polynomial expansion checks pass",
+    "positive_check": "Pauli Z eigenvalues, trigonometric identity simplification, quadratic solve, and Pauli commutator checks pass",
+    "stage": "micro"
+  },
+  "management_parent_surfaces": [
+    "queue_liveness",
+    "runner_preflight",
+    "sim_admissibility",
+    "queue_readiness",
+    "formal_sim_profile",
+    "stage_gate",
+    "expected_result_surface",
+    "controller_read_artifacts"
+  ],
+  "packet_contract": {
+    "blocked_until": "No broader claim until a downstream packet cites this receipt and passes its own stage gate.",
+    "boundary_case": "trivial solve, zero matrix eigenvalues, and polynomial expansion boundary checks pass",
+    "claim_ceiling": "tool_micro_sympy_capability_only",
+    "demotion_condition": "Demote to blocked tool capability if sympy is unavailable, any symbolic check fails, or strict receipt lint fails.",
+    "function_receipt": "new",
+    "function_surface": "sympy.Matrix.eigenvals|sympy.simplify|sympy.solve",
+    "lego_target": "Use as a prerequisite receipt for bounded sympy symbolic micro packets.",
+    "micro_claim": "tool_micro_sympy_capability_only",
+    "negative_case": "non-identity expression, non-real roots, and noncommuting matrix checks pass",
+    "next_lego_target": "Use as a prerequisite receipt for bounded sympy symbolic micro packets.",
+    "out_of_scope": [
+      "no lego admission",
+      "no tool-tool coupling claim",
+      "no bridge, axis, engine, or scientific coupling claim"
+    ],
+    "positive_case": "Pauli Z eigenvalues, trig identity simplification, quadratic solve, and Pauli commutator checks pass",
+    "prior_function_receipts": [],
+    "promotion_boundary": "no promotion beyond tool_micro without a later admitted packet",
+    "promotion_condition": "May only support later sympy tool-lego or tool-tool packets after those packets provide their own admitted receipts.",
+    "tool_target": "sympy",
+    "type": "MICRO",
+    "why_this_lego": "the fixture exposes one bounded SymPy symbolic-algebra capability surface without broad promotion"
+  },
+  "schema": "wizard_sim_admission_v4_1",
+  "sim_admissibility_gate": {
+    "result": "one_exact_packet"
+  },
+  "sim_packet_compile_gate": {
+    "status": "queue_candidate"
+  },
+  "sim_path": "system_v4/probes/sim_sympy_capability.py",
+  "status": "queue_ready"
+}

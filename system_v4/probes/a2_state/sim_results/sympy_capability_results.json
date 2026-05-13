@@ -1,0 +1,214 @@
+{
+  "name": "sim_sympy_capability",
+  "purpose": "Tool-capability isolation probe for sympy -- unblocks symbolic load-bearing use.",
+  "sympy_version": "1.14.0",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this isolates exact symbolic algebra, not tensor autograd or numeric density evolution"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no graph neural message-passing surface is part of the symbolic matrix checks"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no satisfiability or bounded-real predicate is needed for this exact-algebra capability probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no SyGuS, SMT, or independent solver agreement is claimed in this packet"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- eigenvals, simplify, solve, commutator"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this packet checks explicit Pauli matrices in SymPy, not geometric-algebra basis construction"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no manifold metric, geodesic, or Lie-group geometry API is exercised"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no equivariant neural network representation or spherical harmonic API is involved"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no graph construction, traversal, or graph invariant is part of this symbolic capability claim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no hypergraph incidence or higher-order network API is exercised"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no cell/simplicial complex topology API is part of this exact-algebra probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no persistence, simplex tree, or Betti-number computation is claimed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "witness_file": "system_v4/probes/sim_assoc_bundle_canonical_connection_from_hopf.py",
+  "positive": {
+    "sympy_available": {
+      "pass": true,
+      "version": "1.14.0"
+    },
+    "pauli_z_eigenvalues": {
+      "pass": true,
+      "got": [
+        -1,
+        1
+      ],
+      "expected": [
+        -1,
+        1
+      ]
+    },
+    "trig_identity_simplify": {
+      "pass": true,
+      "got": "1"
+    },
+    "quadratic_solve": {
+      "pass": true,
+      "got": [
+        "-2",
+        "2"
+      ]
+    },
+    "commutator_pauli_xy": {
+      "pass": true,
+      "got": "Matrix([[2*I, 0], [0, -2*I]])",
+      "expected": "Matrix([[2*I, 0], [0, -2*I]])"
+    }
+  },
+  "negative": {
+    "not_identity_detected": {
+      "pass": true
+    },
+    "nonreal_roots_detected": {
+      "pass": true,
+      "got": [
+        "-I",
+        "I"
+      ]
+    },
+    "noncommuting_detected": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "trivial_solve_returns_list": {
+      "pass": true,
+      "got": "[]"
+    },
+    "zero_matrix_eigenvals": {
+      "pass": true,
+      "got": [
+        "0"
+      ]
+    },
+    "polynomial_expansion_zero": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "classification": "canonical",
+  "operation_sequence": [
+    "construct exact SymPy symbols and small matrices",
+    "compute Pauli Z eigenvalue multiplicities with Matrix.eigenvals",
+    "simplify sin(x)^2 + cos(x)^2 to the exact identity value",
+    "solve x^2 - 4 over symbolic roots",
+    "compute the Pauli commutator [sigma_x, sigma_y]",
+    "run adjacent negative fixtures for non-identity, non-real roots, and noncommutation",
+    "run boundary fixtures for trivial solve, zero-matrix eigenvalues, and polynomial expansion"
+  ],
+  "carrier_topology": "finite exact symbolic expressions plus 2x2 and 3x3 matrices over SymPy integers and complex unit I; no geometric carrier or topology is claimed",
+  "observable": {
+    "pauli_z_eigenvalues": "exact eigenvalue key set from Matrix.eigenvals",
+    "trig_identity_simplify": "exact simplified symbolic expression",
+    "quadratic_solve": "exact solution set for x^2 - 4",
+    "commutator_pauli_xy": "exact zero residual after subtracting 2*I*sigma_z",
+    "negative_and_boundary_sections": "boolean pass fields plus exact stringified symbolic witnesses"
+  },
+  "pass_fail_predicate": "positive_all_pass, negative_all_pass, and boundary_all_pass must all be true; each positive check must match its exact symbolic expected value; each negative fixture must avoid the false identity; each boundary fixture must return the documented SymPy form",
+  "graveyards": [
+    "sin(x)^2 - cos(x)^2 treated as identity -- must not simplify to 1",
+    "y^2 + 1 treated as real-rooted -- roots must be detected as non-real",
+    "sigma_x and sigma_z treated as commuting -- commutator must be non-zero"
+  ],
+  "baselines": [
+    "manual Pauli Z eigenvalues {-1, 1}",
+    "manual Pythagorean trigonometric identity",
+    "manual quadratic roots {-2, 2}",
+    "manual Pauli commutator [sigma_x, sigma_y] = 2*I*sigma_z"
+  ],
+  "alternative_formulations": [
+    "numpy numeric eigenvalue and commutator spot-checks as classical numeric baseline only",
+    "z3 or cvc5 bounded encodings for finite polynomial identities in later tool-tool packets",
+    "manual matrix multiplication over Python complex numbers for the Pauli commutator fixture"
+  ],
+  "tool_function_needs": [
+    "sympy.Matrix",
+    "Matrix.eigenvals",
+    "sympy.Symbol",
+    "sympy.sin",
+    "sympy.cos",
+    "sympy.simplify",
+    "sympy.solve",
+    "sympy.zeros",
+    "sympy.I"
+  ],
+  "lego_coupling_target": [
+    "operator_family_fixture",
+    "entropy_family_crosschecks",
+    "symbolic_identity_micro_packets"
+  ],
+  "claim_ceiling": "tool_micro_sympy_capability_only",
+  "out_of_scope": [
+    "no lego admission",
+    "no tool-tool coupling claim",
+    "no bridge, axis, engine, or scientific coupling claim"
+  ],
+  "demotion_condition": "Demote to blocked tool capability if sympy is unavailable, any symbolic check fails, or strict receipt lint fails.",
+  "promotion_condition": "May only support later sympy tool-lego or tool-tool packets after those packets provide their own admitted receipts.",
+  "next_lego_target": "Use as a prerequisite receipt for bounded sympy symbolic micro packets.",
+  "blocked_until": "No broader claim until a downstream packet cites this receipt and passes its own stage gate.",
+  "prior_function_receipts": []
+}

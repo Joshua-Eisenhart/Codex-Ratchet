@@ -849,6 +849,22 @@
       }
     },
     {
+      "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_sympy_capability.json",
+      "admission_status": "admitted",
+      "basename": "sim_sympy_capability",
+      "blockers": [],
+      "parent_receipt_sha256": {},
+      "receipt_schema_ok": true,
+      "result_name": "sim_sympy_capability",
+      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sympy_capability_results.json",
+      "result_sha256": "782f0087aff40b16121d4d2b55d664406666d8aff800b5d14a97f92915447d9c",
+      "status": "accepted",
+      "tool_function_ancestry": {
+        "function_surface": "sympy.Matrix.eigenvals|sympy.simplify|sympy.solve",
+        "tool_target": "sympy"
+      }
+    },
+    {
       "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/tool_capability_clifford.json",
       "admission_status": "admitted",
       "basename": "tool_capability_clifford",
@@ -8632,21 +8648,19 @@
       }
     },
     {
-      "admission_artifact": null,
-      "admission_status": "missing_or_invalid",
+      "admission_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/ops/wizard_admissions/sim_sympy_capability.json",
+      "admission_status": "admitted",
       "basename": "sim_sympy_capability",
-      "blockers": [
-        "admission:admission_missing"
-      ],
+      "blockers": [],
       "parent_receipt_sha256": {},
       "receipt_schema_ok": true,
       "result_name": "sim_sympy_capability",
       "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sympy_capability_results.json",
-      "result_sha256": "9443cbb5729bcad4800e25d20251524d1819939938c28356bcecba3d2766a869",
-      "status": "blocked",
+      "result_sha256": "782f0087aff40b16121d4d2b55d664406666d8aff800b5d14a97f92915447d9c",
+      "status": "accepted",
       "tool_function_ancestry": {
-        "function_surface": null,
-        "tool_target": null
+        "function_surface": "sympy.Matrix.eigenvals|sympy.simplify|sympy.solve",
+        "tool_target": "sympy"
       }
     },
     {
@@ -10433,12 +10447,6 @@
       "next_action": "do_not_promote_reclassify_or_replace_with_canonical_qit_result",
       "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_svd_factorization_classical_results.json",
       "sim_path": "system_v4/probes/sim_svd_factorization_classical.py"
-    },
-    {
-      "basename": "sim_sympy_capability",
-      "next_action": "do_not_promote_use_as_classical_or_bridge_tool_reference_only",
-      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sympy_capability_results.json",
-      "sim_path": "system_v4/probes/sim_sympy_capability.py"
     },
     {
       "basename": "sim_sympy_symbolic_identity_micro",
@@ -12520,8 +12528,8 @@
   "operational_status": "has_accepted_qit_entry",
   "out_of_scope_qit_result_scan": {
     "admission_boundary": "diagnostic_only_not_accepted_evidence",
-    "external_qit_signal_count": 2344,
-    "external_result_count": 2384,
+    "external_qit_signal_count": 2357,
+    "external_result_count": 2397,
     "sample": [
       {
         "classification": "",
@@ -12785,8 +12793,8 @@
       "bucket_counts": {
         "already_admitted_duplicate_reference": 1,
         "classical_baseline_reference_only": 37,
-        "late_stage_or_coupling_blocked": 352,
-        "unclassified_or_legacy_shape": 1954
+        "late_stage_or_coupling_blocked": 354,
+        "unclassified_or_legacy_shape": 1965
       },
       "bucket_samples": {
         "already_admitted_duplicate_reference": [
@@ -20125,24 +20133,6 @@
     {
       "admission_artifact": null,
       "admission_status": "missing_or_invalid",
-      "basename": "sim_sympy_capability",
-      "blockers": [
-        "admission:admission_missing"
-      ],
-      "parent_receipt_sha256": {},
-      "receipt_schema_ok": true,
-      "result_name": "sim_sympy_capability",
-      "result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sympy_capability_results.json",
-      "result_sha256": "9443cbb5729bcad4800e25d20251524d1819939938c28356bcecba3d2766a869",
-      "status": "blocked",
-      "tool_function_ancestry": {
-        "function_surface": null,
-        "tool_target": null
-      }
-    },
-    {
-      "admission_artifact": null,
-      "admission_status": "missing_or_invalid",
       "basename": "sympy_global_relative_phase_density_transport_symbolic_identity",
       "blockers": [
         "admission:admission_missing",
@@ -21331,13 +21321,13 @@
   },
   "status_reason": "accepted_qit_entries_present",
   "summary": {
-    "accepted": 62,
-    "admitted_micro_entries": 111,
-    "blocked": 430,
-    "candidate_entries": 62,
-    "missing_or_invalid_admission": 381,
+    "accepted": 63,
+    "admitted_micro_entries": 112,
+    "blocked": 429,
+    "candidate_entries": 63,
+    "missing_or_invalid_admission": 380,
     "qit_signal_result_count": 492,
-    "quarantine_entries": 430,
+    "quarantine_entries": 429,
     "scanned_result_count": 882,
     "total_entries": 492
   }

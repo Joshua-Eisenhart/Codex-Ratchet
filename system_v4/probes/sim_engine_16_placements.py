@@ -30,15 +30,21 @@ import time
 from typing import Dict, List, Tuple, Any
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "classical_baseline"  # downgraded: classical numeric placement baseline, not engine admission
 
-CLAIM_CEILING = "canonical_local_engine_placement_lego_only"
-NEXT_LEGO_TARGET = "none"
+CLAIM_CEILING = (
+    "classical baseline only: finite numeric loop/placement fixture over spinor-density paths; "
+    "no engine, QIT, GStack, bridge, axis, Weyl-sheet, flux, or nonclassical admission"
+)
+NEXT_LEGO_TARGET = "none; use only as a baseline/control before separate pure-math placement distinguishability authorship"
 PROMOTION_CONDITION = (
     "requires separate reconciled queue row before coupling, bridge, axis, engine, "
     "GStack, QIT, or nonclassical use"
 )
-BLOCKED_UNTIL = "exact parent receipts, queue row, result JSON, and ledger loopback are reconciled"
+BLOCKED_UNTIL = (
+    "blocked from engine, QIT, GStack, bridge, axis, Weyl-sheet, flux, or nonclassical claims "
+    "until separate exact receipts with graveyards close those gates"
+)
 DEMOTION_CONDITION = (
     "demote if placement stationarity, traversal, CPTP, negative, or boundary "
     "criteria fail, or if this row is used for a higher-stage engine claim"
@@ -50,6 +56,18 @@ OUT_OF_SCOPE = [
     "engine promotion",
     "nonclassical proof",
     "scientific coupling closure",
+]
+
+divergence_log = (
+    "Classical baseline only: this fixture numerically compares loop/path behavior and operator placements, "
+    "but its labels and finite trajectory checks do not admit engine identity, Weyl-sheet, flux, bundle, "
+    "QIT, GStack, bridge, axis, or nonclassical claims."
+)
+
+divergence_details = [
+    "The 16-count is a local fixture count, not an operationally closed 120-pair distinguishability sweep.",
+    "The numerical path checks are baseline controls; they do not prove a Hopf-Weyl or flux carrier.",
+    "A later candidate must strip labels into pure operation sequence, carrier/topology, observables, and graveyards.",
 ]
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -74,18 +92,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "clifford": "load_bearing",
+    "clifford": "supportive",
     "cvc5": None,
     "e3nn": None,
     "geomstats": None,
-    "gudhi": "load_bearing",
+    "gudhi": "supportive",
     "pyg": None,
-    "pytorch": "load_bearing",
+    "pytorch": "supportive",
     "rustworkx": None,
-    "sympy": "load_bearing",
+    "sympy": "supportive",
     "toponetx": None,
     "xgi": None,
-    "z3": "load_bearing",
+    "z3": "supportive",
 }
 
 # --- PyTorch ---
@@ -891,6 +909,40 @@ if __name__ == "__main__":
         "blocked_until": BLOCKED_UNTIL,
         "demotion_condition": DEMOTION_CONDITION,
         "out_of_scope": OUT_OF_SCOPE,
+        "divergence_log": divergence_log,
+        "divergence_details": divergence_details,
+        "operation_sequence": [
+            "construct finite spinor-density loop fixtures",
+            "apply local operator-placement updates over fixed time steps",
+            "measure density stationarity and traversal baselines",
+            "run negative and boundary controls",
+        ],
+        "carrier_topology": "finite numeric spinor-density path fixture only",
+        "observable": "stationarity, traversal, CPTP, negative-control, and boundary-control pass vector",
+        "pass_fail_predicate": "all declared stationarity, traversal, CPTP, negative, and boundary checks pass",
+        "graveyards": [
+            "inner-as-outer swapped control",
+            "outer-as-inner swapped control",
+            "invalid placement/control cases",
+        ],
+        "baselines": [
+            "finite trajectory baseline",
+            "symbolic stationarity sanity check",
+            "autograd gradient sanity check",
+        ],
+        "alternative_formulations": [
+            "120-pair operational distinguishability sweep",
+            "sheet-loop double-flip probe",
+            "bare-Pauli/no-bundle baseline",
+        ],
+        "exact_tool_function_needs": {
+            "pytorch": ["autograd.grad"],
+            "sympy": ["symbolic stationarity expression"],
+            "clifford": ["Cl"],
+            "z3": ["solver sanity checks"],
+            "gudhi": ["trajectory persistence summary"],
+        },
+        "lego_or_coupling_target": "none; baseline fixture before placement distinguishability candidate",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "sympy_stationarity_proof": sympy_proof,
@@ -898,7 +950,7 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "classification": "canonical",
+        "classification": classification,
     }
 
     # --- Write output ---

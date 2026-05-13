@@ -434,6 +434,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "toponetx",
+        "function_api": "TopoNetX CellComplex add_node/add_cell/incidence_matrix/hodge_laplacian_matrix over Hopf/Weyl vertical fiber and horizontal base-lift Bloch-density readout cycle fixtures",
+        "receipt": "system_v4/probes/a2_state/sim_results/toponetx_hopf_weyl_vertical_horizontal_density_readout_cycle_incidence_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_carrier_loop_geometry_baseline",
+            "density_readout_cycle_incidence_baseline",
+        ],
+    },
+    {
+        "tool": "toponetx",
         "function_api": "SimplicialComplex.to_hasse_graph node/edge carrier feeding PyG graph fixtures",
         "receipt": "system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json",
         "role": "nonclassical_adjacent",

@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T03:01:03.442186+00:00",
+  "generated_at": "2026-05-13T03:04:11.889872+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -2639,6 +2639,64 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
+        "nested_hopf_torus_loop_geometry_baseline",
+        "readout_vector_separation_controls"
+      ],
+      "claim_ceiling": "cvc5 bounded integer SAT/UNSAT readout-vector separation for Hopf-torus layer controls only; no physical distinguishability, QIT, GStack, axis, bridge, nonclassical, flux, Pauli shortcut, target-system, or full geometric-constraint-manifold admission",
+      "depth": "load_bearing",
+      "function_api": "cvc5 QF_LIA SAT/UNSAT equality checks over selected Hopf-torus integer readout vector fields",
+      "manifest_reason": "checks SAT/UNSAT separation of bounded integer readout vectors for Hopf-torus layer controls",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No physical Hopf/Weyl evolution.",
+        "No full geometric-constraint-manifold implementation.",
+        "No flux representation or Pauli shortcut.",
+        "No QIT, GStack, axis, bridge, or nonclassical admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/cvc5_hopf_torus_readout_vector_separation_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "readout_fields",
+        "readout_vectors",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "cvc5"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
         "entropy_family_crosschecks",
         "operator_family_admission"
       ],
@@ -3495,11 +3553,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 66,
+    "passing_count": 67,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 66,
+    "receipt_schema_observed_missing_count": 67,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 66,
+    "row_count": 67,
     "tools": [
       "clifford",
       "cvc5",

@@ -1,23 +1,23 @@
 # Sim Inventory Index
 
-Generated: `2026-05-13T16:23:40.922860+00:00`
+Generated: `2026-05-13T16:27:58.575553+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
-- Sim source files indexed: `4034`
-- Result JSON files seen: `2973`
-- Linked result JSON files: `916`
+- Sim source files indexed: `4035`
+- Result JSON files seen: `2974`
+- Linked result JSON files: `917`
 - Unlinked result JSON files: `2057`
 - Wizard-admitted stems: `112`
-- Repair / rerun candidate rows: `753`
+- Repair / rerun candidate rows: `754`
 - Source-only rows: `3168`
 
 ## Inventory Status Counts
 
 - `source_only`: 3168
-- `rerun_or_admission_candidate`: 543
+- `rerun_or_admission_candidate`: 544
 - `contract_shaped_but_tool_depth_thin`: 186
 - `admitted`: 112
 - `legacy_result_or_repair_needed`: 24
@@ -28,7 +28,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `graveyard_negative`: 1709
 - `classical_baseline`: 1149
 - `root_admission`: 858
-- `weyl_spinor_clifford`: 811
+- `weyl_spinor_clifford`: 812
 - `channel_operator`: 800
 - `geometry_gstack_gtower`: 740
 - `axis_bridge`: 680
@@ -48,7 +48,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `sympy`: 582
 - `cvc5`: 515
 - `rustworkx`: 285
-- `clifford`: 276
+- `clifford`: 277
 - `numpy`: 263
 - `xgi`: 206
 - `gudhi`: 124

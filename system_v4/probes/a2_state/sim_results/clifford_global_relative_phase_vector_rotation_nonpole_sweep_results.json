@@ -1,0 +1,481 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "Clifford rotor-to-density projection fixture",
+    "SymPy SO(3) rotation matrix identity",
+    "QuTiP/Qiskit density transport sweeps",
+    "nested Hopf-torus carrier fixture before stronger geometry claims"
+  ],
+  "baselines": [
+    "QuTiP global-relative phase non-pole density sweep receipt",
+    "Qiskit global-relative phase non-pole density sweep receipt",
+    "SymPy global-relative phase symbolic density identity receipt"
+  ],
+  "blocked_until": "blocked from geometric-constraint-manifold claims until nested carrier geometry, density carrier coupling, and physical-evolution graveyards exist",
+  "carrier_topology": "Cl(3) unit vector carrier with identity and e12-plane even-rotor loop families; no density carrier or full Hopf bundle",
+  "claim_ceiling": "Clifford Cl(3) non-pole vector-rotation baseline for identity-rotor invariance and e12-plane rotor transport only; no density matrix, no full Hopf bundle, no physical loop independence, no flux, no QIT, GStack, axis, bridge, engine, target-system, or nonclassical admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if cited as density transport, full Hopf geometry, physical loop independence, flux, QIT, GStack, axis, bridge, engine, target-system, or nonclassical evidence.",
+  "divergence_log": "This sweep uses Cl(3) vector rotors rather than density matrices. It is a companion baseline for the same displacement law, not a density-transport proof and not a full geometric-constraint-manifold fixture.",
+  "exact_tool_function_needs": {
+    "clifford": [
+      "Cl",
+      "MultiVector geometric product",
+      "MultiVector reverse",
+      "vector inner products"
+    ],
+    "numpy": [
+      "linspace",
+      "array",
+      "linalg.norm"
+    ]
+  },
+  "graveyards": [
+    "both transports use identity rotor",
+    "both transports use e12-plane rotor",
+    "e12-plane rotation on z-axis vector degenerates",
+    "z-coordinate-only readout hides e12-plane rotation",
+    "bare rotors without vector carrier are insufficient"
+  ],
+  "graveyards_detail": {
+    "bare_rotors_without_vector_carrier_are_insufficient": {
+      "can_compare_vector_transport": false,
+      "has_loop_family": false,
+      "has_vector_carrier": false,
+      "passed": true
+    },
+    "both_transports_identity_rotor_would_collapse_distinction": {
+      "candidate_passed": false,
+      "expected": false,
+      "passed": true
+    },
+    "both_transports_plane_rotor_would_collapse_distinction": {
+      "candidate_passed": false,
+      "expected": false,
+      "passed": true
+    },
+    "plane_rotation_on_z_axis_vector_degenerates": {
+      "displacement_from_start": 2.220446049250313e-16,
+      "expected_near_zero": true,
+      "passed": true
+    },
+    "z_coordinate_readout_hides_plane_rotation": {
+      "expected_near_zero": true,
+      "passed": true,
+      "z_span": 2.220446049250313e-16
+    }
+  },
+  "lego_or_coupling_target": "clifford_two_component_phase_rotation_vector_displacement_sweep",
+  "name": "clifford_global_relative_phase_vector_rotation_nonpole_sweep",
+  "next_lego_target": "clifford_two_component_phase_rotation_vector_displacement_sweep",
+  "observable": "Clifford vector sandwich displacement, path length, z-coordinate span, and vector norm",
+  "operation_sequence": [
+    "construct unit Cl(3) vectors with nonzero e1 projection and e3 component",
+    "sample identity rotor transport",
+    "sample e12-plane rotor sandwich transport",
+    "compare vector displacement against closed-form 2 sin(theta) expectation",
+    "run same-rotor, z-axis, z-readout-hidden, and no-vector-carrier graveyards"
+  ],
+  "out_of_scope": [
+    "No density matrix construction.",
+    "No full Hopf bundle or nested Hopf-torus carrier.",
+    "No physical loop-independence closure.",
+    "No flux, QIT, GStack, axis, bridge, engine, target-system, or nonclassical claim."
+  ],
+  "pass_fail_predicate": "identity rotor leaves vectors invariant; e12-plane rotor displacement matches 2 sin(theta); vector norm remains one; adjacent graveyards collapse or become insufficient",
+  "positive": {
+    "sweep": [
+      {
+        "expected_plane_rotation_displacement": 0.7653668647301796,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 0.7653668647301796,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999998,
+          "path_length": 2.4006102842833226,
+          "z_span": 3.3306690738754696e-16
+        },
+        "sample_count": 33,
+        "theta": 0.39269908169872414
+      },
+      {
+        "expected_plane_rotation_displacement": 0.7653668647301796,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 0.7653668647301796,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999998,
+          "path_length": 2.4035054118129566,
+          "z_span": 3.3306690738754696e-16
+        },
+        "sample_count": 65,
+        "theta": 0.39269908169872414
+      },
+      {
+        "expected_plane_rotation_displacement": 0.7653668647301796,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 0.7653668647301796,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999998,
+          "path_length": 2.4042295207946536,
+          "z_span": 3.3306690738754696e-16
+        },
+        "sample_count": 129,
+        "theta": 0.39269908169872414
+      },
+      {
+        "expected_plane_rotation_displacement": 0.9999999999999999,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 0.9999999999999999,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999999,
+          "path_length": 3.136548490545939,
+          "z_span": 2.220446049250313e-16
+        },
+        "sample_count": 33,
+        "theta": 0.5235987755982988
+      },
+      {
+        "expected_plane_rotation_displacement": 0.9999999999999999,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 0.9999999999999999,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999999,
+          "path_length": 3.1403311569547525,
+          "z_span": 2.220446049250313e-16
+        },
+        "sample_count": 65,
+        "theta": 0.5235987755982988
+      },
+      {
+        "expected_plane_rotation_displacement": 0.9999999999999999,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 0.9999999999999999,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999999,
+          "path_length": 3.1412772509327724,
+          "z_span": 2.220446049250313e-16
+        },
+        "sample_count": 129,
+        "theta": 0.5235987755982988
+      },
+      {
+        "expected_plane_rotation_displacement": 1.414213562373095,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 1.414213562373095,
+          "norm_max": 1.0,
+          "norm_min": 0.9999999999999998,
+          "path_length": 4.435749414370926,
+          "z_span": 2.220446049250313e-16
+        },
+        "sample_count": 33,
+        "theta": 0.7853981633974483
+      },
+      {
+        "expected_plane_rotation_displacement": 1.414213562373095,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 1.414213562373095,
+          "norm_max": 1.0,
+          "norm_min": 0.9999999999999998,
+          "path_length": 4.441098912508203,
+          "z_span": 2.220446049250313e-16
+        },
+        "sample_count": 65,
+        "theta": 0.7853981633974483
+      },
+      {
+        "expected_plane_rotation_displacement": 1.414213562373095,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 1.414213562373095,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999998,
+          "path_length": 4.442436891443199,
+          "z_span": 2.220446049250313e-16
+        },
+        "sample_count": 129,
+        "theta": 0.7853981633974483
+      },
+      {
+        "expected_plane_rotation_displacement": 1.7320508075688772,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 1.7320508075688772,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999999,
+          "path_length": 5.432661346029037,
+          "z_span": 2.220446049250313e-16
+        },
+        "sample_count": 33,
+        "theta": 1.0471975511965976
+      },
+      {
+        "expected_plane_rotation_displacement": 1.7320508075688772,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 1.7320508075688772,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999998,
+          "path_length": 5.439213116437186,
+          "z_span": 2.220446049250313e-16
+        },
+        "sample_count": 65,
+        "theta": 1.0471975511965976
+      },
+      {
+        "expected_plane_rotation_displacement": 1.7320508075688772,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 1.7320508075688772,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999998,
+          "path_length": 5.440851799275851,
+          "z_span": 2.220446049250313e-16
+        },
+        "sample_count": 129,
+        "theta": 1.0471975511965976
+      },
+      {
+        "expected_plane_rotation_displacement": 2.0,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 2.0,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999998,
+          "path_length": 6.273096981091879,
+          "z_span": 2.465190328815662e-32
+        },
+        "sample_count": 33,
+        "theta": 1.5707963267948966
+      },
+      {
+        "expected_plane_rotation_displacement": 2.0,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 2.0,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999998,
+          "path_length": 6.280662313909506,
+          "z_span": 2.465190328815662e-32
+        },
+        "sample_count": 65,
+        "theta": 1.5707963267948966
+      },
+      {
+        "expected_plane_rotation_displacement": 2.0,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 2.0,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999998,
+          "path_length": 6.282554501865546,
+          "z_span": 2.465190328815662e-32
+        },
+        "sample_count": 129,
+        "theta": 1.5707963267948966
+      },
+      {
+        "expected_plane_rotation_displacement": 1.7320508075688774,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 1.7320508075688774,
+          "norm_max": 1.0,
+          "norm_min": 0.9999999999999998,
+          "path_length": 5.432661346029037,
+          "z_span": 1.1102230246251565e-16
+        },
+        "sample_count": 33,
+        "theta": 2.0943951023931953
+      },
+      {
+        "expected_plane_rotation_displacement": 1.7320508075688774,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 1.7320508075688774,
+          "norm_max": 1.0,
+          "norm_min": 0.9999999999999998,
+          "path_length": 5.439213116437187,
+          "z_span": 1.1102230246251565e-16
+        },
+        "sample_count": 65,
+        "theta": 2.0943951023931953
+      },
+      {
+        "expected_plane_rotation_displacement": 1.7320508075688774,
+        "identity_rotor_transport": {
+          "displacement_from_start": 0.0,
+          "norm_max": 1.0,
+          "norm_min": 1.0,
+          "path_length": 0.0,
+          "z_span": 0.0
+        },
+        "passed": true,
+        "plane_rotor_transport": {
+          "displacement_from_start": 1.7320508075688774,
+          "norm_max": 1.0000000000000002,
+          "norm_min": 0.9999999999999998,
+          "path_length": 5.440851799275852,
+          "z_span": 1.1102230246251565e-16
+        },
+        "sample_count": 129,
+        "theta": 2.0943951023931953
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "No promotion from this sweep; use only as Clifford rotor companion evidence for already-fenced phase-transport baselines.",
+  "summary": {
+    "all_graveyards_pass": true,
+    "all_pass": true,
+    "all_sweep_cases_pass": true,
+    "case_count": 18,
+    "promotion_allowed": false,
+    "sample_count_variants": [
+      33,
+      65,
+      129
+    ],
+    "theta_count": 6
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "numpy": "supportive"
+  },
+  "tool_manifest": {
+    "clifford": {
+      "reason": "constructs Cl(3) even rotors and vector sandwich rotations in the e12 plane",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "samples phase-loop parameters and computes vector displacement norms",
+      "tried": true,
+      "used": true
+    }
+  }
+}

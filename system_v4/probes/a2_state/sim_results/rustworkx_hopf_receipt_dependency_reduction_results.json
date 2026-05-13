@@ -59,7 +59,7 @@
   "graveyards": [
     "missing TopoNetX parent removes readout ancestor",
     "cycle input is rejected by checked graph",
-    "reversed edges put layer before parents",
+    "reversed edges invert parent order as expected bad control",
     "isolated single receipt has no dependencies",
     "transitive reduction keeps direct parent edges"
   ],
@@ -79,7 +79,8 @@
       ],
       "passed": true
     },
-    "reversed_edges_put_layer_before_parents": {
+    "reversed_edges_invert_parent_order_as_expected_bad_control": {
+      "expected_inversion": true,
       "passed": true,
       "topological_order": [
         "z3_hopf_torus_readout_vector_separation",

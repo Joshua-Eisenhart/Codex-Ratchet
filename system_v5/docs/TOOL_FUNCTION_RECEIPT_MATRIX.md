@@ -1,15 +1,15 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T03:09:20.937823+00:00`
+Generated: `2026-05-13T03:14:56.615628+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `69`
-- Passing rows: `69`
+- Rows: `70`
+- Passing rows: `70`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `69`
+- Explicit receipt schemas missing: `70`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -84,4 +84,5 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `geomstats` | geomstats Hypersphere(dim=2).metric.dist intrinsic path-length readouts over projected Hopf-coordinate loops | `system_v4/probes/a2_state/sim_results/geomstats_hopf_inner_outer_sphere_distance_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `projected_sphere_distance_baseline` |
 | `e3nn` | e3nn.o3.Irreps and D_from_matrix vector representation | `system_v4/probes/a2_state/sim_results/e3nn_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `operator_family_admission`, `graph_cell_complex_geometry` |
 | `e3nn` | e3nn.o3.spherical_harmonics equivariance under a tiny SO(3) rotation fixture | `system_v4/probes/a2_state/sim_results/sim_e3nn_spherical_harmonics_equivariance_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `operator_family_admission`, `gtower_so3_geometry` |
+| `e3nn` | e3nn.o3.spherical_harmonics, matrix_to_angles, and wigner_D l=1 SO(3) equivariance over projected Hopf base-loop samples | `system_v4/probes/a2_state/sim_results/e3nn_hopf_base_loop_so3_equivariance_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_base_loop_so3_readout_equivariance_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `e3nn` | e3nn vector irrep action commuting with PyG MessagePassing.propagate | `system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `operator_family_admission`, `graph_cell_complex_geometry` |

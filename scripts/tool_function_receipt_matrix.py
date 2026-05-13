@@ -739,6 +739,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "sympy",
+        "function_api": "sympy Matrix/diff/conjugate/re/trigsimp/simplify exact Hopf/Weyl vertical fiber and horizontal base-lift metric independence identities",
+        "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_weyl_fiber_horizontal_base_loop_independence_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_carrier_loop_geometry_baseline",
+            "exact_vertical_horizontal_loop_metric_baseline",
+        ],
+    },
+    {
+        "tool": "sympy",
         "function_api": "sympy symbols/exp/simplify/subs exact two-level thermal population and two-bath gap-change work/heat identities",
         "receipt": "system_v4/probes/a2_state/sim_results/sympy_two_level_two_bath_gap_change_work_heat_identities_results.json",
         "role": "classical_baseline",

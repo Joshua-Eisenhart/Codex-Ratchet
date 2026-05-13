@@ -257,6 +257,10 @@ def main() -> dict[str, Any]:
         "name": NAME,
         "classification": CLASSIFICATION,
         "all_pass": all_pass,
+        "all_pass_meaning": (
+            "contract pass means the blocking collision pattern was detected; it does not mean "
+            "16 placements are operationally distinguished"
+        ),
         "promotion_allowed": False,
         "claim_ceiling": CLAIM_CEILING,
         "next_lego_target": (

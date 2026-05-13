@@ -104,12 +104,12 @@ def run_positive_tests():
     y_true = x_in.sum(dim=1, keepdim=True)
     opt = torch.optim.SGD(model.parameters(), lr=0.1)
     loss_fn = torch.nn.MSELoss()
-    l0 = float(loss_fn(model(x_in), y_true))
+    l0 = float(loss_fn(model(x_in), y_true).detach())
     opt.zero_grad()
     l = loss_fn(model(x_in), y_true)
     l.backward()
     opt.step()
-    l1 = float(loss_fn(model(x_in), y_true))
+    l1 = float(loss_fn(model(x_in), y_true).detach())
     r["nn_module_step_reduces_loss"] = {
         "pass": l1 < l0,
         "loss_before": l0,
@@ -200,10 +200,12 @@ def run_boundary_tests():
     y = x ** 3  # dy/dx = 3x^2, d2y/dx2 = 6x.
     grad1 = torch.autograd.grad(y, x, create_graph=True)[0]
     grad2 = torch.autograd.grad(grad1, x)[0]
+    grad1_value = float(grad1.detach())
+    grad2_value = float(grad2.detach())
     r["double_backward"] = {
-        "pass": abs(float(grad1) - 27.0) < 1e-5 and abs(float(grad2) - 18.0) < 1e-5,
-        "first": float(grad1),
-        "second": float(grad2),
+        "pass": abs(grad1_value - 27.0) < 1e-5 and abs(grad2_value - 18.0) < 1e-5,
+        "first": grad1_value,
+        "second": grad2_value,
     }
 
     return r
@@ -238,6 +240,70 @@ if __name__ == "__main__":
         "summary": summary,
         "all_pass": bool(summary["all_pass"]),
         "classification": "canonical",
+        "operation_sequence": [
+            "import PyTorch and record the runtime version",
+            "run scalar autograd backward for d/dx x^2 at x=3",
+            "run vector-dot autograd backward for d/dw dot(w, v)",
+            "train one tiny torch.nn.Linear module for one SGD step and compare MSE loss before and after",
+            "run tensor reshape, permute, and matrix multiplication shape checks",
+            "run negative fixtures for no-requires-grad backward and matrix-shape mismatch",
+            "run boundary fixtures for empty tensors, high-dimensional quadratic autograd, and double backward",
+        ],
+        "carrier_topology": (
+            "finite PyTorch tensor fixtures covering scalar, vector, matrix, and "
+            "tiny batch carriers; no density-matrix, graph, spinor, bridge, axis, "
+            "GStack, QIT, or nonclassical carrier is claimed"
+        ),
+        "observable": {
+            "scalar_gradient": "x.grad for x^2 at x=3 equals 6",
+            "vector_gradient": "w.grad for dot(w, v) equals v",
+            "training_step": "one SGD step on a tiny Linear module reduces MSE loss",
+            "shape_ops": "reshape, permute, and matmul produce expected tensor shapes",
+            "negative_controls": "missing requires_grad and mismatched matmul shapes must raise",
+            "boundary_controls": "empty tensor shape, 100-dimensional quadratic gradient, and second derivative values are correct",
+        },
+        "pass_fail_predicate": (
+            "TORCH_OK, positive_all_pass, negative_all_pass, and boundary_all_pass "
+            "must all be true. Scalar/vector gradients must match analytic values, "
+            "the nn.Module SGD step must reduce loss, shape operations must match "
+            "expected dimensions, error controls must raise, and boundary autograd "
+            "checks must return the expected gradients."
+        ),
+        "graveyards": [
+            "scalar autograd returns a gradient other than 6 for x^2 at x=3 -- must fail",
+            "vector dot-product gradient differs from v -- must fail",
+            "SGD step does not reduce the tiny module MSE loss -- must fail",
+            "matmul with incompatible shapes succeeds silently -- must fail",
+            "double backward for x^3 at x=3 returns values other than 27 and 18 -- must fail",
+        ],
+        "baselines": [
+            "analytic derivative d/dx x^2 = 2x",
+            "analytic derivative d/dw dot(w, v) = v",
+            "manual tensor-shape arithmetic for reshape, permute, and matmul",
+            "analytic first and second derivatives of x^3",
+        ],
+        "alternative_formulations": [
+            "torch.autograd.grad instead of Tensor.backward for scalar and vector checks",
+            "manual closed-form linear least-squares step as a non-optimizer comparison",
+            "NumPy-only shape and derivative baseline in a separate classical baseline receipt",
+        ],
+        "tool_function_needs": [
+            "torch.tensor",
+            "Tensor.backward",
+            "torch.autograd.grad",
+            "torch.dot",
+            "torch.nn.Linear",
+            "torch.optim.SGD",
+            "torch.nn.MSELoss",
+            "Tensor.reshape",
+            "Tensor.permute",
+            "Tensor.__matmul__",
+        ],
+        "lego_coupling_target": [
+            "tensor_autograd_fixture",
+            "density_matrix_gradient_micro_packets",
+            "pytorch_backend_for_tool_coupling_receipts",
+        ],
         "surviving_alternatives": [
             "This receipt covers only bounded PyTorch primitive capability; it does not promote density-matrix, QIT, bridge, axis, GStack, or nonclassical admission claims."
         ],

@@ -95,6 +95,68 @@ TOOL_INTEGRATION_DEPTH = {
     "z3": None,
 }
 
+CANDIDATE_SIM_SPEC = {
+    "operation_sequence": [
+        "derive exact real polynomial roots and discriminants with SymPy",
+        "convert adjacent root gaps into directed edge weights",
+        "build PyG Data fixtures with root-value node features, edge_index, and edge_weight tensors",
+        "apply a custom PyG MessagePassing layer that multiplies neighbour features by symbolic gap weights",
+        "batch independent SymPy-derived graphs with Batch.from_data_list",
+        "compute graph-level means with global_mean_pool",
+        "compare PyG outputs against exact symbolic manual sums and boundary controls",
+    ],
+    "carrier_topology": (
+        "Finite chain graphs induced by ordered real roots of one-variable polynomials; nodes are "
+        "real roots, edges connect adjacent roots, and edge weights are exact symbolic root gaps "
+        "converted to tensors for PyG."
+    ),
+    "observable": {
+        "primary": "PyG weighted-neighbour output compared to the symbolic manual weighted sum",
+        "secondary": [
+            "batched graph mean vectors compared to exact symbolic root means",
+            "zero-gap edge presence for repeated roots",
+            "blocked graph construction for no-real-root polynomials",
+            "singleton graph no-message output",
+            "small symbolic gap propagation within numeric tolerance",
+        ],
+    },
+    "pass_fail_predicate": (
+        "Pass iff SymPy-derived graph tensors make PyG MessagePassing and global_mean_pool match "
+        "the corresponding symbolic computations, while repeated-root, no-real-root, singleton, "
+        "and small-gap controls behave as declared."
+    ),
+    "graveyards": [
+        "repeated-root polynomial should introduce a zero-weight edge and exclude distinct-root chain behaviour",
+        "no-real-root polynomial should block PyG graph construction",
+        "singleton-root polynomial should produce an isolated graph with zero propagated message",
+        "small rational root gap should survive conversion through PyG tensors within tolerance",
+    ],
+    "baselines": [
+        "manual symbolic weighted-neighbour sum baseline",
+        "exact symbolic mean baseline for batched pooling",
+        "distinct-root counterfactual baseline for repeated-root control",
+        "empty real solution set baseline",
+        "singleton no-edge baseline",
+    ],
+    "alternative_formulations": [
+        "build complete graphs with all pairwise symbolic root gaps instead of adjacent-root chains",
+        "use PyG Data only without Batch.from_data_list to isolate graph-realization behaviour",
+        "replace the custom MessagePassing layer with a standard PyG convolution after encoding edge weights as features",
+    ],
+    "tool_function_needs": [
+        "sympy.roots and sympy.discriminant for exact root and multiplicity data",
+        "torch_geometric.data.Data for graph fixture construction",
+        "torch_geometric.data.Batch.from_data_list for batched graph fixtures",
+        "torch_geometric.nn.MessagePassing.propagate for weighted neighbour aggregation",
+        "torch_geometric.nn.global_mean_pool for graph-level pooling",
+    ],
+    "lego_coupling_target": "bounded symbolic-to-graph tool-integration evidence for later graph-symbolic lego-fit packets",
+    "claim_ceiling": (
+        "finite tool_integration_sympy_pyg tool-integration receipt only; no bridge, GStack, "
+        "axis, QIT, or nonclassical admission"
+    ),
+}
+
 try:
     import sympy as sp
 
@@ -366,6 +428,7 @@ if __name__ == "__main__":
     results = {
         "name": NAME,
         "classification": classification,
+        **CANDIDATE_SIM_SPEC,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

@@ -1,0 +1,264 @@
+{
+  "name": "sim_integration_e3nn_pyg_equivariance_under_mp_micro",
+  "probe_family": "e3nn_pyg_equivariance_under_mp_micro",
+  "constraint_set": "directed_vector_feature_message_passing_equivariance_fixture",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "PyTorch is supportive: tensors carry the e3nn/PyG feature fixtures and numeric equality checks."
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "PyG is load-bearing: MessagePassing.propagate supplies the directed additive aggregation that must commute with the shared irrep action."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "e3nn is load-bearing: o3.Irreps and D_from_matrix supply the SO(3) vector representation used in the equivariance pass/fail check."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this integration micro isolates e3nn vector irreps and PyG additive message passing on one tiny graph; proof, topology, optimizer, lego, bridge, and broad coupling claims are out of scope."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this integration micro isolates e3nn vector irreps and PyG additive message passing on one tiny graph; proof, topology, optimizer, lego, bridge, and broad coupling claims are out of scope."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this integration micro isolates e3nn vector irreps and PyG additive message passing on one tiny graph; proof, topology, optimizer, lego, bridge, and broad coupling claims are out of scope."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this integration micro isolates e3nn vector irreps and PyG additive message passing on one tiny graph; proof, topology, optimizer, lego, bridge, and broad coupling claims are out of scope."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this integration micro isolates e3nn vector irreps and PyG additive message passing on one tiny graph; proof, topology, optimizer, lego, bridge, and broad coupling claims are out of scope."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this integration micro isolates e3nn vector irreps and PyG additive message passing on one tiny graph; proof, topology, optimizer, lego, bridge, and broad coupling claims are out of scope."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this integration micro isolates e3nn vector irreps and PyG additive message passing on one tiny graph; proof, topology, optimizer, lego, bridge, and broad coupling claims are out of scope."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this integration micro isolates e3nn vector irreps and PyG additive message passing on one tiny graph; proof, topology, optimizer, lego, bridge, and broad coupling claims are out of scope."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this integration micro isolates e3nn vector irreps and PyG additive message passing on one tiny graph; proof, topology, optimizer, lego, bridge, and broad coupling claims are out of scope."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": "load_bearing",
+    "e3nn": "load_bearing",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "prior_function_receipts": {
+    "e3nn": "system_v4/probes/a2_state/sim_results/sim_e3nn_irreps_tensor_product_micro_results.json",
+    "pyg": "system_v4/probes/a2_state/sim_results/sim_pyg_message_passing_autograd_micro_results.json"
+  },
+  "positive": {
+    "prior_function_receipts_are_admissible": {
+      "passed": true,
+      "receipts": {
+        "e3nn": {
+          "path": "system_v4/probes/a2_state/sim_results/sim_e3nn_irreps_tensor_product_micro_results.json",
+          "source_path": "system_v4/probes/sim_e3nn_irreps_tensor_product_micro.py",
+          "exists": true,
+          "source_exists": true,
+          "all_pass": true,
+          "classification": "canonical",
+          "load_bearing": true,
+          "result_mtime": 1778391636.8225996,
+          "source_mtime": 1778357453.093497,
+          "result_fresh_for_source": true,
+          "name": "sim_e3nn_irreps_tensor_product_micro"
+        },
+        "pyg": {
+          "path": "system_v4/probes/a2_state/sim_results/sim_pyg_message_passing_autograd_micro_results.json",
+          "source_path": "system_v4/probes/sim_pyg_message_passing_autograd_micro.py",
+          "exists": true,
+          "source_exists": true,
+          "all_pass": true,
+          "classification": "canonical",
+          "load_bearing": true,
+          "result_mtime": 1778715763.0641627,
+          "source_mtime": 1778715751.6520133,
+          "result_fresh_for_source": true,
+          "name": "sim_pyg_message_passing_autograd_micro"
+        }
+      }
+    },
+    "pyg_additive_message_commutes_with_e3nn_vector_action": {
+      "passed": true,
+      "max_equivariance_error": 2.220446049250313e-16,
+      "tolerance": 1e-05,
+      "edge_semantics": "edge_index[0] source vectors add into edge_index[1] targets",
+      "e3nn_irrep": "1x1o",
+      "base_message": [
+        [
+          0.25,
+          -1.0,
+          1.5
+        ],
+        [
+          1.0,
+          0.0,
+          0.5
+        ],
+        [
+          -0.5,
+          2.0,
+          1.0
+        ]
+      ]
+    }
+  },
+  "negative": {
+    "fixed_unrotated_bias_breaks_equivariance": {
+      "passed": true,
+      "biased_equivariance_error": 0.2786332615128164,
+      "exclusion_note": "A message that adds a fixed unrotated vector is not equivariant."
+    },
+    "wrong_output_representation_is_excluded": {
+      "passed": true,
+      "wrong_representation_error": 1.1708567702235353,
+      "exclusion_note": "The same e3nn vector representation must be used on both paths."
+    },
+    "malformed_feature_width_is_rejected": {
+      "passed": true,
+      "error": "expected node features with last dimension 3"
+    }
+  },
+  "boundary": {
+    "isolated_node_zero_message_stays_equivariant": {
+      "passed": true,
+      "max_equivariance_error": 0.0,
+      "isolated_output": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "boundary_note": "Node 2 has no incoming edge and receives the additive zero vector."
+    },
+    "zero_batch_preserves_vector_width": {
+      "passed": true,
+      "observed_shape": [
+        0,
+        3
+      ],
+      "expected_shape": [
+        0,
+        3
+      ]
+    }
+  },
+  "operation_sequence": [
+    "load and check the prior e3nn irrep tensor-product function receipt",
+    "load and check the prior PyG MessagePassing autograd function receipt",
+    "construct a three-node directed vector-feature graph with e3nn 1o feature width",
+    "compute the e3nn SO(3) vector representation matrix from a bounded rotation",
+    "run PyG additive MessagePassing before and after applying the shared irrep action",
+    "compare rotate-then-message against message-then-rotate equivariance residual",
+    "run adjacent negative fixtures for fixed unrotated bias, wrong output representation, and malformed feature width",
+    "run boundary fixtures for isolated-node zero vector output and zero-batch vector-width preservation"
+  ],
+  "carrier_topology": "finite directed PyG graph with three-dimensional e3nn 1o vector features on each node and a shared SO(3) irrep action; no learned GNN layer, graph/operator lego, bridge, axis, GStack, QIT, or nonclassical carrier is claimed",
+  "observable": {
+    "prior_receipt_gate": "parent e3nn and PyG function receipts exist, are canonical, all_pass, load-bearing, and fresh for source",
+    "equivariance_residual": "max absolute difference between rotate-then-message and message-then-rotate paths",
+    "biased_message_control": "fixed unrotated vector bias must break equivariance",
+    "wrong_representation_control": "identity output representation must disagree with the shared e3nn vector action path",
+    "malformed_width_control": "node features not matching the e3nn vector irrep width must raise",
+    "boundary_controls": "isolated node receives zero vector and zero-node batch preserves vector width"
+  },
+  "pass_fail_predicate": "Prior e3nn and PyG function receipts must be canonical, all_pass, load-bearing, and fresh. The additive PyG message pass must commute with the shared e3nn vector irrep action below tolerance, while fixed unrotated bias, wrong output representation, and malformed-width controls must fail or raise as expected. Isolated-node and zero-batch boundaries must preserve the declared vector-feature semantics.",
+  "graveyards": [
+    "missing, stale, noncanonical, or non-load-bearing parent receipt -- must block the integration claim",
+    "fixed unrotated vector bias in the message map -- must produce residual above threshold",
+    "wrong output representation on the message-then-rotate path -- must produce residual above threshold",
+    "malformed feature width accepted silently -- must raise instead",
+    "isolated node receives nonzero vector under additive aggregation -- must fail boundary"
+  ],
+  "baselines": [
+    "manual directed additive message-passing over a three-node cycle",
+    "shared e3nn 1o vector representation applied uniformly to every node feature",
+    "zero-vector additive identity for nodes with no incoming edges",
+    "zero-node graph preserving the declared e3nn vector feature width"
+  ],
+  "alternative_formulations": [
+    "manual PyTorch scatter-add over edge_index compared to e3nn rotation",
+    "NetworkX predecessor aggregation on vector features with explicit rotation matrices",
+    "learned e3nn/PyG convolutional equivariance tested in a later separate API-surface packet"
+  ],
+  "tool_function_needs": [
+    "e3nn.o3.Irreps",
+    "Irreps.D_from_matrix",
+    "torch_geometric.nn.MessagePassing",
+    "MessagePassing.propagate",
+    "MessagePassing.message",
+    "torch.tensor",
+    "torch.empty",
+    "torch.allclose"
+  ],
+  "lego_coupling_target": [
+    "e3nn_pyg_vector_message_fixture",
+    "graph_operator_equivariance_handoff_rows",
+    "later graph/operator lego-fit packets with named parent receipts"
+  ],
+  "surviving_alternatives": [
+    "Learned GNN layers, e3nn convolutions, batching, heterogeneous graphs, and graph/operator lego promotion remain separate receipts."
+  ],
+  "claim_ceiling": "tool_integration_micro_only",
+  "next_lego_target": "minimal equivariant message-passing fixture below graph/operator lego promotion",
+  "promotion_condition": "requires a later admitted integration or lego row that names the exact parent receipts and passes strict runner admission; this INTEGRATION_MICRO row does not promote the lego",
+  "blocked_until": "blocked until a downstream queue row declares the exact graph/operator integration target, parent receipts, and active stage gate for promotion",
+  "demotion_condition": "Demote this e3nn-PyG surface if either prior receipt is missing, noncanonical, not all_pass, not load-bearing, or older than its source probe; if PyG additive aggregation does not commute with the e3nn vector irrep action; if biased or wrong representation paths pass; or if malformed feature widths are silently accepted.",
+  "out_of_scope": [
+    "no learned GNN equivariance claim",
+    "no e3nn convolution claim",
+    "no graph/operator lego promotion",
+    "no bridge, axis, or broader graph dynamics claim",
+    "no proof of broad e3nn/PyG compatibility"
+  ],
+  "criteria_checked": [
+    "prior e3nn function receipt is canonical and load-bearing",
+    "prior PyG function receipt is canonical and load-bearing",
+    "prior function receipts are fresh relative to their source probes",
+    "PyG additive directed message passing commutes with e3nn vector irrep rotation",
+    "fixed unrotated vector bias fails equivariance",
+    "wrong output representation fails equivariance",
+    "isolated node and zero-batch boundaries"
+  ],
+  "summary": {
+    "passed": 7,
+    "total": 7
+  },
+  "all_pass": true
+}

@@ -1,0 +1,127 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "QuTiP Qobj parameter sweep",
+    "Qiskit DensityMatrix parameter sweep",
+    "Clifford rotor relative-phase companion",
+    "nested Hopf-torus carrier fixture before stronger geometry claims"
+  ],
+  "baselines": [
+    "QuTiP global-relative phase non-pole sweep receipt",
+    "Qiskit global-relative phase non-pole sweep receipt",
+    "QuTiP/Qiskit non-pole sweep backend-agreement audit"
+  ],
+  "blocked_until": "blocked from geometric-constraint-manifold claims until nested carrier geometry and physical-evolution graveyards exist",
+  "carrier_topology": "symbolic two-component density carrier with global-phase and relative-phase unitary matrices; no full Hopf bundle or nested-tori manifold",
+  "claim_ceiling": "SymPy symbolic baseline for two-component global-phase density invariance and relative-phase density-transport displacement identity only; no full Hopf bundle, no physical loop independence, no flux, no QIT, GStack, axis, bridge, engine, target-system, or nonclassical admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if cited as full Hopf geometry, physical loop independence, flux, QIT, GStack, axis, bridge, engine, target-system, or nonclassical evidence.",
+  "divergence_log": "This exact identity proves only the algebraic two-component density response under global and relative phase matrices. It omits numerical backend execution, nested carrier geometry, flux representation, Lindblad terrain dynamics, and target-system admission.",
+  "elapsed_seconds": 0.26606,
+  "exact_tool_function_needs": {
+    "sympy": [
+      "symbols",
+      "Matrix",
+      "diag",
+      "exp",
+      "sin",
+      "cos",
+      "simplify",
+      "trigsimp"
+    ]
+  },
+  "graveyards": [
+    "relative phase equals zero degenerates",
+    "relative phase on pole density degenerates",
+    "diagonal sigma_z readout hides relative phase transport",
+    "global phase alone collapses density-transport distinction",
+    "bare phase symbols without density carrier are insufficient"
+  ],
+  "graveyards_detail": {
+    "bare_phase_symbols_without_density_carrier_are_insufficient": {
+      "can_compare_density_transport": false,
+      "has_density_carrier": false,
+      "has_loop_family": false,
+      "passed": true
+    },
+    "both_transports_global_phase_would_collapse_distinction": {
+      "candidate_passed": false,
+      "expected": false,
+      "global_displacement_squared": "0",
+      "passed": true
+    },
+    "diagonal_readout_hides_relative_phase_transport": {
+      "passed": true,
+      "z_readout_delta": "0"
+    },
+    "relative_phase_on_pole_density_degenerates": {
+      "passed": true,
+      "relative_displacement_squared_at_theta_zero": "0"
+    },
+    "relative_phase_zero_degenerates": {
+      "passed": true,
+      "relative_displacement_squared_at_phase_zero": "0"
+    }
+  },
+  "lego_or_coupling_target": "two_component_global_relative_phase_density_transport_symbolic_identity",
+  "name": "sympy_global_relative_phase_density_transport_symbolic_identity",
+  "next_lego_target": "two_component_global_relative_phase_density_transport_symbolic_identity",
+  "observable": "symbolic density delta, Frobenius displacement squared, trace, and sigma_z readout",
+  "operation_sequence": [
+    "construct symbolic two-component pure-state density rho(theta)",
+    "apply global-phase matrix exp(i phase/2) I",
+    "apply relative-phase matrix diag(exp(i phase/2), exp(-i phase/2))",
+    "simplify global density delta and relative density Frobenius displacement",
+    "run zero-phase, pole-density, diagonal-readout, global-only, and no-carrier graveyards"
+  ],
+  "out_of_scope": [
+    "No numerical backend execution.",
+    "No full Hopf bundle or nested Hopf-torus carrier.",
+    "No physical loop-independence closure.",
+    "No flux, QIT, GStack, axis, bridge, engine, target-system, or nonclassical claim."
+  ],
+  "pass_fail_predicate": "global-phase density delta simplifies to zero; relative-phase Frobenius displacement squared simplifies to 2 sin(theta)^2 sin(phase/2)^2; adjacent graveyards collapse or become insufficient",
+  "positive": {
+    "global_density_transport_delta_zero": {
+      "global_delta_matrix": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0"
+        ]
+      ],
+      "global_density_displacement_squared": "0",
+      "passed": true
+    },
+    "relative_density_transport_formula": {
+      "expected_relative_density_displacement_squared": "2*sin(phase/2)**2*sin(theta)**2",
+      "formula_delta": "0",
+      "passed": true,
+      "relative_density_displacement_squared": "2*sin(phase/2)**2*sin(theta)**2"
+    }
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "No promotion from this identity; use only as symbolic companion evidence for already-fenced numeric transport baselines.",
+  "summary": {
+    "all_graveyards_pass": true,
+    "all_pass": true,
+    "all_positive_pass": true,
+    "graveyard_count": 5,
+    "positive_count": 2,
+    "promotion_allowed": false
+  },
+  "timestamp": "2026-05-13T16:22:50Z",
+  "tool_integration_depth": {
+    "sympy": "load_bearing"
+  },
+  "tool_manifest": {
+    "sympy": {
+      "reason": "symbolically simplifies density-transport identities and adjacent degeneracy controls",
+      "tried": true,
+      "used": true
+    }
+  }
+}

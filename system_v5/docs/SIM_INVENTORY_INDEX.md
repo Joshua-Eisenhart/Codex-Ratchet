@@ -1,23 +1,23 @@
 # Sim Inventory Index
 
-Generated: `2026-05-13T16:20:31.782960+00:00`
+Generated: `2026-05-13T16:23:40.922860+00:00`
 
 Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 ## Summary
 
-- Sim source files indexed: `4033`
-- Result JSON files seen: `2970`
-- Linked result JSON files: `915`
-- Unlinked result JSON files: `2055`
+- Sim source files indexed: `4034`
+- Result JSON files seen: `2973`
+- Linked result JSON files: `916`
+- Unlinked result JSON files: `2057`
 - Wizard-admitted stems: `112`
-- Repair / rerun candidate rows: `752`
+- Repair / rerun candidate rows: `753`
 - Source-only rows: `3168`
 
 ## Inventory Status Counts
 
 - `source_only`: 3168
-- `rerun_or_admission_candidate`: 542
+- `rerun_or_admission_candidate`: 543
 - `contract_shaped_but_tool_depth_thin`: 186
 - `admitted`: 112
 - `legacy_result_or_repair_needed`: 24
@@ -35,7 +35,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 - `gerbe_dirac_mera_spectral`: 671
 - `hopf_torus`: 652
 - `entropy_information`: 595
-- `density_carrier`: 512
+- `density_carrier`: 513
 - `thermo_engine`: 452
 - `graph_topology`: 411
 - `uncategorized`: 342
@@ -45,7 +45,7 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 - `pytorch`: 1105
 - `z3`: 751
-- `sympy`: 581
+- `sympy`: 582
 - `cvc5`: 515
 - `rustworkx`: 285
 - `clifford`: 276

@@ -662,6 +662,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "sympy",
+        "function_api": "sympy Matrix/diff/trigsimp/simplify exact S3 carrier and S2 projection speed identities for Hopf/Weyl fiber-base coordinates",
+        "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_weyl_fiber_base_s3_s2_distance_identities_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "hopf_weyl_carrier_loop_geometry_baseline",
+            "exact_carrier_projection_identity_baseline",
+        ],
+    },
+    {
+        "tool": "sympy",
         "function_api": "sympy Matrix partition of Pauli matrices into diagonal and off-diagonal labels",
         "receipt": "system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json",
         "role": "classical_baseline",

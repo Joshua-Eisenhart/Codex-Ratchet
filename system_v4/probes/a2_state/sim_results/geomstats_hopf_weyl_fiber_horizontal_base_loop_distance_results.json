@@ -34,6 +34,7 @@
     "horizontal base is metric-orthogonal to fiber",
     "horizontal base collapses at projection pole",
     "fiber motion is hidden by S2 projection",
+    "horizontal base S3 loop has holonomy gap",
     "equator raw-base orthogonality is accidental",
     "sheet reversal preserves horizontal metric lengths"
   ],
@@ -55,6 +56,12 @@
     },
     "horizontal_base_is_metric_orthogonal_to_fiber": {
       "horizontal_base_fiber_dot": -5.71108438318646e-12,
+      "passed": true
+    },
+    "horizontal_base_s3_loop_has_holonomy_gap": {
+      "expected_holonomy_gap": 1.5707963267948961,
+      "horizontal_base_s2_start_end_distance": 0.0,
+      "horizontal_base_s3_start_end_distance": 1.5707963267948961,
       "passed": true
     },
     "raw_base_path_has_same_length_as_fiber_but_not_same_connection_component": {
@@ -79,7 +86,7 @@
     "sample horizontal base lift by varying phi while applying the Hopf connection chi correction",
     "compute Geomstats S3 carrier and S2 projection path lengths",
     "compute finite-difference tangent dot products for fiber, raw base, and horizontal base",
-    "run raw-base, horizontal-orthogonal, pole, projection-hidden, equator, and sheet-reversal controls"
+    "run raw-base, horizontal-orthogonal, pole, projection-hidden, holonomy-gap, equator, and sheet-reversal controls"
   ],
   "out_of_scope": [
     "No full nested Hopf-torus manifold or geometric-constraint manifold.",
@@ -88,11 +95,12 @@
     "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
   ],
   "pass": true,
-  "pass_fail_predicate": "fiber S3 length approximates pi and has zero S2 length; horizontal base S3 length approximates pi*sin(theta) and S2 length approximates 2*pi*sin(theta); raw base has nonzero fiber dot product while horizontal base dot fiber is zero; adjacent controls collapse as predicted",
+  "pass_fail_predicate": "fiber S3 length approximates pi and has zero S2 length; horizontal base S3 length approximates pi*sin(theta) and S2 length approximates 2*pi*sin(theta); horizontal base closes on S2 but has the expected S3 holonomy gap; raw base has nonzero fiber dot product while horizontal base dot fiber is zero; adjacent controls collapse as predicted",
   "positive": {
     "chi0": 0.4487989505128276,
     "expected_base_s2_length": 5.441398092702653,
     "expected_fiber_s3_length": 3.141592653589793,
+    "expected_horizontal_base_s3_holonomy_gap": 1.5707963267948961,
     "expected_horizontal_base_s3_length": 2.7206990463513265,
     "fiber_loop": {
       "s2_max_step": 0.0,
@@ -117,6 +125,7 @@
       "s3_path_length": 2.720694778290822,
       "s3_start_end_distance": 1.5707963267948961
     },
+    "horizontal_distance_controls_pass": true,
     "phi0": 0.6283185307179586,
     "raw_base_loop": {
       "s2_max_step": 0.010627713977580213,
@@ -127,7 +136,6 @@
       "s3_start_end_distance": 3.141592653589793
     },
     "samples": 513,
-    "survives_geomstats_horizontal_distance": true,
     "theta": 1.0471975511965976
   },
   "promotion_allowed": false,

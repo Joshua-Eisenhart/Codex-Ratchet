@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T03:27:53.350752+00:00",
+  "generated_at": "2026-05-13T03:30:51.076722+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -2553,6 +2553,63 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
+        "sheet_loop_product_readout_separation_baseline",
+        "inner_outer_hopf_weyl_loop_geometry_fit"
+      ],
+      "claim_ceiling": "local z3 finite-product readout separation only: two abstract Z2 coordinates separate four declared flip transformations under the full readout; no physical sheet/loop independence, Weyl spinor, Hopf fibration, flux, bundle, engine, QIT, GStack, bridge, axis, or nonclassical admission",
+      "depth": "load_bearing",
+      "function_api": "z3 finite Z2 x Z2 product readout SAT/UNSAT separation for sheet-flip and loop-flip labels",
+      "manifest_reason": "z3 is load-bearing: Solver.check proves full-readout collisions UNSAT and coordinate-projection graveyard collisions SAT",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No Weyl spinor, Hopf fibration, flux, bundle, engine, QIT, GStack, bridge, axis, or nonclassical claim.",
+        "No assertion that physical sheet/loop operations exist or are represented.",
+        "No placement-lego admission beyond this finite readout fixture."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/z3_sheet_loop_flip_product_readout_separation_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "boundary",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "elapsed_seconds",
+        "exact_tool_function_needs",
+        "graveyards",
+        "lego_or_coupling_target",
+        "name",
+        "negative",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "tool_integration_depth",
+        "tool_manifest",
+        "transforms"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "z3"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
         "nested_hopf_torus_loop_geometry_baseline",
         "readout_vector_separation_controls"
       ],
@@ -3784,11 +3841,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 71,
+    "passing_count": 72,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 71,
+    "receipt_schema_observed_missing_count": 72,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 71,
+    "row_count": 72,
     "tools": [
       "clifford",
       "cvc5",

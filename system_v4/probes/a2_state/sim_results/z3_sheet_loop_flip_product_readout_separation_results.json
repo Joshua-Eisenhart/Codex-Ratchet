@@ -1,17 +1,18 @@
 {
-  "name": "sim_z3_sheet_loop_flip_product_readout_independence",
-  "classification": "canonical",
+  "name": "z3_sheet_loop_flip_product_readout_separation",
+  "classification": "classical_baseline",
   "all_pass": true,
-  "claim_ceiling": "local z3 finite-product readout only: two abstract Z2 coordinates have independent sheet and loop flips under the declared full readout; no Weyl, Hopf, flux, bundle, engine, QIT, GStack, bridge, axis, or nonclassical admission",
-  "next_lego_target": "none; use as finite-product boundary evidence before any sheet-loop or placement candidate with real carrier topology",
+  "claim_ceiling": "local z3 finite-product readout separation only: two abstract Z2 coordinates separate four declared flip transformations under the full readout; no physical sheet/loop independence, Weyl spinor, Hopf fibration, flux, bundle, engine, QIT, GStack, bridge, axis, or nonclassical admission",
+  "next_lego_target": "sheet_loop_product_readout_separation_baseline",
   "promotion_condition": "No promotion from this receipt; downstream candidates need exact carrier/topology, observable, and graveyard receipts.",
-  "demotion_condition": "Demote or block if full readout no longer separates the four transformations, if projection graveyards stop colliding, or if used as geometry evidence.",
+  "demotion_condition": "Demote or block if full readout no longer separates the four transformations, if projection graveyards stop colliding, or if used as physical geometry evidence.",
   "blocked_until": "blocked from Weyl, Hopf, flux, bundle, engine, QIT, GStack, bridge, axis, or nonclassical claims until separate exact receipts close those gates",
   "out_of_scope": [
     "No Weyl spinor, Hopf fibration, flux, bundle, engine, QIT, GStack, bridge, axis, or nonclassical claim.",
     "No assertion that physical sheet/loop operations exist or are represented.",
     "No placement-lego admission beyond this finite readout fixture."
   ],
+  "divergence_log": "This is a finite Boolean-product SMT baseline. It separates declared labels in Z2 x Z2, but it does not simulate Hopf/Weyl geometry, physical inner/outer loops, flux, bundle structure, or any target geometric-constraint manifold.",
   "operation_sequence": [
     "define two abstract Z2 coordinates",
     "define identity, sheet flip, loop flip, and double flip transformations",
@@ -44,7 +45,7 @@
       "IntVal"
     ]
   },
-  "lego_or_coupling_target": "none; pre-lego finite-product boundary evidence",
+  "lego_or_coupling_target": "sheet_loop_product_readout_separation_baseline",
   "tool_manifest": {
     "pytorch": {
       "tried": false,
@@ -270,5 +271,6 @@
       "passed": true
     }
   },
-  "elapsed_seconds": 0.060182
+  "elapsed_seconds": 0.04211,
+  "promotion_allowed": false
 }

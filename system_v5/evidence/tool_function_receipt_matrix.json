@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T17:59:55.302416+00:00",
+  "generated_at": "2026-05-13T18:02:38.845788+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -4562,7 +4562,7 @@
         "constraint_probe_admissibility",
         "distinguishability_relation"
       ],
-      "candidate_spec_complete": false,
+      "candidate_spec_complete": true,
       "candidate_spec_contract_fields": [
         "alternative_formulations",
         "baselines",
@@ -4575,16 +4575,7 @@
         "pass_fail_predicate",
         "tool_function_needs"
       ],
-      "candidate_spec_missing_fields": [
-        "operation_sequence",
-        "carrier_topology",
-        "observable",
-        "pass_fail_predicate",
-        "graveyards",
-        "baselines",
-        "alternative_formulations",
-        "tool_function_needs"
-      ],
+      "candidate_spec_missing_fields": [],
       "claim_ceiling": "tool_micro_z3_capability_only",
       "depth": "load_bearing",
       "function_api": "z3 Solver/SolverFor QF_LIA add/check/model and UNSAT witness",
@@ -4600,20 +4591,29 @@
       "receipt_classification": "canonical",
       "receipt_contract_fields": [
         "all_pass",
+        "alternative_formulations",
+        "baselines",
         "blocked_until",
         "boundary",
+        "carrier_topology",
         "claim_ceiling",
         "classification",
         "demotion_condition",
+        "graveyards",
+        "lego_coupling_target",
         "name",
         "negative",
         "next_lego_target",
+        "observable",
+        "operation_sequence",
         "out_of_scope",
+        "pass_fail_predicate",
         "positive",
         "prior_function_receipts",
         "promotion_condition",
         "purpose",
         "summary",
+        "tool_function_needs",
         "tool_integration_depth",
         "tool_manifest",
         "witness_file",
@@ -7804,8 +7804,8 @@
   ],
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
-    "candidate_spec_complete_count": 69,
-    "candidate_spec_incomplete_count": 39,
+    "candidate_spec_complete_count": 70,
+    "candidate_spec_incomplete_count": 38,
     "missing_receipt_count": 0,
     "passing_count": 108,
     "receipt_boundary_gap_count": 0,

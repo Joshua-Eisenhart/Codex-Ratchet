@@ -9,7 +9,8 @@
     "binary Shannon entropy in nats",
     "Landauer floor Q_erase >= kBT * I",
     "feedback work bound W <= kBT * I",
-    "explicit random-feedback joint distribution with zero mutual information"
+    "explicit random-feedback joint distribution with zero mutual information",
+    "finite sweep over kBT values and binary probability distributions"
   ],
   "baselines": [
     "binary Shannon entropy in nats",
@@ -44,7 +45,9 @@
     "numpy": [
       "log",
       "sum",
-      "isclose"
+      "isclose",
+      "outer",
+      "dot"
     ]
   },
   "graveyard_companions": [
@@ -75,7 +78,6 @@
     "random feedback has zero correlation",
     "no erasure flags repeated-cycle surplus"
   ],
-  "lego_coupling_target": "information_work_erasure_cycle_calibration_fixture",
   "lego_or_coupling_target": "information_work_erasure_cycle_calibration_fixture",
   "name": "szilard_measure_feedback_erasure_landauer_bounds",
   "negative": {
@@ -120,6 +122,204 @@
     "No physical work reservoir.",
     "No repeated-memory dynamics, QIT, GStack, axis, bridge, or nonclassical claim."
   ],
+  "parameter_sweep": {
+    "bounds_hold": true,
+    "case_count": 16,
+    "cases": [
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": 0.34657359027997264,
+        "feedback_work_bound": 0.34657359027997264,
+        "information_nats": 0.6931471805599453,
+        "kBT": 0.5,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": 0.28116757230940415,
+        "feedback_work_bound": 0.28116757230940415,
+        "information_nats": 0.5623351446188083,
+        "kBT": 0.5,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          0.75,
+          0.25
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": 0.1625414866957241,
+        "feedback_work_bound": 0.1625414866957241,
+        "information_nats": 0.3250829733914482,
+        "kBT": 0.5,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          0.9,
+          0.1
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": -0.0,
+        "feedback_work_bound": -0.0,
+        "information_nats": -0.0,
+        "kBT": 0.5,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          1.0,
+          0.0
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": 0.6931471805599453,
+        "feedback_work_bound": 0.6931471805599453,
+        "information_nats": 0.6931471805599453,
+        "kBT": 1.0,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": 0.5623351446188083,
+        "feedback_work_bound": 0.5623351446188083,
+        "information_nats": 0.5623351446188083,
+        "kBT": 1.0,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          0.75,
+          0.25
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": 0.3250829733914482,
+        "feedback_work_bound": 0.3250829733914482,
+        "information_nats": 0.3250829733914482,
+        "kBT": 1.0,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          0.9,
+          0.1
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": -0.0,
+        "feedback_work_bound": -0.0,
+        "information_nats": -0.0,
+        "kBT": 1.0,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          1.0,
+          0.0
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": 2.0794415416798357,
+        "feedback_work_bound": 2.0794415416798357,
+        "information_nats": 0.6931471805599453,
+        "kBT": 3.0,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": 1.6870054338564249,
+        "feedback_work_bound": 1.6870054338564249,
+        "information_nats": 0.5623351446188083,
+        "kBT": 3.0,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          0.75,
+          0.25
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": 0.9752489201743446,
+        "feedback_work_bound": 0.9752489201743446,
+        "information_nats": 0.3250829733914482,
+        "kBT": 3.0,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          0.9,
+          0.1
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": -0.0,
+        "feedback_work_bound": -0.0,
+        "information_nats": -0.0,
+        "kBT": 3.0,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          1.0,
+          0.0
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": 4.852030263919617,
+        "feedback_work_bound": 4.852030263919617,
+        "information_nats": 0.6931471805599453,
+        "kBT": 7.0,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          0.5,
+          0.5
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": 3.936346012331658,
+        "feedback_work_bound": 3.936346012331658,
+        "information_nats": 0.5623351446188083,
+        "kBT": 7.0,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          0.75,
+          0.25
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": 2.275580813740137,
+        "feedback_work_bound": 2.275580813740137,
+        "information_nats": 0.3250829733914482,
+        "kBT": 7.0,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          0.9,
+          0.1
+        ]
+      },
+      {
+        "bounds_close": true,
+        "erasure_heat_floor": -0.0,
+        "feedback_work_bound": -0.0,
+        "information_nats": -0.0,
+        "kBT": 7.0,
+        "net_cycle_surplus_bound": 0.0,
+        "probabilities": [
+          1.0,
+          0.0
+        ]
+      }
+    ]
+  },
   "pass": true,
   "pass_fail_predicate": "one unbiased bit gives I = ln2, work and erasure bounds equal kBT ln2, net surplus closes, and all graveyards collapse or flag",
   "positive": {
@@ -137,15 +337,6 @@
   },
   "promotion_allowed": false,
   "promotion_condition": "May only support later calibration planning after an explicit state-update formulation reproduces these bounds with the same graveyards.",
-  "tool_function_needs": {
-    "numpy": [
-      "log",
-      "sum",
-      "isclose",
-      "outer",
-      "dot"
-    ]
-  },
   "tool_integration_depth": {
     "numpy": "supportive"
   },

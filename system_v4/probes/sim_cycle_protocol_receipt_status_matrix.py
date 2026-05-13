@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Engine Lab Matrix
+Cycle Protocol Receipt Status Matrix
 =================
-Collect current Carnot and Szilard engine rows into one comparable array.
+Collect current heat-work and measurement-feedback cycle receipt rows into one comparable array.
 
 This is not a proof surface. It is a controller-facing lab index that makes it
 easier to see:
@@ -23,7 +23,7 @@ classification = "controller_audit"
 
 CLASSIFICATION = "controller_audit"
 divergence_log = (
-    "Controller-facing engine-lab matrix over Carnot and Szilard rows. "
+    "Controller-facing cycle-protocol receipt status matrix over Carnot and Szilard rows. "
     "It organizes exact rows, stochastic rows, topology sweeps, and entropy/"
     "readout variants into one comparable surface without changing the engine "
     "theorem or scope. It is not a canonical admission surface."
@@ -859,13 +859,13 @@ ROW_SPECS = [
         "scope_hint": "triadic_rosetta",
     },
     {
-        "id": "rosetta_lego_registry",
+        "id": "cycle_receipt_coupling_candidate_registry",
         "engine_family": "mixed",
-        "level": "rosetta_lego_registry",
-        "geometry_topology": "machine_readable_rosetta_lego_registry_and_pairwise_coupling_matrix",
+        "level": "cycle_receipt_coupling_candidate_registry",
+        "geometry_topology": "machine_readable_cycle_receipt_coupling_candidate_registry_and_pairwise_coupling_matrix",
         "entropy_family": ["registry_entropy_family_coverage", "coupling_candidate_overlap"],
         "direction_modes": ["classical", "bridge", "nonclassical_adjacent", "coupling_candidate_matrix"],
-        "result_file": RESULT_DIR / "rosetta_lego_registry_results.json",
+        "result_file": RESULT_DIR / "cycle_receipt_coupling_candidate_registry_results.json",
         "scope_hint": "rosetta_registry",
     },
     {
@@ -1302,15 +1302,15 @@ def main() -> None:
             for label in sorted(set(row["likely_constraint_relation"] for row in rows))
         },
         "scope_note": (
-            "Open engine-lab matrix over exact, stochastic, parameter-sweep, and topology-"
+            "Open cycle-protocol receipt status matrix over exact, stochastic, parameter-sweep, and topology-"
             "sweep rows. This surface is for controller comparison, not canonical admission."
         ),
     }
 
     out = {
-        "name": "engine_lab_matrix",
+        "name": "cycle_protocol_receipt_status_matrix",
         "classification": CLASSIFICATION,
-        "sim_execution_kind": "controller_index",
+        "sim_execution_kind": "controller_audit",
         "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
@@ -1322,7 +1322,7 @@ def main() -> None:
         "missing": missing,
     }
 
-    out_path = RESULT_DIR / "engine_lab_matrix_results.json"
+    out_path = RESULT_DIR / "cycle_protocol_receipt_status_matrix_results.json"
     out_path.write_text(json.dumps(out, indent=2) + "\n")
     print(out_path)
 

@@ -225,7 +225,7 @@ def test_rosetta_completion_audit_keeps_cleanup_gate_as_blocker(
         "z3_capability": write_result("z3_capability_results.json", {"all_pass": True}),
         "cvc5_capability": write_result("cvc5_capability_results.json", {"all_pass": True}),
         "clifford_capability": write_result("clifford_capability_results.json", {"all_pass": True}),
-        "rosetta_lego_registry": write_result("rosetta_lego_registry_results.json", {"all_pass": True}),
+        "cycle_receipt_coupling_candidate_registry": write_result("cycle_receipt_coupling_candidate_registry_results.json", {"all_pass": True}),
         "rosetta_coupled_array": write_result(
             "rosetta_lego_coupled_array_results.json", {"all_pass": True}
         ),
@@ -355,7 +355,7 @@ def test_rosetta_completion_audit_blocks_prime_sidecar_overclaim(
         "z3_capability": write_result("z3_capability_results.json", passing),
         "cvc5_capability": write_result("cvc5_capability_results.json", passing),
         "clifford_capability": write_result("clifford_capability_results.json", passing),
-        "rosetta_lego_registry": write_result("rosetta_lego_registry_results.json", passing),
+        "cycle_receipt_coupling_candidate_registry": write_result("cycle_receipt_coupling_candidate_registry_results.json", passing),
         "rosetta_coupled_array": write_result("rosetta_lego_coupled_array_results.json", passing),
         "rosetta_coupled_array_graveyard": write_result(
             "rosetta_lego_coupled_array_graveyard_results.json", passing
@@ -708,11 +708,11 @@ def test_source_dirty_lane_catalog_expands_result_and_visual_payload(
     plan_path = results / "source_dirty_checkpoint_plan.json"
     out_path = results / "source_dirty_lane_catalog.json"
     out_md = results / "source_dirty_lane_catalog.md"
-    (results / "rosetta_lego_registry_results.json").write_text(
-        json.dumps({"summary": {"visual_payload": "visualizer/rosetta-lego-registry-data.js"}}),
+    (results / "cycle_receipt_coupling_candidate_registry_results.json").write_text(
+        json.dumps({"summary": {"visual_payload": "visualizer/cycle-receipt-coupling-candidate-registry-data.js"}}),
         encoding="utf-8",
     )
-    (visualizer / "rosetta-lego-registry-data.js").write_text("window.X = {};\n", encoding="utf-8")
+    (visualizer / "cycle-receipt-coupling-candidate-registry-data.js").write_text("window.X = {};\n", encoding="utf-8")
     plan_path.write_text(
         json.dumps(
             {
@@ -723,7 +723,7 @@ def test_source_dirty_lane_catalog_expands_result_and_visual_payload(
                         "display_name": "Rosetta",
                         "safe_next_action": "manual_split_required",
                         "file_count": 1,
-                        "path_prefixes": ["system_v4/probes/sim_rosetta_lego_registry.py"],
+                        "path_prefixes": ["system_v4/probes/sim_cycle_receipt_coupling_candidate_registry.py"],
                     }
                 ]
             }
@@ -743,9 +743,9 @@ def test_source_dirty_lane_catalog_expands_result_and_visual_payload(
     payload = json.loads(out_path.read_text(encoding="utf-8"))
     lane = payload["lanes"][0]
     assert lane["stage_paths"] == [
-        "system_v4/probes/sim_rosetta_lego_registry.py",
-        "system_v4/probes/a2_state/sim_results/rosetta_lego_registry_results.json",
-        "visualizer/rosetta-lego-registry-data.js",
+        "system_v4/probes/sim_cycle_receipt_coupling_candidate_registry.py",
+        "system_v4/probes/a2_state/sim_results/cycle_receipt_coupling_candidate_registry_results.json",
+        "visualizer/cycle-receipt-coupling-candidate-registry-data.js",
     ]
     assert lane["ready_for_checkpoint_review"] is True
     assert lane["decision_needed"] == "checkpoint_or_rework_probe_lane"

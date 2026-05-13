@@ -16,8 +16,8 @@ divergence_log = (
     "targets, and topology/readout sidecars."
 )
 
-LEGO_IDS = ["engine_lab_matrix", "repair_queue", "graveyard_variant"]
-PRIMARY_LEGO_IDS = ["engine_lab_matrix"]
+LEGO_IDS = ["cycle_protocol_receipt_status_matrix", "repair_queue", "graveyard_variant"]
+PRIMARY_LEGO_IDS = ["cycle_protocol_receipt_status_matrix"]
 
 TOOL_MANIFEST = {
     "json": {"tried": True, "used": True, "reason": "loads matrix and row receipts"},
@@ -214,7 +214,7 @@ def write_visual_payload(result: dict[str, Any]) -> None:
 
 
 def main() -> None:
-    matrix = load_result("engine_lab_matrix_results.json")
+    matrix = load_result("cycle_protocol_receipt_status_matrix_results.json")
     target_by_row = load_translation_targets()
     consolidated_by_row = load_consolidated_rechecks()
     matrix_summary = matrix["summary"]
@@ -269,7 +269,7 @@ def main() -> None:
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "source_receipts": {
-            "engine_lab_matrix": str(RESULT_DIR / "engine_lab_matrix_results.json"),
+            "cycle_protocol_receipt_status_matrix": str(RESULT_DIR / "cycle_protocol_receipt_status_matrix_results.json"),
             "engine_lab_translation_targets": str(RESULT_DIR / "engine_lab_translation_targets_results.json"),
         },
         "summary": {

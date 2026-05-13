@@ -37,7 +37,7 @@ divergence_log = (
 )
 
 LEGO_IDS = [
-    "rosetta_lego_registry",
+    "cycle_receipt_coupling_candidate_registry",
     "carnot_cycle",
     "szilard_cycle",
     "iching_64_schedule",
@@ -49,7 +49,7 @@ LEGO_IDS = [
     "proof_fence",
     "rosetta_correlation",
 ]
-PRIMARY_LEGO_IDS = ["rosetta_lego_registry", "rosetta_correlation"]
+PRIMARY_LEGO_IDS = ["cycle_receipt_coupling_candidate_registry", "rosetta_correlation"]
 
 TOOL_MANIFEST = {
     "json": {"tried": True, "used": True, "reason": "loads registry receipt"},
@@ -211,7 +211,7 @@ def write_visual_payload(result: dict[str, Any]) -> None:
 
 
 def main() -> None:
-    registry = load_result("rosetta_lego_registry")
+    registry = load_result("cycle_receipt_coupling_candidate_registry")
     matrix = registry["coupling_matrix"]
     graph = build_coupling_graph(matrix)
     density = coupling_density([edge["score"] for edge in graph["weighted_edges"]])
@@ -238,7 +238,7 @@ def main() -> None:
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "source_receipts": {
-            "registry": str(RESULT_DIR / "rosetta_lego_registry_results.json"),
+            "registry": str(RESULT_DIR / "cycle_receipt_coupling_candidate_registry_results.json"),
         },
         "coupling_matrix_used": matrix,
         "coupling_graph": graph,

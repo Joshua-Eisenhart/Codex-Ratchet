@@ -17,8 +17,8 @@ divergence_log = (
     "admit QIT, GStack, axis, or runtime-engine claims."
 )
 
-LEGO_IDS = ["engine_lab_matrix", "successor_coverage", "stage_gate"]
-PRIMARY_LEGO_IDS = ["engine_lab_matrix"]
+LEGO_IDS = ["cycle_protocol_receipt_status_matrix", "successor_coverage", "stage_gate"]
+PRIMARY_LEGO_IDS = ["cycle_protocol_receipt_status_matrix"]
 
 TOOL_MANIFEST = {
     "json": {"tried": True, "used": True, "reason": "loads queue/audit receipts and writes coverage audit"},
@@ -74,13 +74,13 @@ def write_visual_payload(result: dict) -> None:
 
 def main() -> None:
     source_names = [
-        "engine_lab_matrix_results.json",
+        "cycle_protocol_receipt_status_matrix_results.json",
         "engine_lab_open_row_audit_results.json",
         "engine_lab_next_work_queue_results.json",
     ]
     queue = load("engine_lab_next_work_queue_results.json")
     audit = load("engine_lab_open_row_audit_results.json")
-    matrix = load("engine_lab_matrix_results.json")
+    matrix = load("cycle_protocol_receipt_status_matrix_results.json")
     audit_rows_by_id = {item.get("row_id"): item for item in audit.get("rows", [])}
 
     rows = []
@@ -233,7 +233,7 @@ def main() -> None:
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "source_receipts": {
-            "engine_lab_matrix": str(RESULT_DIR / "engine_lab_matrix_results.json"),
+            "cycle_protocol_receipt_status_matrix": str(RESULT_DIR / "cycle_protocol_receipt_status_matrix_results.json"),
             "engine_lab_open_row_audit": str(RESULT_DIR / "engine_lab_open_row_audit_results.json"),
             "engine_lab_next_work_queue": str(RESULT_DIR / "engine_lab_next_work_queue_results.json"),
         },

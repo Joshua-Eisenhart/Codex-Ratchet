@@ -31,7 +31,7 @@ divergence_log = (
 
 LEGO_IDS = [
     "prime_qit_sidecar",
-    "rosetta_lego_registry",
+    "cycle_receipt_coupling_candidate_registry",
     "signature_fit",
     "graph_topology",
     "proof_fence",
@@ -144,7 +144,7 @@ def promotion_fence() -> dict[str, Any]:
 
 
 def run() -> dict[str, Any]:
-    registry = load_result("rosetta_lego_registry")
+    registry = load_result("cycle_receipt_coupling_candidate_registry")
     prime = load_result("prime_qit_sidecar_probe")
     graveyard = load_result("prime_qit_sidecar_graveyard")
     prime_vec = prime_feature(prime, graveyard)
@@ -193,7 +193,7 @@ def run() -> dict[str, Any]:
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "source_receipts": {
-            "rosetta_registry": "system_v4/probes/a2_state/sim_results/rosetta_lego_registry_results.json",
+            "rosetta_registry": "system_v4/probes/a2_state/sim_results/cycle_receipt_coupling_candidate_registry_results.json",
             "prime_sidecar": "system_v4/probes/a2_state/sim_results/prime_qit_sidecar_probe_results.json",
             "prime_graveyard": "system_v4/probes/a2_state/sim_results/prime_qit_sidecar_graveyard_results.json",
         },

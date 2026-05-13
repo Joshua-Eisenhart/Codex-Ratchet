@@ -251,7 +251,7 @@ function EngineLabCoveragePanel({ t, openRows, nextWork, successorCoverage, szil
 }
 
 function EngineRosettaWorkbench({ t, data }) {
-  const registry = window.ROSETTA_LEGO_REGISTRY_DATA || null;
+  const registry = window.CYCLE_RECEIPT_COUPLING_CANDIDATE_REGISTRY_DATA || null;
   const coupled = window.ROSETTA_LEGO_COUPLED_ARRAY_DATA || null;
   const coupledGraveyard = window.ROSETTA_LEGO_COUPLED_ARRAY_GRAVEYARD_DATA || null;
   const primeSidecar = window.PRIME_QIT_SIDECAR_DATA || null;

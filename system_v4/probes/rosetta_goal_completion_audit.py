@@ -40,7 +40,7 @@ PATHS = {
     "z3_capability": RESULTS_DIR / "z3_capability_results.json",
     "cvc5_capability": RESULTS_DIR / "cvc5_capability_results.json",
     "clifford_capability": RESULTS_DIR / "clifford_capability_results.json",
-    "rosetta_lego_registry": RESULTS_DIR / "rosetta_lego_registry_results.json",
+    "cycle_receipt_coupling_candidate_registry": RESULTS_DIR / "cycle_receipt_coupling_candidate_registry_results.json",
     "rosetta_coupled_array": RESULTS_DIR / "rosetta_lego_coupled_array_results.json",
     "rosetta_coupled_array_graveyard": RESULTS_DIR / "rosetta_lego_coupled_array_graveyard_results.json",
 }
@@ -174,7 +174,7 @@ def build_report() -> dict[str, Any]:
     z3_ok = summary_all_pass(payloads["z3_capability"])
     cvc5_ok = summary_all_pass(payloads["cvc5_capability"])
     clifford_ok = summary_all_pass(payloads["clifford_capability"])
-    registry_ok = summary_all_pass(payloads["rosetta_lego_registry"])
+    registry_ok = summary_all_pass(payloads["cycle_receipt_coupling_candidate_registry"])
     coupled_array_ok = summary_all_pass(payloads["rosetta_coupled_array"])
     graveyard_ok = summary_all_pass(payloads["rosetta_coupled_array_graveyard"])
 
@@ -240,7 +240,7 @@ def build_report() -> dict[str, Any]:
         "rosetta_registry_and_coupling_receipts": status(
             registry_ok and coupled_array_ok and graveyard_ok,
             [
-                rel(PATHS["rosetta_lego_registry"]),
+                rel(PATHS["cycle_receipt_coupling_candidate_registry"]),
                 rel(PATHS["rosetta_coupled_array"]),
                 rel(PATHS["rosetta_coupled_array_graveyard"]),
             ],
@@ -304,7 +304,7 @@ def build_report() -> dict[str, Any]:
         prompt_item(
             "Continue bounded Rosetta lego scaling after tracking is honest.",
             registry_ok and coupled_array_ok,
-            [rel(PATHS["rosetta_lego_registry"]), rel(PATHS["rosetta_coupled_array"])],
+            [rel(PATHS["cycle_receipt_coupling_candidate_registry"]), rel(PATHS["rosetta_coupled_array"])],
             "read Rosetta registry and coupled-array receipts and require all_pass true",
             None if registry_ok and coupled_array_ok else "bounded Rosetta registry/coupling receipt missing or failing",
         ),

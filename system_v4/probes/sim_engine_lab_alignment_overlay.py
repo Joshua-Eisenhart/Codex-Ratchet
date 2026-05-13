@@ -92,7 +92,7 @@ def level_rank(level: str) -> int:
 
 
 def main() -> None:
-    engine_lab = load_json("engine_lab_matrix_results.json")
+    engine_lab = load_json("cycle_protocol_receipt_status_matrix_results.json")
     qit_companion = load_json("qit_engine_companion_array_results.json")
     qit_entropy_companion = load_json("qit_entropy_companion_array_results.json")
     constraint_audit = load_json("engine_lab_constraint_audit_results.json")
@@ -102,7 +102,7 @@ def main() -> None:
     szilard_topology_entropy = load_json("szilard_topology_entropy_array_results.json")
 
     if engine_lab is None:
-        raise SystemExit("missing engine_lab_matrix_results.json")
+        raise SystemExit("missing cycle_protocol_receipt_status_matrix_results.json")
 
     rows = engine_lab["rows"]
     by_family = {}

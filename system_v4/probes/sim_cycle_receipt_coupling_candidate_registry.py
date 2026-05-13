@@ -217,8 +217,8 @@ def build_visual_payload(result: dict[str, Any]) -> dict[str, Any]:
 
 def write_visual_payload(result: dict[str, Any]) -> None:
     VIS_DIR.mkdir(parents=True, exist_ok=True)
-    js = "window.ROSETTA_LEGO_REGISTRY_DATA = " + json.dumps(build_visual_payload(result), indent=2, default=str) + ";\n"
-    (VIS_DIR / "rosetta-lego-registry-data.js").write_text(js, encoding="utf-8")
+    js = "window.CYCLE_RECEIPT_COUPLING_CANDIDATE_REGISTRY_DATA = " + json.dumps(build_visual_payload(result), indent=2, default=str) + ";\n"
+    (VIS_DIR / "cycle-receipt-coupling-candidate-registry-data.js").write_text(js, encoding="utf-8")
 
 
 def main() -> None:
@@ -227,13 +227,13 @@ def main() -> None:
     matrix = coupling_matrix(registry)
     all_pass = all(row["source_all_pass"] for row in registry) and all(row["allowed_next"] for row in matrix)
     result = {
-        "name": "rosetta_lego_registry",
+        "name": "cycle_receipt_coupling_candidate_registry",
         "classification": CLASSIFICATION,
         "classification_note": divergence_log,
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
-        "sim_execution_kind": "controller_index",
+        "sim_execution_kind": "controller_audit",
         "allowed_claims": [
             "current Rosetta engine legos have machine-readable registry rows",
             "pairwise coupling candidates are classified by shared modes, tools, axes, entropy, and receipts",
@@ -252,12 +252,12 @@ def main() -> None:
             "coupling_candidate_count": len(matrix),
             "allowed_coupling_count": sum(row["allowed_next"] for row in matrix),
             "blocked_coupling_count": sum(not row["allowed_next"] for row in matrix),
-            "visual_payload": "visualizer/rosetta-lego-registry-data.js",
+            "visual_payload": "visualizer/cycle-receipt-coupling-candidate-registry-data.js",
             "scope_note": divergence_log,
         },
     }
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = RESULT_DIR / "rosetta_lego_registry_results.json"
+    out_path = RESULT_DIR / "cycle_receipt_coupling_candidate_registry_results.json"
     out_path.write_text(json.dumps(result, indent=2, default=str) + "\n", encoding="utf-8")
     write_visual_payload(result)
     print(out_path)

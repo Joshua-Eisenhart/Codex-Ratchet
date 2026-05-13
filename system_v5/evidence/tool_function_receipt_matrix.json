@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T05:45:41.543083+00:00",
+  "generated_at": "2026-05-13T05:50:32.462948+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -5587,6 +5587,63 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
+        "hopf_weyl_carrier_loop_geometry_baseline",
+        "density_readout_so3_equivariance_baseline"
+      ],
+      "claim_ceiling": "e3nn l=1 spherical-harmonic SO(3) equivariance baseline for Bloch-density readouts from declared Hopf/Weyl vertical fiber and horizontal base-lift paths only; this checks ambient rotation consistency and density-loop collapse/rank controls, not physical loop independence in a full nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
+      "depth": "load_bearing",
+      "function_api": "e3nn.o3.spherical_harmonics/matrix_to_angles/wigner_D/angles_to_matrix l=1 SO(3) equivariance over Hopf/Weyl vertical fiber and horizontal base-lift Bloch-density readouts",
+      "manifest_reason": "o3.spherical_harmonics, matrix_to_angles, wigner_D, and angles_to_matrix check SO(3) equivariance of l=1 readouts on Hopf/Weyl vertical fiber and horizontal base-lift density paths",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+        "No flux representation or Pauli-boundary shortcut.",
+        "No Lindblad, Hamiltonian, thermodynamic, information-cycle, or target-system mechanics.",
+        "No proof of physical inner/outer loop independence.",
+        "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/e3nn_hopf_weyl_vertical_horizontal_density_so3_equivariance_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "e3nn"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
         "operator_family_admission",
         "graph_cell_complex_geometry"
       ],
@@ -5639,11 +5696,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 104,
+    "passing_count": 105,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 104,
+    "receipt_schema_observed_missing_count": 105,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 104,
+    "row_count": 105,
     "tools": [
       "clifford",
       "cvc5",

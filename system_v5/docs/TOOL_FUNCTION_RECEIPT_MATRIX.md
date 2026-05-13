@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T05:45:41.543083+00:00`
+Generated: `2026-05-13T05:50:32.462948+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `104`
-- Passing rows: `104`
+- Rows: `105`
+- Passing rows: `105`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `104`
+- Explicit receipt schemas missing: `105`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -120,4 +120,5 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `e3nn` | e3nn.o3.Irreps and D_from_matrix vector representation | `system_v4/probes/a2_state/sim_results/e3nn_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `operator_family_admission`, `graph_cell_complex_geometry` |
 | `e3nn` | e3nn.o3.spherical_harmonics equivariance under a tiny SO(3) rotation fixture | `system_v4/probes/a2_state/sim_results/sim_e3nn_spherical_harmonics_equivariance_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `operator_family_admission`, `gtower_so3_geometry` |
 | `e3nn` | e3nn.o3.spherical_harmonics, matrix_to_angles, and wigner_D l=1 SO(3) equivariance over projected Hopf base-loop samples | `system_v4/probes/a2_state/sim_results/e3nn_hopf_base_loop_so3_equivariance_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_base_loop_so3_readout_equivariance_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
+| `e3nn` | e3nn.o3.spherical_harmonics/matrix_to_angles/wigner_D/angles_to_matrix l=1 SO(3) equivariance over Hopf/Weyl vertical fiber and horizontal base-lift Bloch-density readouts | `system_v4/probes/a2_state/sim_results/e3nn_hopf_weyl_vertical_horizontal_density_so3_equivariance_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_weyl_carrier_loop_geometry_baseline`, `density_readout_so3_equivariance_baseline` |
 | `e3nn` | e3nn vector irrep action commuting with PyG MessagePassing.propagate | `system_v4/probes/a2_state/sim_results/sim_integration_e3nn_pyg_equivariance_under_mp_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `operator_family_admission`, `graph_cell_complex_geometry` |

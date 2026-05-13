@@ -1,0 +1,158 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "higher-l e3nn spherical harmonic readout equivariance",
+    "Clifford rotor action on vertical/horizontal density vectors",
+    "geomstats SO3 action distance cross-check",
+    "physical Hamiltonian generator evolution over vertical and horizontal path families"
+  ],
+  "baselines": [
+    "e3nn Hopf base-loop SO3 equivariance baseline",
+    "QuTiP/Qiskit Hopf/Weyl vertical-horizontal density transport baselines",
+    "GUDHI/TopoNetX/rustworkx Hopf/Weyl vertical-horizontal density readout topology baselines",
+    "SymPy/Geomstats/Clifford Hopf/Weyl vertical-horizontal metric baselines"
+  ],
+  "blocked_until": "blocked from target-system claims until full carrier/topology and physical-evolution receipts exist",
+  "carrier_topology": "declared two-component Hopf/Weyl carrier paths projected to Bloch-density readout vectors on S2",
+  "claim_ceiling": "e3nn l=1 spherical-harmonic SO(3) equivariance baseline for Bloch-density readouts from declared Hopf/Weyl vertical fiber and horizontal base-lift paths only; this checks ambient rotation consistency and density-loop collapse/rank controls, not physical loop independence in a full nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if e3nn l=1 SO(3) equivariance fails, if horizontal density readout does not remain a two-dimensional loop, if vertical or pole readouts do not collapse, or if this receipt is used as flux, axis, QIT, GStack, bridge, nonclassical, or target-system evidence.",
+  "divergence_log": "This e3nn packet is an ambient SO(3)-equivariance formulation of projected density-readout geometry. It detects collapsed vertical-fiber density readouts and two-dimensional horizontal/base density loops, but does not distinguish connection sign or implement a full carrier manifold.",
+  "exact_tool_function_needs": {
+    "e3nn": [
+      "o3.spherical_harmonics",
+      "o3.matrix_to_angles",
+      "o3.wigner_D",
+      "o3.angles_to_matrix"
+    ],
+    "torch": [
+      "linspace",
+      "stack",
+      "linalg.det",
+      "linalg.matrix_rank",
+      "linalg.norm",
+      "max",
+      "abs"
+    ]
+  },
+  "graveyards": [
+    "vertical fiber density readout collapses",
+    "horizontal base density readout is a two-dimensional loop",
+    "ignoring rotation breaks horizontal equivariance",
+    "wrong Wigner-D side breaks horizontal equivariance",
+    "vertical wrong action is not a strong loop-independence graveyard",
+    "pole horizontal density readout collapses",
+    "sheet reversal preserves horizontal loop rank and equivariance",
+    "identity rotation has zero horizontal equivariance error",
+    "nonorthogonal scaling is not SO3"
+  ],
+  "graveyards_detail": {
+    "horizontal_base_density_readout_is_two_dimensional_loop": {
+      "centered_rank": 2,
+      "max_pairwise_displacement": 1.7320508075688774,
+      "passed": true
+    },
+    "identity_rotation_has_zero_horizontal_equivariance_error": {
+      "correct_wigner_d_error": 0.0,
+      "passed": true
+    },
+    "ignoring_rotation_breaks_horizontal_equivariance": {
+      "passed": true,
+      "wrong_ignore_rotation_error": 0.9661434617331217
+    },
+    "nonorthogonal_scaling_is_not_so3": {
+      "orthogonality_error": 3.0,
+      "passed": true,
+      "scaled_det": 2.0
+    },
+    "pole_horizontal_density_readout_collapses": {
+      "centered_rank": 0,
+      "max_pairwise_displacement": 0.0,
+      "passed": true
+    },
+    "sheet_reversal_preserves_horizontal_loop_rank_and_equivariance": {
+      "passed": true,
+      "positive_rank": 2,
+      "reversed_correct_wigner_d_error": 5.455056391046043e-07,
+      "reversed_rank": 2
+    },
+    "vertical_fiber_density_readout_collapses": {
+      "centered_rank": 0,
+      "max_pairwise_displacement": 0.0,
+      "passed": true
+    },
+    "vertical_wrong_action_is_not_a_strong_graveyard": {
+      "note": "A collapsed path can still move as a single vector under ambient SO(3); this control is not used as loop-independence evidence.",
+      "passed": true,
+      "wrong_ignore_rotation_error": 0.833205088453818
+    },
+    "wrong_wigner_side_breaks_horizontal_equivariance": {
+      "passed": true,
+      "wrong_wigner_side_error": 1.6318810642362365
+    }
+  },
+  "lego_or_coupling_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "name": "e3nn_hopf_weyl_vertical_horizontal_density_so3_equivariance",
+  "next_lego_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "observable": "e3nn l=1 spherical-harmonic equivariance errors, rotation determinant, centered-rank controls, and density-readout displacement",
+  "operation_sequence": [
+    "sample declared Hopf/Weyl vertical fiber and horizontal base-lift paths",
+    "project each sample family to three-coordinate Bloch-density readouts",
+    "compute e3nn l=1 spherical harmonics for collapsed and loop readouts",
+    "rotate readouts by a deterministic SO(3) matrix",
+    "compare direct rotated harmonics with Wigner-D-transformed original harmonics",
+    "run vertical-collapse, horizontal-loop, wrong-action, pole-collapse, sheet-reversal, identity, and non-SO3 graveyards"
+  ],
+  "out_of_scope": [
+    "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+    "No flux representation or Pauli-boundary shortcut.",
+    "No Lindblad, Hamiltonian, thermodynamic, information-cycle, or target-system mechanics.",
+    "No proof of physical inner/outer loop independence.",
+    "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "vertical density readout collapses, horizontal density readout has centered rank two, correct Wigner-D SO(3) equivariance errors are below tolerance, wrong horizontal actions fail, and adjacent collapse/rank controls pass",
+  "positive": {
+    "density_so3_equivariance_pass": true,
+    "horizontal_base_density_readout": {
+      "centered_rank": 2,
+      "equivariance": {
+        "correct_wigner_d_error": 5.439488686698191e-07,
+        "wrong_ignore_rotation_error": 0.9661434617331217,
+        "wrong_wigner_side_error": 1.6318810642362365
+      },
+      "max_pairwise_displacement": 1.7320508075688774
+    },
+    "phi0": 0.6283185307179586,
+    "rotation_det": 0.9999999999999999,
+    "samples": 32,
+    "theta": 1.0471975511965976,
+    "vertical_fiber_density_readout": {
+      "centered_rank": 0,
+      "equivariance": {
+        "correct_wigner_d_error": 4.3075652089719085e-07,
+        "wrong_ignore_rotation_error": 0.833205088453818,
+        "wrong_wigner_side_error": 1.3881280399344802
+      },
+      "max_pairwise_displacement": 0.0
+    }
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later geometry planning after full carrier, connection, topology, solver, density-object, and physical operator-evolution receipts reproduce compatible vertical/horizontal separation with adjacent controls.",
+  "tool_integration_depth": {
+    "e3nn": "load_bearing",
+    "torch": "supportive"
+  },
+  "tool_manifest": {
+    "e3nn": {
+      "reason": "o3.spherical_harmonics, matrix_to_angles, wigner_D, and angles_to_matrix check SO(3) equivariance of l=1 readouts on Hopf/Weyl vertical fiber and horizontal base-lift density paths",
+      "tried": true,
+      "used": true
+    },
+    "torch": {
+      "reason": "tensor arithmetic for sampled density readouts, rotations, rank controls, determinants, and max-error observables",
+      "tried": true,
+      "used": true
+    }
+  }
+}

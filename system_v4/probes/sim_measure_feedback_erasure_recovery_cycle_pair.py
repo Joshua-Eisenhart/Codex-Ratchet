@@ -71,17 +71,20 @@ PRIMARY_LEGO_IDS = ["measure_feedback_erasure_cycle", "opposite_direction_cycle_
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "density matrices, entropy, work bookkeeping"},
     "scipy": {"tried": True, "used": True, "reason": "matrix-log entropy cross-check"},
-    "sympy": {"tried": True, "used": True, "reason": "symbolic kT ln2 balance"},
+    "sympy": {"tried": True, "used": True, "reason": "symbolic Landauer kT ln2 balance for measurement and erasure bounds"},
     "z3": {"tried": True, "used": True, "reason": "Landauer forbidden-region UNSAT fence"},
     "cvc5": {"tried": True, "used": True, "reason": "independent fixed erasure-cost UNSAT fence"},
     "qutip": {"tried": True, "used": True, "reason": "finite two-qubit density carrier witness"},
     "qiskit": {"tried": True, "used": True, "reason": "independent density-matrix witness"},
     "pytorch": {"tried": True, "used": True, "reason": "autograd sign check for cost/gain balance"},
     "pyg": {"tried": True, "used": True, "reason": "protocol graph tensor carrier"},
-    "rustworkx": {"tried": True, "used": True, "reason": "directed protocol graph"},
+    "rustworkx": {"tried": True, "used": True, "reason": "directed protocol graph for measurement feedback erasure recovery order"},
     "xgi": {"tried": True, "used": True, "reason": "hypergraph groups measurement/feedback/reset families"},
     "toponetx": {"tried": True, "used": tnx is not None, "reason": "cell complex over protocol stages"},
     "gudhi": {"tried": True, "used": gudhi is not None, "reason": "simplex-tree witness over protocol adjacency"},
+    "clifford": {"tried": False, "used": False, "reason": "not used because this finite measurement feedback calibration has no Clifford carrier"},
+    "geomstats": {"tried": False, "used": False, "reason": "not used because this finite protocol does not estimate a manifold metric"},
+    "e3nn": {"tried": False, "used": False, "reason": "not used because this calibration has no equivariant tensor field"},
 }
 TOOL_INTEGRATION_DEPTH = {
     tool: ("load_bearing" if spec["used"] else None) for tool, spec in TOOL_MANIFEST.items()

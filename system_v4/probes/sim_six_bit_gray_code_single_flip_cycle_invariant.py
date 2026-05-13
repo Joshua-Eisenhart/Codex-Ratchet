@@ -56,7 +56,8 @@ PRIMARY_LEGO_IDS = ["six_bit_gray_code_schedule", "cycle_invariant_correlation"]
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "six-bit states, Gray schedule, parity/readout arrays"},
-    "torch": {"tried": True, "used": True, "reason": "entropy and tensor carrier checks over 64 states"},
+    "pytorch": {"tried": True, "used": True, "reason": "entropy and tensor carrier checks over 64 states"},
+    "torch": {"tried": True, "used": True, "reason": "compatibility alias for the pytorch tensor carrier checks"},
     "pyg": {"tried": True, "used": True, "reason": "graph tensor carrier for the 64-state walk"},
     "rustworkx": {"tried": True, "used": True, "reason": "directed 64-cycle schedule graph"},
     "xgi": {"tried": True, "used": True, "reason": "hyperedges grouping upper/lower trigram families"},
@@ -66,6 +67,10 @@ TOOL_MANIFEST = {
     "cvc5": {"tried": True, "used": True, "reason": "independent UNSAT fence for a concrete multi-line binary-count jump under the single-line gate"},
     "gudhi": {"tried": True, "used": gudhi is not None, "reason": "simplex-tree witness over local adjacency edges"},
     "toponetx": {"tried": True, "used": tnx is not None, "reason": "cell-complex witness over local adjacency edges"},
+    "sympy": {"tried": False, "used": False, "reason": "not used because this finite Gray-code receipt uses enumerated integer witnesses"},
+    "clifford": {"tried": False, "used": False, "reason": "not used because this six-bit schedule has no Clifford algebra carrier"},
+    "geomstats": {"tried": False, "used": False, "reason": "not used because this finite schedule does not estimate a manifold metric"},
+    "e3nn": {"tried": False, "used": False, "reason": "not used because this schedule has no equivariant tensor field"},
 }
 TOOL_INTEGRATION_DEPTH = {
     tool: ("load_bearing" if spec["used"] else None) for tool, spec in TOOL_MANIFEST.items()

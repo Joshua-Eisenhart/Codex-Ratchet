@@ -75,6 +75,9 @@ TOOL_MANIFEST = {
     "xgi": {"tried": True, "used": True, "reason": "hypergraph groups isothermal and adiabatic legs"},
     "toponetx": {"tried": True, "used": tnx is not None, "reason": "cell-complex witness for closed four-leg cycle"},
     "gudhi": {"tried": True, "used": gudhi is not None, "reason": "simplex-tree witness for stage adjacency"},
+    "clifford": {"tried": False, "used": False, "reason": "not used because this finite two-bath calibration has no Clifford algebra carrier"},
+    "geomstats": {"tried": False, "used": False, "reason": "not used because this finite cycle does not estimate a manifold metric"},
+    "e3nn": {"tried": False, "used": False, "reason": "not used because this calibration has no equivariant tensor field"},
 }
 TOOL_INTEGRATION_DEPTH = {
     tool: ("load_bearing" if entry["used"] else None) for tool, entry in TOOL_MANIFEST.items()

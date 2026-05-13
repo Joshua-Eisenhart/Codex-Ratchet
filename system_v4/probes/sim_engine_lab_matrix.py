@@ -18,10 +18,10 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "controller_index"
+classification = "controller_audit"
 
 
-CLASSIFICATION = "controller_index"
+CLASSIFICATION = "controller_audit"
 divergence_log = (
     "Controller-facing engine-lab matrix over Carnot and Szilard rows. "
     "It organizes exact rows, stochastic rows, topology sweeps, and entropy/"

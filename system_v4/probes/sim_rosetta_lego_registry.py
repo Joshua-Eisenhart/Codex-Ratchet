@@ -14,7 +14,7 @@ import pathlib
 from typing import Any
 
 
-CLASSIFICATION = "controller_index"
+CLASSIFICATION = "controller_audit"
 classification = CLASSIFICATION
 divergence_log = (
     "Machine-readable Rosetta lego registry over current Carnot, Szilard, and "

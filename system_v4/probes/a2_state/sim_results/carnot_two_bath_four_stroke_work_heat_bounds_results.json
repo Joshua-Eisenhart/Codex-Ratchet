@@ -5,6 +5,11 @@
     "Lindblad two-bath open-system stroke schedule",
     "Hamiltonian parameter-change work integral"
   ],
+  "baseline_variants": [
+    "closed-form Carnot bound eta = 1 - T_cold/T_hot",
+    "scalar heat/work conservation W = Q_hot + Q_cold",
+    "finite parameter sweep over T_hot > T_cold > 0 and delta_entropy >= 0"
+  ],
   "baselines": [
     "closed-form Carnot bound eta = 1 - T_cold/T_hot",
     "scalar heat/work conservation W = Q_hot + Q_cold"
@@ -44,12 +49,35 @@
       "isclose"
     ]
   },
+  "graveyard_companions": [
+    {
+      "expected_failure_mode": "thermal asymmetry collapses",
+      "name": "same_bath_zero_work",
+      "predicate": "W_out == 0"
+    },
+    {
+      "expected_failure_mode": "stroke displacement collapses",
+      "name": "no_entropy_change_zero_work",
+      "predicate": "W_out == 0"
+    },
+    {
+      "expected_failure_mode": "direction inverts",
+      "name": "reversed_cycle_consumes_work",
+      "predicate": "W_out < 0"
+    },
+    {
+      "expected_failure_mode": "bound violation rejected",
+      "name": "super_bound_claim_rejected",
+      "predicate": "claimed_eta > eta_bound"
+    }
+  ],
   "graveyards": [
     "same-bath cycle gives zero work",
     "zero entropy displacement gives zero work",
     "reversed direction consumes work",
     "super-bound efficiency claim is rejected"
   ],
+  "lego_coupling_target": "work_heat_cycle_calibration_fixture",
   "lego_or_coupling_target": "work_heat_cycle_calibration_fixture",
   "name": "carnot_two_bath_four_stroke_work_heat_bounds",
   "negative": {
@@ -100,6 +128,102 @@
     "No Hamiltonian stroke dynamics.",
     "No measurement, feedback, QIT, GStack, axis, bridge, or nonclassical claim."
   ],
+  "parameter_sweep": {
+    "case_count": 9,
+    "cases": [
+      {
+        "Q_cold": -75.0,
+        "Q_hot": 112.5,
+        "T_cold": 300.0,
+        "T_hot": 450.0,
+        "W_out": 37.5,
+        "delta_entropy": 0.25,
+        "eta": 0.3333333333333333,
+        "eta_bound": 0.33333333333333337
+      },
+      {
+        "Q_cold": -300.0,
+        "Q_hot": 450.0,
+        "T_cold": 300.0,
+        "T_hot": 450.0,
+        "W_out": 150.0,
+        "delta_entropy": 1.0,
+        "eta": 0.3333333333333333,
+        "eta_bound": 0.33333333333333337
+      },
+      {
+        "Q_cold": -600.0,
+        "Q_hot": 900.0,
+        "T_cold": 300.0,
+        "T_hot": 450.0,
+        "W_out": 300.0,
+        "delta_entropy": 2.0,
+        "eta": 0.3333333333333333,
+        "eta_bound": 0.33333333333333337
+      },
+      {
+        "Q_cold": -75.0,
+        "Q_hot": 150.0,
+        "T_cold": 300.0,
+        "T_hot": 600.0,
+        "W_out": 75.0,
+        "delta_entropy": 0.25,
+        "eta": 0.5,
+        "eta_bound": 0.5
+      },
+      {
+        "Q_cold": -300.0,
+        "Q_hot": 600.0,
+        "T_cold": 300.0,
+        "T_hot": 600.0,
+        "W_out": 300.0,
+        "delta_entropy": 1.0,
+        "eta": 0.5,
+        "eta_bound": 0.5
+      },
+      {
+        "Q_cold": -600.0,
+        "Q_hot": 1200.0,
+        "T_cold": 300.0,
+        "T_hot": 600.0,
+        "W_out": 600.0,
+        "delta_entropy": 2.0,
+        "eta": 0.5,
+        "eta_bound": 0.5
+      },
+      {
+        "Q_cold": -112.5,
+        "Q_hot": 225.0,
+        "T_cold": 450.0,
+        "T_hot": 900.0,
+        "W_out": 112.5,
+        "delta_entropy": 0.25,
+        "eta": 0.5,
+        "eta_bound": 0.5
+      },
+      {
+        "Q_cold": -450.0,
+        "Q_hot": 900.0,
+        "T_cold": 450.0,
+        "T_hot": 900.0,
+        "W_out": 450.0,
+        "delta_entropy": 1.0,
+        "eta": 0.5,
+        "eta_bound": 0.5
+      },
+      {
+        "Q_cold": -900.0,
+        "Q_hot": 1800.0,
+        "T_cold": 450.0,
+        "T_hot": 900.0,
+        "W_out": 900.0,
+        "delta_entropy": 2.0,
+        "eta": 0.5,
+        "eta_bound": 0.5
+      }
+    ],
+    "forward_bounds_hold": true
+  },
   "pass": true,
   "pass_fail_predicate": "W_out > 0, eta equals 1 - T_cold/T_hot, heat accounting closes, and all graveyards collapse or invert",
   "positive": {
@@ -117,7 +241,13 @@
     "heat_conservation": true,
     "work_positive": true
   },
+  "promotion_allowed": false,
   "promotion_condition": "May only support later calibration planning after a non-scalar bath/dynamics formulation reproduces these bounds with the same graveyards.",
+  "tool_function_needs": {
+    "numpy": [
+      "isclose"
+    ]
+  },
   "tool_integration_depth": {
     "numpy": "supportive"
   },

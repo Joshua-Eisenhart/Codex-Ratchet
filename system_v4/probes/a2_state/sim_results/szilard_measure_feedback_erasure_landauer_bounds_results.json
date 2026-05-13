@@ -5,6 +5,12 @@
     "conditional unitary feedback map",
     "Lindblad erasure stroke"
   ],
+  "baseline_variants": [
+    "binary Shannon entropy in nats",
+    "Landauer floor Q_erase >= kBT * I",
+    "feedback work bound W <= kBT * I",
+    "explicit random-feedback joint distribution with zero mutual information"
+  ],
   "baselines": [
     "binary Shannon entropy in nats",
     "Landauer floor Q_erase >= kBT * I",
@@ -41,17 +47,40 @@
       "isclose"
     ]
   },
+  "graveyard_companions": [
+    {
+      "expected_failure_mode": "record entropy collapses",
+      "name": "no_measurement_zero_information",
+      "predicate": "I == 0"
+    },
+    {
+      "expected_failure_mode": "conditional action missing",
+      "name": "no_feedback_zero_work",
+      "predicate": "W == 0"
+    },
+    {
+      "expected_failure_mode": "record/action independence",
+      "name": "random_feedback_zero_correlation",
+      "predicate": "mutual_information(record; action) == 0"
+    },
+    {
+      "expected_failure_mode": "unpaid memory entropy accumulates",
+      "name": "no_erasure_repeated_cycle_surplus_flagged",
+      "predicate": "unpaid_surplus > 0"
+    }
+  ],
   "graveyards": [
     "no measurement gives zero information",
     "no feedback gives zero work",
     "random feedback has zero correlation",
     "no erasure flags repeated-cycle surplus"
   ],
+  "lego_coupling_target": "information_work_erasure_cycle_calibration_fixture",
   "lego_or_coupling_target": "information_work_erasure_cycle_calibration_fixture",
   "name": "szilard_measure_feedback_erasure_landauer_bounds",
   "negative": {
     "graveyard_values": {
-      "no_erasure_surplus": 2.0794415416798357,
+      "no_erasure_surplus": 8.317766166719343,
       "no_feedback_work": 0.0,
       "no_measurement": {
         "erasure_heat_floor": -0.0,
@@ -60,7 +89,18 @@
         "kBT": 3.0,
         "net_cycle_surplus_bound": 0.0
       },
-      "random_feedback_correlation": 0.0
+      "random_feedback_correlation": 0.0,
+      "random_feedback_joint": [
+        [
+          0.25,
+          0.25
+        ],
+        [
+          0.25,
+          0.25
+        ]
+      ],
+      "repeated_cycles_without_erasure": 4
     },
     "no_erasure_repeated_cycle_surplus_flagged": true,
     "no_feedback_zero_work": true,
@@ -95,7 +135,17 @@
     },
     "work_bound_equals_kbt_ln2": true
   },
+  "promotion_allowed": false,
   "promotion_condition": "May only support later calibration planning after an explicit state-update formulation reproduces these bounds with the same graveyards.",
+  "tool_function_needs": {
+    "numpy": [
+      "log",
+      "sum",
+      "isclose",
+      "outer",
+      "dot"
+    ]
+  },
   "tool_integration_depth": {
     "numpy": "supportive"
   },

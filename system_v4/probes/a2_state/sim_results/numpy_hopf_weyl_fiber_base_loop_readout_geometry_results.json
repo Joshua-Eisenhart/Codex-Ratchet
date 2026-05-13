@@ -52,9 +52,9 @@
     "near_pole_outer_density_nearly_collapses": true
   },
   "carrier_topology": "sampled S^3 carrier coordinates with projection to density/Bloch readouts; no full nested-tori manifold",
-  "claim_ceiling": "classical sampled Hopf-coordinate carrier readout baseline only; no physical inner/outer loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+  "claim_ceiling": "classical sampled Hopf-coordinate carrier readout baseline only; no physical fiber/base loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
   "classification": "classical_baseline",
-  "demotion_condition": "Demote if the inner loop varies in density, if the outer loop stops traversing density away from the pole, or if same-path and hidden-readout graveyards do not collapse the distinction.",
+  "demotion_condition": "Demote if the fiber loop varies in density, if the base loop stops traversing density away from the pole, or if same-path and hidden-readout graveyards do not collapse the distinction.",
   "divergence_log": "Numpy sampled complex-vector geometry is a classical baseline. It can show different readouts for declared Hopf-coordinate paths, but it does not prove physical loop independence or admit a target-system structure.",
   "exact_tool_function_needs": {
     "numpy": [
@@ -71,7 +71,7 @@
     "both paths forced to the base-lift loop collapse the distinction",
     "bare Pauli matrices without carrier path have no loop readout",
     "hidden density readout cannot separate stationary from traversing behavior",
-    "outer loop at the pole degenerates to zero density traversal"
+    "base loop at the pole degenerates to zero density traversal"
   ],
   "graveyards_detail": {
     "bare_pauli_without_carrier_has_no_loop_readout": {
@@ -118,9 +118,9 @@
       "passed": true
     }
   },
-  "lego_or_coupling_target": "inner_outer_hopf_weyl_loop_geometry_fit",
-  "name": "hopf_weyl_inner_outer_loop_readout_geometry",
-  "next_lego_target": "inner_outer_hopf_weyl_loop_geometry_fit",
+  "lego_or_coupling_target": "declared_fiber_base_coordinate_readout_baseline",
+  "name": "numpy_hopf_weyl_fiber_base_loop_readout_geometry",
+  "next_lego_target": "declared_fiber_base_coordinate_readout_baseline",
   "observable": "density displacement from start, density path length, Bloch path length, state path length, and phase span",
   "operation_sequence": [
     "construct normalized two-component complex carrier states in Hopf-style coordinates",
@@ -136,7 +136,7 @@
     "No claim that flux is represented; only a carrier-loop readout baseline is represented."
   ],
   "pass": true,
-  "pass_fail_predicate": "inner loop has zero density/Bloch traversal while state path is nonzero; outer loop has nonzero density/Bloch traversal away from the pole; adjacent graveyards collapse or become insufficient",
+  "pass_fail_predicate": "fiber loop has zero density/Bloch traversal while state path is nonzero; base loop has nonzero density/Bloch traversal away from the pole; adjacent graveyards collapse or become insufficient",
   "positive": {
     "fixed_inner_phi": 0.6283185307179586,
     "inner_loop": {
@@ -176,7 +176,7 @@
       "state_path_length": 3.141513801144301
     },
     "samples": 129,
-    "survives_inner_outer_readout": true,
+    "survives_fiber_base_readout": true,
     "theta": 1.0471975511965976
   },
   "promotion_allowed": false,

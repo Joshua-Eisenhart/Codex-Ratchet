@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T06:02:34.510773+00:00",
+  "generated_at": "2026-05-13T06:10:37.245778+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -163,7 +163,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_fiber_base_loop_geometry_baseline",
+        "declared_fiber_base_coordinate_readout_baseline",
         "differentiable_coordinate_readout_baseline"
       ],
       "claim_ceiling": "PyTorch autograd Hopf-coordinate density-gradient baseline only; no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
@@ -176,7 +176,7 @@
         "No QIT, GStack, axis, bridge, or nonclassical admission.",
         "No claim that flux is represented."
       ],
-      "receipt": "system_v4/probes/a2_state/sim_results/pytorch_hopf_inner_outer_density_gradient_results.json",
+      "receipt": "system_v4/probes/a2_state/sim_results/pytorch_hopf_fiber_base_density_gradient_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "classical_baseline",
       "receipt_contract_fields": [
@@ -218,7 +218,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "differentiable_density_readout_baseline"
       ],
       "claim_ceiling": "PyTorch complex-tensor Hopf/Weyl fiber-base gradient-readout baseline only; this compares autograd sensitivities of declared carrier density readouts under phi and chi coordinates; no physical fiber/base loop independence proof, no full nested Hopf-torus manifold, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
@@ -575,7 +575,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "nested_hopf_torus_loop_geometry_baseline",
+        "finite_hopf_torus_fixture_controls_baseline",
         "receipt_dependency_dag_controls"
       ],
       "claim_ceiling": "NetworkX dependency-DAG and transitive-reduction baseline over Hopf receipt names only; no physical distinguishability, QIT, GStack, axis, bridge, nonclassical, flux, Pauli shortcut, target-system, or full geometric-constraint-manifold admission",
@@ -841,10 +841,10 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_fiber_base_loop_geometry_baseline",
+        "declared_fiber_base_coordinate_readout_baseline",
         "density_object_path_readout_baseline"
       ],
-      "claim_ceiling": "QuTiP density-object readout baseline over declared Hopf-coordinate paths only; no physical inner/outer loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+      "claim_ceiling": "QuTiP density-object readout baseline over declared Hopf-coordinate paths only; no physical fiber/base loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
       "depth": "load_bearing",
       "function_api": "qutip Qobj/ket2dm/expect/sigmax/sigmay/sigmaz density readouts over sampled Hopf-coordinate carrier paths",
       "manifest_reason": "constructs Qobj carrier states, density matrices, and Pauli expectation readouts along declared paths",
@@ -854,7 +854,7 @@
         "No target-system, QIT, GStack, axis, bridge, or nonclassical admission.",
         "No claim that flux is represented."
       ],
-      "receipt": "system_v4/probes/a2_state/sim_results/qutip_hopf_inner_outer_density_readout_results.json",
+      "receipt": "system_v4/probes/a2_state/sim_results/qutip_hopf_fiber_base_density_readout_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "classical_baseline",
       "receipt_contract_fields": [
@@ -896,7 +896,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_fiber_base_loop_geometry_baseline",
+        "declared_fiber_base_coordinate_readout_baseline",
         "density_operator_phase_generator_transport_baseline"
       ],
       "claim_ceiling": "QuTiP phase-generator density-transport baseline for Hopf-style inner/global-phase and outer/relative-phase loop transports only; no physical inner/outer loop independence, no full S3 bundle, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
@@ -952,7 +952,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "density_object_path_readout_baseline"
       ],
       "claim_ceiling": "QuTiP two-component Hopf/Weyl carrier-state fiber/base transport baseline only; this compares ket, density, and Pauli-expectation readouts for declared loop families and sheet orientations; no physical inner/outer independence, no full nested Hopf-torus manifold, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
@@ -1008,7 +1008,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "density_object_vertical_horizontal_transport_baseline"
       ],
       "claim_ceiling": "QuTiP density-object transport baseline for declared Hopf/Weyl vertical fiber and horizontal base-lift paths only; this compares carrier ket, density object, and Pauli expectation readouts in one local chart, not physical operator evolution or full loop independence in a nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
@@ -1281,10 +1281,10 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_fiber_base_loop_geometry_baseline",
+        "declared_fiber_base_coordinate_readout_baseline",
         "density_object_path_readout_baseline"
       ],
-      "claim_ceiling": "Qiskit Statevector/DensityMatrix readout baseline over declared Hopf-coordinate paths only; no physical inner/outer loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+      "claim_ceiling": "Qiskit Statevector/DensityMatrix readout baseline over declared Hopf-coordinate paths only; no physical fiber/base loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
       "depth": "load_bearing",
       "function_api": "qiskit Statevector, DensityMatrix, and Operator expectation_value density readouts over sampled Hopf-coordinate carrier paths",
       "manifest_reason": "constructs Statevector and DensityMatrix objects and computes Pauli expectation readouts along declared paths",
@@ -1294,7 +1294,7 @@
         "No target-system, QIT, GStack, axis, bridge, or nonclassical admission.",
         "No claim that flux is represented."
       ],
-      "receipt": "system_v4/probes/a2_state/sim_results/qiskit_hopf_inner_outer_density_readout_results.json",
+      "receipt": "system_v4/probes/a2_state/sim_results/qiskit_hopf_fiber_base_density_readout_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "classical_baseline",
       "receipt_contract_fields": [
@@ -1336,7 +1336,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_fiber_base_loop_geometry_baseline",
+        "declared_fiber_base_coordinate_readout_baseline",
         "density_operator_phase_generator_transport_baseline"
       ],
       "claim_ceiling": "Qiskit phase-generator density-transport baseline for Hopf-style inner/global-phase and outer/relative-phase loop transports only; no physical inner/outer loop independence, no full S3 bundle, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
@@ -1392,7 +1392,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "density_object_path_readout_baseline"
       ],
       "claim_ceiling": "Qiskit Statevector/DensityMatrix Hopf/Weyl fiber-base transport baseline only; this compares statevector, density, and Operator-expectation readouts for declared loop families and sheet orientations; no physical inner/outer independence, no full nested Hopf-torus manifold, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
@@ -1448,7 +1448,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "density_object_vertical_horizontal_transport_baseline"
       ],
       "claim_ceiling": "Qiskit Statevector/DensityMatrix transport baseline for declared Hopf/Weyl vertical fiber and horizontal base-lift paths only; this compares carrier statevector, density object, and Pauli expectation readouts in one local chart, not physical operator evolution or full loop independence in a nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
@@ -1769,7 +1769,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_fiber_base_loop_geometry_baseline",
+        "declared_fiber_base_coordinate_readout_baseline",
         "clifford_projected_loop_transport_baseline"
       ],
       "claim_ceiling": "Clifford Cl(3) rotor readout baseline for a declared projected Hopf-style outer path only; no physical inner/outer loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
@@ -1825,7 +1825,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "clifford_vertical_horizontal_tangent_metric_baseline"
       ],
       "claim_ceiling": "Clifford Cl(4) tangent inner-product baseline for declared Hopf/Weyl vertical fiber and horizontal base-lift directions only; this is local S3 carrier tangent geometry, not physical loop independence in a full nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
@@ -1882,7 +1882,7 @@
       "boundary_source": "receipt",
       "candidate_lego_targets": [
         "hopf_weyl_vertical_horizontal_carrier_loop_tangent_projection_baseline",
-        "hopf_weyl_carrier_loop_geometry_baseline"
+        "declared_two_component_carrier_readout_baseline"
       ],
       "claim_ceiling": "Clifford Cl(4) local Hopf/Weyl carrier tangent-projection baseline only: vertical fiber, raw base, horizontal base-lift, and wrong-sign tangents are compared by projection coefficients in declared carrier charts; this may support geometry planning for vertical/horizontal loop separation, but it does not prove physical loop independence, flux, GStack, QIT, axis closure, bridge, nonclassical evidence, or target-system admission",
       "depth": "load_bearing",
@@ -2098,7 +2098,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_fiber_base_loop_geometry_baseline",
+        "declared_fiber_base_coordinate_readout_baseline",
         "hopf_torus_fiber_base_homology_baseline"
       ],
       "claim_ceiling": "GUDHI simplicial homology and sampled S3 embedding diagnostics for Hopf torus fiber/base loops only; no QIT, GStack, axis, bridge, nonclassical, flux, or target-system admission",
@@ -2154,7 +2154,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "density_readout_loop_homology_baseline"
       ],
       "claim_ceiling": "GUDHI Vietoris-Rips persistent homology baseline for Bloch-density readout point clouds from declared Hopf/Weyl vertical fiber and horizontal base-lift paths only; this shows density topology sees loop presence versus fiber collapse, but it does not distinguish raw base from horizontal base or connection sign; no full nested Hopf-torus geometric-constraint manifold, no physical evolution, no flux, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
@@ -2211,7 +2211,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "nested_hopf_torus_loop_geometry_baseline",
+        "finite_hopf_torus_fixture_controls_baseline",
         "connected_layer_simplicial_homology_baseline"
       ],
       "claim_ceiling": "GUDHI finite triangulated connected two-layer Hopf-torus homology baseline only; the H2 count reflects this finite triangulated fixture and is not a promoted manifold theorem; no physical inner/outer loop independence, no full S3 bundle, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
@@ -2372,8 +2372,8 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "nested_hopf_torus_loop_geometry_baseline",
-        "hopf_weyl_fiber_base_loop_geometry_baseline"
+        "finite_hopf_torus_fixture_controls_baseline",
+        "declared_fiber_base_coordinate_readout_baseline"
       ],
       "claim_ceiling": "TopoNetX cell-complex incidence and Hodge-Laplacian baseline for two sampled Hopf-torus layers only; no QIT, GStack, axis, bridge, nonclassical, flux, Pauli shortcut, target-system, or full geometric-constraint-manifold admission",
       "depth": "load_bearing",
@@ -2428,7 +2428,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "nested_hopf_torus_loop_geometry_baseline",
+        "finite_hopf_torus_fixture_controls_baseline",
         "connected_layer_cell_complex_baseline"
       ],
       "claim_ceiling": "TopoNetX connected two-layer Hopf-torus cell-complex incidence baseline only; zero-mode values are tool-level Hodge-Laplacian proxies for this finite cell fixture, not promoted Betti theorems; no physical inner/outer loop independence, no full S3 bundle, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
@@ -2484,7 +2484,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "density_readout_cycle_incidence_baseline"
       ],
       "claim_ceiling": "TopoNetX CellComplex incidence baseline for Bloch-density readout cycle fixtures from declared Hopf/Weyl vertical fiber and horizontal base-lift paths only; this represents fiber collapse versus density-loop readout but does not distinguish raw base from horizontal base or connection sign; no full nested Hopf-torus geometric-constraint manifold, no physical evolution, no flux, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
@@ -2747,8 +2747,8 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "nested_hopf_torus_loop_geometry_baseline",
-        "hopf_weyl_fiber_base_loop_geometry_baseline"
+        "finite_hopf_torus_fixture_controls_baseline",
+        "declared_fiber_base_coordinate_readout_baseline"
       ],
       "claim_ceiling": "XGI hyperedge incidence baseline over Hopf receipt dependency groups only; no physical inner/outer loop independence, no full geometric-constraint-manifold, no QIT, GStack, axis, bridge, nonclassical, flux-to-Pauli, or target-system claim",
       "depth": "load_bearing",
@@ -2911,7 +2911,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "nested_hopf_torus_loop_geometry_baseline",
+        "finite_hopf_torus_fixture_controls_baseline",
         "receipt_dependency_dag_controls"
       ],
       "claim_ceiling": "rustworkx dependency-DAG and transitive-reduction baseline over Hopf receipt names only; no physical distinguishability, QIT, GStack, axis, bridge, nonclassical, flux, Pauli shortcut, target-system, or full geometric-constraint-manifold admission",
@@ -2969,7 +2969,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "density_readout_cycle_graph_baseline"
       ],
       "claim_ceiling": "rustworkx PyGraph baseline for Bloch-density readout cycle fixtures from declared Hopf/Weyl vertical fiber and horizontal base-lift paths only; this represents fiber collapse versus density-loop readout but does not distinguish raw base from horizontal base or connection sign; no full nested Hopf-torus geometric-constraint manifold, no physical evolution, no flux, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
@@ -3079,7 +3079,7 @@
       "boundary_source": "receipt",
       "candidate_lego_targets": [
         "hopf_loop_holonomy_geometry_baseline",
-        "hopf_weyl_fiber_base_loop_geometry_baseline"
+        "declared_fiber_base_coordinate_readout_baseline"
       ],
       "claim_ceiling": "SciPy numeric Hopf U(1) horizontal-lift ODE baseline for base latitude chi shifts only; no QIT, GStack, axis, bridge, nonclassical, flux, Pauli shortcut, target-system, or full geometric-constraint-manifold admission",
       "depth": "load_bearing",
@@ -3135,7 +3135,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "nested_hopf_torus_loop_geometry_baseline",
+        "finite_hopf_torus_fixture_controls_baseline",
         "connected_layer_horizontal_transport_baseline"
       ],
       "claim_ceiling": "SciPy connected two-theta-layer Hopf horizontal-transport baseline only; this integrates a local connection ODE over declared layer coordinates and does not implement full carrier dynamics; no physical inner/outer loop independence, no full S3 bundle, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
@@ -3191,10 +3191,10 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_fiber_base_loop_geometry_baseline",
+        "declared_fiber_base_coordinate_readout_baseline",
         "classical_hopf_path_metric_baseline"
       ],
-      "claim_ceiling": "classical sampled Hopf-coordinate carrier readout baseline only; no physical inner/outer loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+      "claim_ceiling": "classical sampled Hopf-coordinate carrier readout baseline only; no physical fiber/base loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
       "depth": "supportive",
       "function_api": "numpy complex arrays, exp, outer, trace, linalg.norm, and unwrap over sampled Hopf-coordinate carrier paths",
       "manifest_reason": "samples normalized complex two-component carrier paths and computes density/readout path metrics",
@@ -3204,7 +3204,7 @@
         "No quantum dynamics, Lindblad evolution, bridge, QIT, axis, or nonclassical admission.",
         "No claim that flux is represented; only a carrier-loop readout baseline is represented."
       ],
-      "receipt": "system_v4/probes/a2_state/sim_results/hopf_weyl_inner_outer_loop_readout_geometry_results.json",
+      "receipt": "system_v4/probes/a2_state/sim_results/numpy_hopf_weyl_fiber_base_loop_readout_geometry_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "classical_baseline",
       "receipt_contract_fields": [
@@ -3247,8 +3247,8 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_fiber_base_loop_geometry_baseline",
-        "sheet_loop_product_readout_separation_baseline"
+        "declared_fiber_base_coordinate_readout_baseline",
+        "z2x_z2_product_label_readout_baseline"
       ],
       "claim_ceiling": "NumPy declared Weyl-sheet orientation and Hopf-loop readout separation baseline only; no physical sheet/loop independence, no full S3 bundle, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
       "depth": "supportive",
@@ -3322,6 +3322,7 @@
       "receipt_contract_fields": [
         "all_pass",
         "alternative_formulations",
+        "baseline_variants",
         "baselines",
         "blocked_until",
         "boundary",
@@ -3331,7 +3332,9 @@
         "demotion_condition",
         "divergence_log",
         "exact_tool_function_needs",
+        "graveyard_companions",
         "graveyards",
+        "lego_coupling_target",
         "lego_or_coupling_target",
         "name",
         "negative",
@@ -3339,10 +3342,13 @@
         "observable",
         "operation_sequence",
         "out_of_scope",
+        "parameter_sweep",
         "pass",
         "pass_fail_predicate",
         "positive",
+        "promotion_allowed",
         "promotion_condition",
+        "tool_function_needs",
         "tool_integration_depth",
         "tool_manifest"
       ],
@@ -3377,6 +3383,7 @@
       "receipt_contract_fields": [
         "all_pass",
         "alternative_formulations",
+        "baseline_variants",
         "baselines",
         "blocked_until",
         "boundary",
@@ -3386,7 +3393,9 @@
         "demotion_condition",
         "divergence_log",
         "exact_tool_function_needs",
+        "graveyard_companions",
         "graveyards",
+        "lego_coupling_target",
         "lego_or_coupling_target",
         "name",
         "negative",
@@ -3397,7 +3406,9 @@
         "pass",
         "pass_fail_predicate",
         "positive",
+        "promotion_allowed",
         "promotion_condition",
+        "tool_function_needs",
         "tool_integration_depth",
         "tool_manifest"
       ],
@@ -3566,8 +3577,8 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "bare_pauli_no_carrier_negative_control",
-        "hopf_weyl_fiber_base_loop_geometry_baseline"
+        "bare_pauli_label_partition_negative_control",
+        "declared_fiber_base_coordinate_readout_baseline"
       ],
       "claim_ceiling": "classical Pauli orientation integer-predicate baseline only; no bundle, Weyl, Hopf, QIT, GStack, axis, bridge, nonclassical, or target-system claim",
       "depth": "supportive",
@@ -3621,8 +3632,8 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "bare_pauli_no_carrier_negative_control",
-        "hopf_weyl_carrier_loop_geometry_baseline"
+        "bare_pauli_label_partition_negative_control",
+        "declared_two_component_carrier_readout_baseline"
       ],
       "claim_ceiling": "Z3 bare-Pauli/no-carrier negative-control baseline only; this formalizes that label-only Pauli predicates cannot supply declared Hopf/Weyl S3-carrier and S2-projection metric facts; no physical geometry, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
       "depth": "load_bearing",
@@ -3677,7 +3688,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "vertical_horizontal_metric_predicate_controls"
       ],
       "claim_ceiling": "z3 bounded rational predicate-control baseline for exact Hopf/Weyl vertical fiber and horizontal base-lift metric readouts at declared control points only; this checks consistency of already-derived metric predicates, not physical loop independence in a full nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
@@ -3733,8 +3744,8 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "sheet_loop_product_readout_separation_baseline",
-        "hopf_weyl_fiber_base_loop_geometry_baseline"
+        "z2x_z2_product_label_readout_baseline",
+        "declared_fiber_base_coordinate_readout_baseline"
       ],
       "claim_ceiling": "local z3 finite-product readout separation only: two abstract Z2 coordinates separate four declared flip transformations under the full readout; no physical sheet/loop independence, Weyl spinor, Hopf fibration, flux, bundle, engine, QIT, GStack, bridge, axis, or nonclassical admission",
       "depth": "load_bearing",
@@ -3790,7 +3801,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "nested_hopf_torus_loop_geometry_baseline",
+        "finite_hopf_torus_fixture_controls_baseline",
         "readout_vector_separation_controls"
       ],
       "claim_ceiling": "z3 bounded integer SAT/UNSAT readout-vector separation for Hopf-torus layer controls only; no physical distinguishability, QIT, GStack, axis, bridge, nonclassical, flux, Pauli shortcut, target-system, or full geometric-constraint-manifold admission",
@@ -3848,7 +3859,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "nested_hopf_torus_loop_geometry_baseline",
+        "finite_hopf_torus_fixture_controls_baseline",
         "receipt_dependency_dag_controls"
       ],
       "claim_ceiling": "Z3 bounded integer partial-order baseline over Hopf receipt names only; no physical distinguishability, QIT, GStack, axis, bridge, nonclassical, flux, Pauli shortcut, target-system, or full geometric-constraint-manifold admission",
@@ -4109,7 +4120,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "nested_hopf_torus_loop_geometry_baseline",
+        "finite_hopf_torus_fixture_controls_baseline",
         "readout_vector_separation_controls"
       ],
       "claim_ceiling": "cvc5 bounded integer SAT/UNSAT readout-vector separation for Hopf-torus layer controls only; no physical distinguishability, QIT, GStack, axis, bridge, nonclassical, flux, Pauli shortcut, target-system, or full geometric-constraint-manifold admission",
@@ -4167,8 +4178,8 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "bare_pauli_no_carrier_negative_control",
-        "hopf_weyl_carrier_loop_geometry_baseline"
+        "bare_pauli_label_partition_negative_control",
+        "declared_two_component_carrier_readout_baseline"
       ],
       "claim_ceiling": "cvc5 bare-Pauli/no-carrier negative-control baseline only; this formalizes that label-only Pauli predicates cannot supply declared Hopf/Weyl S3-carrier and S2-projection metric facts; no physical geometry, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
       "depth": "load_bearing",
@@ -4223,7 +4234,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "vertical_horizontal_metric_predicate_controls"
       ],
       "claim_ceiling": "cvc5 bounded rational predicate-control baseline for exact Hopf/Weyl vertical fiber and horizontal base-lift metric readouts at declared control points only; this cross-checks consistency of already-derived metric predicates, not physical loop independence in a full nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
@@ -4543,10 +4554,10 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_fiber_base_loop_geometry_baseline",
+        "declared_fiber_base_coordinate_readout_baseline",
         "exact_hopf_coordinate_identity_baseline"
       ],
-      "claim_ceiling": "classical symbolic Hopf-coordinate density-readout identity baseline only; no physical inner/outer loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+      "claim_ceiling": "classical symbolic Hopf-coordinate density-readout identity baseline only; no physical fiber/base loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
       "depth": "supportive",
       "function_api": "sympy Matrix/exp/diff/simplify/subs for exact Hopf-coordinate density derivative readouts",
       "manifest_reason": "symbolically checks Hopf-coordinate density dependence on fiber and base-lift coordinates",
@@ -4556,7 +4567,7 @@
         "No claim that flux is represented.",
         "No full nested-tori geometric constraint manifold."
       ],
-      "receipt": "system_v4/probes/a2_state/sim_results/hopf_symbolic_inner_outer_density_readout_results.json",
+      "receipt": "system_v4/probes/a2_state/sim_results/sympy_hopf_fiber_base_density_readout_identities_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "classical_baseline",
       "receipt_contract_fields": [
@@ -4598,8 +4609,8 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_fiber_base_loop_geometry_baseline",
-        "sheet_loop_product_readout_separation_baseline"
+        "declared_fiber_base_coordinate_readout_baseline",
+        "z2x_z2_product_label_readout_baseline"
       ],
       "claim_ceiling": "SymPy declared Weyl-sheet orientation derivative-sign baseline over Hopf-coordinate density readouts only; no physical sheet/loop independence, no full S3 bundle, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
       "depth": "supportive",
@@ -4654,7 +4665,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_fiber_base_loop_geometry_baseline",
+        "declared_fiber_base_coordinate_readout_baseline",
         "density_operator_phase_generator_transport_baseline"
       ],
       "claim_ceiling": "SymPy exact phase-generator density-transport baseline for Hopf-style inner/global-phase and outer/relative-phase loop transports only; no physical inner/outer loop independence, no full S3 bundle, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
@@ -4766,7 +4777,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "bare_pauli_no_carrier_negative_control",
+        "bare_pauli_label_partition_negative_control",
         "hopf_connection_curvature_geometry_baseline"
       ],
       "claim_ceiling": "SymPy Hopf connection curvature versus bare Pauli-label negative-control baseline only; shows that constant Pauli matrices and diagonal/off-diagonal labels do not carry the base-coordinate curvature form by themselves; no flux admission, no Pauli-to-flux shortcut, no physical dynamics, no QIT, GStack, axis, bridge, nonclassical, or target-system claim",
@@ -4823,7 +4834,7 @@
       "boundary_source": "receipt",
       "candidate_lego_targets": [
         "hopf_loop_holonomy_geometry_baseline",
-        "hopf_weyl_fiber_base_loop_geometry_baseline"
+        "declared_fiber_base_coordinate_readout_baseline"
       ],
       "claim_ceiling": "Exact SymPy Hopf U(1) connection loop-integral baseline for vertical fiber loops and horizontal base-loop lifts only; no QIT, GStack, axis, bridge, nonclassical, flux, Pauli shortcut, or target-system admission",
       "depth": "load_bearing",
@@ -4878,7 +4889,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "exact_carrier_projection_identity_baseline"
       ],
       "claim_ceiling": "SymPy exact identity baseline for declared Hopf/Weyl fiber-base S3 carrier and S2 projection coordinates only; no sampled dynamics, no physical fiber/base independence proof, no full nested Hopf-torus manifold, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
@@ -4934,7 +4945,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "exact_vertical_horizontal_loop_metric_baseline"
       ],
       "claim_ceiling": "SymPy exact Hopf/Weyl carrier metric baseline for vertical fiber and horizontal base-lift loop generators only; it proves coordinate identities in a declared two-component carrier chart, not physical loop independence in a full nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
@@ -4991,7 +5002,7 @@
       "boundary_source": "receipt",
       "candidate_lego_targets": [
         "hopf_weyl_vertical_horizontal_carrier_loop_tangent_projection_baseline",
-        "hopf_weyl_carrier_loop_geometry_baseline"
+        "declared_two_component_carrier_readout_baseline"
       ],
       "claim_ceiling": "SymPy exact local Hopf/Weyl carrier tangent-projection baseline only: vertical fiber, raw base, horizontal base-lift, and wrong-sign tangents are compared by exact projection coefficients in a declared two-component carrier chart; this may support geometry planning for vertical/horizontal loop separation, but it does not prove physical loop independence, flux, GStack, QIT, axis closure, bridge, nonclassical evidence, or target-system admission",
       "depth": "load_bearing",
@@ -5160,8 +5171,8 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "bare_pauli_no_carrier_negative_control",
-        "hopf_weyl_fiber_base_loop_geometry_baseline"
+        "bare_pauli_label_partition_negative_control",
+        "declared_fiber_base_coordinate_readout_baseline"
       ],
       "claim_ceiling": "classical Pauli orientation integer-predicate baseline only; no bundle, Weyl, Hopf, QIT, GStack, axis, bridge, nonclassical, or target-system claim",
       "depth": "supportive",
@@ -5367,10 +5378,10 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_fiber_base_loop_geometry_baseline",
+        "declared_fiber_base_coordinate_readout_baseline",
         "projected_sphere_distance_baseline"
       ],
-      "claim_ceiling": "Geomstats S2 distance readout baseline for declared projected Hopf-coordinate paths only; no full S3 bundle, physical inner/outer loop independence, QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+      "claim_ceiling": "Geomstats S2 distance readout baseline for declared projected Hopf-coordinate paths only; no full S3 bundle, physical fiber/base loop independence, QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
       "depth": "load_bearing",
       "function_api": "geomstats Hypersphere(dim=2).metric.dist intrinsic path-length readouts over projected Hopf-coordinate loops",
       "manifest_reason": "computes intrinsic S2 metric distances between Bloch readouts projected from declared Hopf-coordinate paths",
@@ -5381,7 +5392,7 @@
         "No QIT, GStack, axis, bridge, or nonclassical admission.",
         "No claim that flux is represented."
       ],
-      "receipt": "system_v4/probes/a2_state/sim_results/geomstats_hopf_inner_outer_sphere_distance_results.json",
+      "receipt": "system_v4/probes/a2_state/sim_results/geomstats_hopf_projected_fiber_base_sphere_distance_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "classical_baseline",
       "receipt_contract_fields": [
@@ -5423,7 +5434,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "carrier_projection_distance_baseline"
       ],
       "claim_ceiling": "Geomstats S3-carrier and S2-projection distance baseline for declared Hopf/Weyl fiber-base loop samples only; this is local metric geometry, not full nested Hopf-torus dynamics; no physical fiber/base independence proof, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
@@ -5479,7 +5490,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "vertical_horizontal_loop_metric_distance_baseline"
       ],
       "claim_ceiling": "Geomstats sampled-distance baseline for Hopf/Weyl vertical fiber and horizontal base-lift loop geometry only; it numerically cross-checks local S3/S2 path lengths and finite-difference tangent separation, not physical loop independence in a full nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
@@ -5536,7 +5547,7 @@
       "boundary_source": "receipt",
       "candidate_lego_targets": [
         "hopf_weyl_vertical_horizontal_carrier_loop_tangent_projection_baseline",
-        "hopf_weyl_carrier_loop_geometry_baseline"
+        "declared_two_component_carrier_readout_baseline"
       ],
       "claim_ceiling": "geomstats local Hopf/Weyl carrier tangent-projection baseline only: vertical fiber, raw base, and horizontal base-lift tangents are compared in declared S3/S2 carrier charts across several latitudes and sheet orientations; this may support geometry planning for vertical/horizontal loop separation, but it does not prove physical loop independence, flux, GStack, QIT, axis closure, bridge, nonclassical evidence, or target-system admission",
       "depth": "load_bearing",
@@ -5703,7 +5714,7 @@
       "boundary_source": "receipt",
       "candidate_lego_targets": [
         "hopf_base_loop_so3_readout_equivariance_baseline",
-        "hopf_weyl_fiber_base_loop_geometry_baseline"
+        "declared_fiber_base_coordinate_readout_baseline"
       ],
       "claim_ceiling": "e3nn l=1 spherical-harmonic SO(3) equivariance baseline on projected Hopf base-loop samples only; no physical distinguishability, QIT, GStack, axis, bridge, nonclassical, flux, Pauli shortcut, target-system, or full geometric-constraint-manifold admission",
       "depth": "load_bearing",
@@ -5758,7 +5769,7 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
-        "hopf_weyl_carrier_loop_geometry_baseline",
+        "declared_two_component_carrier_readout_baseline",
         "density_readout_so3_equivariance_baseline"
       ],
       "claim_ceiling": "e3nn l=1 spherical-harmonic SO(3) equivariance baseline for Bloch-density readouts from declared Hopf/Weyl vertical fiber and horizontal base-lift paths only; this checks ambient rotation consistency and density-loop collapse/rank controls, not physical loop independence in a full nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",

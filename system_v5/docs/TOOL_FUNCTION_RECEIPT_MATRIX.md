@@ -1,15 +1,15 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T02:50:36.879988+00:00`
+Generated: `2026-05-13T02:55:15.477122+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 
 ## Summary
 
-- Rows: `64`
-- Passing rows: `64`
+- Rows: `65`
+- Passing rows: `65`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `64`
+- Explicit receipt schemas missing: `65`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -53,6 +53,7 @@ Boundary: receipt index only. This does not admit, promote, or validate a lego, 
 | `rustworkx` | rustworkx PyDiGraph DAG construction, topological_sort, transitive_reduction, dijkstra_shortest_paths, cycle detection | `system_v4/probes/a2_state/sim_results/rustworkx_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_shell_geometry`, `dependency_dag_and_collapse` |
 | `rustworkx` | rustworkx PyDiGraph descendants/topological_sort/shortest_path reachability on a tiny DAG | `system_v4/probes/a2_state/sim_results/sim_rustworkx_dag_reachability_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `dependency_dag_and_collapse`, `graph_shell_geometry` |
 | `scipy` | scipy.linalg.eigvalsh, scipy.optimize.minimize, scipy.spatial.distance.cdist, and scipy.stats.entropy baseline controls | `system_v4/probes/a2_state/sim_results/sim_capability_scipy_isolated_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `classical_spectral_baseline`, `classical_distance_entropy_baseline` |
+| `scipy` | scipy.integrate.solve_ivp numerical Hopf horizontal-lift chi-shift ODE over base latitude loops | `system_v4/probes/a2_state/sim_results/scipy_hopf_horizontal_lift_chi_shift_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_loop_holonomy_geometry_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `numpy` | numpy complex arrays, exp, outer, trace, linalg.norm, and unwrap over sampled Hopf-coordinate carrier paths | `system_v4/probes/a2_state/sim_results/hopf_weyl_inner_outer_loop_readout_geometry_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `inner_outer_hopf_weyl_loop_geometry_fit`, `classical_hopf_path_metric_baseline` |
 | `numpy` | numpy isclose scalar heat/work/efficiency accounting for reversible two-bath four-stroke cycle calibration | `system_v4/probes/a2_state/sim_results/carnot_two_bath_four_stroke_work_heat_bounds_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `work_heat_cycle_calibration_fixture`, `carnot_scalar_bound_baseline` |
 | `numpy` | numpy log/sum/isclose binary entropy, feedback work bound, and Landauer erasure floor for one-bit cycle calibration | `system_v4/probes/a2_state/sim_results/szilard_measure_feedback_erasure_landauer_bounds_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `information_work_erasure_cycle_calibration_fixture`, `szilard_landauer_scalar_baseline` |

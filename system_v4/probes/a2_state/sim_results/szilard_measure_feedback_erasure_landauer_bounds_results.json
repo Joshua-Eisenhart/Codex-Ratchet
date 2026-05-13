@@ -1,0 +1,109 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "explicit density-matrix projective measurement update",
+    "conditional unitary feedback map",
+    "Lindblad erasure stroke"
+  ],
+  "baselines": [
+    "binary Shannon entropy in nats",
+    "Landauer floor Q_erase >= kBT * I",
+    "feedback work bound W <= kBT * I"
+  ],
+  "blocked_until": "blocked from target feedback-cycle mechanics until explicit state updates and tool receipts exist",
+  "boundary": {
+    "deterministic_record": {
+      "erasure_heat_floor": -0.0,
+      "feedback_work_bound": -0.0,
+      "information_nats": -0.0,
+      "kBT": 3.0,
+      "net_cycle_surplus_bound": 0.0
+    },
+    "deterministic_record_zero_information": true,
+    "zero_temperature": {
+      "erasure_heat_floor": 0.0,
+      "feedback_work_bound": 0.0,
+      "information_nats": 0.6931471805599453,
+      "kBT": 0.0,
+      "net_cycle_surplus_bound": 0.0
+    },
+    "zero_temperature_zero_work_and_heat": true
+  },
+  "carrier_topology": "single classical two-outcome record with probability simplex carrier",
+  "claim_ceiling": "classical one-bit measurement-feedback-erasure calibration only; no QIT, GStack, axis, bridge, nonclassical, or target-system claim",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if no-measurement, no-feedback, or random-feedback graveyards extract work, or if erasure heat falls below kBT times information.",
+  "divergence_log": "Numpy scalar information thermodynamics is a classical calibration baseline. It checks measurement-feedback-erasure accounting and graveyards but cannot prove target-system mechanics.",
+  "exact_tool_function_needs": {
+    "numpy": [
+      "log",
+      "sum",
+      "isclose"
+    ]
+  },
+  "graveyards": [
+    "no measurement gives zero information",
+    "no feedback gives zero work",
+    "random feedback has zero correlation",
+    "no erasure flags repeated-cycle surplus"
+  ],
+  "lego_or_coupling_target": "information_work_erasure_cycle_calibration_fixture",
+  "name": "szilard_measure_feedback_erasure_landauer_bounds",
+  "negative": {
+    "graveyard_values": {
+      "no_erasure_surplus": 2.0794415416798357,
+      "no_feedback_work": 0.0,
+      "no_measurement": {
+        "erasure_heat_floor": -0.0,
+        "feedback_work_bound": -0.0,
+        "information_nats": -0.0,
+        "kBT": 3.0,
+        "net_cycle_surplus_bound": 0.0
+      },
+      "random_feedback_correlation": 0.0
+    },
+    "no_erasure_repeated_cycle_surplus_flagged": true,
+    "no_feedback_zero_work": true,
+    "no_measurement_zero_information": true,
+    "random_feedback_zero_correlation": true
+  },
+  "next_lego_target": "information_work_erasure_cycle_calibration_fixture",
+  "observable": "information, feedback work bound, erasure heat floor, net surplus, and graveyard booleans",
+  "operation_sequence": [
+    "compute binary measurement entropy I = -sum p log p",
+    "bound feedback work by kBT * I",
+    "bound erasure heat floor by kBT * I",
+    "check net surplus after erasure is zero"
+  ],
+  "out_of_scope": [
+    "No quantum measurement update.",
+    "No physical work reservoir.",
+    "No repeated-memory dynamics, QIT, GStack, axis, bridge, or nonclassical claim."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "one unbiased bit gives I = ln2, work and erasure bounds equal kBT ln2, net surplus closes, and all graveyards collapse or flag",
+  "positive": {
+    "erasure_floor_equals_kbt_ln2": true,
+    "information_equals_ln2": true,
+    "net_surplus_zero_after_erasure": true,
+    "one_bit_cycle": {
+      "erasure_heat_floor": 2.0794415416798357,
+      "feedback_work_bound": 2.0794415416798357,
+      "information_nats": 0.6931471805599453,
+      "kBT": 3.0,
+      "net_cycle_surplus_bound": 0.0
+    },
+    "work_bound_equals_kbt_ln2": true
+  },
+  "promotion_condition": "May only support later calibration planning after an explicit state-update formulation reproduces these bounds with the same graveyards.",
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "tool_manifest": {
+    "numpy": {
+      "reason": "computes one-bit entropy, feedback work bound, erasure heat, and graveyard controls",
+      "tried": true,
+      "used": true
+    }
+  }
+}

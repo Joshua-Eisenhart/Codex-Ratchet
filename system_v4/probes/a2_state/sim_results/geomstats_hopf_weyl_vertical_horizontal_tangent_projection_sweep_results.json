@@ -1,0 +1,263 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "SymPy exact tangent projection coefficients",
+    "Clifford Cl(4) tangent projection sweep",
+    "QuTiP density-object generator evolution along horizontal and vertical tangents",
+    "e3nn SO3 equivariance over the same projected density readouts"
+  ],
+  "baselines": [
+    "SymPy exact Hopf/Weyl vertical-horizontal metric identities",
+    "Geomstats Hopf/Weyl vertical-horizontal loop distance baseline",
+    "Clifford Cl(4) Hopf/Weyl vertical-horizontal tangent inner-product baseline",
+    "QuTiP/Qiskit density-object vertical-horizontal transport baselines"
+  ],
+  "blocked_until": "blocked from physical loop-independence and target-system claims until full carrier/topology and physical-evolution receipts exist",
+  "carrier_topology": "declared two-component Hopf/Weyl S3 carrier chart with S2 Bloch-density projection",
+  "claim_ceiling": "geomstats local Hopf/Weyl carrier tangent-projection baseline only: vertical fiber, raw base, and horizontal base-lift tangents are compared in declared S3/S2 carrier charts across several latitudes and sheet orientations; this may support geometry planning for vertical/horizontal loop separation, but it does not prove physical loop independence, flux, GStack, QIT, axis closure, bridge, nonclassical evidence, or target-system admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if horizontal lift has nonzero vertical component, raw base lacks the expected vertical component, wrong-sign connection does not reintroduce vertical component, projection controls fail, or this receipt is used as flux, GStack, QIT, axis, bridge, nonclassical, or target-system evidence.",
+  "divergence_log": "This packet is stronger than label-level sheet/loop SMT because it computes local S3/S2 tangent geometry. It remains a classical local-chart baseline and records that density projection alone cannot distinguish raw base motion from horizontal base-lift motion.",
+  "exact_tool_function_needs": {
+    "geomstats": [
+      "Hypersphere(dim=3).metric.inner_product",
+      "Hypersphere(dim=2).metric.inner_product"
+    ],
+    "numpy": [
+      "asarray",
+      "linalg.norm"
+    ]
+  },
+  "graveyards": [
+    "raw base falsely treated as independent from fiber fails away from equator",
+    "equator raw-base independence is accidental",
+    "pole horizontal base projection collapses",
+    "wrong-sign connection reintroduces vertical component",
+    "S2 projection does not see vertical fiber motion",
+    "duplicated vertical tangent has zero separation",
+    "density projection cannot distinguish raw base from horizontal base"
+  ],
+  "graveyards_detail": {
+    "density_projection_cannot_distinguish_raw_base_from_horizontal_base": {
+      "horizontal_projection_speed": 0.8660254038315645,
+      "note": "Raw base and horizontal base-lift have the same S2 density projection; the S3 tangent projection is needed to separate their vertical component.",
+      "passed": true,
+      "raw_projection_speed": 0.8660254038315645
+    },
+    "duplicated_vertical_tangent_has_zero_separation": {
+      "duplicate_vertical_separation": 0.0,
+      "passed": true
+    },
+    "equator_raw_base_independence_is_accidental": {
+      "equator_raw_vertical_coeff": -3.605502008694104e-11,
+      "non_equator_raw_vertical_coeff": 0.500000000128664,
+      "passed": true
+    },
+    "pole_horizontal_base_projection_collapses": {
+      "passed": true,
+      "pole_horizontal_projection_speed": 0.0
+    },
+    "raw_base_falsely_independent_from_fiber_fails_away_from_equator": {
+      "passed": true,
+      "raw_vertical_coeff": 0.500000000128664
+    },
+    "s2_projection_does_not_see_vertical_fiber_motion": {
+      "fiber_projection_speed": 0.0,
+      "passed": true,
+      "vertical_norm_sq": 0.24999999998482395
+    },
+    "wrong_sign_connection_reintroduces_vertical_component": {
+      "passed": true,
+      "wrong_vertical_coeff": 0.9999999999621767
+    }
+  },
+  "lego_or_coupling_target": "hopf_weyl_vertical_horizontal_carrier_loop_tangent_projection_baseline",
+  "name": "geomstats_hopf_weyl_vertical_horizontal_tangent_projection_sweep",
+  "next_lego_target": "hopf_weyl_vertical_horizontal_carrier_loop_tangent_projection_baseline",
+  "observable": "S3 vertical projection coefficients, tangent norms, duplicate tangent separation, and S2 projection speeds",
+  "operation_sequence": [
+    "sample multiple non-pole Hopf/Weyl carrier latitudes and both sheet orientations",
+    "construct finite-difference vertical fiber, raw base, horizontal base-lift, wrong-sign, and duplicate tangents",
+    "use geomstats S3 metric inner products to project each tangent onto the vertical fiber tangent",
+    "use geomstats S2 metric inner products to compare density-projection speeds",
+    "run raw-base, equator, pole, wrong-sign, projection-hidden, duplicate, and density-projection graveyards"
+  ],
+  "out_of_scope": [
+    "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+    "No flux representation or Pauli-boundary shortcut.",
+    "No Lindblad, Hamiltonian, thermodynamic, information-cycle, or target-system mechanics.",
+    "No physical inner/outer loop independence proof.",
+    "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "raw base tangent has sheet*cos(theta) vertical component, horizontal base-lift tangent has zero vertical component, wrong-sign lift has 2*sheet*cos(theta) vertical component, vertical fiber is hidden by S2 projection, and adjacent graveyards collapse or fail as predicted",
+  "positive": {
+    "all_tangent_projection_rows_pass": true,
+    "rows": [
+      {
+        "duplicate_vertical_separation": 0.0,
+        "expected_horizontal_projection_speed": 0.49999999999999994,
+        "expected_raw_vertical_coeff": -0.8660254037844387,
+        "expected_wrong_vertical_coeff": -1.7320508075688774,
+        "fiber_projection_speed": 0.0,
+        "horizontal_norm_sq": 0.062499999997992835,
+        "horizontal_projection_speed": 0.5000000000120521,
+        "horizontal_vertical_coeff": -7.064816093557946e-11,
+        "raw_norm_sq": 0.25000000002628203,
+        "raw_vertical_coeff": -0.8660254038527644,
+        "row_pass": true,
+        "sheet_orientation": -1,
+        "theta": 0.5235987755982988,
+        "vertical_norm_sq": 0.2499999999890888,
+        "wrong_vertical_coeff": -1.732050807642459
+      },
+      {
+        "duplicate_vertical_separation": 0.0,
+        "expected_horizontal_projection_speed": 0.49999999999999994,
+        "expected_raw_vertical_coeff": 0.8660254037844387,
+        "expected_wrong_vertical_coeff": 1.7320508075688774,
+        "fiber_projection_speed": 0.0,
+        "horizontal_norm_sq": 0.06250000001215626,
+        "horizontal_projection_speed": 0.5000000000120521,
+        "horizontal_vertical_coeff": 1.5293277757458825e-10,
+        "raw_norm_sq": 0.25000000006717965,
+        "raw_vertical_coeff": 0.8660254039725609,
+        "row_pass": true,
+        "sheet_orientation": 1,
+        "theta": 0.5235987755982988,
+        "vertical_norm_sq": 0.24999999996455505,
+        "wrong_vertical_coeff": 1.7320508075974153
+      },
+      {
+        "duplicate_vertical_separation": 0.0,
+        "expected_horizontal_projection_speed": 0.7071067811865475,
+        "expected_raw_vertical_coeff": -0.7071067811865476,
+        "expected_wrong_vertical_coeff": -1.4142135623730951,
+        "fiber_projection_speed": 0.0,
+        "horizontal_norm_sq": 0.1250000000369368,
+        "horizontal_projection_speed": 0.7071067811847174,
+        "horizontal_vertical_coeff": -1.3566120450153109e-11,
+        "raw_norm_sq": 0.2500000000230308,
+        "raw_vertical_coeff": -0.7071067812404261,
+        "row_pass": true,
+        "sheet_orientation": -1,
+        "theta": 0.7853981633974483,
+        "vertical_norm_sq": 0.24999999998292532,
+        "wrong_vertical_coeff": -1.414213562452815
+      },
+      {
+        "duplicate_vertical_separation": 0.0,
+        "expected_horizontal_projection_speed": 0.7071067811865475,
+        "expected_raw_vertical_coeff": 0.7071067811865476,
+        "expected_wrong_vertical_coeff": 1.4142135623730951,
+        "fiber_projection_speed": 0.0,
+        "horizontal_norm_sq": 0.12500000000737477,
+        "horizontal_projection_speed": 0.7071067811847174,
+        "horizontal_vertical_coeff": -4.7295500859061944e-12,
+        "raw_norm_sq": 0.2500000000699659,
+        "raw_vertical_coeff": 0.7071067813750926,
+        "row_pass": true,
+        "sheet_orientation": 1,
+        "theta": 0.7853981633974483,
+        "vertical_norm_sq": 0.2499999999469808,
+        "wrong_vertical_coeff": 1.4142135626903385
+      },
+      {
+        "duplicate_vertical_separation": 0.0,
+        "expected_horizontal_projection_speed": 0.8660254037844386,
+        "expected_raw_vertical_coeff": -0.5000000000000001,
+        "expected_wrong_vertical_coeff": -1.0000000000000002,
+        "fiber_projection_speed": 0.0,
+        "horizontal_norm_sq": 0.1874999999977232,
+        "horizontal_projection_speed": 0.8660254038315645,
+        "horizontal_vertical_coeff": -6.261849372888498e-11,
+        "raw_norm_sq": 0.25000000002770534,
+        "raw_vertical_coeff": -0.5000000000353366,
+        "row_pass": true,
+        "sheet_orientation": -1,
+        "theta": 1.0471975511965976,
+        "vertical_norm_sq": 0.24999999997880545,
+        "wrong_vertical_coeff": -1.0000000000961498
+      },
+      {
+        "duplicate_vertical_separation": 0.0,
+        "expected_horizontal_projection_speed": 0.8660254037844386,
+        "expected_raw_vertical_coeff": 0.5000000000000001,
+        "expected_wrong_vertical_coeff": 1.0000000000000002,
+        "fiber_projection_speed": 0.0,
+        "horizontal_norm_sq": 0.18750000000752895,
+        "horizontal_projection_speed": 0.8660254038315645,
+        "horizontal_vertical_coeff": -2.284433753413259e-11,
+        "raw_norm_sq": 0.25000000006216755,
+        "raw_vertical_coeff": 0.500000000128664,
+        "row_pass": true,
+        "sheet_orientation": 1,
+        "theta": 1.0471975511965976,
+        "vertical_norm_sq": 0.24999999998482395,
+        "wrong_vertical_coeff": 0.9999999999621767
+      },
+      {
+        "duplicate_vertical_separation": 0.0,
+        "expected_horizontal_projection_speed": 0.9510565162951535,
+        "expected_raw_vertical_coeff": -0.30901699437494745,
+        "expected_wrong_vertical_coeff": -0.6180339887498949,
+        "fiber_projection_speed": 0.0,
+        "horizontal_norm_sq": 0.22612712431698004,
+        "horizontal_projection_speed": 0.9510565163563697,
+        "horizontal_vertical_coeff": -5.707757878457675e-11,
+        "raw_norm_sq": 0.2500000000284794,
+        "raw_vertical_coeff": -0.30901699442425207,
+        "row_pass": true,
+        "sheet_orientation": -1,
+        "theta": 1.2566370614359172,
+        "vertical_norm_sq": 0.2499999999558168,
+        "wrong_vertical_coeff": -0.6180339888927151
+      },
+      {
+        "duplicate_vertical_separation": 0.0,
+        "expected_horizontal_projection_speed": 0.9510565162951535,
+        "expected_raw_vertical_coeff": 0.30901699437494745,
+        "expected_wrong_vertical_coeff": 0.6180339887498949,
+        "fiber_projection_speed": 0.0,
+        "horizontal_norm_sq": 0.2261271243322882,
+        "horizontal_projection_speed": 0.9510565163563697,
+        "horizontal_vertical_coeff": -1.944139294405221e-12,
+        "raw_norm_sq": 0.2500000000577655,
+        "raw_vertical_coeff": 0.3090169944301301,
+        "row_pass": true,
+        "sheet_orientation": 1,
+        "theta": 1.2566370614359172,
+        "vertical_norm_sq": 0.2499999999474711,
+        "wrong_vertical_coeff": 0.618033988795011
+      }
+    ],
+    "sheet_orientations": [
+      -1,
+      1
+    ],
+    "theta_values": [
+      0.5235987755982988,
+      0.7853981633974483,
+      1.0471975511965976,
+      1.2566370614359172
+    ]
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later geometry planning after full carrier, connection, topology, solver, density-object, and physical operator-evolution receipts reproduce compatible vertical/horizontal separation with adjacent controls.",
+  "tool_integration_depth": {
+    "geomstats": "load_bearing",
+    "numpy": "supportive"
+  },
+  "tool_manifest": {
+    "geomstats": {
+      "reason": "Hypersphere(dim=3).metric.inner_product and Hypersphere(dim=2).metric.inner_product compute local vertical/horizontal tangent projections and S2 projection speeds",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "constructs Hopf/Weyl carrier samples, finite-difference tangents, sweep arrays, and tolerance controls",
+      "tried": true,
+      "used": true
+    }
+  }
+}

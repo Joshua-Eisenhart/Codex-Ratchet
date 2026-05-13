@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T18:10:44.326885+00:00",
+  "generated_at": "2026-05-13T18:14:13.918682+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -3762,7 +3762,7 @@
         "graph_shell_geometry",
         "dependency_dag_and_collapse"
       ],
-      "candidate_spec_complete": false,
+      "candidate_spec_complete": true,
       "candidate_spec_contract_fields": [
         "alternative_formulations",
         "baselines",
@@ -3775,16 +3775,7 @@
         "pass_fail_predicate",
         "tool_function_needs"
       ],
-      "candidate_spec_missing_fields": [
-        "operation_sequence",
-        "carrier_topology",
-        "observable",
-        "pass_fail_predicate",
-        "graveyards",
-        "baselines",
-        "alternative_formulations",
-        "tool_function_needs"
-      ],
+      "candidate_spec_missing_fields": [],
       "claim_ceiling": "finite sim_rustworkx_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
       "depth": "load_bearing",
       "function_api": "rustworkx PyDiGraph DAG construction, topological_sort, transitive_reduction, dijkstra_shortest_paths, cycle detection",
@@ -3803,21 +3794,30 @@
       "receipt_classification": "canonical",
       "receipt_contract_fields": [
         "all_pass",
+        "alternative_formulations",
+        "baselines",
         "blocked_until",
         "boundary",
+        "carrier_topology",
         "claim_ceiling",
         "classification",
         "demotion_condition",
+        "graveyards",
+        "lego_coupling_target",
         "name",
         "negative",
         "next_lego_target",
+        "observable",
+        "operation_sequence",
         "out_of_scope",
+        "pass_fail_predicate",
         "positive",
         "promotion_condition",
         "purpose",
         "rustworkx_version",
         "summary",
         "surviving_alternatives",
+        "tool_function_needs",
         "tool_integration_depth",
         "tool_manifest",
         "witness_file"
@@ -7804,8 +7804,8 @@
   ],
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
-    "candidate_spec_complete_count": 72,
-    "candidate_spec_incomplete_count": 36,
+    "candidate_spec_complete_count": 73,
+    "candidate_spec_incomplete_count": 35,
     "missing_receipt_count": 0,
     "passing_count": 108,
     "receipt_boundary_gap_count": 0,

@@ -186,9 +186,9 @@
     },
     "perf_vs_networkx_1k": {
       "pass": true,
-      "rx_time_s": 8.483300916850567e-05,
-      "nx_time_s": 0.0035037919878959656,
-      "speedup_rx_over_nx": 41.302224478873626,
+      "rx_time_s": 7.587485015392303e-05,
+      "nx_time_s": 0.0006614162120968103,
+      "speedup_rx_over_nx": 8.717199582668467,
       "N_nodes": 1000,
       "M_edges": 2966,
       "detail": "Both orderings must be valid; speedup reported for context, not load-bearing."
@@ -203,6 +203,57 @@
   "all_pass": true,
   "witness_file": "system_v4/probes/sim_foundation_shell_graph_topology.py",
   "classification": "canonical",
+  "operation_sequence": [
+    "build a five-node diamond-tail PyDiGraph and run rustworkx.topological_sort",
+    "cross-check a valid topological ordering with NetworkX when available",
+    "build a three-node DAG with a redundant edge and run rustworkx.transitive_reduction",
+    "build a weighted directed graph and run rustworkx.dijkstra_shortest_path_lengths",
+    "check acyclicity on the positive DAG and cycle rejection on a three-cycle",
+    "replay a minimized shell-nesting DAG with dag_longest_path_length",
+    "run empty, singleton, and one-thousand-node DAG boundary controls"
+  ],
+  "carrier_topology": "finite directed and undirected graph fixtures represented as rustworkx PyDiGraph/PyGraph node-index carriers; no physical topology, GStack, bridge, axis, or nonclassical carrier is claimed",
+  "observable": {
+    "topological_order": "node order must respect every directed edge",
+    "transitive_reduction_edges": "reduced edge set must drop the redundant 0->2 edge",
+    "dijkstra_distance": "shortest-path length from node 0 to node 3 must equal 2.0",
+    "cycle_status": "acyclic graph must be accepted and three-cycle must be rejected",
+    "shell_depth": "minimized shell-nesting DAG longest path length must equal 4",
+    "boundary_order_validity": "empty, singleton, and 1000-node DAG controls must return valid graph results"
+  },
+  "pass_fail_predicate": "positive_all_pass, negative_all_pass, and boundary_all_pass must all be true; rustworkx ordering/path/reduction/cycle outputs must match hand-derived or NetworkX baseline checks; performance timing is reported but not load-bearing",
+  "graveyards": [
+    "three-cycle graph treated as acyclic -- must fail cycle rejection",
+    "topological_sort allowed on cyclic graph -- must raise instead of returning an order",
+    "edge to undefined node accepted -- must raise an index error",
+    "transitive reduction keeps redundant 0->2 edge -- must fail reduced-edge equality"
+  ],
+  "baselines": [
+    "hand-derived diamond DAG topological constraints",
+    "NetworkX topological sort validity on the same DAG when available",
+    "hand-derived transitive reduction edge set {(0,1),(1,2)}",
+    "hand-derived Dijkstra distance 0->1->3 = 2.0"
+  ],
+  "alternative_formulations": [
+    "NetworkX DiGraph for supportive cross-checks",
+    "manual adjacency-list reachability for the tiny DAG fixtures",
+    "z3 finite-ordering inequalities for future graph-order proof packets"
+  ],
+  "tool_function_needs": [
+    "rustworkx.PyDiGraph",
+    "PyDiGraph.add_node",
+    "PyDiGraph.add_edge",
+    "rustworkx.topological_sort",
+    "rustworkx.transitive_reduction",
+    "rustworkx.dijkstra_shortest_path_lengths",
+    "rustworkx.is_directed_acyclic_graph",
+    "rustworkx.dag_longest_path_length"
+  ],
+  "lego_coupling_target": [
+    "graph_shell_geometry",
+    "dependency_dag_and_collapse",
+    "receipt_dependency_dag_controls"
+  ],
   "surviving_alternatives": [
     "This receipt covers only bounded rustworkx graph-ordering capability; it does not promote graph-shell geometry, dependency collapse, bridge, axis, GStack, or nonclassical admission."
   ],

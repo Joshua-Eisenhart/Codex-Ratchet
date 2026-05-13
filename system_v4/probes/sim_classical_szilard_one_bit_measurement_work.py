@@ -20,7 +20,7 @@ SCOPE_NOTE = (
     "Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md "
     "(Landauer section): W_extract = kT ln2 per measured bit."
 )
-classification = "canonical"
+classification = "classical_baseline"
 divergence_log = (
     "One-bit Szilard work stays classical: W = kT ln2 per measured bit. "
     "qutip, cirq, and pennylane only witness the same one-bit carrier "
@@ -52,10 +52,10 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
-    "qutip": "load_bearing",
-    "cirq": "load_bearing",
-    "pennylane": "load_bearing",
+    "numpy": "supportive",
+    "qutip": "supportive",
+    "cirq": "supportive",
+    "pennylane": "supportive",
 }
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
@@ -214,8 +214,70 @@ if __name__ == "__main__":
         "name": NAME,
         "scope_note": SCOPE_NOTE,
         "classification": classification,
+        "all_pass": bool(ok),
+        "claim_ceiling": (
+            "classical one-bit measurement-work baseline only: W = kT ln2 and entropy carrier witnesses; "
+            "no Szilard-cycle execution, feedback engine admission, QIT, GStack, bridge, axis, or nonclassical claim"
+        ),
+        "next_lego_target": (
+            "none; use as a baseline before separate measurement-feedback-erasure calibration with explicit "
+            "record, feedback, erasure, and Landauer graveyards"
+        ),
+        "promotion_condition": (
+            "No promotion from this receipt; downstream calibration must implement measurement, conditional "
+            "feedback, erasure cost, and no-measurement/no-feedback/random-feedback graveyards."
+        ),
+        "demotion_condition": (
+            "Demote or block if W != kT ln2, carrier entropy witnesses disagree, zero-information work is nonzero, "
+            "or this receipt is used as evidence for engine mechanics."
+        ),
+        "blocked_until": (
+            "blocked from engine, QIT, GStack, bridge, axis, nonclassical, or feedback-cycle claims "
+            "until separate exact calibration receipts close those gates"
+        ),
+        "out_of_scope": [
+            "No feedback-control cycle is executed.",
+            "No erasure heat integral or repeated-cycle accounting is represented.",
+            "No QIT, GStack, bridge, axis, engine, or nonclassical claim.",
+        ],
         "classification_note": classification_note,
         "divergence_log": divergence_log,
+        "divergence_details": [
+            "The work value is the classical one-bit formula, not a simulated feedback stroke.",
+            "qutip, cirq, and pennylane witness the same density carrier but do not make the claim nonclassical.",
+            "A later calibration must add explicit measurement record, conditional feedback, erasure, and graveyard controls.",
+        ],
+        "operation_sequence": [
+            "construct maximally mixed one-bit carrier",
+            "compute carrier entropy witnesses",
+            "evaluate W = kT ln2 for measured bit counts",
+            "check zero-information work graveyard",
+        ],
+        "carrier_topology": "single classical bit represented by a 2x2 diagonal density carrier",
+        "observable": "work value W, carrier entropy, carrier matrix agreement, and zero-information work boolean",
+        "pass_fail_predicate": "W equals kT ln2 for one measured bit, carrier entropy equals ln2, and zero measured bits extract zero work",
+        "graveyards": [
+            "zero measured bits extract zero work",
+            "kT equals zero boundary",
+        ],
+        "baselines": [
+            "numpy scalar work law",
+            "qutip density carrier witness",
+            "cirq density carrier witness",
+            "pennylane density carrier witness",
+        ],
+        "alternative_formulations": [
+            "measurement-feedback-erasure calibration cycle",
+            "random-feedback graveyard",
+            "no-erasure repeated-cycle graveyard",
+        ],
+        "exact_tool_function_needs": {
+            "numpy": ["log", "isclose", "eigvalsh"],
+            "qutip": ["Qobj", "entropy_vn"],
+            "cirq": ["DensityMatrixSimulator"],
+            "pennylane": ["QubitDensityMatrix", "density_matrix"],
+        },
+        "lego_or_coupling_target": "none; classical calibration baseline only",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "load_bearing_tool": "numpy",

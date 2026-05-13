@@ -600,6 +600,17 @@ TARGETS: list[dict[str, Any]] = [
         "candidate_lego_targets": ["nested_hopf_torus_loop_geometry_baseline", "readout_vector_separation_controls"],
     },
     {
+        "tool": "cvc5",
+        "function_api": "cvc5 Boolean SAT/UNSAT negative control for bare Pauli labels versus Hopf/Weyl carrier-projection metric predicates",
+        "receipt": "system_v4/probes/a2_state/sim_results/cvc5_bare_pauli_no_carrier_fiber_base_metric_unsat_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "bare_pauli_no_carrier_negative_control",
+            "hopf_weyl_carrier_loop_geometry_baseline",
+        ],
+    },
+    {
         "tool": "sympy",
         "function_api": "sympy symbolic expression/matrix simplification and exact algebra",
         "receipt": "system_v4/probes/a2_state/sim_results/sympy_capability_results.json",

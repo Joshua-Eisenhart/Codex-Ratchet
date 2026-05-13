@@ -20,7 +20,7 @@ Allowed current unknowns:
 - `system_v4/probes/sim_inventory_unlinked_result_audit.py`
 - `system_v4/probes/sim_prime_qit_sidecar_probe.py`
 - `system_v4/probes/sim_qit_entropy_companion_array.py`
-- `system_v4/probes/sim_rosetta_lego_registry.py`
+- `system_v4/probes/sim_cycle_receipt_coupling_candidate_registry.py`
 - `system_v4/probes/sim_szilard_measurement_feedback_substeps.py`
 - `system_v4/probes/sim_szilard_open_failure_graveyard.py`
 - `system_v4/probes/sim_szilard_open_row_consolidation.py`

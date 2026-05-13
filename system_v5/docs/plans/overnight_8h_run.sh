@@ -681,7 +681,7 @@ run_wave_parallel "C2" \
   "szilard-record" "system_v4/probes/sim_qit_szilard_record_companion.py" \
   "szilard-substep" "system_v4/probes/sim_qit_szilard_substep_companion.py" \
   "szilard-bidirectional" "system_v4/probes/sim_qit_szilard_bidirectional_protocol.py" \
-  "engine-lab-matrix" "system_v4/probes/sim_engine_lab_matrix.py"
+  "cycle-protocol-receipt-status-matrix" "system_v4/probes/sim_cycle_protocol_receipt_status_matrix.py"
 audits
 
 # Hand the remaining budget to the live queue controller so the run keeps executing bounded work.

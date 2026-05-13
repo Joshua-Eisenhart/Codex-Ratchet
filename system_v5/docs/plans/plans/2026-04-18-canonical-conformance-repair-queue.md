@@ -39,7 +39,7 @@ Use these heuristics:
 These look more like support, overlay, translation, or comparison surfaces than honest canonical packets. Default stance: demote unless a direct bounded owner role is shown.
 
 - `sim_engine_lab_alignment_overlay.py`
-- `sim_engine_lab_matrix.py`
+- `sim_cycle_protocol_receipt_status_matrix.py`
 - `sim_engine_lab_translation_targets.py`
 - `sim_qit_engine_companion_array.py`
 - `sim_qit_entropy_companion_array.py`

@@ -32,7 +32,7 @@ Bucket totals sum to 63.
 Default stance: demote unless a direct bounded owner role is shown. Reason after each.
 
 1. `sim_engine_lab_alignment_overlay.py` — overlay/alignment surface, not a bounded owner.
-2. `sim_engine_lab_matrix.py` — matrix/meta surface, not a canonical owner.
+2. `sim_cycle_protocol_receipt_status_matrix.py` — matrix/meta surface, not a canonical owner.
 3. `sim_engine_lab_translation_targets.py` — translation surface, not canonical-owner-shaped.
 4. `sim_qit_engine_companion_array.py` — companion array, support role, not canonical-owner.
 5. `sim_qit_entropy_companion_array.py` — companion array, support role, not canonical-owner.

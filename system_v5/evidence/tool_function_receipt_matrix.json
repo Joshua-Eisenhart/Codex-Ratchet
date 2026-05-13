@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T05:11:33.121763+00:00",
+  "generated_at": "2026-05-13T05:15:23.135528+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -4914,6 +4914,62 @@
       "boundary_gap": false,
       "boundary_source": "receipt",
       "candidate_lego_targets": [
+        "hopf_weyl_carrier_loop_geometry_baseline",
+        "vertical_horizontal_loop_metric_distance_baseline"
+      ],
+      "claim_ceiling": "Geomstats sampled-distance baseline for Hopf/Weyl vertical fiber and horizontal base-lift loop geometry only; it numerically cross-checks local S3/S2 path lengths and finite-difference tangent separation, not physical loop independence in a full nested Hopf-torus geometric-constraint manifold; no flux representation, no QIT, no GStack, no axis, no bridge, no nonclassical admission, and no target-system admission",
+      "depth": "load_bearing",
+      "function_api": "geomstats Hypersphere(dim=3).metric.dist and Hypersphere(dim=2).metric.dist over sampled Hopf/Weyl vertical fiber and horizontal base-lift loops",
+      "manifest_reason": "computes intrinsic S3 carrier and S2 projection distances for vertical fiber and horizontal base-lift Hopf/Weyl loop samples",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+        "No flux representation or Pauli-boundary shortcut.",
+        "No Lindblad, Hamiltonian, thermodynamic, or information-cycle mechanics.",
+        "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/geomstats_hopf_weyl_fiber_horizontal_base_loop_distance_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "geomstats"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
         "operator_family_admission",
         "graph_cell_complex_geometry"
       ],
@@ -5132,11 +5188,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 95,
+    "passing_count": 96,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 95,
+    "receipt_schema_observed_missing_count": 96,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 95,
+    "row_count": 96,
     "tools": [
       "clifford",
       "cvc5",

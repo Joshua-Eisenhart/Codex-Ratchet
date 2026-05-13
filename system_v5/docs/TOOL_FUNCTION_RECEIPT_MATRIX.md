@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T05:04:07.862222+00:00`
+Generated: `2026-05-13T05:06:55.201956+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `93`
-- Passing rows: `93`
+- Rows: `94`
+- Passing rows: `94`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `93`
+- Explicit receipt schemas missing: `94`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -80,6 +80,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `z3` | z3 Bool/And/Not/Implies/Solver.check SAT/UNSAT negative control for bare Pauli labels versus Hopf/Weyl carrier-projection metric predicates | `system_v4/probes/a2_state/sim_results/z3_bare_pauli_no_carrier_fiber_base_metric_unsat_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `bare_pauli_no_carrier_negative_control`, `hopf_weyl_carrier_loop_geometry_baseline` |
 | `z3` | z3 finite Z2 x Z2 product readout SAT/UNSAT separation for sheet-flip and loop-flip labels | `system_v4/probes/a2_state/sim_results/z3_sheet_loop_flip_product_readout_separation_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `sheet_loop_product_readout_separation_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `z3` | z3 SolverFor('QF_LIA') SAT/UNSAT equality checks over selected Hopf-torus integer readout vector fields | `system_v4/probes/a2_state/sim_results/z3_hopf_torus_readout_vector_separation_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `readout_vector_separation_controls` |
+| `z3` | z3 SolverFor('QF_LIA') bounded integer partial-order constraints over Hopf receipt dependency DAG | `system_v4/probes/a2_state/sim_results/z3_hopf_receipt_dependency_partial_order_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `receipt_dependency_dag_controls` |
 | `cvc5` | cvc5 Solver.assertFormula/checkSat/getValue QF_LIA fixture | `system_v4/probes/a2_state/sim_results/cvc5_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `carrier_admission_density_matrix` |
 | `cvc5` | cvc5 shared QF_LIA SAT/UNSAT agreement with z3 | `system_v4/probes/a2_state/sim_results/sim_integration_cvc5_z3_unsat_agreement_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `probe_object` |
 | `cvc5` | cvc5 Solver.synthFun/addSygusConstraint/checkSynth/getSynthSolution bounded LIA SyGuS fixture | `system_v4/probes/a2_state/sim_results/sim_cvc5_sygus_synthesis_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `constraint_probe_admissibility`, `sygus_integer_grammar_fixture` |

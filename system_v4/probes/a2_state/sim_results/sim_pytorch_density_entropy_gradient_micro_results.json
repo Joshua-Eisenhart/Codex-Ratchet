@@ -157,6 +157,44 @@
     "detached and non-PSD misuse exclusion",
     "maximally mixed and near-pure boundary behavior"
   ],
+  "operation_sequence": [
+    "map two real parameters to one normalized symmetric positive 2x2 density matrix",
+    "compute eigenvalues with torch.linalg.eigvalsh",
+    "compute von Neumann entropy from clipped eigenvalues",
+    "differentiate entropy with torch.autograd.grad",
+    "compare the autograd gradient against a finite-difference baseline",
+    "run detached-parameter and non-PSD density controls",
+    "run maximally mixed and near-pure boundary controls"
+  ],
+  "carrier_topology": "two-parameter real chart into trace-one positive 2x2 density matrices; no graph, topology, manifold, or tool-coupling carrier",
+  "observable": "density trace, eigenvalues, entropy scalar, entropy-gradient vector, finite-difference gradient, misuse exceptions, and boundary-gradient finiteness",
+  "pass_fail_predicate": "density is normalized and PSD, autograd entropy gradient matches finite differences, detached parameters and non-PSD matrices are rejected, maximally mixed gradient is zero, and near-pure entropy gradient is finite",
+  "graveyards": [
+    "detached parameters are rejected by autograd",
+    "trace-one matrix with a negative eigenvalue is rejected",
+    "nonzero maximally mixed gradient would falsify the boundary control"
+  ],
+  "baselines": [
+    "finite-difference entropy gradient",
+    "closed trace-one PSD checks by eigenvalue readout",
+    "maximally mixed entropy and zero-gradient boundary"
+  ],
+  "alternative_formulations": [
+    "SymPy exact 2x2 eigenvalue entropy derivative",
+    "QuTiP density-object entropy-gradient finite difference",
+    "larger Hermitian density-matrix chart",
+    "complex Hermitian off-diagonal fixture"
+  ],
+  "tool_function_needs": {
+    "pytorch": [
+      "torch.linalg.eigvalsh",
+      "torch.autograd.grad",
+      "torch.trace",
+      "torch.allclose",
+      "torch.isfinite"
+    ]
+  },
+  "lego_coupling_target": "density_matrix_entropy_gradient_micro",
   "summary": {
     "passed": 6,
     "total": 6

@@ -1,17 +1,17 @@
 {
   "schema": "sim_inventory_index.v1",
-  "generated_at": "2026-05-13T09:10:46.978779+00:00",
+  "generated_at": "2026-05-13T09:25:11.621313+00:00",
   "boundary": "inventory_only_not_admission_or_promotion",
   "summary": {
-    "source_count": 4025,
-    "result_json_count": 2283,
-    "linked_result_json_count": 907,
+    "source_count": 4026,
+    "result_json_count": 2284,
+    "linked_result_json_count": 908,
     "unlinked_result_json_count": 1376,
     "admitted_count": 112,
     "admission_repair_count": 1,
     "status_counts": {
       "source_only": 3168,
-      "rerun_or_admission_candidate": 537,
+      "rerun_or_admission_candidate": 538,
       "admitted": 112,
       "legacy_result_or_repair_needed": 24,
       "contract_shaped_but_tool_depth_thin": 183,
@@ -25,27 +25,27 @@
       "axis_bridge": 680,
       "graveyard_negative": 1708,
       "root_admission": 858,
-      "hopf_torus": 647,
-      "weyl_spinor_clifford": 808,
+      "hopf_torus": 648,
+      "weyl_spinor_clifford": 809,
       "geometry_gstack_gtower": 740,
-      "density_carrier": 505,
-      "classical_baseline": 1147,
+      "density_carrier": 506,
+      "classical_baseline": 1148,
       "gerbe_dirac_mera_spectral": 671,
       "graph_topology": 411,
       "fep_holodeck_igt": 237
     },
     "tool_signal_counts": {
-      "numpy": 2756,
+      "numpy": 2757,
       "sympy": 2272,
       "scipy": 256,
-      "pytorch": 1993,
+      "pytorch": 1994,
       "pyg": 846,
       "cvc5": 1331,
       "qutip": 55,
       "e3nn": 846,
       "gudhi": 902,
       "z3": 1921,
-      "clifford": 1333,
+      "clifford": 1334,
       "rustworkx": 1081,
       "toponetx": 918,
       "geomstats": 907,
@@ -54,7 +54,7 @@
       "qiskit": 21
     },
     "load_bearing_tool_counts": {
-      "numpy": 260,
+      "numpy": 261,
       "e3nn": 59,
       "qutip": 43,
       "cvc5": 515,
@@ -73,7 +73,7 @@
       "networkx": 5
     },
     "result_classification_counts": {
-      "classical_baseline": 335,
+      "classical_baseline": 336,
       "tool_lego_fit_probe": 36,
       "canonical": 406,
       "supporting": 13,
@@ -86,7 +86,7 @@
       "exploratory_signal": 4,
       "controller_routing_surface": 1
     },
-    "repair_candidate_count": 744,
+    "repair_candidate_count": 745,
     "source_only_count": 3168
   },
   "admitted_stems": [
@@ -84202,6 +84202,41 @@
       "source_has_tool_integration_depth": true,
       "result_paths": [
         "system_v4/probes/a2_state/sim_results/hopf_spinor_density_operator_placement_readout_collision_audit_results.json"
+      ],
+      "result_count": 1,
+      "result_classifications": [
+        "classical_baseline"
+      ],
+      "result_has_contract_shape": true,
+      "admission_path": "",
+      "admission_expected_result_path": "",
+      "admission_status": "no_admission",
+      "admitted": false,
+      "late_stage_signal": false,
+      "has_contract_shape": true,
+      "inventory_status": "rerun_or_admission_candidate"
+    },
+    {
+      "stem": "sim_hopf_spinor_density_time_series_collision_separation_audit",
+      "source_path": "system_v4/probes/sim_hopf_spinor_density_time_series_collision_separation_audit.py",
+      "families": [
+        "density_carrier",
+        "hopf_torus",
+        "weyl_spinor_clifford",
+        "classical_baseline"
+      ],
+      "tools": {
+        "numpy": "load_bearing",
+        "pytorch": "supportive",
+        "clifford": "supportive"
+      },
+      "load_bearing_tools": [
+        "numpy"
+      ],
+      "source_has_tool_manifest": true,
+      "source_has_tool_integration_depth": true,
+      "result_paths": [
+        "system_v4/probes/a2_state/sim_results/hopf_spinor_density_time_series_collision_separation_audit_results.json"
       ],
       "result_count": 1,
       "result_classifications": [

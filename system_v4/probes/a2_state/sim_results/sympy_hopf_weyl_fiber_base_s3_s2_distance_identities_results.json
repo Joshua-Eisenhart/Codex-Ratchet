@@ -1,0 +1,104 @@
+{
+  "all_pass": true,
+  "alternative_formulations": [
+    "Geomstats numerical intrinsic path length over the same coordinates",
+    "QuTiP carrier-state trace-distance and density-projection controls",
+    "Clifford spinor rotor formulation for carrier sign transport",
+    "physical operator-evolution fixture over the same carrier samples"
+  ],
+  "baselines": [
+    "Geomstats Hopf/Weyl S3 carrier and S2 projection distance baseline",
+    "PyTorch Hopf/Weyl fiber-base gradient readout baseline",
+    "QuTiP/Qiskit Hopf/Weyl fiber-base carrier transport baselines"
+  ],
+  "blocked_until": "blocked from target-system claims until fuller carrier/topology and physical-evolution fixtures exist",
+  "carrier_topology": "symbolic two-component Hopf-coordinate carrier embedded in S3 with S2 projection; no full nested-torus manifold",
+  "claim_ceiling": "SymPy exact identity baseline for declared Hopf/Weyl fiber-base S3 carrier and S2 projection coordinates only; no sampled dynamics, no physical fiber/base independence proof, no full nested Hopf-torus manifold, no flux, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+  "classification": "classical_baseline",
+  "demotion_condition": "Demote if carrier/projection norms are not exact one, if fiber S2 speed is nonzero, if base S2 speed fails to equal sin(theta)^2, or if pole/S2-only graveyards do not collapse.",
+  "divergence_log": "This exact symbolic chart explains the sampled S3/S2 metric baseline but remains a coordinate-identity baseline, not a full geometry or physical evolution result.",
+  "exact_tool_function_needs": {
+    "sympy": [
+      "symbols",
+      "Matrix",
+      "diff",
+      "trigsimp",
+      "simplify",
+      "subs"
+    ]
+  },
+  "graveyards": [
+    "projection to S2 hides fiber carrier motion",
+    "base projection collapses at pole",
+    "base projection is visible away from pole",
+    "sheet orientation does not change metric speeds",
+    "S2-only formulation cannot recover fiber carrier length"
+  ],
+  "graveyards_detail": {
+    "base_projection_collapses_at_pole": {
+      "base_s2_speed_squared_at_theta_zero": "0",
+      "passed": true
+    },
+    "base_projection_is_visible_away_from_pole": {
+      "base_s2_speed_squared_at_theta_pi_over_3": "3/4",
+      "passed": true
+    },
+    "projection_to_s2_hides_fiber_carrier_motion": {
+      "fiber_s2_speed_squared": "0",
+      "fiber_s3_speed_squared": "1/4",
+      "passed": true
+    },
+    "s2_only_formulation_cannot_recover_fiber_carrier_length": {
+      "carrier_needed_for_fiber_length": true,
+      "passed": true,
+      "s2_fiber_speed_squared": "0"
+    },
+    "sheet_orientation_does_not_change_metric_speeds": {
+      "base_s2_speed_squared_depends_on_s_squared_only": "sin(theta)**2",
+      "passed": true
+    }
+  },
+  "lego_or_coupling_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "name": "sympy_hopf_weyl_fiber_base_s3_s2_distance_identities",
+  "next_lego_target": "hopf_weyl_carrier_loop_geometry_baseline",
+  "observable": "exact squared speeds for S3 carrier and S2 projection under fiber coordinate chi and base coordinate phi",
+  "operation_sequence": [
+    "define a real S3 embedding of the two-component Hopf/Weyl carrier",
+    "define the S2 Bloch projection with declared sheet orientation sign",
+    "compute exact carrier and projection norms",
+    "differentiate the S3 carrier with respect to chi and phi",
+    "differentiate the S2 projection with respect to chi and phi",
+    "simplify squared speeds and run pole, sheet, and projection-hidden graveyards"
+  ],
+  "out_of_scope": [
+    "No full nested Hopf-torus manifold or geometric-constraint manifold.",
+    "No flux representation or Pauli-boundary shortcut.",
+    "No Lindblad, Hamiltonian, thermodynamic, or information-cycle mechanics.",
+    "No QIT, GStack, axis, bridge, nonclassical, or target-system admission."
+  ],
+  "pass": true,
+  "pass_fail_predicate": "carrier and projection norms equal one, fiber and base S3 speeds equal 1/4, fiber S2 speed equals zero, base S2 speed equals sin(theta)^2, and adjacent graveyards collapse as predicted",
+  "positive": {
+    "base_s2_length_over_0_to_2pi": "2*pi*Abs(sin(theta))",
+    "base_s2_speed_squared": "sin(theta)**2",
+    "base_s3_length_over_0_to_2pi": "pi",
+    "base_s3_speed_squared": "1/4",
+    "carrier_norm": "1",
+    "fiber_s2_speed_squared": "0",
+    "fiber_s3_length_over_0_to_2pi": "pi",
+    "fiber_s3_speed_squared": "1/4",
+    "projection_norm": "1"
+  },
+  "promotion_allowed": false,
+  "promotion_condition": "May only support later carrier-geometry planning after compatible object-level, numerical metric, topology, and physical operator-evolution receipts reproduce the same fiber/base identities with adjacent controls.",
+  "tool_integration_depth": {
+    "sympy": "load_bearing"
+  },
+  "tool_manifest": {
+    "sympy": {
+      "reason": "derives exact carrier and projection speed identities for declared Hopf/Weyl fiber-base coordinates",
+      "tried": true,
+      "used": true
+    }
+  }
+}

@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T04:32:51.852573+00:00`
+Generated: `2026-05-13T04:36:39.591331+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `85`
-- Passing rows: `85`
+- Rows: `86`
+- Passing rows: `86`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `85`
+- Explicit receipt schemas missing: `86`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -92,6 +92,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `sympy` | sympy diff/integrate/simplify exact Hopf U(1) connection curvature and first-Chern integral | `system_v4/probes/a2_state/sim_results/sympy_hopf_connection_curvature_c1_integral_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_connection_curvature_geometry_baseline`, `curvature_integral_baseline` |
 | `sympy` | sympy Matrix/diff/integrate/simplify contrast between Hopf connection curvature and carrier-free Pauli-label controls | `system_v4/probes/a2_state/sim_results/sympy_hopf_connection_curvature_pauli_label_gap_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `bare_pauli_no_carrier_negative_control`, `hopf_connection_curvature_geometry_baseline` |
 | `sympy` | sympy symbols/cos/integrate/simplify exact Hopf connection loop integrals and horizontal-lift chi shifts | `system_v4/probes/a2_state/sim_results/sympy_hopf_loop_holonomy_area_dependence_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_loop_holonomy_geometry_baseline`, `inner_outer_hopf_weyl_loop_geometry_fit` |
+| `sympy` | sympy Matrix/diff/trigsimp/simplify exact S3 carrier and S2 projection speed identities for Hopf/Weyl fiber-base coordinates | `system_v4/probes/a2_state/sim_results/sympy_hopf_weyl_fiber_base_s3_s2_distance_identities_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `hopf_weyl_carrier_loop_geometry_baseline`, `exact_carrier_projection_identity_baseline` |
 | `sympy` | sympy Matrix partition of Pauli matrices into diagonal and off-diagonal labels | `system_v4/probes/a2_state/sim_results/pauli_orientation_integer_predicate_baseline_results.json` | `classical_baseline` | `classical_baseline` | `supportive` | `True` | `bare_pauli_no_carrier_negative_control`, `inner_outer_hopf_weyl_loop_geometry_fit` |
 | `sympy` | sympy roots/discriminant/exact rational edge-weight construction feeding PyG graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_sympy_pyg_results.json` | `canonical` | `classical_bridge` | `load_bearing` | `True` | `graph_symbolic_fit`, `exact_algebra_crosschecks` |
 | `geomstats` | geomstats metric.geodesic, exp/log, SPD distance, Frechet mean | `system_v4/probes/a2_state/sim_results/geomstats_capability_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `geometry_crosschecks_same_carrier`, `quantum_metric_nonuniqueness` |

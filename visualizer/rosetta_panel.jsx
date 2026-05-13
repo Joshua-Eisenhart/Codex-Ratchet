@@ -99,7 +99,7 @@ function CouplingTriangle({ t, coupled }) {
   const labels = {
     carnot: 'Carnot',
     szilard: 'Szilard',
-    iching_64: 'I Ching 64',
+    iching_64: 'Six-bit cycle',
   };
   return (
     <div style={{ border: `1px solid ${t.line}`, background: t.bg2, padding: 12 }}>
@@ -258,7 +258,7 @@ function EngineRosettaWorkbench({ t, data }) {
   const triadModes = window.ROSETTA_TRIAD_MODES_DATA || null;
   const entropyTopology = window.ROSETTA_TRIAD_ENTROPY_TOPOLOGY_DATA || null;
   const orderGraveyard = window.ROSETTA_TRIAD_ORDER_GRAVEYARD_DATA || null;
-  const iching = window.ICHING_64_ROSETTA_DATA || null;
+  const iching = window.SIX_BIT_GRAY_CODE_CYCLE_DATA || null;
   const engineLabOpenRows = window.ENGINE_LAB_OPEN_ROW_AUDIT_DATA || null;
   const engineLabNextWork = window.ENGINE_LAB_NEXT_WORK_QUEUE_DATA || null;
   const engineLabSuccessorCoverage = window.ENGINE_LAB_SUCCESSOR_COVERAGE_DATA || null;
@@ -482,7 +482,7 @@ function EngineRosettaWorkbench({ t, data }) {
             ['Carnot dual stack', !!window.CARNOT_DUAL_STACK_DATA],
             ['Szilard dual stack', !!window.SZILARD_DUAL_STACK_DATA],
             ['Engine Rosetta', !!window.ENGINE_ROSETTA_DATA],
-            ['I Ching 64', !!window.ICHING_64_ROSETTA_DATA],
+            ['Six-bit cycle', !!window.SIX_BIT_GRAY_CODE_CYCLE_DATA],
             ['Triad modes', !!window.ROSETTA_TRIAD_MODES_DATA],
             ['Entropy topology', !!window.ROSETTA_TRIAD_ENTROPY_TOPOLOGY_DATA],
             ['Order variants', !!window.ROSETTA_TRIAD_ORDER_GRAVEYARD_DATA],
@@ -521,7 +521,7 @@ function RosettaPanel({ t }) {
   const engineRosetta = window.ENGINE_ROSETTA_DATA || {
     summary: {
       all_pass: false,
-      visual_payload: 'engine-rosetta-data.js not loaded',
+      visual_payload: 'cycle-invariant-correlation-data.js not loaded',
       scope_note: 'No engine Rosetta payload is loaded; this tab stays fail-closed instead of showing unrelated material.',
     },
     tier_correlations: [],

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Dual-stacked Szilard-Landauer engine sim.
+"""Measurement/feedback/erasure recovery cycle-pair sim.
 
-This mirrors the Carnot dual-stack row at the information-engine level:
+This mirrors the two-bath heat/work cycle-pair row at the information level:
 
 - inductive_heating_loop: measurement -> feedback -> erasure.  It increases
   record entropy first, converts information to free-energy gain, then pays the
@@ -10,7 +10,7 @@ This mirrors the Carnot dual-stack row at the information-engine level:
   an erased/ordered state and restores the mixed-information carrier in the
   opposite bookkeeping direction.
 
-This is a bounded finite two-qubit sim, not a universal demon claim.
+This is a bounded finite two-qubit sim, not a universal information-cycle claim.
 """
 
 from __future__ import annotations
@@ -53,20 +53,20 @@ except Exception:  # pragma: no cover
 CLASSIFICATION = "canonical"
 classification = CLASSIFICATION
 divergence_log = (
-    "Dual-stacked Szilard-Landauer row on a finite two-qubit carrier.  It models "
+    "Measurement/feedback/erasure recovery cycle-pair row on a finite two-qubit carrier. It models "
     "measurement/feedback/erasure and the reverse recovery bookkeeping as opposite "
-    "information-engine traversals without claiming a universal demon."
+    "information-cycle traversals without claiming a universal demon."
 )
 
 LEGO_IDS = [
-    "szilard_cycle",
+    "measure_feedback_erasure_cycle",
     "landauer_erasure",
-    "dual_stacked_engine",
+    "opposite_direction_cycle_pair",
     "density_matrix",
     "graph_topology",
     "proof_fence",
 ]
-PRIMARY_LEGO_IDS = ["szilard_cycle", "dual_stacked_engine"]
+PRIMARY_LEGO_IDS = ["measure_feedback_erasure_cycle", "opposite_direction_cycle_pair"]
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "density matrices, entropy, work bookkeeping"},
@@ -231,43 +231,43 @@ def density_tool_checks(rhos: dict[str, np.ndarray]) -> dict[str, Any]:
     }
 
 
-def axes_candidate_model(inductive: dict[str, Any], deductive: dict[str, Any]) -> dict[str, Any]:
+def cycle_step_invariant_map(inductive: dict[str, Any], deductive: dict[str, Any]) -> dict[str, Any]:
     return {
-        "boundary": "candidate_correlative_mapping_not_axis_promotion",
-        "axes": {
-            "Ax0": {
+        "boundary": "local_cycle_invariant_map_not_admitted_axis_promotion",
+        "invariants": {
+            "entropy_transfer_polarity": {
                 "local_name": "information_entropy_polarity",
                 "degree_of_freedom": "record/correlation entropy created versus erased",
                 "observable": "record_entropy_delta and mutual_information",
                 "inductive_value": inductive["record_entropy_delta"],
                 "deductive_value": deductive["record_entropy_delta"],
             },
-            "Ax1": {
+            "record_branch_partition": {
                 "local_name": "record_branch",
                 "degree_of_freedom": "system side versus memory side",
                 "observable": "partial traces rho_system and rho_memory",
             },
-            "Ax2": {
+            "system_memory_control_frame": {
                 "local_name": "control_frame",
                 "degree_of_freedom": "unmeasured, measured, feedback-conditioned, erased frame",
                 "observable": "protocol state label",
             },
-            "Ax3": {
+            "cycle_traversal_family": {
                 "local_name": "loop_family",
                 "degree_of_freedom": "demon/work-extraction versus recovery/reset traversal",
                 "observable": "free_energy_gain and erasure_cost signs",
             },
-            "Ax4": {
+            "step_sequence_parity": {
                 "local_name": "protocol_order_class",
                 "degree_of_freedom": "measurement-feedback-erasure ordering",
                 "observable": "directed protocol DAG",
             },
-            "Ax5": {
+            "measurement_feedback_reset_operator_family": {
                 "local_name": "operator_mode",
                 "degree_of_freedom": "correlate, conditionally flip, reset",
                 "observable": "CNOT, controlled-X, reset CPTP map",
             },
-            "Ax6": {
+            "stage_precedence_orientation": {
                 "local_name": "precedence_orientation",
                 "degree_of_freedom": "which operation can legally precede another",
                 "observable": "measurement before feedback before erasure",
@@ -292,7 +292,7 @@ def write_visual_payload(result: dict[str, Any]) -> None:
         "summary": result["summary"],
         "loops": result["dual_stack"],
         "states": result["states"],
-        "axes_candidate_model": result["axes_candidate_model"],
+        "cycle_step_invariant_map": result["cycle_step_invariant_map"],
         "boundaries": result["negative"],
     }
     (VIS_DIR / "szilard-dual-stack-data.js").write_text(
@@ -373,21 +373,21 @@ def main() -> None:
     }
     all_pass = all(v["pass"] for v in positive.values()) and all(v["pass"] for v in negative.values()) and all(v["pass"] for v in boundary.values())
     result = {
-        "name": "szilard_dual_stacked_engine",
+        "name": "measure_feedback_erasure_recovery_cycle_pair",
         "classification": CLASSIFICATION,
         "classification_note": divergence_log,
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "sim_execution_kind": "bridge",
-        "allowed_claims": ["Szilard dual-stack sim exists and runs", "finite two-qubit information-engine loop inspection", "no universal demon claim"],
+        "allowed_claims": ["measurement/feedback/erasure recovery cycle-pair sim exists and runs", "finite two-qubit information-cycle inspection", "no universal demon claim"],
         "promotion_status": "keep_but_open",
-        "promotion_blockers": ["not yet coupled to Carnot dual-stack row", "not yet nested in GStack"],
+        "promotion_blockers": ["not yet coupled to two-bath heat/work cycle row", "not yet nested in GStack"],
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "states": traces,
         "dual_stack": {"inductive_heating_loop": inductive, "deductive_cooling_loop": deductive},
-        "axes_candidate_model": axes_candidate_model(inductive, deductive),
+        "cycle_step_invariant_map": cycle_step_invariant_map(inductive, deductive),
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
@@ -404,7 +404,7 @@ def main() -> None:
         },
     }
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = RESULT_DIR / "szilard_dual_stacked_engine_results.json"
+    out_path = RESULT_DIR / "measure_feedback_erasure_recovery_cycle_pair_results.json"
     out_path.write_text(json.dumps(result, indent=2, default=str) + "\n", encoding="utf-8")
     write_visual_payload(result)
     print(out_path)

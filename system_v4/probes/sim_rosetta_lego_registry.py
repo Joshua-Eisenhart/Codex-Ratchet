@@ -60,9 +60,9 @@ def load_result(stem: str) -> dict[str, Any]:
 
 def load_sources() -> dict[str, dict[str, Any]]:
     names = [
-        "carnot_dual_stacked_engine",
-        "szilard_dual_stacked_engine",
-        "iching_64_engine_rosetta",
+        "two_bath_heat_work_reversible_cycle_pair",
+        "measure_feedback_erasure_recovery_cycle_pair",
+        "six_bit_gray_code_single_flip_cycle_invariant",
         "rosetta_triad_modes",
         "rosetta_triad_entropy_topology_sweep",
         "rosetta_triad_order_graveyard",
@@ -129,9 +129,9 @@ def registry_rows(sources: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
     topology = topology_by_engine(entropy_topology)
     graveyard = graveyard_by_engine(order_graveyard)
     engine_sources = {
-        "carnot": sources["carnot_dual_stacked_engine"],
-        "szilard": sources["szilard_dual_stacked_engine"],
-        "iching_64": sources["iching_64_engine_rosetta"],
+        "carnot": sources["two_bath_heat_work_reversible_cycle_pair"],
+        "szilard": sources["measure_feedback_erasure_recovery_cycle_pair"],
+        "iching_64": sources["six_bit_gray_code_single_flip_cycle_invariant"],
     }
     rows = []
     for engine, result in engine_sources.items():

@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Dual-stacked Carnot engine sim.
+"""Two-bath heat/work reversible cycle-pair sim.
 
-This row makes the Carnot engine visible as two opposite traversals of one
-four-state cycle:
+This row makes a finite two-bath heat/work cycle visible as two opposite
+traversals of one four-state cycle:
 
-- inductive_heating_loop: forward heat-engine direction, entropy exported to the
+- inductive_heating_loop: forward work-producing direction, entropy exported to the
   cold reservoir, positive work output.
 - deductive_cooling_loop: reverse refrigerator direction, entropy removed from
   the cold reservoir, positive work input.
 
-The row is a sim and visualization support artifact.  It does not claim the
-repo's broader QIT engine is solved.
+The row is a sim and visualization support artifact. It does not claim the
+repo's broader QIT runtime is solved.
 """
 
 from __future__ import annotations
@@ -46,20 +46,20 @@ except Exception:  # pragma: no cover
 CLASSIFICATION = "canonical"
 classification = CLASSIFICATION
 divergence_log = (
-    "Dual-stacked Carnot row: same finite qubit working substance, two opposite "
-    "cycle directions.  It supports Carnot-loop visualization and tool coupling; "
-    "it does not promote a final QIT engine or axis claim."
+    "Two-bath heat/work reversible cycle-pair row: same finite qubit working "
+    "substance, two opposite cycle directions. It supports cycle visualization "
+    "and tool coupling; it does not promote a final QIT runtime or admitted-axis claim."
 )
 
 LEGO_IDS = [
-    "carnot_cycle",
-    "dual_stacked_engine",
+    "two_bath_heat_work_cycle",
+    "opposite_direction_cycle_pair",
     "quantum_thermodynamics",
     "density_matrix",
     "graph_topology",
     "proof_fence",
 ]
-PRIMARY_LEGO_IDS = ["carnot_cycle", "dual_stacked_engine"]
+PRIMARY_LEGO_IDS = ["two_bath_heat_work_cycle", "opposite_direction_cycle_pair"]
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "state, heat, work, and entropy bookkeeping"},
@@ -334,16 +334,16 @@ def graph_checks() -> dict[str, Any]:
     }
 
 
-def axes_candidate_model(inductive: dict[str, Any], deductive: dict[str, Any], params: dict[str, float]) -> dict[str, Any]:
-    """Carnot-local Ax0-Ax6 candidate mapping.
+def cycle_step_invariant_map(inductive: dict[str, Any], deductive: dict[str, Any], params: dict[str, float]) -> dict[str, Any]:
+    """Local cycle-step invariant map.
 
-    These are not the QIT axes.  They are local degrees of freedom that can be
-    compared against the QIT axis family later.
+    These are not admitted QIT axes. They are local observable slots that can
+    be compared against other cycle receipts later.
     """
     return {
-        "boundary": "candidate_correlative_mapping_not_axis_promotion",
-        "axes": {
-            "Ax0": {
+        "boundary": "local_cycle_invariant_map_not_admitted_axis_promotion",
+        "invariants": {
+            "entropy_transfer_polarity": {
                 "local_name": "entropy_gradient_polarity",
                 "degree_of_freedom": "sign and magnitude of reservoir entropy transfer",
                 "observable": "cold_reservoir_entropy_delta",
@@ -351,14 +351,14 @@ def axes_candidate_model(inductive: dict[str, Any], deductive: dict[str, Any], p
                 "deductive_value": deductive["cold_reservoir_entropy_delta"],
                 "correlation_hint": "closest to thermodynamic entropy-drive intuition, not a QIT cut kernel",
             },
-            "Ax1": {
+            "bath_contact_branch": {
                 "local_name": "bath_branch",
                 "degree_of_freedom": "hot-contact versus cold-contact branch",
                 "observable": "isothermal leg bath label",
                 "values": ["hot_isotherm", "cold_isotherm"],
                 "correlation_hint": "terrain/topology split analogue",
             },
-            "Ax2": {
+            "temperature_gap_frame": {
                 "local_name": "working_frame",
                 "degree_of_freedom": "temperature-scaled gap frame",
                 "observable": "gap / temperature invariant along adiabats",
@@ -368,17 +368,17 @@ def axes_candidate_model(inductive: dict[str, Any], deductive: dict[str, Any], p
                 "cold_low_ratio": params["gap_cold_low"] / params["t_cold"],
                 "correlation_hint": "frame-change analogue; adiabats preserve occupation probability",
             },
-            "Ax3": {
+            "cycle_traversal_family": {
                 "local_name": "loop_family",
-                "degree_of_freedom": "engine versus refrigerator traversal family",
+                "degree_of_freedom": "work-producing versus work-consuming traversal family",
                 "observable": "work sign and cold entropy sign",
                 "values": {
                     "inductive_heating": {"work_by_system": inductive["work_by_system"], "cold_entropy_delta": inductive["cold_reservoir_entropy_delta"]},
                     "deductive_cooling": {"work_by_system": deductive["work_by_system"], "cold_entropy_delta": deductive["cold_reservoir_entropy_delta"]},
                 },
-                "correlation_hint": "engine-family split analogue",
+                "correlation_hint": "work-cycle-family split analogue",
             },
-            "Ax4": {
+            "step_sequence_parity": {
                 "local_name": "leg_order_class",
                 "degree_of_freedom": "isothermal/adiabatic composition order",
                 "observable": "I-A-I-A versus reversed A-I-A-I",
@@ -386,14 +386,14 @@ def axes_candidate_model(inductive: dict[str, Any], deductive: dict[str, Any], p
                 "deductive_order": [step["kind"] for step in deductive["stage_trace"]],
                 "correlation_hint": "loop-order family analogue",
             },
-            "Ax5": {
+            "heat_work_operator_family": {
                 "local_name": "operator_mode",
                 "degree_of_freedom": "heat-exchange leg versus work-only leg",
                 "observable": "nonzero heat_into_system versus zero heat_into_system",
                 "values": ["thermal_contact", "adiabatic_work"],
                 "correlation_hint": "operator-family split analogue",
             },
-            "Ax6": {
+            "stage_precedence_orientation": {
                 "local_name": "precedence_orientation",
                 "degree_of_freedom": "which leg precedes which under traversal direction",
                 "observable": "directed cycle order",
@@ -421,7 +421,7 @@ def build_visual_payload(result: dict[str, Any]) -> dict[str, Any]:
         "summary": result["summary"],
         "loops": result["dual_stack"],
         "states": result["states"],
-        "axes_candidate_model": result["axes_candidate_model"],
+        "cycle_step_invariant_map": result["cycle_step_invariant_map"],
         "tool_summary": {
             "tool_count": result["summary"]["tool_count"],
             "load_bearing_tool_count": result["summary"]["load_bearing_tool_count"],
@@ -446,7 +446,7 @@ def main() -> None:
         reverse_step(forward["steps"][1], "reverse_adiabatic_to_hot_low"),
         reverse_step(forward["steps"][0], "reverse_hot_isotherm"),
     ]
-    inductive = summarize_loop("inductive_heating_loop", "forward_heat_engine", inductive_steps)
+    inductive = summarize_loop("inductive_heating_loop", "forward_work_producing_cycle", inductive_steps)
     deductive = summarize_loop("deductive_cooling_loop", "reverse_refrigerator", deductive_steps)
 
     q_hot = inductive["heat_from_hot_bath_into_system"]
@@ -475,7 +475,7 @@ def main() -> None:
             "deductive_working_entropy_delta": deductive["working_substance_delta_entropy"],
             "pass": abs(inductive["working_substance_delta_entropy"]) < 1e-12 and abs(deductive["working_substance_delta_entropy"]) < 1e-12,
         },
-        "forward_engine_hits_carnot_efficiency": {
+        "forward_cycle_hits_reversible_efficiency": {
             "efficiency": efficiency,
             "carnot_bound": carnot_bound,
             "pass": abs(efficiency - carnot_bound) < 1e-10,
@@ -505,7 +505,7 @@ def main() -> None:
         and all(row["pass"] for row in boundary.values())
     )
     result = {
-        "name": "carnot_dual_stacked_engine",
+        "name": "two_bath_heat_work_reversible_cycle_pair",
         "classification": CLASSIFICATION,
         "classification_note": divergence_log,
         "divergence_log": divergence_log,
@@ -513,16 +513,16 @@ def main() -> None:
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "sim_execution_kind": "bridge",
         "allowed_claims": [
-            "Carnot dual-stack sim exists and runs",
+            "two-bath heat/work reversible cycle-pair sim exists and runs",
             "opposite-direction heating/cooling loop bookkeeping",
             "web visualization payload for Carnot loop inspection",
-            "no final QIT-engine or axis promotion",
+            "no final QIT runtime or admitted-axis promotion",
         ],
         "promotion_status": "keep_but_open",
         "promotion_blockers": [
             "not yet coupled to Szilard dual-stack row",
             "not yet nested in GStack",
-            "not a final runtime QIT engine claim",
+            "not a final runtime QIT claim",
         ],
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
@@ -531,7 +531,7 @@ def main() -> None:
             "inductive_heating_loop": inductive,
             "deductive_cooling_loop": deductive,
         },
-        "axes_candidate_model": axes_candidate_model(inductive, deductive, forward["parameters"]),
+        "cycle_step_invariant_map": cycle_step_invariant_map(inductive, deductive, forward["parameters"]),
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
@@ -551,7 +551,7 @@ def main() -> None:
         },
     }
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = RESULT_DIR / "carnot_dual_stacked_engine_results.json"
+    out_path = RESULT_DIR / "two_bath_heat_work_reversible_cycle_pair_results.json"
     out_path.write_text(json.dumps(result, indent=2, default=str) + "\n", encoding="utf-8")
     write_visual_payload(result)
     print(out_path)

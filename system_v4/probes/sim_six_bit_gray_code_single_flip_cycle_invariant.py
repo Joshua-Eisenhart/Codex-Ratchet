@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""I Ching / 64-state engine Rosetta sim.
+"""Six-bit Gray-code single-flip cycle invariant sim.
 
-This is a bounded symbolic schedule sim.  It treats the 64 hexagram-like states
-as six binary lines and tests whether a one-line-at-a-time engine walk can carry
-local Ax0-Ax6 comparison slots.  It does not claim that I Ching is QIT math or
-that the QIT engine is admitted.
+This is a bounded symbolic schedule sim. It treats 64 states as six binary
+lines and tests whether a one-line-at-a-time cycle walk can carry local
+comparison slots. It does not claim that a symbolic 64-state schedule is QIT
+math or that a QIT runtime is admitted.
 """
 
 from __future__ import annotations
@@ -37,22 +37,22 @@ except Exception:  # pragma: no cover
 CLASSIFICATION = "canonical"
 classification = CLASSIFICATION
 divergence_log = (
-    "I Ching / 64-state symbolic engine Rosetta. It tests a six-bit, one-line-"
-    "transition schedule as a comparison surface for Carnot/Szilard/QIT-adjacent "
-    "engine grammar. It is symbolic and pre-admission, not I Ching proof or QIT "
-    "engine promotion."
+    "Six-bit Gray-code single-flip cycle invariant row. It tests a six-bit, "
+    "one-line-transition schedule as a comparison surface for heat/work and "
+    "measurement/feedback cycle grammar. It is symbolic and pre-admission, not "
+    "QIT runtime promotion."
 )
 
 LEGO_IDS = [
-    "iching_64_schedule",
-    "axis_schedule",
-    "dual_stacked_engine",
+    "six_bit_gray_code_schedule",
+    "single_flip_cycle",
+    "opposite_direction_cycle_pair",
     "graph_topology",
     "density_matrix",
-    "rosetta_correlation",
+    "cycle_invariant_correlation",
     "graveyard_variant",
 ]
-PRIMARY_LEGO_IDS = ["iching_64_schedule", "rosetta_correlation"]
+PRIMARY_LEGO_IDS = ["six_bit_gray_code_schedule", "cycle_invariant_correlation"]
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "six-bit states, Gray schedule, parity/readout arrays"},
@@ -112,41 +112,41 @@ def hexagram_rows() -> list[dict[str, Any]]:
     return rows
 
 
-def axis_candidate_model(rows: list[dict[str, Any]]) -> dict[str, Any]:
+def cycle_step_invariant_map(rows: list[dict[str, Any]]) -> dict[str, Any]:
     return {
-        "boundary": "symbolic_axis_rosetta_not_admitted_qit_axis",
-        "axes": {
-            "Ax0": {
+        "boundary": "symbolic_cycle_invariant_map_not_admitted_qit_axis",
+        "invariants": {
+            "line_count_polarity": {
                 "local_name": "polarity_gradient",
                 "degree_of_freedom": "yin/yang count and parity over six finite lines",
                 "observable": "sum(bits) and parity",
             },
-            "Ax1": {
+            "lower_three_bit_branch": {
                 "local_name": "lower_trigram_branch",
                 "degree_of_freedom": "bottom three-line branch",
                 "observable": "lower_trigram",
             },
-            "Ax2": {
+            "upper_three_bit_frame": {
                 "local_name": "upper_trigram_frame",
                 "degree_of_freedom": "top three-line branch/frame",
                 "observable": "upper_trigram",
             },
-            "Ax3": {
+            "parity_loop_family": {
                 "local_name": "loop_family",
                 "degree_of_freedom": "inductive/deductive parity split",
                 "observable": "parity",
             },
-            "Ax4": {
+            "single_line_change_order": {
                 "local_name": "line_order_class",
                 "degree_of_freedom": "which single line changes at each step",
                 "observable": "changed_line_from_previous",
             },
-            "Ax5": {
+            "line_flip_operator_family": {
                 "local_name": "operator_mode",
                 "degree_of_freedom": "line flip as local operator",
                 "observable": "Hamming-1 transition",
             },
-            "Ax6": {
+            "successor_precedence_orientation": {
                 "local_name": "precedence_orientation",
                 "degree_of_freedom": "directed order of the 64-state walk",
                 "observable": "Gray-code successor relation",
@@ -317,35 +317,35 @@ def graveyard_variants(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return out
 
 
-def rosetta_rows() -> list[dict[str, str]]:
+def cycle_invariant_rows() -> list[dict[str, str]]:
     return [
         {
             "slot": "dual_loop",
-            "carnot": "engine/refrigerator traversal",
-            "szilard": "measurement-feedback-erasure/recovery traversal",
-            "iching_64": "odd/even parity loop family on a 64-state walk",
+            "heat_work_cycle": "work-producing/work-consuming traversal",
+            "measure_feedback_cycle": "measurement-feedback-erasure/recovery traversal",
+            "six_bit_cycle": "odd/even parity loop family on a 64-state walk",
             "boundary": "shared two-direction grammar, not identity",
         },
         {
             "slot": "operator",
-            "carnot": "thermal contact or adiabatic work leg",
-            "szilard": "correlate, feedback, reset",
-            "iching_64": "single-line flip operator",
+            "heat_work_cycle": "thermal contact or adiabatic work leg",
+            "measure_feedback_cycle": "correlate, feedback, reset",
+            "six_bit_cycle": "single-line flip operator",
             "boundary": "symbolic line flips are not physical operators",
         },
         {
             "slot": "geometry",
-            "carnot": "four-state cycle",
-            "szilard": "protocol path and memory carrier",
-            "iching_64": "six-bit hypercube Hamiltonian cycle",
+            "heat_work_cycle": "four-state cycle",
+            "measure_feedback_cycle": "protocol path and memory carrier",
+            "six_bit_cycle": "six-bit hypercube Hamiltonian cycle",
             "boundary": "hypercube schedule is not a GStack",
         },
         {
-            "slot": "axis",
-            "carnot": "local Ax0-Ax6 thermodynamic slots",
-            "szilard": "local Ax0-Ax6 information slots",
-            "iching_64": "six lines plus derived precedence Ax6",
-            "boundary": "axis labels are comparison slots only",
+            "slot": "local_invariant_map",
+            "heat_work_cycle": "local thermodynamic invariant slots",
+            "measure_feedback_cycle": "local information invariant slots",
+            "six_bit_cycle": "six lines plus derived precedence relation",
+            "boundary": "invariant slots are comparison slots only",
         },
     ]
 
@@ -355,16 +355,16 @@ def build_visual_payload(result: dict[str, Any]) -> dict[str, Any]:
         "name": result["name"],
         "summary": result["summary"],
         "hexagrams": result["hexagrams"],
-        "axes_candidate_model": result["axes_candidate_model"],
-        "rosetta_rows": result["rosetta_rows"],
+        "cycle_step_invariant_map": result["cycle_step_invariant_map"],
+        "cycle_invariant_rows": result["cycle_invariant_rows"],
         "graveyard_variants": result["graveyard_variants"],
     }
 
 
 def write_visual_payload(result: dict[str, Any]) -> None:
     VIS_DIR.mkdir(parents=True, exist_ok=True)
-    js = "window.ICHING_64_ROSETTA_DATA = " + json.dumps(build_visual_payload(result), indent=2) + ";\n"
-    (VIS_DIR / "iching-64-rosetta-data.js").write_text(js, encoding="utf-8")
+    js = "window.SIX_BIT_GRAY_CODE_CYCLE_DATA = " + json.dumps(build_visual_payload(result), indent=2) + ";\n"
+    (VIS_DIR / "six-bit-gray-code-cycle-data.js").write_text(js, encoding="utf-8")
 
 
 def main() -> None:
@@ -382,9 +382,9 @@ def main() -> None:
         },
     }
     boundary = {
-        "axis_model_has_ax0_through_ax6": {
-            "axis_ids": sorted(axis_candidate_model(rows)["axes"]),
-            "pass": sorted(axis_candidate_model(rows)["axes"]) == [f"Ax{i}" for i in range(7)],
+        "cycle_invariant_map_has_seven_slots": {
+            "invariant_ids": sorted(cycle_step_invariant_map(rows)["invariants"]),
+            "pass": len(cycle_step_invariant_map(rows)["invariants"]) == 7,
         },
         "symbolic_not_qit_admission": {
             "pass": True,
@@ -397,7 +397,7 @@ def main() -> None:
         and all(item["pass"] for item in boundary.values())
     )
     result = {
-        "name": "iching_64_engine_rosetta",
+        "name": "six_bit_gray_code_single_flip_cycle_invariant",
         "classification": CLASSIFICATION,
         "classification_note": divergence_log,
         "divergence_log": divergence_log,
@@ -409,8 +409,8 @@ def main() -> None:
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "hexagrams": rows,
-        "axes_candidate_model": axis_candidate_model(rows),
-        "rosetta_rows": rosetta_rows(),
+        "cycle_step_invariant_map": cycle_step_invariant_map(rows),
+        "cycle_invariant_rows": cycle_invariant_rows(),
         "graveyard_variants": graveyard_variants(rows),
         "positive": positive,
         "negative": negative,
@@ -418,17 +418,17 @@ def main() -> None:
         "summary": {
             "all_pass": bool(all_pass),
             "state_count": len(rows),
-            "axis_count": 7,
-            "rosetta_row_count": len(rosetta_rows()),
+            "invariant_count": 7,
+            "cycle_invariant_row_count": len(cycle_invariant_rows()),
             "graveyard_variant_count": len(graveyard_variants(rows)),
             "load_bearing_tool_count": sum(1 for value in TOOL_INTEGRATION_DEPTH.values() if value == "load_bearing"),
             "tool_count": len(TOOL_MANIFEST),
-            "visual_payload": "visualizer/iching-64-rosetta-data.js",
+            "visual_payload": "visualizer/six-bit-gray-code-cycle-data.js",
             "scope_note": divergence_log,
         },
     }
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = RESULT_DIR / "iching_64_engine_rosetta_results.json"
+    out_path = RESULT_DIR / "six_bit_gray_code_single_flip_cycle_invariant_results.json"
     out_path.write_text(json.dumps(result, indent=2, default=str) + "\n", encoding="utf-8")
     write_visual_payload(result)
     print(out_path)

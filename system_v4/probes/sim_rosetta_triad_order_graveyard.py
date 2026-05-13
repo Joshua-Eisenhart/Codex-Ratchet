@@ -258,9 +258,9 @@ def write_visual_payload(result: dict[str, Any]) -> None:
 
 
 def main() -> None:
-    carnot = load_result("carnot_dual_stacked_engine")
-    szilard = load_result("szilard_dual_stacked_engine")
-    iching = load_result("iching_64_engine_rosetta")
+    carnot = load_result("two_bath_heat_work_reversible_cycle_pair")
+    szilard = load_result("measure_feedback_erasure_recovery_cycle_pair")
+    iching = load_result("six_bit_gray_code_single_flip_cycle_invariant")
     variants = carnot_variants(carnot) + szilard_variants(szilard) + iching_variants(iching)
     proof_fences = {
         "z3_wrong_szilard_precedence_unsat": z3_wrong_szilard_precedence_unsat(),
@@ -292,9 +292,9 @@ def main() -> None:
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "source_receipts": {
-            "carnot": str(RESULT_DIR / "carnot_dual_stacked_engine_results.json"),
-            "szilard": str(RESULT_DIR / "szilard_dual_stacked_engine_results.json"),
-            "iching_64": str(RESULT_DIR / "iching_64_engine_rosetta_results.json"),
+            "carnot": str(RESULT_DIR / "two_bath_heat_work_reversible_cycle_pair_results.json"),
+            "szilard": str(RESULT_DIR / "measure_feedback_erasure_recovery_cycle_pair_results.json"),
+            "iching_64": str(RESULT_DIR / "six_bit_gray_code_single_flip_cycle_invariant_results.json"),
         },
         "variant_rows": variants,
         "proof_fences": proof_fences,

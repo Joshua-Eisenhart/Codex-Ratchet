@@ -89,7 +89,7 @@ def engine_digest(carnot: dict[str, Any], szilard: dict[str, Any], iching: dict[
     iching_schedule = iching.get("positive", {}).get("gray_walk_is_64_state_single_line_cycle", {})
     return {
         "carnot": {
-            "source": "carnot_dual_stacked_engine_results.json",
+            "source": "two_bath_heat_work_reversible_cycle_pair_results.json",
             "state_count": len(carnot.get("states", [])),
             "operator_count": len(carnot["dual_stack"]["inductive_heating_loop"]["stage_trace"]),
             "loop_count": len(carnot.get("dual_stack", {})),
@@ -106,7 +106,7 @@ def engine_digest(carnot: dict[str, Any], szilard: dict[str, Any], iching: dict[
             "scope": "classical thermodynamic engine with finite density-carrier witnesses",
         },
         "szilard": {
-            "source": "szilard_dual_stacked_engine_results.json",
+            "source": "measure_feedback_erasure_recovery_cycle_pair_results.json",
             "state_count": len(szilard.get("states", {})),
             "operator_count": len(szilard["dual_stack"]["inductive_heating_loop"]["stage_trace"]),
             "loop_count": len(szilard.get("dual_stack", {})),
@@ -123,7 +123,7 @@ def engine_digest(carnot: dict[str, Any], szilard: dict[str, Any], iching: dict[
             "scope": "finite information engine with density and proof witnesses",
         },
         "iching_64": {
-            "source": "iching_64_engine_rosetta_results.json",
+            "source": "six_bit_gray_code_single_flip_cycle_invariant_results.json",
             "state_count": int(iching["summary"]["state_count"]),
             "operator_count": int(iching["summary"]["state_count"]),
             "loop_count": 2,
@@ -391,9 +391,9 @@ def write_visual_payload(result: dict[str, Any]) -> None:
 
 
 def main() -> None:
-    carnot = load_result("carnot_dual_stacked_engine")
-    szilard = load_result("szilard_dual_stacked_engine")
-    iching = load_result("iching_64_engine_rosetta")
+    carnot = load_result("two_bath_heat_work_reversible_cycle_pair")
+    szilard = load_result("measure_feedback_erasure_recovery_cycle_pair")
+    iching = load_result("six_bit_gray_code_single_flip_cycle_invariant")
     digests = engine_digest(carnot, szilard, iching)
     modes = mode_matrix(digests)
     shared = shared_structure_rows(digests)
@@ -427,9 +427,9 @@ def main() -> None:
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "source_receipts": {
-            "carnot": str(RESULT_DIR / "carnot_dual_stacked_engine_results.json"),
-            "szilard": str(RESULT_DIR / "szilard_dual_stacked_engine_results.json"),
-            "iching_64": str(RESULT_DIR / "iching_64_engine_rosetta_results.json"),
+            "carnot": str(RESULT_DIR / "two_bath_heat_work_reversible_cycle_pair_results.json"),
+            "szilard": str(RESULT_DIR / "measure_feedback_erasure_recovery_cycle_pair_results.json"),
+            "iching_64": str(RESULT_DIR / "six_bit_gray_code_single_flip_cycle_invariant_results.json"),
         },
         "engine_digests": digests,
         "mode_matrix": modes,

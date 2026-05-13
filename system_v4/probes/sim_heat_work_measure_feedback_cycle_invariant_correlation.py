@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Carnot/Szilard Rosetta correlation sim.
+"""Heat-work and measurement-feedback cycle invariant correlation sim.
 
-This row compares the two receipt-backed dual-stack engine rows without
-promoting either one into the QIT engine.  It asks a narrower question:
+This row compares the two receipt-backed opposite-direction cycle-pair rows without
+promoting either one into the QIT runtime.  It asks a narrower question:
 
 - what structure is literally shared by the two sims;
 - what structure is only an analogy;
@@ -16,31 +16,31 @@ import pathlib
 from typing import Any
 
 
-CLASSIFICATION = "rosetta_receipt_audit"
+CLASSIFICATION = "audit"
 classification = CLASSIFICATION
 divergence_log = (
-    "Rosetta correlation layer over the Carnot and Szilard dual-stack rows. "
+    "Cycle-invariant correlation layer over the heat-work and measurement-feedback cycle-pair rows. "
     "It compares loop polarity, tools, legos, graph/proof/density receipts, "
-    "and local Ax0-Ax6 candidate mappings. It is not a QIT-engine promotion."
+    "and local cycle-step invariant maps. It is not a QIT runtime promotion."
 )
 
 LEGO_IDS = [
-    "carnot_cycle",
-    "szilard_cycle",
+    "two_bath_heat_work_cycle",
+    "measure_feedback_erasure_cycle",
     "landauer_erasure",
-    "dual_stacked_engine",
+    "opposite_direction_cycle_pair",
     "density_matrix",
     "graph_topology",
     "proof_fence",
-    "rosetta_correlation",
+    "cycle_invariant_correlation",
 ]
-PRIMARY_LEGO_IDS = ["dual_stacked_engine", "rosetta_correlation"]
+PRIMARY_LEGO_IDS = ["opposite_direction_cycle_pair", "cycle_invariant_correlation"]
 
 TOOL_MANIFEST = {
     "json": {
         "tried": True,
         "used": True,
-        "reason": "loads the exact Carnot and Szilard result receipts",
+        "reason": "loads the exact heat-work and measurement-feedback cycles result receipts",
     },
     "pathlib": {
         "tried": True,
@@ -87,28 +87,28 @@ def shared_load_bearing_tools(a: dict[str, Any], b: dict[str, Any]) -> list[str]
     )
 
 
-def rosetta_rows(carnot: dict[str, Any], szilard: dict[str, Any]) -> list[dict[str, Any]]:
-    carnot_axes = carnot["axes_candidate_model"]["axes"]
-    szilard_axes = szilard["axes_candidate_model"]["axes"]
-    axis_rows = [
+def cycle_invariant_rows(carnot: dict[str, Any], szilard: dict[str, Any]) -> list[dict[str, Any]]:
+    heat_work_invariants = carnot["cycle_step_invariant_map"]["invariants"]
+    measure_feedback_invariants = szilard["cycle_step_invariant_map"]["invariants"]
+    invariant_rows = [
         {
-            "row": axis,
-            "relation": "local_axis_candidate",
-            "carnot": carnot_axes[axis]["local_name"],
-            "szilard": szilard_axes[axis]["local_name"],
+            "row": invariant,
+            "relation": "local_invariant_candidate",
+            "carnot": heat_work_invariants[invariant]["local_name"],
+            "szilard": measure_feedback_invariants[invariant]["local_name"],
             "status": "candidate_analogy_not_identity",
-            "boundary": "same axis label is only a local comparison slot",
+            "boundary": "same invariant row is only a local comparison slot",
         }
-        for axis in sorted(set(carnot_axes) & set(szilard_axes))
+        for invariant in sorted(set(heat_work_invariants) & set(measure_feedback_invariants))
     ]
     structural_rows = [
         {
             "row": "dual_stack_polarity",
             "relation": "shared_mechanism_surface",
-            "carnot": "forward heat engine vs reverse refrigerator",
+            "carnot": "work-producing versus work-consuming heat-work traversal",
             "szilard": "measurement-feedback-erasure vs reverse recovery bookkeeping",
             "status": "shared_two_direction_bookkeeping",
-            "boundary": "opposite traversals do not make either row a QIT engine",
+            "boundary": "opposite traversals do not make either row a QIT runtime",
         },
         {
             "row": "entropy_carrier",
@@ -132,7 +132,7 @@ def rosetta_rows(carnot: dict[str, Any], szilard: dict[str, Any]) -> list[dict[s
             "carnot": "isothermal/adiabatic four-cycle",
             "szilard": "measurement/feedback/erasure protocol",
             "status": "ordered_operators_but_different_arity",
-            "boundary": "Carnot is a closed four-cycle; Szilard is a protocol path plus reverse bookkeeping",
+            "boundary": "heat-work is a closed four-cycle; measurement-feedback is a protocol path plus reverse bookkeeping",
         },
         {
             "row": "proof_fence",
@@ -143,29 +143,29 @@ def rosetta_rows(carnot: dict[str, Any], szilard: dict[str, Any]) -> list[dict[s
             "boundary": "different forbidden claims, same proof-fence role",
         },
     ]
-    return structural_rows + axis_rows
+    return structural_rows + invariant_rows
 
 
-def qit_analogue_map(carnot: dict[str, Any], szilard: dict[str, Any]) -> dict[str, Any]:
+def information_theoretic_analogue_map(carnot: dict[str, Any], szilard: dict[str, Any]) -> dict[str, Any]:
     return {
-        "boundary": "candidate_search_prior_not_qit_engine_admission",
+        "boundary": "candidate_search_prior_not_qit_runtime_admission",
         "shared_candidates": {
             "dual_loop_family": "both rows expose inductive_heating_loop and deductive_cooling_loop",
             "density_carrier": "both rows use density-matrix witnesses through qutip and qiskit",
             "graph_carrier": "both rows use rustworkx, PyG, XGI, and optional topology tools",
             "proof_fence": "both rows use z3 and cvc5 to block an impossible/free-lunch variant",
-            "axis_slots": "both rows expose local Ax0-Ax6 candidate comparison slots",
+            "invariant_slots": "both rows expose local cycle-step invariant comparison slots",
         },
         "not_yet_claimed": [
             "no GStack nesting",
             "no Weyl/spinor/Hopf/torus/Clifford operator stack",
-            "no final QIT engine runtime",
-            "no bridge or axis-level admission",
+            "no final QIT runtime",
+            "no bridge or admitted-axis claim",
         ],
     }
 
 
-def triadic_qit_rows(
+def triadic_information_rows(
     carnot: dict[str, Any],
     szilard: dict[str, Any],
     iching_64: dict[str, Any] | None,
@@ -177,12 +177,12 @@ def triadic_qit_rows(
     qit_summary = qit_companion.get("summary", {}) if qit_companion else {}
     entropy_summary = qit_entropy.get("summary", {}) if qit_entropy else {}
     iching_summary = iching_64.get("summary", {}) if iching_64 else {}
-    iching_axes = (
-        sorted(iching_64.get("axes_candidate_model", {}).get("axes", {}))
+    gray_code_invariants = (
+        sorted(iching_64.get("cycle_step_invariant_map", {}).get("invariants", {}))
         if iching_64
         else []
     )
-    iching_rosetta_rows = iching_64.get("rosetta_rows", []) if iching_64 else []
+    iching_cycle_invariant_rows = iching_64.get("cycle_invariant_rows", []) if iching_64 else []
     iching_pass = bool(iching_summary.get("all_pass"))
     return [
         {
@@ -209,7 +209,7 @@ def triadic_qit_rows(
                 "clifford_capability_all_pass": None if clifford_capability is None else clifford_capability.get("summary", {}).get("all_pass"),
                 "clifford_scope": "tool_micro_clifford_capability_only",
             },
-            "boundary": "Clifford capability does not yet couple the engine loops to Weyl/spinor geometry",
+            "boundary": "Clifford capability does not yet couple the cycle loops to Weyl/spinor geometry",
         },
         {
             "row": "topology_variants",
@@ -237,35 +237,35 @@ def triadic_qit_rows(
             "boundary": "Entropy/readout coverage is not complete until missing QIT Szilard/readout receipts exist",
         },
         {
-            "row": "axis_schedule",
-            "carnot": "local Ax0-Ax6 thermodynamic comparison slots",
-            "szilard": "local Ax0-Ax6 information-engine comparison slots",
-            "qit_adjacent": "I Ching 64-state row supplies symbolic Ax0-Ax6 comparison slots; active QIT axis doctrine remains open",
-            "status": "sim_supported_symbolic_only" if iching_pass and len(iching_axes) == 7 else "candidate_only",
+            "row": "local_invariant_schedule",
+            "carnot": "local heat-work invariant comparison slots",
+            "szilard": "local measurement-feedback invariant comparison slots",
+            "qit_adjacent": "six-bit single-flip row supplies symbolic invariant comparison slots; active QIT axis doctrine remains open",
+            "status": "sim_supported_symbolic_only" if iching_pass and len(gray_code_invariants) == 7 else "candidate_only",
             "evidence": {
-                "shared_axis_slots": sorted(set(carnot["axes_candidate_model"]["axes"]) & set(szilard["axes_candidate_model"]["axes"])),
-                "iching_axis_slots": iching_axes,
+                "shared_invariant_slots": sorted(set(carnot["cycle_step_invariant_map"]["invariants"]) & set(szilard["cycle_step_invariant_map"]["invariants"])),
+                "gray_code_invariant_slots": gray_code_invariants,
                 "iching_all_pass": iching_summary.get("all_pass"),
-                "qit_axis_admission": "blocked_until_QIT_grounded_and_negative_tested",
+                "qit_admitted_axis_status": "blocked_until_QIT_grounded_and_negative_tested",
             },
-            "boundary": "Local axis labels are Rosetta slots, not admitted QIT axes",
+            "boundary": "Local invariant labels are comparison slots, not admitted QIT axes",
         },
         {
             "row": "sixty_four_schedule",
-            "carnot": "four Carnot legs times two traversals as a small engine grammar",
-            "szilard": "three operation protocol plus reverse bookkeeping as a small engine grammar",
+            "carnot": "four heat-work legs times two traversals as a small cycle grammar",
+            "szilard": "three operation protocol plus reverse bookkeeping as a small cycle grammar",
             "qit_adjacent": "six-bit Gray-code schedule with one-line flip operators and killed graveyard variants",
             "status": "sim_supported_symbolic_only" if iching_pass else "missing_symbolic_receipt",
             "evidence": {
-                "iching_result": "iching_64_engine_rosetta_results.json" if iching_64 else None,
+                "iching_result": "six_bit_gray_code_single_flip_cycle_invariant_results.json" if iching_64 else None,
                 "iching_all_pass": iching_summary.get("all_pass"),
                 "state_count": iching_summary.get("state_count"),
-                "axis_count": iching_summary.get("axis_count"),
-                "rosetta_row_count": len(iching_rosetta_rows),
+                "invariant_count": iching_summary.get("invariant_count"),
+                "cycle_invariant_row_count": len(iching_cycle_invariant_rows),
                 "graveyard_variant_count": iching_summary.get("graveyard_variant_count"),
-                "engine_microsteps_claim": "not admitted here",
+                "cycle_microsteps_claim": "not admitted here",
             },
-            "boundary": "The 64-state schedule is a symbolic Rosetta sim, not I Ching proof or QIT-engine admission",
+            "boundary": "The 64-state schedule is a symbolic cycle-invariant sim, not I Ching proof or QIT runtime admission",
         },
     ]
 
@@ -275,8 +275,8 @@ def tier_correlations(carnot: dict[str, Any], szilard: dict[str, Any]) -> list[d
         {
             "tier": 0,
             "name": "receipt_source",
-            "carnot": "carnot_dual_stacked_engine_results.json",
-            "szilard": "szilard_dual_stacked_engine_results.json",
+            "carnot": "two_bath_heat_work_reversible_cycle_pair_results.json",
+            "szilard": "measure_feedback_erasure_recovery_cycle_pair_results.json",
             "evidence": "both source rows pass and keep their own scope boundaries",
             "next_allowed": "compare receipts; do not promote either row",
         },
@@ -322,17 +322,17 @@ def tier_correlations(carnot: dict[str, Any], szilard: dict[str, Any]) -> list[d
         },
         {
             "tier": 6,
-            "name": "axis_candidate_surface",
-            "carnot": "local Ax0-Ax6 thermodynamic degrees of freedom",
-            "szilard": "local Ax0-Ax6 information-engine degrees of freedom",
+            "name": "local_invariant_surface",
+            "carnot": "local heat-work degrees of freedom",
+            "szilard": "local measurement-feedback degrees of freedom",
             "evidence": "both rows expose seven comparison slots",
-            "next_allowed": "compare against QIT axes as candidate priors only",
+            "next_allowed": "compare against QIT axis candidates as priors only",
         },
         {
             "tier": 7,
             "name": "blocked_qit_runtime",
-            "carnot": "not a QIT engine runtime",
-            "szilard": "not a QIT engine runtime",
+            "carnot": "not a QIT runtime",
+            "szilard": "not a QIT runtime",
             "evidence": "no GStack, Weyl/spinor/Hopf/torus/Clifford stack receipt",
             "next_allowed": "micro-test those missing nonclassical operator stacks before promotion",
         },
@@ -340,8 +340,8 @@ def tier_correlations(carnot: dict[str, Any], szilard: dict[str, Any]) -> list[d
 
 
 def degree_of_freedom_comparison(carnot: dict[str, Any], szilard: dict[str, Any]) -> list[dict[str, Any]]:
-    carnot_dofs = carnot["axes_candidate_model"].get("degrees_of_freedom", [])
-    szilard_dofs = szilard["axes_candidate_model"].get("degrees_of_freedom", [])
+    carnot_dofs = carnot["cycle_step_invariant_map"].get("degrees_of_freedom", [])
+    szilard_dofs = szilard["cycle_step_invariant_map"].get("degrees_of_freedom", [])
     pairs = [
         ("temperature_ratio", "erasure_cost", "constraint intensity"),
         ("gap_ratio", "system_state", "carrier state spacing"),
@@ -369,40 +369,40 @@ def build_visual_payload(result: dict[str, Any]) -> dict[str, Any]:
     return {
         "name": result["name"],
         "summary": result["summary"],
-        "rosetta_rows": result["rosetta_rows"],
+        "cycle_invariant_rows": result["cycle_invariant_rows"],
         "tier_correlations": result["tier_correlations"],
         "degree_of_freedom_comparison": result["degree_of_freedom_comparison"],
-        "triadic_qit_rows": result["triadic_qit_rows"],
+        "triadic_information_rows": result["triadic_information_rows"],
         "qit_companion_summary": result["qit_companion_summary"],
         "qit_entropy_summary": result["qit_entropy_summary"],
         "iching_64_summary": result["iching_64_summary"],
-        "iching_64_rosetta_rows": result["iching_64_rosetta_rows"],
+        "iching_64_cycle_invariant_rows": result["iching_64_cycle_invariant_rows"],
         "iching_64_graveyard_variants": result["iching_64_graveyard_variants"],
-        "qit_analogue_map": result["qit_analogue_map"],
+        "information_theoretic_analogue_map": result["information_theoretic_analogue_map"],
         "graveyard_rows": result["graveyard_rows"],
     }
 
 
 def write_visual_payload(result: dict[str, Any]) -> None:
     VIS_DIR.mkdir(parents=True, exist_ok=True)
-    js = "window.ENGINE_ROSETTA_DATA = " + json.dumps(build_visual_payload(result), indent=2) + ";\n"
-    (VIS_DIR / "engine-rosetta-data.js").write_text(js, encoding="utf-8")
+    js = "window.CYCLE_INVARIANT_CORRELATION_DATA = " + json.dumps(build_visual_payload(result), indent=2) + ";\n"
+    (VIS_DIR / "cycle-invariant-correlation-data.js").write_text(js, encoding="utf-8")
 
 
 def main() -> None:
-    carnot = load_result("carnot_dual_stacked_engine")
-    szilard = load_result("szilard_dual_stacked_engine")
+    carnot = load_result("two_bath_heat_work_reversible_cycle_pair")
+    szilard = load_result("measure_feedback_erasure_recovery_cycle_pair")
     qit_companion = load_optional_result("qit_engine_companion_array_results.json")
     qit_entropy = load_optional_result("qit_entropy_companion_array_results.json")
-    iching_64 = load_optional_result("iching_64_engine_rosetta_results.json")
+    iching_64 = load_optional_result("six_bit_gray_code_single_flip_cycle_invariant_results.json")
     clifford_capability = load_optional_result("clifford_capability_results.json")
     weyl_topology = load_optional_result("sim_weyl_holo_symplectic_topology_variants_results.json")
 
     shared_tools = shared_load_bearing_tools(carnot, szilard)
     shared_legos = sorted(set(carnot.get("lego_ids", [])) & set(szilard.get("lego_ids", [])))
-    shared_axes = sorted(
-        set(carnot["axes_candidate_model"]["axes"])
-        & set(szilard["axes_candidate_model"]["axes"])
+    shared_invariants = sorted(
+        set(carnot["cycle_step_invariant_map"]["invariants"])
+        & set(szilard["cycle_step_invariant_map"]["invariants"])
     )
     evidence_flags = {
         "both_source_rows_pass": bool(carnot["summary"]["all_pass"] and szilard["summary"]["all_pass"]),
@@ -428,24 +428,28 @@ def main() -> None:
             and pass_at(szilard, "negative", "landauer_free_erasure_blocked_by_z3")
             and pass_at(szilard, "negative", "landauer_free_erasure_blocked_by_cvc5")
         ),
-        "same_axis_slot_count": len(shared_axes) == 7,
-        "iching_64_symbolic_rosetta_pass": bool(
+        "shared_invariant_subset_nonempty": len(shared_invariants) >= 4,
+        "nonidentity_invariant_maps_detected": bool(
+            set(carnot["cycle_step_invariant_map"]["invariants"])
+            != set(szilard["cycle_step_invariant_map"]["invariants"])
+        ),
+        "six_bit_symbolic_cycle_pass": bool(
             iching_64
             and iching_64.get("summary", {}).get("all_pass")
             and iching_64.get("summary", {}).get("state_count") == 64
-            and iching_64.get("summary", {}).get("axis_count") == 7
+            and iching_64.get("summary", {}).get("invariant_count") == 7
         ),
     }
     graveyard_rows = [
         {
-            "claim": "Carnot and Szilard are the same engine",
+            "claim": "heat-work and measurement-feedback cycles are identical",
             "status": "rejected",
-            "reason": "the Rosetta layer finds shared slots and tool roles, not identity",
+            "reason": "the cycle-invariant layer finds shared slots and tool roles, not identity",
         },
         {
-            "claim": "local Ax0-Ax6 slots are admitted QIT axes",
+            "claim": "local invariant slots are admitted QIT axes",
             "status": "blocked",
-            "reason": "the source rows label axes as candidate correlative mappings only",
+            "reason": "the source rows label local invariants as candidate correlative mappings only",
         },
         {
             "claim": "graph topology is already a GStack",
@@ -455,7 +459,7 @@ def main() -> None:
     ]
     all_pass = all(evidence_flags.values()) and len(shared_tools) >= 10 and len(shared_legos) >= 3
     result = {
-        "name": "carnot_szilard_rosetta_correlation",
+        "name": "heat_work_measure_feedback_cycle_invariant_correlation",
         "classification": CLASSIFICATION,
         "classification_note": divergence_log,
         "divergence_log": divergence_log,
@@ -463,28 +467,28 @@ def main() -> None:
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "sim_execution_kind": "bridge",
         "allowed_claims": [
-            "Carnot and Szilard dual-stack rows can be compared through a Rosetta surface",
-            "both rows share tool, proof, density, graph, and local axis-slot receipts",
+            "heat-work and measurement-feedback cycles dual-stack rows can be compared through a cycle-invariant surface",
+            "both rows share tool, proof, density, graph, and local invariant-slot receipts",
             "shared structure is a candidate search prior, not identity or QIT admission",
         ],
         "promotion_status": "keep_but_open",
         "promotion_blockers": [
             "no GStack nesting receipt",
             "no nonclassical operator-stack coupling receipt",
-            "no admitted QIT-engine runtime",
+            "no admitted QIT runtime",
         ],
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "source_receipts": {
-            "carnot": str(RESULT_DIR / "carnot_dual_stacked_engine_results.json"),
-            "szilard": str(RESULT_DIR / "szilard_dual_stacked_engine_results.json"),
-            "iching_64": str(RESULT_DIR / "iching_64_engine_rosetta_results.json") if iching_64 else None,
+            "carnot": str(RESULT_DIR / "two_bath_heat_work_reversible_cycle_pair_results.json"),
+            "szilard": str(RESULT_DIR / "measure_feedback_erasure_recovery_cycle_pair_results.json"),
+            "iching_64": str(RESULT_DIR / "six_bit_gray_code_single_flip_cycle_invariant_results.json") if iching_64 else None,
         },
         "evidence_flags": evidence_flags,
-        "rosetta_rows": rosetta_rows(carnot, szilard),
+        "cycle_invariant_rows": cycle_invariant_rows(carnot, szilard),
         "tier_correlations": tier_correlations(carnot, szilard),
         "degree_of_freedom_comparison": degree_of_freedom_comparison(carnot, szilard),
-        "triadic_qit_rows": triadic_qit_rows(carnot, szilard, iching_64, qit_companion, qit_entropy, clifford_capability, weyl_topology),
+        "triadic_information_rows": triadic_information_rows(carnot, szilard, iching_64, qit_companion, qit_entropy, clifford_capability, weyl_topology),
         "qit_companion_summary": (
             qit_companion.get("summary", {})
             if qit_companion
@@ -498,11 +502,11 @@ def main() -> None:
         "iching_64_summary": (
             iching_64.get("summary", {})
             if iching_64
-            else {"all_pass": None, "missing": "iching_64_engine_rosetta_results.json"}
+            else {"all_pass": None, "missing": "six_bit_gray_code_single_flip_cycle_invariant_results.json"}
         ),
-        "iching_64_rosetta_rows": iching_64.get("rosetta_rows", []) if iching_64 else [],
+        "iching_64_cycle_invariant_rows": iching_64.get("cycle_invariant_rows", []) if iching_64 else [],
         "iching_64_graveyard_variants": iching_64.get("graveyard_variants", []) if iching_64 else [],
-        "qit_analogue_map": qit_analogue_map(carnot, szilard),
+        "information_theoretic_analogue_map": information_theoretic_analogue_map(carnot, szilard),
         "graveyard_rows": graveyard_rows,
         "summary": {
             "all_pass": all_pass,
@@ -510,8 +514,8 @@ def main() -> None:
             "shared_load_bearing_tools": shared_tools,
             "shared_lego_count": len(shared_legos),
             "shared_legos": shared_legos,
-            "shared_axis_slots": shared_axes,
-            "rosetta_row_count": 5 + len(shared_axes),
+            "shared_invariant_slots": shared_invariants,
+            "cycle_invariant_row_count": 5 + len(shared_invariants),
             "tier_count": 8,
             "degree_pair_count": 8,
             "triadic_qit_row_count": 6,
@@ -525,12 +529,12 @@ def main() -> None:
             "clifford_capability_all_pass": None if clifford_capability is None else clifford_capability.get("summary", {}).get("all_pass"),
             "weyl_topology_passed": None if weyl_topology is None else weyl_topology.get("summary", {}).get("passed"),
             "graveyard_row_count": len(graveyard_rows),
-            "visual_payload": "visualizer/engine-rosetta-data.js",
+            "visual_payload": "visualizer/cycle-invariant-correlation-data.js",
             "scope_note": divergence_log,
         },
     }
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = RESULT_DIR / "carnot_szilard_rosetta_correlation_results.json"
+    out_path = RESULT_DIR / "heat_work_measure_feedback_cycle_invariant_correlation_results.json"
     out_path.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     write_visual_payload(result)
     print(out_path)

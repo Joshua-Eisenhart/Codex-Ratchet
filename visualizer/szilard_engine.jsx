@@ -80,7 +80,7 @@ function SzilardEngineView({ t }) {
     setRunning(false);
   }, [loopKey]);
 
-  const sourcePath = source ? 'system_v4/probes/a2_state/sim_results/szilard_dual_stacked_engine_results.json mirrored by visualizer/szilard-dual-stack-data.js' : 'fallback UI skeleton';
+  const sourcePath = source ? 'system_v4/probes/a2_state/sim_results/measure_feedback_erasure_recovery_cycle_pair_results.json mirrored by visualizer/szilard-dual-stack-data.js' : 'fallback UI skeleton';
   const topologyNodes = ops.map(o => o.after);
   const topologyEdges = ops.slice(1).map(o => [o.before, o.after]);
   const currentState = states[op.after] || {};

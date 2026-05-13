@@ -70,7 +70,7 @@ function CarnotEngineView({ t }) {
     setRunning(false);
   }, [loopKey]);
 
-  const sourcePath = source ? 'system_v4/probes/a2_state/sim_results/carnot_dual_stacked_engine_results.json mirrored by visualizer/carnot-dual-stack-data.js' : 'fallback UI skeleton';
+  const sourcePath = source ? 'system_v4/probes/a2_state/sim_results/two_bath_heat_work_reversible_cycle_pair_results.json mirrored by visualizer/carnot-dual-stack-data.js' : 'fallback UI skeleton';
   const topologyNodes = states.map(s => s.label);
   const topologyEdges = stages.map(s => [s.before, String(s.after || '').replace('_return', '')]);
   const rosettaRows = rosetta ? rosetta.tier_correlations || [] : [];

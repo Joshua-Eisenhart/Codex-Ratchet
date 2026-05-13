@@ -77,14 +77,14 @@ function IchingWheel({ t, hexagrams, selected, setSelected }) {
 
 function SimReceiptIndexPanel({ t }) {
   const receipts = [
-    { name: 'Carnot dual stack', family: 'Carnot', cls: 'canonical loaded', path: 'system_v4/probes/a2_state/sim_results/carnot_dual_stacked_engine_results.json', pass: window.CARNOT_DUAL_STACK_DATA && window.CARNOT_DUAL_STACK_DATA.summary && window.CARNOT_DUAL_STACK_DATA.summary.all_pass, visual: 'loaded into Carnot tab' },
+    { name: 'Carnot dual stack', family: 'Carnot', cls: 'canonical loaded', path: 'system_v4/probes/a2_state/sim_results/two_bath_heat_work_reversible_cycle_pair_results.json', pass: window.CARNOT_DUAL_STACK_DATA && window.CARNOT_DUAL_STACK_DATA.summary && window.CARNOT_DUAL_STACK_DATA.summary.all_pass, visual: 'loaded into Carnot tab' },
     { name: 'Carnot entropy family array', family: 'Carnot', cls: 'canonical indexed', path: 'system_v4/probes/a2_state/sim_results/carnot_entropy_family_array_results.json', pass: null, visual: 'indexed path; browser payload not generated yet' },
     { name: 'Carnot tool coupling matrix', family: 'Carnot', cls: 'canonical indexed', path: 'system_v4/probes/a2_state/sim_results/carnot_tool_coupling_matrix_results.json', pass: null, visual: 'indexed path; browser payload not generated yet' },
-    { name: 'Szilard dual stack', family: 'Szilard', cls: 'canonical loaded', path: 'system_v4/probes/a2_state/sim_results/szilard_dual_stacked_engine_results.json', pass: window.SZILARD_DUAL_STACK_DATA && window.SZILARD_DUAL_STACK_DATA.summary && window.SZILARD_DUAL_STACK_DATA.summary.all_pass, visual: 'loaded into Szilard tab' },
+    { name: 'Szilard dual stack', family: 'Szilard', cls: 'canonical loaded', path: 'system_v4/probes/a2_state/sim_results/measure_feedback_erasure_recovery_cycle_pair_results.json', pass: window.SZILARD_DUAL_STACK_DATA && window.SZILARD_DUAL_STACK_DATA.summary && window.SZILARD_DUAL_STACK_DATA.summary.all_pass, visual: 'loaded into Szilard tab' },
     { name: 'Szilard topology entropy array', family: 'Szilard', cls: 'canonical indexed', path: 'system_v4/probes/a2_state/sim_results/szilard_topology_entropy_array_results.json', pass: null, visual: 'indexed path; browser payload not generated yet' },
     { name: 'Szilard measurement feedback substeps', family: 'Szilard', cls: 'canonical indexed', path: 'system_v4/probes/a2_state/sim_results/szilard_measurement_feedback_substeps_results.json', pass: null, visual: 'indexed path; browser payload not generated yet' },
     { name: 'QIT Szilard Landauer cycle', family: 'QIT/Szilard', cls: 'canonical indexed', path: 'system_v4/probes/a2_state/sim_results/qit_szilard_landauer_cycle_results.json', pass: null, visual: 'indexed path; browser payload not generated yet' },
-    { name: 'I Ching 64 Rosetta', family: 'I Ching', cls: 'canonical loaded', path: 'system_v4/probes/a2_state/sim_results/iching_64_engine_rosetta_results.json', pass: window.ICHING_64_ROSETTA_DATA && window.ICHING_64_ROSETTA_DATA.summary && window.ICHING_64_ROSETTA_DATA.summary.all_pass, visual: 'loaded into I Ching 64 tab' },
+    { name: 'I Ching 64 Rosetta', family: 'I Ching', cls: 'canonical loaded', path: 'system_v4/probes/a2_state/sim_results/six_bit_gray_code_single_flip_cycle_invariant_results.json', pass: window.SIX_BIT_GRAY_CODE_CYCLE_DATA && window.SIX_BIT_GRAY_CODE_CYCLE_DATA.summary && window.SIX_BIT_GRAY_CODE_CYCLE_DATA.summary.all_pass, visual: 'loaded into I Ching 64 tab' },
     { name: 'Triad modes', family: 'Rosetta', cls: 'canonical loaded', path: 'system_v4/probes/a2_state/sim_results/rosetta_triad_modes_results.json', pass: window.ROSETTA_TRIAD_MODES_DATA && window.ROSETTA_TRIAD_MODES_DATA.summary && window.ROSETTA_TRIAD_MODES_DATA.summary.all_pass, visual: 'loaded into Rosetta tab' },
     { name: 'Triad entropy/topology', family: 'Rosetta', cls: 'canonical loaded', path: 'system_v4/probes/a2_state/sim_results/rosetta_triad_entropy_topology_sweep_results.json', pass: window.ROSETTA_TRIAD_ENTROPY_TOPOLOGY_DATA && window.ROSETTA_TRIAD_ENTROPY_TOPOLOGY_DATA.summary && window.ROSETTA_TRIAD_ENTROPY_TOPOLOGY_DATA.summary.all_pass, visual: 'loaded into Rosetta tab' },
     { name: 'Triad order negatives', family: 'Rosetta', cls: 'canonical loaded', path: 'system_v4/probes/a2_state/sim_results/rosetta_triad_order_graveyard_results.json', pass: window.ROSETTA_TRIAD_ORDER_GRAVEYARD_DATA && window.ROSETTA_TRIAD_ORDER_GRAVEYARD_DATA.summary && window.ROSETTA_TRIAD_ORDER_GRAVEYARD_DATA.summary.all_pass, visual: 'loaded into Rosetta tab' },
@@ -131,7 +131,7 @@ function SimReceiptIndexPanel({ t }) {
 }
 
 function IchingEngineView({ t }) {
-  const source = window.ICHING_64_ROSETTA_DATA || null;
+  const source = window.SIX_BIT_GRAY_CODE_CYCLE_DATA || null;
   const hexagrams = (source && source.hexagrams) || [];
   const [selected, setSelected] = React.useState(0);
   const [running, setRunning] = React.useState(false);
@@ -191,7 +191,7 @@ function IchingEngineView({ t }) {
         </div>
       </section>
       <aside style={{ border: `1px solid ${t.line}`, background: t.bg2, padding: 14, display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <SourceBoundary t={t} source={source} sourcePath="system_v4/probes/a2_state/sim_results/iching_64_engine_rosetta_results.json -> visualizer/iching-64-rosetta-data.js" warning="This view displays the symbolic 64-state sim receipt. It is not an I Ching proof, not QIT admission, and not an axis promotion." />
+        <SourceBoundary t={t} source={source} sourcePath="system_v4/probes/a2_state/sim_results/six_bit_gray_code_single_flip_cycle_invariant_results.json -> visualizer/six-bit-gray-code-cycle-data.js" warning="This view displays the symbolic 64-state sim receipt. It is not an I Ching proof, not QIT admission, and not an axis promotion." />
         <div>
           <Mono t={t} size={10} dim style={{ letterSpacing: 1.4 }}>CURRENT STATE</Mono>
           <LedgerRows t={t} rows={currentRows} />

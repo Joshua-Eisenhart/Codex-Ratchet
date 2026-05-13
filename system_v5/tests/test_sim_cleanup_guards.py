@@ -46,7 +46,7 @@ def test_repo_hygiene_classifies_visualizer_data_payloads_as_generated() -> None
     )
 
     assert module.is_generated_artifact_path("visualizer/prime-qit-sidecar-data.js")
-    assert module.is_generated_artifact_path("visualizer/engine-rosetta-data.js")
+    assert module.is_generated_artifact_path("visualizer/cycle-invariant-correlation-data.js")
     assert not module.is_generated_artifact_path("visualizer/app.jsx")
     assert not module.is_generated_artifact_path("visualizer/engine_primitives.jsx")
     assert not module.is_generated_artifact_path("visualizer/DESIGN.md")
@@ -217,7 +217,7 @@ def test_rosetta_completion_audit_keeps_cleanup_gate_as_blocker(
                 "all_fits_diagnostic_only": True,
             },
         ),
-        "iching_rosetta": write_result("iching_64_engine_rosetta_results.json", {"all_pass": True}),
+        "iching_rosetta": write_result("six_bit_gray_code_single_flip_cycle_invariant_results.json", {"all_pass": True}),
         "visualizer_audit": write_result(
             "visualizer_engine_lab_receipt_audit_results.json",
             {"all_pass": True, "qit_or_axis_promotion_allowed": False},
@@ -347,7 +347,7 @@ def test_rosetta_completion_audit_blocks_prime_sidecar_overclaim(
                 "all_fits_diagnostic_only": True,
             },
         ),
-        "iching_rosetta": write_result("iching_64_engine_rosetta_results.json", passing),
+        "iching_rosetta": write_result("six_bit_gray_code_single_flip_cycle_invariant_results.json", passing),
         "visualizer_audit": write_result(
             "visualizer_engine_lab_receipt_audit_results.json",
             {"all_pass": True, "qit_or_axis_promotion_allowed": False},
@@ -421,8 +421,8 @@ def test_source_dirty_lane_manifest_can_select_manual_next_lane(
                     "untracked_count": 1,
                     "tracked_dirty_count": 0,
                     "safe_next_action": "manual_split_required",
-                    "source_path": "system_v4/probes/sim_iching_64_engine_rosetta.py",
-                    "result_path": "system_v4/probes/a2_state/sim_results/iching_64_engine_rosetta_results.json",
+                    "source_path": "system_v4/probes/sim_six_bit_gray_code_single_flip_cycle_invariant.py",
+                    "result_path": "system_v4/probes/a2_state/sim_results/six_bit_gray_code_single_flip_cycle_invariant_results.json",
                 },
             }
         ),
@@ -445,7 +445,7 @@ def test_source_dirty_lane_manifest_can_select_manual_next_lane(
     assert lane_payload["selected_group_id"] == "probe_source__sim_family_iching"
     assert "last-write-wins latest pointer" in lane_payload["concurrency_note"]
     assert payload["executable_lane"]["files"] == [
-        "system_v4/probes/sim_iching_64_engine_rosetta.py"
+        "system_v4/probes/sim_six_bit_gray_code_single_flip_cycle_invariant.py"
     ]
 
 
@@ -471,8 +471,8 @@ def test_source_dirty_lane_manifest_can_select_explicit_manual_lane(
                         "group_id": "probe_source__sim_family_iching",
                         "file_count": 1,
                         "safe_next_action": "manual_split_required",
-                        "source_path": "system_v4/probes/sim_iching_64_engine_rosetta.py",
-                        "result_path": "system_v4/probes/a2_state/sim_results/iching_64_engine_rosetta_results.json",
+                        "source_path": "system_v4/probes/sim_six_bit_gray_code_single_flip_cycle_invariant.py",
+                        "result_path": "system_v4/probes/a2_state/sim_results/six_bit_gray_code_single_flip_cycle_invariant_results.json",
                     },
                     {
                         "group_id": "probe_source__sim_family_prime",

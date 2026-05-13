@@ -110,7 +110,7 @@ def source_receipts() -> dict[str, dict[str, object]]:
         "channel_operator_entropy_order_variant": source_receipt(
             RESULT_DIR / "channel_operator_entropy_order_variant_results.json"
         ),
-        "iching_64_engine_rosetta": source_receipt(RESULT_DIR / "iching_64_engine_rosetta_results.json"),
+        "six_bit_gray_code_single_flip_cycle_invariant": source_receipt(RESULT_DIR / "six_bit_gray_code_single_flip_cycle_invariant_results.json"),
     }
 
 

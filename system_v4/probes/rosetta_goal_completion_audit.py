@@ -33,7 +33,7 @@ PATHS = {
     "prime_sidecar": RESULTS_DIR / "prime_qit_sidecar_probe_results.json",
     "prime_sidecar_graveyard": RESULTS_DIR / "prime_qit_sidecar_graveyard_results.json",
     "prime_rosetta_fit": RESULTS_DIR / "prime_rosetta_sidecar_fit_results.json",
-    "iching_rosetta": RESULTS_DIR / "iching_64_engine_rosetta_results.json",
+    "iching_rosetta": RESULTS_DIR / "six_bit_gray_code_single_flip_cycle_invariant_results.json",
     "visualizer_audit": RESULTS_DIR / "visualizer_engine_lab_receipt_audit_results.json",
     "inventory": PROJECT_DIR / "system_v5" / "evidence" / "sim_inventory_index.json",
     "inventory_unlinked_audit": RESULTS_DIR / "inventory_unlinked_result_audit_results.json",

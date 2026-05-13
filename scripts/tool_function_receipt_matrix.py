@@ -512,6 +512,17 @@ TARGETS: list[dict[str, Any]] = [
     },
     {
         "tool": "z3",
+        "function_api": "z3 Bool/And/Not/Implies/Solver.check SAT/UNSAT negative control for bare Pauli labels versus Hopf/Weyl carrier-projection metric predicates",
+        "receipt": "system_v4/probes/a2_state/sim_results/z3_bare_pauli_no_carrier_fiber_base_metric_unsat_results.json",
+        "role": "classical_baseline",
+        "depth": "load_bearing",
+        "candidate_lego_targets": [
+            "bare_pauli_no_carrier_negative_control",
+            "hopf_weyl_carrier_loop_geometry_baseline",
+        ],
+    },
+    {
+        "tool": "z3",
         "function_api": "z3 finite Z2 x Z2 product readout SAT/UNSAT separation for sheet-flip and loop-flip labels",
         "receipt": "system_v4/probes/a2_state/sim_results/z3_sheet_loop_flip_product_readout_separation_results.json",
         "role": "classical_baseline",

@@ -52,10 +52,10 @@
     "near_pole_outer_density_nearly_collapses": true
   },
   "carrier_topology": "sampled S^3 carrier coordinates with projection to density/Bloch readouts; no full nested-tori manifold",
-  "claim_ceiling": "classical sampled Hopf-coordinate carrier geometry baseline only; no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
+  "claim_ceiling": "classical sampled Hopf-coordinate carrier readout baseline only; no physical inner/outer loop independence, no full S3 bundle, no QIT, GStack, axis, bridge, nonclassical, target-system, or full geometric-constraint-manifold admission",
   "classification": "classical_baseline",
   "demotion_condition": "Demote if the inner loop varies in density, if the outer loop stops traversing density away from the pole, or if same-path and hidden-readout graveyards do not collapse the distinction.",
-  "divergence_log": "Numpy sampled complex-vector geometry is a classical baseline. It can show that the declared Hopf-coordinate inner and outer paths have different density readouts, but it cannot admit a target-system structure.",
+  "divergence_log": "Numpy sampled complex-vector geometry is a classical baseline. It can show different readouts for declared Hopf-coordinate paths, but it does not prove physical loop independence or admit a target-system structure.",
   "exact_tool_function_needs": {
     "numpy": [
       "array",
@@ -180,7 +180,7 @@
     "theta": 1.0471975511965976
   },
   "promotion_allowed": false,
-  "promotion_condition": "May only support later geometry planning after independent symbolic or operator-evolution receipts reproduce the inner density-stationary and outer density-traversing distinction with the same graveyards.",
+  "promotion_condition": "May only support later geometry planning after independent symbolic or operator-evolution receipts reproduce compatible declared-path readouts with the same graveyards.",
   "tool_integration_depth": {
     "numpy": "supportive"
   },

@@ -1,16 +1,16 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T04:59:58.363501+00:00`
+Generated: `2026-05-13T05:04:07.862222+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
 
 ## Summary
 
-- Rows: `92`
-- Passing rows: `92`
+- Rows: `93`
+- Passing rows: `93`
 - Missing receipts: `0`
-- Explicit receipt schemas missing: `92`
+- Explicit receipt schemas missing: `93`
 - Receipt contract shapes unresolved: `0`
 
 ## Matrix
@@ -28,6 +28,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `pyg` | torch_geometric.data.Data/Batch, MessagePassing.propagate, global_mean_pool over TopoNetX Hasse graph fixtures | `system_v4/probes/a2_state/sim_results/tool_integration_toponetx_pyg_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `topology_to_graph_fit`, `cell_complex_geometry` |
 | `pyg` | torch_geometric.data.Data.validate and MessagePassing.propagate consuming exact NetworkX DiGraph node/edge fixtures | `system_v4/probes/a2_state/sim_results/sim_integration_networkx_pyg_graph_roundtrip_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_cell_handoff`, `density_graph_carrier` |
 | `networkx` | networkx.DiGraph nodes/edges/predecessors as exact source graph for PyG Data handoff | `system_v4/probes/a2_state/sim_results/sim_integration_networkx_pyg_graph_roundtrip_micro_results.json` | `canonical` | `classical_baseline` | `load_bearing` | `True` | `graph_cell_handoff`, `density_graph_carrier` |
+| `networkx` | networkx DiGraph/topological_sort/ancestors/descendants/transitive_reduction over Hopf receipt dependency DAG | `system_v4/probes/a2_state/sim_results/networkx_hopf_receipt_dependency_reduction_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `nested_hopf_torus_loop_geometry_baseline`, `receipt_dependency_dag_controls` |
 | `pyg` | torch_geometric.data.Batch.from_data_list tensor concatenation, edge-index offsetting, batch vector, and ptr | `system_v4/probes/a2_state/sim_results/sim_pyg_batching_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_batching_fixture`, `graph_shell_geometry` |
 | `qutip` | qutip.basis, ket2dm, sigmax/sigmaz expectation | `system_v4/probes/a2_state/sim_results/qutip_capability_results.json` | `canonical` | `bridge_useful` | `load_bearing` | `True` | `channel_cptp_map`, `lindbladian_evolution` |
 | `qutip` | qutip.mesolve Lindblad open-system evolution | `system_v4/probes/a2_state/sim_results/qutip_open_system_bridge_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `lindbladian_evolution`, `channel_cptp_map` |

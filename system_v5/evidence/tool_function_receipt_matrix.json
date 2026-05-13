@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T04:59:58.363501+00:00",
+  "generated_at": "2026-05-13T05:04:07.862222+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -560,6 +560,64 @@
         "promotion_condition",
         "summary",
         "surviving_alternatives",
+        "tool_integration_depth",
+        "tool_manifest"
+      ],
+      "receipt_exists": true,
+      "receipt_schema": "implicit_sim_result_receipt.v1",
+      "receipt_schema_observed": null,
+      "receipt_schema_resolved": true,
+      "receipt_schema_source": "inferred_from_required_receipt_fields",
+      "role": "classical_baseline",
+      "tool": "networkx"
+    },
+    {
+      "boundary_gap": false,
+      "boundary_source": "receipt",
+      "candidate_lego_targets": [
+        "nested_hopf_torus_loop_geometry_baseline",
+        "receipt_dependency_dag_controls"
+      ],
+      "claim_ceiling": "NetworkX dependency-DAG and transitive-reduction baseline over Hopf receipt names only; no physical distinguishability, QIT, GStack, axis, bridge, nonclassical, flux, Pauli shortcut, target-system, or full geometric-constraint-manifold admission",
+      "depth": "load_bearing",
+      "function_api": "networkx DiGraph/topological_sort/ancestors/descendants/transitive_reduction over Hopf receipt dependency DAG",
+      "manifest_reason": "DiGraph, topological_sort, ancestors, descendants, and transitive_reduction check the bounded Hopf receipt dependency DAG",
+      "observed_depth": "load_bearing",
+      "out_of_scope": [
+        "No physical Hopf/Weyl evolution.",
+        "No full geometric-constraint-manifold implementation.",
+        "No flux representation or Pauli shortcut.",
+        "No QIT, GStack, axis, bridge, or nonclassical admission."
+      ],
+      "receipt": "system_v4/probes/a2_state/sim_results/networkx_hopf_receipt_dependency_reduction_results.json",
+      "receipt_all_pass": true,
+      "receipt_classification": "classical_baseline",
+      "receipt_contract_fields": [
+        "all_pass",
+        "alternative_formulations",
+        "baselines",
+        "blocked_until",
+        "carrier_topology",
+        "claim_ceiling",
+        "classification",
+        "demotion_condition",
+        "divergence_log",
+        "edges",
+        "exact_tool_function_needs",
+        "graveyards",
+        "graveyards_detail",
+        "lego_or_coupling_target",
+        "name",
+        "next_lego_target",
+        "nodes",
+        "observable",
+        "operation_sequence",
+        "out_of_scope",
+        "pass",
+        "pass_fail_predicate",
+        "positive",
+        "promotion_allowed",
+        "promotion_condition",
         "tool_integration_depth",
         "tool_manifest"
       ],
@@ -4960,11 +5018,11 @@
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
     "missing_receipt_count": 0,
-    "passing_count": 92,
+    "passing_count": 93,
     "receipt_boundary_gap_count": 0,
-    "receipt_schema_observed_missing_count": 92,
+    "receipt_schema_observed_missing_count": 93,
     "receipt_schema_unresolved_count": 0,
-    "row_count": 92,
+    "row_count": 93,
     "tools": [
       "clifford",
       "cvc5",

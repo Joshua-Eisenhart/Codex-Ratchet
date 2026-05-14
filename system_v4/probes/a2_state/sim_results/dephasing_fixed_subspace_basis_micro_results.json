@@ -1,0 +1,184 @@
+{
+  "name": "dephasing_fixed_subspace_basis_micro",
+  "probe_family": "finite_lindblad_residual_norm_probe",
+  "constraint_set": "basis_dependent_dephasing_fixed_subspace_constraint",
+  "operation_sequence": [
+    "construct two one-qubit density matrices diagonal in distinct orthonormal bases",
+    "apply dephasing Lindblad residual for each declared basis",
+    "compare residual norms and fixed-state representative separation",
+    "run identity-generator and rotated-basis graveyards"
+  ],
+  "carrier_topology": "single finite two-dimensional complex Hilbert carrier; no Hopf, bundle, or chirality claim",
+  "observable": "Frobenius norm of Lindblad residual plus Frobenius distance between fixed-state representatives",
+  "pass_fail_predicate": "matching-basis residuals < EPS; wrong-basis residual and representative separation exceed thresholds; graveyards expose vacuity or basis sensitivity",
+  "graveyards": [
+    "identity generator fixes all states and is marked promotion_allowed false",
+    "nearby rotated basis changes the residual of a non-scalar fixed state",
+    "maximally mixed state is a common boundary where basis distinction is intentionally lost"
+  ],
+  "baselines": [
+    "numpy-only dephasing baseline remains classical and does not carry this receipt",
+    "identity-generator graveyard is the vacuous fixed-space baseline"
+  ],
+  "alternative_formulations": [
+    "Kraus dephasing channel fixed points",
+    "commutant algebra of projectors",
+    "superoperator null-space computation"
+  ],
+  "tool_function_needs": {
+    "pytorch": [
+      "torch complex matrix multiplication",
+      "torch.linalg.norm"
+    ]
+  },
+  "lego_coupling_target": "lindbladian_evolution; channel_cptp_map; dephasing fixed-subspace support",
+  "claim_ceiling": "single-carrier dephasing fixed-subspace micro evidence only; no engine, axis, bridge, GStack, or nonclassical claim",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch complex matrices compute Lindblad residual norms for fixed-subspace predicates"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph object is needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric residual predicate is the declared probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric residual predicate is the declared probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic simplification is needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Clifford algebra claim is made"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold metric claim is made"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance claim is made"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph object is needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph object is needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell-complex object is needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence object is needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "z_basis_diagonal_state_survives_z_dephasing": {
+      "pass": true,
+      "residual_norm": 0.0,
+      "criterion": "fixed-state residual below epsilon for matching basis"
+    },
+    "x_basis_diagonal_state_survives_x_dephasing": {
+      "pass": true,
+      "residual_norm": 1.3877787807814457e-16,
+      "criterion": "fixed-state residual below epsilon for matching basis"
+    }
+  },
+  "negative": {
+    "x_basis_fixed_state_excluded_by_z_dephasing_fixed_subspace": {
+      "pass": true,
+      "residual_norm": 0.31112698372208086,
+      "criterion": "state fixed in a different basis has nonzero residual"
+    },
+    "fixed_subspace_representatives_are_distinct": {
+      "pass": true,
+      "frobenius_distance": 0.43999999999999995,
+      "criterion": "matching-basis fixed states are not the same density matrix"
+    }
+  },
+  "boundary": {
+    "maximally_mixed_state_is_common_boundary": {
+      "pass": true,
+      "z_residual_norm": 0.0,
+      "x_residual_norm": 1.5700924586837752e-16,
+      "criterion": "basis probe loses resolution on the scalar density matrix"
+    },
+    "identity_channel_graveyard_is_vacuous": {
+      "pass": true,
+      "identity_residual_norm": 0.0,
+      "promotion_allowed": false,
+      "criterion": "identity generator fixes every state and cannot support the subspace claim"
+    },
+    "nearby_rotated_basis_changes_residual": {
+      "pass": true,
+      "rotated_residual_norm": 0.018656420467840912,
+      "criterion": "small basis rotation produces measurable residual for a non-scalar fixed state"
+    }
+  },
+  "classification": "canonical",
+  "surviving_alternatives": [
+    "Kraus fixed-point proof remains admissible as a separate formulation",
+    "symbolic commutant proof remains admissible as a separate formulation"
+  ],
+  "next_lego_target": "lindbladian_evolution",
+  "promotion_condition": "requires queue/admission ledger reconciliation before reuse by later coupling sims",
+  "blocked_until": "exact source/result/admission receipts and matrix loopback are reconciled",
+  "demotion_condition": "demote if residual thresholds are tuned to hide basis dependence or if identity graveyard is treated as positive evidence",
+  "out_of_scope": [
+    "no engine mechanics claim",
+    "no axis or direction claim",
+    "no Hopf, Weyl, flux, GStack, bridge, emergence, or nonclassical claim"
+  ],
+  "criteria_checked": [
+    "C1 matching-basis dephasing residual is zero within EPS",
+    "C2 wrong-basis residual is nonzero for a non-scalar fixed state",
+    "C3 fixed-state representatives are distinct density matrices",
+    "C4 scalar density matrix is a declared boundary case",
+    "C5 identity generator is a vacuous graveyard",
+    "C6 small basis rotation is observable by the residual probe"
+  ],
+  "all_pass": true,
+  "summary": {
+    "total_tests": 7,
+    "passed": 7,
+    "failed": 0,
+    "all_pass": true
+  }
+}

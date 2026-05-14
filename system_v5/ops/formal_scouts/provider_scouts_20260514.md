@@ -6,6 +6,7 @@ Machine-readable receipts:
 
 - `provider_receipts/20260514_grok_su2_hopf_weyl_topology_proposal.json`
 - `provider_receipts/20260514_gemini_cli_interactive_auth_blocked.json`
+- `provider_receipts/20260514_gemini_direct_api_liveness.json`
 - `provider_receipts/20260514_sonnet_v5_clean_rebuild_audit.json`
 
 ## Grok / xAI
@@ -56,6 +57,9 @@ process was killed and is not counted as a completed scout.
 
 Next liveness task: configure Gemini CLI for headless API-key use or use a
 different direct Gemini API wrapper that writes a receipt without opening auth.
+
+Direct API liveness: completed with `gemini-2.5-flash`,
+`thinkingBudget: 0`, and sentinel text `direct_gemini_api_ok`.
 
 ## Sonnet
 

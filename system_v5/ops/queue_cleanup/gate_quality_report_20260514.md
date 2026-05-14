@@ -18,7 +18,7 @@ and let evidence gates select without pretending early survivors are canonical.
 | large generated inventories | preflight warns on staged files over 1 MB | useful but weak | Add path-specific deny/warn lists for generated result estates before evidence snapshots. |
 | v4 probe corpus cleanup | inventory exists, but quarantine is not dry-run enforced | weak | Add one manifest dry-run path and no-reference-file selector check. |
 | scout naming | `lint_formal_scout_names.py` blocks axis/engine/gstack/rosetta/type labels in formal-scout executable names | stronger, useful | Run before committing new formal-scout harnesses. |
-| provider liveness | Grok and Sonnet have receipts; Gemini CLI is blocked by browser auth | honest but incomplete | Build direct Gemini API or keep Gemini blocked with closure criteria. |
+| provider liveness | Grok, Sonnet, and direct Gemini API have receipts; Gemini CLI is blocked by browser auth | stronger, useful | Use direct Gemini API for scouts; keep CLI disabled until headless auth is fixed. |
 | formal-scout gates | require receipt fields, graveyards, boundary, claim ceiling | good if not used as canonical proof | Do not block rough tower variants for lack of final physical graveyards; set low claim ceiling instead. |
 
 ## Too-Strict Risks
@@ -45,5 +45,4 @@ and let evidence gates select without pretending early survivors are canonical.
 
 1. Add a generated-artifact deny/warn table for result estates.
 2. Add a v4 quarantine manifest dry-run for one generated family.
-3. Add direct Gemini API receipt or keep Gemini CLI disabled with explicit
-   closure criteria.
+3. Run a same-target Grok/Gemini/Sonnet proposal comparison with receipts.

@@ -125,11 +125,13 @@ Current status:
 - Grok direct xAI API works.
 - Sonnet via Claude Bridge works.
 - Gemini CLI is blocked by interactive browser auth.
+- Gemini direct API liveness works with `gemini-2.5-flash` and
+  `thinkingBudget: 0` for small bounded calls.
 - Provider proposal receipts now have a schema and validator.
 
 Next actions:
 
-1. Build direct Gemini API route or keep Gemini CLI disabled until fixed.
+1. Use direct Gemini API for proposal scouts; keep Gemini CLI disabled until fixed.
 2. Run provider receipt validation after each provider batch.
 3. Run Grok and Sonnet on the same bounded scout target and compare.
 4. Translate only repo-grounded proposals into v5 formal scouts.
@@ -159,7 +161,7 @@ Next actions:
 
 1. Add a manifest-approved v4 quarantine dry-run.
 2. Keep provider receipt validation in every provider batch.
-3. Build direct Gemini API route or keep Gemini CLI disabled with closure criteria.
+3. Run a same-target Grok/Gemini/Sonnet proposal comparison.
 
 Done when:
 
@@ -170,9 +172,9 @@ Done when:
 
 Best next batch:
 
-1. Add direct Gemini or blocked-provider receipt.
-2. Build SU(2)-Hopf formal scout from already-importable v4 targets.
-3. Add a manifest-approved v4 quarantine dry-run.
+1. Build SU(2)-Hopf formal scout from already-importable v4 targets.
+2. Add a manifest-approved v4 quarantine dry-run.
+3. Run a same-target Grok/Gemini/Sonnet proposal comparison.
 4. Commit as the next small v5 checkpoint.
 
 ## Stop Conditions

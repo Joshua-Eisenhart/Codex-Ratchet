@@ -1,0 +1,31 @@
+{
+  "schema": "PROVIDER_PROPOSAL_RECEIPT_v1",
+  "provider": "gemini",
+  "route": "direct_google_generative_language_api",
+  "status": "completed",
+  "classification": "proposal_only",
+  "promotion_allowed": false,
+  "evidence_allowed": false,
+  "claim_ceiling": "Provider liveness only. This proves the direct Gemini API route can return a bounded response from this process; it is not sim evidence or mathematical support.",
+  "model": "gemini-2.5-flash",
+  "proposal_text": "Direct Gemini API liveness returned the expected sentinel text using generateContent with thinkingBudget set to zero for a small bounded call.",
+  "repo_grounding": {
+    "targets": [
+      {
+        "path": "system_v5/ops/formal_scouts/provider_receipts/20260514_gemini_direct_api_liveness.json",
+        "callable": null,
+        "reason": "records provider route liveness; no math callable claimed"
+      }
+    ]
+  },
+  "liveness": {
+    "models_endpoint_status": 200,
+    "models_endpoint_model_count": 50,
+    "generate_content_status": 200,
+    "generate_content_model": "gemini-2.5-flash",
+    "generate_content_finish": "STOP",
+    "sentinel_text": "direct_gemini_api_ok",
+    "thinking_budget": 0
+  },
+  "non_evidence_boundary": "This receipt only authorizes Gemini as a proposal/scout route. Any Gemini proposal still needs repo-callable grounding and formal-scout translation."
+}

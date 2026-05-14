@@ -337,6 +337,47 @@ if __name__ == "__main__":
         "probe_family": "M_rustworkx_dag_reachability",
         "constraint_set": "C_bounded_dag_reachability",
         "micro_packet": MICRO_PACKET,
+        "operation_sequence": [
+            "construct a checked rustworkx PyDiGraph over six named dependency nodes",
+            "add directed acyclic edges from source through two branch nodes, merge, and sink",
+            "query has_path for direct, transitive, reverse, and isolated-node reachability",
+            "query descendants and ancestors for source, sink, and boundary nodes",
+            "compare rustworkx reachability sets against a hand-written BFS baseline",
+            "run empty-graph, singleton, and cycle-blocked boundary controls",
+        ],
+        "carrier_topology": (
+            "finite directed acyclic graph fixture with named dependency nodes; "
+            "no hypergraph, cell complex, manifold, bridge, axis, GStack, QIT engine, or nonclassical claim"
+        ),
+        "observable": (
+            "boolean has_path answers, descendant sets, ancestor sets, node counts, "
+            "cycle rejection exception, and equality against manual BFS reachability"
+        ),
+        "pass_fail_predicate": (
+            "rustworkx direct/transitive reachability and ancestor/descendant sets must "
+            "match the manual BFS baseline; reverse and isolated reachability must be "
+            "excluded; empty, singleton, and cycle-blocked boundaries must behave as declared"
+        ),
+        "graveyards": [
+            "leaf-to-ancestor reachability must be false",
+            "source-to-isolated reachability must be false",
+            "checked PyDiGraph must reject a cycle insertion",
+            "singleton graph must not be treated as a zero-edge self-path proof",
+        ],
+        "baselines": [
+            "hand-written BFS descendant and ancestor computation",
+            "empty graph node-count boundary",
+            "singleton graph ancestor/descendant boundary",
+        ],
+        "alternative_formulations": [
+            "NetworkX directed graph reachability baseline",
+            "z3 encoding of finite transitive closure for the same DAG fixture",
+            "rustworkx transitive reduction or topological-sort packet as a later separate function surface",
+        ],
+        "tool_function_needs": {
+            "rustworkx": ["PyDiGraph", "has_path", "descendants", "ancestors", "DAGWouldCycle"],
+        },
+        "lego_coupling_target": "bounded rustworkx graph-shell reachability fixture before graph-cell lego promotion",
         "rustworkx_version": RX_VERSION,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

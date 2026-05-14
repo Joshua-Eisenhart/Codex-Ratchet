@@ -66,6 +66,8 @@ Current evidence:
   `quarantine_by_manifest_candidate`;
 - 252 naming-contamination review files;
 - 52 result-linkage review files.
+- v4 probe dirty-state baseline:
+  `system_v5/ops/queue_cleanup/v4_probe_status_baseline_20260514.json`.
 
 Next actions:
 
@@ -76,7 +78,7 @@ Next actions:
 
 Done when:
 
-- v4 write policy is enforced;
+- v4 write policy is enforced by preflight drift detection;
 - generated families are either quarantined or indexed;
 - naming-contaminated reuse goes through v5 wrappers or manifest renames.
 
@@ -144,18 +146,18 @@ Goal: detect gates that are too weak, too strict, stale, or decorative.
 
 Known gate issues:
 
-- v4 write fence exists as doc policy but not as executable preflight.
-- provider receipts are manual markdown, not schema-checked.
+- v4 write fence now checks staged v4 changes and v4/probes dirty-state drift.
+- provider receipts now have schema validation.
 - large generated inventories can accidentally enter commits.
 - formal-scout validator is improving but still does not rerun each harness from
   scratch before validation.
 
 Next actions:
 
-1. Add `check_v5_rebuild_preflight.py`.
-2. Add a gate-quality report under `system_v5/ops/queue_cleanup/`.
-3. Add a generated-artifact size warning for staged files.
-4. Add optional fresh-rerun mode to formal-scout validator.
+1. Add a gate-quality report under `system_v5/ops/queue_cleanup/`.
+2. Add optional fresh-rerun mode to formal-scout validator.
+3. Add a manifest-approved v4 quarantine dry-run.
+4. Keep provider receipt validation in every provider batch.
 
 Done when:
 
@@ -166,11 +168,11 @@ Done when:
 
 Best next batch:
 
-1. Add provider proposal receipt schema.
-2. Add direct Gemini or blocked-provider receipt.
-3. Build SU(2)-Hopf formal scout from already-importable v4 targets.
-4. Add v4 write-fence/preflight check.
-5. Commit as a second small v5 checkpoint.
+1. Add direct Gemini or blocked-provider receipt.
+2. Build SU(2)-Hopf formal scout from already-importable v4 targets.
+3. Add a fresh-rerun mode to formal-scout validation.
+4. Add a gate-quality report for over-strict vs weak/decorative gates.
+5. Commit as the next small v5 checkpoint.
 
 ## Stop Conditions
 

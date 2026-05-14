@@ -1,0 +1,15 @@
+{
+  "schema": "V4_PROBE_STATUS_BASELINE_v1",
+  "generated_at": "2026-05-14T00:00:00-07:00",
+  "scope": "system_v4/probes",
+  "reason": "Freeze current v4/probes dirty state while v5 rebuild treats v4 as reference only.",
+  "status_count": 6732,
+  "status_counts": {
+    "??": 6725,
+    "D": 4,
+    "M": 3
+  },
+  "status_sha256": "3ef9e8ba2b8af66c0105a3f4e50e2ad3d0cf87247eb03d5b5cea1d3dfffd90dd",
+  "path_list_stored": false,
+  "drift_policy": "During v5 rebuild batches, any changed git-status hash under system_v4/probes is a stop condition unless a new manifest-approved cleanup batch intentionally refreshes this baseline."
+}

@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-14T00:07:41.977172+00:00",
+  "generated_at": "2026-05-14T00:09:23.817399+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -1107,7 +1107,7 @@
         "mutual_information_measure",
         "density_matrix_object"
       ],
-      "candidate_spec_complete": false,
+      "candidate_spec_complete": true,
       "candidate_spec_contract_fields": [
         "alternative_formulations",
         "baselines",
@@ -1120,17 +1120,8 @@
         "pass_fail_predicate",
         "tool_function_needs"
       ],
-      "candidate_spec_missing_fields": [
-        "operation_sequence",
-        "carrier_topology",
-        "observable",
-        "pass_fail_predicate",
-        "graveyards",
-        "baselines",
-        "alternative_formulations",
-        "tool_function_needs"
-      ],
-      "claim_ceiling": "finite mutual_information_qutip_microfit lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+      "candidate_spec_missing_fields": [],
+      "claim_ceiling": "fixed_two_qubit_mutual_information_qutip_api_fit_only; no bridge, GStack, axis, QIT, engine, or nonclassical admission",
       "depth": "load_bearing",
       "function_api": "qutip entropy_vn / tensor density operators for mutual-information microfit",
       "manifest_reason": "load-bearing Qobj.ptrace() and entropy_vn() computation of two-qubit mutual information",
@@ -1149,19 +1140,27 @@
         "TOOL_INTEGRATION_DEPTH",
         "TOOL_MANIFEST",
         "all_pass",
+        "alternative_formulations",
+        "baselines",
         "blocked_until",
         "boundary",
+        "carrier_topology",
         "claim_ceiling",
         "classification",
         "classification_note",
         "demotion_condition",
         "divergence_log",
         "generated_at",
+        "graveyards",
+        "lego_coupling_target",
         "lego_ids",
         "name",
         "negative",
         "next_lego_target",
+        "observable",
+        "operation_sequence",
         "out_of_scope",
+        "pass_fail_predicate",
         "positive",
         "prerequisite",
         "primary_lego_ids",
@@ -1169,6 +1168,7 @@
         "scope_declaration",
         "sim_execution_kind",
         "summary",
+        "tool_function_needs",
         "tool_integration_depth",
         "tool_manifest"
       ],
@@ -7806,8 +7806,8 @@
   ],
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
-    "candidate_spec_complete_count": 89,
-    "candidate_spec_incomplete_count": 19,
+    "candidate_spec_complete_count": 90,
+    "candidate_spec_incomplete_count": 18,
     "missing_receipt_count": 0,
     "passing_count": 108,
     "receipt_boundary_gap_count": 0,

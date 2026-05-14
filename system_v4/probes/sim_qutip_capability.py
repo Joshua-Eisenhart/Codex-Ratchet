@@ -63,7 +63,7 @@ TOOL_INTEGRATION_DEPTH = {
 WITNESS_INFO = {
     "witness_use_cases": [
         "system_v4/probes/sim_integration_quantum_open_entangle_correlator_mega_stack.py",
-        "system_v4/probes/sim_integration_qutip_open_system_bridge.py",
+        "system_v4/probes/sim_qutip_mesolve_scipy_liouvillian_amplitude_damping_reference_micro.py",
         "system_v4/probes/sim_integration_thermo_open_system_bridge_stack.py",
     ]
 }

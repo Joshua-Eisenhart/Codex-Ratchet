@@ -1,17 +1,13 @@
 #!/usr/bin/env python3
-"""
-sim_integration_qutip_open_system_bridge.py
-
-Classical-to-nonclassical bridge lane for a bounded open-system evolution.
+"""QuTiP mesolve vs SciPy Liouvillian amplitude-damping reference micro.
 
 Claim:
-  A one-qubit Lindblad amplitude-damping evolution should agree between:
-    - qutip.mesolve as the nonclassical open-system witness
-    - a SciPy/Numpy Liouvillian matrix-exponential reference
+  A one-qubit Lindblad amplitude-damping evolution should agree between
+  qutip.mesolve and a direct SciPy/Numpy Liouvillian matrix-exponential
+  reference on the same density matrix.
 
-The bridge is intentionally small: one qubit, one dissipator, one exact
-reference. The point is not to prove general quantum correctness; it is to
-admit a reusable open-system lane that the broader sims can scale from.
+This is a classical-baseline tool-function reference. It does not admit a
+bridge, GStack, axis, QIT, or nonclassical claim.
 """
 
 from __future__ import annotations
@@ -31,6 +27,7 @@ from scipy.linalg import expm
 from receipt_boundary import apply_default_receipt_boundary
 
 classification = "classical_baseline"
+NAME = "sim_qutip_mesolve_scipy_liouvillian_amplitude_damping_reference_micro"
 divergence_log = (
     "Classical open-system baseline: a single-qubit amplitude-damping Lindblad "
     "evolution should agree between qutip.mesolve and a direct SciPy/Numpy "
@@ -59,6 +56,67 @@ TOOL_INTEGRATION_DEPTH = {
     "numpy": "supportive",
     "scipy": "supportive",
     "qutip": "load_bearing",
+}
+
+CANDIDATE_SIM_SPEC = {
+    "operation_sequence": [
+        "construct a one-qubit initial density matrix",
+        "define an amplitude-damping Lindblad generator with one lowering collapse operator",
+        "evolve the density matrix at several times using qutip.mesolve",
+        "construct the matching SciPy/Numpy Liouvillian superoperator",
+        "evolve the vectorized density matrix with scipy.linalg.expm",
+        "compare QuTiP and SciPy density matrices, density validity, coherence monotonicity, and boundary limits",
+    ],
+    "carrier_topology": (
+        "Finite two-dimensional complex Hilbert-space density matrix fixture with one "
+        "amplitude-damping Lindblad collapse operator; this is a classical-baseline "
+        "open-system reference, not a bridge or nonclassical admission."
+    ),
+    "observable": {
+        "primary": "Frobenius norm error between qutip.mesolve states and SciPy Liouvillian reference states",
+        "secondary": [
+            "Hermitian trace-one positive-semidefinite density checks",
+            "ground-state fidelity over time",
+            "off-diagonal coherence nonincrease",
+            "zero-time identity error",
+            "long-time ground-state limit error",
+        ],
+    },
+    "pass_fail_predicate": (
+        "Pass iff QuTiP and SciPy reference states agree below tolerance, all QuTiP "
+        "states remain valid density matrices, coherence is nonincreasing, closed-system "
+        "and wrong-sign controls are rejected, and zero-time and long-time boundaries pass."
+    ),
+    "graveyards": [
+        "closed-system identity surrogate should not match the dissipative evolution",
+        "wrong-sign Liouvillian should not match the dissipative evolution",
+        "zero-time evolution should collapse to the initial density matrix",
+        "long-time evolution should approach the ground-state density matrix",
+    ],
+    "baselines": [
+        "SciPy/Numpy Liouvillian matrix-exponential reference",
+        "closed-system identity surrogate baseline",
+        "wrong-sign Liouvillian baseline",
+        "zero-time identity boundary baseline",
+        "long-time ground-state boundary baseline",
+    ],
+    "alternative_formulations": [
+        "compare qutip.mesolve to an explicit Kraus amplitude-damping channel at matched times",
+        "replace amplitude damping with dephasing and compare to a diagonal Liouvillian reference",
+        "sample additional initial density matrices while preserving the same mesolve-vs-Liouvillian predicate",
+    ],
+    "tool_function_needs": [
+        "qutip.Qobj for density-matrix construction",
+        "qutip.mesolve for Lindblad open-system evolution",
+        "qutip.sigmap and qutip.sigmaz for collapse and zero Hamiltonian construction",
+        "scipy.linalg.expm for the Liouvillian matrix-exponential reference",
+        "numpy vectorization and density-matrix validation",
+    ],
+    "lego_coupling_target": "bounded open-system channel reference before channel-local fit packets",
+    "claim_ceiling": (
+        "classical_baseline_only_qutip_mesolve_vs_scipy_liouvillian_reference; "
+        "no bridge, GStack, axis, QIT, or nonclassical admission"
+    ),
 }
 
 
@@ -235,8 +293,9 @@ if __name__ == "__main__":
     summary["all_pass"] = all(summary.values())
 
     results = {
-        "name": "sim_integration_qutip_open_system_bridge",
+        "name": NAME,
         "classification": classification,
+        **CANDIDATE_SIM_SPEC,
         "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
@@ -248,7 +307,7 @@ if __name__ == "__main__":
     }
     results = apply_default_receipt_boundary(
         results,
-        source_name="sim_integration_qutip_open_system_bridge",
+        source_name=NAME,
         target="Use as bounded classical-baseline QuTiP mesolve open-system reference evidence before channel-local fit packets.",
     )
     results["claim_ceiling"] = (
@@ -260,7 +319,7 @@ if __name__ == "__main__":
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "qutip_open_system_bridge_results.json")
+    out_path = os.path.join(out_dir, f"{NAME}_results.json")
     with open(out_path, "w", encoding="utf-8") as handle:
         json.dump(results, handle, indent=2, default=_json_default)
     print(f"Results written to {out_path}")

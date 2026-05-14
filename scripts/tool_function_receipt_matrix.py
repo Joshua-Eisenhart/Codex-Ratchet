@@ -152,7 +152,7 @@ TARGETS: list[dict[str, Any]] = [
     {
         "tool": "qutip",
         "function_api": "qutip.mesolve Lindblad open-system evolution",
-        "receipt": "system_v4/probes/a2_state/sim_results/qutip_open_system_bridge_results.json",
+        "receipt": "system_v4/probes/a2_state/sim_results/sim_qutip_mesolve_scipy_liouvillian_amplitude_damping_reference_micro_results.json",
         "role": "classical_baseline",
         "depth": "load_bearing",
         "candidate_lego_targets": ["lindbladian_evolution", "channel_cptp_map"],

@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-14T00:13:38.599637+00:00",
+  "generated_at": "2026-05-14T00:15:19.529254+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -2350,6 +2350,7 @@
         "all_pass",
         "blocked_until",
         "boundary",
+        "candidate_sim_spec",
         "claim_ceiling",
         "classification",
         "criteria_checked",
@@ -3539,7 +3540,7 @@
         "hypergraph_shell_geometry",
         "cell_complex_geometry"
       ],
-      "candidate_spec_complete": false,
+      "candidate_spec_complete": true,
       "candidate_spec_contract_fields": [
         "alternative_formulations",
         "baselines",
@@ -3552,16 +3553,7 @@
         "pass_fail_predicate",
         "tool_function_needs"
       ],
-      "candidate_spec_missing_fields": [
-        "operation_sequence",
-        "carrier_topology",
-        "observable",
-        "pass_fail_predicate",
-        "graveyards",
-        "baselines",
-        "alternative_formulations",
-        "tool_function_needs"
-      ],
+      "candidate_spec_missing_fields": [],
       "claim_ceiling": "finite sim_xgi_hypergraph_incidence_micro lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
       "depth": "load_bearing",
       "function_api": "xgi.Hypergraph incidence matrix and node/edge membership on a tiny hypergraph",
@@ -3581,22 +3573,31 @@
       "receipt_classification": "canonical",
       "receipt_contract_fields": [
         "all_pass",
+        "alternative_formulations",
+        "baselines",
         "blocked_until",
         "boundary",
+        "carrier_topology",
         "claim_ceiling",
         "classification",
         "constraint_set",
         "criteria_checked",
         "demotion_condition",
+        "graveyards",
+        "lego_coupling_target",
         "name",
         "negative",
         "next_lego_target",
+        "observable",
+        "operation_sequence",
         "out_of_scope",
+        "pass_fail_predicate",
         "positive",
         "probe_family",
         "promotion_condition",
         "summary",
         "surviving_alternatives",
+        "tool_function_needs",
         "tool_integration_depth",
         "tool_manifest"
       ],
@@ -7806,8 +7807,8 @@
   ],
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
-    "candidate_spec_complete_count": 92,
-    "candidate_spec_incomplete_count": 16,
+    "candidate_spec_complete_count": 93,
+    "candidate_spec_incomplete_count": 15,
     "missing_receipt_count": 0,
     "passing_count": 108,
     "receipt_boundary_gap_count": 0,

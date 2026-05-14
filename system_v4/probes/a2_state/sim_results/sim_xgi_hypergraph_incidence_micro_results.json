@@ -3,6 +3,43 @@
   "probe_family": "xgi_hypergraph_incidence_micro",
   "constraint_set": "tiny_hypergraph_node_edge_incidence_membership",
   "classification": "canonical",
+  "operation_sequence": [
+    "construct an XGI Hypergraph with one labeled three-node hyperedge and one labeled singleton hyperedge",
+    "query edge members for the three-node hyperedge and singleton edge",
+    "query node memberships for a node shared by both edges and a node incident to only one edge",
+    "query edge sizes and node degrees",
+    "run non-member, non-incident edge, and implicit pair-edge graveyards",
+    "run singleton-edge and empty-hypergraph boundary controls"
+  ],
+  "carrier_topology": "finite labeled hypergraph incidence fixture; no simplicial complex, cell complex, manifold, bridge, axis, GStack, QIT engine, or nonclassical claim",
+  "observable": "edge membership sets, node incident-edge sets, edge-size map, node-degree map, empty graph counts, and absent-edge membership predicates",
+  "pass_fail_predicate": "constructed edge memberships and node incidences match the declared fixture; absent nodes, non-incident singleton membership, and implicit pair edges are excluded; singleton and empty boundaries behave as declared",
+  "graveyards": [
+    "absent node delta must not appear in the triple hyperedge",
+    "node beta must not be incident to the singleton edge",
+    "membership of alpha and gamma inside a triple must not fabricate a separate pair edge"
+  ],
+  "baselines": [
+    "declared Python set membership for the tiny hyperedge fixture",
+    "singleton edge as a one-node incidence boundary",
+    "empty Hypergraph as a no-node/no-edge boundary"
+  ],
+  "alternative_formulations": [
+    "NetworkX bipartite incidence graph projection as a lossy baseline",
+    "TopoNetX cell-complex incidence only after a separate tool-tool coupling receipt",
+    "manual incidence matrix construction from the same edge dictionary"
+  ],
+  "tool_function_needs": {
+    "xgi": [
+      "Hypergraph",
+      "add_edge",
+      "edges.members",
+      "nodes.memberships",
+      "edges.size.asdict",
+      "nodes.degree.asdict"
+    ]
+  },
+  "lego_coupling_target": "bounded XGI hypergraph incidence function evidence before hypergraph or graph-cell lego fit packets",
   "tool_manifest": {
     "pytorch": {
       "tried": false,
@@ -121,9 +158,9 @@
         "gamma": 2
       },
       "observed_node_degrees": {
-        "alpha": 1,
+        "beta": 1,
         "gamma": 2,
-        "beta": 1
+        "alpha": 1
       }
     }
   },

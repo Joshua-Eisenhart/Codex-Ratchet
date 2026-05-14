@@ -64,6 +64,69 @@ TOOL_INTEGRATION_DEPTH = {
     "cvc5": None,
 }
 
+CANDIDATE_SIM_SPEC = {
+    "operation_sequence": [
+        "load prerequisite lego receipts for mutual-information measure, joint density matrix, reduced state object, and QuTiP capability",
+        "construct fixed two-qubit density matrices: product, classical correlated, Bell, and Werner-mixture states",
+        "wrap each joint density matrix as a QuTiP Qobj with bipartite 2x2 dimensions",
+        "compute reduced states with Qobj.ptrace",
+        "compute von Neumann entropies with qutip.entropy_vn",
+        "compute mutual information as S(A) + S(B) - S(AB)",
+        "cross-check the same mutual-information values with a NumPy eigenvalue baseline",
+        "run invalid-dimension, negative-eigenvalue, finite-dimension, and promotion-boundary controls",
+    ],
+    "carrier_topology": (
+        "Fixed finite two-qubit density-matrix fixtures with declared bipartite dimensions "
+        "[[2, 2], [2, 2]] in QuTiP Qobj form; this is a tool-lego fit for the mutual-information "
+        "measure only, not a coupling, bridge, GStack, axis, QIT, engine, or nonclassical admission."
+    ),
+    "observable": {
+        "primary": "mutual information I(A:B) computed from QuTiP partial traces and von Neumann entropies",
+        "secondary": [
+            "NumPy eigenvalue mutual-information baseline gap",
+            "unit-trace preservation of QuTiP reduced states",
+            "expected ordering for product, classical one-bit, Bell two-bit, and Werner-mixture states",
+            "z3 finite-dimension guard for 2x2 joint carriers",
+            "registry and promotion-boundary checks for the target lego id",
+        ],
+    },
+    "pass_fail_predicate": (
+        "Pass iff prerequisite receipts exist and pass, QuTiP and NumPy mutual-information values "
+        "agree within tolerance, expected state ordering holds, invalid dimensions and negative "
+        "eigenvalues are excluded, finite 2x2 dimensions satisfy the z3 guard, and the packet stays "
+        "scoped to mutual_information_measure."
+    ),
+    "graveyards": [
+        "wrong QuTiP dims should fail to fake bipartite ptrace",
+        "negative-eigenvalue matrix may produce numbers but is rejected before admission",
+        "wrong joint dimension should be z3-unsat for the declared 2x2 carrier",
+        "neighbour lego credit should be rejected; only mutual_information_measure receives fit evidence",
+        "promotion beyond tool_lego_fit_probe should remain false",
+    ],
+    "baselines": [
+        "NumPy eigenvalue entropy and mutual-information baseline",
+        "product-state zero mutual-information baseline",
+        "classical correlated one-bit mutual-information baseline",
+        "Bell-state two-bit mutual-information baseline",
+        "Werner-mixture monotonicity baseline",
+        "z3 2x2 finite-dimension baseline",
+    ],
+    "alternative_formulations": [
+        "replace QuTiP entropy_vn with explicit eigenvalue entropy while preserving Qobj.ptrace",
+        "sample additional two-qubit density matrices with the same QuTiP-vs-NumPy predicate",
+        "use qutip.tensor-built states rather than NumPy arrays wrapped into Qobj",
+    ],
+    "tool_function_needs": [
+        "qutip.Qobj with dims=[[2, 2], [2, 2]] for bipartite density matrices",
+        "Qobj.ptrace for reduced density matrices",
+        "qutip.entropy_vn for von Neumann entropy in bits",
+        "numpy.linalg.eigvalsh for supportive entropy baseline",
+        "z3 Solver over small integer dimensions for supportive finite-dimension guard",
+    ],
+    "lego_coupling_target": "bounded qutip -> mutual_information_measure tool-lego fit evidence",
+    "claim_ceiling": "fixed_two_qubit_mutual_information_qutip_api_fit_only; no bridge, GStack, axis, QIT, engine, or nonclassical admission",
+}
+
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"
 PARENT_RESULTS = {
@@ -260,6 +323,7 @@ def main() -> None:
     result = {
         "name": "mutual_information_qutip_microfit",
         "classification": CLASSIFICATION,
+        **CANDIDATE_SIM_SPEC,
         "classification_note": divergence_log,
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,

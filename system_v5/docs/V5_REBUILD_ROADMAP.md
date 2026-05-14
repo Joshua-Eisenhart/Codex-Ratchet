@@ -68,13 +68,15 @@ Current evidence:
 - 52 result-linkage review files.
 - v4 probe dirty-state baseline:
   `system_v5/ops/queue_cleanup/v4_probe_status_baseline_20260514.json`.
+- quarantine dry-run manifest:
+  `system_v5/ops/queue_cleanup/v4_quarantine_dry_run_manifest_toponetx_simplex_width_20260514.json`.
 
 Next actions:
 
-1. Write a quarantine move manifest for one generated family.
-2. Dry-run the manifest.
-3. Verify no admitted/reference file is selected.
-4. Only then move by manifest, if approved.
+1. Review the `toponetx_simplex_width` dry-run manifest.
+2. Decide whether to execute a manifest move or keep the family indexed.
+3. If moving, execute only by manifest and refresh the v4 dirty-state baseline.
+4. Build a second dry-run for the next non-admitted generated family.
 
 Done when:
 
@@ -159,9 +161,9 @@ Known gate issues:
 
 Next actions:
 
-1. Add a manifest-approved v4 quarantine dry-run.
-2. Keep provider receipt validation in every provider batch.
-3. Run a same-target Grok/Gemini/Sonnet proposal comparison.
+1. Keep provider receipt validation in every provider batch.
+2. Run a same-target Grok/Gemini/Sonnet proposal comparison.
+3. Add a generated-artifact deny/warn table for result estates.
 
 Done when:
 
@@ -172,9 +174,9 @@ Done when:
 
 Best next batch:
 
-1. Add a manifest-approved v4 quarantine dry-run.
-2. Run a same-target Grok/Gemini/Sonnet proposal comparison.
-3. Build the next formal scout from spinor/Clifford or topology-cycle targets.
+1. Run a same-target Grok/Gemini/Sonnet proposal comparison.
+2. Build the next formal scout from spinor/Clifford or topology-cycle targets.
+3. Add a generated-artifact deny/warn table for result estates.
 4. Commit as the next small v5 checkpoint.
 
 ## Stop Conditions

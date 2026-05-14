@@ -67,6 +67,30 @@ Use `system_v5` for clean rebuild surfaces:
 Do not run broad sim generation until this folder has a declared write policy
 and a cleanup manifest for any touched family.
 
+## Quarantine Dry-Run Manifest
+
+Builder:
+
+`system_v5/ops/queue_cleanup/build_v4_quarantine_dry_run_manifest.py`
+
+Dry-run result:
+
+`system_v5/ops/queue_cleanup/v4_quarantine_dry_run_manifest_toponetx_simplex_width_20260514.json`
+
+Summary:
+
+| Field | Value |
+|---|---:|
+| Family | `toponetx_simplex_width` |
+| Selected files | 8 |
+| Selected admitted/reference files | 0 |
+| Move executed | false |
+| Pass | true |
+
+This manifest selects only untracked direct files matching
+`sim_toponetx_simplex_width_*_survivor_classes.py`. It does not move, rename,
+delete, stage, or promote any v4 probe file.
+
 ## Read-Only Classification Pass
 
 Classifier:

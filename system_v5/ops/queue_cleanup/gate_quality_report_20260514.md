@@ -16,7 +16,7 @@ and let evidence gates select without pretending early survivors are canonical.
 | provider proposals | JSON receipts under `formal_scouts/provider_receipts/` validate non-evidence status | stronger, useful | Keep Grok/Gemini/Sonnet outputs proposal-only until translated through repo callables. |
 | formal-scout result validation | `validate_formal_scout_results.py` checks receipt fields and has `--fresh-rerun` | stronger, useful | Use fresh rerun before promoting any scout into a harder harness. |
 | large generated inventories | preflight warns on staged files over 1 MB | useful but weak | Add path-specific deny/warn lists for generated result estates before evidence snapshots. |
-| v4 probe corpus cleanup | inventory exists, but quarantine is not dry-run enforced | weak | Add one manifest dry-run path and no-reference-file selector check. |
+| v4 probe corpus cleanup | `toponetx_simplex_width` dry-run manifest selects 8 untracked non-admitted files and executes no move | stronger, useful | Review before any manifest move; refresh baseline only if a move is approved. |
 | scout naming | `lint_formal_scout_names.py` blocks axis/engine/gstack/rosetta/type labels in formal-scout executable names | stronger, useful | Run before committing new formal-scout harnesses. |
 | provider liveness | Grok, Sonnet, and direct Gemini API have receipts; Gemini CLI is blocked by browser auth | stronger, useful | Use direct Gemini API for scouts; keep CLI disabled until headless auth is fixed. |
 | formal-scout gates | require receipt fields, graveyards, boundary, claim ceiling | good if not used as canonical proof | Do not block rough tower variants for lack of final physical graveyards; set low claim ceiling instead. |
@@ -44,5 +44,5 @@ and let evidence gates select without pretending early survivors are canonical.
 ## Next Gate Work
 
 1. Add a generated-artifact deny/warn table for result estates.
-2. Add a v4 quarantine manifest dry-run for one generated family.
-3. Run a same-target Grok/Gemini/Sonnet proposal comparison with receipts.
+2. Run a same-target Grok/Gemini/Sonnet proposal comparison with receipts.
+3. Add a generated-artifact deny/warn table for result estates.

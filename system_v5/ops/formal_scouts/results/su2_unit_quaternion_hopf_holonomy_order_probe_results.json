@@ -1,0 +1,268 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "importlib": "load_bearing",
+    "numpy": "supportive",
+    "pytorch": "supportive",
+    "sympy": "load_bearing",
+    "z3": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "importlib": {
+      "reason": "load-bearing imports from existing v4 callable legos",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "used through imported Hopf connection loop-integral callable",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "used through imported Hopf connection loop-integral callable",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact quaternion products and squared gaps",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "used through imported SU2 and Hopf boundary callables",
+      "tried": true,
+      "used": true
+    }
+  },
+  "blockers": [],
+  "boundary": {
+    "hopf_z3_orientation_boundary": {
+      "passed": true,
+      "positive_and_reversed_positive": "unsat",
+      "zero_winding_nonzero": "unsat"
+    },
+    "su2_z3_unit_action_boundary": {
+      "pass": true,
+      "raw": {
+        "noncommuting_neighbor_gap_sat": "sat",
+        "passed": true,
+        "unit_action_contradiction_unsat": "unsat",
+        "unit_action_survivor_sat": "sat"
+      }
+    }
+  },
+  "claim_ceiling": "Formal-scout SU2 unit-quaternion and Hopf holonomy order probe only. It may guide later tower variants, but it does not admit a canonical manifold, physical flux, chirality, bridge, cycle, or target-system claim.",
+  "classification": "formal_scout",
+  "exact_callable_paths": {
+    "hopf_connection_loop_integral": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_hopf_connection_one_form_loop_integral_survivor_classes.py",
+    "su2_unit_quaternion_action": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_su2_unit_quaternion_vector_action_survivor_classes.py"
+  },
+  "graveyard_companions": {
+    "commuting_or_hidden_transport_would_collapse_order_readout": {
+      "observed_gap": "2",
+      "pass": true,
+      "reason": "the actual imported SU2 products are noncommuting; a zero gap would kill this order readout"
+    },
+    "missing_parent_link_fails_nested_order": {
+      "layers": [
+        {
+          "finite_witness": 2,
+          "index": 0,
+          "name": "finite_unit_quaternion_carrier",
+          "parent_layer_index": null
+        },
+        {
+          "finite_witness": 3,
+          "index": 1,
+          "name": "unit_quaternion_vector_action",
+          "order_gap": "2",
+          "parent_layer_index": 0
+        },
+        {
+          "base_lift_connection_integral": 4.71238898038469,
+          "fiber_connection_integral": 6.283185307179586,
+          "finite_witness": 5,
+          "index": 2,
+          "name": "hopf_connection_loop_integral",
+          "parent_layer_index": null
+        }
+      ],
+      "pass": true
+    },
+    "nonunit_quaternion_rejected": {
+      "nonunit_norm_square": "4",
+      "pass": true
+    },
+    "reversed_orientation_inverts_connection_integral": {
+      "control": {
+        "forward": 4.71238898038469,
+        "passed": true,
+        "reverse": -4.71238898038469,
+        "sum": 0.0
+      },
+      "pass": true
+    },
+    "zero_winding_collapses_connection_integral": {
+      "control": {
+        "connection_integral": 0.0,
+        "passed": true,
+        "reason": "zero winding has zero connection integral"
+      },
+      "pass": true
+    }
+  },
+  "name": "su2_unit_quaternion_hopf_holonomy_order_probe",
+  "nearby_variants": {
+    "passed": 5,
+    "total": 5,
+    "variants": {
+      "fiber_and_base_holonomy_visible": true,
+      "hidden_coordinate_loses_connection_detail": true,
+      "reversed_orientation_inverts_readout": true,
+      "transport_order_visible": true,
+      "zero_winding_collapses_holonomy": true
+    }
+  },
+  "observable": [
+    "exact SU2 vector-action composition-order gap",
+    "Hopf connection loop integral",
+    "orientation reversal sign",
+    "zero-winding collapse",
+    "nested parent-link validity"
+  ],
+  "positive": {
+    "hopf_connection_loop_integrals_survive": {
+      "base_lift_loop": {
+        "chi_winding": 0,
+        "connection_integral": 4.71238898038469,
+        "eta": 0.5235987755982988,
+        "expected": 4.712388980384691,
+        "passed": true,
+        "phi_winding": 1
+      },
+      "fiber_loop": {
+        "chi_winding": 1,
+        "connection_integral": 6.283185307179586,
+        "eta": 0.7853981633974483,
+        "expected": 6.283185307179586,
+        "passed": true,
+        "phi_winding": 1
+      },
+      "hidden_coordinate": {
+        "chi_only_integral": 1.5707963267948963,
+        "passed": true,
+        "phi_only_integral": 4.71238898038469,
+        "reason": "same eta z-readout hides which angular coordinate carried connection integral",
+        "same_eta_hopf_z": 0.5
+      },
+      "pass": true,
+      "reversed_orientation": {
+        "forward": 4.71238898038469,
+        "passed": true,
+        "reverse": -4.71238898038469,
+        "sum": 0.0
+      },
+      "zero_winding": {
+        "connection_integral": 0.0,
+        "passed": true,
+        "reason": "zero winding has zero connection integral"
+      }
+    },
+    "nested_parent_links_survive": {
+      "layers": [
+        {
+          "finite_witness": 2,
+          "index": 0,
+          "name": "finite_unit_quaternion_carrier",
+          "parent_layer_index": null
+        },
+        {
+          "finite_witness": 3,
+          "index": 1,
+          "name": "unit_quaternion_vector_action",
+          "order_gap": "2",
+          "parent_layer_index": 0
+        },
+        {
+          "base_lift_connection_integral": 4.71238898038469,
+          "fiber_connection_integral": 6.283185307179586,
+          "finite_witness": 5,
+          "index": 2,
+          "name": "hopf_connection_loop_integral",
+          "parent_layer_index": 1
+        }
+      ],
+      "pass": true
+    },
+    "unit_quaternion_transport_order_has_nonzero_gap": {
+      "first_product_image": [
+        "0",
+        "0",
+        "1"
+      ],
+      "pass": true,
+      "second_product_image": [
+        "0",
+        "1",
+        "0"
+      ],
+      "squared_gap": "2"
+    },
+    "v4_callable_legos_loaded": {
+      "loads": {
+        "hopf": {
+          "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_hopf_connection_one_form_loop_integral_survivor_classes.py",
+          "status": "SURVIVED"
+        },
+        "su2": {
+          "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_su2_unit_quaternion_vector_action_survivor_classes.py",
+          "status": "SURVIVED"
+        }
+      },
+      "pass": true
+    }
+  },
+  "predicate": "imported SU2 transport order has a nonzero exact gap and imported Hopf connection loops survive while nearby controls collapse or invert",
+  "promotion_allowed": false,
+  "schema": "FORMAL_SCOUT_RESULT_v1",
+  "summary": {
+    "all_pass": true,
+    "elapsed_seconds": 1.310516,
+    "next_step": "Compare against spinor/Clifford insertion and topology-cycle Hopf projection order variants.",
+    "promotion_allowed": false
+  },
+  "tool_integration_depth": {
+    "importlib": "load_bearing",
+    "numpy": "supportive",
+    "pytorch": "supportive",
+    "sympy": "load_bearing",
+    "z3": "supportive"
+  },
+  "tool_manifest": {
+    "importlib": {
+      "reason": "load-bearing imports from existing v4 callable legos",
+      "tried": true,
+      "used": true
+    },
+    "numpy": {
+      "reason": "used through imported Hopf connection loop-integral callable",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "used through imported Hopf connection loop-integral callable",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "load-bearing exact quaternion products and squared gaps",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "used through imported SU2 and Hopf boundary callables",
+      "tried": true,
+      "used": true
+    }
+  },
+  "why_not_v4_probes": "This is a new tower/order composition over existing v4 callable legos. It belongs in v5 formal-scout space because it is proposal-level and does not promote the v4 reference corpus."
+}

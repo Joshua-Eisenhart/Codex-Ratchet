@@ -90,13 +90,13 @@ Current passing scouts:
 
 - `sim_nested_finite_geometry_holonomy_noncommutation_probe.py`
 - `sim_entropy_reduction_before_hopf_projection_order_probe.py`
+- `sim_su2_unit_quaternion_hopf_holonomy_order_probe.py`
 
 Next scouts:
 
-1. `sim_su2_unit_quaternion_hopf_holonomy_order_probe.py`
-2. `sim_nested_hopf_weyl_connection_transport_order_probe.py`
-3. `sim_spinor_clifford_pauli_projection_order_probe.py`
-4. `sim_topology_cycle_hopf_projection_order_probe.py`
+1. `sim_nested_hopf_weyl_connection_transport_order_probe.py`
+2. `sim_spinor_clifford_pauli_projection_order_probe.py`
+3. `sim_topology_cycle_hopf_projection_order_probe.py`
 
 Each must include:
 
@@ -172,9 +172,9 @@ Done when:
 
 Best next batch:
 
-1. Build SU(2)-Hopf formal scout from already-importable v4 targets.
-2. Add a manifest-approved v4 quarantine dry-run.
-3. Run a same-target Grok/Gemini/Sonnet proposal comparison.
+1. Add a manifest-approved v4 quarantine dry-run.
+2. Run a same-target Grok/Gemini/Sonnet proposal comparison.
+3. Build the next formal scout from spinor/Clifford or topology-cycle targets.
 4. Commit as the next small v5 checkpoint.
 
 ## Stop Conditions

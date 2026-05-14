@@ -24,13 +24,14 @@ manifest explicitly moves a hardened sim.
 |---|---|---|---|
 | `sim_nested_finite_geometry_holonomy_noncommutation_probe.py` | `results/nested_finite_geometry_holonomy_noncommutation_probe_results.json` | nested density/Hopf/holonomy/transport tower | formal scout only |
 | `sim_entropy_reduction_before_hopf_projection_order_probe.py` | `results/entropy_reduction_before_hopf_projection_order_probe_results.json` | entropy-filtered finite density family before Hopf projection readout | formal scout only |
+| `sim_su2_unit_quaternion_hopf_holonomy_order_probe.py` | `results/su2_unit_quaternion_hopf_holonomy_order_probe_results.json` | SU2 unit-quaternion transport order plus Hopf connection loop readouts | formal scout only |
 
 ## Next Queue
 
 | Priority | Candidate | Purpose | Status |
 |---|---|---|---|
 | 1 | `sim_entropy_reduction_before_hopf_projection_order_probe.py` | test whether entropy filtering before projection changes finite survivor/readout structure | passing scout |
-| 2 | `sim_su2_unit_quaternion_hopf_holonomy_order_probe.py` | test non-Abelian/SU(2)-style transport against U(1) controls | proposal targets importable |
+| 2 | `sim_su2_unit_quaternion_hopf_holonomy_order_probe.py` | test non-Abelian/SU(2)-style transport against U(1) controls | passing scout |
 | 3 | `sim_spinor_clifford_pauli_projection_order_probe.py` | test spinor-to-Clifford-to-Pauli layer ordering with adjacent controls | proposed |
 | 4 | `sim_topology_cycle_hopf_projection_order_probe.py` | test finite topology readouts around Hopf projection and path order | proposed |
 

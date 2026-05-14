@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-13T23:58:55.792818+00:00",
+  "generated_at": "2026-05-14T00:04:19.719610+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -1035,7 +1035,7 @@
         "lindbladian_evolution",
         "channel_cptp_map"
       ],
-      "candidate_spec_complete": false,
+      "candidate_spec_complete": true,
       "candidate_spec_contract_fields": [
         "alternative_formulations",
         "baselines",
@@ -1048,16 +1048,7 @@
         "pass_fail_predicate",
         "tool_function_needs"
       ],
-      "candidate_spec_missing_fields": [
-        "operation_sequence",
-        "carrier_topology",
-        "observable",
-        "pass_fail_predicate",
-        "graveyards",
-        "baselines",
-        "alternative_formulations",
-        "tool_function_needs"
-      ],
+      "candidate_spec_missing_fields": [],
       "claim_ceiling": "classical_baseline_only_qutip_mesolve_vs_scipy_liouvillian_reference; no bridge, GStack, axis, QIT, or nonclassical admission",
       "depth": "load_bearing",
       "function_api": "qutip.mesolve Lindblad open-system evolution",
@@ -1070,25 +1061,34 @@
         "nonclassical admission",
         "bridge admission"
       ],
-      "receipt": "system_v4/probes/a2_state/sim_results/qutip_open_system_bridge_results.json",
+      "receipt": "system_v4/probes/a2_state/sim_results/sim_qutip_mesolve_scipy_liouvillian_amplitude_damping_reference_micro_results.json",
       "receipt_all_pass": true,
       "receipt_classification": "classical_baseline",
       "receipt_contract_fields": [
         "all_pass",
+        "alternative_formulations",
+        "baselines",
         "blocked_until",
         "boundary",
+        "carrier_topology",
         "claim_ceiling",
         "classification",
         "demotion_condition",
         "divergence_log",
+        "graveyards",
+        "lego_coupling_target",
         "name",
         "negative",
         "next_lego_target",
         "nonclassical_claim_ceiling",
+        "observable",
+        "operation_sequence",
         "out_of_scope",
+        "pass_fail_predicate",
         "positive",
         "promotion_condition",
         "summary",
+        "tool_function_needs",
         "tool_integration_depth",
         "tool_manifest"
       ],
@@ -7806,8 +7806,8 @@
   ],
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
-    "candidate_spec_complete_count": 87,
-    "candidate_spec_incomplete_count": 21,
+    "candidate_spec_complete_count": 88,
+    "candidate_spec_incomplete_count": 20,
     "missing_receipt_count": 0,
     "passing_count": 108,
     "receipt_boundary_gap_count": 0,

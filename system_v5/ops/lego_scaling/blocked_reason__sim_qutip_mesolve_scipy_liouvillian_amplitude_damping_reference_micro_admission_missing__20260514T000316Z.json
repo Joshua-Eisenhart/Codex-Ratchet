@@ -1,0 +1,29 @@
+{
+  "kind": "blocked_reason",
+  "created_at": "2026-05-14T00:03:16Z",
+  "scope": "sim_qutip_mesolve_scipy_liouvillian_amplitude_damping_reference_micro admission",
+  "sim_path": "system_v4/probes/sim_qutip_mesolve_scipy_liouvillian_amplitude_damping_reference_micro.py",
+  "result_path": "system_v4/probes/a2_state/sim_results/sim_qutip_mesolve_scipy_liouvillian_amplitude_damping_reference_micro_results.json",
+  "reason": "Strict receipt validation passes for the renamed QuTiP mesolve versus SciPy Liouvillian amplitude-damping classical-baseline reference, but wizard_sim_admission reports admission_missing because no valid queue admission artifact exists for the new explicit basename. This is a queue-admission soft blocker, not a sim-result failure.",
+  "validation": {
+    "receipt_validator": {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/validate_receipt.py --strict-scope system_v4/probes/a2_state/sim_results/sim_qutip_mesolve_scipy_liouvillian_amplitude_damping_reference_micro_results.json",
+      "ok": true,
+      "all_pass": true,
+      "load_bearing_tools": [
+        "qutip"
+      ]
+    },
+    "admission_validator": {
+      "command": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 scripts/wizard_sim_admission.py --basename sim_qutip_mesolve_scipy_liouvillian_amplitude_damping_reference_micro --sim-path system_v4/probes/sim_qutip_mesolve_scipy_liouvillian_amplitude_damping_reference_micro.py --expected-result-path system_v4/probes/a2_state/sim_results/sim_qutip_mesolve_scipy_liouvillian_amplitude_damping_reference_micro_results.json",
+      "ok": false,
+      "findings": [
+        "admission_missing"
+      ]
+    }
+  },
+  "classification": "soft_blocked_queue_admission",
+  "claim_ceiling": "classical_baseline_only_qutip_mesolve_vs_scipy_liouvillian_reference; no bridge, GStack, axis, QIT, or nonclassical admission",
+  "next_admissible_step": "Create or regenerate a valid admission artifact only if this renamed QuTiP classical-baseline reference is meant to enter the active queue; otherwise keep it as strict receipt evidence for downstream channel-local fit packets.",
+  "recommended_next_move": "Do not enqueue this renamed QuTiP baseline until admission policy and queue intent are explicit. Continue other admitted matrix repairs and bounded tool/function packets."
+}

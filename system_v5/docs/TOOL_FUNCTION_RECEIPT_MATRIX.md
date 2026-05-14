@@ -1,6 +1,6 @@
 # Tool Function Receipt Matrix
 
-Generated: `2026-05-13T23:58:55.792818+00:00`
+Generated: `2026-05-14T00:04:19.719610+00:00`
 
 Boundary: receipt index only. This does not admit, promote, or validate a lego, coupling, bridge, axis, GStack, QIT, or engine claim.
 Role values are matrix metadata only; they are not executable sim labels and must not be used to generate sim filenames.
@@ -12,8 +12,8 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 - Missing receipts: `0`
 - Explicit receipt schemas missing: `108`
 - Receipt contract shapes unresolved: `0`
-- Candidate spec complete rows: `87`
-- Candidate spec incomplete rows: `21`
+- Candidate spec complete rows: `88`
+- Candidate spec incomplete rows: `20`
 
 ## Matrix
 
@@ -33,7 +33,7 @@ Role values are matrix metadata only; they are not executable sim labels and mus
 | `networkx` | networkx DiGraph/topological_sort/ancestors/descendants/transitive_reduction over Hopf receipt dependency DAG | `system_v4/probes/a2_state/sim_results/networkx_hopf_receipt_dependency_reduction_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `finite_hopf_torus_fixture_controls_baseline`, `receipt_dependency_dag_controls` |
 | `pyg` | torch_geometric.data.Batch.from_data_list tensor concatenation, edge-index offsetting, batch vector, and ptr | `system_v4/probes/a2_state/sim_results/sim_pyg_batching_micro_results.json` | `canonical` | `nonclassical_adjacent` | `load_bearing` | `True` | `graph_batching_fixture`, `graph_shell_geometry` |
 | `qutip` | qutip.basis, ket2dm, sigmax/sigmaz expectation | `system_v4/probes/a2_state/sim_results/qutip_capability_results.json` | `canonical` | `bridge_useful` | `load_bearing` | `True` | `channel_cptp_map`, `lindbladian_evolution` |
-| `qutip` | qutip.mesolve Lindblad open-system evolution | `system_v4/probes/a2_state/sim_results/qutip_open_system_bridge_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `lindbladian_evolution`, `channel_cptp_map` |
+| `qutip` | qutip.mesolve Lindblad open-system evolution | `system_v4/probes/a2_state/sim_results/sim_qutip_mesolve_scipy_liouvillian_amplitude_damping_reference_micro_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `lindbladian_evolution`, `channel_cptp_map` |
 | `qutip` | qutip entropy_vn / tensor density operators for mutual-information microfit | `system_v4/probes/a2_state/sim_results/mutual_information_qutip_microfit_results.json` | `tool_lego_fit_probe` | `bridge_useful` | `load_bearing` | `True` | `mutual_information_measure`, `density_matrix_object` |
 | `qutip` | qutip Qobj/ket2dm/expect/sigmax/sigmay/sigmaz density readouts over sampled Hopf-coordinate carrier paths | `system_v4/probes/a2_state/sim_results/qutip_hopf_fiber_base_density_readout_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `declared_fiber_base_coordinate_readout_baseline`, `density_object_path_readout_baseline` |
 | `qutip` | qutip Qobj.expm/qeye/sigmaz unitary phase-generator transport over a two-component density carrier | `system_v4/probes/a2_state/sim_results/qutip_hopf_loop_phase_generator_density_transport_results.json` | `classical_baseline` | `classical_baseline` | `load_bearing` | `True` | `declared_fiber_base_coordinate_readout_baseline`, `density_operator_phase_generator_transport_baseline` |

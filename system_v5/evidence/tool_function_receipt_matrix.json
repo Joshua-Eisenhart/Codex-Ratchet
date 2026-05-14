@@ -1,6 +1,6 @@
 {
   "boundary": "receipt_index_only_not_admission_or_promotion",
-  "generated_at": "2026-05-14T00:09:23.817399+00:00",
+  "generated_at": "2026-05-14T00:11:48.890601+00:00",
   "rows": [
     {
       "boundary_gap": false,
@@ -6019,7 +6019,7 @@
         "exact_matrix_identity",
         "operator_family_fixture"
       ],
-      "candidate_spec_complete": false,
+      "candidate_spec_complete": true,
       "candidate_spec_contract_fields": [
         "alternative_formulations",
         "baselines",
@@ -6032,16 +6032,7 @@
         "pass_fail_predicate",
         "tool_function_needs"
       ],
-      "candidate_spec_missing_fields": [
-        "operation_sequence",
-        "carrier_topology",
-        "observable",
-        "pass_fail_predicate",
-        "graveyards",
-        "baselines",
-        "alternative_formulations",
-        "tool_function_needs"
-      ],
+      "candidate_spec_missing_fields": [],
       "claim_ceiling": "finite sim_sympy_matrix_identity_micro lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
       "depth": "load_bearing",
       "function_api": "sympy Matrix.inv / exact matrix equality inverse identity checks",
@@ -6059,25 +6050,34 @@
       "receipt_classification": "canonical",
       "receipt_contract_fields": [
         "all_pass",
+        "alternative_formulations",
+        "baselines",
         "blocked_until",
         "boundary",
+        "carrier_topology",
         "claim_ceiling",
         "classification",
         "constraint_set",
         "criteria_checked",
         "demotion_condition",
         "function_surface",
+        "graveyards",
+        "lego_coupling_target",
         "micro_claim",
         "name",
         "negative",
         "next_lego_target",
+        "observable",
+        "operation_sequence",
         "out_of_scope",
+        "pass_fail_predicate",
         "positive",
         "probe_family",
         "promotion_condition",
         "summary",
         "surviving_alternatives",
         "sympy_version",
+        "tool_function_needs",
         "tool_integration_depth",
         "tool_manifest"
       ],
@@ -7806,8 +7806,8 @@
   ],
   "schema": "tool_function_receipt_matrix.v1",
   "summary": {
-    "candidate_spec_complete_count": 90,
-    "candidate_spec_incomplete_count": 18,
+    "candidate_spec_complete_count": 91,
+    "candidate_spec_incomplete_count": 17,
     "missing_receipt_count": 0,
     "passing_count": 108,
     "receipt_boundary_gap_count": 0,

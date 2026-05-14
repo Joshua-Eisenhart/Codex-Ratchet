@@ -1,0 +1,386 @@
+{
+  "TOOL_INTEGRATION_DEPTH": {
+    "importlib": "load_bearing",
+    "pytorch": "load_bearing",
+    "sympy": "supportive",
+    "z3": "supportive"
+  },
+  "TOOL_MANIFEST": {
+    "importlib": {
+      "reason": "load-bearing callable imports from existing formal legos",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "load-bearing finite density matrices, unitary transport, commutator norm, and entropy readouts",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "used through imported holonomy and exact noncommutation legos when available",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "used through imported Hopf projection and exact noncommutation legos when available",
+      "tried": true,
+      "used": true
+    }
+  },
+  "boundary": {
+    "holonomy_and_transport_readouts_are_nontrivial": {
+      "commutator_norm": 0.19449042782845435,
+      "holonomy_phase": 3.141592653589793,
+      "pass": true
+    },
+    "layer_restriction_is_strict": {
+      "admissible_entropy_set_sizes": [
+        6,
+        5,
+        4,
+        2
+      ],
+      "pass": true
+    }
+  },
+  "carrier_topology": "finite density states with nested Hopf projection, U(1) holonomy, and transport-order layer readouts",
+  "claim_ceiling": "Formal-scout nested finite geometry prototype only. It may guide later formal sims, but it does not admit a canonical geometric manifold, bridge, cycle, coordinate-family, or target-system claim.",
+  "classification": "formal_scout",
+  "graveyard_companions": {
+    "commuting_transport_control_collapses": {
+      "identity_commutator_norm": 0.0,
+      "observed_commutator_norm": 0.19449042782845435,
+      "pass": true
+    },
+    "dimension_mismatch_rejected": {
+      "operator_dim": 2,
+      "pass": true,
+      "runtime_error": "mat1 and mat2 shapes cannot be multiplied (2x2 and 4x4)",
+      "state_dim": 4
+    },
+    "identity_layers_fail_strict_subset": {
+      "check": {
+        "admissible_entropy_set_sizes": [
+          6,
+          6,
+          6,
+          6
+        ],
+        "failures": [
+          "layer 1 does not strictly restrict entropy set",
+          "layer 2 does not strictly restrict entropy set",
+          "layer 3 does not strictly restrict entropy set"
+        ],
+        "layer_count": 4,
+        "pass": false
+      },
+      "pass": true
+    },
+    "invalid_density_rejected": {
+      "pass": true,
+      "validity": {
+        "hermitian_error": 2.8284271247461903,
+        "min_eigenvalue": -0.6180339887498948,
+        "pass": false,
+        "trace_imag": 0.0,
+        "trace_real": 1.0
+      }
+    },
+    "missing_parent_link_fails": {
+      "check": {
+        "admissible_entropy_set_sizes": [
+          6,
+          5,
+          4,
+          2
+        ],
+        "failures": [
+          "layer 2 parent mismatch"
+        ],
+        "layer_count": 4,
+        "pass": false
+      },
+      "pass": true
+    },
+    "zero_holonomy_control_collapses": {
+      "observed_holonomy": 3.141592653589793,
+      "pass": true,
+      "zero_holonomy": 0.0
+    }
+  },
+  "imported_lego_receipts": {
+    "bipartite_entropy": {
+      "bell_conditional_entropy": -1.0,
+      "bell_joint_entropy": -0.0,
+      "bell_reduced_entropies": [
+        1.0,
+        1.0
+      ],
+      "pass": true,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_lego_entropy_bipartite_cut.py"
+    },
+    "exact_noncommutation": {
+      "all_pass": true,
+      "main_status": "SURVIVED",
+      "pass": true,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_sympy_matrix_product_order_noncommutation_survivor_classes.py"
+    },
+    "holonomy_phase": 3.141592653589793,
+    "hopf_projection": {
+      "north": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "pass": true,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_hopf_projection_s3_s2_phase_invariant_survivor_classes.py",
+      "south": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "z3_boundary_status": "SURVIVED"
+    },
+    "loads": {
+      "bipartite_entropy": {
+        "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_lego_entropy_bipartite_cut.py",
+        "status": "SURVIVED"
+      },
+      "hopf_loop_holonomy": {
+        "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_sympy_hopf_loop_holonomy_area_dependence.py",
+        "status": "SURVIVED"
+      },
+      "hopf_projection": {
+        "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_hopf_projection_s3_s2_phase_invariant_survivor_classes.py",
+        "status": "SURVIVED"
+      },
+      "matrix_order_noncommutation": {
+        "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_sympy_matrix_product_order_noncommutation_survivor_classes.py",
+        "status": "SURVIVED"
+      }
+    },
+    "u1_holonomy": {
+      "pass": true,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_sympy_hopf_loop_holonomy_area_dependence.py",
+      "phase": 3.141592653589793,
+      "positive_status": "SURVIVED",
+      "vertical_error": null,
+      "vertical_status": "SURVIVED"
+    }
+  },
+  "layers": [
+    {
+      "admissible_entropies": [
+        "von_neumann",
+        "linear_entropy",
+        "renyi_2",
+        "min_entropy",
+        "purity",
+        "coherent_information_candidate"
+      ],
+      "finite_witness": 2,
+      "index": 0,
+      "name": "finite_density_state",
+      "parent_layer_index": null
+    },
+    {
+      "admissible_entropies": [
+        "von_neumann",
+        "linear_entropy",
+        "renyi_2",
+        "min_entropy",
+        "purity"
+      ],
+      "finite_witness": 3,
+      "index": 1,
+      "name": "hopf_projection_readout",
+      "parent_layer_index": 0
+    },
+    {
+      "admissible_entropies": [
+        "von_neumann",
+        "linear_entropy",
+        "renyi_2",
+        "min_entropy"
+      ],
+      "finite_witness": 5,
+      "holonomy_phase": 3.141592653589793,
+      "index": 2,
+      "name": "u1_holonomy_loop",
+      "parent_layer_index": 1
+    },
+    {
+      "admissible_entropies": [
+        "von_neumann",
+        "linear_entropy"
+      ],
+      "commutator_norm": 0.19449042782845435,
+      "finite_witness": 7,
+      "index": 3,
+      "name": "noncommuting_transport_order",
+      "parent_layer_index": 2
+    }
+  ],
+  "name": "nested_finite_geometry_holonomy_noncommutation_probe",
+  "nearby_variants": {
+    "names": [
+      "identity_layers_fail_strict_subset",
+      "missing_parent_link_fails",
+      "zero_holonomy_control_collapses",
+      "commuting_transport_control_collapses",
+      "invalid_density_rejected",
+      "dimension_mismatch_rejected"
+    ],
+    "passed": 6,
+    "total": 6
+  },
+  "observable": [
+    "Hopf north/south projection",
+    "U(1) holonomy phase",
+    "layer parent links",
+    "strict entropy-subset sizes",
+    "unitary transport commutator norm",
+    "density validity residuals",
+    "finite entropy readouts"
+  ],
+  "operation_sequence": [
+    "load formal geometry and entropy legos by path",
+    "evaluate Hopf projection on basis spinors",
+    "evaluate Hopf loop holonomy baseline",
+    "construct four nested finite geometry layers with parent links",
+    "run noncommuting unitary transports in two orders",
+    "read finite density entropy values",
+    "run immediate graveyard variants"
+  ],
+  "out_of_scope": [
+    "no formal manifold admission",
+    "no bridge admission",
+    "no cycle admission",
+    "no coordinate-family admission",
+    "no target-system admission"
+  ],
+  "pass_fail_predicate": "formal legos load, nested layers restrict rather than expand, Hopf and holonomy readouts survive, transport order is noncommuting, density states remain valid, and adjacent graveyards fail as expected",
+  "positive": {
+    "bipartite_entropy_readout_is_finite": {
+      "bell_conditional_entropy": -1.0,
+      "bell_joint_entropy": -0.0,
+      "bell_reduced_entropies": [
+        1.0,
+        1.0
+      ],
+      "pass": true,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_lego_entropy_bipartite_cut.py"
+    },
+    "formal_legos_called": {
+      "all_loaded": true,
+      "called": [
+        "hopf_projection",
+        "hopf_loop_holonomy",
+        "matrix_order_noncommutation",
+        "bipartite_entropy"
+      ],
+      "pass": true
+    },
+    "hopf_projection_basis_convention_survives": {
+      "north": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "pass": true,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_hopf_projection_s3_s2_phase_invariant_survivor_classes.py",
+      "south": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "z3_boundary_status": "SURVIVED"
+    },
+    "nested_layers_have_parent_links_and_strict_entropy_subsets": {
+      "admissible_entropy_set_sizes": [
+        6,
+        5,
+        4,
+        2
+      ],
+      "failures": [],
+      "layer_count": 4,
+      "pass": true
+    },
+    "transport_order_is_noncommuting": {
+      "commutator_norm": 0.19449042782845435,
+      "entropy_ab_bits": -0.0,
+      "entropy_ba_bits": -0.0,
+      "entropy_input_bits": -0.0,
+      "pass": true,
+      "rho_ab_validity": {
+        "hermitian_error": 0.0,
+        "min_eigenvalue": 0.0,
+        "pass": true,
+        "trace_imag": 0.0,
+        "trace_real": 0.9999999999999997
+      },
+      "rho_ba_validity": {
+        "hermitian_error": 0.0,
+        "min_eigenvalue": -4.4009026438193174e-17,
+        "pass": true,
+        "trace_imag": 0.0,
+        "trace_real": 0.9999999999999997
+      },
+      "rho_input_validity": {
+        "hermitian_error": 0.0,
+        "min_eigenvalue": 0.0,
+        "pass": true,
+        "trace_imag": 0.0,
+        "trace_real": 0.9999999999999998
+      },
+      "transport_order_trace_distance": 0.13079452330586896
+    },
+    "u1_holonomy_is_nonzero_and_area_dependent": {
+      "pass": true,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_sympy_hopf_loop_holonomy_area_dependence.py",
+      "phase": 3.141592653589793,
+      "positive_status": "SURVIVED",
+      "vertical_error": null,
+      "vertical_status": "SURVIVED"
+    }
+  },
+  "promotion_allowed": false,
+  "schema": "FORMAL_SCOUT_RESULT_v1",
+  "summary": {
+    "all_pass": true,
+    "elapsed_seconds": 0.718998,
+    "layer_count": 4,
+    "next_step": "Use this scout to propose alternate layer orders and then harden the best one into a formal sim.",
+    "promotion_allowed": false
+  },
+  "tool_integration_depth": {
+    "importlib": "load_bearing",
+    "pytorch": "load_bearing",
+    "sympy": "supportive",
+    "z3": "supportive"
+  },
+  "tool_manifest": {
+    "importlib": {
+      "reason": "load-bearing callable imports from existing formal legos",
+      "tried": true,
+      "used": true
+    },
+    "pytorch": {
+      "reason": "load-bearing finite density matrices, unitary transport, commutator norm, and entropy readouts",
+      "tried": true,
+      "used": true
+    },
+    "sympy": {
+      "reason": "used through imported holonomy and exact noncommutation legos when available",
+      "tried": true,
+      "used": true
+    },
+    "z3": {
+      "reason": "used through imported Hopf projection and exact noncommutation legos when available",
+      "tried": true,
+      "used": true
+    }
+  },
+  "why_not_v4_probes": "This is exploratory tower assembly over existing v4 reference callables; it is not a canonical probe and must remain in v5 formal_scouts until promoted by manifest."
+}

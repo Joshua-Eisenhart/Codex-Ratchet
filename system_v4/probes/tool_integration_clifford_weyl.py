@@ -53,6 +53,63 @@ TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing",
 }
 
+CANDIDATE_SIM_SPEC = {
+    "operation_sequence": [
+        "construct exact normalized two-component Weyl spinor amplitudes with SymPy from finite theta/phi fixtures",
+        "derive exact Bloch-vector expectation coordinates and half-angle coefficients from the spinor",
+        "build a Cl(3) rotor from the SymPy-derived half-angle coefficients",
+        "transport the reference axis e3 by R * e3 * ~R in clifford",
+        "compare clifford vector coefficients against the SymPy Bloch-vector target",
+        "run wrong-azimuth, unnormalized-spinor, north-pole, and south-pole controls",
+    ],
+    "carrier_topology": (
+        "finite Cl(3) rotor and Bloch-vector fixture derived from exact "
+        "two-component Weyl spinor coordinates; tool-integration only, with "
+        "no broad Weyl transport, GStack, axis, bridge, QIT, or nonclassical claim"
+    ),
+    "observable": (
+        "maximum absolute coordinate error and residual norm between the "
+        "clifford-transported vector and SymPy Bloch target, plus wrong-azimuth "
+        "residual, unnormalized target norm mismatch, and pole-boundary transport"
+    ),
+    "pass_fail_predicate": (
+        "pass iff equatorial and generic rotor transports match their SymPy "
+        "targets within tolerance; wrong azimuth is excluded; unnormalized spinor "
+        "target is excluded; north- and south-pole boundaries match declared vectors"
+    ),
+    "graveyards": [
+        "wrong azimuth sign must fail target matching",
+        "unnormalized spinor target must fail unit-transport norm agreement",
+        "north-pole boundary must reduce to identity transport onto +e3",
+        "south-pole boundary must survive half-turn transport onto -e3",
+        "missing SymPy or clifford import gate blocks execution",
+    ],
+    "baselines": [
+        "SymPy Bloch-vector target",
+        "unit-vector norm baseline for rotor transport",
+        "wrong-azimuth counterfactual",
+        "unnormalized-spinor counterfactual",
+        "north- and south-pole boundary baselines",
+    ],
+    "alternative_formulations": [
+        "explicit Pauli-matrix spinor expectation numeric baseline",
+        "quaternion or SU(2) rotor construction for the same fixtures",
+        "additional finite theta/phi fixture sweep before any broad transport claim",
+    ],
+    "tool_function_needs": [
+        "sympy.cos, sympy.sin, sympy.exp, sympy.simplify, sympy.re, sympy.im, sympy.Abs",
+        "clifford.Cl(3), basis blades e1/e2/e3/e12/e13, rotor product, and reverse",
+    ],
+    "lego_coupling_target": (
+        "bounded SymPy-to-clifford rotor transport tool-integration evidence "
+        "before Weyl transport lego-fit or coupling-stage packets"
+    ),
+    "claim_ceiling": (
+        "finite tool_integration_clifford_weyl tool-integration receipt only; "
+        "no bridge, GStack, axis, QIT, or nonclassical admission"
+    ),
+}
+
 try:
     import sympy as sp
 
@@ -175,6 +232,13 @@ def _transport_from_symbolics(symbolics: Dict[str, Any], *, phi_override=None) -
     }
 
 
+def _is_identity_rotor(rotor) -> bool:
+    if ONE is None:
+        return False
+    delta = rotor - ONE
+    return isclose(float(abs((delta * ~delta)[()]) ** 0.5), 0.0, rel_tol=0.0, abs_tol=1e-9)
+
+
 def run_positive_tests():
     if sp is None or Cl is None:
         return _gate_results("positive")
@@ -236,7 +300,7 @@ def run_boundary_tests():
 
     north_pole = _weyl_symbolics(sp.Integer(0), sp.Integer(0))
     north_transport = _transport_from_symbolics(north_pole)
-    north_transport["identity_rotor_expected"] = north_transport["rotor"] == "1"
+    north_transport["identity_rotor_expected"] = _is_identity_rotor(_rotor_from_symbolics(north_pole["half_angle"]))
     results["north_pole_boundary_uses_identity_rotor"] = north_transport
 
     south_pole = _weyl_symbolics(sp.pi, sp.Integer(0))
@@ -282,6 +346,8 @@ if __name__ == "__main__":
     results = {
         "name": NAME,
         "classification": classification,
+        "candidate_sim_spec": CANDIDATE_SIM_SPEC,
+        **CANDIDATE_SIM_SPEC,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

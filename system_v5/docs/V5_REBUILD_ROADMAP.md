@@ -14,6 +14,11 @@ The v5 rebuild is not one batch. It is an ongoing transfer and cleanup program:
 - keep gates strong enough to reject fake evidence without freezing rough tower
   exploration.
 
+Bounded does not mean conservative. It means maximum exploration under maximum
+constraints, like actual evolution: branch hard, prune hard, preserve deaths,
+and let strong gates select from many attempts without pretending the survivors
+are canonical.
+
 ## Current State
 
 Completed first checkpoint:

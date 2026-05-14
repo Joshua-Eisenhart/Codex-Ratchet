@@ -53,6 +53,10 @@ Fresh rerun plus receipt validation:
 
 `/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py --fresh-rerun`
 
+Name lint:
+
+`/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/lint_formal_scout_names.py`
+
 Provider receipts:
 
 `/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_provider_receipts.py`

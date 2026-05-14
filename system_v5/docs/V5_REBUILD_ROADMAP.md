@@ -152,12 +152,14 @@ Known gate issues:
 - formal-scout validator can rerun harnesses with `--fresh-rerun`.
 - gate-quality report:
   `system_v5/ops/queue_cleanup/gate_quality_report_20260514.md`.
+- formal-scout executable names can be linted with
+  `system_v5/ops/formal_scouts/lint_formal_scout_names.py`.
 
 Next actions:
 
 1. Add a manifest-approved v4 quarantine dry-run.
-2. Add a formal-scout filename linter for banned target-system labels.
-3. Keep provider receipt validation in every provider batch.
+2. Keep provider receipt validation in every provider batch.
+3. Build direct Gemini API route or keep Gemini CLI disabled with closure criteria.
 
 Done when:
 

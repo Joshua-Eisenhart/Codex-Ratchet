@@ -15,6 +15,7 @@ V4_PROBES = pathlib.Path("system_v4/probes")
 V4_BASELINE = pathlib.Path("system_v5/ops/queue_cleanup/v4_probe_status_baseline_20260514.json")
 V5_ALLOWED_PREFIXES = (
     "system_v5/docs/",
+    "system_v5/legos/",
     "system_v5/ops/formal_scouts/",
     "system_v5/ops/queue_cleanup/",
     "system_v5/ops/quarantine/",

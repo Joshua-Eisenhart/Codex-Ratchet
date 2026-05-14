@@ -149,15 +149,13 @@ Known gate issues:
 - v4 write fence now checks staged v4 changes and v4/probes dirty-state drift.
 - provider receipts now have schema validation.
 - large generated inventories can accidentally enter commits.
-- formal-scout validator is improving but still does not rerun each harness from
-  scratch before validation.
+- formal-scout validator can rerun harnesses with `--fresh-rerun`.
 
 Next actions:
 
 1. Add a gate-quality report under `system_v5/ops/queue_cleanup/`.
-2. Add optional fresh-rerun mode to formal-scout validator.
-3. Add a manifest-approved v4 quarantine dry-run.
-4. Keep provider receipt validation in every provider batch.
+2. Add a manifest-approved v4 quarantine dry-run.
+3. Keep provider receipt validation in every provider batch.
 
 Done when:
 
@@ -170,9 +168,8 @@ Best next batch:
 
 1. Add direct Gemini or blocked-provider receipt.
 2. Build SU(2)-Hopf formal scout from already-importable v4 targets.
-3. Add a fresh-rerun mode to formal-scout validation.
-4. Add a gate-quality report for over-strict vs weak/decorative gates.
-5. Commit as the next small v5 checkpoint.
+3. Add a gate-quality report for over-strict vs weak/decorative gates.
+4. Commit as the next small v5 checkpoint.
 
 ## Stop Conditions
 

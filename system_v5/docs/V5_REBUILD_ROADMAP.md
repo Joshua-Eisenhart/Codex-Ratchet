@@ -150,11 +150,13 @@ Known gate issues:
 - provider receipts now have schema validation.
 - large generated inventories can accidentally enter commits.
 - formal-scout validator can rerun harnesses with `--fresh-rerun`.
+- gate-quality report:
+  `system_v5/ops/queue_cleanup/gate_quality_report_20260514.md`.
 
 Next actions:
 
-1. Add a gate-quality report under `system_v5/ops/queue_cleanup/`.
-2. Add a manifest-approved v4 quarantine dry-run.
+1. Add a manifest-approved v4 quarantine dry-run.
+2. Add a formal-scout filename linter for banned target-system labels.
 3. Keep provider receipt validation in every provider batch.
 
 Done when:
@@ -168,7 +170,7 @@ Best next batch:
 
 1. Add direct Gemini or blocked-provider receipt.
 2. Build SU(2)-Hopf formal scout from already-importable v4 targets.
-3. Add a gate-quality report for over-strict vs weak/decorative gates.
+3. Add a manifest-approved v4 quarantine dry-run.
 4. Commit as the next small v5 checkpoint.
 
 ## Stop Conditions

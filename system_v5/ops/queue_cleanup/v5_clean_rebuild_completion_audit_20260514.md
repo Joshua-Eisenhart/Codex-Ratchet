@@ -1,11 +1,11 @@
-# V5 Clean Rebuild Completion Audit 2026-05-14
+# V5 Clean Rebuild Batch Audit 2026-05-14
 
-Status: working audit
-Scope: current v5 clean rebuild batch
+Status: first checkpoint audit, not full program completion
+Scope: current v5 clean rebuild batch only
 
 ## Objective Restated
 
-Rebuild SIM/QIT work cleanly in v5 while treating v4 as a reference corpus:
+Start rebuilding SIM/QIT work cleanly in v5 while treating v4 as a reference corpus:
 
 - v4 is mined for callables, receipts, ceilings, and graveyards;
 - v5 contains clean docs, formal scouts, queue cleanup, and provider records;
@@ -23,14 +23,14 @@ Rebuild SIM/QIT work cleanly in v5 while treating v4 as a reference corpus:
 | v4 as reference only | `V5_CLEAN_REBUILD_CHARTER.md`, formal-scout imports from v4 | satisfied for new work |
 | v5 as clean rebuild surface | `system_v5/ops/formal_scouts/`, `system_v5/ops/queue_cleanup/` | satisfied |
 | `grok_sim` proposal-only boundary | `MULTIMODEL_PROPOSAL_SPLIT.md` | present |
-| Cleanliness before/after counts | this file, probe inventory | partial, counts recorded |
+| Cleanliness before/after counts | this file, probe inventory | partial; program still dirty |
 | Runtime byproducts removed | `system_v5/ops/formal_scouts/__pycache__` removed | satisfied |
 | Transfer from real v4 callables | formal-scout harnesses import v4 files by path | satisfied for current scouts |
 | Formal-scout receipts | two result receipts under `system_v5/ops/formal_scouts/results/` | satisfied |
 | Provider proposal record | `system_v5/ops/formal_scouts/provider_scouts_20260514.md` | satisfied: Grok done, Gemini blocked, Sonnet done |
 | Probe cleanup inventory | `probe_folder_rebuild_inventory_20260514.md` | satisfied initial inventory |
 | Probe cleanup manifest-level classifier | `classify_v4_probe_corpus.py`, `v4_probe_corpus_classification_20260514.json` | satisfied read-only pass |
-| Gate-quality findings | this file | partial, initial findings below |
+| Gate-quality findings | this file, `system_v5/docs/V5_REBUILD_ROADMAP.md` | partial; more gates needed |
 | Literal math names | current v5 scout executable names | satisfied |
 | Git status summary | this file | current counts below |
 
@@ -109,6 +109,20 @@ validated:
    five target v4 files loaded through `importlib`.
 6. Provider outputs are recorded manually; they need a receipt schema if they
    become routine.
+
+## Not Done Yet
+
+The broader rebuild remains open. Missing work includes:
+
+- v4 write-fence/preflight enforcement;
+- manifest-level cleanup action, not just classification;
+- provider proposal receipt schema;
+- direct Gemini route or durable blocked-provider closure;
+- more formal-scout tower variants;
+- v4 callable registry by selected family;
+- fresh-rerun mode for formal-scout validation;
+- explicit gate-quality report beyond this first audit;
+- cleanup or quarantine of large generated/untracked estates.
 
 ## Next Clean Transfer Action
 

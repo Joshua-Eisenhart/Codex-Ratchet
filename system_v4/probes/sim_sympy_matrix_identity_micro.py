@@ -181,6 +181,46 @@ if __name__ == "__main__":
         "constraint_set": "C_exact_matrix_inverse_identity",
         "function_surface": "sympy.Matrix.inv plus Matrix.equals over exact 2x2 matrices",
         "micro_claim": "SymPy certifies exact matrix inverse identity and excludes wrong or singular inverse claims.",
+        "operation_sequence": [
+            "construct one exact invertible 2x2 integer matrix",
+            "compute Matrix.inv for the fixture",
+            "multiply A*A.inv() and A.inv()*A",
+            "compare both products with the identity matrix using Matrix.equals and entrywise simplify",
+            "run wrong-inverse and singular-matrix graveyards",
+            "run determinant, identity-matrix, and nonzero-symbolic-scale boundary checks",
+        ],
+        "carrier_topology": (
+            "exact 2x2 symbolic matrix fixture over SymPy expressions; no "
+            "density carrier, graph, manifold, bundle, or topology claim"
+        ),
+        "observable": (
+            "Matrix.equals identity verdicts, entrywise simplified residuals, "
+            "determinant boundary value, and singular inverse exception class"
+        ),
+        "pass_fail_predicate": (
+            "right and left inverse products equal I; entrywise residuals reduce "
+            "to zero; wrong inverse and determinant-zero inverse claims are "
+            "excluded; determinant/identity/nonzero-scale boundaries behave as declared"
+        ),
+        "graveyards": [
+            "wrong inverse candidate produces non-identity product and nonzero residual",
+            "determinant-zero matrix raises an inverse exclusion",
+            "symbolic determinant boundary t=0 prevents hidden promotion to all matrices",
+        ],
+        "baselines": [
+            "identity matrix is its own inverse at the neutral boundary",
+            "nonzero symbolic scalar multiple preserves inverse identity",
+            "determinant t for diag(1,t) gives the exact invertibility boundary",
+        ],
+        "alternative_formulations": [
+            "compute adjugate/determinant inverse formula and compare to Matrix.inv",
+            "encode 2x2 inverse equations in z3 or cvc5 over bounded rational fixtures",
+            "extend to operator-family lego fit only after exact scalar and matrix receipts exist",
+        ],
+        "tool_function_needs": {
+            "sympy": ["Matrix", "Matrix.inv", "Matrix.equals", "simplify", "factor", "det"],
+        },
+        "lego_coupling_target": "exact_matrix_identity_micro; operator_family_later_only",
         "classification": CLASSIFICATION,
         "sympy_version": SP_VERSION,
         "tool_manifest": TOOL_MANIFEST,

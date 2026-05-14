@@ -41,8 +41,14 @@ until Codex maps it to real repo callables and a formal-scout receipt.
 
 Latest provider receipt: `provider_scouts_20260514.md`.
 
+Machine-readable provider receipts live under `provider_receipts/`.
+
 ## Validation
 
 Run:
 
 `/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_formal_scout_results.py`
+
+Provider receipts:
+
+`/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3 system_v5/ops/formal_scouts/validate_provider_receipts.py`

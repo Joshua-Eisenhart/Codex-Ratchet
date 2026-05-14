@@ -2,6 +2,12 @@
 
 Status: proposal-only, noncanonical
 
+Machine-readable receipts:
+
+- `provider_receipts/20260514_grok_su2_hopf_weyl_topology_proposal.json`
+- `provider_receipts/20260514_gemini_cli_interactive_auth_blocked.json`
+- `provider_receipts/20260514_sonnet_v5_clean_rebuild_audit.json`
+
 ## Grok / xAI
 
 Route: direct xAI API through `OpenAI(base_url="https://api.x.ai/v1")`

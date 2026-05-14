@@ -123,11 +123,12 @@ Current status:
 - Grok direct xAI API works.
 - Sonnet via Claude Bridge works.
 - Gemini CLI is blocked by interactive browser auth.
+- Provider proposal receipts now have a schema and validator.
 
 Next actions:
 
-1. Add a provider proposal receipt schema.
-2. Build direct Gemini API route or mark Gemini CLI disabled until fixed.
+1. Build direct Gemini API route or keep Gemini CLI disabled until fixed.
+2. Run provider receipt validation after each provider batch.
 3. Run Grok and Sonnet on the same bounded scout target and compare.
 4. Translate only repo-grounded proposals into v5 formal scouts.
 

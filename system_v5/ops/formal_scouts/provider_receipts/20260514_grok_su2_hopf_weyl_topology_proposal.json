@@ -1,0 +1,42 @@
+{
+  "schema": "PROVIDER_PROPOSAL_RECEIPT_v1",
+  "provider": "grok_xai",
+  "route": "direct_xai_api",
+  "status": "completed",
+  "model": "grok-4.3",
+  "generated_at": "2026-05-14T18:00:00Z",
+  "prompt_scope": "next formal-scout geometric constraint manifold harness",
+  "proposal_text": "SU(2) principal bundle over Hopf-fibered S^3 base, with Weyl spinor sections on the total space enforcing noncommutative holonomy reduction; entropy-minimized topological constraints (Chern-Simons classes) define the manifold harness immediately prior to projection.",
+  "classification": "proposal_only",
+  "promotion_allowed": false,
+  "evidence_allowed": false,
+  "claim_ceiling": "Provider proposal only. It may seed a v5 formal-scout harness after Codex maps it to real repo callables; it is not evidence.",
+  "repo_grounding": {
+    "checked_by": "codex_importability_check",
+    "all_targets_loadable": true,
+    "targets": [
+      {
+        "path": "system_v4/probes/sim_su2_unit_quaternion_vector_action_survivor_classes.py",
+        "callables": ["qmul", "qconj", "qnorm2", "vector_action", "boundary_predicates", "main"]
+      },
+      {
+        "path": "system_v4/probes/sim_hopf_connection_one_form_loop_integral_survivor_classes.py",
+        "callables": ["connection_integral", "fiber_loop_row", "base_lift_loop_row", "z3_orientation_boundary", "main"]
+      },
+      {
+        "path": "system_v4/probes/sim_weyl_nested_shell.py",
+        "callables": ["build_spinor_cloud", "betti_from_cloud", "run_positive_tests", "run_negative_tests", "run_boundary_tests"]
+      },
+      {
+        "path": "system_v4/probes/sim_clifford_spinor_double_cover_micro.py",
+        "callables": ["_rotor", "_same_sandwich_report", "run_positive_tests", "run_negative_tests", "run_boundary_tests"]
+      },
+      {
+        "path": "system_v4/probes/sim_pure_lego_knots_topo_entropy.py",
+        "callables": ["partial_trace_clean", "von_neumann_entropy", "block_2_kauffman_yang_baxter", "block_3_topological_entropy", "block_4_braid_group", "main"]
+      }
+    ]
+  },
+  "blocked_reason": "",
+  "next_translation_target": "system_v5/ops/formal_scouts/sim_su2_unit_quaternion_hopf_holonomy_order_probe.py"
+}

@@ -282,6 +282,54 @@ if __name__ == "__main__":
         "probe_family": PROBE_FAMILY,
         "constraint_set": CONSTRAINT_SET,
         "classification": classification,
+        "operation_sequence": [
+            "load exact prior XGI hypergraph-incidence and TopoNetX cell-incidence receipts",
+            "construct an XGI Hypergraph with two overlapping three-node hyperedges",
+            "construct a TopoNetX CellComplex with the same two rank-2 triad cells",
+            "compare XGI hyperedge member sets against TopoNetX rank-2 cell vertex sets",
+            "compare shared-pair incidence in XGI intersection and TopoNetX rank-2 boundary incidence",
+            "run fake-pair, omitted-vertex, single-triad, and empty-fixture controls",
+        ],
+        "carrier_topology": (
+            "finite two-triad higher-order incidence fixture represented once as "
+            "an XGI hypergraph and once as a TopoNetX rank-2 cell complex; no "
+            "Hodge spectrum, dynamics, graph-cell lego promotion, bridge, axis, "
+            "GStack, QIT engine, or nonclassical claim"
+        ),
+        "observable": (
+            "hyperedge member sets, rank-2 cell vertex sets, shared edge incidence "
+            "count in the TopoNetX incidence matrix, fake-pair exclusion, and "
+            "single/empty fixture boundary counts"
+        ),
+        "pass_fail_predicate": (
+            "prior receipts must be canonical, load-bearing, all_pass, and fresh; "
+            "XGI hyperedge sets must equal TopoNetX cell vertex sets; shared pair "
+            "incidence must agree; fake pairs, omitted vertices, and empty fixtures "
+            "must not fabricate agreement"
+        ),
+        "graveyards": [
+            "non-shared pair {0,3} must not be treated as shared incidence",
+            "omitted two-vertex cell {0,1} must not match the three-node triad",
+            "empty XGI and TopoNetX fixtures must fabricate no incidence",
+            "stale, missing, noncanonical, or non-load-bearing parent receipts block the integration claim",
+        ],
+        "baselines": [
+            "prior XGI hypergraph incidence micro receipt",
+            "prior TopoNetX cell incidence micro receipt",
+            "single-triad one-cell boundary fixture",
+            "empty fixture no-incidence boundary",
+        ],
+        "alternative_formulations": [
+            "manual incidence matrix comparison from the same two triads",
+            "NetworkX bipartite incidence graph projection as a lossy graph baseline",
+            "GUDHI simplex-tree encoding as a separate topology comparison packet",
+        ],
+        "tool_function_needs": {
+            "xgi": ["Hypergraph", "add_edge", "edges.members"],
+            "toponetx": ["CellComplex", "add_cell", "cells", "edges", "incidence_matrix"],
+            "numpy": ["asarray", "abs", "sum"],
+        },
+        "lego_coupling_target": "minimal two-triad higher-order incidence fixture below graph-cell lego promotion",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "prior_function_receipts": PRIOR_RECEIPTS,

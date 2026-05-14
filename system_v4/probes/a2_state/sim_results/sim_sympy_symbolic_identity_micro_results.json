@@ -5,6 +5,40 @@
   "classification": "canonical",
   "function_surface": "sympy.diff, sympy.integrate, sympy.factor, sympy.expand, and sympy.simplify over exact scalar expressions",
   "micro_claim": "SymPy certifies a tiny sin(x)^2 derivative/integral identity and exactly factors x^4 - 1 while rejecting named wrong scalar identities.",
+  "operation_sequence": [
+    "construct exact one-variable scalar expressions sin(x)^2 and x^4 - 1",
+    "compute integrate(sin(x)^2, x), diff(candidate_antiderivative, x), factor(x^4 - 1), expand(factorization)",
+    "simplify residuals for the named correct identities",
+    "run wrong-antiderivative and wrong-factorization graveyards",
+    "run zero, constant, and unit symbolic boundary checks"
+  ],
+  "carrier_topology": "one formal scalar variable over exact symbolic expressions; no density carrier, graph, manifold, bundle, or topology claim",
+  "observable": "exact symbolic residuals after simplify/expand plus equality of the named factorization and boundary expressions",
+  "pass_fail_predicate": "correct derivative/integral and factorization residuals reduce to zero; named wrong identities have nonzero residuals; zero, constant, and unit boundaries remain exact",
+  "graveyards": [
+    "wrong antiderivative x/2 + sin(2*x)/4 has nonzero derivative residual",
+    "wrong factorization (x**2 - 1)**2 has nonzero expanded residual",
+    "zero, constant, and unit boundaries prevent treating generic simplification as the claim"
+  ],
+  "baselines": [
+    "numeric finite-difference or quadrature checks are intentionally not used as proof of exact symbolic identity",
+    "boundary fixtures 0, 7, and 1 provide exact scalar sanity baselines"
+  ],
+  "alternative_formulations": [
+    "cvc5 or z3 real-arithmetic encoding of bounded polynomial identities",
+    "SymPy matrix identity micro probe for non-scalar exact algebra",
+    "operator-family lego fit packet after exact scalar and matrix surfaces both have receipts"
+  ],
+  "tool_function_needs": {
+    "sympy": [
+      "diff",
+      "integrate",
+      "factor",
+      "expand",
+      "simplify"
+    ]
+  },
+  "lego_coupling_target": "symbolic_identity_micro; exact_algebra_support; operator_family_later_only",
   "sympy_version": "1.14.0",
   "tool_manifest": {
     "pytorch": {

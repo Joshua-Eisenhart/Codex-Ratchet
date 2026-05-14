@@ -1,5 +1,17 @@
 {
   "all_pass": true,
+  "alternative_formulations": [
+    "explicit Pauli-matrix spinor expectation numeric baseline",
+    "quaternion or SU(2) rotor construction for the same fixtures",
+    "additional finite theta/phi fixture sweep before any broad transport claim"
+  ],
+  "baselines": [
+    "SymPy Bloch-vector target",
+    "unit-vector norm baseline for rotor transport",
+    "wrong-azimuth counterfactual",
+    "unnormalized-spinor counterfactual",
+    "north- and south-pole boundary baselines"
+  ],
   "blocked_until": "explicit coupling-stage admission and companion receipts",
   "boundary": {
     "north_pole_boundary_uses_identity_rotor": {
@@ -23,7 +35,7 @@
         0.0,
         1.0
       ],
-      "identity_rotor_expected": false,
+      "identity_rotor_expected": true,
       "matches_target": true,
       "max_abs_error": 0.0,
       "residual_norm": 0.0,
@@ -70,7 +82,46 @@
       ]
     }
   },
-  "claim_ceiling": "finite tool_integration_clifford_weyl lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+  "candidate_sim_spec": {
+    "alternative_formulations": [
+      "explicit Pauli-matrix spinor expectation numeric baseline",
+      "quaternion or SU(2) rotor construction for the same fixtures",
+      "additional finite theta/phi fixture sweep before any broad transport claim"
+    ],
+    "baselines": [
+      "SymPy Bloch-vector target",
+      "unit-vector norm baseline for rotor transport",
+      "wrong-azimuth counterfactual",
+      "unnormalized-spinor counterfactual",
+      "north- and south-pole boundary baselines"
+    ],
+    "carrier_topology": "finite Cl(3) rotor and Bloch-vector fixture derived from exact two-component Weyl spinor coordinates; tool-integration only, with no broad Weyl transport, GStack, axis, bridge, QIT, or nonclassical claim",
+    "claim_ceiling": "finite tool_integration_clifford_weyl tool-integration receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+    "graveyards": [
+      "wrong azimuth sign must fail target matching",
+      "unnormalized spinor target must fail unit-transport norm agreement",
+      "north-pole boundary must reduce to identity transport onto +e3",
+      "south-pole boundary must survive half-turn transport onto -e3",
+      "missing SymPy or clifford import gate blocks execution"
+    ],
+    "lego_coupling_target": "bounded SymPy-to-clifford rotor transport tool-integration evidence before Weyl transport lego-fit or coupling-stage packets",
+    "observable": "maximum absolute coordinate error and residual norm between the clifford-transported vector and SymPy Bloch target, plus wrong-azimuth residual, unnormalized target norm mismatch, and pole-boundary transport",
+    "operation_sequence": [
+      "construct exact normalized two-component Weyl spinor amplitudes with SymPy from finite theta/phi fixtures",
+      "derive exact Bloch-vector expectation coordinates and half-angle coefficients from the spinor",
+      "build a Cl(3) rotor from the SymPy-derived half-angle coefficients",
+      "transport the reference axis e3 by R * e3 * ~R in clifford",
+      "compare clifford vector coefficients against the SymPy Bloch-vector target",
+      "run wrong-azimuth, unnormalized-spinor, north-pole, and south-pole controls"
+    ],
+    "pass_fail_predicate": "pass iff equatorial and generic rotor transports match their SymPy targets within tolerance; wrong azimuth is excluded; unnormalized spinor target is excluded; north- and south-pole boundaries match declared vectors",
+    "tool_function_needs": [
+      "sympy.cos, sympy.sin, sympy.exp, sympy.simplify, sympy.re, sympy.im, sympy.Abs",
+      "clifford.Cl(3), basis blades e1/e2/e3/e12/e13, rotor product, and reverse"
+    ]
+  },
+  "carrier_topology": "finite Cl(3) rotor and Bloch-vector fixture derived from exact two-component Weyl spinor coordinates; tool-integration only, with no broad Weyl transport, GStack, axis, bridge, QIT, or nonclassical claim",
+  "claim_ceiling": "finite tool_integration_clifford_weyl tool-integration receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
   "classification": "canonical",
   "criteria_checked": [
     "SymPy Weyl spinor amplitudes feed clifford equatorial rotor transport",
@@ -80,6 +131,14 @@
     "north-pole and south-pole boundary transports survive"
   ],
   "demotion_condition": "Demote this integration surface if SymPy symbolic Bloch vectors no longer match clifford rotor transport, if wrong azimuth signs are not excluded, or if unnormalized spinor targets are accepted.",
+  "graveyards": [
+    "wrong azimuth sign must fail target matching",
+    "unnormalized spinor target must fail unit-transport norm agreement",
+    "north-pole boundary must reduce to identity transport onto +e3",
+    "south-pole boundary must survive half-turn transport onto -e3",
+    "missing SymPy or clifford import gate blocks execution"
+  ],
+  "lego_coupling_target": "bounded SymPy-to-clifford rotor transport tool-integration evidence before Weyl transport lego-fit or coupling-stage packets",
   "name": "tool_integration_clifford_weyl",
   "negative": {
     "unnormalized_sympy_spinor_excludes_rotor_target_agreement": {
@@ -141,6 +200,15 @@
     }
   },
   "next_lego_target": "Use as bounded clifford plus SymPy Weyl tool-integration evidence before any Weyl transport lego-fit or coupling-stage packet.",
+  "observable": "maximum absolute coordinate error and residual norm between the clifford-transported vector and SymPy Bloch target, plus wrong-azimuth residual, unnormalized target norm mismatch, and pole-boundary transport",
+  "operation_sequence": [
+    "construct exact normalized two-component Weyl spinor amplitudes with SymPy from finite theta/phi fixtures",
+    "derive exact Bloch-vector expectation coordinates and half-angle coefficients from the spinor",
+    "build a Cl(3) rotor from the SymPy-derived half-angle coefficients",
+    "transport the reference axis e3 by R * e3 * ~R in clifford",
+    "compare clifford vector coefficients against the SymPy Bloch-vector target",
+    "run wrong-azimuth, unnormalized-spinor, north-pole, and south-pole controls"
+  ],
   "out_of_scope": [
     "no bridge promotion",
     "no axis claim",
@@ -148,6 +216,7 @@
     "no proof of broad Weyl transport",
     "no coupling-stage promotion"
   ],
+  "pass_fail_predicate": "pass iff equatorial and generic rotor transports match their SymPy targets within tolerance; wrong azimuth is excluded; unnormalized spinor target is excluded; north- and south-pole boundaries match declared vectors",
   "positive": {
     "generic_weyl_symbolics_feed_clifford_rotor_transport": {
       "abs_errors": [
@@ -218,6 +287,10 @@
   },
   "surviving_alternatives": [
     "This receipt covers only the named SymPy Weyl spinor fixtures feeding clifford Cl(3) rotor transport; it does not prove broad Weyl transport, bridge, axis, or GStack behavior."
+  ],
+  "tool_function_needs": [
+    "sympy.cos, sympy.sin, sympy.exp, sympy.simplify, sympy.re, sympy.im, sympy.Abs",
+    "clifford.Cl(3), basis blades e1/e2/e3/e12/e13, rotor product, and reverse"
   ],
   "tool_integration_depth": {
     "clifford": "load_bearing",

@@ -370,7 +370,7 @@ TARGETS: list[dict[str, Any]] = [
     {
         "tool": "gudhi",
         "function_api": "SimplexTree, Rips/filtration persistence and Betti summaries",
-        "receipt": "system_v4/probes/a2_state/sim_results/gudhi_capability_results.json",
+        "receipt": "system_v4/probes/a2_state/sim_results/sim_gudhi_capability_results.json",
         "role": "nonclassical_adjacent",
         "depth": "load_bearing",
         "candidate_lego_targets": ["persistence_geometry", "concurrence_measure"],

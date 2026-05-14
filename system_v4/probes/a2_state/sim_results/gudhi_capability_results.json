@@ -1,6 +1,86 @@
 {
   "name": "sim_gudhi_capability",
   "purpose": "tool-capability isolation probe for GUDHI persistent homology",
+  "operation_sequence": [
+    "construct a finite jittered circle point cloud and build a GUDHI Rips complex",
+    "compute persistence and count persistent H0/H1 features from the Rips diagram",
+    "build a GUDHI AlphaComplex on the same point cloud and compare H0/H1 counts",
+    "extract H1 barcode intervals and query persistent Betti numbers at a midpoint filtration",
+    "compare GUDHI H0 alive-at-epsilon against a numpy connected-components baseline",
+    "run random-noise, empty-cloud, single-point, and duplicate-point controls"
+  ],
+  "carrier_topology": "finite point-cloud and SimplexTree persistent-homology fixture; no topology lego promotion, manifold admission, bridge, axis, GStack, QIT engine, or nonclassical claim",
+  "observable": "persistent H0/H1 counts, H1 barcode interval count and lifetime, persistent Betti vector at a declared filtration, numpy connected component agreement, and degenerate input behavior",
+  "pass_fail_predicate": "pass iff circle Rips and Alpha complexes expose one persistent H0 and one persistent H1 feature, barcode and Betti APIs agree at the probe filtration, numpy and GUDHI H0 counts match on separated clusters, noise has no robust H1, and degenerate boundaries behave as declared",
+  "graveyards": [
+    "random noise cloud must not expose a robust H1 feature at the declared threshold",
+    "empty point cloud must not fabricate persistence features",
+    "single point must document GUDHI's empty-diagram capability limit",
+    "duplicate points must collapse to one connected component",
+    "numpy connected-components baseline must agree with GUDHI H0 alive-at-epsilon"
+  ],
+  "baselines": [
+    "numpy connected-components count on an epsilon graph",
+    "AlphaComplex on the same circle cloud as an alternate GUDHI construction",
+    "random Gaussian point cloud as a no-robust-cycle counterfactual",
+    "empty, singleton, and duplicate-point degenerate controls"
+  ],
+  "alternative_formulations": [
+    "manual SimplexTree insertion for a declared filtered complex",
+    "Rips filtration over a square or annulus fixture",
+    "persistence diagram stability sweep under small point-cloud perturbations"
+  ],
+  "tool_function_needs": [
+    "gudhi.RipsComplex(points, max_edge_length).create_simplex_tree",
+    "gudhi.AlphaComplex(points).create_simplex_tree",
+    "SimplexTree.persistence",
+    "SimplexTree.persistence_intervals_in_dimension",
+    "SimplexTree.persistent_betti_numbers",
+    "SimplexTree.insert and num_vertices for degenerate controls"
+  ],
+  "lego_coupling_target": "bounded GUDHI persistent-homology capability evidence before exact topology lego-fit or coupling packets",
+  "claim_ceiling": "finite sim_gudhi_capability tool-capability receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+  "candidate_sim_spec": {
+    "operation_sequence": [
+      "construct a finite jittered circle point cloud and build a GUDHI Rips complex",
+      "compute persistence and count persistent H0/H1 features from the Rips diagram",
+      "build a GUDHI AlphaComplex on the same point cloud and compare H0/H1 counts",
+      "extract H1 barcode intervals and query persistent Betti numbers at a midpoint filtration",
+      "compare GUDHI H0 alive-at-epsilon against a numpy connected-components baseline",
+      "run random-noise, empty-cloud, single-point, and duplicate-point controls"
+    ],
+    "carrier_topology": "finite point-cloud and SimplexTree persistent-homology fixture; no topology lego promotion, manifold admission, bridge, axis, GStack, QIT engine, or nonclassical claim",
+    "observable": "persistent H0/H1 counts, H1 barcode interval count and lifetime, persistent Betti vector at a declared filtration, numpy connected component agreement, and degenerate input behavior",
+    "pass_fail_predicate": "pass iff circle Rips and Alpha complexes expose one persistent H0 and one persistent H1 feature, barcode and Betti APIs agree at the probe filtration, numpy and GUDHI H0 counts match on separated clusters, noise has no robust H1, and degenerate boundaries behave as declared",
+    "graveyards": [
+      "random noise cloud must not expose a robust H1 feature at the declared threshold",
+      "empty point cloud must not fabricate persistence features",
+      "single point must document GUDHI's empty-diagram capability limit",
+      "duplicate points must collapse to one connected component",
+      "numpy connected-components baseline must agree with GUDHI H0 alive-at-epsilon"
+    ],
+    "baselines": [
+      "numpy connected-components count on an epsilon graph",
+      "AlphaComplex on the same circle cloud as an alternate GUDHI construction",
+      "random Gaussian point cloud as a no-robust-cycle counterfactual",
+      "empty, singleton, and duplicate-point degenerate controls"
+    ],
+    "alternative_formulations": [
+      "manual SimplexTree insertion for a declared filtered complex",
+      "Rips filtration over a square or annulus fixture",
+      "persistence diagram stability sweep under small point-cloud perturbations"
+    ],
+    "tool_function_needs": [
+      "gudhi.RipsComplex(points, max_edge_length).create_simplex_tree",
+      "gudhi.AlphaComplex(points).create_simplex_tree",
+      "SimplexTree.persistence",
+      "SimplexTree.persistence_intervals_in_dimension",
+      "SimplexTree.persistent_betti_numbers",
+      "SimplexTree.insert and num_vertices for degenerate controls"
+    ],
+    "lego_coupling_target": "bounded GUDHI persistent-homology capability evidence before exact topology lego-fit or coupling packets",
+    "claim_ceiling": "finite sim_gudhi_capability tool-capability receipt only; no bridge, GStack, axis, QIT, or nonclassical admission"
+  },
   "contract": "~/wiki/concepts/tool-capability-sim-program.md",
   "witness_load_bearing_uses": [
     "system_v4/probes/sim_gudhi_concurrence_filtration.py",
@@ -168,7 +248,6 @@
     "no axis claim",
     "no GStack claim"
   ],
-  "claim_ceiling": "finite sim_gudhi_capability lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
   "next_lego_target": "Use as bounded GUDHI persistent-homology capability evidence before exact topology lego-fit or coupling packets.",
   "promotion_condition": "Requires separate coupling/coexistence receipts and explicit stage-gate approval.",
   "blocked_until": "explicit coupling-stage admission and companion receipts"

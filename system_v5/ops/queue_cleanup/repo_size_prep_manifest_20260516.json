@@ -1,0 +1,132 @@
+{
+  "schema": "repo_size_cleanup_prep_v1",
+  "generated_at": "2026-05-16T22:57:30Z",
+  "source_commit": "72dcf4984a5758c8700dd2137fa8a3a7d73ad025",
+  "purpose": "Read-only prep manifest for repo-size cleanup after the runner cleanup boundary checkpoint. This manifest proposes no deletion and performs no move.",
+  "policy": {
+    "delete_allowed": false,
+    "move_only": true,
+    "freshness_window_hours": 72,
+    "external_model_outputs_are_advisory": true,
+    "git_index_mutation_owner": "main_codex_controller_only"
+  },
+  "size_snapshot": {
+    "repo_total": "4.6G",
+    "git_dir": "266M",
+    "work": "3.5G",
+    "work_external": "3.5G",
+    "system_v5": "345M",
+    "system_v4": "171M",
+    "system_v5_ops_queue_cleanup": "194M",
+    "system_v5_ops_formal_scouts_results": "2.8M",
+    "system_v5_legos_results": "60K",
+    "system_v4_probes_a2_state_queue": "16M",
+    "claude_worktrees": "279M",
+    "overnight_logs": "78M",
+    "runs": "28M"
+  },
+  "git_object_store_snapshot": {
+    "count": 30592,
+    "size": "75.82 MiB",
+    "in_pack": 147641,
+    "packs": 15,
+    "size_pack": "155.90 MiB",
+    "prune_packable": 53,
+    "garbage": 6278,
+    "size_garbage": "19.24 MiB",
+    "decision": "KEEP_ACTIVE",
+    "reason": ".git is denylisted for cleanup mutation; recoverable garbage is small relative to working-tree bloat."
+  },
+  "largest_file_candidates": [
+    {
+      "path": "work/external/Sana/.git/objects/pack/pack-f865c533939657abb1acaef67ba1b3bbfb192f57.pack",
+      "size": "2.6G",
+      "decision": "BLOCKED_REQUIRES_PREP",
+      "reason": "Nested external clone pack under ignored work/ owner surface; modified on 2026-05-16; requires owner/use check before move."
+    },
+    {
+      "path": "work/external/sana-diffusers-py313-venv/lib/python3.13/site-packages/torch/lib/libtorch_cpu.dylib",
+      "size": "237M",
+      "decision": "BLOCKED_REQUIRES_PREP",
+      "reason": "Rebuildable environment artifact in ignored work/ owner surface, but freshness window is active and pinned-rebuild receipt is not recorded."
+    }
+  ],
+  "surface_decisions": [
+    {
+      "path": "work/external/Sana",
+      "size": "2.6G",
+      "decision": "BLOCKED_REQUIRES_PREP",
+      "next_required_proof": "Confirm no current task depends on the nested clone, record remote/revision/rebuild instructions, then prepare exact move-only quarantine manifest after the freshness window."
+    },
+    {
+      "path": "work/external/sana-diffusers-py313-venv",
+      "size": "820M",
+      "decision": "BLOCKED_REQUIRES_PREP",
+      "next_required_proof": "Record pinned dependency install command and verify the environment is not needed by current Sana/tooling tasks before quarantine or archive."
+    },
+    {
+      "path": ".claude/worktrees",
+      "size": "279M",
+      "decision": "BLOCKED_REQUIRES_PREP",
+      "next_required_proof": "Confirm no active Claude/Codex worker owns the worktrees; then enumerate exact stale worktree paths and heads."
+    },
+    {
+      "path": "system_v5/ops/queue_cleanup",
+      "size": "194M",
+      "decision": "KEEP_ACTIVE",
+      "next_required_proof": "Current cleanup and queue-truth evidence surface; do not archive during active cleanup pass."
+    },
+    {
+      "path": "system_v4/probes",
+      "size": "171M",
+      "decision": "KEEP_ACTIVE",
+      "next_required_proof": "Reference/mining surface with active deletes and replacement sims; use coordinated rename/quarantine manifest only."
+    },
+    {
+      "path": "overnight_logs",
+      "size": "78M",
+      "decision": "BLOCKED_REQUIRES_PREP",
+      "next_required_proof": "Exact archive manifest plus reference scan proving no current control note or runner reads these logs."
+    },
+    {
+      "path": "runs",
+      "size": "28M",
+      "decision": "BLOCKED_REQUIRES_PREP",
+      "next_required_proof": "Run-family manifest that preserves protected anchors and current registry files."
+    },
+    {
+      "path": "system_v4/probes/a2_state/queue/claimed",
+      "decision": "BLOCKED_REQUIRES_PREP",
+      "next_required_proof": "Wait for 72-hour freshness window or explicit owner override, rerun PID/process checks, then use absolute claim-path commands from atomic_claimed_queue_reconcile_dry_run_20260516.json."
+    }
+  ],
+  "external_review_receipts": {
+    "opus_receipt": "/tmp/codex_claude_bridge/20260516T225521Z-you-are-opus-acting-as-an-external-cleanup-risk--bf37448e3943.receipt.json",
+    "sonnet_receipt": "/tmp/codex_claude_bridge/20260516T225521Z-you-are-sonnet-acting-as-an-external-implementat-1bfc8205f4d3.receipt.json",
+    "gemini_output": "/tmp/codex_ratchet_repo_size_cleanup_20260516/gemini_repo_size_review.out",
+    "grok_output": "/tmp/codex_ratchet_repo_size_cleanup_20260516/grok_repo_size_review.out"
+  },
+  "accepted_next_actions": [
+    "Do not run git gc, git prune, git rm --cached, or filter-repo in this pass.",
+    "Do not mutate atomic queue claimed files inside the 72-hour safety window.",
+    "Use this manifest as prep for a future exact move-only work/external cleanup pass.",
+    "Treat external model recommendations as advisory until local path checks and owner blockers are cleared."
+  ],
+  "rejected_external_recommendations": [
+    {
+      "source": "gemini",
+      "recommendation": "git rm --cached -r work/external/Sana work/external/sana-diffusers-py313-venv",
+      "reason": "Rejected because work/ is ignored and owner-protected; no current evidence that these paths are tracked in the outer repo."
+    },
+    {
+      "source": "gemini",
+      "recommendation": "git gc --prune=now",
+      "reason": "Rejected because .git is denylisted during active cleanup and the recoverable garbage is only 19.24 MiB."
+    },
+    {
+      "source": "gemini",
+      "recommendation": "archive 8856 done queue items",
+      "reason": "Rejected for this pass; queue estates require exact manifest and active-state proof, not size-first sweeping."
+    }
+  ]
+}

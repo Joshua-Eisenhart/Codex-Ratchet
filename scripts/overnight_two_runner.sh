@@ -14,6 +14,7 @@ GATE="$ROOT/scripts/verify_load_bearing_has_capability_probe.py"
 SEMANTIC_GUARD="$ROOT/scripts/direct_sim_semantic_guard.py"
 LANE_A_DIR="$ROOT/system_v4/probes/a2_state/queue/lane_A"
 LANE_B_DIR="$ROOT/system_v4/probes/a2_state/queue/lane_B"
+RESULTS="$ROOT/system_v4/probes/a2_state/sim_results"
 STAMP=$(date +%Y%m%d_%H%M%S)
 LOG_DIR="${LOG_DIR:-$ROOT/overnight_logs}"
 TRACKED_REPAIR_REPORT_DIR="${TRACKED_REPAIR_REPORT_DIR:-$ROOT/system_v5/ops/queue_cleanup}"
@@ -31,7 +32,7 @@ SIM_TIMEOUT=900  # seconds; kill any single sim that runs longer than this
 
 # Sims that must never enter the overnight queue (meta-benchmarks, harnesses).
 QUEUE_BLACKLIST="sim_timing_benchmark.py|autoresearch_sim_harness.py|exploratory_process_cycle_stage_matrix_sim.py|stage_matrix_neg_lib.py"
-LATE_STAGE_PATTERN='tier_d|boundary_flux|bridge|coupling|pairwise|coexistence|rho_ab|phi0|kernel|emergence|axis|axis0|bipartite|partial_trace|entanglement|mutual_information|mutual_info|coherent_information|coherent_info|concurrence|negativity|schmidt|entropy|capacity|capacities|carnot|szilard|landauer|thermo'
+LATE_STAGE_PATTERN='tier_d|boundary_flux|bridge|coupling|pairwise|coexistence|rho_ab|phi0|emergence|axis|axis0|bipartite|entanglement|mutual_information|mutual_info|coherent_information|coherent_info|concurrence|negativity|schmidt|entropy|capacity|capacities|carnot|szilard|landauer|thermo'
 
 usage() { echo "usage: $0 --minutes N [--lane-a-parallel K1] [--lane-b-parallel K2] [--dry]"; exit 2; }
 
@@ -143,14 +144,33 @@ PY
 
 stage_gate_claim_for_sim() {
   local sim="$1" base
+  if "$PY" - "$sim" "$RESULTS" >/dev/null 2>&1 <<'PY'
+import json
+import pathlib
+import sys
+
+sim = pathlib.Path(sys.argv[1])
+results = pathlib.Path(sys.argv[2])
+path = results / f"{sim.stem}_results.json"
+try:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+except Exception:
+    raise SystemExit(1)
+if payload.get("classification") == "tool_lego_fit_probe" and payload.get("promotion_allowed") is False:
+    raise SystemExit(0)
+raise SystemExit(1)
+PY
+  then
+    return 1
+  fi
   base=$(basename "$sim" .py)
   base=${base#sim_}
   case "$base" in
     classical_baseline_*) return 1 ;;
     *tier_d*|*boundary_flux*) echo "tier_d"; return 0 ;;
-    *bridge*|*coupling*|*pairwise*|*coexistence*|*rho_ab*|*phi0*|*kernel*|*emergence*) echo "scientific_coupling"; return 0 ;;
+    *bridge*|*coupling*|*pairwise*|*coexistence*|*rho_ab*|*phi0*|*emergence*) echo "scientific_coupling"; return 0 ;;
     axis*|axis0*) echo "axis"; return 0 ;;
-    *bipartite*|*partial_trace*|*entanglement*|*mutual_information*|*mutual_info*|*coherent_information*|*coherent_info*|*concurrence*|*negativity*|*schmidt*|*entropy*|*capacity*|*capacities*|*carnot*|*szilard*|*landauer*|*thermo*) echo "default_late_stage"; return 0 ;;
+    *bipartite*|*entanglement*|*mutual_information*|*mutual_info*|*coherent_information*|*coherent_info*|*concurrence*|*negativity*|*schmidt*|*entropy*|*capacity*|*capacities*|*carnot*|*szilard*|*landauer*|*thermo*) echo "default_late_stage"; return 0 ;;
   esac
   return 1
 }
@@ -273,7 +293,7 @@ cleanup() {
 # --- worker: claim one item, maybe-gate, run, complete ----------------------
 worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
   local lane="$1" qdir="$2" gated="$3" wid="$4"
-  local claim_json claim_path sim exit_code artifact sha complete_json terminal_state
+  local claim_json claim_path sim exit_code artifact sha complete_json terminal_state blocked_reason
   if [ "$DRY" -eq 1 ]; then
     echo "DRY: $PY $QUEUE_CLAIM claim --queue $qdir --worker $wid"
     if [ "$gated" -eq 1 ]; then
@@ -342,8 +362,13 @@ worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
     emit complete_error "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"exit\":$exit_code,\"msg\":\"complete_failed\""
   else
     terminal_state=$("$PY" -c "import json,sys;print(json.loads(sys.argv[1]).get('terminal_state',''))" "$complete_json" 2>/dev/null || echo "")
+    blocked_reason=$("$PY" -c "import json,sys;print(json.loads(sys.argv[1]).get('blocked_reason') or '')" "$complete_json" 2>/dev/null || echo "")
     if [ "$terminal_state" = "blocked" ]; then
-      emit gate_denied "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"exit\":$exit_code,\"reason\":\"complete_blocked\""
+      if [ "$blocked_reason" = "done_duplicate_conflict" ]; then
+        emit duplicate "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"exit\":$exit_code,\"reason\":\"done_duplicate_conflict\""
+      else
+        emit gate_denied "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"exit\":$exit_code,\"reason\":\"${blocked_reason:-complete_blocked}\""
+      fi
     else
       emit claimed "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"exit\":$exit_code,\"artifact\":\"$artifact\",\"sha256\":\"$sha\""
     fi
@@ -368,8 +393,9 @@ from pathlib import Path
 root = Path(os.environ["ROOT"])
 events = [json.loads(l) for l in Path(os.environ["EVENTS_PATH"]).read_text().splitlines() if l.strip()]
 claimed = [e for e in events if e["kind"] == "claimed"]
+duplicates = [e for e in events if e["kind"] == "duplicate"]
 denied  = [e for e in events if e["kind"] == "gate_denied"]
-Path(os.environ["MANIFEST_PATH"]).write_text(json.dumps(claimed, indent=2))
+Path(os.environ["MANIFEST_PATH"]).write_text(json.dumps(claimed + duplicates, indent=2))
 Path(os.environ["DENIALS_PATH"]).write_text(json.dumps(denied, indent=2))
 
 # tool capability state: scan known tool probes
@@ -395,15 +421,19 @@ Path(os.environ["TOOLSTATE_PATH"]).write_text(json.dumps(tools, indent=2))
 
 lane_a = [e for e in claimed if e.get("lane") == "A"]
 lane_b = [e for e in claimed if e.get("lane") == "B"]
+dup_a = [e for e in duplicates if e.get("lane") == "A"]
+dup_b = [e for e in duplicates if e.get("lane") == "B"]
 summary = {
     "lane_a": {
         "claimed": len(lane_a),
+        "duplicate": len(dup_a),
         "pass": sum(1 for e in lane_a if e["exit"] == 0),
         "fail": sum(1 for e in lane_a if e["exit"] != 0),
         "gate_denied": len(denied),
     },
     "lane_b": {
         "claimed": len(lane_b),
+        "duplicate": len(dup_b),
         "pass": sum(1 for e in lane_b if e["exit"] == 0),
         "fail": sum(1 for e in lane_b if e["exit"] != 0),
     },

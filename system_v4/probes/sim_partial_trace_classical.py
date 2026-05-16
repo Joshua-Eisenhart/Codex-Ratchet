@@ -12,7 +12,9 @@ the purity-entropy inversion.
 import json, os
 import numpy as np
 
+NAME = "partial_trace_classical"
 classification = "classical_baseline"
+CLAIM_CEILING = "classical baseline for probability marginalization only; no density-matrix partial-trace, coherence, or nonclassical claim"
 divergence_log = (
     "Cannot express pure-joint -> mixed-marginal (entanglement signature); "
     "no off-diagonal coherence tracing, only diagonal marginalization; "
@@ -59,17 +61,57 @@ if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = all(pos.values()) and all(neg.values()) and all(bnd.values())
     results = {
-        "name": "partial_trace_classical",
+        "schema": "SIM_RESULT_v1",
+        "name": NAME,
         "classification": "classical_baseline",
+        "promotion_allowed": False,
+        "claim_ceiling": CLAIM_CEILING,
+        "next_lego_target": "density_matrix_partial_trace_marginal_fixture",
+        "promotion_condition": "not promotable; classical probability marginalization baseline only",
+        "blocked_until": "paired with density-matrix partial-trace receipts",
+        "demotion_condition": "already baseline; demote any use as density-matrix partial trace proof",
+        "out_of_scope": [
+            "no density-matrix partial trace",
+            "no coherence readout",
+            "no nonclassical admission",
+        ],
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
         "divergence_log": divergence_log,
+        "survivor_classes": {
+            "survivor_equivalence_classes": [key for key, value in pos.items() if value],
+            "survivor_count": sum(1 for value in pos.values() if value),
+            "killed_neighbors": [key for key, value in {**neg, **bnd}.items() if value],
+            "killed_neighbor_count": sum(1 for value in {**neg, **bnd}.values() if value),
+        },
+        "rosetta_to_sim_contract": {
+            "operation_sequence": [
+                "construct finite joint probability table",
+                "sum over second coordinate",
+                "sum over first coordinate",
+                "check product factorization control",
+                "check linearity boundary",
+            ],
+            "carrier_topology": "finite classical joint probability table",
+            "observable": ["row marginal", "column marginal", "linearity gap"],
+            "pass_fail_predicate": "classical marginals normalize and linearity holds while divergence log marks missing density-matrix behavior",
+            "graveyard_companions": ["classical pure-joint pure-marginal control"],
+            "baseline_variants": ["two-by-two joint probability table"],
+            "alternative_formulations": ["density-matrix partial trace", "tensor index summation"],
+            "exact_tool_function_needs": {"numpy": "axis summation and allclose checks"},
+            "lego_coupling_target": "classical_probability_marginalization_baseline",
+            "claim_ceiling": CLAIM_CEILING,
+        },
     }
-    out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
-                       "partial_trace_classical_results.json")
+    out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
+    out = os.path.join(out_dir, "sim_partial_trace_classical_results.json")
+    legacy_out = os.path.join(out_dir, "partial_trace_classical_results.json")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w") as f: json.dump(results, f, indent=2, default=str)
+    with open(legacy_out, "w") as f: json.dump(results, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

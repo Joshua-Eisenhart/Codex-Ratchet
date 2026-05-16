@@ -6007,6 +6007,45 @@ def test_queue_claim_stage_gate_sees_engine_qit_and_nonclassical_tokens() -> Non
     assert module._stage_gate_claim_for_sim("sim_nonclassical_smoke.py") == "scientific_coupling"
 
 
+def test_queue_claim_does_not_stage_gate_demoted_partial_trace_baseline() -> None:
+    module = _load_module(
+        "queue_claim_partial_trace_demotion_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+
+    sim = "system_v4/probes/sim_partial_trace_classical.py"
+
+    assert module._plan_stage_from_sim_path(sim) == "early_core"
+    assert module._stage_gate_claim_for_sim(sim) is None
+
+
+def test_queue_claim_does_not_stage_gate_nonpromotable_tool_lego_fit(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "queue_claim_tool_lego_fit_bypass_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+    repo = tmp_path / "repo"
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    results.mkdir(parents=True)
+    sim = "system_v4/probes/sim_bridge_tool_fit_probe.py"
+    (results / "sim_bridge_tool_fit_probe_results.json").write_text(
+        json.dumps(
+            {
+                "classification": "tool_lego_fit_probe",
+                "promotion_allowed": False,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "ROOT", repo)
+
+    assert module._stage_gate_claim_for_sim("system_v4/probes/sim_bridge_probe.py") == "scientific_coupling"
+    assert module._stage_gate_claim_for_sim(sim) is None
+
+
 def test_queue_claim_does_not_late_gate_classical_baseline_gram_schmidt() -> None:
     module = _load_module(
         "queue_claim_classical_baseline_token_under_test",
@@ -11945,6 +11984,33 @@ def test_adaptive_controller_stage_gate_blocks_late_enqueue(tmp_path, monkeypatc
     payload = json.loads(blocked[0].read_text(encoding="utf-8"))
     assert payload["blocked_reason"] == "stage_gate_blocked"
     assert payload["blocked_stage_claim"] == "axis"
+
+
+def test_adaptive_controller_does_not_stage_gate_nonpromotable_tool_lego_fit(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "adaptive_controller_tool_lego_fit_bypass_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    results = tmp_path / "results"
+    results.mkdir()
+    sim = tmp_path / "sim_bridge_tool_fit_probe.py"
+    sim.write_text('classification = "canonical"\n', encoding="utf-8")
+    (results / "sim_bridge_tool_fit_probe_results.json").write_text(
+        json.dumps(
+            {
+                "classification": "tool_lego_fit_probe",
+                "promotion_allowed": False,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "RESULTS", results)
+
+    assert module.stage_gate_claim_for_sim(tmp_path / "sim_bridge_probe.py") == "scientific_coupling"
+    assert module.stage_gate_claim_for_sim(sim) is None
 
 
 def test_queue_claim_blocks_stage_gated_enqueue_and_claim(tmp_path, monkeypatch) -> None:

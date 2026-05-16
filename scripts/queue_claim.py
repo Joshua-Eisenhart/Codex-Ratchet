@@ -114,7 +114,6 @@ CORE_LADDER_FAMILIES = {
 FRAMEWORK_DOCTRINE_FAMILIES = {"fep", "holodeck", "iching", "igt", "leviathan"}
 LATE_INFO_KEYWORDS = (
     "bipartite",
-    "partial_trace",
     "entanglement",
     "mutual_information",
     "mutual_info",
@@ -146,7 +145,6 @@ BRIDGE_RUNNER_TOKENS = (
     "rho_ab",
     "phi0",
     "cut",
-    "kernel",
     "emergence",
 )
 
@@ -165,6 +163,13 @@ def _lane_dir(lane: str) -> Path:
 def _result_json_path(sim_path: str | Path) -> Path:
     stem = Path(sim_path).stem
     return ROOT / "system_v4" / "probes" / "a2_state" / "sim_results" / f"{stem}_results.json"
+
+
+def _load_json(path: Path) -> dict:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
 
 
 def _wizard_admission_report(sim_path: str, admission_file: str | None = None) -> dict[str, object]:
@@ -285,6 +290,12 @@ def _plan_stage_from_sim_path(sim_path: str) -> str:
 
 
 def _stage_gate_claim_for_sim(sim_path: str | Path) -> str | None:
+    result = _load_json(_result_json_path(sim_path))
+    if (
+        result.get("classification") == "tool_lego_fit_probe"
+        and result.get("promotion_allowed") is False
+    ):
+        return None
     stem = Path(sim_path).stem.lower()
     if stem.startswith("sim_"):
         stem = stem[4:]
@@ -582,7 +593,16 @@ if __name__ == "__main__":
             artifact,
             require_receipt=bool(flags.get("require-receipt", False)),
         )
-        print(json.dumps({"terminal_path": str(terminal), "terminal_state": terminal.parent.name}))
+        terminal_payload = _load_json(terminal)
+        print(
+            json.dumps(
+                {
+                    "blocked_reason": terminal_payload.get("blocked_reason"),
+                    "terminal_path": str(terminal),
+                    "terminal_state": terminal.parent.name,
+                }
+            )
+        )
     elif cmd == "block":
         worker = flags.get("worker")
         claim_path = flags.get("claim-path")

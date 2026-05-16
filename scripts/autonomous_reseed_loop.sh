@@ -5,6 +5,7 @@
 set -u
 ROOT="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
 PY="/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+RESULTS="$ROOT/system_v4/probes/a2_state/sim_results"
 RESEED_PIDFILE="/tmp/codex_ratchet_autonomous_reseed.pid"
 cd "$ROOT"
 CYCLE_SEC=${CYCLE_SEC:-300}   # 5 min
@@ -119,7 +120,7 @@ plan_stage_for_sim() {
     axis|axis0) echo "late_axis" ;;
     *)
       case "$base" in
-        *bipartite*|*partial_trace*|*entanglement*|*mutual_information*|*mutual_info*|*coherent_information*|*coherent_info*|*concurrence*|*negativity*|*schmidt*|*entropy*|*capacity*|*capacities*|*carnot*|*szilard*|*landauer*|*thermo*)
+        *bipartite*|*entanglement*|*mutual_information*|*mutual_info*|*coherent_information*|*coherent_info*|*concurrence*|*negativity*|*schmidt*|*entropy*|*capacity*|*capacities*|*carnot*|*szilard*|*landauer*|*thermo*)
           echo "late_info"
           ;;
         *)
@@ -132,13 +133,32 @@ plan_stage_for_sim() {
 
 stage_gate_claim_for_sim() {
   local sim="$1" base family
+  if "$PY" - "$sim" "$RESULTS" >/dev/null 2>&1 <<'PY'
+import json
+import pathlib
+import sys
+
+sim = pathlib.Path(sys.argv[1])
+results = pathlib.Path(sys.argv[2])
+path = results / f"{sim.stem}_results.json"
+try:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+except Exception:
+    raise SystemExit(1)
+if payload.get("classification") == "tool_lego_fit_probe" and payload.get("promotion_allowed") is False:
+    raise SystemExit(0)
+raise SystemExit(1)
+PY
+  then
+    return 1
+  fi
   base=$(basename "$sim" .py)
   base=${base#sim_}
   family=${base%%_*}
   case "$base" in
     classical_baseline_*) return 1 ;;
     *tier_d*|*boundary_flux*) echo "tier_d"; return 0 ;;
-    *bridge*|*coupling*|*pairwise*|*coexistence*|*rho_ab*|*phi0*|*kernel*|*emergence*) echo "scientific_coupling"; return 0 ;;
+    *bridge*|*coupling*|*pairwise*|*coexistence*|*rho_ab*|*phi0*|*emergence*) echo "scientific_coupling"; return 0 ;;
   esac
   case "$family" in
     axis|axis0) echo "axis"; return 0 ;;

@@ -81,7 +81,6 @@ FRAMEWORK_DOCTRINE_FAMILIES = {
 }
 LATE_INFO_KEYWORDS = (
     "bipartite",
-    "partial_trace",
     "entanglement",
     "mutual_information",
     "mutual_info",
@@ -107,7 +106,6 @@ BRIDGE_RUNNER_TOKENS = (
     "rho_ab",
     "phi0",
     "cut",
-    "kernel",
 )
 NONCLASSICAL_TOOL_TOKENS = (
     "pytorch",
@@ -303,6 +301,13 @@ def queue_item_path(lane: str, sim_path: str | pathlib.Path) -> pathlib.Path:
 def stage_gate_claim_for_sim(sim_path: pathlib.Path | str) -> str | None:
     """Return the narrowest stage-gate claim needed before queueing a sim."""
     path = pathlib.Path(sim_path)
+    result_json = RESULTS / f"{path.stem}_results.json"
+    result = load_result(result_json) if result_json.exists() else {}
+    if (
+        result.get("classification") == "tool_lego_fit_probe"
+        and result.get("promotion_allowed") is False
+    ):
+        return None
     runner_class = runner_class_for(path)
     stage = plan_stage(path.name)
     stem = path.stem.lower()

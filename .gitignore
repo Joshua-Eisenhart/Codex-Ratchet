@@ -29,9 +29,21 @@ system_v3/runs/**/*
 # Python bytecode/caches
 __pycache__/
 *.py[cod]
+.pytest_cache/
 # Environment secrets
 .env
 .env.*
+.npmrc
+.pypirc
+.netrc
+id_rsa
+id_ed25519
+*.pem
+*.key
+*.p12
+*.p8
+credentials.json
+service-account.json
 # local installs / tooling caches
 node_modules/
 .agent/
@@ -74,6 +86,13 @@ system_v4/a2_state/refinery_batch_index.json
 # Generated v4 sim result data (regenerable, not source)
 system_v4/probes/a2_state/sim_results/*.json
 
+# Generated v4 survivor/admission waves. Tracked files still show; untracked
+# queue-spillover stays out of git status until explicitly force-added.
+system_v4/probes/*_survivor_classes.py
+system_v4/probes/*_survivor_count_gap_classes.py
+system_v5/ops/wizard_admissions/*.json
+system_v5/ops/wizard_admission_receipts/*.json
+
 # Regenerable runtime state (rebuilt on each run)
 system_v4/runtime_state/
 system_v4/probes/telemetry_logs/
@@ -83,6 +102,7 @@ system_v4/probes/telemetry_logs/
 .hermes/
 .lev/
 .omx/
+.tmp/
 .hermes_tmp/
 .mplconfig/
 logs/
@@ -101,10 +121,29 @@ premortem-transcript-*.md
 
 # Live overnight worker spillover (tracked canonical artifacts still show normally)
 overnight_logs/
+/runs/
 system_v4/probes/a2_state/queue/claimed/
 system_v4/probes/a2_state/queue/done/
 system_v4/probes/a2_state/queue/lane_A/
 system_v4/probes/a2_state/queue/lane_B/
 system_v4/probes/a2_state/sim_results_archive/
+
+# Local grok_sim loop-runner runtime spillover
+system_v5/grok_sim/.codex_last_msg_*.txt
+system_v5/grok_sim/candidates/
+system_v5/grok_sim/loop_runner/receipts/
+system_v5/grok_sim/loops/
+system_v5/grok_sim/iters/
+system_v5/grok_sim/loop_runner/proposed_formal_sims/
+system_v5/grok_sim/loop_runner/research_notes/
+
+# Generated v5 result/receipt estates; source remains visible.
+system_v5/ops/formal_scouts/provider_receipts/
+system_v5/ops/formal_scouts/results/*.json
+system_v5/ops/queue_cleanup/queue_done_duplicate_repair_*.json
+system_v5/ops/quarantine/gstack_adjacency_companion/
+system_v5/ops/quarantine/toponetx_simplex_width/
+system_v5/ops/quarantine/weak_lego_generators_20260516/
+system_v5/legos/results/
 wiki/
 .DS_Store

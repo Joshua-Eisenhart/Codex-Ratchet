@@ -98,6 +98,18 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass, "summary": {"all_pass": all_pass},
         "divergence_log": divergence_log,
+        "promotion_allowed": False,
+        "claim_ceiling": (
+            "finite classical Choi-matrix baseline receipt only; "
+            "no claims beyond a diagonal stochastic-map control"
+        ),
+        "out_of_scope": [
+            "operator-coupling admission",
+            "geometric manifold promotion",
+            "cycle-mechanics admission",
+            "state-space promotion",
+            "cross-layer admission",
+        ],
     }
     results = apply_default_receipt_boundary(
         results,

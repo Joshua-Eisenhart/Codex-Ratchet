@@ -62,11 +62,62 @@ def claim_for_row(row: str) -> str | None:
     return None
 
 
+def _direct_files(path: Path) -> list[Path]:
+    if not path.exists():
+        return []
+    return sorted(item for item in path.iterdir() if item.is_file())
+
+
+def _queue_files(path: Path) -> list[Path]:
+    return [item for item in _direct_files(path) if item.match("*.json*")]
+
+
+def _junk_files(path: Path) -> list[Path]:
+    return [item for item in _direct_files(path) if not item.match("*.json*")]
+
+
+def atomic_queue_counts(root: Path) -> dict[str, int]:
+    queue_root = root / "system_v4" / "probes" / "a2_state" / "queue"
+    return {
+        "claimed": len(_queue_files(queue_root / "claimed")),
+        "blocked": len(_queue_files(queue_root / "blocked")),
+        "done": len(_queue_files(queue_root / "done")),
+    }
+
+
+def atomic_queue_junk_counts(root: Path) -> dict[str, int]:
+    queue_root = root / "system_v4" / "probes" / "a2_state" / "queue"
+    return {
+        "root": len(_junk_files(queue_root)),
+        "lane_A": len(_junk_files(queue_root / "lane_A")),
+        "lane_B": len(_junk_files(queue_root / "lane_B")),
+        "claimed": len(_junk_files(queue_root / "claimed")),
+        "blocked": len(_junk_files(queue_root / "blocked")),
+        "done": len(_junk_files(queue_root / "done")),
+    }
+
+
 def audit(root: Path | None = None) -> dict[str, Any]:
     root = root or repo_root()
     ops = root / "system_v5" / "ops"
     gate = load_gate(root)
+    atomics = atomic_queue_counts(root)
+    atomic_junk = atomic_queue_junk_counts(root)
     findings: list[dict[str, Any]] = []
+
+    if atomics["claimed"]:
+        queue_root = root / "system_v4" / "probes" / "a2_state" / "queue"
+        findings.append(
+            {
+                "kind": "atomic_claimed_queue_not_empty",
+                "queue": "system_v4/probes/a2_state/queue/claimed",
+                "count": atomics["claimed"],
+                "sample": [
+                    str(path.relative_to(root))
+                    for path in _queue_files(queue_root / "claimed")[:5]
+                ],
+            }
+        )
 
     blocked_default = 0
     if not gate.get("allow_default_queue_late_stage"):
@@ -102,6 +153,8 @@ def audit(root: Path | None = None) -> dict[str, Any]:
     return {
         "all_pass": not findings,
         "active_stage": gate.get("active_stage"),
+        "atomic_queue_counts": atomics,
+        "atomic_queue_junk_counts": atomic_junk,
         "blocked_default_queue_count": blocked_default,
         "blocked_stage_gate_queue_count": blocked_priority,
         "findings": findings,

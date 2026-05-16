@@ -1,0 +1,41 @@
+{
+  "kind": "v4_quarantine_move_manifest",
+  "created_at": "2026-05-16T21:41:36Z",
+  "scope": "system_v4/probes gstack adjacency companion spillover",
+  "action": "move_to_quarantine",
+  "quarantine_dir": "system_v5/ops/quarantine/gstack_adjacency_companion/",
+  "reason": "Untracked v4 probe spillover with no wizard admission record, gstack-contaminated naming, promotion_allowed false, and failing local result errors. Preserve as quarantined evidence rather than delete or stage as source.",
+  "admission_records_found": 0,
+  "files": [
+    {
+      "source_path": "system_v4/probes/sim_gstack_lego_adjacency_order_companion.py",
+      "destination_path": "system_v5/ops/quarantine/gstack_adjacency_companion/sim_gstack_lego_adjacency_order_companion.py",
+      "sha256": "fee014a2157992331507ec938816a966942d8f934cac189510561986aafedf80",
+      "bytes": 25261,
+      "status_before_move": "untracked"
+    },
+    {
+      "source_path": "system_v4/probes/sim_gstack_lego_adjacency_order_companion_results.json",
+      "destination_path": "system_v5/ops/quarantine/gstack_adjacency_companion/sim_gstack_lego_adjacency_order_companion_results.json",
+      "sha256": "1883bcc77a9851e6b0e2aebf0e165e575878a23630fc7994d4b41c4c1c39729d",
+      "bytes": 6444,
+      "status_before_move": "untracked",
+      "result_summary": {
+        "all_pass": false,
+        "classification": "tool_lego_fit_probe",
+        "promotion_allowed": false,
+        "claim_ceiling": "tool_lego_fit_probe",
+        "tool_manifest_present": false,
+        "tool_integration_depth_present": false,
+        "errors": [
+          "xgi_error: TypeError: unhashable type: 'set'",
+          "tnx_error: AttributeError: 'SimplicialComplex' object has no attribute 'edges'"
+        ]
+      }
+    }
+  ],
+  "post_move_checks": [
+    "Quarantined files remain recoverable under system_v5/ops/quarantine/gstack_adjacency_companion/.",
+    "This manifest is the tracked cleanup artifact; the quarantine directory is git-ignored unless explicitly force-added as an evidence snapshot."
+  ]
+}

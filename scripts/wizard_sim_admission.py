@@ -14,6 +14,8 @@ from typing import Any
 
 NONCLASSICAL_LOAD_BEARING_TOOLS = {"z3", "cvc5", "clifford", "torch", "pytorch", "pyg", "qiskit", "qutip"}
 HIDDEN_NONCLASSICAL_TOKENS = ("rho_ab", "rho_AB", "Phi0", "phi0", "Xi", "xi", "coupling witness")
+CANONICAL_SCHEMA = "wizard_sim_admission_v4_2"
+LEGACY_SCHEMA = "wizard_sim_admission_v4_1"
 _HIDDEN_NONCLASSICAL_PATTERNS = tuple(
     re.compile(rf"(?<![A-Za-z0-9_]){re.escape(token.lower())}(?![A-Za-z0-9_])")
     for token in HIDDEN_NONCLASSICAL_TOKENS
@@ -127,10 +129,14 @@ def validate_admission(
     basename: str,
     sim_path: str,
     expected_result_path: str | Path | None = None,
+    allow_legacy_v4_1: bool = False,
 ) -> list[str]:
     findings: list[str] = []
-    if payload.get("schema") != "wizard_sim_admission_v4_1":
-        findings.append("schema_not_wizard_sim_admission_v4_1")
+    schema = payload.get("schema")
+    if schema == LEGACY_SCHEMA and not allow_legacy_v4_1:
+        findings.append("schema_legacy_v4_1_requires_explicit_recovery")
+    elif schema not in {CANONICAL_SCHEMA, LEGACY_SCHEMA}:
+        findings.append("schema_not_wizard_sim_admission_v4_2")
     if payload.get("basename") != basename:
         findings.append("basename_mismatch")
     payload_sim_path = str(payload.get("sim_path") or "")
@@ -235,6 +241,7 @@ def load_and_validate(
     sim_path: str,
     admission_file: str | None = None,
     expected_result_path: str | Path | None = None,
+    allow_legacy_v4_1: bool = False,
 ) -> dict[str, Any]:
     path = Path(admission_file) if admission_file else admission_path(root, basename)
     if not path.is_absolute():
@@ -248,6 +255,7 @@ def load_and_validate(
         basename=basename,
         sim_path=sim_path,
         expected_result_path=expected_result_path,
+        allow_legacy_v4_1=allow_legacy_v4_1,
     )
     return {"ok": not findings, "path": str(path), "findings": findings}
 
@@ -259,6 +267,16 @@ def main() -> int:
     parser.add_argument("--sim-path", required=True)
     parser.add_argument("--admission-file")
     parser.add_argument("--expected-result-path")
+    parser.add_argument(
+        "--allow-legacy-v4-1",
+        action="store_true",
+        help="Recovery-only: allow legacy wizard_sim_admission_v4_1 packets instead of the live v4.2 schema.",
+    )
+    parser.add_argument(
+        "--path-only",
+        action="store_true",
+        help="On successful validation, print only the resolved admission path.",
+    )
     args = parser.parse_args()
     report = load_and_validate(
         root=Path(args.repo_root),
@@ -266,8 +284,12 @@ def main() -> int:
         sim_path=args.sim_path,
         admission_file=args.admission_file,
         expected_result_path=args.expected_result_path,
+        allow_legacy_v4_1=args.allow_legacy_v4_1,
     )
-    print(json.dumps(report, indent=2, sort_keys=True))
+    if args.path_only and report.get("ok"):
+        print(report["path"])
+    else:
+        print(json.dumps(report, indent=2, sort_keys=True))
     return 0 if report.get("ok") else 1
 
 

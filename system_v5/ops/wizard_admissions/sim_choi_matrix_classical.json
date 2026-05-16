@@ -11,11 +11,11 @@
   ],
   "formal_sim_profile": {
     "carrier_fixture": "sim_choi_matrix_classical",
-    "claim": "finite sim_choi_matrix_classical classical-baseline receipt only",
-    "exact_tool_or_function": "",
+    "claim": "finite classical Choi-matrix baseline receipt only; no claims beyond a diagonal stochastic-map control",
+    "exact_tool_or_function": "numpy",
     "expected_result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_choi_matrix_classical_results.json",
-    "negative_or_boundary_check": "result negative and boundary checks pass",
-    "positive_check": "result positive checks pass",
+    "negative_or_boundary_check": "classical baseline only with no promotion",
+    "positive_check": "finite Choi-matrix baseline computes positive semidefinite and trace-preserving checks",
     "stage": "micro"
   },
   "management_parent_surfaces": [
@@ -29,39 +29,39 @@
     "controller_read_artifacts"
   ],
   "packet_contract": {
-    "blocked_until": "explicit coupling-stage admission and companion receipts",
-    "boundary_case": "boundary checks pass",
-    "claim_ceiling": "finite sim_choi_matrix_classical classical-baseline receipt only",
-    "demotion_condition": "Demote if rerun fails, tool-depth evidence disappears, or boundary controls fail.",
+    "blocked_until": "requires separate non-baseline tool-lego fit receipts before use in promotion",
+    "boundary_case": "receipt fenced by classification and promotion_allowed false",
+    "claim_ceiling": "finite classical Choi-matrix baseline receipt only; no claims beyond a diagonal stochastic-map control",
+    "demotion_condition": "demote if treated as state-space promotion evidence",
     "function_receipt": "system_v4/probes/a2_state/sim_results/sim_choi_matrix_classical_results.json",
-    "function_surface": "classical_baseline_fixture",
-    "lego_target": "Use as bounded classical Choi-matrix baseline evidence before channel/tool-lego comparison.",
-    "micro_claim": "finite sim_choi_matrix_classical classical-baseline receipt only",
-    "negative_case": "negative checks pass",
-    "next_lego_target": "Use as bounded classical Choi-matrix baseline evidence before channel/tool-lego comparison.",
-    "nonclassical_claim_ceiling": "baseline_only",
+    "function_surface": "sim_choi_matrix_classical:numpy",
+    "lego_target": "choi_matrix_classical_baseline",
+    "micro_claim": "finite classical Choi-matrix baseline receipt only; no claims beyond a diagonal stochastic-map control",
+    "negative_case": "does not promote beyond classical baseline",
+    "next_lego_target": "cptp_map_comparison_baseline",
+    "nonclassical_claim_ceiling": "no_promotion",
     "out_of_scope": [
-      "QIT engine admission",
-      "GStack promotion",
-      "axis promotion",
-      "nonclassical admission",
-      "bridge admission"
+      "operator-coupling admission",
+      "geometric manifold promotion",
+      "cycle-mechanics admission",
+      "state-space promotion",
+      "cross-layer admission"
     ],
-    "positive_case": "positive checks pass",
+    "positive_case": "finite Choi-matrix baseline executes and validates",
     "prior_function_receipts": [],
-    "promotion_boundary": "no promotion beyond tool_micro without a later admitted packet",
-    "promotion_condition": "Requires separate coupling/coexistence receipts and explicit stage-gate approval.",
-    "tool_target": "",
+    "promotion_boundary": "classical baseline only; no promotion beyond tool_micro",
+    "promotion_condition": "not promotable alone",
+    "tool_target": "numpy",
     "type": "MICRO",
-    "why_this_lego": "the fixture exposes one bounded classical Choi-matrix baseline without broad promotion"
+    "why_this_lego": "baseline supply packet to keep runner fed while preserving claim ceiling"
   },
-  "schema": "wizard_sim_admission_v4_1",
+  "schema": "wizard_sim_admission_v4_2",
   "sim_admissibility_gate": {
     "result": "one_exact_packet"
   },
   "sim_packet_compile_gate": {
     "status": "queue_candidate"
   },
-  "sim_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_choi_matrix_classical.py",
+  "sim_path": "system_v4/probes/sim_choi_matrix_classical.py",
   "status": "queue_ready"
 }

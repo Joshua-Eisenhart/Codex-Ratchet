@@ -39,16 +39,17 @@
     "all_pass": true
   },
   "divergence_log": "Classical Choi is block-diagonal; misses off-diagonal coherences that witness non-CP-divisible or entanglement-breaking distinctions. Choi rank=1 (unitary) is unreachable classically except for permutations. No Jamiolkowski isomorphism subtlety: state-channel duality is trivial on diagonals. Classical Choi cannot detect PPT/NPT entanglement and is always separable.",
-  "claim_ceiling": "finite sim_choi_matrix_classical lego receipt only; no bridge, GStack, axis, QIT, or nonclassical admission",
+  "promotion_allowed": false,
+  "claim_ceiling": "finite classical Choi-matrix baseline receipt only; no claims beyond a diagonal stochastic-map control",
+  "out_of_scope": [
+    "operator-coupling admission",
+    "geometric manifold promotion",
+    "cycle-mechanics admission",
+    "state-space promotion",
+    "cross-layer admission"
+  ],
   "next_lego_target": "Use as bounded classical Choi-matrix baseline evidence before channel/tool-lego comparison.",
   "promotion_condition": "Requires separate coupling/coexistence receipts and explicit stage-gate approval.",
   "blocked_until": "explicit coupling-stage admission and companion receipts",
-  "demotion_condition": "Demote if rerun fails, tool-depth evidence disappears, or boundary controls fail.",
-  "out_of_scope": [
-    "QIT engine admission",
-    "GStack promotion",
-    "axis promotion",
-    "nonclassical admission",
-    "bridge admission"
-  ]
+  "demotion_condition": "Demote if rerun fails, tool-depth evidence disappears, or boundary controls fail."
 }

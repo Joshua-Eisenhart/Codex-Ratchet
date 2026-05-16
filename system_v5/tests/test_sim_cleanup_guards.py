@@ -6258,6 +6258,50 @@ def test_runner_queue_preflight_allows_classical_baseline_gram_schmidt(tmp_path)
     report = module.audit(root=repo)
 
     assert report["all_pass"] is True
+
+
+def test_runner_queue_preflight_blocks_nonempty_atomic_claims(tmp_path) -> None:
+    module = _load_module(
+        "runner_queue_preflight_atomic_claims_under_test",
+        REPO_ROOT / "scripts" / "runner_queue_preflight.py",
+    )
+    repo = tmp_path / "repo"
+    ops = repo / "system_v5" / "ops"
+    ops.mkdir(parents=True)
+    (ops / "stage_gate.json").write_text(
+        json.dumps({"active_stage": "lego", "allow_default_queue_late_stage": False}),
+        encoding="utf-8",
+    )
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    claimed = queue_root / "claimed"
+    blocked = queue_root / "blocked"
+    done = queue_root / "done"
+    claimed.mkdir(parents=True)
+    blocked.mkdir(parents=True)
+    done.mkdir(parents=True)
+    (claimed / "abc123.json.999.host.worker").write_text(
+        json.dumps({"sim_path": "system_v4/probes/sim_probe.py"}),
+        encoding="utf-8",
+    )
+    (blocked / "blocked.json").write_text("{}", encoding="utf-8")
+    (done / "done.json").write_text("{}", encoding="utf-8")
+    (queue_root / ".DS_Store").write_text("junk", encoding="utf-8")
+    (done / ".DS_Store").write_text("junk", encoding="utf-8")
+
+    report = module.audit(root=repo)
+
+    assert report["all_pass"] is False
+    assert report["atomic_queue_counts"] == {"claimed": 1, "blocked": 1, "done": 1}
+    assert report["atomic_queue_junk_counts"] == {
+        "root": 1,
+        "lane_A": 0,
+        "lane_B": 0,
+        "claimed": 0,
+        "blocked": 0,
+        "done": 1,
+    }
+    assert report["findings"][0]["kind"] == "atomic_claimed_queue_not_empty"
+    assert report["findings"][0]["count"] == 1
     assert report["blocked_default_queue_count"] == 0
     assert report["blocked_stage_gate_queue_count"] == 0
     assert module.claim_for_row("system_v4/probes/classical_baseline_gram_schmidt.py") is None
@@ -9830,7 +9874,7 @@ def _valid_wizard_admission_payload(
     artifact: Path,
 ) -> dict:
     return {
-        "schema": "wizard_sim_admission_v4_1",
+        "schema": "wizard_sim_admission_v4_2",
         "basename": basename,
         "sim_path": sim_path,
         "status": "queue_ready",
@@ -9952,6 +9996,108 @@ def test_wizard_sim_admission_accepts_exact_queue_ready_packet(tmp_path) -> None
 
     assert report["ok"] is True
     assert report["path"] == str(admission_path)
+
+
+def test_wizard_sim_admission_rejects_legacy_v41_without_recovery_flag(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_legacy_schema_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    _write_allow_stage_gate(repo)
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["schema"] = "wizard_sim_admission_v4_1"
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+    )
+
+    assert "schema_legacy_v4_1_requires_explicit_recovery" in findings
+
+
+def test_wizard_sim_admission_accepts_legacy_v41_with_recovery_flag(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_legacy_recovery_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    _write_allow_stage_gate(repo)
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        artifact=artifact,
+    )
+    payload["schema"] = "wizard_sim_admission_v4_1"
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_probe_object",
+        sim_path="system_v4/probes/sim_probe_object.py",
+        allow_legacy_v4_1=True,
+    )
+
+    assert "schema_legacy_v4_1_requires_explicit_recovery" not in findings
+    assert findings == []
+
+
+def test_wizard_sim_admission_path_only_matches_runner_call(tmp_path) -> None:
+    repo = tmp_path / "repo"
+    _write_allow_stage_gate(repo)
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    admission_dir = repo / "system_v5" / "ops" / "wizard_admissions"
+    admission_dir.mkdir(parents=True)
+    admission_path = admission_dir / "sim_probe_object.json"
+    admission_path.write_text(
+        json.dumps(
+            _valid_wizard_admission_payload(
+                repo=repo,
+                basename="sim_probe_object",
+                sim_path="system_v4/probes/sim_probe_object.py",
+                artifact=artifact,
+            )
+        ),
+        encoding="utf-8",
+    )
+
+    proc = subprocess.run(
+        [
+            sys.executable,
+            str(REPO_ROOT / "scripts" / "wizard_sim_admission.py"),
+            "--repo-root",
+            str(repo),
+            "--basename",
+            "sim_probe_object",
+            "--sim-path",
+            "system_v4/probes/sim_probe_object.py",
+            "--path-only",
+        ],
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+
+    assert proc.returncode == 0
+    assert proc.stdout.strip() == str(admission_path)
+    assert proc.stderr == ""
 
 
 def test_wizard_sim_admission_rejects_profile_without_packet_contract(tmp_path) -> None:

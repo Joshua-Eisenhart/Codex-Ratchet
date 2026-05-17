@@ -102,12 +102,21 @@ CANDIDATE_NAMES = [
     "retrocausal_many_futures_policy_scoring",
     "holographic_boundary_interior_reconstruction",
 ]
+LOAD_BEARING_AXIS0_CANDIDATE_NAMES = [
+    "fep_gradient_polarity",
+    "correlation_diversity_derivative",
+    "retrocausal_many_futures_policy_scoring",
+]
+BLOCKED_AXIS0_CANDIDATE_NAMES = [
+    "path_entropy",
+    "holographic_boundary_interior_reconstruction",
+]
 CANDIDATE_WEIGHTS = {
     "fep_gradient_polarity": 0.31,
-    "path_entropy": -0.23,
+    "path_entropy": 0.0,
     "correlation_diversity_derivative": 0.19,
     "retrocausal_many_futures_policy_scoring": 0.13,
-    "holographic_boundary_interior_reconstruction": -0.11,
+    "holographic_boundary_interior_reconstruction": 0.0,
 }
 ENVIRONMENT_SIGNATURE_COLUMNS = [
     "two_site_entropy",
@@ -292,38 +301,49 @@ def axis0_candidate_values(axis0: dict[str, Any], idx: int) -> dict[str, float]:
 def axis0_drive(axis0: dict[str, Any], idx: int, mode: str = "full_vector") -> float:
     if not axis0.get("ready"):
         return 0.0
-    values = axis0_candidate_values(axis0, idx)
+    raw_values = axis0_candidate_values(axis0, idx)
+    values = {name: raw_values[name] for name in LOAD_BEARING_AXIS0_CANDIDATE_NAMES}
     if mode == "zero_all":
         return 0.0
     if mode == "scalar_mean":
         return float(np.mean(list(values.values())))
     if mode == "shuffled_name_binding":
         rolled = list(values.values())[1:] + list(values.values())[:1]
-        values = dict(zip(CANDIDATE_NAMES, rolled))
+        values = dict(zip(LOAD_BEARING_AXIS0_CANDIDATE_NAMES, rolled))
     elif mode.startswith("drop::"):
         dropped = mode.split("::", 1)[1]
-        if dropped not in values:
+        if dropped in BLOCKED_AXIS0_CANDIDATE_NAMES:
+            pass
+        elif dropped not in values:
             raise ValueError(mode)
-        values = dict(values)
-        values[dropped] = 0.0
+        else:
+            values = dict(values)
+            values[dropped] = 0.0
     elif mode.startswith("sign_flip::"):
         flipped = mode.split("::", 1)[1]
-        if flipped not in values:
+        if flipped in BLOCKED_AXIS0_CANDIDATE_NAMES:
+            pass
+        elif flipped not in values:
             raise ValueError(mode)
-        values = dict(values)
-        values[flipped] = -values[flipped]
+        else:
+            values = dict(values)
+            values[flipped] = -values[flipped]
     elif mode.startswith("time_shuffle::"):
         shuffled = mode.split("::", 1)[1]
-        if shuffled not in values:
+        if shuffled in BLOCKED_AXIS0_CANDIDATE_NAMES:
+            pass
+        elif shuffled not in values:
             raise ValueError(mode)
-        vector = axis0.get("candidate_vectors", {}).get(shuffled, [])
-        values = dict(values)
-        if vector:
-            values[shuffled] = float(vector[(idx * 7 + 11) % len(vector)])
+        else:
+            vector = axis0.get("candidate_vectors", {}).get(shuffled, [])
+            values = dict(values)
+            if vector:
+                values[shuffled] = float(vector[(idx * 7 + 11) % len(vector)])
     elif mode != "full_vector":
         raise ValueError(mode)
-    weighted = sum(CANDIDATE_WEIGHTS[name] * values[name] for name in CANDIDATE_NAMES)
-    return float(weighted / sum(abs(value) for value in CANDIDATE_WEIGHTS.values()))
+    weighted = sum(CANDIDATE_WEIGHTS[name] * values[name] for name in LOAD_BEARING_AXIS0_CANDIDATE_NAMES)
+    denom = sum(abs(CANDIDATE_WEIGHTS[name]) for name in LOAD_BEARING_AXIS0_CANDIDATE_NAMES)
+    return float(weighted / denom)
 
 
 def holodeck_memory_signal(memory_receipt: dict[str, Any]) -> dict[str, Any]:
@@ -954,14 +974,15 @@ def main() -> int:
     memory_receipt = load_result("source_native_holodeck_hash_memory_placeholder_probe_results.json")
     axis0 = axis0_signature(axis0_router_receipt)
     memory = holodeck_memory_signal(memory_receipt)
+    raw_candidate_names = list(axis0["candidate_names"])
 
     full_rows: dict[str, dict[str, Any]] = {}
     zero_rows: dict[str, dict[str, Any]] = {}
     scalar_mean_rows: dict[str, dict[str, Any]] = {}
     shuffled_name_rows: dict[str, dict[str, Any]] = {}
-    drop_one_rows: dict[str, dict[str, dict[str, Any]]] = {name: {} for name in CANDIDATE_NAMES}
-    sign_flip_rows: dict[str, dict[str, dict[str, Any]]] = {name: {} for name in CANDIDATE_NAMES}
-    time_shuffle_rows: dict[str, dict[str, dict[str, Any]]] = {name: {} for name in CANDIDATE_NAMES}
+    drop_one_rows: dict[str, dict[str, dict[str, Any]]] = {name: {} for name in raw_candidate_names}
+    sign_flip_rows: dict[str, dict[str, dict[str, Any]]] = {name: {} for name in raw_candidate_names}
+    time_shuffle_rows: dict[str, dict[str, dict[str, Any]]] = {name: {} for name in raw_candidate_names}
     memory_zero_rows: dict[str, dict[str, Any]] = {}
     manifold_zero_rows: dict[str, dict[str, Any]] = {}
     field_ablation_rows: dict[str, dict[str, dict[str, Any]]] = {
@@ -996,7 +1017,7 @@ def main() -> int:
             identity_control=False,
             axis0_drive_mode="shuffled_name_binding",
         )
-        for name in CANDIDATE_NAMES:
+        for name in raw_candidate_names:
             drop_one_rows[name][key] = run_carrier(
                 records,
                 axis0,
@@ -1064,22 +1085,28 @@ def main() -> int:
             key: signature_gap(full_rows[key], drop_one_rows[name][key])
             for key in sorted(full_rows)
         }
-        for name in CANDIDATE_NAMES
+        for name in raw_candidate_names
     }
     sign_flip_gaps = {
         name: {
             key: signature_gap(full_rows[key], sign_flip_rows[name][key])
             for key in sorted(full_rows)
         }
-        for name in CANDIDATE_NAMES
+        for name in raw_candidate_names
     }
     time_shuffle_gaps = {
         name: {
             key: signature_gap(full_rows[key], time_shuffle_rows[name][key])
             for key in sorted(full_rows)
         }
-        for name in CANDIDATE_NAMES
+        for name in raw_candidate_names
     }
+    active_drop_one_gaps = {name: drop_one_gaps[name] for name in LOAD_BEARING_AXIS0_CANDIDATE_NAMES}
+    active_sign_flip_gaps = {name: sign_flip_gaps[name] for name in LOAD_BEARING_AXIS0_CANDIDATE_NAMES}
+    active_time_shuffle_gaps = {name: time_shuffle_gaps[name] for name in LOAD_BEARING_AXIS0_CANDIDATE_NAMES}
+    blocked_drop_one_gaps = {name: drop_one_gaps[name] for name in BLOCKED_AXIS0_CANDIDATE_NAMES}
+    blocked_sign_flip_gaps = {name: sign_flip_gaps[name] for name in BLOCKED_AXIS0_CANDIDATE_NAMES}
+    blocked_time_shuffle_gaps = {name: time_shuffle_gaps[name] for name in BLOCKED_AXIS0_CANDIDATE_NAMES}
     memory_gaps = memory_zeroed_gaps(full_rows, memory_zero_rows)
     manifold_gaps = manifold_zeroed_gaps(full_rows, manifold_zero_rows)
     field_report = field_component_variance_report(records)
@@ -1097,7 +1124,7 @@ def main() -> int:
     repair_receipt = {
         "weak_link": "PEPS/PEPS3D campaign lacked a no-dense downstream consumer of EngineCore science-method fields plus the plural Axis0 router, and the first subdense consumer still risked collapsing plural Axis0 candidate vectors into one scalar mean.",
         "target_file_or_result": str(OUT_PATH),
-        "admission_rule_improved": "No-dense PEPS/PEPS3D environment scouts must avoid global dense vector readout, consume stage science fields and Axis0 router outputs, and include full-vector, scalar-mean, shuffled-name, drop-one, sign-flip, time-shuffle, axis0-zeroed, memory-zeroed, manifold-zeroed, gauge, and finite-size controls.",
+        "admission_rule_improved": "No-dense PEPS/PEPS3D environment scouts must avoid global dense vector readout, consume stage science fields and only the non-blocked pre-guard Axis0 drive candidates, and include full-vector, scalar-mean, shuffled-name, drop-one, sign-flip, time-shuffle, axis0-zeroed, memory-zeroed, manifold-zeroed, gauge, and finite-size controls.",
         "dependency_subset": [
             "EngineCore science_method_stage_record_v1",
             "macro_sim_stage_record_science_method_contract receipt",
@@ -1123,9 +1150,12 @@ def main() -> int:
             "axis0_zeroed_environment_signature_gaps": axis0_gaps,
             "axis0_scalar_mean_environment_signature_gaps": scalar_mean_gaps,
             "axis0_shuffled_name_environment_signature_gaps": shuffled_name_gaps,
-            "axis0_drop_one_environment_signature_gaps": drop_one_gaps,
-            "axis0_sign_flip_environment_signature_gaps": sign_flip_gaps,
-            "axis0_time_shuffle_environment_signature_gaps": time_shuffle_gaps,
+            "active_axis0_drop_one_environment_signature_gaps": active_drop_one_gaps,
+            "active_axis0_sign_flip_environment_signature_gaps": active_sign_flip_gaps,
+            "active_axis0_time_shuffle_environment_signature_gaps": active_time_shuffle_gaps,
+            "blocked_axis0_drop_one_environment_signature_gaps": blocked_drop_one_gaps,
+            "blocked_axis0_sign_flip_environment_signature_gaps": blocked_sign_flip_gaps,
+            "blocked_axis0_time_shuffle_environment_signature_gaps": blocked_time_shuffle_gaps,
             "holodeck_memory_zeroed_environment_signature_gaps": memory_gaps,
             "manifold_zeroed_environment_signature_gaps": manifold_gaps,
             "science_method_field_component_variance": field_report,
@@ -1136,14 +1166,25 @@ def main() -> int:
         "axis0_outputs_or_blockers": {
             **axis0,
             "primary_axis0_drive_mode": "full_vector",
+            "load_bearing_axis0_candidate_names": LOAD_BEARING_AXIS0_CANDIDATE_NAMES,
+            "blocked_axis0_candidate_names": BLOCKED_AXIS0_CANDIDATE_NAMES,
             "scalar_mean_control_gaps": scalar_mean_gaps,
             "shuffled_name_binding_control_gaps": shuffled_name_gaps,
             "drop_one_control_gaps": drop_one_gaps,
             "sign_flip_control_gaps": sign_flip_gaps,
             "time_shuffle_control_gaps": time_shuffle_gaps,
             "candidate_weights": CANDIDATE_WEIGHTS,
+            "pre_guard_axis0_boundary": {
+                "status": "raw_router_candidate_surface_for_downstream_guard",
+                "guard_receipt_consumed": False,
+                "post_guard_admission_claim_allowed": False,
+                "blocked_candidates_masked_from_load_bearing_drive": BLOCKED_AXIS0_CANDIDATE_NAMES,
+                "downstream_guard_result": "axis0_plural_candidate_multicarrier_drive_controls_probe_results.json",
+                "note": "This scout intentionally runs before the Axis0 plural-candidate guard. It reports all raw candidates, but path_entropy and HBI are masked out of the geometry-driving vector.",
+            },
             "holodeck_memory_placeholder": memory,
             "holographic_boundary_interior_reconstruction": axis0_router_receipt.get("axis0_outputs_or_blockers", {}).get("holographic_boundary_interior_reconstruction", {}),
+            "path_entropy": axis0_router_receipt.get("axis0_outputs_or_blockers", {}).get("path_entropy", {}),
             "retrocausal_many_futures_policy_scoring": axis0_router_receipt.get("axis0_outputs_or_blockers", {}).get("retrocausal_many_futures_policy_scoring", {}),
         },
         "provider_inputs_used": {
@@ -1169,33 +1210,36 @@ def main() -> int:
             "axis0_drive_mean_abs": {key: row["axis0_drive_mean_abs"] for key, row in full_rows.items()},
             "axis0_drive_mode": "full_vector",
         },
-        "plural_axis0_full_vector_differs_from_scalar_mean_control": {
+        "plural_axis0_active_vector_differs_from_scalar_mean_control": {
             "pass": axis0["ready"] and all(gap > AXIS0_GAP_FLOOR for gap in scalar_mean_gaps.values()),
             "scalar_mean_gaps": scalar_mean_gaps,
             "candidate_weights": CANDIDATE_WEIGHTS,
+            "load_bearing_axis0_candidate_names": LOAD_BEARING_AXIS0_CANDIDATE_NAMES,
         },
-        "plural_axis0_name_binding_and_candidate_controls_are_visible": {
+        "plural_axis0_active_name_binding_and_candidate_controls_are_visible": {
             "pass": axis0["ready"]
             and all(gap > AXIS0_GAP_FLOOR for gap in shuffled_name_gaps.values())
             and all(
                 gap > AXIS0_GAP_FLOOR
-                for rows_by_candidate in drop_one_gaps.values()
+                for rows_by_candidate in active_drop_one_gaps.values()
                 for gap in rows_by_candidate.values()
             )
             and all(
                 gap > AXIS0_GAP_FLOOR
-                for rows_by_candidate in sign_flip_gaps.values()
+                for rows_by_candidate in active_sign_flip_gaps.values()
                 for gap in rows_by_candidate.values()
             )
             and all(
                 gap > AXIS0_GAP_FLOOR
-                for rows_by_candidate in time_shuffle_gaps.values()
+                for rows_by_candidate in active_time_shuffle_gaps.values()
                 for gap in rows_by_candidate.values()
             ),
             "shuffled_name_gaps": shuffled_name_gaps,
-            "drop_one_gaps": drop_one_gaps,
-            "sign_flip_gaps": sign_flip_gaps,
-            "time_shuffle_gaps": time_shuffle_gaps,
+            "active_drop_one_gaps": active_drop_one_gaps,
+            "active_sign_flip_gaps": active_sign_flip_gaps,
+            "active_time_shuffle_gaps": active_time_shuffle_gaps,
+            "raw_candidate_names": raw_candidate_names,
+            "blocked_axis0_candidate_names": BLOCKED_AXIS0_CANDIDATE_NAMES,
         },
         "holodeck_memory_placeholder_drives_local_environment_signature": {
             "pass": memory["ready"] and all(gap > AXIS0_GAP_FLOOR for gap in memory_gaps.values()),
@@ -1236,6 +1280,16 @@ def main() -> int:
         "quimb_partial_trace_local_environment_api_consumes_stage_axis0": quimb_local_api,
         "z3_rejects_dense_or_missing_carrier_collapse": z3_no_dense_witness(full_rows),
         "dependency_graph_is_acyclic": graph,
+        "subdense_axis0_is_pre_guard_raw_input_not_post_guard_admission": {
+            "pass": axis0["candidate_names"] == CANDIDATE_NAMES,
+            "raw_candidate_names": raw_candidate_names,
+            "load_bearing_axis0_candidate_names": LOAD_BEARING_AXIS0_CANDIDATE_NAMES,
+            "blocked_axis0_candidate_names": BLOCKED_AXIS0_CANDIDATE_NAMES,
+            "guard_receipt_consumed": False,
+            "post_guard_admission_claim_allowed": False,
+            "downstream_guard_result": "axis0_plural_candidate_multicarrier_drive_controls_probe_results.json",
+            "note": "Subdense is the raw multicarrier control surface consumed by the downstream Axis0 guard; it reports all raw candidates but masks blocked candidates from load-bearing geometry.",
+        },
     }
 
     graveyards = {
@@ -1246,22 +1300,34 @@ def main() -> int:
         "axis0_scalar_mean_control_is_not_equivalent_to_full_vector_binding": {
             "pass": all(gap > AXIS0_GAP_FLOOR for gap in scalar_mean_gaps.values()),
             "scalar_mean_gaps": scalar_mean_gaps,
-            "reason": "Scalar means remain controls/diagnostics only; primary subdense actuation uses weighted full-vector candidate binding.",
+            "reason": "Scalar means remain controls/diagnostics only; primary subdense actuation uses weighted active-candidate binding.",
         },
         "axis0_candidate_name_binding_shuffle_changes_environment_signature": {
             "pass": all(gap > AXIS0_GAP_FLOOR for gap in shuffled_name_gaps.values()),
             "shuffled_name_gaps": shuffled_name_gaps,
         },
-        "axis0_drop_sign_flip_and_time_shuffle_controls_are_not_silent": {
+        "active_axis0_drop_sign_flip_and_time_shuffle_controls_are_not_silent": {
             "pass": all(
                 gap > AXIS0_GAP_FLOOR
-                for family in [drop_one_gaps, sign_flip_gaps, time_shuffle_gaps]
+                for family in [active_drop_one_gaps, active_sign_flip_gaps, active_time_shuffle_gaps]
                 for rows_by_candidate in family.values()
                 for gap in rows_by_candidate.values()
             ),
-            "drop_one_gaps": drop_one_gaps,
-            "sign_flip_gaps": sign_flip_gaps,
-            "time_shuffle_gaps": time_shuffle_gaps,
+            "active_drop_one_gaps": active_drop_one_gaps,
+            "active_sign_flip_gaps": active_sign_flip_gaps,
+            "active_time_shuffle_gaps": active_time_shuffle_gaps,
+        },
+        "blocked_axis0_candidates_do_not_drive_subdense_geometry": {
+            "pass": all(
+                gap < AXIS0_GAP_FLOOR
+                for family in [blocked_drop_one_gaps, blocked_sign_flip_gaps, blocked_time_shuffle_gaps]
+                for rows_by_candidate in family.values()
+                for gap in rows_by_candidate.values()
+            ),
+            "blocked_drop_one_gaps": blocked_drop_one_gaps,
+            "blocked_sign_flip_gaps": blocked_sign_flip_gaps,
+            "blocked_time_shuffle_gaps": blocked_time_shuffle_gaps,
+            "blocked_axis0_candidate_names": BLOCKED_AXIS0_CANDIDATE_NAMES,
         },
         "holodeck_memory_zeroed_control_changes_environment_signature": {
             "pass": all(gap > AXIS0_GAP_FLOOR for gap in memory_gaps.values()),

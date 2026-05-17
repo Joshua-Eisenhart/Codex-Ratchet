@@ -9,16 +9,14 @@ from __future__ import annotations
 
 from typing import Any
 
-import numpy as np
-
 
 AXIS0_GUARD_RESULT_NAME = "axis0_plural_candidate_multicarrier_drive_controls_probe_results.json"
 AXIS0_CANDIDATE_NAMES = [
     "fep_gradient_polarity",
     "path_entropy",
     "correlation_diversity_derivative",
-    "holographic_boundary_interior_reconstruction",
     "retrocausal_many_futures_policy_scoring",
+    "holographic_boundary_interior_reconstruction",
 ]
 
 
@@ -69,15 +67,24 @@ def guarded_router_vectors(
     *,
     as_numpy: bool = False,
 ) -> dict[str, Any]:
+    if as_numpy:
+        raise ValueError("axis0_guard_utils no longer emits numpy arrays; use torch-native adapters downstream")
     outputs = router_receipt.get("axis0_outputs_or_blockers") or {}
     vectors: dict[str, Any] = {}
     for name in guard.get("admitted_candidate_names", []):
-        arr = np.asarray(outputs.get(name, {}).get("values", []), dtype=float)
-        arr = np.nan_to_num(arr, nan=0.0, posinf=0.0, neginf=0.0)
-        scale = float(np.max(np.abs(arr))) if arr.size else 0.0
+        arr = []
+        for value in outputs.get(name, {}).get("values", []):
+            try:
+                numeric = float(value)
+            except (TypeError, ValueError):
+                numeric = 0.0
+            if numeric != numeric or numeric in (float("inf"), float("-inf")):
+                numeric = 0.0
+            arr.append(numeric)
+        scale = max((abs(value) for value in arr), default=0.0)
         if scale > 0.0:
-            arr = arr / scale
-        vectors[name] = arr if as_numpy else [float(x) for x in arr]
+            arr = [value / scale for value in arr]
+        vectors[name] = arr
     return vectors
 
 

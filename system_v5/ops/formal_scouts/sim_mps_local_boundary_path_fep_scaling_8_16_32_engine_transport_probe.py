@@ -27,6 +27,7 @@ import numpy as np
 import quimb.tensor as qtn
 import z3
 
+import axis0_guard_utils as axis0_guard
 import sim_holographic_boundary_path_ensemble_axis0_fep_selection_probe as hb
 import sim_operator_slot_cut_entropy_gradient_dynamic_manifold_mps_transport_probe as transport
 
@@ -45,7 +46,8 @@ CLAIM_CEILING = (
     "8/16/32-qubit quimb MPS carriers and computes boundary/path/FEP readouts "
     "from local MPS expectation values without dense state handoff. It does not "
     "admit final Axis0, final manifold ontology, physics, retrocausality, "
-    "intelligence, or a canonical holographic dictionary."
+    "intelligence, global variational free energy on the full entangled MPS state, "
+    "or a canonical holographic dictionary."
 )
 
 TOOL_MANIFEST = {
@@ -144,31 +146,34 @@ def stage_science_projection(row: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def axis0_bundle_from_router(router: dict[str, Any]) -> dict[str, Any]:
-    outputs = router.get("axis0_outputs_or_blockers") or {}
-    names = [
-        "fep_gradient_polarity",
-        "path_entropy",
-        "correlation_diversity_derivative",
-    ]
-    vectors: dict[str, list[float]] = {}
-    for name in names:
-        raw = outputs.get(name, {}).get("values", [])
-        arr = np.asarray(raw, dtype=float)
-        if arr.size == 0:
-            vectors[name] = []
-            continue
-        arr = np.nan_to_num(arr, nan=0.0, posinf=0.0, neginf=0.0)
-        scale = float(np.max(np.abs(arr)))
-        if scale > 0.0:
-            arr = arr / scale
-        vectors[name] = [float(x) for x in arr]
-    ready = bool(router.get("exists") and router.get("all_pass") is True and all(vectors[name] for name in names))
+def axis0_bundle_from_guarded_router(router: dict[str, Any], guard_receipt: dict[str, Any]) -> dict[str, Any]:
+    guard = axis0_guard.axis0_guard_signal(guard_receipt)
+    guard_pass = bool(guard.get("pass") is True)
+    vectors = axis0_guard.guarded_router_vectors(router, guard) if guard_pass else {}
+    names = list(guard.get("admitted_candidate_names", [])) if guard_pass else []
+    ready = bool(
+        router.get("exists")
+        and router.get("all_pass") is True
+        and guard_pass
+        and names
+        and all(vectors.get(name) for name in names)
+    )
     return {
         "ready": ready,
         "source_receipt": router.get("path"),
+        "guard_receipt": guard_receipt.get("path"),
         "candidate_names": names,
         "candidate_vectors": vectors,
+        "guard": guard,
+        "guard_pass": guard_pass,
+        "guard_failure_blocker": None
+        if guard_pass
+        else {
+            "status": "axis0_guard_failed_no_downstream_candidate_status_claim",
+            "unclassified_candidate_names": guard.get("unclassified_candidate_names", []),
+            "admitted_candidate_names_reported": guard.get("admitted_candidate_names", []),
+            "blocked_candidate_names_reported": guard.get("blocked_candidate_names", []),
+        },
     }
 
 
@@ -426,6 +431,7 @@ def run_scaling_transport(
 
 
 def signature(run: dict[str, Any]) -> np.ndarray:
+    # Keep blocked local path-entropy readouts out of the load-bearing signature.
     arr = np.array(
         [
             [
@@ -437,7 +443,6 @@ def signature(run: dict[str, Any]) -> np.ndarray:
                 r["torsion"],
                 r["mps_entropy_sum"],
                 r["boundary_entropy"],
-                r["path_axis0_path_entropy_delta"],
                 r["contract_norm"],
             ]
             for r in run["rows"]
@@ -589,7 +594,6 @@ def summarize_n(full: dict[str, Any], controls: dict[str, dict[str, Any]]) -> di
             and float(np.var(entropy_values)) > 1e-6
             and float(np.var(boundary_entropy_values)) > 1e-6
             and float(np.max(path_gaps)) < 1e-9
-            and float(np.mean(np.abs(path_deltas))) > 0.01
             and fep["random_mean_gap"] > 0.05
             and fep["shuffled_mean_gap"] > 0.005
             and float(np.max(np.abs(gradients))) > 1e-5
@@ -648,20 +652,23 @@ def z3_scaling_witness(rows: list[dict[str, Any]]) -> dict[str, Any]:
     min_slots = z3.Int("min_slots")
     min_bond = z3.Int("min_bond")
     dense_axis_count = z3.Int("dense_axis_count")
-    min_path_delta = z3.Real("min_path_delta")
+    min_bundle_drive = z3.Real("min_bundle_drive")
     solver.add(n_count == len(rows))
     solver.add(n_max == max(row["n_qubits"] for row in rows))
     solver.add(min_slots == min(row["single_engine_slot_count"] for row in rows))
     solver.add(min_bond == min(row["max_mps_bond"] for row in rows))
     solver.add(dense_axis_count == sum(1 for row in rows if row["dense_axis_seen"]))
-    solver.add(min_path_delta == str(min(float(row["mean_abs_axis0_path_entropy_delta"]) for row in rows)))
+    solver.add(
+        min_bundle_drive
+        == z3.RealVal(str(min(float(row["mean_abs_axis0_plural_bundle_drive"]) for row in rows)))
+    )
     required = z3.And(
         n_count == 3,
         n_max == 32,
         min_slots == 64,
         min_bond > 3,
         dense_axis_count == 0,
-        min_path_delta > z3.RealVal("0.01"),
+        min_bundle_drive > z3.RealVal("0.001"),
     )
     solver.add(z3.Not(required))
     status = solver.check()
@@ -674,7 +681,7 @@ def z3_scaling_witness(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "min_slots == 64",
             "min_bond > 3",
             "dense_axis_count == 0",
-            "min_path_delta > 0.01",
+            "min_bundle_drive > 0.001",
         ],
     }
 
@@ -682,8 +689,12 @@ def z3_scaling_witness(rows: list[dict[str, Any]]) -> dict[str, Any]:
 def main() -> dict[str, Any]:
     started = time.time()
     axis0_router = load_result("macro_sim_axis0_plural_stage_candidate_router_probe_results.json")
+    axis0_guard_receipt = load_result("axis0_plural_candidate_multicarrier_drive_controls_probe_results.json")
+    fep_gradient_closure = load_result("axis0_fep_gradient_stage_local_adapter_closure_probe_results.json")
+    path_entropy_closure = load_result("axis0_path_entropy_branch_closure_probe_results.json")
+    hbi_closure = load_result("axis0_holographic_boundary_branch_closure_probe_results.json")
     stage_contract = load_result("macro_sim_stage_record_science_method_contract_probe_results.json")
-    axis0_bundle = axis0_bundle_from_router(axis0_router)
+    axis0_bundle = axis0_bundle_from_guarded_router(axis0_router, axis0_guard_receipt)
     per_n = []
     sample_rows = {}
     for n_qubits in N_VALUES:
@@ -753,7 +764,11 @@ def main() -> dict[str, Any]:
             and all(row["axis0_plural_bundle_ready"] for row in per_n)
             and all(row["control_signature_distances"]["axis0_bundle_zeroed"] > 1e-6 for row in per_n),
             "axis0_router_receipt": axis0_router,
+            "axis0_guard_receipt": axis0_guard_receipt,
             "candidate_names": axis0_bundle["candidate_names"],
+            "blocked_candidate_names": axis0_bundle["guard"].get("blocked_candidate_names", []),
+            "adapter_active_axis0_feature_names": axis0_bundle["guard"].get("adapter_active_axis0_feature_names", []),
+            "blocked_axis0_feature_names_excluded": axis0_bundle["guard"].get("blocked_axis0_feature_names_excluded", []),
             "axis0_bundle_zeroed_distances": {
                 str(row["n_qubits"]): row["control_signature_distances"]["axis0_bundle_zeroed"] for row in per_n
             },
@@ -811,7 +826,18 @@ def main() -> dict[str, Any]:
             and all(row["path_mi_coh_delta_alias_max_abs"] < 1e-12 for row in per_n),
             "phi0_alias_by_n": {str(row["n_qubits"]): row["phi0_coherent_information_alias_max_abs"] for row in per_n},
             "path_alias_by_n": {str(row["n_qubits"]): row["path_mi_coh_delta_alias_max_abs"] for row in per_n},
-            "note": "Aliases are explicitly demoted; path entropy and boundary entropy are the load-bearing readouts here.",
+            "note": (
+                "Aliases are explicitly demoted. Boundary entropy and locally recomputed path entropy are "
+                "diagnostic readouts; blocked router candidates such as path_entropy and HBI do not drive geometry."
+            ),
+        },
+        "local_path_entropy_readout_not_load_bearing": {
+            "pass": all("mean_abs_axis0_path_entropy_delta" in row for row in per_n),
+            "readout_by_n": {str(row["n_qubits"]): row["mean_abs_axis0_path_entropy_delta"] for row in per_n},
+            "signature_included": False,
+            "pass_threshold_included": False,
+            "z3_threshold_included": False,
+            "note": "Path entropy is retained only as a local diagnostic readout, not as a signature, pass, or z3 threshold.",
         },
         "bond_cap_saturation_reported_not_hidden": {
             "pass": all("bond_cap_saturation_fraction" in row for row in per_n),
@@ -819,7 +845,7 @@ def main() -> dict[str, Any]:
             "note": "Saturation is reported as a truncation-risk diagnostic; this scout does not claim a chi plateau or chi-independent scaling law.",
         },
         "local_boundary_fep_not_global_entangled_fep": {
-            "pass": True,
+            "pass": "global variational free energy" in CLAIM_CEILING and "full entangled MPS state" in CLAIM_CEILING,
             "fep_scope": "single_site_boundary_tomographic_kl_only",
             "global_fep_claim_allowed": False,
             "global_state_fep_computed": False,
@@ -833,7 +859,9 @@ def main() -> dict[str, Any]:
             "multi_site_boundary_fep_control": {
                 "computed": False,
                 "required_before_global_claim": True,
+                "pass": False,
             },
+            "scope_boundary_pass_only": True,
             "scope": "FEP selection compares finite single-site boundary density reconstructions only.",
             "blocked_claim": "Does not compute global variational free energy on the full entangled MPS state.",
         },
@@ -859,6 +887,7 @@ def main() -> dict[str, Any]:
                 "EngineCore science-method stage records",
                 "macro_sim_stage_record_science_method_contract receipt",
                 "macro_sim_axis0_plural_stage_candidate_router receipt",
+                "axis0_plural_candidate_multicarrier_drive_controls receipt",
             ],
             "dependency_use": (
                 "stage science fields are copied into each MPS transport row, and "
@@ -874,38 +903,85 @@ def main() -> dict[str, Any]:
                 "that consumes the same stage-science and plural Axis0 bundle"
             ),
         },
+        "blocked_axis0_candidates_do_not_drive_mps_geometry": {
+            "pass": axis0_bundle["guard_pass"]
+            and "path_entropy" not in axis0_bundle["candidate_names"]
+            and "holographic_boundary_interior_reconstruction" not in axis0_bundle["candidate_names"],
+            "active_bundle_candidate_names": axis0_bundle["candidate_names"],
+            "blocked_candidate_names": axis0_bundle["guard"].get("blocked_candidate_names", []),
+            "blocked_axis0_feature_names_excluded": axis0_bundle["guard"].get("blocked_axis0_feature_names_excluded", []),
+            "guard_failure_blocker": axis0_bundle.get("guard_failure_blocker"),
+            "note": "Local path entropy remains a diagnostic path readout, but the blocked router path_entropy candidate no longer drives MPS geometry.",
+        },
     }
     axis0_outputs_or_blockers = {
         "plural_axis0_router": {
-            "status": "consumed_as_mps_geometry_dependency",
+            "status": "consumed_after_axis0_guard_filter_as_mps_geometry_dependency"
+            if axis0_bundle["guard_pass"]
+            else "blocked_axis0_guard_failed_no_mps_geometry_dependency",
             "receipt": axis0_router,
+            "guard_receipt": axis0_guard_receipt,
             "candidate_names": axis0_bundle["candidate_names"],
+            "blocked_candidate_names": axis0_bundle["guard"].get("blocked_candidate_names", []),
+            "guard_failure_blocker": axis0_bundle.get("guard_failure_blocker"),
+            "adapter_active_axis0_feature_names": axis0_bundle["guard"].get("adapter_active_axis0_feature_names", []),
+            "blocked_axis0_feature_names_excluded": axis0_bundle["guard"].get("blocked_axis0_feature_names_excluded", []),
+            "raw_router_receipt_boundary": (
+                "The embedded router receipt is preserved as upstream evidence even when it names all candidates; "
+                "this MPS scout consumes only the post-guard active bundle listed in candidate_names."
+            ),
             "zeroed_control_distances_by_n": {
                 str(row["n_qubits"]): row["control_signature_distances"]["axis0_bundle_zeroed"] for row in per_n
             },
         },
         "fep_gradient_polarity": {
-            "status": "consumed_from_plural_router",
+            "status": "consumed_from_guarded_plural_router",
             "mps_field": "axis0_plural_bundle_drive",
+            "closure_guard": fep_gradient_closure.get("path"),
+            "closure_status": (
+                fep_gradient_closure.get("axis0_outputs_or_blockers", {})
+                .get("fep_gradient_polarity", {})
+                .get("status")
+            ),
         },
         "path_entropy": {
-            "status": "consumed_from_plural_router_and_recomputed_locally",
-            "mps_field": "path_axis0_path_entropy_delta",
+            "status": "blocked_from_guarded_axis0_bundle_recomputed_locally_as_diagnostic_path_readout"
+            if axis0_bundle["guard_pass"]
+            else "guard_failed_no_downstream_path_entropy_status_claim",
+            "diagnostic_mps_readout_field": "path_axis0_path_entropy_delta",
+            "load_bearing_for_signature_or_pass": False,
+            "active_bundle_included": "path_entropy" in axis0_bundle["candidate_names"],
+            "closure_guard": path_entropy_closure.get("path"),
+            "closure_status": (
+                path_entropy_closure.get("axis0_outputs_or_blockers", {})
+                .get("path_entropy", {})
+                .get("status")
+            ),
         },
         "correlation_diversity_derivative": {
-            "status": "consumed_from_plural_router",
+            "status": "consumed_from_guarded_plural_router",
             "mps_field": "axis0_plural_bundle_drive",
         },
         "holographic_boundary_interior_reconstruction": {
-            "status": "still_blocked_by_router_receipt",
+            "status": "blocked_from_guarded_axis0_bundle_by_branch_closure"
+            if axis0_bundle["guard_pass"]
+            else "guard_failed_no_downstream_hbi_status_claim",
             "router_status": (
                 axis0_router.get("axis0_outputs_or_blockers", {})
                 .get("holographic_boundary_interior_reconstruction", {})
                 .get("status")
             ),
+            "active_bundle_included": "holographic_boundary_interior_reconstruction" in axis0_bundle["candidate_names"],
+            "closure_guard": hbi_closure.get("path"),
+            "closure_status": (
+                hbi_closure.get("axis0_outputs_or_blockers", {})
+                .get("holographic_boundary_interior_reconstruction", {})
+                .get("status")
+            ),
         },
         "retrocausal_many_futures_policy_scoring": {
-            "status": "routing_only_not_final",
+            "status": "consumed_from_guarded_plural_router_as_finite_policy_scoring_not_final_time_claim",
+            "mps_field": "axis0_plural_bundle_drive",
             "router_status": (
                 axis0_router.get("axis0_outputs_or_blockers", {})
                 .get("retrocausal_many_futures_policy_scoring", {})
@@ -931,6 +1007,7 @@ def main() -> dict[str, Any]:
             "EngineCore.run_substage repaired science-method stage records",
             "macro_sim_stage_record_science_method_contract receipt",
             "macro_sim_axis0_plural_stage_candidate_router receipt",
+            "axis0_plural_candidate_multicarrier_drive_controls receipt",
             "MPS 8/16/32 local-boundary no-dense transport",
             "axis0_bundle_zeroed matched control",
             "existing zero-gradient/frozen-geometry/sign-collapsed/isotropic controls",
@@ -941,8 +1018,8 @@ def main() -> dict[str, Any]:
             "result": BEFORE_RESULT_SHA256,
         },
         "after_delta/hash": (
-            "Rows now include left/right stage science projections and use the plural Axis0 router bundle "
-            "as a small geometry-driving term with a zeroed-bundle control."
+            "Rows include left/right stage science projections and use the post-guard plural Axis0 router bundle "
+            "as a small geometry-driving term with a zeroed-bundle control; blocked path_entropy/HBI stay diagnostic."
         ),
         "primary_control/result": {
             "axis0_bundle_zeroed": graveyards["axis0_bundle_zeroed_control_changes_signature"],

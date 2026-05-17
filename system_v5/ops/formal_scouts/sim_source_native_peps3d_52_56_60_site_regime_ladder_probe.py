@@ -72,6 +72,11 @@ REQUIRED_STAGE_FIELDS = [
     "next_policy",
     "model_after",
 ]
+AXIS0_CONTEXT_NAMES = [
+    "fep_gradient_polarity",
+    "correlation_diversity_derivative",
+    "retrocausal_many_futures_policy_scoring",
+]
 
 
 def load_result(name: str) -> dict[str, Any]:
@@ -93,18 +98,21 @@ def load_result(name: str) -> dict[str, Any]:
 
 def axis0_signature(router: dict[str, Any]) -> dict[str, Any]:
     outputs = router.get("axis0_outputs_or_blockers") or {}
-    names = ["fep_gradient_polarity", "path_entropy", "correlation_diversity_derivative"]
     parts = []
-    for name in names:
+    for name in AXIS0_CONTEXT_NAMES:
         values = np.asarray(outputs.get(name, {}).get("values", []), dtype=float)
         if values.size:
             values = np.nan_to_num(values, nan=0.0, posinf=0.0, neginf=0.0)
             parts.append(float(np.sum(values) + np.mean(np.abs(values))))
-    ready = bool(router.get("exists") and router.get("all_pass") is True and len(parts) == len(names))
+    ready = bool(router.get("exists") and router.get("all_pass") is True and len(parts) == len(AXIS0_CONTEXT_NAMES))
     signature = float(sum(parts)) if parts else 0.0
     return {
         "ready": ready,
-        "candidate_names": names,
+        "candidate_names": list(AXIS0_CONTEXT_NAMES),
+        "pre_guard_router_context": True,
+        "diagnostic_only": True,
+        "not_load_bearing_for_ladder_admission": True,
+        "post_guard_admission_claim_allowed": False,
         "signature": signature,
         "seed_offset": int(abs(signature) * 1000) % 997,
         "source_receipt": router.get("path"),
@@ -275,9 +283,9 @@ def main() -> int:
     stage_contract = load_result("macro_sim_stage_record_science_method_contract_probe_results.json")
     axis0 = axis0_signature(axis0_router)
     contract = replay_slot_contract()
-    ladder = regime_ladder(axis0_seed_offset=axis0["seed_offset"])
-    axis0_zeroed_ladder = regime_ladder(axis0_seed_offset=0)
-    axis0_ladder_gap = float(np.linalg.norm(ladder_signature(ladder) - ladder_signature(axis0_zeroed_ladder)))
+    ladder = regime_ladder(axis0_seed_offset=0)
+    axis0_diagnostic_ladder = regime_ladder(axis0_seed_offset=axis0["seed_offset"])
+    axis0_ladder_gap = float(np.linalg.norm(ladder_signature(axis0_diagnostic_ladder) - ladder_signature(ladder)))
     graph = nx.DiGraph()
     graph.add_edges_from([
         ("48", "52"),
@@ -287,9 +295,6 @@ def main() -> int:
         ("science_method_slot_contract", "52"),
         ("science_method_slot_contract", "56"),
         ("science_method_slot_contract", "60"),
-        ("axis0_plural_router", "52"),
-        ("axis0_plural_router", "56"),
-        ("axis0_plural_router", "60"),
     ])
     positive = {
         "peps3d_52_56_60_ladder_constructs_between_48_and_64": ladder,
@@ -301,11 +306,15 @@ def main() -> int:
             "expected_free_energy_mean": contract["expected_free_energy_mean"],
             "expected_free_energy_variance": contract["expected_free_energy_variance"],
         },
-        "plural_axis0_router_drives_ladder_context": {
-            "pass": axis0["ready"] and axis0_ladder_gap > 1e-9,
+        "axis0_router_context_reported_diagnostic_only": {
+            "pass": PROMOTION_ALLOWED is False and axis0["post_guard_admission_claim_allowed"] is False,
             "axis0_router_receipt": axis0_router,
             "axis0_signature": axis0,
-            "axis0_zeroed_ladder_signature_gap": axis0_ladder_gap,
+            "context_candidate_names": AXIS0_CONTEXT_NAMES,
+            "diagnostic_ladder_signature_gap": axis0_ladder_gap,
+            "diagnostic_ladder_variant": axis0_diagnostic_ladder,
+            "load_bearing_for_ladder_admission": False,
+            "reason": "This upstream PEPS3D regime ladder records the raw Axis0 router as diagnostic context only.",
         },
         "z3_rejects_intermediate_ladder_collapse": z3_ladder_witness(contract),
     }
@@ -315,10 +324,11 @@ def main() -> int:
             "required_fields": REQUIRED_STAGE_FIELDS,
             "reason": "The ladder contract now requires repaired science-method/FEP fields, not token labels alone.",
         },
-        "axis0_zeroed_ladder_context_is_distinct_control": {
-            "pass": axis0_ladder_gap > 1e-9,
-            "axis0_zeroed_ladder_signature_gap": axis0_ladder_gap,
-            "reason": "The plural Axis0 router changes the ladder contraction context seed; it is not only cited in the receipt.",
+        "axis0_zeroed_ladder_context_reported_not_admission_control": {
+            "pass": PROMOTION_ALLOWED is False,
+            "diagnostic_ladder_signature_gap": axis0_ladder_gap,
+            "reason": "The Axis0-offset ladder variant is diagnostic only; it is not an intermediate-regime admission control.",
+            "load_bearing_for_ladder_admission": False,
         },
         "skip_intermediate_ladder_does_not_promote": {
             "intermediate_sites": [52, 56, 60],
@@ -335,15 +345,15 @@ def main() -> int:
             "pass": "does not prove long-horizon 64-site stability" in CLAIM_CEILING and PROMOTION_ALLOWED is False,
         },
         "integration_is_dependency_consumption_not_result_aggregation": {
-            "pass": contract["science_method_fields_consumed"] and axis0["ready"],
+            "pass": contract["science_method_fields_consumed"],
             "consumed_dependencies": [
                 "EngineCore science-method stage records",
                 "macro_sim_stage_record_science_method_contract receipt",
-                "macro_sim_axis0_plural_stage_candidate_router receipt",
             ],
+            "diagnostic_context_only": ["macro_sim_axis0_plural_stage_candidate_router receipt"],
             "dependency_use": (
-                "science-method fields gate slot-contract replay, and the plural Axis0 signature "
-                "drives the intermediate ladder contraction context"
+                "science-method fields gate slot-contract replay; the raw Axis0 router is recorded only as upstream "
+                "diagnostic context and does not gate intermediate-regime admission"
             ),
         },
         "environment_contraction_still_blocked": {
@@ -355,15 +365,25 @@ def main() -> int:
     all_pass = all(row["pass"] for row in positive.values()) and all(row["pass"] for row in graveyards.values()) and all(row["pass"] for row in boundary.values())
     axis0_outputs_or_blockers = {
         "plural_axis0_router": {
-            "status": "consumed_as_intermediate_ladder_context_dependency",
+            "status": "diagnostic_router_context_only",
             "receipt": axis0_router,
-            "axis0_ladder_gap": axis0_ladder_gap,
+            "axis0_signature": axis0,
+            "context_candidate_names": AXIS0_CONTEXT_NAMES,
+            "excluded_candidate_names": ["path_entropy", "holographic_boundary_interior_reconstruction"],
+            "diagnostic_ladder_signature_gap": axis0_ladder_gap,
+            "not_load_bearing_for_capacity_or_ladder_admission": True,
         },
-        "fep_gradient_polarity": {"status": "consumed_from_plural_router_signature"},
-        "path_entropy": {"status": "consumed_from_plural_router_signature"},
-        "correlation_diversity_derivative": {"status": "consumed_from_plural_router_signature"},
+        "fep_gradient_polarity": {"status": "diagnostic_from_pre_guard_router_context_not_ladder_admission"},
+        "path_entropy": {
+            "status": "excluded_from_peps3d_ladder_context_diagnostic_only",
+            "load_bearing_for_ladder_context": False,
+            "load_bearing_for_ladder_admission": False,
+        },
+        "correlation_diversity_derivative": {"status": "diagnostic_from_pre_guard_router_context_not_ladder_admission"},
         "holographic_boundary_interior_reconstruction": {
-            "status": "still_blocked_by_router_receipt",
+            "status": "excluded_from_peps3d_ladder_context_still_blocked",
+            "load_bearing_for_ladder_context": False,
+            "load_bearing_for_ladder_admission": False,
             "router_status": (
                 axis0_router.get("axis0_outputs_or_blockers", {})
                 .get("holographic_boundary_interior_reconstruction", {})
@@ -371,7 +391,7 @@ def main() -> int:
             ),
         },
         "retrocausal_many_futures_policy_scoring": {
-            "status": "routing_only_not_final",
+            "status": "diagnostic_from_pre_guard_router_context_as_finite_policy_scoring_not_ladder_admission",
             "router_status": (
                 axis0_router.get("axis0_outputs_or_blockers", {})
                 .get("retrocausal_many_futures_policy_scoring", {})
@@ -384,24 +404,28 @@ def main() -> int:
         },
     }
     repair_receipt = {
-        "weak_link": "Intermediate PEPS3D 52/56/60 ladder replayed token contract but did not receipt science-method/FEP fields or consume plural Axis0 outputs.",
+        "weak_link": "Intermediate PEPS3D 52/56/60 ladder replayed token contract but over-framed upstream Axis0 router diagnostics as dependency consumption.",
         "target_file_or_result": str(pathlib.Path(__file__).resolve()),
-        "admission_rule_improved": "Intermediate PEPS3D regime scouts must require science-method stage fields and route Axis0 blockers before serving as macro-sim scaling dependencies.",
+        "admission_rule_improved": "Intermediate PEPS3D regime scouts require science-method stage fields while keeping upstream Axis0 router context diagnostic-only.",
         "dependency_subset": [
             "EngineCore source records",
             "macro_sim_stage_record_science_method_contract receipt",
-            "macro_sim_axis0_plural_stage_candidate_router receipt",
             "PEPS3D 52-site carrier",
             "PEPS3D 56-site carrier",
             "PEPS3D 60-site carrier",
-            "axis0_zeroed ladder-context control",
+        ],
+        "diagnostic_context_subset": [
+            "macro_sim_axis0_plural_stage_candidate_router receipt",
+            "axis0-offset PEPS3D ladder diagnostic variant",
         ],
         "stage_fields_touched_or_consumed": REQUIRED_STAGE_FIELDS,
         "before_baseline/hash": {"script": BEFORE_SCRIPT_SHA256, "result": BEFORE_RESULT_SHA256},
-        "after_delta/hash": "slot contract now requires science-method/FEP fields and Axis0 router signature changes ladder contraction context",
+        "after_delta/hash": "slot contract now requires science-method/FEP fields; Axis0 diagnostic recorded with path/HBI excluded from load-bearing ladder admission",
         "primary_control/result": {
-            "axis0_zeroed_ladder_context": graveyards["axis0_zeroed_ladder_context_is_distinct_control"],
             "skip_intermediate_ladder": graveyards["skip_intermediate_ladder_does_not_promote"],
+        },
+        "diagnostic_control/result": {
+            "axis0_offset_ladder_context": graveyards["axis0_zeroed_ladder_context_reported_not_admission_control"],
         },
         "axis0_outputs_or_blockers": axis0_outputs_or_blockers,
         "provider_inputs_used": {

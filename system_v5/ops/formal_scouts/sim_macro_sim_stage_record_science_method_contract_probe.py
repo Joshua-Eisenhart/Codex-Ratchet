@@ -72,6 +72,22 @@ def sha256_file(path: pathlib.Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def as_jsonable(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {str(k): as_jsonable(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [as_jsonable(v) for v in value]
+    if isinstance(value, pathlib.Path):
+        return str(value)
+    if isinstance(value, np.ndarray):
+        return value.tolist()
+    if isinstance(value, (np.bool_,)):
+        return bool(value)
+    if isinstance(value, (np.integer, np.floating)):
+        return value.item()
+    return value
+
+
 def load_result(name: str) -> dict[str, Any]:
     path = RESULT_DIR / name
     if not path.exists():
@@ -177,7 +193,7 @@ def dependency_graph() -> dict[str, Any]:
         ("stage_record.science_method_fields", "operator_slot_contract"),
         ("stage_record.science_method_fields", "fep_policy_tree"),
         ("stage_record.science_method_fields", "holodeck_closed_loop_fep"),
-        ("stage_record.science_method_fields", "multicarrier_common_boundary_bridge"),
+        ("stage_record.science_method_fields", "source_native_subdense_multicarrier_environment_downstream_target"),
         ("stage_record.science_method_fields", "axis0_candidate_router"),
         ("axis0_candidate_router", "axis0_outputs_or_blockers"),
         ("matched_no_manifold_control", "repair_receipt"),
@@ -209,7 +225,33 @@ def main() -> int:
         "source_native_fep_pomdp_policy_tree": load_result("source_native_fep_pomdp_policy_tree_probe_results.json"),
         "source_native_active_inference_strategy_policy": load_result("source_native_active_inference_strategy_policy_probe_results.json"),
         "source_native_holodeck_closed_loop_fep_strategy": load_result("source_native_holodeck_closed_loop_fep_strategy_probe_results.json"),
-        "source_native_multicarrier_common_boundary_observable_bridge": load_result("source_native_multicarrier_common_boundary_observable_bridge_probe_results.json"),
+        "macro_axis0_fep_gradient_polarity_downstream_target": {
+            "exists": "not_gated_here",
+            "path": str(RESULT_DIR / "macro_sim_axis0_plural_stage_candidate_router_probe_results.json"),
+            "closure_guard": str(RESULT_DIR / "axis0_fep_gradient_stage_local_adapter_closure_probe_results.json"),
+            "reason": "This upstream stage-record scout names the current Axis0 FEP-gradient router target but does not gate on a later receipt.",
+        },
+        "macro_axis0_path_entropy_downstream_blocked_target": {
+            "exists": "not_gated_here",
+            "path": str(RESULT_DIR / "macro_sim_axis0_plural_stage_candidate_router_probe_results.json"),
+            "closure_guard": str(RESULT_DIR / "axis0_path_entropy_branch_closure_probe_results.json"),
+            "schedule_confound_guard": str(RESULT_DIR / "path_entropy_schedule_confound_falsifier_probe_results.json"),
+            "pair_falsifier_guard": str(RESULT_DIR / "path_entropy_proxy_vs_deeper_invariant_pair_falsifier_probe_results.json"),
+            "reason": "This upstream stage-record scout names the current finite path-entropy router diagnostic and its downstream blocker guards; it does not admit path_entropy as Axis0.",
+        },
+        "macro_axis0_holographic_boundary_downstream_blocked_target": {
+            "exists": "not_gated_here",
+            "path": str(RESULT_DIR / "macro_sim_axis0_plural_stage_candidate_router_probe_results.json"),
+            "source_result": str(RESULT_DIR / "source_native_engine_boundary_path_fep_reconstruction_probe_results.json"),
+            "closure_guard": str(RESULT_DIR / "axis0_holographic_boundary_branch_closure_probe_results.json"),
+            "reason": "This upstream stage-record scout names the current finite boundary/interior diagnostic and its downstream blocker guard; it does not admit HBI as Axis0 or a holographic dictionary.",
+        },
+        "source_native_subdense_multicarrier_environment_downstream_target": {
+            "exists": "not_gated_here",
+            "path": str(RESULT_DIR / "source_native_multicarrier_subdense_environment_contraction_probe_results.json"),
+            "closure_guard": str(RESULT_DIR / "stage_record_downstream_carrier_consumption_closure_probe_results.json"),
+            "reason": "This upstream stage-record scout names the current downstream carrier target but does not gate on a later receipt.",
+        },
         "operator_slot_cut_entropy_gradient_dynamic_manifold_mps_transport": load_result("operator_slot_cut_entropy_gradient_dynamic_manifold_mps_transport_probe_results.json"),
         "holographic_boundary_path_ensemble_axis0_fep_selection": load_result("holographic_boundary_path_ensemble_axis0_fep_selection_probe_results.json"),
         "source_native_engine_boundary_path_fep_reconstruction": load_result("source_native_engine_boundary_path_fep_reconstruction_probe_results.json"),
@@ -218,13 +260,18 @@ def main() -> int:
 
     axis0_outputs_or_blockers = {
         "fep_gradient_polarity": {
-            "status": "blocked_stage_local_adapter_missing",
-            "blocker": "EngineCore rows now expose FEP proxy and manifold correction deltas; a dedicated stage-local Ax0 polarity adapter still must compare gradient sign across at least two candidates.",
+            "status": "downstream_axis0_router_target_not_gated_here",
+            "result": consumed_results["macro_axis0_fep_gradient_polarity_downstream_target"]["path"],
+            "closure_guard": consumed_results["macro_axis0_fep_gradient_polarity_downstream_target"]["closure_guard"],
+            "claim_ceiling": "finite stage-local FEP-gradient polarity candidate only",
         },
         "path_entropy": {
-            "status": "existing_candidate_consumed",
-            "result": consumed_results["holographic_boundary_path_ensemble_axis0_fep_selection"]["path"],
-            "claim_ceiling": "finite Kraus-history path entropy candidate only",
+            "status": "blocked_downstream_diagnostic_not_admitted_axis0",
+            "result": consumed_results["macro_axis0_path_entropy_downstream_blocked_target"]["path"],
+            "closure_guard": consumed_results["macro_axis0_path_entropy_downstream_blocked_target"]["closure_guard"],
+            "schedule_confound_guard": consumed_results["macro_axis0_path_entropy_downstream_blocked_target"]["schedule_confound_guard"],
+            "pair_falsifier_guard": consumed_results["macro_axis0_path_entropy_downstream_blocked_target"]["pair_falsifier_guard"],
+            "claim_ceiling": "finite path-entropy diagnostic only; blocked as downstream Axis0/admissibility feature",
         },
         "correlation_diversity_derivative": {
             "status": "existing_candidate_consumed",
@@ -232,9 +279,17 @@ def main() -> int:
             "claim_ceiling": "finite correlation-diversity derivative candidate only",
         },
         "holographic_boundary_interior_reconstruction": {
-            "status": "blocked_by_existing_failed_receipt",
-            "result": consumed_results["source_native_engine_boundary_path_fep_reconstruction"]["path"],
-            "all_pass": consumed_results["source_native_engine_boundary_path_fep_reconstruction"].get("all_pass"),
+            "status": "blocked_downstream_diagnostic_not_admitted_axis0",
+            "result": consumed_results["macro_axis0_holographic_boundary_downstream_blocked_target"]["source_result"],
+            "router_result": consumed_results["macro_axis0_holographic_boundary_downstream_blocked_target"]["path"],
+            "closure_guard": consumed_results["macro_axis0_holographic_boundary_downstream_blocked_target"]["closure_guard"],
+            "source_all_pass": consumed_results["source_native_engine_boundary_path_fep_reconstruction"].get("all_pass"),
+            "claim_ceiling": "finite boundary/interior reconstruction diagnostic only; blocked as downstream Axis0/holographic dictionary feature",
+            "blocker_summary": [
+                "strict_best_kl_selection_gap",
+                "path_label_recovery",
+                "axis0_guard_blocks_downstream_feature",
+            ],
         },
         "retrocausal_many_futures_policy_scoring": {
             "status": "routing_only_not_final",
@@ -268,7 +323,7 @@ def main() -> int:
             "13-layer manifold metrics via active_layer_constraint_enforcers",
             "finite Pauli sensory projection",
             "matched no-manifold control",
-            "existing FEP/POMDP, Holodeck, multicarrier, and Axis0 receipts as consumption map",
+            "existing FEP/POMDP, Holodeck, and Axis0 receipts plus the downstream subdense multicarrier target as consumption map",
         ],
         "stage_fields_touched": REQUIRED_STAGE_FIELDS,
         "before_baseline/hash": BEFORE_ENGINE_CORE_SHA256,
@@ -291,7 +346,7 @@ def main() -> int:
             "reason": "local source-native stage-record repair was executable without new proposal input; provider outputs remain proposal-only until receipts exist",
         },
         "promotion_ceiling": CLAIM_CEILING,
-        "next_step": "Add a downstream admission check requiring these fields in MPS/PEPS/PEPS3D carrier bridge scouts, then wire at least two Axis0 candidates as consumed stage-level outputs.",
+        "next_step": "Keep the downstream carrier-consumption closure guard current, then wire at least two Axis0 candidates as consumed stage-level outputs.",
     }
 
     positive = {
@@ -354,7 +409,7 @@ def main() -> int:
             "pass": all(term in CLAIM_CEILING.lower() for term in ["formal scout", "does not admit", "final fep", "final axis0"]),
         },
         "integration_is_dependency_consumption_not_result_aggregation": {
-            "pass": graph["acyclic"] and "repair_receipt" in graph["edge_list"][-1],
+            "pass": graph["acyclic"] and any("repair_receipt" in edge for edge in graph["edge_list"]),
             "dependency_subset": repair_receipt["dependency_subset"],
         },
     }
@@ -400,7 +455,7 @@ def main() -> int:
         "elapsed_seconds": time.time() - started,
     }
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    OUT_PATH.write_text(json.dumps(result, indent=2, sort_keys=True), encoding="utf-8")
+    OUT_PATH.write_text(json.dumps(as_jsonable(result), indent=2, sort_keys=True), encoding="utf-8")
     print(f"RESULT {NAME}: all_pass={all_pass} -> {OUT_PATH}")
     return 0 if all_pass else 1
 

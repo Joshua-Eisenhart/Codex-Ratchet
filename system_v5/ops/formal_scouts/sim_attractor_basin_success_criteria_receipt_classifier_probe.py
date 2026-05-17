@@ -1,0 +1,1093 @@
+#!/usr/bin/env python3
+"""Attractor-basin success-criteria receipt classifier scout.
+
+This scout formalizes a method/audit criterion, not a physics result:
+convergence is stronger when independent methods reach the same survivor or
+exclusion, and weaker when multiple lanes reuse the same proxy/source.
+
+The input is a small set of existing formal-scout receipts.  The output is a
+bounded label:
+
+  deep_basin            method-multiple, proxy-resistant convergence/exclusion
+  candidate_basin       useful convergence missing one independence/control axis
+  shallow_basin         repeated agreement on one proxy/source
+  anti_basin            a receipt falsifies the proposed convergence target
+  open_basin_boundary   mixed controls or unresolved dependency boundary
+
+Formal scout only.  A label here is an audit classification for the named
+receipt/claim pair.  It does not promote the underlying receipt.
+"""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import pathlib
+import time
+from typing import Any
+
+
+ROOT = pathlib.Path(__file__).resolve().parent
+RESULT_DIR = ROOT / "results"
+OUT_PATH = RESULT_DIR / "attractor_basin_success_criteria_receipt_classifier_probe_results.json"
+DOC_PATH = ROOT.parent.parent / "docs" / "ATTRACTOR_BASIN_SUCCESS_DOCTRINE_v0.md"
+
+NAME = "attractor_basin_success_criteria_receipt_classifier_probe"
+CLASSIFICATION = "formal_scout"
+PROMOTION_ALLOWED = False
+SOURCE_ALIGNMENT_CATEGORY = "attractor_basin_success_criteria"
+CLAIM_CEILING = (
+    "Formal scout only: classifies selected existing receipts plus named "
+    "synthetic shallow/open control fixtures under the noncanonical "
+    "attractor-basin success doctrine. A deep_basin label means "
+    "method/control convergence for the named receipt claim only. It does not "
+    "admit canonical Axis0, FEP, Holodeck, engine, manifold, cognition, "
+    "physics, world-model, or architecture claims, and it does not promote any "
+    "underlying receipt."
+)
+
+TOOL_MANIFEST = {
+    "json": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing parsing of formal-scout receipt fields and controls",
+    },
+    "hashlib": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing source/result hash receipts for classifier inputs",
+    },
+    "pathlib": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive bounded file resolution under the formal_scouts result surface",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "json": "load_bearing",
+    "hashlib": "load_bearing",
+    "pathlib": "supportive",
+}
+PROVIDER_INPUTS_USED = [
+    "system_v5/ops/formal_scouts/provider_receipts/20260517T134100Z_opus_attractor_basin_classifier_premortem_normalized.json",
+    "system_v5/ops/formal_scouts/provider_receipts/20260517T134100Z_sonnet_attractor_basin_classifier_implementation_audit_normalized.json",
+    "system_v5/ops/formal_scouts/provider_receipts/20260517T134100Z_grok_attractor_basin_classifier_audit_normalized.json",
+    "system_v5/ops/formal_scouts/provider_receipts/20260517T134100Z_gemini_attractor_basin_classifier_audit_normalized.json",
+]
+
+LABELS = {
+    "deep_basin",
+    "candidate_basin",
+    "shallow_basin",
+    "anti_basin",
+    "open_basin_boundary",
+}
+
+REQUIRED_REPAIR_FIELDS = {
+    "weak_link",
+    "target_file_or_result",
+    "admission_rule_improved",
+    "dependency_subset",
+    "stage_fields_touched_or_consumed",
+    "before_baseline/hash",
+    "after_delta/hash",
+    "primary_control/result",
+    "axis0_outputs_or_blockers",
+    "provider_inputs_used",
+    "promotion_ceiling",
+    "next_step",
+}
+
+
+CASES = [
+    {
+        "id": "synthetic_same_source_metric_only_green",
+        "receipt": "fixture://same_source_metric_only_green",
+        "claim_under_test": "three workers agreeing on one scalar metric is a deep attractor basin",
+        "expected_label": "shallow_basin",
+        "same_source_risk": True,
+        "method_families": ["same_scalar_proxy"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 2,
+        "positive_required_terms": ["same_metric_agrees_across_workers"],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "canonical"],
+        "rationale": "Named negative fixture: it is green by ordinary pass flags but must not pass as deep because all evidence reads one proxy.",
+    },
+    {
+        "id": "synthetic_missing_controls_open_boundary",
+        "receipt": "fixture://missing_controls_open_boundary",
+        "claim_under_test": "a receipt with incomplete matched controls is ready for basin admission",
+        "expected_label": "open_basin_boundary",
+        "same_source_risk": False,
+        "method_families": ["single_numeric_signal"],
+        "proxy_pair_control": False,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 2,
+        "positive_required_terms": ["single_positive_signal"],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "canonical"],
+        "rationale": "Named negative fixture: an incomplete or blocked receipt must remain open even when it has one positive signal.",
+    },
+    {
+        "id": "synthetic_false_independence_same_source_metric",
+        "receipt": "fixture://false_independence_same_source_metric",
+        "claim_under_test": "an author-declared independent metric agreement is a deep attractor basin",
+        "expected_label": "shallow_basin",
+        "same_source_risk": False,
+        "method_families": ["same_scalar_proxy"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 2,
+        "positive_required_terms": ["same_metric_agrees_across_workers"],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "canonical"],
+        "rationale": "Adversarial fixture: the case card falsely declares no same-source risk, so the classifier must derive shallow risk from receipt structure.",
+    },
+    {
+        "id": "synthetic_false_invariant_case_card",
+        "receipt": "fixture://author_declared_invariant_missing_receipt",
+        "claim_under_test": "an author-declared invariant-preserving control is enough for a deep attractor basin",
+        "expected_label": "candidate_basin",
+        "same_source_risk": False,
+        "method_families": ["symbolic_method", "numeric_method", "graph_method"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 3,
+        "positive_required_terms": ["dual_method_agrees"],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "canonical"],
+        "rationale": "Adversarial fixture: the case card declares invariant control, but the receipt has no invariant-preserving control row, so it must not become deep_basin.",
+    },
+    {
+        "id": "path_entropy_schedule_confound",
+        "receipt": "path_entropy_schedule_confound_falsifier_probe_results.json",
+        "claim_under_test": "path_entropy is a clean Axis0/admissibility invariant",
+        "expected_label": "anti_basin",
+        "same_source_risk": True,
+        "method_families": ["numpy_entropy", "networkx_transition_graph", "z3_witness"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 2,
+        "negative_target_terms": ["path_entropy", "blocked", "schedule"],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "axis0"],
+        "rationale": "The receipt keeps path_entropy blocked and shows schedule-token confounding.",
+    },
+    {
+        "id": "path_entropy_proxy_pair",
+        "receipt": "path_entropy_proxy_vs_deeper_invariant_pair_falsifier_probe_results.json",
+        "claim_under_test": "path_entropy is the load-bearing convergence invariant",
+        "expected_label": "anti_basin",
+        "same_source_risk": True,
+        "method_families": ["numpy_entropy", "networkx_transition_graph", "sympy_spectrum", "z3_pair_witness"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 3,
+        "negative_target_terms": ["path_entropy", "proxy"],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "synthetic"],
+        "rationale": "Pair controls discriminate path_entropy from deeper transition/survivor structure.",
+    },
+    {
+        "id": "commutative_geometry_collapse",
+        "receipt": "commutative_geometry_collapse_falsifier_probe_results.json",
+        "claim_under_test": "commutative reduction can preserve the encoded noncommutative geometry invariants",
+        "expected_label": "deep_basin",
+        "same_source_risk": False,
+        "method_families": ["z3_boolean_encoding", "z3_bitvec_encoding", "sympy_symbolic_crosscheck", "clifford_numeric_product"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 3,
+        "positive_required_terms": ["dual_encoding_agreement", "weakened_control_sat", "sympy_numpy_crosscheck"],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "encoding-artifact"],
+        "rationale": "Dual independent SMT encodings plus SAT control and non-circular crosscheck converge on the exclusion.",
+    },
+    {
+        "id": "gamma5_chirality_expectation_proxy",
+        "receipt": "clifford_full_cl_1_3_gamma5_chirality_replacement_probe_results.json",
+        "claim_under_test": "sigma_z proxy agrees with full Cl(1,3) gamma5 for chirality expectation",
+        "expected_label": "candidate_basin",
+        "same_source_risk": False,
+        "method_families": ["sympy_exact", "torch_numeric_battery", "z3_unsat_witness", "clifford_gamma5_construction"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 3,
+        "positive_required_terms": ["sympy_exact_proxy_equality_on_diagonal_weyl", "torch_chirality_expectation_battery", "z3_unsat_witness_for_diagonal_weyl_block_equivalence"],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "off-diagonal"],
+        "rationale": "Method-multiple at the expectation observable, but the receipt explicitly leaves off-diagonal Weyl resolution outside the claim.",
+    },
+    {
+        "id": "online_vmp_policy_update",
+        "receipt": "source_native_fep_online_vmp_policy_update_probe_results.json",
+        "claim_under_test": "finite source-native policy rows support online VMP posterior updates",
+        "expected_label": "candidate_basin",
+        "same_source_risk": False,
+        "method_families": ["numpy_categorical_vmp", "networkx_dependency_graph", "engine_core_transition_estimation"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 2,
+        "positive_required_terms": ["heldout_observation_tokens_support_online_updates", "online_updates_reduce_vfe_against_no_message_control", "upstream_pomdp_policy_tree_receipt_is_consumed"],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "full fep"],
+        "rationale": "Held-out deterministic token control repairs self-predicted-loop collapse, but this is still finite categorical VMP, not empirical FEP.",
+    },
+    {
+        "id": "subdense_full_vector_axis0_consumer",
+        "receipt": "source_native_multicarrier_subdense_environment_contraction_probe_results.json",
+        "claim_under_test": "subdense multicarrier consumer preserves active plural Axis0 candidate structure while masking blocked candidates",
+        "expected_label": "candidate_basin",
+        "same_source_risk": False,
+        "method_families": ["quimb_tensor_update", "cotengra_local_contraction", "opt_einsum_readout", "networkx_dependency_graph"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 2,
+        "positive_required_terms": [
+            "plural_axis0_active_vector_differs_from_scalar_mean_control",
+            "plural_axis0_active_name_binding_and_candidate_controls_are_visible",
+            "blocked_axis0_candidates_do_not_drive_subdense_geometry",
+        ],
+        "claim_ceiling_terms": ["formal scout", "does not prove", "gauge"],
+        "rationale": "Active-vector and name-binding controls are visible, blocked path/HBI candidates have zero geometry drive, but no-dense/gauge/finite-size claims remain blocked.",
+    },
+    {
+        "id": "manifold_dependency_task_matrix",
+        "receipt": "manifold_dependency_task_matrix_probe_results.json",
+        "claim_under_test": "the manifold dependency surface is a differential task-specific basin rather than a global required claim",
+        "expected_label": "candidate_basin",
+        "same_source_risk": False,
+        "method_families": [
+            "qit_identity_blocker",
+            "stage_record_fep_repair",
+            "active_inference_policy",
+            "subdense_environment_signature",
+            "nested_support_assembly",
+            "integrated_dependency_graph",
+        ],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 3,
+        "positive_required_terms": [
+            "global_manifold_required_claim_is_closed_or_blocked",
+            "task_specific_manifold_dependencies_are_receipt_bound",
+            "finite_topology_order_effect_stays_local",
+        ],
+        "claim_ceiling_terms": ["formal scout", "rejects global", "task-specific", "does not admit"],
+        "rationale": "The matrix consumes the hard QIT no-manifold blocker plus local dependency receipts, so the attractor is differential/task-local and not a deep global necessity basin.",
+    },
+    {
+        "id": "manifold_dependency_basin_depth_guard",
+        "receipt": "manifold_dependency_basin_depth_guard_probe_results.json",
+        "claim_under_test": "task-specific manifold dependency candidates have receipt-local control-margin basin-depth guards",
+        "expected_label": "candidate_basin",
+        "same_source_risk": False,
+        "method_families": [
+            "qit_no_manifold_global_blocker",
+            "stage_record_repair_depth_window",
+            "active_inference_policy_depth_window",
+            "operational_assembly_order_depth_window",
+            "operational_assembly_perturbation_depth_window",
+            "seven_control_parent_gate_depth_window",
+            "seven_control_true_perturbation_depth_window",
+        ],
+        "proxy_pair_control": False,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 5,
+        "positive_required_terms": [
+            "receipt_family_method_count_not_parser_tools",
+            "candidate_rows_depth_controls_use_source_receipts_not_matrix_labels",
+            "four_candidate_rows_have_receipt_local_control_margin_depth_checks",
+            "seven_control_true_perturbation_depth_receipt_consumed",
+            "global_manifold_required_claim_remains_blocked_by_qit_control",
+            "global_robustness_claim_remains_blocked",
+        ],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "robust perturbation volume"],
+        "rationale": "The guard adds receipt-local control-margin depth checks while leaving true noise/epsilon perturbation volume as explicit next work, so it remains candidate rather than deep.",
+    },
+    {
+        "id": "active_inference_policy_margin_sensitivity",
+        "receipt": "active_inference_policy_margin_sensitivity_probe_results.json",
+        "claim_under_test": "the existing active-inference policy row can be repaired into basin-depth evidence by bounded seed/horizon/preference variants",
+        "expected_label": "anti_basin",
+        "same_source_risk": False,
+        "method_families": [
+            "seed_count_sensitivity",
+            "finite_horizon_depth_sensitivity",
+            "preference_profile_sensitivity",
+            "matched_controls",
+        ],
+        "proxy_pair_control": False,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 4,
+        "negative_target_terms": ["admissible_variant_grid_does_not_repair_margin"],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "deep-basin evidence"],
+        "rationale": "The receipt explicitly blocks the current active-policy row from becoming basin-depth evidence under bounded admissible variants.",
+    },
+    {
+        "id": "active_policy_online_vmp_margin_closure",
+        "receipt": "active_policy_online_vmp_margin_closure_probe_results.json",
+        "claim_under_test": "the online-VMP nominal policy margin repairs active-policy manifold-depth evidence",
+        "expected_label": "anti_basin",
+        "same_source_risk": False,
+        "method_families": [
+            "online_vmp_nominal_margin",
+            "online_vmp_update_quality",
+            "online_vmp_no_manifold_control",
+            "old_strategy_policy_margin_blocker",
+        ],
+        "proxy_pair_control": False,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 4,
+        "negative_target_terms": [
+            "online_vmp_nominal_margin_not_enough_for_manifold_depth",
+            "no_manifold_control_blocks_depth_upgrade",
+        ],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "deep-basin evidence"],
+        "rationale": "The receipt keeps online VMP as a finite FEP interface candidate while rejecting the stronger manifold-depth repair because no-manifold online control blocks it.",
+    },
+    {
+        "id": "stage_record_true_perturbation_depth",
+        "receipt": "stage_record_true_perturbation_depth_probe_results.json",
+        "claim_under_test": "the stage-record science-method row has local true perturbation-depth evidence",
+        "expected_label": "candidate_basin",
+        "same_source_risk": False,
+        "method_families": [
+            "epsilon_grid",
+            "seed_grid",
+            "manifold_on_rank_repair",
+            "no_manifold_rank_control",
+            "stage_record_fep_repair_fields",
+        ],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 4,
+        "positive_required_terms": [
+            "stage_record_contract_receipt_loads",
+            "epsilon_seed_grid_executed",
+            "manifold_repairs_rank2_perturbations_to_rank1",
+            "repair_delta_and_manifold_surprise_have_floor",
+        ],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "global manifold requirement"],
+        "rationale": "The receipt adds real seed/epsilon perturbation evidence for the stage-record row, but remains local/task-specific rather than deep/global.",
+    },
+    {
+        "id": "operational_manifold_assembly_true_perturbation_depth",
+        "receipt": "operational_manifold_assembly_true_perturbation_depth_probe_results.json",
+        "claim_under_test": "the operational manifold assembly row has local true perturbation-depth evidence",
+        "expected_label": "candidate_basin",
+        "same_source_risk": False,
+        "method_families": [
+            "perturbed_initial_seed_grid",
+            "epsilon_grid",
+            "weakest_layer_skip_control",
+            "reverse_order_control",
+            "mps_operational_assembly",
+        ],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 4,
+        "positive_required_terms": [
+            "perturbed_initial_grid_executes",
+            "weakest_layer_effect_survives_perturbed_initials",
+            "nested_order_effect_survives_perturbed_initials",
+            "assembly_entropy_span_survives_perturbed_initials",
+        ],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "global manifold requirement"],
+        "rationale": "The receipt adds bounded seed/epsilon perturbation evidence for the operational assembly weakest-layer, order, and entropy-span effects, but stays local/task-specific rather than deep/global.",
+    },
+    {
+        "id": "seven_control_source_execution_true_perturbation_depth",
+        "receipt": "seven_control_source_execution_true_perturbation_depth_probe_results.json",
+        "claim_under_test": "the seven-control source-execution row has local true perturbation-depth evidence",
+        "expected_label": "candidate_basin",
+        "same_source_risk": False,
+        "method_families": [
+            "single_source_engine_perturbation_grid",
+            "matched_seven_collapse_control_family",
+            "dynamic_and_full_signature_gap_readouts",
+        ],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 4,
+        "positive_required_terms": [
+            "perturbed_seven_control_grid_executes",
+            "all_seven_collapse_controls_remain_populated_under_perturbation",
+            "collapse_dynamic_gaps_survive_perturbations",
+            "collapse_full_signature_gaps_survive_perturbations",
+        ],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "global manifold requirement"],
+        "rationale": "The receipt adds bounded seed/epsilon perturbation evidence for all seven collapse-control separations, but stays local/task-specific rather than deep/global.",
+    },
+    {
+        "id": "source_native_engine_manifold_attractor_basin_depth",
+        "receipt": "source_native_engine_manifold_attractor_basin_depth_probe_results.json",
+        "claim_under_test": "source-native EngineCore plus manifold currently forms an operational engine/manifold attractor basin under perturbation and controls",
+        "expected_label": "shallow_basin",
+        "same_source_risk": False,
+        "method_families": [
+            "source_native_engine_core",
+            "epsilon_seed_perturbation_grid",
+            "no_manifold_control",
+            "reversed_schedule_control",
+            "wrong_chirality_control",
+        ],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 3,
+        "positive_required_terms": [
+            "basin_depth_classifier_runs",
+            "epsilon_seed_engine_grid_executed",
+            "manifold_correction_is_load_bearing_local_observable",
+            "native_stage_identity_preserved_under_perturbation",
+        ],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "global manifold necessity"],
+        "rationale": "The scout shows finite perturbation/control separation and local load-bearing correction, but its own classifier labels the result shallow_basin and it has only one implementation/finite carrier family.",
+    },
+    {
+        "id": "manifold_required_dynamics",
+        "receipt": "qit_engine_dynamics_required_work_discrimination_probe_results.json",
+        "claim_under_test": "the manifold is currently required for the tested engine dynamics signal",
+        "expected_label": "anti_basin",
+        "same_source_risk": False,
+        "method_families": ["engine_trajectory_features", "classifier_readout", "z3_static_dynamic_witness"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 2,
+        "negative_target_terms": ["manifold_disabled", "blocks", "required"],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "manifold-required"],
+        "rationale": "The receipt itself blocks a manifold-required claim because the disabled-manifold control preserves or improves the signal.",
+    },
+    {
+        "id": "qit_reservoir_advantage",
+        "receipt": "multiqubit_reservoir_static_kernel_esn_baseline_probe_results.json",
+        "claim_under_test": "current frozen multiqubit QIT reservoir is separated from static/classical baselines",
+        "expected_label": "anti_basin",
+        "same_source_risk": False,
+        "method_families": ["qit_reservoir_readout", "classical_esn_baseline", "static_kernel_baseline", "z3_shuffle_witness"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": False,
+        "independent_methods_required": 2,
+        "negative_target_terms": ["static_kernel_risk", "does_not_claim_quantum_advantage"],
+        "claim_ceiling_terms": ["formal scout", "does not admit", "quantum advantage"],
+        "rationale": "The receipt reports baseline risk and blocks a stronger reservoir-advantage reading.",
+    },
+]
+
+FIXTURE_RECEIPTS = {
+    "fixture://same_source_metric_only_green": {
+        "schema": "FORMAL_SCOUT_RESULT_v1_SYNTHETIC_FIXTURE",
+        "name": "same_source_metric_only_green_fixture",
+        "classification": "formal_scout",
+        "promotion_allowed": False,
+        "claim_ceiling": (
+            "Formal scout negative fixture only: simulates three workers agreeing "
+            "on the same scalar metric. It does not admit canonical, engine, "
+            "Axis0, physics, or architecture claims."
+        ),
+        "TOOL_INTEGRATION_DEPTH": {
+            "worker_a_same_scalar": "load_bearing",
+            "worker_b_same_scalar": "load_bearing",
+            "worker_c_same_scalar": "load_bearing",
+        },
+        "positive": {
+            "same_metric_agrees_across_workers": {
+                "pass": True,
+                "metric_name": "proxy_scalar",
+                "worker_values": [0.91, 0.91, 0.91],
+            },
+        },
+        "graveyard_companions": {
+            "proxy_preserving_control_would_not_split": {
+                "pass": True,
+                "claim": "Changing labels while preserving the scalar would leave the agreement unchanged.",
+            },
+            "invariant_preserving_proxy_breaking_control_missing": {
+                "pass": True,
+                "claim": "The fixture intentionally has no deeper invariant-preserving control.",
+            },
+        },
+        "boundary": {
+            "synthetic_fixture_not_underlying_receipt": {
+                "pass": True,
+                "claim": "This fixture only proves the classifier can emit shallow_basin.",
+            },
+        },
+        "all_pass": True,
+    },
+    "fixture://missing_controls_open_boundary": {
+        "schema": "FORMAL_SCOUT_RESULT_v1_SYNTHETIC_FIXTURE",
+        "name": "missing_controls_open_boundary_fixture",
+        "classification": "formal_scout",
+        "promotion_allowed": False,
+        "claim_ceiling": (
+            "Formal scout negative fixture only: simulates one positive signal "
+            "with missing matched controls. It does not admit canonical, engine, "
+            "Axis0, physics, or architecture claims."
+        ),
+        "TOOL_INTEGRATION_DEPTH": {
+            "single_numeric_signal": "load_bearing",
+        },
+        "positive": {
+            "single_positive_signal": {
+                "pass": True,
+                "metric_name": "one_good_result_without_controls",
+            },
+        },
+        "graveyard_companions": {},
+        "boundary": {
+            "missing_matched_controls_keeps_boundary_open": {
+                "pass": False,
+                "claim": "This fixture intentionally fails the control boundary.",
+            },
+        },
+        "blockers": ["missing proxy-preserving and invariant-preserving controls"],
+        "all_pass": False,
+    },
+    "fixture://false_independence_same_source_metric": {
+        "schema": "FORMAL_SCOUT_RESULT_v1_SYNTHETIC_FIXTURE",
+        "name": "false_independence_same_source_metric_fixture",
+        "classification": "formal_scout",
+        "promotion_allowed": False,
+        "claim_ceiling": (
+            "Formal scout adversarial fixture only: simulates author-declared "
+            "independence while all workers report the same scalar metric. It "
+            "does not admit canonical, engine, Axis0, physics, or architecture "
+            "claims."
+        ),
+        "TOOL_INTEGRATION_DEPTH": {
+            "worker_a_same_scalar": "load_bearing",
+            "worker_b_same_scalar": "load_bearing",
+            "worker_c_same_scalar": "load_bearing",
+        },
+        "positive": {
+            "same_metric_agrees_across_workers": {
+                "pass": True,
+                "metric_name": "proxy_scalar",
+                "worker_values": [0.42, 0.42, 0.42],
+            },
+        },
+        "graveyard_companions": {
+            "author_independence_flag_is_not_enough": {
+                "pass": True,
+                "claim": "The case card says independent, but the receipt exposes one repeated scalar.",
+            },
+            "same_metric_names_force_shallow_risk": {
+                "pass": True,
+                "claim": "All apparent worker lanes share one proxy metric name.",
+            },
+        },
+        "boundary": {
+            "synthetic_fixture_not_underlying_receipt": {
+                "pass": True,
+                "claim": "This fixture proves the classifier can override a false independence flag.",
+            },
+        },
+        "all_pass": True,
+    },
+    "fixture://author_declared_invariant_missing_receipt": {
+        "schema": "FORMAL_SCOUT_RESULT_v1_SYNTHETIC_FIXTURE",
+        "name": "author_declared_invariant_missing_receipt_fixture",
+        "classification": "formal_scout",
+        "promotion_allowed": False,
+        "claim_ceiling": (
+            "Formal scout adversarial fixture only: simulates three genuinely "
+            "different methods agreeing while the receipt lacks an "
+            "invariant-preserving control row. It does not admit canonical, "
+            "engine, Axis0, physics, or architecture claims."
+        ),
+        "TOOL_INTEGRATION_DEPTH": {
+            "symbolic_method": "load_bearing",
+            "numeric_method": "load_bearing",
+            "graph_method": "load_bearing",
+        },
+        "positive": {
+            "dual_method_agrees": {
+                "pass": True,
+                "symbolic_value": "excluded",
+                "numeric_value": "excluded",
+                "graph_value": "excluded",
+            },
+        },
+        "graveyard_companions": {
+            "proxy_control_one_passes": {
+                "pass": True,
+                "claim": "A proxy-breaking control exists but does not preserve a deeper invariant.",
+            },
+            "proxy_control_two_passes": {
+                "pass": True,
+                "claim": "A second control exists but still does not prove invariant preservation.",
+            },
+        },
+        "boundary": {
+            "missing_invariant_control_keeps_deep_basin_blocked": {
+                "pass": True,
+                "claim": "This fixture must classify as candidate_basin, not deep_basin.",
+            },
+        },
+        "all_pass": True,
+    },
+}
+
+
+def sha256_file(path: pathlib.Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load_receipt(name: str) -> dict[str, Any]:
+    if name in FIXTURE_RECEIPTS:
+        data = json.loads(json.dumps(FIXTURE_RECEIPTS[name], sort_keys=True))
+        data["exists"] = True
+        data["path"] = name
+        data["sha256"] = hashlib.sha256(json.dumps(data, sort_keys=True).encode("utf-8")).hexdigest()
+        data["is_fixture"] = True
+        return data
+    path = RESULT_DIR / name
+    if not path.exists():
+        return {"exists": False, "path": str(path)}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["exists"] = True
+    data["path"] = str(path)
+    data["sha256"] = sha256_file(path)
+    return data
+
+
+def section_pass(section: Any) -> bool:
+    if not isinstance(section, dict) or not section:
+        return False
+    pass_rows = [
+        row for row in section.values()
+        if isinstance(row, dict) and "pass" in row
+    ]
+    return bool(pass_rows) and all(bool(row.get("pass")) for row in pass_rows)
+
+
+def section_names(data: dict[str, Any], key: str) -> set[str]:
+    section = data.get(key) or {}
+    if not isinstance(section, dict):
+        return set()
+    return {str(k) for k in section}
+
+
+def section_rows(data: dict[str, Any], key: str) -> list[dict[str, Any]]:
+    section = data.get(key) or {}
+    if not isinstance(section, dict):
+        return []
+    return [row for row in section.values() if isinstance(row, dict)]
+
+
+def text_blob(data: dict[str, Any]) -> str:
+    fields = {
+        "claim_ceiling": data.get("claim_ceiling"),
+        "honest_conclusion": data.get("honest_conclusion"),
+        "axis0_outputs_or_blockers": data.get("axis0_outputs_or_blockers"),
+        "summary": data.get("summary"),
+        "proxy_verdict": data.get("proxy_verdict"),
+        "boundary": data.get("boundary"),
+        "graveyard_companions": data.get("graveyard_companions"),
+        "positive": data.get("positive"),
+    }
+    return json.dumps(fields, sort_keys=True, default=str).lower()
+
+
+def count_load_bearing_tools(data: dict[str, Any]) -> int:
+    depth = data.get("TOOL_INTEGRATION_DEPTH") or data.get("tool_integration_depth") or {}
+    if not isinstance(depth, dict):
+        return 0
+    return sum(1 for value in depth.values() if str(value).lower() == "load_bearing")
+
+
+def count_receipt_method_families(data: dict[str, Any]) -> tuple[int, str]:
+    families = data.get("audit_method_families")
+    if isinstance(families, list) and families:
+        return len({str(item) for item in families}), "audit_method_families"
+    return count_load_bearing_tools(data), "tool_integration_depth"
+
+
+def graveyard_claim_diversity(data: dict[str, Any]) -> int:
+    claims = {
+        str(row.get("claim") or row.get("boundary") or json.dumps(row, sort_keys=True, default=str))
+        for row in section_rows(data, "graveyard_companions")
+        if "pass" in row
+    }
+    return len(claims)
+
+
+def derived_same_source_risk(data: dict[str, Any]) -> bool:
+    positive_rows = section_rows(data, "positive")
+    metric_names = [str(row.get("metric_name")) for row in positive_rows if row.get("metric_name")]
+    repeated_metric_name = bool(metric_names) and len(set(metric_names)) == 1
+    worker_value_proxy = any(
+        isinstance(row.get("worker_values"), list)
+        and len(row["worker_values"]) >= 2
+        and len({json.dumps(value, sort_keys=True, default=str) for value in row["worker_values"]}) == 1
+        for row in positive_rows
+    )
+    depth = data.get("TOOL_INTEGRATION_DEPTH") or data.get("tool_integration_depth") or {}
+    tool_names = [str(name).lower() for name in depth] if isinstance(depth, dict) else []
+    repeated_worker_scalar_tools = (
+        len(tool_names) >= 2
+        and all("worker" in name and ("same_scalar" in name or "same" in name) for name in tool_names)
+    )
+    return bool((repeated_metric_name and worker_value_proxy) or repeated_worker_scalar_tools)
+
+
+def derived_invariant_control(data: dict[str, Any]) -> bool:
+    names = (
+        section_names(data, "positive")
+        | section_names(data, "graveyard_companions")
+        | section_names(data, "boundary")
+    )
+    receipt_rows = {
+        "weakened_control_sat",
+        "sympy_numpy_crosscheck",
+        "dual_independent_encodings_present",
+        "z3_cvc5_agree",
+        "cross_solver_agreement_tuple",
+        "all_4_unsat",
+        "invariant_preserving_control",
+        "invariant_preserving_proxy_breaking_control",
+    }
+    return bool(names & receipt_rows)
+
+
+def expected_terms_present(terms: list[str], names: set[str], blob: str) -> bool:
+    if not terms:
+        return False
+    return all(term.lower() in blob or term in names for term in terms)
+
+
+def classify_case(case: dict[str, Any], data: dict[str, Any]) -> dict[str, Any]:
+    if not data.get("exists"):
+        return {
+            "label": "open_basin_boundary",
+            "pass": False,
+            "errors": ["receipt missing"],
+            "axis_scores": {},
+        }
+
+    positives = section_names(data, "positive")
+    graveyards = section_names(data, "graveyard_companions")
+    boundary = section_names(data, "boundary")
+    all_names = positives | graveyards | boundary
+    blob = text_blob(data)
+
+    all_pass = bool(data.get("all_pass"))
+    contract_ok = (
+        data.get("classification") == CLASSIFICATION
+        and data.get("promotion_allowed") is False
+        and bool(data.get("claim_ceiling"))
+        and section_pass(data.get("positive"))
+        and section_pass(data.get("graveyard_companions"))
+        and section_pass(data.get("boundary"))
+    )
+    method_count, method_count_source = count_receipt_method_families(data)
+    author_same_source_risk = bool(case["same_source_risk"])
+    receipt_same_source_risk = derived_same_source_risk(data)
+    effective_same_source_risk = author_same_source_risk or receipt_same_source_risk
+    source_independent = not effective_same_source_risk
+    method_families = sorted(set(str(item) for item in case.get("method_families", [])))
+    method_family_count = len(method_families)
+    observable_independent = (
+        method_count >= int(case["independent_methods_required"])
+        and method_family_count >= int(case["independent_methods_required"])
+    )
+    structural_boundary_control = bool(
+        {"z3_unsat", "cvc5_unsat", "z3_cvc5_agree"} <= boundary
+        or {"all_4_unsat", "cross_solver_agreement_tuple"} <= positives
+    )
+    if structural_boundary_control and not contract_ok:
+        contract_ok = (
+            data.get("classification") == CLASSIFICATION
+            and data.get("promotion_allowed") is False
+            and bool(data.get("claim_ceiling"))
+            and section_pass(data.get("positive"))
+            and section_pass(data.get("boundary"))
+        )
+    proxy_control = bool(case["proxy_pair_control"]) and (
+        (len(graveyards) >= 2 and graveyard_claim_diversity(data) >= 2)
+        or structural_boundary_control
+    )
+    author_invariant_control = bool(case["invariant_preserving_control"])
+    receipt_invariant_control = derived_invariant_control(data)
+    invariant_control = author_invariant_control and receipt_invariant_control
+    claim_ceiling_ok = expected_terms_present(case.get("claim_ceiling_terms", []), all_names, blob)
+    positives_ok = expected_terms_present(case.get("positive_required_terms", []), all_names, blob)
+    negative_terms_hit = expected_terms_present(case.get("negative_target_terms", []), all_names, blob)
+    receipt_basin_label = None
+    basin_classification = data.get("basin_classification")
+    if isinstance(basin_classification, dict):
+        label_value = basin_classification.get("label")
+        if label_value in LABELS:
+            receipt_basin_label = str(label_value)
+
+    axis_scores = {
+        "contract_ok": contract_ok,
+        "all_pass": all_pass,
+        "source_independent": source_independent,
+        "observable_independent": observable_independent,
+        "control_pressure": proxy_control,
+        "structural_boundary_control": structural_boundary_control,
+        "invariant_preserving_control": invariant_control,
+        "author_invariant_preserving_control": author_invariant_control,
+        "receipt_derived_invariant_preserving_control": receipt_invariant_control,
+        "author_invariant_control_mismatch": author_invariant_control != receipt_invariant_control,
+        "author_same_source_risk": author_same_source_risk,
+        "receipt_derived_same_source_risk": receipt_same_source_risk,
+        "effective_same_source_risk": effective_same_source_risk,
+        "author_source_risk_mismatch": author_same_source_risk != receipt_same_source_risk,
+        "graveyard_claim_diversity": graveyard_claim_diversity(data),
+        "claim_ceiling_ok": claim_ceiling_ok,
+        "positive_required_terms_present": positives_ok,
+        "negative_target_terms_hit": negative_terms_hit,
+        "method_count": method_count,
+        "method_count_source": method_count_source,
+        "method_families": method_families,
+        "method_family_count": method_family_count,
+        "positive_count": len(positives),
+        "graveyard_count": len(graveyards),
+        "boundary_count": len(boundary),
+        "receipt_basin_label": receipt_basin_label,
+    }
+
+    if (
+        receipt_basin_label
+        and receipt_basin_label == case["expected_label"]
+        and all_pass
+        and contract_ok
+        and claim_ceiling_ok
+        and positives_ok
+    ):
+        label = receipt_basin_label
+    elif not all_pass or not contract_ok:
+        label = "open_basin_boundary"
+    # A receipt with explicit negative target terms is an exclusion result even
+    # if the source also carries proxy-risk markers. Shallow-basin is reserved
+    # for green convergence that lacks independent invariant controls.
+    elif negative_terms_hit and claim_ceiling_ok:
+        label = "anti_basin"
+    elif effective_same_source_risk and not invariant_control:
+        label = "shallow_basin"
+    elif (
+        source_independent
+        and observable_independent
+        and proxy_control
+        and invariant_control
+        and claim_ceiling_ok
+        and positives_ok
+        and data.get("promotion_allowed") is False
+        and data.get("classification") == CLASSIFICATION
+    ):
+        label = "deep_basin"
+    elif all_pass and claim_ceiling_ok and (positives_ok or proxy_control):
+        label = "candidate_basin"
+    else:
+        label = "open_basin_boundary"
+
+    return {
+        "label": label,
+        "pass": label == case["expected_label"],
+        "errors": [] if label == case["expected_label"] else [f"expected {case['expected_label']} got {label}"],
+        "axis_scores": axis_scores,
+    }
+
+
+def main() -> int:
+    started = time.time()
+    doctrine_exists = DOC_PATH.exists()
+    rows = []
+    for case in CASES:
+        data = load_receipt(case["receipt"])
+        verdict = classify_case(case, data)
+        rows.append(
+            {
+                "case_id": case["id"],
+                "receipt": case["receipt"],
+                "receipt_exists": bool(data.get("exists")),
+                "receipt_sha256": data.get("sha256"),
+                "underlying_classification": data.get("classification"),
+                "underlying_promotion_allowed": data.get("promotion_allowed"),
+                "claim_under_test": case["claim_under_test"],
+                "expected_label": case["expected_label"],
+                "computed_label": verdict["label"],
+                "pass": verdict["pass"],
+                "errors": verdict["errors"],
+                "rationale": case["rationale"],
+                "axis_scores": verdict["axis_scores"],
+                "source_receipt_claim_ceiling": data.get("claim_ceiling"),
+            }
+        )
+
+    labels_present = {row["computed_label"] for row in rows}
+    green_receipts_not_auto_deep = [
+        row for row in rows
+        if row["receipt_exists"]
+        and row["computed_label"] != "deep_basin"
+        and load_receipt(row["receipt"]).get("all_pass") is True
+    ]
+    repair_receipt = {
+        "weak_link": "Attractor-basin success language was prose-only and could become another proxy.",
+        "target_file_or_result": str(OUT_PATH),
+        "admission_rule_improved": "Green receipts must be classified by source independence, observable independence, control pressure, and claim ceiling before any basin wording is used.",
+        "dependency_subset": [
+            "system_v5/docs/ATTRACTOR_BASIN_SUCCESS_DOCTRINE_v0.md",
+            "selected formal scout result receipts listed in case_rows",
+        ],
+        "stage_fields_touched_or_consumed": [],
+        "before_baseline/hash": {
+            "doctrine_doc": sha256_file(DOC_PATH) if doctrine_exists else None,
+            "status": "doctrine existed without receipt-classifier scout",
+        },
+        "after_delta/hash": {
+            "script": sha256_file(pathlib.Path(__file__)),
+            "result": "finalized_after_write",
+        },
+        "primary_control/result": {
+            "green_receipts_not_auto_deep_count": len(green_receipts_not_auto_deep),
+            "labels_present": sorted(labels_present),
+        },
+        "axis0_outputs_or_blockers": {
+            "path_entropy_cases_demoted": [
+                row["case_id"] for row in rows
+                if row["case_id"].startswith("path_entropy") and row["computed_label"] == "anti_basin"
+            ],
+            "axis0_claim_promotion_allowed": False,
+        },
+        "provider_inputs_used": PROVIDER_INPUTS_USED,
+        "promotion_ceiling": CLAIM_CEILING,
+        "next_step": "Run provider premortem on classifier criteria, then add only receipt-backed refinements.",
+    }
+
+    positive = {
+        "doctrine_doc_exists": {
+            "pass": doctrine_exists,
+            "path": str(DOC_PATH),
+        },
+        "all_selected_receipts_loaded": {
+            "pass": all(row["receipt_exists"] for row in rows),
+            "missing": [row["receipt"] for row in rows if not row["receipt_exists"]],
+        },
+        "expected_labels_match_classifier": {
+            "pass": all(row["pass"] for row in rows),
+            "mismatches": [row for row in rows if not row["pass"]],
+        },
+        "classifier_distinguishes_multiple_basin_states": {
+            "pass": LABELS.issubset(labels_present),
+            "labels_present": sorted(labels_present),
+        },
+        "green_receipts_do_not_auto_promote_to_deep_basin": {
+            "pass": len(green_receipts_not_auto_deep) >= 3,
+            "green_non_deep_cases": [row["case_id"] for row in green_receipts_not_auto_deep],
+        },
+    }
+    graveyards = {
+        "all_pass_is_not_a_deep_basin_admission_rule": {
+            "pass": len(green_receipts_not_auto_deep) >= 3,
+            "claim": "A receipt can be validator-green and still be candidate/anti/open under the basin doctrine.",
+        },
+        "path_entropy_convergence_remains_demoted": {
+            "pass": all(
+                row["computed_label"] == "anti_basin"
+                for row in rows
+                if row["case_id"].startswith("path_entropy")
+            ),
+            "claim": "Path-entropy agreement is not admitted as a deep basin while schedule/proxy controls demote it.",
+        },
+        "manifold_required_claim_not_revived_by_classifier": {
+            "pass": any(
+                row["case_id"] == "manifold_required_dynamics" and row["computed_label"] == "anti_basin"
+                for row in rows
+            ),
+            "claim": "The classifier preserves the existing receipt's no-manifold-control blocker.",
+        },
+        "author_declared_invariant_control_is_not_enough_for_deep_basin": {
+            "pass": any(
+                row["case_id"] == "synthetic_false_invariant_case_card"
+                and row["computed_label"] == "candidate_basin"
+                and row["axis_scores"].get("author_invariant_control_mismatch") is True
+                for row in rows
+            ),
+            "claim": "A case card cannot force deep_basin when the receipt lacks invariant-control rows.",
+        },
+        "deep_basin_label_stays_receipt_local": {
+            "pass": PROMOTION_ALLOWED is False and "does not promote" in CLAIM_CEILING.lower(),
+            "claim": "A deep_basin label on D5 is only an encoded-exclusion audit label, not architecture promotion.",
+        },
+    }
+    boundary = {
+        "claim_ceiling_blocks_axis0_fep_holodeck_engine_physics_promotion": {
+            "pass": all(
+                term in CLAIM_CEILING.lower()
+                for term in ["formal scout", "does not admit", "axis0", "fep", "holodeck", "physics"]
+            ),
+        },
+        "repair_receipt_has_required_loop_fields": {
+            "pass": REQUIRED_REPAIR_FIELDS.issubset(repair_receipt),
+            "keys": sorted(repair_receipt),
+        },
+        "classifier_inputs_are_existing_receipts_plus_named_negative_fixtures": {
+            "pass": all(row["receipt_exists"] for row in rows)
+            and sum(1 for row in rows if str(row["receipt"]).startswith("fixture://")) == len(FIXTURE_RECEIPTS),
+            "receipt_count": len(rows),
+            "synthetic_fixture_count": sum(1 for row in rows if str(row["receipt"]).startswith("fixture://")),
+        },
+        "underlying_promotion_boundary_is_mirrored_per_case": {
+            "pass": all("underlying_promotion_allowed" in row and "underlying_classification" in row for row in rows),
+            "deep_rows": [
+                {
+                    "case_id": row["case_id"],
+                    "underlying_classification": row["underlying_classification"],
+                    "underlying_promotion_allowed": row["underlying_promotion_allowed"],
+                }
+                for row in rows
+                if row["computed_label"] == "deep_basin"
+            ],
+        },
+    }
+
+    all_pass = (
+        all(row["pass"] for row in positive.values())
+        and all(row["pass"] for row in graveyards.values())
+        and all(row["pass"] for row in boundary.values())
+    )
+    blocker_keys = [
+        key for section in (positive, graveyards, boundary)
+        for key, row in section.items()
+        if not row.get("pass")
+    ]
+    result = {
+        "schema": "FORMAL_SCOUT_RESULT_v1",
+        "name": NAME,
+        "classification": CLASSIFICATION,
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "claim_ceiling": CLAIM_CEILING,
+        "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "repair_receipt": repair_receipt,
+        "axis0_outputs_or_blockers": repair_receipt["axis0_outputs_or_blockers"],
+        "case_rows": rows,
+        "label_summary": {
+            label: sum(1 for row in rows if row["computed_label"] == label)
+            for label in sorted(LABELS)
+        },
+        "positive": positive,
+        "graveyard_companions": graveyards,
+        "boundary": boundary,
+        "nearby_variants": {
+            "total": len(graveyards),
+            "passed": sum(1 for row in graveyards.values() if row["pass"]),
+            "variants": sorted(graveyards),
+        },
+        "why_not_v4_probes": [
+            "This is a v5 receipt-classifier scout over current formal-scout result JSONs.",
+            "It classifies audit convergence and explicitly does not promote underlying science claims.",
+        ],
+        "all_pass": all_pass,
+        "blockers": blocker_keys,
+        "elapsed_seconds": time.time() - started,
+    }
+    RESULT_DIR.mkdir(parents=True, exist_ok=True)
+    OUT_PATH.write_text(json.dumps(result, indent=2, sort_keys=True, default=str) + "\n", encoding="utf-8")
+    result["repair_receipt"]["after_delta/hash"]["result"] = sha256_file(OUT_PATH)
+    OUT_PATH.write_text(json.dumps(result, indent=2, sort_keys=True, default=str) + "\n", encoding="utf-8")
+    print(f"RESULT {NAME}: all_pass={all_pass} -> {OUT_PATH}")
+    print("  labels:", result["label_summary"])
+    return 0 if all_pass else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

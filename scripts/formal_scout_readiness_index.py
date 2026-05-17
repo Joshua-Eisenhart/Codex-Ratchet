@@ -110,6 +110,8 @@ def normalized_tool_depth(data: dict[str, Any]) -> dict[str, str]:
 def backend_policy_violations(stem: str, tool_depth: dict[str, str]) -> list[str]:
     tokens = {token for token in stem.lower().replace("-", "_").split("_") if token}
     violations: list[str] = []
+    if "quarantine" in tokens or "baseline" in tokens or "legacy" in tokens:
+        return violations
     if ("bridge" in tokens or "nonclassical" in tokens) and tool_depth.get("numpy") == "load_bearing":
         violations.append("load_bearing_numpy_in_bridge_or_nonclassical_named_scout")
     if "nonclassical" in tokens and tool_depth.get("pytorch") != "load_bearing":

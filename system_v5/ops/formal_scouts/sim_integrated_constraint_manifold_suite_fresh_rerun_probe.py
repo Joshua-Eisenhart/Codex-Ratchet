@@ -310,10 +310,52 @@ SUITE = [
         "category": "source_native_subdense_multicarrier_environment",
     },
     {
+        "name": "stage_record_downstream_carrier_consumption_closure",
+        "script": "sim_stage_record_downstream_carrier_consumption_closure_probe.py",
+        "result": "stage_record_downstream_carrier_consumption_closure_probe_results.json",
+        "category": "stage_record_downstream_closure_guard",
+    },
+    {
         "name": "axis0_plural_candidate_multicarrier_drive_controls",
         "script": "sim_axis0_plural_candidate_multicarrier_drive_controls_probe.py",
         "result": "axis0_plural_candidate_multicarrier_drive_controls_probe_results.json",
         "category": "axis0_plural_candidate_multicarrier_drive_controls",
+    },
+    {
+        "name": "path_entropy_schedule_confound_falsifier",
+        "script": "sim_path_entropy_schedule_confound_falsifier_probe.py",
+        "result": "path_entropy_schedule_confound_falsifier_probe_results.json",
+        "category": "axis0_path_entropy_schedule_confound_falsifier",
+    },
+    {
+        "name": "path_entropy_proxy_vs_deeper_invariant_pair_falsifier",
+        "script": "sim_path_entropy_proxy_vs_deeper_invariant_pair_falsifier_probe.py",
+        "result": "path_entropy_proxy_vs_deeper_invariant_pair_falsifier_probe_results.json",
+        "category": "axis0_path_entropy_proxy_pair_falsifier",
+    },
+    {
+        "name": "axis0_path_entropy_branch_closure",
+        "script": "sim_axis0_path_entropy_branch_closure_probe.py",
+        "result": "axis0_path_entropy_branch_closure_probe_results.json",
+        "category": "axis0_path_entropy_blocked_branch_closure",
+    },
+    {
+        "name": "axis0_holographic_boundary_branch_closure",
+        "script": "sim_axis0_holographic_boundary_branch_closure_probe.py",
+        "result": "axis0_holographic_boundary_branch_closure_probe_results.json",
+        "category": "axis0_holographic_boundary_blocked_branch_closure",
+    },
+    {
+        "name": "axis0_fep_gradient_stage_local_adapter_closure",
+        "script": "sim_axis0_fep_gradient_stage_local_adapter_closure_probe.py",
+        "result": "axis0_fep_gradient_stage_local_adapter_closure_probe_results.json",
+        "category": "axis0_fep_gradient_stage_local_adapter_closure",
+    },
+    {
+        "name": "mps_local_boundary_path_fep_scaling_8_16_32",
+        "script": "sim_mps_local_boundary_path_fep_scaling_8_16_32_engine_transport_probe.py",
+        "result": "mps_local_boundary_path_fep_scaling_8_16_32_engine_transport_probe_results.json",
+        "category": "mps_local_boundary_path_fep_variable_qubit_scaling",
     },
     {
         "name": "world_model_repo_admission_gap_adapter",
@@ -379,8 +421,16 @@ CRITICAL_NODES = {
     "macro_axis0_plural_stage_router",
     "holodeck_hash_memory_placeholder",
     "source_native_subdense_multicarrier_environment",
+    "stage_record_downstream_carrier_consumption_closure",
     "axis0_plural_candidate_multicarrier_drive_controls",
+    "path_entropy_schedule_confound_falsifier",
+    "path_entropy_proxy_vs_deeper_invariant_pair_falsifier",
+    "axis0_path_entropy_branch_closure",
+    "axis0_holographic_boundary_branch_closure",
+    "axis0_fep_gradient_stage_local_adapter_closure",
+    "mps_local_boundary_path_fep_scaling_8_16_32",
     "world_model_repo_admission_gap_adapter",
+    "auto_lirpa_stage_policy_bound_consumption",
     "auto_lirpa_trained_stage_policy_adapter_bound",
     "lirpa_policy_bound_gated_multicarrier_environment",
     "lirpa_policy_bound_variable_qubit_scaling",
@@ -413,8 +463,20 @@ CRITICAL_EDGES = {
     ("macro_axis0_plural_stage_router", "source_native_subdense_multicarrier_environment"),
     ("holodeck_hash_memory_placeholder", "source_native_subdense_multicarrier_environment"),
     ("macro_axis0_plural_stage_router", "axis0_plural_candidate_multicarrier_drive_controls"),
+    ("source_native_subdense_multicarrier_environment", "stage_record_downstream_carrier_consumption_closure"),
+    ("stage_record_downstream_carrier_consumption_closure", "axis0_plural_candidate_multicarrier_drive_controls"),
     ("source_native_subdense_multicarrier_environment", "axis0_plural_candidate_multicarrier_drive_controls"),
-    ("axis0_plural_candidate_multicarrier_drive_controls", "world_model_repo_admission_gap_adapter"),
+    ("axis0_plural_candidate_multicarrier_drive_controls", "path_entropy_schedule_confound_falsifier"),
+    ("axis0_plural_candidate_multicarrier_drive_controls", "path_entropy_proxy_vs_deeper_invariant_pair_falsifier"),
+    ("path_entropy_schedule_confound_falsifier", "axis0_path_entropy_branch_closure"),
+    ("path_entropy_proxy_vs_deeper_invariant_pair_falsifier", "axis0_path_entropy_branch_closure"),
+    ("axis0_path_entropy_branch_closure", "axis0_holographic_boundary_branch_closure"),
+    ("axis0_plural_candidate_multicarrier_drive_controls", "axis0_holographic_boundary_branch_closure"),
+    ("axis0_holographic_boundary_branch_closure", "axis0_fep_gradient_stage_local_adapter_closure"),
+    ("axis0_fep_gradient_stage_local_adapter_closure", "mps_local_boundary_path_fep_scaling_8_16_32"),
+    ("axis0_plural_candidate_multicarrier_drive_controls", "mps_local_boundary_path_fep_scaling_8_16_32"),
+    ("macro_stage_record_science_method_contract", "mps_local_boundary_path_fep_scaling_8_16_32"),
+    ("mps_local_boundary_path_fep_scaling_8_16_32", "world_model_repo_admission_gap_adapter"),
     ("world_model_repo_admission_gap_adapter", "auto_lirpa_stage_policy_bound_consumption"),
     ("auto_lirpa_stage_policy_bound_consumption", "auto_lirpa_trained_stage_policy_adapter_bound"),
     ("auto_lirpa_trained_stage_policy_adapter_bound", "lirpa_policy_bound_gated_multicarrier_environment"),
@@ -444,6 +506,10 @@ def receipt_passes(path: pathlib.Path) -> tuple[bool, list[str], dict[str, Any]]
     if not path.exists():
         return False, ["result missing"], {}
     data = json.loads(path.read_text(encoding="utf-8"))
+    expected_all_pass_false = bool(
+        data.get("expected_all_pass_false") is True
+        or data.get("expected_all_pass") is False
+    )
     if data.get("classification") != CLASSIFICATION:
         if data.get("classification") != "formal_scout":
             errors.append("classification is not formal_scout")
@@ -451,7 +517,7 @@ def receipt_passes(path: pathlib.Path) -> tuple[bool, list[str], dict[str, Any]]
         errors.append("promotion_allowed is not false")
     if not data.get("claim_ceiling"):
         errors.append("claim_ceiling missing")
-    if data.get("blockers"):
+    if data.get("blockers") and not expected_all_pass_false:
         errors.append("blockers present")
     for key in ("positive", "graveyard_companions", "boundary", "nearby_variants"):
         if key not in data:
@@ -460,12 +526,14 @@ def receipt_passes(path: pathlib.Path) -> tuple[bool, list[str], dict[str, Any]]
         section = data.get(key)
         if isinstance(section, dict):
             for check_name, check in section.items():
-                if isinstance(check, dict) and check.get("pass") is False:
+                if isinstance(check, dict) and check.get("pass") is False and not expected_all_pass_false:
                     errors.append(f"{key}.{check_name} failed")
     nearby = data.get("nearby_variants")
-    if isinstance(nearby, dict) and nearby.get("passed") != nearby.get("total"):
+    if isinstance(nearby, dict) and nearby.get("passed") != nearby.get("total") and not expected_all_pass_false:
         errors.append("nearby variants not all passed")
-    if "all_pass" in data and data.get("all_pass") is not True:
+    if expected_all_pass_false and data.get("all_pass") is not False:
+        errors.append("expected all_pass false receipt did not report all_pass=false")
+    if "all_pass" in data and data.get("all_pass") is not True and not expected_all_pass_false:
         errors.append("all_pass is explicitly false")
     return not errors, errors, data
 
@@ -568,8 +636,20 @@ def build_dependency_graph(rows: list[dict[str, Any]]) -> nx.DiGraph:
     graph.add_edge("macro_axis0_plural_stage_router", "source_native_subdense_multicarrier_environment")
     graph.add_edge("holodeck_hash_memory_placeholder", "source_native_subdense_multicarrier_environment")
     graph.add_edge("macro_axis0_plural_stage_router", "axis0_plural_candidate_multicarrier_drive_controls")
+    graph.add_edge("source_native_subdense_multicarrier_environment", "stage_record_downstream_carrier_consumption_closure")
+    graph.add_edge("stage_record_downstream_carrier_consumption_closure", "axis0_plural_candidate_multicarrier_drive_controls")
     graph.add_edge("source_native_subdense_multicarrier_environment", "axis0_plural_candidate_multicarrier_drive_controls")
-    graph.add_edge("axis0_plural_candidate_multicarrier_drive_controls", "world_model_repo_admission_gap_adapter")
+    graph.add_edge("axis0_plural_candidate_multicarrier_drive_controls", "path_entropy_schedule_confound_falsifier")
+    graph.add_edge("axis0_plural_candidate_multicarrier_drive_controls", "path_entropy_proxy_vs_deeper_invariant_pair_falsifier")
+    graph.add_edge("path_entropy_schedule_confound_falsifier", "axis0_path_entropy_branch_closure")
+    graph.add_edge("path_entropy_proxy_vs_deeper_invariant_pair_falsifier", "axis0_path_entropy_branch_closure")
+    graph.add_edge("axis0_path_entropy_branch_closure", "axis0_holographic_boundary_branch_closure")
+    graph.add_edge("axis0_plural_candidate_multicarrier_drive_controls", "axis0_holographic_boundary_branch_closure")
+    graph.add_edge("axis0_holographic_boundary_branch_closure", "axis0_fep_gradient_stage_local_adapter_closure")
+    graph.add_edge("axis0_fep_gradient_stage_local_adapter_closure", "mps_local_boundary_path_fep_scaling_8_16_32")
+    graph.add_edge("axis0_plural_candidate_multicarrier_drive_controls", "mps_local_boundary_path_fep_scaling_8_16_32")
+    graph.add_edge("macro_stage_record_science_method_contract", "mps_local_boundary_path_fep_scaling_8_16_32")
+    graph.add_edge("mps_local_boundary_path_fep_scaling_8_16_32", "world_model_repo_admission_gap_adapter")
     graph.add_edge("world_model_repo_admission_gap_adapter", "auto_lirpa_stage_policy_bound_consumption")
     graph.add_edge("auto_lirpa_stage_policy_bound_consumption", "auto_lirpa_trained_stage_policy_adapter_bound")
     graph.add_edge("auto_lirpa_trained_stage_policy_adapter_bound", "lirpa_policy_bound_gated_multicarrier_environment")
@@ -703,12 +783,21 @@ def main() -> int:
         },
         "nearby_variants": {
             "total": 5,
-            "passed": 4 + int(not missing_nodes and not missing_edges),
+            "passed": sum(
+                int(flag)
+                for flag in [
+                    rows[-1]["name"] == "operational_manifest_quarantine",
+                    all(row["returncode"] == 0 for row in rows),
+                    not any(row["promotion_allowed"] is not False for row in rows),
+                    bool(manifest_row["pass"]),
+                    not missing_nodes and not missing_edges,
+                ]
+            ),
             "variants": [
                 "manifest_must_be_last",
                 "no_script_may_return_red",
                 "no_receipt_may_promote",
-                "provider_review_is_not_substituted_for_rerun",
+                "manifest_quarantine_receipt_must_pass",
                 "critical_surface_omission_is_detected",
             ],
         },

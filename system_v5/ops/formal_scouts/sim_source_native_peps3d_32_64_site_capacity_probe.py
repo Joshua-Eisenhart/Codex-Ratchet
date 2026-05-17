@@ -61,6 +61,11 @@ REQUIRED_STAGE_FIELDS = [
     "next_policy",
     "model_after",
 ]
+AXIS0_CONTEXT_NAMES = [
+    "fep_gradient_polarity",
+    "correlation_diversity_derivative",
+    "retrocausal_many_futures_policy_scoring",
+]
 
 
 def load_result(name: str) -> dict[str, Any]:
@@ -92,18 +97,21 @@ def source_stage_rows() -> list[dict[str, Any]]:
 
 def axis0_signature(router: dict[str, Any]) -> dict[str, Any]:
     outputs = router.get("axis0_outputs_or_blockers") or {}
-    names = ["fep_gradient_polarity", "path_entropy", "correlation_diversity_derivative"]
     parts = []
-    for name in names:
+    for name in AXIS0_CONTEXT_NAMES:
         values = np.asarray(outputs.get(name, {}).get("values", []), dtype=float)
         if values.size:
             values = np.nan_to_num(values, nan=0.0, posinf=0.0, neginf=0.0)
             parts.append(float(np.sum(values) + np.mean(np.abs(values))))
-    ready = bool(router.get("exists") and router.get("all_pass") is True and len(parts) == len(names))
+    ready = bool(router.get("exists") and router.get("all_pass") is True and len(parts) == len(AXIS0_CONTEXT_NAMES))
     value = float(sum(parts)) if parts else 0.0
     return {
         "ready": ready,
-        "candidate_names": names,
+        "candidate_names": list(AXIS0_CONTEXT_NAMES),
+        "pre_guard_router_context": True,
+        "diagnostic_only": True,
+        "not_load_bearing_for_capacity_admission": True,
+        "post_guard_admission_claim_allowed": False,
         "signature": value,
         "seed_offset": int(abs(value) * 1000) % 997,
         "source_receipt": router.get("path"),
@@ -244,9 +252,8 @@ def carrier_capacity(seed: int, axis0_seed_offset: int = 0) -> dict[str, Any]:
         sweep[name] = [tensor_parameter_count(make_peps3d(shape, seeded + dim + sites, bond_dim=dim)) for dim in (2, 3)]
     graph = nx.Graph()
     graph.add_edges_from([
-        ("science_method_64_stage_records", "axis0_plural_router_signature"),
-        ("axis0_plural_router_signature", "peps3d_32"),
-        ("axis0_plural_router_signature", "peps3d_64"),
+        ("science_method_64_stage_records", "peps3d_32"),
+        ("science_method_64_stage_records", "peps3d_64"),
         ("peps3d_32", "peps3d_64"),
     ])
     return {
@@ -284,9 +291,9 @@ def main() -> int:
     stage_contract = load_result("macro_sim_stage_record_science_method_contract_probe_results.json")
     axis0 = axis0_signature(axis0_router)
     valid_rows, seed, source_signature, seed_audit = source_rank_audit()
-    capacity = carrier_capacity(seed, axis0_seed_offset=axis0["seed_offset"])
-    axis0_zeroed_capacity = carrier_capacity(seed, axis0_seed_offset=0)
-    axis0_capacity_gap = float(np.linalg.norm(capacity_signature(capacity) - capacity_signature(axis0_zeroed_capacity)))
+    capacity = carrier_capacity(seed, axis0_seed_offset=0)
+    axis0_diagnostic_capacity = carrier_capacity(seed, axis0_seed_offset=axis0["seed_offset"])
+    axis0_capacity_gap = float(np.linalg.norm(capacity_signature(axis0_diagnostic_capacity) - capacity_signature(capacity)))
     factors = sp.factorint(32 * 64)
     positive = {
         "source_native_histories_seed_32_64_peps3d_capacity": {
@@ -302,12 +309,15 @@ def main() -> int:
             "effective_rank": seed_audit["effective_rank"],
             "missing_required_stage_fields": seed_audit["missing_required_stage_fields"],
         },
-        "plural_axis0_router_perturbs_peps3d_capacity_context": {
-            "pass": axis0["ready"] and axis0_capacity_gap > 1e-9,
+        "axis0_router_context_reported_diagnostic_only": {
+            "pass": PROMOTION_ALLOWED is False and axis0["post_guard_admission_claim_allowed"] is False,
             "axis0_router_receipt": axis0_router,
             "axis0_signature": axis0,
-            "axis0_zeroed_capacity_signature_gap": axis0_capacity_gap,
-            "axis0_zeroed_capacity": axis0_zeroed_capacity,
+            "context_candidate_names": AXIS0_CONTEXT_NAMES,
+            "diagnostic_capacity_signature_gap": axis0_capacity_gap,
+            "diagnostic_capacity_variant": axis0_diagnostic_capacity,
+            "load_bearing_for_capacity_admission": False,
+            "reason": "This upstream PEPS3D capacity scout records the raw Axis0 router as diagnostic context only.",
         },
         "symbolic_32_64_factorization": {"factorization": {str(k): v for k, v in factors.items()}, "pass": factors == {2: 11}},
         "z3_rejects_below_eight_as_32_64_regime": z3_capacity_witness(),
@@ -323,10 +333,11 @@ def main() -> int:
             "cites_blocked_until": CITES_BLOCKED_UNTIL,
             "pass": seed_audit["pass"] and seed_audit["rank_is_low_for_32_64_capacity"] and PROMOTION_ALLOWED is False,
         },
-        "axis0_zeroed_capacity_context_is_distinct_control": {
-            "pass": axis0_capacity_gap > 1e-9,
-            "axis0_zeroed_capacity_signature_gap": axis0_capacity_gap,
-            "reason": "The plural Axis0 router changes the PEPS3D contraction context; it is not only cited in the receipt.",
+        "axis0_zeroed_capacity_context_reported_not_admission_control": {
+            "pass": PROMOTION_ALLOWED is False,
+            "diagnostic_capacity_signature_gap": axis0_capacity_gap,
+            "reason": "The Axis0-offset PEPS3D variant is diagnostic only; it is not a capacity admission control.",
+            "load_bearing_for_capacity_admission": False,
         },
         "collapsed_32_64_counts_are_rejected": {
             "collapsed_sites": 8,
@@ -342,15 +353,15 @@ def main() -> int:
         },
         "source_signature_recorded": {"source_signature": source_signature, "pass": abs(source_signature) > 1e-9},
         "integration_is_dependency_consumption_not_result_aggregation": {
-            "pass": seed_audit["science_method_fields_consumed"] and axis0["ready"],
+            "pass": seed_audit["science_method_fields_consumed"],
             "consumed_dependencies": [
                 "EngineCore science-method stage records",
                 "macro_sim_stage_record_science_method_contract receipt",
-                "macro_sim_axis0_plural_stage_candidate_router receipt",
             ],
+            "diagnostic_context_only": ["macro_sim_axis0_plural_stage_candidate_router receipt"],
             "dependency_use": (
-                "stage/FEP fields form the 64-row PEPS3D capacity seed matrix, and "
-                "the plural Axis0 router signature changes the PEPS3D carrier/contraction context seed"
+                "stage/FEP fields form the 64-row PEPS3D capacity seed matrix; "
+                "the raw Axis0 router is recorded only as upstream diagnostic context and does not gate admission"
             ),
         },
         "no_dense_environment_contraction_still_blocked": {
@@ -362,16 +373,25 @@ def main() -> int:
     all_pass = all(row["pass"] for row in positive.values()) and all(row["pass"] for row in graveyards.values()) and all(row["pass"] for row in boundary.values())
     axis0_outputs_or_blockers = {
         "plural_axis0_router": {
-            "status": "consumed_as_peps3d_capacity_context_dependency",
+            "status": "diagnostic_router_context_only",
             "receipt": axis0_router,
             "axis0_signature": axis0,
-            "zeroed_control_gap": axis0_capacity_gap,
+            "context_candidate_names": AXIS0_CONTEXT_NAMES,
+            "excluded_candidate_names": ["path_entropy", "holographic_boundary_interior_reconstruction"],
+            "diagnostic_capacity_signature_gap": axis0_capacity_gap,
+            "not_load_bearing_for_capacity_or_ladder_admission": True,
         },
-        "fep_gradient_polarity": {"status": "consumed_from_plural_router_signature"},
-        "path_entropy": {"status": "consumed_from_plural_router_signature"},
-        "correlation_diversity_derivative": {"status": "consumed_from_plural_router_signature"},
+        "fep_gradient_polarity": {"status": "diagnostic_from_pre_guard_router_context_not_capacity_admission"},
+        "path_entropy": {
+            "status": "excluded_from_peps3d_capacity_context_diagnostic_only",
+            "load_bearing_for_capacity_context": False,
+            "load_bearing_for_capacity_admission": False,
+        },
+        "correlation_diversity_derivative": {"status": "diagnostic_from_pre_guard_router_context_not_capacity_admission"},
         "holographic_boundary_interior_reconstruction": {
-            "status": "still_blocked_by_router_receipt",
+            "status": "excluded_from_peps3d_capacity_context_still_blocked",
+            "load_bearing_for_capacity_context": False,
+            "load_bearing_for_capacity_admission": False,
             "router_status": (
                 axis0_router.get("axis0_outputs_or_blockers", {})
                 .get("holographic_boundary_interior_reconstruction", {})
@@ -379,7 +399,7 @@ def main() -> int:
             ),
         },
         "retrocausal_many_futures_policy_scoring": {
-            "status": "routing_only_not_final",
+            "status": "diagnostic_from_pre_guard_router_context_as_finite_policy_scoring_not_capacity_admission",
             "router_status": (
                 axis0_router.get("axis0_outputs_or_blockers", {})
                 .get("retrocausal_many_futures_policy_scoring", {})
@@ -392,24 +412,28 @@ def main() -> int:
         },
     }
     repair_receipt = {
-        "weak_link": "PEPS3D 32/64 capacity scout seeded from a legacy density-history module and had no stage/FEP or plural Axis0 dependency consumption receipt.",
+        "weak_link": "PEPS3D 32/64 capacity scout seeded from a legacy density-history module and over-framed upstream Axis0 router diagnostics as dependency consumption.",
         "target_file_or_result": str(pathlib.Path(__file__).resolve()),
-        "admission_rule_improved": "PEPS3D capacity/scaling scouts must consume repaired EngineCore science-method fields and route Axis0 blockers before serving as macro-sim dependencies.",
+        "admission_rule_improved": "PEPS3D capacity/scaling scouts consume repaired EngineCore science-method fields while keeping upstream Axis0 router context diagnostic-only.",
         "dependency_subset": [
             "EngineCore.run_full_cycle repaired science-method stage records",
             "macro_sim_stage_record_science_method_contract receipt",
-            "macro_sim_axis0_plural_stage_candidate_router receipt",
             "PEPS3D 32-site capacity carrier",
             "PEPS3D 64-site capacity carrier",
-            "axis0_zeroed capacity-context control",
             "bond-dimension D2/D3 capacity sweep",
+        ],
+        "diagnostic_context_subset": [
+            "macro_sim_axis0_plural_stage_candidate_router receipt",
+            "axis0-offset PEPS3D diagnostic variant",
         ],
         "stage_fields_touched_or_consumed": REQUIRED_STAGE_FIELDS,
         "before_baseline/hash": {"script": BEFORE_SCRIPT_SHA256, "result": BEFORE_RESULT_SHA256},
-        "after_delta/hash": "source rank matrix derives from model_after/fep_efe_score/update_repair; Axis0 router signature changes PEPS3D capacity context seed",
+        "after_delta/hash": "source rank matrix derives from model_after/fep_efe_score/update_repair; Axis0 diagnostic recorded with path/HBI excluded from load-bearing capacity admission",
         "primary_control/result": {
-            "axis0_zeroed_capacity_context": graveyards["axis0_zeroed_capacity_context_is_distinct_control"],
             "collapsed_32_64_counts": graveyards["collapsed_32_64_counts_are_rejected"],
+        },
+        "diagnostic_control/result": {
+            "axis0_offset_capacity_context": graveyards["axis0_zeroed_capacity_context_reported_not_admission_control"],
         },
         "axis0_outputs_or_blockers": axis0_outputs_or_blockers,
         "provider_inputs_used": {

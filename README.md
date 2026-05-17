@@ -32,6 +32,14 @@ scripts/overnight_two_runner.sh # two-lane overnight runner
 scripts/lint_sim_contract.py    # SIM contract gate
 ```
 
+## Current Axis0 Boundary
+
+Formal scouts may record raw pre-guard Axis0 router candidates, but downstream
+geometry must consume only admitted candidates. Current subdense/MPS receipts
+mask `path_entropy` and `holographic_boundary_interior_reconstruction` out of
+load-bearing geometry while keeping them as diagnostic or branch-closure
+surfaces.
+
 ## Folders to ignore at root
 
 - `work/` — scratch/audit temp (gitignored, large)

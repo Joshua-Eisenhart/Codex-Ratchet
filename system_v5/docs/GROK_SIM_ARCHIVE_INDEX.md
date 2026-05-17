@@ -1,21 +1,21 @@
 # Grok Sim Archive Index
 
-Generated: `2026-05-17T07:29:24.022194+00:00`
+Generated: `2026-05-17T23:28:52.009235+00:00`
 
 Boundary: sidequest archive index only. This does not move, delete, admit, or promote `grok_sim` artifacts.
 
 ## Summary
 
-- Grok sim files: `2231`
-- Grok sim size bytes: `9951036`
-- Receipt run directories: `158`
-- Receipt tree files: `1894`
-- Receipt tree size bytes: `5854132`
-- Summaries: `149`
-- Frozen manifests: `151`
-- Run hashes: `149`
-- Phase receipts: `1218`
-- Complete sidequest bundles: `149`
+- Grok sim files: `2256`
+- Grok sim size bytes: `10041620`
+- Receipt run directories: `159`
+- Receipt tree files: `1919`
+- Receipt tree size bytes: `5944716`
+- Summaries: `150`
+- Frozen manifests: `152`
+- Run hashes: `150`
+- Phase receipts: `1240`
+- Complete sidequest bundles: `150`
 - Citeable sidequest bundles: `52`
 - All-pass sidequest bundles: `52`
 - Complete all-pass sidequest bundles: `52`
@@ -26,7 +26,7 @@ Boundary: sidequest archive index only. This does not move, delete, admit, or pr
 
 ## Receipt Archive Buckets
 
-- `keep_negative_or_repair_evidence_bundle`: 97
+- `keep_negative_or_repair_evidence_bundle`: 98
 - `keep_complete_historical_pass_bundle`: 52
 - `archive_only_missing_summary`: 9
 

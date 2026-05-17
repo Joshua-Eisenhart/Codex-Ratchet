@@ -9,6 +9,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
+import receipt_schema
 import wizard_sim_admission
 
 
@@ -25,7 +26,6 @@ LATE_STAGE_RESULT_TOKENS = (
     "pairwise",
     "triple",
 )
-
 
 def repo_root() -> Path:
     return Path(__file__).resolve().parents[1]
@@ -93,6 +93,42 @@ def load_bearing_depths(payload: dict[str, Any]) -> dict[str, str]:
     }
 
 
+def canonical_tool_name(tool: str) -> str:
+    return receipt_schema.canonical_tool_name(tool)
+
+
+def normalized_execution_kind(payload: dict[str, Any]) -> str:
+    value = payload.get("sim_execution_kind") or payload.get("SIM_EXECUTION_KIND")
+    summary = payload.get("summary")
+    if not value and isinstance(summary, dict):
+        value = summary.get("sim_execution_kind") or summary.get("SIM_EXECUTION_KIND")
+    normalized = receipt_schema.normalized_execution_kind(value)
+    if normalized == "bridge":
+        return "bridge"
+    return normalized
+
+
+def tool_policy_blockers(payload: dict[str, Any]) -> list[str]:
+    execution_kind = normalized_execution_kind(payload)
+    load_bearing = {canonical_tool_name(tool) for tool in load_bearing_depths(payload)}
+    blockers: list[str] = []
+    if execution_kind in {"bridge", "nonclassical"} and "numpy" in load_bearing:
+        blockers.append("result:numpy_load_bearing_blocked_for_bridge_or_nonclassical")
+    if execution_kind == "nonclassical" and "pytorch" not in load_bearing:
+        blockers.append("result:nonclassical_requires_load_bearing_pytorch")
+    return blockers
+
+
+def execution_kind_blockers(path: Path, payload: dict[str, Any]) -> list[str]:
+    if (
+        payload.get("classification") == "canonical"
+        and has_qit_signal(path, payload)
+        and not normalized_execution_kind(payload)
+    ):
+        return ["result:qit_execution_kind_missing"]
+    return []
+
+
 def source_path_for(root: Path, basename: str) -> Path:
     return root / "system_v4" / "probes" / f"{basename}.py"
 
@@ -124,7 +160,11 @@ def external_triage_for(root: Path, path: Path, payload: dict[str, Any]) -> dict
     late_stage_tokens = [token for token in LATE_STAGE_RESULT_TOKENS if token in lower]
     receipt_schema_present = has_receipt_schema(payload)
     load_bearing = load_bearing_depths(payload)
-    if classification == "classical_baseline":
+    policy_blockers = execution_kind_blockers(path, payload) + tool_policy_blockers(payload)
+    if policy_blockers:
+        bucket = "source_bound_contract_repair_candidate" if source_exists else "canonical_but_source_unbound"
+        next_action = "repair_tool_policy_before_any_admission"
+    elif classification == "classical_baseline":
         bucket = "classical_baseline_reference_only"
         next_action = "do_not_promote_use_only_as_classical_reference_or_rerun_as_new_micro_if_needed"
     elif late_stage_tokens:
@@ -158,6 +198,8 @@ def external_triage_for(root: Path, path: Path, payload: dict[str, Any]) -> dict
         "late_stage_tokens": late_stage_tokens,
         "receipt_schema_present": receipt_schema_present,
         "load_bearing_depths": load_bearing,
+        "sim_execution_kind": normalized_execution_kind(payload) or None,
+        "tool_policy_blockers": policy_blockers,
     }
 
 
@@ -242,7 +284,26 @@ def external_qit_result_scan(
     }
 
 
-def build_index(root: Path | None = None) -> dict[str, Any]:
+def skipped_external_scan() -> dict[str, Any]:
+    return {
+        "status": "external_scan_skipped",
+        "scanned_roots": [],
+        "external_result_count": 0,
+        "external_qit_signal_count": 0,
+        "sample_limit": EXTERNAL_SCAN_SAMPLE_LIMIT,
+        "sample": [],
+        "triage": {
+            "bucket_counts": {},
+            "bucket_samples": {},
+            "provisional_rerun_target_count": 0,
+            "provisional_rerun_targets": [],
+            "triage_boundary": "external_scan_skipped_run_without_skip_external_scan_for_diagnostics",
+        },
+        "admission_boundary": "diagnostic_only_not_accepted_evidence",
+    }
+
+
+def build_index(root: Path | None = None, *, include_external_scan: bool = True) -> dict[str, Any]:
     root = root or repo_root()
     results_dir = root / "system_v4" / "probes" / "a2_state" / "sim_results"
     entries: list[dict[str, Any]] = []
@@ -270,8 +331,20 @@ def build_index(root: Path | None = None) -> dict[str, Any]:
         sim_path = source_path_for(root, basename)
         blockers: list[str] = []
         receipt_schema_ok = has_receipt_schema(payload)
+        receipt_validation = receipt_schema.validate_result_path(
+            result_path,
+            root=root,
+            strict_scope=True,
+            require_executable=True,
+            require_run_boundary=True,
+        )
         if not receipt_schema_ok:
             blockers.append("result:receipt_schema_incomplete")
+        for finding in receipt_validation.get("hard_findings") or []:
+            kind = finding.get("kind")
+            if kind:
+                blockers.append(f"result:{kind}")
+        blockers.extend(execution_kind_blockers(result_path, payload))
         if payload.get("classification") != "canonical":
             blockers.append("result:result_classification_not_canonical")
 
@@ -295,6 +368,12 @@ def build_index(root: Path | None = None) -> dict[str, Any]:
             "result_path": str(result_path),
             "result_sha256": sha256(result_path),
             "receipt_schema_ok": receipt_schema_ok,
+            "receipt_validation_ok": bool(receipt_validation.get("ok")),
+            "receipt_validation_hard_findings": [
+                finding.get("kind")
+                for finding in receipt_validation.get("hard_findings") or []
+                if finding.get("kind")
+            ],
             "status": status,
             "admission_status": admission_status,
             "admission_artifact": admission_path,
@@ -319,6 +398,8 @@ def build_index(root: Path | None = None) -> dict[str, Any]:
                 "tool_micro_sympy_capability_only",
             }:
                 action = "do_not_promote_use_as_classical_or_bridge_tool_reference_only"
+            elif any(blocker.startswith("result:numpy_load_bearing") or blocker.startswith("result:nonclassical_requires") for blocker in blockers):
+                action = "repair_tool_policy_before_any_admission"
             elif not sim_path.exists():
                 action = "repair_or_bind_source_probe_before_admission"
             else:
@@ -332,11 +413,14 @@ def build_index(root: Path | None = None) -> dict[str, Any]:
                 }
             )
 
-    external_scan = external_qit_result_scan(
-        root,
-        results_dir,
-        admitted_basenames={entry["basename"] for entry in candidates},
-    )
+    if include_external_scan:
+        external_scan = external_qit_result_scan(
+            root,
+            results_dir,
+            admitted_basenames={entry["basename"] for entry in candidates},
+        )
+    else:
+        external_scan = skipped_external_scan()
     targets.sort(key=lambda item: (item.get("sim_path") is None, item["basename"]))
     accepted = len(candidates)
     summary = {
@@ -384,8 +468,13 @@ def main() -> int:
     parser.add_argument("--repo-root", default=str(repo_root()))
     parser.add_argument("--out")
     parser.add_argument("--require-accepted", action="store_true")
+    parser.add_argument(
+        "--skip-external-scan",
+        action="store_true",
+        help="Skip diagnostic scan across system_v4/system_v5/runs and refresh only the canonical QIT result surface.",
+    )
     args = parser.parse_args()
-    index = build_index(Path(args.repo_root))
+    index = build_index(Path(args.repo_root), include_external_scan=not args.skip_external_scan)
     text = json.dumps(index, indent=2, sort_keys=True)
     if args.out:
         Path(args.out).parent.mkdir(parents=True, exist_ok=True)

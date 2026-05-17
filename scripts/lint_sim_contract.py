@@ -11,6 +11,8 @@ Checks, by AST parse only (no import side-effects):
       `sim_<canonical>_capability.py` exists AND
       a2_state/sim_results/<canonical>_capability_results.json has summary.all_pass == True
       (self-probe exception: a capability probe is trivially its own evidence)
+  C7: bridge or nonclassical sims may not use numpy as a load-bearing tool.
+  C8: nonclassical sims require pytorch as a load-bearing tool.
 
 Emits a JSON report to stdout with:
   - checked
@@ -62,6 +64,25 @@ ALIASES = {
 def canonical(tool: str) -> str:
     return ALIASES.get(tool.strip().lower().replace("-", "_"),
                        tool.strip().lower().replace("-", "_"))
+
+
+def _normalized_execution_kind(value: object) -> str:
+    normalized = str(value or "").strip().lower().replace("-", "_")
+    if normalized in {
+        "bridge",
+        "qit_bridge",
+        "nonclassical_bridge",
+        "semiclassical",
+        "semi_classical",
+        "semiclassical_bridge",
+        "semiclassical_szilard",
+    }:
+        return "bridge"
+    if normalized == "nonclassical":
+        return "nonclassical"
+    if normalized == "classical":
+        return "classical"
+    return ""
 
 
 def _is_ignored_sim_path(path: Path) -> bool:
@@ -189,7 +210,11 @@ def _capability_ok(tool_canon: str) -> tuple[bool, str]:
 
 def lint_sim(path: Path) -> list[dict]:
     violations: list[dict] = []
-    rel = str(path.relative_to(REPO))
+    path = path if path.is_absolute() else REPO / path
+    try:
+        rel = str(path.relative_to(REPO))
+    except ValueError:
+        rel = str(path)
     try:
         tree = ast.parse(path.read_text(encoding="utf-8"))
     except (SyntaxError, UnicodeDecodeError) as exc:
@@ -273,6 +298,27 @@ def lint_sim(path: Path) -> list[dict]:
                 violations.append({"sim": rel, "rule": "C6_classical_has_load_bearing",
                                    "detail": str(tool)})
 
+    # C7/C8: bridge and nonclassical sims need nonclassical-capable tooling.
+    # NumPy-only or NumPy-load-bearing rows are allowed for classical baselines,
+    # but not as bridge/nonclassical evidence.
+    execution_kind = _normalized_execution_kind(
+        assigns.get("sim_execution_kind") or assigns.get("SIM_EXECUTION_KIND")
+    )
+    if execution_kind in {"bridge", "nonclassical"} and isinstance(depth, dict):
+        load_bearing = {canonical(str(tool)) for tool, lvl in depth.items() if lvl == "load_bearing"}
+        if "numpy" in load_bearing:
+            violations.append({
+                "sim": rel,
+                "rule": "C7_numpy_load_bearing_for_bridge_or_nonclassical",
+                "detail": execution_kind,
+            })
+        if execution_kind == "nonclassical" and "pytorch" not in load_bearing:
+            violations.append({
+                "sim": rel,
+                "rule": "C8_nonclassical_requires_pytorch_load_bearing",
+                "detail": ",".join(sorted(load_bearing)) or "no_load_bearing_tools",
+            })
+
     return violations
 
 
@@ -280,11 +326,19 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--include-archive", action="store_true",
                     help="Include _archive_lane_c sims (default: excluded).")
+    ap.add_argument(
+        "paths",
+        nargs="*",
+        help="Optional explicit sim files to lint instead of the default system_v4/probes corpus.",
+    )
     args = ap.parse_args()
 
-    sims = sorted(p for p in PROBES_DIR.glob("sim_*.py") if not _is_ignored_sim_path(p))
-    if not args.include_archive:
-        sims = [s for s in sims if "_archive_lane_c" not in s.parts]
+    if args.paths:
+        sims = [Path(path) for path in args.paths]
+    else:
+        sims = sorted(p for p in PROBES_DIR.glob("sim_*.py") if not _is_ignored_sim_path(p))
+        if not args.include_archive:
+            sims = [s for s in sims if "_archive_lane_c" not in s.parts]
 
     all_violations: list[dict] = []
     for sim in sims:

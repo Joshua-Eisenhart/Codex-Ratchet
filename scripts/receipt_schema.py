@@ -42,6 +42,14 @@ RUN_BOUNDARY_FIELDS = (
     "blocked_until",
 )
 
+TOOL_ALIASES = {
+    "np": "numpy",
+    "numpy": "numpy",
+    "torch": "pytorch",
+    "pytorch": "pytorch",
+    "z3": "z3",
+}
+
 
 def repo_root() -> Path:
     return Path(__file__).resolve().parents[1]
@@ -62,6 +70,31 @@ def relpath(path: Path, root: Path | None = None) -> str:
 
 def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def canonical_tool_name(tool: str) -> str:
+    normalized = str(tool).strip().lower().replace("-", "_")
+    family = normalized.split(".", 1)[0]
+    return TOOL_ALIASES.get(family, family)
+
+
+def normalized_execution_kind(value: Any) -> str:
+    normalized = str(value or "").strip().lower().replace("-", "_")
+    if normalized in {
+        "bridge",
+        "qit_bridge",
+        "nonclassical_bridge",
+        "semiclassical",
+        "semi_classical",
+        "semiclassical_bridge",
+        "semiclassical_szilard",
+    }:
+        return "bridge"
+    if normalized == "nonclassical":
+        return "nonclassical"
+    if normalized == "classical":
+        return "classical"
+    return ""
 
 
 def summary_all_pass(payload: dict[str, Any]) -> bool | None:
@@ -93,20 +126,51 @@ def summary_all_pass(payload: dict[str, Any]) -> bool | None:
     return None
 
 
-def failed_check_paths(obj: Any, path: str = "$") -> list[str]:
+def failed_check_paths(
+    obj: Any,
+    path: str = "$",
+    *,
+    max_hits: int = 20,
+    max_nodes: int = 5000,
+    _state: dict[str, int] | None = None,
+) -> list[str]:
     """Return paths where an explicit per-check pass flag is false."""
+    state = _state if _state is not None else {"nodes": 0}
+    if state["nodes"] >= max_nodes:
+        return []
+    state["nodes"] += 1
     hits: list[str] = []
     if isinstance(obj, dict):
         for key, value in obj.items():
+            if len(hits) >= max_hits or state["nodes"] >= max_nodes:
+                break
             next_path = f"{path}.{key}"
             if key in {"pass", "passed"} and value is False:
                 hits.append(next_path)
             else:
-                hits.extend(failed_check_paths(value, next_path))
+                hits.extend(
+                    failed_check_paths(
+                        value,
+                        next_path,
+                        max_hits=max_hits,
+                        max_nodes=max_nodes,
+                        _state=state,
+                    )
+                )
     elif isinstance(obj, list):
         for index, value in enumerate(obj):
-            hits.extend(failed_check_paths(value, f"{path}[{index}]"))
-    return hits
+            if len(hits) >= max_hits or state["nodes"] >= max_nodes:
+                break
+            hits.extend(
+                failed_check_paths(
+                    value,
+                    f"{path}[{index}]",
+                    max_hits=max_hits,
+                    max_nodes=max_nodes,
+                    _state=state,
+                )
+            )
+    return hits[:max_hits]
 
 
 def _finding(kind: str, severity: str, **fields: Any) -> dict[str, Any]:
@@ -154,6 +218,7 @@ def validate_result_payload(
         "result_json": relpath(path, base) if path else None,
         "name": None,
         "classification": None,
+        "sim_execution_kind": None,
         "all_pass": None,
         "load_bearing_tools": [],
         "used_tools": [],
@@ -184,6 +249,14 @@ def validate_result_payload(
 
     classification = payload.get("classification")
     facts["classification"] = classification
+    summary = payload.get("summary") if isinstance(payload.get("summary"), dict) else {}
+    execution_kind = normalized_execution_kind(
+        payload.get("sim_execution_kind")
+        or payload.get("SIM_EXECUTION_KIND")
+        or summary.get("sim_execution_kind")
+        or summary.get("SIM_EXECUTION_KIND")
+    )
+    facts["sim_execution_kind"] = execution_kind or None
     if classification not in VALID_CLASSIFICATIONS:
         hard_findings.append(
             _finding(
@@ -209,8 +282,8 @@ def validate_result_payload(
             _finding("result_not_all_pass", "hard", all_pass=all_pass)
         )
 
-    manifest = payload.get("tool_manifest")
-    depth = payload.get("tool_integration_depth")
+    manifest = payload.get("tool_manifest") or payload.get("TOOL_MANIFEST")
+    depth = payload.get("tool_integration_depth") or payload.get("TOOL_INTEGRATION_DEPTH")
 
     if not isinstance(manifest, dict) or not manifest:
         hard_findings.append(_finding("missing_or_empty_tool_manifest", "hard"))
@@ -313,6 +386,24 @@ def validate_result_payload(
             hard_findings.append(
                 _finding("load_bearing_tool_not_tried_in_manifest", "hard", tool=tool)
             )
+
+    load_bearing_canonical = {canonical_tool_name(tool) for tool in facts["load_bearing_tools"]}
+    if execution_kind in {"bridge", "nonclassical"} and "numpy" in load_bearing_canonical:
+        hard_findings.append(
+            _finding(
+                "numpy_load_bearing_blocked_for_bridge_or_nonclassical",
+                "hard",
+                sim_execution_kind=execution_kind,
+            )
+        )
+    if execution_kind == "nonclassical" and "pytorch" not in load_bearing_canonical:
+        hard_findings.append(
+            _finding(
+                "nonclassical_requires_load_bearing_pytorch",
+                "hard",
+                load_bearing_tools=sorted(load_bearing_canonical),
+            )
+        )
 
     if classification == "canonical":
         if not facts["load_bearing_tools"]:

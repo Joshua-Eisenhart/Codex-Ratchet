@@ -339,6 +339,85 @@ def test_receipt_executable_admission_rejects_supporting_and_audit_classes() -> 
     )
 
 
+def test_receipt_blocks_numpy_load_bearing_for_bridge_or_nonclassical() -> None:
+    receipt_schema = _load_module("receipt_schema_bridge_tools_under_test", SCRIPTS / "receipt_schema.py")
+
+    for execution_kind in ("bridge", "qit_bridge", "nonclassical_bridge"):
+        for tool_name in ("numpy", "np.linalg", "numpy.linalg"):
+            result = receipt_schema.validate_result_payload(
+                _canonical_payload(
+                    sim_execution_kind=execution_kind,
+                    tool_manifest={
+                        tool_name: {
+                            "tried": True,
+                            "used": True,
+                            "reason": "fixture should be blocked for bridge evidence.",
+                        }
+                    },
+                    tool_integration_depth={tool_name: "load_bearing"},
+                )
+            )
+
+            assert result["ok"] is False
+            assert any(
+                finding["kind"] == "numpy_load_bearing_blocked_for_bridge_or_nonclassical"
+                for finding in result["hard_findings"]
+            )
+
+
+def test_receipt_blocks_numpy_load_bearing_for_nonclassical() -> None:
+    receipt_schema = _load_module("receipt_schema_nonclassical_numpy_under_test", SCRIPTS / "receipt_schema.py")
+
+    for tool_name in ("numpy", "np.linalg", "numpy.linalg"):
+        result = receipt_schema.validate_result_payload(
+            _canonical_payload(
+                sim_execution_kind="nonclassical",
+                tool_manifest={
+                    tool_name: {
+                        "tried": True,
+                        "used": True,
+                        "reason": "fixture should be blocked for nonclassical evidence.",
+                    }
+                },
+                tool_integration_depth={tool_name: "load_bearing"},
+            )
+        )
+
+        assert result["ok"] is False
+        assert any(
+            finding["kind"] == "numpy_load_bearing_blocked_for_bridge_or_nonclassical"
+            for finding in result["hard_findings"]
+        )
+
+
+def test_receipt_requires_load_bearing_pytorch_for_nonclassical() -> None:
+    receipt_schema = _load_module("receipt_schema_nonclassical_tools_under_test", SCRIPTS / "receipt_schema.py")
+
+    missing_pytorch = receipt_schema.validate_result_payload(
+        _canonical_payload(sim_execution_kind="nonclassical")
+    )
+    assert missing_pytorch["ok"] is False
+    assert any(
+        finding["kind"] == "nonclassical_requires_load_bearing_pytorch"
+        for finding in missing_pytorch["hard_findings"]
+    )
+
+    with_torch = receipt_schema.validate_result_payload(
+        _canonical_payload(
+            sim_execution_kind="nonclassical",
+            tool_manifest={
+                "torch": {
+                    "tried": True,
+                    "used": True,
+                    "reason": "torch is load-bearing for the nonclassical fixture.",
+                }
+            },
+            tool_integration_depth={"torch": "load_bearing"},
+        )
+    )
+    assert with_torch["ok"] is True
+
+
 def test_receipt_used_tool_requires_depth_entry() -> None:
     receipt_schema = _load_module("receipt_schema_depth_under_test", SCRIPTS / "receipt_schema.py")
 

@@ -1269,6 +1269,139 @@ def test_lint_accepts_isolated_capability_probe_for_classical_integration(
     assert "C6_classical_has_load_bearing" not in rules
 
 
+def test_lint_blocks_numpy_bridge_and_requires_pytorch_for_nonclassical(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "lint_sim_contract_nonclassical_tools_under_test",
+        REPO_ROOT / "scripts" / "lint_sim_contract.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+
+    for tool in ("numpy", "z3", "pytorch"):
+        (probes / f"sim_{tool}_capability.py").write_text(
+            "\n".join(
+                [
+                    'classification = "canonical"',
+                    f'TOOL_MANIFEST = {{"{tool}": {{"used": True, "reason": "capability"}}}}',
+                    f'TOOL_INTEGRATION_DEPTH = {{"{tool}": "load_bearing"}}',
+                ]
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        (results / f"{tool}_capability_results.json").write_text(
+            json.dumps({"summary": {"all_pass": True}}),
+            encoding="utf-8",
+        )
+
+    bridge = probes / "sim_bridge_numpy_row.py"
+    bridge.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "bridge"',
+                'TOOL_MANIFEST = {"numpy": {"used": True, "reason": "bridge fixture"}}',
+                'TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    nonclassical_missing_pytorch = probes / "sim_nonclassical_z3_only.py"
+    nonclassical_missing_pytorch.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "nonclassical"',
+                'TOOL_MANIFEST = {"z3": {"used": True, "reason": "symbolic fixture"}}',
+                'TOOL_INTEGRATION_DEPTH = {"z3": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    nonclassical_pytorch = probes / "sim_nonclassical_pytorch_row.py"
+    nonclassical_pytorch.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "nonclassical"',
+                'TOOL_MANIFEST = {"pytorch": {"used": True, "reason": "tensor dynamics fixture"}}',
+                'TOOL_INTEGRATION_DEPTH = {"pytorch": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    nonclassical_bridge_numpy = probes / "sim_nonclassical_bridge_numpy.py"
+    nonclassical_bridge_numpy.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "nonclassical_bridge"',
+                'TOOL_MANIFEST = {"numpy": {"used": True, "reason": "bridge alias fixture"}}',
+                'TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES_DIR", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    bridge_rules = {violation["rule"] for violation in module.lint_sim(bridge)}
+    z3_rules = {violation["rule"] for violation in module.lint_sim(nonclassical_missing_pytorch)}
+    pytorch_rules = {violation["rule"] for violation in module.lint_sim(nonclassical_pytorch)}
+    bridge_alias_rules = {violation["rule"] for violation in module.lint_sim(nonclassical_bridge_numpy)}
+
+    assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" in bridge_rules
+    assert "C8_nonclassical_requires_pytorch_load_bearing" in z3_rules
+    assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" not in pytorch_rules
+    assert "C8_nonclassical_requires_pytorch_load_bearing" not in pytorch_rules
+    assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" in bridge_alias_rules
+
+
+def test_lint_accepts_explicit_path_arguments(tmp_path, monkeypatch, capsys) -> None:
+    module = _load_module(
+        "lint_sim_contract_path_args_under_test",
+        REPO_ROOT / "scripts" / "lint_sim_contract.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+    sim_path = probes / "sim_bridge_numpy_row.py"
+    sim_path.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "bridge"',
+                'TOOL_MANIFEST = {"numpy": {"used": True, "reason": "bridge fixture"}}',
+                'TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES_DIR", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+    monkeypatch.setattr(sys, "argv", ["lint_sim_contract.py", str(sim_path)])
+
+    assert module.main() == 1
+    report = json.loads(capsys.readouterr().out)
+    assert report["checked"] == 1
+    assert report["violations_by_type"]["C7_numpy_load_bearing_for_bridge_or_nonclassical"] == 1
+
+
 def test_gate_accepts_isolated_capability_probe_for_load_bearing_tool(
     tmp_path, monkeypatch
 ) -> None:
@@ -6318,8 +6451,9 @@ def test_runner_queue_preflight_blocks_nonempty_atomic_claims(tmp_path) -> None:
     claimed.mkdir(parents=True)
     blocked.mkdir(parents=True)
     done.mkdir(parents=True)
-    (claimed / "abc123.json.999.host.worker").write_text(
-        json.dumps({"sim_path": "system_v4/probes/sim_probe.py"}),
+    claimed_at = 100.0
+    (claimed / "abc123.json.0.host.worker").write_text(
+        json.dumps({"sim_path": "system_v4/probes/sim_probe.py", "claimed_at": claimed_at}),
         encoding="utf-8",
     )
     (blocked / "blocked.json").write_text("{}", encoding="utf-8")
@@ -6327,7 +6461,8 @@ def test_runner_queue_preflight_blocks_nonempty_atomic_claims(tmp_path) -> None:
     (queue_root / ".DS_Store").write_text("junk", encoding="utf-8")
     (done / ".DS_Store").write_text("junk", encoding="utf-8")
 
-    report = module.audit(root=repo)
+    now = claimed_at + module.CLAIM_RECONCILE_SAFETY_SECONDS - 60.0
+    report = module.audit(root=repo, now=now)
 
     assert report["all_pass"] is False
     assert report["atomic_queue_counts"] == {"claimed": 1, "blocked": 1, "done": 1}
@@ -6341,6 +6476,16 @@ def test_runner_queue_preflight_blocks_nonempty_atomic_claims(tmp_path) -> None:
     }
     assert report["findings"][0]["kind"] == "atomic_claimed_queue_not_empty"
     assert report["findings"][0]["count"] == 1
+    safety = report["findings"][0]["claim_safety"]
+    assert safety["count"] == 1
+    assert safety["safety_window_seconds"] == 72 * 60 * 60
+    assert safety["oldest_claimed_at_utc"] == "1970-01-01T00:01:40+00:00"
+    assert safety["newest_claimed_at_utc"] == "1970-01-01T00:01:40+00:00"
+    assert safety["safe_to_reconcile_after_utc"] == "1970-01-04T00:01:40+00:00"
+    assert safety["seconds_until_safe_to_reconcile"] == 60.0
+    assert safety["all_claims_past_safety_window"] is False
+    assert safety["pid_summary"]["with_pid"] == 1
+    assert safety["oldest_samples"][0]["timestamp_source"] == "payload.claimed_at"
     assert report["blocked_default_queue_count"] == 0
     assert report["blocked_stage_gate_queue_count"] == 0
     assert module.claim_for_row("system_v4/probes/classical_baseline_gram_schmidt.py") is None
@@ -9044,6 +9189,326 @@ def test_sim_inventory_reports_unlinked_result_paths(tmp_path) -> None:
     assert index["unlinked_result_samples"] == ["system_v4/probes/a2_state/sim_results/orphan_results.json"]
 
 
+def test_sim_inventory_separates_execution_lanes_and_engine_roles(tmp_path) -> None:
+    module = _load_module(
+        "sim_inventory_index_execution_lanes_under_test",
+        REPO_ROOT / "scripts" / "sim_inventory_index.py",
+    )
+    module.ROOT = tmp_path
+    module.PROBES = tmp_path / "system_v4" / "probes"
+    module.PROBES.mkdir(parents=True)
+    result_dir = tmp_path / "system_v4" / "probes" / "a2_state" / "sim_results"
+    result_dir.mkdir(parents=True)
+
+    source_contract = (
+        'TOOL_MANIFEST = {"numpy": {"used": True, "reason": "fixture"}}\n'
+        'TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}\n'
+    )
+    (module.PROBES / "sim_classical_carnot_two_bath_cycle.py").write_text(
+        'SIM_EXECUTION_KIND = "classical"\n' + source_contract,
+        encoding="utf-8",
+    )
+    (module.PROBES / "sim_semiclassical_szilard_measure_feedback_erasure.py").write_text(
+        'SIM_EXECUTION_KIND = "semiclassical_szilard"\n' + source_contract,
+        encoding="utf-8",
+    )
+    (module.PROBES / "sim_bridge_xi_cut_boundary.py").write_text(
+        'SIM_EXECUTION_KIND = "bridge"\n' + source_contract,
+        encoding="utf-8",
+    )
+    (module.PROBES / "sim_weyl_spinor_nonclassical_probe.py").write_text(
+        'SIM_EXECUTION_KIND = "nonclassical"\n' + source_contract,
+        encoding="utf-8",
+    )
+    (module.PROBES / "sim_negative_graveyard_control.py").write_text("# no result yet\n", encoding="utf-8")
+
+    result_payload = {
+        "tool_manifest": {"np.linalg": {"used": True}},
+        "tool_integration_depth": {"np.linalg": "load_bearing"},
+    }
+    (result_dir / "classical_carnot_two_bath_cycle_results.json").write_text(
+        json.dumps({"classification": "classical_baseline", **result_payload}),
+        encoding="utf-8",
+    )
+    (result_dir / "semiclassical_szilard_measure_feedback_erasure_results.json").write_text(
+        json.dumps({"classification": "canonical", "sim_execution_kind": "semiclassical_szilard", **result_payload}),
+        encoding="utf-8",
+    )
+    (result_dir / "bridge_xi_cut_boundary_results.json").write_text(
+        json.dumps({"classification": "canonical", "sim_execution_kind": "bridge", **result_payload}),
+        encoding="utf-8",
+    )
+    (result_dir / "weyl_spinor_nonclassical_probe_results.json").write_text(
+        json.dumps({"classification": "canonical", "sim_execution_kind": "nonclassical", **result_payload}),
+        encoding="utf-8",
+    )
+
+    index = module.build_index()
+    rows = {row["stem"]: row for row in index["rows"]}
+
+    assert rows["sim_classical_carnot_two_bath_cycle"]["sim_execution_lane"] == "classical"
+    assert rows["sim_classical_carnot_two_bath_cycle"]["engine_types"] == ["carnot"]
+    assert "full_run_signal" in rows["sim_classical_carnot_two_bath_cycle"]["engine_role_modes"]
+    assert rows["sim_classical_carnot_two_bath_cycle"]["engine_roles"] == ["classical_carnot_engine_token_match"]
+    assert rows["sim_semiclassical_szilard_measure_feedback_erasure"]["sim_execution_lane"] == "semiclassical_szilard"
+    assert rows["sim_semiclassical_szilard_measure_feedback_erasure"]["engine_types"] == ["szilard"]
+    assert "landauer_erasure_signal" in rows["sim_semiclassical_szilard_measure_feedback_erasure"]["engine_role_modes"]
+    assert rows["sim_semiclassical_szilard_measure_feedback_erasure"]["engine_role_conflict"] is False
+    assert rows["sim_semiclassical_szilard_measure_feedback_erasure"]["engine_roles"] == [
+        "semiclassical_szilard_engine_token_match"
+    ]
+    assert rows["sim_bridge_xi_cut_boundary"]["sim_execution_lane"] == "semiclassical_bridge"
+    assert rows["sim_bridge_xi_cut_boundary"]["engine_types"] == ["none"]
+    assert rows["sim_bridge_xi_cut_boundary"]["engine_roles"] == ["nonclassical_inspiration_or_boundary_signal"]
+    assert "numpy_load_bearing_blocked_for_bridge_or_nonclassical" in rows["sim_bridge_xi_cut_boundary"][
+        "promotion_blockers"
+    ]
+    assert rows["sim_weyl_spinor_nonclassical_probe"]["sim_execution_lane"] == "nonclassical"
+    assert "nonclassical_inspiration_or_boundary_signal" in rows["sim_weyl_spinor_nonclassical_probe"]["engine_roles"]
+    assert "nonclassical_requires_load_bearing_pytorch" in rows["sim_weyl_spinor_nonclassical_probe"][
+        "promotion_blockers"
+    ]
+    assert rows["sim_negative_graveyard_control"]["cleanup_bucket"] == (
+        "source_only_negative_or_graveyard_manifest_before_archive_decision"
+    )
+    assert "source_only_negative_or_graveyard" in rows["sim_negative_graveyard_control"]["garbage_candidate_flags"]
+    assert rows["sim_weyl_spinor_nonclassical_probe"]["public_status_blockers"] == [
+        "inventory_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated",
+        "wizard_admission_not_accepted",
+    ]
+    assert index["summary"]["public_status_counts"] == {"exists": 5}
+    assert index["summary"]["sim_execution_lane_counts"] == {
+        "classical": 1,
+        "nonclassical": 1,
+        "semiclassical_bridge": 1,
+        "semiclassical_szilard": 1,
+        "unknown": 1,
+    }
+    assert index["summary"]["runner_execution_kind_counts"] == {
+        "bridge": 2,
+        "classical": 1,
+        "nonclassical": 1,
+        "unknown": 1,
+    }
+    assert index["summary"]["engine_type_counts"] == {"carnot": 1, "none": 3, "szilard": 1}
+    assert "canonical_result_not_execution_lane_evidence" not in rows["sim_semiclassical_szilard_measure_feedback_erasure"][
+        "garbage_candidate_flags"
+    ]
+    assert index["summary"]["garbage_candidate_counts"]["source_only_negative_or_graveyard"] == 1
+
+
+def test_formal_scout_readiness_index_keeps_noncanonical_status(tmp_path) -> None:
+    module = _load_module(
+        "formal_scout_readiness_index_under_test",
+        REPO_ROOT / "scripts" / "formal_scout_readiness_index.py",
+    )
+    scout_root = tmp_path / "system_v5" / "ops" / "formal_scouts"
+    results = scout_root / "results"
+    results.mkdir(parents=True)
+    module.ROOT = tmp_path
+    module.SCOUT_ROOT = scout_root
+    module.RESULTS = results
+    module.README = scout_root / "README.md"
+    module.VALIDATOR = scout_root / "validate_formal_scout_results.py"
+
+    module.VALIDATOR.write_text(
+        "import json\n"
+        "def validate(path):\n"
+        "    data = json.loads(path.read_text())\n"
+        "    errors = []\n"
+        "    if data.get('classification') != 'formal_scout':\n"
+        "        errors.append('classification is not formal_scout')\n"
+        "    if data.get('promotion_allowed') is not False:\n"
+        "        errors.append('promotion_allowed is not false')\n"
+        "    return {'path': str(path), 'pass': not errors, 'errors': errors}\n",
+        encoding="utf-8",
+    )
+    module.README.write_text(
+        "| Harness | Result |\n| --- | --- |\n"
+        "| good | `results/good_probe_results.json` |\n",
+        encoding="utf-8",
+    )
+    (scout_root / "sim_good_probe.py").write_text("# good scout\n", encoding="utf-8")
+    (scout_root / "sim_bad_probe.py").write_text("# bad scout\n", encoding="utf-8")
+    (scout_root / "sim_mapping_probe.py").write_text("# starts with sim_ stem\n", encoding="utf-8")
+    (scout_root / "sim_dual_probe.py").write_text("# alternate source\n", encoding="utf-8")
+    (scout_root / "sim_sim_dual_probe.py").write_text("# validator expected source\n", encoding="utf-8")
+    (scout_root / "sim_orphan_source.py").write_text("# no result\n", encoding="utf-8")
+    good = {"classification": "formal_scout", "promotion_allowed": False, "claim_ceiling": "formal scout only"}
+    (results / "good_probe_results.json").write_text(json.dumps(good), encoding="utf-8")
+    (results / "bad_probe_results.json").write_text(
+        json.dumps({"classification": "canonical", "promotion_allowed": True}),
+        encoding="utf-8",
+    )
+    (results / "sim_mapping_probe_results.json").write_text(json.dumps(good), encoding="utf-8")
+    (results / "sim_dual_probe_results.json").write_text(json.dumps(good), encoding="utf-8")
+
+    index = module.build_index()
+    rows = {row["stem"]: row for row in index["rows"]}
+
+    assert index["summary"]["result_count"] == 4
+    assert index["summary"]["source_count"] == 6
+    assert index["summary"]["source_without_result_count"] == 1
+    assert index["summary"]["validator_pass_count"] == 3
+    assert index["summary"]["validator_fail_count"] == 1
+    assert index["summary"]["readme_indexed_count"] == 1
+    assert index["summary"]["readme_missing_count"] == 3
+    assert index["summary"]["fresh_rerun_mapping_defect_count"] == 1
+    assert index["summary"]["fresh_rerun_dual_source_defect_count"] == 1
+    assert rows["good_probe"]["readiness_status"] == "schema_ready"
+    assert rows["good_probe"]["public_status_label"] == "exists"
+    assert "formal_scout_noncanonical" in rows["good_probe"]["promotion_blockers"]
+    assert rows["bad_probe"]["readiness_status"] == "validator_failed"
+    assert rows["sim_mapping_probe"]["fresh_rerun_mapping_defect"] is True
+    assert rows["sim_mapping_probe"]["validator_expected_source_path"].endswith("sim_sim_mapping_probe.py")
+    assert rows["sim_dual_probe"]["fresh_rerun_dual_source_defect"] is True
+
+
+def test_grok_sim_archive_index_maps_sidequest_buckets(tmp_path) -> None:
+    module = _load_module(
+        "grok_sim_archive_index_under_test",
+        REPO_ROOT / "scripts" / "grok_sim_archive_index.py",
+    )
+    grok_root = tmp_path / "system_v5" / "grok_sim"
+    loop_root = grok_root / "loop_runner"
+    receipts = loop_root / "receipts"
+    contracts = loop_root / "contracts"
+    proposed = loop_root / "proposed_formal_sims"
+    complete_run = receipts / "complete_run"
+    incomplete_run = receipts / "incomplete_run"
+    missing_summary_run = receipts / "missing_summary_run"
+    bad_late_phase_run = receipts / "bad_late_phase_run"
+    for path in (complete_run, incomplete_run, missing_summary_run, bad_late_phase_run, contracts, proposed / "_quarantine_jargon"):
+        path.mkdir(parents=True)
+    module.ROOT = tmp_path
+    module.GROK_ROOT = grok_root
+    module.LOOP_ROOT = loop_root
+    module.RECEIPTS = receipts
+    module.CONTRACTS = contracts
+    module.PROPOSED = proposed
+
+    for phase in ("00_smoke", "01_axioms"):
+        (contracts / f"phase_{phase}.py").write_text("# contract\n", encoding="utf-8")
+    summary = {
+        "run_id": "complete_run",
+        "candidate": "/tmp/candidate.py",
+        "phases": [{"phase_id": "00_smoke", "pass": True}, {"phase_id": "01_axioms", "pass": True}],
+    }
+    (complete_run / "_summary.json").write_text(json.dumps(summary), encoding="utf-8")
+    (complete_run / "_frozen_manifest.json").write_text(json.dumps({"ok": True}), encoding="utf-8")
+    (complete_run / "_run_hash.txt").write_text("abc\n", encoding="utf-8")
+    (complete_run / "phase_00_smoke_results.json").write_text(
+        json.dumps({"observable": {"phase_pass": True}, "classification": "side_quest_only", "promotion_allowed": False}),
+        encoding="utf-8",
+    )
+    (incomplete_run / "_summary.json").write_text(json.dumps(summary | {"run_id": "incomplete_run"}), encoding="utf-8")
+    (incomplete_run / "phase_00_smoke_results.json").write_text(
+        json.dumps({"observable": {"phase_pass": True}}),
+        encoding="utf-8",
+    )
+    (missing_summary_run / "phase_00_smoke_results.json").write_text(
+        json.dumps({"observable": {"phase_pass": False}}),
+        encoding="utf-8",
+    )
+    (bad_late_phase_run / "_summary.json").write_text(
+        json.dumps(summary | {"run_id": "bad_late_phase_run"}),
+        encoding="utf-8",
+    )
+    (bad_late_phase_run / "_frozen_manifest.json").write_text(json.dumps({"ok": True}), encoding="utf-8")
+    (bad_late_phase_run / "_run_hash.txt").write_text("def\n", encoding="utf-8")
+    (bad_late_phase_run / "phase_00_smoke_results.json").write_text(
+        json.dumps({"observable": {"phase_pass": True}, "promotion_allowed": False}),
+        encoding="utf-8",
+    )
+    (bad_late_phase_run / "phase_01_axioms_results.json").write_text(
+        json.dumps({"observable": {"phase_pass": True}, "promotion_allowed": True}),
+        encoding="utf-8",
+    )
+    (proposed / "sim_proposed_constraint_manifold_assembly_handbuilt.py").write_text(
+        "promotion_allowed = False\nclassification = 'formal_scout'\n",
+        encoding="utf-8",
+    )
+    (proposed / "sim_bad.py").write_text(
+        "promotion_allowed = True\nclassification = 'nonclassical_torch'\n",
+        encoding="utf-8",
+    )
+    (proposed / "_quarantine_jargon" / "sim_old.py").write_text(
+        "promotion_allowed = False\n",
+        encoding="utf-8",
+    )
+
+    index = module.build_index()
+    receipt_buckets = index["summary"]["receipt_archive_bucket_counts"]
+    proposal_buckets = index["summary"]["proposed_archive_bucket_counts"]
+
+    assert index["summary"]["receipt_run_dir_count"] == 4
+    assert index["summary"]["complete_bundle_count"] == 2
+    assert index["summary"]["citeable_sidequest_bundle_count"] == 1
+    assert index["summary"]["complete_all_pass_bundle_count"] == 1
+    assert index["summary"]["phase_promotion_allowed_true_count"] == 1
+    assert index["summary"]["phase_count_at_least_live_contract_count_bundle_count"] == 1
+    assert receipt_buckets["phase_count_at_least_live_contract_count_hash_review"] == 1
+    assert receipt_buckets["quarantine_required_phase_promotion_allowed_true"] == 1
+    assert receipt_buckets["archive_only_incomplete_receipt_bundle"] == 1
+    assert receipt_buckets["archive_only_missing_summary"] == 1
+    assert proposal_buckets["keep_current_handbuilt_proposal_source"] == 1
+    assert proposal_buckets["quarantine_required_promotion_allowed_true"] == 1
+    assert proposal_buckets["keep_graveyard_quarantine"] == 1
+    assert index["high_risk_proposals"][0]["path"].endswith("sim_bad.py")
+
+
+def test_sim_results_archive_candidates_requires_ignored_untracked_unreferenced_old(tmp_path) -> None:
+    module = _load_module(
+        "sim_results_archive_candidates_under_test",
+        REPO_ROOT / "scripts" / "sim_results_archive_candidates.py",
+    )
+    result_root = tmp_path / "system_v4" / "probes" / "a2_state" / "sim_results"
+    docs = tmp_path / "system_v5" / "docs"
+    result_root.mkdir(parents=True)
+    docs.mkdir(parents=True)
+
+    names = [
+        "safe_results.json",
+        "tracked_results.json",
+        "referenced_results.json",
+        "recent_results.json",
+        "notignored_results.json",
+    ]
+    now = module.SAFETY_WINDOW_SECONDS + 100.0
+    for name in names:
+        path = result_root / name
+        path.write_text(json.dumps({"name": name}), encoding="utf-8")
+        os.utime(path, (0, 0))
+    os.utime(result_root / "recent_results.json", (now - 10, now - 10))
+    (docs / "INDEX.md").write_text("keep `referenced_results.json` live\n", encoding="utf-8")
+
+    tracked = {"system_v4/probes/a2_state/sim_results/tracked_results.json"}
+    ignored = {
+        "system_v4/probes/a2_state/sim_results/safe_results.json",
+        "system_v4/probes/a2_state/sim_results/tracked_results.json",
+        "system_v4/probes/a2_state/sim_results/referenced_results.json",
+        "system_v4/probes/a2_state/sim_results/recent_results.json",
+    }
+
+    manifest = module.build_manifest(
+        root=tmp_path,
+        now=now,
+        tracked_paths=tracked,
+        ignored_paths=ignored,
+        include_runtime_reference_scan=True,
+    )
+    rows = {Path(row["path"]).name: row for row in manifest["rows"]}
+
+    assert rows["safe_results.json"]["decision"] == "MOVE_TO_ARCHIVE_CANDIDATE"
+    assert rows["tracked_results.json"]["blockers"] == ["tracked_file"]
+    assert "referenced_by_current_surface" in rows["referenced_results.json"]["blockers"]
+    assert "inside_72h_safety_window" in rows["recent_results.json"]["blockers"]
+    assert "not_gitignored" in rows["notignored_results.json"]["blockers"]
+    assert manifest["summary"]["candidate_count"] == 1
+
+
 def test_lego_tool_reporting_audit_writes_fail_closed_missing_registry(tmp_path) -> None:
     module = _load_module(
         "lego_tool_reporting_audit_missing_registry_under_test",
@@ -10779,6 +11244,140 @@ def test_qit_engine_evidence_index_requires_source_binding_before_admission(tmp_
     assert index["next_acceptance_targets"][0]["next_action"] == "repair_or_bind_source_probe_before_admission"
 
 
+def test_qit_engine_evidence_index_blocks_bridge_numpy_and_nonclassical_without_pytorch(
+    tmp_path,
+) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_tool_policy_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+    for stem in ("sim_qit_bridge_numpy", "sim_qit_bridge_numpy_dot", "sim_qit_nonclassical_z3"):
+        (probes / f"{stem}.py").write_text("# fixture\n", encoding="utf-8")
+    base = {
+        "classification": "canonical",
+        "summary": {"tests_passed": 1, "tests_total": 1},
+        "positive": {"passed": True},
+        "negative": {"passed": True},
+        "boundary": {"passed": True},
+        "demotion_condition": "demote if fixture fails",
+        "out_of_scope": ["no engine promotion"],
+        "claim_ceiling": "qit_micro_only",
+        "next_lego_target": "none",
+        "promotion_condition": "requires admitted downstream packet",
+        "blocked_until": "wizard admission exists",
+    }
+    (results / "sim_qit_bridge_numpy_results.json").write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_bridge_numpy",
+                "sim_execution_kind": "bridge",
+                "tool_manifest": {"np.linalg": {"tried": True, "used": True, "reason": "blocked bridge fixture"}},
+                "tool_integration_depth": {"np.linalg": "load_bearing"},
+                **base,
+            }
+        ),
+        encoding="utf-8",
+    )
+    (results / "sim_qit_bridge_numpy_dot_results.json").write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_bridge_numpy_dot",
+                "sim_execution_kind": "bridge",
+                "tool_manifest": {"numpy.linalg": {"tried": True, "used": True, "reason": "blocked bridge fixture"}},
+                "tool_integration_depth": {"numpy.linalg": "load_bearing"},
+                **base,
+            }
+        ),
+        encoding="utf-8",
+    )
+    (results / "sim_qit_nonclassical_z3_results.json").write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_nonclassical_z3",
+                "sim_execution_kind": "nonclassical",
+                "tool_manifest": {"z3": {"tried": True, "used": True, "reason": "missing pytorch fixture"}},
+                "tool_integration_depth": {"z3": "load_bearing"},
+                **base,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    index = module.build_index(repo)
+    blockers = {entry["basename"]: entry["blockers"] for entry in index["entries"]}
+    targets = {row["basename"]: row["next_action"] for row in index["next_acceptance_targets"]}
+
+    assert "result:numpy_load_bearing_blocked_for_bridge_or_nonclassical" in blockers["sim_qit_bridge_numpy"]
+    assert "result:numpy_load_bearing_blocked_for_bridge_or_nonclassical" in blockers["sim_qit_bridge_numpy_dot"]
+    assert "result:nonclassical_requires_load_bearing_pytorch" in blockers["sim_qit_nonclassical_z3"]
+    assert targets["sim_qit_bridge_numpy"] == "repair_tool_policy_before_any_admission"
+    assert targets["sim_qit_bridge_numpy_dot"] == "repair_tool_policy_before_any_admission"
+    assert targets["sim_qit_nonclassical_z3"] == "repair_tool_policy_before_any_admission"
+
+
+def test_qit_engine_evidence_index_blocks_qit_like_canonical_missing_execution_kind(
+    tmp_path,
+) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_execution_kind_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+    (probes / "sim_qit_density_numpy.py").write_text("# fixture\n", encoding="utf-8")
+    (results / "sim_qit_density_numpy_results.json").write_text(
+        json.dumps(
+            {
+                "name": "sim_qit_density_numpy",
+                "classification": "canonical",
+                "summary": {"tests_passed": 1, "tests_total": 1},
+                "tool_manifest": {"numpy": {"tried": True, "used": True, "reason": "ambiguous qit fixture"}},
+                "tool_integration_depth": {"numpy": "load_bearing"},
+                "positive": {"passed": True},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "qit_density_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    index = module.build_index(repo)
+    blockers = {entry["basename"]: entry["blockers"] for entry in index["entries"]}
+
+    assert "result:qit_execution_kind_missing" in blockers["sim_qit_density_numpy"]
+
+
+def test_qit_engine_evidence_index_can_skip_external_scan(tmp_path) -> None:
+    module = _load_module(
+        "qit_engine_evidence_index_skip_external_under_test",
+        REPO_ROOT / "scripts" / "qit_engine_evidence_index.py",
+    )
+    repo = tmp_path / "repo"
+    results = repo / "system_v4" / "probes" / "a2_state" / "sim_results"
+    results.mkdir(parents=True)
+
+    index = module.build_index(repo, include_external_scan=False)
+
+    assert index["out_of_scope_qit_result_scan"]["status"] == "external_scan_skipped"
+    assert index["out_of_scope_qit_result_scan"]["triage"]["triage_boundary"] == (
+        "external_scan_skipped_run_without_skip_external_scan_for_diagnostics"
+    )
+
+
 def test_qit_engine_evidence_index_accepts_uppercase_tool_contract_fields(tmp_path) -> None:
     module = _load_module(
         "qit_engine_evidence_index_uppercase_contract_under_test",
@@ -10959,10 +11558,11 @@ def test_qit_engine_evidence_index_accepts_payload_named_result_with_strict_admi
     result_path = results / "z3_capability_results.json"
     result_path.write_text(
         json.dumps(
-            {
-                "name": "sim_z3_capability",
-                "classification": "canonical",
-                "tool_manifest": {"z3": {"tried": True, "used": True, "reason": "capability fixture"}},
+                {
+                    "name": "sim_z3_capability",
+                    "classification": "canonical",
+                    "all_pass": True,
+                    "tool_manifest": {"z3": {"tried": True, "used": True, "reason": "capability fixture"}},
                 "tool_integration_depth": {"z3": "load_bearing"},
                 "positive": {"passed": True, "function_surface": "z3.Solver.check"},
                 "negative": {"passed": True},
@@ -11373,6 +11973,63 @@ def test_wizard_sim_admission_accepts_nonclassical_tool_family_suffix(tmp_path) 
     )
 
     assert "nonclassical_suitable_load_bearing_tool_missing" not in findings
+
+
+def test_wizard_sim_admission_rejects_nonclassical_z3_without_pytorch(tmp_path) -> None:
+    module = _load_module(
+        "wizard_sim_admission_nonclassical_pytorch_under_test",
+        REPO_ROOT / "scripts" / "wizard_sim_admission.py",
+    )
+    repo = tmp_path / "repo"
+    _write_allow_stage_gate(repo)
+    result_path = repo / "system_v4" / "probes" / "a2_state" / "sim_results" / "sim_nonclassical_probe_results.json"
+    result_path.parent.mkdir(parents=True)
+    result_path.write_text(
+        json.dumps(
+            {
+                "name": "sim_nonclassical_probe",
+                "classification": "canonical",
+                "sim_execution_kind": "nonclassical",
+                "all_pass": True,
+                "tool_manifest": {"z3": {"tried": True, "used": True, "reason": "formal check only"}},
+                "tool_integration_depth": {"z3": "load_bearing"},
+                "positive": {"passed": True, "function_surface": "z3.Solver.check"},
+                "negative": {"passed": True},
+                "boundary": {"passed": True},
+                "demotion_condition": "demote if fixture fails",
+                "out_of_scope": ["no engine promotion"],
+                "claim_ceiling": "nonclassical_micro_only",
+                "next_lego_target": "none",
+                "promotion_condition": "requires admitted downstream packet",
+                "blocked_until": "controller acceptance",
+            }
+        ),
+        encoding="utf-8",
+    )
+    artifact = repo / "receipts" / "admission.json"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}", encoding="utf-8")
+    payload = _valid_wizard_admission_payload(
+        repo=repo,
+        basename="sim_nonclassical_probe",
+        sim_path="system_v4/probes/sim_nonclassical_probe.py",
+        artifact=artifact,
+    )
+    payload["formal_sim_profile"]["expected_result_path"] = str(result_path)
+    payload["formal_sim_profile"]["claim"] = "nonclassical micro claim"
+    payload["formal_sim_profile"]["exact_tool_or_function"] = "z3.Solver.check"
+    payload["packet_contract"]["tool_target"] = "z3"
+    payload["packet_contract"]["function_surface"] = "z3.Solver.check"
+    payload["packet_contract"]["claim_ceiling"] = "nonclassical_micro_only"
+
+    findings = module.validate_admission(
+        payload,
+        root=repo,
+        basename="sim_nonclassical_probe",
+        sim_path="system_v4/probes/sim_nonclassical_probe.py",
+    )
+
+    assert "nonclassical_requires_load_bearing_pytorch" in findings
 
 
 def test_wizard_sim_admission_rejects_hidden_coupling_baseline_without_baseline_ceiling(tmp_path) -> None:

@@ -11,6 +11,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+import receipt_schema
+
 
 NONCLASSICAL_LOAD_BEARING_TOOLS = {"z3", "cvc5", "clifford", "torch", "pytorch", "pyg", "qiskit", "qutip"}
 HIDDEN_NONCLASSICAL_TOKENS = ("rho_ab", "rho_AB", "Phi0", "phi0", "Xi", "xi", "coupling witness")
@@ -98,7 +100,7 @@ def _load_json(path: Path) -> dict[str, Any]:
 
 
 def _tool_family(value: str) -> str:
-    return value.split(".", 1)[0].lower()
+    return receipt_schema.canonical_tool_name(value)
 
 
 def _load_bearing_tool_families(result_payload: dict[str, Any]) -> set[str]:
@@ -108,6 +110,16 @@ def _load_bearing_tool_families(result_payload: dict[str, Any]) -> set[str]:
         for tool, depth in depths.items()
         if str(depth) == "load_bearing"
     }
+
+
+def _result_execution_kind(result_payload: dict[str, Any]) -> str:
+    summary = result_payload.get("summary") if isinstance(result_payload.get("summary"), dict) else {}
+    return receipt_schema.normalized_execution_kind(
+        result_payload.get("sim_execution_kind")
+        or result_payload.get("SIM_EXECUTION_KIND")
+        or summary.get("sim_execution_kind")
+        or summary.get("SIM_EXECUTION_KIND")
+    )
 
 
 def _has_hidden_nonclassical_signal(root: Path, sim_path: str, result_payload: dict[str, Any]) -> bool:
@@ -219,8 +231,16 @@ def validate_admission(
         ]
     ).lower()
     hidden_nonclassical = _has_hidden_nonclassical_signal(root, sim_path, result_payload)
+    result_execution_kind = _result_execution_kind(result_payload)
     if (any(token in claim_text for token in ("qit", "engine", "nonclassical")) or hidden_nonclassical) and tool and tool not in NONCLASSICAL_LOAD_BEARING_TOOLS:
         findings.append("nonclassical_suitable_load_bearing_tool_missing")
+    strict_nonclassical = (
+        result_execution_kind == "nonclassical"
+        or "nonclassical" in claim_text
+        or hidden_nonclassical
+    )
+    if strict_nonclassical and "pytorch" not in load_bearing:
+        findings.append("nonclassical_requires_load_bearing_pytorch")
     if hidden_nonclassical and result_payload.get("classification") == "classical_baseline":
         baseline_ceiling = " ".join(
             str(contract.get(k, "")) for k in ("nonclassical_claim_ceiling", "claim_ceiling", "promotion_boundary")

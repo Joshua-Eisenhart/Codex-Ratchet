@@ -95,6 +95,20 @@ FIELD_ABLATION_FIELDS = [
 FIELD_SIGNAL_WEIGHT = 5e-5
 FIELD_ABLATION_GAP_FLOOR = 1e-6
 FIELD_COMPONENT_VARIANCE_FLOOR = 1e-10
+CANDIDATE_NAMES = [
+    "fep_gradient_polarity",
+    "path_entropy",
+    "correlation_diversity_derivative",
+    "retrocausal_many_futures_policy_scoring",
+    "holographic_boundary_interior_reconstruction",
+]
+CANDIDATE_WEIGHTS = {
+    "fep_gradient_polarity": 0.31,
+    "path_entropy": -0.23,
+    "correlation_diversity_derivative": 0.19,
+    "retrocausal_many_futures_policy_scoring": 0.13,
+    "holographic_boundary_interior_reconstruction": -0.11,
+}
 ENVIRONMENT_SIGNATURE_COLUMNS = [
     "two_site_entropy",
     "two_site_purity",
@@ -249,15 +263,8 @@ def stage_science_contract(records: list[dict[str, Any]]) -> dict[str, Any]:
 
 def axis0_signature(router: dict[str, Any]) -> dict[str, Any]:
     outputs = router.get("axis0_outputs_or_blockers") or {}
-    names = [
-        "fep_gradient_polarity",
-        "path_entropy",
-        "correlation_diversity_derivative",
-        "retrocausal_many_futures_policy_scoring",
-        "holographic_boundary_interior_reconstruction",
-    ]
     vectors: dict[str, list[float]] = {}
-    for name in names:
+    for name in CANDIDATE_NAMES:
         arr = np.asarray(outputs.get(name, {}).get("values", []), dtype=float)
         if arr.size:
             arr = np.nan_to_num(arr, nan=0.0, posinf=0.0, neginf=0.0)
@@ -267,20 +274,56 @@ def axis0_signature(router: dict[str, Any]) -> dict[str, Any]:
         vectors[name] = [float(x) for x in arr]
     return {
         "ready": bool(router.get("exists") and router.get("all_pass") is True and all(vectors.values())),
-        "candidate_names": names,
+        "candidate_names": list(CANDIDATE_NAMES),
         "candidate_vectors": vectors,
         "source_receipt": router.get("path"),
     }
 
 
-def axis0_drive(axis0: dict[str, Any], idx: int) -> float:
+def axis0_candidate_values(axis0: dict[str, Any], idx: int) -> dict[str, float]:
+    vectors = axis0.get("candidate_vectors", {})
+    values = {}
+    for name in CANDIDATE_NAMES:
+        vector = vectors.get(name, [])
+        values[name] = float(vector[idx % len(vector)]) if vector else 0.0
+    return values
+
+
+def axis0_drive(axis0: dict[str, Any], idx: int, mode: str = "full_vector") -> float:
     if not axis0.get("ready"):
         return 0.0
-    values = []
-    for vector in axis0.get("candidate_vectors", {}).values():
+    values = axis0_candidate_values(axis0, idx)
+    if mode == "zero_all":
+        return 0.0
+    if mode == "scalar_mean":
+        return float(np.mean(list(values.values())))
+    if mode == "shuffled_name_binding":
+        rolled = list(values.values())[1:] + list(values.values())[:1]
+        values = dict(zip(CANDIDATE_NAMES, rolled))
+    elif mode.startswith("drop::"):
+        dropped = mode.split("::", 1)[1]
+        if dropped not in values:
+            raise ValueError(mode)
+        values = dict(values)
+        values[dropped] = 0.0
+    elif mode.startswith("sign_flip::"):
+        flipped = mode.split("::", 1)[1]
+        if flipped not in values:
+            raise ValueError(mode)
+        values = dict(values)
+        values[flipped] = -values[flipped]
+    elif mode.startswith("time_shuffle::"):
+        shuffled = mode.split("::", 1)[1]
+        if shuffled not in values:
+            raise ValueError(mode)
+        vector = axis0.get("candidate_vectors", {}).get(shuffled, [])
+        values = dict(values)
         if vector:
-            values.append(float(vector[idx % len(vector)]))
-    return float(np.mean(values)) if values else 0.0
+            values[shuffled] = float(vector[(idx * 7 + 11) % len(vector)])
+    elif mode != "full_vector":
+        raise ValueError(mode)
+    weighted = sum(CANDIDATE_WEIGHTS[name] * values[name] for name in CANDIDATE_NAMES)
+    return float(weighted / sum(abs(value) for value in CANDIDATE_WEIGHTS.values()))
 
 
 def holodeck_memory_signal(memory_receipt: dict[str, Any]) -> dict[str, Any]:
@@ -712,6 +755,7 @@ def run_carrier(
     zero_manifold: bool = False,
     ablate_stage_field: str | None = None,
     identity_control: bool = False,
+    axis0_drive_mode: str = "full_vector",
 ) -> dict[str, Any]:
     carrier = make_carrier(family, shape, seed)
     quimb_check = quimb_count_check(carrier)
@@ -723,7 +767,7 @@ def run_carrier(
     stage_hashes = []
     for idx, record in enumerate(records):
         site = carrier.sites[site_order[idx % len(site_order)]]
-        drive = 0.0 if zero_axis0 else axis0_drive(axis0, idx)
+        drive = axis0_drive(axis0, idx, "zero_all" if zero_axis0 else axis0_drive_mode)
         mem_drive = 0.0 if zero_memory else holodeck_memory_drive(memory, idx)
         source_record = record
         if zero_manifold:
@@ -757,6 +801,7 @@ def run_carrier(
         "zero_manifold": bool(zero_manifold),
         "ablate_stage_field": ablate_stage_field,
         "identity_control": bool(identity_control),
+        "axis0_drive_mode": axis0_drive_mode,
         "stage_records_consumed": len(records),
         "unique_model_after_hashes_consumed": len(set(stage_hashes)),
         "axis0_ready": bool(axis0.get("ready")),
@@ -862,6 +907,10 @@ def pairwise_signature_gaps(rows: dict[str, dict[str, Any]]) -> dict[str, float]
     }
 
 
+def signature_gap(a: dict[str, Any], b: dict[str, Any]) -> float:
+    return float(np.linalg.norm(a["environment_signature"] - b["environment_signature"]))
+
+
 def axis0_zeroed_gaps(full_rows: dict[str, dict[str, Any]], zero_rows: dict[str, dict[str, Any]]) -> dict[str, float]:
     return {
         key: float(np.linalg.norm(full_rows[key]["environment_signature"] - zero_rows[key]["environment_signature"]))
@@ -908,6 +957,11 @@ def main() -> int:
 
     full_rows: dict[str, dict[str, Any]] = {}
     zero_rows: dict[str, dict[str, Any]] = {}
+    scalar_mean_rows: dict[str, dict[str, Any]] = {}
+    shuffled_name_rows: dict[str, dict[str, Any]] = {}
+    drop_one_rows: dict[str, dict[str, dict[str, Any]]] = {name: {} for name in CANDIDATE_NAMES}
+    sign_flip_rows: dict[str, dict[str, dict[str, Any]]] = {name: {} for name in CANDIDATE_NAMES}
+    time_shuffle_rows: dict[str, dict[str, dict[str, Any]]] = {name: {} for name in CANDIDATE_NAMES}
     memory_zero_rows: dict[str, dict[str, Any]] = {}
     manifold_zero_rows: dict[str, dict[str, Any]] = {}
     field_ablation_rows: dict[str, dict[str, dict[str, Any]]] = {
@@ -918,6 +972,67 @@ def main() -> int:
         key = f"{family}_{int(np.prod(shape))}"
         full_rows[key] = run_carrier(records, axis0, memory, family, shape, seed, zero_axis0=False, zero_memory=False, identity_control=False)
         zero_rows[key] = run_carrier(records, axis0, memory, family, shape, seed, zero_axis0=True, zero_memory=False, identity_control=False)
+        scalar_mean_rows[key] = run_carrier(
+            records,
+            axis0,
+            memory,
+            family,
+            shape,
+            seed,
+            zero_axis0=False,
+            zero_memory=False,
+            identity_control=False,
+            axis0_drive_mode="scalar_mean",
+        )
+        shuffled_name_rows[key] = run_carrier(
+            records,
+            axis0,
+            memory,
+            family,
+            shape,
+            seed,
+            zero_axis0=False,
+            zero_memory=False,
+            identity_control=False,
+            axis0_drive_mode="shuffled_name_binding",
+        )
+        for name in CANDIDATE_NAMES:
+            drop_one_rows[name][key] = run_carrier(
+                records,
+                axis0,
+                memory,
+                family,
+                shape,
+                seed,
+                zero_axis0=False,
+                zero_memory=False,
+                identity_control=False,
+                axis0_drive_mode=f"drop::{name}",
+            )
+            sign_flip_rows[name][key] = run_carrier(
+                records,
+                axis0,
+                memory,
+                family,
+                shape,
+                seed,
+                zero_axis0=False,
+                zero_memory=False,
+                identity_control=False,
+                axis0_drive_mode=f"sign_flip::{name}",
+            )
+            time_shuffle_rows[name][key] = run_carrier(
+                records,
+                axis0,
+                memory,
+                family,
+                shape,
+                seed,
+                zero_axis0=False,
+                zero_memory=False,
+                identity_control=False,
+                axis0_drive_mode=f"time_shuffle::{name}",
+            )
         memory_zero_rows[key] = run_carrier(records, axis0, memory, family, shape, seed, zero_axis0=False, zero_memory=True, identity_control=False)
         manifold_zero_rows[key] = run_carrier(records, axis0, memory, family, shape, seed, zero_axis0=False, zero_memory=False, zero_manifold=True, identity_control=False)
         for field in FIELD_ABLATION_FIELDS:
@@ -936,6 +1051,35 @@ def main() -> int:
         identity_rows[key] = run_carrier(records, axis0, memory, family, shape, seed, zero_axis0=True, zero_memory=True, identity_control=True)
 
     axis0_gaps = axis0_zeroed_gaps(full_rows, zero_rows)
+    scalar_mean_gaps = {
+        key: signature_gap(full_rows[key], scalar_mean_rows[key])
+        for key in sorted(full_rows)
+    }
+    shuffled_name_gaps = {
+        key: signature_gap(full_rows[key], shuffled_name_rows[key])
+        for key in sorted(full_rows)
+    }
+    drop_one_gaps = {
+        name: {
+            key: signature_gap(full_rows[key], drop_one_rows[name][key])
+            for key in sorted(full_rows)
+        }
+        for name in CANDIDATE_NAMES
+    }
+    sign_flip_gaps = {
+        name: {
+            key: signature_gap(full_rows[key], sign_flip_rows[name][key])
+            for key in sorted(full_rows)
+        }
+        for name in CANDIDATE_NAMES
+    }
+    time_shuffle_gaps = {
+        name: {
+            key: signature_gap(full_rows[key], time_shuffle_rows[name][key])
+            for key in sorted(full_rows)
+        }
+        for name in CANDIDATE_NAMES
+    }
     memory_gaps = memory_zeroed_gaps(full_rows, memory_zero_rows)
     manifold_gaps = manifold_zeroed_gaps(full_rows, manifold_zero_rows)
     field_report = field_component_variance_report(records)
@@ -951,9 +1095,9 @@ def main() -> int:
     quimb_local_api = quimb_local_environment_api_report(records, axis0, memory)
 
     repair_receipt = {
-        "weak_link": "PEPS/PEPS3D campaign lacked a no-dense downstream consumer of EngineCore science-method fields plus the plural Axis0 router, and downstream carriers had not isolated whether the manifold projection term was load-bearing.",
+        "weak_link": "PEPS/PEPS3D campaign lacked a no-dense downstream consumer of EngineCore science-method fields plus the plural Axis0 router, and the first subdense consumer still risked collapsing plural Axis0 candidate vectors into one scalar mean.",
         "target_file_or_result": str(OUT_PATH),
-        "admission_rule_improved": "No-dense PEPS/PEPS3D environment scouts must avoid global dense vector readout, consume stage science fields and Axis0 router outputs, and include axis0-zeroed, memory-zeroed, manifold-zeroed, gauge, and finite-size controls.",
+        "admission_rule_improved": "No-dense PEPS/PEPS3D environment scouts must avoid global dense vector readout, consume stage science fields and Axis0 router outputs, and include full-vector, scalar-mean, shuffled-name, drop-one, sign-flip, time-shuffle, axis0-zeroed, memory-zeroed, manifold-zeroed, gauge, and finite-size controls.",
         "dependency_subset": [
             "EngineCore science_method_stage_record_v1",
             "macro_sim_stage_record_science_method_contract receipt",
@@ -977,6 +1121,11 @@ def main() -> int:
         },
         "primary_control/result": {
             "axis0_zeroed_environment_signature_gaps": axis0_gaps,
+            "axis0_scalar_mean_environment_signature_gaps": scalar_mean_gaps,
+            "axis0_shuffled_name_environment_signature_gaps": shuffled_name_gaps,
+            "axis0_drop_one_environment_signature_gaps": drop_one_gaps,
+            "axis0_sign_flip_environment_signature_gaps": sign_flip_gaps,
+            "axis0_time_shuffle_environment_signature_gaps": time_shuffle_gaps,
             "holodeck_memory_zeroed_environment_signature_gaps": memory_gaps,
             "manifold_zeroed_environment_signature_gaps": manifold_gaps,
             "science_method_field_component_variance": field_report,
@@ -986,6 +1135,13 @@ def main() -> int:
         },
         "axis0_outputs_or_blockers": {
             **axis0,
+            "primary_axis0_drive_mode": "full_vector",
+            "scalar_mean_control_gaps": scalar_mean_gaps,
+            "shuffled_name_binding_control_gaps": shuffled_name_gaps,
+            "drop_one_control_gaps": drop_one_gaps,
+            "sign_flip_control_gaps": sign_flip_gaps,
+            "time_shuffle_control_gaps": time_shuffle_gaps,
+            "candidate_weights": CANDIDATE_WEIGHTS,
             "holodeck_memory_placeholder": memory,
             "holographic_boundary_interior_reconstruction": axis0_router_receipt.get("axis0_outputs_or_blockers", {}).get("holographic_boundary_interior_reconstruction", {}),
             "retrocausal_many_futures_policy_scoring": axis0_router_receipt.get("axis0_outputs_or_blockers", {}).get("retrocausal_many_futures_policy_scoring", {}),

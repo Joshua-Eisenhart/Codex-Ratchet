@@ -280,6 +280,18 @@ SUITE = [
         "category": "source_native_macro_sim_stage_contract",
     },
     {
+        "name": "source_native_fep_pomdp_policy_tree",
+        "script": "sim_source_native_fep_pomdp_policy_tree_probe.py",
+        "result": "source_native_fep_pomdp_policy_tree_probe_results.json",
+        "category": "source_native_fep_policy_tree",
+    },
+    {
+        "name": "source_native_fep_online_vmp_policy_update",
+        "script": "sim_source_native_fep_online_vmp_policy_update_probe.py",
+        "result": "source_native_fep_online_vmp_policy_update_probe_results.json",
+        "category": "source_native_fep_online_vmp",
+    },
+    {
         "name": "macro_axis0_plural_stage_router",
         "script": "sim_macro_sim_axis0_plural_stage_candidate_router_probe.py",
         "result": "macro_sim_axis0_plural_stage_candidate_router_probe_results.json",
@@ -362,6 +374,8 @@ CRITICAL_NODES = {
     "multiqubit_reservoir_static_kernel_esn_baseline",
     "multiqubit_mps_reservoir_scaling_12_16_24_32",
     "macro_stage_record_science_method_contract",
+    "source_native_fep_pomdp_policy_tree",
+    "source_native_fep_online_vmp_policy_update",
     "macro_axis0_plural_stage_router",
     "holodeck_hash_memory_placeholder",
     "source_native_subdense_multicarrier_environment",
@@ -392,7 +406,9 @@ CRITICAL_EDGES = {
     ("engine_core_autograd_severance_contract", "weyl_holonomy_mps_curvature_transport"),
     ("source_to_multicarrier_execution", "long_horizon_holonomy_boundary_entropy"),
     ("long_horizon_holonomy_boundary_entropy", "macro_stage_record_science_method_contract"),
-    ("macro_stage_record_science_method_contract", "macro_axis0_plural_stage_router"),
+    ("macro_stage_record_science_method_contract", "source_native_fep_pomdp_policy_tree"),
+    ("source_native_fep_pomdp_policy_tree", "source_native_fep_online_vmp_policy_update"),
+    ("source_native_fep_online_vmp_policy_update", "macro_axis0_plural_stage_router"),
     ("macro_stage_record_science_method_contract", "holodeck_hash_memory_placeholder"),
     ("macro_axis0_plural_stage_router", "source_native_subdense_multicarrier_environment"),
     ("holodeck_hash_memory_placeholder", "source_native_subdense_multicarrier_environment"),
@@ -545,7 +561,9 @@ def build_dependency_graph(rows: list[dict[str, Any]]) -> nx.DiGraph:
     graph.add_edge("multiqubit_mps_reservoir_scaling_12_16_24_32", "source_to_multicarrier_execution")
     graph.add_edge("source_to_multicarrier_execution", "long_horizon_holonomy_boundary_entropy")
     graph.add_edge("long_horizon_holonomy_boundary_entropy", "macro_stage_record_science_method_contract")
-    graph.add_edge("macro_stage_record_science_method_contract", "macro_axis0_plural_stage_router")
+    graph.add_edge("macro_stage_record_science_method_contract", "source_native_fep_pomdp_policy_tree")
+    graph.add_edge("source_native_fep_pomdp_policy_tree", "source_native_fep_online_vmp_policy_update")
+    graph.add_edge("source_native_fep_online_vmp_policy_update", "macro_axis0_plural_stage_router")
     graph.add_edge("macro_stage_record_science_method_contract", "holodeck_hash_memory_placeholder")
     graph.add_edge("macro_axis0_plural_stage_router", "source_native_subdense_multicarrier_environment")
     graph.add_edge("holodeck_hash_memory_placeholder", "source_native_subdense_multicarrier_environment")

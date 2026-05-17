@@ -111,6 +111,7 @@ def load_result(name: str) -> dict[str, Any]:
         "promotion_allowed": data.get("promotion_allowed"),
         "claim_ceiling": data.get("claim_ceiling", ""),
         "positive": data.get("positive", {}),
+        "hash_cells": data.get("hash_cells", []),
         "repo_admission_matrix": data.get("repo_admission_matrix", {}),
         "axis0_outputs_or_blockers": data.get("axis0_outputs_or_blockers", {}),
     }
@@ -123,7 +124,54 @@ def memory_margin(memory_receipt: dict[str, Any]) -> float:
     )
 
 
-def collect_training_rows(axis0: dict[str, np.ndarray], memory: float) -> tuple[np.ndarray, np.ndarray, np.ndarray, list[str], list[dict[str, Any]]]:
+def bucket_text(text: str, modulus: int = 997) -> float:
+    digest = hashlib.sha256(str(text).encode("utf-8")).hexdigest()
+    return float(int(digest[:8], 16) % modulus) / float(modulus)
+
+
+def holodeck_hash_cells(memory_receipt: dict[str, Any]) -> list[dict[str, Any]]:
+    rows = memory_receipt.get("hash_cells", [])
+    if not isinstance(rows, list):
+        return []
+    return [
+        row
+        for row in rows
+        if isinstance(row, dict)
+        and isinstance(row.get("semantic_hash"), str)
+        and isinstance(row.get("survivor_class_hash"), str)
+        and isinstance(row.get("graveyard_control_hashes"), list)
+    ]
+
+
+def hash_cell_features(hash_cells: list[dict[str, Any]], idx: int) -> list[float]:
+    if not hash_cells:
+        return [0.0, 0.0, 0.0]
+    cell = hash_cells[idx % len(hash_cells)]
+    graveyard_joined = "|".join(str(x) for x in cell.get("graveyard_control_hashes", []))
+    return [
+        bucket_text(str(cell.get("semantic_hash", ""))),
+        bucket_text(graveyard_joined),
+        bucket_text(str(cell.get("survivor_class_hash", ""))),
+    ]
+
+
+HASH_FEATURE_NAMES = [
+    "holodeck_semantic_hash_bucket",
+    "holodeck_graveyard_hash_bucket",
+    "holodeck_survivor_hash_bucket",
+]
+HASH_CONTROL_THRESHOLDS = {
+    "zero_hash_table_interval_center_shift_min": 0.005,
+    "shuffle_hash_identity_interval_center_shift_min": 0.005,
+    "drop_graveyard_hash_interval_center_shift_min": 0.003,
+}
+
+
+def collect_training_rows(
+    axis0: dict[str, np.ndarray],
+    memory: float,
+    hash_cells: list[dict[str, Any]],
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, list[str], list[dict[str, Any]]]:
     axis0_names = list(axis0)
     names = [
         "bloch_x",
@@ -142,6 +190,7 @@ def collect_training_rows(axis0: dict[str, np.ndarray], memory: float) -> tuple[
         *[f"perception_{perception}" for perception in PERCEPTIONS],
         *[f"axis0_{name}" for name in axis0_names],
         "holodeck_memory_phase",
+        *HASH_FEATURE_NAMES,
     ]
     rows: list[list[float]] = []
     labels: list[int] = []
@@ -164,8 +213,15 @@ def collect_training_rows(axis0: dict[str, np.ndarray], memory: float) -> tuple[
                         float(axis0[name][idx % len(axis0[name])]) if len(axis0[name]) else 0.0
                         for name in axis0_names
                     ]
+                    semantic_hash_bucket, graveyard_hash_bucket, survivor_hash_bucket = hash_cell_features(hash_cells, idx)
                     memory_phase = float(memory * (1.0 if idx % 2 == 0 else -0.5))
-                    context_score = float(sum(axis_values) + 0.15 * memory_phase + 0.10 * fep["prediction_error_l2"])
+                    hash_identity_signal = semantic_hash_bucket - graveyard_hash_bucket + survivor_hash_bucket
+                    context_score = float(
+                        sum(axis_values)
+                        + 0.15 * memory_phase
+                        + 0.35 * hash_identity_signal
+                        + 0.10 * fep["prediction_error_l2"]
+                    )
                     context_shift = 1 if context_score > 0.15 else 0
                     base_label = OPERATORS.index(record["next_policy"]["operator"])
                     labels.append((base_label + context_shift) % len(OPERATORS))
@@ -183,6 +239,9 @@ def collect_training_rows(axis0: dict[str, np.ndarray], memory: float) -> tuple[
                             *[1.0 if perception == item else 0.0 for item in PERCEPTIONS],
                             *axis_values,
                             memory_phase,
+                            semantic_hash_bucket,
+                            graveyard_hash_bucket,
+                            survivor_hash_bucket,
                         ]
                     )
                     seeds.append(seed_idx)
@@ -271,6 +330,39 @@ def lirpa_bruteforce_report(model: PolicyNet, x: np.ndarray, seeds: np.ndarray, 
             context_zero[:, names.index(field)] = 0.0
     with torch.no_grad():
         context_shift = float(torch.mean(torch.abs(model(sample) - model(context_zero))).item())
+    hash_zero = sample.clone()
+    for field in HASH_FEATURE_NAMES:
+        if field in names:
+            hash_zero[:, names.index(field)] = 0.0
+    bounded_hash_zero = BoundedModule(model, hash_zero)
+    hash_zero_bx = BoundedTensor(hash_zero, PerturbationLpNorm(norm=np.inf, eps=eps))
+    hash_zero_lb, hash_zero_ub = bounded_hash_zero.compute_bounds(x=(hash_zero_bx,), method="IBP")
+    hash_zero_shift = torch.mean(torch.abs((ub + lb) / 2 - (hash_zero_ub + hash_zero_lb) / 2)).item()
+
+    hash_shuffle = sample.clone()
+    for field in HASH_FEATURE_NAMES:
+        if field in names:
+            col = names.index(field)
+            hash_shuffle[:, col] = torch.roll(hash_shuffle[:, col], shifts=7)
+    bounded_hash_shuffle = BoundedModule(model, hash_shuffle)
+    hash_shuffle_bx = BoundedTensor(hash_shuffle, PerturbationLpNorm(norm=np.inf, eps=eps))
+    hash_shuffle_lb, hash_shuffle_ub = bounded_hash_shuffle.compute_bounds(x=(hash_shuffle_bx,), method="IBP")
+    hash_shuffle_shift = torch.mean(torch.abs((ub + lb) / 2 - (hash_shuffle_ub + hash_shuffle_lb) / 2)).item()
+
+    drop_graveyard = sample.clone()
+    if "holodeck_graveyard_hash_bucket" in names:
+        drop_graveyard[:, names.index("holodeck_graveyard_hash_bucket")] = 0.0
+    bounded_drop_graveyard = BoundedModule(model, drop_graveyard)
+    drop_graveyard_bx = BoundedTensor(drop_graveyard, PerturbationLpNorm(norm=np.inf, eps=eps))
+    drop_graveyard_lb, drop_graveyard_ub = bounded_drop_graveyard.compute_bounds(x=(drop_graveyard_bx,), method="IBP")
+    drop_graveyard_shift = torch.mean(torch.abs((ub + lb) / 2 - (drop_graveyard_ub + drop_graveyard_lb) / 2)).item()
+
+    hash_identity_pass = (
+        all(field in names for field in HASH_FEATURE_NAMES)
+        and hash_zero_shift > HASH_CONTROL_THRESHOLDS["zero_hash_table_interval_center_shift_min"]
+        and hash_shuffle_shift > HASH_CONTROL_THRESHOLDS["shuffle_hash_identity_interval_center_shift_min"]
+        and drop_graveyard_shift > HASH_CONTROL_THRESHOLDS["drop_graveyard_hash_interval_center_shift_min"]
+    )
     return {
         "pass": bool(
             torch.all(lb <= nominal)
@@ -278,6 +370,7 @@ def lirpa_bruteforce_report(model: PolicyNet, x: np.ndarray, seeds: np.ndarray, 
             and contains
             and float((ub - lb).mean().detach().item()) > 0.0
             and context_shift > 0.25
+            and hash_identity_pass
         ),
         "test_rows_bounded": int(sample.shape[0]),
         "eps_linf": eps,
@@ -291,6 +384,14 @@ def lirpa_bruteforce_report(model: PolicyNet, x: np.ndarray, seeds: np.ndarray, 
         "min_lower_slack": min_lower_slack,
         "min_upper_slack": min_upper_slack,
         "context_zero_logit_mean_abs_shift": context_shift,
+        "hash_identity_bound_controls": {
+            "pass": bool(hash_identity_pass),
+            "hash_feature_names": HASH_FEATURE_NAMES,
+            "thresholds": HASH_CONTROL_THRESHOLDS,
+            "zero_hash_table_interval_center_shift": float(hash_zero_shift),
+            "shuffle_hash_identity_interval_center_shift": float(hash_shuffle_shift),
+            "drop_graveyard_hash_interval_center_shift": float(drop_graveyard_shift),
+        },
     }
 
 
@@ -323,7 +424,8 @@ def main() -> int:
     guard = axis0_guard.axis0_guard_signal(axis0_guard_receipt)
     axis0 = axis0_guard.guarded_router_vectors(axis0_receipt, guard, as_numpy=True)
     memory = memory_margin(memory_receipt)
-    x, y, seeds, names, records = collect_training_rows(axis0, memory)
+    hash_cells = holodeck_hash_cells(memory_receipt)
+    x, y, seeds, names, records = collect_training_rows(axis0, memory, hash_cells)
     model, train_report = train_model(x, y, seeds, shuffle_labels=False)
     shuffled_model, shuffled_report = train_model(x, y, seeds, shuffle_labels=True)
     bound_report = lirpa_bruteforce_report(model, x, seeds, names)
@@ -356,6 +458,7 @@ def main() -> int:
             "trained_adapter": train_report,
             "lirpa_bruteforce_bounds": bound_report,
             "shuffled_label_control": shuffled_report,
+            "hash_identity_bound_controls": bound_report["hash_identity_bound_controls"],
         },
         "axis0_outputs_or_blockers": {
             "raw_router_candidate_names": axis0_guard.AXIS0_CANDIDATE_NAMES,
@@ -406,6 +509,16 @@ def main() -> int:
             **train_report,
         },
         "auto_lirpa_bounds_contain_bruteforce_perturbation_samples": bound_report,
+        "holodeck_hash_cells_are_consumed_as_trained_policy_identity_features": {
+            "pass": bool(
+                hash_cells
+                and all(name in names for name in HASH_FEATURE_NAMES)
+                and bound_report["hash_identity_bound_controls"]["pass"]
+            ),
+            "hash_cell_count": len(hash_cells),
+            "hash_feature_names": HASH_FEATURE_NAMES,
+            "hash_identity_bound_controls": bound_report["hash_identity_bound_controls"],
+        },
         "z3_training_and_bound_witness_executes": z3_witness,
     }
     graveyards = {
@@ -416,6 +529,10 @@ def main() -> int:
         "context_zero_control_changes_trained_logits": {
             "pass": bound_report["context_zero_logit_mean_abs_shift"] > 0.25,
             "context_zero_logit_mean_abs_shift": bound_report["context_zero_logit_mean_abs_shift"],
+        },
+        "hash_identity_zero_shuffle_drop_controls_change_trained_bounds": {
+            "pass": bound_report["hash_identity_bound_controls"]["pass"],
+            **bound_report["hash_identity_bound_controls"],
         },
         "blocked_axis0_candidates_not_used_as_trained_lirpa_feature_columns": {
             "pass": all(f"axis0_{name}" not in names for name in guard["blocked_candidate_names"]),

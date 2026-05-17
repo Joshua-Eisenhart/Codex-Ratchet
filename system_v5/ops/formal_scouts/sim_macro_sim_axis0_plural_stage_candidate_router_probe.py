@@ -193,8 +193,47 @@ def stable_softmax_from_efe(efe: np.ndarray) -> np.ndarray:
     return weights / np.sum(weights)
 
 
-def many_futures_policy_candidate(pomdp_receipt: dict[str, Any]) -> dict[str, Any]:
-    raw_rows = pomdp_receipt.get("policy_rows") or []
+def online_vmp_ready(online_vmp_receipt: dict[str, Any]) -> bool:
+    return bool(
+        online_vmp_receipt.get("exists") is True
+        and online_vmp_receipt.get("all_pass") is True
+        and (online_vmp_receipt.get("axis0_outputs_or_blockers") or {}).get(
+            "online_vmp_ready_for_many_futures_policy_scoring"
+        ) is True
+        and len(online_vmp_receipt.get("policy_rows") or []) >= 16
+    )
+
+
+def many_futures_policy_candidate(
+    pomdp_receipt: dict[str, Any],
+    online_vmp_receipt: dict[str, Any],
+) -> dict[str, Any]:
+    online_ready = online_vmp_ready(online_vmp_receipt)
+    online_summary = online_vmp_receipt.get("summary") or {}
+    if not online_ready:
+        return {
+            "candidate": "retrocausal_many_futures_policy_scoring",
+            "status": "blocked_missing_online_vmp_receipt",
+            "values": [],
+            "finite": False,
+            "pomdp_receipt": {
+                "exists": pomdp_receipt.get("exists", False),
+                "path": pomdp_receipt.get("path"),
+                "all_pass": pomdp_receipt.get("all_pass"),
+            },
+            "online_vmp_receipt": {
+                "exists": online_vmp_receipt.get("exists", False),
+                "path": online_vmp_receipt.get("path"),
+                "all_pass": online_vmp_receipt.get("all_pass"),
+                "ready_flag": (online_vmp_receipt.get("axis0_outputs_or_blockers") or {}).get(
+                    "online_vmp_ready_for_many_futures_policy_scoring"
+                ),
+                "policy_count": len(online_vmp_receipt.get("policy_rows") or []),
+            },
+            "interpretation": "finite policy-tree scoring now requires online VMP update evidence; POMDP rows alone are incomplete",
+        }
+
+    raw_rows = online_vmp_receipt.get("policy_rows") or []
     rows = [
         row for row in raw_rows
         if row.get("manifold_enabled") is True and row.get("no_engine_control") is False
@@ -245,8 +284,49 @@ def many_futures_policy_candidate(pomdp_receipt: dict[str, Any]) -> dict[str, An
             "risk_only_policy": (pomdp_receipt.get("summary") or {}).get("risk_only_policy"),
             "shuffled_preference_policy": (pomdp_receipt.get("summary") or {}).get("shuffled_preference_policy"),
         },
+        "vmp_update_support": True,
+        "online_vmp_receipt_consumed": True,
+        "pomdp_receipt": {
+            "exists": pomdp_receipt.get("exists", False),
+            "path": pomdp_receipt.get("path"),
+            "all_pass": pomdp_receipt.get("all_pass"),
+            "selected_policy": (pomdp_receipt.get("summary") or {}).get("selected_policy"),
+        },
+        "online_vmp_receipt": {
+            "exists": online_vmp_receipt.get("exists", False),
+            "path": online_vmp_receipt.get("path"),
+            "name": online_vmp_receipt.get("name"),
+            "all_pass": online_vmp_receipt.get("all_pass"),
+            "selected_policy": online_summary.get("selected_policy"),
+            "policy_count": online_summary.get("policy_count"),
+            "posterior_kl_max": online_summary.get("posterior_kl_max"),
+            "vfe_reduction_min": online_summary.get("vfe_reduction_min"),
+            "wrong_obs_shift_min": online_summary.get("wrong_obs_shift_min"),
+        },
+        "online_vmp_control_summary": {
+            "wrong_observation_token_changes_posterior": (
+                (online_vmp_receipt.get("graveyard_companions") or {})
+                .get("wrong_observation_token_changes_posterior", {})
+                .get("pass")
+            ),
+            "no_engine_identity_transition_changes_policy_or_margin": (
+                (online_vmp_receipt.get("graveyard_companions") or {})
+                .get("no_engine_identity_transition_changes_policy_or_margin", {})
+                .get("pass")
+            ),
+            "shuffled_preference_changes_online_policy_or_margin": (
+                (online_vmp_receipt.get("graveyard_companions") or {})
+                .get("shuffled_preference_changes_online_policy_or_margin", {})
+                .get("pass")
+            ),
+            "identity_emission_changes_ambiguity_or_policy": (
+                (online_vmp_receipt.get("graveyard_companions") or {})
+                .get("identity_emission_changes_ambiguity_or_policy", {})
+                .get("pass")
+            ),
+        },
         "finite": bool(np.all(np.isfinite(centered)) and math.isclose(float(np.sum(posterior)), 1.0, rel_tol=1e-9, abs_tol=1e-9)),
-        "interpretation": "finite policy-tree depth under B_pi; not primitive time or final retrocausality",
+        "interpretation": "finite online-VMP policy scoring over B_pi; not primitive time or final retrocausality",
     }
 
 
@@ -313,6 +393,7 @@ def route_graph() -> dict[str, Any]:
         ("holographic_boundary_path_receipt", "correlation_diversity_derivative"),
         ("source_native_boundary_reconstruction_receipt", "holographic_boundary_interior_blocker"),
         ("source_native_fep_pomdp_policy_tree_receipt", "retrocausal_many_futures_policy_scoring"),
+        ("source_native_fep_online_vmp_policy_update_receipt", "retrocausal_many_futures_policy_scoring"),
         ("axis0_candidate_comparison", "repair_receipt"),
     ]
     graph.add_edges_from(edges)
@@ -331,13 +412,17 @@ def main() -> int:
     shuffled_rows = list(reversed(rows))
     field_audit = assert_stage_fields(rows)
     pomdp_full_receipt = load_full_result("source_native_fep_pomdp_policy_tree_probe_results.json")
+    online_vmp_full_receipt = load_full_result("source_native_fep_online_vmp_policy_update_probe_results.json")
     boundary_full_receipt = load_full_result("source_native_engine_boundary_path_fep_reconstruction_probe_results.json")
 
     candidates = {
         "fep_gradient_polarity": fep_gradient_candidate(rows),
         "path_entropy": path_entropy_candidate(rows),
         "correlation_diversity_derivative": correlation_diversity_candidate(rows),
-        "retrocausal_many_futures_policy_scoring": many_futures_policy_candidate(pomdp_full_receipt),
+        "retrocausal_many_futures_policy_scoring": many_futures_policy_candidate(
+            pomdp_full_receipt,
+            online_vmp_full_receipt,
+        ),
         "holographic_boundary_interior_reconstruction": boundary_interior_candidate(boundary_full_receipt),
     }
     no_manifold_candidates = {
@@ -360,6 +445,7 @@ def main() -> int:
     }
     boundary_receipt = load_result("source_native_engine_boundary_path_fep_reconstruction_probe_results.json")
     pomdp_receipt = load_result("source_native_fep_pomdp_policy_tree_probe_results.json")
+    online_vmp_receipt = load_result("source_native_fep_online_vmp_policy_update_probe_results.json")
     legacy_axis0_receipt = load_result("holographic_boundary_path_ensemble_axis0_fep_selection_probe_results.json")
 
     axis0_outputs_or_blockers = {
@@ -382,6 +468,7 @@ def main() -> int:
         "dependency_subset": [
             "EngineCore science_method_stage_record_v1",
             "source_native_fep_pomdp_policy_tree receipt",
+            "source_native_fep_online_vmp_policy_update receipt",
             "holographic_boundary_path_ensemble_axis0_fep_selection receipt",
             "source_native_engine_boundary_path_fep_reconstruction failed receipt as blocker",
             "matched no-manifold and shuffled-order controls",
@@ -392,11 +479,11 @@ def main() -> int:
         "primary_control/result": comparisons,
         "axis0_outputs_or_blockers": axis0_outputs_or_blockers,
         "provider_inputs_used": {
-            "grok": "not_run_this_repair_wave",
-            "gemini": "not_run_this_repair_wave",
-            "sonnet_high": "not_run_this_repair_wave",
-            "opus_max": "not_run_this_repair_wave",
-            "reason": "local stage-record candidate routing could be tested directly; provider outputs remain proposal-only until tied to receipts",
+            "grok": "system_v5/ops/formal_scouts/provider_receipts/20260517T130444Z_grok_xai_online_vmp_axis0_router_audit.json",
+            "gemini": "system_v5/ops/formal_scouts/provider_receipts/20260517T130444Z_gemini_online_vmp_axis0_router_audit.json",
+            "sonnet_high": "system_v5/ops/formal_scouts/provider_receipts/20260517T130444Z_sonnet_high_online_vmp_router_audit.receipt.json",
+            "opus_max": "system_v5/ops/formal_scouts/provider_receipts/20260517T130444Z_opus_max_online_vmp_axis0_premortem.receipt.json",
+            "reason": "provider lanes audited the wiring and premortem; local receipts remain the only admission authority",
         },
         "promotion_ceiling": CLAIM_CEILING,
         "next_step": "Rerun the no-dense environment-contraction scout so each carrier consumes the five-candidate Axis0 bundle, including finite boundary/interior routing.",
@@ -424,11 +511,26 @@ def main() -> int:
             "pass": (
                 pomdp_receipt["exists"]
                 and pomdp_receipt.get("all_pass") is True
+                and online_vmp_receipt["exists"]
+                and online_vmp_receipt.get("all_pass") is True
+                and candidates["retrocausal_many_futures_policy_scoring"].get("online_vmp_receipt_consumed") is True
                 and candidates["retrocausal_many_futures_policy_scoring"]["finite"]
                 and candidates["retrocausal_many_futures_policy_scoring"]["effective_policy_count"] > 1.0
             ),
             "receipt": pomdp_receipt,
+            "online_vmp_receipt": online_vmp_receipt,
             "candidate": candidates["retrocausal_many_futures_policy_scoring"],
+        },
+        "online_vmp_receipt_consumed_for_many_futures_policy_scoring": {
+            "pass": (
+                online_vmp_receipt["exists"]
+                and online_vmp_receipt.get("all_pass") is True
+                and candidates["retrocausal_many_futures_policy_scoring"].get("online_vmp_receipt_consumed") is True
+                and candidates["retrocausal_many_futures_policy_scoring"].get("online_vmp_receipt", {}).get("posterior_kl_max") is not None
+                and candidates["retrocausal_many_futures_policy_scoring"].get("online_vmp_receipt", {}).get("vfe_reduction_min") is not None
+            ),
+            "receipt": online_vmp_receipt,
+            "candidate_receipt": candidates["retrocausal_many_futures_policy_scoring"].get("online_vmp_receipt"),
         },
         "axis0_route_graph_executes": graph,
     }
@@ -450,6 +552,23 @@ def main() -> int:
             "pass": legacy_axis0_receipt["exists"] and legacy_axis0_receipt.get("all_pass") is True,
             "receipt": legacy_axis0_receipt,
             "promotion": "not_promoted_to_final_axis0",
+        },
+        "pomdp_only_many_futures_scoring_rejected_as_incomplete": {
+            "pass": candidates["retrocausal_many_futures_policy_scoring"].get("online_vmp_receipt_consumed") is True,
+            "pomdp_receipt": pomdp_receipt,
+            "online_vmp_receipt": online_vmp_receipt,
+            "reason": "POMDP A/B/C/D rows provide policy-tree structure; online-VMP receipt is required for posterior update support.",
+        },
+        "online_vmp_controls_are_preserved_in_many_futures_route": {
+            "pass": all(
+                value is True
+                for value in candidates["retrocausal_many_futures_policy_scoring"].get(
+                    "online_vmp_control_summary", {}
+                ).values()
+            ),
+            "control_summary": candidates["retrocausal_many_futures_policy_scoring"].get(
+                "online_vmp_control_summary", {}
+            ),
         },
         "single_argmax_future_control_rejected": {
             "pass": candidates["retrocausal_many_futures_policy_scoring"]["l2_from_single_argmax_control"] > 0.1,

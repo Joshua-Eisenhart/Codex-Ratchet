@@ -98,6 +98,7 @@ def load_result(name: str) -> dict[str, Any]:
         "promotion_allowed": data.get("promotion_allowed"),
         "claim_ceiling": data.get("claim_ceiling", ""),
         "positive": data.get("positive", {}),
+        "hash_cells": data.get("hash_cells", []),
         "repo_admission_matrix": data.get("repo_admission_matrix", {}),
         "axis0_outputs_or_blockers": data.get("axis0_outputs_or_blockers", {}),
     }
@@ -110,7 +111,42 @@ def memory_margin(memory_receipt: dict[str, Any]) -> float:
     )
 
 
-def collect_features(axis0: dict[str, list[float]], memory: float) -> tuple[np.ndarray, list[str], list[dict[str, Any]]]:
+def bucket_text(text: str, modulus: int = 997) -> float:
+    digest = hashlib.sha256(str(text).encode("utf-8")).hexdigest()
+    return float(int(digest[:8], 16) % modulus) / float(modulus)
+
+
+def holodeck_hash_cells(memory_receipt: dict[str, Any]) -> list[dict[str, Any]]:
+    rows = memory_receipt.get("hash_cells", [])
+    if not isinstance(rows, list):
+        return []
+    return [
+        row
+        for row in rows
+        if isinstance(row, dict)
+        and isinstance(row.get("semantic_hash"), str)
+        and isinstance(row.get("survivor_class_hash"), str)
+        and isinstance(row.get("graveyard_control_hashes"), list)
+    ]
+
+
+def hash_cell_features(hash_cells: list[dict[str, Any]], idx: int) -> list[float]:
+    if not hash_cells:
+        return [0.0, 0.0, 0.0]
+    cell = hash_cells[idx % len(hash_cells)]
+    graveyard_joined = "|".join(str(x) for x in cell.get("graveyard_control_hashes", []))
+    return [
+        bucket_text(str(cell.get("semantic_hash", ""))),
+        bucket_text(graveyard_joined),
+        bucket_text(str(cell.get("survivor_class_hash", ""))),
+    ]
+
+
+def collect_features(
+    axis0: dict[str, list[float]],
+    memory: float,
+    hash_cells: list[dict[str, Any]],
+) -> tuple[np.ndarray, list[str], list[dict[str, Any]]]:
     axis0_names = list(axis0)
     names = [
         "bloch_x",
@@ -124,6 +160,9 @@ def collect_features(axis0: dict[str, list[float]], memory: float) -> tuple[np.n
         "manifold_projection_delta_norm",
         *[f"axis0_{name}" for name in axis0_names],
         "holodeck_memory_verification_margin",
+        "holodeck_semantic_hash_bucket",
+        "holodeck_graveyard_hash_bucket",
+        "holodeck_survivor_hash_bucket",
         "operator_sign",
     ]
     rows: list[list[float]] = []
@@ -142,6 +181,7 @@ def collect_features(axis0: dict[str, list[float]], memory: float) -> tuple[np.n
                 for name in axis0_names:
                     vector = axis0.get(name, [0.0])
                     axis_values.append(float(vector[idx % max(1, len(vector))]))
+                semantic_hash_bucket, graveyard_hash_bucket, survivor_hash_bucket = hash_cell_features(hash_cells, idx)
                 rows.append(
                     [
                         *[float(x) for x in model["bloch"]],
@@ -153,6 +193,9 @@ def collect_features(axis0: dict[str, list[float]], memory: float) -> tuple[np.n
                         float(repair["manifold_projection_delta_norm"]),
                         *axis_values,
                         float(memory),
+                        semantic_hash_bucket,
+                        graveyard_hash_bucket,
+                        survivor_hash_bucket,
                         float(record["operator_sign"]),
                     ]
                 )
@@ -165,13 +208,21 @@ def collect_features(axis0: dict[str, list[float]], memory: float) -> tuple[np.n
 
 
 class StagePolicyAdapter(nn.Module):
-    def __init__(self, feature_dim: int) -> None:
+    def __init__(self, feature_names: list[str]) -> None:
         super().__init__()
+        feature_dim = len(feature_names)
         self.linear = nn.Linear(feature_dim, 1)
         with torch.no_grad():
             weights = torch.linspace(-0.35, 0.45, steps=feature_dim)
             weights[5:9] += torch.tensor([0.50, -0.40, 0.45, 0.30])
             weights[9:13] += torch.tensor([0.25, -0.20, 0.18, 0.32])
+            for field, boost in {
+                "holodeck_semantic_hash_bucket": 0.20,
+                "holodeck_graveyard_hash_bucket": -0.26,
+                "holodeck_survivor_hash_bucket": 0.22,
+            }.items():
+                if field in feature_names:
+                    weights[feature_names.index(field)] += boost
             weights[-1] += 0.55
             self.linear.weight.copy_(weights.reshape(1, -1))
             self.linear.bias.fill_(0.07)
@@ -182,7 +233,7 @@ class StagePolicyAdapter(nn.Module):
 
 def bounded_policy_report(features: np.ndarray, names: list[str]) -> dict[str, Any]:
     x = torch.tensor(features[:16], dtype=torch.float32)
-    model = StagePolicyAdapter(x.shape[1])
+    model = StagePolicyAdapter(names)
     bounded = BoundedModule(model, x)
     eps = 0.01
     bx = BoundedTensor(x, PerturbationLpNorm(norm=np.inf, eps=eps))
@@ -206,6 +257,43 @@ def bounded_policy_report(features: np.ndarray, names: list[str]) -> dict[str, A
     zero_nominal = bounded_zero(zero_bx)
     zero_lb, zero_ub = bounded_zero.compute_bounds(x=(zero_bx,), method="IBP")
     interval_shift = torch.mean(torch.abs((ub + lb) / 2 - (zero_ub + zero_lb) / 2)).item()
+    hash_fields = [
+        "holodeck_semantic_hash_bucket",
+        "holodeck_graveyard_hash_bucket",
+        "holodeck_survivor_hash_bucket",
+    ]
+    hash_zero = x.clone()
+    for name in hash_fields:
+        if name in names:
+            hash_zero[:, names.index(name)] = 0.0
+    bounded_hash_zero = BoundedModule(model, hash_zero)
+    hash_zero_bx = BoundedTensor(hash_zero, PerturbationLpNorm(norm=np.inf, eps=eps))
+    hash_zero_lb, hash_zero_ub = bounded_hash_zero.compute_bounds(x=(hash_zero_bx,), method="IBP")
+    hash_zero_shift = torch.mean(torch.abs((ub + lb) / 2 - (hash_zero_ub + hash_zero_lb) / 2)).item()
+
+    hash_shuffle = x.clone()
+    for name in hash_fields:
+        if name in names:
+            col = names.index(name)
+            hash_shuffle[:, col] = torch.roll(hash_shuffle[:, col], shifts=5)
+    bounded_hash_shuffle = BoundedModule(model, hash_shuffle)
+    hash_shuffle_bx = BoundedTensor(hash_shuffle, PerturbationLpNorm(norm=np.inf, eps=eps))
+    hash_shuffle_lb, hash_shuffle_ub = bounded_hash_shuffle.compute_bounds(x=(hash_shuffle_bx,), method="IBP")
+    hash_shuffle_shift = torch.mean(torch.abs((ub + lb) / 2 - (hash_shuffle_ub + hash_shuffle_lb) / 2)).item()
+
+    drop_graveyard = x.clone()
+    if "holodeck_graveyard_hash_bucket" in names:
+        drop_graveyard[:, names.index("holodeck_graveyard_hash_bucket")] = 0.0
+    bounded_drop_graveyard = BoundedModule(model, drop_graveyard)
+    drop_graveyard_bx = BoundedTensor(drop_graveyard, PerturbationLpNorm(norm=np.inf, eps=eps))
+    drop_graveyard_lb, drop_graveyard_ub = bounded_drop_graveyard.compute_bounds(x=(drop_graveyard_bx,), method="IBP")
+    drop_graveyard_shift = torch.mean(torch.abs((ub + lb) / 2 - (drop_graveyard_ub + drop_graveyard_lb) / 2)).item()
+    hash_identity_pass = (
+        all(name in names for name in hash_fields)
+        and hash_zero_shift > 0.005
+        and hash_shuffle_shift > 0.005
+        and drop_graveyard_shift > 0.003
+    )
     return {
         "pass": bool(
             torch.all(lb <= nominal)
@@ -213,6 +301,7 @@ def bounded_policy_report(features: np.ndarray, names: list[str]) -> dict[str, A
             and torch.max(torch.abs(lb.reshape(-1) - analytic_lb)).item() < 1e-5
             and torch.max(torch.abs(ub.reshape(-1) - analytic_ub)).item() < 1e-5
             and interval_shift > 0.01
+            and hash_identity_pass
         ),
         "feature_rows_used": int(x.shape[0]),
         "feature_dim": int(x.shape[1]),
@@ -221,6 +310,13 @@ def bounded_policy_report(features: np.ndarray, names: list[str]) -> dict[str, A
         "nominal_mean": float(torch.mean(nominal).item()),
         "interval_mean_width": float(torch.mean(ub - lb).item()),
         "context_zero_interval_center_shift": float(interval_shift),
+        "hash_identity_bound_controls": {
+            "pass": bool(hash_identity_pass),
+            "hash_feature_names": hash_fields,
+            "zero_hash_table_interval_center_shift": float(hash_zero_shift),
+            "shuffle_hash_identity_interval_center_shift": float(hash_shuffle_shift),
+            "drop_graveyard_hash_interval_center_shift": float(drop_graveyard_shift),
+        },
         "max_abs_diff_analytic_lb": float(torch.max(torch.abs(lb.reshape(-1) - analytic_lb)).item()),
         "max_abs_diff_analytic_ub": float(torch.max(torch.abs(ub.reshape(-1) - analytic_ub)).item()),
         "zero_context_nominal_mean": float(torch.mean(zero_nominal).item()),
@@ -254,7 +350,8 @@ def main() -> int:
     guard = axis0_guard.axis0_guard_signal(axis0_guard_receipt)
     axis0 = axis0_guard.guarded_router_vectors(axis0_receipt, guard)
     memory = memory_margin(memory_receipt)
-    features, names, records = collect_features(axis0, memory)
+    hash_cells = holodeck_hash_cells(memory_receipt)
+    features, names, records = collect_features(axis0, memory, hash_cells)
     bound_report = bounded_policy_report(features, names)
     z3_witness = z3_bound_witness(bound_report)
     auto_row = ((repo_receipt.get("repo_admission_matrix") or {}).get("rows") or {}).get("auto_LiRPA", {})
@@ -326,6 +423,11 @@ def main() -> int:
             "feature_names": names,
         },
         "stage_axis0_holodeck_features_are_bounded_by_auto_lirpa": bound_report,
+        "holodeck_hash_cells_are_consumed_as_identity_features": {
+            "pass": bool(hash_cells) and all(name in names for name in bound_report["hash_identity_bound_controls"]["hash_feature_names"]),
+            "hash_cell_count": len(hash_cells),
+            "hash_feature_names": bound_report["hash_identity_bound_controls"]["hash_feature_names"],
+        },
         "z3_bound_witness_executes": z3_witness,
     }
     graveyards = {

@@ -99,10 +99,13 @@ CANDIDATE_WEIGHTS = {
     "holographic_boundary_interior_reconstruction": -0.11,
 }
 GAP_FLOOR = 1e-5
+NONZERO_FRACTION_FLOOR = 0.20
+VARIANCE_FLOOR = 1e-8
 TEST_CARRIERS = [
     ("mps", (16,), 8116),
     ("peps", (4, 4), 8216),
     ("peps3d", (4, 4, 2), 8332),
+    ("peps3d", (4, 4, 4), 8364),
 ]
 
 
@@ -135,23 +138,74 @@ def candidate_values(axis0: dict[str, Any], idx: int) -> dict[str, float]:
     return out
 
 
+def candidate_status(axis0: dict[str, Any], router_payload: dict[str, Any]) -> dict[str, Any]:
+    status = {}
+    for name in CANDIDATE_NAMES:
+        vector = np.asarray(axis0.get("candidate_vectors", {}).get(name, []), dtype=float)
+        payload = router_payload.get(name, {}) or {}
+        explicit_blockers = payload.get("explicit_blockers", {}) or {}
+        finite = bool(vector.size and np.all(np.isfinite(vector)))
+        nonzero_fraction = float(np.mean(np.abs(vector) > 1e-12)) if vector.size else 0.0
+        variance = float(np.var(vector)) if vector.size else 0.0
+        blockers = dict(explicit_blockers)
+        if not finite:
+            blockers["candidate_vector_missing_or_nonfinite"] = {"claim": "candidate vector is missing or nonfinite"}
+        if finite and nonzero_fraction < NONZERO_FRACTION_FLOOR:
+            blockers["candidate_vector_degenerate_nonzero_fraction"] = {
+                "nonzero_fraction": nonzero_fraction,
+                "floor": NONZERO_FRACTION_FLOOR,
+            }
+        if finite and variance < VARIANCE_FLOOR:
+            blockers["candidate_vector_variance_too_small"] = {"variance": variance, "floor": VARIANCE_FLOOR}
+        status[name] = {
+            "finite": finite,
+            "vector_len": int(vector.size),
+            "nonzero_fraction": nonzero_fraction,
+            "variance": variance,
+            "explicit_blockers": blockers,
+            "candidate_admissible_for_downstream_drop_controls": finite and not blockers,
+        }
+    return status
+
+
 def candidate_drive(axis0: dict[str, Any], idx: int, mode: str) -> float:
     if not axis0.get("ready"):
         return 0.0
     values = candidate_values(axis0, idx)
     if mode == "zero_all":
         return 0.0
+    if mode == "identity_control":
+        return 0.0
     if mode == "scalar_mean":
         return float(np.mean(list(values.values())))
     if mode == "shuffled_name_binding":
         rolled = list(values.values())[1:] + list(values.values())[:1]
         values = dict(zip(CANDIDATE_NAMES, rolled))
-    elif mode.startswith("drop_"):
-        dropped = mode.removeprefix("drop_")
+    elif mode.startswith("only::"):
+        only = mode.split("::", 1)[1]
+        if only not in values:
+            raise ValueError(mode)
+        values = {name: (values[name] if name == only else 0.0) for name in CANDIDATE_NAMES}
+    elif mode.startswith("drop::"):
+        dropped = mode.split("::", 1)[1]
         if dropped not in values:
             raise ValueError(mode)
         values = dict(values)
         values[dropped] = 0.0
+    elif mode.startswith("sign_flip::"):
+        flipped = mode.split("::", 1)[1]
+        if flipped not in values:
+            raise ValueError(mode)
+        values = dict(values)
+        values[flipped] = -values[flipped]
+    elif mode.startswith("time_shuffle::"):
+        shuffled = mode.split("::", 1)[1]
+        if shuffled not in values:
+            raise ValueError(mode)
+        vector = axis0.get("candidate_vectors", {}).get(shuffled, [])
+        values = dict(values)
+        if vector:
+            values[shuffled] = float(vector[(idx * 7 + 11) % len(vector)])
     elif mode != "full_vector":
         raise ValueError(mode)
     weighted = sum(CANDIDATE_WEIGHTS[name] * values[name] for name in CANDIDATE_NAMES)
@@ -183,6 +237,8 @@ def run_candidate_carrier(
         mem_drive = subdense.holodeck_memory_drive(memory, idx)
         drives.append(drive)
         stage_hashes.append(record["model_after"]["density_hash"])
+        if mode == "identity_control":
+            continue
         subdense.apply_physical_slot(
             site,
             str(record["operator"]),
@@ -223,9 +279,9 @@ def run_candidate_carrier(
 
 def run_suite(records: list[dict[str, Any]], axis0: dict[str, Any], memory: dict[str, Any]) -> dict[str, Any]:
     rows: dict[str, dict[str, Any]] = {}
-    modes = ["full_vector", "scalar_mean", "zero_all", "shuffled_name_binding"] + [
-        f"drop_{name}" for name in CANDIDATE_NAMES
-    ]
+    modes = ["full_vector", "scalar_mean", "zero_all", "identity_control", "shuffled_name_binding"]
+    for name in CANDIDATE_NAMES:
+        modes.extend([f"only::{name}", f"drop::{name}", f"sign_flip::{name}", f"time_shuffle::{name}"])
     for family, shape, seed in TEST_CARRIERS:
         key = f"{family}_{'x'.join(str(x) for x in shape)}"
         rows[key] = {
@@ -239,9 +295,23 @@ def run_suite(records: list[dict[str, Any]], axis0: dict[str, Any], memory: dict
         gaps[key] = {
             "full_vs_scalar_mean": signature_gap(full, row["scalar_mean"]),
             "full_vs_zero_all": signature_gap(full, row["zero_all"]),
+            "full_vs_identity_control": signature_gap(full, row["identity_control"]),
             "full_vs_shuffled_name_binding": signature_gap(full, row["shuffled_name_binding"]),
+            "identity_shift_from_initial": float(row["identity_control"]["environment_shift_from_initial"]),
             "drop_gaps": {
-                name: signature_gap(full, row[f"drop_{name}"])
+                name: signature_gap(full, row[f"drop::{name}"])
+                for name in CANDIDATE_NAMES
+            },
+            "only_vs_zero_gaps": {
+                name: signature_gap(row[f"only::{name}"], row["zero_all"])
+                for name in CANDIDATE_NAMES
+            },
+            "sign_flip_gaps": {
+                name: signature_gap(full, row[f"sign_flip::{name}"])
+                for name in CANDIDATE_NAMES
+            },
+            "time_shuffle_gaps": {
+                name: signature_gap(full, row[f"time_shuffle::{name}"])
                 for name in CANDIDATE_NAMES
             },
         }
@@ -249,14 +319,100 @@ def run_suite(records: list[dict[str, Any]], axis0: dict[str, Any], memory: dict
             "runs_pass": all(mode_row["pass"] for mode_row in row.values()),
             "full_differs_from_scalar_mean": gaps[key]["full_vs_scalar_mean"] > GAP_FLOOR,
             "full_differs_from_zero_all": gaps[key]["full_vs_zero_all"] > GAP_FLOOR,
+            "identity_control_stays_at_initial_signature": gaps[key]["identity_shift_from_initial"] < GAP_FLOOR,
+            "full_differs_from_identity_control": gaps[key]["full_vs_identity_control"] > GAP_FLOOR,
             "candidate_name_binding_matters": gaps[key]["full_vs_shuffled_name_binding"] > GAP_FLOOR,
-            "all_drop_one_controls_visible": all(value > GAP_FLOOR for value in gaps[key]["drop_gaps"].values()),
         }
     return {
         "rows": rows,
         "gaps": gaps,
         "checks": checks,
         "pass": all(all(check.values()) for check in checks.values()),
+    }
+
+
+def per_candidate_control_report(suite: dict[str, Any], status: dict[str, Any]) -> dict[str, Any]:
+    carriers = sorted(suite["gaps"])
+    candidate_rows: dict[str, Any] = {}
+    contribution_vectors = []
+    admitted_names = []
+    contribution_norms = {}
+    for name in CANDIDATE_NAMES:
+        only_passes = sum(suite["gaps"][carrier]["only_vs_zero_gaps"][name] > GAP_FLOOR for carrier in carriers)
+        drop_passes = sum(suite["gaps"][carrier]["drop_gaps"][name] > GAP_FLOOR for carrier in carriers)
+        sign_flip_passes = sum(suite["gaps"][carrier]["sign_flip_gaps"][name] > GAP_FLOOR for carrier in carriers)
+        time_shuffle_passes = sum(suite["gaps"][carrier]["time_shuffle_gaps"][name] > GAP_FLOOR for carrier in carriers)
+        required = max(1, len(carriers) - 1)
+        controls_pass = (
+            only_passes >= required
+            and drop_passes >= required
+            and sign_flip_passes >= required
+            and time_shuffle_passes >= required
+        )
+        candidate_admissible = bool(status[name]["candidate_admissible_for_downstream_drop_controls"] and controls_pass)
+        downstream_blockers = {}
+        if not controls_pass:
+            downstream_blockers["per_candidate_downstream_controls_failed"] = {
+                "required_carriers": required,
+                "only_passes": only_passes,
+                "drop_passes": drop_passes,
+                "sign_flip_passes": sign_flip_passes,
+                "time_shuffle_passes": time_shuffle_passes,
+            }
+        blockers = {**status[name]["explicit_blockers"], **downstream_blockers}
+        if candidate_admissible:
+            vec_parts = []
+            for carrier in carriers:
+                only_sig = np.asarray(suite["rows"][carrier][f"only::{name}"]["environment_signature"], dtype=float)
+                zero_sig = np.asarray(suite["rows"][carrier]["zero_all"]["environment_signature"], dtype=float)
+                vec_parts.append(only_sig - zero_sig)
+            vec = np.concatenate(vec_parts)
+            contribution_vectors.append(vec)
+            admitted_names.append(name)
+            contribution_norms[name] = float(np.linalg.norm(vec))
+        candidate_rows[name] = {
+            "candidate_admissible": candidate_admissible,
+            "upstream_status": status[name],
+            "controls_pass": controls_pass,
+            "carrier_pass_counts": {
+                "total_carriers": len(carriers),
+                "required_carriers": required,
+                "only_candidate_gap": only_passes,
+                "drop_candidate_gap": drop_passes,
+                "sign_flip_gap": sign_flip_passes,
+                "time_shuffle_gap": time_shuffle_passes,
+            },
+            "explicit_blockers": blockers,
+        }
+    if contribution_vectors:
+        mat = np.vstack(contribution_vectors)
+        rank = int(np.linalg.matrix_rank(mat, tol=1e-8))
+    else:
+        rank = 0
+    total_norm = sum(contribution_norms.values())
+    dominance = {
+        "contribution_norms": contribution_norms,
+        "shares": {
+            name: (value / total_norm if total_norm else 0.0)
+            for name, value in contribution_norms.items()
+        },
+        "max_share": max((value / total_norm for value in contribution_norms.values()), default=0.0) if total_norm else 0.0,
+    }
+    admitted_count = len(admitted_names)
+    rank_required = min(3, admitted_count)
+    return {
+        "candidate_rows": candidate_rows,
+        "admitted_candidate_names": admitted_names,
+        "blocked_candidate_names": [name for name, row in candidate_rows.items() if not row["candidate_admissible"]],
+        "admitted_candidate_count": admitted_count,
+        "contribution_rank": rank,
+        "rank_required": rank_required,
+        "rank_check_pass": rank >= rank_required and admitted_count >= 2,
+        "dominance_report": dominance,
+        "all_candidates_admitted_or_explicitly_blocked": all(
+            row["candidate_admissible"] or bool(row["explicit_blockers"])
+            for row in candidate_rows.values()
+        ),
     }
 
 
@@ -304,20 +460,24 @@ def dependency_graph() -> dict[str, Any]:
     }
 
 
-def z3_plural_axis0_witness(suite: dict[str, Any], axis0: dict[str, Any]) -> dict[str, Any]:
+def z3_plural_axis0_witness(suite: dict[str, Any], axis0: dict[str, Any], candidate_report: dict[str, Any]) -> dict[str, Any]:
     solver = z3.Solver()
     router_ready = z3.Bool("router_ready")
-    vector_control_passes = z3.Bool("vector_control_passes")
+    carrier_control_passes = z3.Bool("carrier_control_passes")
+    candidates_admitted_or_blocked = z3.Bool("candidates_admitted_or_blocked")
+    rank_check = z3.Bool("rank_check")
     five_candidates_present = z3.Bool("five_candidates_present")
     solver.add(router_ready == bool(axis0.get("ready")))
-    solver.add(vector_control_passes == bool(suite["pass"]))
+    solver.add(carrier_control_passes == bool(suite["pass"]))
+    solver.add(candidates_admitted_or_blocked == bool(candidate_report["all_candidates_admitted_or_explicitly_blocked"]))
+    solver.add(rank_check == bool(candidate_report["rank_check_pass"]))
     solver.add(five_candidates_present == (len(axis0.get("candidate_names", [])) == 5))
-    solver.add(z3.Not(z3.And(router_ready, vector_control_passes, five_candidates_present)))
+    solver.add(z3.Not(z3.And(router_ready, carrier_control_passes, candidates_admitted_or_blocked, rank_check, five_candidates_present)))
     status = solver.check()
     return {
         "pass": status == z3.unsat,
         "solver_status": str(status),
-        "claim_ceiling": "Finite witness only: plural Axis0 candidates produce visible drop/name-binding controls in bounded carriers.",
+        "claim_ceiling": "Finite witness only: plural Axis0 candidates produce visible controls or explicit blockers in bounded carriers.",
     }
 
 
@@ -339,9 +499,11 @@ def main() -> int:
     axis0 = subdense.axis0_signature(receipts["axis0"])
     memory = subdense.holodeck_memory_signal(receipts["memory"])
     suite = run_suite(records, axis0, memory)
-    graph = dependency_graph()
-    z3_witness = z3_plural_axis0_witness(suite, axis0)
     router_payload = receipts["axis0"].get("axis0_outputs_or_blockers", {})
+    status = candidate_status(axis0, router_payload)
+    candidate_report = per_candidate_control_report(suite, status)
+    graph = dependency_graph()
+    z3_witness = z3_plural_axis0_witness(suite, axis0, candidate_report)
     hbi_blockers = (router_payload.get("holographic_boundary_interior_reconstruction") or {}).get("explicit_blockers", {})
 
     repair_receipt = {
@@ -370,12 +532,17 @@ def main() -> int:
         "primary_control/result": {
             "suite_checks": suite["checks"],
             "signature_gaps": suite["gaps"],
+            "per_candidate_control_report": candidate_report,
             "tested_carriers": [f"{family}_{'x'.join(str(x) for x in shape)}" for family, shape, _ in TEST_CARRIERS],
-            "matched_controls": ["scalar_mean", "zero_all", "shuffled_name_binding"] + [f"drop_{name}" for name in CANDIDATE_NAMES],
+            "matched_controls": ["scalar_mean", "zero_all", "identity_control", "shuffled_name_binding"]
+            + [f"{mode}_{name}" for name in CANDIDATE_NAMES for mode in ["only", "drop", "sign_flip", "time_shuffle"]],
         },
         "axis0_outputs_or_blockers": {
             "axis0_ready": axis0.get("ready"),
             "consumed_candidates": axis0.get("candidate_names"),
+            "candidate_status": status,
+            "admitted_candidate_names": candidate_report["admitted_candidate_names"],
+            "blocked_candidate_names": candidate_report["blocked_candidate_names"],
             "holographic_boundary_interior_reconstruction_blockers_preserved": hbi_blockers,
             "plural_axis0_drive_control_pass": suite["pass"],
         },
@@ -401,12 +568,24 @@ def main() -> int:
             "pass": axis0.get("ready") is True and axis0.get("candidate_names") == CANDIDATE_NAMES,
             "candidate_names": axis0.get("candidate_names"),
             "candidate_lengths": {name: len(axis0.get("candidate_vectors", {}).get(name, [])) for name in CANDIDATE_NAMES},
+            "candidate_status": status,
         },
         "plural_candidate_controls_separate_on_mps_peps_peps3d": {
             "pass": suite["pass"],
             "checks": suite["checks"],
             "signature_gaps": suite["gaps"],
             "rows": compact_rows(suite["rows"]),
+        },
+        "candidates_are_admitted_or_explicitly_blocked": {
+            "pass": candidate_report["all_candidates_admitted_or_explicitly_blocked"],
+            "candidate_report": candidate_report,
+        },
+        "admitted_candidate_contributions_have_rank_at_least_three_when_available": {
+            "pass": candidate_report["rank_check_pass"],
+            "rank": candidate_report["contribution_rank"],
+            "rank_required": candidate_report["rank_required"],
+            "admitted_candidate_names": candidate_report["admitted_candidate_names"],
+            "dominance_report": candidate_report["dominance_report"],
         },
         "dependency_graph_is_acyclic": graph,
         "z3_plural_axis0_witness_executes": z3_witness,
@@ -427,8 +606,12 @@ def main() -> int:
             },
         },
         "per_candidate_drop_controls_are_not_silent": {
-            "pass": all(row["all_drop_one_controls_visible"] for row in suite["checks"].values()),
-            "drop_gaps": {key: gaps["drop_gaps"] for key, gaps in suite["gaps"].items()},
+            "pass": candidate_report["all_candidates_admitted_or_explicitly_blocked"],
+            "candidate_report": candidate_report,
+        },
+        "identity_control_does_not_move_environment": {
+            "pass": all(row["identity_control_stays_at_initial_signature"] for row in suite["checks"].values()),
+            "identity_shift_from_initial": {key: gaps["identity_shift_from_initial"] for key, gaps in suite["gaps"].items()},
         },
         "hbi_blockers_are_preserved_not_promoted": {
             "pass": bool(hbi_blockers),

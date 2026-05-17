@@ -20,7 +20,9 @@ import cirq
 import numpy as np
 import pennylane as qml
 import qutip
-classification = "classical_baseline"  # auto-backfill  # downgraded: systematic_batch_no_test_sections_2026-04-17
+classification = "canonical"
+sim_execution_kind = "classical"
+promotion_allowed = False
 
 
 CLASSIFICATION = "canonical"
@@ -489,6 +491,19 @@ def main() -> None:
     results = {
         "name": "qit_carnot_two_bath_cycle",
         "classification": CLASSIFICATION,
+        "sim_execution_kind": sim_execution_kind,
+        "promotion_allowed": promotion_allowed,
+        "claim_ceiling": "classical two-bath Carnot working-substance cycle only",
+        "promotion_condition": "Never promotes bridge or nonclassical claims; use as classical control/boundary evidence only.",
+        "blocked_until": "Requires separate runtime-engine implementation and admission before any engine-surface claim.",
+        "next_lego_target": "classical_negative_space_boundary_manifest",
+        "demotion_condition": "Demote to calibration-only if any reversible-cycle, heat-flow, or bound predicate fails.",
+        "out_of_scope": [
+            "nonclassical claim",
+            "bridge claim",
+            "repo runtime engine mechanics claim",
+            "axis or GStack claim",
+        ],
         "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,

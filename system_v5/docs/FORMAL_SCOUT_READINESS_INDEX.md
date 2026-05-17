@@ -1,18 +1,18 @@
 # Formal Scout Readiness Index
 
-Generated: `2026-05-17T06:09:56.472505+00:00`
+Generated: `2026-05-17T06:14:40.266880+00:00`
 
 Boundary: readiness index only. This does not rerun, admit, promote, or canonicalize formal scouts.
 
 ## Summary
 
-- Result receipts indexed: `145`
-- Source harnesses indexed: `146`
-- Source harnesses without result receipt: `1`
-- Validator pass: `128`
-- Validator fail: `17`
+- Result receipts indexed: `147`
+- Source harnesses indexed: `147`
+- Source harnesses without result receipt: `0`
+- Validator pass: `129`
+- Validator fail: `18`
 - README indexed receipts: `78`
-- README missing receipts: `67`
+- README missing receipts: `69`
 - Fresh-rerun mapping defects: `1`
 - Fresh-rerun dual-source defects: `0`
 - Backend policy violations: `0`
@@ -22,41 +22,44 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 
 ## Readiness Status Counts
 
-- `schema_ready`: 128
-- `validator_failed`: 17
+- `schema_ready`: 129
+- `validator_failed`: 18
 
 ## Validation Error Counts
 
-- `nearby_variants summary missing`: 17
-- `why_not_v4_probes missing`: 16
+- `nearby_variants summary missing`: 18
+- `why_not_v4_probes missing`: 17
 - `graveyard_companions section missing`: 8
 - `boundary section missing`: 7
 - `positive section missing`: 3
 - `one or more graveyard checks failed`: 2
+- `one or more positive checks failed`: 2
+- `blockers present`: 1
 - `claim_ceiling may overclaim`: 1
-- `one or more positive checks failed`: 1
+- `classification is not formal_scout`: 1
 
 ## Promotion Blocker Counts
 
-- `formal_scout_noncanonical`: 145
-- `fresh_rerun_not_performed`: 145
-- `readme_index_missing`: 67
-- `validator_failed`: 17
+- `formal_scout_noncanonical`: 147
+- `fresh_rerun_not_performed`: 147
+- `readme_index_missing`: 69
+- `validator_failed`: 18
+- `classification_not_formal_scout`: 1
 - `fresh_rerun_mapping_defect`: 1
 
 ## Tool Schema Key Styles
 
 ### TOOL_MANIFEST
 
-- `upper`: 107
+- `upper`: 108
 - `lower`: 31
-- `both`: 7
+- `both`: 8
 
 ### TOOL_INTEGRATION_DEPTH
 
-- `upper`: 107
+- `upper`: 108
 - `lower`: 31
-- `both`: 7
+- `both`: 8
 
 ## Provider Receipt Validation
 
@@ -100,6 +103,7 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 | `system_v5/ops/formal_scouts/results/non_abelian_schedule_order_commutator_probe_results.json` | `validator_failed` | graveyard_companions section missing, why_not_v4_probes missing, nearby_variants summary missing |
 | `system_v5/ops/formal_scouts/results/paired_chiral_bipartite_logarithmic_negativity_coupling_probe_results.json` | `validator_failed` | claim_ceiling may overclaim, graveyard_companions section missing, why_not_v4_probes missing, nearby_variants summary missing |
 | `system_v5/ops/formal_scouts/results/sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe_results.json` | `validator_failed` | boundary section missing, nearby_variants summary missing |
+| `system_v5/ops/formal_scouts/results/singular_lego_wired_axis0_plural_manifold_engine_probe_results.json` | `validator_failed` | classification is not formal_scout, why_not_v4_probes missing, nearby_variants summary missing, one or more positive checks failed, blockers present |
 | `system_v5/ops/formal_scouts/results/source_native_engine_transition_phase_boundary_path_fep_probe_results.json` | `validator_failed` | boundary section missing, why_not_v4_probes missing, nearby_variants summary missing, one or more positive checks failed, one or more graveyard checks failed |
 | `system_v5/ops/formal_scouts/results/xgi_hypergraph_multi_layer_coupling_centrality_probe_results.json` | `validator_failed` | positive section missing, graveyard_companions section missing, boundary section missing, why_not_v4_probes missing, nearby_variants summary missing |
 
@@ -117,6 +121,7 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 
 ## README Missing Samples
 
+- `system_v5/ops/formal_scouts/results/axis0_plural_candidate_multicarrier_drive_controls_probe_results.json`
 - `system_v5/ops/formal_scouts/results/chiral_trajectory_persistent_homology_readout_feature_probe_results.json`
 - `system_v5/ops/formal_scouts/results/closed_loop_holonomy_hysteresis_falsifier_probe_results.json`
 - `system_v5/ops/formal_scouts/results/constraint_manifold_delta_neural_readout_probe_results.json`
@@ -164,6 +169,5 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 - `system_v5/ops/formal_scouts/results/qit_engines_perform_classification_task_with_trainable_readout_probe_results.json`
 - `system_v5/ops/formal_scouts/results/si_te_te_si_ni_te_te_ni_signed_gradient_weyl_terrain_substages_probe_results.json`
 - `system_v5/ops/formal_scouts/results/sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe_results.json`
+- `system_v5/ops/formal_scouts/results/singular_lego_wired_axis0_plural_manifold_engine_probe_results.json`
 - `system_v5/ops/formal_scouts/results/source_native_active_inference_strategy_policy_probe_results.json`
-- `system_v5/ops/formal_scouts/results/source_native_engine_boundary_path_fep_reconstruction_probe_results.json`
-- `system_v5/ops/formal_scouts/results/source_native_engine_transition_phase_boundary_path_fep_probe_results.json`

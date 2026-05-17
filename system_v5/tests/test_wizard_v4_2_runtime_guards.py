@@ -1,6 +1,7 @@
 import json
 import runpy
 import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -394,6 +395,38 @@ def test_auto_loop_accepts_next_task_that_preserves_wiki_alignment_domain(tmp_pa
     next_task = module_globals["next_task_from_compiled"](compiled, fallback)
 
     assert next_task.startswith("Patch the Hermes wiki alignment front door")
+
+
+def test_compile_followups_preserve_wiki_alignment_before_generic_route_truth() -> None:
+    scripts_path = str(ROOT / "scripts")
+    path_was_present = scripts_path in sys.path
+    if not path_was_present:
+        sys.path.insert(0, scripts_path)
+    try:
+        module_globals = runpy.run_path(
+            str(ROOT / "scripts/wizard_compile_output_v4_2.py"),
+            run_name="wizard_compile_output_v4_2",
+        )
+    finally:
+        if not path_was_present:
+            sys.path.remove(scripts_path)
+    task = (
+        "wizard auto loop auto. Use this as a Wizard v4.2 alignment campaign "
+        "for Hermes + wiki, not a sim-runner campaign. User goal: make the wiki "
+        "an LLM alignment tool for Josh's project and goals. It must expose the "
+        "overall goal, language, thinking moves, research spine, index/routing, "
+        "and Hermes Wizard operating loop. Preserve v4.2 visible output contract "
+        "and route truth; no fake FULL."
+    )
+
+    followups = module_globals["task_preserving_followups"](task, "PARTIAL", "full")
+    prompts = [prompt for _, prompt in followups]
+
+    assert module_globals["task_domain_label"](task) == "Hermes/wiki LLM-alignment"
+    assert followups[0][0] == "Continue Alignment Tranche"
+    assert any("frame-load Josh's goal" in prompt for prompt in prompts)
+    assert all("Continue the Wizard route-truth audit" not in prompt for prompt in prompts)
+    assert all("sim/evidence objective" not in prompt for prompt in prompts)
 
 
 def test_runtime_audit_flags_live_v4_1_defaults() -> None:

@@ -278,6 +278,8 @@ def uses_codex_local_children(rows: list[dict]) -> bool:
 
 def task_domain_label(task: str) -> str:
     lower = task.lower()
+    if is_wiki_alignment_task(lower):
+        return "Hermes/wiki LLM-alignment"
     if "inventory" in lower and ("audit" in lower or "admission" in lower):
         return "Wizard inventory/admission audit"
     if "wizard" in lower and ("audit" in lower or "route" in lower or "truth" in lower):
@@ -293,10 +295,45 @@ def task_domain_label(task: str) -> str:
     return "the original user task"
 
 
+def is_wiki_alignment_task(lower: str) -> bool:
+    has_wiki_surface = "wiki" in lower or "hermes-current" in lower
+    alignment_markers = (
+        "llm alignment",
+        "alignment tool",
+        "wiki alignment",
+        "frame-loader",
+        "frame loader",
+        "front door",
+        "research spine",
+        "index/routing",
+        "hermes + wiki",
+        "hermes wizard operating loop",
+        "future llm",
+        "future llms",
+        "wiki improvement loop",
+    )
+    return has_wiki_surface and any(marker in lower for marker in alignment_markers)
+
+
 def task_preserving_followups(task: str, completion_label: str, mode: str) -> list[tuple[str, str]]:
     domain = task_domain_label(task)
     lower = task.lower()
-    if "szilard" in lower:
+    wiki_alignment = is_wiki_alignment_task(lower)
+    if wiki_alignment:
+        continue_prompt = (
+            "Continue the Hermes/wiki LLM-alignment campaign from the current task. "
+            "Preserve the plain user goal: make the wiki frame-load Josh's goal, language, thinking moves, "
+            "research spine, index/routing, evidence discipline, and Hermes/Wizard operating loop for future LLMs. "
+            "Patch only one bounded front-door, bridge, control-note, or routing tranche; do not pivot to generic "
+            "route-truth audit, sim-runner work, or output-format polish."
+        )
+        scout_prompt = (
+            "Run a cheap Haiku or Sonnet scout over the Hermes/wiki alignment front door, bridge note, "
+            "autoloop control note, and current spine. Payoff: find one drift surface that could make future "
+            "LLMs miss the alignment objective. Stop if the scout proposes Codex Ratchet repo mutations, "
+            "broad wiki rewrites, or generic route-truth work."
+        )
+    elif "szilard" in lower:
         continue_prompt = (
             "Continue the bounded Szilard consolidation lane from the current task. "
             "Preserve source rows as negative/open evidence, refresh successor/graveyard/consolidated receipts, "
@@ -353,7 +390,13 @@ def task_preserving_followups(task: str, completion_label: str, mode: str) -> li
             "Stop if the scout substitutes output formatting for the original task."
         )
 
-    if completion_label == "FULL" and mode == "full":
+    if wiki_alignment:
+        audit_prompt = (
+            "Audit the Hermes/wiki LLM-alignment handoff without changing the task. "
+            "Payoff: catch generic route-truth drift, stale front-door routing, or missing evidence-discipline "
+            "language before the next loop. Stop if the next prompt no longer names the wiki/Hermes alignment objective."
+        )
+    elif completion_label == "FULL" and mode == "full":
         audit_prompt = (
             f"Run an Opus audit of the completed {domain} Wizard receipts and sim artifacts. "
             "Payoff: catch overclaim, stale evidence, or missing verification before reporting completion. "
@@ -366,8 +409,9 @@ def task_preserving_followups(task: str, completion_label: str, mode: str) -> li
             "Stop if the next prompt no longer names the original sim/evidence objective."
         )
 
+    continue_label = "Continue Alignment Tranche" if wiki_alignment else "Continue Sim Task"
     return [
-        ("Continue Sim Task", continue_prompt),
+        (continue_label, continue_prompt),
         ("Audit Route Truth", audit_prompt),
         ("Cheap Scout", scout_prompt),
     ]
@@ -410,6 +454,9 @@ def main() -> int:
     selected_by_council = routes_by_council(required_routes)
     wave_total = 1 if mode == "compact" and compact_route_mode == "parallel" else 3
     mode_label = "compact" if mode == "compact" else "full"
+    task_domain = task_domain_label(args.task)
+    wiki_alignment_task = is_wiki_alignment_task(args.task.lower())
+    objective_label = "alignment/frame-loader objective" if wiki_alignment_task else "sim/evidence objective"
     codex_local = uses_codex_local_children(rows)
     if codex_local:
         runtimes = "codex-controller, codex-local-children, gemini-skipped"
@@ -431,14 +478,14 @@ def main() -> int:
         concise_lines.append("Use this as a fast health check, not as full v4.2 evidence.")
         concise_lines.append("")
         concise_lines.append(
-            "The selected compact councils are useful only if the next loop preserves the original task. "
+            f"The selected compact councils are useful only if the next loop preserves the original {objective_label}. "
             "Use this compiled body as route truth, then continue the task named below."
         )
     else:
         concise_lines.append("Use this run only if the full topology and management gates stayed clean.")
         concise_lines.append("")
         concise_lines.append(
-            "The useful next move is to act on the compiled decision while preserving the original sim/evidence objective."
+            f"The useful next move is to act on the compiled decision while preserving the original {objective_label}."
         )
     concise_lines.append("")
     concise_lines.append("## 🧭 Context + Strategy")
@@ -446,7 +493,11 @@ def main() -> int:
     concise_lines.append(f"Current Prompt: {args.task}")
     concise_lines.append("")
     concise_lines.append(
-        "Larger Context: Wizard v4.2 is a harness around repo work. It should preserve the task through councils, not replace the task with orchestration or formatting."
+        (
+            "Larger Context: Wizard v4.2 is a harness around wiki/Hermes alignment work. It should preserve the user's frame-loader goal through councils, not replace it with generic route-truth audit."
+            if wiki_alignment_task
+            else "Larger Context: Wizard v4.2 is a harness around repo work. It should preserve the task through councils, not replace the task with orchestration or formatting."
+        )
     )
     concise_lines.append("")
     concise_lines.append(
@@ -454,7 +505,9 @@ def main() -> int:
     )
     concise_lines.append("")
     concise_lines.append(
-        "Local Overoptimization Risk: passing route receipts can still produce a bad run if the follow-up prompt drifts away from the sim objective."
+            "Local Overoptimization Risk: passing route receipts can still produce a bad run if the follow-up prompt drifts away from the wiki/Hermes alignment objective."
+            if wiki_alignment_task
+            else "Local Overoptimization Risk: passing route receipts can still produce a bad run if the follow-up prompt drifts away from the sim objective."
     )
     concise_lines.append("")
     concise_lines.append(
@@ -462,7 +515,9 @@ def main() -> int:
     )
     concise_lines.append("")
     concise_lines.append(
-        "Rejected Local Move: do not replace sim/proof work with answer-shape or readability loops."
+            "Rejected Local Move: do not replace wiki/Hermes alignment work with generic route-truth, output-format, or sim-runner loops."
+            if wiki_alignment_task
+            else "Rejected Local Move: do not replace sim/proof work with answer-shape or readability loops."
     )
     concise_lines.append("")
     concise_lines.append("## 🏛️ Council Results")
@@ -513,15 +568,27 @@ def main() -> int:
     concise_lines.append("")
     concise_lines.append("## ✅ Compiled Move")
     concise_lines.append("")
-    concise_lines.append(f"Target: continue {task_domain_label(args.task)} without losing the original objective.")
+    concise_lines.append(f"Target: continue {task_domain} without losing the original objective.")
     concise_lines.append("")
-    concise_lines.append("Action: use the compiled body as route-truth evidence, then continue the receipt-backed sim/evidence work named in the current prompt.")
+    concise_lines.append(
+        "Action: use the compiled body as route-truth evidence, then continue the bounded wiki/Hermes alignment tranche named in the current prompt."
+        if wiki_alignment_task
+        else "Action: use the compiled body as route-truth evidence, then continue the receipt-backed sim/evidence work named in the current prompt."
+    )
     concise_lines.append("")
     concise_lines.append("Owner: `scripts/wizard_v4_2.py` owns stdout; `scripts/wizard_compile_output_v4_2.py` owns answer shape.")
     concise_lines.append("")
-    concise_lines.append("Success Check: the next loop prompt still names the original task domain, evidence boundary, and allowed artifact updates.")
+    concise_lines.append(
+        "Success Check: the next loop prompt still names the wiki/Hermes alignment objective, evidence discipline, and allowed wiki surfaces."
+        if wiki_alignment_task
+        else "Success Check: the next loop prompt still names the original task domain, evidence boundary, and allowed artifact updates."
+    )
     concise_lines.append("")
-    concise_lines.append("Stop Condition: stop if the next prompt becomes generic output formatting, route bookkeeping, or promotion beyond the stage gate.")
+    concise_lines.append(
+        "Stop Condition: stop if the next prompt becomes generic route bookkeeping, output formatting, sim-runner work, or no longer names the wiki/Hermes alignment objective."
+        if wiki_alignment_task
+        else "Stop Condition: stop if the next prompt becomes generic output formatting, route bookkeeping, or promotion beyond the stage gate."
+    )
     concise_lines.append("")
     concise_lines.append(f"Artifact Surface: {root}")
     concise_lines.append("")

@@ -1,6 +1,6 @@
 # Formal Scout Readiness Index
 
-Generated: `2026-05-17T06:15:03.276095+00:00`
+Generated: `2026-05-17T06:16:25.966440+00:00`
 
 Boundary: readiness index only. This does not rerun, admit, promote, or canonicalize formal scouts.
 

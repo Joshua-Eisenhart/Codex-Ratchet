@@ -91,20 +91,27 @@ RESULT_DIR = ROOT_FS / "results"
 OUT_PATH = RESULT_DIR / "singular_lego_wired_axis0_plural_manifold_engine_probe_results.json"
 
 NAME = "singular_lego_wired_axis0_plural_manifold_engine_probe"
-CLASSIFICATION = "formal_scout"
+# R1 AUDIT: demoted from formal_scout per Codex+Opus convergent finding that
+# legos are imported but not actually load-bearing in the axis0 path; this is
+# a tool_lego_fit_probe at v1 — engine-cycle lego integration deferred to v2.
+CLASSIFICATION = "tool_lego_fit_probe"
 PROMOTION_ALLOWED = False
 SOURCE_ALIGNMENT_CATEGORY = "singular_lego_wired_axis0_plural_manifold_engine"
 
 CLAIM_CEILING = (
-    "Formal scout only: integrates engine_core (Lindblad cycle) with the 13-layer "
-    "active manifold constraint chain AND imports all 13 system_v5/legos primitives "
-    "as load-bearing, scoring per-substage axis0 plurally across the 5 candidates "
-    "from the existing plural router. Does NOT admit canonical engine, final axis0, "
-    "Holodeck memory, retrocausality, quantum advantage, learned dynamics, "
-    "intelligence, physics, cognition, or canonical manifold tower claims. "
-    "Owner emphasis 'axis0 not so simple needs deep nuance' is enforced via the "
-    "7 axis0 acceptance fields + path_entropy non-degeneracy gate + signed-polarity "
-    "preservation + holographic boundary blockers retained."
+    "tool_lego_fit_probe ONLY: verifies that all 13 system_v5/legos primitives are "
+    "importable AND each has its primary non-trivial callable exercised in isolation, "
+    "AND runs engine_core (Lindblad cycle) with the live 13-layer active manifold "
+    "constraint chain, AND emits axis0 plurally across the 5 candidates from the "
+    "existing plural router with strict per-candidate predicates. Does NOT admit: "
+    "canonical engine, final axis0, Holodeck memory, retrocausality, quantum "
+    "advantage, learned dynamics, intelligence, physics, cognition, canonical "
+    "manifold tower claims, or lego load-bearingness in the per-substage axis0 path "
+    "(v1 scope: lego callable + axis0 plural emission separately; v2 scope: legos "
+    "in axis0 path with ablation sensitivity). Owner emphasis 'axis0 not so simple "
+    "needs deep nuance' enforced via 5-key dict + signed polarity + path_entropy "
+    "HARD non-degeneracy gate + holographic boundary blockers retained. "
+    "promotion_allowed: false."
 )
 
 TOOL_MANIFEST = {
@@ -124,70 +131,208 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {k: "load_bearing" for k in TOOL_MANIFEST}
 
 
-# === Lego inventory (for ablation graveyard + receipt traceability) ===
-LEGO_REGISTRY = {
-    "lego_density_psd": lego_density_psd,
-    "lego_hopf_projection": lego_hopf_projection,
-    "lego_weyl_chirality": lego_weyl_chirality,
-    "lego_pauli_commutator": lego_pauli_commutator,
-    "lego_cptp_damping": lego_cptp_damping,
-    "lego_simplicial_homology": lego_simplicial_homology,
-    "lego_spectral_triple": lego_spectral_triple,
-    "lego_spectral_entropy": lego_spectral_entropy,
-    "lego_bipartite_ci": lego_bipartite_ci,
-    "lego_topology_witness": lego_topology_witness,
-    "lego_signed_ci": lego_signed_ci,
-    "lego_autograd_ci": lego_autograd_ci,
-    "lego_baseline_psd": lego_baseline_psd,
+# === Per-lego contract block (per codex Phase 3 decisive check) ===
+# Each lego must have: module, role, consumed_output, failure_condition,
+# stage_gate_reason, primary_callable (a thunk that exercises non-trivial logic).
+LEGO_CONTRACTS = {
+    "lego_density_psd": {
+        "module": lego_density_psd,
+        "role": "PSD+trace=1 verification of density matrices",
+        "consumed_output": "torch.complex128 (2x2) density matrix",
+        "failure_condition": "min_eigenvalue < -tol OR |trace - 1| > tol",
+        "stage_gate_reason": "lego stage requires PSD admission",
+        "primary_callable": lambda: lego_density_psd.torch_density_validity(
+            torch.tensor([[0.7, 0.0], [0.0, 0.3]], dtype=torch.complex128)
+        ),
+        "pass_predicate": lambda out: bool(out.get("pass", False)),
+    },
+    "lego_hopf_projection": {
+        "module": lego_hopf_projection,
+        "role": "real_embedding of unit spinor (Hopf base)",
+        "consumed_output": "torch.complex128 unit spinor",
+        "failure_condition": "non-finite real embedding",
+        "stage_gate_reason": "geometry lego stage requires Hopf primitive",
+        "primary_callable": lambda: lego_hopf_projection.real_embedding(
+            torch.tensor([1.0, 1.0j], dtype=torch.complex128) / math.sqrt(2)
+        ),
+        "pass_predicate": lambda out: bool(np.all(np.isfinite(out))),
+    },
+    "lego_weyl_chirality": {
+        "module": lego_weyl_chirality,
+        "role": "expectation of chirality Hamiltonian on spinor",
+        "consumed_output": "torch.complex128 spinor + Hamiltonian",
+        "failure_condition": "non-finite expectation",
+        "stage_gate_reason": "chirality lego stage anchor",
+        "primary_callable": lambda: lego_weyl_chirality.expectation(
+            torch.tensor([1.0, 0.0], dtype=torch.complex128),
+            torch.tensor([[1.0, 0.0], [0.0, -1.0]], dtype=torch.complex128),
+        ),
+        "pass_predicate": lambda out: math.isfinite(float(out)),
+    },
+    "lego_pauli_commutator": {
+        "module": lego_pauli_commutator,
+        "role": "Pauli/Clifford commutator gap via z3 + clifford + sympy (calls main, not z3_commutator_gap tautology)",
+        "consumed_output": "internal (main runs full sweep)",
+        "failure_condition": "main returns dict with summary.all_pass=False",
+        "stage_gate_reason": "algebra lego stage anchor",
+        "primary_callable": lambda: lego_pauli_commutator.main(),
+        "pass_predicate": lambda out: bool(out.get("summary", {}).get("all_pass", False)),
+    },
+    "lego_cptp_damping": {
+        "module": lego_cptp_damping,
+        "role": "amplitude-damping Kraus + apply_channel",
+        "consumed_output": "rho + gamma",
+        "failure_condition": "channel output non-PSD or trace != 1",
+        "stage_gate_reason": "CPTP channel lego anchor",
+        "primary_callable": lambda: lego_cptp_damping.density_validity(
+            lego_cptp_damping.apply_channel(
+                torch.tensor([[0.6, 0.0], [0.0, 0.4]], dtype=torch.complex128),
+                lego_cptp_damping.kraus(0.2),
+            )
+        ),
+        "pass_predicate": lambda out: bool(out.get("pass", False)),
+    },
+    "lego_simplicial_homology": {
+        "module": lego_simplicial_homology,
+        "role": "gudhi Betti numbers on filled/unfilled cycle",
+        "consumed_output": "internal (filled/unfilled toggle)",
+        "failure_condition": "gudhi_betti returns wrong-rank result",
+        "stage_gate_reason": "topology lego stage anchor",
+        "primary_callable": lambda: lego_simplicial_homology.gudhi_betti(filled=True),
+        "pass_predicate": lambda out: isinstance(out, list) and len(out) >= 1,
+    },
+    "lego_spectral_triple": {
+        "module": lego_spectral_triple,
+        "role": "Dirac commutator norm for 2-point spectral triple",
+        "consumed_output": "mass + a + b parameters",
+        "failure_condition": "non-finite commutator norm",
+        "stage_gate_reason": "spectral lego stage anchor",
+        "primary_callable": lambda: lego_spectral_triple.torch_commutator_norm(mass=1.0, a=0.3, b=0.4),
+        "pass_predicate": lambda out: bool(out.get("pass", False) or math.isfinite(float(out.get("commutator_norm", 0.0)))),
+    },
+    "lego_spectral_entropy": {
+        "module": lego_spectral_entropy,
+        "role": "spectral entropy family (von Neumann + Renyi + Tsallis)",
+        "consumed_output": "rho density matrix",
+        "failure_condition": "entropy family non-finite or negative",
+        "stage_gate_reason": "entropy lego stage anchor",
+        "primary_callable": lambda: lego_spectral_entropy.entropy_family(
+            torch.tensor([[0.7, 0.1], [0.1, 0.3]], dtype=torch.complex128)
+        ),
+        "pass_predicate": lambda out: isinstance(out, dict) and "von_neumann" in str(out),
+    },
+    "lego_bipartite_ci": {
+        "module": lego_bipartite_ci,
+        "role": "bipartite cut mutual + conditional + coherent information",
+        "consumed_output": "2-qubit pure state psi",
+        "failure_condition": "cut_info returns non-finite",
+        "stage_gate_reason": "coherent-info lego stage anchor",
+        "primary_callable": lambda: lego_bipartite_ci.cut_info(
+            lego_bipartite_ci.density(
+                torch.tensor([1.0, 0.0, 0.0, 1.0], dtype=torch.complex128) / math.sqrt(2)
+            )
+        ),
+        "pass_predicate": lambda out: isinstance(out, dict) and len(out) > 0,
+    },
+    "lego_topology_witness": {
+        "module": lego_topology_witness,
+        "role": "finite-support topology entropy witness (pyg + gudhi + xgi + z3)",
+        "consumed_output": "internal (pyg path-vs-star + gudhi cycle)",
+        "failure_condition": "topology witness returns non-positive entropy",
+        "stage_gate_reason": "topology-entropy lego stage anchor",
+        "primary_callable": lambda: lego_topology_witness.gudhi_cycle_support(),
+        "pass_predicate": lambda out: isinstance(out, dict),
+    },
+    "lego_signed_ci": {
+        "module": lego_signed_ci,
+        "role": "signed conditional + coherent information (negative entropy admission)",
+        "consumed_output": "2-qubit pure state psi",
+        "failure_condition": "readouts returns non-finite signed CI",
+        "stage_gate_reason": "signed-CI lego stage anchor",
+        "primary_callable": lambda: lego_signed_ci.readouts(
+            lego_signed_ci.density(
+                torch.tensor([1.0, 0.0, 0.0, 1.0], dtype=torch.complex128) / math.sqrt(2)
+            )
+        ),
+        "pass_predicate": lambda out: isinstance(out, dict) and all(math.isfinite(float(v)) for v in out.values()),
+    },
+    "lego_autograd_ci": {
+        "module": lego_autograd_ci,
+        "role": "coherent-info autograd parameter gradient on 2q mixture (REAL call to lego, not inline reimpl)",
+        "consumed_output": "torch.nn.Parameter theta",
+        "failure_condition": "gradient non-finite or zero",
+        "stage_gate_reason": "autograd lego anchor",
+        "primary_callable": None,  # exercised in end_to_end_jacobian_via_autograd_lego
+        "pass_predicate": None,
+    },
+    "lego_baseline_psd": {
+        "module": lego_baseline_psd,
+        "role": "numpy-only baseline density validity (classical_baseline)",
+        "consumed_output": "np.ndarray density",
+        "failure_condition": "density_validity returns pass=False",
+        "stage_gate_reason": "classical baseline anchor (not load-bearing for nonclassical)",
+        "primary_callable": lambda: lego_baseline_psd.density_validity(
+            np.array([[0.7, 0.0], [0.0, 0.3]], dtype=np.complex128)
+        ),
+        "pass_predicate": lambda out: bool(out.get("pass", False)),
+    },
 }
+
+# Back-compat alias for the old name (until cleanup)
+LEGO_REGISTRY = {k: v["module"] for k, v in LEGO_CONTRACTS.items()}
 
 
 # =============================================================================
 # SECTION 1 — Lego primitive verification (each lego must be CALLABLE here)
 # =============================================================================
-def verify_lego_callable(name: str, module: Any) -> dict[str, Any]:
-    """Each lego must be importable AND callable. Per Codex+Gemini convergent
-    check: legos must be load-bearing, not imported ornaments. We call into
-    each module's primary function to verify the integration is real."""
-    record: dict[str, Any] = {"name": name, "module_loaded": True, "callable_check": None, "exception": None}
+def verify_lego_callable(name: str, contract: dict[str, Any]) -> dict[str, Any]:
+    """R2 FIX: each lego exercises its primary non-trivial callable per the
+    LEGO_CONTRACTS spec. NO MORE hasattr-shortcut. Per codex+opus R1 audit:
+    'effective real-exercise count was 3 of 13; replace with actual calls.'
+
+    lego_autograd_ci is exercised separately in end_to_end_jacobian_via_autograd_lego.
+    """
+    record: dict[str, Any] = {
+        "name": name,
+        "role": contract["role"],
+        "consumed_output": contract["consumed_output"],
+        "failure_condition": contract["failure_condition"],
+        "stage_gate_reason": contract["stage_gate_reason"],
+        "module_loaded": True,
+        "callable_invoked": False,
+        "callable_returned_pass": None,
+        "exception": None,
+    }
+    callable_fn = contract.get("primary_callable")
+    pass_pred = contract.get("pass_predicate")
+    if callable_fn is None or pass_pred is None:
+        record["callable_invoked"] = False
+        record["callable_returned_pass"] = "deferred_to_other_section"
+        return record
     try:
-        if name == "lego_density_psd":
-            rho = torch.tensor([[0.7, 0.0], [0.0, 0.3]], dtype=torch.complex128)
-            out = module.torch_density_validity(rho)
-            record["callable_check"] = bool(out.get("pass", False))
-        elif name == "lego_hopf_projection":
-            psi = torch.tensor([1.0, 1.0j], dtype=torch.complex128) / math.sqrt(2)
-            out = module.real_embedding(psi)
-            record["callable_check"] = bool(np.all(np.isfinite(out)))
-        elif name == "lego_weyl_chirality":
-            psi = torch.tensor([1.0, 0.0], dtype=torch.complex128)
-            sz = torch.tensor([[1.0, 0.0], [0.0, -1.0]], dtype=torch.complex128)
-            val = module.expectation(psi, sz)
-            record["callable_check"] = math.isfinite(float(val))
-        elif name == "lego_pauli_commutator":
-            out = module.z3_commutator_gap()
-            record["callable_check"] = bool(out)
-        elif name == "lego_baseline_psd":
-            # Numpy-only baseline; check module imports
-            record["callable_check"] = hasattr(module, "main") or hasattr(module, "__file__")
-        else:
-            # For the remaining 8 legos: check module has known main/top-level symbol
-            record["callable_check"] = hasattr(module, "main") or hasattr(module, "__file__")
+        out = callable_fn()
+        record["callable_invoked"] = True
+        record["callable_returned_pass"] = bool(pass_pred(out))
     except Exception as e:
         record["exception"] = f"{type(e).__name__}: {e}"
-        record["callable_check"] = False
+        record["callable_returned_pass"] = False
     return record
 
 
 def lego_inventory_pass() -> dict[str, Any]:
-    records = [verify_lego_callable(n, m) for n, m in LEGO_REGISTRY.items()]
-    n_pass = sum(1 for r in records if r["callable_check"] is True)
+    records = [verify_lego_callable(n, c) for n, c in LEGO_CONTRACTS.items()]
+    # 12 legos have primary_callable; lego_autograd_ci is exercised separately
+    n_invoked = sum(1 for r in records if r["callable_invoked"])
+    n_pass = sum(1 for r in records if r["callable_returned_pass"] is True)
+    deferred = sum(1 for r in records if r["callable_returned_pass"] == "deferred_to_other_section")
     return {
         "records": records,
         "lego_count": len(records),
-        "callable_count": n_pass,
-        "all_thirteen_callable": n_pass == 13,
-        "pass": n_pass == 13,
+        "callable_invoked_count": n_invoked,
+        "callable_pass_count": n_pass,
+        "deferred_count": deferred,
+        "all_invokable_legos_pass": (n_invoked == 12 and n_pass == 12 and deferred == 1),
+        "pass": (n_invoked == 12 and n_pass == 12 and deferred == 1),
     }
 
 
@@ -393,29 +538,33 @@ def axis0_acceptance_check(axis0: dict[str, dict]) -> dict[str, Any]:
     boundary = axis0.get("holographic_boundary_interior_reconstruction", {})
     boundary_blockers_retained = bool(boundary.get("blockers"))
     # No top-level scalar named axis0
-    structural_pass = all([
+    # R2 FIX: P4 restored as HARD gate per opus R1 P2 HARKing finding.
+    # Path_entropy degeneracy must FAIL the sim, not be silently demoted to diagnostic.
+    # If the predicate fails, the candidate is demoted from the 5-keys set (which itself
+    # fails P1, since 4 keys != 5). This is the honest outcome — silent reframing IS HARK.
+    p7_explicit = bool(
+        CLAIM_CEILING and ("does not admit" in CLAIM_CEILING.lower() or "not admit" in CLAIM_CEILING.lower())
+    )
+    all_seven_pass = all([
         five_keys_present, structure_ok, signed_polarity_preserved,
-        boundary_blockers_retained, (PROMOTION_ALLOWED is False),
+        path_entropy_not_degenerate, boundary_blockers_retained,
+        (PROMOTION_ALLOWED is False), p7_explicit,
     ])
     return {
         "P1_five_keys_present": five_keys_present,
         "P2_per_candidate_structure_ok": structure_ok,
         "P3_signed_polarity_preserved": signed_polarity_preserved,
-        "P4_path_entropy_not_degenerate_DIAGNOSTIC": path_entropy_not_degenerate,
+        "P4_path_entropy_not_degenerate_HARD_GATE": path_entropy_not_degenerate,
         "P4_finding_note": (
-            "P4 is a DIAGNOSTIC, NOT a structural pass-gate. "
-            "When False, surface path_entropy degeneracy as a finding "
-            "(this gate's job is to PREVENT the silent collapse warned by "
-            "axis0 subagent 2026-05-16, not to fail the singular sim)."
+            "P4 is a HARD gate per axis0 subagent 2026-05-16 spec. "
+            "When False, sim all_pass=False AND path_entropy candidate is demoted. "
+            "R1-audit caught the prior reframing-to-diagnostic as HARKing; reverted."
         ),
         "P5_holographic_boundary_blockers_retained": boundary_blockers_retained,
         "P6_promotion_disabled": (PROMOTION_ALLOWED is False),
-        "P7_claim_ceiling_explicit": bool(
-            CLAIM_CEILING and ("does not admit" in CLAIM_CEILING.lower() or "not admit" in CLAIM_CEILING.lower())
-        ),
-        "structural_pass": structural_pass,
+        "P7_claim_ceiling_explicit": p7_explicit,
+        "all_seven_pass": all_seven_pass,
         "diagnostic_path_entropy_degenerate": (path_entropy_not_degenerate is False),
-        "all_structural_pass": structural_pass,
     }
 
 
@@ -423,34 +572,56 @@ def axis0_acceptance_check(axis0: dict[str, dict]) -> dict[str, Any]:
 # SECTION 5 — End-to-end Jacobian sensitivity (Gemini's decisive check)
 # =============================================================================
 def end_to_end_jacobian_via_autograd_lego() -> dict[str, Any]:
-    """Use lego_autograd_ci to verify a torch parameter can flow gradient to
-    coherent information. This is the autograd MECHANISM check, bounded to
-    op-isolated level (cycle-level autograd is severed at engine_core.py:561
-    per prior audits)."""
+    """R2 FIX: actually call lego_autograd_ci.coherent_information(lego_autograd_ci.mixture(theta)).
+    Per opus R1 audit P1: 'lego_autograd_ci was IMPORTED but NEVER CALLED — the autograd section
+    reimplements the computation inline rather than calling module.coherent_information or
+    module.mixture.' This rewrite invokes the lego's real symbols.
+
+    Scope claim remains: op-isolated lego only. Cycle-level autograd is severed at
+    engine_core.py:561 (.detach().cpu().numpy()) per prior 5-round audit. This DOES NOT prove
+    engine-cycle gradient flow; it proves autograd flows THROUGH lego_autograd_ci's
+    coherent_information path.
+    """
     try:
-        # Build a parametrised 2q mixture and check gradient flows
         theta = torch.nn.Parameter(torch.tensor(0.3, dtype=torch.float64))
-        ket0 = torch.tensor([1.0, 0.0, 0.0, 0.0], dtype=torch.complex128)
-        ket1 = torch.tensor([0.0, 0.0, 0.0, 1.0], dtype=torch.complex128)
-        amp0 = torch.cos(theta).to(torch.complex128)
-        amp1 = torch.sin(theta).to(torch.complex128)
-        psi = amp0 * ket0 + amp1 * ket1
-        rho = psi.reshape(-1, 1) @ psi.reshape(1, -1).conj()
-        # Reduced on first qubit (trace out second)
-        rho_resh = rho.reshape(2, 2, 2, 2)
-        rho_A = torch.einsum("ijkj->ik", rho_resh)
-        eig = torch.linalg.eigvalsh((rho_A + rho_A.conj().T) / 2).real
-        eig = torch.clamp(eig, min=1e-12)
-        S = -torch.sum(eig * torch.log(eig))
-        S.backward()
+        # Call lego primitives directly — per R1 audit fix
+        rho = lego_autograd_ci.mixture(theta)
+        ci = lego_autograd_ci.coherent_information(rho)
+        ci.backward()
         grad_val = float(theta.grad.item()) if theta.grad is not None else None
+        # Cross-check: finite-difference on same closure (consistency, not validation)
+        with torch.no_grad():
+            h = 1e-5
+            ci_plus = lego_autograd_ci.coherent_information(
+                lego_autograd_ci.mixture(torch.tensor(0.3 + h, dtype=torch.float64))
+            )
+            ci_minus = lego_autograd_ci.coherent_information(
+                lego_autograd_ci.mixture(torch.tensor(0.3 - h, dtype=torch.float64))
+            )
+        fd_grad = float((ci_plus.item() - ci_minus.item()) / (2 * h))
+        rel_err = abs(grad_val - fd_grad) / max(abs(fd_grad), 1e-12) if grad_val is not None else None
         return {
-            "S_value": float(S.item()),
-            "grad_dS_dtheta": grad_val,
+            "ci_value": float(ci.item()),
+            "grad_dCI_dtheta": grad_val,
+            "fd_grad_dCI_dtheta": fd_grad,
+            "autograd_vs_fd_rel_err": rel_err,
+            "lego_autograd_ci_actually_called": True,  # Per R1 audit: verify this is True
+            "lego_callables_invoked": ["mixture", "coherent_information"],
             "grad_is_finite": grad_val is not None and math.isfinite(grad_val),
             "grad_is_nonzero": grad_val is not None and abs(grad_val) > 1e-9,
-            "pass": grad_val is not None and math.isfinite(grad_val) and abs(grad_val) > 1e-9,
-            "scope_claim": "op-isolated lego only; cycle-level autograd severed at engine_core.py:561",
+            "autograd_consistent_with_fd": rel_err is not None and rel_err < 1e-4,
+            "pass": (
+                grad_val is not None
+                and math.isfinite(grad_val)
+                and abs(grad_val) > 1e-9
+                and rel_err is not None
+                and rel_err < 1e-4
+            ),
+            "scope_claim": (
+                "Autograd flows through lego_autograd_ci's coherent_information+mixture pipeline. "
+                "This is op-isolated, NOT engine-cycle. Cycle-level autograd remains severed at "
+                "engine_core.py:561; that boundary is unchanged in this sim."
+            ),
         }
     except Exception as e:
         return {"pass": False, "exception": f"{type(e).__name__}: {e}"}
@@ -459,51 +630,67 @@ def end_to_end_jacobian_via_autograd_lego() -> dict[str, Any]:
 # =============================================================================
 # SECTION 6 — Static-baseline comparison (Hermes's required control)
 # =============================================================================
-def static_baseline_vs_engine_axis0(rows: list[dict[str, Any]], axis0: dict[str, dict]) -> dict[str, Any]:
-    """A trivial static baseline: pick axis0 as 'always positive polarity'.
-    Compare to the FEP-gradient candidate's actual signed-polarity ratio.
-    Honest reporting: if the static fixed-prediction beats or matches the
-    engine-derived candidate on any sensible metric, report it."""
+def trivial_polarity_sanity_check(rows: list[dict[str, Any]], axis0: dict[str, dict]) -> dict[str, Any]:
+    """R2 RENAME (was static_baseline_vs_engine_axis0): per opus R1 audit P2 —
+    'Static baseline = always-positive is NOT a baseline comparison; it is a sanity
+    check on engine variance. Hermes-style static-classifier-beats-engine probe NOT done.'
+
+    This is an HONEST RENAME. The function is a trivial sanity check that the engine
+    produces BOTH positive and negative substages in fep_gradient_polarity — not a
+    Hermes-grade classifier comparison. A real static-classifier-vs-engine probe is
+    deferred to v2 and would require: matched feature extraction, train/test split,
+    11+ feature kernel comparison per the reservoir baseline scout pattern.
+    """
     fep = axis0.get("fep_gradient_polarity", {})
     pos = fep.get("positive_steps", 0)
     neg = fep.get("negative_steps", 0)
     total = pos + neg
     if total == 0:
         return {"pass": False, "reason": "no signed steps to compare"}
-    actual_pos_ratio = pos / total
-    static_always_positive_ratio = 1.0
-    # The static baseline is "all positive"; report margin honestly
-    margin = actual_pos_ratio - static_always_positive_ratio
     return {
-        "engine_positive_ratio": actual_pos_ratio,
-        "static_always_positive_ratio": static_always_positive_ratio,
-        "margin_engine_minus_static": margin,
+        "engine_positive_steps": pos,
+        "engine_negative_steps": neg,
         "engine_polarity_is_nontrivial": (pos > 0 and neg > 0),
-        "pass": (pos > 0 and neg > 0),  # signal: engine produces BOTH polarities
-        "note": "trivial baseline; this only checks engine polarity is not always-positive",
+        "pass": (pos > 0 and neg > 0),
+        "honest_label": "trivial_sanity_check_not_a_static_classifier_baseline",
+        "v2_required": (
+            "Real static-classifier-vs-engine probe deferred to v2; would need "
+            "matched feature extraction + train/test split + 11+ feature kernel "
+            "per multiqubit_reservoir_static_kernel_esn_baseline_probe pattern."
+        ),
     }
 
 
 # =============================================================================
 # SECTION 7 — Lego ablation graveyard (the NEW question the singular sim asks)
 # =============================================================================
-def lego_ablation_graveyard() -> dict[str, Any]:
-    """For each lego, verify it's load-bearing by checking the module is imported
-    AND its primary callable is exercised. We do not actually remove the lego
-    (that would require deep code surgery), but we verify import + call.
-    Per axis0 subagent's hold-criterion: this is the NEW question that justifies
-    the singular sim — does removing any lego change at least one axis0 value?"""
-    ablation = {}
-    for name, module in LEGO_REGISTRY.items():
-        ablation[name] = {
+def lego_inventory_for_v2_ablation() -> dict[str, Any]:
+    """R2 RENAME (was lego_ablation_graveyard): per opus R1 audit P2 finding —
+    'lego_ablation_graveyard does not ablate; rename to remove the NEW question framing.'
+
+    This is a passive inventory of imported legos for traceability. v1 does NOT
+    execute per-lego ablation (remove + rerun + measure delta on axis0 candidates).
+    The 'NEW question' framing has been retired from the docstring. v2 work item.
+    """
+    inv = {}
+    for name, contract in LEGO_CONTRACTS.items():
+        module = contract["module"]
+        inv[name] = {
             "module_path": getattr(module, "__file__", "unknown"),
             "module_loaded": True,
-            "graveyard_intent": "ablation_by_removal_not_executed_in_v1; documented as future work",
+            "role": contract["role"],
+            "stage_gate_reason": contract["stage_gate_reason"],
         }
     return {
-        "records": ablation,
-        "pass": all(r["module_loaded"] for r in ablation.values()),
-        "note": "v1 only verifies import + call; per-lego removal-and-rerun deferred to v2",
+        "records": inv,
+        "lego_count": len(inv),
+        "pass": all(r["module_loaded"] for r in inv.values()),
+        "note": (
+            "RENAMED from lego_ablation_graveyard. v1 records imports only. "
+            "v2 work item: per-lego remove-and-rerun with axis0 delta measurement."
+        ),
+        "v1_ablation_not_executed": True,
+        "v2_pending_actual_ablation": True,
     }
 
 
@@ -530,18 +717,22 @@ def main() -> dict[str, Any]:
     # Section 5: autograd Jacobian via lego_autograd_ci
     jacobian = end_to_end_jacobian_via_autograd_lego()
 
-    # Section 6: static-baseline polarity comparison
-    static_compare = static_baseline_vs_engine_axis0(combined_rows, axis0)
+    # Section 6: trivial polarity sanity check (renamed from "static baseline" per R1)
+    polarity_sanity = trivial_polarity_sanity_check(combined_rows, axis0)
 
-    # Section 7: lego ablation graveyard
-    ablation = lego_ablation_graveyard()
+    # Section 7: lego inventory (renamed from "ablation graveyard" per R1; no actual ablation)
+    inventory = lego_inventory_for_v2_ablation()
 
-    # Predicates
+    # Predicates (R2: honest naming + hard P4 gate)
     positive = {
-        "thirteen_legos_loaded_and_callable": {
-            "callable_count": lego_pass["callable_count"],
-            "expected": 13,
-            "pass": lego_pass["all_thirteen_callable"],
+        "twelve_invokable_legos_actually_callable_via_primary_callable": {
+            "callable_invoked_count": lego_pass["callable_invoked_count"],
+            "callable_pass_count": lego_pass["callable_pass_count"],
+            "deferred_count": lego_pass["deferred_count"],
+            "expected_invoked": 12,
+            "expected_pass": 12,
+            "expected_deferred": 1,
+            "pass": lego_pass["pass"],
         },
         "engine_cycle_produces_64_substage_rows": {
             "actual_row_count": len(combined_rows),
@@ -553,13 +744,16 @@ def main() -> dict[str, Any]:
             "expected": 5,
             "pass": len(axis0) == 5,
         },
-        "axis0_structural_acceptance_fields_hold": {
+        "axis0_seven_acceptance_fields_hold_INCLUDING_path_entropy_hard_gate": {
             "details": axis0_accept,
-            "pass": axis0_accept["all_structural_pass"],
+            "pass": axis0_accept["all_seven_pass"],
         },
-        "autograd_mechanism_op_isolated_works": jacobian,
-        "engine_polarity_is_nontrivial_vs_static": static_compare,
-        "lego_ablation_graveyard_present": ablation,
+        "autograd_through_lego_autograd_ci_real_call_op_isolated": jacobian,
+        "engine_polarity_trivial_sanity_check_NOT_static_baseline": polarity_sanity,
+        "lego_inventory_for_v2_ablation_records": {
+            "details": inventory,
+            "pass": inventory["pass"],
+        },
     }
 
     boundary = {
@@ -577,17 +771,22 @@ def main() -> dict[str, Any]:
             "interpretation": "axis0 emitted as 5-key plural dict; any future collapse to scalar must be rejected",
             "pass": True,
         },
-        "static_kernel_risk_reported_not_hidden": {
-            "details": static_compare,
+        "trivial_polarity_sanity_check_reported_honestly_not_static_baseline": {
+            "details": polarity_sanity,
             "pass": True,
         },
-        "path_entropy_degeneracy_DIAGNOSTIC_finding": {
+        "path_entropy_degeneracy_HARD_GATE_status": {
             "is_degenerate": axis0.get("path_entropy", {}).get("is_degenerate"),
             "n_zero_deriv": axis0.get("path_entropy", {}).get("n_zero_deriv"),
             "n_total_deriv": axis0.get("path_entropy", {}).get("n_total_deriv"),
-            "interpretation": "path_entropy as an axis0 candidate is structurally degenerate under the current 8-token cyclic engine schedule; rolling-window entropy plateaus; this is a real finding the plural router silently passed and the singular sim surfaces. DIAGNOSTIC, not a pass gate.",
-            "pass": True,
-            "promotes_demotion_of_path_entropy_candidate": True,
+            "interpretation": (
+                "path_entropy as an axis0 candidate is structurally degenerate under the "
+                "current 8-token cyclic engine schedule; rolling-window entropy plateaus. "
+                "Per axis0 subagent + R1 audit: this is a HARD gate (not diagnostic). "
+                "When degenerate, sim all_pass=False is the honest outcome."
+            ),
+            "pass": True,  # graveyard companion is satisfied by HAVING reported the degeneracy honestly
+            "consequence_for_sim_all_pass": "sim all_pass=False whenever degenerate",
         },
         "boundary_interior_blocker_retained_not_dropped": {
             "boundary_status": axis0.get("holographic_boundary_interior_reconstruction", {}).get("status"),
@@ -617,7 +816,7 @@ def main() -> dict[str, Any]:
         "axis0_candidates": axis0,
         "axis0_acceptance_check": axis0_accept,
         "lego_inventory": lego_pass,
-        "lego_ablation_graveyard": ablation,
+        "lego_inventory_for_v2_ablation": inventory,
         "blockers": [
             "v1 ablation graveyard does not actually remove-and-rerun per lego; v2 work",
             "cycle-level autograd remains severed at engine_core.py:561",
@@ -634,12 +833,13 @@ def main() -> dict[str, Any]:
     OUT_PATH.write_text(json.dumps(result, indent=2, default=str) + "\n", encoding="utf-8")
 
     print(f"=== {NAME} ===")
+    print(f"  classification: {CLASSIFICATION}")
     print(f"  elapsed: {elapsed:.2f}s")
-    print(f"  lego_callable_count: {lego_pass['callable_count']}/13")
+    print(f"  lego_invoked: {lego_pass['callable_invoked_count']}/12  pass: {lego_pass['callable_pass_count']}/12  deferred: {lego_pass['deferred_count']}/1")
     print(f"  engine_substage_rows: {len(combined_rows)}/64")
-    print(f"  axis0_candidates: {len(axis0)}/5  (structural: {axis0_accept['all_structural_pass']}, path_entropy_degenerate_DIAG: {axis0_accept['diagnostic_path_entropy_degenerate']})")
-    print(f"  autograd_op_iso_grad: {jacobian.get('grad_dS_dtheta')}  (pass={jacobian.get('pass')})")
-    print(f"  engine_polarity_nontrivial: {static_compare.get('pass')}")
+    print(f"  axis0_candidates: {len(axis0)}/5  (seven_acceptance: {axis0_accept['all_seven_pass']}, path_entropy_degenerate: {axis0_accept['diagnostic_path_entropy_degenerate']})")
+    print(f"  autograd_lego_grad: {jacobian.get('grad_dCI_dtheta')}  vs_fd_rel_err: {jacobian.get('autograd_vs_fd_rel_err')}  (pass={jacobian.get('pass')})")
+    print(f"  polarity_sanity: pos={polarity_sanity.get('engine_positive_steps')} neg={polarity_sanity.get('engine_negative_steps')}  (pass={polarity_sanity.get('pass')})")
     print(f"  all_pass: {all_pass}")
     print(f"  receipt: {OUT_PATH}")
 

@@ -478,6 +478,70 @@ def detect_tools(text: str, payloads: list[dict[str, Any]]) -> dict[str, str]:
     return tools
 
 
+def _role_sources_from_manifest(manifest: Any) -> dict[str, str]:
+    sources: dict[str, str] = {}
+    if not isinstance(manifest, dict):
+        return sources
+    for tool, entry in manifest.items():
+        if not isinstance(entry, dict):
+            continue
+        source = (
+            entry.get("role_source")
+            or entry.get("tool_role_source")
+            or entry.get("integration_source")
+        )
+        if source:
+            sources.setdefault(str(tool), str(source).strip().lower().replace("_", "-"))
+            continue
+        reason = str(entry.get("reason") or "").lower()
+        if "transitive" in reason or "through enginecore" in reason or "through engine_core" in reason:
+            sources.setdefault(str(tool), "transitive")
+    return sources
+
+
+def detect_local_load_bearing_tools(
+    text: str,
+    payloads: list[dict[str, Any]],
+    load_bearing_tools: list[str],
+) -> list[str]:
+    transitive_sources = {"transitive", "upstream", "imported", "delegated", "engine-core", "engine_core"}
+    role_sources: dict[str, str] = {}
+    source_roles = literal_module_assignment(text, "TOOL_ROLE_SOURCE")
+    if isinstance(source_roles, dict):
+        role_sources.update(
+            {
+                receipt_schema.canonical_tool_name(str(tool)): str(source).strip().lower().replace("_", "-")
+                for tool, source in source_roles.items()
+            }
+        )
+    role_sources.update(
+        {
+            receipt_schema.canonical_tool_name(tool): source
+            for tool, source in _role_sources_from_manifest(literal_module_assignment(text, "TOOL_MANIFEST")).items()
+        }
+    )
+    for payload in payloads:
+        raw = payload.get("tool_role_source") or payload.get("TOOL_ROLE_SOURCE") if isinstance(payload, dict) else None
+        if isinstance(raw, dict):
+            role_sources.update(
+                {
+                    receipt_schema.canonical_tool_name(str(tool)): str(source).strip().lower().replace("_", "-")
+                    for tool, source in raw.items()
+                }
+            )
+        manifest = payload.get("tool_manifest") or payload.get("TOOL_MANIFEST") if isinstance(payload, dict) else None
+        role_sources.update(
+            {
+                receipt_schema.canonical_tool_name(tool): source
+                for tool, source in _role_sources_from_manifest(manifest).items()
+            }
+        )
+    return sorted(
+        tool for tool in load_bearing_tools
+        if role_sources.get(receipt_schema.canonical_tool_name(tool)) not in transitive_sources
+    )
+
+
 def detect_families(stem: str, text: str) -> list[str]:
     haystack = f"{stem} {module_docstring(text)}".lower()
     families = [
@@ -766,8 +830,8 @@ def promotion_blockers_for(row: dict[str, Any]) -> list[str]:
         blockers.append("translation_lane_should_be_sim_class_not_classification")
     if row.get("runner_execution_kind") in {"bridge", "nonclassical"} and "numpy" in row.get("load_bearing_tools", []):
         blockers.append("numpy_load_bearing_blocked_for_bridge_or_nonclassical")
-    if row.get("runner_execution_kind") == "nonclassical" and "pytorch" not in row.get("load_bearing_tools", []):
-        blockers.append("nonclassical_requires_load_bearing_pytorch")
+    if row.get("runner_execution_kind") == "nonclassical" and "pytorch" not in row.get("local_load_bearing_tools", []):
+        blockers.append("nonclassical_requires_local_load_bearing_pytorch")
     if row.get("sim_execution_lane_source") == "derived" and row.get("sim_execution_lane") == "unknown":
         blockers.append("execution_lane_metadata_missing_or_derived")
     if row.get("sim_execution_lane_conflict"):
@@ -787,7 +851,7 @@ def garbage_candidate_flags_for(row: dict[str, Any]) -> list[str]:
         flags.append("ambiguous_execution_lane")
     if "numpy_load_bearing_blocked_for_bridge_or_nonclassical" in row.get("promotion_blockers", []):
         flags.append("bridge_or_nonclassical_numpy_load_bearing")
-    if "nonclassical_requires_load_bearing_pytorch" in row.get("promotion_blockers", []):
+    if "nonclassical_requires_local_load_bearing_pytorch" in row.get("promotion_blockers", []):
         flags.append("nonclassical_missing_load_bearing_pytorch")
     if "canonical" in row.get("result_classifications", []) and row.get("sim_execution_lane_source") == "derived":
         flags.append("canonical_result_not_execution_lane_evidence")
@@ -883,6 +947,7 @@ def build_index(
         classifications = sorted({payload_classification(payload) for payload in payloads if payload_classification(payload)})
         tools = detect_tools(text, payloads)
         load_bearing_tools = sorted(tool for tool, depth in tools.items() if depth == "load_bearing")
+        local_load_bearing_tools = detect_local_load_bearing_tools(text, payloads, load_bearing_tools)
         lane = detect_execution_lane(stem, text, payloads, classifications)
         engine_types = detect_engine_types(stem, text, payloads)
         engine_role_modes = detect_engine_role_modes(stem, text, payloads)
@@ -908,6 +973,7 @@ def build_index(
             "engine_roles": engine_roles,
             "tools": tools,
             "load_bearing_tools": load_bearing_tools,
+            "local_load_bearing_tools": local_load_bearing_tools,
             "source_has_tool_manifest": bool(source_tool_manifest(text)),
             "source_has_tool_integration_depth": source_depth_present(text),
             "result_paths": [rel(p) for p in linked_results],

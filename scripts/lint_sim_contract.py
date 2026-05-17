@@ -12,7 +12,7 @@ Checks, by AST parse only (no import side-effects):
       a2_state/sim_results/<canonical>_capability_results.json has summary.all_pass == True
       (self-probe exception: a capability probe is trivially its own evidence)
   C7: bridge or nonclassical sims may not use numpy as a load-bearing tool.
-  C8: nonclassical sims require pytorch as a load-bearing tool.
+  C8: nonclassical sims require locally load-bearing pytorch.
 
 Emits a JSON report to stdout with:
   - checked
@@ -37,6 +37,7 @@ RESULTS_DIR = PROBES_DIR / "a2_state" / "sim_results"
 
 VALID_CLASSIFICATIONS = {"classical_baseline", "canonical", "tool_lego_fit_probe"}
 VALID_DEPTHS = {"load_bearing", "supportive", "decorative", None}
+TRANSITIVE_ROLE_VALUES = {"transitive", "upstream", "imported", "delegated", "engine-core", "engine_core"}
 
 ALIASES = {
     "pytorch": "pytorch", "torch": "pytorch",
@@ -174,6 +175,40 @@ def _module_level_assignments(tree: ast.Module) -> dict:
     return out
 
 
+def _role_sources(assigns: dict) -> dict[str, str]:
+    raw = assigns.get("TOOL_ROLE_SOURCE") or assigns.get("tool_role_source") or {}
+    manifest = assigns.get("TOOL_MANIFEST") or {}
+    sources: dict[str, str] = {}
+    if isinstance(raw, dict):
+        sources.update(
+            {
+                str(tool): str(source).strip().lower().replace("_", "-")
+                for tool, source in raw.items()
+            }
+        )
+    if isinstance(manifest, dict):
+        for tool, entry in manifest.items():
+            if not isinstance(entry, dict):
+                continue
+            source = (
+                entry.get("role_source")
+                or entry.get("tool_role_source")
+                or entry.get("integration_source")
+            )
+            if source:
+                sources.setdefault(str(tool), str(source).strip().lower().replace("_", "-"))
+                continue
+            reason = str(entry.get("reason") or "").lower()
+            if "transitive" in reason or "through enginecore" in reason or "through engine_core" in reason:
+                sources.setdefault(str(tool), "transitive")
+    return sources
+
+
+def _is_local_load_bearing(tool: str, sources: dict[str, str]) -> bool:
+    source = sources.get(tool) or sources.get(canonical(tool))
+    return source not in TRANSITIVE_ROLE_VALUES
+
+
 def _capability_ok(tool_canon: str) -> tuple[bool, str]:
     candidates = [
         (
@@ -305,17 +340,23 @@ def lint_sim(path: Path) -> list[dict]:
         assigns.get("sim_execution_kind") or assigns.get("SIM_EXECUTION_KIND")
     )
     if execution_kind in {"bridge", "nonclassical"} and isinstance(depth, dict):
+        role_sources = _role_sources(assigns)
         load_bearing = {canonical(str(tool)) for tool, lvl in depth.items() if lvl == "load_bearing"}
+        local_load_bearing = {
+            canonical(str(tool))
+            for tool, lvl in depth.items()
+            if lvl == "load_bearing" and _is_local_load_bearing(str(tool), role_sources)
+        }
         if "numpy" in load_bearing:
             violations.append({
                 "sim": rel,
                 "rule": "C7_numpy_load_bearing_for_bridge_or_nonclassical",
                 "detail": execution_kind,
             })
-        if execution_kind == "nonclassical" and "pytorch" not in load_bearing:
+        if execution_kind == "nonclassical" and "pytorch" not in local_load_bearing:
             violations.append({
                 "sim": rel,
-                "rule": "C8_nonclassical_requires_pytorch_load_bearing",
+                "rule": "C8_nonclassical_requires_local_pytorch_load_bearing",
                 "detail": ",".join(sorted(load_bearing)) or "no_load_bearing_tools",
             })
 

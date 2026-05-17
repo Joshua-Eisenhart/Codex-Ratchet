@@ -1338,6 +1338,20 @@ def test_lint_blocks_numpy_bridge_and_requires_pytorch_for_nonclassical(
         + "\n",
         encoding="utf-8",
     )
+    nonclassical_transitive_pytorch = probes / "sim_nonclassical_transitive_pytorch_row.py"
+    nonclassical_transitive_pytorch.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "nonclassical"',
+                'TOOL_MANIFEST = {"pytorch": {"used": True, "reason": "load-bearing transitively through EngineCore"}}',
+                'TOOL_INTEGRATION_DEPTH = {"pytorch": "load_bearing"}',
+                'TOOL_ROLE_SOURCE = {"pytorch": "transitive"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     nonclassical_bridge_numpy = probes / "sim_nonclassical_bridge_numpy.py"
     nonclassical_bridge_numpy.write_text(
         "\n".join(
@@ -1359,12 +1373,16 @@ def test_lint_blocks_numpy_bridge_and_requires_pytorch_for_nonclassical(
     bridge_rules = {violation["rule"] for violation in module.lint_sim(bridge)}
     z3_rules = {violation["rule"] for violation in module.lint_sim(nonclassical_missing_pytorch)}
     pytorch_rules = {violation["rule"] for violation in module.lint_sim(nonclassical_pytorch)}
+    transitive_pytorch_rules = {
+        violation["rule"] for violation in module.lint_sim(nonclassical_transitive_pytorch)
+    }
     bridge_alias_rules = {violation["rule"] for violation in module.lint_sim(nonclassical_bridge_numpy)}
 
     assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" in bridge_rules
-    assert "C8_nonclassical_requires_pytorch_load_bearing" in z3_rules
+    assert "C8_nonclassical_requires_local_pytorch_load_bearing" in z3_rules
     assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" not in pytorch_rules
-    assert "C8_nonclassical_requires_pytorch_load_bearing" not in pytorch_rules
+    assert "C8_nonclassical_requires_local_pytorch_load_bearing" not in pytorch_rules
+    assert "C8_nonclassical_requires_local_pytorch_load_bearing" in transitive_pytorch_rules
     assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" in bridge_alias_rules
 
 
@@ -9327,7 +9345,7 @@ def test_sim_inventory_separates_execution_lanes_and_engine_roles(tmp_path) -> N
     ]
     assert rows["sim_weyl_spinor_nonclassical_probe"]["sim_execution_lane"] == "nonclassical"
     assert "nonclassical_inspiration_or_boundary_signal" in rows["sim_weyl_spinor_nonclassical_probe"]["engine_roles"]
-    assert "nonclassical_requires_load_bearing_pytorch" in rows["sim_weyl_spinor_nonclassical_probe"][
+    assert "nonclassical_requires_local_load_bearing_pytorch" in rows["sim_weyl_spinor_nonclassical_probe"][
         "promotion_blockers"
     ]
     assert rows["sim_negative_graveyard_control"]["cleanup_bucket"] == (
@@ -9417,14 +9435,14 @@ def test_formal_scout_readiness_index_keeps_noncanonical_status(tmp_path) -> Non
     assert index["summary"]["validator_fail_count"] == 1
     assert index["summary"]["readme_indexed_count"] == 1
     assert index["summary"]["readme_missing_count"] == 3
-    assert index["summary"]["fresh_rerun_mapping_defect_count"] == 1
+    assert index["summary"]["fresh_rerun_mapping_defect_count"] == 0
     assert index["summary"]["fresh_rerun_dual_source_defect_count"] == 1
     assert rows["good_probe"]["readiness_status"] == "schema_ready"
     assert rows["good_probe"]["public_status_label"] == "exists"
     assert "formal_scout_noncanonical" in rows["good_probe"]["promotion_blockers"]
     assert rows["bad_probe"]["readiness_status"] == "validator_failed"
-    assert rows["sim_mapping_probe"]["fresh_rerun_mapping_defect"] is True
-    assert rows["sim_mapping_probe"]["validator_expected_source_path"].endswith("sim_sim_mapping_probe.py")
+    assert rows["sim_mapping_probe"]["fresh_rerun_mapping_defect"] is False
+    assert rows["sim_mapping_probe"]["validator_expected_source_path"].endswith("sim_mapping_probe.py")
     assert rows["sim_dual_probe"]["fresh_rerun_dual_source_defect"] is True
 
 
@@ -9518,6 +9536,13 @@ def test_grok_sim_archive_index_maps_sidequest_buckets(tmp_path) -> None:
     assert proposal_buckets["keep_current_handbuilt_proposal_source"] == 1
     assert proposal_buckets["quarantine_required_promotion_allowed_true"] == 1
     assert proposal_buckets["keep_graveyard_quarantine"] == 1
+
+    out_md = tmp_path / "grok_index.md"
+    module.write_markdown(index, out_md)
+    md = out_md.read_text(encoding="utf-8")
+    assert "Complete sidequest bundles: `2`" in md
+    assert "Citeable sidequest bundles: `1`" in md
+    assert "Complete citeable sidequest bundles" not in md
     assert index["high_risk_proposals"][0]["path"].endswith("sim_bad.py")
 
 
@@ -11376,7 +11401,7 @@ def test_qit_engine_evidence_index_blocks_bridge_numpy_and_nonclassical_without_
 
     assert "result:numpy_load_bearing_blocked_for_bridge_or_nonclassical" in blockers["sim_qit_bridge_numpy"]
     assert "result:numpy_load_bearing_blocked_for_bridge_or_nonclassical" in blockers["sim_qit_bridge_numpy_dot"]
-    assert "result:nonclassical_requires_load_bearing_pytorch" in blockers["sim_qit_nonclassical_z3"]
+    assert "result:nonclassical_requires_local_load_bearing_pytorch" in blockers["sim_qit_nonclassical_z3"]
     assert targets["sim_qit_bridge_numpy"] == "repair_tool_policy_before_any_admission"
     assert targets["sim_qit_bridge_numpy_dot"] == "repair_tool_policy_before_any_admission"
     assert targets["sim_qit_nonclassical_z3"] == "repair_tool_policy_before_any_admission"
@@ -12091,7 +12116,7 @@ def test_wizard_sim_admission_rejects_nonclassical_z3_without_pytorch(tmp_path) 
         sim_path="system_v4/probes/sim_nonclassical_probe.py",
     )
 
-    assert "nonclassical_requires_load_bearing_pytorch" in findings
+    assert "nonclassical_requires_local_load_bearing_pytorch" in findings
 
 
 def test_wizard_sim_admission_rejects_hidden_coupling_baseline_without_baseline_ceiling(tmp_path) -> None:

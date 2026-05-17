@@ -174,6 +174,8 @@ def load_result(name: str) -> dict[str, Any]:
         "promotion_allowed": data.get("promotion_allowed"),
         "claim_ceiling": data.get("claim_ceiling", ""),
         "positive": data.get("positive", {}),
+        "hash_cells": data.get("hash_cells", []),
+        "explicit_blockers": data.get("explicit_blockers", {}),
         "axis0_outputs_or_blockers": data.get("axis0_outputs_or_blockers", {}),
     }
 
@@ -379,6 +381,38 @@ def holodeck_memory_context(memory_receipt: dict[str, Any]) -> dict[str, float]:
     }
 
 
+def holodeck_hash_cells(memory_receipt: dict[str, Any]) -> list[dict[str, Any]]:
+    rows = memory_receipt.get("hash_cells", [])
+    if not isinstance(rows, list):
+        return []
+    return [
+        row
+        for row in rows
+        if isinstance(row, dict)
+        and isinstance(row.get("semantic_hash"), str)
+        and isinstance(row.get("survivor_class_hash"), str)
+        and isinstance(row.get("graveyard_control_hashes"), list)
+    ]
+
+
+def bucket_text(text: str, modulus: int = 997) -> float:
+    digest = hashlib.sha256(str(text).encode("utf-8")).hexdigest()
+    return float(int(digest[:8], 16) % modulus) / float(modulus)
+
+
+def hash_cell_features(hash_cells: list[dict[str, Any]], idx: int) -> list[float]:
+    if not hash_cells:
+        return [0.0, 0.0, 0.0]
+    cell = hash_cells[idx % len(hash_cells)]
+    graveyard_hashes = [str(x) for x in cell.get("graveyard_control_hashes", [])]
+    graveyard_joined = "|".join(graveyard_hashes)
+    return [
+        bucket_text(str(cell.get("semantic_hash", ""))),
+        bucket_text(graveyard_joined),
+        bucket_text(str(cell.get("survivor_class_hash", ""))),
+    ]
+
+
 def stable_bucket(payload: dict[str, Any], modulus: int = 997) -> float:
     digest = hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
     return float(int(digest[:8], 16) % modulus) / float(modulus)
@@ -387,6 +421,7 @@ def stable_bucket(payload: dict[str, Any], modulus: int = 997) -> float:
 def collect_stage_features(
     axis0: dict[str, list[float]],
     memory: dict[str, float],
+    hash_cells: list[dict[str, Any]],
     active_axis0_candidates: list[str],
 ) -> tuple[np.ndarray, list[str], list[dict[str, Any]]]:
     axis0_feature_names = [f"{AXIS0_FEATURE_PREFIX}{name}" for name in active_axis0_candidates]
@@ -405,6 +440,9 @@ def collect_stage_features(
         "holodeck_memory_trigger_drive",
         "holodeck_graveyard_hash_density",
         "holodeck_survivor_class_bucket",
+        "holodeck_semantic_hash_bucket",
+        "holodeck_graveyard_hash_bucket",
+        "holodeck_survivor_hash_bucket",
         "operator_sign",
     ]
     rows: list[list[float]] = []
@@ -433,6 +471,7 @@ def collect_stage_features(
                             "policy": record["next_policy"]["policy_id"],
                         }
                     )
+                    semantic_hash_bucket, graveyard_hash_bucket, survivor_hash_bucket = hash_cell_features(hash_cells, idx)
                     rows.append(
                         [
                             *[float(x) for x in model["bloch"]],
@@ -447,6 +486,9 @@ def collect_stage_features(
                             memory_trigger,
                             float(memory["unique_graveyard_hashes"]) / 128.0,
                             survivor_bucket,
+                            semantic_hash_bucket,
+                            graveyard_hash_bucket,
+                            survivor_hash_bucket,
                             float(record["operator_sign"]),
                         ]
                     )
@@ -479,6 +521,9 @@ class TinyPredictiveAdapter(nn.Module):
                 "axis0_retrocausal_many_futures_policy_scoring": 0.32,
                 "holodeck_memory_trigger_drive": 0.65,
                 "holodeck_survivor_class_bucket": 0.28,
+                "holodeck_semantic_hash_bucket": 0.34,
+                "holodeck_graveyard_hash_bucket": -0.42,
+                "holodeck_survivor_hash_bucket": 0.31,
             }
             for field, boost in field_boosts.items():
                 if field in feature_names:
@@ -519,6 +564,9 @@ def tiny_adapter_consumption(
         "holodeck_memory_trigger_drive",
         "holodeck_graveyard_hash_density",
         "holodeck_survivor_class_bucket",
+        "holodeck_semantic_hash_bucket",
+        "holodeck_graveyard_hash_bucket",
+        "holodeck_survivor_hash_bucket",
     ]:
         if field in names:
             ablated[:, names.index(field)] = 0.0
@@ -565,6 +613,44 @@ def tiny_adapter_consumption(
         "analytic_interval_mean_width": float(widths),
         "bounds_contain_nominal_scores": bool(torch.all(lower <= scores) and torch.all(scores <= upper)),
         "claim_ceiling": "PyTorch analytic interval fixture only; replacement target for auto_LiRPA once its dependency blocker is repaired.",
+    }
+
+
+def hash_identity_control_report(features: np.ndarray, names: list[str]) -> dict[str, Any]:
+    hash_fields = [
+        "holodeck_semantic_hash_bucket",
+        "holodeck_graveyard_hash_bucket",
+        "holodeck_survivor_hash_bucket",
+    ]
+    missing = [field for field in hash_fields if field not in names]
+    if missing:
+        return {"pass": False, "missing_hash_fields": missing}
+    model = TinyPredictiveAdapter(names)
+    x = torch.tensor(features, dtype=torch.float64)
+    with torch.no_grad():
+        base = model(x).reshape(-1)
+        zeroed = x.clone()
+        for field in hash_fields:
+            zeroed[:, names.index(field)] = 0.0
+        zero_scores = model(zeroed).reshape(-1)
+        shuffled = x.clone()
+        for field in hash_fields:
+            col = names.index(field)
+            shuffled[:, col] = torch.roll(shuffled[:, col], shifts=17)
+        shuffled_scores = model(shuffled).reshape(-1)
+        drop_graveyard = x.clone()
+        drop_graveyard[:, names.index("holodeck_graveyard_hash_bucket")] = 0.0
+        drop_graveyard_scores = model(drop_graveyard).reshape(-1)
+    zero_delta = float(torch.mean(torch.abs(base - zero_scores)).item())
+    shuffle_delta = float(torch.mean(torch.abs(base - shuffled_scores)).item())
+    drop_graveyard_delta = float(torch.mean(torch.abs(base - drop_graveyard_scores)).item())
+    return {
+        "pass": zero_delta > 0.01 and shuffle_delta > 0.01 and drop_graveyard_delta > 0.005,
+        "hash_feature_names": hash_fields,
+        "zero_hash_table_mean_abs_delta": zero_delta,
+        "shuffle_hash_identity_mean_abs_delta": shuffle_delta,
+        "drop_graveyard_hash_mean_abs_delta": drop_graveyard_delta,
+        "claim_ceiling": "Exact Holodeck hash strings are consumed only as bounded deterministic hash buckets in this adapter fixture; no decryption, persistent memory, or personal-memory claim.",
     }
 
 
@@ -651,9 +737,11 @@ def main() -> int:
     axis0_guard_state = axis0_guard.axis0_guard_signal(axis0_guard_receipt)
     axis0 = axis0_guard.guarded_router_vectors(axis0_receipt, axis0_guard_state)
     memory = holodeck_memory_context(holodeck_receipt)
+    hash_cells = holodeck_hash_cells(holodeck_receipt)
     features, feature_names, records = collect_stage_features(
         axis0,
         memory,
+        hash_cells,
         active_axis0_candidates=axis0_guard_state["admitted_candidate_names"],
     )
     adapter = tiny_adapter_consumption(
@@ -661,6 +749,7 @@ def main() -> int:
         feature_names,
         disabled_feature_names=[],
     )
+    hash_identity_controls = hash_identity_control_report(features, feature_names)
     auto_probe = auto_lirpa_consumption_probe(features)
     matrix = admission_matrix(inventory, auto_probe, adapter)
     z3_witness = z3_admission_witness(matrix)
@@ -692,6 +781,7 @@ def main() -> int:
         },
         "primary_control/result": {
             "adapter_consumption": adapter,
+            "holodeck_hash_identity_controls": hash_identity_controls,
             "auto_lirpa_consumption_probe": auto_probe,
             "admission_matrix": matrix,
             "axis0_guard_consumption": axis0_guard_state,
@@ -714,6 +804,11 @@ def main() -> int:
             "scalar_weighted_drive_blocker": axis0_guard_state["scalar_weighted_drive_blocker"],
             "control_family_degeneracy_blockers": axis0_guard_state["control_family_degeneracy_blockers"],
             "holodeck_memory_context": memory,
+            "holodeck_hash_cells_consumed": {
+                "row_count": len(hash_cells),
+                "sample_rows": hash_cells[:3],
+                "hash_identity_controls": hash_identity_controls,
+            },
             "claim_ceiling": "Only Axis0 candidates admitted by the multicarrier guard are active world-model adapter features. Blocked candidates are retained as blockers and excluded from feature columns; no final Axis0 claim is admitted.",
         },
         "provider_inputs_used": {
@@ -742,6 +837,8 @@ def main() -> int:
         "gap_repo_adapter_matrix_emitted_with_no_unearned_admission": matrix,
         "stage_axis0_holodeck_adapter_consumes_real_receipts": {
             "pass": adapter["pass"]
+            and hash_identity_controls["pass"]
+            and len(hash_cells) == 128
             and stage_receipt.get("all_pass") is True
             and axis0_receipt.get("all_pass") is True
             and axis0_guard_receipt.get("all_pass") is True
@@ -749,6 +846,11 @@ def main() -> int:
             and holodeck_receipt.get("all_pass") is True
             and subdense_receipt.get("all_pass") is True,
             "adapter": adapter,
+            "holodeck_hash_identity_controls": hash_identity_controls,
+            "holodeck_hash_cells_consumed": {
+                "row_count": len(hash_cells),
+                "sample_rows": hash_cells[:3],
+            },
             "raw_axis0_candidates": axis0_guard.AXIS0_CANDIDATE_NAMES,
             "admitted_axis0_candidates": axis0_guard_state["admitted_candidate_names"],
             "blocked_axis0_candidates": axis0_guard_state["blocked_candidate_names"],
@@ -781,6 +883,14 @@ def main() -> int:
             ),
             "axis0_guard": axis0_guard_state,
             "adapter_feature_names": feature_names,
+        },
+        "per_cell_holodeck_graveyard_survivor_hashes_are_load_bearing": {
+            "pass": len(hash_cells) == 128
+            and hash_identity_controls["pass"]
+            and all("semantic_hash" in row and "graveyard_control_hashes" in row and "survivor_class_hash" in row for row in hash_cells[:8]),
+            "hash_cells_row_count": len(hash_cells),
+            "hash_identity_controls": hash_identity_controls,
+            "sample_rows": hash_cells[:3],
         },
         "auto_lirpa_tiny_bound_consumption_test_matches_analytic_control": auto_probe,
         "z3_admission_rule_rejects_repo_name_only_and_accepts_bounded_auto_lirpa_adapter": z3_witness,
@@ -836,6 +946,14 @@ def main() -> int:
             "scalar_weighted_drive_blocker": axis0_guard_state["scalar_weighted_drive_blocker"],
             "control_family_degeneracy_blockers": axis0_guard_state["control_family_degeneracy_blockers"],
         },
+        "aggregate_hash_counts_are_not_the_only_holodeck_memory_signal": {
+            "pass": hash_identity_controls["pass"]
+            and "holodeck_graveyard_hash_density" in feature_names
+            and "holodeck_graveyard_hash_bucket" in feature_names,
+            "aggregate_hash_feature": "holodeck_graveyard_hash_density",
+            "per_cell_hash_features": hash_identity_controls["hash_feature_names"],
+            "hash_identity_controls": hash_identity_controls,
+        },
     }
 
     boundary = {
@@ -875,6 +993,13 @@ def main() -> int:
         "no_heavy_repo_runtime_or_network_download_was_used": {
             "pass": True,
             "scope": "README/source inventory plus local import probe only; no weights, video/image generator, or package install executed.",
+        },
+        "hash_cells_do_not_expose_vectors_or_axis0_candidate_values": {
+            "pass": len(hash_cells) == 128
+            and all("vector" not in row and "context" not in row for row in hash_cells)
+            and all("candidate_vectors" not in row and "values" not in row for row in hash_cells),
+            "row_count": len(hash_cells),
+            "sample_keys": sorted(hash_cells[0]) if hash_cells else [],
         },
     }
 

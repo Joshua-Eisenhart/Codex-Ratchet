@@ -40,9 +40,11 @@ CLAIM_CEILING = (
     "Formal scout only: builds a bounded source-native Holodeck memory "
     "placeholder where EngineCore stage records become contextual semantic "
     "hashes in an ASCII recall space, and a small predictive model verifies "
-    "triggered reconstruction better than hash-only or wrong-context controls. "
-    "It does not admit a full Holodeck memory system, personal memory store, "
-    "neural world model, physics, cognition, consciousness, or canonical claim."
+    "triggered reconstruction better than hash-only or wrong-model controls. "
+    "Raw Axis0 router candidates are recorded as pre-guard metadata only and "
+    "are not consumed as memory-vector features in this scout. It does not "
+    "admit a full Holodeck memory system, personal memory store, neural world "
+    "model, physics, cognition, consciousness, or canonical claim."
 )
 
 TOOL_MANIFEST = {
@@ -72,6 +74,13 @@ ASCII_SYMBOLS = {
 HASH_MATCH_FLOOR = 0.82
 HASH_CONTROL_CEILING = 0.35
 N_SEEDS = 2
+AXIS0_CANDIDATE_NAMES = [
+    "fep_gradient_polarity",
+    "path_entropy",
+    "correlation_diversity_derivative",
+    "holographic_boundary_interior_reconstruction",
+    "retrocausal_many_futures_policy_scoring",
+]
 
 
 def as_jsonable(value: Any) -> Any:
@@ -146,29 +155,43 @@ def stage_contract(records: list[dict[str, Any]]) -> dict[str, Any]:
 
 def axis0_signature(router: dict[str, Any]) -> dict[str, Any]:
     outputs = router.get("axis0_outputs_or_blockers") or {}
-    names = [
-        "fep_gradient_polarity",
-        "path_entropy",
-        "correlation_diversity_derivative",
-        "holographic_boundary_interior_reconstruction",
-        "retrocausal_many_futures_policy_scoring",
-    ]
-    vectors: dict[str, list[float]] = {}
-    for name in names:
-        arr = np.asarray(outputs.get(name, {}).get("values", []), dtype=float)
-        if arr.size:
-            arr = np.nan_to_num(arr, nan=0.0, posinf=0.0, neginf=0.0)
-            scale = float(np.max(np.abs(arr)))
-            if scale > 0.0:
-                arr = arr / scale
-        vectors[name] = [float(x) for x in arr]
+    raw_vector_lengths: dict[str, int] = {}
+    raw_candidate_metadata: dict[str, dict[str, Any]] = {}
+    for name in AXIS0_CANDIDATE_NAMES:
+        payload = outputs.get(name, {}) or {}
+        arr = np.asarray(payload.get("values", []), dtype=float)
+        raw_vector_lengths[name] = int(arr.size)
+        raw_candidate_metadata[name] = {
+            "value_count": int(arr.size),
+            "finite": bool(payload.get("finite", arr.size > 0)),
+            "status": payload.get("status", "pre_guard_raw_candidate"),
+            "explicit_blocker_keys": sorted((payload.get("explicit_blockers") or {}).keys()),
+        }
+    explicit_blockers = {
+        "guarded_axis0_context_not_consumed_in_holodeck_memory": {
+            "pass": True,
+            "reason": (
+                "The Axis0 admission guard depends downstream on this Holodeck "
+                "memory receipt, so this upstream memory placeholder must not "
+                "consume raw pre-guard Axis0 candidates as semantic-vector "
+                "features. A later guarded-memory coupling scout should consume "
+                "axis0_plural_candidate_multicarrier_drive_controls after the "
+                "guard exists."
+            ),
+            "blocked_raw_candidate_names": AXIS0_CANDIDATE_NAMES,
+        }
+    }
     return {
-        "ready": bool(router.get("exists") and router.get("all_pass") is True and all(vectors.values())),
-        "candidate_names": names,
-        "candidate_vectors": vectors,
+        "ready": False,
+        "pre_guard_candidate_names": AXIS0_CANDIDATE_NAMES,
+        "candidate_names": [],
+        "candidate_vectors": {},
+        "raw_candidate_vector_lengths": raw_vector_lengths,
+        "raw_candidate_metadata": raw_candidate_metadata,
+        "context_dim": len(AXIS0_CANDIDATE_NAMES),
         "source_receipt": router.get("path"),
-        "holographic_boundary_interior_reconstruction": outputs.get("holographic_boundary_interior_reconstruction", {}),
-        "retrocausal_many_futures_policy_scoring": outputs.get("retrocausal_many_futures_policy_scoring", {}),
+        "raw_router_all_pass": bool(router.get("exists") and router.get("all_pass") is True),
+        "explicit_blockers": explicit_blockers,
     }
 
 
@@ -178,7 +201,7 @@ def axis0_context(axis0: dict[str, Any], idx: int) -> np.ndarray:
         if vector:
             values.append(float(vector[idx % len(vector)]))
     if not values:
-        values = [0.0, 0.0, 0.0]
+        values = [0.0 for _ in range(int(axis0.get("context_dim", len(AXIS0_CANDIDATE_NAMES))))]
     return np.asarray(values, dtype=float)
 
 
@@ -285,6 +308,28 @@ def build_memory_space(records: list[dict[str, Any]], axis0: dict[str, Any]) -> 
         "ascii_map": ["".join(row) for row in ascii_rows],
         "cells": cells,
     }
+
+
+def hash_cells_table(space: dict[str, Any]) -> list[dict[str, Any]]:
+    rows = []
+    for cell in space["cells"]:
+        rows.append(
+            {
+                "idx": int(cell["idx"]),
+                "row": int(cell["row"]),
+                "col": int(cell["col"]),
+                "symbol": str(cell["symbol"]),
+                "semantic_hash": str(cell["semantic_hash"]),
+                "model_after_hash": str(cell["model_after_hash"]),
+                "ordered_token": str(cell["ordered_token"]),
+                "operator": str(cell["operator"]),
+                "next_policy_id": str(cell["next_policy_id"]),
+                "graveyard_controls": [str(x) for x in cell["graveyard_controls"]],
+                "graveyard_control_hashes": [str(x) for x in cell["graveyard_control_hashes"]],
+                "survivor_class_hash": str(cell["survivor_class_hash"]),
+            }
+        )
+    return rows
 
 
 def build_predictive_model(cells: list[dict[str, Any]]) -> dict[str, np.ndarray]:
@@ -485,13 +530,13 @@ def main() -> int:
     doc_boundary = doc_anchor_boundary()
 
     repair_receipt = {
-        "weak_link": "Holodeck memory existed as docs and older reference code, but the macro-sim lacked a receipt-bound placeholder connecting predictive model, contextual semantic hashes, verification, graveyard controls, and connected recall fanout.",
+        "weak_link": "Holodeck memory existed as docs and older reference code, but the macro-sim lacked a receipt-bound placeholder connecting predictive model, contextual semantic hashes, verification, graveyard controls, and connected recall fanout. The placeholder also must not treat raw pre-guard Axis0 candidates as admitted memory-vector features.",
         "target_file_or_result": str(OUT_PATH),
         "admission_rule_improved": "Holodeck memory claims must show predictive-model reconstruction plus contextual hash verification and matched hash-only/wrong-model controls; storing hash strings alone is not memory.",
         "dependency_subset": [
             "EngineCore science_method_stage_record_v1",
             "macro_sim_stage_record_science_method_contract receipt",
-            "macro_sim_axis0_plural_stage_candidate_router receipt",
+            "macro_sim_axis0_plural_stage_candidate_router receipt, recorded as pre-guard metadata only",
             "source_native_holodeck_closed_loop_fep_strategy receipt",
             "source_native_fep_pomdp_policy_tree receipt",
             "Holodeck docs: predictive projection, semantic hashes, context-triggered recall, verify_hash",
@@ -512,6 +557,7 @@ def main() -> int:
             "hash_only_control": hash_control,
             "wrong_model_control_mean_score": recall["mean_wrong_model_score"],
             "wrong_context_control_mean_score": recall["mean_wrong_context_score"],
+            "wrong_context_control_status": "diagnostic_only_context_is_blocked_until_guarded_axis0_memory_coupling_exists",
         },
         "axis0_outputs_or_blockers": axis0,
         "provider_inputs_used": {
@@ -522,7 +568,7 @@ def main() -> int:
             "reason": "local doc-grounded placeholder and controls could be tested directly; provider outputs remain proposal/audit-only until tied to local receipts",
         },
         "promotion_ceiling": CLAIM_CEILING,
-        "next_step": "Downstream repair should make a carrier consume this memory placeholder: stage/cell triggers should route policy selection or environment reconstruction, not just validate recall in isolation.",
+        "next_step": "Downstream repair should make a guarded carrier or memory scout consume this placeholder after axis0_plural_candidate_multicarrier_drive_controls: stage/cell triggers should route policy selection or environment reconstruction without reintroducing blocked Axis0 candidates.",
     }
 
     positive = {
@@ -536,20 +582,27 @@ def main() -> int:
             "unique_hash_count": len({cell["semantic_hash"] for cell in space["cells"]}),
         },
         "predictive_model_verifies_contextual_recall": recall,
-        "axis0_context_is_embedded_in_memory_hash_space": {
-            "pass": axis0["ready"]
-            and set(axis0.get("candidate_names", [])) >= {
-                "fep_gradient_polarity",
-                "path_entropy",
-                "correlation_diversity_derivative",
-                "holographic_boundary_interior_reconstruction",
-                "retrocausal_many_futures_policy_scoring",
-            }
-            and all(np.linalg.norm(cell["context"]) > 0 for cell in space["cells"][:16]),
+        "pre_guard_axis0_context_is_excluded_from_memory_hash_space": {
+            "pass": axis0["raw_router_all_pass"]
+            and axis0["ready"] is False
+            and axis0.get("candidate_vectors") == {}
+            and set(axis0.get("pre_guard_candidate_names", [])) == set(AXIS0_CANDIDATE_NAMES)
+            and all(np.linalg.norm(cell["context"]) == 0.0 for cell in space["cells"][:16])
+            and bool(axis0.get("explicit_blockers")),
             "axis0_source_receipt": axis0.get("source_receipt"),
-            "axis0_candidate_names": axis0.get("candidate_names"),
+            "pre_guard_axis0_candidate_names": axis0.get("pre_guard_candidate_names"),
+            "raw_candidate_vector_lengths": axis0.get("raw_candidate_vector_lengths"),
+            "explicit_blockers": axis0.get("explicit_blockers"),
         },
         "graveyard_and_survivor_hashes_connect_memory_graph": graveyard_survivor,
+        "per_cell_hash_identity_table_emitted_for_downstream_consumption": {
+            "pass": len(hash_cells_table(space)) == len(space["cells"])
+            and all("vector" not in row and "context" not in row for row in hash_cells_table(space))
+            and all(row["semantic_hash"] and row["graveyard_control_hashes"] and row["survivor_class_hash"] for row in hash_cells_table(space)),
+            "row_count": len(hash_cells_table(space)),
+            "columns": sorted(hash_cells_table(space)[0]) if hash_cells_table(space) else [],
+            "sample_rows": hash_cells_table(space)[:3],
+        },
         "holodeck_and_policy_receipts_are_consumed_as_bounds": {
             "pass": holodeck_receipt.get("all_pass") is True and pomdp_receipt.get("all_pass") is True,
             "holodeck_receipt": holodeck_receipt,
@@ -566,6 +619,13 @@ def main() -> int:
             "mean_wrong_model_target_score": recall["mean_wrong_model_target_score"],
             "mean_nearest_neighbor_match_score": recall["mean_match_score"],
             "mean_wrong_model_nearest_neighbor_score": recall["mean_wrong_model_score"],
+        },
+        "wrong_context_is_not_claimed_until_guarded_context_exists": {
+            "pass": axis0["ready"] is False
+            and "guarded_axis0_context_not_consumed_in_holodeck_memory" in axis0.get("explicit_blockers", {}),
+            "mean_target_verification_score": recall["mean_target_verification_score"],
+            "mean_wrong_context_target_score": recall["mean_wrong_context_target_score"],
+            "reason": "Raw Axis0 context is excluded upstream of the guard, so wrong-context separation is a blocked future scout, not a current pass condition.",
         },
         "disconnected_recall_space_would_block_connected_memory_fanout": {
             "pass": min(row["connected_fanout_count_depth2"] for row in recall["rows"]) > 3,
@@ -625,6 +685,8 @@ def main() -> int:
         "boundary": boundary,
         "nearby_variants": nearby_variants,
         "axis0_outputs_or_blockers": axis0,
+        "explicit_blockers": axis0.get("explicit_blockers", {}),
+        "hash_cells": hash_cells_table(space),
         "repair_receipt": repair_receipt,
         "why_not_v4_probes": [
             "Placeholder over source-native stage records only.",

@@ -398,8 +398,28 @@ def test_receipt_requires_load_bearing_pytorch_for_nonclassical() -> None:
     )
     assert missing_pytorch["ok"] is False
     assert any(
-        finding["kind"] == "nonclassical_requires_load_bearing_pytorch"
+        finding["kind"] == "nonclassical_requires_local_load_bearing_pytorch"
         for finding in missing_pytorch["hard_findings"]
+    )
+
+    transitive_torch = receipt_schema.validate_result_payload(
+        _canonical_payload(
+            sim_execution_kind="nonclassical",
+            tool_manifest={
+                "torch": {
+                    "tried": True,
+                    "used": True,
+                    "reason": "torch is load-bearing transitively through EngineCore.",
+                }
+            },
+            tool_integration_depth={"torch": "load_bearing"},
+            tool_role_source={"torch": "transitive"},
+        )
+    )
+    assert transitive_torch["ok"] is False
+    assert any(
+        finding["kind"] == "nonclassical_requires_local_load_bearing_pytorch"
+        for finding in transitive_torch["hard_findings"]
     )
 
     with_torch = receipt_schema.validate_result_payload(

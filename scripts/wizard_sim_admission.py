@@ -18,6 +18,7 @@ NONCLASSICAL_LOAD_BEARING_TOOLS = {"z3", "cvc5", "clifford", "torch", "pytorch",
 HIDDEN_NONCLASSICAL_TOKENS = ("rho_ab", "rho_AB", "Phi0", "phi0", "Xi", "xi", "coupling witness")
 CANONICAL_SCHEMA = "wizard_sim_admission_v4_2"
 LEGACY_SCHEMA = "wizard_sim_admission_v4_1"
+_STAGE_GATE_CACHE: dict[tuple[str, str, int], str | None] = {}
 _HIDDEN_NONCLASSICAL_PATTERNS = tuple(
     re.compile(rf"(?<![A-Za-z0-9_]){re.escape(token.lower())}(?![A-Za-z0-9_])")
     for token in HIDDEN_NONCLASSICAL_TOKENS
@@ -86,9 +87,18 @@ def check_stage_gate(root: Path, claim: str) -> str | None:
     script = root / "scripts" / "stage_gate.py"
     if not script.exists():
         return "stage_gate_missing_for_tool_micro" if claim == "tool_micro" else "stage_gate_missing_for_engine"
+    try:
+        cache_key = (str(script.resolve(strict=False)), claim, script.stat().st_mtime_ns)
+    except OSError:
+        cache_key = (str(script.resolve(strict=False)), claim, -1)
+    if cache_key in _STAGE_GATE_CACHE:
+        return _STAGE_GATE_CACHE[cache_key]
     proc = subprocess.run([sys.executable, str(script), "--claim", claim], cwd=str(root), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
     if proc.returncode != 0:
-        return "stage_gate_rejects_engine" if claim == "engine" else f"stage_gate_rejects_{claim}"
+        finding = "stage_gate_rejects_engine" if claim == "engine" else f"stage_gate_rejects_{claim}"
+        _STAGE_GATE_CACHE[cache_key] = finding
+        return finding
+    _STAGE_GATE_CACHE[cache_key] = None
     return None
 
 
@@ -110,6 +120,49 @@ def _load_bearing_tool_families(result_payload: dict[str, Any]) -> set[str]:
         for tool, depth in depths.items()
         if str(depth) == "load_bearing"
     }
+
+
+def _tool_role_sources(result_payload: dict[str, Any]) -> dict[str, str]:
+    manifest = result_payload.get("tool_manifest") or result_payload.get("TOOL_MANIFEST") or {}
+    raw = result_payload.get("tool_role_source") or result_payload.get("TOOL_ROLE_SOURCE") or {}
+    sources: dict[str, str] = {}
+    if isinstance(raw, dict):
+        sources.update(
+            {
+                str(tool): str(source).strip().lower().replace("_", "-")
+                for tool, source in raw.items()
+            }
+        )
+    if isinstance(manifest, dict):
+        for tool, entry in manifest.items():
+            if not isinstance(entry, dict):
+                continue
+            source = (
+                entry.get("role_source")
+                or entry.get("tool_role_source")
+                or entry.get("integration_source")
+            )
+            if source:
+                sources.setdefault(str(tool), str(source).strip().lower().replace("_", "-"))
+                continue
+            reason = str(entry.get("reason") or "").lower()
+            if "transitive" in reason or "through enginecore" in reason or "through engine_core" in reason:
+                sources.setdefault(str(tool), "transitive")
+    return sources
+
+
+def _local_load_bearing_tool_families(result_payload: dict[str, Any]) -> set[str]:
+    depths = result_payload.get("tool_integration_depth") or result_payload.get("TOOL_INTEGRATION_DEPTH") or {}
+    sources = _tool_role_sources(result_payload)
+    local_tools: set[str] = set()
+    for tool, depth in depths.items():
+        if str(depth) != "load_bearing":
+            continue
+        source = sources.get(str(tool)) or sources.get(_tool_family(str(tool)))
+        if source in {"transitive", "upstream", "imported", "delegated", "engine-core", "engine_core"}:
+            continue
+        local_tools.add(_tool_family(str(tool)))
+    return local_tools
 
 
 def _result_execution_kind(result_payload: dict[str, Any]) -> str:
@@ -199,6 +252,7 @@ def validate_admission(
 
     result_payload = _load_json(canonical) if canonical.exists() else {}
     load_bearing = _load_bearing_tool_families(result_payload)
+    local_load_bearing = _local_load_bearing_tool_families(result_payload)
     contract_tool = _tool_family(str(contract.get("tool_target") or ""))
     if contract_tool and load_bearing and contract_tool not in load_bearing:
         findings.append("admission_artifact_tool_target_not_load_bearing")
@@ -239,8 +293,8 @@ def validate_admission(
         or "nonclassical" in claim_text
         or hidden_nonclassical
     )
-    if strict_nonclassical and "pytorch" not in load_bearing:
-        findings.append("nonclassical_requires_load_bearing_pytorch")
+    if strict_nonclassical and "pytorch" not in local_load_bearing:
+        findings.append("nonclassical_requires_local_load_bearing_pytorch")
     if hidden_nonclassical and result_payload.get("classification") == "classical_baseline":
         baseline_ceiling = " ".join(
             str(contract.get(k, "")) for k in ("nonclassical_claim_ceiling", "claim_ceiling", "promotion_boundary")

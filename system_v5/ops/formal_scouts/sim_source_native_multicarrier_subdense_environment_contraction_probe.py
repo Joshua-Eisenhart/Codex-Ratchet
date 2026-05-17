@@ -85,6 +85,16 @@ REQUIRED_STAGE_FIELDS = [
     "next_policy",
     "model_after",
 ]
+FIELD_ABLATION_FIELDS = [
+    "model_before",
+    "prediction",
+    "observation",
+    "falsifier_graveyard",
+    "next_policy",
+]
+FIELD_SIGNAL_WEIGHT = 5e-5
+FIELD_ABLATION_GAP_FLOOR = 1e-6
+FIELD_COMPONENT_VARIANCE_FLOOR = 1e-10
 ENVIRONMENT_SIGNATURE_COLUMNS = [
     "two_site_entropy",
     "two_site_purity",
@@ -498,16 +508,114 @@ def apply_physical_slot(site: TensorSite, operator: str, sign: int, strength: fl
     site.data = np.tensordot(site.data, unitary.T, axes=([site.axes["phys"]], [0])).astype(DTYPE)
 
 
-def source_strength(record: dict[str, Any], drive: float, memory_drive: float = 0.0) -> float:
+def stable_field_bucket(payload: Any, modulus: int = 997) -> float:
+    digest = hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
+    return float(int(digest[:8], 16) % modulus) / float(modulus)
+
+
+def science_method_field_components(record: dict[str, Any]) -> dict[str, float]:
+    model_before = record.get("model_before", {})
+    prediction = record.get("prediction", {})
+    observation = record.get("observation", {})
+    graveyard = record.get("falsifier_graveyard", {})
+    next_policy = record.get("next_policy", {})
+
+    before_bloch = np.asarray(model_before.get("bloch", [0.0, 0.0, 0.0]), dtype=float)
+    before_component = float(
+        np.mean(before_bloch)
+        + 0.25 * float(model_before.get("entropy", 0.0))
+        + 0.10 * float(model_before.get("purity", 0.0))
+    )
+
+    pred_dist = np.asarray(prediction.get("observation_distribution", []), dtype=float)
+    if pred_dist.size:
+        pred_weights = np.linspace(-0.5, 0.5, pred_dist.size)
+        pred_component = float(2.0 * np.dot(pred_dist, pred_weights))
+    else:
+        pred_component = 0.0
+
+    obs_dist = np.asarray(observation.get("observation_distribution", []), dtype=float)
+    if obs_dist.size:
+        obs_weights = np.linspace(0.5, -0.5, obs_dist.size)
+        obs_component = float(2.0 * np.dot(obs_dist, obs_weights))
+    else:
+        obs_component = 0.0
+
+    controls = graveyard.get("matched_controls_required_downstream", [])
+    slot_contract = graveyard.get("slot_contract", {})
+    graveyard_component = float(
+        0.10 * len(controls)
+        + stable_field_bucket(
+            {
+                "controls": controls,
+                "ordered_token": slot_contract.get("ordered_token"),
+                "operator": slot_contract.get("operator"),
+                "operator_sign": slot_contract.get("operator_sign"),
+            }
+        )
+    )
+
+    next_policy_component = float(
+        stable_field_bucket(
+            {
+                "policy_id": next_policy.get("policy_id"),
+                "operator": next_policy.get("operator"),
+                "operator_sign": next_policy.get("operator_sign"),
+                "ordered_token": next_policy.get("ordered_token"),
+            }
+        )
+    )
+    return {
+        "model_before": before_component,
+        "prediction": pred_component,
+        "observation": obs_component,
+        "falsifier_graveyard": graveyard_component,
+        "next_policy": next_policy_component,
+    }
+
+
+def science_method_field_signal(record: dict[str, Any], ablate_stage_field: str | None = None) -> float:
+    components = science_method_field_components(record)
+    if ablate_stage_field is not None:
+        if ablate_stage_field not in components:
+            raise ValueError(f"unknown stage field ablation: {ablate_stage_field}")
+        components[ablate_stage_field] = 0.0
+    return float(sum(np.tanh(value) for value in components.values()))
+
+
+def field_component_variance_report(records: list[dict[str, Any]]) -> dict[str, Any]:
+    values = {
+        field: np.asarray([science_method_field_components(record)[field] for record in records], dtype=float)
+        for field in FIELD_ABLATION_FIELDS
+    }
+    variances = {field: float(np.var(arr)) for field, arr in values.items()}
+    return {
+        "pass": all(var > FIELD_COMPONENT_VARIANCE_FLOOR for var in variances.values()),
+        "field_component_variance_floor": FIELD_COMPONENT_VARIANCE_FLOOR,
+        "variances": variances,
+        "means": {field: float(np.mean(arr)) for field, arr in values.items()},
+    }
+
+
+def source_strength(
+    record: dict[str, Any],
+    drive: float,
+    memory_drive: float = 0.0,
+    *,
+    ablate_stage_field: str | None = None,
+) -> float:
     fep = record.get("fep_efe_score", {})
     repair = record.get("update_repair", {})
+    manifold_delta = float(repair.get("manifold_projection_delta_norm", 0.0))
+    science_signal = science_method_field_signal(record, ablate_stage_field)
     return float(
         0.003
         + 0.00035 * float(record.get("slot_delta_norm", 0.0))
         + 0.00010 * float(record.get("entropy", 0.0))
         + 0.00008 * float(fep.get("expected_free_energy_proxy", 0.0))
         + 0.00012 * float(fep.get("prediction_error_l2", 0.0))
-        + 0.00008 * float(repair.get("manifold_projection_delta_norm", 0.0))
+        + 0.00008 * manifold_delta
+        + FIELD_SIGNAL_WEIGHT * science_signal
         + 0.08000 * float(drive)
         + 0.02000 * float(memory_drive)
     )
@@ -601,6 +709,8 @@ def run_carrier(
     *,
     zero_axis0: bool = False,
     zero_memory: bool = False,
+    zero_manifold: bool = False,
+    ablate_stage_field: str | None = None,
     identity_control: bool = False,
 ) -> dict[str, Any]:
     carrier = make_carrier(family, shape, seed)
@@ -609,11 +719,17 @@ def run_carrier(
     before_rows = environment_rows(carrier)
     axis0_drives = []
     memory_drives = []
+    manifold_deltas = []
     stage_hashes = []
     for idx, record in enumerate(records):
         site = carrier.sites[site_order[idx % len(site_order)]]
         drive = 0.0 if zero_axis0 else axis0_drive(axis0, idx)
         mem_drive = 0.0 if zero_memory else holodeck_memory_drive(memory, idx)
+        source_record = record
+        if zero_manifold:
+            source_record = copy.deepcopy(record)
+            source_record.setdefault("update_repair", {})["manifold_projection_delta_norm"] = 0.0
+        manifold_deltas.append(float(source_record.get("update_repair", {}).get("manifold_projection_delta_norm", 0.0)))
         axis0_drives.append(drive)
         memory_drives.append(mem_drive)
         stage_hashes.append(record["model_after"]["density_hash"])
@@ -621,9 +737,9 @@ def run_carrier(
             continue
         apply_physical_slot(
             site,
-            str(record["operator"]),
-            int(record["operator_sign"]),
-            source_strength(record, drive, mem_drive),
+            str(source_record["operator"]),
+            int(source_record["operator_sign"]),
+            source_strength(source_record, drive, mem_drive, ablate_stage_field=ablate_stage_field),
         )
     after_rows = environment_rows(carrier)
     before_sig = signature_from_rows(before_rows)
@@ -638,6 +754,8 @@ def run_carrier(
         "sampled_environment_edges": len(after_rows),
         "zero_axis0": bool(zero_axis0),
         "zero_memory": bool(zero_memory),
+        "zero_manifold": bool(zero_manifold),
+        "ablate_stage_field": ablate_stage_field,
         "identity_control": bool(identity_control),
         "stage_records_consumed": len(records),
         "unique_model_after_hashes_consumed": len(set(stage_hashes)),
@@ -647,6 +765,8 @@ def run_carrier(
         "holodeck_memory_ready": bool(memory.get("ready")),
         "holodeck_memory_drive_mean_abs": float(np.mean(np.abs(memory_drives))),
         "holodeck_memory_drive_variance": float(np.var(memory_drives)),
+        "manifold_projection_delta_mean_abs": float(np.mean(np.abs(manifold_deltas))),
+        "manifold_projection_delta_variance": float(np.var(manifold_deltas)),
         "quimb_count_check": quimb_check,
         "environment_signature": after_sig,
         "environment_shift_from_initial": float(np.linalg.norm(after_sig - before_sig)),
@@ -721,6 +841,7 @@ def dependency_graph() -> dict[str, Any]:
         ("PEPS.local_environment", "balanced_gauge_control"),
         ("PEPS3D.local_environment", "finite_size_control"),
         ("axis0_zeroed_control", "repair_receipt"),
+        ("manifold_zeroed_control", "repair_receipt"),
         ("static_no_dense_guard", "repair_receipt"),
     ]
     graph.add_edges_from(edges)
@@ -755,6 +876,26 @@ def memory_zeroed_gaps(full_rows: dict[str, dict[str, Any]], zero_rows: dict[str
     }
 
 
+def manifold_zeroed_gaps(full_rows: dict[str, dict[str, Any]], zero_rows: dict[str, dict[str, Any]]) -> dict[str, float]:
+    return {
+        key: float(np.linalg.norm(full_rows[key]["environment_signature"] - zero_rows[key]["environment_signature"]))
+        for key in sorted(full_rows)
+    }
+
+
+def field_ablation_signature_gaps(
+    full_rows: dict[str, dict[str, Any]],
+    ablation_rows: dict[str, dict[str, dict[str, Any]]],
+) -> dict[str, dict[str, float]]:
+    return {
+        field: {
+            key: float(np.linalg.norm(full_rows[key]["environment_signature"] - rows[key]["environment_signature"]))
+            for key in sorted(full_rows)
+        }
+        for field, rows in ablation_rows.items()
+    }
+
+
 def main() -> int:
     started = time.time()
     records = run_source_records()
@@ -768,16 +909,37 @@ def main() -> int:
     full_rows: dict[str, dict[str, Any]] = {}
     zero_rows: dict[str, dict[str, Any]] = {}
     memory_zero_rows: dict[str, dict[str, Any]] = {}
+    manifold_zero_rows: dict[str, dict[str, Any]] = {}
+    field_ablation_rows: dict[str, dict[str, dict[str, Any]]] = {
+        field: {} for field in FIELD_ABLATION_FIELDS
+    }
     identity_rows: dict[str, dict[str, Any]] = {}
     for family, shape, seed in carrier_specs():
         key = f"{family}_{int(np.prod(shape))}"
         full_rows[key] = run_carrier(records, axis0, memory, family, shape, seed, zero_axis0=False, zero_memory=False, identity_control=False)
         zero_rows[key] = run_carrier(records, axis0, memory, family, shape, seed, zero_axis0=True, zero_memory=False, identity_control=False)
         memory_zero_rows[key] = run_carrier(records, axis0, memory, family, shape, seed, zero_axis0=False, zero_memory=True, identity_control=False)
+        manifold_zero_rows[key] = run_carrier(records, axis0, memory, family, shape, seed, zero_axis0=False, zero_memory=False, zero_manifold=True, identity_control=False)
+        for field in FIELD_ABLATION_FIELDS:
+            field_ablation_rows[field][key] = run_carrier(
+                records,
+                axis0,
+                memory,
+                family,
+                shape,
+                seed,
+                zero_axis0=False,
+                zero_memory=False,
+                ablate_stage_field=field,
+                identity_control=False,
+            )
         identity_rows[key] = run_carrier(records, axis0, memory, family, shape, seed, zero_axis0=True, zero_memory=True, identity_control=True)
 
     axis0_gaps = axis0_zeroed_gaps(full_rows, zero_rows)
     memory_gaps = memory_zeroed_gaps(full_rows, memory_zero_rows)
+    manifold_gaps = manifold_zeroed_gaps(full_rows, manifold_zero_rows)
+    field_report = field_component_variance_report(records)
+    field_gaps = field_ablation_signature_gaps(full_rows, field_ablation_rows)
     identity_gaps = {
         key: float(identity_rows[key]["environment_shift_from_initial"])
         for key in sorted(identity_rows)
@@ -789,9 +951,9 @@ def main() -> int:
     quimb_local_api = quimb_local_environment_api_report(records, axis0, memory)
 
     repair_receipt = {
-        "weak_link": "PEPS/PEPS3D campaign lacked a no-dense downstream consumer of EngineCore science-method fields plus the plural Axis0 router.",
+        "weak_link": "PEPS/PEPS3D campaign lacked a no-dense downstream consumer of EngineCore science-method fields plus the plural Axis0 router, and downstream carriers had not isolated whether the manifold projection term was load-bearing.",
         "target_file_or_result": str(OUT_PATH),
-        "admission_rule_improved": "No-dense PEPS/PEPS3D environment scouts must avoid global dense vector readout, consume stage science fields and Axis0 router outputs, and include axis0-zeroed, gauge, and finite-size controls.",
+        "admission_rule_improved": "No-dense PEPS/PEPS3D environment scouts must avoid global dense vector readout, consume stage science fields and Axis0 router outputs, and include axis0-zeroed, memory-zeroed, manifold-zeroed, gauge, and finite-size controls.",
         "dependency_subset": [
             "EngineCore science_method_stage_record_v1",
             "macro_sim_stage_record_science_method_contract receipt",
@@ -816,6 +978,9 @@ def main() -> int:
         "primary_control/result": {
             "axis0_zeroed_environment_signature_gaps": axis0_gaps,
             "holodeck_memory_zeroed_environment_signature_gaps": memory_gaps,
+            "manifold_zeroed_environment_signature_gaps": manifold_gaps,
+            "science_method_field_component_variance": field_report,
+            "science_method_field_ablation_signature_gaps": field_gaps,
             "identity_environment_shift_from_initial": identity_gaps,
             "balanced_gauge_control_by_carrier": {key: row["gauge_control"] for key, row in full_rows.items()},
         },
@@ -853,6 +1018,28 @@ def main() -> int:
             "memory_signal": memory,
             "memory_drive_mean_abs": {key: row["holodeck_memory_drive_mean_abs"] for key, row in full_rows.items()},
         },
+        "manifold_projection_delta_drives_local_environment_signature": {
+            "pass": all(gap > AXIS0_GAP_FLOOR for gap in manifold_gaps.values()),
+            "manifold_zeroed_gaps": manifold_gaps,
+            "full_manifold_projection_delta_mean_abs": {
+                key: row["manifold_projection_delta_mean_abs"] for key, row in full_rows.items()
+            },
+            "zeroed_manifold_projection_delta_mean_abs": {
+                key: row["manifold_projection_delta_mean_abs"] for key, row in manifold_zero_rows.items()
+            },
+        },
+        "science_method_field_components_drive_local_environment_signature": {
+            "pass": field_report["pass"]
+            and all(
+                gap > FIELD_ABLATION_GAP_FLOOR
+                for gaps in field_gaps.values()
+                for gap in gaps.values()
+            ),
+            "field_component_variance": field_report,
+            "field_ablation_gap_floor": FIELD_ABLATION_GAP_FLOOR,
+            "field_ablation_signature_gaps": field_gaps,
+            "field_signal_weight": FIELD_SIGNAL_WEIGHT,
+        },
         "finite_size_multicarrier_environment_rows_execute": {
             "pass": {"mps_16", "peps_16", "peps3d_32", "peps3d_64"}.issubset(full_rows)
             and full_rows["peps3d_32"]["site_count"] < full_rows["peps3d_64"]["site_count"],
@@ -874,6 +1061,21 @@ def main() -> int:
         "holodeck_memory_zeroed_control_changes_environment_signature": {
             "pass": all(gap > AXIS0_GAP_FLOOR for gap in memory_gaps.values()),
             "memory_zeroed_gaps": memory_gaps,
+        },
+        "manifold_zeroed_control_changes_environment_signature": {
+            "pass": all(gap > AXIS0_GAP_FLOOR for gap in manifold_gaps.values()),
+            "manifold_zeroed_gaps": manifold_gaps,
+        },
+        "science_method_field_ablation_controls_change_environment_signature": {
+            "pass": field_report["pass"]
+            and all(
+                gap > FIELD_ABLATION_GAP_FLOOR
+                for gaps in field_gaps.values()
+                for gap in gaps.values()
+            ),
+            "field_component_variance": field_report,
+            "field_ablation_gap_floor": FIELD_ABLATION_GAP_FLOOR,
+            "field_ablation_signature_gaps": field_gaps,
         },
         "identity_update_does_not_count_as_environment_dynamics": {
             "pass": all(gap < AXIS0_GAP_FLOOR for gap in identity_gaps.values()),

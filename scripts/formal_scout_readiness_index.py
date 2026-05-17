@@ -77,13 +77,16 @@ def result_stem(path: Path) -> str:
 
 
 def expected_script_for_result(path: Path) -> Path:
-    return SCOUT_ROOT / f"sim_{result_stem(path)}.py"
+    stem = result_stem(path)
+    if stem.startswith("sim_"):
+        return SCOUT_ROOT / f"{stem}.py"
+    return SCOUT_ROOT / f"sim_{stem}.py"
 
 
 def alternate_script_for_result(path: Path) -> Path:
     stem = result_stem(path)
     if stem.startswith("sim_"):
-        return SCOUT_ROOT / f"{stem}.py"
+        return SCOUT_ROOT / f"sim_{stem}.py"
     return expected_script_for_result(path)
 
 

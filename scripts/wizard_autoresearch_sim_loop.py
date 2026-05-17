@@ -25,6 +25,13 @@ def run(command: list[str], *, cwd: Path = REPO_ROOT) -> dict[str, Any]:
     return {"command": command, "returncode": proc.returncode, "stdout": proc.stdout[-4000:]}
 
 
+def qit_evidence_index_command(evidence_index: Path, *, skip_external_scan: bool = False) -> list[str]:
+    command = [sys.executable, "scripts/qit_engine_evidence_index.py", "--out", str(evidence_index)]
+    if skip_external_scan:
+        command.append("--skip-external-scan")
+    return command
+
+
 def evidence_counts(evidence_index: Path | None = None) -> dict[str, Any]:
     evidence_index = evidence_index or EVIDENCE_INDEX
     if not evidence_index.exists():
@@ -77,6 +84,14 @@ def stage_gate_summary(stage_gate: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def first_actionable_acceptance_target(targets: list[dict[str, Any]]) -> dict[str, Any] | None:
+    for target in targets:
+        action = str(target.get("next_action") or "")
+        if action and not action.startswith("do_not_promote"):
+            return target
+    return targets[0] if targets else None
+
+
 def qit_evidence_summary(evidence_index: Path) -> dict[str, Any]:
     if not evidence_index.exists():
         return {
@@ -124,6 +139,7 @@ def qit_evidence_summary(evidence_index: Path) -> dict[str, Any]:
     summary = payload.get("summary") or {}
     external_scan = payload.get("out_of_scope_qit_result_scan") or {}
     triage = external_scan.get("triage") or {}
+    next_acceptance_targets = payload.get("next_acceptance_targets") or []
     return {
         "exists": True,
         "parse_error": False,
@@ -149,9 +165,9 @@ def qit_evidence_summary(evidence_index: Path) -> dict[str, Any]:
             "first_provisional_target": (triage.get("provisional_rerun_targets") or [None])[0],
             "triage_boundary": triage.get("triage_boundary"),
         },
-        "next_acceptance_target_count": len(payload.get("next_acceptance_targets") or []),
-        "next_acceptance_targets": payload.get("next_acceptance_targets") or [],
-        "first_next_acceptance_target": (payload.get("next_acceptance_targets") or [None])[0],
+        "next_acceptance_target_count": len(next_acceptance_targets),
+        "next_acceptance_targets": next_acceptance_targets,
+        "first_next_acceptance_target": first_actionable_acceptance_target(next_acceptance_targets),
     }
 
 
@@ -221,9 +237,9 @@ def manifest_next_action(latest_decision: dict[str, Any], iteration_manifest: li
     if "accepted_qit_engine_evidence_zero" in blockers:
         latest_iteration = iteration_manifest[-1] if iteration_manifest else {}
         qit_summary = latest_iteration.get("qit_evidence_summary") or {}
-        next_acceptance_targets = qit_summary.get("next_acceptance_targets") or []
-        if next_acceptance_targets:
-            next_action = str(next_acceptance_targets[0].get("next_action") or "")
+        first_target = qit_summary.get("first_next_acceptance_target")
+        if first_target:
+            next_action = str(first_target.get("next_action") or "")
             if next_action == "create_or_repair_wizard_sim_admission":
                 return "create_or_repair_wizard_sim_admission"
             return next_action or "admit_or_repair_micro_qit_evidence_before_runner_launch"
@@ -1057,7 +1073,12 @@ def main() -> int:
         (out_dir / "premortem.json").write_text(premortem_text, encoding="utf-8")
         helper = run([sys.executable, "scripts/helper_process_audit.py", "--strict"])
         helper_summary = helper_process_summary(helper)
-        qit_index_write = run([sys.executable, "scripts/qit_engine_evidence_index.py", "--out", str(evidence_index)])
+        qit_index_write = run(
+            qit_evidence_index_command(
+                evidence_index,
+                skip_external_scan=False,
+            )
+        )
         stage_gate = run([sys.executable, "scripts/stage_gate.py"])
         stage_summary = stage_gate_summary(stage_gate)
         qit_index_stdout_path.write_text(qit_index_write["stdout"], encoding="utf-8")

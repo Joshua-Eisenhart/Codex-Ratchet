@@ -16,6 +16,8 @@ import wizard_sim_admission
 QIT_TOKENS = ("qit", "engine", "hopf", "weyl", "spinor", "pauli", "clifford", "density")
 EXTERNAL_SCAN_ROOTS = ("system_v4", "system_v5", "runs")
 EXTERNAL_SCAN_SAMPLE_LIMIT = 50
+TRACKED_ENTRY_SAMPLE_LIMIT = 100
+TRACKED_TARGET_SAMPLE_LIMIT = 200
 LATE_STAGE_RESULT_TOKENS = (
     "axis",
     "bridge",
@@ -93,6 +95,46 @@ def load_bearing_depths(payload: dict[str, Any]) -> dict[str, str]:
     }
 
 
+def tool_role_sources(payload: dict[str, Any]) -> dict[str, str]:
+    manifest = payload.get("tool_manifest") or payload.get("TOOL_MANIFEST") or {}
+    raw = payload.get("tool_role_source") or payload.get("TOOL_ROLE_SOURCE") or {}
+    role_sources: dict[str, str] = {}
+    if isinstance(raw, dict):
+        role_sources.update(
+            {
+                str(tool): str(source).strip().lower().replace("_", "-")
+                for tool, source in raw.items()
+            }
+        )
+    if isinstance(manifest, dict):
+        for tool, entry in manifest.items():
+            if not isinstance(entry, dict):
+                continue
+            source = (
+                entry.get("role_source")
+                or entry.get("tool_role_source")
+                or entry.get("integration_source")
+            )
+            if source:
+                role_sources.setdefault(str(tool), str(source).strip().lower().replace("_", "-"))
+                continue
+            reason = str(entry.get("reason") or "").lower()
+            if "transitive" in reason or "through enginecore" in reason or "through engine_core" in reason:
+                role_sources.setdefault(str(tool), "transitive")
+    return role_sources
+
+
+def local_load_bearing_depths(payload: dict[str, Any]) -> dict[str, str]:
+    role_sources = tool_role_sources(payload)
+    local_depths: dict[str, str] = {}
+    for tool, depth in load_bearing_depths(payload).items():
+        source = role_sources.get(tool) or role_sources.get(canonical_tool_name(tool))
+        if source in {"transitive", "upstream", "imported", "delegated", "engine-core", "engine_core"}:
+            continue
+        local_depths[tool] = depth
+    return local_depths
+
+
 def canonical_tool_name(tool: str) -> str:
     return receipt_schema.canonical_tool_name(tool)
 
@@ -108,14 +150,37 @@ def normalized_execution_kind(payload: dict[str, Any]) -> str:
     return normalized
 
 
+def execution_kind_optional_for_micro(path: Path, payload: dict[str, Any]) -> bool:
+    """Allow pure micro/capability rows to stay below bridge/nonclassical claims."""
+    claim = str(payload.get("claim_ceiling") or "").strip().lower()
+    haystack = " ".join(
+        [
+            path.stem.lower(),
+            str(payload.get("name") or "").lower(),
+            claim,
+            str(payload.get("promotion_condition") or "").lower(),
+            str(payload.get("blocked_until") or "").lower(),
+        ]
+    )
+    return claim == "qit_micro_only" or any(
+        token in haystack
+        for token in (
+            "tool_micro",
+            "capability_only",
+            "_capability",
+        )
+    )
+
+
 def tool_policy_blockers(payload: dict[str, Any]) -> list[str]:
     execution_kind = normalized_execution_kind(payload)
     load_bearing = {canonical_tool_name(tool) for tool in load_bearing_depths(payload)}
+    local_load_bearing = {canonical_tool_name(tool) for tool in local_load_bearing_depths(payload)}
     blockers: list[str] = []
     if execution_kind in {"bridge", "nonclassical"} and "numpy" in load_bearing:
         blockers.append("result:numpy_load_bearing_blocked_for_bridge_or_nonclassical")
-    if execution_kind == "nonclassical" and "pytorch" not in load_bearing:
-        blockers.append("result:nonclassical_requires_load_bearing_pytorch")
+    if execution_kind == "nonclassical" and "pytorch" not in local_load_bearing:
+        blockers.append("result:nonclassical_requires_local_load_bearing_pytorch")
     return blockers
 
 
@@ -124,6 +189,7 @@ def execution_kind_blockers(path: Path, payload: dict[str, Any]) -> list[str]:
         payload.get("classification") == "canonical"
         and has_qit_signal(path, payload)
         and not normalized_execution_kind(payload)
+        and not execution_kind_optional_for_micro(path, payload)
     ):
         return ["result:qit_execution_kind_missing"]
     return []
@@ -160,7 +226,7 @@ def external_triage_for(root: Path, path: Path, payload: dict[str, Any]) -> dict
     late_stage_tokens = [token for token in LATE_STAGE_RESULT_TOKENS if token in lower]
     receipt_schema_present = has_receipt_schema(payload)
     load_bearing = load_bearing_depths(payload)
-    policy_blockers = execution_kind_blockers(path, payload) + tool_policy_blockers(payload)
+    policy_blockers = tool_policy_blockers(payload)
     if policy_blockers:
         bucket = "source_bound_contract_repair_candidate" if source_exists else "canonical_but_source_unbound"
         next_action = "repair_tool_policy_before_any_admission"
@@ -463,6 +529,33 @@ def build_index(root: Path | None = None, *, include_external_scan: bool = True)
     }
 
 
+def compact_for_tracking(index: dict[str, Any]) -> dict[str, Any]:
+    """Keep tracked evidence index bounded while preserving routing counts.
+
+    `build_index()` intentionally returns full rows for local audits and unit
+    tests. The checked-in evidence file should stay small enough to review and
+    should not grow with every old result receipt restored to disk.
+    """
+    quarantine_entries = list(index.get("quarantine_entries") or [])
+    targets = list(index.get("next_acceptance_targets") or [])
+    entries = list(index.get("entries") or [])
+    out = dict(index)
+    out["entries"] = entries[:TRACKED_ENTRY_SAMPLE_LIMIT]
+    out["candidate_entries"] = list(index.get("candidate_entries") or [])
+    out["quarantine_entries"] = quarantine_entries[:TRACKED_ENTRY_SAMPLE_LIMIT]
+    out["next_acceptance_targets"] = targets[:TRACKED_TARGET_SAMPLE_LIMIT]
+    out["tracked_compaction"] = {
+        "full_audit_command": "scripts/qit_engine_evidence_index.py --include-entries",
+        "entry_sample_limit": TRACKED_ENTRY_SAMPLE_LIMIT,
+        "target_sample_limit": TRACKED_TARGET_SAMPLE_LIMIT,
+        "full_entry_count": len(entries),
+        "full_quarantine_entry_count": len(quarantine_entries),
+        "full_next_acceptance_target_count": len(targets),
+        "boundary": "tracked_index_is_bounded_sample_full_index_available_on_rerun",
+    }
+    return out
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo-root", default=str(repo_root()))
@@ -473,9 +566,15 @@ def main() -> int:
         action="store_true",
         help="Skip diagnostic scan across system_v4/system_v5/runs and refresh only the canonical QIT result surface.",
     )
+    parser.add_argument(
+        "--include-entries",
+        action="store_true",
+        help="Write the full entry/target lists instead of the bounded tracked sample.",
+    )
     args = parser.parse_args()
     index = build_index(Path(args.repo_root), include_external_scan=not args.skip_external_scan)
-    text = json.dumps(index, indent=2, sort_keys=True)
+    output_index = index if args.include_entries else compact_for_tracking(index)
+    text = json.dumps(output_index, indent=2, sort_keys=True)
     if args.out:
         Path(args.out).parent.mkdir(parents=True, exist_ok=True)
         Path(args.out).write_text(text + "\n", encoding="utf-8")

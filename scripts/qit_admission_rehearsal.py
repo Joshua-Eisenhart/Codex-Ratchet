@@ -97,7 +97,7 @@ def build_admission(
     demotion = str(payload.get("demotion_condition") or "demote if this micro fixture fails")
     out_of_scope = payload.get("out_of_scope") if isinstance(payload.get("out_of_scope"), list) else ["no promotion"]
     return {
-        "schema": "wizard_sim_admission_v4_1",
+        "schema": "wizard_sim_admission_v4_2",
         "basename": basename,
         "sim_path": sim_rel,
         "status": "queue_ready",

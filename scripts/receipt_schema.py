@@ -50,6 +50,15 @@ TOOL_ALIASES = {
     "z3": "z3",
 }
 
+TRANSITIVE_ROLE_VALUES = {
+    "transitive",
+    "upstream",
+    "imported",
+    "delegated",
+    "engine_core",
+    "engine-core",
+}
+
 
 def repo_root() -> Path:
     return Path(__file__).resolve().parents[1]
@@ -95,6 +104,36 @@ def normalized_execution_kind(value: Any) -> str:
     if normalized == "classical":
         return "classical"
     return ""
+
+
+def _tool_role_sources(payload: dict[str, Any], manifest: dict[str, Any]) -> dict[str, str]:
+    raw = payload.get("tool_role_source") or payload.get("TOOL_ROLE_SOURCE") or {}
+    role_sources: dict[str, str] = {}
+    if isinstance(raw, dict):
+        for tool, source in raw.items():
+            role_sources[str(tool)] = str(source).strip().lower().replace("_", "-")
+    for tool, entry in manifest.items():
+        if not isinstance(entry, dict):
+            continue
+        source = (
+            entry.get("role_source")
+            or entry.get("tool_role_source")
+            or entry.get("integration_source")
+        )
+        if source:
+            role_sources.setdefault(str(tool), str(source).strip().lower().replace("_", "-"))
+            continue
+        reason = str(entry.get("reason") or "").lower()
+        if "transitive" in reason or "through enginecore" in reason or "through engine_core" in reason:
+            role_sources.setdefault(str(tool), "transitive")
+    return role_sources
+
+
+def _is_transitive_role(tool: str, role_sources: dict[str, str]) -> bool:
+    direct = role_sources.get(tool)
+    canonical = role_sources.get(canonical_tool_name(tool))
+    values = {value for value in (direct, canonical) if value}
+    return any(value in TRANSITIVE_ROLE_VALUES for value in values)
 
 
 def summary_all_pass(payload: dict[str, Any]) -> bool | None:
@@ -310,6 +349,8 @@ def validate_result_payload(
             continue
         manifest_by_tool[tool] = entry
 
+    role_sources = _tool_role_sources(payload, manifest_by_tool)
+
     depth_by_tool: dict[str, Any] = {}
     for raw_tool, level in depth.items():
         tool = str(raw_tool)
@@ -387,6 +428,11 @@ def validate_result_payload(
                 _finding("load_bearing_tool_not_tried_in_manifest", "hard", tool=tool)
             )
 
+    local_load_bearing_canonical = {
+        canonical_tool_name(tool)
+        for tool in facts["load_bearing_tools"]
+        if not _is_transitive_role(tool, role_sources)
+    }
     load_bearing_canonical = {canonical_tool_name(tool) for tool in facts["load_bearing_tools"]}
     if execution_kind in {"bridge", "nonclassical"} and "numpy" in load_bearing_canonical:
         hard_findings.append(
@@ -396,12 +442,13 @@ def validate_result_payload(
                 sim_execution_kind=execution_kind,
             )
         )
-    if execution_kind == "nonclassical" and "pytorch" not in load_bearing_canonical:
+    if execution_kind == "nonclassical" and "pytorch" not in local_load_bearing_canonical:
         hard_findings.append(
             _finding(
-                "nonclassical_requires_load_bearing_pytorch",
+                "nonclassical_requires_local_load_bearing_pytorch",
                 "hard",
                 load_bearing_tools=sorted(load_bearing_canonical),
+                local_load_bearing_tools=sorted(local_load_bearing_canonical),
             )
         )
 

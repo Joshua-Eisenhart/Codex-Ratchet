@@ -2,9 +2,9 @@
 """Size-normalized PEPS3D local-environment scaling scout.
 
 This repair consumes the variable-qubit LiRPA-gated multicarrier receipt and
-tests whether its admitted local-sensitive PEPS3D32/PEPS3D64 signal survives
-normalization by the honest PEPS3D edge denominator. It keeps the compressed
-global-summary PEPS3D64 blocker intact.
+tests whether its admitted PEPS3D32/PEPS3D64 signal survives normalization by
+the honest PEPS3D edge denominator. It preserves the upstream compressed-summary
+status explicitly instead of assuming it is always blocked.
 """
 
 from __future__ import annotations
@@ -181,14 +181,21 @@ def compare_peps3d(rows: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def compressed_summary_blocker(upstream_data: dict[str, Any]) -> dict[str, Any]:
+def compressed_summary_status(upstream_data: dict[str, Any]) -> dict[str, Any]:
     blocker = (upstream_data.get("explicit_blockers") or {}).get("compressed_global_summary_peps3d64_scaling", {})
+    upstream_axis0 = upstream_data.get("axis0_outputs_or_blockers") or {}
+    robust = upstream_axis0.get("robust_peps3d64_scaling") or {}
+    compressed_admitted = bool(robust.get("compressed_summary_admitted"))
     return {
-        "pass": bool(blocker and blocker.get("admitted") is False),
+        "pass": bool(compressed_admitted or (blocker and blocker.get("admitted") is False)),
+        "compressed_summary_admitted": compressed_admitted,
+        "upstream_status": robust.get("status"),
+        "upstream_claim": robust.get("claim"),
         "source_blocker": blocker,
         "claim": (
-            "Compressed global-summary PEPS3D64 scaling remains blocked; this scout only "
-            "tests whether the already-admitted local-sensitive signal survives size normalization."
+            "Compressed global-summary PEPS3D64 status is inherited from the upstream "
+            "variable-qubit receipt and recorded explicitly; this scout does not silently "
+            "preserve a stale blocker or raise the claim ceiling."
         ),
     }
 
@@ -202,7 +209,7 @@ def dependency_graph() -> dict[str, Any]:
         ("lirpa_policy_bound_variable_qubit_scaling", "peps3d64_local_environment_rms"),
         ("peps3d32_local_environment_rms", "size_normalized_ratio"),
         ("peps3d64_local_environment_rms", "size_normalized_ratio"),
-        ("compressed_global_summary_blocker", "claim_ceiling"),
+        ("compressed_global_summary_status", "claim_ceiling"),
         ("size_normalized_ratio", "repair_receipt"),
     ]
     graph.add_edges_from(edges)
@@ -214,18 +221,18 @@ def dependency_graph() -> dict[str, Any]:
     }
 
 
-def z3_normalization_witness(comparison: dict[str, Any], blocker: dict[str, Any]) -> dict[str, Any]:
+def z3_normalization_witness(comparison: dict[str, Any], compressed_status: dict[str, Any]) -> dict[str, Any]:
     solver = z3.Solver()
     normalized_admitted = z3.Bool("normalized_admitted")
-    blocker_preserved = z3.Bool("blocker_preserved")
+    compressed_status_recorded = z3.Bool("compressed_status_recorded")
     solver.add(normalized_admitted == bool(comparison["admitted_size_normalized_local_scaling"]))
-    solver.add(blocker_preserved == bool(blocker["pass"]))
-    solver.add(z3.Not(z3.And(normalized_admitted, blocker_preserved)))
+    solver.add(compressed_status_recorded == bool(compressed_status["pass"]))
+    solver.add(z3.Not(z3.And(normalized_admitted, compressed_status_recorded)))
     status = solver.check()
     return {
         "pass": status == z3.unsat,
         "solver_status": str(status),
-        "claim_ceiling": "Finite witness only: local size-normalized PEPS3D signal plus preserved compressed-summary blocker.",
+        "claim_ceiling": "Finite witness only: size-normalized PEPS3D signal plus explicit compressed-summary status.",
     }
 
 
@@ -245,14 +252,14 @@ def main() -> int:
         "peps3d64": {},
         "denominator_note": "required PEPS3D rows missing",
     }
-    blocker = compressed_summary_blocker(data)
+    compressed_status = compressed_summary_status(data)
     graph = dependency_graph()
-    z3_witness = z3_normalization_witness(comparison, blocker)
+    z3_witness = z3_normalization_witness(comparison, compressed_status)
 
     repair_receipt = {
-        "weak_link": "The variable-qubit LiRPA scout admitted PEPS3D64 only through local-sensitive RMS while the compressed global summary stayed attenuated; it did not test whether the local signal survives honest size normalization.",
+        "weak_link": "The variable-qubit LiRPA scout admitted finite PEPS3D64 scaling, but the downstream size-normalized scout still assumed the old compressed-summary blocker and had not retested honest denominator discipline after Axis0 guard filtering.",
         "target_file_or_result": str(OUT_PATH),
-        "admission_rule_improved": "A PEPS3D64 local-sensitive scaling repair must survive normalization by total PEPS3D edge count and sampled readout edge count, while preserving the compressed-global-summary blocker.",
+        "admission_rule_improved": "A PEPS3D64 scaling repair must survive normalization by total PEPS3D edge count and sampled readout edge count, while recording the upstream compressed-summary status explicitly.",
         "dependency_subset": [
             "lirpa_policy_bound_variable_qubit_scaling receipt",
             "auto_LiRPA policy-bound gate consumed upstream",
@@ -281,7 +288,7 @@ def main() -> int:
         "primary_control/result": {
             "comparison": comparison,
             "matched_controls": ["flat_gate", "shuffled_gate", "zero_gate"],
-            "compressed_summary_blocker": blocker,
+            "compressed_summary_status": compressed_status,
         },
         "axis0_outputs_or_blockers": {
             "axis0_consumed_upstream": bool(
@@ -297,7 +304,7 @@ def main() -> int:
             "opus_max": "not_counted_this_local_repair; external audits are proposal-only until local receipts exist",
         },
         "promotion_ceiling": CLAIM_CEILING,
-        "next_step": "If admitted, add this size-normalization scout downstream of variable-qubit scaling in the integrated suite; next larger repair is true PEPS3D environment contraction, not a higher claim ceiling.",
+        "next_step": "Use this denominator-discipline scout downstream of variable-qubit scaling; next larger repair is true PEPS3D environment contraction, not a higher claim ceiling.",
     }
 
     positive = {
@@ -325,7 +332,7 @@ def main() -> int:
         "z3_size_normalization_witness_executes": z3_witness,
     }
     graveyards = {
-        "compressed_global_summary_is_not_promoted": blocker,
+        "compressed_global_summary_status_is_explicit_not_stale": compressed_status,
         "sampled_edge_normalization_is_not_confused_with_total_edge_normalization": {
             "pass": bool(
                 comparison.get("peps3d32", {}).get("edge_count")
@@ -371,7 +378,7 @@ def main() -> int:
                 upstream.get("exists")
                 and data.get("all_pass") is True
                 and comparison["admitted_size_normalized_local_scaling"]
-                and blocker["pass"]
+                and compressed_status["pass"]
             ),
             "upstream_result_sha256": repair_receipt["before_baseline/hash"]["upstream_result_sha256"],
             "consumed_upstream_positive_sections": sorted(upstream_positive),
@@ -402,7 +409,11 @@ def main() -> int:
         "repair_receipt": repair_receipt,
         "axis0_outputs_or_blockers": repair_receipt["axis0_outputs_or_blockers"],
         "explicit_blockers": {
-            "compressed_global_summary_peps3d64_scaling": blocker,
+            **(
+                {"compressed_global_summary_peps3d64_scaling": compressed_status["source_blocker"]}
+                if compressed_status.get("source_blocker")
+                else {}
+            ),
             "full_peps3d_environment_theorem": {
                 "admitted": False,
                 "claim": "Size-normalized local RMS is not a full PEPS3D environment contraction theorem.",

@@ -155,26 +155,64 @@ LEGO_CONTRACTS = {
     },
     "lego_hopf_projection": {
         "module": lego_hopf_projection,
-        "role": "real_embedding of unit spinor (Hopf base)",
-        "consumed_output": "torch.complex128 unit spinor",
-        "failure_condition": "non-finite real embedding",
-        "stage_gate_reason": "geometry lego stage requires Hopf primitive",
-        "primary_callable": lambda: lego_hopf_projection.real_embedding(
-            torch.tensor([1.0, 1.0j], dtype=torch.complex128) / math.sqrt(2)
+        "role": "real_embedding of unit spinor with positive-vs-negative-vs-zero adversarial fixture set",
+        "consumed_output": "tuple of (unit_spinor_out, zero_spinor_out, scaled_spinor_out)",
+        "failure_condition": "predicate must reject zero spinor AND non-unit scaled spinor (adversarial)",
+        "stage_gate_reason": "geometry lego stage requires Hopf primitive that DISTINGUISHES unit vs non-unit",
+        # R6 STRENGTHEN per adversarial Opus + codex: feed unit, zero, and scaled fixtures;
+        # predicate must produce DIFFERENT outputs for each, AND reject zero norm input.
+        "primary_callable": lambda: {
+            "unit": lego_hopf_projection.real_embedding(
+                torch.tensor([1.0, 1.0j], dtype=torch.complex128) / math.sqrt(2)
+            ),
+            "zero": lego_hopf_projection.real_embedding(
+                torch.tensor([0.0, 0.0], dtype=torch.complex128)
+            ),
+            "scaled": lego_hopf_projection.real_embedding(
+                torch.tensor([100.0, 100.0j], dtype=torch.complex128) / (100.0 * math.sqrt(2))
+            ),
+        },
+        "pass_predicate": lambda out: (
+            isinstance(out, dict)
+            and np.all(np.isfinite(out["unit"]))
+            # ADVERSARIAL: zero spinor should produce zero output (degenerate; flagged)
+            and float(np.linalg.norm(out["zero"])) < 1e-9
+            # SCALED == UNIT (rescaling-by-unit preserves Hopf projection)
+            and float(np.linalg.norm(out["scaled"] - out["unit"])) < 1e-6
+            # NONTRIVIAL: unit spinor [1,i]/sqrt(2) gives non-trivial Bloch coordinates
+            and float(np.linalg.norm(out["unit"])) > 0.1
         ),
-        "pass_predicate": lambda out: bool(np.all(np.isfinite(out))),
     },
     "lego_weyl_chirality": {
         "module": lego_weyl_chirality,
-        "role": "expectation of chirality Hamiltonian on spinor",
-        "consumed_output": "torch.complex128 spinor + Hamiltonian",
-        "failure_condition": "non-finite expectation",
-        "stage_gate_reason": "chirality lego stage anchor",
-        "primary_callable": lambda: lego_weyl_chirality.expectation(
-            torch.tensor([1.0, 0.0], dtype=torch.complex128),
-            torch.tensor([[1.0, 0.0], [0.0, -1.0]], dtype=torch.complex128),
+        "role": "expectation of chirality (sigma_z) on spinor; opposite-sign fixture set",
+        "consumed_output": "dict of (|+z>, |-z>, |+x>) expectations",
+        "failure_condition": "|+z> != +1 or |-z> != -1 or |+x> != 0 within tol; non-trivial chirality required",
+        "stage_gate_reason": "chirality lego stage anchor requires SIGN discrimination",
+        # R6 STRENGTHEN per adversarial: feed three known eigenstate fixtures;
+        # predicate must verify SIGN behavior, not just finiteness.
+        "primary_callable": lambda: {
+            "plus_z": float(lego_weyl_chirality.expectation(
+                torch.tensor([1.0, 0.0], dtype=torch.complex128),
+                torch.tensor([[1.0, 0.0], [0.0, -1.0]], dtype=torch.complex128),
+            )),
+            "minus_z": float(lego_weyl_chirality.expectation(
+                torch.tensor([0.0, 1.0], dtype=torch.complex128),
+                torch.tensor([[1.0, 0.0], [0.0, -1.0]], dtype=torch.complex128),
+            )),
+            "plus_x": float(lego_weyl_chirality.expectation(
+                torch.tensor([1.0, 1.0], dtype=torch.complex128) / math.sqrt(2),
+                torch.tensor([[1.0, 0.0], [0.0, -1.0]], dtype=torch.complex128),
+            )),
+        },
+        "pass_predicate": lambda out: (
+            isinstance(out, dict)
+            and abs(out["plus_z"] - 1.0) < 1e-9     # |+z> sigma_z = +1
+            and abs(out["minus_z"] - (-1.0)) < 1e-9  # |-z> sigma_z = -1
+            and abs(out["plus_x"] - 0.0) < 1e-9     # |+x> sigma_z = 0 (orthogonal axis)
+            # Sign discrimination: +1 vs -1 must differ
+            and (out["plus_z"] - out["minus_z"]) > 1.9
         ),
-        "pass_predicate": lambda out: math.isfinite(float(out)),
     },
     "lego_pauli_commutator": {
         "module": lego_pauli_commutator,
@@ -212,12 +250,16 @@ LEGO_CONTRACTS = {
         },
         "pass_predicate": lambda out: (
             isinstance(out, dict)
-            and isinstance(out.get("filled"), list) and len(out["filled"]) >= 1
+            and isinstance(out.get("filled"), list)
+            and isinstance(out.get("unfilled"), list)
+            # R6 FIX: require BOTH lists to have at least 2 entries (no short-circuit hole)
+            and len(out["filled"]) >= 2
+            and len(out["unfilled"]) >= 2
             and out["filled"][0] == 1  # Betti_0 = 1 (connected)
-            and (len(out["filled"]) < 2 or out["filled"][1] == 0)  # filled disk → no 1-cycles
-            and isinstance(out.get("unfilled"), list) and len(out["unfilled"]) >= 2
+            and out["filled"][1] == 0  # filled disk → no 1-cycles
+            and out["unfilled"][0] == 1  # connected
             and out["unfilled"][1] == 1  # unfilled cycle → exactly one 1-cycle
-            # CONTROL CONTRAST: filled and unfilled must differ in Betti_1
+            # CONTROL CONTRAST: filled and unfilled differ in Betti_1
             and out["filled"][1] != out["unfilled"][1]
         ),
     },
@@ -263,24 +305,39 @@ LEGO_CONTRACTS = {
     },
     "lego_bipartite_ci": {
         "module": lego_bipartite_ci,
-        "role": "bipartite cut mutual + conditional + coherent information; verify Bell-state values",
-        "consumed_output": "2-qubit pure state psi (Bell state fixture)",
-        "failure_condition": "cut_info non-finite OR Bell-state mutual_info != 2*ln(2) OR coherent_info != ln(2) within tol",
-        "stage_gate_reason": "coherent-info lego stage anchor",
-        # R4 STRENGTHEN: Bell state |00>+|11>/sqrt(2) gives known I = 2 ln(2) ≈ 1.386, CI = ln(2) ≈ 0.693
-        "primary_callable": lambda: lego_bipartite_ci.cut_info(
-            lego_bipartite_ci.density(
-                torch.tensor([1.0, 0.0, 0.0, 1.0], dtype=torch.complex128) / math.sqrt(2)
-            )
-        ),
+        "role": "bipartite cut mutual + coherent info; discriminates product vs max-entangled 2q",
+        "consumed_output": "dict of (product_state_cut, bell_state_cut)",
+        "failure_condition": "product state must have MI=0; max-entangled state must have MI=2ln2 (NEGATIVE CONTROL required per codex+adv-opus R5)",
+        "stage_gate_reason": "coherent-info lego anchor requires discrimination between entangled and product",
+        # R6 STRENGTHEN per adversarial: add NEGATIVE control fixture (product state, MI should be 0)
+        # alongside POSITIVE fixture (max-entangled, MI should be 2 ln 2).
+        # Predicate must accept BOTH only when the values are correct.
+        "primary_callable": lambda: {
+            "product": lego_bipartite_ci.cut_info(
+                lego_bipartite_ci.density(
+                    torch.tensor([1.0, 0.0, 0.0, 0.0], dtype=torch.complex128)  # |00>
+                )
+            ),
+            "max_entangled": lego_bipartite_ci.cut_info(
+                lego_bipartite_ci.density(
+                    torch.tensor([1.0, 0.0, 0.0, 1.0], dtype=torch.complex128) / math.sqrt(2)  # Bell
+                )
+            ),
+        },
         "pass_predicate": lambda out: (
             isinstance(out, dict)
-            and out.get("pass") is True
-            and all(k in out for k in ("S_AB", "S_A", "S_B", "mutual_information", "conditional_entropy_A_given_B", "coherent_information_A_to_B"))
-            and all(math.isfinite(float(out[k])) for k in ("S_AB", "S_A", "S_B", "mutual_information", "coherent_information_A_to_B"))
-            and abs(float(out["mutual_information"]) - 2.0 * math.log(2.0)) < 1e-6  # Bell I = 2 ln 2
-            and abs(float(out["coherent_information_A_to_B"]) - math.log(2.0)) < 1e-6  # Bell CI = ln 2
-            and float(out["mutual_information"]) > float(out["coherent_information_A_to_B"])  # I > CI always
+            and out["product"].get("pass") is True
+            and out["max_entangled"].get("pass") is True
+            # POSITIVE: max-entangled has MI = 2 ln 2 within tol
+            and abs(float(out["max_entangled"]["mutual_information"]) - 2.0 * math.log(2.0)) < 1e-6
+            and abs(float(out["max_entangled"]["coherent_information_A_to_B"]) - math.log(2.0)) < 1e-6
+            # NEGATIVE CONTROL: product state has MI ~ 0 within tol (catches Bell-only fixture artifact)
+            and abs(float(out["product"]["mutual_information"])) < 1e-6
+            and abs(float(out["product"]["coherent_information_A_to_B"])) < 1e-6
+            # DISCRIMINATION: MI of entangled - MI of product > 1.0 (big gap)
+            and (float(out["max_entangled"]["mutual_information"]) - float(out["product"]["mutual_information"])) > 1.0
+            # I > CI always (sanity invariant)
+            and float(out["max_entangled"]["mutual_information"]) > float(out["max_entangled"]["coherent_information_A_to_B"])
         ),
     },
     "lego_topology_witness": {

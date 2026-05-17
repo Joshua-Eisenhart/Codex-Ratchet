@@ -155,32 +155,38 @@ LEGO_CONTRACTS = {
     },
     "lego_hopf_projection": {
         "module": lego_hopf_projection,
-        "role": "real_embedding of unit spinor with positive-vs-negative-vs-zero adversarial fixture set",
-        "consumed_output": "tuple of (unit_spinor_out, zero_spinor_out, scaled_spinor_out)",
-        "failure_condition": "predicate must reject zero spinor AND non-unit scaled spinor (adversarial)",
-        "stage_gate_reason": "geometry lego stage requires Hopf primitive that DISTINGUISHES unit vs non-unit",
-        # R6 STRENGTHEN per adversarial Opus + codex: feed unit, zero, and scaled fixtures;
-        # predicate must produce DIFFERENT outputs for each, AND reject zero norm input.
+        "role": "REAL Hopf S3->S2 projection (NOT just real_embedding) + global-phase invariance",
+        "consumed_output": "dict of (bloch_vec, phase_distance_dict, spinor_checks_dict)",
+        "failure_condition": "hopf_projection non-Bloch OR phase invariance violated OR spinor_checks fails",
+        "stage_gate_reason": "geometry lego stage requires REAL Hopf projection + phase invariance",
+        # R8 FIX per R7 P1.1/P1.2 findings: call hopf_projection (not the trivial real_embedding),
+        # and verify phase_distance returns ~0 (S2 projection IS phase-invariant), and
+        # spinor_checks confirms unit norm + geomstats S3/S2 membership.
         "primary_callable": lambda: {
-            "unit": lego_hopf_projection.real_embedding(
+            "bloch": lego_hopf_projection.hopf_projection(
                 torch.tensor([1.0, 1.0j], dtype=torch.complex128) / math.sqrt(2)
             ),
-            "zero": lego_hopf_projection.real_embedding(
-                torch.tensor([0.0, 0.0], dtype=torch.complex128)
+            "phase_dist": lego_hopf_projection.phase_distance(
+                torch.tensor([1.0, 1.0j], dtype=torch.complex128) / math.sqrt(2),
+                theta=1.0,
             ),
-            "scaled": lego_hopf_projection.real_embedding(
-                torch.tensor([100.0, 100.0j], dtype=torch.complex128) / (100.0 * math.sqrt(2))
+            "checks": lego_hopf_projection.spinor_checks(
+                torch.tensor([1.0, 1.0j], dtype=torch.complex128) / math.sqrt(2)
             ),
         },
         "pass_predicate": lambda out: (
             isinstance(out, dict)
-            and np.all(np.isfinite(out["unit"]))
-            # ADVERSARIAL: zero spinor should produce zero output (degenerate; flagged)
-            and float(np.linalg.norm(out["zero"])) < 1e-9
-            # SCALED == UNIT (rescaling-by-unit preserves Hopf projection)
-            and float(np.linalg.norm(out["scaled"] - out["unit"])) < 1e-6
-            # NONTRIVIAL: unit spinor [1,i]/sqrt(2) gives non-trivial Bloch coordinates
-            and float(np.linalg.norm(out["unit"])) > 0.1
+            # Bloch vec lives on S^2: |bloch| ≈ 1
+            and abs(float(torch.linalg.norm(out["bloch"]).item()) - 1.0) < 1e-9
+            # Phase invariance: phase_distance returns 'pass' True AND base_distance near zero
+            and out["phase_dist"].get("pass") is True
+            and abs(float(out["phase_dist"]["base_distance_after_global_phase"])) < 1e-9
+            # spinor_checks: pass True + geomstats S3+S2 membership True + carrier+base norm = 1
+            and out["checks"].get("pass") is True
+            and out["checks"].get("geomstats_s3_belongs") is True
+            and out["checks"].get("geomstats_s2_belongs") is True
+            and abs(float(out["checks"]["carrier_norm"]) - 1.0) < 1e-9
+            and abs(float(out["checks"]["base_norm"]) - 1.0) < 1e-9
         ),
     },
     "lego_weyl_chirality": {
@@ -216,26 +222,50 @@ LEGO_CONTRACTS = {
     },
     "lego_pauli_commutator": {
         "module": lego_pauli_commutator,
-        "role": "Pauli/Clifford commutator gap via z3 + clifford + sympy (calls main, not z3_commutator_gap tautology)",
-        "consumed_output": "internal (main runs full sweep)",
-        "failure_condition": "main returns dict with summary.all_pass=False",
-        "stage_gate_reason": "algebra lego stage anchor",
+        "role": "Pauli/Clifford commutator gap via z3 + clifford + sympy; DEPTH-2 check on each positive sub-pred",
+        "consumed_output": "main() result dict with positive.{clifford_bivector, sympy_xy_eq_2iz, z3_nonzero}",
+        "failure_condition": "ANY of the 3 positive sub-predicates pass=False (depth-2 check, not summary trust)",
+        "stage_gate_reason": "algebra lego stage anchor; trust-the-module antipattern explicitly avoided",
+        # R10 FIX per R9 P2-D1: don't trust main().summary.all_pass; check the 3 positive sub-predicates directly
         "primary_callable": lambda: lego_pauli_commutator.main(),
-        "pass_predicate": lambda out: bool(out.get("summary", {}).get("all_pass", False)),
+        "pass_predicate": lambda out: (
+            isinstance(out, dict)
+            and isinstance(out.get("positive"), dict)
+            and out["positive"].get("clifford_vector_commutator_is_bivector", {}).get("pass") is True
+            and out["positive"].get("sympy_pauli_x_y_commutator_equals_two_i_z", {}).get("pass") is True
+            and out["positive"].get("z3_nonzero_commutator_cannot_be_zero", {}).get("pass") is True
+        ),
     },
     "lego_cptp_damping": {
         "module": lego_cptp_damping,
-        "role": "amplitude-damping Kraus + apply_channel",
-        "consumed_output": "rho + gamma",
-        "failure_condition": "channel output non-PSD or trace != 1",
-        "stage_gate_reason": "CPTP channel lego anchor",
-        "primary_callable": lambda: lego_cptp_damping.density_validity(
-            lego_cptp_damping.apply_channel(
+        "role": "amplitude-damping CPTP: gamma=0 identity preserves rho; gamma>0 reduces rho_11",
+        "consumed_output": "dict of (rho_input, rho_after_gamma_zero, rho_after_gamma_half)",
+        "failure_condition": "gamma=0 changes rho OR gamma=0.5 doesn't reduce rho_11 (no damping action witness)",
+        "stage_gate_reason": "CPTP channel lego anchor requires DAMPING-IS-NONTRIVIAL witness",
+        # R8 FIX per R7 P2.2: add gamma=0 negative control + gamma=0.5 positive control;
+        # predicate verifies damping ACTUALLY damps (rho_11 decreases).
+        "primary_callable": lambda: {
+            "rho_in": torch.tensor([[0.6, 0.0], [0.0, 0.4]], dtype=torch.complex128),
+            "rho_gamma_zero": lego_cptp_damping.apply_channel(
                 torch.tensor([[0.6, 0.0], [0.0, 0.4]], dtype=torch.complex128),
-                lego_cptp_damping.kraus(0.2),
-            )
+                lego_cptp_damping.kraus(0.0),
+            ),
+            "rho_gamma_half": lego_cptp_damping.apply_channel(
+                torch.tensor([[0.6, 0.0], [0.0, 0.4]], dtype=torch.complex128),
+                lego_cptp_damping.kraus(0.5),
+            ),
+        },
+        "pass_predicate": lambda out: (
+            isinstance(out, dict)
+            # gamma=0 → output ≈ input (identity channel)
+            and float(torch.norm(out["rho_gamma_zero"] - out["rho_in"]).item()) < 1e-9
+            # gamma=0.5 → rho_11 reduced (damping acted)
+            and float(out["rho_gamma_half"][1, 1].real.item()) < float(out["rho_in"][1, 1].real.item()) - 0.05
+            # rho_00 increased by population transfer
+            and float(out["rho_gamma_half"][0, 0].real.item()) > float(out["rho_in"][0, 0].real.item()) + 0.05
+            # gamma=0.5 output still valid density
+            and bool(lego_cptp_damping.density_validity(out["rho_gamma_half"]).get("pass", False))
         ),
-        "pass_predicate": lambda out: bool(out.get("pass", False)),
     },
     "lego_simplicial_homology": {
         "module": lego_simplicial_homology,
@@ -296,8 +326,11 @@ LEGO_CONTRACTS = {
             and out.get("pass") is True
             and all(k in out for k in ("von_neumann", "renyi_2", "tsallis_2", "min_entropy", "rank_max_entropy", "purity", "rank"))
             and all(math.isfinite(float(out[k])) for k in ("von_neumann", "renyi_2", "tsallis_2", "min_entropy", "rank_max_entropy", "purity"))
-            and float(out["von_neumann"]) > 0  # mixed state → positive entropy
-            and float(out["renyi_2"]) > 0
+            # R14 FIX per R13-Opus P3-H1: tighten `> 1e-9` to `> 1e-6` (semantic-gap close)
+            # Mixed fixture rho=[[0.7,0.1],[0.1,0.3]] has vN ≈ 0.59; threshold at 1e-6 is still
+            # 5+ orders below real signal but well above FP-noise band (1e-13 to 1e-9).
+            and float(out["von_neumann"]) > 1e-6  # genuinely mixed; not 1e-11 admixture leak
+            and float(out["renyi_2"]) > 1e-6
             and float(out["renyi_2"]) <= float(out["von_neumann"]) + 1e-9  # Renyi_2 ≤ vN
             and float(out["von_neumann"]) <= float(out["rank_max_entropy"]) + 1e-9  # vN ≤ log(rank)
             and 0.0 <= float(out["purity"]) <= 1.0 + 1e-9
@@ -342,33 +375,65 @@ LEGO_CONTRACTS = {
     },
     "lego_topology_witness": {
         "module": lego_topology_witness,
-        "role": "finite-support topology entropy witness; cycle gives Betti_0=1, Betti_1=1 (one loop)",
-        "consumed_output": "internal (pyg path-vs-star + gudhi cycle)",
-        "failure_condition": "gudhi_cycle_support pass=False OR Betti structure differs from (1,1) for unfilled cycle",
-        "stage_gate_reason": "topology-entropy lego stage anchor",
-        # R4 STRENGTHEN: check explicit Betti pattern + pass field
-        "primary_callable": lambda: lego_topology_witness.gudhi_cycle_support(),
+        "role": "finite-support topology entropy witness; ANY unfilled-loop satisfies Betti=(1,1) — role honestly named",
+        "consumed_output": "gudhi_cycle_support dict + pyg_path_vs_star dict (contrast)",
+        "failure_condition": "either witness fails OR path-vs-star distinguishability collapses",
+        "stage_gate_reason": "topology-entropy lego stage anchor; predicate ALSO checks path-vs-star control",
+        # R10 FIX per R9 P2-D2: 'any-1-cycle satisfies (1,1)' is true; add path-vs-star control to discriminate
+        "primary_callable": lambda: {
+            "cycle": lego_topology_witness.gudhi_cycle_support(),
+            "path_vs_star": lego_topology_witness.pyg_path_vs_star(),
+        },
         "pass_predicate": lambda out: (
             isinstance(out, dict)
-            and out.get("pass") is True
-            and isinstance(out.get("betti_numbers"), list)
-            and len(out["betti_numbers"]) >= 2
-            and out["betti_numbers"][0] == 1  # 1 connected component
-            and out["betti_numbers"][1] == 1  # 1 cycle (the loop)
+            and out["cycle"].get("pass") is True
+            and isinstance(out["cycle"].get("betti_numbers"), list)
+            and len(out["cycle"]["betti_numbers"]) >= 2
+            and out["cycle"]["betti_numbers"][0] == 1
+            and out["cycle"]["betti_numbers"][1] == 1
+            and isinstance(out["path_vs_star"], dict)
+            # R12 FIX per R11 P2-F1: control must DISCRIMINATE path from star (not just len > 0)
+            and out["path_vs_star"].get("pass") is True
+            and "path_degree_entropy" in out["path_vs_star"]
+            and "star_degree_entropy" in out["path_vs_star"]
+            and abs(
+                float(out["path_vs_star"]["path_degree_entropy"])
+                - float(out["path_vs_star"]["star_degree_entropy"])
+            ) > 1e-3  # path and star MUST differ in degree entropy
         ),
     },
     "lego_signed_ci": {
         "module": lego_signed_ci,
-        "role": "signed conditional + coherent information (negative entropy admission)",
-        "consumed_output": "2-qubit pure state psi",
-        "failure_condition": "readouts returns non-finite signed CI",
-        "stage_gate_reason": "signed-CI lego stage anchor",
-        "primary_callable": lambda: lego_signed_ci.readouts(
-            lego_signed_ci.density(
-                torch.tensor([1.0, 0.0, 0.0, 1.0], dtype=torch.complex128) / math.sqrt(2)
-            )
+        "role": "signed CI: Bell state has positive CI (negative conditional entropy admitted), product state CI=0",
+        "consumed_output": "dict of (product_readouts, bell_readouts)",
+        "failure_condition": "Bell CI not positive OR product CI not zero (no negative-entropy discrimination)",
+        "stage_gate_reason": "signed-CI lego anchor requires negative-entropy admission discrimination",
+        # R8 FIX per R7 P2.1: add product vs Bell adversarial controls; verify Bell CI > 0 (negative
+        # conditional entropy admitted) AND product CI ~ 0 (no quantum correlation).
+        "primary_callable": lambda: {
+            "product": lego_signed_ci.readouts(
+                lego_signed_ci.density(
+                    torch.tensor([1.0, 0.0, 0.0, 0.0], dtype=torch.complex128)  # |00>
+                )
+            ),
+            "bell": lego_signed_ci.readouts(
+                lego_signed_ci.density(
+                    torch.tensor([1.0, 0.0, 0.0, 1.0], dtype=torch.complex128) / math.sqrt(2)  # Bell
+                )
+            ),
+        },
+        "pass_predicate": lambda out: (
+            isinstance(out, dict)
+            and isinstance(out["product"], dict) and isinstance(out["bell"], dict)
+            and all(math.isfinite(float(v)) for v in out["product"].values() if isinstance(v, (int, float)))
+            and all(math.isfinite(float(v)) for v in out["bell"].values() if isinstance(v, (int, float)))
+            # R14 FIX per R13-Opus P3-H2: substring "coherent" matches `coherent_garbage_score`
+            # refactor-attack surface. Pin to EXACT key name (which lego_signed_ci already uses).
+            and "coherent_information_A_to_B" in out["bell"]
+            and abs(float(out["bell"]["coherent_information_A_to_B"]) - math.log(2.0)) < 1e-6  # Bell CI EXACTLY ln(2)
+            and "coherent_information_A_to_B" in out["product"]
+            and abs(float(out["product"]["coherent_information_A_to_B"])) < 1e-6  # Product CI ~ 0
         ),
-        "pass_predicate": lambda out: isinstance(out, dict) and all(math.isfinite(float(v)) for v in out.values()),
     },
     "lego_autograd_ci": {
         "module": lego_autograd_ci,
@@ -506,8 +571,12 @@ def candidate_path_entropy(rows: list[dict[str, Any]]) -> dict[str, Any]:
     deriv = np.diff(ent) if len(ent) > 1 else np.array([])
     # CRITICAL non-degeneracy gate (per axis0 subagent's NEW predicate):
     # Fail if >50% of deriv values are 0.0
+    # R10 FIX per R9 P3-E1: fail-closed when deriv.size < 16 (small-N silent-pass would be misleading)
     n_zero = int(np.sum(np.isclose(deriv, 0.0, atol=1e-12)))
-    is_degenerate = (deriv.size > 0 and n_zero / deriv.size > 0.5)
+    if deriv.size < 16:
+        is_degenerate = True  # fail-closed for small N
+    else:
+        is_degenerate = (n_zero / deriv.size > 0.5)
     return {
         "candidate": "path_entropy",
         "values": deriv.tolist(),

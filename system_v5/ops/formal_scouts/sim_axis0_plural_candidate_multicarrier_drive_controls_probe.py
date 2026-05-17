@@ -35,9 +35,11 @@ CLAIM_CEILING = (
     "Formal scout only: consumes the plural Axis0 router and source-native "
     "MPS/PEPS/PEPS3D local carrier updates to test whether five Axis0 candidate "
     "vectors remain distinguishable from scalar-mean, zero-all, shuffled-name, "
-    "and drop-one controls. It does not admit final Axis0, retrocausality, "
-    "physics, Holodeck, cognition, neural architecture, full PEPS/PEPS3D "
-    "environment geometry, or canonical claims."
+    "and drop-one controls. The carrier still receives a scalar weighted "
+    "projection of the candidate bundle; this scout does not implement or admit "
+    "a true vector-valued Axis0 actuator. It does not admit final Axis0, "
+    "retrocausality, physics, Holodeck, cognition, neural architecture, full "
+    "PEPS/PEPS3D environment geometry, or canonical claims."
 )
 
 TOOL_MANIFEST = {
@@ -416,6 +418,51 @@ def per_candidate_control_report(suite: dict[str, Any], status: dict[str, Any]) 
     }
 
 
+def control_family_correlation_report(suite: dict[str, Any], admitted_names: list[str]) -> dict[str, Any]:
+    carriers = sorted(suite["gaps"])
+    rows = {}
+    blockers = {}
+    for name in admitted_names:
+        family_vectors = {
+            "only_vs_zero": np.asarray([suite["gaps"][carrier]["only_vs_zero_gaps"][name] for carrier in carriers], dtype=float),
+            "drop": np.asarray([suite["gaps"][carrier]["drop_gaps"][name] for carrier in carriers], dtype=float),
+            "sign_flip": np.asarray([suite["gaps"][carrier]["sign_flip_gaps"][name] for carrier in carriers], dtype=float),
+            "time_shuffle": np.asarray([suite["gaps"][carrier]["time_shuffle_gaps"][name] for carrier in carriers], dtype=float),
+        }
+        corrs = {}
+        labels = sorted(family_vectors)
+        for i, left in enumerate(labels):
+            for right in labels[i + 1:]:
+                a = family_vectors[left]
+                b = family_vectors[right]
+                if float(np.std(a)) < 1e-15 or float(np.std(b)) < 1e-15:
+                    corr = 1.0 if np.allclose(a, b) else 0.0
+                else:
+                    corr = float(np.corrcoef(a, b)[0, 1])
+                corrs[f"{left}__{right}"] = corr
+        max_abs_corr = max((abs(value) for value in corrs.values()), default=0.0)
+        rows[name] = {
+            "gap_vectors_by_control_family": {key: value.tolist() for key, value in family_vectors.items()},
+            "pairwise_correlations": corrs,
+            "max_abs_correlation": max_abs_corr,
+        }
+        if max_abs_corr > 0.95:
+            blockers[name] = {
+                "control_family_degeneracy_possible": {
+                    "max_abs_correlation": max_abs_corr,
+                    "claim": "Per-candidate controls may be linearly coupled because all modes still pass through one scalar weighted drive.",
+                }
+            }
+    return {
+        "rows": rows,
+        "control_family_degeneracy_blockers": blockers,
+        "scalar_weighted_drive_blocker": {
+            "admitted": False,
+            "claim": "This scout preserves per-candidate controls but still projects the bundle to a scalar before carrier actuation.",
+        },
+    }
+
+
 def compact_rows(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
     compact = {}
     for key, modes in rows.items():
@@ -502,6 +549,7 @@ def main() -> int:
     router_payload = receipts["axis0"].get("axis0_outputs_or_blockers", {})
     status = candidate_status(axis0, router_payload)
     candidate_report = per_candidate_control_report(suite, status)
+    correlation_report = control_family_correlation_report(suite, candidate_report["admitted_candidate_names"])
     graph = dependency_graph()
     z3_witness = z3_plural_axis0_witness(suite, axis0, candidate_report)
     hbi_blockers = (router_payload.get("holographic_boundary_interior_reconstruction") or {}).get("explicit_blockers", {})
@@ -533,6 +581,7 @@ def main() -> int:
             "suite_checks": suite["checks"],
             "signature_gaps": suite["gaps"],
             "per_candidate_control_report": candidate_report,
+            "control_family_correlation_report": correlation_report,
             "tested_carriers": [f"{family}_{'x'.join(str(x) for x in shape)}" for family, shape, _ in TEST_CARRIERS],
             "matched_controls": ["scalar_mean", "zero_all", "identity_control", "shuffled_name_binding"]
             + [f"{mode}_{name}" for name in CANDIDATE_NAMES for mode in ["only", "drop", "sign_flip", "time_shuffle"]],
@@ -544,6 +593,7 @@ def main() -> int:
             "admitted_candidate_names": candidate_report["admitted_candidate_names"],
             "blocked_candidate_names": candidate_report["blocked_candidate_names"],
             "holographic_boundary_interior_reconstruction_blockers_preserved": hbi_blockers,
+            "scalar_weighted_drive_blocker": correlation_report["scalar_weighted_drive_blocker"],
             "plural_axis0_drive_control_pass": suite["pass"],
         },
         "provider_inputs_used": {
@@ -587,6 +637,10 @@ def main() -> int:
             "admitted_candidate_names": candidate_report["admitted_candidate_names"],
             "dominance_report": candidate_report["dominance_report"],
         },
+        "control_family_correlation_report_is_recorded": {
+            "pass": True,
+            "control_family_correlation_report": correlation_report,
+        },
         "dependency_graph_is_acyclic": graph,
         "z3_plural_axis0_witness_executes": z3_witness,
     }
@@ -624,7 +678,7 @@ def main() -> int:
             "keys": sorted(repair_receipt),
         },
         "claim_ceiling_blocks_final_axis0_and_physics_claims": {
-            "pass": all(term in CLAIM_CEILING.lower() for term in ["formal scout", "does not admit final axis0", "physics", "canonical"]),
+            "pass": all(term in CLAIM_CEILING.lower() for term in ["formal scout", "scalar weighted", "does not admit final axis0", "physics", "canonical"]),
             "claim_ceiling": CLAIM_CEILING,
         },
         "integration_is_dependency_consumption_not_result_aggregation": {
@@ -666,6 +720,12 @@ def main() -> int:
             "single_scalar_axis0_as_complete_downstream_representation": {
                 "admitted": False,
                 "claim": "Scalar means remain controls/diagnostics only; downstream Axis0 claims require per-candidate drop/name-binding evidence.",
+            },
+            "true_vector_valued_axis0_actuator": correlation_report["scalar_weighted_drive_blocker"],
+            "per_candidate_control_family_independence": {
+                "admitted": False,
+                "claim": "Control-family independence is not admitted when gap vectors are highly correlated; the report records those correlations as next-repair evidence.",
+                "blockers": correlation_report["control_family_degeneracy_blockers"],
             },
             "holographic_boundary_interior_reconstruction_final_claim": {
                 "admitted": False,

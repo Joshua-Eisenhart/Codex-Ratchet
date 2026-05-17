@@ -34,6 +34,7 @@ AUTO_LIRPA_ROOT = pathlib.Path("/Users/joshuaeisenhart/GitHub/auto_LiRPA")
 sys.path.insert(0, str(AUTO_LIRPA_ROOT))
 from auto_LiRPA import BoundedModule, BoundedTensor, PerturbationLpNorm  # noqa: E402
 
+import axis0_guard_utils as axis0_guard
 from engine_core import EngineCore, generate_initial_density
 
 
@@ -108,24 +109,11 @@ def load_result(name: str) -> dict[str, Any]:
         "all_pass": data.get("all_pass"),
         "classification": data.get("classification"),
         "promotion_allowed": data.get("promotion_allowed"),
-        "claim_ceiling": data.get("claim_ceiling", "")[:240],
+        "claim_ceiling": data.get("claim_ceiling", ""),
         "positive": data.get("positive", {}),
         "repo_admission_matrix": data.get("repo_admission_matrix", {}),
         "axis0_outputs_or_blockers": data.get("axis0_outputs_or_blockers", {}),
     }
-
-
-def axis0_vectors(router: dict[str, Any]) -> dict[str, np.ndarray]:
-    outputs = router.get("axis0_outputs_or_blockers") or {}
-    vectors = {}
-    for name in ["fep_gradient_polarity", "path_entropy", "correlation_diversity_derivative"]:
-        arr = np.asarray(outputs.get(name, {}).get("values", []), dtype=float)
-        arr = np.nan_to_num(arr, nan=0.0, posinf=0.0, neginf=0.0)
-        scale = float(np.max(np.abs(arr))) if arr.size else 0.0
-        if scale > 0.0:
-            arr = arr / scale
-        vectors[name] = arr
-    return vectors
 
 
 def memory_margin(memory_receipt: dict[str, Any]) -> float:
@@ -136,6 +124,7 @@ def memory_margin(memory_receipt: dict[str, Any]) -> float:
 
 
 def collect_training_rows(axis0: dict[str, np.ndarray], memory: float) -> tuple[np.ndarray, np.ndarray, np.ndarray, list[str], list[dict[str, Any]]]:
+    axis0_names = list(axis0)
     names = [
         "bloch_x",
         "bloch_y",
@@ -151,9 +140,7 @@ def collect_training_rows(axis0: dict[str, np.ndarray], memory: float) -> tuple[
         "prediction_observation_delta_2",
         *[f"current_operator_{op}" for op in OPERATORS],
         *[f"perception_{perception}" for perception in PERCEPTIONS],
-        "axis0_fep_gradient_polarity",
-        "axis0_path_entropy",
-        "axis0_correlation_diversity_derivative",
+        *[f"axis0_{name}" for name in axis0_names],
         "holodeck_memory_phase",
     ]
     rows: list[list[float]] = []
@@ -175,7 +162,7 @@ def collect_training_rows(axis0: dict[str, np.ndarray], memory: float) -> tuple[
                     obs = np.asarray(record["observation"]["observation_distribution"], dtype=float)
                     axis_values = [
                         float(axis0[name][idx % len(axis0[name])]) if len(axis0[name]) else 0.0
-                        for name in ["fep_gradient_polarity", "path_entropy", "correlation_diversity_derivative"]
+                        for name in axis0_names
                     ]
                     memory_phase = float(memory * (1.0 if idx % 2 == 0 else -0.5))
                     context_score = float(sum(axis_values) + 0.15 * memory_phase + 0.10 * fep["prediction_error_l2"])
@@ -276,11 +263,12 @@ def lirpa_bruteforce_report(model: PolicyNet, x: np.ndarray, seeds: np.ndarray, 
     context_zero = sample.clone()
     for field in [
         "axis0_fep_gradient_polarity",
-        "axis0_path_entropy",
         "axis0_correlation_diversity_derivative",
+        "axis0_retrocausal_many_futures_policy_scoring",
         "holodeck_memory_phase",
     ]:
-        context_zero[:, names.index(field)] = 0.0
+        if field in names:
+            context_zero[:, names.index(field)] = 0.0
     with torch.no_grad():
         context_shift = float(torch.mean(torch.abs(model(sample) - model(context_zero))).item())
     return {
@@ -329,9 +317,11 @@ def main() -> int:
     fixed_lirpa_receipt = load_result("auto_lirpa_stage_policy_bound_consumption_probe_results.json")
     stage_receipt = load_result("macro_sim_stage_record_science_method_contract_probe_results.json")
     axis0_receipt = load_result("macro_sim_axis0_plural_stage_candidate_router_probe_results.json")
+    axis0_guard_receipt = load_result(axis0_guard.AXIS0_GUARD_RESULT_NAME)
     memory_receipt = load_result("source_native_holodeck_hash_memory_placeholder_probe_results.json")
 
-    axis0 = axis0_vectors(axis0_receipt)
+    guard = axis0_guard.axis0_guard_signal(axis0_guard_receipt)
+    axis0 = axis0_guard.guarded_router_vectors(axis0_receipt, guard, as_numpy=True)
     memory = memory_margin(memory_receipt)
     x, y, seeds, names, records = collect_training_rows(axis0, memory)
     model, train_report = train_model(x, y, seeds, shuffle_labels=False)
@@ -349,6 +339,7 @@ def main() -> int:
             "auto_lirpa_stage_policy_bound_consumption receipt",
             "macro_sim_stage_record_science_method_contract receipt",
             "macro_sim_axis0_plural_stage_candidate_router receipt",
+            "axis0_plural_candidate_multicarrier_drive_controls receipt",
             "source_native_holodeck_hash_memory_placeholder receipt",
             "local auto_LiRPA BoundedModule",
         ],
@@ -367,8 +358,18 @@ def main() -> int:
             "shuffled_label_control": shuffled_report,
         },
         "axis0_outputs_or_blockers": {
-            "consumed_candidates": sorted(axis0),
+            "raw_router_candidate_names": axis0_guard.AXIS0_CANDIDATE_NAMES,
+            "admitted_candidate_names": guard["admitted_candidate_names"],
+            "blocked_candidate_names": guard["blocked_candidate_names"],
+            "adapter_active_axis0_feature_names": guard["adapter_active_axis0_feature_names"],
+            "blocked_axis0_feature_names_excluded": guard["blocked_axis0_feature_names_excluded"],
             "axis0_vectors_nonempty": all(len(v) > 0 for v in axis0.values()),
+            "blocked_axis0_candidates_not_feature_columns": all(
+                f"axis0_{name}" not in names for name in guard["blocked_candidate_names"]
+            ),
+            "axis0_guard_receipt_consumed": axis0_guard_receipt.get("all_pass") is True,
+            "scalar_weighted_drive_blocker": guard["scalar_weighted_drive_blocker"],
+            "control_family_degeneracy_blockers": guard["control_family_degeneracy_blockers"],
         },
         "provider_inputs_used": {
             "grok": "not_run_this_repair_wave",
@@ -388,6 +389,16 @@ def main() -> int:
             "auto_lirpa_row": auto_row,
             "fixed_lirpa_receipt": fixed_lirpa_receipt,
         },
+        "axis0_guard_receipt_blocks_unadmitted_candidates_before_trained_lirpa_adapter": {
+            "pass": bool(
+                guard["pass"]
+                and axis0_guard_receipt.get("all_pass") is True
+                and all(f"axis0_{name}" not in names for name in guard["blocked_candidate_names"])
+                and all(f"axis0_{name}" in names for name in guard["admitted_candidate_names"])
+            ),
+            "axis0_guard": guard,
+            "feature_names": names,
+        },
         "trained_context_conditioned_stage_policy_adapter_learns": {
             "pass": train_report["test_accuracy"] >= 0.70 and train_report["train_accuracy"] >= 0.95,
             "target": "context_conditioned_next_operator_class",
@@ -405,6 +416,11 @@ def main() -> int:
         "context_zero_control_changes_trained_logits": {
             "pass": bound_report["context_zero_logit_mean_abs_shift"] > 0.25,
             "context_zero_logit_mean_abs_shift": bound_report["context_zero_logit_mean_abs_shift"],
+        },
+        "blocked_axis0_candidates_not_used_as_trained_lirpa_feature_columns": {
+            "pass": all(f"axis0_{name}" not in names for name in guard["blocked_candidate_names"]),
+            "blocked_candidate_names": guard["blocked_candidate_names"],
+            "feature_names": names,
         },
         "nominal_training_accuracy_is_not_a_certificate": {
             "pass": bound_report["interval_mean_width"] > 0.0 and bound_report["bruteforce_samples_contained"],
@@ -439,6 +455,7 @@ def main() -> int:
         "source_stage_contract_receipts_remain_consumed_not_replaced": {
             "pass": stage_receipt.get("all_pass") is True
             and axis0_receipt.get("all_pass") is True
+            and axis0_guard_receipt.get("all_pass") is True
             and memory_receipt.get("all_pass") is True
             and len(records) == 512,
             "record_count": len(records),
@@ -459,6 +476,7 @@ def main() -> int:
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "repair_receipt": repair_receipt,
+        "axis0_outputs_or_blockers": repair_receipt["axis0_outputs_or_blockers"],
         "positive": positive,
         "graveyard_companions": graveyards,
         "boundary": boundary,

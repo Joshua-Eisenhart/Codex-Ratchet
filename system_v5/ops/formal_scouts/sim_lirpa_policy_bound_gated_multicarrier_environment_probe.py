@@ -12,6 +12,7 @@ from typing import Any
 import numpy as np
 import z3
 
+import axis0_guard_utils as axis0_guard
 import sim_source_native_multicarrier_subdense_environment_contraction_probe as subdense
 
 
@@ -81,7 +82,7 @@ def load_result(name: str) -> dict[str, Any]:
         "all_pass": data.get("all_pass"),
         "classification": data.get("classification"),
         "promotion_allowed": data.get("promotion_allowed"),
-        "claim_ceiling": data.get("claim_ceiling", "")[:240],
+        "claim_ceiling": data.get("claim_ceiling", ""),
         "positive": data.get("positive", {}),
         "axis0_outputs_or_blockers": data.get("axis0_outputs_or_blockers", {}),
     }
@@ -242,9 +243,11 @@ def main() -> int:
     lirpa_receipt = load_result("auto_lirpa_trained_stage_policy_adapter_bound_probe_results.json")
     subdense_receipt = load_result("source_native_multicarrier_subdense_environment_contraction_probe_results.json")
     axis0_receipt = load_result("macro_sim_axis0_plural_stage_candidate_router_probe_results.json")
+    axis0_guard_receipt = load_result(axis0_guard.AXIS0_GUARD_RESULT_NAME)
     memory_receipt = load_result("source_native_holodeck_hash_memory_placeholder_probe_results.json")
     records = subdense.run_source_records()
-    axis0 = subdense.axis0_signature(axis0_receipt)
+    guard = axis0_guard.axis0_guard_signal(axis0_guard_receipt)
+    axis0 = axis0_guard.filter_subdense_axis0_signature(subdense.axis0_signature(axis0_receipt), guard)
     memory = subdense.holodeck_memory_signal(memory_receipt)
     signal = policy_gate_signal(lirpa_receipt)
     suite = carrier_suite(records, axis0, memory, signal)
@@ -258,6 +261,7 @@ def main() -> int:
             "auto_lirpa_trained_stage_policy_adapter_bound receipt",
             "source_native_multicarrier_subdense_environment_contraction receipt",
             "macro_sim_axis0_plural_stage_candidate_router receipt",
+            "axis0_plural_candidate_multicarrier_drive_controls receipt",
             "source_native_holodeck_hash_memory_placeholder receipt",
             "EngineCore source-native stage records",
         ],
@@ -276,7 +280,17 @@ def main() -> int:
         },
         "axis0_outputs_or_blockers": {
             "axis0_ready": axis0.get("ready"),
+            "raw_router_candidate_names": axis0_guard.AXIS0_CANDIDATE_NAMES,
+            "admitted_candidate_names": guard["admitted_candidate_names"],
+            "blocked_candidate_names": guard["blocked_candidate_names"],
             "consumed_candidates": axis0.get("candidate_names"),
+            "blocked_axis0_candidates_excluded_from_drive": all(
+                name not in axis0.get("candidate_names", [])
+                for name in guard["blocked_candidate_names"]
+            ),
+            "axis0_guard_receipt_consumed": axis0_guard_receipt.get("all_pass") is True,
+            "scalar_weighted_drive_blocker": guard["scalar_weighted_drive_blocker"],
+            "control_family_degeneracy_blockers": guard["control_family_degeneracy_blockers"],
         },
         "provider_inputs_used": {
             "grok": "not_run_this_repair_wave",
@@ -290,9 +304,22 @@ def main() -> int:
 
     positive = {
         "trained_lirpa_and_subdense_receipts_are_consumed": {
-            "pass": lirpa_receipt.get("all_pass") is True and subdense_receipt.get("all_pass") is True,
+            "pass": lirpa_receipt.get("all_pass") is True
+            and subdense_receipt.get("all_pass") is True
+            and axis0_guard_receipt.get("all_pass") is True
+            and guard["pass"] is True,
             "trained_lirpa_receipt": lirpa_receipt,
             "subdense_receipt": subdense_receipt,
+            "axis0_guard": guard,
+        },
+        "axis0_guard_filters_policy_bound_carrier_drive": {
+            "pass": bool(
+                axis0.get("ready")
+                and axis0.get("candidate_names") == guard["admitted_candidate_names"]
+                and all(name not in axis0.get("candidate_names", []) for name in guard["blocked_candidate_names"])
+            ),
+            "axis0_candidate_names_used_in_drive": axis0.get("candidate_names"),
+            "blocked_candidate_names": guard["blocked_candidate_names"],
         },
         "policy_bound_gate_vector_is_present_and_variable": {
             "pass": signal["ready"] and signal["gate_variance"] > 1e-5,
@@ -313,6 +340,11 @@ def main() -> int:
         "zero_gate_control_is_distinguished": {
             "pass": all(row["full_vs_zero_gap"] > 1e-6 for row in suite["rows"].values()),
             "gaps": {key: row["full_vs_zero_gap"] for key, row in suite["rows"].items()},
+        },
+        "blocked_axis0_candidates_not_used_in_policy_bound_carrier_drive": {
+            "pass": all(name not in axis0.get("candidate_names", []) for name in guard["blocked_candidate_names"]),
+            "blocked_candidate_names": guard["blocked_candidate_names"],
+            "drive_candidate_names": axis0.get("candidate_names"),
         },
     }
     boundary = {
@@ -355,6 +387,7 @@ def main() -> int:
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "repair_receipt": repair_receipt,
+        "axis0_outputs_or_blockers": repair_receipt["axis0_outputs_or_blockers"],
         "positive": positive,
         "graveyard_companions": graveyards,
         "boundary": boundary,

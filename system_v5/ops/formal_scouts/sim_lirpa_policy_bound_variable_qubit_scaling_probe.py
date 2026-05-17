@@ -13,6 +13,7 @@ import networkx as nx
 import numpy as np
 import z3
 
+import axis0_guard_utils as axis0_guard
 import sim_lirpa_policy_bound_gated_multicarrier_environment_probe as gated
 import sim_source_native_multicarrier_subdense_environment_contraction_probe as subdense
 
@@ -267,15 +268,29 @@ def robust_scaling_admission(rows: dict[str, Any]) -> dict[str, Any]:
     compressed_summary_admitted = all(compressed_summary_checks.values())
     local_sensitive_admitted = all(local_sensitive_checks.values())
     admitted = local_sensitive_admitted
+    if local_sensitive_admitted and compressed_summary_admitted:
+        status = "admitted_finite_robust_scaling"
+        claim = (
+            "Detectable finite variable-size consumption survives under both "
+            "compressed global-summary and local-sensitive PEPS3D64 readouts "
+            "for this guard-filtered Axis0 drive."
+        )
+    elif local_sensitive_admitted:
+        status = "admitted_local_sensitive_scaling_compressed_summary_attenuated"
+        claim = (
+            "Detectable finite variable-size consumption survives. The compressed "
+            "global-summary PEPS3D64 flat-gap remains attenuated, but a local-sensitive "
+            "per-edge RMS readout admits PEPS3D64 scaling under matched controls."
+        )
+    else:
+        status = "blocked_detectable_but_attenuated_peps3d64"
+        claim = (
+            "Finite variable-size consumption is detectable but remains too attenuated "
+            "for PEPS3D64 admission under the current readouts."
+        )
     return {
         "admitted": admitted,
-        "status": (
-            "admitted_local_sensitive_scaling_compressed_summary_attenuated"
-            if local_sensitive_admitted and not compressed_summary_admitted
-            else "admitted_finite_robust_scaling"
-            if local_sensitive_admitted
-            else "blocked_detectable_but_attenuated_peps3d64"
-        ),
+        "status": status,
         "compressed_summary_admitted": compressed_summary_admitted,
         "local_sensitive_admitted": local_sensitive_admitted,
         "compressed_summary_checks": compressed_summary_checks,
@@ -300,11 +315,7 @@ def robust_scaling_admission(rows: dict[str, Any]) -> dict[str, Any]:
             "peps3d64_local_shuffled_rms_floor": PEPS3D_64_LOCAL_SHUFFLED_RMS_FLOOR,
             "peps3d64_local_zero_rms_floor": PEPS3D_64_LOCAL_ZERO_RMS_FLOOR,
         },
-        "claim": (
-            "Detectable finite variable-size consumption survives. The compressed "
-            "global-summary PEPS3D64 flat-gap remains attenuated, but a local-sensitive "
-            "per-edge RMS readout admits PEPS3D64 scaling under matched controls."
-        ),
+        "claim": claim,
     }
 
 
@@ -407,8 +418,10 @@ def main() -> int:
     gated_receipt = gated.load_result("lirpa_policy_bound_gated_multicarrier_environment_probe_results.json")
     subdense_receipt = gated.load_result("source_native_multicarrier_subdense_environment_contraction_probe_results.json")
     axis0_receipt = gated.load_result("macro_sim_axis0_plural_stage_candidate_router_probe_results.json")
+    axis0_guard_receipt = gated.load_result(axis0_guard.AXIS0_GUARD_RESULT_NAME)
     memory_receipt = gated.load_result("source_native_holodeck_hash_memory_placeholder_probe_results.json")
-    axis0 = subdense.axis0_signature(axis0_receipt)
+    guard = axis0_guard.axis0_guard_signal(axis0_guard_receipt)
+    axis0 = axis0_guard.filter_subdense_axis0_signature(subdense.axis0_signature(axis0_receipt), guard)
     memory = subdense.holodeck_memory_signal(memory_receipt)
     signal = gated.policy_gate_signal(lirpa_receipt)
     suite = run_scaling_suite(records, axis0, memory, signal)
@@ -424,6 +437,7 @@ def main() -> int:
             "lirpa_policy_bound_gated_multicarrier_environment receipt",
             "source_native_multicarrier_subdense_environment_contraction receipt",
             "macro_sim_axis0_plural_stage_candidate_router receipt",
+            "axis0_plural_candidate_multicarrier_drive_controls receipt",
             "source_native_holodeck_hash_memory_placeholder receipt",
             "EngineCore source-native stage records",
         ],
@@ -450,7 +464,17 @@ def main() -> int:
         },
         "axis0_outputs_or_blockers": {
             "axis0_ready": axis0.get("ready"),
+            "raw_router_candidate_names": axis0_guard.AXIS0_CANDIDATE_NAMES,
+            "admitted_candidate_names": guard["admitted_candidate_names"],
+            "blocked_candidate_names": guard["blocked_candidate_names"],
             "consumed_candidates": axis0.get("candidate_names"),
+            "blocked_axis0_candidates_excluded_from_drive": all(
+                name not in axis0.get("candidate_names", [])
+                for name in guard["blocked_candidate_names"]
+            ),
+            "axis0_guard_receipt_consumed": axis0_guard_receipt.get("all_pass") is True,
+            "scalar_weighted_drive_blocker": guard["scalar_weighted_drive_blocker"],
+            "control_family_degeneracy_blockers": guard["control_family_degeneracy_blockers"],
             "holodeck_memory_ready": memory.get("ready"),
             "robust_peps3d64_scaling": suite["robust_scaling_admission"],
         },
@@ -461,22 +485,33 @@ def main() -> int:
             "opus_max": "not_run_this_repair_wave",
         },
         "promotion_ceiling": CLAIM_CEILING,
-        "next_step": "Use the local-sensitive PEPS3D64 repair as the finite scaling path while keeping the compressed-summary attenuation as a branch-closed readout blocker; next repair should test a size-normalized true PEPS3D environment contraction, not raise the claim ceiling.",
+        "next_step": "Use the guard-filtered finite scaling path while keeping PEPS3D64 compressed-summary and local-sensitive status explicit; next repair should test a size-normalized true PEPS3D environment contraction, not raise the claim ceiling.",
     }
 
     positive = {
         "upstream_receipts_are_consumed": {
             "pass": all(
                 receipt.get("exists") and receipt.get("all_pass") is True
-                for receipt in [lirpa_receipt, gated_receipt, subdense_receipt, axis0_receipt, memory_receipt]
+                for receipt in [lirpa_receipt, gated_receipt, subdense_receipt, axis0_receipt, axis0_guard_receipt, memory_receipt]
             ),
             "receipts": {
                 "trained_lirpa": lirpa_receipt,
                 "fixed_size_lirpa_gated": gated_receipt,
                 "subdense_environment": subdense_receipt,
                 "axis0_router": axis0_receipt,
+                "axis0_guard": axis0_guard_receipt,
                 "holodeck_memory": memory_receipt,
             },
+        },
+        "axis0_guard_filters_variable_qubit_carrier_drive": {
+            "pass": bool(
+                guard["pass"]
+                and axis0.get("ready")
+                and axis0.get("candidate_names") == guard["admitted_candidate_names"]
+                and all(name not in axis0.get("candidate_names", []) for name in guard["blocked_candidate_names"])
+            ),
+            "axis0_candidate_names_used_in_drive": axis0.get("candidate_names"),
+            "blocked_candidate_names": guard["blocked_candidate_names"],
         },
         "variable_qubit_mps_peps_peps3d_scaling_executes": {
             "pass": suite["pass"],
@@ -517,10 +552,21 @@ def main() -> int:
             "pass": all(row["full_vs_zero_gap"] > GAP_FLOOR for row in suite["rows"].values()),
             "gaps": {key: row["full_vs_zero_gap"] for key, row in suite["rows"].items()},
         },
-        "compressed_global_summary_peps3d64_scaling_is_blocked_not_promoted": {
-            "pass": suite["robust_scaling_admission"]["compressed_summary_admitted"] is False
-            and suite["robust_scaling_admission"]["local_sensitive_admitted"] is True,
+        "compressed_global_summary_peps3d64_scaling_status_is_explicit": {
+            "pass": bool(
+                suite["robust_scaling_admission"]["local_sensitive_admitted"] is True
+                and suite["robust_scaling_admission"]["status"]
+                in {
+                    "admitted_finite_robust_scaling",
+                    "admitted_local_sensitive_scaling_compressed_summary_attenuated",
+                }
+            ),
             **suite["robust_scaling_admission"],
+        },
+        "blocked_axis0_candidates_not_used_in_variable_qubit_carrier_drive": {
+            "pass": all(name not in axis0.get("candidate_names", []) for name in guard["blocked_candidate_names"]),
+            "blocked_candidate_names": guard["blocked_candidate_names"],
+            "drive_candidate_names": axis0.get("candidate_names"),
         },
     }
     boundary = {
@@ -566,9 +612,15 @@ def main() -> int:
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "repair_receipt": repair_receipt,
         "axis0_outputs_or_blockers": repair_receipt["axis0_outputs_or_blockers"],
-        "explicit_blockers": {
-            "compressed_global_summary_peps3d64_scaling": compressed_summary_blocker(suite["robust_scaling_admission"]),
-        },
+        "explicit_blockers": (
+            {}
+            if suite["robust_scaling_admission"]["compressed_summary_admitted"]
+            else {
+                "compressed_global_summary_peps3d64_scaling": compressed_summary_blocker(
+                    suite["robust_scaling_admission"]
+                )
+            }
+        ),
         "positive": positive,
         "graveyard_companions": graveyards,
         "boundary": boundary,

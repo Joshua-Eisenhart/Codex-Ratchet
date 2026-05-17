@@ -38,6 +38,7 @@ import torch
 import torch.nn as nn
 import z3
 
+import axis0_guard_utils as axis0_guard
 from engine_core import EngineCore, generate_initial_density
 
 
@@ -130,13 +131,7 @@ REPO_SPECS = {
         "reason": "No local repo was found under the external repo root in this scout.",
     },
 }
-AXIS0_CANDIDATE_NAMES = [
-    "fep_gradient_polarity",
-    "path_entropy",
-    "correlation_diversity_derivative",
-    "holographic_boundary_interior_reconstruction",
-    "retrocausal_many_futures_policy_scoring",
-]
+AXIS0_FEATURE_PREFIX = "axis0_"
 
 
 def as_jsonable(value: Any) -> Any:
@@ -177,7 +172,7 @@ def load_result(name: str) -> dict[str, Any]:
         "all_pass": data.get("all_pass"),
         "classification": data.get("classification"),
         "promotion_allowed": data.get("promotion_allowed"),
-        "claim_ceiling": data.get("claim_ceiling", "")[:240],
+        "claim_ceiling": data.get("claim_ceiling", ""),
         "positive": data.get("positive", {}),
         "axis0_outputs_or_blockers": data.get("axis0_outputs_or_blockers", {}),
     }
@@ -369,19 +364,6 @@ print(json.dumps({
     }
 
 
-def axis0_vectors(router: dict[str, Any]) -> dict[str, list[float]]:
-    outputs = router.get("axis0_outputs_or_blockers") or {}
-    vectors = {}
-    for name in AXIS0_CANDIDATE_NAMES:
-        arr = np.asarray(outputs.get(name, {}).get("values", []), dtype=float)
-        arr = np.nan_to_num(arr, nan=0.0, posinf=0.0, neginf=0.0)
-        scale = float(np.max(np.abs(arr))) if arr.size else 0.0
-        if scale > 0.0:
-            arr = arr / scale
-        vectors[name] = [float(x) for x in arr]
-    return vectors
-
-
 def holodeck_memory_context(memory_receipt: dict[str, Any]) -> dict[str, float]:
     recall = ((memory_receipt.get("positive") or {}).get("predictive_model_verifies_contextual_recall") or {})
     target = float(recall.get("mean_target_verification_score", 0.0))
@@ -402,7 +384,12 @@ def stable_bucket(payload: dict[str, Any], modulus: int = 997) -> float:
     return float(int(digest[:8], 16) % modulus) / float(modulus)
 
 
-def collect_stage_features(axis0: dict[str, list[float]], memory: dict[str, float]) -> tuple[np.ndarray, list[str], list[dict[str, Any]]]:
+def collect_stage_features(
+    axis0: dict[str, list[float]],
+    memory: dict[str, float],
+    active_axis0_candidates: list[str],
+) -> tuple[np.ndarray, list[str], list[dict[str, Any]]]:
+    axis0_feature_names = [f"{AXIS0_FEATURE_PREFIX}{name}" for name in active_axis0_candidates]
     names = [
         "model_after_bloch_x",
         "model_after_bloch_y",
@@ -413,11 +400,7 @@ def collect_stage_features(axis0: dict[str, list[float]], memory: dict[str, floa
         "surprise_kl",
         "expected_free_energy_proxy",
         "manifold_projection_delta_norm",
-        "axis0_fep_gradient_polarity",
-        "axis0_path_entropy",
-        "axis0_correlation_diversity_derivative",
-        "axis0_holographic_boundary_interior_reconstruction",
-        "axis0_retrocausal_many_futures_policy_scoring",
+        *axis0_feature_names,
         "holodeck_memory_verification_margin",
         "holodeck_memory_trigger_drive",
         "holodeck_graveyard_hash_density",
@@ -438,7 +421,7 @@ def collect_stage_features(axis0: dict[str, list[float]], memory: dict[str, floa
                     repair = record["update_repair"]
                     idx = len(records)
                     axis_values = []
-                    for name in AXIS0_CANDIDATE_NAMES:
+                    for name in active_axis0_candidates:
                         vector = axis0.get(name, [0.0])
                         axis_values.append(float(vector[idx % max(1, len(vector))]))
                     memory_trigger = float(memory["verification_margin"]) * (1.0 if idx % 2 == 0 else -0.5)
@@ -476,8 +459,9 @@ def collect_stage_features(axis0: dict[str, list[float]], memory: dict[str, floa
 
 
 class TinyPredictiveAdapter(nn.Module):
-    def __init__(self, feature_names: list[str]) -> None:
+    def __init__(self, feature_names: list[str], disabled_feature_names: list[str] | None = None) -> None:
         super().__init__()
+        disabled = set(disabled_feature_names or [])
         feature_dim = len(feature_names)
         self.linear = nn.Linear(feature_dim, 1, bias=True, dtype=torch.float64)
         with torch.no_grad():
@@ -499,6 +483,9 @@ class TinyPredictiveAdapter(nn.Module):
             for field, boost in field_boosts.items():
                 if field in feature_names:
                     weights[feature_names.index(field)] += boost
+            for field in disabled:
+                if field in feature_names:
+                    weights[feature_names.index(field)] = 0.0
             weights[-1] += 1.1
             self.linear.weight.copy_(weights.reshape(1, -1))
             self.linear.bias.fill_(0.03)
@@ -507,9 +494,14 @@ class TinyPredictiveAdapter(nn.Module):
         return torch.tanh(self.linear(x))
 
 
-def tiny_adapter_consumption(features: np.ndarray, names: list[str]) -> dict[str, Any]:
+def tiny_adapter_consumption(
+    features: np.ndarray,
+    names: list[str],
+    disabled_feature_names: list[str] | None = None,
+) -> dict[str, Any]:
     x = torch.tensor(features, dtype=torch.float64)
-    model = TinyPredictiveAdapter(names)
+    disabled = disabled_feature_names or []
+    model = TinyPredictiveAdapter(names, disabled_feature_names=disabled)
     with torch.no_grad():
         scores = model(x).reshape(-1)
     ablated = x.clone()
@@ -528,7 +520,8 @@ def tiny_adapter_consumption(features: np.ndarray, names: list[str]) -> dict[str
         "holodeck_graveyard_hash_density",
         "holodeck_survivor_class_bucket",
     ]:
-        ablated[:, names.index(field)] = 0.0
+        if field in names:
+            ablated[:, names.index(field)] = 0.0
     with torch.no_grad():
         ablated_scores = model(ablated).reshape(-1)
     eps = 0.02
@@ -551,6 +544,20 @@ def tiny_adapter_consumption(features: np.ndarray, names: list[str]) -> dict[str
         "rows": int(features.shape[0]),
         "feature_dim": int(features.shape[1]),
         "feature_names": names,
+        "disabled_feature_names": disabled,
+        "disabled_feature_weight_abs_sum": float(
+            sum(
+                abs(model.linear.weight.detach().reshape(-1)[names.index(field)].item())
+                for field in disabled
+                if field in names
+            )
+        ),
+        "disabled_feature_values_max_abs": float(
+            max(
+                [np.max(np.abs(features[:, names.index(field)])) for field in disabled if field in names]
+                or [0.0]
+            )
+        ),
         "score_mean": float(torch.mean(scores).item()),
         "score_std": float(torch.std(scores).item()),
         "field_ablation_mean_abs_delta": float(changed),
@@ -635,15 +642,25 @@ def main() -> int:
     started = time.time()
     stage_receipt = load_result("macro_sim_stage_record_science_method_contract_probe_results.json")
     axis0_receipt = load_result("macro_sim_axis0_plural_stage_candidate_router_probe_results.json")
+    axis0_guard_receipt = load_result(axis0_guard.AXIS0_GUARD_RESULT_NAME)
     holodeck_receipt = load_result("source_native_holodeck_hash_memory_placeholder_probe_results.json")
     subdense_receipt = load_result("source_native_multicarrier_subdense_environment_contraction_probe_results.json")
     neural_delta_receipt = load_result("constraint_manifold_delta_neural_readout_probe_results.json")
 
     inventory = repo_inventory()
-    axis0 = axis0_vectors(axis0_receipt)
+    axis0_guard_state = axis0_guard.axis0_guard_signal(axis0_guard_receipt)
+    axis0 = axis0_guard.guarded_router_vectors(axis0_receipt, axis0_guard_state)
     memory = holodeck_memory_context(holodeck_receipt)
-    features, feature_names, records = collect_stage_features(axis0, memory)
-    adapter = tiny_adapter_consumption(features, feature_names)
+    features, feature_names, records = collect_stage_features(
+        axis0,
+        memory,
+        active_axis0_candidates=axis0_guard_state["admitted_candidate_names"],
+    )
+    adapter = tiny_adapter_consumption(
+        features,
+        feature_names,
+        disabled_feature_names=[],
+    )
     auto_probe = auto_lirpa_consumption_probe(features)
     matrix = admission_matrix(inventory, auto_probe, adapter)
     z3_witness = z3_admission_witness(matrix)
@@ -652,6 +669,7 @@ def main() -> int:
         "EngineCore science_method_stage_record_v1",
         "macro_sim_stage_record_science_method_contract receipt",
         "macro_sim_axis0_plural_stage_candidate_router receipt",
+        "axis0_plural_candidate_multicarrier_drive_controls receipt",
         "source_native_holodeck_hash_memory_placeholder receipt",
         "source_native_multicarrier_subdense_environment_contraction receipt",
         "constraint_manifold_delta_neural_readout receipt",
@@ -676,12 +694,27 @@ def main() -> int:
             "adapter_consumption": adapter,
             "auto_lirpa_consumption_probe": auto_probe,
             "admission_matrix": matrix,
+            "axis0_guard_consumption": axis0_guard_state,
         },
         "axis0_outputs_or_blockers": {
-            "consumed_candidates": sorted(axis0),
-            "axis0_vectors_nonempty": all(bool(v) for v in axis0.values()),
+            "raw_router_candidate_names": axis0_guard.AXIS0_CANDIDATE_NAMES,
+            "admitted_candidate_names": axis0_guard_state["admitted_candidate_names"],
+            "blocked_candidate_names": axis0_guard_state["blocked_candidate_names"],
+            "adapter_active_axis0_feature_names": axis0_guard_state["adapter_active_axis0_feature_names"],
+            "blocked_axis0_feature_names_excluded": axis0_guard_state["blocked_axis0_feature_names_excluded"],
+            "axis0_vectors_nonempty": all(
+                bool(axis0[name])
+                for name in axis0_guard_state["admitted_candidate_names"]
+            ),
+            "blocked_axis0_candidates_not_feature_columns": all(
+                f"{AXIS0_FEATURE_PREFIX}{name}" not in feature_names
+                for name in axis0_guard_state["blocked_candidate_names"]
+            ),
+            "axis0_guard_receipt_consumed": axis0_guard_receipt.get("all_pass") is True,
+            "scalar_weighted_drive_blocker": axis0_guard_state["scalar_weighted_drive_blocker"],
+            "control_family_degeneracy_blockers": axis0_guard_state["control_family_degeneracy_blockers"],
             "holodeck_memory_context": memory,
-            "claim_ceiling": "Axis0 vectors are consumed as adapter context only; no final Axis0 claim is admitted.",
+            "claim_ceiling": "Only Axis0 candidates admitted by the multicarrier guard are active world-model adapter features. Blocked candidates are retained as blockers and excluded from feature columns; no final Axis0 claim is admitted.",
         },
         "provider_inputs_used": {
             "grok": "not_run_this_repair_wave",
@@ -711,19 +744,43 @@ def main() -> int:
             "pass": adapter["pass"]
             and stage_receipt.get("all_pass") is True
             and axis0_receipt.get("all_pass") is True
+            and axis0_guard_receipt.get("all_pass") is True
+            and axis0_guard_state["pass"] is True
             and holodeck_receipt.get("all_pass") is True
             and subdense_receipt.get("all_pass") is True,
             "adapter": adapter,
-            "required_axis0_candidates": AXIS0_CANDIDATE_NAMES,
-            "consumed_axis0_candidates": sorted(axis0),
+            "raw_axis0_candidates": axis0_guard.AXIS0_CANDIDATE_NAMES,
+            "admitted_axis0_candidates": axis0_guard_state["admitted_candidate_names"],
+            "blocked_axis0_candidates": axis0_guard_state["blocked_candidate_names"],
+            "adapter_active_axis0_features": axis0_guard_state["adapter_active_axis0_feature_names"],
+            "blocked_axis0_features_excluded": axis0_guard_state["blocked_axis0_feature_names_excluded"],
             "holodeck_memory_context": memory,
             "dependency_status": {
                 "stage": stage_receipt,
                 "axis0": axis0_receipt,
+                "axis0_guard": axis0_guard_receipt,
                 "holodeck_memory": holodeck_receipt,
                 "subdense_environment": subdense_receipt,
                 "neural_delta": neural_delta_receipt,
             },
+        },
+        "axis0_guard_receipt_blocks_unadmitted_candidates_before_world_model_adapter": {
+            "pass": bool(
+                axis0_guard_state["pass"]
+                and all(
+                    field in feature_names
+                    for field in axis0_guard_state["adapter_active_axis0_feature_names"]
+                )
+                and all(
+                    field not in feature_names
+                    for field in axis0_guard_state["blocked_axis0_feature_names_excluded"]
+                )
+                and set(axis0_guard_state["blocked_axis0_feature_names_excluded"]).isdisjoint(
+                    set(axis0_guard_state["adapter_active_axis0_feature_names"])
+                )
+            ),
+            "axis0_guard": axis0_guard_state,
+            "adapter_feature_names": feature_names,
         },
         "auto_lirpa_tiny_bound_consumption_test_matches_analytic_control": auto_probe,
         "z3_admission_rule_rejects_repo_name_only_and_accepts_bounded_auto_lirpa_adapter": z3_witness,
@@ -761,6 +818,24 @@ def main() -> int:
             "auto_lirpa_decision": matrix["rows"]["auto_LiRPA"]["decision"],
             "adapter_claim_ceiling": auto_probe["claim_ceiling"],
         },
+        "blocked_axis0_candidates_not_used_as_admitted_world_model_features": {
+            "pass": bool(
+                axis0_guard_receipt.get("all_pass") is True
+                and axis0_guard_state["blocked_candidate_names"] == [
+                    "path_entropy",
+                    "holographic_boundary_interior_reconstruction",
+                ]
+                and all(
+                    f"{AXIS0_FEATURE_PREFIX}{name}" not in feature_names
+                    for name in axis0_guard_state["blocked_candidate_names"]
+                )
+            ),
+            "blocked_candidate_names": axis0_guard_state["blocked_candidate_names"],
+            "adapter_feature_names": feature_names,
+            "blocked_candidate_status": axis0_guard_state["blocked_candidate_status"],
+            "scalar_weighted_drive_blocker": axis0_guard_state["scalar_weighted_drive_blocker"],
+            "control_family_degeneracy_blockers": axis0_guard_state["control_family_degeneracy_blockers"],
+        },
     }
 
     boundary = {
@@ -786,6 +861,16 @@ def main() -> int:
                 ]
             ),
             "keys": sorted(repair_receipt),
+        },
+        "world_model_adapter_consumes_axis0_guard_not_raw_router_alone": {
+            "pass": bool(
+                axis0_guard_receipt.get("all_pass") is True
+                and "axis0_plural_candidate_multicarrier_drive_controls receipt" in dependency_subset
+                and axis0_guard_state["scalar_weighted_drive_blocker"].get("admitted") is False
+                and "true vector-valued Axis0 actuator" in axis0_guard_state["guard_claim_ceiling"]
+            ),
+            "axis0_guard_result": axis0_guard.AXIS0_GUARD_RESULT_NAME,
+            "guard_claim_ceiling": axis0_guard_state["guard_claim_ceiling"],
         },
         "no_heavy_repo_runtime_or_network_download_was_used": {
             "pass": True,

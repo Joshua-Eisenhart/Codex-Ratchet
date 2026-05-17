@@ -23,6 +23,7 @@ AUTO_LIRPA_ROOT = pathlib.Path("/Users/joshuaeisenhart/GitHub/auto_LiRPA")
 sys.path.insert(0, str(AUTO_LIRPA_ROOT))
 from auto_LiRPA import BoundedModule, BoundedTensor, PerturbationLpNorm  # noqa: E402
 
+import axis0_guard_utils as axis0_guard
 from engine_core import EngineCore, generate_initial_density
 
 
@@ -95,24 +96,11 @@ def load_result(name: str) -> dict[str, Any]:
         "all_pass": data.get("all_pass"),
         "classification": data.get("classification"),
         "promotion_allowed": data.get("promotion_allowed"),
-        "claim_ceiling": data.get("claim_ceiling", "")[:240],
+        "claim_ceiling": data.get("claim_ceiling", ""),
         "positive": data.get("positive", {}),
         "repo_admission_matrix": data.get("repo_admission_matrix", {}),
         "axis0_outputs_or_blockers": data.get("axis0_outputs_or_blockers", {}),
     }
-
-
-def axis0_vectors(router: dict[str, Any]) -> dict[str, list[float]]:
-    outputs = router.get("axis0_outputs_or_blockers") or {}
-    vectors = {}
-    for name in ["fep_gradient_polarity", "path_entropy", "correlation_diversity_derivative"]:
-        arr = np.asarray(outputs.get(name, {}).get("values", []), dtype=float)
-        arr = np.nan_to_num(arr, nan=0.0, posinf=0.0, neginf=0.0)
-        scale = float(np.max(np.abs(arr))) if arr.size else 0.0
-        if scale > 0.0:
-            arr = arr / scale
-        vectors[name] = [float(x) for x in arr]
-    return vectors
 
 
 def memory_margin(memory_receipt: dict[str, Any]) -> float:
@@ -123,6 +111,7 @@ def memory_margin(memory_receipt: dict[str, Any]) -> float:
 
 
 def collect_features(axis0: dict[str, list[float]], memory: float) -> tuple[np.ndarray, list[str], list[dict[str, Any]]]:
+    axis0_names = list(axis0)
     names = [
         "bloch_x",
         "bloch_y",
@@ -133,9 +122,7 @@ def collect_features(axis0: dict[str, list[float]], memory: float) -> tuple[np.n
         "surprise_kl",
         "expected_free_energy_proxy",
         "manifold_projection_delta_norm",
-        "axis0_fep_gradient_polarity",
-        "axis0_path_entropy",
-        "axis0_correlation_diversity_derivative",
+        *[f"axis0_{name}" for name in axis0_names],
         "holodeck_memory_verification_margin",
         "operator_sign",
     ]
@@ -151,11 +138,10 @@ def collect_features(axis0: dict[str, list[float]], memory: float) -> tuple[np.n
                 model = record["model_after"]
                 fep = record["fep_efe_score"]
                 repair = record["update_repair"]
-                axis_values = [
-                    float(axis0.get("fep_gradient_polarity", [0.0])[idx % max(1, len(axis0.get("fep_gradient_polarity", [0.0])))]),
-                    float(axis0.get("path_entropy", [0.0])[idx % max(1, len(axis0.get("path_entropy", [0.0])))]),
-                    float(axis0.get("correlation_diversity_derivative", [0.0])[idx % max(1, len(axis0.get("correlation_diversity_derivative", [0.0])))]),
-                ]
+                axis_values = []
+                for name in axis0_names:
+                    vector = axis0.get(name, [0.0])
+                    axis_values.append(float(vector[idx % max(1, len(vector))]))
                 rows.append(
                     [
                         *[float(x) for x in model["bloch"]],
@@ -209,11 +195,12 @@ def bounded_policy_report(features: np.ndarray, names: list[str]) -> dict[str, A
     context_zero = x.clone()
     for name in [
         "axis0_fep_gradient_polarity",
-        "axis0_path_entropy",
         "axis0_correlation_diversity_derivative",
+        "axis0_retrocausal_many_futures_policy_scoring",
         "holodeck_memory_verification_margin",
     ]:
-        context_zero[:, names.index(name)] = 0.0
+        if name in names:
+            context_zero[:, names.index(name)] = 0.0
     bounded_zero = BoundedModule(model, context_zero)
     zero_bx = BoundedTensor(context_zero, PerturbationLpNorm(norm=np.inf, eps=eps))
     zero_nominal = bounded_zero(zero_bx)
@@ -262,8 +249,10 @@ def main() -> int:
     repo_receipt = load_result("world_model_repo_admission_gap_adapter_probe_results.json")
     stage_receipt = load_result("macro_sim_stage_record_science_method_contract_probe_results.json")
     axis0_receipt = load_result("macro_sim_axis0_plural_stage_candidate_router_probe_results.json")
+    axis0_guard_receipt = load_result(axis0_guard.AXIS0_GUARD_RESULT_NAME)
     memory_receipt = load_result("source_native_holodeck_hash_memory_placeholder_probe_results.json")
-    axis0 = axis0_vectors(axis0_receipt)
+    guard = axis0_guard.axis0_guard_signal(axis0_guard_receipt)
+    axis0 = axis0_guard.guarded_router_vectors(axis0_receipt, guard)
     memory = memory_margin(memory_receipt)
     features, names, records = collect_features(axis0, memory)
     bound_report = bounded_policy_report(features, names)
@@ -278,6 +267,7 @@ def main() -> int:
             "world_model_repo_admission_gap_adapter receipt",
             "macro_sim_stage_record_science_method_contract receipt",
             "macro_sim_axis0_plural_stage_candidate_router receipt",
+            "axis0_plural_candidate_multicarrier_drive_controls receipt",
             "source_native_holodeck_hash_memory_placeholder receipt",
             "local auto_LiRPA repo under /Users/joshuaeisenhart/GitHub",
         ],
@@ -295,8 +285,18 @@ def main() -> int:
             "context_zero_control": "axis0 and Holodeck-memory context features zeroed",
         },
         "axis0_outputs_or_blockers": {
-            "consumed_candidates": sorted(axis0),
+            "raw_router_candidate_names": axis0_guard.AXIS0_CANDIDATE_NAMES,
+            "admitted_candidate_names": guard["admitted_candidate_names"],
+            "blocked_candidate_names": guard["blocked_candidate_names"],
+            "adapter_active_axis0_feature_names": guard["adapter_active_axis0_feature_names"],
+            "blocked_axis0_feature_names_excluded": guard["blocked_axis0_feature_names_excluded"],
+            "blocked_axis0_candidates_not_feature_columns": all(
+                f"axis0_{name}" not in names for name in guard["blocked_candidate_names"]
+            ),
             "axis0_vectors_nonempty": all(bool(v) for v in axis0.values()),
+            "axis0_guard_receipt_consumed": axis0_guard_receipt.get("all_pass") is True,
+            "scalar_weighted_drive_blocker": guard["scalar_weighted_drive_blocker"],
+            "control_family_degeneracy_blockers": guard["control_family_degeneracy_blockers"],
         },
         "provider_inputs_used": {
             "grok": "not_run_this_repair_wave",
@@ -315,6 +315,16 @@ def main() -> int:
             and auto_row.get("decision") == "admitted_tiny_verifier_adapter_only",
             "auto_lirpa_row": auto_row,
         },
+        "axis0_guard_receipt_blocks_unadmitted_candidates_before_lirpa_adapter": {
+            "pass": bool(
+                guard["pass"]
+                and axis0_guard_receipt.get("all_pass") is True
+                and all(f"axis0_{name}" not in names for name in guard["blocked_candidate_names"])
+                and all(f"axis0_{name}" in names for name in guard["admitted_candidate_names"])
+            ),
+            "axis0_guard": guard,
+            "feature_names": names,
+        },
         "stage_axis0_holodeck_features_are_bounded_by_auto_lirpa": bound_report,
         "z3_bound_witness_executes": z3_witness,
     }
@@ -326,6 +336,11 @@ def main() -> int:
         "context_zero_control_changes_certified_interval": {
             "pass": bound_report["context_zero_interval_center_shift"] > 0.01,
             "interval_center_shift": bound_report["context_zero_interval_center_shift"],
+        },
+        "blocked_axis0_candidates_not_used_as_lirpa_feature_columns": {
+            "pass": all(f"axis0_{name}" not in names for name in guard["blocked_candidate_names"]),
+            "blocked_candidate_names": guard["blocked_candidate_names"],
+            "feature_names": names,
         },
         "raw_pytorch_nominal_is_not_a_certificate": {
             "pass": bound_report["interval_mean_width"] > 0.0,
@@ -372,6 +387,7 @@ def main() -> int:
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "repair_receipt": repair_receipt,
+        "axis0_outputs_or_blockers": repair_receipt["axis0_outputs_or_blockers"],
         "positive": positive,
         "graveyard_companions": graveyards,
         "boundary": boundary,

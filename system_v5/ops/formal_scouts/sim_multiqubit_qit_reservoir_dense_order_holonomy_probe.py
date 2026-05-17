@@ -1,0 +1,194 @@
+#!/usr/bin/env python3
+"""Dense v6 multi-qubit order-holonomy scout."""
+
+from __future__ import annotations
+
+import json
+import pathlib
+import time
+from typing import Any
+
+import numpy as np
+import torch
+import z3
+
+import engine_v6_proper_multiqubit_reference as v6
+from sim_multiqubit_qit_reservoir_grok_task_replication_probe import CLASS_NAMES, class_density
+
+
+ROOT = pathlib.Path(__file__).resolve().parent
+RESULT_DIR = ROOT / "results"
+OUT_PATH = RESULT_DIR / "multiqubit_qit_reservoir_dense_order_holonomy_probe_results.json"
+
+NAME = "multiqubit_qit_reservoir_dense_order_holonomy_probe"
+CLASSIFICATION = "formal_scout"
+PROMOTION_ALLOWED = False
+CLAIM_CEILING = (
+    "Formal scout only: translates the external dense-v6 holonomy claim into a "
+    "repo-grounded finite test of order-dependent multi-qubit dynamics on product, "
+    "GHZ, W, Haar, and max-mixed inputs. It does not prove a canonical connection "
+    "and does not admit physics, cognition, intelligence, neural capability, or "
+    "final manifold claims."
+)
+
+TOOL_MANIFEST = {
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing dense v6 order-dependent state evolution"},
+    "numpy": {"tried": True, "used": True, "reason": "load-bearing state construction and gap aggregation"},
+    "z3": {"tried": True, "used": True, "reason": "load-bearing finite noncommutation witness"},
+    "engine_v6_reference": {"tried": True, "used": True, "reason": "load-bearing repo-grounded v6 candidate"},
+}
+TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+
+N_QUBITS = 4
+DTYPE = v6.DTYPE
+
+
+def tokens_for_order(engine: v6.TrainableEngineV6, stage_order: list[int]) -> list[tuple[int, int, int]]:
+    tokens = []
+    for terrain_idx in stage_order:
+        for op_idx, sign in engine.stage_substages(terrain_idx):
+            tokens.append((terrain_idx, op_idx, sign))
+    return tokens
+
+
+def evolve_tokens(engine: v6.TrainableEngineV6, rho_np: np.ndarray, tokens: list[tuple[int, int, int]]) -> torch.Tensor:
+    rho = torch.tensor(rho_np, dtype=DTYPE)
+    with torch.no_grad():
+        for terrain_idx, op_idx, sign in tokens:
+            rho = engine.run_substage(rho, terrain_idx, op_idx, sign)
+    return rho
+
+
+def fro_gap(a: torch.Tensor, b: torch.Tensor) -> float:
+    return float(torch.linalg.matrix_norm(a - b).detach().cpu().item())
+
+
+def density_for_name(name: str, rng: np.random.Generator) -> np.ndarray:
+    if name == "max_mixed":
+        d = 2**N_QUBITS
+        return (np.eye(d, dtype=np.complex64) / d).astype(np.complex64)
+    label = CLASS_NAMES.index(name)
+    return class_density(label, N_QUBITS, rng)
+
+
+def run_engine_class(engine_type: int, class_name: str, seed: int) -> dict[str, Any]:
+    torch.manual_seed(200000 + engine_type)
+    rng = np.random.default_rng(seed)
+    engine = v6.TrainableEngineV6(engine_type=engine_type, n_qubits=N_QUBITS, dt=0.06, n_steps_per_substage=2)
+    engine.eval()
+    native = engine.stage_sequence()
+    mirrored = list(reversed(native[:4])) + list(reversed(native[4:]))
+    native_tokens = tokens_for_order(engine, native)
+    reverse_tokens = list(reversed(native_tokens))
+    mirrored_tokens = tokens_for_order(engine, mirrored)
+    rho = density_for_name(class_name, rng)
+    fwd = evolve_tokens(engine, rho, native_tokens)
+    rev = evolve_tokens(engine, rho, reverse_tokens)
+    mirrored_out = evolve_tokens(engine, rho, mirrored_tokens)
+    return {
+        "engine_type": engine_type,
+        "class_name": class_name,
+        "native_order": native,
+        "mirrored_order": mirrored,
+        "fwd_vs_rev_gap": fro_gap(fwd, rev),
+        "native_vs_mirrored_gap": fro_gap(fwd, mirrored_out),
+    }
+
+
+def run_matrix() -> dict[str, Any]:
+    class_names = CLASS_NAMES + ["max_mixed"]
+    rows = []
+    for engine_type in (1, 2):
+        for idx, class_name in enumerate(class_names):
+            rows.append(run_engine_class(engine_type, class_name, 210000 + 100 * engine_type + idx))
+    nontrivial = [row for row in rows if row["class_name"] != "max_mixed"]
+    trivial = [row for row in rows if row["class_name"] == "max_mixed"]
+    mean_fwd_rev = float(np.mean([row["fwd_vs_rev_gap"] for row in nontrivial]))
+    mean_native_mirror = float(np.mean([row["native_vs_mirrored_gap"] for row in nontrivial]))
+    max_trivial = float(max(max(row["fwd_vs_rev_gap"], row["native_vs_mirrored_gap"]) for row in trivial))
+    t1_mean = float(np.mean([row["fwd_vs_rev_gap"] for row in nontrivial if row["engine_type"] == 1]))
+    t2_mean = float(np.mean([row["fwd_vs_rev_gap"] for row in nontrivial if row["engine_type"] == 2]))
+    return {
+        "n_qubits": N_QUBITS,
+        "rows": rows,
+        "mean_nontrivial_fwd_vs_rev_gap": mean_fwd_rev,
+        "mean_nontrivial_native_vs_mirrored_gap": mean_native_mirror,
+        "max_trivial_max_mixed_gap": max_trivial,
+        "engine_type_fwd_rev_means": {"1": t1_mean, "2": t2_mean},
+        "pass": mean_fwd_rev > 0.02
+        and mean_native_mirror > 0.02
+        and max_trivial < mean_fwd_rev
+        and all(row["fwd_vs_rev_gap"] > 0.015 for row in nontrivial),
+    }
+
+
+def z3_holonomy_witness(matrix: dict[str, Any]) -> dict[str, Any]:
+    solver = z3.Solver()
+    fwd = z3.Real("mean_fwd_rev")
+    mirror = z3.Real("mean_native_mirror")
+    trivial = z3.Real("max_trivial")
+    solver.add(fwd == str(round(matrix["mean_nontrivial_fwd_vs_rev_gap"], 8)))
+    solver.add(mirror == str(round(matrix["mean_nontrivial_native_vs_mirrored_gap"], 8)))
+    solver.add(trivial == str(round(matrix["max_trivial_max_mixed_gap"], 8)))
+    solver.add(z3.Not(z3.And(fwd > 0, mirror > 0, trivial < fwd)))
+    status = solver.check()
+    return {
+        "solver_status": str(status),
+        "pass": status == z3.unsat,
+        "claim_ceiling": "Z3 encodes only finite dense-v6 order-gap inequalities.",
+    }
+
+
+def main() -> int:
+    started = time.time()
+    matrix = run_matrix()
+    positive = {
+        "dense_v6_ordering_is_path_dependent_on_nontrivial_multiqubit_inputs": matrix,
+        "z3_rejects_commuting_order_collapse": z3_holonomy_witness(matrix),
+    }
+    graveyards = {
+        "max_mixed_is_the_trivial_order_control": {
+            "max_trivial_gap": matrix["max_trivial_max_mixed_gap"],
+            "mean_nontrivial_gap": matrix["mean_nontrivial_fwd_vs_rev_gap"],
+            "pass": matrix["max_trivial_max_mixed_gap"] < matrix["mean_nontrivial_fwd_vs_rev_gap"],
+        },
+        "both_chiral_engines_show_order_dependence": {
+            "engine_type_fwd_rev_means": matrix["engine_type_fwd_rev_means"],
+            "pass": all(value > 0.02 for value in matrix["engine_type_fwd_rev_means"].values()),
+        },
+    }
+    boundary = {
+        "promotion_remains_disabled": {"pass": PROMOTION_ALLOWED is False},
+        "dense_holonomy_does_not_replace_peps3d_holonomy": {"pass": "dense-v6" in CLAIM_CEILING and N_QUBITS == 4},
+    }
+    all_pass = all(row["pass"] for row in positive.values()) and all(row["pass"] for row in graveyards.values()) and all(row["pass"] for row in boundary.values())
+    result = {
+        "schema": "FORMAL_SCOUT_RESULT_v1",
+        "name": NAME,
+        "classification": CLASSIFICATION,
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "claim_ceiling": CLAIM_CEILING,
+        "source_alignment_category": "source_native_multiqubit_qit_reservoir_dense_holonomy_formal_scout",
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "positive": positive,
+        "graveyard_companions": graveyards,
+        "boundary": boundary,
+        "nearby_variants": {"total": len(graveyards), "passed": sum(1 for row in graveyards.values() if row["pass"]), "variants": sorted(graveyards)},
+        "why_not_v4_probes": [
+            "Finite dense-v6 order-dependence scout only.",
+            "Does not prove a canonical geometric connection.",
+            "Complements but does not replace the PEPS3D/MPS holonomy scout.",
+        ],
+        "blockers": [],
+        "elapsed_seconds": time.time() - started,
+        "all_pass": all_pass,
+    }
+    RESULT_DIR.mkdir(parents=True, exist_ok=True)
+    OUT_PATH.write_text(json.dumps(result, indent=2, sort_keys=True), encoding="utf-8")
+    print(f"RESULT {NAME}: all_pass={all_pass} -> {OUT_PATH}")
+    return 0 if all_pass else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

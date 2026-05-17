@@ -1,50 +1,47 @@
 {
   "schema": "formal_scout_readiness_index.v1",
-  "generated_at": "2026-05-17T06:14:40.266880+00:00",
+  "generated_at": "2026-05-17T06:15:03.276095+00:00",
   "boundary": "readiness_index_only_not_rerun_not_admission_not_promotion",
   "summary": {
-    "result_count": 147,
+    "result_count": 146,
     "source_count": 147,
-    "source_without_result_count": 0,
+    "source_without_result_count": 1,
     "validator_pass_count": 129,
-    "validator_fail_count": 18,
+    "validator_fail_count": 17,
     "source_missing_count": 0,
     "readme_indexed_count": 78,
-    "readme_missing_count": 69,
+    "readme_missing_count": 68,
     "fresh_rerun_mapping_defect_count": 1,
     "fresh_rerun_dual_source_defect_count": 0,
     "backend_policy_violation_count": 0,
     "readiness_status_counts": {
       "schema_ready": 129,
-      "validator_failed": 18
+      "validator_failed": 17
     },
     "validation_error_counts": {
       "positive section missing": 3,
       "graveyard_companions section missing": 8,
       "boundary section missing": 7,
-      "why_not_v4_probes missing": 17,
-      "nearby_variants summary missing": 18,
+      "why_not_v4_probes missing": 16,
+      "nearby_variants summary missing": 17,
       "one or more graveyard checks failed": 2,
       "claim_ceiling may overclaim": 1,
-      "classification is not formal_scout": 1,
-      "one or more positive checks failed": 2,
-      "blockers present": 1
+      "one or more positive checks failed": 1
     },
     "promotion_blocker_counts": {
-      "formal_scout_noncanonical": 147,
-      "fresh_rerun_not_performed": 147,
-      "readme_index_missing": 69,
-      "validator_failed": 18,
-      "fresh_rerun_mapping_defect": 1,
-      "classification_not_formal_scout": 1
+      "formal_scout_noncanonical": 146,
+      "fresh_rerun_not_performed": 146,
+      "readme_index_missing": 68,
+      "validator_failed": 17,
+      "fresh_rerun_mapping_defect": 1
     },
     "tool_manifest_key_style_counts": {
-      "upper": 108,
+      "upper": 107,
       "both": 8,
       "lower": 31
     },
     "tool_depth_key_style_counts": {
-      "upper": 108,
+      "upper": 107,
       "both": 8,
       "lower": 31
     },
@@ -974,7 +971,9 @@
       ]
     }
   ],
-  "source_without_result_samples": [],
+  "source_without_result_samples": [
+    "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py"
+  ],
   "validator_failed_rows": [
     {
       "result_path": "system_v5/ops/formal_scouts/results/chiral_trajectory_persistent_homology_readout_feature_probe_results.json",
@@ -1622,60 +1621,6 @@
       "promotion_blockers": [
         "formal_scout_noncanonical",
         "fresh_rerun_mapping_defect",
-        "fresh_rerun_not_performed",
-        "readme_index_missing",
-        "validator_failed"
-      ]
-    },
-    {
-      "result_path": "system_v5/ops/formal_scouts/results/singular_lego_wired_axis0_plural_manifold_engine_probe_results.json",
-      "stem": "singular_lego_wired_axis0_plural_manifold_engine_probe",
-      "source_path": "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py",
-      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py",
-      "source_exists": true,
-      "fresh_rerun_mapping_defect": false,
-      "fresh_rerun_dual_source_defect": false,
-      "readme_indexed": false,
-      "validation_pass": false,
-      "validation_errors": [
-        "classification is not formal_scout",
-        "why_not_v4_probes missing",
-        "nearby_variants summary missing",
-        "one or more positive checks failed",
-        "blockers present"
-      ],
-      "readiness_status": "validator_failed",
-      "classification": "tool_lego_fit_probe",
-      "promotion_allowed": false,
-      "all_pass": false,
-      "claim_ceiling_present": true,
-      "claim_ceiling": "tool_lego_fit_probe ONLY: verifies that all 13 system_v5/legos primitives are importable AND each has its primary non-trivial callable exercised in isolation, AND runs engine_core (Lindblad cycle) with the live 13-layer active manifold constraint chain, AND emits axis0 plurally across the 5 candidates from the existing plural router with strict per-candidate predicates. Does NOT admit: canonical engine, final axis0, Holodeck memory, retrocausality, quantum advantage, learned dynamics, intelligence, physics, cognition, canonical manifold tower claims, or lego load-bearingness in the per-substage axis0 path (v1 scope: lego callable + axis0 plural emission separately; v2 scope: legos in axis0 path with ablation sensitivity). Owner emphasis 'axis0 not so simple needs deep nuance' enforced via 5-key dict + signed polarity + path_entropy HARD non-degeneracy gate + holographic boundary blockers retained. promotion_allowed: false.",
-      "tool_manifest_key_style": "upper",
-      "tool_depth_key_style": "upper",
-      "normalized_tool_depth": {
-        "pytorch": "load_bearing",
-        "numpy": "load_bearing",
-        "sympy": "load_bearing",
-        "z3": "load_bearing",
-        "clifford": "load_bearing",
-        "geomstats": "load_bearing",
-        "gudhi": "load_bearing",
-        "toponetx": "load_bearing",
-        "xgi": "load_bearing",
-        "opt_einsum": "load_bearing",
-        "torch_geometric": "load_bearing",
-        "engine_core": "load_bearing"
-      },
-      "backend_policy_violations": [],
-      "public_status_label": "exists",
-      "public_status_blockers": [
-        "index_only_no_execution",
-        "fresh_local_rerun_not_performed",
-        "canonical_process_not_evaluated"
-      ],
-      "promotion_blockers": [
-        "classification_not_formal_scout",
-        "formal_scout_noncanonical",
         "fresh_rerun_not_performed",
         "readme_index_missing",
         "validator_failed"
@@ -3718,60 +3663,6 @@
       "promotion_blockers": [
         "formal_scout_noncanonical",
         "fresh_rerun_mapping_defect",
-        "fresh_rerun_not_performed",
-        "readme_index_missing",
-        "validator_failed"
-      ]
-    },
-    {
-      "result_path": "system_v5/ops/formal_scouts/results/singular_lego_wired_axis0_plural_manifold_engine_probe_results.json",
-      "stem": "singular_lego_wired_axis0_plural_manifold_engine_probe",
-      "source_path": "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py",
-      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py",
-      "source_exists": true,
-      "fresh_rerun_mapping_defect": false,
-      "fresh_rerun_dual_source_defect": false,
-      "readme_indexed": false,
-      "validation_pass": false,
-      "validation_errors": [
-        "classification is not formal_scout",
-        "why_not_v4_probes missing",
-        "nearby_variants summary missing",
-        "one or more positive checks failed",
-        "blockers present"
-      ],
-      "readiness_status": "validator_failed",
-      "classification": "tool_lego_fit_probe",
-      "promotion_allowed": false,
-      "all_pass": false,
-      "claim_ceiling_present": true,
-      "claim_ceiling": "tool_lego_fit_probe ONLY: verifies that all 13 system_v5/legos primitives are importable AND each has its primary non-trivial callable exercised in isolation, AND runs engine_core (Lindblad cycle) with the live 13-layer active manifold constraint chain, AND emits axis0 plurally across the 5 candidates from the existing plural router with strict per-candidate predicates. Does NOT admit: canonical engine, final axis0, Holodeck memory, retrocausality, quantum advantage, learned dynamics, intelligence, physics, cognition, canonical manifold tower claims, or lego load-bearingness in the per-substage axis0 path (v1 scope: lego callable + axis0 plural emission separately; v2 scope: legos in axis0 path with ablation sensitivity). Owner emphasis 'axis0 not so simple needs deep nuance' enforced via 5-key dict + signed polarity + path_entropy HARD non-degeneracy gate + holographic boundary blockers retained. promotion_allowed: false.",
-      "tool_manifest_key_style": "upper",
-      "tool_depth_key_style": "upper",
-      "normalized_tool_depth": {
-        "pytorch": "load_bearing",
-        "numpy": "load_bearing",
-        "sympy": "load_bearing",
-        "z3": "load_bearing",
-        "clifford": "load_bearing",
-        "geomstats": "load_bearing",
-        "gudhi": "load_bearing",
-        "toponetx": "load_bearing",
-        "xgi": "load_bearing",
-        "opt_einsum": "load_bearing",
-        "torch_geometric": "load_bearing",
-        "engine_core": "load_bearing"
-      },
-      "backend_policy_violations": [],
-      "public_status_label": "exists",
-      "public_status_blockers": [
-        "index_only_no_execution",
-        "fresh_local_rerun_not_performed",
-        "canonical_process_not_evaluated"
-      ],
-      "promotion_blockers": [
-        "classification_not_formal_scout",
-        "formal_scout_noncanonical",
         "fresh_rerun_not_performed",
         "readme_index_missing",
         "validator_failed"
@@ -9036,60 +8927,6 @@
       "promotion_blockers": [
         "formal_scout_noncanonical",
         "fresh_rerun_mapping_defect",
-        "fresh_rerun_not_performed",
-        "readme_index_missing",
-        "validator_failed"
-      ]
-    },
-    {
-      "result_path": "system_v5/ops/formal_scouts/results/singular_lego_wired_axis0_plural_manifold_engine_probe_results.json",
-      "stem": "singular_lego_wired_axis0_plural_manifold_engine_probe",
-      "source_path": "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py",
-      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py",
-      "source_exists": true,
-      "fresh_rerun_mapping_defect": false,
-      "fresh_rerun_dual_source_defect": false,
-      "readme_indexed": false,
-      "validation_pass": false,
-      "validation_errors": [
-        "classification is not formal_scout",
-        "why_not_v4_probes missing",
-        "nearby_variants summary missing",
-        "one or more positive checks failed",
-        "blockers present"
-      ],
-      "readiness_status": "validator_failed",
-      "classification": "tool_lego_fit_probe",
-      "promotion_allowed": false,
-      "all_pass": false,
-      "claim_ceiling_present": true,
-      "claim_ceiling": "tool_lego_fit_probe ONLY: verifies that all 13 system_v5/legos primitives are importable AND each has its primary non-trivial callable exercised in isolation, AND runs engine_core (Lindblad cycle) with the live 13-layer active manifold constraint chain, AND emits axis0 plurally across the 5 candidates from the existing plural router with strict per-candidate predicates. Does NOT admit: canonical engine, final axis0, Holodeck memory, retrocausality, quantum advantage, learned dynamics, intelligence, physics, cognition, canonical manifold tower claims, or lego load-bearingness in the per-substage axis0 path (v1 scope: lego callable + axis0 plural emission separately; v2 scope: legos in axis0 path with ablation sensitivity). Owner emphasis 'axis0 not so simple needs deep nuance' enforced via 5-key dict + signed polarity + path_entropy HARD non-degeneracy gate + holographic boundary blockers retained. promotion_allowed: false.",
-      "tool_manifest_key_style": "upper",
-      "tool_depth_key_style": "upper",
-      "normalized_tool_depth": {
-        "pytorch": "load_bearing",
-        "numpy": "load_bearing",
-        "sympy": "load_bearing",
-        "z3": "load_bearing",
-        "clifford": "load_bearing",
-        "geomstats": "load_bearing",
-        "gudhi": "load_bearing",
-        "toponetx": "load_bearing",
-        "xgi": "load_bearing",
-        "opt_einsum": "load_bearing",
-        "torch_geometric": "load_bearing",
-        "engine_core": "load_bearing"
-      },
-      "backend_policy_violations": [],
-      "public_status_label": "exists",
-      "public_status_blockers": [
-        "index_only_no_execution",
-        "fresh_local_rerun_not_performed",
-        "canonical_process_not_evaluated"
-      ],
-      "promotion_blockers": [
-        "classification_not_formal_scout",
-        "formal_scout_noncanonical",
         "fresh_rerun_not_performed",
         "readme_index_missing",
         "validator_failed"

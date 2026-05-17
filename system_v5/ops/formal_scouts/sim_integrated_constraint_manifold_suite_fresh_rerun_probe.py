@@ -298,6 +298,12 @@ SUITE = [
         "category": "source_native_subdense_multicarrier_environment",
     },
     {
+        "name": "axis0_plural_candidate_multicarrier_drive_controls",
+        "script": "sim_axis0_plural_candidate_multicarrier_drive_controls_probe.py",
+        "result": "axis0_plural_candidate_multicarrier_drive_controls_probe_results.json",
+        "category": "axis0_plural_candidate_multicarrier_drive_controls",
+    },
+    {
         "name": "world_model_repo_admission_gap_adapter",
         "script": "sim_world_model_repo_admission_gap_adapter_probe.py",
         "result": "world_model_repo_admission_gap_adapter_probe_results.json",
@@ -359,6 +365,7 @@ CRITICAL_NODES = {
     "macro_axis0_plural_stage_router",
     "holodeck_hash_memory_placeholder",
     "source_native_subdense_multicarrier_environment",
+    "axis0_plural_candidate_multicarrier_drive_controls",
     "world_model_repo_admission_gap_adapter",
     "auto_lirpa_trained_stage_policy_adapter_bound",
     "lirpa_policy_bound_gated_multicarrier_environment",
@@ -389,7 +396,9 @@ CRITICAL_EDGES = {
     ("macro_stage_record_science_method_contract", "holodeck_hash_memory_placeholder"),
     ("macro_axis0_plural_stage_router", "source_native_subdense_multicarrier_environment"),
     ("holodeck_hash_memory_placeholder", "source_native_subdense_multicarrier_environment"),
-    ("source_native_subdense_multicarrier_environment", "world_model_repo_admission_gap_adapter"),
+    ("macro_axis0_plural_stage_router", "axis0_plural_candidate_multicarrier_drive_controls"),
+    ("source_native_subdense_multicarrier_environment", "axis0_plural_candidate_multicarrier_drive_controls"),
+    ("axis0_plural_candidate_multicarrier_drive_controls", "world_model_repo_admission_gap_adapter"),
     ("world_model_repo_admission_gap_adapter", "auto_lirpa_stage_policy_bound_consumption"),
     ("auto_lirpa_stage_policy_bound_consumption", "auto_lirpa_trained_stage_policy_adapter_bound"),
     ("auto_lirpa_trained_stage_policy_adapter_bound", "lirpa_policy_bound_gated_multicarrier_environment"),
@@ -540,7 +549,9 @@ def build_dependency_graph(rows: list[dict[str, Any]]) -> nx.DiGraph:
     graph.add_edge("macro_stage_record_science_method_contract", "holodeck_hash_memory_placeholder")
     graph.add_edge("macro_axis0_plural_stage_router", "source_native_subdense_multicarrier_environment")
     graph.add_edge("holodeck_hash_memory_placeholder", "source_native_subdense_multicarrier_environment")
-    graph.add_edge("source_native_subdense_multicarrier_environment", "world_model_repo_admission_gap_adapter")
+    graph.add_edge("macro_axis0_plural_stage_router", "axis0_plural_candidate_multicarrier_drive_controls")
+    graph.add_edge("source_native_subdense_multicarrier_environment", "axis0_plural_candidate_multicarrier_drive_controls")
+    graph.add_edge("axis0_plural_candidate_multicarrier_drive_controls", "world_model_repo_admission_gap_adapter")
     graph.add_edge("world_model_repo_admission_gap_adapter", "auto_lirpa_stage_policy_bound_consumption")
     graph.add_edge("auto_lirpa_stage_policy_bound_consumption", "auto_lirpa_trained_stage_policy_adapter_bound")
     graph.add_edge("auto_lirpa_trained_stage_policy_adapter_bound", "lirpa_policy_bound_gated_multicarrier_environment")

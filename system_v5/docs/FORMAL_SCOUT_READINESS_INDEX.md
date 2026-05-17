@@ -1,18 +1,18 @@
 # Formal Scout Readiness Index
 
-Generated: `2026-05-17T05:52:22.751480+00:00`
+Generated: `2026-05-17T06:09:56.472505+00:00`
 
 Boundary: readiness index only. This does not rerun, admit, promote, or canonicalize formal scouts.
 
 ## Summary
 
-- Result receipts indexed: `144`
-- Source harnesses indexed: `144`
-- Source harnesses without result receipt: `0`
-- Validator pass: `127`
+- Result receipts indexed: `145`
+- Source harnesses indexed: `146`
+- Source harnesses without result receipt: `1`
+- Validator pass: `128`
 - Validator fail: `17`
 - README indexed receipts: `78`
-- README missing receipts: `66`
+- README missing receipts: `67`
 - Fresh-rerun mapping defects: `1`
 - Fresh-rerun dual-source defects: `0`
 - Backend policy violations: `0`
@@ -22,7 +22,7 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 
 ## Readiness Status Counts
 
-- `schema_ready`: 127
+- `schema_ready`: 128
 - `validator_failed`: 17
 
 ## Validation Error Counts
@@ -38,9 +38,9 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 
 ## Promotion Blocker Counts
 
-- `formal_scout_noncanonical`: 144
-- `fresh_rerun_not_performed`: 144
-- `readme_index_missing`: 66
+- `formal_scout_noncanonical`: 145
+- `fresh_rerun_not_performed`: 145
+- `readme_index_missing`: 67
 - `validator_failed`: 17
 - `fresh_rerun_mapping_defect`: 1
 
@@ -50,13 +50,13 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 
 - `upper`: 107
 - `lower`: 31
-- `both`: 6
+- `both`: 7
 
 ### TOOL_INTEGRATION_DEPTH
 
 - `upper`: 107
 - `lower`: 31
-- `both`: 6
+- `both`: 7
 
 ## Provider Receipt Validation
 
@@ -128,6 +128,7 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 - `system_v5/ops/formal_scouts/results/e3nn_equivariant_constraint_manifold_geometric_feature_probe_results.json`
 - `system_v5/ops/formal_scouts/results/eight_qubit_mps_channel_order_graph_leakage_pyg_pytorch_opt_einsum_z3_probe_results.json`
 - `system_v5/ops/formal_scouts/results/eight_qubit_mps_entropy_readout_layer_constraint_probe_results.json`
+- `system_v5/ops/formal_scouts/results/engine_core_autograd_severance_contract_probe_results.json`
 - `system_v5/ops/formal_scouts/results/engine_operator_slot_alphabet_contract_probe_results.json`
 - `system_v5/ops/formal_scouts/results/fe_asymmetry_pauli_generator_algebra_z3_derivation_probe_results.json`
 - `system_v5/ops/formal_scouts/results/fe_three_to_one_asymmetry_structural_origin_probe_results.json`
@@ -166,4 +167,3 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 - `system_v5/ops/formal_scouts/results/source_native_active_inference_strategy_policy_probe_results.json`
 - `system_v5/ops/formal_scouts/results/source_native_engine_boundary_path_fep_reconstruction_probe_results.json`
 - `system_v5/ops/formal_scouts/results/source_native_engine_transition_phase_boundary_path_fep_probe_results.json`
-- `system_v5/ops/formal_scouts/results/source_native_fep_pomdp_policy_tree_probe_results.json`

@@ -1,13 +1,14 @@
 {
   "schema": "never_run_cohorts_v1",
   "mode": "audit_no_queue_mutation",
-  "never_run_count": 3001,
+  "never_run_count": 3559,
   "family_counts": {
+    "calibration": 576,
     "coupling": 361,
     "cvc5": 334,
     "geometry": 167,
     "gtower": 100,
-    "pure": 75,
+    "pure": 74,
     "gap": 65,
     "hopf": 56,
     "weyl": 53,
@@ -19,11 +20,11 @@
     "leviathan": 35,
     "other": 27,
     "igt": 27,
-    "bridge": 26,
     "dirac": 26,
     "symplectic": 26,
     "axis0": 25,
     "holodeck": 25,
+    "bridge": 23,
     "contact": 23,
     "clifford": 22,
     "spectral": 22,
@@ -35,7 +36,6 @@
     "cl3": 16,
     "compound": 16,
     "negative": 16,
-    "classical": 15,
     "f01": 15,
     "geomstats": 15,
     "gstack": 15,
@@ -43,6 +43,7 @@
     "n01": 15,
     "science": 14,
     "z3": 13,
+    "classical": 12,
     "fence": 12,
     "mera": 12,
     "qit": 12,
@@ -64,7 +65,6 @@
     "engine": 7,
     "entropy": 7,
     "mirror": 7,
-    "szilard": 7,
     "tri": 7,
     "xi": 7,
     "axis6": 6,
@@ -75,9 +75,9 @@
     "nahodge": 6,
     "neg": 6,
     "rosetta": 6,
+    "szilard": 6,
     "triple": 6,
     "axis7": 5,
-    "carnot": 5,
     "iching": 5,
     "infinity": 5,
     "kahler": 5,
@@ -89,10 +89,8 @@
     "st": 5,
     "symp": 5,
     "werner": 5,
-    "xgi": 5,
     "3qubit": 4,
     "c1": 4,
-    "capability": 4,
     "chromatic": 4,
     "contract": 4,
     "entanglement": 4,
@@ -114,6 +112,8 @@
     "arith": 3,
     "ax3": 3,
     "c2": 3,
+    "capability": 3,
+    "carnot": 3,
     "chern": 3,
     "dark": 3,
     "donaldson": 3,
@@ -192,7 +192,6 @@
     "nash": 2,
     "octonion": 2,
     "open": 2,
-    "partial": 2,
     "pauli": 2,
     "persistence": 2,
     "phase": 2,
@@ -204,10 +203,8 @@
     "shimura": 2,
     "stable": 2,
     "stage": 2,
-    "stoch": 2,
     "substrate": 2,
     "symmetric": 2,
-    "sympy": 2,
     "tensor": 2,
     "toponetx": 2,
     "type1": 2,
@@ -477,6 +474,7 @@
     "packet": 1,
     "pairwise": 1,
     "pandharipande": 1,
+    "partial": 1,
     "pennylane": 1,
     "pent": 1,
     "perverse": 1,
@@ -543,6 +541,7 @@
     "stanley": 1,
     "state": 1,
     "stinespring": 1,
+    "stoch": 1,
     "strange": 1,
     "string": 1,
     "strong": 1,
@@ -554,6 +553,7 @@
     "surreal": 1,
     "svd": 1,
     "sylow": 1,
+    "sympy": 1,
     "syntomic": 1,
     "t": 1,
     "tarski": 1,
@@ -599,22 +599,23 @@
     "weil": 1,
     "wigner": 1,
     "wrt": 1,
+    "xgi": 1,
     "yoneda": 1,
     "young": 1,
     "zermelo": 1
   },
   "bucket_counts": {
-    "exploratory": 1976,
-    "core_ladder": 892,
+    "exploratory": 2543,
+    "core_ladder": 883,
     "framework_doctrine": 133
   },
   "contract_rule_counts": {
-    "C1_classification_missing": 1702,
-    "contract_clean": 867,
-    "C4_divergence_log_missing": 341,
+    "C1_classification_missing": 2273,
+    "contract_clean": 856,
+    "C4_divergence_log_missing": 339,
     "C6_classical_has_load_bearing": 306,
-    "C2_manifest_missing": 173,
-    "C3_depth_missing": 117,
+    "C2_manifest_missing": 172,
+    "C3_depth_missing": 116,
     "C4_divergence_log_empty": 4,
     "C1_classification_invalid": 2,
     "C3_depth_malformed": 1
@@ -693,7 +694,7 @@
       "sim": "system_v4/probes/sim_Ax5_TF_kernel.py",
       "family": "other",
       "bucket": "exploratory",
-      "runner_class": "bridge",
+      "runner_class": "classical",
       "contract_rules": []
     },
     {
@@ -872,7 +873,7 @@
       "sim": "system_v4/probes/sim_a0_kernel_discriminator.py",
       "family": "a0",
       "bucket": "exploratory",
-      "runner_class": "bridge",
+      "runner_class": "classical",
       "contract_rules": [
         "C2_manifest_missing",
         "C3_depth_missing"
@@ -2176,13 +2177,6 @@
       "contract_rules": []
     },
     {
-      "sim": "system_v4/probes/sim_bridge_carnot_admissibility_fence.py",
-      "family": "bridge",
-      "bucket": "core_ladder",
-      "runner_class": "bridge",
-      "contract_rules": []
-    },
-    {
       "sim": "system_v4/probes/sim_bridge_chain_integration.py",
       "family": "bridge",
       "bucket": "core_ladder",
@@ -2273,13 +2267,6 @@
       "contract_rules": []
     },
     {
-      "sim": "system_v4/probes/sim_bridge_landauer_erasure_bit_distinguishability.py",
-      "family": "bridge",
-      "bucket": "core_ladder",
-      "runner_class": "bridge",
-      "contract_rules": []
-    },
-    {
       "sim": "system_v4/probes/sim_bridge_maxwell_demon_distinguishability_cost.py",
       "family": "bridge",
       "bucket": "core_ladder",
@@ -2353,13 +2340,6 @@
         "C4_divergence_log_missing",
         "C6_classical_has_load_bearing"
       ]
-    },
-    {
-      "sim": "system_v4/probes/sim_bridge_szilard_landauer_floor.py",
-      "family": "bridge",
-      "bucket": "core_ladder",
-      "runner_class": "bridge",
-      "contract_rules": []
     },
     {
       "sim": "system_v4/probes/sim_bridge_weyl_cl3_rotor_chirality.py",
@@ -2453,6 +2433,5190 @@
       "contract_rules": []
     },
     {
+      "sim": "system_v4/probes/sim_calibration_branch_conditioned_unitary_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_232_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_233_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_234_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_235_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_236_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_237_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_238_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_239_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_240_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_241_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_242_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_243_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_244_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_245_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_246_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_247_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_248_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_249_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_250_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_251_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_252_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_253_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_254_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_255_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_256_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_257_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_258_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_259_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_260_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_261_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_262_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_263_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_264_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_265_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_266_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_267_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_268_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_269_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_270_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_271_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_272_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_273_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_274_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_275_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_276_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_277_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_278_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_279_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_280_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_281_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_282_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_283_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_284_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_285_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_286_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_287_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_288_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_289_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_290_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_291_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_342_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_343_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_344_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_345_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_346_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_347_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_348_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_349_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_350_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_351_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_352_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_353_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_354_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_355_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_356_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_357_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_358_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_359_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_360_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_361_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_362_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_363_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_364_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_365_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_366_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_367_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_368_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_369_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_370_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_371_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_372_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_373_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_374_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_375_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_376_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_377_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_378_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_379_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_380_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_381_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_382_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_383_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_384_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_385_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_386_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_387_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_388_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_389_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_390_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_391_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_442_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_443_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_444_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_445_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_446_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_447_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_448_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_449_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_450_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_451_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_452_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_453_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_454_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_455_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_456_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_457_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_458_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_459_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_460_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_461_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_462_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_463_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_464_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_465_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_466_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_467_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_468_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_469_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_470_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_471_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_472_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_473_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_474_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_475_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_476_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_477_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_478_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_479_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_480_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_481_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_482_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_483_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_484_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_485_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_486_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_487_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_488_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_489_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_490_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_density_reset_probability_491_pytorch_trace_distance_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_252_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_253_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_254_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_255_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_256_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_257_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_258_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_259_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_260_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_261_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_262_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_263_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_264_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_265_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_266_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_267_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_268_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_269_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_270_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_271_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_272_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_273_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_274_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_275_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_276_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_277_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_278_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_279_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_280_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_281_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_282_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_283_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_284_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_285_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_286_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_287_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_288_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_289_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_290_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_291_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_292_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_293_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_294_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_295_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_296_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_297_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_298_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_299_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_300_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_order_interval_bound_301_cvc5_reversed_interval_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_piecewise_schedule_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_154_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_155_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_156_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_157_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_158_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_159_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_160_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_161_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_162_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_163_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_164_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_165_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_166_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_167_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_168_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_169_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_170_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_171_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_172_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_173_numpy_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_174_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_175_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_176_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_177_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_178_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_179_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_180_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_181_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_182_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_183_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_184_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_185_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_186_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_187_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_188_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_189_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_190_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_191_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_192_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_193_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_194_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_195_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_196_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_197_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_198_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_199_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_200_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_201_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_202_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_203_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_204_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_205_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_206_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_207_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_208_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_209_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_210_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_211_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_212_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projective_record_probability_213_pytorch_conditioned_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_projector_probability_record_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_record_to_density_state_probability_162_pytorch_trace_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_record_to_density_state_probability_163_pytorch_trace_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_record_to_density_state_probability_164_pytorch_trace_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_record_to_density_state_probability_165_pytorch_trace_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_record_to_density_state_probability_166_pytorch_trace_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_record_to_density_state_probability_167_pytorch_trace_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_record_to_density_state_probability_168_pytorch_trace_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_record_to_density_state_probability_169_pytorch_trace_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_record_to_density_state_probability_170_pytorch_trace_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_record_to_density_state_probability_171_pytorch_trace_reset_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_122_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_123_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_124_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_125_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_126_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_127_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_128_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_129_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_130_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_131_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_132_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_133_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_134_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_135_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_136_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_137_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_55_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_60_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_65_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_70_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_75_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_80_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_85_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_single_rate_fixed_point_90_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_122_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_123_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_124_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_125_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_126_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_127_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_128_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_129_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_130_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_131_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_132_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_133_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_134_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_135_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_136_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_137_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_138_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_139_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_140_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_141_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_142_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_143_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_144_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_145_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_146_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_147_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_148_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_149_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_150_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_151_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_152_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_153_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_154_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_155_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_156_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_157_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_158_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_159_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_160_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_161_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_162_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_163_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_164_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_165_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_166_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_167_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_168_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_169_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_170_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_171_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_172_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_173_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_174_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_175_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_176_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_177_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_178_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_179_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_180_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_fixed_point_target_181_scipy_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_292_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_293_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_294_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_295_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_296_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_297_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_298_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_299_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_300_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_301_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_302_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_303_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_304_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_305_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_306_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_307_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_308_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_309_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_310_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_311_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_312_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_313_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_314_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_315_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_316_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_317_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_318_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_319_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_320_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_321_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_322_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_323_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_324_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_325_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_326_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_327_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_328_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_329_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_330_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_331_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_332_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_333_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_334_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_335_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_336_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_337_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_338_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_339_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_340_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_341_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_492_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_493_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_494_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_495_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_496_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_497_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_498_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_499_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_500_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_501_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_502_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_503_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_504_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_505_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_506_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_507_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_508_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_509_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_510_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_511_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_512_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_513_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_514_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_515_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_516_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_517_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_518_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_519_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_520_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_521_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_522_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_523_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_524_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_525_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_526_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_527_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_528_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_529_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_530_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_531_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_532_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_533_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_534_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_535_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_536_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_537_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_538_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_539_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_540_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_rate_target_541_scipy_static_control_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_stage_rate_target_30_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_stage_rate_target_35_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_stage_rate_target_40_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_stage_rate_target_45_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_stage_rate_target_50_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_stage_rate_target_55_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_stage_rate_target_60_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_stage_rate_target_65_endpoint_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_182_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_183_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_184_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_185_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_186_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_187_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_188_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_189_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_190_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_191_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_192_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_193_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_194_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_195_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_196_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_197_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_198_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_199_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_200_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_201_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_202_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_203_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_204_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_205_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_206_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_207_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_208_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_209_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_210_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_211_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_212_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_213_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_214_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_215_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_216_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_217_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_218_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_219_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_220_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_221_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_222_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_223_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_224_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_225_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_226_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_227_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_228_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_229_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_230_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_231_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_392_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_393_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_394_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_395_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_396_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_397_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_398_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_399_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_400_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_401_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_402_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_403_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_404_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_405_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_406_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_407_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_408_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_409_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_410_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_411_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_412_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_413_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_414_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_415_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_416_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_417_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_418_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_419_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_420_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_421_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_422_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_423_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_424_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_425_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_426_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_427_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_428_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_429_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_430_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_431_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_432_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_433_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_434_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_435_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_436_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_437_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_438_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_439_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_440_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
+      "sim": "system_v4/probes/sim_calibration_two_temperature_rate_target_441_scipy_same_temperature_gap_survivor_classes.py",
+      "family": "calibration",
+      "bucket": "exploratory",
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
+    },
+    {
       "sim": "system_v4/probes/sim_cantor_theorem_constraint_canonical.py",
       "family": "cantor",
       "bucket": "exploratory",
@@ -2489,13 +7653,6 @@
       ]
     },
     {
-      "sim": "system_v4/probes/sim_capability_pyg_isolated.py",
-      "family": "capability",
-      "bucket": "core_ladder",
-      "runner_class": "classical",
-      "contract_rules": []
-    },
-    {
       "sim": "system_v4/probes/sim_cardinal_arithmetic_constraint_canonical.py",
       "family": "cardinal",
       "bucket": "exploratory",
@@ -2512,20 +7669,6 @@
       "contract_rules": [
         "C6_classical_has_load_bearing"
       ]
-    },
-    {
-      "sim": "system_v4/probes/sim_carnot_axis4_cycle_ordering_bridge.py",
-      "family": "carnot",
-      "bucket": "exploratory",
-      "runner_class": "bridge",
-      "contract_rules": []
-    },
-    {
-      "sim": "system_v4/probes/sim_carnot_constraint_admissibility_fence.py",
-      "family": "carnot",
-      "bucket": "exploratory",
-      "runner_class": "nonclassical",
-      "contract_rules": []
     },
     {
       "sim": "system_v4/probes/sim_carnot_gradient_bound.py",
@@ -3002,17 +8145,6 @@
       ]
     },
     {
-      "sim": "system_v4/probes/sim_classical_carnot_efficiency_vs_reservoir.py",
-      "family": "classical",
-      "bucket": "exploratory",
-      "runner_class": "classical",
-      "contract_rules": [
-        "C1_classification_missing",
-        "C2_manifest_missing",
-        "C3_depth_missing"
-      ]
-    },
-    {
       "sim": "system_v4/probes/sim_classical_constraint_manifold_layers_nested.py",
       "family": "classical",
       "bucket": "exploratory",
@@ -3079,13 +8211,6 @@
       ]
     },
     {
-      "sim": "system_v4/probes/sim_classical_landauer_erasure_cost_curve.py",
-      "family": "classical",
-      "bucket": "exploratory",
-      "runner_class": "classical",
-      "contract_rules": []
-    },
-    {
       "sim": "system_v4/probes/sim_classical_master_equation_classical.py",
       "family": "classical",
       "bucket": "exploratory",
@@ -3106,13 +8231,6 @@
       "family": "classical",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
-    },
-    {
-      "sim": "system_v4/probes/sim_classical_szilard_one_bit_measurement_work.py",
-      "family": "classical",
-      "bucket": "exploratory",
-      "runner_class": "classical",
       "contract_rules": []
     },
     {
@@ -8686,7 +13804,7 @@
       "sim": "system_v4/probes/sim_cvc5_heat_kernel_constraint.py",
       "family": "cvc5",
       "bucket": "core_ladder",
-      "runner_class": "bridge",
+      "runner_class": "nonclassical",
       "contract_rules": [
         "C1_classification_missing"
       ]
@@ -12633,7 +17751,7 @@
       "sim": "system_v4/probes/sim_frozen_kernel_classification.py",
       "family": "frozen",
       "bucket": "exploratory",
-      "runner_class": "bridge",
+      "runner_class": "nonclassical",
       "contract_rules": []
     },
     {
@@ -14025,7 +19143,7 @@
       "sim": "system_v4/probes/sim_geometry_heat_kernel_small_time_constraint_canonical.py",
       "family": "geometry",
       "bucket": "exploratory",
-      "runner_class": "bridge",
+      "runner_class": "nonclassical",
       "contract_rules": [
         "C1_classification_missing"
       ]
@@ -17009,7 +22127,7 @@
       "sim": "system_v4/probes/sim_gudhi_phase_sensitive_kernel.py",
       "family": "gudhi",
       "bucket": "core_ladder",
-      "runner_class": "bridge",
+      "runner_class": "nonclassical",
       "contract_rules": []
     },
     {
@@ -19796,7 +24914,7 @@
       "sim": "system_v4/probes/sim_lego_spectral_triple_heat_kernel.py",
       "family": "lego",
       "bucket": "core_ladder",
-      "runner_class": "bridge",
+      "runner_class": "nonclassical",
       "contract_rules": [
         "C1_classification_missing"
       ]
@@ -21685,13 +26803,6 @@
       "contract_rules": []
     },
     {
-      "sim": "system_v4/probes/sim_partial_trace_classical.py",
-      "family": "partial",
-      "bucket": "exploratory",
-      "runner_class": "classical",
-      "contract_rules": []
-    },
-    {
       "sim": "system_v4/probes/sim_pauli_centralizer_constraint.py",
       "family": "pauli",
       "bucket": "exploratory",
@@ -22072,13 +27183,6 @@
       "family": "pure",
       "bucket": "core_ladder",
       "runner_class": "nonclassical",
-      "contract_rules": []
-    },
-    {
-      "sim": "system_v4/probes/sim_pure_lego_channels_choi_lindblad.py",
-      "family": "pure",
-      "bucket": "core_ladder",
-      "runner_class": "classical",
       "contract_rules": []
     },
     {
@@ -24268,15 +29372,6 @@
       ]
     },
     {
-      "sim": "system_v4/probes/sim_stoch_harmonic_carnot_cycle.py",
-      "family": "stoch",
-      "bucket": "exploratory",
-      "runner_class": "classical",
-      "contract_rules": [
-        "C4_divergence_log_missing"
-      ]
-    },
-    {
       "sim": "system_v4/probes/sim_strange_attractor_constraint_canonical.py",
       "family": "strange",
       "bucket": "exploratory",
@@ -24703,15 +29798,6 @@
       ]
     },
     {
-      "sim": "system_v4/probes/sim_sympy_clifford_cross_check.py",
-      "family": "sympy",
-      "bucket": "exploratory",
-      "runner_class": "nonclassical",
-      "contract_rules": [
-        "C1_classification_missing"
-      ]
-    },
-    {
       "sim": "system_v4/probes/sim_sympy_deep_lindblad_dephasing_spectrum.py",
       "family": "sympy",
       "bucket": "exploratory",
@@ -24743,15 +29829,6 @@
       "runner_class": "bridge",
       "contract_rules": [
         "C1_classification_missing"
-      ]
-    },
-    {
-      "sim": "system_v4/probes/sim_szilard_distinguishability_admission_bridge.py",
-      "family": "szilard",
-      "bucket": "exploratory",
-      "runner_class": "bridge",
-      "contract_rules": [
-        "C4_divergence_log_missing"
       ]
     },
     {
@@ -24942,14 +30019,14 @@
       "sim": "system_v4/probes/sim_toponetx_deep_hodge_kernel_admissibility.py",
       "family": "toponetx",
       "bucket": "core_ladder",
-      "runner_class": "bridge",
+      "runner_class": "classical",
       "contract_rules": []
     },
     {
       "sim": "system_v4/probes/sim_toponetx_deep_hodge_laplacian_kernel_excludes_nontrivial.py",
       "family": "toponetx",
       "bucket": "core_ladder",
-      "runner_class": "bridge",
+      "runner_class": "nonclassical",
       "contract_rules": [
         "C1_classification_missing",
         "C2_manifest_missing",
@@ -26085,24 +31162,6 @@
       ]
     },
     {
-      "sim": "system_v4/probes/sim_xgi_deep_higher_order_contagion.py",
-      "family": "xgi",
-      "bucket": "core_ladder",
-      "runner_class": "nonclassical",
-      "contract_rules": [
-        "C1_classification_missing"
-      ]
-    },
-    {
-      "sim": "system_v4/probes/sim_xgi_deep_hypergraph_clustering.py",
-      "family": "xgi",
-      "bucket": "core_ladder",
-      "runner_class": "nonclassical",
-      "contract_rules": [
-        "C1_classification_missing"
-      ]
-    },
-    {
       "sim": "system_v4/probes/sim_xgi_deep_hyperlap_triadic_vs_pairwise.py",
       "family": "xgi",
       "bucket": "core_ladder",
@@ -26110,22 +31169,6 @@
       "contract_rules": [
         "C1_classification_missing"
       ]
-    },
-    {
-      "sim": "system_v4/probes/sim_xgi_deep_leviathan_hyperlap.py",
-      "family": "xgi",
-      "bucket": "core_ladder",
-      "runner_class": "nonclassical",
-      "contract_rules": [
-        "C1_classification_missing"
-      ]
-    },
-    {
-      "sim": "system_v4/probes/sim_xgi_family_hypergraph.py",
-      "family": "xgi",
-      "bucket": "core_ladder",
-      "runner_class": "nonclassical",
-      "contract_rules": []
     },
     {
       "sim": "system_v4/probes/sim_xi_3qubit_bridge_canonical.py",

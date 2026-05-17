@@ -54,6 +54,7 @@ Authority:
 - `ENGINE_MATH_REFERENCE.md` — **canonical** — four base operators (Kraus + Lindbladian), loop vector fields, density visibility proofs, 16 placements (verbatim from v5)
 - `LADDERS_FENCES_ADMISSION_REFERENCE.md` — **canonical** — 19-layer pre-entropy ladder, 6-phase admission pipeline, admissibility fences BC04-BC12, topology fences T1-T8 (verbatim from v5)
 - `AXIS_AND_ENTROPY_REFERENCE.md` — **canonical** — axis-specifics and entropy structure
+- `AXIS_TERRAIN_MANIFOLD_CORRECTION_HANDOFF.md` — **working handoff** — preserves the correction that Axis 0 is positive/negative feedback, Axis 1×2 generate terrain stages, the 8 terrains are Weyl-sheet generator families, and the main sim focus must be manifold -> Weyl/flux -> terrain families before downstream readouts
 - `FALSIFICATION_SIM_DESIGNS.md` — **plan** — 3 sim specs designed to kill specific claims (gauge group, viability vs attractor, metric uniqueness)
 
 ## Philosophy and Framing

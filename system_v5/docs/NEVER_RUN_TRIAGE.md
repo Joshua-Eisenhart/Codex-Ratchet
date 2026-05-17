@@ -8,6 +8,7 @@ Default rule:
 
 Named cohort rules:
 
+- `calibration`: keep as calibration/baseline work only; require a concrete Carnot/Szilard/tool-function fixture, explicit baseline role, and no bridge/nonclassical promotion language before queueing.
 - `coupling`: require prior receipts for each exact tool/function being coupled.
 - `cvc5`: run only one micro solver surface per packet until a fresh function receipt exists.
 - `geometry`: require the named geometry backend and a classical baseline divergence note.

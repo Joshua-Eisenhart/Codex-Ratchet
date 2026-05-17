@@ -1,0 +1,1264 @@
+{
+  "coupling_candidates": [
+    {
+      "blocked_until": "run exact coupled fixture with negatives for this layer pair",
+      "candidate_reason": "probability fixture feeds density readout",
+      "claim_ceiling": "coupling planning row only; requires exact paired coupling receipts before promotion",
+      "left_layer": "finite_carrier",
+      "left_weak_lego_count": 1048,
+      "promotion_allowed": false,
+      "right_layer": "density_state",
+      "right_weak_lego_count": 1469,
+      "status": "candidate_only"
+    },
+    {
+      "blocked_until": "run exact coupled fixture with negatives for this layer pair",
+      "candidate_reason": "normalized spinor outer product feeds density fixture",
+      "claim_ceiling": "coupling planning row only; requires exact paired coupling receipts before promotion",
+      "left_layer": "density_state",
+      "left_weak_lego_count": 1469,
+      "promotion_allowed": false,
+      "right_layer": "spinor_s3",
+      "right_weak_lego_count": 1004,
+      "status": "candidate_only"
+    },
+    {
+      "blocked_until": "run exact coupled fixture with negatives for this layer pair",
+      "candidate_reason": "spinor coordinates feed base projection",
+      "claim_ceiling": "coupling planning row only; requires exact paired coupling receipts before promotion",
+      "left_layer": "spinor_s3",
+      "left_weak_lego_count": 1004,
+      "promotion_allowed": false,
+      "right_layer": "hopf_projection",
+      "right_weak_lego_count": 972,
+      "status": "candidate_only"
+    },
+    {
+      "blocked_until": "run exact coupled fixture with negatives for this layer pair",
+      "candidate_reason": "base projection readouts feed torus winding fixtures",
+      "claim_ceiling": "coupling planning row only; requires exact paired coupling receipts before promotion",
+      "left_layer": "hopf_projection",
+      "left_weak_lego_count": 972,
+      "promotion_allowed": false,
+      "right_layer": "nested_torus",
+      "right_weak_lego_count": 938,
+      "status": "candidate_only"
+    },
+    {
+      "blocked_until": "run exact coupled fixture with negatives for this layer pair",
+      "candidate_reason": "phase readouts feed connection or holonomy fixtures",
+      "claim_ceiling": "coupling planning row only; requires exact paired coupling receipts before promotion",
+      "left_layer": "hopf_projection",
+      "left_weak_lego_count": 972,
+      "promotion_allowed": false,
+      "right_layer": "connection_loop",
+      "right_weak_lego_count": 1002,
+      "status": "candidate_only"
+    },
+    {
+      "blocked_until": "run exact coupled fixture with negatives for this layer pair",
+      "candidate_reason": "connection readout feeds loop path comparison",
+      "claim_ceiling": "coupling planning row only; requires exact paired coupling receipts before promotion",
+      "left_layer": "connection_loop",
+      "left_weak_lego_count": 1002,
+      "promotion_allowed": false,
+      "right_layer": "fiber_base_loop",
+      "right_weak_lego_count": 1027,
+      "status": "candidate_only"
+    },
+    {
+      "blocked_until": "run exact coupled fixture with negatives for this layer pair",
+      "candidate_reason": "loop path choices feed ordered operator products",
+      "claim_ceiling": "coupling planning row only; requires exact paired coupling receipts before promotion",
+      "left_layer": "fiber_base_loop",
+      "left_weak_lego_count": 1027,
+      "promotion_allowed": false,
+      "right_layer": "composition_order",
+      "right_weak_lego_count": 1058,
+      "status": "candidate_only"
+    },
+    {
+      "blocked_until": "run exact coupled fixture with negatives for this layer pair",
+      "candidate_reason": "generator algebra feeds ordered products",
+      "claim_ceiling": "coupling planning row only; requires exact paired coupling receipts before promotion",
+      "left_layer": "clifford_pauli",
+      "left_weak_lego_count": 1005,
+      "promotion_allowed": false,
+      "right_layer": "composition_order",
+      "right_weak_lego_count": 1058,
+      "status": "candidate_only"
+    },
+    {
+      "blocked_until": "run exact coupled fixture with negatives for this layer pair",
+      "candidate_reason": "graph or complex cycles compare against torus cycles",
+      "claim_ceiling": "coupling planning row only; requires exact paired coupling receipts before promotion",
+      "left_layer": "topology",
+      "left_weak_lego_count": 2193,
+      "promotion_allowed": false,
+      "right_layer": "nested_torus",
+      "right_weak_lego_count": 938,
+      "status": "candidate_only"
+    },
+    {
+      "blocked_until": "run exact coupled fixture with negatives for this layer pair",
+      "candidate_reason": "rate and channel fixtures feed density-state calibration",
+      "claim_ceiling": "coupling planning row only; requires exact paired coupling receipts before promotion",
+      "left_layer": "calibration",
+      "left_weak_lego_count": 949,
+      "promotion_allowed": false,
+      "right_layer": "density_state",
+      "right_weak_lego_count": 1469,
+      "status": "candidate_only"
+    }
+  ],
+  "doctrine": {
+    "claim_ceiling": "planning and coverage matrix; no GStack promotion and no coupling proof",
+    "classification_scope": "weak exploratory lego matrix only",
+    "object_rule": "candidate configurations become named objects only after constraints/probes induce survivor classes",
+    "promotion_allowed": false
+  },
+  "entry_count": 6460,
+  "generated_at_utc": "2026-05-14T16:08:25Z",
+  "layer_counts": {
+    "calibration": 949,
+    "clifford_pauli": 1005,
+    "composition_order": 1058,
+    "connection_loop": 1002,
+    "density_state": 1469,
+    "fiber_base_loop": 1027,
+    "finite_carrier": 1048,
+    "hopf_projection": 972,
+    "nested_torus": 938,
+    "spinor_s3": 1004,
+    "topology": 2193
+  },
+  "layer_order": [
+    "finite_carrier",
+    "density_state",
+    "spinor_s3",
+    "hopf_projection",
+    "nested_torus",
+    "connection_loop",
+    "fiber_base_loop",
+    "clifford_pauli",
+    "composition_order",
+    "topology",
+    "calibration"
+  ],
+  "layer_samples": {
+    "calibration": [
+      {
+        "load_bearing": [
+          "numpy",
+          "qutip",
+          "z3"
+        ],
+        "name": "binary_measurement_feedback_record_reset_heat_work_bound_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_measurement_feedback_record_reset_heat_work_bound_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [],
+        "name": "binary_projective_measurement_feedback_erasure_work_bound_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_measurement_feedback_erasure_work_bound_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_124_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_124_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_125_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_125_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_126_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_126_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_127_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_127_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_128_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_128_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_129_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_129_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_130_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_130_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_131_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_131_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_132_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_132_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_133_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_133_work_heat_readout_gap_survivor_classes_results.json"
+      }
+    ],
+    "clifford_pauli": [
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "bare_pauli_generator_no_hopf_path_readout_collision_control_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_bare_pauli_generator_no_hopf_path_readout_collision_control_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "bare_pauli_no_carrier_readout_collision_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_bare_pauli_no_carrier_readout_collision_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "clifford",
+          "z3"
+        ],
+        "name": "clifford_basis_grade_product_table_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_basis_grade_product_table_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "clifford",
+          "z3"
+        ],
+        "name": "clifford_bivector_square_negative_scalar_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_bivector_square_negative_scalar_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "clifford",
+          "z3"
+        ],
+        "name": "clifford_bivector_square_scalar_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_bivector_square_scalar_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "clifford",
+          "z3"
+        ],
+        "name": "clifford_cl_02_basis_vector_square_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_cl_02_basis_vector_square_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "clifford",
+          "z3"
+        ],
+        "name": "clifford_cl_03_basis_vector_square_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_cl_03_basis_vector_square_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "clifford",
+          "z3"
+        ],
+        "name": "clifford_cl_04_basis_vector_square_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_cl_04_basis_vector_square_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "clifford",
+          "z3"
+        ],
+        "name": "clifford_cl_05_basis_vector_square_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_cl_05_basis_vector_square_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "clifford",
+          "z3"
+        ],
+        "name": "clifford_cl_06_basis_vector_square_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_cl_06_basis_vector_square_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "clifford",
+          "z3"
+        ],
+        "name": "clifford_cl_07_basis_vector_square_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_cl_07_basis_vector_square_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "clifford",
+          "z3"
+        ],
+        "name": "clifford_cl_08_basis_vector_square_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_cl_08_basis_vector_square_gap_survivor_classes_results.json"
+      }
+    ],
+    "composition_order": [
+      {
+        "load_bearing": [
+          "cvc5",
+          "z3"
+        ],
+        "name": "calibration_order_interval_bound_252_cvc5_reversed_interval_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_order_interval_bound_252_cvc5_reversed_interval_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "cvc5",
+          "z3"
+        ],
+        "name": "calibration_order_interval_bound_253_cvc5_reversed_interval_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_order_interval_bound_253_cvc5_reversed_interval_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "cvc5",
+          "z3"
+        ],
+        "name": "calibration_order_interval_bound_254_cvc5_reversed_interval_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_order_interval_bound_254_cvc5_reversed_interval_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "cvc5",
+          "z3"
+        ],
+        "name": "calibration_order_interval_bound_255_cvc5_reversed_interval_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_order_interval_bound_255_cvc5_reversed_interval_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "cvc5",
+          "z3"
+        ],
+        "name": "calibration_order_interval_bound_256_cvc5_reversed_interval_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_order_interval_bound_256_cvc5_reversed_interval_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "cvc5",
+          "z3"
+        ],
+        "name": "calibration_order_interval_bound_257_cvc5_reversed_interval_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_order_interval_bound_257_cvc5_reversed_interval_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "cvc5",
+          "z3"
+        ],
+        "name": "calibration_order_interval_bound_258_cvc5_reversed_interval_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_order_interval_bound_258_cvc5_reversed_interval_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "cvc5",
+          "z3"
+        ],
+        "name": "calibration_order_interval_bound_259_cvc5_reversed_interval_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_order_interval_bound_259_cvc5_reversed_interval_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "cvc5",
+          "z3"
+        ],
+        "name": "calibration_order_interval_bound_260_cvc5_reversed_interval_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_order_interval_bound_260_cvc5_reversed_interval_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "cvc5",
+          "z3"
+        ],
+        "name": "calibration_order_interval_bound_261_cvc5_reversed_interval_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_order_interval_bound_261_cvc5_reversed_interval_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "cvc5",
+          "z3"
+        ],
+        "name": "calibration_order_interval_bound_262_cvc5_reversed_interval_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_order_interval_bound_262_cvc5_reversed_interval_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "cvc5",
+          "z3"
+        ],
+        "name": "calibration_order_interval_bound_263_cvc5_reversed_interval_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_order_interval_bound_263_cvc5_reversed_interval_gap_survivor_classes_results.json"
+      }
+    ],
+    "connection_loop": [
+      {
+        "load_bearing": [
+          "clifford",
+          "pytorch",
+          "z3"
+        ],
+        "name": "clifford_rotor_s3_holonomy_density_carrier_transport_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_rotor_s3_holonomy_density_carrier_transport_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "complex_phase_orbit_density_readout_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_complex_phase_orbit_density_readout_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "qutip",
+          "z3"
+        ],
+        "name": "connection_loop_dephasing_scale_090_qutip_offdiagonal_decay_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_connection_loop_dephasing_scale_090_qutip_offdiagonal_decay_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "qutip",
+          "z3"
+        ],
+        "name": "connection_loop_dephasing_scale_091_qutip_offdiagonal_decay_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_connection_loop_dephasing_scale_091_qutip_offdiagonal_decay_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "qutip",
+          "z3"
+        ],
+        "name": "connection_loop_dephasing_scale_092_qutip_offdiagonal_decay_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_connection_loop_dephasing_scale_092_qutip_offdiagonal_decay_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "qutip",
+          "z3"
+        ],
+        "name": "connection_loop_dephasing_scale_093_qutip_offdiagonal_decay_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_connection_loop_dephasing_scale_093_qutip_offdiagonal_decay_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "qutip",
+          "z3"
+        ],
+        "name": "connection_loop_dephasing_scale_094_qutip_offdiagonal_decay_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_connection_loop_dephasing_scale_094_qutip_offdiagonal_decay_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "qutip",
+          "z3"
+        ],
+        "name": "connection_loop_dephasing_scale_095_qutip_offdiagonal_decay_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_connection_loop_dephasing_scale_095_qutip_offdiagonal_decay_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "qutip",
+          "z3"
+        ],
+        "name": "connection_loop_dephasing_scale_096_qutip_offdiagonal_decay_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_connection_loop_dephasing_scale_096_qutip_offdiagonal_decay_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "qutip",
+          "z3"
+        ],
+        "name": "connection_loop_dephasing_scale_097_qutip_offdiagonal_decay_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_connection_loop_dephasing_scale_097_qutip_offdiagonal_decay_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "qutip",
+          "z3"
+        ],
+        "name": "connection_loop_dephasing_scale_098_qutip_offdiagonal_decay_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_connection_loop_dephasing_scale_098_qutip_offdiagonal_decay_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "qutip",
+          "z3"
+        ],
+        "name": "connection_loop_dephasing_scale_099_qutip_offdiagonal_decay_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_connection_loop_dephasing_scale_099_qutip_offdiagonal_decay_gap_survivor_classes_results.json"
+      }
+    ],
+    "density_state": [
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_124_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_124_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_125_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_125_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_126_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_126_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_127_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_127_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_128_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_128_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_129_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_129_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_130_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_130_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_131_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_131_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_132_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_132_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_133_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_133_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_134_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_134_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_135_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_135_work_heat_readout_gap_survivor_classes_results.json"
+      }
+    ],
+    "fiber_base_loop": [
+      {
+        "load_bearing": [
+          "scipy",
+          "z3"
+        ],
+        "name": "calibration_piecewise_schedule_endpoint_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_piecewise_schedule_endpoint_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "scipy",
+          "z3"
+        ],
+        "name": "calibration_single_rate_fixed_point_122_scipy_endpoint_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_single_rate_fixed_point_122_scipy_endpoint_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "scipy",
+          "z3"
+        ],
+        "name": "calibration_single_rate_fixed_point_123_scipy_endpoint_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_single_rate_fixed_point_123_scipy_endpoint_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "scipy",
+          "z3"
+        ],
+        "name": "calibration_single_rate_fixed_point_124_scipy_endpoint_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_single_rate_fixed_point_124_scipy_endpoint_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "scipy",
+          "z3"
+        ],
+        "name": "calibration_single_rate_fixed_point_125_scipy_endpoint_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_single_rate_fixed_point_125_scipy_endpoint_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "scipy",
+          "z3"
+        ],
+        "name": "calibration_single_rate_fixed_point_126_scipy_endpoint_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_single_rate_fixed_point_126_scipy_endpoint_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "scipy",
+          "z3"
+        ],
+        "name": "calibration_single_rate_fixed_point_127_scipy_endpoint_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_single_rate_fixed_point_127_scipy_endpoint_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "scipy",
+          "z3"
+        ],
+        "name": "calibration_single_rate_fixed_point_128_scipy_endpoint_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_single_rate_fixed_point_128_scipy_endpoint_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "scipy",
+          "z3"
+        ],
+        "name": "calibration_single_rate_fixed_point_129_scipy_endpoint_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_single_rate_fixed_point_129_scipy_endpoint_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "scipy",
+          "z3"
+        ],
+        "name": "calibration_single_rate_fixed_point_130_scipy_endpoint_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_single_rate_fixed_point_130_scipy_endpoint_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "scipy",
+          "z3"
+        ],
+        "name": "calibration_single_rate_fixed_point_131_scipy_endpoint_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_single_rate_fixed_point_131_scipy_endpoint_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "scipy",
+          "z3"
+        ],
+        "name": "calibration_single_rate_fixed_point_132_scipy_endpoint_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_calibration_single_rate_fixed_point_132_scipy_endpoint_gap_survivor_classes_results.json"
+      }
+    ],
+    "finite_carrier": [
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_124_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_124_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_125_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_125_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_126_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_126_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_127_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_127_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_128_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_128_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_129_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_129_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_130_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_130_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_131_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_131_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_132_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_132_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_133_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_133_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_134_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_134_work_heat_readout_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "binary_projective_record_conditioned_unitary_reset_probability_135_work_heat_readout_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_binary_projective_record_conditioned_unitary_reset_probability_135_work_heat_readout_gap_survivor_classes_results.json"
+      }
+    ],
+    "hopf_projection": [
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "clifford_pauli_sphere_angle_pi_over_380_geomstats_hidden_coordinate_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_sphere_angle_pi_over_380_geomstats_hidden_coordinate_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "clifford_pauli_sphere_angle_pi_over_381_geomstats_hidden_coordinate_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_sphere_angle_pi_over_381_geomstats_hidden_coordinate_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "clifford_pauli_sphere_angle_pi_over_382_geomstats_hidden_coordinate_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_sphere_angle_pi_over_382_geomstats_hidden_coordinate_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "clifford_pauli_sphere_angle_pi_over_383_geomstats_hidden_coordinate_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_sphere_angle_pi_over_383_geomstats_hidden_coordinate_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "clifford_pauli_sphere_angle_pi_over_384_geomstats_hidden_coordinate_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_sphere_angle_pi_over_384_geomstats_hidden_coordinate_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "clifford_pauli_sphere_angle_pi_over_385_geomstats_hidden_coordinate_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_sphere_angle_pi_over_385_geomstats_hidden_coordinate_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "clifford_pauli_sphere_angle_pi_over_386_geomstats_hidden_coordinate_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_sphere_angle_pi_over_386_geomstats_hidden_coordinate_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "clifford_pauli_sphere_angle_pi_over_387_geomstats_hidden_coordinate_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_sphere_angle_pi_over_387_geomstats_hidden_coordinate_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "clifford_pauli_sphere_angle_pi_over_388_geomstats_hidden_coordinate_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_sphere_angle_pi_over_388_geomstats_hidden_coordinate_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "clifford_pauli_sphere_angle_pi_over_389_geomstats_hidden_coordinate_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_sphere_angle_pi_over_389_geomstats_hidden_coordinate_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "clifford_pauli_sphere_angle_pi_over_390_geomstats_hidden_coordinate_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_sphere_angle_pi_over_390_geomstats_hidden_coordinate_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "clifford_pauli_sphere_angle_pi_over_391_geomstats_hidden_coordinate_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_sphere_angle_pi_over_391_geomstats_hidden_coordinate_gap_survivor_classes_results.json"
+      }
+    ],
+    "nested_torus": [
+      {
+        "load_bearing": [
+          "rustworkx",
+          "z3"
+        ],
+        "name": "cycle_graph_torus_winding_rank_coupling_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_cycle_graph_torus_winding_rank_coupling_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "numpy",
+          "z3"
+        ],
+        "name": "hopf_base_angle_torus_winding_coordinate_coupling_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_hopf_base_angle_torus_winding_coordinate_coupling_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "sympy",
+          "z3"
+        ],
+        "name": "hopf_torus_boundary_operator_homology_chain_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_hopf_torus_boundary_operator_homology_chain_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "sympy",
+          "z3"
+        ],
+        "name": "nested_hopf_torus_connection_one_form_winding_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_nested_hopf_torus_connection_one_form_winding_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "pytorch",
+          "z3"
+        ],
+        "name": "nested_hopf_torus_parameter_embedding_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_nested_hopf_torus_parameter_embedding_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "nested_torus_angle_embedding_distance_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_nested_torus_angle_embedding_distance_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "numpy",
+          "z3"
+        ],
+        "name": "nested_torus_angle_product_period_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_nested_torus_angle_product_period_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "numpy",
+          "z3"
+        ],
+        "name": "nested_torus_angle_sum_collision_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_nested_torus_angle_sum_collision_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "numpy"
+        ],
+        "name": "nested_torus_angle_sum_return_collision_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_nested_torus_angle_sum_return_collision_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "numpy",
+          "z3"
+        ],
+        "name": "nested_torus_coprime_period_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_nested_torus_coprime_period_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "numpy",
+          "z3"
+        ],
+        "name": "nested_torus_coprime_winding_return_period_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_nested_torus_coprime_winding_return_period_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "gudhi",
+          "z3"
+        ],
+        "name": "nested_torus_cycle_edges_04_gudhi_first_betti_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_nested_torus_cycle_edges_04_gudhi_first_betti_gap_survivor_classes_results.json"
+      }
+    ],
+    "spinor_s3": [
+      {
+        "load_bearing": [
+          "clifford",
+          "pytorch",
+          "z3"
+        ],
+        "name": "clifford_rotor_s3_holonomy_density_carrier_transport_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_rotor_s3_holonomy_density_carrier_transport_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "geomstats_s3_antipode_distance_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_geomstats_s3_antipode_distance_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "geomstats_s3_coordinate_distance_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_geomstats_s3_coordinate_distance_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "numpy",
+          "z3"
+        ],
+        "name": "geomstats_s3_loop_endpoint_distance_collision_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_geomstats_s3_loop_endpoint_distance_collision_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "hopf_map_s3_s2_fiber_orbit_partition_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_hopf_map_s3_s2_fiber_orbit_partition_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "pytorch",
+          "z3"
+        ],
+        "name": "hopf_projection_s3_s2_phase_invariant_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_hopf_projection_s3_s2_phase_invariant_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "clifford",
+          "pytorch",
+          "sympy",
+          "z3"
+        ],
+        "name": "hopf_weyl_clifford_orientation_mechanism_candidate_comparison",
+        "path": "system_v4/probes/a2_state/sim_results/sim_hopf_weyl_clifford_orientation_mechanism_candidate_comparison_results.json"
+      },
+      {
+        "load_bearing": [
+          "geomstats",
+          "z3"
+        ],
+        "name": "hypersphere_s3_geodesic_chord_distance_boundary_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_hypersphere_s3_geodesic_chord_distance_boundary_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "sympy",
+          "z3"
+        ],
+        "name": "normalized_spinor_outer_product_density_rank_coupling_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_normalized_spinor_outer_product_density_rank_coupling_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "numpy",
+          "pytorch",
+          "z3"
+        ],
+        "name": "normalized_spinor_path_berry_phase_connection_integral_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_normalized_spinor_path_berry_phase_connection_integral_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "qutip",
+          "z3"
+        ],
+        "name": "qutip_spinor_loop_channel_readout_collision_duplicate_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_qutip_spinor_loop_channel_readout_collision_duplicate_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "qutip",
+          "z3"
+        ],
+        "name": "qutip_weyl_sheet_loop_channel_physical_readout_pair_table_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_qutip_weyl_sheet_loop_channel_physical_readout_pair_table_survivor_classes_results.json"
+      }
+    ],
+    "topology": [
+      {
+        "load_bearing": [
+          "sympy",
+          "toponetx",
+          "z3"
+        ],
+        "name": "cell_complex_boundary_matrix_zero_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_cell_complex_boundary_matrix_zero_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "sympy",
+          "toponetx",
+          "z3"
+        ],
+        "name": "cell_complex_chain_map_boundary_commutation_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_cell_complex_chain_map_boundary_commutation_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "toponetx",
+          "z3"
+        ],
+        "name": "clifford_pauli_cell_boundary_width_314_toponetx_rank_two_incidence_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_cell_boundary_width_314_toponetx_rank_two_incidence_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "toponetx",
+          "z3"
+        ],
+        "name": "clifford_pauli_cell_boundary_width_315_toponetx_rank_two_incidence_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_cell_boundary_width_315_toponetx_rank_two_incidence_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "toponetx",
+          "z3"
+        ],
+        "name": "clifford_pauli_cell_boundary_width_316_toponetx_rank_two_incidence_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_cell_boundary_width_316_toponetx_rank_two_incidence_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "toponetx",
+          "z3"
+        ],
+        "name": "clifford_pauli_cell_boundary_width_317_toponetx_rank_two_incidence_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_cell_boundary_width_317_toponetx_rank_two_incidence_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "toponetx",
+          "z3"
+        ],
+        "name": "clifford_pauli_cell_boundary_width_318_toponetx_rank_two_incidence_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_cell_boundary_width_318_toponetx_rank_two_incidence_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "toponetx",
+          "z3"
+        ],
+        "name": "clifford_pauli_cell_boundary_width_319_toponetx_rank_two_incidence_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_cell_boundary_width_319_toponetx_rank_two_incidence_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "toponetx",
+          "z3"
+        ],
+        "name": "clifford_pauli_cell_boundary_width_320_toponetx_rank_two_incidence_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_cell_boundary_width_320_toponetx_rank_two_incidence_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "toponetx",
+          "z3"
+        ],
+        "name": "clifford_pauli_cell_boundary_width_321_toponetx_rank_two_incidence_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_cell_boundary_width_321_toponetx_rank_two_incidence_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "toponetx",
+          "z3"
+        ],
+        "name": "clifford_pauli_cell_boundary_width_322_toponetx_rank_two_incidence_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_cell_boundary_width_322_toponetx_rank_two_incidence_gap_survivor_classes_results.json"
+      },
+      {
+        "load_bearing": [
+          "toponetx",
+          "z3"
+        ],
+        "name": "clifford_pauli_cell_boundary_width_323_toponetx_rank_two_incidence_gap_survivor_classes",
+        "path": "system_v4/probes/a2_state/sim_results/sim_clifford_pauli_cell_boundary_width_323_toponetx_rank_two_incidence_gap_survivor_classes_results.json"
+      }
+    ]
+  },
+  "negative_templates": [
+    "omit left layer and keep right readout fixed",
+    "omit right layer and keep left readout fixed",
+    "swap composition order",
+    "hide distinguishing coordinate",
+    "force commuting maps",
+    "same-loop or same-sheet control where applicable",
+    "bare-generator or no-carrier control"
+  ],
+  "schema": "gstack_weak_lego_coupling_matrix_v1",
+  "source_manifest": "system_v5/evidence/qit_gstack_exploratory_wave_manifest_20260513.json",
+  "tool_counts": {
+    "clifford": 490,
+    "cvc5": 477,
+    "geomstats": 491,
+    "gudhi": 454,
+    "numpy": 451,
+    "pyg": 443,
+    "pytorch": 466,
+    "qiskit": 443,
+    "qutip": 444,
+    "rustworkx": 447,
+    "scipy": 491,
+    "sympy": 454,
+    "toponetx": 472,
+    "xgi": 488,
+    "z3": 6412
+  },
+  "unassigned_count": 0,
+  "unassigned_sample": []
+}

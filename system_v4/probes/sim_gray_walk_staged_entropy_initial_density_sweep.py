@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Initial-state sweep for the I Ching / Szilard Rosetta probe.
+"""Initial-density sweep for the Gray-walk staged entropy probe.
 
-This bounded follow-on tests whether the prior I Ching/Szilard measurement
-Rosetta result is structurally path-only or becomes outcome-sensitive for other
-finite initial density states. It is a tool-lego fit probe only.
+This bounded follow-on tests whether the prior six-bit Gray-walk staged entropy
+result is structurally path-only or becomes outcome-sensitive for other finite
+initial density states. It is a tool-lego fit probe only.
 """
 
 from __future__ import annotations
@@ -22,19 +22,19 @@ import torch
 CLASSIFICATION = "tool_lego_fit_probe"
 classification = CLASSIFICATION
 divergence_log = (
-    "Bounded I Ching/Szilard initial-state sweep. It tests whether the prior "
-    "Rosetta measurement-order packet is path-only or outcome-sensitive across "
-    "multiple finite initial density states. It does not promote QIT, GStack, "
-    "axis, bridge, or nonclassical admission."
+    "Bounded Gray-walk staged entropy initial-density sweep. It tests whether "
+    "the prior finite mapping packet is path-only or outcome-sensitive across "
+    "multiple finite initial density states. It does not promote target-system, "
+    "geometric-manifold, coordinate-family, bridge, or nonclassical admission."
 )
 
 LEGO_IDS = [
-    "iching_szilard_rosetta",
+    "six_bit_gray_walk_staged_entropy",
     "density_matrix_representability",
     "operator_order_variant",
     "order_variant_graveyard",
 ]
-PRIMARY_LEGO_IDS = ["iching_szilard_rosetta", "density_matrix_representability"]
+PRIMARY_LEGO_IDS = ["six_bit_gray_walk_staged_entropy", "density_matrix_representability"]
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "finite density-state grid and result aggregation"},
@@ -51,13 +51,16 @@ TOOL_INTEGRATION_DEPTH = {
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"
-PARENT_SOURCE = PROBE_DIR / "sim_iching_szilard_measurement_rosetta.py"
-PARENT_RESULT = RESULT_DIR / "iching_szilard_measurement_rosetta_results.json"
+PARENT_SOURCE = PROBE_DIR / "sim_six_bit_gray_walk_measure_feedback_reset_entropy.py"
+PARENT_RESULT = RESULT_DIR / "six_bit_gray_walk_measure_feedback_reset_entropy_results.json"
 EPS = 1e-10
 
 
 def load_parent_module():
-    spec = importlib.util.spec_from_file_location("iching_szilard_measurement_rosetta", PARENT_SOURCE)
+    spec = importlib.util.spec_from_file_location(
+        "six_bit_gray_walk_measure_feedback_reset_entropy",
+        PARENT_SOURCE,
+    )
     if spec is None or spec.loader is None:
         raise RuntimeError(f"could not load {PARENT_SOURCE}")
     module = importlib.util.module_from_spec(spec)
@@ -225,22 +228,25 @@ def main() -> None:
             "claim_ceiling": "path_order_sensitive_only_not_outcome_order_sensitive",
             "pass": True,
         },
-        "no_qit_gstack_axis_bridge_or_nonclassical_admission": {"promotion_allowed": False, "pass": True},
+        "no_target_system_manifold_coordinate_bridge_or_nonclassical_admission": {
+            "promotion_allowed": False,
+            "pass": True,
+        },
     }
     all_pass = all(row["pass"] for group in (positive, negative, boundary) for row in group.values())
     result = {
-        "name": "iching_szilard_initial_state_sweep",
+        "name": "gray_walk_staged_entropy_initial_density_sweep",
         "classification": CLASSIFICATION,
         "classification_note": divergence_log,
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
-        "sim_execution_kind": "rosetta_comparison",
+        "sim_execution_kind": "finite_mapping_comparison",
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "source_receipts": {"iching_szilard_measurement_rosetta": str(PARENT_RESULT)},
+        "source_receipts": {"six_bit_gray_walk_measure_feedback_reset_entropy": str(PARENT_RESULT)},
         "sweep_rows": rows,
         "positive": positive,
         "negative": negative,
@@ -259,7 +265,7 @@ def main() -> None:
         "generated_at": datetime.now(UTC).isoformat(),
     }
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    out = RESULT_DIR / "iching_szilard_initial_state_sweep_results.json"
+    out = RESULT_DIR / "gray_walk_staged_entropy_initial_density_sweep_results.json"
     out.write_text(json.dumps(result, indent=2, default=str) + "\n", encoding="utf-8")
     print(f"Results written to {out}")
     print(f"ALL PASS: {all_pass}")

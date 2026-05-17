@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
-"""Axis 0 x Axis 6 pairwise coupling sim.
-Axis 0 = entropy-gradient cut-state functional (I_c sign).
-Axis 6 = operator-first vs terrain-first precedence (action orientation).
-scope_note: see system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 6).
-Coupling question: does the sign of the entropy-gradient candidate depend on
-action-orientation (operator-first vs terrain-first)? If orientation flips
-the sign reliably, the two axes are coupled (not independent).
-Exclusion language: coupling excludes the hypothesis that Axis 0's I_c sign
-is invariant under Axis 6 precedence reordering.
+"""Entropy-gradient sign under noncommuting operator precedence.
+
+This bounded probe compares a signed entropy-gradient candidate under two
+operation orders: rotation before diagonal weighting versus diagonal weighting
+before rotation. If the gradient sign changes, the result shows dependence on
+operator precedence. This is not a target-system claim.
 """
 import json, os
 import numpy as np
 
-classification = "canonical"
+classification = "tool_lego_fit_probe"
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
@@ -78,10 +75,10 @@ if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = bool(pos.get("coupling_detected")) and all(neg.values()) and all(bnd.values())
     results = {
-        "name": "axis_couple_0_6_entropy_gradient_x_action_orientation",
+        "name": "entropy_gradient_operator_precedence_sign_gap",
         "classification": classification,
-        "scope_note": "system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0 and 6)",
-        "exclusion_claim": "coupling excludes Axis 0 I_c-sign invariance under Axis 6 precedence reordering",
+        "scope_note": "bounded entropy-gradient sign comparison under two noncommuting operation orders",
+        "exclusion_claim": "excludes invariance of this entropy-gradient sign under operator-precedence reordering for the tested toy family",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,
@@ -89,6 +86,6 @@ if __name__ == "__main__":
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "axis_couple_0_6_entropy_gradient_x_action_orientation_results.json")
+    out_path = os.path.join(out_dir, "entropy_gradient_operator_precedence_sign_gap_results.json")
     with open(out_path, "w") as f: json.dump(results, f, indent=2, default=str)
     print(f"PASS={all_pass} -> {out_path}")

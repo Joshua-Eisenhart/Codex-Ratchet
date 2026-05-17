@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""sim_carnot_axis4_cycle_ordering_bridge
+"""Two-reservoir reversible cycle stroke-order work-sign calibration.
 
-classical_baseline: The Carnot cycle direction (clockwise = heat engine vs
-counterclockwise = refrigerator in P-V space) IS Axis 4 (loop ordering /
-composition direction). Forward composition order extracts work; reversed
-composition order requires work input. Non-commutativity of thermodynamic
-steps captures the Axis 4 asymmetry.
+classical_baseline: a bounded Carnot-style four-stroke cycle compares forward
+and reversed stroke order by heat/work bookkeeping. Forward ordering extracts
+work under the chosen sign convention; reversed ordering requires work input.
+This is a calibration baseline for thermodynamic cycle mechanics, not a
+target-system claim.
 
 No nonclassical claims. All quantities scalar/symbolic.
 """
@@ -21,36 +21,35 @@ import numpy as np
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True,  "used": True,
-                  "reason": "represent each Carnot step as volume/pressure transformation; "
+                  "reason": "represent each cycle step as volume/pressure transformation; "
                              "compute work W = integral P dV numerically via torch; "
                              "verify W_forward > 0, W_reverse < 0, sum = 0; load-bearing"},
     "pyg":       {"tried": False, "used": False,
-                  "reason": "not used in this axis bridge probe; deferred"},
+                  "reason": "not used in this cycle-order calibration probe; deferred"},
     "z3":        {"tried": True,  "used": True,
-                  "reason": "UNSAT: W_forward > 0 AND W_reverse > 0 simultaneously — "
+                  "reason": "UNSAT: W_forward > 0 AND W_reverse > 0 simultaneously; "
                              "Second Law as structural UNSAT; can't extract positive work from both directions; load-bearing"},
     "cvc5":      {"tried": False, "used": False,
-                  "reason": "not used in this axis bridge probe; deferred"},
+                  "reason": "not used in this cycle-order calibration probe; deferred"},
     "sympy":     {"tried": True,  "used": True,
-                  "reason": "symbolic Carnot W_total = Q_H*(1 - T_C/T_H); derive dW/d(Axis4 orientation param); load-bearing"},
+                  "reason": "symbolic W_total = Q_H*(1 - T_C/T_H); derive work sign under stroke-order reversal; load-bearing"},
     "clifford":  {"tried": True,  "used": True,
-                  "reason": "Carnot cycle as closed path in Cl(2,0): e1=entropy, e2=temperature; "
+                  "reason": "closed cycle path in Cl(2,0): e1=entropy, e2=temperature; "
                              "forward = e1^e2 (positive bivector), reverse = e2^e1 = -e1^e2 (negative bivector); "
-                             "Axis 4 sign IS the bivector orientation; load-bearing"},
+                             "cycle orientation is the bivector sign; load-bearing"},
     "geomstats": {"tried": False, "used": False,
-                  "reason": "not used in this axis bridge probe; deferred"},
+                  "reason": "not used in this cycle-order calibration probe; deferred"},
     "e3nn":      {"tried": False, "used": False,
-                  "reason": "not used in this axis bridge probe; deferred"},
+                  "reason": "not used in this cycle-order calibration probe; deferred"},
     "rustworkx": {"tried": True,  "used": True,
                   "reason": "forward Carnot step graph (4-cycle clockwise) vs reverse (counterclockwise); "
                              "distinct directed graphs with opposite winding; load-bearing"},
     "xgi":       {"tried": True,  "used": True,
-                  "reason": "hyperedge {step1, step2, step3, step4, Axis4}: "
-                             "all four steps plus orientation axis form a 5-way relationship; load-bearing"},
+                  "reason": "hyperedge over the four cycle steps and orientation sign; load-bearing"},
     "toponetx":  {"tried": False, "used": False,
-                  "reason": "not used in this axis bridge probe; deferred"},
+                  "reason": "not used in this cycle-order calibration probe; deferred"},
     "gudhi":     {"tried": False, "used": False,
-                  "reason": "not used in this axis bridge probe; deferred"},
+                  "reason": "not used in this cycle-order calibration probe; deferred"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -68,7 +67,7 @@ TOOL_INTEGRATION_DEPTH = {
     "z3": "load_bearing",
 }
 
-NAME = "sim_carnot_axis4_cycle_ordering_bridge"
+NAME = "sim_carnot_two_reservoir_stroke_order_work_sign"
 
 # =====================================================================
 # IMPORTS
@@ -81,7 +80,7 @@ import rustworkx as rx
 import xgi
 from clifford import Cl
 
-classification = "canonical"
+classification = "classical_baseline"
 
 # Physical setup
 T_H = 600.0   # hot reservoir temperature (K)
@@ -148,7 +147,7 @@ def run_positive_tests():
         "eta": eta,
         "W_total_forward": W_total_forward,
         "pass": bool(W_total_forward > 0),
-        "note": "Forward Carnot (clockwise): W > 0; maps to Axis 4 = forward composition order"
+        "note": "Forward cycle ordering: W > 0 under the chosen work-output sign convention"
     }
 
     # --- P2: Reverse Carnot (counterclockwise = refrigerator): W_total < 0 ---
@@ -156,7 +155,7 @@ def run_positive_tests():
     results["P2_reverse_carnot_negative_work"] = {
         "W_total_reverse": W_total_reverse,
         "pass": bool(W_total_reverse < 0),
-        "note": "Reverse Carnot (counterclockwise): W < 0 (work input); maps to Axis 4 = reversed order"
+        "note": "Reverse cycle ordering: W < 0, meaning work input under the same sign convention"
     }
 
     # --- P3: W_forward + W_reverse = 0 (reversible cycle: forward and reverse cancel) ---
@@ -216,7 +215,7 @@ def run_positive_tests():
         "expected": str(expected_deriv),
         "diff_check": str(diff_check),
         "pass": bool(diff_check == 0),
-        "note": "dW/dT_C = -Q_H/T_H < 0; reversing Axis 4 (T_C <-> T_H) changes sign of work gradient"
+        "note": "dW/dT_C = -Q_H/T_H < 0; swapping reservoir assignment changes the work gradient"
     }
 
     # --- P7: pytorch numerical integration confirms W_forward > 0 ---
@@ -243,11 +242,11 @@ def run_positive_tests():
     reverse_bivector = e2 * e1   # = -e12 (negative)
     forward_orientation = float(forward_bivector[e12])
     reverse_orientation = float(reverse_bivector[e12])
-    results["P8_clifford_axis4_bivector_orientation"] = {
+    results["P8_clifford_cycle_bivector_orientation"] = {
         "forward_orientation": forward_orientation,
         "reverse_orientation": reverse_orientation,
         "pass": bool(forward_orientation > 0 and reverse_orientation < 0),
-        "note": "Forward Carnot = positive bivector (+e12); Reverse = negative (-e12): Axis 4 IS bivector sign"
+        "note": "Forward cycle = positive bivector (+e12); reverse cycle = negative bivector (-e12)"
     }
 
     # --- P9: rustworkx forward vs reverse cycle graphs are distinct ---
@@ -274,20 +273,20 @@ def run_positive_tests():
         "rev_edges": rev_edge_list,
         "graphs_distinct": graphs_distinct,
         "pass": bool(graphs_distinct),
-        "note": "Forward and reverse Carnot are distinct directed 4-cycles: Axis 4 = which direction the cycle runs"
+        "note": "Forward and reverse cycles are distinct directed 4-cycles"
     }
 
-    # --- P10: xgi hyperedge: all 4 steps + Axis4 form a 5-way relationship ---
+    # --- P10: xgi hyperedge: all 4 steps plus cycle orientation form a 5-way relationship ---
     H = xgi.Hypergraph()
-    H.add_nodes_from(["step1_iso_hot", "step2_adiab_exp", "step3_iso_cold", "step4_adiab_comp", "Axis4_orientation"])
-    H.add_edge(["step1_iso_hot", "step2_adiab_exp", "step3_iso_cold", "step4_adiab_comp", "Axis4_orientation"])
+    H.add_nodes_from(["step1_iso_hot", "step2_adiab_exp", "step3_iso_cold", "step4_adiab_comp", "cycle_orientation"])
+    H.add_edge(["step1_iso_hot", "step2_adiab_exp", "step3_iso_cold", "step4_adiab_comp", "cycle_orientation"])
     hyperedge_size = max(len(m) for m in H.edges.members())
-    results["P10_xgi_cycle_axis4_hyperedge"] = {
+    results["P10_xgi_cycle_orientation_hyperedge"] = {
         "num_nodes": H.num_nodes,
         "num_edges": H.num_edges,
         "hyperedge_size": hyperedge_size,
         "pass": bool(hyperedge_size == 5),
-        "note": "All 4 Carnot steps + Axis 4 orientation form a 5-way hyperedge: Axis 4 is an irreducible part"
+        "note": "All 4 cycle steps plus orientation form a 5-way hyperedge"
     }
 
     return results
@@ -316,7 +315,7 @@ def run_negative_tests():
         "note": "UNSAT: W_fwd > 0 AND W_rev = -W_fwd AND W_rev > 0 simultaneously => Second Law as UNSAT"
     }
 
-    # --- N2: Irreversible cycle has W_forward + W_reverse != 0 (Axis 4 symmetry broken) ---
+    # --- N2: Irreversible cycle has W_forward + W_reverse != 0 ---
     eta_irr = 0.3  # below Carnot efficiency (irreversible)
     W_fwd_irr = eta_irr * Q_H       # = 300 J
     W_rev_irr = -(1 - eta_irr) * Q_H / 2.0  # smaller than full reverse (irreversible)
@@ -326,10 +325,10 @@ def run_negative_tests():
         "W_reverse_irr": W_rev_irr,
         "net": net_irr,
         "pass": bool(abs(net_irr) > 1e-6),
-        "note": "Irreversible cycle: W_fwd + W_rev != 0; Axis 4 symmetry broken by irreversibility"
+        "note": "Irreversible cycle: W_fwd + W_rev != 0"
     }
 
-    # --- N3: Efficiency curve at T_C = T_H is NOT symmetric in Axis 4 direction ---
+    # --- N3: Efficiency curve at T_C = T_H is not symmetric under direction reversal ---
     # Forward: eta = 0 (no work)
     # Reverse at T_C = T_H: COP = T_C / (T_H - T_C) -> infinity (undefined at T_C = T_H)
     # Both go to zero for forward; COP -> infinity for reverse => asymmetry
@@ -341,7 +340,7 @@ def run_negative_tests():
         "eta_forward_equal_temps": eta_equal,
         "eta_is_zero": bool(eta_equal == 0.0),
         "pass": bool(eta_equal == 0.0),
-        "note": "At T_C=T_H: forward eta=0 (no work); reverse COP->inf (pure heat pumping): Axis 4 asymmetry"
+        "note": "At T_C=T_H: forward eta=0 and reverse COP diverges in the ideal limit"
     }
 
     # --- N4: sympy: Carnot efficiency is NOT symmetric in T_C <-> T_H swap ---
@@ -354,7 +353,7 @@ def run_negative_tests():
         "eta_swapped": str(eta_swapped),
         "difference": str(diff_sym),
         "pass": bool(diff_sym != 0),
-        "note": "Swapping T_H and T_C changes eta: efficiency is Axis 4 asymmetric"
+        "note": "Swapping T_H and T_C changes eta"
     }
 
     # --- N5: clifford: forward + reverse bivector = 0 (they cancel) ---
@@ -367,7 +366,7 @@ def run_negative_tests():
     results["N5_clifford_forward_reverse_cancel"] = {
         "cancel_norm": cancel_norm,
         "pass": bool(cancel_norm < 1e-10),
-        "note": "Forward + reverse bivectors cancel: Axis 4 forward and reverse are exact opposites"
+        "note": "Forward and reverse bivectors cancel"
     }
 
     return results
@@ -380,7 +379,7 @@ def run_negative_tests():
 def run_boundary_tests():
     results = {}
 
-    # --- B1: T_C -> 0: eta -> 1 (maximum Axis 4 asymmetry) ---
+    # --- B1: T_C -> 0: eta -> 1 ---
     T_C_small = 0.001
     eta_max = 1.0 - T_C_small / T_H
     W_max = eta_max * Q_H
@@ -389,17 +388,17 @@ def run_boundary_tests():
         "eta": eta_max,
         "W": W_max,
         "pass": bool(eta_max > 0.999 and W_max > 0),
-        "note": "T_C -> 0: eta -> 1, W -> Q_H; Axis 4 forward asymmetry is maximal"
+        "note": "T_C -> 0: eta -> 1 and W -> Q_H"
     }
 
-    # --- B2: T_C = T_H: eta = 0, W = 0 (Axis 4 distinction disappears) ---
+    # --- B2: T_C = T_H: eta = 0, W = 0 ---
     eta_zero = 1.0 - T_H / T_H
     W_zero = eta_zero * Q_H
     results["B2_TC_eq_TH_zero_work"] = {
         "eta": eta_zero,
         "W": W_zero,
         "pass": bool(abs(W_zero) < 1e-10),
-        "note": "T_C = T_H: W = 0; Axis 4 ordering has no thermodynamic consequence"
+        "note": "T_C = T_H: W = 0; cycle ordering has no thermodynamic consequence"
     }
 
     # --- B3: pytorch: W_total varies monotonically with T_C/T_H ratio ---
@@ -412,7 +411,7 @@ def run_boundary_tests():
         "sample_works": [float(f"{w:.2f}") for w in works[:4]],
         "monotone_decreasing": monotone,
         "pass": bool(monotone),
-        "note": "W decreases as T_C increases: Axis 4 asymmetry scales with temperature gradient"
+        "note": "W decreases as T_C increases; work sign/readout scales with the temperature gradient"
     }
 
     # --- B4: rustworkx: both forward and reverse are topological 4-cycles ---
@@ -430,16 +429,16 @@ def run_boundary_tests():
         "note": "Carnot cycle is a directed 4-cycle: each step has in-degree=out-degree=1"
     }
 
-    # --- B5: xgi: Axis4 node participates in exactly one hyperedge (the cycle ordering hyperedge) ---
+    # --- B5: xgi: cycle-orientation node participates in exactly one hyperedge ---
     H = xgi.Hypergraph()
-    H.add_nodes_from(["step1", "step2", "step3", "step4", "Axis4"])
-    H.add_edge(["step1", "step2", "step3", "step4", "Axis4"])  # full cycle hyperedge
+    H.add_nodes_from(["step1", "step2", "step3", "step4", "cycle_orientation"])
+    H.add_edge(["step1", "step2", "step3", "step4", "cycle_orientation"])  # full cycle hyperedge
     H.add_edge(["step1", "step3"])  # entropy-active pair (sub-hyperedge)
-    Axis4_degree = H.nodes.degree()["Axis4"]
-    results["B5_xgi_Axis4_node_degree_one"] = {
-        "Axis4_degree": Axis4_degree,
-        "pass": bool(Axis4_degree == 1),
-        "note": "Axis4 node has degree=1: appears only in the full cycle ordering hyperedge"
+    orientation_degree = H.nodes.degree()["cycle_orientation"]
+    results["B5_xgi_cycle_orientation_node_degree_one"] = {
+        "cycle_orientation_degree": orientation_degree,
+        "pass": bool(orientation_degree == 1),
+        "note": "cycle-orientation node has degree=1: appears only in the full cycle-ordering hyperedge"
     }
 
     return results
@@ -464,11 +463,9 @@ if __name__ == "__main__":
         "name": NAME,
         "classification": "classical_baseline",
         "claim": (
-            "The Carnot cycle direction (clockwise in P-V = heat engine) IS Axis 4 "
-            "(loop ordering / composition direction). Forward composition extracts work (W > 0); "
-            "reversed composition requires work input (W < 0). Non-commutativity of thermodynamic "
-            "steps captures the Axis 4 asymmetry. The Axis 4 sign IS the bivector orientation "
-            "of the cycle in (entropy, temperature) space."
+            "A Carnot-style two-reservoir four-stroke cycle has opposite work signs under "
+            "forward versus reversed stroke order. This is a classical calibration of "
+            "thermodynamic cycle direction and work bookkeeping, not a target-system claim."
         ),
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

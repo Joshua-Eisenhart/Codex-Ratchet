@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""I Ching / Szilard measurement Rosetta probe.
+"""Six-bit Gray-walk staged entropy trajectory probe.
 
-This bounded probe links the existing I Ching 64-state Gray walk receipt to the
-local channel/operator order-variant receipt. It asks whether a four-stage
-Szilard grammar can be seen in the Gray-walk line changes without promoting the
-mapping to QIT, GStack, axis, bridge, or nonclassical admission.
+This bounded probe links an existing 64-state single-bit Gray walk receipt to
+the local channel/operator order-variant receipt. It asks whether a four-stage
+measurement-feedback-erasure-reset grammar has a finite single-bit-walk witness
+without promoting the mapping to target-system or nonclassical admission.
 """
 
 from __future__ import annotations
@@ -23,21 +23,21 @@ import z3
 CLASSIFICATION = "tool_lego_fit_probe"
 classification = CLASSIFICATION
 divergence_log = (
-    "Bounded I Ching/Szilard measurement Rosetta probe. It tests whether a "
+    "Bounded six-bit Gray-walk staged entropy probe. It tests whether a "
     "four-stage measurement-feedback-erasure-reset grammar has a finite "
     "single-line Gray-walk witness and an order-sensitive entropy trajectory. "
-    "This is comparison evidence only, not QIT, GStack, axis, bridge, or "
-    "nonclassical admission."
+    "This is comparison evidence only, not target-system or nonclassical "
+    "admission."
 )
 
 LEGO_IDS = [
-    "iching_szilard_rosetta",
+    "six_bit_gray_walk_staged_entropy",
     "operator_order_variant",
-    "iching_64_schedule",
-    "rosetta_correlation",
+    "six_bit_gray_walk",
+    "finite_walk_stage_correlation",
     "order_variant_graveyard",
 ]
-PRIMARY_LEGO_IDS = ["iching_szilard_rosetta", "rosetta_correlation"]
+PRIMARY_LEGO_IDS = ["six_bit_gray_walk_staged_entropy", "finite_walk_stage_correlation"]
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "finite Gray-walk and Hamming-line arrays"},
@@ -313,18 +313,18 @@ def main() -> None:
         },
     }
     boundary = {
-        "finite_rosetta_probe_only": {
+        "finite_mapping_probe_only": {
             "scope_note": divergence_log,
             "forbidden_claims_absent": [
-                "QIT engine admission",
-                "GStack admission",
-                "axis promotion",
+                "target-system admission",
+                "geometric-manifold admission",
+                "coordinate-family promotion",
                 "bridge admission",
                 "nonclassical admission",
             ],
-            "pass": "admission" in divergence_log and "not QIT" in divergence_log,
+            "pass": "admission" in divergence_log and "not target-system" in divergence_log,
         },
-        "no_qit_gstack_axis_bridge_or_nonclassical_admission": {
+        "no_target_system_manifold_coordinate_bridge_or_nonclassical_admission": {
             "promotion_allowed": False,
             "claim_ceiling": "tool_lego_fit_probe_only",
             "pass": True,
@@ -342,13 +342,13 @@ def main() -> None:
     }
     all_pass = all(row["pass"] for group in (positive, negative, boundary) for row in group.values())
     result = {
-        "name": "iching_szilard_measurement_rosetta",
+        "name": "six_bit_gray_walk_measure_feedback_reset_entropy",
         "classification": CLASSIFICATION,
         "classification_note": divergence_log,
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
-        "sim_execution_kind": "rosetta_comparison",
+        "sim_execution_kind": "finite_mapping_comparison",
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
@@ -363,17 +363,17 @@ def main() -> None:
             "all_pass": bool(all_pass),
             "promotion_allowed": False,
             "candidate_block_count": len(candidates),
-            "killed_claim": "four distinct Szilard stage line operators in canonical Gray walk",
-            "surviving_claim": "weaker measure-lower / erasure-upper Rosetta block with path-only entropy trajectory order sensitivity",
+            "killed_claim": "four distinct measurement-feedback-erasure-reset stage line operators in canonical Gray walk",
+            "surviving_claim": "weaker measure-lower / erasure-upper finite block with path-only entropy trajectory order sensitivity",
             "outcome_order_sensitive": False,
-            "followup_required": "initial_state_sweep_before_any_stronger_rosetta_or_coupling_claim",
+            "followup_required": "initial_state_sweep_before_any_stronger_mapping_or_coupling_claim",
             "scope_note": divergence_log,
         },
         "all_pass": bool(all_pass),
         "generated_at": datetime.now(UTC).isoformat(),
     }
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    out = RESULT_DIR / "iching_szilard_measurement_rosetta_results.json"
+    out = RESULT_DIR / "six_bit_gray_walk_measure_feedback_reset_entropy_results.json"
     out.write_text(json.dumps(result, indent=2, default=str) + "\n", encoding="utf-8")
     print(f"Results written to {out}")
     print(f"ALL PASS: {all_pass}")

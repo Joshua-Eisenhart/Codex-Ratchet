@@ -33,11 +33,18 @@ The 7 axis0 acceptance fields (must all hold for receipt to be honest):
   6. holographic_boundary_blockers_retained: true
   7. promotion_allowed: false + claim_ceiling explicit
 
-NEW QUESTION THIS SIM ASKS (justifies build per axis0 subagent's hold-criterion):
-  Are the 13 lego primitives ALL load-bearing for the per-substage axis0 plural
-  readout when the manifold chain is active? I.e., does removing any single lego
-  from the call chain change at least one of the 5 axis0 candidate values?
-  (Tested via per-lego ablation graveyard.)
+V1 SCOPE (honest):
+  - imports all 13 system_v5/legos modules
+  - exercises 12 legos via primary_callable; lego_autograd_ci via real coherent_info+mixture
+  - runs engine_core 32-substage cycle per engine type with manifold active
+  - emits axis0 as 5-key plural dict (no scalar collapse)
+  - HARD path_entropy non-degeneracy gate (all_pass=False if degenerate)
+
+V2 DEFERRED (NOT this sim):
+  - per-lego ablation with axis0 candidate delta measurement
+  - real classifier-vs-engine static baseline (matched-feature train/test split)
+  - legos used IN the per-substage axis0 path (currently they're invoked in
+    isolation, not feeding the per-substage axis0 candidate computations)
 """
 
 from __future__ import annotations
@@ -194,54 +201,104 @@ LEGO_CONTRACTS = {
     },
     "lego_simplicial_homology": {
         "module": lego_simplicial_homology,
-        "role": "gudhi Betti numbers on filled/unfilled cycle",
+        "role": "gudhi Betti numbers + control contrast filled-vs-unfilled cycle",
         "consumed_output": "internal (filled/unfilled toggle)",
-        "failure_condition": "gudhi_betti returns wrong-rank result",
+        "failure_condition": "Betti_0 != 1 OR filled-vs-unfilled Betti_1 contrast collapses (control fails)",
         "stage_gate_reason": "topology lego stage anchor",
-        "primary_callable": lambda: lego_simplicial_homology.gudhi_betti(filled=True),
-        "pass_predicate": lambda out: isinstance(out, list) and len(out) >= 1,
+        # R4 STRENGTHEN: check expected fixture values AND filled-vs-unfilled contrast (control)
+        "primary_callable": lambda: {
+            "filled": lego_simplicial_homology.gudhi_betti(filled=True),
+            "unfilled": lego_simplicial_homology.gudhi_betti(filled=False),
+        },
+        "pass_predicate": lambda out: (
+            isinstance(out, dict)
+            and isinstance(out.get("filled"), list) and len(out["filled"]) >= 1
+            and out["filled"][0] == 1  # Betti_0 = 1 (connected)
+            and (len(out["filled"]) < 2 or out["filled"][1] == 0)  # filled disk → no 1-cycles
+            and isinstance(out.get("unfilled"), list) and len(out["unfilled"]) >= 2
+            and out["unfilled"][1] == 1  # unfilled cycle → exactly one 1-cycle
+            # CONTROL CONTRAST: filled and unfilled must differ in Betti_1
+            and out["filled"][1] != out["unfilled"][1]
+        ),
     },
     "lego_spectral_triple": {
         "module": lego_spectral_triple,
-        "role": "Dirac commutator norm for 2-point spectral triple",
+        "role": "Dirac commutator norm for 2-point spectral triple; check pass + finite positive norm",
         "consumed_output": "mass + a + b parameters",
-        "failure_condition": "non-finite commutator norm",
+        "failure_condition": "operator_norm non-finite OR non-positive for distinct a≠b OR dirac_eigenvalues not antipodal",
         "stage_gate_reason": "spectral lego stage anchor",
+        # R4 STRENGTHEN (corrected field names per inspection): operator_norm + dirac_eigenvalues
         "primary_callable": lambda: lego_spectral_triple.torch_commutator_norm(mass=1.0, a=0.3, b=0.4),
-        "pass_predicate": lambda out: bool(out.get("pass", False) or math.isfinite(float(out.get("commutator_norm", 0.0)))),
+        "pass_predicate": lambda out: (
+            isinstance(out, dict)
+            and "operator_norm" in out
+            and math.isfinite(float(out["operator_norm"]))
+            and float(out["operator_norm"]) > 0.0  # distinct a,b → non-zero commutator
+            and isinstance(out.get("dirac_eigenvalues"), list)
+            and len(out["dirac_eigenvalues"]) == 2
+            and abs(out["dirac_eigenvalues"][0] + out["dirac_eigenvalues"][1]) < 1e-9  # antipodal ±mass
+        ),
     },
     "lego_spectral_entropy": {
         "module": lego_spectral_entropy,
-        "role": "spectral entropy family (von Neumann + Renyi + Tsallis)",
+        "role": "spectral entropy family (von Neumann + Renyi + Tsallis) with finite + ordered checks",
         "consumed_output": "rho density matrix",
-        "failure_condition": "entropy family non-finite or negative",
+        "failure_condition": "any entropy non-finite, any entropy < 0, or pure-state vs mixed-state ordering breaks",
         "stage_gate_reason": "entropy lego stage anchor",
+        # R4 STRENGTHEN: check finite + non-negative for each entropy + ordering Renyi_2 ≤ vN ≤ rank_max
         "primary_callable": lambda: lego_spectral_entropy.entropy_family(
             torch.tensor([[0.7, 0.1], [0.1, 0.3]], dtype=torch.complex128)
         ),
-        "pass_predicate": lambda out: isinstance(out, dict) and "von_neumann" in str(out),
+        "pass_predicate": lambda out: (
+            isinstance(out, dict)
+            and out.get("pass") is True
+            and all(k in out for k in ("von_neumann", "renyi_2", "tsallis_2", "min_entropy", "rank_max_entropy", "purity", "rank"))
+            and all(math.isfinite(float(out[k])) for k in ("von_neumann", "renyi_2", "tsallis_2", "min_entropy", "rank_max_entropy", "purity"))
+            and float(out["von_neumann"]) > 0  # mixed state → positive entropy
+            and float(out["renyi_2"]) > 0
+            and float(out["renyi_2"]) <= float(out["von_neumann"]) + 1e-9  # Renyi_2 ≤ vN
+            and float(out["von_neumann"]) <= float(out["rank_max_entropy"]) + 1e-9  # vN ≤ log(rank)
+            and 0.0 <= float(out["purity"]) <= 1.0 + 1e-9
+        ),
     },
     "lego_bipartite_ci": {
         "module": lego_bipartite_ci,
-        "role": "bipartite cut mutual + conditional + coherent information",
-        "consumed_output": "2-qubit pure state psi",
-        "failure_condition": "cut_info returns non-finite",
+        "role": "bipartite cut mutual + conditional + coherent information; verify Bell-state values",
+        "consumed_output": "2-qubit pure state psi (Bell state fixture)",
+        "failure_condition": "cut_info non-finite OR Bell-state mutual_info != 2*ln(2) OR coherent_info != ln(2) within tol",
         "stage_gate_reason": "coherent-info lego stage anchor",
+        # R4 STRENGTHEN: Bell state |00>+|11>/sqrt(2) gives known I = 2 ln(2) ≈ 1.386, CI = ln(2) ≈ 0.693
         "primary_callable": lambda: lego_bipartite_ci.cut_info(
             lego_bipartite_ci.density(
                 torch.tensor([1.0, 0.0, 0.0, 1.0], dtype=torch.complex128) / math.sqrt(2)
             )
         ),
-        "pass_predicate": lambda out: isinstance(out, dict) and len(out) > 0,
+        "pass_predicate": lambda out: (
+            isinstance(out, dict)
+            and out.get("pass") is True
+            and all(k in out for k in ("S_AB", "S_A", "S_B", "mutual_information", "conditional_entropy_A_given_B", "coherent_information_A_to_B"))
+            and all(math.isfinite(float(out[k])) for k in ("S_AB", "S_A", "S_B", "mutual_information", "coherent_information_A_to_B"))
+            and abs(float(out["mutual_information"]) - 2.0 * math.log(2.0)) < 1e-6  # Bell I = 2 ln 2
+            and abs(float(out["coherent_information_A_to_B"]) - math.log(2.0)) < 1e-6  # Bell CI = ln 2
+            and float(out["mutual_information"]) > float(out["coherent_information_A_to_B"])  # I > CI always
+        ),
     },
     "lego_topology_witness": {
         "module": lego_topology_witness,
-        "role": "finite-support topology entropy witness (pyg + gudhi + xgi + z3)",
+        "role": "finite-support topology entropy witness; cycle gives Betti_0=1, Betti_1=1 (one loop)",
         "consumed_output": "internal (pyg path-vs-star + gudhi cycle)",
-        "failure_condition": "topology witness returns non-positive entropy",
+        "failure_condition": "gudhi_cycle_support pass=False OR Betti structure differs from (1,1) for unfilled cycle",
         "stage_gate_reason": "topology-entropy lego stage anchor",
+        # R4 STRENGTHEN: check explicit Betti pattern + pass field
         "primary_callable": lambda: lego_topology_witness.gudhi_cycle_support(),
-        "pass_predicate": lambda out: isinstance(out, dict),
+        "pass_predicate": lambda out: (
+            isinstance(out, dict)
+            and out.get("pass") is True
+            and isinstance(out.get("betti_numbers"), list)
+            and len(out["betti_numbers"]) >= 2
+            and out["betti_numbers"][0] == 1  # 1 connected component
+            and out["betti_numbers"][1] == 1  # 1 cycle (the loop)
+        ),
     },
     "lego_signed_ci": {
         "module": lego_signed_ci,
@@ -308,6 +365,8 @@ def verify_lego_callable(name: str, contract: dict[str, Any]) -> dict[str, Any]:
     if callable_fn is None or pass_pred is None:
         record["callable_invoked"] = False
         record["callable_returned_pass"] = "deferred_to_other_section"
+        # R5: link forward to where the deferred lego is actually exercised
+        record["callable_invoked_in"] = "end_to_end_jacobian_via_autograd_lego"
         return record
     try:
         out = callable_fn()
@@ -455,15 +514,30 @@ def candidate_boundary_interior() -> dict[str, Any]:
             "finite": False,
             "blockers": {"parse_error": str(e)},
         }
+    # R5 fix: do not call it "routed" when explicit_blockers content is present.
+    # The boundary candidate is always BLOCKED (per axis0 subagent), regardless of the
+    # upstream receipt's own all_pass field, because of the KL gap floor failure.
+    explicit_blockers = receipt.get("explicit_blockers", {})
+    has_active_blockers = bool(explicit_blockers)
+    if has_active_blockers:
+        status = "blocked_by_explicit_blockers_in_upstream_receipt"
+    elif receipt.get("all_pass") is not True:
+        status = "blocked_by_upstream_receipt_failure"
+    else:
+        status = "upstream_receipt_clean_but_still_held_pending_axis0_subagent_review"
     return {
         "candidate": "holographic_boundary_interior_reconstruction",
-        "status": "blocked_by_existing_floor_failure" if receipt.get("all_pass") is not True else "routed",
+        "status": status,
         "receipt_all_pass": receipt.get("all_pass"),
         "values": [],
         "finite": False,
         "blockers": {
-            "explicit_blockers": receipt.get("explicit_blockers", {}),
+            "explicit_blockers": explicit_blockers,
             "axis0_subagent_2026_05_16": "KL gap 0.0070 < 0.01 floor; do not silently drop",
+            "honest_status_note": (
+                f"explicit_blockers present={has_active_blockers}; upstream all_pass={receipt.get('all_pass')}; "
+                "status reflects the BLOCKED reality, not 'routed' (per R3 audit P3 boundary-blocker-semantics finding)."
+            ),
         },
     }
 

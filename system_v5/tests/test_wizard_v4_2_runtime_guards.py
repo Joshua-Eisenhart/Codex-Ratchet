@@ -349,6 +349,53 @@ def test_worker_receipt_validator_constrains_controller_marker(tmp_path: Path) -
     assert "cannot be combined with child_id" in stacked_result.stdout
 
 
+def test_auto_loop_rejects_generic_route_truth_next_task_for_wiki_alignment(tmp_path: Path) -> None:
+    script = ROOT / "scripts/wizard_v4_2.py"
+    module_globals = runpy.run_path(str(script), run_name="wizard_v4_2")
+    compiled = tmp_path / "compiled.md"
+    compiled.write_text(
+        "## 🧭 Follow-Up Options\n\n"
+        "1. `Continue the Wizard route-truth audit from the current task. "
+        "Preserve the named route-truth or receipt-truth defect, patch only "
+        "the harness/test surface needed, and verify with a focused compact "
+        "or receipt-level regression.`\n",
+        encoding="utf-8",
+    )
+    fallback = (
+        "wizard auto loop auto. Use this as a Wizard v4.2 alignment campaign "
+        "for Hermes + wiki. User goal: make the wiki an LLM alignment tool "
+        "that exposes the overall goal, language, thinking moves, research spine, "
+        "index/routing, and Hermes Wizard operating loop."
+    )
+
+    next_task = module_globals["next_task_from_compiled"](compiled, fallback)
+
+    assert next_task == fallback
+
+
+def test_auto_loop_accepts_next_task_that_preserves_wiki_alignment_domain(tmp_path: Path) -> None:
+    script = ROOT / "scripts/wizard_v4_2.py"
+    module_globals = runpy.run_path(str(script), run_name="wizard_v4_2")
+    compiled = tmp_path / "compiled.md"
+    compiled.write_text(
+        "## 🧭 Follow-Up Options\n\n"
+        "1. `Patch the Hermes wiki alignment front door so the root index, "
+        "research spine, and Wizard v4.2 autoloop control note preserve the "
+        "LLM frame-loader objective before any route-truth audit continues.`\n",
+        encoding="utf-8",
+    )
+    fallback = (
+        "wizard auto loop auto. Use this as a Wizard v4.2 alignment campaign "
+        "for Hermes + wiki. User goal: make the wiki an LLM alignment tool "
+        "that exposes the overall goal, language, thinking moves, research spine, "
+        "index/routing, and Hermes Wizard operating loop."
+    )
+
+    next_task = module_globals["next_task_from_compiled"](compiled, fallback)
+
+    assert next_task.startswith("Patch the Hermes wiki alignment front door")
+
+
 def test_runtime_audit_flags_live_v4_1_defaults() -> None:
     script = ROOT / "scripts/wizard_v4_2_runtime_audit.py"
     module_globals = runpy.run_path(str(script), run_name="wizard_v4_2_runtime_audit")

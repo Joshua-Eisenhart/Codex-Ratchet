@@ -337,17 +337,39 @@ def is_output_format_drift(task: str) -> bool:
     return any(marker in lowered for marker in drift_markers)
 
 
+GENERIC_TASK_DOMAIN_TOKENS = {"wizard", "audit"}
+
+
 def preserves_task_domain(candidate: str, fallback: str) -> bool:
     fallback_tokens = task_domain_tokens(fallback)
     if not fallback_tokens:
         return True
     candidate_tokens = task_domain_tokens(candidate)
-    return bool(candidate_tokens & fallback_tokens)
+    if not (candidate_tokens & fallback_tokens):
+        return False
+    specific_fallback_tokens = fallback_tokens - GENERIC_TASK_DOMAIN_TOKENS
+    if specific_fallback_tokens:
+        return bool((candidate_tokens - GENERIC_TASK_DOMAIN_TOKENS) & specific_fallback_tokens)
+    return True
 
 
 def task_domain_tokens(task: str) -> set[str]:
     lowered = " ".join(task.lower().split())
     token_groups = {
+        "wiki_alignment": (
+            "wiki",
+            "llm alignment",
+            "alignment tool",
+            "frame-loader",
+            "front door",
+            "research spine",
+            "index/routing",
+            "notebooklm",
+            "arxiv",
+            "source coverage",
+            "current research",
+            "hermes-current",
+        ),
         "szilard": ("szilard",),
         "carnot": ("carnot",),
         "rosetta": ("rosetta", "lego", "legos"),

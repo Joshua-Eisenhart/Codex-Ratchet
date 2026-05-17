@@ -1167,6 +1167,35 @@ def main() -> int:
             "pass": axis0["ready"] and all(gap > AXIS0_GAP_FLOOR for gap in axis0_gaps.values()),
             "axis0_zeroed_gaps": axis0_gaps,
             "axis0_drive_mean_abs": {key: row["axis0_drive_mean_abs"] for key, row in full_rows.items()},
+            "axis0_drive_mode": "full_vector",
+        },
+        "plural_axis0_full_vector_differs_from_scalar_mean_control": {
+            "pass": axis0["ready"] and all(gap > AXIS0_GAP_FLOOR for gap in scalar_mean_gaps.values()),
+            "scalar_mean_gaps": scalar_mean_gaps,
+            "candidate_weights": CANDIDATE_WEIGHTS,
+        },
+        "plural_axis0_name_binding_and_candidate_controls_are_visible": {
+            "pass": axis0["ready"]
+            and all(gap > AXIS0_GAP_FLOOR for gap in shuffled_name_gaps.values())
+            and all(
+                gap > AXIS0_GAP_FLOOR
+                for rows_by_candidate in drop_one_gaps.values()
+                for gap in rows_by_candidate.values()
+            )
+            and all(
+                gap > AXIS0_GAP_FLOOR
+                for rows_by_candidate in sign_flip_gaps.values()
+                for gap in rows_by_candidate.values()
+            )
+            and all(
+                gap > AXIS0_GAP_FLOOR
+                for rows_by_candidate in time_shuffle_gaps.values()
+                for gap in rows_by_candidate.values()
+            ),
+            "shuffled_name_gaps": shuffled_name_gaps,
+            "drop_one_gaps": drop_one_gaps,
+            "sign_flip_gaps": sign_flip_gaps,
+            "time_shuffle_gaps": time_shuffle_gaps,
         },
         "holodeck_memory_placeholder_drives_local_environment_signature": {
             "pass": memory["ready"] and all(gap > AXIS0_GAP_FLOOR for gap in memory_gaps.values()),
@@ -1213,6 +1242,26 @@ def main() -> int:
         "axis0_zeroed_control_changes_environment_signature": {
             "pass": all(gap > AXIS0_GAP_FLOOR for gap in axis0_gaps.values()),
             "axis0_zeroed_gaps": axis0_gaps,
+        },
+        "axis0_scalar_mean_control_is_not_equivalent_to_full_vector_binding": {
+            "pass": all(gap > AXIS0_GAP_FLOOR for gap in scalar_mean_gaps.values()),
+            "scalar_mean_gaps": scalar_mean_gaps,
+            "reason": "Scalar means remain controls/diagnostics only; primary subdense actuation uses weighted full-vector candidate binding.",
+        },
+        "axis0_candidate_name_binding_shuffle_changes_environment_signature": {
+            "pass": all(gap > AXIS0_GAP_FLOOR for gap in shuffled_name_gaps.values()),
+            "shuffled_name_gaps": shuffled_name_gaps,
+        },
+        "axis0_drop_sign_flip_and_time_shuffle_controls_are_not_silent": {
+            "pass": all(
+                gap > AXIS0_GAP_FLOOR
+                for family in [drop_one_gaps, sign_flip_gaps, time_shuffle_gaps]
+                for rows_by_candidate in family.values()
+                for gap in rows_by_candidate.values()
+            ),
+            "drop_one_gaps": drop_one_gaps,
+            "sign_flip_gaps": sign_flip_gaps,
+            "time_shuffle_gaps": time_shuffle_gaps,
         },
         "holodeck_memory_zeroed_control_changes_environment_signature": {
             "pass": all(gap > AXIS0_GAP_FLOOR for gap in memory_gaps.values()),

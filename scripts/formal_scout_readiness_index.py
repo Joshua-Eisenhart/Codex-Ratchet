@@ -95,6 +95,25 @@ def readme_result_paths() -> set[str]:
     return {rel(SCOUT_ROOT / path) for path in paths}
 
 
+def normalized_tool_depth(data: dict[str, Any]) -> dict[str, str]:
+    raw = data.get("TOOL_INTEGRATION_DEPTH")
+    if not isinstance(raw, dict):
+        raw = data.get("tool_integration_depth")
+    if not isinstance(raw, dict):
+        return {}
+    return {str(key).lower(): str(value).lower() for key, value in raw.items() if value is not None}
+
+
+def backend_policy_violations(stem: str, tool_depth: dict[str, str]) -> list[str]:
+    tokens = {token for token in stem.lower().replace("-", "_").split("_") if token}
+    violations: list[str] = []
+    if ("bridge" in tokens or "nonclassical" in tokens) and tool_depth.get("numpy") == "load_bearing":
+        violations.append("load_bearing_numpy_in_bridge_or_nonclassical_named_scout")
+    if "nonclassical" in tokens and tool_depth.get("pytorch") != "load_bearing":
+        violations.append("nonclassical_missing_load_bearing_pytorch")
+    return violations
+
+
 def readiness_status(validation_pass: bool, source_exists: bool, errors: list[str]) -> str:
     if not source_exists:
         return "source_missing"
@@ -119,6 +138,7 @@ def blockers_for(row: dict[str, Any]) -> list[str]:
         blockers.append("classification_not_formal_scout")
     if row["promotion_allowed"] is not False:
         blockers.append("promotion_allowed_not_false")
+    blockers.extend(row.get("backend_policy_violations") or [])
     return sorted(set(blockers))
 
 
@@ -144,9 +164,11 @@ def build_index() -> dict[str, Any]:
         fresh_rerun_mapping_defect = bool(not expected_exists and alternate_exists)
         fresh_rerun_dual_source_defect = bool(expected_exists and alternate_exists and expected_script != alternate_script)
         errors = list(validation.get("errors") or [])
+        stem = result_stem(path)
+        tool_depth = normalized_tool_depth(data)
         row = {
             "result_path": rel(path),
-            "stem": result_stem(path),
+            "stem": stem,
             "source_path": rel(expected_script if expected_exists else alternate_script) if source_exists else "",
             "validator_expected_source_path": rel(expected_script),
             "source_exists": source_exists,
@@ -163,6 +185,8 @@ def build_index() -> dict[str, Any]:
             "claim_ceiling": str(data.get("claim_ceiling") or ""),
             "tool_manifest_key_style": key_style(data, "TOOL_MANIFEST", "tool_manifest"),
             "tool_depth_key_style": key_style(data, "TOOL_INTEGRATION_DEPTH", "tool_integration_depth"),
+            "normalized_tool_depth": tool_depth,
+            "backend_policy_violations": backend_policy_violations(stem, tool_depth),
             "public_status_label": "exists",
             "public_status_blockers": [
                 "index_only_no_execution",
@@ -189,6 +213,7 @@ def build_index() -> dict[str, Any]:
     dual_source_defects = [row for row in rows if row["fresh_rerun_dual_source_defect"]]
     validator_failed = [row for row in rows if not row["validation_pass"]]
     source_missing = [row for row in rows if not row["source_exists"]]
+    backend_policy_violations_rows = [row for row in rows if row["backend_policy_violations"]]
     provider_summary = provider_receipt_summary()
     return {
         "schema": "formal_scout_readiness_index.v1",
@@ -205,6 +230,7 @@ def build_index() -> dict[str, Any]:
             "readme_missing_count": len(readme_missing),
             "fresh_rerun_mapping_defect_count": len(mapping_defects),
             "fresh_rerun_dual_source_defect_count": len(dual_source_defects),
+            "backend_policy_violation_count": len(backend_policy_violations_rows),
             "readiness_status_counts": dict(status_counts),
             "validation_error_counts": dict(error_counts),
             "promotion_blocker_counts": dict(blocker_counts),
@@ -218,6 +244,7 @@ def build_index() -> dict[str, Any]:
         "readme_missing_samples": readme_missing[:100],
         "fresh_rerun_mapping_defect_rows": mapping_defects,
         "fresh_rerun_dual_source_defect_rows": dual_source_defects,
+        "backend_policy_violation_rows": backend_policy_violations_rows,
         "source_missing_rows": source_missing,
         "rows": rows,
     }
@@ -282,6 +309,7 @@ def write_markdown(index: dict[str, Any], path: Path) -> None:
         f"- README missing receipts: `{summary['readme_missing_count']}`",
         f"- Fresh-rerun mapping defects: `{summary['fresh_rerun_mapping_defect_count']}`",
         f"- Fresh-rerun dual-source defects: `{summary['fresh_rerun_dual_source_defect_count']}`",
+        f"- Backend policy violations: `{summary['backend_policy_violation_count']}`",
         f"- Provider receipts indexed: `{summary['provider_receipts']['receipt_count']}`",
         f"- Provider receipt validator pass: `{summary['provider_receipts']['validator_pass_count']}`",
         f"- Provider receipt validator fail: `{summary['provider_receipts']['validator_fail_count']}`",
@@ -337,6 +365,24 @@ def write_markdown(index: dict[str, Any], path: Path) -> None:
         for row in index["fresh_rerun_mapping_defect_rows"]:
             lines.append(
                 f"| `{row['result_path']}` | `{row['validator_expected_source_path']}` | `{row['source_path']}` |"
+            )
+    else:
+        lines.append("| - | - | - |")
+    lines += [
+        "",
+        "## Backend Policy Violations",
+        "",
+        "| result | source | violations |",
+        "| --- | --- | --- |",
+    ]
+    if index["backend_policy_violation_rows"]:
+        for row in index["backend_policy_violation_rows"]:
+            lines.append(
+                "| `{result}` | `{source}` | {violations} |".format(
+                    result=row["result_path"],
+                    source=row["source_path"] or "-",
+                    violations=", ".join(row["backend_policy_violations"]) or "-",
+                )
             )
     else:
         lines.append("| - | - | - |")

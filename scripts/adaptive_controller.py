@@ -597,6 +597,21 @@ def _source_classification(text: str) -> str:
     return match.group(1) if match else ""
 
 
+def _source_execution_kind(text: str) -> str:
+    match = re.search(r'^(?:sim_execution_kind|SIM_EXECUTION_KIND)\s*=\s*["\']([^"\']+)["\']', text, re.M)
+    return match.group(1).lower() if match else ""
+
+
+def _runner_class_from_execution_kind(execution_kind: str) -> str:
+    if execution_kind in {"classical", "classical_baseline"}:
+        return "classical"
+    if "bridge" in execution_kind or execution_kind in {"semiclassical", "semiclassical_szilard"}:
+        return "bridge"
+    if execution_kind == "nonclassical":
+        return "nonclassical"
+    return ""
+
+
 def runner_class_for(sim_path: pathlib.Path | str, source_text: str | None = None) -> str:
     """Return runner admission class, separate from result classification.
 
@@ -622,6 +637,10 @@ def runner_class_for(sim_path: pathlib.Path | str, source_text: str | None = Non
             text = ""
 
     classification = _source_classification(text)
+    execution_kind = _source_execution_kind(text)
+    explicit_runner_class = _runner_class_from_execution_kind(execution_kind)
+    if explicit_runner_class:
+        return explicit_runner_class
     if classification == "classical_baseline" or "classical" in stem:
         return "classical"
     if classification == "canonical":
@@ -643,6 +662,10 @@ def runner_class_reason(sim_path: pathlib.Path | str, source_text: str | None = 
     if any(token in stem for token in BRIDGE_RUNNER_TOKENS):
         return "bridge_token"
     classification = _source_classification(text)
+    execution_kind = _source_execution_kind(text)
+    explicit_runner_class = _runner_class_from_execution_kind(execution_kind)
+    if explicit_runner_class:
+        return f"sim_execution_kind_{explicit_runner_class}"
     if classification == "classical_baseline":
         return "classification_classical_baseline"
     if classification == "canonical":

@@ -1368,6 +1368,68 @@ def test_lint_blocks_numpy_bridge_and_requires_pytorch_for_nonclassical(
     assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" in bridge_alias_rules
 
 
+def test_adaptive_controller_honors_explicit_sim_execution_kind(tmp_path) -> None:
+    module = _load_module(
+        "adaptive_controller_execution_kind_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    probes = tmp_path / "probes"
+    probes.mkdir()
+    classical = probes / "sim_carnot_cycle.py"
+    classical.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "classical"',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    bridge = probes / "sim_szilard_measure_feedback_cycle.py"
+    bridge.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "bridge"',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    semiclassical = probes / "sim_szilard_landauer_cycle.py"
+    semiclassical.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'SIM_EXECUTION_KIND = "semiclassical_szilard"',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    nonclassical = probes / "sim_pytorch_channel.py"
+    nonclassical.write_text(
+        "\n".join(
+            [
+                'classification = "canonical"',
+                'sim_execution_kind = "nonclassical"',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    assert module.runner_class_for(classical) == "classical"
+    assert module.runner_class_reason(classical) == "sim_execution_kind_classical"
+    assert module.runner_class_for(bridge) == "bridge"
+    assert module.runner_class_reason(bridge) == "sim_execution_kind_bridge"
+    assert module.runner_class_for(semiclassical) == "bridge"
+    assert module.runner_class_reason(semiclassical) == "sim_execution_kind_bridge"
+    assert module.runner_class_for(nonclassical) == "nonclassical"
+    assert module.runner_class_reason(nonclassical) == "sim_execution_kind_nonclassical"
+
+
 def test_lint_accepts_explicit_path_arguments(tmp_path, monkeypatch, capsys) -> None:
     module = _load_module(
         "lint_sim_contract_path_args_under_test",

@@ -10,9 +10,12 @@ import argparse
 import ast
 import json
 import re
+import signal
+import sys
 import warnings
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -61,6 +64,12 @@ FAMILY_TOKENS = {
 
 LATE_STAGE_TOKENS = ("axis", "bridge", "coupling", "coexistence", "emergence", "engine", "pairwise", "triple")
 FINDER_DUPLICATE_RE = re.compile(r" \d+$")
+READ_TIMEOUT_SECONDS = 5.0
+BULK_A2_STATE_RESULT_LIMIT = 1000
+
+
+class FileReadTimeout(RuntimeError):
+    pass
 
 
 def rel(path: Path) -> str:
@@ -70,9 +79,30 @@ def rel(path: Path) -> str:
         return str(path)
 
 
+def _raise_file_read_timeout(signum: int, frame: Any) -> None:
+    raise FileReadTimeout("file read timed out")
+
+
+def read_text_with_timeout(path: Path, *, errors: str | None = None) -> str:
+    kwargs = {"encoding": "utf-8"}
+    if errors is not None:
+        kwargs["errors"] = errors
+    if not hasattr(signal, "setitimer"):
+        return path.read_text(**kwargs)
+    old_handler = signal.getsignal(signal.SIGALRM)
+    signal.signal(signal.SIGALRM, _raise_file_read_timeout)
+    old_timer = signal.setitimer(signal.ITIMER_REAL, READ_TIMEOUT_SECONDS)
+    try:
+        return path.read_text(**kwargs)
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, old_timer[0], old_timer[1])
+        signal.signal(signal.SIGALRM, old_handler)
+
+
+@lru_cache(maxsize=32768)
 def load_json(path: Path) -> Any:
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        return json.loads(read_text_with_timeout(path))
     except Exception:
         return None
 
@@ -98,13 +128,35 @@ def source_paths() -> list[Path]:
     return sorted(paths)
 
 
-def result_paths() -> list[Path]:
+def bulk_a2_state_result_dir() -> Path:
+    return ROOT / "system_v4" / "probes" / "a2_state" / "sim_results"
+
+
+def bulk_a2_state_result_count() -> int:
+    root = bulk_a2_state_result_dir()
+    if not root.exists():
+        return 0
+    return sum(
+        1
+        for path in root.glob("*.json")
+        if path.name.endswith(("_results.json", "_result.json")) and not is_finder_duplicate_path(path)
+    )
+
+
+def result_paths(skip_bulk_a2_state_results: bool = False) -> list[Path]:
+    bulk_result_dir = bulk_a2_state_result_dir()
+    skip_bulk_a2_state = (
+        skip_bulk_a2_state_results
+        and bulk_result_dir.exists()
+        and bulk_a2_state_result_count() > BULK_A2_STATE_RESULT_LIMIT
+    )
     return sorted(
         path
         for root in (ROOT / "system_v4", ROOT / "system_v5", ROOT / "runs")
         if root.exists()
         for path in root.rglob("*.json")
         if path.name.endswith(("_results.json", "_result.json"))
+        and not (skip_bulk_a2_state and path.parent == bulk_result_dir)
         and not is_finder_duplicate_path(path)
     )
 
@@ -163,11 +215,8 @@ def admissions() -> dict[str, dict[str, Any]]:
 
 def imports_from_ast(text: str) -> set[str]:
     found: set[str] = set()
-    try:
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", SyntaxWarning)
-            tree = ast.parse(text)
-    except SyntaxError:
+    tree = parsed_module(text)
+    if tree is None:
         return found
     for node in ast.walk(tree):
         if isinstance(node, ast.Import):
@@ -179,6 +228,7 @@ def imports_from_ast(text: str) -> set[str]:
     return {item for item in found if item}
 
 
+@lru_cache(maxsize=32768)
 def parsed_module(text: str) -> ast.Module | None:
     try:
         with warnings.catch_warnings():
@@ -336,13 +386,24 @@ def admission_status(
     return "admitted_evidence_linked"
 
 
-def build_index() -> dict[str, Any]:
-    results = result_paths()
+def build_index(progress: bool = False, skip_bulk_a2_state_results: bool = False) -> dict[str, Any]:
+    skipped_bulk_a2_state_result_count = 0
+    if skip_bulk_a2_state_results:
+        candidate_bulk_count = bulk_a2_state_result_count()
+        if candidate_bulk_count > BULK_A2_STATE_RESULT_LIMIT:
+            skipped_bulk_a2_state_result_count = candidate_bulk_count
+    results = result_paths(skip_bulk_a2_state_results=skip_bulk_a2_state_results)
     lookup = result_lookup(results)
     admitted = admissions()
     rows = []
-    for path in source_paths():
-        text = path.read_text(encoding="utf-8", errors="replace")
+    sources = source_paths()
+    for index, path in enumerate(sources, start=1):
+        if progress and (index == 1 or index % 250 == 0 or index == len(sources)):
+            print(f"indexing source {index}/{len(sources)}: {rel(path)}", file=sys.stderr, flush=True)
+        try:
+            text = read_text_with_timeout(path, errors="replace")
+        except Exception:
+            text = ""
         stem = path.stem
         linked_results = []
         for key in source_result_keys(stem):
@@ -407,6 +468,7 @@ def build_index() -> dict[str, Any]:
         "summary": {
             "source_count": len(rows),
             "result_json_count": len(results),
+            "skipped_bulk_a2_state_result_count": skipped_bulk_a2_state_result_count,
             "linked_result_json_count": len(linked_results),
             "unlinked_result_json_count": len(unlinked_results),
             "admitted_count": len(admitted_rows),
@@ -441,6 +503,7 @@ def write_markdown(index: dict[str, Any], path: Path) -> None:
         "",
         f"- Sim source files indexed: `{summary['source_count']}`",
         f"- Result JSON files seen: `{summary['result_json_count']}`",
+        f"- Bulk a2_state result JSON files skipped: `{summary.get('skipped_bulk_a2_state_result_count', 0)}`",
         f"- Linked result JSON files: `{summary['linked_result_json_count']}`",
         f"- Unlinked result JSON files: `{summary['unlinked_result_json_count']}`",
         f"- Wizard-admitted stems: `{summary['admitted_count']}`",
@@ -494,8 +557,14 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--json-out", type=Path, default=OUT_JSON)
     parser.add_argument("--md-out", type=Path, default=OUT_MD)
+    parser.add_argument("--progress", action="store_true", help="Print periodic source-indexing progress to stderr.")
+    parser.add_argument(
+        "--skip-bulk-a2-state-results",
+        action="store_true",
+        help="Skip the old system_v4 a2_state result estate when it is large.",
+    )
     args = parser.parse_args()
-    index = build_index()
+    index = build_index(progress=args.progress, skip_bulk_a2_state_results=args.skip_bulk_a2_state_results)
     args.json_out.parent.mkdir(parents=True, exist_ok=True)
     args.md_out.parent.mkdir(parents=True, exist_ok=True)
     args.json_out.write_text(json.dumps(index, indent=2), encoding="utf-8")

@@ -1,70 +1,72 @@
 {
   "schema": "formal_scout_readiness_index.v1",
-  "generated_at": "2026-05-17T06:16:25.966440+00:00",
+  "generated_at": "2026-05-17T07:34:40.449998+00:00",
   "boundary": "readiness_index_only_not_rerun_not_admission_not_promotion",
   "summary": {
-    "result_count": 146,
+    "result_count": 147,
     "source_count": 147,
-    "source_without_result_count": 1,
+    "source_without_result_count": 0,
     "validator_pass_count": 129,
-    "validator_fail_count": 17,
+    "validator_fail_count": 18,
     "source_missing_count": 0,
     "readme_indexed_count": 78,
-    "readme_missing_count": 68,
-    "fresh_rerun_mapping_defect_count": 1,
+    "readme_missing_count": 69,
+    "fresh_rerun_mapping_defect_count": 0,
     "fresh_rerun_dual_source_defect_count": 0,
     "backend_policy_violation_count": 0,
     "readiness_status_counts": {
       "schema_ready": 129,
-      "validator_failed": 17
+      "validator_failed": 18
     },
     "validation_error_counts": {
       "positive section missing": 3,
       "graveyard_companions section missing": 8,
       "boundary section missing": 7,
-      "why_not_v4_probes missing": 16,
-      "nearby_variants summary missing": 17,
+      "why_not_v4_probes missing": 17,
+      "nearby_variants summary missing": 18,
       "one or more graveyard checks failed": 2,
       "claim_ceiling may overclaim": 1,
-      "one or more positive checks failed": 1
+      "classification is not formal_scout": 1,
+      "one or more positive checks failed": 2,
+      "blockers present": 1
     },
     "promotion_blocker_counts": {
-      "formal_scout_noncanonical": 146,
-      "fresh_rerun_not_performed": 146,
-      "readme_index_missing": 68,
-      "validator_failed": 17,
-      "fresh_rerun_mapping_defect": 1
+      "formal_scout_noncanonical": 147,
+      "fresh_rerun_not_performed": 147,
+      "readme_index_missing": 69,
+      "validator_failed": 18,
+      "classification_not_formal_scout": 1
     },
     "tool_manifest_key_style_counts": {
-      "upper": 107,
+      "upper": 108,
       "both": 8,
       "lower": 31
     },
     "tool_depth_key_style_counts": {
-      "upper": 107,
+      "upper": 108,
       "both": 8,
       "lower": 31
     },
     "provider_receipts": {
-      "receipt_count": 260,
+      "receipt_count": 264,
       "validator_available": true,
-      "validator_pass_count": 166,
-      "validator_fail_count": 94,
+      "validator_pass_count": 168,
+      "validator_fail_count": 96,
       "validation_error_counts": {
         "missing provider": 5,
-        "missing route": 39,
-        "missing status": 7,
-        "missing classification": 7,
-        "missing promotion_allowed": 7,
-        "missing evidence_allowed": 9,
-        "missing claim_ceiling": 9,
-        "missing repo_grounding": 77,
-        "wrong schema": 23,
-        "promotion_allowed must be false": 7,
-        "evidence_allowed must be false": 9,
-        "invalid status": 39,
-        "repo_grounding is not an object": 77,
-        "missing schema": 6,
+        "missing route": 41,
+        "missing status": 9,
+        "missing classification": 9,
+        "missing promotion_allowed": 9,
+        "missing evidence_allowed": 11,
+        "missing claim_ceiling": 11,
+        "missing repo_grounding": 79,
+        "wrong schema": 25,
+        "promotion_allowed must be false": 9,
+        "evidence_allowed must be false": 11,
+        "invalid status": 41,
+        "repo_grounding is not an object": 79,
+        "missing schema": 8,
         "completed receipt missing proposal_text": 15
       }
     }
@@ -969,11 +971,47 @@
         "invalid status",
         "repo_grounding is not an object"
       ]
+    },
+    {
+      "path": "system_v5/ops/formal_scouts/provider_receipts/20260517T061732Z_gemini_direct_axis0_plural_drive_audit.json",
+      "validation_pass": false,
+      "validation_errors": [
+        "missing schema",
+        "missing route",
+        "missing status",
+        "missing classification",
+        "missing promotion_allowed",
+        "missing evidence_allowed",
+        "missing claim_ceiling",
+        "missing repo_grounding",
+        "wrong schema",
+        "promotion_allowed must be false",
+        "evidence_allowed must be false",
+        "invalid status",
+        "repo_grounding is not an object"
+      ]
+    },
+    {
+      "path": "system_v5/ops/formal_scouts/provider_receipts/20260517T061732Z_grok_direct_axis0_plural_drive_audit.json",
+      "validation_pass": false,
+      "validation_errors": [
+        "missing schema",
+        "missing route",
+        "missing status",
+        "missing classification",
+        "missing promotion_allowed",
+        "missing evidence_allowed",
+        "missing claim_ceiling",
+        "missing repo_grounding",
+        "wrong schema",
+        "promotion_allowed must be false",
+        "evidence_allowed must be false",
+        "invalid status",
+        "repo_grounding is not an object"
+      ]
     }
   ],
-  "source_without_result_samples": [
-    "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py"
-  ],
+  "source_without_result_samples": [],
   "validator_failed_rows": [
     {
       "result_path": "system_v5/ops/formal_scouts/results/chiral_trajectory_persistent_homology_readout_feature_probe_results.json",
@@ -1585,9 +1623,9 @@
       "result_path": "system_v5/ops/formal_scouts/results/sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe_results.json",
       "stem": "sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe",
       "source_path": "system_v5/ops/formal_scouts/sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe.py",
-      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe.py",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe.py",
       "source_exists": true,
-      "fresh_rerun_mapping_defect": true,
+      "fresh_rerun_mapping_defect": false,
       "fresh_rerun_dual_source_defect": false,
       "readme_indexed": false,
       "validation_pass": false,
@@ -1620,7 +1658,60 @@
       ],
       "promotion_blockers": [
         "formal_scout_noncanonical",
-        "fresh_rerun_mapping_defect",
+        "fresh_rerun_not_performed",
+        "readme_index_missing",
+        "validator_failed"
+      ]
+    },
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/singular_lego_wired_axis0_plural_manifold_engine_probe_results.json",
+      "stem": "singular_lego_wired_axis0_plural_manifold_engine_probe",
+      "source_path": "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py",
+      "source_exists": true,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": false,
+      "validation_pass": false,
+      "validation_errors": [
+        "classification is not formal_scout",
+        "why_not_v4_probes missing",
+        "nearby_variants summary missing",
+        "one or more positive checks failed",
+        "blockers present"
+      ],
+      "readiness_status": "validator_failed",
+      "classification": "tool_lego_fit_probe",
+      "promotion_allowed": false,
+      "all_pass": false,
+      "claim_ceiling_present": true,
+      "claim_ceiling": "tool_lego_fit_probe ONLY: verifies that all 13 system_v5/legos primitives are importable AND each has its primary non-trivial callable exercised in isolation, AND runs engine_core (Lindblad cycle) with the live 13-layer active manifold constraint chain, AND emits axis0 plurally across the 5 candidates from the existing plural router with strict per-candidate predicates. Does NOT admit: canonical engine, final axis0, Holodeck memory, retrocausality, quantum advantage, learned dynamics, intelligence, physics, cognition, canonical manifold tower claims, or lego load-bearingness in the per-substage axis0 path (v1 scope: lego callable + axis0 plural emission separately; v2 scope: legos in axis0 path with ablation sensitivity). Owner emphasis 'axis0 not so simple needs deep nuance' enforced via 5-key dict + signed polarity + path_entropy HARD non-degeneracy gate + holographic boundary blockers retained. promotion_allowed: false.",
+      "tool_manifest_key_style": "upper",
+      "tool_depth_key_style": "upper",
+      "normalized_tool_depth": {
+        "pytorch": "load_bearing",
+        "numpy": "load_bearing",
+        "sympy": "load_bearing",
+        "z3": "load_bearing",
+        "clifford": "load_bearing",
+        "geomstats": "load_bearing",
+        "gudhi": "load_bearing",
+        "toponetx": "load_bearing",
+        "xgi": "load_bearing",
+        "opt_einsum": "load_bearing",
+        "torch_geometric": "load_bearing",
+        "engine_core": "load_bearing"
+      },
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "classification_not_formal_scout",
+        "formal_scout_noncanonical",
         "fresh_rerun_not_performed",
         "readme_index_missing",
         "validator_failed"
@@ -1738,7 +1829,7 @@
       "promotion_allowed": false,
       "all_pass": true,
       "claim_ceiling_present": true,
-      "claim_ceiling": "Formal scout only: consumes the plural Axis0 router and source-native MPS/PEPS/PEPS3D local carrier updates to test whether five Axis0 candidate vectors remain distinguishable from scalar-mean, zero-all, shuffled-name, and drop-one controls. It does not admit final Axis0, retrocausality, physics, Holodeck, cognition, neural architecture, full PEPS/PEPS3D environment geometry, or canonical claims.",
+      "claim_ceiling": "Formal scout only: consumes the plural Axis0 router and source-native MPS/PEPS/PEPS3D local carrier updates to test whether five Axis0 candidate vectors remain distinguishable from scalar-mean, zero-all, shuffled-name, and drop-one controls. The carrier still receives a scalar weighted projection of the candidate bundle; this scout does not implement or admit a true vector-valued Axis0 actuator. It does not admit final Axis0, retrocausality, physics, Holodeck, cognition, neural architecture, full PEPS/PEPS3D environment geometry, or canonical claims.",
       "tool_manifest_key_style": "both",
       "tool_depth_key_style": "both",
       "normalized_tool_depth": {
@@ -3627,9 +3718,9 @@
       "result_path": "system_v5/ops/formal_scouts/results/sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe_results.json",
       "stem": "sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe",
       "source_path": "system_v5/ops/formal_scouts/sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe.py",
-      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe.py",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe.py",
       "source_exists": true,
-      "fresh_rerun_mapping_defect": true,
+      "fresh_rerun_mapping_defect": false,
       "fresh_rerun_dual_source_defect": false,
       "readme_indexed": false,
       "validation_pass": false,
@@ -3662,7 +3753,60 @@
       ],
       "promotion_blockers": [
         "formal_scout_noncanonical",
-        "fresh_rerun_mapping_defect",
+        "fresh_rerun_not_performed",
+        "readme_index_missing",
+        "validator_failed"
+      ]
+    },
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/singular_lego_wired_axis0_plural_manifold_engine_probe_results.json",
+      "stem": "singular_lego_wired_axis0_plural_manifold_engine_probe",
+      "source_path": "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py",
+      "source_exists": true,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": false,
+      "validation_pass": false,
+      "validation_errors": [
+        "classification is not formal_scout",
+        "why_not_v4_probes missing",
+        "nearby_variants summary missing",
+        "one or more positive checks failed",
+        "blockers present"
+      ],
+      "readiness_status": "validator_failed",
+      "classification": "tool_lego_fit_probe",
+      "promotion_allowed": false,
+      "all_pass": false,
+      "claim_ceiling_present": true,
+      "claim_ceiling": "tool_lego_fit_probe ONLY: verifies that all 13 system_v5/legos primitives are importable AND each has its primary non-trivial callable exercised in isolation, AND runs engine_core (Lindblad cycle) with the live 13-layer active manifold constraint chain, AND emits axis0 plurally across the 5 candidates from the existing plural router with strict per-candidate predicates. Does NOT admit: canonical engine, final axis0, Holodeck memory, retrocausality, quantum advantage, learned dynamics, intelligence, physics, cognition, canonical manifold tower claims, or lego load-bearingness in the per-substage axis0 path (v1 scope: lego callable + axis0 plural emission separately; v2 scope: legos in axis0 path with ablation sensitivity). Owner emphasis 'axis0 not so simple needs deep nuance' enforced via 5-key dict + signed polarity + path_entropy HARD non-degeneracy gate + holographic boundary blockers retained. promotion_allowed: false.",
+      "tool_manifest_key_style": "upper",
+      "tool_depth_key_style": "upper",
+      "normalized_tool_depth": {
+        "pytorch": "load_bearing",
+        "numpy": "load_bearing",
+        "sympy": "load_bearing",
+        "z3": "load_bearing",
+        "clifford": "load_bearing",
+        "geomstats": "load_bearing",
+        "gudhi": "load_bearing",
+        "toponetx": "load_bearing",
+        "xgi": "load_bearing",
+        "opt_einsum": "load_bearing",
+        "torch_geometric": "load_bearing",
+        "engine_core": "load_bearing"
+      },
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "classification_not_formal_scout",
+        "formal_scout_noncanonical",
         "fresh_rerun_not_performed",
         "readme_index_missing",
         "validator_failed"
@@ -4496,53 +4640,7 @@
       ]
     }
   ],
-  "fresh_rerun_mapping_defect_rows": [
-    {
-      "result_path": "system_v5/ops/formal_scouts/results/sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe_results.json",
-      "stem": "sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe",
-      "source_path": "system_v5/ops/formal_scouts/sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe.py",
-      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe.py",
-      "source_exists": true,
-      "fresh_rerun_mapping_defect": true,
-      "fresh_rerun_dual_source_defect": false,
-      "readme_indexed": false,
-      "validation_pass": false,
-      "validation_errors": [
-        "boundary section missing",
-        "nearby_variants summary missing"
-      ],
-      "readiness_status": "validator_failed",
-      "classification": "formal_scout",
-      "promotion_allowed": false,
-      "all_pass": true,
-      "claim_ceiling_present": true,
-      "claim_ceiling": "Formal scout only: tests whether 4 topology classes' behavior separation persists at 8-qubit and 12-qubit Hilbert space dimensions. Does not admit psychology, personality, physics, or final manifold claims.",
-      "tool_manifest_key_style": "lower",
-      "tool_depth_key_style": "lower",
-      "normalized_tool_depth": {
-        "gudhi": "load_bearing",
-        "numpy": "load_bearing",
-        "opt_einsum": "load_bearing",
-        "pytorch": "load_bearing",
-        "sympy": "load_bearing",
-        "z3": "load_bearing"
-      },
-      "backend_policy_violations": [],
-      "public_status_label": "exists",
-      "public_status_blockers": [
-        "index_only_no_execution",
-        "fresh_local_rerun_not_performed",
-        "canonical_process_not_evaluated"
-      ],
-      "promotion_blockers": [
-        "formal_scout_noncanonical",
-        "fresh_rerun_mapping_defect",
-        "fresh_rerun_not_performed",
-        "readme_index_missing",
-        "validator_failed"
-      ]
-    }
-  ],
+  "fresh_rerun_mapping_defect_rows": [],
   "fresh_rerun_dual_source_defect_rows": [],
   "backend_policy_violation_rows": [],
   "source_missing_rows": [],
@@ -4639,7 +4737,7 @@
       "promotion_allowed": false,
       "all_pass": true,
       "claim_ceiling_present": true,
-      "claim_ceiling": "Formal scout only: consumes the plural Axis0 router and source-native MPS/PEPS/PEPS3D local carrier updates to test whether five Axis0 candidate vectors remain distinguishable from scalar-mean, zero-all, shuffled-name, and drop-one controls. It does not admit final Axis0, retrocausality, physics, Holodeck, cognition, neural architecture, full PEPS/PEPS3D environment geometry, or canonical claims.",
+      "claim_ceiling": "Formal scout only: consumes the plural Axis0 router and source-native MPS/PEPS/PEPS3D local carrier updates to test whether five Axis0 candidate vectors remain distinguishable from scalar-mean, zero-all, shuffled-name, and drop-one controls. The carrier still receives a scalar weighted projection of the candidate bundle; this scout does not implement or admit a true vector-valued Axis0 actuator. It does not admit final Axis0, retrocausality, physics, Holodeck, cognition, neural architecture, full PEPS/PEPS3D environment geometry, or canonical claims.",
       "tool_manifest_key_style": "both",
       "tool_depth_key_style": "both",
       "normalized_tool_depth": {
@@ -8891,9 +8989,9 @@
       "result_path": "system_v5/ops/formal_scouts/results/sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe_results.json",
       "stem": "sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe",
       "source_path": "system_v5/ops/formal_scouts/sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe.py",
-      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe.py",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_four_topology_behavior_class_scaling_eight_and_twelve_qubit_probe.py",
       "source_exists": true,
-      "fresh_rerun_mapping_defect": true,
+      "fresh_rerun_mapping_defect": false,
       "fresh_rerun_dual_source_defect": false,
       "readme_indexed": false,
       "validation_pass": false,
@@ -8926,7 +9024,60 @@
       ],
       "promotion_blockers": [
         "formal_scout_noncanonical",
-        "fresh_rerun_mapping_defect",
+        "fresh_rerun_not_performed",
+        "readme_index_missing",
+        "validator_failed"
+      ]
+    },
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/singular_lego_wired_axis0_plural_manifold_engine_probe_results.json",
+      "stem": "singular_lego_wired_axis0_plural_manifold_engine_probe",
+      "source_path": "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_singular_lego_wired_axis0_plural_manifold_engine_probe.py",
+      "source_exists": true,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": false,
+      "validation_pass": false,
+      "validation_errors": [
+        "classification is not formal_scout",
+        "why_not_v4_probes missing",
+        "nearby_variants summary missing",
+        "one or more positive checks failed",
+        "blockers present"
+      ],
+      "readiness_status": "validator_failed",
+      "classification": "tool_lego_fit_probe",
+      "promotion_allowed": false,
+      "all_pass": false,
+      "claim_ceiling_present": true,
+      "claim_ceiling": "tool_lego_fit_probe ONLY: verifies that all 13 system_v5/legos primitives are importable AND each has its primary non-trivial callable exercised in isolation, AND runs engine_core (Lindblad cycle) with the live 13-layer active manifold constraint chain, AND emits axis0 plurally across the 5 candidates from the existing plural router with strict per-candidate predicates. Does NOT admit: canonical engine, final axis0, Holodeck memory, retrocausality, quantum advantage, learned dynamics, intelligence, physics, cognition, canonical manifold tower claims, or lego load-bearingness in the per-substage axis0 path (v1 scope: lego callable + axis0 plural emission separately; v2 scope: legos in axis0 path with ablation sensitivity). Owner emphasis 'axis0 not so simple needs deep nuance' enforced via 5-key dict + signed polarity + path_entropy HARD non-degeneracy gate + holographic boundary blockers retained. promotion_allowed: false.",
+      "tool_manifest_key_style": "upper",
+      "tool_depth_key_style": "upper",
+      "normalized_tool_depth": {
+        "pytorch": "load_bearing",
+        "numpy": "load_bearing",
+        "sympy": "load_bearing",
+        "z3": "load_bearing",
+        "clifford": "load_bearing",
+        "geomstats": "load_bearing",
+        "gudhi": "load_bearing",
+        "toponetx": "load_bearing",
+        "xgi": "load_bearing",
+        "opt_einsum": "load_bearing",
+        "torch_geometric": "load_bearing",
+        "engine_core": "load_bearing"
+      },
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "classification_not_formal_scout",
+        "formal_scout_noncanonical",
         "fresh_rerun_not_performed",
         "readme_index_missing",
         "validator_failed"
@@ -9322,7 +9473,7 @@
       "promotion_allowed": false,
       "all_pass": true,
       "claim_ceiling_present": true,
-      "claim_ceiling": "Formal scout only: builds a bounded source-native Holodeck memory placeholder where EngineCore stage records become contextual semantic hashes in an ASCII recall space, and a small predictive model verifies triggered reconstruction better than hash-only or wrong-context controls. It does not admit a full Holodeck memory system, personal memory store, neural world model, physics, cognition, consciousness, or canonical claim.",
+      "claim_ceiling": "Formal scout only: builds a bounded source-native Holodeck memory placeholder where EngineCore stage records become contextual semantic hashes in an ASCII recall space, and a small predictive model verifies triggered reconstruction better than hash-only or wrong-model controls. Raw Axis0 router candidates are recorded as pre-guard metadata only and are not consumed as memory-vector features in this scout. It does not admit a full Holodeck memory system, personal memory store, neural world model, physics, cognition, consciousness, or canonical claim.",
       "tool_manifest_key_style": "both",
       "tool_depth_key_style": "both",
       "normalized_tool_depth": {

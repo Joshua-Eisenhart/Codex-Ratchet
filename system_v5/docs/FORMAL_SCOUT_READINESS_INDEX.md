@@ -1,6 +1,6 @@
 # Formal Scout Readiness Index
 
-Generated: `2026-05-18T06:43:41.845618+00:00`
+Generated: `2026-05-18T06:58:41.256713+00:00`
 
 Boundary: readiness index only. This does not rerun, admit, promote, or canonicalize formal scouts.
 
@@ -11,8 +11,8 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 - Source harnesses without result receipt: `0`
 - Validator pass: `186`
 - Validator fail: `6`
-- README indexed receipts: `187`
-- README missing receipts: `5`
+- README indexed receipts: `189`
+- README missing receipts: `3`
 - Fresh-rerun mapping defects: `0`
 - Fresh-rerun dual-source defects: `0`
 - Backend policy violations: `0`
@@ -44,9 +44,9 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 
 - `formal_scout_noncanonical`: 192
 - `fresh_rerun_not_performed`: 192
-- `readme_index_missing`: 5
 - `classification_not_formal_scout`: 4
 - `promotion_allowed_not_false`: 3
+- `readme_index_missing`: 3
 - `source_missing`: 3
 - `validator_failed`: 3
 
@@ -96,8 +96,6 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 
 ## README Missing Samples
 
-- `system_v5/ops/formal_scouts/results/d4_pseudoscalar_chirality_dimension_parity_portability_probe_results.json`
 - `system_v5/ops/formal_scouts/results/d4_pseudoscalar_chirality_portability_extension_results.json`
-- `system_v5/ops/formal_scouts/results/d5_commutative_geometry_collapse_15_signature_portability_probe_results.json`
 - `system_v5/ops/formal_scouts/results/d5_portability_n6_n7_extension_results.json`
 - `system_v5/ops/formal_scouts/results/d5_portability_signature_sweep_results.json`

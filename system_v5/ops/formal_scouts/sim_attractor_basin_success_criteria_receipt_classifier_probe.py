@@ -701,6 +701,51 @@ CASES = [
         "claim_ceiling_terms": ["no_manifold_tower", "no_cycle_identity", "no_bridge_claim", "formal_scout_only"],
         "rationale": "The receipt performs exhaustive signed-entropy probing and threshold checks on an eight-qubit XX chain yet explicitly disclaims any final topological or dynamical-system claim, placing it at an open basin boundary.",
     },
+    # === Cross-lineage case authored by Grok for D5 portability receipt ===
+    {
+        "id": "D5_Cl22_portability_20260518",
+        "receipt": "commutative_geometry_collapse_cl_2_2_portability_probe_results.json",
+        "claim_under_test": "commutative-reduction impossibility proven for Cl(1,3) D5 also holds for Cl(2,2) via 4-way UNSAT cross-solver verification",
+        "expected_label": "deep_basin",
+        "same_source_risk": False,
+        "method_families": ["z3_boolean_encoding", "z3_bitvec_encoding", "cvc5_boolean_encoding", "cvc5_bitvec_encoding"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 4,
+        "positive_required_terms": ["all_4_unsat", "cross_solver_agreement_tuple", "weakened_control_sat"],
+        "negative_target_terms": [],
+        "claim_ceiling_terms": ["formal_scout_only", "no_engine_or_axis_admission", "portability_evidence_only"],
+        "rationale": "All four independent encodings (z3/cvc5 × bool/bitvec) return UNSAT with weakened control SAT and full cross-solver agreement, confirming D5 commutative collapse is signature-portable to Cl(2,2) and inherits deep-basin status.",
+    },
+    # === Cross-lineage case authored by Gemini for D4 portability receipt ===
+    {
+        "id": "d4_pseudoscalar_chirality_dimension_parity_lock",
+        "receipt": "d4_pseudoscalar_chirality_dimension_parity_portability_probe_results.json",
+        "claim_under_test": "The D4 pseudoscalar chirality property (anticommutation with all generators) is dimension-parity-locked, holding strictly for even n=p+q total dimensions and failing for odd n across diverse Clifford signatures.",
+        "expected_label": "candidate_basin",
+        "same_source_risk": False,
+        "method_families": [
+            "clifford_algebra_construction",
+            "pseudoscalar_anticommutation_test",
+            "dimension_parity_partition"
+        ],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 2,
+        "positive_required_terms": [
+            "dimension_parity_partition_pass",
+            "all_even_dim_anticommute",
+            "all_odd_dim_commute",
+            "pseudoscalar_anticommutes_all_generators"
+        ],
+        "negative_target_terms": [],
+        "claim_ceiling_terms": [
+            "formal_scout",
+            "dimension_parity_conditional",
+            "pseudoscalar_chirality"
+        ],
+        "rationale": "The probe empirically confirms the algebraic requirement that pseudoscalar chirality is strictly contingent on the even parity of the algebra's total dimension, establishing a robust portability boundary across multiple metric signatures.",
+    },
 ]
 
 FIXTURE_RECEIPTS = {

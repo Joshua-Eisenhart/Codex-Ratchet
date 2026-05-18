@@ -8184,6 +8184,33 @@ def test_wizard_child_matrix_blocks_accepted_status_on_usefulness_failures() -> 
     assert '"status": "accepted" if matrix_ok else "rescored_stale" if rescore_stale else "partial"' in text
 
 
+def test_wizard_child_matrix_gemini_launches_direct_api_without_cli(monkeypatch, tmp_path) -> None:
+    module = _load_module(
+        "wizard_child_matrix_gemini_direct_api_under_test",
+        REPO_ROOT / "scripts" / "wizard_child_matrix.py",
+    )
+    seen = {}
+
+    monkeypatch.setenv("GEMINI_API_KEY", "test-gemini-key")
+    monkeypatch.setattr(module, "child_prompt", lambda args, child_id, role: "bounded child prompt")
+
+    def fake_post_json(url, headers, payload, timeout):
+        seen.update({"url": url, "headers": headers, "payload": payload, "timeout": timeout})
+        return {"candidates": [{"content": {"parts": [{"text": "receipt text"}]}}]}
+
+    monkeypatch.setattr(module, "post_json", fake_post_json)
+    args = argparse.Namespace(gemini_timeout_sec=7.0)
+
+    receipt = module.run_one_gemini_child(args, tmp_path, "decision-child-gemini-1", "voice.hume")
+    output = json.loads(Path(receipt["output_path"]).read_text(encoding="utf-8"))
+
+    assert receipt["status"] == "completed"
+    assert receipt["launch_surface"] == "direct_gemini_api"
+    assert seen["headers"]["x-goog-api-key"] == "test-gemini-key"
+    assert "test-gemini-key" not in seen["url"]
+    assert output["text"] == "receipt text"
+
+
 def test_wizard_child_matrix_delegates_expensive_failure_skill_child_to_opus() -> None:
     module = _load_module(
         "wizard_child_matrix_specialist_opus_under_test",
@@ -10124,6 +10151,29 @@ def test_wizard_compile_output_v42_labels_partial_when_gates_not_clean() -> None
     assert module.run_completion_label(rows, counts, first_pass_clean=False, failed_or_weak=1) == "PARTIAL"
     assert module.council_result_label(rows, "Management", 5) == "partial"
     assert module.council_result_label(rows, "Failure", 3) == "blocked"
+
+
+def test_wizard_compile_output_v42_labels_partial_when_any_route_degraded() -> None:
+    module = _load_module(
+        "wizard_compile_output_v4_2_degraded_label_under_test",
+        REPO_ROOT / "scripts" / "wizard_compile_output_v4_2.py",
+    )
+    rows = [
+        {"council": "Decision", "status": "accepted", "formal_passed": 1, "formal_expected": 1, "degraded": []},
+        {"council": "Failure", "status": "accepted", "formal_passed": 1, "formal_expected": 1, "degraded": ["gemini"]},
+    ]
+    counts = module.count_by_council(rows)
+
+    assert (
+        module.run_completion_label(
+            rows,
+            counts,
+            first_pass_clean=True,
+            failed_or_weak=0,
+            expected_parents=module.expected_parent_counts(rows),
+        )
+        == "PARTIAL"
+    )
 
 
 def test_wizard_compile_output_v42_labels_dry_run_status_as_blocked() -> None:

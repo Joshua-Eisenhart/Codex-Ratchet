@@ -228,8 +228,12 @@ def external_triage_for(root: Path, path: Path, payload: dict[str, Any]) -> dict
     load_bearing = load_bearing_depths(payload)
     policy_blockers = tool_policy_blockers(payload)
     if policy_blockers:
-        bucket = "source_bound_contract_repair_candidate" if source_exists else "canonical_but_source_unbound"
-        next_action = "repair_tool_policy_before_any_admission"
+        if source_exists:
+            bucket = "source_bound_contract_repair_candidate"
+            next_action = "repair_tool_policy_before_any_admission"
+        else:
+            bucket = "source_unbound_tool_policy_quarantine"
+            next_action = "quarantine_reference_only_bind_or_recreate_source_before_tool_repair"
     elif classification == "classical_baseline":
         bucket = "classical_baseline_reference_only"
         next_action = "do_not_promote_use_only_as_classical_reference_or_rerun_as_new_micro_if_needed"
@@ -464,6 +468,8 @@ def build_index(root: Path | None = None, *, include_external_scan: bool = True)
                 "tool_micro_sympy_capability_only",
             }:
                 action = "do_not_promote_use_as_classical_or_bridge_tool_reference_only"
+            elif any(blocker.startswith("result:numpy_load_bearing") or blocker.startswith("result:nonclassical_requires") for blocker in blockers) and not sim_path.exists():
+                action = "quarantine_reference_only_bind_or_recreate_source_before_tool_repair"
             elif any(blocker.startswith("result:numpy_load_bearing") or blocker.startswith("result:nonclassical_requires") for blocker in blockers):
                 action = "repair_tool_policy_before_any_admission"
             elif not sim_path.exists():

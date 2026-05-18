@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Gate numpy-tainted source-native nonclassical scouts to diagnostic status."""
+"""Gate numpy-tainted source-native nonclassical scouts to diagnostic status.
+
+NumPy is not globally banned. Formal sims have separate lanes:
+
+* classical sims may use NumPy as a load-bearing classical numerical tool;
+* bridge/baseline/supportive sims may use NumPy when that role is explicit;
+* source-native nonclassical QIT engine/manifold/FEP/Holodeck basin claims may
+  not depend on NumPy as the load-bearing path.
+"""
 
 from __future__ import annotations
 
@@ -21,15 +29,18 @@ PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
     "Formal scout only: scans current formal scouts for numpy import/use in "
     "source-native, engine/manifold, FEP, Axis0, Holodeck, and cross-engine "
-    "surfaces. It does not repair those sims, does not admit nonclassical "
-    "attractor-basin evidence, and blocks numpy-tainted rows from supporting "
-    "source-native nonclassical claims until torch-native replacements or "
-    "explicit legacy/baseline quarantine receipts exist."
+    "surfaces and scans result receipts for NumPy load-bearing tool claims. "
+    "NumPy remains admissible for first-class classical sims and for explicit "
+    "bridge/baseline/supportive roles. This scout does not repair those sims, "
+    "does not admit nonclassical attractor-basin evidence, and blocks "
+    "numpy-tainted rows from supporting source-native nonclassical claims until "
+    "constraint-admissible replacements or explicit boundary receipts exist."
 )
 
 TOOL_MANIFEST = {
     "python_pathlib": {"tried": True, "used": True, "reason": "load-bearing scout source discovery"},
     "python_re": {"tried": True, "used": True, "reason": "load-bearing numpy import/use detection"},
+    "python_json": {"tried": True, "used": True, "reason": "load-bearing result receipt parsing"},
     "json": {"tried": True, "used": True, "reason": "load-bearing result writing"},
     "hashlib": {"tried": True, "used": True, "reason": "load-bearing source hash receipts"},
 }
@@ -48,7 +59,8 @@ NONCLASSICAL_NAME_MARKERS = (
     "holodeck",
     "cross_engine",
 )
-QUARANTINE_NAME_MARKERS = ("legacy", "baseline", "classical", "numpy_quarantine")
+BOUNDARY_NAME_MARKERS = ("legacy", "baseline", "numpy_quarantine")
+QUARANTINE_NAME_MARKERS = BOUNDARY_NAME_MARKERS
 
 
 def sha256_file(path: pathlib.Path) -> str:
@@ -57,6 +69,13 @@ def sha256_file(path: pathlib.Path) -> str:
 
 def uses_numpy(text: str) -> bool:
     return any(pattern.search(text) for pattern in NUMPY_PATTERNS)
+
+
+def has_classical_marker(name: str) -> bool:
+    lower = name.lower()
+    if "nonclassical" in lower:
+        return False
+    return bool(re.search(r"(^|[_-])classical([_-]|$)", lower)) or "carnot" in lower or "szilard" in lower
 
 
 def needs_hard_quarantine(path: pathlib.Path) -> bool:
@@ -73,26 +92,101 @@ def classify_file(path: pathlib.Path) -> dict[str, Any] | None:
     if needs_hard_quarantine(path):
         quarantine = "hard_source_native_nonclassical_quarantine"
         claim_allowed = False
-    elif any(marker in path.name.lower() for marker in QUARANTINE_NAME_MARKERS):
+        classical_claim_allowed = False
+    elif has_classical_marker(path.name):
+        quarantine = "first_class_classical_numpy_lane"
+        claim_allowed = False
+        classical_claim_allowed = True
+    elif any(marker in path.name.lower() for marker in BOUNDARY_NAME_MARKERS):
         quarantine = "legacy_or_baseline_boundary"
         claim_allowed = False
+        classical_claim_allowed = False
     else:
         quarantine = "review_required_unknown_surface"
         claim_allowed = False
+        classical_claim_allowed = False
     return {
         "path": str(path.relative_to(ROOT)),
         "sha256": sha256_file(path),
         "quarantine": quarantine,
         "nonclassical_claim_allowed": claim_allowed,
+        "classical_claim_allowed": classical_claim_allowed,
+    }
+
+
+def load_bearing_depth(result: dict[str, Any], tool: str) -> str:
+    depth = result.get("TOOL_INTEGRATION_DEPTH") or result.get("tool_integration_depth") or {}
+    if not isinstance(depth, dict):
+        return ""
+    aliases = {
+        "numpy": {"numpy", "np"},
+        "pytorch": {"pytorch", "torch"},
+    }
+    for key, value in depth.items():
+        if str(key).lower().replace("-", "_") in aliases.get(tool, {tool}):
+            return str(value).lower()
+    return ""
+
+
+def result_name_from_path(path: pathlib.Path, result: dict[str, Any]) -> str:
+    return str(result.get("name") or path.name.removesuffix("_results.json"))
+
+
+def result_needs_nonclassical_quarantine(name: str) -> bool:
+    lower = name.lower()
+    if has_classical_marker(lower):
+        return False
+    return any(marker in lower for marker in NONCLASSICAL_NAME_MARKERS) or any(
+        marker in lower
+        for marker in (
+            "qit",
+            "mps",
+            "peps",
+            "hopf",
+            "holonomy",
+            "chirality",
+            "weyl",
+            "boundary",
+            "manifold",
+        )
+    )
+
+
+def classify_result_receipt(path: pathlib.Path) -> dict[str, Any] | None:
+    try:
+        result = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+    name = result_name_from_path(path, result)
+    numpy_depth = load_bearing_depth(result, "numpy")
+    pytorch_depth = load_bearing_depth(result, "pytorch")
+    if numpy_depth != "load_bearing" or pytorch_depth == "load_bearing":
+        return None
+    if not result_needs_nonclassical_quarantine(name):
+        return None
+    return {
+        "result_path": str(path.relative_to(ROOT)),
+        "name": name,
+        "numpy_depth": numpy_depth,
+        "pytorch_depth": pytorch_depth,
+        "quarantine": "hard_result_receipt_numpy_load_bearing_without_pytorch",
+        "nonclassical_claim_allowed": False,
+        "sha256": sha256_file(path),
     }
 
 
 def main() -> int:
     started = time.time()
     rows = [row for path in sorted(ROOT.glob("sim_*.py")) if (row := classify_file(path))]
+    receipt_rows = [
+        row
+        for path in sorted(RESULT_DIR.glob("*_results.json"))
+        if path != OUT_PATH and (row := classify_result_receipt(path))
+    ]
     hard = [row for row in rows if row["quarantine"] == "hard_source_native_nonclassical_quarantine"]
     review = [row for row in rows if row["quarantine"] == "review_required_unknown_surface"]
     boundary = [row for row in rows if row["quarantine"] == "legacy_or_baseline_boundary"]
+    classical = [row for row in rows if row["quarantine"] == "first_class_classical_numpy_lane"]
 
     positive = {
         "formal_scout_source_scan_completed": {
@@ -101,10 +195,24 @@ def main() -> int:
             "hard_quarantine_count": len(hard),
             "review_required_count": len(review),
             "legacy_or_baseline_boundary_count": len(boundary),
+            "first_class_classical_numpy_lane_count": len(classical),
+        },
+        "result_receipt_scan_completed": {
+            "pass": len(receipt_rows) > 0,
+            "numpy_load_bearing_without_pytorch_result_count": len(receipt_rows),
         },
         "source_native_nonclassical_numpy_is_quarantined": {
             "pass": all(row["nonclassical_claim_allowed"] is False for row in hard),
             "hard_quarantine_paths": [row["path"] for row in hard],
+        },
+        "receipt_level_numpy_load_bearing_without_pytorch_is_quarantined": {
+            "pass": all(row["nonclassical_claim_allowed"] is False for row in receipt_rows),
+            "hard_quarantine_result_paths": [row["result_path"] for row in receipt_rows],
+        },
+        "classical_numpy_lane_is_not_a_nonclassical_quarantine": {
+            "pass": all(row["classical_claim_allowed"] is True and row["nonclassical_claim_allowed"] is False for row in classical),
+            "classical_numpy_paths": [row["path"] for row in classical],
+            "reason": "Classical sims can use NumPy load-bearing for classical numerical claims; they still cannot support nonclassical QIT basin claims.",
         },
     }
     graveyard = {
@@ -118,11 +226,11 @@ def main() -> int:
         },
         "numpy_boundary_not_reframed_as_harmless_glue": {
             "pass": True,
-            "reason": "Any numpy import in these surfaces is treated as claim-threatening until quarantined or removed.",
+            "reason": "Any NumPy import in source-native nonclassical surfaces is claim-threatening until quarantined or removed; classical sims are a separate lane.",
         },
         "torch_native_replacement_required": {
             "pass": True,
-            "next_required_receipt": "source-native torch-complex engine/manifold basin scout with no numpy import",
+            "next_required_receipt": "source-native constraint-admissible engine/manifold basin scout with no NumPy load-bearing path",
         },
     }
     boundary_checks = {
@@ -149,6 +257,7 @@ def main() -> int:
         "graveyard_companions": graveyard,
         "boundary": boundary_checks,
         "quarantine_rows": rows,
+        "receipt_quarantine_rows": receipt_rows,
         "nearby_variants": {
             "total": len(graveyard),
             "passed": sum(1 for row in graveyard.values() if row["pass"]),
@@ -166,7 +275,11 @@ def main() -> int:
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(result, indent=2, sort_keys=True), encoding="utf-8")
     print(f"RESULT {NAME}: all_pass={all_pass} -> {OUT_PATH}")
-    print(f"  hard_quarantine={len(hard)} review_required={len(review)} legacy_or_baseline={len(boundary)}")
+    print(
+        f"  hard_quarantine={len(hard)} review_required={len(review)} "
+        f"legacy_or_baseline={len(boundary)} classical_numpy={len(classical)} "
+        f"receipt_numpy_without_pytorch={len(receipt_rows)}"
+    )
     return 0 if all_pass else 1
 
 

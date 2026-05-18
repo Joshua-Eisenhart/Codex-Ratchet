@@ -20,6 +20,9 @@ PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
     "Formal scout only: enforces that actual source-native nonclassical "
     "attractor-basin claims require constraint-admissible load-bearing tools. "
+    "This is not a global NumPy ban: classical formal sims may use classical "
+    "numerical tools for classical claims, and bridge/baseline/supportive rows "
+    "may use them when the role is explicit. "
     "It quarantines rows whose tools are classical, administrative, same-source "
     "runtime only, missing micro receipts, or mathematically mismatched to the "
     "claim. It does not promote any engine, manifold, Axis0, FEP, Holodeck, "
@@ -168,7 +171,7 @@ def main() -> int:
     graveyard = {
         "classical_tool_cannot_generate_nonclassical_basin": {
             "pass": True,
-            "reason": "A classical/admin tool may support logging, baselines, controls, or negatives, but cannot be the load-bearing engine for the actual attractor-basin claim.",
+            "reason": "A classical/admin tool may be load-bearing for a classical sim and may support logging, baselines, controls, or negatives, but cannot be the load-bearing engine for the actual nonclassical attractor-basin claim.",
         },
         "same_source_runtime_is_not_independent_tool_convergence": {
             "pass": True,

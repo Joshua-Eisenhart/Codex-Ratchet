@@ -1,6 +1,6 @@
 # Formal Scout Readiness Index
 
-Generated: `2026-05-17T23:33:42.413002+00:00`
+Generated: `2026-05-18T00:24:58.254221+00:00`
 
 Boundary: readiness index only. This does not rerun, admit, promote, or canonicalize formal scouts.
 
@@ -16,8 +16,8 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 - Fresh-rerun mapping defects: `0`
 - Fresh-rerun dual-source defects: `0`
 - Backend policy violations: `0`
-- Provider receipts indexed: `210`
-- Provider receipt validator pass: `210`
+- Provider receipts indexed: `214`
+- Provider receipt validator pass: `214`
 - Provider receipt validator fail: `0`
 
 ## Readiness Status Counts
@@ -58,7 +58,7 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 
 ## Provider Receipt Validation
 
-- `pass`: 210
+- `pass`: 214
 - `fail`: 0
 
 ## Validator Failed Rows

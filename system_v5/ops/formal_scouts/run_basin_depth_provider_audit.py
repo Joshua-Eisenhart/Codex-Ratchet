@@ -194,8 +194,8 @@ def run_gemini(timeout: float) -> dict[str, Any]:
         return provider_receipt(provider="gemini", status="blocked", blocked_reason="GEMINI_API_KEY not set", model=model)
     try:
         raw = post_json(
-            f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}",
-            {"Content-Type": "application/json"},
+            f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+            {"Content-Type": "application/json", "x-goog-api-key": key},
             {
                 "contents": [{"parts": [{"text": PROMPT}]}],
                 "generationConfig": {"temperature": 0, "thinkingConfig": {"thinkingBudget": 0}},

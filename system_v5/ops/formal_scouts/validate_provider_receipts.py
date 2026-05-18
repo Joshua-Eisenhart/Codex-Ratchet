@@ -3,9 +3,9 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import pathlib
-import sys
 from typing import Any
 
 
@@ -25,7 +25,26 @@ REQUIRED = [
 ]
 
 
-def validate(path: pathlib.Path) -> dict[str, Any]:
+LIVE_PROVIDER_NAMES = {
+    "gemini",
+    "gemini_direct",
+    "google_gemini",
+    "grok",
+    "grok_xai",
+    "xai_grok",
+}
+
+
+def has_live_api_proof(data: dict[str, Any]) -> bool:
+    if data.get("raw_response"):
+        return True
+    proof = data.get("live_api_proof")
+    if not isinstance(proof, dict):
+        return False
+    return bool(proof.get("endpoint") and proof.get("model") and proof.get("answer_sha256"))
+
+
+def validate(path: pathlib.Path, *, strict_live: bool = False) -> dict[str, Any]:
     data = json.loads(path.read_text(encoding="utf-8"))
     errors = []
     for key in REQUIRED:
@@ -50,12 +69,22 @@ def validate(path: pathlib.Path) -> dict[str, Any]:
         targets = grounding.get("targets")
         if not isinstance(targets, list) or not targets:
             errors.append("completed receipt has no grounding targets")
+    if strict_live and data.get("status") == "completed":
+        provider = str(data.get("provider") or "").lower()
+        if provider in LIVE_PROVIDER_NAMES and not has_live_api_proof(data):
+            errors.append("strict-live completed provider receipt missing raw_response or live_api_proof")
+        if "normalized" in path.name and not data.get("source_raw_receipt"):
+            errors.append("strict-live normalized receipt missing source_raw_receipt")
     return {"path": str(path), "pass": not errors, "errors": errors}
 
 
 def main() -> int:
-    paths = [pathlib.Path(arg) for arg in sys.argv[1:]] or sorted(RECEIPTS.glob("*.json"))
-    rows = [validate(path) for path in paths]
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--strict-live", action="store_true", help="Require completed live-provider receipts to carry raw API proof.")
+    parser.add_argument("paths", nargs="*")
+    args = parser.parse_args()
+    paths = [pathlib.Path(arg) for arg in args.paths] or sorted(RECEIPTS.glob("*.json"))
+    rows = [validate(path, strict_live=args.strict_live) for path in paths]
     print(json.dumps({"all_pass": all(row["pass"] for row in rows), "results": rows}, indent=2, sort_keys=True))
     return 0 if all(row["pass"] for row in rows) else 1
 

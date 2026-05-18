@@ -20,6 +20,7 @@ PROMPT = """Read-only audit for Codex Ratchet tool-foundation repair.
 
 Current owner correction:
 - Actual nonclassical QIT engine/manifold attractor-basin sims cannot use numpy in the load-bearing path.
+- Formal sims have three lanes: classical sims may use numpy load-bearing for classical numerical claims; bridge/baseline/supportive sims may use numpy with explicit role boundaries; source-native nonclassical QIT engine/manifold/FEP/Holodeck sims cannot use numpy as the load-bearing attractor-basin path.
 - Tools must meet the standards of the constraints, or no real attractor basin can form.
 - Redo means patch and rerun, not delete old receipts.
 
@@ -108,8 +109,8 @@ def run_gemini(timeout: float) -> dict[str, Any]:
         return provider_receipt(provider="gemini", status="blocked", blocked_reason="GEMINI_API_KEY not set", model=model)
     try:
         raw = post_json(
-            f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}",
-            {"Content-Type": "application/json"},
+            f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+            {"Content-Type": "application/json", "x-goog-api-key": key},
             {
                 "contents": [{"parts": [{"text": PROMPT}]}],
                 "generationConfig": {"temperature": 0, "thinkingConfig": {"thinkingBudget": 0}},

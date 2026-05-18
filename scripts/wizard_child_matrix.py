@@ -3,7 +3,9 @@
 
 This helper is intentionally receipt-first. A Codex parent calls it for one
 route. It launches Claude child fanout for Opus, Sonnet, and Haiku, attempts a
-bounded Gemini read-only child, and writes one parent-readable matrix receipt.
+bounded Gemini direct-API read-only child, and writes one parent-readable matrix
+receipt. It must not shell out through the Gemini CLI; API keys are already
+available in the shell environment and the CLI path can hang on auth/trust.
 """
 
 from __future__ import annotations
@@ -16,6 +18,7 @@ import shutil
 import subprocess
 import sys
 import time
+import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
@@ -324,7 +327,7 @@ def claude_fanout_path() -> tuple[Path, str]:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run Wizard v4.1 child model matrix for one parent route.")
+    parser = argparse.ArgumentParser(description="Run Wizard v4.2 child model matrix for one parent route.")
     parser.add_argument("--route", required=True)
     parser.add_argument("--prompt", required=True)
     parser.add_argument("--followup-prompt", required=True)
@@ -333,7 +336,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--stop-if", required=True)
     parser.add_argument("--boundary", required=True)
     parser.add_argument("--cwd", default=str(REPO_ROOT))
-    parser.add_argument("--out-dir", default="/tmp/wizard_v4_1_child_matrix")
+    parser.add_argument("--out-dir", default="/tmp/wizard_v4_2_child_matrix")
     parser.add_argument("--sonnet-count", type=int, default=0, help="Sonnet child count. Defaults to the full formal route obligation, or 6 for generic routes.")
     parser.add_argument("--opus-count", type=int, default=0, help="Opus child count. Defaults to one; with --full-model-council, defaults to the full formal route obligation.")
     parser.add_argument("--haiku-count", type=int, default=1, help="Haiku child count. Set 0 for long Sonnet-first loops.")
@@ -350,7 +353,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-concurrency", type=int, default=4)
     parser.add_argument("--parallel-model-groups", action="store_true", help="Run Sonnet/Opus/Haiku groups concurrently inside one parent. Off by default to avoid Claude socket pressure in long full loops.")
     parser.add_argument("--codex-local-children", action="store_true", help="Generate bounded local Codex child receipts instead of launching Claude children. Intended for compact diagnostics when external model quota is exhausted.")
-    parser.add_argument("--attempt-gemini", action="store_true", help="Actually launch Gemini. Default is degraded-safe to avoid auth/browser hangs.")
+    parser.add_argument("--attempt-gemini", action="store_true", help="Actually launch Gemini through the direct API. Default is degraded-safe to avoid provider hangs.")
     parser.add_argument("--rescore-existing", help="Existing route timestamp directory containing fanout receipts; rescore without launching children.")
     parser.add_argument("--run-id", default="", help="Shared Wizard run id. Required by full-run harness to prevent mixed-run FULL claims.")
     parser.add_argument("--dry-run", action="store_true")
@@ -366,6 +369,25 @@ def load_receipt(path: Path) -> dict[str, Any]:
         return json.loads(path.read_text(encoding="utf-8"))
     except Exception as exc:
         return {"load_error": str(exc), "receipt_path": str(path)}
+
+
+def post_json(url: str, headers: dict[str, str], payload: dict[str, Any], timeout: float) -> Any:
+    body = json.dumps(payload).encode("utf-8")
+    request = urllib.request.Request(url, data=body, headers=headers, method="POST")
+    with urllib.request.urlopen(request, timeout=timeout) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
+def gemini_api_key() -> str:
+    return os.environ.get("GEMINI_API_KEY", "").strip() or os.environ.get("GOOGLE_API_KEY", "").strip()
+
+
+def extract_gemini_text(raw: Any) -> str:
+    try:
+        parts = raw["candidates"][0]["content"]["parts"]
+    except (KeyError, IndexError, TypeError):
+        return ""
+    return "\n".join(str(part.get("text", "")) for part in parts if isinstance(part, dict)).strip()
 
 
 def load_child_result_text(child: dict[str, Any]) -> str:
@@ -1238,42 +1260,44 @@ def run_one_gemini_child(args: argparse.Namespace, out_dir: Path, child_id: str,
     child_dir.mkdir(parents=True, exist_ok=True)
     output_path = child_dir / "gemini_output.json"
     receipt_path = child_dir / "gemini_receipt.json"
-    command = [
-        "gemini",
-        "--prompt",
-        prompt,
-        "--output-format",
-        "json",
-        "--approval-mode",
-        "plan",
-        "--skip-trust",
-    ]
+    model_name = os.environ.get("WIZARD_GEMINI_MODEL", "gemini-2.5-flash").strip() or "gemini-2.5-flash"
     started = now_iso()
-    try:
-        completed = subprocess.run(
-            command,
-            text=True,
-            cwd=args.cwd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            check=False,
-            timeout=args.gemini_timeout_sec,
-        )
+    key = gemini_api_key()
+    raw: Any = None
+    if not key:
         timed_out = False
-        output = completed.stdout
-        returncode = completed.returncode
-    except subprocess.TimeoutExpired as exc:
+        output = json.dumps({"error": "GEMINI_API_KEY/GOOGLE_API_KEY not set"}, indent=2)
+        returncode = 2
+    else:
         timed_out = True
-        output = exc.stdout or ""
-        if isinstance(output, bytes):
-            output = output.decode("utf-8", errors="replace")
-        output += f"\n[TIMEOUT after {args.gemini_timeout_sec}s]\n"
-        returncode = 124
+        try:
+            raw = post_json(
+                f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent",
+                {"Content-Type": "application/json", "x-goog-api-key": key},
+                {
+                    "contents": [{"parts": [{"text": prompt}]}],
+                    "generationConfig": {"temperature": 0, "thinkingConfig": {"thinkingBudget": 0}},
+                },
+                args.gemini_timeout_sec,
+            )
+            text = extract_gemini_text(raw)
+            timed_out = False
+            returncode = 0 if text else 1
+            output = json.dumps({"model": model_name, "text": text, "raw_response": raw}, indent=2, sort_keys=True)
+        except TimeoutError as exc:
+            output = json.dumps({"error": repr(exc), "timeout_sec": args.gemini_timeout_sec}, indent=2, sort_keys=True)
+            returncode = 124
+        except Exception as exc:
+            timed_out = False
+            output = json.dumps({"error": repr(exc), "model": model_name}, indent=2, sort_keys=True)
+            returncode = 1
     output_path.write_text(output, encoding="utf-8", errors="replace")
     receipt = {
         "id": child_id,
         "role": role,
         "model": "gemini",
+        "model_name": model_name,
+        "launch_surface": "direct_gemini_api",
         "status": "completed" if returncode == 0 and not timed_out else "timed_out" if timed_out else "failed",
         "returncode": returncode,
         "timed_out": timed_out,
@@ -1308,7 +1332,7 @@ def run_gemini(args: argparse.Namespace, out_dir: Path, roles: list[str] | None 
         return {
             "model": "gemini",
             "status": "degraded_alt_not_launched",
-            "reason": "Gemini CLI may trigger interactive auth/browser flow; launch requires --attempt-gemini.",
+            "reason": "Gemini direct API launch requires --attempt-gemini.",
             "jobs": [{"id": job["id"], "role": job["role"], "prompt_preview": job["prompt"][:500]} for job in jobs],
         }
     out_dir.mkdir(parents=True, exist_ok=True)

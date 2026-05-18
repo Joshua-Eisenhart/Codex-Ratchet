@@ -1,6 +1,6 @@
 {
   "schema": "formal_scout_readiness_index.v1",
-  "generated_at": "2026-05-17T23:33:42.413002+00:00",
+  "generated_at": "2026-05-18T00:24:58.254221+00:00",
   "boundary": "readiness_index_only_not_rerun_not_admission_not_promotion",
   "summary": {
     "result_count": 184,
@@ -44,9 +44,9 @@
       "lower": 33
     },
     "provider_receipts": {
-      "receipt_count": 210,
+      "receipt_count": 214,
       "validator_available": true,
-      "validator_pass_count": 210,
+      "validator_pass_count": 214,
       "validator_fail_count": 0,
       "validation_error_counts": {}
     }
@@ -1223,7 +1223,7 @@
       "promotion_allowed": false,
       "all_pass": true,
       "claim_ceiling_present": true,
-      "claim_ceiling": "Formal scout only: enforces that actual source-native nonclassical attractor-basin claims require constraint-admissible load-bearing tools. It quarantines rows whose tools are classical, administrative, same-source runtime only, missing micro receipts, or mathematically mismatched to the claim. It does not promote any engine, manifold, Axis0, FEP, Holodeck, world-model, physics, or cognition claim.",
+      "claim_ceiling": "Formal scout only: enforces that actual source-native nonclassical attractor-basin claims require constraint-admissible load-bearing tools. This is not a global NumPy ban: classical formal sims may use classical numerical tools for classical claims, and bridge/baseline/supportive rows may use them when the role is explicit. It quarantines rows whose tools are classical, administrative, same-source runtime only, missing micro receipts, or mathematically mismatched to the claim. It does not promote any engine, manifold, Axis0, FEP, Holodeck, world-model, physics, or cognition claim.",
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
@@ -4700,12 +4700,13 @@
       "promotion_allowed": false,
       "all_pass": true,
       "claim_ceiling_present": true,
-      "claim_ceiling": "Formal scout only: scans current formal scouts for numpy import/use in source-native, engine/manifold, FEP, Axis0, Holodeck, and cross-engine surfaces. It does not repair those sims, does not admit nonclassical attractor-basin evidence, and blocks numpy-tainted rows from supporting source-native nonclassical claims until torch-native replacements or explicit legacy/baseline quarantine receipts exist.",
+      "claim_ceiling": "Formal scout only: scans current formal scouts for numpy import/use in source-native, engine/manifold, FEP, Axis0, Holodeck, and cross-engine surfaces and scans result receipts for NumPy load-bearing tool claims. NumPy remains admissible for first-class classical sims and for explicit bridge/baseline/supportive roles. This scout does not repair those sims, does not admit nonclassical attractor-basin evidence, and blocks numpy-tainted rows from supporting source-native nonclassical claims until constraint-admissible replacements or explicit boundary receipts exist.",
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
         "hashlib": "load_bearing",
         "json": "load_bearing",
+        "python_json": "load_bearing",
         "python_pathlib": "load_bearing",
         "python_re": "load_bearing"
       },

@@ -201,7 +201,8 @@ def run_completion_label(
     formal_passed = sum(int(row["formal_passed"]) for row in rows)
     formal_ok = formal_expected > 0 and formal_passed == formal_expected
     rows_ok = bool(rows) and all(row.get("status") == "accepted" for row in rows)
-    full_ok = parents_ok and formal_ok and rows_ok and first_pass_clean and failed_or_weak == 0
+    degraded_ok = all(not row.get("degraded") for row in rows)
+    full_ok = parents_ok and formal_ok and rows_ok and first_pass_clean and failed_or_weak == 0 and degraded_ok
     if full_ok:
         return "FULL"
     if any(row.get("status") == "accepted" for row in rows) or formal_passed:

@@ -18,8 +18,8 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
 import sympy as sp
+import torch
 import z3
 
 from engine_core import EngineCore, generate_initial_density
@@ -41,15 +41,20 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing density trace distance, Bloch readout, and memory-cycle scoring",
+        "reason": "load-bearing Pauli matrices, density trace distance, Bloch readout, state-hash eigenvalue/Bloch extraction, memory-cycle scoring, and means",
     },
     "hashlib": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing contextual hash keys for memory cells",
+        "reason": "supportive contextual hash keys for memory cells; hashes are not the predictive model",
+    },
+    "json": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive result receipt serialization",
     },
     "sympy": {
         "tried": True,
@@ -64,14 +69,23 @@ TOOL_MANIFEST = {
     "engine_core": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing source-native EngineCore trajectories for both chiralities",
+        "reason": "supportive source-native EngineCore trajectories for both chiralities consumed by torch checks",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "hashlib": "supportive",
+    "json": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "engine_core": "supportive",
+}
 
-SX = np.array([[0, 1], [1, 0]], dtype=complex)
-SY = np.array([[0, -1j], [1j, 0]], dtype=complex)
-SZ = np.array([[1, 0], [0, -1]], dtype=complex)
+TORCH_REAL = torch.float64
+TORCH_COMPLEX = torch.complex128
+SX = torch.tensor([[0, 1], [1, 0]], dtype=TORCH_COMPLEX)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=TORCH_COMPLEX)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=TORCH_COMPLEX)
 N_CYCLES = 3
 INIT_SEED = 70000
 TRACE_TOL = 1e-8
@@ -81,36 +95,46 @@ def sha256_file(path: pathlib.Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def bloch(rho: np.ndarray) -> np.ndarray:
-    return np.array(
-        [
-            float(np.real(np.trace(rho @ SX))),
-            float(np.real(np.trace(rho @ SY))),
-            float(np.real(np.trace(rho @ SZ))),
-        ],
-        dtype=float,
-    )
+def as_density(rho: Any) -> torch.Tensor:
+    return torch.as_tensor(rho, dtype=TORCH_COMPLEX).clone()
 
 
-def trace_distance(rho1: np.ndarray, rho2: np.ndarray) -> float:
-    diff = rho1 - rho2
-    evals = np.linalg.eigvalsh(diff.conj().T @ diff)
-    return 0.5 * float(np.sum(np.sqrt(np.clip(evals, 0.0, None))))
+def hermitian_part(rho: Any) -> torch.Tensor:
+    rho_t = as_density(rho)
+    return (rho_t + rho_t.mH) / 2
 
 
-def state_hash(rho: np.ndarray, precision: int = 5) -> str:
-    evals = np.sort(np.linalg.eigvalsh(rho))[::-1]
-    b = bloch(rho)
+def bloch(rho: Any) -> torch.Tensor:
+    rho_t = as_density(rho)
+    return torch.stack(
+        (
+            torch.real(torch.trace(rho_t @ SX)),
+            torch.real(torch.trace(rho_t @ SY)),
+            torch.real(torch.trace(rho_t @ SZ)),
+        )
+    ).to(dtype=TORCH_REAL)
+
+
+def trace_distance(rho1: Any, rho2: Any) -> float:
+    diff = as_density(rho1) - as_density(rho2)
+    evals = torch.linalg.eigvalsh(diff.conj().T @ diff).real
+    return 0.5 * float(torch.sum(torch.sqrt(torch.clamp(evals, min=0.0))).item())
+
+
+def state_hash(rho: Any, precision: int = 5) -> str:
+    rho_t = hermitian_part(rho)
+    evals = torch.sort(torch.linalg.eigvalsh(rho_t).real, descending=True).values
+    b = bloch(rho_t)
     payload = (
-        round(float(evals[0]), precision),
-        round(float(b[0]), precision),
-        round(float(b[1]), precision),
-        round(float(b[2]), precision),
+        round(float(evals[0].item()), precision),
+        round(float(b[0].item()), precision),
+        round(float(b[1].item()), precision),
+        round(float(b[2].item()), precision),
     )
     return hashlib.sha256(repr(payload).encode("utf-8")).hexdigest()[:12]
 
 
-def memory_key(engine_type: int, rho_before: np.ndarray, main_idx: int, substage_idx: int, *, tag_engine: bool) -> tuple[Any, ...]:
+def memory_key(engine_type: int, rho_before: Any, main_idx: int, substage_idx: int, *, tag_engine: bool) -> tuple[Any, ...]:
     if tag_engine:
         return (engine_type, state_hash(rho_before), main_idx, substage_idx)
     return (state_hash(rho_before), main_idx, substage_idx)
@@ -124,6 +148,8 @@ def run_one_trajectory(engine_type: int, init_seed: int = INIT_SEED) -> list[dic
         for substage_idx in range(4):
             rho_before = rho.copy()
             rho, record = engine.run_substage(rho, perception, loop_class, main_idx, substage_idx)
+            rho_before_t = as_density(rho_before)
+            rho_after_t = as_density(rho)
             rows.append(
                 {
                     "engine_type": engine_type,
@@ -132,18 +158,18 @@ def run_one_trajectory(engine_type: int, init_seed: int = INIT_SEED) -> list[dic
                     "ordered_token": record["ordered_token"],
                     "operator": record["operator"],
                     "operator_sign": int(record["operator_sign"]),
-                    "rho_before": rho_before,
-                    "rho_after": rho.copy(),
-                    "before_hash": state_hash(rho_before),
-                    "after_hash": state_hash(rho),
-                    "bloch_after": bloch(rho).tolist(),
+                    "rho_before": rho_before_t,
+                    "rho_after": rho_after_t,
+                    "before_hash": state_hash(rho_before_t),
+                    "after_hash": state_hash(rho_after_t),
+                    "bloch_after": bloch(rho_after_t).tolist(),
                 }
             )
     return rows
 
 
-def run_memory_cycles(*, tag_engine: bool) -> tuple[list[dict[str, Any]], dict[tuple[Any, ...], np.ndarray]]:
-    memory: dict[tuple[Any, ...], np.ndarray] = {}
+def run_memory_cycles(*, tag_engine: bool) -> tuple[list[dict[str, Any]], dict[tuple[Any, ...], torch.Tensor]]:
+    memory: dict[tuple[Any, ...], torch.Tensor] = {}
     cycles = []
     for cycle in range(N_CYCLES):
         row: dict[str, Any] = {
@@ -172,18 +198,18 @@ def run_memory_cycles(*, tag_engine: bool) -> tuple[list[dict[str, Any]], dict[t
                 wrong_pred = memory.get(wrong_key)
                 if wrong_pred is not None and trace_distance(wrong_pred, step["rho_after"]) <= TRACE_TOL:
                     row["wrong_engine_false_hits"] += 1
-                memory[key] = step["rho_after"]
+                memory[key] = step["rho_after"].clone()
         row["memory_size_after_cycle"] = len(memory)
         row["total_hits"] = row["hits"][0] + row["hits"][1]
         row["total_misses"] = row["misses"][0] + row["misses"][1]
         row["hit_rate"] = row["total_hits"] / max(1, row["total_hits"] + row["total_misses"])
         row["max_error"] = max(row["errors"]) if row["errors"] else None
-        row["mean_error"] = float(np.mean(row["errors"])) if row["errors"] else None
+        row["mean_error"] = float(torch.mean(torch.tensor(row["errors"], dtype=TORCH_REAL)).item()) if row["errors"] else None
         cycles.append(row)
     return cycles, memory
 
 
-def hash_only_control(memory: dict[tuple[Any, ...], np.ndarray]) -> dict[str, Any]:
+def hash_only_control(memory: dict[tuple[Any, ...], torch.Tensor]) -> dict[str, Any]:
     digest_only = [hashlib.sha256(repr(key).encode("utf-8")).hexdigest()[:12] for key in memory]
     return {
         "pass": len(digest_only) == len(memory) and len(set(digest_only)) == len(digest_only),

@@ -10,7 +10,7 @@ import time
 from collections import defaultdict
 from typing import Any
 
-import numpy as np
+import torch
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -30,11 +30,23 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "json": {"tried": True, "used": True, "reason": "load-bearing basin-depth receipt parsing"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing epsilon-bucket statistics"},
-    "hashlib": {"tried": True, "used": True, "reason": "load-bearing source receipt hash capture"},
+    "json": {"tried": True, "used": True, "reason": "supportive basin-depth receipt parsing"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing epsilon-bucket and control-trace statistics"},
+    "hashlib": {"tried": True, "used": True, "reason": "supportive source receipt hash capture"},
 }
-TOOL_INTEGRATION_DEPTH = {"json": "load_bearing", "numpy": "load_bearing", "hashlib": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {
+    "json": "supportive",
+    "pytorch": "load_bearing",
+    "hashlib": "supportive",
+}
+
+CONTROL_TRACE_FIELDS = {
+    "off": "off_trace_to_baseline",
+    "reversed": "reversed_trace_to_baseline",
+    "random_schedule": "random_schedule_trace_to_baseline",
+    "wrong_chirality": "wrong_chirality_trace_to_baseline",
+    "random_cptp": "random_cptp_trace_to_baseline",
+}
 
 TRACE_CANDIDATE_FLOOR = 0.10
 CONTROL_SEPARATION_FLOOR = 0.05
@@ -48,12 +60,18 @@ def load_json(path: pathlib.Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def mean_float(values: list[float]) -> float:
+    return float(torch.tensor(values, dtype=torch.float64).mean().item())
+
+
 def label_bucket(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    on = float(np.mean([row["on_trace_to_baseline"] for row in rows]))
-    off = float(np.mean([row["off_trace_to_baseline"] for row in rows]))
-    rev = float(np.mean([row["reversed_trace_to_baseline"] for row in rows]))
-    wrong = float(np.mean([row["wrong_chirality_trace_to_baseline"] for row in rows]))
-    nearest = min(off, rev, wrong)
+    on = mean_float([row["on_trace_to_baseline"] for row in rows])
+    control_means = {
+        control: mean_float([row[field] for row in rows if field in row])
+        for control, field in CONTROL_TRACE_FIELDS.items()
+        if any(field in row for row in rows)
+    }
+    nearest = min(control_means.values())
     separation = nearest - on
     if on <= TRACE_CANDIDATE_FLOOR and separation >= CONTROL_SEPARATION_FLOOR:
         label = "candidate_basin_radius"
@@ -68,14 +86,18 @@ def label_bucket(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "row_count": len(rows),
         "label": label,
         "on_mean_trace": on,
-        "off_mean_trace": off,
-        "reversed_mean_trace": rev,
-        "wrong_chirality_mean_trace": wrong,
+        "available_controls": sorted(control_means),
+        "control_mean_traces": control_means,
+        "off_mean_trace": control_means.get("off"),
+        "reversed_mean_trace": control_means.get("reversed"),
+        "random_schedule_mean_trace": control_means.get("random_schedule"),
+        "wrong_chirality_mean_trace": control_means.get("wrong_chirality"),
+        "random_cptp_mean_trace": control_means.get("random_cptp"),
         "nearest_control_mean": nearest,
         "control_separation": separation,
-        "mean_on_token_match": float(np.mean([row["on_token_match"] for row in rows])),
-        "mean_on_correction": float(np.mean([row["on_mean_correction"] for row in rows])),
-        "mean_off_correction": float(np.mean([row["off_mean_correction"] for row in rows])),
+        "mean_on_token_match": mean_float([row["on_token_match"] for row in rows]),
+        "mean_on_correction": mean_float([row["on_mean_correction"] for row in rows]),
+        "mean_off_correction": mean_float([row["off_mean_correction"] for row in rows]),
     }
 
 

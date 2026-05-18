@@ -1269,6 +1269,108 @@ def test_lint_accepts_isolated_capability_probe_for_classical_integration(
     assert "C6_classical_has_load_bearing" not in rules
 
 
+def test_lint_v5_formal_tool_admission_is_curated_not_globbed(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "lint_sim_contract_v5_tool_admission_under_test",
+        REPO_ROOT / "scripts" / "lint_sim_contract.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    formal_results = repo / "system_v5" / "ops" / "formal_scouts" / "results"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+    formal_results.mkdir(parents=True)
+
+    integration = probes / "sim_integration_quimb_geometry.py"
+    integration.write_text(
+        "\n".join(
+            [
+                'classification = "classical_baseline"',
+                'divergence_log = "Classical integration baseline."',
+                'TOOL_MANIFEST = {"quimb": {"tried": True, "used": True, "reason": "load-bearing tensor contraction"}}',
+                'TOOL_INTEGRATION_DEPTH = {"quimb": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    (formal_results / "random_quimb_self_vouch_results.json").write_text(
+        json.dumps(
+            {
+                "classification": "formal_scout",
+                "promotion_allowed": False,
+                "all_pass": True,
+                "claim_ceiling": "Formal scout only.",
+                "source_alignment_category": "not_tool_admission",
+                "TOOL_INTEGRATION_DEPTH": {"quimb": "load_bearing"},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES_DIR", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+    monkeypatch.setattr(module, "FORMAL_SCOUT_RESULTS_DIR", formal_results)
+
+    rules = {v["rule"] for v in module.lint_sim(integration)}
+    assert "C5_missing_probe" in rules
+
+    (formal_results / "quimb_cotengra_tensor_network_geometry_contraction_probe_results.json").write_text(
+        json.dumps(
+            {
+                "classification": "formal_scout",
+                "promotion_allowed": False,
+                "all_pass": True,
+                "claim_ceiling": "Formal scout only: admits quimb as a tensor-network tool.",
+                "source_alignment_category": "tensor_network_tool_admission_for_dynamic_geometry_formal_scout",
+                "TOOL_INTEGRATION_DEPTH": {"quimb": "load_bearing", "cotengra": "load_bearing"},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    rules = {v["rule"] for v in module.lint_sim(integration)}
+    assert "C5_missing_probe" not in rules
+
+    auto_lirpa_integration = probes / "sim_integration_auto_lirpa_bounds.py"
+    auto_lirpa_integration.write_text(
+        "\n".join(
+                [
+                    'classification = "formal_scout"',
+                    'TOOL_MANIFEST = {"auto_LiRPA": {"tried": True, "used": True, "reason": "load-bearing finite graph bounds"}}',
+                    'TOOL_INTEGRATION_DEPTH = {"auto_LiRPA": "load_bearing"}',
+                ]
+            )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    auto_lirpa_rules = {v["rule"] for v in module.lint_sim(auto_lirpa_integration)}
+    assert "C5_missing_probe" in auto_lirpa_rules
+
+    (formal_results / "auto_lirpa_lewm_latent_surprise_bound_probe_results.json").write_text(
+        json.dumps(
+            {
+                "classification": "formal_scout",
+                "promotion_allowed": False,
+                "all_pass": True,
+                "claim_ceiling": "Formal scout only: admits auto_LiRPA as a tiny graph-bound tool, not a physics proof.",
+                "source_alignment_category": "auto_lirpa_tool_admission_lewm_style_latent_surprise_micro_bound",
+                "TOOL_INTEGRATION_DEPTH": {"auto_LiRPA": "load_bearing", "pytorch": "load_bearing"},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    auto_lirpa_rules = {v["rule"] for v in module.lint_sim(auto_lirpa_integration)}
+    assert "C5_missing_probe" not in auto_lirpa_rules
+
+
 def test_lint_blocks_numpy_bridge_and_requires_pytorch_for_nonclassical(
     tmp_path, monkeypatch
 ) -> None:
@@ -9471,6 +9573,85 @@ def test_formal_scout_readiness_index_keeps_noncanonical_status(tmp_path) -> Non
     assert rows["sim_mapping_probe"]["fresh_rerun_mapping_defect"] is False
     assert rows["sim_mapping_probe"]["validator_expected_source_path"].endswith("sim_mapping_probe.py")
     assert rows["sim_dual_probe"]["fresh_rerun_dual_source_defect"] is True
+
+
+def test_formal_scout_validator_uses_configurable_fresh_rerun_timeout(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "validate_formal_scout_results_timeout_under_test",
+        REPO_ROOT / "system_v5" / "ops" / "formal_scouts" / "validate_formal_scout_results.py",
+    )
+    scout_root = tmp_path / "formal_scouts"
+    results = scout_root / "results"
+    results.mkdir(parents=True)
+    module.ROOT = scout_root
+    module.RESULTS = results
+    script = scout_root / "sim_slow_suite_probe.py"
+    script.write_text("# slow suite\n", encoding="utf-8")
+    result = results / "slow_suite_probe_results.json"
+    result.write_text(
+        json.dumps(
+            {
+                "classification": "formal_scout",
+                "promotion_allowed": False,
+                "claim_ceiling": "Formal scout only.",
+                "positive": {"ok": {"pass": True}},
+                "graveyard_companions": {"control": {"pass": True}},
+                "boundary": {"bounded": {"pass": True}},
+                "why_not_v4_probes": {"pass": True},
+                "nearby_variants": {"total": 1, "passed": 1},
+            }
+        ),
+        encoding="utf-8",
+    )
+    seen: dict[str, int] = {}
+
+    class Completed:
+        returncode = 0
+        stdout = "ok"
+        stderr = ""
+
+    def fake_run(*args, **kwargs):
+        seen["timeout"] = kwargs["timeout"]
+        return Completed()
+
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+
+    row = module.fresh_rerun(result, 600)
+
+    assert row["pass"] is True
+    assert seen["timeout"] == 600
+
+
+def test_formal_scout_validator_timeout_preserves_byte_output(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "validate_formal_scout_results_timeout_output_under_test",
+        REPO_ROOT / "system_v5" / "ops" / "formal_scouts" / "validate_formal_scout_results.py",
+    )
+    scout_root = tmp_path / "formal_scouts"
+    results = scout_root / "results"
+    results.mkdir(parents=True)
+    module.ROOT = scout_root
+    module.RESULTS = results
+    (scout_root / "sim_timeout_probe.py").write_text("# timeout\n", encoding="utf-8")
+    result = results / "timeout_probe_results.json"
+    result.write_text("{}", encoding="utf-8")
+
+    def fake_run(*args, **kwargs):
+        raise subprocess.TimeoutExpired(
+            cmd=args[0],
+            timeout=kwargs["timeout"],
+            output=b"SUITE_PROGRESS start 12/40 slow_row\n",
+            stderr=b"stderr bytes",
+        )
+
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+
+    row = module.fresh_rerun(result, 3)
+
+    assert row["pass"] is False
+    assert row["errors"] == ["rerun timed out after 3s"]
+    assert "slow_row" in row["stdout_tail"]
+    assert "stderr bytes" in row["stderr_tail"]
 
 
 def test_grok_sim_archive_index_maps_sidequest_buckets(tmp_path) -> None:

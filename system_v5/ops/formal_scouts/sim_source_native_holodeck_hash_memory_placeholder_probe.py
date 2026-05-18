@@ -22,7 +22,7 @@ from collections import Counter, defaultdict
 from typing import Any
 
 import networkx as nx
-import numpy as np
+import torch
 import z3
 
 from engine_core import EngineCore, generate_initial_density
@@ -48,12 +48,45 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing semantic vectors, predictive reconstruction, cosine verification, and controls"},
-    "networkx": {"tried": True, "used": True, "reason": "load-bearing connected-memory graph and trigger fanout"},
-    "z3": {"tried": True, "used": True, "reason": "load-bearing finite admission witness for model+hash+context+graph requirements"},
-    "engine_core": {"tried": True, "used": True, "reason": "load-bearing source-native science-method/FEP stage records"},
+    "torch": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing semantic vectors, predictive reconstruction, cosine verification, and controls",
+    },
+    "networkx": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive connected-memory graph and trigger fanout checks",
+    },
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing finite admission witness for model+hash+context+graph requirements",
+    },
+    "engine_core": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive source-native science-method/FEP stage records",
+    },
+    "hashlib": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive deterministic contextual hash construction",
+    },
+    "json": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive result and hash payload serialization",
+    },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "torch": "load_bearing",
+    "networkx": "supportive",
+    "z3": "load_bearing",
+    "engine_core": "supportive",
+    "hashlib": "supportive",
+    "json": "supportive",
+}
 
 REQUIRED_STAGE_FIELDS = [
     "model_before",
@@ -88,13 +121,17 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().tolist()
     return value
+
+
+def tensor(values: Any) -> torch.Tensor:
+    return torch.as_tensor(values, dtype=torch.float64)
+
+
+def mean(values: list[float]) -> float:
+    return float(tensor(values).mean()) if values else float("nan")
 
 
 def sha256_file(path: pathlib.Path) -> str:
@@ -159,11 +196,12 @@ def axis0_signature(router: dict[str, Any]) -> dict[str, Any]:
     raw_candidate_metadata: dict[str, dict[str, Any]] = {}
     for name in AXIS0_CANDIDATE_NAMES:
         payload = outputs.get(name, {}) or {}
-        arr = np.asarray(payload.get("values", []), dtype=float)
-        raw_vector_lengths[name] = int(arr.size)
+        arr = tensor(payload.get("values", []))
+        raw_vector_lengths[name] = int(arr.numel())
+        finite = bool(torch.isfinite(arr).all()) if arr.numel() else False
         raw_candidate_metadata[name] = {
-            "value_count": int(arr.size),
-            "finite": bool(payload.get("finite", arr.size > 0)),
+            "value_count": int(arr.numel()),
+            "finite": bool(payload.get("finite", finite)),
             "status": payload.get("status", "pre_guard_raw_candidate"),
             "explicit_blocker_keys": sorted((payload.get("explicit_blockers") or {}).keys()),
         }
@@ -195,58 +233,63 @@ def axis0_signature(router: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def axis0_context(axis0: dict[str, Any], idx: int) -> np.ndarray:
+def axis0_context(axis0: dict[str, Any], idx: int) -> torch.Tensor:
     values = []
     for vector in axis0.get("candidate_vectors", {}).values():
         if vector:
             values.append(float(vector[idx % len(vector)]))
     if not values:
         values = [0.0 for _ in range(int(axis0.get("context_dim", len(AXIS0_CANDIDATE_NAMES))))]
-    return np.asarray(values, dtype=float)
+    return tensor(values)
 
 
-def normalize(vec: np.ndarray) -> np.ndarray:
-    norm = float(np.linalg.norm(vec))
+def normalize(vec: torch.Tensor) -> torch.Tensor:
+    vec = tensor(vec)
+    norm = float(torch.linalg.vector_norm(vec))
     if norm <= 1e-12:
         return vec
     return vec / norm
 
 
-def cosine(a: np.ndarray, b: np.ndarray) -> float:
+def cosine(a: torch.Tensor, b: torch.Tensor) -> float:
     a_n = normalize(a)
     b_n = normalize(b)
-    return float(np.dot(a_n, b_n))
+    return float(torch.dot(a_n, b_n))
 
 
-def semantic_vector(record: dict[str, Any], axis0: dict[str, Any], idx: int) -> np.ndarray:
+def semantic_vector(record: dict[str, Any], axis0: dict[str, Any], idx: int) -> torch.Tensor:
     model = record["model_after"]
-    pred = np.asarray(record["prediction"]["observation_distribution"], dtype=float)
-    obs = np.asarray(record["observation"]["observation_distribution"], dtype=float)
+    pred = tensor(record["prediction"]["observation_distribution"])
+    obs = tensor(record["observation"]["observation_distribution"])
     fep = record["fep_efe_score"]
     repair = record["update_repair"]
-    vec = np.r_[
-        np.asarray(model["bloch"], dtype=float),
-        pred - obs,
+    vec = torch.cat(
         [
-            float(model["entropy"]),
-            float(model["purity"]),
-            float(fep["expected_free_energy_proxy"]),
-            float(fep["surprise_kl"]),
-            float(fep["prediction_error_l2"]),
-            float(repair["manifold_projection_delta_norm"]),
-        ],
-        axis0_context(axis0, idx),
-    ]
-    return normalize(vec.astype(float))
+            tensor(model["bloch"]),
+            pred - obs,
+            tensor(
+                [
+                    float(model["entropy"]),
+                    float(model["purity"]),
+                    float(fep["expected_free_energy_proxy"]),
+                    float(fep["surprise_kl"]),
+                    float(fep["prediction_error_l2"]),
+                    float(repair["manifold_projection_delta_norm"]),
+                ]
+            ),
+            axis0_context(axis0, idx),
+        ]
+    )
+    return normalize(vec)
 
 
-def semantic_hash(record: dict[str, Any], vec: np.ndarray, idx: int) -> str:
+def semantic_hash(record: dict[str, Any], vec: torch.Tensor, idx: int) -> str:
     payload = {
         "idx": idx,
         "token": record["ordered_token"],
         "policy": record["next_policy"]["policy_id"],
         "model_after": record["model_after"]["density_hash"],
-        "vector": np.round(vec, 6).tolist(),
+        "vector": torch.round(tensor(vec), decimals=6).tolist(),
     }
     return hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()[:18]
 
@@ -332,34 +375,43 @@ def hash_cells_table(space: dict[str, Any]) -> list[dict[str, Any]]:
     return rows
 
 
-def build_predictive_model(cells: list[dict[str, Any]]) -> dict[str, np.ndarray]:
-    grouped: dict[str, list[np.ndarray]] = defaultdict(list)
+def build_predictive_model(cells: list[dict[str, Any]]) -> dict[str, torch.Tensor]:
+    grouped: dict[str, list[torch.Tensor]] = defaultdict(list)
     for cell in cells:
-        grouped[str(cell["ordered_token"])].append(np.asarray(cell["vector"], dtype=float))
-    return {key: normalize(np.mean(values, axis=0)) for key, values in grouped.items()}
+        grouped[str(cell["ordered_token"])].append(tensor(cell["vector"]))
+    return {key: normalize(torch.stack(values).mean(dim=0)) for key, values in grouped.items()}
 
 
-def predict_from_trigger(cell: dict[str, Any], model: dict[str, np.ndarray], *, wrong_context: bool = False, wrong_model: bool = False) -> np.ndarray:
+def predict_from_trigger(
+    cell: dict[str, Any],
+    model: dict[str, torch.Tensor],
+    *,
+    wrong_context: bool = False,
+    wrong_model: bool = False,
+) -> torch.Tensor:
     token = str(cell["ordered_token"])
     centroid = model[token]
     if wrong_model:
         centroid = -centroid
-    full = np.asarray(cell["vector"], dtype=float)
-    trigger = full.copy()
+    full = tensor(cell["vector"])
+    trigger = full.clone()
     trigger[6:9] = 0.0
-    context = np.asarray(cell["context"], dtype=float)
+    context = tensor(cell["context"])
     trigger[-len(context):] = 0.0
     if wrong_context:
         context = -context
-    pad = np.zeros_like(trigger)
+    pad = torch.zeros_like(trigger)
     pad[-len(context):] = context
     if wrong_model:
         return normalize(0.35 * trigger + 0.63 * centroid + 0.02 * normalize(pad))
     return normalize(0.78 * trigger + 0.20 * centroid + 0.02 * normalize(pad))
 
 
-def best_match(predicted: np.ndarray, cells: list[dict[str, Any]]) -> tuple[dict[str, Any], float]:
-    scores = [(cell, cosine(predicted, np.asarray(cell["vector"], dtype=float))) for cell in cells]
+def best_match(
+    predicted: torch.Tensor,
+    cells: list[dict[str, Any]],
+) -> tuple[dict[str, Any], float]:
+    scores = [(cell, cosine(predicted, tensor(cell["vector"]))) for cell in cells]
     return max(scores, key=lambda item: item[1])
 
 
@@ -402,7 +454,7 @@ def graveyard_survivor_graph_report(space: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def recall_trials(space: dict[str, Any], model: dict[str, np.ndarray]) -> dict[str, Any]:
+def recall_trials(space: dict[str, Any], model: dict[str, torch.Tensor]) -> dict[str, Any]:
     cells = space["cells"]
     graph = memory_graph(cells)
     selected = [cells[i] for i in [3, 17, 42, 79, 111]]
@@ -410,13 +462,13 @@ def recall_trials(space: dict[str, Any], model: dict[str, np.ndarray]) -> dict[s
     for cell in selected:
         predicted = predict_from_trigger(cell, model)
         match, score = best_match(predicted, cells)
-        target_score = cosine(predicted, np.asarray(cell["vector"], dtype=float))
+        target_score = cosine(predicted, tensor(cell["vector"]))
         wrong_pred = predict_from_trigger(cell, model, wrong_model=True)
         wrong_match, wrong_score = best_match(wrong_pred, cells)
-        wrong_target_score = cosine(wrong_pred, np.asarray(cell["vector"], dtype=float))
+        wrong_target_score = cosine(wrong_pred, tensor(cell["vector"]))
         wrong_context_pred = predict_from_trigger(cell, model, wrong_context=True)
         wrong_context_match, wrong_context_score = best_match(wrong_context_pred, cells)
-        wrong_context_target_score = cosine(wrong_context_pred, np.asarray(cell["vector"], dtype=float))
+        wrong_context_target_score = cosine(wrong_context_pred, tensor(cell["vector"]))
         fanout = list(nx.single_source_shortest_path_length(graph, match["semantic_hash"], cutoff=2).keys())
         rows.append(
             {
@@ -437,15 +489,16 @@ def recall_trials(space: dict[str, Any], model: dict[str, np.ndarray]) -> dict[s
         )
     return {
         "pass": all(row["verified"] for row in rows)
-        and np.mean([row["target_verification_score"] for row in rows]) > np.mean([row["wrong_model_target_score"] for row in rows]) + 0.05
+        and mean([row["target_verification_score"] for row in rows])
+        > mean([row["wrong_model_target_score"] for row in rows]) + 0.05
         and min(row["connected_fanout_count_depth2"] for row in rows) > 3,
         "rows": rows,
-        "mean_match_score": float(np.mean([row["match_score"] for row in rows])),
-        "mean_target_verification_score": float(np.mean([row["target_verification_score"] for row in rows])),
-        "mean_wrong_model_score": float(np.mean([row["wrong_model_score"] for row in rows])),
-        "mean_wrong_model_target_score": float(np.mean([row["wrong_model_target_score"] for row in rows])),
-        "mean_wrong_context_score": float(np.mean([row["wrong_context_score"] for row in rows])),
-        "mean_wrong_context_target_score": float(np.mean([row["wrong_context_target_score"] for row in rows])),
+        "mean_match_score": mean([row["match_score"] for row in rows]),
+        "mean_target_verification_score": mean([row["target_verification_score"] for row in rows]),
+        "mean_wrong_model_score": mean([row["wrong_model_score"] for row in rows]),
+        "mean_wrong_model_target_score": mean([row["wrong_model_target_score"] for row in rows]),
+        "mean_wrong_context_score": mean([row["wrong_context_score"] for row in rows]),
+        "mean_wrong_context_target_score": mean([row["wrong_context_target_score"] for row in rows]),
         "graph_nodes": graph.number_of_nodes(),
         "graph_edges": graph.number_of_edges(),
     }
@@ -453,14 +506,14 @@ def recall_trials(space: dict[str, Any], model: dict[str, np.ndarray]) -> dict[s
 
 def hash_only_control(space: dict[str, Any]) -> dict[str, Any]:
     cells = space["cells"]
-    digest_lengths = np.asarray([len(cell["semantic_hash"]) for cell in cells], dtype=float)
-    counts = np.bincount(digest_lengths.astype(int))
-    probs = counts[counts > 0].astype(float) / len(digest_lengths)
-    entropy = float(-(probs * np.log(probs)).sum())
+    digest_lengths = tensor([len(cell["semantic_hash"]) for cell in cells])
+    counts = torch.bincount(digest_lengths.to(dtype=torch.int64))
+    probs = counts[counts > 0].to(dtype=torch.float64) / int(digest_lengths.numel())
+    entropy = float(-(probs * torch.log(probs)).sum())
     return {
         "hash_count": len(cells),
         "available_vector_dimensions": 0,
-        "mean_hash_length": float(np.mean(digest_lengths)),
+        "mean_hash_length": float(digest_lengths.mean()),
         "digest_length_entropy": entropy,
         "max_possible_confirmation_score_without_model": 0.0,
         "pass": len(cells) == N_SEEDS * 64 and 0.0 < HASH_CONTROL_CEILING,
@@ -587,7 +640,10 @@ def main() -> int:
             and axis0["ready"] is False
             and axis0.get("candidate_vectors") == {}
             and set(axis0.get("pre_guard_candidate_names", [])) == set(AXIS0_CANDIDATE_NAMES)
-            and all(np.linalg.norm(cell["context"]) == 0.0 for cell in space["cells"][:16])
+            and all(
+                float(torch.linalg.vector_norm(tensor(cell["context"]))) == 0.0
+                for cell in space["cells"][:16]
+            )
             and bool(axis0.get("explicit_blockers")),
             "axis0_source_receipt": axis0.get("source_receipt"),
             "pre_guard_axis0_candidate_names": axis0.get("pre_guard_candidate_names"),

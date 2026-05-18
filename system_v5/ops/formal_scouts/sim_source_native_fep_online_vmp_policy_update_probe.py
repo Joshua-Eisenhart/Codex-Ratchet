@@ -21,7 +21,7 @@ import time
 from typing import Any
 
 import networkx as nx
-import numpy as np
+import torch
 import z3
 
 import sim_source_native_fep_pomdp_policy_tree_probe as pomdp
@@ -44,38 +44,62 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "torch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing finite categorical belief updates, KL, VFE deltas, and EFE decomposition checks",
-    },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing transitively through the source-native POMDP policy-tree scout",
-    },
-    "networkx": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing online update dependency graph sanity check",
+        "reason": "load-bearing tensor math for local posterior updates, VFE trace, policy rows, softmax, norms, means, and control summaries",
     },
     "z3": {
         "tried": True,
         "used": True,
-        "reason": "supportive finite witness over already-computed online posterior, VFE, and decomposition predicates",
+        "reason": "load-bearing finite witness over online posterior, VFE reduction, EFE decomposition, and no-engine predicates",
+    },
+    "networkx": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive online update dependency graph sanity check",
+    },
+    "pomdp": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive source-native A/B/C/D helper surface; returned arrays are converted to torch tensors in this scout",
     },
     "engine_core": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing through source-native B_pi transition estimation",
+        "reason": "supportive upstream source-native B_pi transition estimation consumed through the POMDP helper",
+    },
+    "json": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive receipt serialization and upstream receipt loading",
+    },
+    "hashlib": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive script hash receipt field",
+    },
+    "numpy": {
+        "tried": False,
+        "used": False,
+        "reason": "not used load-bearing in this scout; local online VMP math is torch-native",
+    },
+    "scipy": {
+        "tried": False,
+        "used": False,
+        "reason": "not used load-bearing in this scout; local log/exp and softmax math is torch-native",
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
-    "scipy": "load_bearing",
-    "networkx": "load_bearing",
-    "z3": "supportive",
-    "engine_core": "load_bearing",
+    "torch": "load_bearing",
+    "z3": "load_bearing",
+    "pomdp": "supportive",
+    "engine_core": "supportive",
+    "networkx": "supportive",
+    "json": "supportive",
+    "hashlib": "supportive",
+    "numpy": None,
+    "scipy": None,
 }
 
 POSTERIOR_KL_FLOOR = 1e-7
@@ -85,6 +109,8 @@ WRONG_OBS_POSTERIOR_SHIFT_FLOOR = 1e-2
 EFE_DECOMPOSITION_TOL = 1e-9
 N_VMP_ITERS = 12
 DAMPING = 0.55
+DTYPE = torch.float64
+EPS = 1e-12
 
 
 def as_jsonable(value: Any) -> Any:
@@ -94,13 +120,65 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
+    if isinstance(value, torch.Tensor):
+        value = value.detach().cpu()
+        if value.ndim == 0:
+            return value.item()
         return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     return value
+
+
+def as_tensor(value: Any) -> torch.Tensor:
+    if isinstance(value, torch.Tensor):
+        return value.detach().to(dtype=DTYPE).clone()
+    return torch.as_tensor(value, dtype=DTYPE).clone()
+
+
+def as_float(value: Any) -> float:
+    return float(torch.as_tensor(value, dtype=DTYPE).detach().cpu().item())
+
+
+def normalize(prob: Any) -> torch.Tensor:
+    prob_t = torch.clamp(as_tensor(prob), min=EPS)
+    return torch.exp(torch.log(prob_t) - torch.logsumexp(torch.log(prob_t), dim=0))
+
+
+def entropy_tensor(prob: Any) -> torch.Tensor:
+    prob_t = normalize(prob)
+    return -torch.sum(prob_t * torch.log(prob_t))
+
+
+def entropy_prob(prob: Any) -> float:
+    return float(entropy_tensor(prob).item())
+
+
+def kl_tensor(p: Any, q: Any) -> torch.Tensor:
+    p_t = normalize(p)
+    q_t = normalize(q)
+    return torch.sum(p_t * (torch.log(p_t) - torch.log(q_t)))
+
+
+def kl(p: Any, q: Any) -> float:
+    return float(kl_tensor(p, q).item())
+
+
+def shuffled_preference(base: Any) -> torch.Tensor:
+    order = torch.tensor([1, 4, 0, 5, 2, 3], dtype=torch.long)
+    return normalize(normalize(base).index_select(0, order))
+
+
+def variational_free_energy(
+    q_variational: Any,
+    q_prior: Any,
+    a_matrix: Any,
+    obs_idx: int,
+) -> torch.Tensor:
+    q_variational_t = normalize(q_variational)
+    q_prior_t = normalize(q_prior)
+    a_matrix_t = as_tensor(a_matrix)
+    likelihood = torch.clamp(a_matrix_t[obs_idx, :], min=EPS)
+    joint_log = torch.log(likelihood) + torch.log(q_prior_t)
+    return torch.sum(q_variational_t * (torch.log(q_variational_t) - joint_log))
 
 
 def sha256_file(path: pathlib.Path) -> str:
@@ -118,22 +196,24 @@ def load_result(name: str) -> dict[str, Any]:
 
 
 def online_vmp_update(
-    q_prior: np.ndarray,
-    a_matrix: np.ndarray,
+    q_prior: Any,
+    a_matrix: Any,
     obs_idx: int,
     *,
     damping: float = DAMPING,
     n_iters: int = N_VMP_ITERS,
 ) -> dict[str, Any]:
-    q_prior = pomdp.normalize(q_prior)
-    log_target = np.log(np.clip(q_prior, 1e-12, None)) + np.log(np.clip(a_matrix[obs_idx, :], 1e-12, None))
-    exact = pomdp.normalize(np.exp(log_target))
-    q = q_prior.copy()
-    vfe_trace = [pomdp.variational_free_energy(q, q_prior, a_matrix, obs_idx)]
+    q_prior = normalize(q_prior)
+    a_matrix = as_tensor(a_matrix)
+    log_target = torch.log(torch.clamp(q_prior, min=EPS)) + torch.log(torch.clamp(a_matrix[obs_idx, :], min=EPS))
+    exact = normalize(torch.exp(log_target))
+    q = q_prior.clone()
+    vfe_values = [variational_free_energy(q, q_prior, a_matrix, obs_idx)]
     for _ in range(n_iters):
-        log_q = np.log(np.clip(q, 1e-12, None))
-        q = pomdp.normalize(np.exp((1.0 - damping) * log_q + damping * log_target))
-        vfe_trace.append(pomdp.variational_free_energy(q, q_prior, a_matrix, obs_idx))
+        log_q = torch.log(torch.clamp(q, min=EPS))
+        q = normalize(torch.exp((1.0 - damping) * log_q + damping * log_target))
+        vfe_values.append(variational_free_energy(q, q_prior, a_matrix, obs_idx))
+    vfe_trace = torch.stack(vfe_values)
     no_message_vfe = vfe_trace[0]
     final_vfe = vfe_trace[-1]
     return {
@@ -141,11 +221,11 @@ def online_vmp_update(
         "q_exact": exact,
         "q_vmp": q,
         "vfe_trace": vfe_trace,
-        "posterior_kl_to_exact": pomdp.kl(q, exact),
+        "posterior_kl_to_exact": kl(q, exact),
         "no_message_vfe": no_message_vfe,
         "final_vfe": final_vfe,
         "vfe_reduction_vs_no_message": no_message_vfe - final_vfe,
-        "monotone_nonincreasing_vfe": all(vfe_trace[i + 1] <= vfe_trace[i] + 1e-10 for i in range(len(vfe_trace) - 1)),
+        "monotone_nonincreasing_vfe": bool(torch.all(vfe_trace[1:] <= vfe_trace[:-1] + 1e-10).item()),
     }
 
 
@@ -153,29 +233,32 @@ def policy_online_report(
     *,
     engine_type: int,
     start_stage: int,
-    a_matrix: np.ndarray,
-    c_pref: np.ndarray,
-    d_prior: np.ndarray,
+    a_matrix: Any,
+    c_pref: Any,
+    d_prior: Any,
     manifold_enabled: bool = True,
     no_engine_control: bool = False,
     observation_mode: str = "predicted_argmax",
 ) -> dict[str, Any]:
+    a_matrix = as_tensor(a_matrix)
+    c_pref = normalize(c_pref)
+    d_prior = normalize(d_prior)
     if no_engine_control:
-        b_matrix = np.eye(pomdp.N_STATES)
+        b_matrix = torch.eye(pomdp.N_STATES, dtype=DTYPE)
     else:
-        b_matrix = pomdp.estimate_transition(engine_type, start_stage, manifold_enabled=manifold_enabled)
-    q_s = d_prior.copy()
-    risk = 0.0
-    ambiguity = 0.0
-    epistemic_value = 0.0
-    vfe_reduction = 0.0
+        b_matrix = as_tensor(pomdp.estimate_transition(engine_type, start_stage, manifold_enabled=manifold_enabled))
+    q_s = d_prior.clone()
+    risk = torch.tensor(0.0, dtype=DTYPE)
+    ambiguity = torch.tensor(0.0, dtype=DTYPE)
+    epistemic_value = torch.tensor(0.0, dtype=DTYPE)
+    vfe_reduction = torch.tensor(0.0, dtype=DTYPE)
     posterior_kls = []
     wrong_obs_shifts = []
     step_rows = []
     for step in range(pomdp.PREDICTION_STEPS):
-        q_pred = pomdp.normalize(b_matrix @ q_s)
-        q_o = pomdp.normalize(a_matrix @ q_pred)
-        predicted_obs_idx = int(np.argmax(q_o))
+        q_pred = normalize(b_matrix @ q_s)
+        q_o = normalize(a_matrix @ q_pred)
+        predicted_obs_idx = int(torch.argmax(q_o).item())
         if observation_mode == "predicted_argmax":
             obs_idx = predicted_obs_idx
         elif observation_mode == "heldout_cycle":
@@ -183,34 +266,34 @@ def policy_online_report(
         else:
             raise ValueError(f"unknown observation_mode: {observation_mode}")
         update = online_vmp_update(q_pred, a_matrix, obs_idx)
-        wrong_obs_idx = int(np.argmin(q_o))
+        wrong_obs_idx = int(torch.argmin(q_o).item())
         wrong_update = online_vmp_update(q_pred, a_matrix, wrong_obs_idx)
-        posterior_shift = float(np.linalg.norm(update["q_vmp"] - wrong_update["q_vmp"], ord=1))
-        posterior_kls.append(float(update["posterior_kl_to_exact"]))
+        posterior_shift = torch.linalg.vector_norm(update["q_vmp"] - wrong_update["q_vmp"], ord=1)
+        posterior_kls.append(as_tensor(update["posterior_kl_to_exact"]))
         wrong_obs_shifts.append(posterior_shift)
-        conditional_entropy = float(
-            np.sum(q_pred * np.array([pomdp.entropy_prob(a_matrix[:, idx]) for idx in range(pomdp.N_STATES)]))
+        conditional_entropy = torch.sum(
+            q_pred * torch.stack([entropy_tensor(a_matrix[:, idx]) for idx in range(pomdp.N_STATES)])
         )
-        info_gain = max(0.0, pomdp.entropy_prob(q_o) - conditional_entropy)
-        step_risk = pomdp.kl(q_o, c_pref)
+        info_gain = torch.clamp(entropy_tensor(q_o) - conditional_entropy, min=0.0)
+        step_risk = as_tensor(kl(q_o, c_pref))
         risk += step_risk
         ambiguity += conditional_entropy
         epistemic_value += info_gain
-        vfe_reduction += float(update["vfe_reduction_vs_no_message"])
+        vfe_reduction += as_tensor(update["vfe_reduction_vs_no_message"])
         step_rows.append(
             {
                 "step": step + 1,
                 "observation_mode": observation_mode,
                 "obs_idx": obs_idx,
                 "predicted_obs_idx": predicted_obs_idx,
-                "selected_obs_probability": float(q_o[obs_idx]),
+                "selected_obs_probability": as_float(q_o[obs_idx]),
                 "wrong_obs_idx": wrong_obs_idx,
-                "risk": step_risk,
-                "ambiguity": conditional_entropy,
-                "epistemic_value": info_gain,
-                "vfe_reduction_vs_no_message": update["vfe_reduction_vs_no_message"],
-                "posterior_kl_to_exact": update["posterior_kl_to_exact"],
-                "wrong_obs_posterior_l1_shift": posterior_shift,
+                "risk": as_float(step_risk),
+                "ambiguity": as_float(conditional_entropy),
+                "epistemic_value": as_float(info_gain),
+                "vfe_reduction_vs_no_message": as_float(update["vfe_reduction_vs_no_message"]),
+                "posterior_kl_to_exact": as_float(update["posterior_kl_to_exact"]),
+                "wrong_obs_posterior_l1_shift": as_float(posterior_shift),
                 "monotone_nonincreasing_vfe": update["monotone_nonincreasing_vfe"],
                 "vfe_trace_head": update["vfe_trace"][:4],
                 "vfe_trace_tail": update["vfe_trace"][-3:],
@@ -218,6 +301,8 @@ def policy_online_report(
         )
         q_s = update["q_vmp"]
     expected_free_energy = risk + ambiguity
+    posterior_kls_t = torch.stack(posterior_kls)
+    wrong_obs_shifts_t = torch.stack(wrong_obs_shifts)
     return {
         "policy_id": pomdp.policy_id(engine_type, start_stage),
         "engine_type": engine_type,
@@ -225,16 +310,16 @@ def policy_online_report(
         "manifold_enabled": manifold_enabled,
         "no_engine_control": no_engine_control,
         "observation_mode": observation_mode,
-        "risk": float(risk),
-        "ambiguity": float(ambiguity),
-        "epistemic_value": float(epistemic_value),
-        "vfe_reduction": float(vfe_reduction),
-        "expected_free_energy": float(expected_free_energy),
-        "efe_decomposition_residual": float(abs(expected_free_energy - (risk + ambiguity))),
-        "posterior_kl_max": float(max(posterior_kls)),
-        "posterior_kl_mean": float(np.mean(posterior_kls)),
-        "wrong_obs_shift_min": float(min(wrong_obs_shifts)),
-        "wrong_obs_shift_mean": float(np.mean(wrong_obs_shifts)),
+        "risk": as_float(risk),
+        "ambiguity": as_float(ambiguity),
+        "epistemic_value": as_float(epistemic_value),
+        "vfe_reduction": as_float(vfe_reduction),
+        "expected_free_energy": as_float(expected_free_energy),
+        "efe_decomposition_residual": as_float(torch.abs(expected_free_energy - (risk + ambiguity))),
+        "posterior_kl_max": as_float(torch.max(posterior_kls_t)),
+        "posterior_kl_mean": as_float(torch.mean(posterior_kls_t)),
+        "wrong_obs_shift_min": as_float(torch.min(wrong_obs_shifts_t)),
+        "wrong_obs_shift_mean": as_float(torch.mean(wrong_obs_shifts_t)),
         "all_steps_vfe_monotone": all(row["monotone_nonincreasing_vfe"] for row in step_rows),
         "per_step": step_rows,
     }
@@ -242,13 +327,16 @@ def policy_online_report(
 
 def online_family(
     *,
-    a_matrix: np.ndarray,
-    c_pref: np.ndarray,
-    d_prior: np.ndarray,
+    a_matrix: Any,
+    c_pref: Any,
+    d_prior: Any,
     manifold_enabled: bool = True,
     no_engine_control: bool = False,
     observation_mode: str = "predicted_argmax",
 ) -> list[dict[str, Any]]:
+    a_matrix = as_tensor(a_matrix)
+    c_pref = normalize(c_pref)
+    d_prior = normalize(d_prior)
     rows = []
     for engine_type in [0, 1]:
         for start_stage in range(8):
@@ -264,11 +352,10 @@ def online_family(
                     observation_mode=observation_mode,
                 )
             )
-    values = np.asarray([-row["expected_free_energy"] for row in rows], dtype=float)
-    probs = np.exp(values - np.max(values))
-    probs = probs / np.sum(probs)
+    values = as_tensor([-row["expected_free_energy"] for row in rows])
+    probs = torch.softmax(values, dim=0)
     for row, prob in zip(rows, probs, strict=True):
-        row["policy_probability"] = float(prob)
+        row["policy_probability"] = as_float(prob)
     return sorted(rows, key=lambda row: row["expected_free_energy"])
 
 
@@ -332,9 +419,9 @@ def z3_vmp_witness(rows: list[dict[str, Any]], no_engine_rows: list[dict[str, An
 def main() -> int:
     started = time.time()
     pomdp_receipt = load_result("source_native_fep_pomdp_policy_tree_probe_results.json")
-    a_matrix = pomdp.emission_matrix()
-    c_pref = pomdp.preference_distribution()
-    d_prior = pomdp.estimate_prior()
+    a_matrix = as_tensor(pomdp.emission_matrix())
+    c_pref = normalize(pomdp.preference_distribution())
+    d_prior = normalize(pomdp.estimate_prior())
     rows = online_family(a_matrix=a_matrix, c_pref=c_pref, d_prior=d_prior)
     heldout_rows = online_family(
         a_matrix=a_matrix,
@@ -343,16 +430,20 @@ def main() -> int:
         observation_mode="heldout_cycle",
     )
     no_engine_rows = online_family(a_matrix=a_matrix, c_pref=c_pref, d_prior=d_prior, no_engine_control=True)
-    shuffled_rows = online_family(a_matrix=a_matrix, c_pref=pomdp.shuffled_preference(c_pref), d_prior=d_prior)
-    identity_a_rows = online_family(a_matrix=pomdp.identity_emission_matrix(), c_pref=c_pref, d_prior=d_prior)
+    shuffled_rows = online_family(a_matrix=a_matrix, c_pref=shuffled_preference(c_pref), d_prior=d_prior)
+    identity_a_rows = online_family(
+        a_matrix=torch.eye(pomdp.N_OBSERVATIONS, pomdp.N_STATES, dtype=DTYPE),
+        c_pref=c_pref,
+        d_prior=d_prior,
+    )
     graph = dependency_graph()
 
-    posterior_kl_max = float(max(row["posterior_kl_max"] for row in rows))
-    vfe_reduction_min = float(min(row["vfe_reduction"] for row in rows))
-    heldout_posterior_kl_max = float(max(row["posterior_kl_max"] for row in heldout_rows))
-    heldout_vfe_reduction_min = float(min(row["vfe_reduction"] for row in heldout_rows))
-    decomposition_residual_max = float(max(row["efe_decomposition_residual"] for row in rows))
-    wrong_obs_shift_min = float(min(row["wrong_obs_shift_min"] for row in rows))
+    posterior_kl_max = as_float(torch.max(as_tensor([row["posterior_kl_max"] for row in rows])))
+    vfe_reduction_min = as_float(torch.min(as_tensor([row["vfe_reduction"] for row in rows])))
+    heldout_posterior_kl_max = as_float(torch.max(as_tensor([row["posterior_kl_max"] for row in heldout_rows])))
+    heldout_vfe_reduction_min = as_float(torch.min(as_tensor([row["vfe_reduction"] for row in heldout_rows])))
+    decomposition_residual_max = as_float(torch.max(as_tensor([row["efe_decomposition_residual"] for row in rows])))
+    wrong_obs_shift_min = as_float(torch.min(as_tensor([row["wrong_obs_shift_min"] for row in rows])))
     selected = rows[0]
     old_selected = (pomdp_receipt.get("summary") or {}).get("selected_policy")
     z3_witness = z3_vmp_witness(rows, no_engine_rows)

@@ -1,52 +1,62 @@
 {
   "schema": "formal_scout_readiness_index.v1",
-  "generated_at": "2026-05-18T00:24:58.254221+00:00",
+  "generated_at": "2026-05-18T03:10:48.044638+00:00",
   "boundary": "readiness_index_only_not_rerun_not_admission_not_promotion",
   "summary": {
-    "result_count": 184,
-    "source_count": 184,
+    "result_count": 189,
+    "source_count": 187,
     "source_without_result_count": 0,
-    "validator_pass_count": 181,
-    "validator_fail_count": 3,
-    "source_missing_count": 0,
-    "readme_indexed_count": 184,
-    "readme_missing_count": 0,
+    "validator_pass_count": 184,
+    "validator_fail_count": 5,
+    "source_missing_count": 2,
+    "readme_indexed_count": 187,
+    "readme_missing_count": 2,
     "fresh_rerun_mapping_defect_count": 0,
     "fresh_rerun_dual_source_defect_count": 0,
     "backend_policy_violation_count": 0,
     "readiness_status_counts": {
-      "schema_ready": 181,
-      "validator_failed": 3
+      "schema_ready": 184,
+      "validator_failed": 3,
+      "source_missing": 2
     },
     "validation_error_counts": {
-      "why_not_v4_probes missing": 3,
-      "nearby_variants summary missing": 3,
-      "one or more graveyard checks failed": 2,
-      "classification is not formal_scout": 1,
       "one or more positive checks failed": 2,
-      "blockers present": 1,
-      "boundary section missing": 1
+      "blockers present": 2,
+      "why_not_v4_probes missing": 4,
+      "nearby_variants summary missing": 4,
+      "one or more graveyard checks failed": 1,
+      "classification is not formal_scout": 3,
+      "promotion_allowed is not false": 2,
+      "claim_ceiling missing": 2,
+      "positive section missing": 2,
+      "graveyard_companions section missing": 2,
+      "boundary section missing": 2
     },
     "promotion_blocker_counts": {
-      "formal_scout_noncanonical": 184,
-      "fresh_rerun_not_performed": 184,
+      "formal_scout_noncanonical": 189,
+      "fresh_rerun_not_performed": 189,
       "validator_failed": 3,
-      "classification_not_formal_scout": 1
+      "classification_not_formal_scout": 3,
+      "promotion_allowed_not_false": 2,
+      "readme_index_missing": 2,
+      "source_missing": 2
     },
     "tool_manifest_key_style_counts": {
-      "upper": 141,
+      "upper": 144,
       "both": 10,
-      "lower": 33
+      "lower": 33,
+      "missing": 2
     },
     "tool_depth_key_style_counts": {
-      "upper": 141,
+      "upper": 144,
       "both": 10,
-      "lower": 33
+      "lower": 33,
+      "missing": 2
     },
     "provider_receipts": {
-      "receipt_count": 214,
+      "receipt_count": 224,
       "validator_available": true,
-      "validator_pass_count": 214,
+      "validator_pass_count": 224,
       "validator_fail_count": 0,
       "validation_error_counts": {}
     }
@@ -54,6 +64,46 @@
   "provider_receipt_failed_samples": [],
   "source_without_result_samples": [],
   "validator_failed_rows": [
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/attractor_basin_success_criteria_receipt_classifier_probe_results.json",
+      "stem": "attractor_basin_success_criteria_receipt_classifier_probe",
+      "source_path": "system_v5/ops/formal_scouts/sim_attractor_basin_success_criteria_receipt_classifier_probe.py",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_attractor_basin_success_criteria_receipt_classifier_probe.py",
+      "source_exists": true,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": true,
+      "validation_pass": false,
+      "validation_errors": [
+        "one or more positive checks failed",
+        "blockers present"
+      ],
+      "readiness_status": "validator_failed",
+      "classification": "formal_scout",
+      "promotion_allowed": false,
+      "all_pass": false,
+      "claim_ceiling_present": true,
+      "claim_ceiling": "Formal scout only: classifies selected existing receipts plus named synthetic shallow/open control fixtures under the noncanonical attractor-basin success doctrine. A deep_basin label means method/control convergence for the named receipt claim only. It does not admit canonical Axis0, FEP, Holodeck, engine, manifold, cognition, physics, world-model, or architecture claims, and it does not promote any underlying receipt.",
+      "tool_manifest_key_style": "upper",
+      "tool_depth_key_style": "upper",
+      "normalized_tool_depth": {
+        "hashlib": "load_bearing",
+        "json": "load_bearing",
+        "pathlib": "supportive"
+      },
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed",
+        "validator_failed"
+      ]
+    },
     {
       "result_path": "system_v5/ops/formal_scouts/results/constraint_manifold_placement_neural_behavior_discrimination_probe_results.json",
       "stem": "constraint_manifold_placement_neural_behavior_discrimination_probe",
@@ -96,6 +146,96 @@
         "formal_scout_noncanonical",
         "fresh_rerun_not_performed",
         "validator_failed"
+      ]
+    },
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/d4_pseudoscalar_chirality_portability_extension_results.json",
+      "stem": "d4_pseudoscalar_chirality_portability_extension",
+      "source_path": "",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_d4_pseudoscalar_chirality_portability_extension.py",
+      "source_exists": false,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": false,
+      "validation_pass": false,
+      "validation_errors": [
+        "classification is not formal_scout",
+        "promotion_allowed is not false",
+        "claim_ceiling missing",
+        "positive section missing",
+        "graveyard_companions section missing",
+        "boundary section missing",
+        "why_not_v4_probes missing",
+        "nearby_variants summary missing"
+      ],
+      "readiness_status": "source_missing",
+      "classification": "",
+      "promotion_allowed": null,
+      "all_pass": null,
+      "claim_ceiling_present": false,
+      "claim_ceiling": "",
+      "tool_manifest_key_style": "missing",
+      "tool_depth_key_style": "missing",
+      "normalized_tool_depth": {},
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "classification_not_formal_scout",
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed",
+        "promotion_allowed_not_false",
+        "readme_index_missing",
+        "source_missing"
+      ]
+    },
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/d5_portability_signature_sweep_results.json",
+      "stem": "d5_portability_signature_sweep",
+      "source_path": "",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_d5_portability_signature_sweep.py",
+      "source_exists": false,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": false,
+      "validation_pass": false,
+      "validation_errors": [
+        "classification is not formal_scout",
+        "promotion_allowed is not false",
+        "claim_ceiling missing",
+        "positive section missing",
+        "graveyard_companions section missing",
+        "boundary section missing",
+        "why_not_v4_probes missing",
+        "nearby_variants summary missing"
+      ],
+      "readiness_status": "source_missing",
+      "classification": "",
+      "promotion_allowed": null,
+      "all_pass": null,
+      "claim_ceiling_present": false,
+      "claim_ceiling": "",
+      "tool_manifest_key_style": "missing",
+      "tool_depth_key_style": "missing",
+      "normalized_tool_depth": {},
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "classification_not_formal_scout",
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed",
+        "promotion_allowed_not_false",
+        "readme_index_missing",
+        "source_missing"
       ]
     },
     {
@@ -150,40 +290,38 @@
         "fresh_rerun_not_performed",
         "validator_failed"
       ]
-    },
+    }
+  ],
+  "readme_missing_samples": [
     {
-      "result_path": "system_v5/ops/formal_scouts/results/source_native_engine_transition_phase_boundary_path_fep_probe_results.json",
-      "stem": "source_native_engine_transition_phase_boundary_path_fep_probe",
-      "source_path": "system_v5/ops/formal_scouts/sim_source_native_engine_transition_phase_boundary_path_fep_probe.py",
-      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_source_native_engine_transition_phase_boundary_path_fep_probe.py",
-      "source_exists": true,
+      "result_path": "system_v5/ops/formal_scouts/results/d4_pseudoscalar_chirality_portability_extension_results.json",
+      "stem": "d4_pseudoscalar_chirality_portability_extension",
+      "source_path": "",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_d4_pseudoscalar_chirality_portability_extension.py",
+      "source_exists": false,
       "fresh_rerun_mapping_defect": false,
       "fresh_rerun_dual_source_defect": false,
-      "readme_indexed": true,
+      "readme_indexed": false,
       "validation_pass": false,
       "validation_errors": [
+        "classification is not formal_scout",
+        "promotion_allowed is not false",
+        "claim_ceiling missing",
+        "positive section missing",
+        "graveyard_companions section missing",
         "boundary section missing",
         "why_not_v4_probes missing",
-        "nearby_variants summary missing",
-        "one or more positive checks failed",
-        "one or more graveyard checks failed"
+        "nearby_variants summary missing"
       ],
-      "readiness_status": "validator_failed",
-      "classification": "formal_scout",
-      "promotion_allowed": false,
-      "all_pass": false,
-      "claim_ceiling_present": true,
-      "claim_ceiling": "Formal scout only: instruments source-native EngineCore transition phases and tests finite boundary/path/FEP readouts before and after manifold projection. It does not admit physics, retrocausality, consciousness, final Axis0, final manifold ontology, or a canonical holographic dictionary claim.",
-      "tool_manifest_key_style": "upper",
-      "tool_depth_key_style": "upper",
-      "normalized_tool_depth": {
-        "gudhi": "supportive",
-        "networkx": "load_bearing",
-        "numpy": "load_bearing",
-        "scipy": "load_bearing",
-        "torch": "load_bearing",
-        "z3": "load_bearing"
-      },
+      "readiness_status": "source_missing",
+      "classification": "",
+      "promotion_allowed": null,
+      "all_pass": null,
+      "claim_ceiling_present": false,
+      "claim_ceiling": "",
+      "tool_manifest_key_style": "missing",
+      "tool_depth_key_style": "missing",
+      "normalized_tool_depth": {},
       "backend_policy_violations": [],
       "public_status_label": "exists",
       "public_status_blockers": [
@@ -192,17 +330,155 @@
         "canonical_process_not_evaluated"
       ],
       "promotion_blockers": [
+        "classification_not_formal_scout",
         "formal_scout_noncanonical",
         "fresh_rerun_not_performed",
-        "validator_failed"
+        "promotion_allowed_not_false",
+        "readme_index_missing",
+        "source_missing"
+      ]
+    },
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/d5_portability_signature_sweep_results.json",
+      "stem": "d5_portability_signature_sweep",
+      "source_path": "",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_d5_portability_signature_sweep.py",
+      "source_exists": false,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": false,
+      "validation_pass": false,
+      "validation_errors": [
+        "classification is not formal_scout",
+        "promotion_allowed is not false",
+        "claim_ceiling missing",
+        "positive section missing",
+        "graveyard_companions section missing",
+        "boundary section missing",
+        "why_not_v4_probes missing",
+        "nearby_variants summary missing"
+      ],
+      "readiness_status": "source_missing",
+      "classification": "",
+      "promotion_allowed": null,
+      "all_pass": null,
+      "claim_ceiling_present": false,
+      "claim_ceiling": "",
+      "tool_manifest_key_style": "missing",
+      "tool_depth_key_style": "missing",
+      "normalized_tool_depth": {},
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "classification_not_formal_scout",
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed",
+        "promotion_allowed_not_false",
+        "readme_index_missing",
+        "source_missing"
       ]
     }
   ],
-  "readme_missing_samples": [],
   "fresh_rerun_mapping_defect_rows": [],
   "fresh_rerun_dual_source_defect_rows": [],
   "backend_policy_violation_rows": [],
-  "source_missing_rows": [],
+  "source_missing_rows": [
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/d4_pseudoscalar_chirality_portability_extension_results.json",
+      "stem": "d4_pseudoscalar_chirality_portability_extension",
+      "source_path": "",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_d4_pseudoscalar_chirality_portability_extension.py",
+      "source_exists": false,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": false,
+      "validation_pass": false,
+      "validation_errors": [
+        "classification is not formal_scout",
+        "promotion_allowed is not false",
+        "claim_ceiling missing",
+        "positive section missing",
+        "graveyard_companions section missing",
+        "boundary section missing",
+        "why_not_v4_probes missing",
+        "nearby_variants summary missing"
+      ],
+      "readiness_status": "source_missing",
+      "classification": "",
+      "promotion_allowed": null,
+      "all_pass": null,
+      "claim_ceiling_present": false,
+      "claim_ceiling": "",
+      "tool_manifest_key_style": "missing",
+      "tool_depth_key_style": "missing",
+      "normalized_tool_depth": {},
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "classification_not_formal_scout",
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed",
+        "promotion_allowed_not_false",
+        "readme_index_missing",
+        "source_missing"
+      ]
+    },
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/d5_portability_signature_sweep_results.json",
+      "stem": "d5_portability_signature_sweep",
+      "source_path": "",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_d5_portability_signature_sweep.py",
+      "source_exists": false,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": false,
+      "validation_pass": false,
+      "validation_errors": [
+        "classification is not formal_scout",
+        "promotion_allowed is not false",
+        "claim_ceiling missing",
+        "positive section missing",
+        "graveyard_companions section missing",
+        "boundary section missing",
+        "why_not_v4_probes missing",
+        "nearby_variants summary missing"
+      ],
+      "readiness_status": "source_missing",
+      "classification": "",
+      "promotion_allowed": null,
+      "all_pass": null,
+      "claim_ceiling_present": false,
+      "claim_ceiling": "",
+      "tool_manifest_key_style": "missing",
+      "tool_depth_key_style": "missing",
+      "normalized_tool_depth": {},
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "classification_not_formal_scout",
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed",
+        "promotion_allowed_not_false",
+        "readme_index_missing",
+        "source_missing"
+      ]
+    }
+  ],
   "rows": [
     {
       "result_path": "system_v5/ops/formal_scouts/results/active_inference_policy_margin_sensitivity_probe_results.json",
@@ -286,12 +562,15 @@
       "fresh_rerun_mapping_defect": false,
       "fresh_rerun_dual_source_defect": false,
       "readme_indexed": true,
-      "validation_pass": true,
-      "validation_errors": [],
-      "readiness_status": "schema_ready",
+      "validation_pass": false,
+      "validation_errors": [
+        "one or more positive checks failed",
+        "blockers present"
+      ],
+      "readiness_status": "validator_failed",
       "classification": "formal_scout",
       "promotion_allowed": false,
-      "all_pass": true,
+      "all_pass": false,
       "claim_ceiling_present": true,
       "claim_ceiling": "Formal scout only: classifies selected existing receipts plus named synthetic shallow/open control fixtures under the noncanonical attractor-basin success doctrine. A deep_basin label means method/control convergence for the named receipt claim only. It does not admit canonical Axis0, FEP, Holodeck, engine, manifold, cognition, physics, world-model, or architecture claims, and it does not promote any underlying receipt.",
       "tool_manifest_key_style": "upper",
@@ -310,7 +589,8 @@
       ],
       "promotion_blockers": [
         "formal_scout_noncanonical",
-        "fresh_rerun_not_performed"
+        "fresh_rerun_not_performed",
+        "validator_failed"
       ]
     },
     {
@@ -607,6 +887,44 @@
       ]
     },
     {
+      "result_path": "system_v5/ops/formal_scouts/results/auto_lirpa_lewm_latent_surprise_bound_probe_results.json",
+      "stem": "auto_lirpa_lewm_latent_surprise_bound_probe",
+      "source_path": "system_v5/ops/formal_scouts/sim_auto_lirpa_lewm_latent_surprise_bound_probe.py",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_auto_lirpa_lewm_latent_surprise_bound_probe.py",
+      "source_exists": true,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": true,
+      "validation_pass": true,
+      "validation_errors": [],
+      "readiness_status": "schema_ready",
+      "classification": "formal_scout",
+      "promotion_allowed": false,
+      "all_pass": true,
+      "claim_ceiling_present": true,
+      "claim_ceiling": "Formal scout only: rewrites LeWM-style SIGReg, next-embedding prediction, and latent surprise as a tiny Ratchet-native PyTorch adapter, then bounds that adapter with auto_LiRPA over finite EngineCore stage features. It does not admit le-wm as a dependency, does not load checkpoints, and does not admit a neural world model, physics claim, cognition claim, final FEP system, final verifier, or canonical architecture.",
+      "tool_manifest_key_style": "upper",
+      "tool_depth_key_style": "upper",
+      "normalized_tool_depth": {
+        "auto_lirpa": "load_bearing",
+        "engine_core": "supportive",
+        "pathlib": "supportive",
+        "pytorch": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed"
+      ]
+    },
+    {
       "result_path": "system_v5/ops/formal_scouts/results/auto_lirpa_stage_policy_bound_consumption_probe_results.json",
       "stem": "auto_lirpa_stage_policy_bound_consumption_probe",
       "source_path": "system_v5/ops/formal_scouts/sim_auto_lirpa_stage_policy_bound_consumption_probe.py",
@@ -665,7 +983,7 @@
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
         "auto_lirpa": "load_bearing",
-        "engine_core": "load_bearing",
+        "engine_core": "supportive",
         "numpy": "load_bearing",
         "pytorch": "load_bearing",
         "z3": "load_bearing"
@@ -702,9 +1020,9 @@
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
-        "engine_core": "load_bearing",
-        "networkx": "load_bearing",
-        "numpy": "load_bearing"
+        "engine_core": "supportive",
+        "networkx": "supportive",
+        "pytorch": "load_bearing"
       },
       "backend_policy_violations": [],
       "public_status_label": "exists",
@@ -738,9 +1056,48 @@
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
-        "axis0_guard_utils": "load_bearing",
+        "axis0_guard_utils": "supportive",
         "numpy": "load_bearing",
-        "python_json": "load_bearing",
+        "python_json": "supportive",
+        "z3": "load_bearing"
+      },
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed"
+      ]
+    },
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/axis0_lewm_lirpa_pytorch_assembly_probe_results.json",
+      "stem": "axis0_lewm_lirpa_pytorch_assembly_probe",
+      "source_path": "system_v5/ops/formal_scouts/sim_axis0_lewm_lirpa_pytorch_assembly_probe.py",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_axis0_lewm_lirpa_pytorch_assembly_probe.py",
+      "source_exists": true,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": true,
+      "validation_pass": true,
+      "validation_errors": [],
+      "readiness_status": "schema_ready",
+      "classification": "formal_scout",
+      "promotion_allowed": false,
+      "all_pass": true,
+      "claim_ceiling_present": true,
+      "claim_ceiling": "Formal scout only: consumes existing guarded Axis0, FEP/POMDP/VMP, Holodeck hash-memory, and auto_LiRPA LeWM-style latent-surprise receipts to assemble a tiny PyTorch carrier adapter with LiRPA bounds. It does not admit a final Axis0 alignment, final super-sim, neural world model, physics claim, canonical architecture, proof of manifold reality, or full MPS/PEPS/PEPS3D theorem.",
+      "tool_manifest_key_style": "upper",
+      "tool_depth_key_style": "upper",
+      "normalized_tool_depth": {
+        "auto_lirpa": "load_bearing",
+        "axis0_guard_utils": "supportive",
+        "pathlib": "supportive",
+        "python_json": "supportive",
+        "pytorch": "load_bearing",
         "z3": "load_bearing"
       },
       "backend_policy_violations": [],
@@ -812,10 +1169,13 @@
       "tool_manifest_key_style": "both",
       "tool_depth_key_style": "both",
       "normalized_tool_depth": {
-        "engine_core": "load_bearing",
-        "networkx": "load_bearing",
-        "numpy": "load_bearing",
+        "engine_core": "supportive",
+        "hashlib": "supportive",
+        "json": "supportive",
+        "networkx": "supportive",
         "quimb": "load_bearing",
+        "subdense": "supportive",
+        "torch": "load_bearing",
         "z3": "load_bearing"
       },
       "backend_policy_violations": [],
@@ -1120,6 +1480,43 @@
         "scipy": "load_bearing",
         "sympy": "load_bearing",
         "z3": "load_bearing"
+      },
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed"
+      ]
+    },
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/commutative_geometry_collapse_cl_2_2_portability_probe_results.json",
+      "stem": "commutative_geometry_collapse_cl_2_2_portability_probe",
+      "source_path": "system_v5/ops/formal_scouts/sim_commutative_geometry_collapse_cl_2_2_portability_probe.py",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_commutative_geometry_collapse_cl_2_2_portability_probe.py",
+      "source_exists": true,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": true,
+      "validation_pass": true,
+      "validation_errors": [],
+      "readiness_status": "schema_ready",
+      "classification": "formal_scout",
+      "promotion_allowed": false,
+      "all_pass": true,
+      "claim_ceiling_present": true,
+      "claim_ceiling": "Formal scout only: tests whether the commutative-reduction impossibility proven structurally for Cl(1,3) (D5 commutative_geometry_collapse, only deep_basin in current classifier) also holds under signature Cl(2,2). Cross-solver verification via z3 + cvc5 dual encodings (4-way UNSAT or split). Does not admit canonical engine, manifold, axis, or basin verdict \u2014 that requires fresh-context external case authorship per anti-smuggling rule. Surfaces portability evidence only.",
+      "tool_manifest_key_style": "upper",
+      "tool_depth_key_style": "upper",
+      "normalized_tool_depth": {
+        "z3": "load_bearing",
+        "cvc5": "load_bearing",
+        "clifford": "load_bearing",
+        "numpy": "supportive"
       },
       "backend_policy_violations": [],
       "public_status_label": "exists",
@@ -1530,6 +1927,96 @@
       "promotion_blockers": [
         "formal_scout_noncanonical",
         "fresh_rerun_not_performed"
+      ]
+    },
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/d4_pseudoscalar_chirality_portability_extension_results.json",
+      "stem": "d4_pseudoscalar_chirality_portability_extension",
+      "source_path": "",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_d4_pseudoscalar_chirality_portability_extension.py",
+      "source_exists": false,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": false,
+      "validation_pass": false,
+      "validation_errors": [
+        "classification is not formal_scout",
+        "promotion_allowed is not false",
+        "claim_ceiling missing",
+        "positive section missing",
+        "graveyard_companions section missing",
+        "boundary section missing",
+        "why_not_v4_probes missing",
+        "nearby_variants summary missing"
+      ],
+      "readiness_status": "source_missing",
+      "classification": "",
+      "promotion_allowed": null,
+      "all_pass": null,
+      "claim_ceiling_present": false,
+      "claim_ceiling": "",
+      "tool_manifest_key_style": "missing",
+      "tool_depth_key_style": "missing",
+      "normalized_tool_depth": {},
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "classification_not_formal_scout",
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed",
+        "promotion_allowed_not_false",
+        "readme_index_missing",
+        "source_missing"
+      ]
+    },
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/d5_portability_signature_sweep_results.json",
+      "stem": "d5_portability_signature_sweep",
+      "source_path": "",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_d5_portability_signature_sweep.py",
+      "source_exists": false,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": false,
+      "validation_pass": false,
+      "validation_errors": [
+        "classification is not formal_scout",
+        "promotion_allowed is not false",
+        "claim_ceiling missing",
+        "positive section missing",
+        "graveyard_companions section missing",
+        "boundary section missing",
+        "why_not_v4_probes missing",
+        "nearby_variants summary missing"
+      ],
+      "readiness_status": "source_missing",
+      "classification": "",
+      "promotion_allowed": null,
+      "all_pass": null,
+      "claim_ceiling_present": false,
+      "claim_ceiling": "",
+      "tool_manifest_key_style": "missing",
+      "tool_depth_key_style": "missing",
+      "normalized_tool_depth": {},
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "promotion_blockers": [
+        "classification_not_formal_scout",
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed",
+        "promotion_allowed_not_false",
+        "readme_index_missing",
+        "source_missing"
       ]
     },
     {
@@ -3421,11 +3908,10 @@
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
-        "networkx": "load_bearing",
-        "numpy": "load_bearing",
-        "pathlib": "load_bearing",
-        "python_json": "load_bearing",
-        "python_subprocess": "load_bearing",
+        "networkx": "supportive",
+        "pathlib": "supportive",
+        "python_json": "supportive",
+        "python_subprocess": "supportive",
         "sympy": "load_bearing",
         "z3": "load_bearing"
       },
@@ -3930,8 +4416,10 @@
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
-        "networkx": "load_bearing",
-        "numpy": "load_bearing"
+        "engine_core": "supportive",
+        "json": "supportive",
+        "networkx": "supportive",
+        "torch": "load_bearing"
       },
       "backend_policy_violations": [],
       "public_status_label": "exists",
@@ -5739,9 +6227,10 @@
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
-        "engine_core": "load_bearing",
-        "hashlib": "load_bearing",
-        "numpy": "load_bearing",
+        "engine_core": "supportive",
+        "hashlib": "supportive",
+        "json": "supportive",
+        "pytorch": "load_bearing",
         "sympy": "load_bearing",
         "z3": "load_bearing"
       },
@@ -5812,14 +6301,14 @@
       "promotion_allowed": false,
       "all_pass": true,
       "claim_ceiling_present": true,
-      "claim_ceiling": "Formal scout only: tests source-native EngineCore/manifold candidate attractor-basin depth under perturbations and matched controls. It does not admit global manifold necessity, final FEP, final Axis0, full Holodeck, physics, cognition, world-model, architecture, or canonical claims.",
+      "claim_ceiling": "Formal scout only: tests source-native EngineCore/manifold candidate attractor-basin depth under perturbations and matched controls. It does not admit global manifold necessity, arbitrary CPTP robustness, global basin depth, final FEP, final Axis0, full Holodeck, physics, cognition, world-model, architecture, or canonical claims. Its random controls are finite 2x2 PyTorch controls only.",
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
-        "engine_core": "load_bearing",
-        "hashlib": "load_bearing",
-        "json": "load_bearing",
-        "numpy": "load_bearing"
+        "engine_core": "supportive",
+        "hashlib": "supportive",
+        "json": "supportive",
+        "pytorch": "load_bearing"
       },
       "backend_policy_violations": [],
       "public_status_label": "exists",
@@ -5853,9 +6342,9 @@
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
-        "hashlib": "load_bearing",
-        "json": "load_bearing",
-        "numpy": "load_bearing"
+        "hashlib": "supportive",
+        "json": "supportive",
+        "pytorch": "load_bearing"
       },
       "backend_policy_violations": [],
       "public_status_label": "exists",
@@ -5889,10 +6378,10 @@
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
-        "engine_core": "load_bearing",
-        "hashlib": "load_bearing",
-        "json": "load_bearing",
-        "numpy": "load_bearing"
+        "engine_core": "supportive",
+        "hashlib": "supportive",
+        "json": "supportive",
+        "pytorch": "load_bearing"
       },
       "backend_policy_violations": [],
       "public_status_label": "exists",
@@ -5926,10 +6415,10 @@
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
-        "engine_core": "load_bearing",
-        "hashlib": "load_bearing",
-        "json": "load_bearing",
-        "numpy": "load_bearing"
+        "engine_core": "supportive",
+        "hashlib": "supportive",
+        "json": "supportive",
+        "pytorch": "load_bearing"
       },
       "backend_policy_violations": [],
       "public_status_label": "exists",
@@ -5952,25 +6441,19 @@
       "fresh_rerun_mapping_defect": false,
       "fresh_rerun_dual_source_defect": false,
       "readme_indexed": true,
-      "validation_pass": false,
-      "validation_errors": [
-        "boundary section missing",
-        "why_not_v4_probes missing",
-        "nearby_variants summary missing",
-        "one or more positive checks failed",
-        "one or more graveyard checks failed"
-      ],
-      "readiness_status": "validator_failed",
+      "validation_pass": true,
+      "validation_errors": [],
+      "readiness_status": "schema_ready",
       "classification": "formal_scout",
       "promotion_allowed": false,
-      "all_pass": false,
+      "all_pass": true,
       "claim_ceiling_present": true,
-      "claim_ceiling": "Formal scout only: instruments source-native EngineCore transition phases and tests finite boundary/path/FEP readouts before and after manifold projection. It does not admit physics, retrocausality, consciousness, final Axis0, final manifold ontology, or a canonical holographic dictionary claim.",
+      "claim_ceiling": "Formal scout only: instruments source-native EngineCore transition phases and tests finite boundary/path/FEP readouts before and after manifold projection. It does not admit physics, retrocausality, consciousness, final Axis0, final manifold ontology, or a canonical holographic dictionary claim. Current local transition math remains NumPy/SciPy load-bearing and is quarantined from nonclassical basin promotion until a constraint-admissible replacement lands.",
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
         "gudhi": "supportive",
-        "networkx": "load_bearing",
+        "networkx": "supportive",
         "numpy": "load_bearing",
         "scipy": "load_bearing",
         "torch": "load_bearing",
@@ -5985,8 +6468,7 @@
       ],
       "promotion_blockers": [
         "formal_scout_noncanonical",
-        "fresh_rerun_not_performed",
-        "validator_failed"
+        "fresh_rerun_not_performed"
       ]
     },
     {
@@ -6009,11 +6491,13 @@
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
-        "engine_core": "load_bearing",
-        "networkx": "load_bearing",
-        "numpy": "load_bearing",
-        "scipy": "load_bearing",
-        "z3": "supportive"
+        "engine_core": "supportive",
+        "hashlib": "supportive",
+        "json": "supportive",
+        "networkx": "supportive",
+        "pomdp": "supportive",
+        "torch": "load_bearing",
+        "z3": "load_bearing"
       },
       "backend_policy_violations": [],
       "public_status_label": "exists",
@@ -6047,9 +6531,9 @@
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
-        "networkx": "load_bearing",
-        "numpy": "load_bearing",
-        "scipy": "load_bearing",
+        "engine_core": "supportive",
+        "json": "supportive",
+        "networkx": "supportive",
         "torch": "load_bearing"
       },
       "backend_policy_violations": [],
@@ -6121,14 +6605,16 @@
       "promotion_allowed": false,
       "all_pass": true,
       "claim_ceiling_present": true,
-      "claim_ceiling": "Formal scout only: implements a finite Holodeck-style projection/check/correction/update loop over source-native EngineCore stage windows with manifold constraints enabled. It does not admit a canonical FEP engine, final IGT, psychology, physics, TOE, consciousness, full Holodeck, or canonical engine identity claim.",
+      "claim_ceiling": "Formal scout only: implements a finite Holodeck-style projection/check/correction/update loop over source-native EngineCore stage windows with manifold constraints enabled. It does not admit a canonical FEP engine, final IGT, psychology, physics, TOE, consciousness, full Holodeck, canonical engine identity claim, or Torch-only source-native engine substrate claim. EngineCore remains a separate foundation surface with known NumPy/SciPy internals.",
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
-        "holodeck_fep_engine.hopf_map": "load_bearing",
-        "networkx": "load_bearing",
-        "numpy": "load_bearing",
-        "scipy": "load_bearing",
+        "engine_core": "supportive",
+        "holodeck_fep_engine.hopf_map": "supportive",
+        "json": "supportive",
+        "networkx": "supportive",
+        "numpy": "supportive",
+        "scipy": "supportive",
         "torch": "load_bearing"
       },
       "backend_policy_violations": [],
@@ -6163,9 +6649,11 @@
       "tool_manifest_key_style": "both",
       "tool_depth_key_style": "both",
       "normalized_tool_depth": {
-        "engine_core": "load_bearing",
-        "networkx": "load_bearing",
-        "numpy": "load_bearing",
+        "engine_core": "supportive",
+        "hashlib": "supportive",
+        "json": "supportive",
+        "networkx": "supportive",
+        "torch": "load_bearing",
         "z3": "load_bearing"
       },
       "backend_policy_violations": [],
@@ -7273,9 +7761,9 @@
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
-        "engine_core": "load_bearing",
+        "engine_core": "supportive",
         "numpy": "load_bearing",
-        "pathlib": "load_bearing",
+        "pathlib": "supportive",
         "pytorch": "load_bearing",
         "z3": "load_bearing"
       },

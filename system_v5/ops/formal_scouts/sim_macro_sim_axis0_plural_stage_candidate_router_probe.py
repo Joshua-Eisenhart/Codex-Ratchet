@@ -27,7 +27,7 @@ from collections import Counter
 from typing import Any
 
 import networkx as nx
-import numpy as np
+import torch
 
 from engine_core import EngineCore, generate_initial_density
 
@@ -48,18 +48,33 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "torch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing stage-vector differences, entropy, correlation-diversity, and control comparison",
+        "reason": "load-bearing source-native tensor math for stage-vector differences, entropy, correlation-diversity, policy posterior normalization, and control comparisons",
+    },
+    "engine_core": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive source of repaired science-method stage records consumed by the router",
     },
     "networkx": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing candidate-routing dependency graph",
+        "reason": "supportive candidate-routing dependency graph sanity check",
+    },
+    "json": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive receipt loading and result serialization",
     },
 }
-TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing", "networkx": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {
+    "torch": "load_bearing",
+    "engine_core": "supportive",
+    "networkx": "supportive",
+    "json": "supportive",
+}
 
 REQUIRED_STAGE_FIELDS = [
     "model_before",
@@ -125,8 +140,8 @@ def assert_stage_fields(rows: list[dict[str, Any]]) -> dict[str, Any]:
 def categorical_entropy(values: list[str]) -> float:
     counts = Counter(values)
     total = float(sum(counts.values()))
-    probs = np.array([count / total for count in counts.values()], dtype=float)
-    return float(-np.sum(probs * np.log(probs)))
+    probs = torch.tensor([count / total for count in counts.values()], dtype=torch.float64)
+    return float((-torch.sum(probs * torch.log(probs))).item())
 
 
 def rolling(values: list[Any], width: int) -> list[list[Any]]:
@@ -134,63 +149,69 @@ def rolling(values: list[Any], width: int) -> list[list[Any]]:
 
 
 def fep_gradient_candidate(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    efe = np.array([row["fep_efe_score"]["expected_free_energy_proxy"] for row in rows], dtype=float)
-    grad = np.diff(efe)
-    polarity = np.sign(grad)
+    efe = torch.tensor(
+        [row["fep_efe_score"]["expected_free_energy_proxy"] for row in rows],
+        dtype=torch.float64,
+    )
+    grad = torch.diff(efe)
+    polarity = torch.sign(grad)
     return {
         "candidate": "fep_gradient_polarity",
         "status": "routing_candidate_not_final",
         "values": grad.tolist(),
-        "mean_abs_gradient": float(np.mean(np.abs(grad))),
-        "positive_steps": int(np.sum(polarity > 0)),
-        "negative_steps": int(np.sum(polarity < 0)),
-        "zero_steps": int(np.sum(polarity == 0)),
-        "finite": bool(np.all(np.isfinite(grad))),
+        "mean_abs_gradient": float(torch.mean(torch.abs(grad)).item()),
+        "positive_steps": int(torch.sum(polarity > 0).item()),
+        "negative_steps": int(torch.sum(polarity < 0).item()),
+        "zero_steps": int(torch.sum(polarity == 0).item()),
+        "finite": bool(torch.all(torch.isfinite(grad)).item()),
     }
 
 
 def path_entropy_candidate(rows: list[dict[str, Any]]) -> dict[str, Any]:
     tokens = [str(row["ordered_token"]) for row in rows]
-    ent = np.array([categorical_entropy(window) for window in rolling(tokens, width=8)], dtype=float)
-    deriv = np.diff(ent)
+    ent = torch.tensor(
+        [categorical_entropy(window) for window in rolling(tokens, width=8)],
+        dtype=torch.float64,
+    )
+    deriv = torch.diff(ent)
     return {
         "candidate": "path_entropy",
         "status": "routing_candidate_not_final",
         "values": deriv.tolist(),
-        "entropy_mean": float(np.mean(ent)),
-        "derivative_mean_abs": float(np.mean(np.abs(deriv))),
-        "finite": bool(np.all(np.isfinite(deriv))),
+        "entropy_mean": float(torch.mean(ent).item()),
+        "derivative_mean_abs": float(torch.mean(torch.abs(deriv)).item()),
+        "finite": bool(torch.all(torch.isfinite(deriv)).item()),
     }
 
 
 def correlation_diversity_candidate(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    obs = np.array([row["observation"]["observation_distribution"] for row in rows], dtype=float)
+    obs = [row["observation"]["observation_distribution"] for row in rows]
     diversity = []
-    for window in rolling(list(obs), width=8):
-        arr = np.asarray(window, dtype=float)
+    for window in rolling(obs, width=8):
+        arr = torch.tensor(window, dtype=torch.float64)
         if arr.shape[0] < 3:
             diversity.append(0.0)
             continue
-        corr = np.corrcoef(arr)
-        corr = np.nan_to_num(corr, nan=0.0, posinf=0.0, neginf=0.0)
-        offdiag = corr[~np.eye(corr.shape[0], dtype=bool)]
-        diversity.append(float(1.0 - np.mean(np.abs(offdiag))))
-    diversity_arr = np.array(diversity, dtype=float)
-    deriv = np.diff(diversity_arr)
+        corr = torch.corrcoef(arr)
+        corr = torch.nan_to_num(corr, nan=0.0, posinf=0.0, neginf=0.0)
+        offdiag = corr[~torch.eye(corr.shape[0], dtype=torch.bool)]
+        diversity.append(float((1.0 - torch.mean(torch.abs(offdiag))).item()))
+    diversity_arr = torch.tensor(diversity, dtype=torch.float64)
+    deriv = torch.diff(diversity_arr)
     return {
         "candidate": "correlation_diversity_derivative",
         "status": "routing_candidate_not_final",
         "values": deriv.tolist(),
-        "diversity_mean": float(np.mean(diversity_arr)),
-        "derivative_mean_abs": float(np.mean(np.abs(deriv))),
-        "finite": bool(np.all(np.isfinite(deriv))),
+        "diversity_mean": float(torch.mean(diversity_arr).item()),
+        "derivative_mean_abs": float(torch.mean(torch.abs(deriv)).item()),
+        "finite": bool(torch.all(torch.isfinite(deriv)).item()),
     }
 
 
-def stable_softmax_from_efe(efe: np.ndarray) -> np.ndarray:
-    shifted = -efe - np.max(-efe)
-    weights = np.exp(shifted)
-    return weights / np.sum(weights)
+def stable_softmax_from_efe(efe: torch.Tensor) -> torch.Tensor:
+    shifted = -efe - torch.max(-efe)
+    weights = torch.exp(shifted)
+    return weights / torch.sum(weights)
 
 
 def online_vmp_ready(online_vmp_receipt: dict[str, Any]) -> bool:
@@ -248,20 +269,28 @@ def many_futures_policy_candidate(
             "interpretation": "finite policy-tree depth under B_pi; not primitive time or final retrocausality",
         }
 
-    efe = np.asarray([float(row["expected_free_energy"]) for row in rows], dtype=float)
-    posterior = np.asarray([float(row.get("policy_probability", np.nan)) for row in rows], dtype=float)
-    if not np.all(np.isfinite(posterior)) or float(np.sum(posterior)) <= 0.0:
+    efe = torch.tensor([float(row["expected_free_energy"]) for row in rows], dtype=torch.float64)
+    posterior = torch.tensor(
+        [float(row.get("policy_probability", math.nan)) for row in rows],
+        dtype=torch.float64,
+    )
+    if not bool(torch.all(torch.isfinite(posterior)).item()) or float(torch.sum(posterior).item()) <= 0.0:
         posterior = stable_softmax_from_efe(efe)
     else:
-        posterior = posterior / float(np.sum(posterior))
+        posterior = posterior / torch.sum(posterior)
 
-    uniform = np.full_like(posterior, 1.0 / len(posterior))
+    uniform = torch.full_like(posterior, 1.0 / len(posterior))
     centered = posterior - uniform
-    entropy = float(-np.sum(np.where(posterior > 0.0, posterior * np.log(posterior), 0.0)))
-    effective_count = float(np.exp(entropy))
-    argmax = np.zeros_like(posterior)
-    argmax[int(np.argmax(posterior))] = 1.0
-    selected_idx = int(np.argmin(efe))
+    entropy_terms = torch.where(
+        posterior > 0.0,
+        posterior * torch.log(posterior),
+        torch.zeros_like(posterior),
+    )
+    entropy = float((-torch.sum(entropy_terms)).item())
+    effective_count = float(torch.exp(torch.tensor(entropy, dtype=torch.float64)).item())
+    argmax = torch.zeros_like(posterior)
+    argmax[int(torch.argmax(posterior).item())] = 1.0
+    selected_idx = int(torch.argmin(efe).item())
     policy_order = [str(row.get("policy_id")) for row in rows]
     return {
         "candidate": "retrocausal_many_futures_policy_scoring",
@@ -274,11 +303,11 @@ def many_futures_policy_candidate(
         "effective_policy_count": effective_count,
         "selected_policy": policy_order[selected_idx],
         "selected_policy_probability": float(posterior[selected_idx]),
-        "efe_min": float(np.min(efe)),
-        "efe_max": float(np.max(efe)),
-        "efe_range": float(np.max(efe) - np.min(efe)),
-        "l2_from_uniform_control": float(np.linalg.norm(centered)),
-        "l2_from_single_argmax_control": float(np.linalg.norm(posterior - argmax)),
+        "efe_min": float(torch.min(efe).item()),
+        "efe_max": float(torch.max(efe).item()),
+        "efe_range": float((torch.max(efe) - torch.min(efe)).item()),
+        "l2_from_uniform_control": float(torch.linalg.vector_norm(centered).item()),
+        "l2_from_single_argmax_control": float(torch.linalg.vector_norm(posterior - argmax).item()),
         "control_policy_changes": {
             "no_engine_policy": (pomdp_receipt.get("summary") or {}).get("no_engine_policy"),
             "risk_only_policy": (pomdp_receipt.get("summary") or {}).get("risk_only_policy"),
@@ -325,7 +354,10 @@ def many_futures_policy_candidate(
                 .get("pass")
             ),
         },
-        "finite": bool(np.all(np.isfinite(centered)) and math.isclose(float(np.sum(posterior)), 1.0, rel_tol=1e-9, abs_tol=1e-9)),
+        "finite": bool(
+            torch.all(torch.isfinite(centered)).item()
+            and math.isclose(float(torch.sum(posterior).item()), 1.0, rel_tol=1e-9, abs_tol=1e-9)
+        ),
         "interpretation": "finite online-VMP policy scoring over B_pi; not primitive time or final retrocausality",
     }
 
@@ -347,13 +379,13 @@ def boundary_interior_candidate(boundary_receipt: dict[str, Any]) -> dict[str, A
         (boundary_receipt.get("axis0_outputs_or_blockers") or {})
         .get("holographic_boundary_interior_reconstruction", {})
     )
-    values = np.asarray(
+    values = torch.tensor(
         [
             float(routed.get("mean_tomographic_fep_gap", 0.0)),
             float(routed.get("selection_gap", 0.0)),
             float(routed.get("axis0_path_entropy_mean_abs_delta", 0.0)),
         ],
-        dtype=float,
+        dtype=torch.float64,
     )
     return {
         "candidate": "holographic_boundary_interior_reconstruction",
@@ -364,13 +396,16 @@ def boundary_interior_candidate(boundary_receipt: dict[str, Any]) -> dict[str, A
         "axis0_path_entropy_mean_abs_delta": float(values[2]),
         "explicit_blockers": boundary_receipt.get("explicit_blockers", {}),
         "source_receipt": boundary_receipt.get("path"),
-        "finite": bool(np.all(np.isfinite(values)) and float(np.linalg.norm(values)) > 0.0),
+        "finite": bool(
+            torch.all(torch.isfinite(values)).item()
+            and float(torch.linalg.vector_norm(values).item()) > 0.0
+        ),
         "interpretation": "finite boundary/interior routing candidate with path-label and strict-best-KL blockers retained; not a holographic dictionary",
     }
 
 
-def candidate_vector(candidate: dict[str, Any]) -> np.ndarray:
-    return np.asarray(candidate.get("values", []), dtype=float)
+def candidate_vector(candidate: dict[str, Any]) -> torch.Tensor:
+    return torch.tensor(candidate.get("values", []), dtype=torch.float64)
 
 
 def compare_candidate(base: dict[str, Any], control: dict[str, Any]) -> dict[str, Any]:
@@ -379,7 +414,7 @@ def compare_candidate(base: dict[str, Any], control: dict[str, Any]) -> dict[str
     n = min(len(a), len(b))
     if n == 0:
         return {"l2_delta": 0.0, "pass": False}
-    l2 = float(np.linalg.norm(a[:n] - b[:n]))
+    l2 = float(torch.linalg.vector_norm(a[:n] - b[:n]).item())
     return {"l2_delta": l2, "pass": l2 > 1e-9}
 
 

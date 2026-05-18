@@ -14,7 +14,6 @@ import time
 from typing import Any
 
 import networkx as nx
-import numpy as np
 import sympy as sp
 from z3 import And, Bool, Solver, sat
 
@@ -39,27 +38,22 @@ TOOL_MANIFEST = {
     "python_subprocess": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing ordered fresh reruns of formal-scout scripts",
+        "reason": "supportive ordered fresh reruns of formal-scout scripts",
     },
     "python_json": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing receipt parsing and suite result writing",
+        "reason": "supportive receipt parsing and suite result writing",
     },
     "pathlib": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing canonical script and result path checks",
-    },
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing pass-vector and runtime-gap checks",
+        "reason": "supportive canonical script and result path checks",
     },
     "networkx": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing ordered evidence dependency graph",
+        "reason": "supportive ordered evidence dependency graph",
     },
     "sympy": {
         "tried": True,
@@ -72,7 +66,14 @@ TOOL_MANIFEST = {
         "reason": "load-bearing suite admissibility witness",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "python_subprocess": "supportive",
+    "python_json": "supportive",
+    "pathlib": "supportive",
+    "networkx": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+}
 
 SUITE = [
     {
@@ -364,6 +365,18 @@ SUITE = [
         "category": "world_model_repo_admission",
     },
     {
+        "name": "auto_lirpa_lewm_latent_surprise_bound",
+        "script": "sim_auto_lirpa_lewm_latent_surprise_bound_probe.py",
+        "result": "auto_lirpa_lewm_latent_surprise_bound_probe_results.json",
+        "category": "auto_lirpa_lewm_latent_surprise_micro_bound",
+    },
+    {
+        "name": "axis0_lewm_lirpa_pytorch_assembly",
+        "script": "sim_axis0_lewm_lirpa_pytorch_assembly_probe.py",
+        "result": "axis0_lewm_lirpa_pytorch_assembly_probe_results.json",
+        "category": "guarded_axis0_lewm_lirpa_pytorch_assembly",
+    },
+    {
         "name": "auto_lirpa_stage_policy_bound_consumption",
         "script": "sim_auto_lirpa_stage_policy_bound_consumption_probe.py",
         "result": "auto_lirpa_stage_policy_bound_consumption_probe_results.json",
@@ -430,6 +443,8 @@ CRITICAL_NODES = {
     "axis0_fep_gradient_stage_local_adapter_closure",
     "mps_local_boundary_path_fep_scaling_8_16_32",
     "world_model_repo_admission_gap_adapter",
+    "auto_lirpa_lewm_latent_surprise_bound",
+    "axis0_lewm_lirpa_pytorch_assembly",
     "auto_lirpa_stage_policy_bound_consumption",
     "auto_lirpa_trained_stage_policy_adapter_bound",
     "lirpa_policy_bound_gated_multicarrier_environment",
@@ -477,6 +492,10 @@ CRITICAL_EDGES = {
     ("axis0_plural_candidate_multicarrier_drive_controls", "mps_local_boundary_path_fep_scaling_8_16_32"),
     ("macro_stage_record_science_method_contract", "mps_local_boundary_path_fep_scaling_8_16_32"),
     ("mps_local_boundary_path_fep_scaling_8_16_32", "world_model_repo_admission_gap_adapter"),
+    ("world_model_repo_admission_gap_adapter", "auto_lirpa_lewm_latent_surprise_bound"),
+    ("auto_lirpa_lewm_latent_surprise_bound", "axis0_lewm_lirpa_pytorch_assembly"),
+    ("axis0_lewm_lirpa_pytorch_assembly", "auto_lirpa_stage_policy_bound_consumption"),
+    ("auto_lirpa_lewm_latent_surprise_bound", "auto_lirpa_stage_policy_bound_consumption"),
     ("world_model_repo_admission_gap_adapter", "auto_lirpa_stage_policy_bound_consumption"),
     ("auto_lirpa_stage_policy_bound_consumption", "auto_lirpa_trained_stage_policy_adapter_bound"),
     ("auto_lirpa_trained_stage_policy_adapter_bound", "lirpa_policy_bound_gated_multicarrier_environment"),
@@ -492,10 +511,6 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, pathlib.Path):
         return str(value)
     return value
@@ -650,6 +665,10 @@ def build_dependency_graph(rows: list[dict[str, Any]]) -> nx.DiGraph:
     graph.add_edge("axis0_plural_candidate_multicarrier_drive_controls", "mps_local_boundary_path_fep_scaling_8_16_32")
     graph.add_edge("macro_stage_record_science_method_contract", "mps_local_boundary_path_fep_scaling_8_16_32")
     graph.add_edge("mps_local_boundary_path_fep_scaling_8_16_32", "world_model_repo_admission_gap_adapter")
+    graph.add_edge("world_model_repo_admission_gap_adapter", "auto_lirpa_lewm_latent_surprise_bound")
+    graph.add_edge("auto_lirpa_lewm_latent_surprise_bound", "axis0_lewm_lirpa_pytorch_assembly")
+    graph.add_edge("axis0_lewm_lirpa_pytorch_assembly", "auto_lirpa_stage_policy_bound_consumption")
+    graph.add_edge("auto_lirpa_lewm_latent_surprise_bound", "auto_lirpa_stage_policy_bound_consumption")
     graph.add_edge("world_model_repo_admission_gap_adapter", "auto_lirpa_stage_policy_bound_consumption")
     graph.add_edge("auto_lirpa_stage_policy_bound_consumption", "auto_lirpa_trained_stage_policy_adapter_bound")
     graph.add_edge("auto_lirpa_trained_stage_policy_adapter_bound", "lirpa_policy_bound_gated_multicarrier_environment")
@@ -672,8 +691,17 @@ def missing_critical_edges(graph: nx.DiGraph) -> list[list[str]]:
 def main() -> int:
     start = time.time()
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    rows = [run_script(row) for row in SUITE]
-    pass_vector = np.array([1 if row["pass"] else 0 for row in rows], dtype=float)
+    rows: list[dict[str, Any]] = []
+    for index, row in enumerate(SUITE, start=1):
+        print(f"SUITE_PROGRESS start {index}/{len(SUITE)} {row['name']}", flush=True)
+        completed = run_script(row)
+        rows.append(completed)
+        print(
+            f"SUITE_PROGRESS done {index}/{len(SUITE)} {row['name']} "
+            f"pass={completed['pass']} elapsed={completed['elapsed_seconds']:.3f}s",
+            flush=True,
+        )
+    pass_vector = [bool(row["pass"]) for row in rows]
     graph = build_dependency_graph(rows)
     manifest_row = next(row for row in rows if row["name"] == "operational_manifest_quarantine")
     category_counts = {category: 0 for category in sorted({row["category"] for row in rows})}
@@ -683,12 +711,12 @@ def main() -> int:
     missing_edges = missing_critical_edges(graph)
     row_hashes_present = all(bool(row.get("result_sha256")) for row in rows)
 
-    suite_all_pass = bool(np.all(pass_vector)) and nx.is_directed_acyclic_graph(graph)
+    suite_all_pass = all(pass_vector) and nx.is_directed_acyclic_graph(graph)
     symbolic_count = sp.Integer(len(rows))
     z3_solver = Solver()
     all_scripts_pass = Bool("all_scripts_pass")
     graph_is_acyclic = Bool("graph_is_acyclic")
-    z3_solver.add(all_scripts_pass == bool(np.all(pass_vector)))
+    z3_solver.add(all_scripts_pass == all(pass_vector))
     z3_solver.add(graph_is_acyclic == nx.is_directed_acyclic_graph(graph))
     z3_solver.add(And(all_scripts_pass, graph_is_acyclic))
     z3_status = z3_solver.check()
@@ -708,7 +736,7 @@ def main() -> int:
             "ordered_suite_fresh_reruns_pass": {
                 "pass": suite_all_pass,
                 "count": len(rows),
-                "passed": int(pass_vector.sum()),
+                "passed": sum(1 for flag in pass_vector if flag),
             },
             "manifold_first_order_is_enforced": {
                 "pass": rows[0]["category"] == "source_native_constraint_manifold_operational_assembly"

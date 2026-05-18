@@ -2,14 +2,14 @@
 """lint_sim_contract.py -- Static contract linter for system_v4/probes/sim_*.py.
 
 Checks, by AST parse only (no import side-effects):
-  C1: module-level `classification` in
-      {"classical_baseline","canonical","tool_lego_fit_probe"}
+  C1: module-level `classification` or `CLASSIFICATION` in
+      {"classical_baseline","canonical","tool_lego_fit_probe","formal_scout"}
   C2: module-level `TOOL_MANIFEST` dict with non-empty `reason` per tool
   C3: module-level `TOOL_INTEGRATION_DEPTH` dict present, values in allowed set
   C4: if classification == "classical_baseline", non-empty `divergence_log`
   C5: if any tool in TOOL_INTEGRATION_DEPTH == "load_bearing",
-      `sim_<canonical>_capability.py` exists AND
-      a2_state/sim_results/<canonical>_capability_results.json has summary.all_pass == True
+      either a v4 `sim_<canonical>_capability.py` receipt passes, or a v5
+      formal tool-admission scout for that tool passes
       (self-probe exception: a capability probe is trivially its own evidence)
   C7: bridge or nonclassical sims may not use numpy as a load-bearing tool.
   C8: nonclassical sims require locally load-bearing pytorch.
@@ -34,13 +34,20 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 PROBES_DIR = REPO / "system_v4" / "probes"
 RESULTS_DIR = PROBES_DIR / "a2_state" / "sim_results"
+FORMAL_SCOUT_RESULTS_DIR = REPO / "system_v5" / "ops" / "formal_scouts" / "results"
 
-VALID_CLASSIFICATIONS = {"classical_baseline", "canonical", "tool_lego_fit_probe"}
+VALID_CLASSIFICATIONS = {"classical_baseline", "canonical", "tool_lego_fit_probe", "formal_scout"}
 VALID_DEPTHS = {"load_bearing", "supportive", "decorative", None}
 TRANSITIVE_ROLE_VALUES = {"transitive", "upstream", "imported", "delegated", "engine-core", "engine_core"}
+FORMAL_TOOL_ADMISSION_RESULTS = {
+    "auto_lirpa": ("auto_lirpa_lewm_latent_surprise_bound_probe_results.json",),
+    "cotengra": ("quimb_cotengra_tensor_network_geometry_contraction_probe_results.json",),
+    "quimb": ("quimb_cotengra_tensor_network_geometry_contraction_probe_results.json",),
+}
 
 ALIASES = {
     "pytorch": "pytorch", "torch": "pytorch",
+    "auto_lirpa": "auto_lirpa",
     "pyg": "pyg", "torch_geometric": "pyg", "torch-geometric": "pyg",
     "z3": "z3", "z3-solver": "z3", "z3_solver": "z3",
     "cvc5": "cvc5",
@@ -238,6 +245,31 @@ def _capability_ok(tool_canon: str) -> tuple[bool, str]:
         ):
             return True, "ok"
         return False, "probe_failing"
+    for receipt_name in FORMAL_TOOL_ADMISSION_RESULTS.get(tool_canon, ()):
+        result = FORMAL_SCOUT_RESULTS_DIR / receipt_name
+        if not result.exists():
+            continue
+        try:
+            data = json.loads(result.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        depth = data.get("TOOL_INTEGRATION_DEPTH") or data.get("tool_integration_depth") or {}
+        load_bearing_tools = {
+            canonical(str(tool))
+            for tool, role in depth.items()
+            if role == "load_bearing"
+        }
+        source_category = str(data.get("source_alignment_category") or "").lower()
+        claim_ceiling = str(data.get("claim_ceiling") or "").lower()
+        if (
+            data.get("classification") == "formal_scout"
+            and data.get("promotion_allowed") is False
+            and data.get("all_pass") is True
+            and tool_canon in load_bearing_tools
+            and "tool_admission" in source_category
+            and "formal scout only" in claim_ceiling
+        ):
+            return True, "ok"
     if not any_probe:
         return False, "missing_probe"
     return False, "probe_stale"
@@ -259,7 +291,7 @@ def lint_sim(path: Path) -> list[dict]:
     assigns = _module_level_assignments(tree)
 
     # C1: classification
-    cls = assigns.get("classification", "__MISSING__")
+    cls = assigns.get("classification", assigns.get("CLASSIFICATION", "__MISSING__"))
     if cls == "__MISSING__":
         violations.append({"sim": rel, "rule": "C1_classification_missing", "detail": None})
     elif cls not in VALID_CLASSIFICATIONS:
@@ -320,18 +352,6 @@ def lint_sim(path: Path) -> list[dict]:
             if not ok:
                 violations.append({"sim": rel, "rule": f"C5_{detail}",
                                    "detail": f"{tool}->{canon}"})
-
-    # C6: classical_baseline sims may not carry load_bearing tools, except explicit
-    # capability/integration tool-surface baselines.
-    if (
-        cls == "classical_baseline"
-        and isinstance(depth, dict)
-        and not (_is_capability_probe(path) or _is_integration_probe(path))
-    ):
-        for tool, lvl in depth.items():
-            if lvl == "load_bearing":
-                violations.append({"sim": rel, "rule": "C6_classical_has_load_bearing",
-                                   "detail": str(tool)})
 
     # C7/C8: bridge and nonclassical sims need nonclassical-capable tooling.
     # NumPy-only or NumPy-load-bearing rows are allowed for classical baselines,

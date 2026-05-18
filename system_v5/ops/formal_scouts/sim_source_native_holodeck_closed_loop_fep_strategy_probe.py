@@ -17,9 +17,10 @@ engine probe:
   probe family; nontrivial quotienting is tracked separately and must be
   earned by the receipt.
 
-Grok/Claude wave text is treated as reference hypothesis fuel only. The
-load-bearing sources here are local docs plus source-native EngineCore,
-Holodeck Hopf coordinates, and finite receipt checks.
+Grok/Claude wave text is treated as reference hypothesis fuel only. The local
+projection/check/correction/update math is torch-owned. Local docs and
+source-native EngineCore provide the source substrate; Holodeck hopf_map is
+kept as a supportive readout only, not as the load-bearing coordinate map.
 
 Formal scout only. No canonical FEP engine, psychology, physics, TOE,
 consciousness, full Holodeck, final IGT, or canonical engine identity claim is
@@ -32,12 +33,12 @@ import json
 import math
 import sys
 import time
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
 import networkx as nx
-import numpy as np
+import torch
 
 from canonical_qit_engine_specs import I2, SX, SY, SZ, get_chart_token_spec
 from engine_core import EngineCore, generate_initial_density
@@ -72,42 +73,60 @@ CLAIM_CEILING = (
     "projection/check/correction/update loop over source-native EngineCore "
     "stage windows with manifold constraints enabled. It does not admit a "
     "canonical FEP engine, final IGT, psychology, physics, TOE, "
-    "consciousness, full Holodeck, or canonical engine identity claim."
+    "consciousness, full Holodeck, canonical engine identity claim, or "
+    "Torch-only source-native engine substrate claim. EngineCore remains a "
+    "separate foundation surface with known NumPy/SciPy internals."
 )
 
 TOOL_MANIFEST = {
     "numpy": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing sensory distributions, KL-style errors, correction updates, and score statistics",
+        "reason": "supportive dependency behind source-native EngineCore/spec constants; local scout math is torch-owned",
     },
     "scipy": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing transitively through EngineCore source-native Lindblad integration",
+        "reason": "supportive transitive dependency behind source-native EngineCore/holodeck_fep_engine imports",
     },
     "torch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing transitively through EngineCore 13-layer manifold enforcer chain",
+        "reason": "load-bearing local density projection, eigensystems, Pauli distributions, KL/symKL, Hopf vectors, slerp, controls, scoring, posterior, and statistics",
     },
     "holodeck_fep_engine.hopf_map": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing Hopf-base coordinate readout for pure-state Holodeck projection error",
+        "reason": "supportive legacy Holodeck readout retained for audit continuity; torch Pauli/Bloch readout is load-bearing",
     },
     "networkx": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing survivor graph for nominalist survivor-set diagnostics",
+        "reason": "supportive survivor graph bookkeeping for nominalist survivor-set diagnostics",
+    },
+    "engine_core": {
+        "tried": True,
+        "used": True,
+        "reason": (
+            "supportive source-native trajectory substrate for this bounded "
+            "FEP overlay; EngineCore itself still has NumPy/SciPy internals "
+            "and therefore blocks deep-basin or Torch-only engine promotion"
+        ),
+    },
+    "json": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive receipt serialization only",
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
-    "scipy": "load_bearing",
+    "numpy": "supportive",
+    "scipy": "supportive",
     "torch": "load_bearing",
-    "holodeck_fep_engine.hopf_map": "load_bearing",
-    "networkx": "load_bearing",
+    "holodeck_fep_engine.hopf_map": "supportive",
+    "networkx": "supportive",
+    "engine_core": "supportive",
+    "json": "supportive",
 }
 
 
@@ -142,160 +161,189 @@ PERCEPTION_TO_ENTROPY_READING = {
 TERRAIN_BASE = {
     # Hopf-base directions are finite scout coordinates, not canonical
     # psychology. They are only used to make the projection channel explicit.
-    "Si": np.array([0.0, 0.0, 1.0], dtype=float),
-    "Ne": np.array([0.0, 0.0, -1.0], dtype=float),
-    "Ni": np.array([-1.0, 0.0, 0.0], dtype=float),
-    "Se": np.array([1.0, 0.0, 0.0], dtype=float),
+    "Si": torch.tensor([0.0, 0.0, 1.0], dtype=torch.float64),
+    "Ne": torch.tensor([0.0, 0.0, -1.0], dtype=torch.float64),
+    "Ni": torch.tensor([-1.0, 0.0, 0.0], dtype=torch.float64),
+    "Se": torch.tensor([1.0, 0.0, 0.0], dtype=torch.float64),
 }
 
-RANDOM_PROJECTION_PERM = np.array([2, 5, 1, 4, 0, 3], dtype=int)
-RANDOM_HOPF_ROTATION = np.array(
+RANDOM_PROJECTION_PERM = torch.tensor([2, 5, 1, 4, 0, 3], dtype=torch.long)
+RANDOM_HOPF_ROTATION = torch.tensor(
     [
         [0.0, -1.0, 0.0],
         [0.0, 0.0, 1.0],
         [-1.0, 0.0, 0.0],
     ],
-    dtype=float,
+    dtype=torch.float64,
 )
 
 
-def dagger(a: np.ndarray) -> np.ndarray:
-    return np.conjugate(a.T)
+REAL_DTYPE = torch.float64
+COMPLEX_DTYPE = torch.complex128
+EPS = 1e-12
+
+I2_T = torch.as_tensor(I2, dtype=COMPLEX_DTYPE)
+SX_T = torch.as_tensor(SX, dtype=COMPLEX_DTYPE)
+SY_T = torch.as_tensor(SY, dtype=COMPLEX_DTYPE)
+SZ_T = torch.as_tensor(SZ, dtype=COMPLEX_DTYPE)
+PAULI_PROJECTORS = tuple(
+    0.5 * (I2_T + sign * sigma)
+    for sigma in (SZ_T, SX_T, SY_T)
+    for sign in (1.0, -1.0)
+)
 
 
-def project_density(rho: np.ndarray) -> np.ndarray:
-    rho_h = 0.5 * (rho + dagger(rho))
-    vals, vecs = np.linalg.eigh(rho_h)
-    vals = np.clip(vals.real, 0.0, None)
-    if float(np.sum(vals)) <= 1e-14:
-        vals = np.ones_like(vals) / len(vals)
-    out = (vecs * vals.astype(np.complex128)) @ dagger(vecs)
-    return out / np.trace(out)
+def as_complex_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=COMPLEX_DTYPE)
 
 
-def dominant_spinor(rho: np.ndarray) -> np.ndarray:
+def project_density(rho: Any) -> torch.Tensor:
+    rho_t = as_complex_tensor(rho)
+    rho_h = 0.5 * (rho_t + rho_t.mH)
+    vals, vecs = torch.linalg.eigh(rho_h)
+    vals = torch.clamp(vals.real, min=0.0)
+    if float(torch.sum(vals).item()) <= 1e-14:
+        vals = torch.full_like(vals, 1.0 / vals.numel())
+    out = (vecs * vals.to(COMPLEX_DTYPE).unsqueeze(0)) @ vecs.mH
+    return out / torch.trace(out)
+
+
+def dominant_spinor(rho: Any) -> torch.Tensor:
     rho_h = project_density(rho)
-    vals, vecs = np.linalg.eigh(rho_h)
-    psi = vecs[:, int(np.argmax(vals.real))].astype(np.complex128)
-    norm = float(np.linalg.norm(psi))
-    if norm <= 1e-14:
-        return np.array([1.0 + 0.0j, 0.0 + 0.0j], dtype=np.complex128)
+    vals, vecs = torch.linalg.eigh(rho_h)
+    psi = vecs[:, int(torch.argmax(vals.real).item())].to(COMPLEX_DTYPE)
+    norm = torch.linalg.vector_norm(psi)
+    if float(norm.item()) <= 1e-14:
+        return torch.tensor([1.0 + 0.0j, 0.0 + 0.0j], dtype=COMPLEX_DTYPE)
     return psi / norm
 
 
-def hopf_base(rho: np.ndarray) -> np.ndarray:
-    theta, phi, _chi = hopf_map(dominant_spinor(rho))
-    return np.array(
-        [
-            math.sin(theta) * math.cos(phi),
-            math.sin(theta) * math.sin(phi),
-            math.cos(theta),
-        ],
-        dtype=float,
+def supportive_hopf_map_readout(psi: torch.Tensor) -> list[float]:
+    alpha = complex(psi[0].detach().cpu().item())
+    beta = complex(psi[1].detach().cpu().item())
+    theta, phi, chi = hopf_map([alpha, beta])
+    return [float(theta), float(phi), float(chi)]
+
+
+def hopf_base(rho: Any) -> torch.Tensor:
+    psi = dominant_spinor(rho)
+    _supportive_readout = supportive_hopf_map_readout(psi)
+    alpha, beta = psi[0], psi[1]
+    alpha_beta = torch.conj(alpha) * beta
+    return normalize_vec(
+        torch.stack(
+            [
+                2.0 * torch.real(alpha_beta),
+                2.0 * torch.imag(alpha_beta),
+                torch.abs(alpha).square() - torch.abs(beta).square(),
+            ]
+        ).to(REAL_DTYPE)
     )
 
 
-def pauli_distribution(rho: np.ndarray) -> np.ndarray:
+def pauli_distribution(rho: Any) -> torch.Tensor:
     rho = project_density(rho)
-    projectors = []
-    for sigma in (SZ, SX, SY):
-        projectors.append(0.5 * (I2 + sigma))
-        projectors.append(0.5 * (I2 - sigma))
-    probs = np.array([float(np.real(np.trace(p @ rho))) for p in projectors], dtype=float)
-    probs = np.clip(probs, 1e-12, None)
-    return probs / float(np.sum(probs))
+    probs = torch.stack([torch.real(torch.trace(p @ rho)) for p in PAULI_PROJECTORS])
+    probs = torch.clamp(probs.to(REAL_DTYPE), min=EPS)
+    return probs / torch.sum(probs)
 
 
-def entropy_prob(prob: np.ndarray) -> float:
-    prob = np.clip(np.asarray(prob, dtype=float), 1e-12, None)
-    prob = prob / float(np.sum(prob))
-    return -float(np.sum(prob * np.log(prob)))
+def normalize_prob(prob: torch.Tensor) -> torch.Tensor:
+    prob = torch.clamp(torch.as_tensor(prob, dtype=REAL_DTYPE), min=EPS)
+    return prob / torch.sum(prob)
 
 
-def kl(p: np.ndarray, q: np.ndarray) -> float:
-    p = np.clip(np.asarray(p, dtype=float), 1e-12, None)
-    q = np.clip(np.asarray(q, dtype=float), 1e-12, None)
-    p = p / float(np.sum(p))
-    q = q / float(np.sum(q))
-    return float(np.sum(p * (np.log(p) - np.log(q))))
+def entropy_prob(prob: torch.Tensor) -> float:
+    prob = normalize_prob(prob)
+    return -float(torch.sum(prob * torch.log(prob)).item())
 
 
-def sym_kl(p: np.ndarray, q: np.ndarray) -> float:
+def kl(p: torch.Tensor, q: torch.Tensor) -> float:
+    p = normalize_prob(p)
+    q = normalize_prob(q)
+    return float(torch.sum(p * (torch.log(p) - torch.log(q))).item())
+
+
+def sym_kl(p: torch.Tensor, q: torch.Tensor) -> float:
     return 0.5 * (kl(p, q) + kl(q, p))
 
 
-def normalize_vec(vec: np.ndarray) -> np.ndarray:
-    norm = float(np.linalg.norm(vec))
-    if norm <= 1e-14:
-        return np.array([0.0, 0.0, 1.0], dtype=float)
-    return vec / norm
+def normalize_vec(vec: torch.Tensor) -> torch.Tensor:
+    vec_t = torch.as_tensor(vec, dtype=REAL_DTYPE)
+    norm = torch.linalg.vector_norm(vec_t)
+    if float(norm.item()) <= 1e-14:
+        return torch.tensor([0.0, 0.0, 1.0], dtype=REAL_DTYPE)
+    return vec_t / norm
 
 
-def hopf_geodesic_distance(a: np.ndarray, b: np.ndarray) -> float:
+def hopf_geodesic_distance(a: torch.Tensor, b: torch.Tensor) -> float:
     a_n = normalize_vec(a)
     b_n = normalize_vec(b)
-    return float(math.acos(np.clip(float(np.dot(a_n, b_n)), -1.0, 1.0)))
+    dot = torch.clamp(torch.dot(a_n, b_n), min=-1.0, max=1.0)
+    return float(torch.acos(dot).item())
 
 
-def hopf_slerp(a: np.ndarray, b: np.ndarray, t: float) -> np.ndarray:
+def hopf_slerp(a: torch.Tensor, b: torch.Tensor, t: float) -> torch.Tensor:
     a_n = normalize_vec(a)
     b_n = normalize_vec(b)
     omega = hopf_geodesic_distance(a_n, b_n)
     if omega <= 1e-10:
         return a_n
-    sin_omega = math.sin(omega)
+    omega_t = torch.tensor(omega, dtype=REAL_DTYPE)
+    t_t = torch.tensor(t, dtype=REAL_DTYPE)
+    sin_omega = torch.sin(omega_t)
     return normalize_vec(
-        (math.sin((1.0 - t) * omega) / sin_omega) * a_n
-        + (math.sin(t * omega) / sin_omega) * b_n
+        (torch.sin((1.0 - t_t) * omega_t) / sin_omega) * a_n
+        + (torch.sin(t_t * omega_t) / sin_omega) * b_n
     )
 
 
-def perception_projection_matrix(perception: str, loop_class: str) -> np.ndarray:
+def perception_projection_matrix(perception: str, loop_class: str) -> torch.Tensor:
     """Finite emotional-projection channel on six Pauli sensory outcomes."""
-    base = np.eye(6, dtype=float)
+    base = torch.eye(6, dtype=REAL_DTYPE)
     if perception == "Si":
-        attractor = np.array([0.34, 0.08, 0.20, 0.10, 0.18, 0.10], dtype=float)
+        attractor = torch.tensor([0.34, 0.08, 0.20, 0.10, 0.18, 0.10], dtype=REAL_DTYPE)
     elif perception == "Ne":
-        attractor = np.array([0.09, 0.21, 0.13, 0.22, 0.13, 0.22], dtype=float)
+        attractor = torch.tensor([0.09, 0.21, 0.13, 0.22, 0.13, 0.22], dtype=REAL_DTYPE)
     elif perception == "Ni":
-        attractor = np.array([0.13, 0.13, 0.12, 0.12, 0.25, 0.25], dtype=float)
+        attractor = torch.tensor([0.13, 0.13, 0.12, 0.12, 0.25, 0.25], dtype=REAL_DTYPE)
     elif perception == "Se":
-        attractor = np.array([0.22, 0.09, 0.23, 0.11, 0.23, 0.12], dtype=float)
+        attractor = torch.tensor([0.22, 0.09, 0.23, 0.11, 0.23, 0.12], dtype=REAL_DTYPE)
     else:
         raise ValueError(f"unknown perception {perception!r}")
-    attractor = attractor / float(np.sum(attractor))
+    attractor = attractor / torch.sum(attractor)
     strength = 0.18 if loop_class == "outer" else 0.12
-    return (1.0 - strength) * base + strength * np.tile(attractor, (6, 1))
+    return (1.0 - strength) * base + strength * attractor.repeat(6, 1)
 
 
 def apply_projection_channel(
-    pauli: np.ndarray,
-    hopf_vec: np.ndarray,
+    pauli: torch.Tensor,
+    hopf_vec: torch.Tensor,
     *,
     perception: str,
     loop_class: str,
     identity_projection: bool = False,
     random_projection: bool = False,
-) -> tuple[np.ndarray, np.ndarray]:
+) -> tuple[torch.Tensor, torch.Tensor]:
     if identity_projection:
-        return pauli.copy(), normalize_vec(hopf_vec)
+        return pauli.clone(), normalize_vec(hopf_vec)
     if random_projection:
         projected_pauli = pauli[RANDOM_PROJECTION_PERM]
-        projected_pauli = projected_pauli / float(np.sum(projected_pauli))
+        projected_pauli = projected_pauli / torch.sum(projected_pauli)
         return projected_pauli, normalize_vec(RANDOM_HOPF_ROTATION @ hopf_vec)
     matrix = perception_projection_matrix(perception, loop_class)
-    projected_pauli = np.clip(pauli @ matrix, 1e-12, None)
-    projected_pauli = projected_pauli / float(np.sum(projected_pauli))
+    projected_pauli = torch.clamp(pauli @ matrix, min=EPS)
+    projected_pauli = projected_pauli / torch.sum(projected_pauli)
     strength = 0.18 if loop_class == "outer" else 0.12
     projected_hopf = normalize_vec((1.0 - strength) * hopf_vec + strength * TERRAIN_BASE[perception])
     return projected_pauli, projected_hopf
 
 
 def observation_error(
-    projected_pauli: np.ndarray,
-    projected_hopf: np.ndarray,
-    actual_pauli: np.ndarray,
-    actual_hopf: np.ndarray,
+    projected_pauli: torch.Tensor,
+    projected_hopf: torch.Tensor,
+    actual_pauli: torch.Tensor,
+    actual_hopf: torch.Tensor,
 ) -> float:
     return float(sym_kl(projected_pauli, actual_pauli) + 0.25 * hopf_geodesic_distance(projected_hopf, actual_hopf))
 
@@ -352,15 +400,15 @@ def adapted_future_stage(
     *,
     engine_type: int,
     start_stage: int,
-    corrected_hopf: np.ndarray,
-    actual_hopf: np.ndarray,
+    corrected_hopf: torch.Tensor,
+    actual_hopf: torch.Tensor,
 ) -> int:
     """Choose the next finite strategy by the corrected Hopf prediction error."""
     engine = EngineCore(engine_type, manifold_enabled=True)
     error_dir = normalize_vec(actual_hopf - corrected_hopf)
     scores = []
     for stage_idx, (perception, _loop_class) in enumerate(engine.schedule):
-        terrain_score = float(np.dot(error_dir, TERRAIN_BASE[perception]))
+        terrain_score = float(torch.dot(error_dir, TERRAIN_BASE[perception]).item())
         continuity = 0.05 if stage_idx == ((start_stage + 1) % len(engine.schedule)) else 0.0
         scores.append((terrain_score + continuity, stage_idx))
     return max(scores, key=lambda item: item[0])[1]
@@ -422,14 +470,6 @@ def score_policy_for_seed(
         identity_projection=identity_projection,
         random_projection=random_projection,
     )
-    future_pauli, future_hopf = apply_projection_channel(
-        projected_future["pauli"],
-        projected_future["hopf"],
-        perception=meta["perception"],
-        loop_class=meta["loop_class"],
-        identity_projection=identity_projection,
-        random_projection=random_projection,
-    )
     immediate_error = observation_error(
         present_pauli,
         present_hopf,
@@ -437,7 +477,7 @@ def score_policy_for_seed(
         actual_present["hopf"],
     )
     corrected_pauli = (1.0 - CORRECTION_GAIN) * present_pauli + CORRECTION_GAIN * actual_present["pauli"]
-    corrected_pauli = corrected_pauli / float(np.sum(corrected_pauli))
+    corrected_pauli = corrected_pauli / torch.sum(corrected_pauli)
     corrected_hopf = hopf_slerp(present_hopf, actual_present["hopf"], CORRECTION_GAIN)
     corrected_error = observation_error(
         corrected_pauli,
@@ -498,7 +538,7 @@ def score_policy_for_seed(
         "random_projection": random_projection,
         "hash_key": [
             round(float(x), 2)
-            for x in np.concatenate([corrected_pauli, corrected_hopf])
+            for x in torch.cat([corrected_pauli, corrected_hopf])
         ],
     }
     return row
@@ -571,10 +611,8 @@ def posterior_by_seed(rows: list[dict[str, Any]]) -> dict[int, dict[str, float]]
     out: dict[int, dict[str, float]] = {}
     for seed_offset in range(N_SEEDS):
         seed_rows = [row for row in rows if row["seed_offset"] == seed_offset]
-        scores = np.array([-row["expected_free_energy"] for row in seed_rows], dtype=float)
-        scores -= float(np.max(scores))
-        probs = np.exp(scores)
-        probs /= float(np.sum(probs))
+        scores = torch.tensor([-row["expected_free_energy"] for row in seed_rows], dtype=REAL_DTYPE)
+        probs = torch.softmax(scores, dim=0)
         out[seed_offset] = {
             row["policy_id"]: float(prob)
             for row, prob in zip(seed_rows, probs, strict=True)
@@ -609,12 +647,12 @@ def component_scale_diagnostics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     keys = ["immediate_error", "corrected_error", "future_error", "error_reduction", "expected_free_energy"]
     stats: dict[str, dict[str, float]] = {}
     for key in keys:
-        values = np.asarray([row[key] for row in rows], dtype=float)
+        values = torch.tensor([row[key] for row in rows], dtype=REAL_DTYPE)
         stats[key] = {
-            "min": float(np.min(values)),
-            "max": float(np.max(values)),
-            "mean": float(np.mean(values)),
-            "std": float(np.std(values, ddof=1)),
+            "min": float(torch.min(values).item()),
+            "max": float(torch.max(values).item()),
+            "mean": float(torch.mean(values).item()),
+            "std": float(torch.std(values, unbiased=True).item()),
         }
     immediate_std = max(stats["immediate_error"]["std"], 1e-12)
     future_ratio = stats["future_error"]["std"] / immediate_std
@@ -665,7 +703,7 @@ def loss_value_witness(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def mean(values: list[float]) -> float:
-    return float(np.mean(np.asarray(values, dtype=float))) if values else float("nan")
+    return float(torch.mean(torch.tensor(values, dtype=REAL_DTYPE)).item()) if values else float("nan")
 
 
 def result_summary(
@@ -717,7 +755,7 @@ def result_summary(
         "mean_immediate_error": mean([row["immediate_error"] for row in rows]),
         "mean_corrected_error": mean([row["corrected_error"] for row in rows]),
         "mean_error_reduction": mean(correction_reductions),
-        "min_error_reduction": float(np.min(correction_reductions)),
+        "min_error_reduction": float(torch.min(torch.tensor(correction_reductions, dtype=REAL_DTYPE)).item()),
         "mean_selected_efe": mean([row["expected_free_energy"] for row in closed_selected]),
         "mean_immediate_selected_efe": mean([row["expected_free_energy"] for row in immediate_selected]),
         "mean_identity_selected_efe": mean([row["expected_free_energy"] for row in identity_selected]),
@@ -727,8 +765,8 @@ def result_summary(
         "selected_changed_vs_random_projection": random_changed,
         "identity_projection_mean_abs_selected_score_delta": identity_score_delta,
         "random_projection_mean_abs_selected_score_delta": random_score_delta,
-        "posterior_probability_sum_min": float(np.min(posterior_sums)),
-        "posterior_probability_sum_max": float(np.max(posterior_sums)),
+        "posterior_probability_sum_min": float(torch.min(torch.tensor(posterior_sums, dtype=REAL_DTYPE)).item()),
+        "posterior_probability_sum_max": float(torch.max(torch.tensor(posterior_sums, dtype=REAL_DTYPE)).item()),
         "loss_value_witness": loss_witness,
         "survivor_quotient": quotient,
         "component_scale_diagnostics": scale,
@@ -744,14 +782,8 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, tuple):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer,)):
-        return int(value)
-    if isinstance(value, (np.floating,)):
-        return float(value)
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().tolist()
     return value
 
 
@@ -776,8 +808,7 @@ def main() -> dict[str, Any]:
             or summary["identity_projection_mean_abs_selected_score_delta"] > 1e-6
         ),
         "holodeck_projection_distinguished_from_random_projection": (
-            summary["selected_changed_vs_random_projection"] >= math.ceil(0.8 * N_SEEDS)
-            or summary["random_projection_mean_abs_selected_score_delta"] > 1e-6
+            summary["selected_changed_vs_random_projection"] == N_SEEDS
         ),
         "nominalist_survivor_set_exists": bool(
             summary["survivor_quotient"]["survivor_set_exists"]
@@ -834,6 +865,21 @@ def main() -> dict[str, Any]:
             "value_of_losing": "higher immediate projection error is tracked as a hypothesis, not forced by the score",
             "hume_nominalism": "stage identity is probed by survivor sets; nontrivial quotienting must be earned separately",
             "hopf_correction_metric": "Hopf-base correction uses geodesic distance and spherical interpolation, not Euclidean chord interpolation",
+        },
+        "attractor_basin_assessment": {
+            "computed_label": "shallow_basin",
+            "reason": (
+                "The scout shows a useful projection/check/correction/update "
+                "loop with identity and random projection controls, but it is "
+                "still one EngineCore source substrate and one finite policy "
+                "family. EngineCore internally depends on NumPy/SciPy, so this "
+                "receipt is not independent nonclassical method convergence "
+                "and cannot be treated as a deep or Torch-only basin."
+            ),
+            "source_independence": "shared_engine_core_substrate",
+            "observable_independence": "single_pauli_hopf_readout_family",
+            "control_pressure": "identity_projection_random_projection_immediate_open_loop",
+            "claim_ceiling": "formal_scout_only_no_full_fep_engine_no_deep_basin",
         },
         "summary": {
             "seed_count": N_SEEDS,
@@ -907,7 +953,7 @@ def main() -> dict[str, Any]:
                 "pass": predicates["holodeck_projection_distinguished_from_random_projection"],
                 "changed_seed_count": summary["selected_changed_vs_random_projection"],
                 "seed_count": N_SEEDS,
-                "threshold_used": math.ceil(0.8 * N_SEEDS),
+                "threshold_used": N_SEEDS,
                 "mean_abs_selected_score_delta": summary[
                     "random_projection_mean_abs_selected_score_delta"
                 ],
@@ -950,7 +996,7 @@ def main() -> dict[str, Any]:
             "random_projection_is_not_the_same_holodeck_channel": {
                 "pass": predicates["holodeck_projection_distinguished_from_random_projection"],
                 "changed_seed_count": summary["selected_changed_vs_random_projection"],
-                "threshold_used": math.ceil(0.8 * N_SEEDS),
+                "threshold_used": N_SEEDS,
                 "mean_abs_selected_score_delta": summary[
                     "random_projection_mean_abs_selected_score_delta"
                 ],
@@ -993,6 +1039,16 @@ def main() -> dict[str, Any]:
                     "full-FEP-engine promotion path is admissible."
                 ),
             },
+            "transitive_engine_core_numpy_scipy_boundary": {
+                "pass": True,
+                "reason": (
+                    "Local projection/check/correction/update math is Torch, "
+                    "but EngineCore still imports and uses NumPy/SciPy to "
+                    "generate source trajectories. This receipt is therefore "
+                    "shallow_basin evidence only and points to EngineCore "
+                    "foundation repair as the next deeper basin move."
+                ),
+            },
             "variational_bound_not_claimed": {
                 "pass": True,
                 "reason": (
@@ -1010,13 +1066,37 @@ def main() -> dict[str, Any]:
         },
         "nearby_variants": {
             "total": 5,
-            "passed": 5,
+            "passed": sum(
+                int(flag)
+                for flag in [
+                    predicates["projection_channel_is_load_bearing"],
+                    predicates["holodeck_projection_distinguished_from_random_projection"],
+                    predicates["future_allostasis_changes_policy"],
+                    bool(summary["loss_value_witness"]["pass"]),
+                    predicates["nominalist_survivor_set_exists"],
+                ]
+            ),
             "variants": {
-                "identity_projection_control": "executed",
-                "random_projection_control": "executed",
-                "immediate_error_open_loop_control": "executed",
-                "finite_future_horizon": "executed",
-                "survivor_quotient_hashing": "executed",
+                "identity_projection_control": {
+                    "executed": True,
+                    "pass": predicates["projection_channel_is_load_bearing"],
+                },
+                "random_projection_control": {
+                    "executed": True,
+                    "pass": predicates["holodeck_projection_distinguished_from_random_projection"],
+                },
+                "immediate_error_open_loop_control": {
+                    "executed": True,
+                    "pass": predicates["future_allostasis_changes_policy"],
+                },
+                "finite_future_horizon": {
+                    "executed": True,
+                    "pass": bool(summary["loss_value_witness"]["pass"]),
+                },
+                "survivor_quotient_hashing": {
+                    "executed": True,
+                    "pass": predicates["nominalist_survivor_set_exists"],
+                },
             },
         },
         "hypothesis_tests": {

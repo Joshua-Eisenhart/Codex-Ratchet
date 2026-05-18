@@ -42,7 +42,7 @@ TOOL_MANIFEST = {
     "python_json": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing receipt parsing for source, router, guard, and downstream adapters",
+        "reason": "supportive receipt parsing for source, router, guard, and downstream adapters",
     },
     "numpy": {
         "tried": True,
@@ -57,10 +57,15 @@ TOOL_MANIFEST = {
     "axis0_guard_utils": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing admitted/blocked Axis0 feature boundary",
+        "reason": "supportive admitted/blocked Axis0 feature boundary helper; z3/numpy carry the finite branch checks",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "python_json": "supportive",
+    "numpy": "load_bearing",
+    "z3": "load_bearing",
+    "axis0_guard_utils": "supportive",
+}
 
 HBI = "holographic_boundary_interior_reconstruction"
 AXIS0_HBI = f"axis0_{HBI}"
@@ -72,6 +77,8 @@ ROUTER_RESULT = "macro_sim_axis0_plural_stage_candidate_router_probe_results.jso
 GUARD_RESULT = "axis0_plural_candidate_multicarrier_drive_controls_probe_results.json"
 WORLD_MODEL_RESULT = "world_model_repo_admission_gap_adapter_probe_results.json"
 AUTO_LIRPA_CONSUMPTION_RESULT = "auto_lirpa_stage_policy_bound_consumption_probe_results.json"
+AUTO_LIRPA_LEWM_RESULT = "auto_lirpa_lewm_latent_surprise_bound_probe_results.json"
+AXIS0_LEWM_ASSEMBLY_RESULT = "axis0_lewm_lirpa_pytorch_assembly_probe_results.json"
 AUTO_LIRPA_TRAINED_RESULT = "auto_lirpa_trained_stage_policy_adapter_bound_probe_results.json"
 LIRPA_GATED_ENV_RESULT = "lirpa_policy_bound_gated_multicarrier_environment_probe_results.json"
 LIRPA_VARIABLE_RESULT = "lirpa_policy_bound_variable_qubit_scaling_probe_results.json"
@@ -83,6 +90,8 @@ OPERATIONAL_MANIFEST_RESULT = "operational_manifest_source_downstream_quarantine
 
 POST_GUARD_RESULTS = [
     WORLD_MODEL_RESULT,
+    AUTO_LIRPA_LEWM_RESULT,
+    AXIS0_LEWM_ASSEMBLY_RESULT,
     AUTO_LIRPA_CONSUMPTION_RESULT,
     AUTO_LIRPA_TRAINED_RESULT,
     LIRPA_GATED_ENV_RESULT,

@@ -71,7 +71,15 @@ def script_for_result(path: pathlib.Path) -> pathlib.Path:
     return ROOT / f"sim_{stem.removesuffix('_results.json')}.py"
 
 
-def fresh_rerun(path: pathlib.Path) -> dict[str, Any]:
+def tail_text(value: str | bytes | None, limit: int = 800) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, bytes):
+        return value.decode("utf-8", errors="replace")[-limit:]
+    return value[-limit:]
+
+
+def fresh_rerun(path: pathlib.Path, timeout_seconds: int) -> dict[str, Any]:
     script = script_for_result(path)
     if not script.exists():
         return {
@@ -82,14 +90,25 @@ def fresh_rerun(path: pathlib.Path) -> dict[str, Any]:
         }
     env = dict(os.environ)
     env["PYTHONDONTWRITEBYTECODE"] = "1"
-    proc = subprocess.run(
-        [sys.executable, str(script)],
-        cwd=ROOT,
-        text=True,
-        capture_output=True,
-        env=env,
-        timeout=120,
-    )
+    try:
+        proc = subprocess.run(
+            [sys.executable, str(script)],
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+            env=env,
+            timeout=timeout_seconds,
+        )
+    except subprocess.TimeoutExpired as exc:
+        return {
+            "result": str(path),
+            "script": str(script),
+            "pass": False,
+            "errors": [f"rerun timed out after {timeout_seconds}s"],
+            "returncode": None,
+            "stdout_tail": tail_text(exc.stdout),
+            "stderr_tail": tail_text(exc.stderr),
+        }
     errors = []
     if proc.returncode != 0:
         errors.append(f"rerun exited {proc.returncode}")
@@ -114,9 +133,15 @@ def main() -> int:
         action="store_true",
         help="rerun matching scout scripts before validating result receipts",
     )
+    parser.add_argument(
+        "--fresh-rerun-timeout",
+        type=int,
+        default=120,
+        help="timeout in seconds for each matching scout script rerun",
+    )
     args = parser.parse_args()
     paths = args.paths or sorted(RESULTS.glob("*_results.json"))
-    reruns = [fresh_rerun(path) for path in paths] if args.fresh_rerun else []
+    reruns = [fresh_rerun(path, args.fresh_rerun_timeout) for path in paths] if args.fresh_rerun else []
     rows = [validate(path) for path in paths]
     all_pass = all(row["pass"] for row in rows) and all(row["pass"] for row in reruns)
     print(

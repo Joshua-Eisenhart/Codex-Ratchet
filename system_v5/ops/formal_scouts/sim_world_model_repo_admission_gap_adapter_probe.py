@@ -68,7 +68,13 @@ TOOL_MANIFEST = {
     "pathlib": {"tried": True, "used": True, "reason": "load-bearing local repo inventory and project-boundary checks"},
     "engine_core": {"tried": True, "used": True, "reason": "load-bearing source-native science-method/FEP stage records"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "pytorch": "load_bearing",
+    "z3": "load_bearing",
+    "pathlib": "supportive",
+    "engine_core": "supportive",
+}
 
 REQUIRED_STAGE_FIELDS = [
     "model_before",
@@ -122,13 +128,13 @@ REPO_SPECS = {
         "decision": "admit_tiny_verifier_adapter_only_if_bounds_match_control",
         "reason": "Local source exists and the gap is real; admission is limited to a tiny BoundedModule interval certificate that matches an analytic control.",
     },
-    "LeWorldModel": {
-        "path": EXTERNAL_ROOT / "LeWorldModel",
+    "le-wm": {
+        "path": EXTERNAL_ROOT / "le-wm",
         "readme": "README.md",
-        "gap": "External latent embodied world model candidate.",
-        "adapter": "not_assessed_repo_not_found",
-        "decision": "not_present_locally",
-        "reason": "No local repo was found under the external repo root in this scout.",
+        "gap": "LeWM-style JEPA latent prediction, SIGReg collapse guard, and latent surprise scoring for a future tiny source-native adapter.",
+        "adapter": "reference_only_micro_scout_source_no_repo_import",
+        "decision": "defer_reference_only_until_tiny_pytorch_consumption_fixture",
+        "reason": "The local le-wm repo is useful as a compact PyTorch world-model design source, but it remains a training/checkpoint stack and is not admitted as a dependency without a Ratchet-native micro-scout.",
     },
 }
 AXIS0_FEATURE_PREFIX = "axis0_"

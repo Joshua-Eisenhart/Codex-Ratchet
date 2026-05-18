@@ -9,9 +9,15 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
-
 import engine_core as ec
+from sim_source_native_engine_manifold_attractor_basin_depth_probe import (
+    mean_float,
+    perturb_density,
+    random_pauli_cptp_control,
+    run_cycle,
+    token_match_fraction,
+    trace_distance,
+)
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -30,12 +36,17 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing trace-distance and sweep statistics"},
-    "engine_core": {"tried": True, "used": True, "reason": "load-bearing source-native EngineCore execution with runtime STAGE_DT sweep"},
-    "json": {"tried": True, "used": True, "reason": "load-bearing receipt parsing/writing"},
-    "hashlib": {"tried": True, "used": True, "reason": "load-bearing source hash receipt"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing trace-distance, random control, and sweep statistics"},
+    "engine_core": {"tried": True, "used": True, "reason": "supportive source-native EngineCore execution with runtime STAGE_DT sweep"},
+    "json": {"tried": True, "used": True, "reason": "supportive receipt parsing/writing"},
+    "hashlib": {"tried": True, "used": True, "reason": "supportive source hash receipt"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "engine_core": "supportive",
+    "json": "supportive",
+    "hashlib": "supportive",
+}
 
 DT_VALUES = [0.035, 0.05, 0.08, 0.12, 0.18]
 SEEDS = [101, 211, 307]
@@ -46,33 +57,6 @@ CONTROL_SEPARATION_FLOOR = 0.05
 
 def sha256_file(path: pathlib.Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
-def trace_distance(rho1: np.ndarray, rho2: np.ndarray) -> float:
-    diff = rho1 - rho2
-    evals = np.linalg.eigvalsh(diff.conj().T @ diff)
-    return 0.5 * float(np.sum(np.sqrt(np.clip(evals, 0.0, None))))
-
-
-def perturb_density(rho: np.ndarray, epsilon: float) -> np.ndarray:
-    return ec._normalize_density((1.0 - epsilon) * rho + epsilon * ec.I2 / 2.0)
-
-
-def run_cycle(engine_type: int, rho: np.ndarray, *, manifold_enabled: bool, schedule_mode: str = "native") -> dict[str, Any]:
-    engine = ec.EngineCore(engine_type=engine_type, manifold_enabled=manifold_enabled)
-    if schedule_mode == "reversed":
-        engine.schedule = list(reversed(engine.schedule))
-    result = engine.run_full_cycle(rho)
-    records = result["trajectory"]
-    return {
-        "rho": np.asarray(result["final_rho"], dtype=np.complex128),
-        "tokens": [str(row["ordered_token"]) for row in records],
-        "mean_correction": float(np.mean([row["update_repair"]["manifold_projection_delta_norm"] for row in records])),
-    }
-
-
-def token_match(a: list[str], b: list[str]) -> float:
-    return sum(x == y for x, y in zip(a, b)) / max(1, min(len(a), len(b)))
 
 
 def run_dt(dt: float) -> dict[str, Any]:
@@ -87,29 +71,49 @@ def run_dt(dt: float) -> dict[str, Any]:
                 on = run_cycle(engine_type, pert, manifold_enabled=True)
                 off = run_cycle(engine_type, pert, manifold_enabled=False)
                 rev = run_cycle(engine_type, pert, manifold_enabled=True, schedule_mode="reversed")
+                random_schedule_seed = 40709 + 1000 * engine_type + 10 * seed + int(eps * 1000) + int(dt * 10000)
+                random_schedule = run_cycle(
+                    engine_type,
+                    pert,
+                    manifold_enabled=True,
+                    schedule_mode="torch_random",
+                    schedule_seed=random_schedule_seed,
+                )
                 wrong = run_cycle(1 - engine_type, pert, manifold_enabled=True)
+                random_cptp_seed = 2097593 + 1000 * engine_type + 10 * seed + int(eps * 1000) + int(dt * 10000)
+                random_cptp = random_pauli_cptp_control(pert, random_cptp_seed)
                 rows.append(
                     {
                         "epsilon": eps,
                         "on_trace": trace_distance(on["rho"], baseline["rho"]),
                         "off_trace": trace_distance(off["rho"], baseline["rho"]),
                         "reversed_trace": trace_distance(rev["rho"], baseline["rho"]),
+                        "random_schedule_trace": trace_distance(random_schedule["rho"], baseline["rho"]),
                         "wrong_trace": trace_distance(wrong["rho"], baseline["rho"]),
-                        "on_token_match": token_match(on["tokens"], baseline["tokens"]),
-                        "reversed_token_match": token_match(rev["tokens"], baseline["tokens"]),
-                        "wrong_token_match": token_match(wrong["tokens"], baseline["tokens"]),
+                        "random_cptp_trace": trace_distance(random_cptp["rho"], baseline["rho"]),
+                        "on_token_match": token_match_fraction(on["tokens"], baseline["tokens"]),
+                        "reversed_token_match": token_match_fraction(rev["tokens"], baseline["tokens"]),
+                        "random_schedule_token_match": token_match_fraction(random_schedule["tokens"], baseline["tokens"]),
+                        "wrong_token_match": token_match_fraction(wrong["tokens"], baseline["tokens"]),
+                        "random_schedule_seed": random_schedule_seed,
+                        "random_cptp_seed": random_cptp_seed,
+                        "random_cptp_trace_gap": random_cptp["final_density_diagnostics"]["trace_gap"],
+                        "random_cptp_min_choi_eigenvalue": random_cptp["min_step_choi_eigenvalue"],
+                        "random_cptp_output_min_eigenvalue": random_cptp["final_density_diagnostics"]["min_eigenvalue"],
+                        "random_cptp_valid": random_cptp["trace_preserving_pass"] and random_cptp["density_valid_pass"] and random_cptp["choi_psd_pass"],
                         "on_correction": on["mean_correction"],
                         "off_correction": off["mean_correction"],
                     }
                 )
-    on_mean = float(np.mean([r["on_trace"] for r in rows]))
-    nearest_control = float(
-        min(
-            np.mean([r["off_trace"] for r in rows]),
-            np.mean([r["reversed_trace"] for r in rows]),
-            np.mean([r["wrong_trace"] for r in rows]),
-        )
-    )
+    on_mean = mean_float(r["on_trace"] for r in rows)
+    control_means = {
+        "off": mean_float(r["off_trace"] for r in rows),
+        "reversed": mean_float(r["reversed_trace"] for r in rows),
+        "random_schedule": mean_float(r["random_schedule_trace"] for r in rows),
+        "wrong_chirality": mean_float(r["wrong_trace"] for r in rows),
+        "random_cptp": mean_float(r["random_cptp_trace"] for r in rows),
+    }
+    nearest_control_name, nearest_control = min(control_means.items(), key=lambda item: item[1])
     separation = nearest_control - on_mean
     if on_mean <= TRACE_CANDIDATE_FLOOR and separation >= CONTROL_SEPARATION_FLOOR:
         label = "candidate_basin"
@@ -124,13 +128,24 @@ def run_dt(dt: float) -> dict[str, Any]:
         "label": label,
         "row_count": len(rows),
         "on_mean_trace": on_mean,
+        "off_mean_trace": control_means["off"],
+        "reversed_mean_trace": control_means["reversed"],
+        "random_schedule_mean_trace": control_means["random_schedule"],
+        "wrong_chirality_mean_trace": control_means["wrong_chirality"],
+        "random_cptp_mean_trace": control_means["random_cptp"],
+        "nearest_control_name": nearest_control_name,
         "nearest_control_mean": nearest_control,
         "control_separation": separation,
-        "mean_on_token_match": float(np.mean([r["on_token_match"] for r in rows])),
-        "mean_reversed_token_match": float(np.mean([r["reversed_token_match"] for r in rows])),
-        "mean_wrong_token_match": float(np.mean([r["wrong_token_match"] for r in rows])),
-        "mean_on_correction": float(np.mean([r["on_correction"] for r in rows])),
-        "mean_off_correction": float(np.mean([r["off_correction"] for r in rows])),
+        "mean_on_token_match": mean_float(r["on_token_match"] for r in rows),
+        "mean_reversed_token_match": mean_float(r["reversed_token_match"] for r in rows),
+        "mean_random_schedule_token_match": mean_float(r["random_schedule_token_match"] for r in rows),
+        "mean_wrong_token_match": mean_float(r["wrong_token_match"] for r in rows),
+        "mean_on_correction": mean_float(r["on_correction"] for r in rows),
+        "mean_off_correction": mean_float(r["off_correction"] for r in rows),
+        "random_cptp_valid": all(r["random_cptp_valid"] for r in rows),
+        "random_cptp_max_trace_gap": max(r["random_cptp_trace_gap"] for r in rows),
+        "random_cptp_min_choi_eigenvalue": min(r["random_cptp_min_choi_eigenvalue"] for r in rows),
+        "random_cptp_min_output_eigenvalue": min(r["random_cptp_output_min_eigenvalue"] for r in rows),
     }
 
 
@@ -159,6 +174,12 @@ def main() -> int:
             "pass": len(rows) == len(DT_VALUES),
             "dt_values": DT_VALUES,
             "rows": rows,
+        },
+        "dt_sweep_random_cptp_controls_valid": {
+            "pass": all(row["random_cptp_valid"] for row in rows),
+            "max_trace_gap": max(row["random_cptp_max_trace_gap"] for row in rows),
+            "min_choi_eigenvalue": min(row["random_cptp_min_choi_eigenvalue"] for row in rows),
+            "min_output_eigenvalue": min(row["random_cptp_min_output_eigenvalue"] for row in rows),
         },
         "best_dt_identified": {
             "pass": best["dt"] in DT_VALUES and (not candidate_rows or best["label"] == "candidate_basin"),

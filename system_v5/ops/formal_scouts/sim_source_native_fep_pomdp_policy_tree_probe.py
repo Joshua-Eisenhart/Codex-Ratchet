@@ -32,8 +32,7 @@ from pathlib import Path
 from typing import Any
 
 import networkx as nx
-import numpy as np
-from scipy.special import logsumexp
+import torch
 
 from canonical_qit_engine_specs import I2, SX, SY, SZ
 from engine_core import EngineCore, generate_initial_density
@@ -56,32 +55,32 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing finite A/B/C/D matrices, KL, entropy, mutual information, and policy scoring",
-    },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing logsumexp normalization plus EngineCore transition dependency",
-    },
     "torch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing transitively through EngineCore 13-layer manifold constraints",
+        "reason": "load-bearing finite A/B/C/D matrices, density projection, KL, entropy, VFE, policy posterior, and policy scoring",
     },
     "networkx": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing A/B/C/D dependency graph sanity check",
+        "reason": "supportive A/B/C/D dependency graph sanity check",
+    },
+    "engine_core": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive source-native stage-window rollout provider consumed by Torch measurements",
+    },
+    "json": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive result writing",
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
-    "scipy": "load_bearing",
     "torch": "load_bearing",
-    "networkx": "load_bearing",
+    "networkx": "supportive",
+    "engine_core": "supportive",
+    "json": "supportive",
 }
 
 N_STATES = 6
@@ -92,6 +91,12 @@ PREDICTION_STEPS = 3
 N_SUBSTAGES_PER_STAGE = 4
 SMOOTHING = 0.03
 EFE_FORMULA = "risk + ambiguity"
+TORCH_REAL = torch.float64
+TORCH_COMPLEX = torch.complex128
+I2_T = torch.as_tensor(I2, dtype=TORCH_COMPLEX)
+SX_T = torch.as_tensor(SX, dtype=TORCH_COMPLEX)
+SY_T = torch.as_tensor(SY, dtype=TORCH_COMPLEX)
+SZ_T = torch.as_tensor(SZ, dtype=TORCH_COMPLEX)
 
 IGT_BY_PERCEPTION = {
     "Ne": "WinLose",
@@ -101,83 +106,92 @@ IGT_BY_PERCEPTION = {
 }
 
 
-def dagger(a: np.ndarray) -> np.ndarray:
-    return np.conjugate(a.T)
+def as_real_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=TORCH_REAL)
 
 
-def project_density(rho: np.ndarray) -> np.ndarray:
-    rho = 0.5 * (rho + dagger(rho))
-    vals, vecs = np.linalg.eigh(rho)
-    vals = np.clip(vals.real, 0.0, None)
-    if float(np.sum(vals)) <= 1e-14:
-        vals = np.ones_like(vals) / len(vals)
-    rho = (vecs * vals) @ dagger(vecs)
-    return rho / np.trace(rho)
+def as_complex_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=TORCH_COMPLEX)
 
 
-def normalize(prob: np.ndarray) -> np.ndarray:
-    prob = np.clip(np.asarray(prob, dtype=float), 1e-12, None)
-    logs = np.log(prob)
-    return np.exp(logs - logsumexp(logs))
+def dagger(a: torch.Tensor) -> torch.Tensor:
+    return a.conj().T
 
 
-def entropy_prob(prob: np.ndarray) -> float:
+def project_density(rho: Any) -> torch.Tensor:
+    rho_t = as_complex_tensor(rho)
+    rho_t = 0.5 * (rho_t + dagger(rho_t))
+    vals, vecs = torch.linalg.eigh(rho_t)
+    vals = torch.clamp(vals.real, min=0.0)
+    if float(torch.sum(vals).item()) <= 1e-14:
+        vals = torch.ones_like(vals) / vals.numel()
+    rho_t = (vecs * vals.to(TORCH_COMPLEX)) @ dagger(vecs)
+    return rho_t / torch.trace(rho_t)
+
+
+def normalize(prob: Any) -> torch.Tensor:
+    prob_t = torch.clamp(as_real_tensor(prob), min=1e-12)
+    logs = torch.log(prob_t)
+    return torch.exp(logs - torch.logsumexp(logs, dim=0))
+
+
+def entropy_prob(prob: Any) -> float:
     prob = normalize(prob)
-    return -float(np.sum(prob * np.log(prob)))
+    return float((-torch.sum(prob * torch.log(prob))).item())
 
 
-def kl(p: np.ndarray, q: np.ndarray) -> float:
+def kl(p: Any, q: Any) -> float:
     p = normalize(p)
     q = normalize(q)
-    return float(np.sum(p * (np.log(p) - np.log(q))))
+    return float(torch.sum(p * (torch.log(p) - torch.log(q))).item())
 
 
-def pauli_observation_distribution(rho: np.ndarray) -> np.ndarray:
+def pauli_observation_distribution(rho: Any) -> torch.Tensor:
     rho = project_density(rho)
     projectors = []
-    for sigma in [SZ, SX, SY]:
-        projectors.append(0.5 * (I2 + sigma))
-        projectors.append(0.5 * (I2 - sigma))
-    probs = np.array([float(np.real(np.trace(p @ rho))) for p in projectors], dtype=float)
+    for sigma in [SZ_T, SX_T, SY_T]:
+        projectors.append(0.5 * (I2_T + sigma))
+        projectors.append(0.5 * (I2_T - sigma))
+    probs = torch.tensor([float(torch.real(torch.trace(p @ rho)).item()) for p in projectors], dtype=TORCH_REAL)
     return normalize(probs)
 
 
-def preference_distribution() -> np.ndarray:
-    return normalize(np.array([0.27, 0.09, 0.23, 0.09, 0.18, 0.14], dtype=float))
+def preference_distribution() -> torch.Tensor:
+    return normalize(torch.tensor([0.27, 0.09, 0.23, 0.09, 0.18, 0.14], dtype=TORCH_REAL))
 
 
-def shuffled_preference(base: np.ndarray) -> np.ndarray:
-    return normalize(base[[1, 4, 0, 5, 2, 3]])
+def shuffled_preference(base: Any) -> torch.Tensor:
+    return normalize(as_real_tensor(base)[torch.tensor([1, 4, 0, 5, 2, 3], dtype=torch.int64)])
 
 
-def emission_matrix() -> np.ndarray:
+def emission_matrix() -> torch.Tensor:
     """Column-stochastic non-identity P(o | s)."""
     # Informative but non-perfect sensory projection with state-dependent
     # ambiguity. Preference-aligned observations are deliberately more
     # ambiguous than some alternatives, so risk + ambiguity can select a
     # different policy than pure risk. A symmetric channel makes ambiguity
     # constant and collapses the scout back to risk-only.
-    diag_by_state = np.array([0.42, 0.86, 0.42, 0.86, 0.44, 0.82], dtype=float)
-    opposite_by_state = np.array([0.20, 0.06, 0.20, 0.06, 0.18, 0.08], dtype=float)
-    a = np.zeros((N_OBSERVATIONS, N_STATES), dtype=float)
+    diag_by_state = torch.tensor([0.42, 0.86, 0.42, 0.86, 0.44, 0.82], dtype=TORCH_REAL)
+    opposite_by_state = torch.tensor([0.20, 0.06, 0.20, 0.06, 0.18, 0.08], dtype=TORCH_REAL)
+    a = torch.zeros((N_OBSERVATIONS, N_STATES), dtype=TORCH_REAL)
     for state in range(N_STATES):
-        residual = 1.0 - diag_by_state[state] - opposite_by_state[state]
+        residual = 1.0 - float(diag_by_state[state].item()) - float(opposite_by_state[state].item())
         a[:, state] = residual / (N_OBSERVATIONS - 2)
         a[state, state] = diag_by_state[state]
         opposite = state + 1 if state % 2 == 0 else state - 1
         a[opposite, state] = opposite_by_state[state]
-    return a / np.sum(a, axis=0, keepdims=True)
+    return a / torch.sum(a, dim=0, keepdim=True)
 
 
-def identity_emission_matrix() -> np.ndarray:
-    return np.eye(N_OBSERVATIONS, N_STATES, dtype=float)
+def identity_emission_matrix() -> torch.Tensor:
+    return torch.eye(N_OBSERVATIONS, N_STATES, dtype=TORCH_REAL)
 
 
 def policy_id(engine_type: int, start_stage: int) -> str:
     return f"E{engine_type}:stage_window_{start_stage:02d}_{(start_stage + 1) % 8:02d}"
 
 
-def run_policy_density(engine_type: int, start_stage: int, seed: int, manifold_enabled: bool = True) -> np.ndarray:
+def run_policy_density(engine_type: int, start_stage: int, seed: int, manifold_enabled: bool = True) -> torch.Tensor:
     rho = generate_initial_density(seed)
     engine = EngineCore(engine_type, manifold_enabled=manifold_enabled)
     for offset in range(POLICY_WINDOW_STAGES):
@@ -188,43 +202,46 @@ def run_policy_density(engine_type: int, start_stage: int, seed: int, manifold_e
     return project_density(rho)
 
 
-def estimate_prior() -> np.ndarray:
+def estimate_prior() -> torch.Tensor:
     obs = []
     for seed_offset in range(N_SEEDS):
         rho = generate_initial_density(9100 + 37 * seed_offset)
         obs.append(pauli_observation_distribution(rho))
-    return normalize(np.mean(np.array(obs, dtype=float), axis=0))
+    return normalize(torch.mean(torch.stack(obs), dim=0))
 
 
-def estimate_transition(engine_type: int, start_stage: int, manifold_enabled: bool = True) -> np.ndarray:
-    accum = np.full((N_STATES, N_STATES), SMOOTHING, dtype=float)
+def estimate_transition(engine_type: int, start_stage: int, manifold_enabled: bool = True) -> torch.Tensor:
+    accum = torch.full((N_STATES, N_STATES), SMOOTHING, dtype=TORCH_REAL)
     for seed_offset in range(N_SEEDS):
         seed = 9200 + 41 * seed_offset + 17 * engine_type + start_stage
         rho0 = generate_initial_density(seed)
         q_initial = pauli_observation_distribution(rho0)
         rho1 = run_policy_density(engine_type, start_stage, seed, manifold_enabled=manifold_enabled)
         q_final = pauli_observation_distribution(rho1)
-        accum += np.outer(q_final, q_initial)
-    return accum / np.sum(accum, axis=0, keepdims=True)
+        accum = accum + torch.outer(q_final, q_initial)
+    return accum / torch.sum(accum, dim=0, keepdim=True)
 
 
 def score_policy(
     *,
     engine_type: int,
     start_stage: int,
-    a_matrix: np.ndarray,
-    c_pref: np.ndarray,
-    d_prior: np.ndarray,
+    a_matrix: Any,
+    c_pref: Any,
+    d_prior: Any,
     manifold_enabled: bool = True,
     no_engine_control: bool = False,
 ) -> dict[str, Any]:
     engine = EngineCore(engine_type)
+    a_matrix = as_real_tensor(a_matrix)
+    c_pref = normalize(c_pref)
+    d_prior = normalize(d_prior)
     if no_engine_control:
-        b_matrix = np.eye(N_STATES)
+        b_matrix = torch.eye(N_STATES, dtype=TORCH_REAL)
     else:
         b_matrix = estimate_transition(engine_type, start_stage, manifold_enabled=manifold_enabled)
 
-    q_s = d_prior.copy()
+    q_s = d_prior.clone()
     risk = 0.0
     ambiguity = 0.0
     epistemic_value = 0.0
@@ -233,11 +250,10 @@ def score_policy(
     for step in range(PREDICTION_STEPS):
         q_s = normalize(b_matrix @ q_s)
         q_o = normalize(a_matrix @ q_s)
-        conditional_entropy = float(
-            np.sum(q_s * np.array([entropy_prob(a_matrix[:, idx]) for idx in range(N_STATES)]))
-        )
+        entropy_by_state = torch.tensor([entropy_prob(a_matrix[:, idx]) for idx in range(N_STATES)], dtype=TORCH_REAL)
+        conditional_entropy = float(torch.sum(q_s * entropy_by_state).item())
         info_gain = max(0.0, entropy_prob(q_o) - conditional_entropy)
-        obs_idx = int(np.argmax(q_o))
+        obs_idx = int(torch.argmax(q_o).item())
         posterior = normalize(a_matrix[obs_idx, :] * q_s)
         prior_vfe = variational_free_energy(q_s, q_s, a_matrix, obs_idx)
         posterior_vfe = variational_free_energy(posterior, q_s, a_matrix, obs_idx)
@@ -275,8 +291,8 @@ def score_policy(
         "epistemic_value": float(epistemic_value),
         "vfe_reduction": float(vfe_reduction),
         "expected_free_energy": float(expected_free_energy),
-        "transition_l1_from_identity": float(np.mean(np.abs(b_matrix - np.eye(N_STATES)))),
-        "transition_column_entropy_mean": float(np.mean([entropy_prob(b_matrix[:, idx]) for idx in range(N_STATES)])),
+        "transition_l1_from_identity": float(torch.mean(torch.abs(b_matrix - torch.eye(N_STATES, dtype=TORCH_REAL))).item()),
+        "transition_column_entropy_mean": float(torch.mean(torch.tensor([entropy_prob(b_matrix[:, idx]) for idx in range(N_STATES)], dtype=TORCH_REAL)).item()),
         "per_step": per_step,
         "manifold_enabled": manifold_enabled,
         "no_engine_control": no_engine_control,
@@ -285,9 +301,9 @@ def score_policy(
 
 def score_family(
     *,
-    a_matrix: np.ndarray,
-    c_pref: np.ndarray,
-    d_prior: np.ndarray,
+    a_matrix: Any,
+    c_pref: Any,
+    d_prior: Any,
     manifold_enabled: bool = True,
     no_engine_control: bool = False,
 ) -> list[dict[str, Any]]:
@@ -308,9 +324,26 @@ def score_family(
     return softmax_policy(rows)
 
 
+def policy_rows(
+    *,
+    a_matrix: Any | None = None,
+    c_pref: Any | None = None,
+    d_prior: Any | None = None,
+    manifold_enabled: bool = True,
+    no_engine_control: bool = False,
+) -> list[dict[str, Any]]:
+    return score_family(
+        a_matrix=emission_matrix() if a_matrix is None else a_matrix,
+        c_pref=preference_distribution() if c_pref is None else c_pref,
+        d_prior=estimate_prior() if d_prior is None else d_prior,
+        manifold_enabled=manifold_enabled,
+        no_engine_control=no_engine_control,
+    )
+
+
 def softmax_policy(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    values = np.array([-row["expected_free_energy"] for row in rows], dtype=float)
-    probs = np.exp(values - logsumexp(values))
+    values = torch.tensor([-row["expected_free_energy"] for row in rows], dtype=TORCH_REAL)
+    probs = torch.exp(values - torch.logsumexp(values, dim=0))
     out = []
     for row, prob in zip(rows, probs, strict=True):
         enriched = dict(row)
@@ -324,16 +357,17 @@ def best_by(rows: list[dict[str, Any]], key: str) -> dict[str, Any]:
 
 
 def variational_free_energy(
-    q_variational: np.ndarray,
-    q_prior: np.ndarray,
-    a_matrix: np.ndarray,
+    q_variational: Any,
+    q_prior: Any,
+    a_matrix: Any,
     obs_idx: int,
 ) -> float:
     q_variational = normalize(q_variational)
     q_prior = normalize(q_prior)
-    likelihood = np.clip(a_matrix[obs_idx, :], 1e-12, None)
-    joint_log = np.log(likelihood) + np.log(q_prior)
-    return float(np.sum(q_variational * (np.log(q_variational) - joint_log)))
+    a_matrix = as_real_tensor(a_matrix)
+    likelihood = torch.clamp(a_matrix[obs_idx, :], min=1e-12)
+    joint_log = torch.log(likelihood) + torch.log(q_prior)
+    return float(torch.sum(q_variational * (torch.log(q_variational) - joint_log)).item())
 
 
 def dependency_graph() -> dict[str, Any]:
@@ -369,14 +403,13 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, tuple):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer,)):
-        return int(value)
-    if isinstance(value, (np.floating,)):
-        return float(value)
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
+    if isinstance(value, torch.Tensor):
+        return as_jsonable(value.detach().cpu().tolist())
+    if hasattr(value, "item"):
+        try:
+            return as_jsonable(value.item())
+        except (TypeError, ValueError):
+            pass
     return value
 
 
@@ -416,14 +449,14 @@ def main() -> dict[str, Any]:
 
     predicates = {
         "finite_policy_tree_constructed": len(rows) == 16 and len({row["policy_id"] for row in rows}) == 16,
-        "a_matrix_column_stochastic": bool(np.allclose(np.sum(a_matrix, axis=0), np.ones(N_STATES))),
-        "a_matrix_non_identity": float(np.max(np.abs(a_matrix - np.eye(N_OBSERVATIONS, N_STATES)))) > 0.2,
-        "d_prior_normalizes": abs(float(np.sum(d_prior)) - 1.0) < 1e-9,
+        "a_matrix_column_stochastic": bool(torch.allclose(torch.sum(a_matrix, dim=0), torch.ones(N_STATES, dtype=TORCH_REAL))),
+        "a_matrix_non_identity": float(torch.max(torch.abs(a_matrix - torch.eye(N_OBSERVATIONS, N_STATES, dtype=TORCH_REAL))).item()) > 0.2,
+        "d_prior_normalizes": abs(float(torch.sum(d_prior).item()) - 1.0) < 1e-9,
         "policy_posterior_normalizes": abs(prob_sum - 1.0) < 1e-9,
         "efe_scores_are_finite": all(math.isfinite(row["expected_free_energy"]) for row in rows),
         "epistemic_value_is_nonzero": float(max(epistemic_values) - min(epistemic_values)) > 0.001,
         "vfe_update_reduces_free_energy": min(vfe_reductions) >= -1e-9 and max(vfe_reductions) > 0.001,
-        "source_native_transition_nontrivial": float(np.mean(transition_gaps)) > 0.01,
+        "source_native_transition_nontrivial": float(torch.mean(torch.tensor(transition_gaps, dtype=TORCH_REAL)).item()) > 0.01,
         "selected_not_risk_only_or_margin": selected["policy_id"] != risk_only["policy_id"]
         or abs(selected["expected_free_energy"] - risk_only["expected_free_energy"]) > 0.01,
         "no_engine_control_changes_policy_or_margin": selected["policy_id"] != no_engine_rows[0]["policy_id"]
@@ -491,7 +524,7 @@ def main() -> dict[str, Any]:
             "risk_range": float(max(risk_values) - min(risk_values)),
             "epistemic_value_range": float(max(epistemic_values) - min(epistemic_values)),
             "vfe_reduction_range": float(max(vfe_reductions) - min(vfe_reductions)),
-            "mean_transition_l1_from_identity": float(np.mean(transition_gaps)),
+            "mean_transition_l1_from_identity": float(torch.mean(torch.tensor(transition_gaps, dtype=TORCH_REAL)).item()),
         },
         "positive": {
             "finite_pomdp_policy_tree_constructed": {
@@ -501,18 +534,18 @@ def main() -> dict[str, Any]:
             },
             "explicit_non_identity_a_matrix": {
                 "pass": predicates["a_matrix_column_stochastic"] and predicates["a_matrix_non_identity"],
-                "column_sums": np.sum(a_matrix, axis=0),
-                "max_abs_diff_from_identity": float(np.max(np.abs(a_matrix - np.eye(N_OBSERVATIONS, N_STATES)))),
+                "column_sums": torch.sum(a_matrix, dim=0),
+                "max_abs_diff_from_identity": float(torch.max(torch.abs(a_matrix - torch.eye(N_OBSERVATIONS, N_STATES, dtype=TORCH_REAL))).item()),
             },
             "source_native_b_transition_nontrivial": {
                 "pass": predicates["source_native_transition_nontrivial"],
-                "mean_l1_from_identity": float(np.mean(transition_gaps)),
+                "mean_l1_from_identity": float(torch.mean(torch.tensor(transition_gaps, dtype=TORCH_REAL)).item()),
                 "max_l1_from_identity": float(max(transition_gaps)),
             },
             "c_and_d_normalize": {
-                "pass": predicates["d_prior_normalizes"] and abs(float(np.sum(c_pref)) - 1.0) < 1e-9,
-                "c_sum": float(np.sum(c_pref)),
-                "d_sum": float(np.sum(d_prior)),
+                "pass": predicates["d_prior_normalizes"] and abs(float(torch.sum(c_pref).item()) - 1.0) < 1e-9,
+                "c_sum": float(torch.sum(c_pref).item()),
+                "d_sum": float(torch.sum(d_prior).item()),
             },
             "policy_posterior_normalizes": {"pass": predicates["policy_posterior_normalizes"], "probability_sum": prob_sum},
             "expected_free_energy_scores_are_finite": {

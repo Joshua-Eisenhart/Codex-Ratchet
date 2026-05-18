@@ -17,7 +17,7 @@ import time
 from typing import Any
 
 import networkx as nx
-import numpy as np
+import torch
 import z3
 
 import sim_source_native_multicarrier_subdense_environment_contraction_probe as subdense
@@ -43,10 +43,10 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "torch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing candidate-vector drive controls and local signature gaps",
+        "reason": "load-bearing local candidate-vector stats, drive statistics, signature gaps, contribution rank, and control-family correlations",
     },
     "quimb": {
         "tried": True,
@@ -56,7 +56,22 @@ TOOL_MANIFEST = {
     "networkx": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing dependency graph for Axis0 router to multicarrier guard",
+        "reason": "supportive dependency graph for Axis0 router to multicarrier guard",
+    },
+    "json": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive result and upstream receipt serialization",
+    },
+    "hashlib": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive file hash receipt fields",
+    },
+    "subdense": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive local adapter reusing source-native records and carrier helpers; local evidence math is torch, carrier construction is quimb, scalar-collapse witness is z3",
     },
     "z3": {
         "tried": True,
@@ -66,10 +81,25 @@ TOOL_MANIFEST = {
     "engine_core": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing through reused source-native stage records",
+        "reason": "supportive source-native stage record provider consumed through subdense",
+    },
+    "numpy": {
+        "tried": False,
+        "used": False,
+        "reason": "not used by this file; local vector/gap/correlation/rank math is handled with torch",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "torch": "load_bearing",
+    "quimb": "load_bearing",
+    "json": "supportive",
+    "hashlib": "supportive",
+    "networkx": "supportive",
+    "subdense": "supportive",
+    "z3": "load_bearing",
+    "engine_core": "supportive",
+    "numpy": None,
+}
 
 REQUIRED_REPAIR_RECEIPT_FIELDS = [
     "weak_link",
@@ -111,6 +141,25 @@ TEST_CARRIERS = [
 ]
 
 
+def as_float_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=torch.float64)
+
+
+def tensor_mean(value: Any) -> float:
+    tensor = as_float_tensor(value)
+    return float(torch.mean(tensor).item()) if tensor.numel() else 0.0
+
+
+def tensor_variance(value: Any) -> float:
+    tensor = as_float_tensor(value)
+    return float(torch.var(tensor, unbiased=False).item()) if tensor.numel() else 0.0
+
+
+def tensor_norm(value: Any) -> float:
+    tensor = as_float_tensor(value)
+    return float(torch.linalg.vector_norm(tensor).item()) if tensor.numel() else 0.0
+
+
 def as_jsonable(value: Any) -> Any:
     if isinstance(value, dict):
         return {str(k): as_jsonable(v) for k, v in value.items()}
@@ -118,12 +167,18 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+    if isinstance(value, torch.Tensor):
+        return as_jsonable(value.detach().cpu().tolist())
+    if hasattr(value, "tolist"):
+        try:
+            return as_jsonable(value.tolist())
+        except TypeError:
+            pass
+    if hasattr(value, "item"):
+        try:
+            return as_jsonable(value.item())
+        except (TypeError, ValueError):
+            pass
     return value
 
 
@@ -143,12 +198,16 @@ def candidate_values(axis0: dict[str, Any], idx: int) -> dict[str, float]:
 def candidate_status(axis0: dict[str, Any], router_payload: dict[str, Any]) -> dict[str, Any]:
     status = {}
     for name in CANDIDATE_NAMES:
-        vector = np.asarray(axis0.get("candidate_vectors", {}).get(name, []), dtype=float)
+        vector = as_float_tensor(axis0.get("candidate_vectors", {}).get(name, []))
         payload = router_payload.get(name, {}) or {}
         explicit_blockers = payload.get("explicit_blockers", {}) or {}
-        finite = bool(vector.size and np.all(np.isfinite(vector)))
-        nonzero_fraction = float(np.mean(np.abs(vector) > 1e-12)) if vector.size else 0.0
-        variance = float(np.var(vector)) if vector.size else 0.0
+        finite = bool(vector.numel() and torch.all(torch.isfinite(vector)).item())
+        nonzero_fraction = (
+            float(torch.mean((torch.abs(vector) > 1e-12).to(torch.float64)).item())
+            if vector.numel()
+            else 0.0
+        )
+        variance = tensor_variance(vector)
         blockers = dict(explicit_blockers)
         if not finite:
             blockers["candidate_vector_missing_or_nonfinite"] = {"claim": "candidate vector is missing or nonfinite"}
@@ -161,7 +220,7 @@ def candidate_status(axis0: dict[str, Any], router_payload: dict[str, Any]) -> d
             blockers["candidate_vector_variance_too_small"] = {"variance": variance, "floor": VARIANCE_FLOOR}
         status[name] = {
             "finite": finite,
-            "vector_len": int(vector.size),
+            "vector_len": int(vector.numel()),
             "nonzero_fraction": nonzero_fraction,
             "variance": variance,
             "explicit_blockers": blockers,
@@ -179,7 +238,7 @@ def candidate_drive(axis0: dict[str, Any], idx: int, mode: str) -> float:
     if mode == "identity_control":
         return 0.0
     if mode == "scalar_mean":
-        return float(np.mean(list(values.values())))
+        return tensor_mean(list(values.values()))
     if mode == "shuffled_name_binding":
         rolled = list(values.values())[1:] + list(values.values())[:1]
         values = dict(zip(CANDIDATE_NAMES, rolled))
@@ -215,7 +274,8 @@ def candidate_drive(axis0: dict[str, Any], idx: int, mode: str) -> float:
 
 
 def signature_gap(a: dict[str, Any], b: dict[str, Any]) -> float:
-    return float(np.linalg.norm(np.asarray(a["environment_signature"], dtype=float) - np.asarray(b["environment_signature"], dtype=float)))
+    delta = as_float_tensor(a["environment_signature"]) - as_float_tensor(b["environment_signature"])
+    return tensor_norm(delta)
 
 
 def run_candidate_carrier(
@@ -250,6 +310,8 @@ def run_candidate_carrier(
     after_rows = subdense.environment_rows(carrier)
     before_sig = subdense.signature_from_rows(before_rows)
     after_sig = subdense.signature_from_rows(after_rows)
+    drives_tensor = as_float_tensor(drives)
+    signature_delta = as_float_tensor(after_sig) - as_float_tensor(before_sig)
     return {
         "carrier": carrier.name,
         "family": carrier.family,
@@ -263,18 +325,18 @@ def run_candidate_carrier(
         "quimb_count_check": quimb_check,
         "axis0_ready": bool(axis0.get("ready")),
         "candidate_names_consumed": list(CANDIDATE_NAMES),
-        "drive_mean": float(np.mean(drives)),
-        "drive_mean_abs": float(np.mean(np.abs(drives))),
-        "drive_variance": float(np.var(drives)),
+        "drive_mean": tensor_mean(drives_tensor),
+        "drive_mean_abs": tensor_mean(torch.abs(drives_tensor)),
+        "drive_variance": tensor_variance(drives_tensor),
         "environment_signature": after_sig,
-        "environment_shift_from_initial": float(np.linalg.norm(after_sig - before_sig)),
+        "environment_shift_from_initial": tensor_norm(signature_delta),
         "environment_rows_head": after_rows[:2],
         "pass": (
             len(records) == subdense.N_SOURCE_SEEDS * 64
             and len(set(stage_hashes)) > 16
             and quimb_check["pass"]
             and len(after_rows) > 0
-            and bool(np.all(np.isfinite(after_sig)))
+            and bool(torch.all(torch.isfinite(as_float_tensor(after_sig))).item())
         ),
     }
 
@@ -365,13 +427,13 @@ def per_candidate_control_report(suite: dict[str, Any], status: dict[str, Any]) 
         if candidate_admissible:
             vec_parts = []
             for carrier in carriers:
-                only_sig = np.asarray(suite["rows"][carrier][f"only::{name}"]["environment_signature"], dtype=float)
-                zero_sig = np.asarray(suite["rows"][carrier]["zero_all"]["environment_signature"], dtype=float)
+                only_sig = as_float_tensor(suite["rows"][carrier][f"only::{name}"]["environment_signature"])
+                zero_sig = as_float_tensor(suite["rows"][carrier]["zero_all"]["environment_signature"])
                 vec_parts.append(only_sig - zero_sig)
-            vec = np.concatenate(vec_parts)
+            vec = torch.cat(vec_parts)
             contribution_vectors.append(vec)
             admitted_names.append(name)
-            contribution_norms[name] = float(np.linalg.norm(vec))
+            contribution_norms[name] = tensor_norm(vec)
         candidate_rows[name] = {
             "candidate_admissible": candidate_admissible,
             "upstream_status": status[name],
@@ -387,8 +449,8 @@ def per_candidate_control_report(suite: dict[str, Any], status: dict[str, Any]) 
             "explicit_blockers": blockers,
         }
     if contribution_vectors:
-        mat = np.vstack(contribution_vectors)
-        rank = int(np.linalg.matrix_rank(mat, tol=1e-8))
+        mat = torch.stack(contribution_vectors)
+        rank = int(torch.linalg.matrix_rank(mat, tol=1e-8).item())
     else:
         rank = 0
     total_norm = sum(contribution_norms.values())
@@ -424,10 +486,10 @@ def control_family_correlation_report(suite: dict[str, Any], admitted_names: lis
     blockers = {}
     for name in admitted_names:
         family_vectors = {
-            "only_vs_zero": np.asarray([suite["gaps"][carrier]["only_vs_zero_gaps"][name] for carrier in carriers], dtype=float),
-            "drop": np.asarray([suite["gaps"][carrier]["drop_gaps"][name] for carrier in carriers], dtype=float),
-            "sign_flip": np.asarray([suite["gaps"][carrier]["sign_flip_gaps"][name] for carrier in carriers], dtype=float),
-            "time_shuffle": np.asarray([suite["gaps"][carrier]["time_shuffle_gaps"][name] for carrier in carriers], dtype=float),
+            "only_vs_zero": as_float_tensor([suite["gaps"][carrier]["only_vs_zero_gaps"][name] for carrier in carriers]),
+            "drop": as_float_tensor([suite["gaps"][carrier]["drop_gaps"][name] for carrier in carriers]),
+            "sign_flip": as_float_tensor([suite["gaps"][carrier]["sign_flip_gaps"][name] for carrier in carriers]),
+            "time_shuffle": as_float_tensor([suite["gaps"][carrier]["time_shuffle_gaps"][name] for carrier in carriers]),
         }
         corrs = {}
         labels = sorted(family_vectors)
@@ -435,10 +497,10 @@ def control_family_correlation_report(suite: dict[str, Any], admitted_names: lis
             for right in labels[i + 1:]:
                 a = family_vectors[left]
                 b = family_vectors[right]
-                if float(np.std(a)) < 1e-15 or float(np.std(b)) < 1e-15:
-                    corr = 1.0 if np.allclose(a, b) else 0.0
+                if float(torch.std(a, unbiased=False).item()) < 1e-15 or float(torch.std(b, unbiased=False).item()) < 1e-15:
+                    corr = 1.0 if torch.allclose(a, b) else 0.0
                 else:
-                    corr = float(np.corrcoef(a, b)[0, 1])
+                    corr = float(torch.corrcoef(torch.stack([a, b]))[0, 1].item())
                 corrs[f"{left}__{right}"] = corr
         max_abs_corr = max((abs(value) for value in corrs.values()), default=0.0)
         rows[name] = {

@@ -59,9 +59,15 @@ TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing trained adapter, shuffled-label control, and brute-force perturbation samples"},
     "numpy": {"tried": True, "used": True, "reason": "load-bearing feature assembly, split, normalization, and summary metrics"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite witness for trained accuracy plus bound containment predicates"},
-    "engine_core": {"tried": True, "used": True, "reason": "load-bearing source-native stage records and policy fields"},
+    "engine_core": {"tried": True, "used": True, "reason": "supportive source-native stage records and policy fields consumed by the trained adapter fixture"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "auto_LiRPA": "load_bearing",
+    "pytorch": "load_bearing",
+    "numpy": "load_bearing",
+    "z3": "load_bearing",
+    "engine_core": "supportive",
+}
 
 REQUIRED_STAGE_FIELDS = [
     "model_before",
@@ -422,7 +428,7 @@ def main() -> int:
     memory_receipt = load_result("source_native_holodeck_hash_memory_placeholder_probe_results.json")
 
     guard = axis0_guard.axis0_guard_signal(axis0_guard_receipt)
-    axis0 = axis0_guard.guarded_router_vectors(axis0_receipt, guard, as_numpy=True)
+    axis0 = axis0_guard.guarded_router_vectors(axis0_receipt, guard)
     memory = memory_margin(memory_receipt)
     hash_cells = holodeck_hash_cells(memory_receipt)
     x, y, seeds, names, records = collect_training_rows(axis0, memory, hash_cells)

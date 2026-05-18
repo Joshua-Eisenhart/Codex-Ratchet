@@ -429,6 +429,92 @@ def test_compile_followups_preserve_wiki_alignment_before_generic_route_truth() 
     assert all("sim/evidence objective" not in prompt for prompt in prompts)
 
 
+def load_wizard_child_matrix() -> dict:
+    scripts_path = str(ROOT / "scripts")
+    path_was_present = scripts_path in sys.path
+    if not path_was_present:
+        sys.path.insert(0, scripts_path)
+    try:
+        return runpy.run_path(str(ROOT / "scripts/wizard_child_matrix.py"), run_name="wizard_child_matrix")
+    finally:
+        if not path_was_present:
+            sys.path.remove(scripts_path)
+
+
+def test_wizard_child_matrix_loads_provider_keys_from_named_env_file(tmp_path: Path, monkeypatch) -> None:
+    module_globals = load_wizard_child_matrix()
+    env_file = tmp_path / ".env"
+    env_file.write_text(
+        "GEMINI_API_KEY=gemini-from-file\n"
+        "XAI_API_KEY='xai-from-file'\n"
+        "UNRELATED_SECRET=must-not-load\n",
+        encoding="utf-8",
+    )
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("GOOGLE_API_KEY", raising=False)
+    monkeypatch.delenv("XAI_API_KEY", raising=False)
+    monkeypatch.delenv("GROK_API_KEY", raising=False)
+
+    key_from_env_or_files = module_globals["key_from_env_or_files"]
+
+    assert key_from_env_or_files(("GEMINI_API_KEY", "GOOGLE_API_KEY"), files=[env_file]) == "gemini-from-file"
+    assert key_from_env_or_files(("XAI_API_KEY", "GROK_API_KEY"), files=[env_file]) == "xai-from-file"
+
+
+def test_wizard_child_matrix_post_json_uses_ssl_context(monkeypatch) -> None:
+    module_globals = load_wizard_child_matrix()
+    captured = {}
+
+    class Response:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_args):
+            return False
+
+        def read(self) -> bytes:
+            return b'{"ok": true}'
+
+    def fake_urlopen(request, *, timeout, context):
+        captured["timeout"] = timeout
+        captured["context"] = context
+        return Response()
+
+    monkeypatch.setattr(module_globals["urllib"].request, "urlopen", fake_urlopen)
+
+    result = module_globals["post_json"](
+        "https://example.test",
+        headers={"Content-Type": "application/json"},
+        payload={"hello": "world"},
+        timeout=7,
+    )
+
+    assert result == {"ok": True}
+    assert captured["timeout"] == 7
+    assert captured["context"] is not None
+
+
+def test_wizard_child_matrix_grok_receipt_uses_direct_xai_api(tmp_path: Path, monkeypatch) -> None:
+    module_globals = load_wizard_child_matrix()
+    monkeypatch.setenv("XAI_API_KEY", "xai-test-key")
+    monkeypatch.setenv("WIZARD_GROK_MODEL", "grok-test")
+
+    def fake_post_json(url, headers, payload, timeout):
+        assert url == "https://api.x.ai/v1/chat/completions"
+        assert headers["Authorization"] == "Bearer xai-test-key"
+        assert payload["model"] == "grok-test"
+        return {"choices": [{"message": {"content": "id: grok\nstatus: accepted\ndistinct_delta: ok\nevidence_boundary: direct_xai_api\nconclusion: ready"}}]}
+
+    monkeypatch.setitem(module_globals["run_one_grok_child"].__globals__, "post_json", fake_post_json)
+    args = type("Args", (), {"grok_timeout_sec": 3, "route": "decision.context_strategy", "prompt": "parent", "followup_prompt": "follow", "payoff": "pay", "use_when": "use", "stop_if": "stop", "boundary": "bound"})()
+
+    receipt = module_globals["run_one_grok_child"](args, tmp_path, "child-1", "role-1")
+
+    assert receipt["status"] == "completed"
+    assert receipt["model_name"] == "grok-test"
+    assert receipt["launch_surface"] == "direct_xai_api"
+
+
 def test_runtime_audit_flags_live_v4_1_defaults() -> None:
     script = ROOT / "scripts/wizard_v4_2_runtime_audit.py"
     module_globals = runpy.run_path(str(script), run_name="wizard_v4_2_runtime_audit")

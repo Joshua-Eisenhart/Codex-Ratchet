@@ -22,7 +22,7 @@ import time
 from typing import Any
 
 import networkx as nx
-import numpy as np
+import torch
 
 from engine_core import EngineCore, generate_initial_density
 
@@ -46,13 +46,14 @@ STAGE_RESULT = RESULT_DIR / "macro_sim_stage_record_science_method_contract_prob
 ROUTER_RESULT = RESULT_DIR / "macro_sim_axis0_plural_stage_candidate_router_probe_results.json"
 DRIVE_CONTROL_RESULT = RESULT_DIR / "axis0_plural_candidate_multicarrier_drive_controls_probe_results.json"
 SUBDENSE_RESULT = RESULT_DIR / "source_native_multicarrier_subdense_environment_contraction_probe_results.json"
+ONLINE_VMP_RESULT = RESULT_DIR / "source_native_fep_online_vmp_policy_update_probe_results.json"
 ROUTER_SCRIPT = ROOT / "sim_macro_sim_axis0_plural_stage_candidate_router_probe.py"
 DRIVE_CONTROL_SCRIPT = ROOT / "sim_axis0_plural_candidate_multicarrier_drive_controls_probe.py"
 EXPECTED_VECTOR_LEN = 63
 EPS = 1e-9
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
         "reason": "load-bearing gradient recomputation, vector comparison, and matched-control deltas",
@@ -60,15 +61,19 @@ TOOL_MANIFEST = {
     "networkx": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing closure graph witness for Axis0 FEP-gradient routing",
+        "reason": "supportive closure graph witness for Axis0 FEP-gradient routing",
     },
     "engine_core": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing source-native stage EFE record generation",
+        "reason": "supportive source-native stage EFE record generation",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "networkx": "supportive",
+    "engine_core": "supportive",
+}
 
 
 def sha256_file(path: pathlib.Path) -> str:
@@ -100,50 +105,59 @@ def run_rows(*, manifold_enabled: bool = True) -> list[dict[str, Any]]:
     return rows
 
 
-def fep_gradient(rows: list[dict[str, Any]]) -> np.ndarray:
-    efe = np.asarray(
+def fep_gradient(rows: list[dict[str, Any]]) -> torch.Tensor:
+    efe = torch.tensor(
         [row["fep_efe_score"]["expected_free_energy_proxy"] for row in rows],
-        dtype=float,
+        dtype=torch.float64,
     )
-    return np.diff(efe)
+    return torch.diff(efe)
 
 
-def shuffled_gradient(rows: list[dict[str, Any]]) -> np.ndarray:
+def shuffled_gradient(rows: list[dict[str, Any]]) -> torch.Tensor:
     return fep_gradient(list(reversed(rows)))
 
 
-def broken_adjacency_same_proxy(vector: np.ndarray) -> np.ndarray:
+def broken_adjacency_same_proxy(vector: torch.Tensor) -> torch.Tensor:
     """Preserve the gradient multiset/sign counts while breaking adjacency."""
-    if vector.size <= 1:
-        return vector.copy()
+    if vector.numel() <= 1:
+        return vector.clone()
     # Coprime step for len 63: deterministic permutation, no randomness.
-    order = (np.arange(vector.size) * 17 + 5) % vector.size
+    order = (torch.arange(vector.numel(), dtype=torch.int64) * 17 + 5) % vector.numel()
     return vector[order]
 
 
-def vector_stats(vector: np.ndarray) -> dict[str, Any]:
-    polarity = np.sign(vector)
+def vector_stats(vector: torch.Tensor) -> dict[str, Any]:
+    polarity = torch.sign(vector)
     return {
-        "len": int(vector.size),
-        "finite": bool(np.all(np.isfinite(vector))),
-        "mean_abs_gradient": float(np.mean(np.abs(vector))) if vector.size else 0.0,
-        "variance": float(np.var(vector)) if vector.size else 0.0,
-        "positive_steps": int(np.sum(polarity > 0)),
-        "negative_steps": int(np.sum(polarity < 0)),
-        "zero_steps": int(np.sum(polarity == 0)),
-        "nonzero_fraction": float(np.mean(np.abs(vector) > EPS)) if vector.size else 0.0,
+        "len": int(vector.numel()),
+        "finite": bool(torch.all(torch.isfinite(vector)).item()),
+        "mean_abs_gradient": float(torch.mean(torch.abs(vector)).item()) if vector.numel() else 0.0,
+        "variance": float(torch.var(vector, unbiased=False).item()) if vector.numel() else 0.0,
+        "positive_steps": int(torch.sum(polarity > 0).item()),
+        "negative_steps": int(torch.sum(polarity < 0).item()),
+        "zero_steps": int(torch.sum(polarity == 0).item()),
+        "nonzero_fraction": float(torch.mean((torch.abs(vector) > EPS).to(torch.float64)).item()) if vector.numel() else 0.0,
     }
 
 
-def compare(a: np.ndarray, b: np.ndarray) -> dict[str, Any]:
-    n = min(a.size, b.size)
+def compare(a: torch.Tensor, b: torch.Tensor) -> dict[str, Any]:
+    n = min(a.numel(), b.numel())
     if n == 0:
-        return {"pass": False, "l2_delta": 0.0, "max_abs_delta": 0.0, "overlap_len": 0}
+        return {
+            "pass": False,
+            "delta_exceeds_eps": False,
+            "l2_delta": 0.0,
+            "max_abs_delta": 0.0,
+            "overlap_len": 0,
+        }
     delta = a[:n] - b[:n]
+    delta_exceeds = bool(float(torch.linalg.vector_norm(delta).item()) > EPS)
     return {
-        "pass": bool(float(np.linalg.norm(delta)) > EPS),
-        "l2_delta": float(np.linalg.norm(delta)),
-        "max_abs_delta": float(np.max(np.abs(delta))),
+        "pass": delta_exceeds,
+        "delta_exceeds_eps": delta_exceeds,
+        "pass_semantics": "different_from_control_or_nonidentical_router_regression_detector",
+        "l2_delta": float(torch.linalg.vector_norm(delta).item()),
+        "max_abs_delta": float(torch.max(torch.abs(delta)).item()),
         "overlap_len": int(n),
     }
 
@@ -202,7 +216,18 @@ def main() -> int:
     router = read_json(ROUTER_RESULT)
     drive = read_json(DRIVE_CONTROL_RESULT)
     subdense = read_json(SUBDENSE_RESULT)
-    freshness = freshness_report([ROUTER_SCRIPT, DRIVE_CONTROL_SCRIPT, ROUTER_RESULT, DRIVE_CONTROL_RESULT])
+    online_vmp = read_json(ONLINE_VMP_RESULT)
+    freshness = freshness_report(
+        [
+            ROUTER_SCRIPT,
+            DRIVE_CONTROL_SCRIPT,
+            STAGE_RESULT,
+            ROUTER_RESULT,
+            DRIVE_CONTROL_RESULT,
+            SUBDENSE_RESULT,
+            ONLINE_VMP_RESULT,
+        ]
+    )
 
     rows = run_rows(manifold_enabled=True)
     no_manifold_rows = run_rows(manifold_enabled=False)
@@ -211,14 +236,14 @@ def main() -> int:
     shuffled_vector = shuffled_gradient(rows)
     broken_adjacency_vector = broken_adjacency_same_proxy(base_vector)
     router_fep = (router.get("axis0_outputs_or_blockers") or {}).get("fep_gradient_polarity") or {}
-    router_vector = np.asarray(router_fep.get("values") or [], dtype=float)
+    router_vector = torch.tensor(router_fep.get("values") or [], dtype=torch.float64)
     stats = vector_stats(base_vector)
     no_manifold_cmp = compare(base_vector, no_manifold_vector)
     shuffled_cmp = compare(base_vector, shuffled_vector)
     broken_adjacency_cmp = compare(base_vector, broken_adjacency_vector)
     router_cmp = compare(base_vector, router_vector)
     proxy_preserved = {
-        "same_sorted_values": bool(np.allclose(np.sort(base_vector), np.sort(broken_adjacency_vector), atol=0.0, rtol=0.0)),
+        "same_sorted_values": bool(torch.allclose(torch.sort(base_vector).values, torch.sort(broken_adjacency_vector).values, atol=0.0, rtol=0.0)),
         "same_positive_steps": vector_stats(base_vector)["positive_steps"] == vector_stats(broken_adjacency_vector)["positive_steps"],
         "same_negative_steps": vector_stats(base_vector)["negative_steps"] == vector_stats(broken_adjacency_vector)["negative_steps"],
         "same_zero_steps": vector_stats(base_vector)["zero_steps"] == vector_stats(broken_adjacency_vector)["zero_steps"],
@@ -234,8 +259,10 @@ def main() -> int:
         and section_pass(stage, "positive", "fep_scores_are_finite_and_control_sensitive")
         and stage_status.get("status") == "downstream_axis0_router_target_not_gated_here"
     )
+    router_pass = router.get("exists") and router.get("all_pass") is True
     vector_pass = (
-        stats["len"] == EXPECTED_VECTOR_LEN
+        router_pass
+        and stats["len"] == EXPECTED_VECTOR_LEN
         and stats["finite"]
         and stats["mean_abs_gradient"] > EPS
         and stats["positive_steps"] > 0
@@ -256,6 +283,13 @@ def main() -> int:
         and downstream["fep_candidate_status"].get("candidate_admissible_for_downstream_drop_controls") is True
         and downstream["subdense_full_vector_mode"] is True
     )
+    online_vmp_pass = (
+        online_vmp.get("exists")
+        and online_vmp.get("all_pass") is True
+        and (online_vmp.get("TOOL_INTEGRATION_DEPTH") or {}).get("torch") == "load_bearing"
+        and (online_vmp.get("TOOL_INTEGRATION_DEPTH") or {}).get("numpy") is None
+        and (online_vmp.get("TOOL_INTEGRATION_DEPTH") or {}).get("scipy") is None
+    )
 
     repair_receipt = {
         "weak_link": "The stage-record receipt still reported fep_gradient_polarity as a missing stage-local adapter after the Axis0 plural router and downstream carrier controls began computing and consuming it.",
@@ -266,6 +300,7 @@ def main() -> int:
             str(ROUTER_RESULT),
             str(DRIVE_CONTROL_RESULT),
             str(SUBDENSE_RESULT),
+            str(ONLINE_VMP_RESULT),
             "EngineCore stage fep_efe_score.expected_free_energy_proxy",
             "no-manifold and shuffled-order controls",
         ],
@@ -300,6 +335,7 @@ def main() -> int:
                 "remaining_blockers": {
                     "not_independent_efe_model": "This closure independently recomputes the stage-adjacency gradient transform over the shared EngineCore EFE proxy; it does not independently derive the EFE proxy itself.",
                     "not_true_vector_axis0_actuator": downstream["scalar_weighted_drive_blocker"],
+                    "not_policy_update_proof": "Online VMP evidence is consumed as a freshness/dependency guard for the router path, not as final Axis0 policy proof.",
                 },
                 "controls": {
                     "no_manifold": no_manifold_cmp,
@@ -331,6 +367,11 @@ def main() -> int:
             "pass": bool(stage_contract_pass),
             "stage_fep_gradient_status": stage_status,
         },
+        "router_receipt_is_green_before_vector_match": {
+            "pass": bool(router_pass),
+            "router_all_pass": router.get("all_pass"),
+            "router_path": router.get("path"),
+        },
         "fep_gradient_recomputed_from_stage_efe_rows": {
             "pass": vector_pass,
             "base_stats": stats,
@@ -348,6 +389,12 @@ def main() -> int:
         "downstream_plural_axis0_controls_consume_fep_gradient": {
             "pass": downstream_pass,
             "downstream": downstream,
+        },
+        "online_vmp_receipt_is_fresh_before_router_dependency": {
+            "pass": bool(online_vmp_pass),
+            "online_vmp_all_pass": online_vmp.get("all_pass"),
+            "online_vmp_depth": online_vmp.get("TOOL_INTEGRATION_DEPTH"),
+            "online_vmp_path": online_vmp.get("path"),
         },
         "closure_dependency_graph_is_acyclic": graph,
     }
@@ -409,6 +456,7 @@ def main() -> int:
             "axis0_router_receipt": str(ROUTER_RESULT),
             "axis0_drive_control_receipt": str(DRIVE_CONTROL_RESULT),
             "subdense_receipt": str(SUBDENSE_RESULT),
+            "online_vmp_receipt": str(ONLINE_VMP_RESULT),
         },
         "repair_receipt": repair_receipt,
         "dependency_consumption": graph,

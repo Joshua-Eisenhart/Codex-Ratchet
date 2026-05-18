@@ -465,6 +465,242 @@ CASES = [
         "claim_ceiling_terms": ["formal scout", "does not admit", "quantum advantage"],
         "rationale": "The receipt reports baseline risk and blocks a stronger reservoir-advantage reading.",
     },
+    # === Cross-lineage case authored by Grok (xAI) from receipt content only ===
+    # Wizard v4.2 iter 2 / L4 lane (lineage rotation). Controller (Claude) committed verbatim
+    # without editing. Anti-smuggling satisfied at scoring step: sim-author lineage (prior Claude)
+    # != case-author lineage (Grok). See /tmp/engine_v2/iter2_grok_case_full.txt for source.
+    {
+        "id": "eight_qubit_boundary_projected_gamma5_coherent_information_probe",
+        "receipt": "eight_qubit_boundary_projected_gamma5_channel_coherent_information_probe_results.json",
+        "claim_under_test": "Eight-qubit boundary-projected gamma5 chirality-asymmetric CPTP channels admit coherent-information and conditional-entropy readouts that remain inside finite bounds under symmetric, equal-rate, random-boundary and product controls.",
+        "expected_label": "open_basin_boundary",
+        "same_source_risk": False,
+        "method_families": ["graph_theory", "tensor_contraction", "density_matrix_evolution", "symbolic_algebra", "graph_neural_networks", "smt_solving"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 4,
+        "positive_required_terms": ["eight_qubit_boundary_projected_coherent_information_has_equal_rate_survivor_rows", "eight_qubit_boundary_projected_coherent_information_has_symmetric_fit_survivor_rows", "eight_qubit_boundary_projected_sequence_is_cptp", "gamma5_projector_boundary", "symbolic_boundary_and_signed_entropy_check", "random_boundary_projection_separates_all_nontrivial_rows", "signed_readouts_stay_inside_finite_information_bound"],
+        "negative_target_terms": [],
+        "claim_ceiling_terms": ["Formal scout only", "lifts the finite boundary-projected gamma5 chirality-asymmetric channel readout", "does not admit novelty", "empirical physics", "final manifold tower", "ontology", "bridge claim"],
+        "rationale": "Receipt demonstrates multiple orthogonal controls and invariants separating boundary readouts without promotion or novelty claims, matching open_basin_boundary criteria.",
+    },
+    # === Cross-lineage case authored by Gemini from receipt content only ===
+    # Wizard v4.2 iter 3 / L4 lane rotation. Committed verbatim. See /tmp/engine_v2/iter3_gemini_case_for_mi_persistence.txt
+    {
+        "id": "eight_qubit_boundary_projected_gamma5_mutual_information_persistence",
+        "receipt": "eight_qubit_boundary_projected_gamma5_mutual_information_persistence_probe_results.json",
+        "claim_under_test": "Tests a replacement Rips persistence readout based on mutual-information distances across time for eight-qubit boundary-projected gamma5 channel sequences.",
+        "expected_label": "shallow_basin",
+        "same_source_risk": False,
+        "method_families": [
+            "density_evolution",
+            "mutual_information",
+            "rips_persistence",
+            "symbolic_algebra"
+        ],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 3,
+        "positive_required_terms": [
+            "dynamic_mutual_information_persistence_has_nonflat_rows",
+            "gamma5_projector_boundary",
+            "partial_survivor_rows_resist_random_and_equal_rate_controls"
+        ],
+        "negative_target_terms": [],
+        "claim_ceiling_terms": [
+            "Formal scout only",
+            "partial-survivor",
+            "one-dimensional",
+            "does not admit"
+        ],
+        "rationale": "The probe qualifies for a shallow basin because it identifies partial survivor rows that resist random and equal-rate controls, but fails to isolate strong survivors due to signature collisions with permuted-rate sequences.",
+    },
+    # === Cross-lineage case authored by Opus (fresh context) from receipt content only ===
+    # Wizard v4.2 iter 4 / L4 lane rotation. Committed verbatim.
+    {
+        "id": "eight_qubit_dynamic_geometry_signed_entropy_cut_depth_probe_case",
+        "receipt": "eight_qubit_dynamic_geometry_signed_entropy_cut_depth_probe_results.json",
+        "claim_under_test": "An 8-qubit cos(theta)|0...0> + sin(theta)|1...1> tensor state exhibits signed conditional entropy and nonzero coherent information across multiple cut depths, with a Riemannian-distance-bearing dynamic geometry parameter and a nonzero coherent-information gradient.",
+        "expected_label": "candidate_basin",
+        "same_source_risk": True,
+        "method_families": [
+            "pytorch_tensor_state_density_spectra",
+            "opt_einsum_partial_trace_cuts",
+            "geomstats_hypersphere_riemannian_distance",
+            "gudhi_persistence_filtration",
+            "rustworkx_ordered_cut_depth_graph",
+            "toponetx_simplicial_complex",
+            "xgi_multi_cut_hyperedges",
+            "torch_geometric_message_pass",
+            "z3_signed_readout_unsat"
+        ],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 4,
+        "positive_required_terms": [
+            "eight_qubit_signed_entropy_exists_on_multiple_nontrivial_cuts",
+            "dynamic_geometry_parameter_has_riemannian_distance_and_nonzero_coherent_gradient",
+            "cut_depth_graph_topology_and_message_pass_execute",
+            "z3_signed_readout_requires_nonzero_cut_entropy"
+        ],
+        "negative_target_terms": [],
+        "claim_ceiling_terms": [
+            "formal scout only",
+            "does not admit",
+            "manifold tower",
+            "feedback direction",
+            "cycle order",
+            "bridge",
+            "target-system"
+        ],
+        "rationale": "Receipt shows multi-family load-bearing tool integration with two graveyard companions and a zero-motion control; state family is a single shared cat-state proxy under one theta-parametrization so multiple methods read off the same underlying density (blocks deep_basin until cross-source proxy independence shown), but the diverse method families plus matched-null controls and z3 structural impossibility put this firmly above shallow.",
+    },
+    # === Cross-lineage case authored by fresh-context Sonnet from receipt content only ===
+    # Wizard v4.2 iter 5 / L4 lane rotation. Committed verbatim.
+    {
+        "id": "eight_qubit_dynamic_shell_chirality_asymmetric_cptp_entropy_coupling_anti_basin",
+        "receipt": "eight_qubit_dynamic_shell_chirality_asymmetric_cptp_entropy_coupling_probe_results.json",
+        "claim_under_test": "An eight-qubit dynamic shell graph evolution with chirality-asymmetric CPTP channels yields a structurally novel chirality signature distinguishable from a symmetric effective-gamma channel under max coherent information readout.",
+        "expected_label": "anti_basin",
+        "same_source_risk": True,
+        "method_families": [
+            "pytorch_state_evolution",
+            "kraus_cptp_channels",
+            "networkx_dynamic_shell_graph",
+            "gudhi_persistence",
+            "torch_geometric_tensor",
+            "opt_einsum_reduced_density",
+            "clifford_pseudoscalar_orientation",
+            "sympy_noncommuting_algebra",
+            "z3_textbook_contradiction"
+        ],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 3,
+        "positive_required_terms": [
+            "clifford_chirality_boundary",
+            "dirac_gamma5_projectors_are_four_component_chirality_split",
+            "dynamic_shell_changes_asymmetric_readout_against_static",
+            "effective_symmetric_gamma_matches_asymmetric_signed_readout",
+            "eight_qubit_dynamic_shell_asymmetric_readout_is_weak",
+            "noncommuting_algebra_boundary",
+            "symmetric_channel_reduces_to_textbook_control"
+        ],
+        "negative_target_terms": [
+            "symmetric_channel_kills_chirality_specific_gap",
+            "uniform_graph_changes_asymmetric_signature",
+            "zero_shell_strength_reduces_dynamic_geometry_signal",
+            "asymmetric_gap_below_threshold",
+            "effective_gamma_matches",
+            "textbook_reduces"
+        ],
+        "claim_ceiling_terms": [
+            "Formal scout only",
+            "does not admit novelty",
+            "empirical physics",
+            "final manifold tower",
+            "bridge claim",
+            "ontology",
+            "target-system claim"
+        ],
+        "rationale": "Receipt is structured as exclusion artifact: signed gap below threshold, effective symmetric gamma reproduces asymmetric signature within tolerance, z3 unsat for chirality-specific contradiction, claim_ceiling disclaims novelty — chirality-asymmetric novelty claim killed not earned, structural anti_basin under this readout.",
+    },
+    # === Cross-lineage case authored by Grok from receipt content only — iter 6 ===
+    {
+        "id": "eight_qubit_dynamic_shell_gamma5_chirality_survivor_quotient_probe",
+        "receipt": "eight_qubit_dynamic_shell_gamma5_chirality_survivor_quotient_probe_results.json",
+        "claim_under_test": "eight-qubit density family under dynamic shell graph weights coupled to gamma5 chirality-asymmetric CPTP channel sequences, quotiented by P_L rho P_R trace-norm orbit signatures with Choi-distance effective-family controls",
+        "expected_label": "shallow_basin",
+        "same_source_risk": True,
+        "method_families": ["topological_persistence", "graph_quotient", "tensor_contraction", "symbolic_noncommuting", "quantum_channel", "convex_optimization"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 5,
+        "positive_required_terms": ["eight_qubit_dynamic_classes_exceed_static_shell_control", "eight_qubit_dynamic_shell_gamma5_sequence_forms_multiple_survivor_classes", "gamma5_projector_boundary", "shell_step_channels_resist_symmetric_choi_fit", "symbolic_noncommuting_update_boundary"],
+        "negative_target_terms": [],
+        "claim_ceiling_terms": ["Formal scout only", "lifts dynamic shell gamma5 chirality-asymmetric CPTP sequences to eight-qubit density states", "does not admit novelty, empirical physics, a final manifold tower, ontology, or bridge claim"],
+        "rationale": "Receipt demonstrates controlled formation of three dynamic survivor classes under multi-tool verification with intact gamma5 and Choi invariants yet explicitly bars promotion and notes uniform-shell parity, placing it in shallow_basin.",
+    },
+    # === Cross-lineage case authored by Opus (fresh context) — iter 8 ===
+    {
+        "id": "eight_qubit_mps_channel_order_graph_leakage_pyg_pytorch_opt_einsum_z3_probe",
+        "receipt": "eight_qubit_mps_channel_order_graph_leakage_pyg_pytorch_opt_einsum_z3_probe_results.json",
+        "claim_under_test": "An eight-qubit finite MPS with bond dimension two admits exact 256-amplitude contraction, exposes order noncommutation between controlled-X entangling unitaries and local amplitude-damping channels (trace distance ~0.179), and supports a PyG graph topology witness plus z3-enforced finite dimension, bond, support-ratchet, and order-gap constraints, while remaining a formal scout that does not promote to manifold/G-structure/flux/cycle/bridge/axis/target-system claims.",
+        "expected_label": "candidate_basin",
+        "same_source_risk": True,
+        "method_families": [
+            "pytorch_state_vector_density_matrix",
+            "opt_einsum_mps_contraction",
+            "pyg_support_graph_topology",
+            "sympy_exact_operator_commutator",
+            "z3_smt_finitude_and_gap_constraints"
+        ],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 4,
+        "positive_required_terms": [
+            "eight_qubit_mps_contracts_to_256_amplitudes",
+            "controlled_x_then_damping_order_differs_from_damping_then_controlled_x",
+            "pyg_support_graph_exposes_target_control_neighborhood",
+            "sympy_local_operator_noncommutation_sanity_check",
+            "z3_finitude_support_and_order_gap_checks"
+        ],
+        "negative_target_terms": [],
+        "claim_ceiling_terms": ["Formal scout only", "eight-qubit finite MPS contraction", "controlled-X/local-amplitude-damping order noncommutation", "PyG graph topology witness", "support-ratchet leakage control", "does not admit a final manifold tower", "final G-structure chain", "flux ontology", "cycle", "bridge", "axis", "target-system claim"],
+        "rationale": "Five load-bearing method families with five distinct positives and five graveyard companions plus three boundary checks support candidate_basin under same-source authorship; promotion_allowed=false caps below deep_basin.",
+    },
+    # === Cross-lineage case authored by Sonnet (fresh context) — iter 9 ===
+    {
+        "id": "eight_qubit_mps_entropy_readout_layer_constraint_probe",
+        "receipt": "eight_qubit_mps_entropy_readout_layer_constraint_probe_results.json",
+        "claim_under_test": "8-qubit finite MPS/channel layer order couples to entropy readouts such that ordered, swapped, and degenerate variants are structurally separated by at least one readout family under finite-dimension z3 constraints.",
+        "expected_label": "candidate_basin",
+        "same_source_risk": True,
+        "method_families": ["pytorch_density_channel", "opt_einsum_mps_contraction", "z3_finite_constraint"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 3,
+        "positive_required_terms": [
+            "layer_order_selects_pure_and_mixed_global_entropy_outputs",
+            "ordered_and_swapped_layer_orders_have_distinct_cut_entropy_readout",
+            "z3_finite_layer_entropy_constraints"
+        ],
+        "negative_target_terms": [],
+        "claim_ceiling_terms": ["Formal scout only", "does not admit a final manifold nesting", "bridge", "cycle", "axis", "target-system entropy claim"],
+        "rationale": "Three load-bearing tool families separate ordered/swapped layer entropy with proxy-pair and invariant-preserving graveyards, but classification is formal_scout with promotion_allowed=false and only first-half cut tested, so candidate_basin not deep_basin.",
+    },
+    # === Cross-lineage case authored by Gemini (retry with vocab fix) — iter 7 ===
+    {
+        "id": "eight_qubit_dynamic_shell_graph_entropy_coupling",
+        "receipt": "eight_qubit_dynamic_shell_graph_tensor_network_entropy_coupling_probe_results.json",
+        "claim_under_test": "Coupling a dynamic shell graph to an eight-qubit tensor network generates non-trivial coherent information that is verified as absent in product-state controls.",
+        "expected_label": "candidate_basin",
+        "same_source_risk": False,
+        "method_families": ["tensor_networks", "topological_data_analysis", "formal_methods", "graph_theory", "quantum_information"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 4,
+        "positive_required_terms": ["coherent_information", "conditional_entropy", "shell_graph", "noncommuting", "z3_witness"],
+        "negative_target_terms": [],
+        "claim_ceiling_terms": ["manifold_tower", "empirical_spacetime", "ontology", "target_system"],
+        "rationale": "The probe successfully demonstrates entanglement entropy coupling in a dynamic shell graph while maintaining strict formal separation from product-state controls via Z3 witness verification.",
+    },
+    # === Cross-lineage case authored by Grok (retry with vocab fix) — iter 10 ===
+    {
+        "id": "eight_qubit_xx_chain_signed_entropy_threshold_probe",
+        "receipt": "eight_qubit_xx_chain_dynamic_geometry_signed_entropy_threshold_probe_results.json",
+        "claim_under_test": "An eight-qubit product state evolved under a finite XX-chain generator exhibits near-zero kappa threshold behavior across all seven bipartition cuts in signed entropy without admitting stable manifold, cycle, or bridge structures.",
+        "expected_label": "open_basin_boundary",
+        "same_source_risk": False,
+        "method_families": ["topological_data_analysis", "quantum_hamiltonian_simulation", "graph_filtration", "simplicial_complex_construction"],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 3,
+        "positive_required_terms": ["near_zero_kappa", "signed_entropy_scan", "bipartition_cut_stability"],
+        "negative_target_terms": [],
+        "claim_ceiling_terms": ["no_manifold_tower", "no_cycle_identity", "no_bridge_claim", "formal_scout_only"],
+        "rationale": "The receipt performs exhaustive signed-entropy probing and threshold checks on an eight-qubit XX chain yet explicitly disclaims any final topological or dynamical-system claim, placing it at an open basin boundary.",
+    },
 ]
 
 FIXTURE_RECEIPTS = {

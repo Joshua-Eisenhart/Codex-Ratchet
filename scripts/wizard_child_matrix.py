@@ -14,7 +14,9 @@ import argparse
 import json
 import os
 import re
+import shlex
 import shutil
+import ssl
 import subprocess
 import sys
 import time
@@ -25,6 +27,11 @@ from pathlib import Path
 from typing import Any
 
 import yaml
+
+try:
+    import certifi
+except Exception:  # pragma: no cover - optional dependency on some hosts.
+    certifi = None
 
 from wizard_topology import FORMAL_CHILDREN as V4_1_FORMAL_CHILDREN
 
@@ -40,6 +47,64 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 PACKET_ROOT_V4_1 = Path.home() / "wiki/wizard/packet-v4-1-current"
 PACKET_ROOT_V4_2 = Path.home() / "wiki/wizard/packet-v4-2-current"
 CANONICAL_CLAUDE_FANOUT = Path.home() / ".codex/skills/claude-bridge/scripts/claude_child_fanout.py"
+HERMES_ENV_FILE = Path.home() / ".hermes/.env"
+SHELL_ENV_FILE = Path.home() / ".zshrc"
+SAFE_PROVIDER_KEY_NAMES = {
+    "GEMINI_API_KEY",
+    "GOOGLE_API_KEY",
+    "XAI_API_KEY",
+    "GROK_API_KEY",
+    "WIZARD_GEMINI_MODEL",
+    "WIZARD_GROK_MODEL",
+}
+
+
+def ssl_context() -> ssl.SSLContext:
+    if certifi is not None:
+        return ssl.create_default_context(cafile=certifi.where())
+    return ssl.create_default_context()
+
+
+def parse_named_env_file(path: Path) -> dict[str, str]:
+    values: dict[str, str] = {}
+    if not path.exists():
+        return values
+    for raw in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("export "):
+            line = line[len("export "):].strip()
+        if "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        if key not in SAFE_PROVIDER_KEY_NAMES:
+            continue
+        value = value.strip()
+        try:
+            parts = shlex.split(value, posix=True)
+            if len(parts) == 1:
+                value = parts[0]
+        except Exception:
+            value = value.strip("\"'")
+        if value:
+            values[key] = value
+    return values
+
+
+def key_from_env_or_files(names: tuple[str, ...], *, files: list[Path] | None = None) -> str:
+    for name in names:
+        value = os.environ.get(name, "").strip()
+        if value:
+            return value
+    for path in files or [HERMES_ENV_FILE, SHELL_ENV_FILE]:
+        parsed = parse_named_env_file(path)
+        for name in names:
+            value = parsed.get(name, "").strip()
+            if value:
+                return value
+    return ""
 
 
 def claude_python_executable() -> str:
@@ -346,6 +411,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--opus-timeout-sec", type=float, default=320.0)
     parser.add_argument("--haiku-timeout-sec", type=float, default=160.0)
     parser.add_argument("--gemini-timeout-sec", type=float, default=90.0)
+    parser.add_argument("--grok-timeout-sec", type=float, default=90.0)
     parser.add_argument("--sonnet-budget", type=float, default=1.5)
     parser.add_argument("--opus-budget", type=float, default=2.0)
     parser.add_argument("--haiku-budget", type=float, default=0.5)
@@ -353,6 +419,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-concurrency", type=int, default=4)
     parser.add_argument("--parallel-model-groups", action="store_true", help="Run Sonnet/Opus/Haiku groups concurrently inside one parent. Off by default to avoid Claude socket pressure in long full loops.")
     parser.add_argument("--codex-local-children", action="store_true", help="Generate bounded local Codex child receipts instead of launching Claude children. Intended for compact diagnostics when external model quota is exhausted.")
+    parser.add_argument("--skip-claude-groups", action="store_true", help="Run only non-Claude provider lanes such as Gemini direct API. Intended for provider health checks.")
     parser.add_argument("--attempt-gemini", action="store_true", help="Actually launch Gemini through the direct API. Default is degraded-safe to avoid provider hangs.")
     parser.add_argument("--rescore-existing", help="Existing route timestamp directory containing fanout receipts; rescore without launching children.")
     parser.add_argument("--run-id", default="", help="Shared Wizard run id. Required by full-run harness to prevent mixed-run FULL claims.")
@@ -374,12 +441,16 @@ def load_receipt(path: Path) -> dict[str, Any]:
 def post_json(url: str, headers: dict[str, str], payload: dict[str, Any], timeout: float) -> Any:
     body = json.dumps(payload).encode("utf-8")
     request = urllib.request.Request(url, data=body, headers=headers, method="POST")
-    with urllib.request.urlopen(request, timeout=timeout) as response:
+    with urllib.request.urlopen(request, timeout=timeout, context=ssl_context()) as response:
         return json.loads(response.read().decode("utf-8"))
 
 
 def gemini_api_key() -> str:
-    return os.environ.get("GEMINI_API_KEY", "").strip() or os.environ.get("GOOGLE_API_KEY", "").strip()
+    return key_from_env_or_files(("GEMINI_API_KEY", "GOOGLE_API_KEY"))
+
+
+def grok_api_key() -> str:
+    return key_from_env_or_files(("XAI_API_KEY", "GROK_API_KEY"))
 
 
 def extract_gemini_text(raw: Any) -> str:
@@ -1254,6 +1325,71 @@ def score_existing_gemini(existing_root: Path) -> dict[str, Any]:
     return receipt
 
 
+def extract_openai_chat_text(raw: Any) -> str:
+    try:
+        return str(raw["choices"][0]["message"]["content"]).strip()
+    except (KeyError, IndexError, TypeError):
+        return ""
+
+
+def run_one_grok_child(args: argparse.Namespace, out_dir: Path, child_id: str, role: str) -> dict[str, Any]:
+    prompt = child_prompt(args, child_id, role)
+    child_dir = out_dir / slug(child_id)
+    child_dir.mkdir(parents=True, exist_ok=True)
+    output_path = child_dir / "grok_output.json"
+    receipt_path = child_dir / "grok_receipt.json"
+    model_name = os.environ.get("WIZARD_GROK_MODEL", "grok-4.3").strip() or "grok-4.3"
+    started = now_iso()
+    key = grok_api_key()
+    if not key:
+        timed_out = False
+        output = json.dumps({"error": "XAI_API_KEY/GROK_API_KEY not set"}, indent=2)
+        returncode = 2
+    else:
+        timed_out = True
+        try:
+            raw = post_json(
+                "https://api.x.ai/v1/chat/completions",
+                {"Content-Type": "application/json", "Authorization": f"Bearer {key}"},
+                {
+                    "model": model_name,
+                    "messages": [{"role": "user", "content": prompt}],
+                    "temperature": 0,
+                    "max_tokens": 512,
+                },
+                args.grok_timeout_sec,
+            )
+            text = extract_openai_chat_text(raw)
+            timed_out = False
+            returncode = 0 if text else 1
+            output = json.dumps({"model": model_name, "text": text, "raw_response": raw}, indent=2, sort_keys=True)
+        except TimeoutError as exc:
+            output = json.dumps({"error": repr(exc), "timeout_sec": args.grok_timeout_sec}, indent=2, sort_keys=True)
+            returncode = 124
+        except Exception as exc:
+            timed_out = False
+            output = json.dumps({"error": repr(exc), "model": model_name}, indent=2, sort_keys=True)
+            returncode = 1
+    output_path.write_text(output, encoding="utf-8", errors="replace")
+    receipt = {
+        "id": child_id,
+        "role": role,
+        "model": "grok",
+        "model_name": model_name,
+        "launch_surface": "direct_xai_api",
+        "status": "completed" if returncode == 0 and not timed_out else "timed_out" if timed_out else "failed",
+        "returncode": returncode,
+        "timed_out": timed_out,
+        "started_at": started,
+        "completed_at": now_iso(),
+        "output_path": str(output_path),
+        "output_preview": output[:1000],
+    }
+    receipt_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    receipt["receipt_path"] = str(receipt_path)
+    return receipt
+
+
 def run_one_gemini_child(args: argparse.Namespace, out_dir: Path, child_id: str, role: str) -> dict[str, Any]:
     prompt = child_prompt(args, child_id, role)
     child_dir = out_dir / slug(child_id)
@@ -1347,6 +1483,12 @@ def run_gemini(args: argparse.Namespace, out_dir: Path, roles: list[str] | None 
     completed_count = sum(1 for child in children if child.get("status") == "completed")
     timed_out_count = sum(1 for child in children if child.get("status") == "timed_out")
     failed_count = sum(1 for child in children if child.get("status") == "failed")
+    completed_child_ids = [str(child.get("id")) for child in children if child.get("status") == "completed"]
+    completed_child_receipt_paths = [
+        str(child.get("receipt_path"))
+        for child in children
+        if child.get("status") == "completed" and child.get("receipt_path")
+    ]
     receipt_path = out_dir / "gemini_group_receipt.json"
     receipt = {
         "model": "gemini",
@@ -1361,6 +1503,18 @@ def run_gemini(args: argparse.Namespace, out_dir: Path, roles: list[str] | None 
             "timed_out": timed_out_count,
             "total": len(children),
         },
+        "completed_child_ids": completed_child_ids,
+        "completed_child_receipt_paths": completed_child_receipt_paths,
+        "usefulness_failures": [
+            {
+                "id": str(child.get("id")),
+                "status": child.get("status"),
+                "reason": "gemini_direct_api_child_not_completed",
+                "receipt_path": child.get("receipt_path"),
+            }
+            for child in children
+            if child.get("status") != "completed"
+        ],
     }
     receipt_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     receipt["receipt_path"] = str(receipt_path)
@@ -1545,6 +1699,7 @@ def main() -> int:
     sonnet_count = args.sonnet_count if args.sonnet_count > 0 else full_role_count
     opus_count = args.opus_count if args.opus_count > 0 else (full_role_count if args.full_model_council else 1)
     haiku_count = full_role_count if args.full_model_council and args.haiku_count > 0 else args.haiku_count
+    group_specs: list[dict[str, Any]] = []
     if args.rescore_existing:
         groups = [
             score_existing_group(out_root, "sonnet"),
@@ -1560,6 +1715,9 @@ def main() -> int:
             "reason": "Codex-local compact mode bypasses external Gemini/Claude fanout.",
             "counts": {"completed": 0, "failed": 0, "timed_out": 0, "total": 0},
         }
+    elif args.skip_claude_groups:
+        groups = []
+        gemini = run_gemini(args, out_root / "gemini", roles)
     else:
         role_specs = asymmetric_model_role_specs(
             route=args.route,
@@ -1627,8 +1785,9 @@ def main() -> int:
             ]
         gemini = run_gemini(args, out_root / "gemini", roles)
     completed = accepted_child_count(groups, gemini)
-    formal_completed = completed_formal_children_any_group(groups, active_formal_children)
-    formal_receipt_paths = formal_receipt_paths_any_group(groups, formal_completed)
+    formal_groups = groups + ([gemini] if args.skip_claude_groups and gemini.get("status") == "completed" else [])
+    formal_completed = completed_formal_children_any_group(formal_groups, active_formal_children)
+    formal_receipt_paths = formal_receipt_paths_any_group(formal_groups, formal_completed)
     core_families_completed = all(
         int((group.get("counts") or {}).get("completed") or 0) > 0
         for group in groups
@@ -1665,6 +1824,7 @@ def main() -> int:
             "active_formal_child_obligation": active_formal_children,
             "claude_model_families": [] if args.codex_local_children else [spec["model"] for spec in group_specs] if not args.rescore_existing else ["sonnet", "opus", "haiku"],
             "codex_local_children": args.codex_local_children,
+            "claude_groups_skipped": args.skip_claude_groups,
             "gemini_status": gemini.get("status"),
         },
         "status": "accepted" if matrix_ok else "rescored_stale" if rescore_stale else "partial",

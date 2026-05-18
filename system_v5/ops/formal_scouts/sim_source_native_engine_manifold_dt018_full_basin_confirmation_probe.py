@@ -9,14 +9,14 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
-
 import engine_core as ec
 from sim_source_native_engine_manifold_attractor_basin_depth_probe import (
     EPSILONS,
     SEEDS,
     classify_basin,
+    mean_float,
     perturb_density,
+    random_pauli_cptp_control,
     run_cycle,
     token_match_fraction,
     trace_distance,
@@ -42,12 +42,17 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing basin/control statistics"},
-    "engine_core": {"tried": True, "used": True, "reason": "load-bearing source-native EngineCore with temporary STAGE_DT candidate"},
-    "json": {"tried": True, "used": True, "reason": "load-bearing prior receipt parsing and result writing"},
-    "hashlib": {"tried": True, "used": True, "reason": "load-bearing source hash receipts"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing trace distances, random schedule/CPTP controls, and basin/control statistics"},
+    "engine_core": {"tried": True, "used": True, "reason": "supportive source-native EngineCore with temporary STAGE_DT candidate"},
+    "json": {"tried": True, "used": True, "reason": "supportive prior receipt parsing and result writing"},
+    "hashlib": {"tried": True, "used": True, "reason": "supportive source hash receipts"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "engine_core": "supportive",
+    "json": "supportive",
+    "hashlib": "supportive",
+}
 
 
 def sha256_file(path: pathlib.Path) -> str:
@@ -60,6 +65,7 @@ def load_json(path: pathlib.Path) -> dict[str, Any]:
 
 def run_full_grid() -> tuple[list[dict[str, Any]], dict[str, Any]]:
     rows = []
+    control_receipts = []
     for engine_type in (0, 1):
         for seed in SEEDS:
             rho0 = ec.generate_initial_density(seed)
@@ -69,7 +75,26 @@ def run_full_grid() -> tuple[list[dict[str, Any]], dict[str, Any]]:
                 on = run_cycle(engine_type, pert, manifold_enabled=True)
                 off = run_cycle(engine_type, pert, manifold_enabled=False)
                 reversed_control = run_cycle(engine_type, pert, manifold_enabled=True, schedule_mode="reversed")
+                random_schedule_seed = 17519 + 1000 * engine_type + 10 * seed + int(epsilon * 1000)
+                random_schedule = run_cycle(
+                    engine_type,
+                    pert,
+                    manifold_enabled=True,
+                    schedule_mode="torch_random",
+                    schedule_seed=random_schedule_seed,
+                )
                 wrong = run_cycle(1 - engine_type, pert, manifold_enabled=True)
+                random_cptp_seed = 1299709 + 1000 * engine_type + 10 * seed + int(epsilon * 1000)
+                random_cptp = random_pauli_cptp_control(pert, random_cptp_seed)
+                control_receipts.append(
+                    {
+                        "engine_type": engine_type,
+                        "seed": seed,
+                        "epsilon": epsilon,
+                        "random_schedule": random_schedule["schedule_receipt"],
+                        "random_cptp": {key: value for key, value in random_cptp.items() if key != "rho"},
+                    }
+                )
                 rows.append(
                     {
                         "engine_type": engine_type,
@@ -78,10 +103,18 @@ def run_full_grid() -> tuple[list[dict[str, Any]], dict[str, Any]]:
                         "on_trace_to_baseline": trace_distance(on["rho"], baseline["rho"]),
                         "off_trace_to_baseline": trace_distance(off["rho"], baseline["rho"]),
                         "reversed_trace_to_baseline": trace_distance(reversed_control["rho"], baseline["rho"]),
+                        "random_schedule_trace_to_baseline": trace_distance(random_schedule["rho"], baseline["rho"]),
                         "wrong_chirality_trace_to_baseline": trace_distance(wrong["rho"], baseline["rho"]),
+                        "random_cptp_trace_to_baseline": trace_distance(random_cptp["rho"], baseline["rho"]),
                         "on_token_match": token_match_fraction(on["tokens"], baseline["tokens"]),
                         "reversed_token_match": token_match_fraction(reversed_control["tokens"], baseline["tokens"]),
+                        "random_schedule_token_match": token_match_fraction(random_schedule["tokens"], baseline["tokens"]),
                         "wrong_chirality_token_match": token_match_fraction(wrong["tokens"], baseline["tokens"]),
+                        "random_schedule_seed": random_schedule_seed,
+                        "random_cptp_seed": random_cptp_seed,
+                        "random_cptp_trace_gap": random_cptp["final_density_diagnostics"]["trace_gap"],
+                        "random_cptp_min_choi_eigenvalue": random_cptp["min_step_choi_eigenvalue"],
+                        "random_cptp_output_min_eigenvalue": random_cptp["final_density_diagnostics"]["min_eigenvalue"],
                         "on_mean_efe": on["mean_efe"],
                         "off_mean_efe": off["mean_efe"],
                         "on_mean_correction": on["mean_correction"],
@@ -90,7 +123,7 @@ def run_full_grid() -> tuple[list[dict[str, Any]], dict[str, Any]]:
                         "off_final_purity": off["final_purity"],
                     }
                 )
-    return rows, classify_basin(rows, rows, rows, rows)
+    return rows, {**classify_basin(rows), "control_receipts": control_receipts}
 
 
 def main() -> int:
@@ -105,11 +138,19 @@ def main() -> int:
         ec.STAGE_DT = original_dt
 
     on_token_min = min(row["on_token_match"] for row in rows)
+    control_receipts = basin.pop("control_receipts")
     reversed_token_max = max(row["reversed_token_match"] for row in rows)
+    random_schedule_token_max = max(row["random_schedule_token_match"] for row in rows)
     wrong_token_max = max(row["wrong_chirality_token_match"] for row in rows)
-    on_correction_mean = float(np.mean([row["on_mean_correction"] for row in rows]))
-    off_correction_mean = float(np.mean([row["off_mean_correction"] for row in rows]))
-    purity_gap = float(np.mean([row["on_final_purity"] - row["off_final_purity"] for row in rows]))
+    on_correction_mean = mean_float(row["on_mean_correction"] for row in rows)
+    off_correction_mean = mean_float(row["off_mean_correction"] for row in rows)
+    purity_gap = mean_float(row["on_final_purity"] - row["off_final_purity"] for row in rows)
+    cptp_valid = all(
+        receipt["random_cptp"]["trace_preserving_pass"]
+        and receipt["random_cptp"]["density_valid_pass"]
+        and receipt["random_cptp"]["choi_psd_pass"]
+        for receipt in control_receipts
+    )
 
     positive = {
         "prior_baseline_and_tuning_receipts_loaded": {
@@ -127,7 +168,7 @@ def main() -> int:
             "epsilons": EPSILONS,
         },
         "dt018_full_grid_classifies_basin": {
-            "pass": basin["label"] in {"candidate_basin", "shallow_basin", "anti_basin", "open_boundary"},
+            "pass": basin["label"] in {"candidate_basin", "shallow_basin", "anti_basin", "open_basin_boundary"},
             "basin": basin,
         },
         "native_stage_identity_preserved_under_dt018": {
@@ -158,9 +199,16 @@ def main() -> int:
             "original_dt": original_dt,
         },
         "controls_remain_nontrivial": {
-            "pass": reversed_token_max < 1.0 and wrong_token_max < 1.0,
+            "pass": reversed_token_max < 1.0 and random_schedule_token_max < 1.0 and wrong_token_max < 1.0,
             "max_reversed_token_match": reversed_token_max,
+            "max_random_schedule_token_match": random_schedule_token_max,
             "max_wrong_chirality_token_match": wrong_token_max,
+        },
+        "random_cptp_control_is_valid": {
+            "pass": cptp_valid,
+            "max_trace_gap": max(row["random_cptp_trace_gap"] for row in rows),
+            "min_output_eigenvalue": min(row["random_cptp_output_min_eigenvalue"] for row in rows),
+            "min_step_choi_eigenvalue": min(row["random_cptp_min_choi_eigenvalue"] for row in rows),
         },
     }
     boundary = {
@@ -192,6 +240,7 @@ def main() -> int:
         "boundary": boundary,
         "basin_classification": basin,
         "rows": rows,
+        "control_receipts": control_receipts,
         "nearby_variants": {
             "total": len(graveyard),
             "passed": sum(1 for row in graveyard.values() if row["pass"]),

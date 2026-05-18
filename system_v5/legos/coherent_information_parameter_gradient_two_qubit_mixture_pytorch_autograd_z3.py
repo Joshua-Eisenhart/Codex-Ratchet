@@ -27,7 +27,7 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch_autograd": {"tried": True, "used": True, "reason": "load-bearing gradient of coherent information through eigvalsh"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing torch autograd gradient of coherent information through eigvalsh"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing partial trace for subsystem entropy"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing proof that nonzero and zero gradients cannot be same witness"},
 }

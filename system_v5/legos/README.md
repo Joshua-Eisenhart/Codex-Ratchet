@@ -26,7 +26,7 @@ Current legos:
 | `bipartite_cut_mutual_conditional_coherent_information_pytorch_sympy_z3.py` | `results/bipartite_cut_mutual_conditional_coherent_information_pytorch_sympy_z3_results.json` | pytorch, sympy, z3 |
 | `finite_support_topology_entropy_witness_pyg_gudhi_xgi_z3.py` | `results/finite_support_topology_entropy_witness_pyg_gudhi_xgi_z3_results.json` | pyg, gudhi, xgi, pytorch, z3 |
 | `signed_conditional_and_coherent_information_negative_entropy_pytorch_sympy_z3.py` | `results/signed_conditional_and_coherent_information_negative_entropy_pytorch_sympy_z3_results.json` | pytorch, opt_einsum, sympy, z3 |
-| `coherent_information_parameter_gradient_two_qubit_mixture_pytorch_autograd_z3.py` | `results/coherent_information_parameter_gradient_two_qubit_mixture_pytorch_autograd_z3_results.json` | pytorch_autograd, opt_einsum, z3 |
+| `coherent_information_parameter_gradient_two_qubit_mixture_pytorch_autograd_z3.py` | `results/coherent_information_parameter_gradient_two_qubit_mixture_pytorch_autograd_z3_results.json` | pytorch, opt_einsum, z3 |
 
 Baseline-support files:
 

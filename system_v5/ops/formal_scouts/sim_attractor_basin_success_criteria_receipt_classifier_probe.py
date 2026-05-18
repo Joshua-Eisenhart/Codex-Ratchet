@@ -64,8 +64,8 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "json": "load_bearing",
-    "hashlib": "load_bearing",
+    "json": "supportive",
+    "hashlib": "supportive",
     "pathlib": "supportive",
 }
 PROVIDER_INPUTS_USED = [
@@ -745,6 +745,39 @@ CASES = [
             "pseudoscalar_chirality"
         ],
         "rationale": "The probe empirically confirms the algebraic requirement that pseudoscalar chirality is strictly contingent on the even parity of the algebra's total dimension, establishing a robust portability boundary across multiple metric signatures.",
+    },
+    # === Cross-lineage case authored by Gemini for D5 15-signature portability receipt ===
+    {
+        "id": "D5_15Sig_portability_Gemini_20260517",
+        "receipt": "d5_commutative_geometry_collapse_15_signature_portability_probe_results.json",
+        "claim_under_test": "The D5 commutative-reduction impossibility claim is portable across 15 distinct Clifford signatures (spanning n=4 through n=7) as verified by 60 independent cross-solver UNSAT proofs.",
+        "expected_label": "deep_basin",
+        "same_source_risk": False,
+        "method_families": [
+            "z3_boolean_encoding",
+            "z3_bitvec_encoding",
+            "cvc5_boolean_encoding",
+            "cvc5_bitvec_encoding"
+        ],
+        "proxy_pair_control": True,
+        "invariant_preserving_control": True,
+        "independent_methods_required": 4,
+        "positive_required_terms": [
+            "all_signatures_4_way_unsat",
+            "weakened_control_sat_universal",
+            "total_independent_unsat_proofs",
+            "all_4_unsat",
+            "weakened_control_sat"
+        ],
+        "negative_target_terms": [],
+        "claim_ceiling_terms": [
+            "formal scout only",
+            "15 clifford signatures",
+            "60 independent unsat proofs",
+            "signature-and-dimension portability",
+            "anti-smuggling rule"
+        ],
+        "rationale": "Case establishes deep attractor basin for portability of D5 commutative geometry collapse. Underlying probe provides 60 independent UNSAT proofs across 15 Clifford signatures and 4 distinct solver/encoding lanes (z3/cvc5 × Bool/BitVec), achieving high-fidelity cross-solver agreement. Universal SAT result for weakened control across all tested signatures empirically confirms impossibility is non-trivial algebraic constraint rather than encoding artifact. By providing external case authorship, satisfies anti-smuggling guardrails required to promote formal-scout portability evidence to deep-basin verdict.",
     },
 ]
 

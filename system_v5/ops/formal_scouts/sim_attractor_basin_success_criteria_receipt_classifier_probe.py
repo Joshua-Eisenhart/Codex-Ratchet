@@ -949,6 +949,50 @@ FIXTURE_RECEIPTS = {
         },
         "all_pass": True,
     },
+    "fixture://stale_aggregate_false_green_cross_solver": {
+        "schema": "FORMAL_SCOUT_RESULT_v1_SYNTHETIC_FIXTURE",
+        "name": "stale_aggregate_false_green_cross_solver_fixture",
+        "classification": "formal_scout",
+        "promotion_allowed": False,
+        "claim_ceiling": (
+            "Formal scout adversarial fixture only: simulates a stale aggregate "
+            "cross-solver success claim while one encoding row is SAT. Does not "
+            "admit engine, manifold, axis, or basin verdict; surfaces portability "
+            "evidence only."
+        ),
+        "TOOL_INTEGRATION_DEPTH": {
+            "z3": "load_bearing",
+            "cvc5": "load_bearing",
+            "clifford": "load_bearing",
+            "numpy": "supportive",
+        },
+        "positive": {
+            "encodings": [
+                {"encoding": "z3_bool", "result": "unsat", "unsat": True},
+                {"encoding": "z3_bitvec", "result": "unsat", "unsat": True},
+                {"encoding": "cvc5_bool", "result": "sat", "unsat": False},
+                {"encoding": "cvc5_bitvec", "result": "unsat", "unsat": True},
+            ],
+            "all_4_unsat": True,
+            "cross_solver_agreement_tuple": [True, True, False, True],
+            "weakened_control_sat": True,
+        },
+        "graveyard_companions": {
+            "stale_aggregate_must_not_override_encoding_rows": {
+                "pass": True,
+                "claim": "The red cvc5_bool row must block deep basin classification even when aggregate fields are stale-green.",
+            },
+            "cross_solver_disagreement_blocks_structural_control": {
+                "pass": True,
+                "claim": "A false element in cross_solver_agreement_tuple blocks structural boundary control.",
+            },
+        },
+        "boundary": {
+            "formal_scout_only_no_engine_or_axis_admission": True,
+            "stale_aggregate_fixture": True,
+        },
+        "all_pass": True,
+    },
 }
 
 
@@ -1013,6 +1057,69 @@ def section_rows(data: dict[str, Any], key: str) -> list[dict[str, Any]]:
     if not isinstance(section, dict):
         return []
     return [row for row in section.values() if isinstance(row, dict)]
+
+
+def all_truthy_sequence(value: Any) -> bool:
+    return isinstance(value, (list, tuple)) and bool(value) and all(bool(item) for item in value)
+
+
+def encoding_rows_all_unsat(data: dict[str, Any]) -> bool:
+    positive = data.get("positive") or {}
+    if not isinstance(positive, dict):
+        return False
+    encodings = positive.get("encodings")
+    if not isinstance(encodings, list) or not encodings:
+        return False
+    expected = {"z3_bool", "z3_bitvec", "cvc5_bool", "cvc5_bitvec"}
+    seen = {
+        str(row.get("encoding"))
+        for row in encodings
+        if isinstance(row, dict) and row.get("unsat") is True
+    }
+    return expected <= seen
+
+
+def row_value(data: dict[str, Any], section_key: str, row_key: str) -> Any:
+    section = data.get(section_key) or {}
+    if not isinstance(section, dict):
+        return None
+    return section.get(row_key)
+
+
+def row_truthy(data: dict[str, Any], section_key: str, row_key: str) -> bool:
+    value = row_value(data, section_key, row_key)
+    if isinstance(value, dict):
+        if "pass" in value:
+            return bool(value.get("pass"))
+        if "value" in value:
+            return bool(value.get("value"))
+        return bool(value)
+    return bool(value)
+
+
+def cross_solver_tuple_all_true(data: dict[str, Any]) -> bool:
+    value = row_value(data, "positive", "cross_solver_agreement_tuple")
+    if isinstance(value, dict):
+        value = value.get("value")
+    return all_truthy_sequence(value)
+
+
+def structural_boundary_control_ok(data: dict[str, Any]) -> bool:
+    boundary = section_names(data, "boundary")
+    positives = section_names(data, "positive")
+    named_boundary_ok = (
+        {"z3_unsat", "cvc5_unsat", "z3_cvc5_agree"} <= boundary
+        and row_truthy(data, "boundary", "z3_unsat")
+        and row_truthy(data, "boundary", "cvc5_unsat")
+        and row_truthy(data, "boundary", "z3_cvc5_agree")
+    )
+    aggregate_ok = (
+        {"all_4_unsat", "cross_solver_agreement_tuple"} <= positives
+        and row_truthy(data, "positive", "all_4_unsat")
+        and cross_solver_tuple_all_true(data)
+        and encoding_rows_all_unsat(data)
+    )
+    return bool(named_boundary_ok or aggregate_ok)
 
 
 def text_blob(data: dict[str, Any]) -> str:
@@ -1097,7 +1204,11 @@ def derived_invariant_control(data: dict[str, Any]) -> bool:
         "invariant_preserving_control",
         "invariant_preserving_proxy_breaking_control",
     }
-    return bool(names & receipt_rows)
+    if not names & receipt_rows:
+        return False
+    if {"all_4_unsat", "cross_solver_agreement_tuple"} <= names:
+        return structural_boundary_control_ok(data)
+    return True
 
 
 def expected_terms_present(terms: list[str], names: set[str], blob: str) -> bool:
@@ -1141,10 +1252,7 @@ def classify_case(case: dict[str, Any], data: dict[str, Any]) -> dict[str, Any]:
         method_count >= int(case["independent_methods_required"])
         and method_family_count >= int(case["independent_methods_required"])
     )
-    structural_boundary_control = bool(
-        {"z3_unsat", "cvc5_unsat", "z3_cvc5_agree"} <= boundary
-        or {"all_4_unsat", "cross_solver_agreement_tuple"} <= positives
-    )
+    structural_boundary_control = structural_boundary_control_ok(data)
     if structural_boundary_control and not contract_ok:
         contract_ok = (
             data.get("classification") == CLASSIFICATION

@@ -54,18 +54,16 @@ CLASSIFICATION = "formal_scout"
 TOOL_INTEGRATION_DEPTH = {
     "torch": "load_bearing",
     "numpy": "supportive",
-    "manifold_layers": "load_bearing",
-    "engine_v6": "load_bearing",
+    "manifold_layers": "supportive",
+    "engine_v6": "supportive",
 }
 
-TOOL_MANIFEST = [
-    {"tool": "torch", "tried": True, "used": True, "reason": "engine_v6 nn.Module + autograd preservation test"},
-    {"tool": "numpy", "tried": True, "used": True, "reason": "metric aggregation and shuffled-control random states"},
-    {"tool": "active_layer_constraint_enforcers.LAYERS_ACTIVE[0]", "tried": True, "used": True,
-     "reason": "L0 finite_constraint_complex enforcer, applied to purified engine_v6 dominant eigenvector"},
-    {"tool": "engine_v6_proper_multiqubit_reference.TrainableEngineV6", "tried": True, "used": True,
-     "reason": "N-qubit dense engine substrate; smallest viable substrate at N=3,4"},
-]
+TOOL_MANIFEST = {
+    "torch": {"tried": True, "used": True, "reason": "load-bearing tensor/autograd substrate for engine_v6 module execution and gradient preservation test"},
+    "numpy": {"tried": True, "used": True, "reason": "supportive metric aggregation and shuffled-control random states"},
+    "manifold_layers": {"tried": True, "used": True, "reason": "supportive imported L0 finite_constraint_complex enforcer applied to purified engine_v6 dominant eigenvector"},
+    "engine_v6": {"tried": True, "used": True, "reason": "supportive imported N-qubit dense engine substrate; local witness math is torch-owned"},
+}
 
 
 def purify_eigh_argmax(rho_2d: torch.Tensor) -> torch.Tensor:
@@ -213,6 +211,8 @@ def main():
         "probe": "sim_engine_v6_l0_purification_bridge_witness_probe",
         "timestamp_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "classification": CLASSIFICATION,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "positive": {},
@@ -322,6 +322,21 @@ def main():
             "boundary": "3 mathematically distinct methods: eigendecomposition+argmax (lossy at argmax), Cholesky factorization (lossy via L[:,0]), eigenvalue-weighted sampling (stochastic selection)",
         },
     }
+    results["nearby_variants"] = {
+        "total": len(methods),
+        "passed": sum(
+            1
+            for method in methods
+            if per_method[method]["shape_compatibility_passes"]
+            and not per_method[method]["discrimination_signal_present"]
+        ),
+        "variants": methods,
+        "summary": "Each nearby variant is one purification bridge method; pass means shape compatibility holds and engine-type discrimination remains absent.",
+    }
+    results["why_not_v4_probes"] = [
+        "This is a v5 formal scout over engine_v6/L0 purification-bridge compatibility, not a canonical v4 probe.",
+        "It is an exclusion witness for the purification bridge and does not admit final 13-layer wiring or canonical engine-manifold coupling.",
+    ]
 
     # AUDIT METHOD FAMILIES — top-level for classifier method_count_source
     results["audit_method_families"] = [

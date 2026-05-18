@@ -90,6 +90,24 @@ def main():
 
     all_even_anticomm = all(r["pseudoscalar_anticommutes_all_generators"] for r in even_results)
     all_odd_commute = all(not r["pseudoscalar_anticommutes_all_generators"] for r in odd_results)
+    nearby_pass_count = sum(
+        1
+        for row in test_results
+        if (
+            row["parity"] == "even"
+            and row["pseudoscalar_anticommutes_all_generators"]
+        )
+        or (
+            row["parity"] == "odd"
+            and not row["pseudoscalar_anticommutes_all_generators"]
+        )
+    )
+    nearby_variants = {
+        "total": len(test_results),
+        "passed": nearby_pass_count,
+        "variants": [row["signature"] for row in test_results],
+        "summary": "Each nearby variant is one Cl(p,q) signature; pass means it matches the dimension-parity expectation.",
+    }
 
     portability_pattern = (
         f"DIMENSION-PARITY-LOCKED: pseudoscalar anticommutes with all generators in all {len(even_results)} "
@@ -103,6 +121,8 @@ def main():
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
         "claim_ceiling": CLAIM_CEILING,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "audit_method_families": [
@@ -135,6 +155,11 @@ def main():
         },
         "all_pass": all_even_anticomm and all_odd_commute,
         "portability_verdict": portability_pattern,
+        "nearby_variants": nearby_variants,
+        "why_not_v4_probes": [
+            "This is a v5 formal scout over D4 pseudoscalar portability, not a canonical v4 probe.",
+            "It surfaces a dimension-parity boundary only and does not admit engine, manifold, axis, or basin promotion.",
+        ],
     }
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)

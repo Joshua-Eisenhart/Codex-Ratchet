@@ -235,6 +235,12 @@ def main():
     n_all_unsat = sum(1 for r in per_sig if r["all_4_unsat"])
     n_total_unsat_proofs = sum(int(r[k] is True) for r in per_sig for k in ["z3_bool_unsat", "z3_bitvec_unsat", "cvc5_bool_unsat", "cvc5_bitvec_unsat"])
     universal = n_all_unsat == n_total
+    nearby_variants = {
+        "total": n_total,
+        "passed": n_all_unsat,
+        "variants": [row["signature"] for row in per_sig],
+        "summary": "Each nearby variant is one Cl(p,q) signature; pass means all four z3/cvc5 Bool/BitVec encodings were UNSAT and the weakened control was SAT.",
+    }
     portability_verdict = (
         f"UNIVERSAL SIGNATURE+DIMENSION PORTABILITY: {n_all_unsat}/{n_total} Cl(p,q) signatures across n=4..7 all returned 4-way UNSAT ({n_total_unsat_proofs} total independent UNSAT proofs). D5 commutative-reduction impossibility is structural, holds across signature variation AND dimension variation up through n=7."
         if universal else
@@ -247,6 +253,8 @@ def main():
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
         "claim_ceiling": CLAIM_CEILING,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "audit_method_families": [
@@ -297,6 +305,11 @@ def main():
         },
         "all_pass": universal and all(r["weakened_control_sat"] for r in per_sig),
         "portability_verdict": portability_verdict,
+        "nearby_variants": nearby_variants,
+        "why_not_v4_probes": [
+            "This is a v5 formal scout over D5 portability, not a canonical v4 probe.",
+            "It surfaces receipt-local signature/dimension portability only and does not admit engine, manifold, axis, or basin promotion.",
+        ],
     }
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)

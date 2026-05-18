@@ -751,7 +751,7 @@ CASES = [
         "id": "D5_15Sig_portability_Gemini_20260517",
         "receipt": "d5_commutative_geometry_collapse_15_signature_portability_probe_results.json",
         "claim_under_test": "The D5 commutative-reduction impossibility claim is portable across 15 distinct Clifford signatures (spanning n=4 through n=7) as verified by 60 independent cross-solver UNSAT proofs.",
-        "expected_label": "deep_basin",
+        "expected_label": "candidate_basin",
         "same_source_risk": False,
         "method_families": [
             "z3_boolean_encoding",
@@ -777,7 +777,7 @@ CASES = [
             "signature-and-dimension portability",
             "anti-smuggling rule"
         ],
-        "rationale": "Case establishes deep attractor basin for portability of D5 commutative geometry collapse. Underlying probe provides 60 independent UNSAT proofs across 15 Clifford signatures and 4 distinct solver/encoding lanes (z3/cvc5 × Bool/BitVec), achieving high-fidelity cross-solver agreement. Universal SAT result for weakened control across all tested signatures empirically confirms impossibility is non-trivial algebraic constraint rather than encoding artifact. By providing external case authorship, satisfies anti-smuggling guardrails required to promote formal-scout portability evidence to deep-basin verdict.",
+        "rationale": "Case establishes strong candidate-basin portability evidence for D5 commutative geometry collapse. Underlying probe provides 60 independent UNSAT proofs across 15 Clifford signatures and 4 distinct solver/encoding lanes (z3/cvc5 x Bool/BitVec), with universal SAT results for weakened controls. The source receipt still says formal scout only and does not admit a basin verdict; until receipt-local invariant-preserving or structural-boundary controls are present, the classifier must keep this below deep_basin.",
     },
 ]
 

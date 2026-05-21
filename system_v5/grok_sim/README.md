@@ -20,7 +20,7 @@ The canonical doctrine in `system_v4/probes/` requires:
 - `make sim NAME=...` runner integration
 - `scripts/validate_receipt.py --strict-scope` compliance
 
-The Grok-produced iters here do NOT satisfy all of those. They run, they're torch-primary, they reference existing canonical sims, they implement 7 axes + G-stack + 64 stages — but they're built for the Grok loop, not for canonical admission. Treat them as exploration receipts, claim ceiling: `side_quest_only`.
+The Grok-produced iters here do NOT satisfy all of those. Some later iters use torch-primary paths and reference existing canonical sims, and some implement 7 axes + G-stack + 64 stages, but they are built for the Grok loop, not for canonical admission. Treat them as exploration receipts, claim ceiling: `side_quest_only`.
 
 ## Folder structure
 
@@ -101,7 +101,7 @@ iter_82 represents the latest state. It runs end-to-end and demonstrates:
 - Cross-engine observable: trace dist between A-only vs A+B-coupled state
 
 **Tool integration** (8 load-bearing tools per TOOL_MANIFEST):
-- pytorch (primary numeric, ≥80 calls; numpy=0 in primary path per doctrine)
+- pytorch (primary numeric in this sidequest path; this is not a source-native nonclassical or formal admission claim)
 - qutip (Lindblad evolution via mesolve with proper dims=[[2,2,2,2],[2,2,2,2]])
 - clifford (Cl(3) basis construction)
 - z3 + cvc5 (per-axis SMT verification with `z3.Real` + threshold; cross-checked)

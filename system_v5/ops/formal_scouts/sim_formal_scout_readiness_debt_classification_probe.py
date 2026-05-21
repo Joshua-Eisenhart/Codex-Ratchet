@@ -122,6 +122,11 @@ ROW_CLASSES = {
         "next_move": "Rerun this classifier after patching the self-classification path; it should disappear from readiness once green.",
         "reason": "A prior B3 classifier run failed because a newly red administrative receipt was not yet classified.",
     },
+    "system_v5/ops/formal_scouts/sim_numpy_quarantine_source_native_nonclassical_gate_probe.py": {
+        "boundary_class": "active_numpy_scipy_spectral_backend_quarantine_gate",
+        "next_move": "Port or demote the 16 hard source rows and 9 load-bearing SciPy receipt rows before treating the nonclassical/source-native backend surface as clean.",
+        "reason": "The stricter gate intentionally fails closed when nonclassical/formal-scout support uses NumPy, load-bearing SciPy, or NumPy-backed NetworkX spectral calls.",
+    },
 }
 
 ENGINE_CORE_FINITE_BOUNDARY_STALE_ROWS = [

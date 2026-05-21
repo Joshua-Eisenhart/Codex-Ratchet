@@ -1,18 +1,18 @@
 {
   "schema": "formal_scout_readiness_index.v1",
-  "generated_at": "2026-05-21T22:21:08.408215+00:00",
+  "generated_at": "2026-05-21T22:45:16.448143+00:00",
   "boundary": "readiness_index_only_not_rerun_not_admission_not_promotion",
   "summary": {
-    "result_count": 331,
-    "source_count": 331,
+    "result_count": 332,
+    "source_count": 332,
     "source_without_result_count": 0,
     "validator_pass_count": 316,
-    "validator_fail_count": 14,
+    "validator_fail_count": 15,
     "preserved_validator_fail_count": 14,
-    "actionable_validator_fail_count": 0,
+    "actionable_validator_fail_count": 1,
     "non_formal_boundary_count": 1,
     "source_missing_count": 0,
-    "readme_indexed_count": 331,
+    "readme_indexed_count": 332,
     "readme_missing_count": 0,
     "readme_status_mismatch_count": 0,
     "fresh_rerun_mapping_defect_count": 0,
@@ -20,50 +20,52 @@
     "backend_policy_violation_count": 0,
     "readiness_status_counts": {
       "schema_ready": 316,
-      "validator_failed": 14,
+      "validator_failed": 15,
       "non_formal_boundary": 1
     },
     "validation_error_counts": {
-      "one or more positive checks failed": 15,
+      "one or more positive checks failed": 16,
       "one or more boundary checks failed": 2,
       "nearby_variants did not all pass": 12,
       "one or more graveyard checks failed": 12,
-      "blockers present": 14,
+      "blockers present": 15,
       "classification is not formal_scout": 1,
       "why_not_v4_probes missing": 1,
       "nearby_variants summary missing": 1
     },
     "promotion_blocker_counts": {
-      "formal_scout_noncanonical": 331,
-      "fresh_rerun_not_performed": 331,
-      "validator_failed": 14,
+      "formal_scout_noncanonical": 332,
+      "fresh_rerun_not_performed": 332,
+      "validator_failed": 15,
       "classification_not_formal_scout": 1,
       "non_formal_boundary": 1
     },
     "all_pass_source_counts": {
       "all_pass": 219,
-      "summary.all_pass": 77,
+      "summary.all_pass": 78,
       "derived_formal_scout_sections": 35
     },
     "tool_manifest_key_style_counts": {
-      "upper": 219,
+      "upper": 220,
       "both": 64,
       "lower": 48
     },
     "tool_depth_key_style_counts": {
-      "upper": 220,
+      "upper": 221,
       "both": 63,
       "lower": 48
     },
     "validator_failure_kind_counts": {
       "true_failed_readout_probe": 1,
       "stale_noncovering_engine_core_finite_boundary_debt": 10,
-      "overclaim_risk_failed_probe": 3
+      "overclaim_risk_failed_probe": 3,
+      "uncategorized_validator_failure": 1
     },
     "validator_failure_handling_counts": {
       "preserve_negative_result_until_revised_design": 1,
       "preserve_red_nonclearance": 10,
-      "preserve_failed_probe_or_rerun_revised_design": 3
+      "preserve_failed_probe_or_rerun_revised_design": 3,
+      "manual_triage_required": 1
     },
     "provider_receipts": {
       "receipt_count": 770,
@@ -1465,6 +1467,58 @@
       ]
     },
     {
+      "result_path": "system_v5/ops/formal_scouts/results/numpy_quarantine_source_native_nonclassical_gate_probe_results.json",
+      "stem": "numpy_quarantine_source_native_nonclassical_gate_probe",
+      "source_path": "system_v5/ops/formal_scouts/sim_numpy_quarantine_source_native_nonclassical_gate_probe.py",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_numpy_quarantine_source_native_nonclassical_gate_probe.py",
+      "source_exists": true,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": true,
+      "readme_declared_status": null,
+      "validation_pass": false,
+      "validation_errors": [
+        "one or more positive checks failed",
+        "blockers present"
+      ],
+      "readiness_status": "validator_failed",
+      "classification": "formal_scout",
+      "promotion_allowed": false,
+      "raw_all_pass": false,
+      "all_pass": false,
+      "derived_all_pass": false,
+      "all_pass_source": "all_pass",
+      "claim_ceiling_present": true,
+      "claim_ceiling": "Formal scout only: scans current formal scouts for NumPy import/use, load-bearing SciPy, and NumPy-backed NetworkX spectral calls in source-native, engine/manifold, FEP, Axis0, Holodeck, and cross-engine surfaces and scans result receipts for NumPy/SciPy tool-depth claims. NumPy remains admissible only for first-class classical sims and explicit classical Carnot/Szilard sidecars; load-bearing SciPy is classical/support only unless separately ported or fenced. PyTorch beside NumPy/SciPy does not make a nonclassical sim compliant. This scout does not repair those sims, does not admit nonclassical attractor-basin evidence, and blocks tainted rows from supporting nonclassical claims until constraint-admissible replacements or explicit boundary receipts exist.",
+      "tool_manifest_key_style": "upper",
+      "tool_depth_key_style": "upper",
+      "normalized_tool_depth": {
+        "hashlib": "supportive",
+        "json": "supportive",
+        "python_json": "supportive",
+        "python_pathlib": "supportive",
+        "python_re": "supportive",
+        "python_subprocess": "supportive"
+      },
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "readme_status_mismatch": false,
+      "validator_failure_kind": "uncategorized_validator_failure",
+      "validator_failure_note": "validator failure requires manual triage before it can be used as evidence",
+      "validator_failure_resolution_surface": "",
+      "validator_failure_handling": "manual_triage_required",
+      "promotion_blockers": [
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed",
+        "validator_failed"
+      ]
+    },
+    {
       "result_path": "system_v5/ops/formal_scouts/results/xgi_hypergraph_multi_layer_coupling_centrality_probe_results.json",
       "stem": "xgi_hypergraph_multi_layer_coupling_centrality_probe",
       "source_path": "system_v5/ops/formal_scouts/sim_xgi_hypergraph_multi_layer_coupling_centrality_probe.py",
@@ -2255,7 +2309,60 @@
       ]
     }
   ],
-  "actionable_validator_failed_rows": [],
+  "actionable_validator_failed_rows": [
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/numpy_quarantine_source_native_nonclassical_gate_probe_results.json",
+      "stem": "numpy_quarantine_source_native_nonclassical_gate_probe",
+      "source_path": "system_v5/ops/formal_scouts/sim_numpy_quarantine_source_native_nonclassical_gate_probe.py",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_numpy_quarantine_source_native_nonclassical_gate_probe.py",
+      "source_exists": true,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": true,
+      "readme_declared_status": null,
+      "validation_pass": false,
+      "validation_errors": [
+        "one or more positive checks failed",
+        "blockers present"
+      ],
+      "readiness_status": "validator_failed",
+      "classification": "formal_scout",
+      "promotion_allowed": false,
+      "raw_all_pass": false,
+      "all_pass": false,
+      "derived_all_pass": false,
+      "all_pass_source": "all_pass",
+      "claim_ceiling_present": true,
+      "claim_ceiling": "Formal scout only: scans current formal scouts for NumPy import/use, load-bearing SciPy, and NumPy-backed NetworkX spectral calls in source-native, engine/manifold, FEP, Axis0, Holodeck, and cross-engine surfaces and scans result receipts for NumPy/SciPy tool-depth claims. NumPy remains admissible only for first-class classical sims and explicit classical Carnot/Szilard sidecars; load-bearing SciPy is classical/support only unless separately ported or fenced. PyTorch beside NumPy/SciPy does not make a nonclassical sim compliant. This scout does not repair those sims, does not admit nonclassical attractor-basin evidence, and blocks tainted rows from supporting nonclassical claims until constraint-admissible replacements or explicit boundary receipts exist.",
+      "tool_manifest_key_style": "upper",
+      "tool_depth_key_style": "upper",
+      "normalized_tool_depth": {
+        "hashlib": "supportive",
+        "json": "supportive",
+        "python_json": "supportive",
+        "python_pathlib": "supportive",
+        "python_re": "supportive",
+        "python_subprocess": "supportive"
+      },
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "readme_status_mismatch": false,
+      "validator_failure_kind": "uncategorized_validator_failure",
+      "validator_failure_note": "validator failure requires manual triage before it can be used as evidence",
+      "validator_failure_resolution_surface": "",
+      "validator_failure_handling": "manual_triage_required",
+      "promotion_blockers": [
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed",
+        "validator_failed"
+      ]
+    }
+  ],
   "non_formal_boundary_rows": [
     {
       "result_path": "system_v5/ops/formal_scouts/results/singular_lego_wired_axis0_plural_manifold_engine_probe_results.json",
@@ -10839,17 +10946,20 @@
       "fresh_rerun_dual_source_defect": false,
       "readme_indexed": true,
       "readme_declared_status": null,
-      "validation_pass": true,
-      "validation_errors": [],
-      "readiness_status": "schema_ready",
+      "validation_pass": false,
+      "validation_errors": [
+        "one or more positive checks failed",
+        "blockers present"
+      ],
+      "readiness_status": "validator_failed",
       "classification": "formal_scout",
       "promotion_allowed": false,
-      "raw_all_pass": true,
-      "all_pass": true,
-      "derived_all_pass": true,
+      "raw_all_pass": false,
+      "all_pass": false,
+      "derived_all_pass": false,
       "all_pass_source": "all_pass",
       "claim_ceiling_present": true,
-      "claim_ceiling": "Formal scout only: scans current formal scouts for numpy import/use in source-native, engine/manifold, FEP, Axis0, Holodeck, and cross-engine surfaces and scans result receipts for any NumPy tool-depth claim. NumPy remains admissible only for first-class classical sims and explicit classical Carnot/Szilard sidecars. PyTorch beside NumPy does not make a nonclassical sim compliant. This scout does not repair those sims, does not admit nonclassical attractor-basin evidence, and blocks numpy-tainted rows from supporting nonclassical claims until constraint-admissible replacements or explicit boundary receipts exist.",
+      "claim_ceiling": "Formal scout only: scans current formal scouts for NumPy import/use, load-bearing SciPy, and NumPy-backed NetworkX spectral calls in source-native, engine/manifold, FEP, Axis0, Holodeck, and cross-engine surfaces and scans result receipts for NumPy/SciPy tool-depth claims. NumPy remains admissible only for first-class classical sims and explicit classical Carnot/Szilard sidecars; load-bearing SciPy is classical/support only unless separately ported or fenced. PyTorch beside NumPy/SciPy does not make a nonclassical sim compliant. This scout does not repair those sims, does not admit nonclassical attractor-basin evidence, and blocks tainted rows from supporting nonclassical claims until constraint-admissible replacements or explicit boundary receipts exist.",
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {
@@ -10868,13 +10978,14 @@
         "canonical_process_not_evaluated"
       ],
       "readme_status_mismatch": false,
-      "validator_failure_kind": "",
-      "validator_failure_note": "",
+      "validator_failure_kind": "uncategorized_validator_failure",
+      "validator_failure_note": "validator failure requires manual triage before it can be used as evidence",
       "validator_failure_resolution_surface": "",
-      "validator_failure_handling": "",
+      "validator_failure_handling": "manual_triage_required",
       "promotion_blockers": [
         "formal_scout_noncanonical",
-        "fresh_rerun_not_performed"
+        "fresh_rerun_not_performed",
+        "validator_failed"
       ]
     },
     {
@@ -17987,6 +18098,62 @@
       "all_pass_source": "summary.all_pass",
       "claim_ceiling_present": true,
       "claim_ceiling": "Formal scout only: assembles one hard-negative-surviving F01/N01 branch per layer into a retuned 13-layer geometric constraint stack and tests order, nesting, and cross-layer coupling. It does not admit final manifold emergence, final layer order, attractor basin, Axis0, engine, physics, target-system, Holodeck, or canonical claims.",
+      "tool_manifest_key_style": "upper",
+      "tool_depth_key_style": "upper",
+      "normalized_tool_depth": {
+        "cvc5": "load_bearing",
+        "e3nn": "load_bearing",
+        "geomstats": "load_bearing",
+        "gudhi": "load_bearing",
+        "hashlib": "supportive",
+        "pathlib": "supportive",
+        "python_json": "supportive",
+        "pytorch": "load_bearing",
+        "rustworkx": "load_bearing",
+        "sympy": "load_bearing",
+        "toponetx": "load_bearing",
+        "torch_geometric": "load_bearing",
+        "xgi": "load_bearing",
+        "z3": "load_bearing"
+      },
+      "backend_policy_violations": [],
+      "public_status_label": "exists",
+      "public_status_blockers": [
+        "index_only_no_execution",
+        "fresh_local_rerun_not_performed",
+        "canonical_process_not_evaluated"
+      ],
+      "readme_status_mismatch": false,
+      "validator_failure_kind": "",
+      "validator_failure_note": "",
+      "validator_failure_resolution_surface": "",
+      "validator_failure_handling": "",
+      "promotion_blockers": [
+        "formal_scout_noncanonical",
+        "fresh_rerun_not_performed"
+      ]
+    },
+    {
+      "result_path": "system_v5/ops/formal_scouts/results/two_root_retuned_stack_long_horizon_countermodel_probe_results.json",
+      "stem": "two_root_retuned_stack_long_horizon_countermodel_probe",
+      "source_path": "system_v5/ops/formal_scouts/sim_two_root_retuned_stack_long_horizon_countermodel_probe.py",
+      "validator_expected_source_path": "system_v5/ops/formal_scouts/sim_two_root_retuned_stack_long_horizon_countermodel_probe.py",
+      "source_exists": true,
+      "fresh_rerun_mapping_defect": false,
+      "fresh_rerun_dual_source_defect": false,
+      "readme_indexed": true,
+      "readme_declared_status": null,
+      "validation_pass": true,
+      "validation_errors": [],
+      "readiness_status": "schema_ready",
+      "classification": "formal_scout",
+      "promotion_allowed": false,
+      "raw_all_pass": null,
+      "all_pass": true,
+      "derived_all_pass": true,
+      "all_pass_source": "summary.all_pass",
+      "claim_ceiling_present": true,
+      "claim_ceiling": "Formal scout only: tries to kill the retuned F01/N01 stack with longer horizons, adversarial branch mixtures, and perturbed gauges. It can report bounded no-countermodel evidence for this finite family, but it does not admit a real attractor basin, final convergence, final manifold, final layer order, Axis0, engine, physics, target-system, Holodeck, or canonical claim.",
       "tool_manifest_key_style": "upper",
       "tool_depth_key_style": "upper",
       "normalized_tool_depth": {

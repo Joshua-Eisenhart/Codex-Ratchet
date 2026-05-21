@@ -1,6 +1,6 @@
 # Sim Estate Integration Index
 
-Generated: `2026-05-21T22:21:08.178368+00:00`
+Generated: `2026-05-21T22:45:16.659624+00:00`
 
 ## Root Object
 
@@ -23,14 +23,14 @@ The current working root surface is the geometric constraint manifold candidate:
 - The active evidence estate contains 2 13-layer integrated manifold candidates with pass evidence, `promotion_allowed=false`, and 64 microsteps.
 - The strongest manifold receipts are still formal scouts. They do not promote a final manifold, final G-structure, physics, bridge, axis, engine, or target-system claim.
 - Tool-role gate: 178 candidate surfaces and 10 blocked result-not-all-pass surfaces from 188 scanned nonclassical/source-native result surfaces.
-- NumPy quarantine: source scan sees 16 NumPy-pattern files total, hard-quarantines 0 files, marks 0 review-required surfaces, preserves 15 reviewed NumPy-bearing boundary files as nonclassical-claim blocked, and keeps 1 quarantine-scanner self-hit / legacy-baseline boundary file separate; receipt scan hard-quarantines 0 result receipts.
+- NumPy quarantine: source scan sees 16 NumPy-pattern files total, hard-quarantines 16 files, marks 0 review-required surfaces, preserves 15 reviewed NumPy-bearing boundary files as nonclassical-claim blocked, and keeps 1 quarantine-scanner self-hit / legacy-baseline boundary file separate; receipt scan hard-quarantines 9 result receipts.
 - Axis0 is partially repaired but not solid: admitted ['fep_gradient_polarity', 'correlation_diversity_derivative', 'retrocausal_many_futures_policy_scoring']; blocked ['path_entropy', 'holographic_boundary_interior_reconstruction']; scalar projection blocker admitted=False.
-- Axis0 row counts are split: broad mention-tagged rows `152`, subject-tagged rows `37`. Broad rows may include negative claim-ceiling boilerplate and should not be treated as subject evidence.
-- Row summaries may preserve row-local historical flags such as `cleanup_authorized=False`; these are not the D86 final closeout state. Conversely, D86 closeout does not override the current readiness tuple or the 14 validator-red rows preserved as nonpromotional evidence.
+- Axis0 row counts are split: broad mention-tagged rows `153`, subject-tagged rows `37`. Broad rows may include negative claim-ceiling boilerplate and should not be treated as subject evidence.
+- Row summaries may preserve row-local historical flags such as `cleanup_authorized=False`; these are not the D86 final closeout state. Conversely, D86 closeout does not override the current readiness tuple or the 15 validator-red rows preserved as nonpromotional evidence.
 
 ## Sim Process Lines
 
-- Formal-scout source/result estate: `system_v5/ops/formal_scouts` has 331 sources and 331 result receipts.
+- Formal-scout source/result estate: `system_v5/ops/formal_scouts` has 332 sources and 332 result receipts.
 - Independent `grok_sim` process line: `system_v5/grok_sim` has 2502 files; role is proposal/failure mining until translated.
 - Scratch/council estate: `/tmp/engine_v2` has 275 files; not canonical evidence.
 - Lego result estate: `system_v5/legos/results` has 13 files.
@@ -58,7 +58,7 @@ The current working root surface is the geometric constraint manifold candidate:
 | `axis0_scalar_projection_isolation_repair_probe` | True | `all_pass` | None | not_declared | None | 0 | tool_role_candidate | auto_LiRPA, cvc5, pytorch, z3 | all_pass=True |
 | `axis0_vector_bundle_thirteen_shell_pytorch_peps3d_lirpa_noncollapse_probe` | True | `all_pass` | None | not_declared | None | 13 | tool_role_candidate | auto_LiRPA, cvc5, pytorch, rustworkx, torch_geometric, z3 | all_pass=True |
 
-_267 more rows in `system_v5/evidence/sim_estate_integration_index.json`._
+_268 more rows in `system_v5/evidence/sim_estate_integration_index.json`._
 
 ## PEPS / PEPS3D / MPS Carrier-Name Receipts, Nonpromotional
 
@@ -82,7 +82,7 @@ Rows here are indexed because their names or summaries mention these carriers. A
 | `engine_core_dynamic_boundary_port_demote_classifier_probe` | True | `all_pass` | None | not_declared | None | 0 |  | z3 | cleanup_authorized=False |
 | `engine_core_finite_boundary_coverage_audit_probe` | True | `all_pass` | None | not_declared | None | 0 |  | z3 | cleanup_authorized=False |
 | `finite_spinor_tensor_network_channel_order_noncommutation_probe` | True | `summary.all_pass` | None | not_declared | None | 0 |  | clifford, geomstats, opt_einsum, pytorch, sympy, z3 | all_pass=True |
-| `formal_scout_readiness_debt_classification_probe` | True | `all_pass` | None | not_declared | None | 0 |  | hashlib, python_json, python_pathlib | all_pass=True; validator_fail_count=14; validator_red_rows_classified=True; cleanup_authorized=False; classifier_debt_only_validator_red_rows_remain_preserved |
+| `formal_scout_readiness_debt_classification_probe` | True | `all_pass` | None | not_declared | None | 0 |  | hashlib, python_json, python_pathlib | all_pass=True; validator_fail_count=15; validator_red_rows_classified=False; cleanup_authorized=False; classifier_debt_only_validator_red_rows_remain_preserved |
 | `full_thirteen_layer_active_g_structure_both_chiral_source_native_composition_probe` | True | `all_pass` | None | not_declared | None | 13 | tool_role_candidate | pytorch, quimb, z3 |  |
 
 _80 more rows in `system_v5/evidence/sim_estate_integration_index.json`._
@@ -122,7 +122,7 @@ _22 more rows in `system_v5/evidence/sim_estate_integration_index.json`._
 - Blocked candidates: `['path_entropy', 'holographic_boundary_interior_reconstruction']`
 - Contribution rank: `3`
 - Scalar projection blocker: `{'admitted': False, 'claim': 'The upstream path now uses an operator-aware vector-local drive, but admitted candidate control families remain too correlated to call the actuator fully non-degenerate.'}`
-- Broad mention-tagged row count: `152`
+- Broad mention-tagged row count: `153`
 - Subject-tagged row count: `37`
 - Tag note: axis0_rows is broad mention-tagging and can include negative claim-ceiling boilerplate; axis0_subject_rows excludes claim_ceiling text.
 
@@ -147,12 +147,12 @@ _22 more rows in `system_v5/evidence/sim_estate_integration_index.json`._
 | `axis0_operator_local_vector_actuator_family_decoupling_probe` | True | `all_pass` | None | not_declared | None | 0 | tool_role_candidate | pytorch, quimb, z3 |  |
 | `axis0_router_admission_15_signature_portability_probe` | True | `all_pass` | None | not_declared | None | 0 | tool_role_candidate | clifford, cvc5, pytorch, z3 |  |
 
-_135 more rows in `system_v5/evidence/sim_estate_integration_index.json`._
+_136 more rows in `system_v5/evidence/sim_estate_integration_index.json`._
 
 ## Readiness / Red Basics
 
-- Readiness summary: `{'result_count': 331, 'source_count': 331, 'source_without_result_count': 0, 'validator_pass_count': 316, 'validator_fail_count': 14, 'preserved_validator_fail_count': 14, 'actionable_validator_fail_count': 0, 'non_formal_boundary_count': 1, 'source_missing_count': 0, 'readme_indexed_count': 331, 'readme_missing_count': 0, 'readme_status_mismatch_count': 0, 'fresh_rerun_mapping_defect_count': 0, 'fresh_rerun_dual_source_defect_count': 0, 'backend_policy_violation_count': 0, 'readiness_status_counts': {'schema_ready': 316, 'validator_failed': 14, 'non_formal_boundary': 1}, 'validation_error_counts': {'one or more positive checks failed': 15, 'one or more boundary checks failed': 2, 'nearby_variants did not all pass': 12, 'one or more graveyard checks failed': 12, 'blockers present': 14, 'classification is not formal_scout': 1, 'why_not_v4_probes missing': 1, 'nearby_variants summary missing': 1}, 'promotion_blocker_counts': {'formal_scout_noncanonical': 331, 'fresh_rerun_not_performed': 331, 'validator_failed': 14, 'classification_not_formal_scout': 1, 'non_formal_boundary': 1}, 'all_pass_source_counts': {'all_pass': 219, 'summary.all_pass': 77, 'derived_formal_scout_sections': 35}, 'tool_manifest_key_style_counts': {'upper': 219, 'both': 64, 'lower': 48}, 'tool_depth_key_style_counts': {'upper': 220, 'both': 63, 'lower': 48}, 'validator_failure_kind_counts': {'true_failed_readout_probe': 1, 'stale_noncovering_engine_core_finite_boundary_debt': 10, 'overclaim_risk_failed_probe': 3}, 'validator_failure_handling_counts': {'preserve_negative_result_until_revised_design': 1, 'preserve_red_nonclearance': 10, 'preserve_failed_probe_or_rerun_revised_design': 3}, 'provider_receipts': {'receipt_count': 770, 'validator_available': True, 'validator_pass_count': 770, 'validator_fail_count': 0, 'validation_error_counts': {}, 'strict_live_validator_pass_count': 615, 'strict_live_validator_fail_count': 155, 'strict_live_validation_error_counts': {'strict-live completed provider receipt missing raw_response or live_api_proof': 151, 'strict-live normalized receipt missing source_raw_receipt': 8}}}`
-- Readiness red split: formal-scout validator-failed rows `14`; preserved red rows `14`; actionable red rows `0`.
+- Readiness summary: `{'result_count': 332, 'source_count': 332, 'source_without_result_count': 0, 'validator_pass_count': 316, 'validator_fail_count': 15, 'preserved_validator_fail_count': 14, 'actionable_validator_fail_count': 1, 'non_formal_boundary_count': 1, 'source_missing_count': 0, 'readme_indexed_count': 332, 'readme_missing_count': 0, 'readme_status_mismatch_count': 0, 'fresh_rerun_mapping_defect_count': 0, 'fresh_rerun_dual_source_defect_count': 0, 'backend_policy_violation_count': 0, 'readiness_status_counts': {'schema_ready': 316, 'validator_failed': 15, 'non_formal_boundary': 1}, 'validation_error_counts': {'one or more positive checks failed': 16, 'one or more boundary checks failed': 2, 'nearby_variants did not all pass': 12, 'one or more graveyard checks failed': 12, 'blockers present': 15, 'classification is not formal_scout': 1, 'why_not_v4_probes missing': 1, 'nearby_variants summary missing': 1}, 'promotion_blocker_counts': {'formal_scout_noncanonical': 332, 'fresh_rerun_not_performed': 332, 'validator_failed': 15, 'classification_not_formal_scout': 1, 'non_formal_boundary': 1}, 'all_pass_source_counts': {'all_pass': 219, 'summary.all_pass': 78, 'derived_formal_scout_sections': 35}, 'tool_manifest_key_style_counts': {'upper': 220, 'both': 64, 'lower': 48}, 'tool_depth_key_style_counts': {'upper': 221, 'both': 63, 'lower': 48}, 'validator_failure_kind_counts': {'true_failed_readout_probe': 1, 'stale_noncovering_engine_core_finite_boundary_debt': 10, 'overclaim_risk_failed_probe': 3, 'uncategorized_validator_failure': 1}, 'validator_failure_handling_counts': {'preserve_negative_result_until_revised_design': 1, 'preserve_red_nonclearance': 10, 'preserve_failed_probe_or_rerun_revised_design': 3, 'manual_triage_required': 1}, 'provider_receipts': {'receipt_count': 770, 'validator_available': True, 'validator_pass_count': 770, 'validator_fail_count': 0, 'validation_error_counts': {}, 'strict_live_validator_pass_count': 615, 'strict_live_validator_fail_count': 155, 'strict_live_validation_error_counts': {'strict-live completed provider receipt missing raw_response or live_api_proof': 151, 'strict-live normalized receipt missing source_raw_receipt': 8}}}`
+- Readiness red split: formal-scout validator-failed rows `15`; preserved red rows `14`; actionable red rows `1`.
 - Basic open repairs: keep the manifold candidate bounded; do not count numpy-tainted source-native rows as basin evidence; keep strict-live provider provenance debt separate from normal schema validation. The current validator-red formal-scout rows are preserved negative/quarantine/overclaim-boundary evidence, not readiness-repair debt unless a revised-design rerun is explicitly requested.
 
 ## Machine Index

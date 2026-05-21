@@ -1,20 +1,20 @@
 # Formal Scout Readiness Index
 
-Generated: `2026-05-21T22:21:08.408215+00:00`
+Generated: `2026-05-21T22:45:16.448143+00:00`
 
 Boundary: readiness index only. This does not rerun, admit, promote, or canonicalize formal scouts.
 
 ## Summary
 
-- Result receipts indexed: `331`
-- Source harnesses indexed: `331`
+- Result receipts indexed: `332`
+- Source harnesses indexed: `332`
 - Source harnesses without result receipt: `0`
 - Validator pass: `316`
-- Formal-scout validator fail: `14`
+- Formal-scout validator fail: `15`
 - Preserved validator-red rows: `14`
-- Actionable validator-red rows: `0`
+- Actionable validator-red rows: `1`
 - Non-formal boundary rows: `1`
-- README indexed receipts: `331`
+- README indexed receipts: `332`
 - README missing receipts: `0`
 - README explicit-status mismatches: `0`
 - Fresh-rerun mapping defects: `0`
@@ -29,13 +29,13 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 ## Readiness Status Counts
 
 - `schema_ready`: 316
-- `validator_failed`: 14
+- `validator_failed`: 15
 - `non_formal_boundary`: 1
 
 ## Validation Error Counts
 
-- `one or more positive checks failed`: 15
-- `blockers present`: 14
+- `one or more positive checks failed`: 16
+- `blockers present`: 15
 - `nearby_variants did not all pass`: 12
 - `one or more graveyard checks failed`: 12
 - `one or more boundary checks failed`: 2
@@ -48,45 +48,47 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 - `stale_noncovering_engine_core_finite_boundary_debt`: 10
 - `overclaim_risk_failed_probe`: 3
 - `true_failed_readout_probe`: 1
+- `uncategorized_validator_failure`: 1
 
 ## Validator Failure Handling Counts
 
 - `preserve_red_nonclearance`: 10
 - `preserve_failed_probe_or_rerun_revised_design`: 3
+- `manual_triage_required`: 1
 - `preserve_negative_result_until_revised_design`: 1
 
 ## Actionable vs Preserved Red Rows
 
 - Preserved red rows: `14`
-- Actionable red rows: `0`
+- Actionable red rows: `1`
 
 Preserved red rows are intentionally retained as negative, nonclearance, or overclaim-boundary evidence. They are not green proofs and not current readiness-repair debt. Actionable red rows require new repair, rerun, or manual triage before closeout.
 
 ## Promotion Blocker Counts
 
-- `formal_scout_noncanonical`: 331
-- `fresh_rerun_not_performed`: 331
-- `validator_failed`: 14
+- `formal_scout_noncanonical`: 332
+- `fresh_rerun_not_performed`: 332
+- `validator_failed`: 15
 - `classification_not_formal_scout`: 1
 - `non_formal_boundary`: 1
 
 ## Pass Source Counts
 
 - `all_pass`: 219
-- `summary.all_pass`: 77
+- `summary.all_pass`: 78
 - `derived_formal_scout_sections`: 35
 
 ## Tool Schema Key Styles
 
 ### TOOL_MANIFEST
 
-- `upper`: 219
+- `upper`: 220
 - `both`: 64
 - `lower`: 48
 
 ### TOOL_INTEGRATION_DEPTH
 
-- `upper`: 220
+- `upper`: 221
 - `both`: 63
 - `lower`: 48
 
@@ -123,6 +125,7 @@ Normal provider validation is schema/proposal-boundary validation. Strict-live v
 | `system_v5/ops/formal_scouts/results/engine_core_finite_boundary_source_native_peps3d_52_56_60_site_regime_ladder_receipt_probe_results.json` | `stale_noncovering_engine_core_finite_boundary_debt` | `preserve_red_nonclearance` | `system_v5/ops/formal_scouts/results/formal_scout_readiness_debt_classification_probe_results.json` | nearby_variants did not all pass, one or more positive checks failed, one or more graveyard checks failed, blockers present |
 | `system_v5/ops/formal_scouts/results/multiqubit_qit_reservoir_global_structure_probe_results.json` | `overclaim_risk_failed_probe` | `preserve_failed_probe_or_rerun_revised_design` | `system_v5/ops/formal_scouts/results/formal_scout_readiness_debt_classification_probe_results.json` | one or more positive checks failed, one or more boundary checks failed, blockers present |
 | `system_v5/ops/formal_scouts/results/multiqubit_qit_reservoir_grok_task_replication_probe_results.json` | `overclaim_risk_failed_probe` | `preserve_failed_probe_or_rerun_revised_design` | `system_v5/ops/formal_scouts/results/formal_scout_readiness_debt_classification_probe_results.json` | nearby_variants did not all pass, one or more positive checks failed, one or more graveyard checks failed, blockers present |
+| `system_v5/ops/formal_scouts/results/numpy_quarantine_source_native_nonclassical_gate_probe_results.json` | `uncategorized_validator_failure` | `manual_triage_required` | `-` | one or more positive checks failed, blockers present |
 | `system_v5/ops/formal_scouts/results/xgi_hypergraph_multi_layer_coupling_centrality_probe_results.json` | `overclaim_risk_failed_probe` | `preserve_failed_probe_or_rerun_revised_design` | `system_v5/ops/formal_scouts/results/formal_scout_readiness_debt_classification_probe_results.json` | nearby_variants did not all pass, one or more positive checks failed, one or more graveyard checks failed, blockers present |
 
 ## Validator Failure Notes
@@ -132,6 +135,7 @@ Normal provider validation is schema/proposal-boundary validation. Strict-live v
 | `overclaim_risk_failed_probe` | positive controls or graveyards fail, so treating this as proof would overclaim the receipt |
 | `stale_noncovering_engine_core_finite_boundary_debt` | finite-boundary quarantine receipt is red because the current target gate no longer clears the old EngineCore boundary |
 | `true_failed_readout_probe` | persistence readout clears its own accuracy floor but loses to the raw-trajectory baseline and remains an open negative result |
+| `uncategorized_validator_failure` | validator failure requires manual triage before it can be used as evidence |
 
 ## Non-Formal Boundary Rows
 

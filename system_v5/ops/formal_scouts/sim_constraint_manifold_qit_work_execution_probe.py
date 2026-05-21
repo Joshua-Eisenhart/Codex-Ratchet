@@ -13,19 +13,18 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import networkx as nx
-import numpy as np
-from scipy.linalg import expm
+import rustworkx as rx
 import sympy as sp
+import torch
 import z3
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = ROOT / "results"
 ASSEMBLY_RECEIPT = RESULT_DIR / "nested_constraint_manifold_operational_assembly_tensor_network_probe_results.json"
-OUT_PATH = RESULT_DIR / "constraint_manifold_qit_engine_work_execution_probe_results.json"
+OUT_PATH = RESULT_DIR / "constraint_manifold_qit_work_execution_probe_results.json"
 
-NAME = "constraint_manifold_qit_engine_work_execution_probe"
+NAME = "constraint_manifold_qit_work_execution_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
@@ -37,21 +36,21 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing density states, observables, and trace distances"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing matrix exponentials for finite QIT updates"},
-    "networkx": {"tried": True, "used": True, "reason": "load-bearing 64-record execution graph"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing density states, observables, matrix exponentials, trace distances, and signature profiles"},
+    "rustworkx": {"tried": True, "used": True, "reason": "load-bearing 64-record execution graph and DAG order witness"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic engine-stage count factorization"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing noncollapse witness over stage work bins"},
 }
 TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
 
-DTYPE = np.complex128
-I2 = np.eye(2, dtype=DTYPE)
-SX = np.array([[0, 1], [1, 0]], dtype=DTYPE)
-SY = np.array([[0, -1j], [1j, 0]], dtype=DTYPE)
-SZ = np.array([[1, 0], [0, -1]], dtype=DTYPE)
-SM = np.array([[0, 0], [1, 0]], dtype=DTYPE)
-SP = np.array([[0, 1], [0, 0]], dtype=DTYPE)
+DTYPE = torch.complex128
+REAL_DTYPE = torch.float64
+I2 = torch.eye(2, dtype=DTYPE)
+SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=DTYPE)
+SM = torch.tensor([[0, 0], [1, 0]], dtype=DTYPE)
+SP = torch.tensor([[0, 1], [0, 0]], dtype=DTYPE)
 H0 = 0.73 * SZ + 0.17 * SX
 
 STAGES = ["Si", "Se", "Ne", "Ni"]
@@ -70,43 +69,43 @@ OPERATOR_SCHEDULE = [
 LOOPS = ["fiber", "base_lift"]
 
 
-def dagger(a: np.ndarray) -> np.ndarray:
-    return a.conj().T
+def dagger(a: torch.Tensor) -> torch.Tensor:
+    return a.conj().transpose(-2, -1)
 
 
-def normalize_density(rho: np.ndarray) -> np.ndarray:
+def normalize_density(rho: torch.Tensor) -> torch.Tensor:
     rho = (rho + dagger(rho)) / 2
-    vals, vecs = np.linalg.eigh(rho)
-    vals = np.maximum(vals.real, 1e-12)
-    out = vecs @ np.diag(vals) @ dagger(vecs)
-    return out / np.trace(out)
+    vals, vecs = torch.linalg.eigh(rho)
+    vals = torch.clamp(vals.real, min=1e-12)
+    out = vecs @ torch.diag(vals.to(dtype=DTYPE)) @ dagger(vecs)
+    return out / torch.trace(out)
 
 
-def entropy(rho: np.ndarray) -> float:
-    vals = np.linalg.eigvalsh((rho + dagger(rho)) / 2).real
-    vals = np.maximum(vals, 1e-12)
-    vals = vals / vals.sum()
-    return float(-(vals * np.log(vals)).sum())
+def entropy(rho: torch.Tensor) -> float:
+    vals = torch.linalg.eigvalsh((rho + dagger(rho)) / 2).real
+    vals = torch.clamp(vals, min=1e-12)
+    vals = vals / torch.sum(vals)
+    return float((-(vals * torch.log(vals)).sum()).item())
 
 
-def trace_distance(a: np.ndarray, b: np.ndarray) -> float:
-    vals = np.linalg.eigvalsh((a - b + dagger(a - b)) / 2)
-    return float(0.5 * np.sum(np.abs(vals)))
+def trace_distance(a: torch.Tensor, b: torch.Tensor) -> float:
+    vals = torch.linalg.eigvalsh((a - b + dagger(a - b)) / 2).real
+    return float((0.5 * torch.sum(torch.abs(vals))).item())
 
 
-def unitary_update(rho: np.ndarray, h: np.ndarray, dt: float) -> np.ndarray:
-    u = expm(-1j * h * dt)
+def unitary_update(rho: torch.Tensor, h: torch.Tensor, dt: float) -> torch.Tensor:
+    u = torch.linalg.matrix_exp((-1j * h * dt).to(dtype=DTYPE))
     return normalize_density(u @ rho @ dagger(u))
 
 
-def dissipative_update(rho: np.ndarray, op: np.ndarray, gamma: float, dt: float) -> np.ndarray:
+def dissipative_update(rho: torch.Tensor, op: torch.Tensor, gamma: float, dt: float) -> torch.Tensor:
     jump = math.sqrt(max(gamma * dt, 0.0)) * op
     no_jump = I2 - 0.5 * gamma * dt * dagger(op) @ op
     return normalize_density(jump @ rho @ dagger(jump) + no_jump @ rho @ dagger(no_jump))
 
 
-def projective_update(rho: np.ndarray, axis: np.ndarray, strength: float) -> np.ndarray:
-    axis = axis / max(float(np.linalg.norm(axis)), 1e-12)
+def projective_update(rho: torch.Tensor, axis: torch.Tensor, strength: float) -> torch.Tensor:
+    axis = axis / max(float(torch.linalg.vector_norm(axis).item()), 1e-12)
     p_plus = 0.5 * (I2 + axis)
     p_minus = 0.5 * (I2 - axis)
     pinched = p_plus @ rho @ p_plus + p_minus @ rho @ p_minus
@@ -121,7 +120,7 @@ def load_constraint_set() -> tuple[dict[str, Any], dict[str, Any]]:
     return data, constraint_set
 
 
-def stage_axis(stage: str) -> np.ndarray:
+def stage_axis(stage: str) -> torch.Tensor:
     return {
         "Si": SZ,
         "Se": SX,
@@ -135,11 +134,12 @@ def run_engine(constraint_set: dict[str, Any], collapsed: str | None = None) -> 
     layer_weights = [row["support_weight"] for row in layer_rows]
     layer_offsets = [row["engine_gate_pair_offset"] for row in layer_rows]
     if collapsed == "flat_constraints":
-        layer_weights = [float(np.mean(layer_weights)) for _ in layer_weights]
+        mean_weight = sum(float(weight) for weight in layer_weights) / max(len(layer_weights), 1)
+        layer_weights = [mean_weight for _ in layer_weights]
         layer_offsets = [0 for _ in layer_offsets]
     states = {
-        "left_chiral_density_space": normalize_density(np.array([[0.82, 0.19], [0.19, 0.18]], dtype=DTYPE)),
-        "right_chiral_density_space": normalize_density(np.array([[0.31, -0.15j], [0.15j, 0.69]], dtype=DTYPE)),
+        "left_chiral_density_space": normalize_density(torch.tensor([[0.82, 0.19], [0.19, 0.18]], dtype=DTYPE)),
+        "right_chiral_density_space": normalize_density(torch.tensor([[0.31, -0.15j], [0.15j, 0.69]], dtype=DTYPE)),
     }
     records: list[dict[str, Any]] = []
     for space_idx, (space, rho) in enumerate(states.items()):
@@ -157,8 +157,8 @@ def run_engine(constraint_set: dict[str, Any], collapsed: str | None = None) -> 
                     offset = layer_offsets[constraint_idx]
                     geometry_drive = weight * (1.0 + offset / max(len(layer_offsets) - 1, 1))
                     dt = 0.028 + 0.030 * geometry_drive
-                    before = rho.copy()
-                    energy_before = float(np.real(np.trace((h_sign * H0) @ before)))
+                    before = rho.clone()
+                    energy_before = float(torch.real(torch.trace((h_sign * H0) @ before)).item())
                     entropy_before = entropy(before)
                     if substage == "signed_hamiltonian":
                         rho = unitary_update(rho, h_sign * H0 + 0.18 * op_sign * geometry_drive * OPERATORS[op_name], dt)
@@ -169,9 +169,10 @@ def run_engine(constraint_set: dict[str, Any], collapsed: str | None = None) -> 
                     else:
                         loop_axis = SZ if loop == "fiber" else SX
                         rho = unitary_update(rho, 0.16 * op_sign * geometry_drive * loop_axis + 0.06 * OPERATORS[op_name], dt)
-                    energy_after = float(np.real(np.trace((h_sign * H0) @ rho)))
+                    energy_after = float(torch.real(torch.trace((h_sign * H0) @ rho)).item())
                     entropy_after = entropy(rho)
                     work_delta = energy_after - energy_before
+                    min_eigenvalue = float(torch.min(torch.linalg.eigvalsh(rho).real).item())
                     records.append(
                         {
                             "index": global_idx,
@@ -187,7 +188,8 @@ def run_engine(constraint_set: dict[str, Any], collapsed: str | None = None) -> 
                             "energy_delta": work_delta,
                             "entropy_delta": entropy_after - entropy_before,
                             "trace_distance": trace_distance(before, rho),
-                            "valid_density": abs(np.trace(rho).real - 1.0) < 1e-8 and np.min(np.linalg.eigvalsh(rho).real) >= -1e-9,
+                            "valid_density": abs(float(torch.real(torch.trace(rho)).item()) - 1.0) < 1e-8
+                            and min_eigenvalue >= -1e-9,
                             "signature": [
                                 round(work_delta, 8),
                                 round(entropy_after - entropy_before, 8),
@@ -207,17 +209,14 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
     for row in records:
         key = f"{row['space']}::{row['stage']}::{row['loop']}"
         by_stage.setdefault(key, []).append(row["signature"])
-    centroids = {
-        key: np.mean(np.array(values, dtype=float), axis=0)
-        for key, values in by_stage.items()
-    }
+    centroids = {key: torch.mean(torch.tensor(values, dtype=REAL_DTYPE), dim=0) for key, values in by_stage.items()}
     gaps = []
     keys = sorted(centroids)
     for idx, left in enumerate(keys):
         for right in keys[idx + 1 :]:
-            gaps.append(float(np.linalg.norm(centroids[left] - centroids[right])))
-    work = np.array([row["energy_delta"] for row in records], dtype=float)
-    ent = np.array([row["entropy_delta"] for row in records], dtype=float)
+            gaps.append(float(torch.linalg.vector_norm(centroids[left] - centroids[right]).item()))
+    work = torch.tensor([row["energy_delta"] for row in records], dtype=REAL_DTYPE)
+    ent = torch.tensor([row["entropy_delta"] for row in records], dtype=REAL_DTYPE)
     return {
         "record_count": len(records),
         "factorization": {
@@ -230,11 +229,11 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
             "shape": "2 sheets x 2 loop placements x 4 stages x 4 substages",
         },
         "stage_count": len(by_stage),
-        "unique_stage_signatures": len({tuple(np.round(value, 6)) for value in centroids.values()}),
+        "unique_stage_signatures": len({tuple(round(float(x), 6) for x in value.tolist()) for value in centroids.values()}),
         "min_stage_centroid_gap": min(gaps) if gaps else 0.0,
-        "total_abs_work": float(np.sum(np.abs(work))),
-        "work_span": float(np.max(work) - np.min(work)),
-        "entropy_delta_span": float(np.max(ent) - np.min(ent)),
+        "total_abs_work": float(torch.sum(torch.abs(work)).item()),
+        "work_span": float((torch.max(work) - torch.min(work)).item()),
+        "entropy_delta_span": float((torch.max(ent) - torch.min(ent)).item()),
         "stage_profile": [
             float(x)
             for key in keys
@@ -244,17 +243,17 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def profile_gap(left: dict[str, Any], right: dict[str, Any]) -> float:
-    a = np.array(left["stage_profile"], dtype=float)
-    b = np.array(right["stage_profile"], dtype=float)
-    scalar_tail = np.array(
+    a = torch.tensor(left["stage_profile"], dtype=REAL_DTYPE)
+    b = torch.tensor(right["stage_profile"], dtype=REAL_DTYPE)
+    scalar_tail = torch.tensor(
         [
             left["total_abs_work"] - right["total_abs_work"],
             left["work_span"] - right["work_span"],
             left["entropy_delta_span"] - right["entropy_delta_span"],
         ],
-        dtype=float,
+        dtype=REAL_DTYPE,
     )
-    return float(np.linalg.norm(np.concatenate([a - b, scalar_tail])))
+    return float(torch.linalg.vector_norm(torch.cat([a - b, scalar_tail])).item())
 
 
 def nested_records(records: list[dict[str, Any]]) -> dict[str, Any]:
@@ -291,13 +290,14 @@ def nested_shape_ok(nested: dict[str, Any]) -> bool:
 
 
 def graph_witness(records: list[dict[str, Any]]) -> dict[str, Any]:
-    graph = nx.DiGraph()
+    graph = rx.PyDiGraph()
+    node_ids: dict[int, int] = {}
     for row in records:
-        graph.add_node(row["index"], stage=row["stage"], space=row["space"])
+        node_ids[row["index"]] = graph.add_node({"index": row["index"], "stage": row["stage"], "space": row["space"]})
     for left, right in zip(records[:-1], records[1:]):
-        graph.add_edge(left["index"], right["index"])
-    dag = nx.is_directed_acyclic_graph(graph)
-    return {"nodes": graph.number_of_nodes(), "edges": graph.number_of_edges(), "dag": dag, "pass": dag and graph.number_of_nodes() == 64}
+        graph.add_edge(node_ids[left["index"]], node_ids[right["index"]], {"ordered_successor": True})
+    dag = rx.is_directed_acyclic_graph(graph)
+    return {"nodes": graph.num_nodes(), "edges": graph.num_edges(), "dag": dag, "pass": dag and graph.num_nodes() == 64}
 
 
 def z3_stage_noncollapse(summary: dict[str, Any]) -> dict[str, Any]:

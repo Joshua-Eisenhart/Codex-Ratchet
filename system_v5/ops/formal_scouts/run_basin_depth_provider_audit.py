@@ -54,7 +54,7 @@ Current repaired files:
 - system_v5/ops/formal_scouts/sim_integrated_constraint_manifold_suite_fresh_rerun_probe.py
 - system_v5/ops/formal_scouts/results/integrated_constraint_manifold_suite_fresh_rerun_probe_results.json
 
-Known local facts from fresh validation:
+Indexed local receipt facts; do not treat this provider prompt as fresh validation:
 - basin-depth guard all_pass=True
 - active_inference_policy_window routes open_basin_boundary because nominal top-two EFE margin is 0.0017228540 < floor 0.01
 - source-native online VMP clears its nominal policy margin at 0.0217303875 >= floor 0.01
@@ -189,7 +189,7 @@ def run_grok(timeout: float) -> dict[str, Any]:
 
 def run_gemini(timeout: float) -> dict[str, Any]:
     key = os.environ.get("GEMINI_API_KEY")
-    model = "gemini-2.5-flash"
+    model = os.environ.get("WIZARD_GEMINI_MODEL", "gemini-3.5-flash").strip() or "gemini-3.5-flash"
     if not key:
         return provider_receipt(provider="gemini", status="blocked", blocked_reason="GEMINI_API_KEY not set", model=model)
     try:

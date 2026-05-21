@@ -58,14 +58,14 @@ def build_prompt() -> str:
     return f"""Read-only external audit for Codex Ratchet current FEP/Axis0 repair.
 
 Owner intent:
-- Existing QIT engine/manifold/FEP formal scouts must form real attractor-basin evidence, not green ornamental receipts.
+- Existing QIT engine/manifold/FEP formal scouts must be tested against real attractor-basin criteria before being counted, not treated as green ornamental receipts.
 - Source-native nonclassical FEP/Axis0/Holodeck sims cannot use NumPy/SciPy as load-bearing math.
 - Torch/proof/tensor-network tools may be load-bearing when they match the constraint.
 - Provider output is advisory only; local formal-scout receipts and validators remain authority.
 
 Current repair packet:
 - Router, Axis0 drive-control, and FEP-gradient closure were converted away from NumPy load-bearing and now show tool-role candidates.
-- POMDP policy-tree scout was converted from NumPy/SciPy to Torch; fresh validation passed locally.
+- POMDP policy-tree scout was converted from NumPy/SciPy to Torch; indexed local receipt facts report a local pass, but this provider prompt is not itself future fresh validation.
 - Online-VMP scout is being converted to Torch and still needs external premortem before local validation is trusted.
 - lint_sim_contract was repaired to recognize formal_scout/CLASSIFICATION and current v5 formal tool-admission receipts.
 
@@ -146,7 +146,7 @@ def run_grok(prompt: str, timeout: float) -> dict[str, Any]:
 
 def run_gemini(prompt: str, timeout: float) -> dict[str, Any]:
     key = os.environ.get("GEMINI_API_KEY", "").strip() or os.environ.get("GOOGLE_API_KEY", "").strip()
-    model = os.environ.get("WIZARD_GEMINI_MODEL", "gemini-2.5-flash")
+    model = os.environ.get("WIZARD_GEMINI_MODEL", "gemini-3.5-flash").strip() or "gemini-3.5-flash"
     if not key:
         return provider_receipt(provider="gemini_direct", status="blocked", blocked_reason="GEMINI_API_KEY/GOOGLE_API_KEY not set", model=model)
     try:

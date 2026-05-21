@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import pathlib
@@ -13,10 +14,31 @@ import urllib.error
 import urllib.request
 from typing import Any
 
+from provider_mmm_prompt import build_mmm_prompt_block
+
 
 ROOT = pathlib.Path(__file__).resolve().parent
 REPO = ROOT.parents[2]
 OUT_DIR = ROOT / "provider_receipts"
+ROUTE_MINI_MMM_IDS = [
+    "decision.experts_council",
+    "failure.premortem_council",
+    "failure.falsifier_council",
+    "failure.loophole_auditor_council",
+    "follow_up.lane_council",
+    "follow_up.compile_gate_council",
+    "premortem.likely_failure",
+    "premortem.dangerous_failure",
+    "premortem.hidden_assumption",
+    "premortem.sim_evidence_corruption",
+    "voice.hume",
+    "voice.feynman",
+    "voice.popper",
+    "voice.pushback",
+    "voice.factory",
+    "voice.strategy",
+    "voice.systems",
+]
 TARGETS = [
     "scripts/lint_sim_contract.py",
     "system_v5/ops/formal_scouts/sim_source_native_fep_pomdp_policy_tree_probe.py",
@@ -35,7 +57,7 @@ def run(args: list[str], limit: int = 20_000) -> str:
     return text[:limit]
 
 
-def build_prompt() -> str:
+def build_prompt() -> tuple[str, dict[str, Any]]:
     diff = run(["git", "diff", "--", *TARGETS], limit=35_000)
     status = run(["git", "status", "--short", "--", *TARGETS], limit=8_000)
     # Avoid assuming a repo-local interpreter path; provider only needs source state.
@@ -55,7 +77,7 @@ def build_prompt() -> str:
         ],
         limit=12_000,
     )
-    return f"""Read-only external audit for Codex Ratchet current FEP/Axis0 repair.
+    base_prompt = f"""Read-only external audit for Codex Ratchet current FEP/Axis0 repair.
 
 Owner intent:
 - Existing QIT engine/manifold/FEP formal scouts must be tested against real attractor-basin criteria before being counted, not treated as green ornamental receipts.
@@ -85,6 +107,12 @@ Receipt summary:
 Current diff:
 {diff}
 """
+    mmm_block, mmm_metadata = build_mmm_prompt_block(
+        route_card="current_fep_repair_audit",
+        council_role="failure.premortem_council+failure.falsifier_council+follow_up.lane_council",
+        mini_ids=ROUTE_MINI_MMM_IDS,
+    )
+    return f"{mmm_block}\n\n{base_prompt}", mmm_metadata
 
 
 def provider_receipt(
@@ -94,8 +122,11 @@ def provider_receipt(
     text: str = "",
     blocked_reason: str = "",
     model: str = "",
+    wizard_mmm: dict[str, Any] | None = None,
+    prompt_sha256: str = "",
     raw_response: Any = None,
 ) -> dict[str, Any]:
+    wizard_mmm = wizard_mmm or {}
     return {
         "schema": "PROVIDER_PROPOSAL_RECEIPT_v1",
         "provider": provider,
@@ -111,6 +142,9 @@ def provider_receipt(
             "diff_embedded_in_prompt": True,
             "receipt_summary_embedded_in_prompt": True,
         },
+        "wizard_mmm": wizard_mmm,
+        "wizard_mmm_loaded_in_prompt": bool(wizard_mmm),
+        "prompt_sha256": prompt_sha256,
         "model": model,
         "proposal_text": text,
         "blocked_reason": blocked_reason,
@@ -127,11 +161,11 @@ def post_json(url: str, headers: dict[str, str], payload: dict[str, Any], timeou
         return json.loads(response.read().decode("utf-8"))
 
 
-def run_grok(prompt: str, timeout: float) -> dict[str, Any]:
+def run_grok(prompt: str, wizard_mmm: dict[str, Any], prompt_sha256: str, timeout: float) -> dict[str, Any]:
     key = os.environ.get("XAI_API_KEY", "").strip()
     model = os.environ.get("WIZARD_GROK_MODEL", "grok-4.3")
     if not key:
-        return provider_receipt(provider="grok_xai", status="blocked", blocked_reason="XAI_API_KEY not set", model=model)
+        return provider_receipt(provider="grok_xai", status="blocked", blocked_reason="XAI_API_KEY not set", model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256)
     try:
         raw = post_json(
             "https://api.x.ai/v1/chat/completions",
@@ -139,16 +173,16 @@ def run_grok(prompt: str, timeout: float) -> dict[str, Any]:
             {"model": model, "messages": [{"role": "user", "content": prompt}], "temperature": 0},
             timeout,
         )
-        return provider_receipt(provider="grok_xai", status="completed", text=raw["choices"][0]["message"]["content"], model=model, raw_response=raw)
+        return provider_receipt(provider="grok_xai", status="completed", text=raw["choices"][0]["message"]["content"], model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256, raw_response=raw)
     except (KeyError, urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
-        return provider_receipt(provider="grok_xai", status="blocked", blocked_reason=repr(exc), model=model)
+        return provider_receipt(provider="grok_xai", status="blocked", blocked_reason=repr(exc), model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256)
 
 
-def run_gemini(prompt: str, timeout: float) -> dict[str, Any]:
+def run_gemini(prompt: str, wizard_mmm: dict[str, Any], prompt_sha256: str, timeout: float) -> dict[str, Any]:
     key = os.environ.get("GEMINI_API_KEY", "").strip() or os.environ.get("GOOGLE_API_KEY", "").strip()
     model = os.environ.get("WIZARD_GEMINI_MODEL", "gemini-3.5-flash").strip() or "gemini-3.5-flash"
     if not key:
-        return provider_receipt(provider="gemini_direct", status="blocked", blocked_reason="GEMINI_API_KEY/GOOGLE_API_KEY not set", model=model)
+        return provider_receipt(provider="gemini_direct", status="blocked", blocked_reason="GEMINI_API_KEY/GOOGLE_API_KEY not set", model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256)
     try:
         raw = post_json(
             f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
@@ -160,9 +194,9 @@ def run_gemini(prompt: str, timeout: float) -> dict[str, Any]:
             timeout,
         )
         text = "\n".join(str(part.get("text", "")) for part in raw["candidates"][0]["content"]["parts"]).strip()
-        return provider_receipt(provider="gemini_direct", status="completed", text=text, model=model, raw_response=raw)
+        return provider_receipt(provider="gemini_direct", status="completed", text=text, model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256, raw_response=raw)
     except (KeyError, urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
-        return provider_receipt(provider="gemini_direct", status="blocked", blocked_reason=repr(exc), model=model)
+        return provider_receipt(provider="gemini_direct", status="blocked", blocked_reason=repr(exc), model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256)
 
 
 def main() -> int:
@@ -171,13 +205,18 @@ def main() -> int:
     parser.add_argument("--timeout", type=float, default=90.0)
     parser.add_argument("--stamp", default=time.strftime("%Y%m%dT%H%M%SZ", time.gmtime()))
     args = parser.parse_args()
-    prompt = build_prompt()
-    receipt = run_grok(prompt, args.timeout) if args.provider == "grok" else run_gemini(prompt, args.timeout)
+    prompt, wizard_mmm = build_prompt()
+    prompt_sha256 = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
+    receipt = (
+        run_grok(prompt, wizard_mmm, prompt_sha256, args.timeout)
+        if args.provider == "grok"
+        else run_gemini(prompt, wizard_mmm, prompt_sha256, args.timeout)
+    )
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     out = OUT_DIR / f"{args.stamp}_{args.provider}_current_fep_repair_audit.json"
     out.write_text(json.dumps(receipt, indent=2, sort_keys=True), encoding="utf-8")
     print(json.dumps({"path": str(out), "provider": args.provider, "status": receipt["status"]}))
-    return 0 if receipt["status"] == "completed" else 1
+    return 0 if receipt["status"] in {"completed", "blocked"} else 1
 
 
 if __name__ == "__main__":

@@ -146,12 +146,12 @@ def run_grok(timeout: float) -> dict[str, Any]:
 
 
 def run_gemini(timeout: float) -> dict[str, Any]:
-    key = os.environ.get("GEMINI_API_KEY")
+    key = os.environ.get("GEMINI_API_KEY", "").strip() or os.environ.get("GOOGLE_API_KEY", "").strip()
     model = os.environ.get("WIZARD_GEMINI_MODEL", "gemini-3.5-flash").strip() or "gemini-3.5-flash"
     prompt, wizard_mmm = build_prompt()
     prompt_sha256 = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
     if not key:
-        return provider_receipt(provider="gemini", status="blocked", blocked_reason="GEMINI_API_KEY not set", model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256)
+        return provider_receipt(provider="gemini", status="blocked", blocked_reason="GEMINI_API_KEY/GOOGLE_API_KEY not set", model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256)
     try:
         raw = post_json(
             f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
@@ -202,7 +202,7 @@ def main() -> int:
     out = OUT_DIR / f"{args.stamp}_{args.provider}_tool_foundation_repair_audit.json"
     out.write_text(json.dumps(receipt, indent=2, sort_keys=True), encoding="utf-8")
     print(json.dumps({"path": str(out), "provider": args.provider, "status": receipt["status"]}))
-    return 0 if receipt["status"] == "completed" else 1
+    return 0 if receipt["status"] in {"completed", "blocked"} else 1
 
 
 if __name__ == "__main__":

@@ -41,21 +41,23 @@ def _yaml_blocks(markdown: str) -> list[str]:
     return blocks
 
 
-def _extract_mini_slices(registry_text: str, mini_ids: list[str]) -> str:
+def _extract_mini_slices(registry_text: str, mini_ids: list[str]) -> tuple[str, list[str], list[str]]:
     blocks = _yaml_blocks(registry_text)
     selected: list[str] = []
+    loaded: list[str] = []
     missing: list[str] = []
     for mini_id in mini_ids:
         needle = f"id: {mini_id}"
         for block in blocks:
             if any(line.strip() == needle for line in block.splitlines()):
                 selected.append(block)
+                loaded.append(mini_id)
                 break
         else:
             missing.append(mini_id)
     if missing:
         selected.append("```yaml\nmissing_mini_mmm_ids: " + ", ".join(missing) + "\n```")
-    return "\n\n".join(selected)
+    return "\n\n".join(selected), loaded, missing
 
 
 def build_mmm_prompt_block(*, route_card: str, council_role: str, mini_ids: list[str]) -> tuple[str, dict[str, Any]]:
@@ -64,10 +66,11 @@ def build_mmm_prompt_block(*, route_card: str, council_role: str, mini_ids: list
     compact = _read(COMPACT_MMM_PATH)
     registry = _read(MINI_MMM_REGISTRY_PATH)
     saliency_tranche = _read(SALIENCY_TRANCHE_PATH) if SALIENCY_TRANCHE_PATH.exists() else ""
-    mini_slices = _extract_mini_slices(registry, mini_ids)
+    mini_slices, loaded_mini_ids, missing_mini_ids = _extract_mini_slices(registry, mini_ids)
     metadata = {
         "mmm_loaded": True,
         "mmm_load_kind": "compact_mmm_plus_route_mini_slices_plus_reference_saliency_test",
+        "route_mini_mmm_status": "complete" if not missing_mini_ids else "partial_missing_ids",
         "route_card": route_card,
         "council_role": council_role,
         "mmm_source_paths": [
@@ -81,6 +84,10 @@ def build_mmm_prompt_block(*, route_card: str, council_role: str, mini_ids: list
             str(SALIENCY_TRANCHE_PATH): _sha256(saliency_tranche),
         },
         "route_mini_mmm_ids": mini_ids,
+        "route_mini_mmm_requested_ids": mini_ids,
+        "route_mini_mmm_loaded_ids": loaded_mini_ids,
+        "route_mini_mmm_missing_ids": missing_mini_ids,
+        "route_mini_mmm_complete": not missing_mini_ids,
         "compact_mmm_line_count": len(compact.splitlines()),
         "mini_mmm_registry_line_count": len(registry.splitlines()),
         "saliency_tranche_authority": "reference_only_test_material",

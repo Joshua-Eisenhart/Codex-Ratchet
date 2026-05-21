@@ -8,6 +8,7 @@ the provider proposal schema and cannot promote a formal-scout result.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import pathlib
@@ -16,11 +17,32 @@ import urllib.error
 import urllib.request
 from typing import Any
 
+from provider_mmm_prompt import build_mmm_prompt_block
+
 
 ROOT = pathlib.Path(__file__).resolve().parent
 OUT_DIR = ROOT / "provider_receipts"
+ROUTE_MINI_MMM_IDS = [
+    "decision.experts_council",
+    "failure.premortem_council",
+    "failure.falsifier_council",
+    "failure.loophole_auditor_council",
+    "follow_up.lane_council",
+    "follow_up.compile_gate_council",
+    "premortem.likely_failure",
+    "premortem.dangerous_failure",
+    "premortem.hidden_assumption",
+    "premortem.sim_evidence_corruption",
+    "voice.hume",
+    "voice.feynman",
+    "voice.popper",
+    "voice.pushback",
+    "voice.factory",
+    "voice.strategy",
+    "voice.systems",
+]
 
-PROMPT = """Read-only audit for Codex Ratchet formal scouts.
+BASE_PROMPT = """Read-only audit for Codex Ratchet formal scouts.
 
 Current repaired files:
 - system_v5/ops/formal_scouts/sim_manifold_dependency_basin_depth_guard_probe.py
@@ -91,6 +113,15 @@ Audit question:
 Does this repair correctly preserve the attractor-basin criterion by adding local operational-assembly and seven-control perturbation-depth evidence, preventing both a knife-edge active-inference policy and a nominal-only online-VMP margin from becoming manifold-depth evidence, closing the stale stage-record-to-carrier bridge reference, keeping subdense environment contraction as a raw pre-guard multicarrier control surface, closing the stale fep_gradient_polarity blocker with a finite stage-local Axis0 closure guard, closing path_entropy as a blocked diagnostic/proxy branch, closing holographic_boundary_interior_reconstruction as a blocked diagnostic branch rather than an admitted Axis0 feature or holographic dictionary, and repairing the MPS 8/16/32 scaling scout so only post-guard Axis0 candidates drive geometry? Identify blockers, overclaims, stale assumptions, receipt-cycle risks, and the smallest next receipt-bearing falsifier. Keep claims proposal-only; cite the paths above."""
 
 
+def build_prompt() -> tuple[str, dict[str, Any]]:
+    mmm_block, mmm_metadata = build_mmm_prompt_block(
+        route_card="basin_depth_guard_repair_audit",
+        council_role="failure.premortem_council+failure.falsifier_council+follow_up.lane_council",
+        mini_ids=ROUTE_MINI_MMM_IDS,
+    )
+    return f"{mmm_block}\n\n{BASE_PROMPT}", mmm_metadata
+
+
 def provider_receipt(
     *,
     provider: str,
@@ -98,8 +129,11 @@ def provider_receipt(
     proposal_text: str = "",
     blocked_reason: str = "",
     model: str = "",
+    wizard_mmm: dict[str, Any] | None = None,
+    prompt_sha256: str = "",
     raw_response: Any = None,
 ) -> dict[str, Any]:
+    wizard_mmm = wizard_mmm or {}
     return {
         "schema": "PROVIDER_PROPOSAL_RECEIPT_v1",
         "provider": provider,
@@ -147,6 +181,9 @@ def provider_receipt(
             ],
             "local_facts_embedded_in_prompt": True,
         },
+        "wizard_mmm": wizard_mmm,
+        "wizard_mmm_loaded_in_prompt": bool(wizard_mmm),
+        "prompt_sha256": prompt_sha256,
         "model": model,
         "proposal_text": proposal_text,
         "blocked_reason": blocked_reason,
@@ -165,8 +202,10 @@ def post_json(url: str, headers: dict[str, str], payload: dict[str, Any], timeou
 def run_grok(timeout: float) -> dict[str, Any]:
     key = os.environ.get("XAI_API_KEY")
     model = "grok-4.3"
+    prompt, wizard_mmm = build_prompt()
+    prompt_sha256 = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
     if not key:
-        return provider_receipt(provider="grok", status="blocked", blocked_reason="XAI_API_KEY not set", model=model)
+        return provider_receipt(provider="grok", status="blocked", blocked_reason="XAI_API_KEY not set", model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256)
     try:
         raw = post_json(
             "https://api.x.ai/v1/chat/completions",
@@ -176,37 +215,39 @@ def run_grok(timeout: float) -> dict[str, Any]:
             },
             {
                 "model": model,
-                "messages": [{"role": "user", "content": PROMPT}],
+                "messages": [{"role": "user", "content": prompt}],
                 "temperature": 0,
             },
             timeout,
         )
         text = raw["choices"][0]["message"]["content"]
-        return provider_receipt(provider="grok", status="completed", proposal_text=text, model=model, raw_response=raw)
+        return provider_receipt(provider="grok", status="completed", proposal_text=text, model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256, raw_response=raw)
     except (KeyError, urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
-        return provider_receipt(provider="grok", status="blocked", blocked_reason=repr(exc), model=model)
+        return provider_receipt(provider="grok", status="blocked", blocked_reason=repr(exc), model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256)
 
 
 def run_gemini(timeout: float) -> dict[str, Any]:
-    key = os.environ.get("GEMINI_API_KEY")
+    key = os.environ.get("GEMINI_API_KEY", "").strip() or os.environ.get("GOOGLE_API_KEY", "").strip()
     model = os.environ.get("WIZARD_GEMINI_MODEL", "gemini-3.5-flash").strip() or "gemini-3.5-flash"
+    prompt, wizard_mmm = build_prompt()
+    prompt_sha256 = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
     if not key:
-        return provider_receipt(provider="gemini", status="blocked", blocked_reason="GEMINI_API_KEY not set", model=model)
+        return provider_receipt(provider="gemini", status="blocked", blocked_reason="GEMINI_API_KEY/GOOGLE_API_KEY not set", model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256)
     try:
         raw = post_json(
             f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
             {"Content-Type": "application/json", "x-goog-api-key": key},
             {
-                "contents": [{"parts": [{"text": PROMPT}]}],
+                "contents": [{"parts": [{"text": prompt}]}],
                 "generationConfig": {"temperature": 0, "thinkingConfig": {"thinkingBudget": 0}},
             },
             timeout,
         )
         parts = raw["candidates"][0]["content"]["parts"]
         text = "\n".join(str(part.get("text", "")) for part in parts).strip()
-        return provider_receipt(provider="gemini", status="completed", proposal_text=text, model=model, raw_response=raw)
+        return provider_receipt(provider="gemini", status="completed", proposal_text=text, model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256, raw_response=raw)
     except (KeyError, urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
-        return provider_receipt(provider="gemini", status="blocked", blocked_reason=repr(exc), model=model)
+        return provider_receipt(provider="gemini", status="blocked", blocked_reason=repr(exc), model=model, wizard_mmm=wizard_mmm, prompt_sha256=prompt_sha256)
 
 
 def main() -> int:

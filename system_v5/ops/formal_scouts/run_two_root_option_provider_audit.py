@@ -39,13 +39,13 @@ MINI_IDS = [
     "voice.systems",
 ]
 
-FACTS = """Indexed local receipt facts; do not treat this provider prompt as fresh validation:
-- two_root_constraint_layer_alignment_matrix_probe was reported by the local receipt set as fresh-rerun/validator passing.
+FACTS = """Indexed local receipt facts; do not treat this provider prompt as fresh validation or a fresh rerun:
+- two_root_constraint_layer_alignment_matrix_probe was indexed by the local receipt set as all_pass/validator passing at receipt time; this prompt does not rerun it.
 - Alignment matrix: 13 layers, 52 exploratory branches, 8 layers marked retune_required, 6 direct root candidates, first layer currently not full-root-valid if only finite cells.
-- two_root_layer_option_full_tool_explorer_probe was reported by the local receipt set as fresh-rerun/validator passing.
+- two_root_layer_option_full_tool_explorer_probe was indexed by the local receipt set as all_pass/validator passing at receipt time; this prompt does not rerun it.
 - Full-tool explorer: option_count=52, all_tool_passing_option_count=52, minimum_options_per_layer=4, first_layer_tool_passing_options=4.
 - Full local tools consumed: PyTorch, SymPy, z3, cvc5, Clifford, geomstats, rustworkx, XGI, TopoNetX, GUDHI, PyG, e3nn.
-- two_root_layer_option_emergence_ablation_probe was reported by the local receipt set as fresh-rerun/validator passing.
+- two_root_layer_option_emergence_ablation_probe was indexed by the local receipt set as all_pass/validator passing at receipt time; this prompt does not rerun it.
 - Ablation: option_count=52, survivor_count=52, minimum_survivors_per_layer=4, first_layer_survivors=4.
 - Controls: both roots active survives; F01-only, N01-only, neither-root, commuting/order-erased controls are blocked by z3/cvc5 gates.
 - Boundary: these receipts select strict retune branches; they do not prove unique emergence, final layer order, final manifold, or real attractor basin.

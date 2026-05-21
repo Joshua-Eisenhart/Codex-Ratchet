@@ -56,7 +56,7 @@ LAYERS = [
     "dynamic_transition_ratchet_geometry",
 ]
 
-FACTS = f"""Indexed/local audit facts for this focused provider prompt; do not treat this prompt text as future fresh validation:
+FACTS = f"""Indexed/local audit facts for this focused provider prompt; do not treat this prompt text as future fresh validation or a fresh rerun:
 - The current question is layer validity, not Axis0 repair.
 - The two root constraints under audit are F01_finitude and N01_noncommutation.
 - The current 13 named layer list is: {", ".join(LAYERS)}.
@@ -64,7 +64,7 @@ FACTS = f"""Indexed/local audit facts for this focused provider prompt; do not t
 - constraint_manifold_layer_causal_responsibility_matrix_probe has effective_rank=13 and every row is non-substitutable under removal/validator/delay/advance/reverse/adversarial controls.
 - g_structure_semantic_layer_operator_coupling_probe all_pass=true and supports semantic operator-role coupling, but it does not prove the named 13 layers emerge from F01/N01.
 - two_root_constraint_attractor_basin_foundation_gate_probe all_pass=true as a blocking audit: executable_root_receipt_count=0, root_basin_admission_status=blocked, current_real_attractor_basin_convergence_claim_status=killed_or_unproven.
-- geometric_manifold_layer_validity_root_constraint_audit_probe was rerun and validator-passed in the 2026-05-21 controller audit: operational_candidate_layer_count=13, root_ablation_supported_layer_count=13, layer_validity_status=root_ablation_supported_not_final_basin, next_required_scout=two_root_retuned_layer_stack_integration_probe.
+- geometric_manifold_layer_validity_root_constraint_audit_probe is an indexed 2026-05-21 controller-audit receipt row reporting operational_candidate_layer_count=13, root_ablation_supported_layer_count=13, layer_validity_status=root_ablation_supported_not_final_basin, next_required_scout=two_root_retuned_layer_stack_integration_probe; this provider prompt does not rerun it.
 - Current honest boundary: operational candidate evidence is nontrivial, but root-emergent layer validity is not proven.
 """
 

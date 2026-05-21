@@ -54,18 +54,17 @@ if str(_MODULE_DIR) not in sys.path:
     sys.path.insert(0, str(_MODULE_DIR))
 
 from canonical_qit_engine_specs import (
-    DTYPE,
-    H_TYPE_ONE,
-    H_TYPE_TWO,
-    I2,
+    H_TYPE_ONE as CANON_H_TYPE_ONE,
+    H_TYPE_TWO as CANON_H_TYPE_TWO,
+    I2 as CANON_I2,
     MANIFOLD_LAYERS,
     OPERATOR_BASE_ANGLES,
-    OPERATOR_GENERATORS,
-    SIGMA_MINUS,
-    SIGMA_PLUS,
-    SX,
-    SY,
-    SZ,
+    OPERATOR_GENERATORS as CANON_OPERATOR_GENERATORS,
+    SIGMA_MINUS as CANON_SIGMA_MINUS,
+    SIGMA_PLUS as CANON_SIGMA_PLUS,
+    SX as CANON_SX,
+    SY as CANON_SY,
+    SZ as CANON_SZ,
     N_MAIN_STAGES_PER_ENGINE,
     N_SUBSTAGES_PER_MAIN,
     N_TOTAL_SUBSTAGES_PER_ENGINE,
@@ -84,9 +83,31 @@ from active_layer_constraint_enforcers import apply_all_layer_constraints
 # ---------------------------------------------------------------------------
 
 TORCH_DTYPE = torch.complex128
+NP_DTYPE = np.complex128
 STAGE_DT = 0.08      # ODE integration duration per substage
 ODE_RTOL = 1e-7
 ODE_ATOL = 1e-9
+
+
+def _np_matrix(value: Any) -> np.ndarray:
+    """Convert canonical torch specs or local arrays into EngineCore's NumPy boundary."""
+    if isinstance(value, np.ndarray):
+        return value.astype(NP_DTYPE)
+    return torch.as_tensor(value, dtype=TORCH_DTYPE).detach().cpu().numpy().astype(NP_DTYPE)
+
+
+I2 = _np_matrix(CANON_I2)
+SX = _np_matrix(CANON_SX)
+SY = _np_matrix(CANON_SY)
+SZ = _np_matrix(CANON_SZ)
+SIGMA_MINUS = _np_matrix(CANON_SIGMA_MINUS)
+SIGMA_PLUS = _np_matrix(CANON_SIGMA_PLUS)
+H_TYPE_ONE = _np_matrix(CANON_H_TYPE_ONE)
+H_TYPE_TWO = _np_matrix(CANON_H_TYPE_TWO)
+OPERATOR_GENERATORS = {
+    name: _np_matrix(generator)
+    for name, generator in CANON_OPERATOR_GENERATORS.items()
+}
 
 
 # ---------------------------------------------------------------------------
@@ -95,17 +116,19 @@ ODE_ATOL = 1e-9
 
 def _normalize_density(rho: np.ndarray) -> np.ndarray:
     """Project to Hermitian, clip negative eigenvalues, renormalize trace to 1."""
+    rho = _np_matrix(rho)
     rho_h = (rho + rho.conj().T) / 2
     vals, vecs = np.linalg.eigh(rho_h)
     vals = np.maximum(vals.real, 1e-15)
-    out = vecs @ np.diag(vals.astype(DTYPE)) @ vecs.conj().T
+    out = vecs @ np.diag(vals.astype(NP_DTYPE)) @ vecs.conj().T
     tr = np.trace(out).real
     if tr < 1e-30:
-        return np.eye(2, dtype=DTYPE) / 2
+        return np.eye(2, dtype=NP_DTYPE) / 2
     return out / tr
 
 
 def _is_valid_density(rho: np.ndarray) -> bool:
+    rho = _np_matrix(rho)
     if not np.allclose(rho, rho.conj().T, atol=1e-9):
         return False
     if abs(np.trace(rho).real - 1.0) > 1e-8:
@@ -116,20 +139,22 @@ def _is_valid_density(rho: np.ndarray) -> bool:
 
 def _state_to_density(psi: np.ndarray) -> np.ndarray:
     """Pure state |ψ⟩ → ρ = |ψ⟩⟨ψ|."""
-    psi = psi.reshape(-1, 1).astype(DTYPE)
+    psi = _np_matrix(psi)
+    psi = psi.reshape(-1, 1).astype(NP_DTYPE)
     norm = float(np.linalg.norm(psi))
     if norm < 1e-30:
-        return np.eye(2, dtype=DTYPE) / 2
+        return np.eye(2, dtype=NP_DTYPE) / 2
     psi = psi / norm
     return psi @ psi.conj().T
 
 
 def _density_to_state(rho: np.ndarray) -> np.ndarray:
     """ρ → dominant eigenvector (for mixed ρ, returns the highest-weight pure component)."""
+    rho = _np_matrix(rho)
     rho_h = (rho + rho.conj().T) / 2
     vals, vecs = np.linalg.eigh(rho_h)
     # Highest eigenvalue is last
-    return vecs[:, -1].astype(DTYPE)
+    return vecs[:, -1].astype(NP_DTYPE)
 
 
 def _bloch_vector(rho: np.ndarray) -> np.ndarray:
@@ -306,7 +331,8 @@ def _science_method_fields(
             "ambiguity_entropy": ambiguity,
             "expected_free_energy_proxy": float(surprise_kl + ambiguity),
             "prediction_error_l2": prediction_l2,
-            "load_bearing_observable": "finite_pauli_projection_distribution",
+            "load_bearing_observable": "finite_scalar_boundary_pauli_projection_distribution",
+            "boundary_evidence_scope": "EngineCore finite-scalar boundary evidence only; not source-native nonclassical proof.",
         },
         "update_repair": {
             "kind": "manifold_projection_then_loop_placement",
@@ -349,7 +375,7 @@ def _lindblad_rhs(t: float, rho_flat: np.ndarray, H: np.ndarray, L: np.ndarray) 
     rho_flat is a length-4 complex vector (2x2 density flattened row-major).
     Returns the flattened derivative (length-4 complex).
     """
-    rho = rho_flat.reshape(2, 2).astype(DTYPE)
+    rho = rho_flat.reshape(2, 2).astype(NP_DTYPE)
     Ldag_L = L.conj().T @ L
     commutator = H @ rho - rho @ H
     dissipator = L @ rho @ L.conj().T - 0.5 * (Ldag_L @ rho + rho @ Ldag_L)
@@ -369,13 +395,16 @@ def lindblad_step(
     Uses scipy.integrate.solve_ivp with RK45. Returns the evolved (and
     renormalized) density matrix.
     """
-    rho0 = rho.reshape(-1).astype(DTYPE)
+    rho = _np_matrix(rho)
+    H = _np_matrix(H)
+    L = _np_matrix(L)
+    rho0 = rho.reshape(-1).astype(NP_DTYPE)
     # Solve real + imag separately for solve_ivp's real-only signature
     rho0_packed = np.concatenate([rho0.real, rho0.imag])
 
     def rhs_real(t: float, y_packed: np.ndarray) -> np.ndarray:
         n = len(y_packed) // 2
-        y = (y_packed[:n] + 1j * y_packed[n:]).astype(DTYPE)
+        y = (y_packed[:n] + 1j * y_packed[n:]).astype(NP_DTYPE)
         dy = _lindblad_rhs(t, y, H, L)
         return np.concatenate([dy.real, dy.imag])
 
@@ -389,7 +418,7 @@ def lindblad_step(
     )
     y_final = sol.y[:, -1]
     n = len(y_final) // 2
-    rho_final_flat = (y_final[:n] + 1j * y_final[n:]).astype(DTYPE)
+    rho_final_flat = (y_final[:n] + 1j * y_final[n:]).astype(NP_DTYPE)
     rho_final = rho_final_flat.reshape(2, 2)
     return _normalize_density(rho_final)
 
@@ -405,7 +434,7 @@ def _operator_unitary(op_name: str, sign: int) -> np.ndarray:
     G = OPERATOR_GENERATORS[op_name]
     theta = OPERATOR_BASE_ANGLES[op_name] * float(sign)
     U = expm(-1j * theta * G)
-    return U.astype(DTYPE)
+    return U.astype(NP_DTYPE)
 
 
 def apply_operator_to_density(
@@ -484,7 +513,7 @@ def apply_terrain_dynamics_to_density(
     family = spec["family"]
     axis = spec["projector_axis"]
     rate = float(spec["rate"])
-    H = spec["hamiltonian"]
+    H = _np_matrix(spec["hamiltonian"])
     chirality_sign = +1.0 if engine_type == 0 else -1.0
     before = rho.copy()
 
@@ -539,7 +568,7 @@ def _embed_density_in_higher_dim(rho: np.ndarray, dim: int = 16) -> torch.Tensor
     random padding (deterministic via fixed seed for reproducibility).
     """
     psi_2 = _density_to_state(rho)
-    psi = np.zeros(dim, dtype=DTYPE)
+    psi = np.zeros(dim, dtype=NP_DTYPE)
     psi[:2] = psi_2
     # Small padding to keep dim well-defined (deterministic, small magnitude)
     rng = np.random.default_rng(0)
@@ -558,12 +587,12 @@ def _project_back_to_density(psi_higher: torch.Tensor) -> np.ndarray:
     Extract the 2-dim density from a higher-dim pure state by tracing out
     all but the first 2 components, then normalizing.
     """
-    psi_np = psi_higher.detach().cpu().numpy().astype(DTYPE)
+    psi_np = psi_higher.detach().cpu().numpy().astype(NP_DTYPE)
     # Take the first 2 components, normalize, build density
     psi_2 = psi_np[:2]
     norm = float(np.linalg.norm(psi_2))
     if norm < 1e-30:
-        return np.eye(2, dtype=DTYPE) / 2
+        return np.eye(2, dtype=NP_DTYPE) / 2
     psi_2 = psi_2 / norm
     return _normalize_density(psi_2.reshape(-1, 1) @ psi_2.reshape(1, -1).conj())
 
@@ -831,7 +860,7 @@ def generate_initial_density(seed: int) -> np.ndarray:
     psi = np.array([
         math.cos(theta),
         math.sin(theta) * np.exp(1j * phi),
-    ], dtype=DTYPE).reshape(-1, 1)
+    ], dtype=NP_DTYPE).reshape(-1, 1)
     pure = psi @ psi.conj().T
     return _normalize_density(0.88 * pure + 0.12 * I2 / 2)
 

@@ -12,7 +12,6 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-from scipy.optimize import minimize_scalar
 import sympy as sp
 import torch
 import z3
@@ -21,6 +20,7 @@ from sim_gamma5_chirality_asymmetric_cptp_choi_distance_effective_channel_probe 
     DIM,
     DTYPE,
     asymmetric_kraus,
+    bounded_scalar_minimize,
     choi_matrix,
     cptp_gap,
     depolarizing_kraus,
@@ -46,8 +46,8 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing Kraus, Choi, trace-distance, rank, and CPTP checks"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing symmetric effective-gamma minimization"},
+    "python_math": {"tried": True, "used": True, "reason": "load-bearing local bounded scalar search for symmetric effective-gamma minimization"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing Kraus, Choi, trace-distance, rank, CPTP checks, and bounded-search objective evaluation"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic rank and parameter-count boundary"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing kill-boundary contradiction witness"},
 }
@@ -63,8 +63,14 @@ def best_symmetric_fit(target: list[torch.Tensor]) -> dict[str, Any]:
     target_choi = choi_matrix(target)
     def objective(gamma: float) -> float:
         return trace_distance(target_choi, choi_matrix(symmetric_kraus(float(gamma))))
-    result = minimize_scalar(objective, bounds=(0.0, 0.50), method="bounded", options={"xatol": 1e-12})
-    return {"gamma": float(result.x), "choi_trace_distance": float(result.fun), "success": bool(result.success)}
+    result = bounded_scalar_minimize(objective, 0.0, 0.50, xatol=1e-12)
+    return {
+        "gamma": float(result["x"]),
+        "choi_trace_distance": float(result["fun"]),
+        "success": bool(result["success"]),
+        "optimizer": "local_dense_refined_golden_section",
+        "optimizer_evaluations": int(result["evaluations"]),
+    }
 
 
 def permuted_kraus(kraus: list[torch.Tensor]) -> list[torch.Tensor]:

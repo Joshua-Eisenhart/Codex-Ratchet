@@ -7,11 +7,25 @@ engine composition; ENGINE_MATH_REFERENCE.md 4-operator engine.
 Classical baseline.
 """
 import numpy as np
-from _doc_illum_common import build_manifest, write_results
+from _doc_illum_common import write_results
 
-TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH = build_manifest()
-TOOL_MANIFEST["numpy"] = {"tried": True, "used": True, "reason": "matrix composition"}
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
+classification = "classical_baseline"
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for L6 engine composition; it does not "
+        "promote a nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "matrix composition"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+}
 
 X = np.array([[0,1],[1,0]], complex)
 Y = np.array([[0,-1j],[1j,0]], complex)

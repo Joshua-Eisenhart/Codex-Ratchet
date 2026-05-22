@@ -13,6 +13,8 @@ This sim encodes the degree constraints in cvc5 and checks consistency.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

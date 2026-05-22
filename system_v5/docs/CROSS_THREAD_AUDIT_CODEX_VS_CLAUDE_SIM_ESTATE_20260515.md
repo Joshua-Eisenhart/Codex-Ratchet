@@ -49,10 +49,10 @@ All receipts under `system_v5/ops/formal_scouts/results/`.
 | L8: z3_config_count | `z3_admissibility_search_chiral_configuration_count_probe` | `True` | none in top-level | `constraint_count_formal_scout_not_source_native_operating_space` |
 | L9: e3nn_equiv | `e3nn_equivariant_constraint_manifold_geometric_feature_probe` | `7/7` | none in top-level | not set |
 | L10: toponetx | `toponetx_thirteen_layer_dependency_simplicial_complex_probe` | `True` | gudhi, numpy, scipy, toponetx (4 LB) | not set |
-| L11: xgi_hypergraph | `xgi_hypergraph_multi_layer_coupling_centrality_probe` | `5/5` | none in top-level | not set |
+| L11: xgi_hypergraph | `xgi_hypergraph_multi_layer_coupling_centrality_probe` | reference-only stale snapshot; current receipt is `validator_failed` with `3/5` diagnostic support and failed topology/operator clustering, boundary, and graveyard controls | none in top-level | not set |
 
 **Key metrics for Claude thread:**
-- L1: 64 engine stages · 8 terrains activate · 8 operator pairs activate · independence confirmed · manifold constraints active every stage
+- L1: 64 engine stages · 8 terrains activate · 8 operator pairs activate · independence reported in the comparison receipt · manifold constraints active every stage
 - L2: all_pass = **False** (track_a MPS-only evolution fails signed-information test) · cross_track_divergence = 1.760 · 13 layers active · track_b passes
 - L3: 64 configurations enumerated · 0 pairwise numerical collisions · z3 UNSAT pairwise
 - L4: D1/D2/D3 all obstructed (continuous interpolation breaks admissibility) · D4 discrete but not topologically obstructed · z3 UNSAT witnesses
@@ -60,7 +60,7 @@ All receipts under `system_v5/ops/formal_scouts/results/`.
 - L7: holonomy_norm ∈ [0.316, 0.627] · hysteresis grows with iterations (slope = 0.031) · berry_phase_abs = 0.063
 - L8: z3 finds exactly 16 stage-instance triples · 8 unique op-sign pairs per engine · 3:1 Fe asymmetry algebraically forced
 - L10: betti numbers match expected · 33 simplex edges · 1 persistence pair · higher-rank Laplacians computed
-- L11: 25 nodes, 64 edges, 6 distinct clusters · Spearman ρ = −0.843 (hypergraph vs pairwise centrality anti-correlated)
+- L11: historical comparison snapshot; current receipt reports 25 nodes, 64 hyperedges, 1 distinct cluster, Spearman rho = -0.843, and `summary.all_pass="3/5"` red/open diagnostic status
 
 ---
 
@@ -185,7 +185,7 @@ Claude has no 3D tensor network comparison. Claude L2 tests MPS vs dense manifol
 
 ### D3: Claude covers topological obstruction of discrete DoFs; Codex does not
 
-Claude L4 (`discrete_dof_topological_obstruction_interpolation_probe`): tests whether continuous interpolation between D1, D2, D3 values breaks admissibility. D1 (chirality eigenvalue), D2 (loop homotopy class), D3 (ratchet direction) are all confirmed obstructed. D4 (Cl3 generator index) is discrete but not topologically obstructed. z3 UNSAT witnesses confirmed for all three obstructed DoFs.
+Claude L4 (`discrete_dof_topological_obstruction_interpolation_probe`): tests whether continuous interpolation between D1, D2, D3 values breaks admissibility. D1 (chirality eigenvalue), D2 (loop homotopy class), and D3 (ratchet direction) are reported obstructed in the comparison receipt. D4 (Cl3 generator index) is discrete but not topologically obstructed. z3 UNSAT witnesses are reported for all three obstructed DoFs.
 
 Codex has no analogous obstruction test. C4 tests behavior class separation but not the topological reason for discreteness.
 
@@ -209,7 +209,7 @@ Codex C3 integrated scout includes `gudhi` as load-bearing (gudhi provides persi
 
 ### D6: Claude covers multi-layer hypergraph structure; Codex does not
 
-Claude L11 (`xgi_hypergraph_multi_layer_coupling_centrality_probe`): 25 nodes, 64 hyperedges, 6 distinct clusters, Spearman ρ = −0.843 (hypergraph vs pairwise centrality anti-correlated). This tests whether manifold couplings encode genuinely higher-order interactions that pairwise graphs miss.
+Claude L11 (`xgi_hypergraph_multi_layer_coupling_centrality_probe`) was an older comparison target. Current formal-scout receipt status is red/open diagnostic evidence: 25 nodes, 64 hyperedges, 1 distinct cluster, Spearman rho = -0.843 (hypergraph vs pairwise centrality anti-correlated), and `summary.all_pass="3/5"`. This does not prove higher-order coupling uniqueness.
 
 Codex has no XGI hypergraph scout. Codex's networkx usage (in C3, C5) uses graph structure but not hypergraph structure.
 
@@ -310,7 +310,7 @@ Note: the majority of the 134 receipts show `error_type: APIConnectionError` wit
 
 **Where they compose:**
 
-The Codex and Claude threads are covering different sub-problems within the same target architecture. Codex's C1/C2 establish the source-native placement and microstep fixture. Codex's C3/C5 test integrated downstream readouts (coherent information, flux) with the manifold tower as context. Claude's L1 takes the source-native starting point and extends it through a manifold-constrained 32-stage execution. The 13-layer tower is identical across both. The four topology classes are confirmed separable by both threads through different metrics. The integrity gate (promotion_allowed: false) is uniformly enforced. The incident report finding (zero source-native scouts before C1/C2/L1) is acknowledged and recorded in both threads.
+The Codex and Claude threads are covering different sub-problems within the same target architecture. Codex's C1/C2 establish the source-native placement and microstep fixture. Codex's C3/C5 test integrated downstream readouts (coherent information, flux) with the manifold tower as context. Claude's L1 takes the source-native starting point and extends it through a manifold-constrained 32-stage execution. The 13-layer tower is shared across both comparison surfaces. The four topology classes are reported separable by both threads through different metrics. The integrity gate (promotion_allowed: false) is uniformly enforced. The incident report finding (zero source-native scouts before C1/C2/L1) is acknowledged and recorded in both threads.
 
 **The structural tension:**
 

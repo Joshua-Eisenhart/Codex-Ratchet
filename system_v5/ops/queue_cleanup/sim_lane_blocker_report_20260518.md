@@ -27,7 +27,7 @@ Local inventory counts from the fresh `/tmp` run:
 - Result JSON files seen: `8,319`
 - Linked result JSON files: `6,825`
 - Unlinked result JSON files: `1,494`
-- Wizard-admitted stems: `6,247`
+- Stems with historical admission records: `6,247`
 - Source-only rows: `3,479`
 - Repair candidates: `552`
 

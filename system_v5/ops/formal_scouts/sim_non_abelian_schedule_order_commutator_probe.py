@@ -76,9 +76,8 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
-import scipy.linalg as sla
 import sympy as sp
+import torch
 import z3
 
 # Local source-of-truth: canonical engine spec module sits alongside this scout.
@@ -117,15 +116,10 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing unitary algebra, random schedule sampling, operator-norm singular-value computation",
-    },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing matrix exponential (scipy.linalg.expm) for generator unitaries",
+        "reason": "load-bearing unitary algebra, random schedule sampling, matrix exponential, and operator-norm singular-value computation",
     },
     "z3": {
         "tried": True,
@@ -139,8 +133,7 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
-    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
     "z3": "load_bearing",
     "sympy": "supportive",
 }
@@ -150,7 +143,7 @@ TOOL_INTEGRATION_DEPTH = {
 # Schedule pool construction from canonical specs
 # =====================================================================
 
-DTYPE = np.complex128
+DTYPE = torch.complex128
 RNG_SEED = 0xC0DE7
 N_RANDOM_PAIRS = 500
 SEQUENCE_LENGTH = 8
@@ -168,7 +161,28 @@ NONCOMM_FRACTION_THRESHOLD = 0.60
 SUBSTAGE_ACCUMULATION = 4  # 4 substages per main stage
 
 
-def _generator_unitary(op_name: str, sign: int) -> np.ndarray:
+def _mean(values: list[float]) -> float:
+    return sum(values) / len(values) if values else 0.0
+
+
+def _std(values: list[float]) -> float:
+    if not values:
+        return 0.0
+    mu = _mean(values)
+    return float((sum((v - mu) ** 2 for v in values) / len(values)) ** 0.5)
+
+
+def _median(values: list[float]) -> float:
+    if not values:
+        return 0.0
+    ordered = sorted(values)
+    mid = len(ordered) // 2
+    if len(ordered) % 2:
+        return ordered[mid]
+    return 0.5 * (ordered[mid - 1] + ordered[mid])
+
+
+def _generator_unitary(op_name: str, sign: int) -> torch.Tensor:
     """Build U_k = exp(-i * sign * theta * OPERATOR_GENERATORS[op]).
 
     Operator generators (Ti, Te, Fi, Fe) live in the 2x2 chirality block;
@@ -176,9 +190,9 @@ def _generator_unitary(op_name: str, sign: int) -> np.ndarray:
     accumulate SUBSTAGE_ACCUMULATION substages into each main-stage unitary,
     matching the canonical Phi_stage = Phi_substage^4 composition.
     """
-    generator = OPERATOR_GENERATORS[op_name].astype(DTYPE)
+    generator = torch.as_tensor(OPERATOR_GENERATORS[op_name], dtype=DTYPE)
     theta = OPERATOR_BASE_ANGLES[op_name] * SUBSTAGE_ACCUMULATION
-    return sla.expm(-1j * sign * theta * generator)
+    return torch.linalg.matrix_exp((-1j * sign * theta * generator).to(DTYPE))
 
 
 def build_generator_pool() -> list[dict[str, Any]]:
@@ -222,14 +236,14 @@ def _ordered_schedule_unitary(
     perceptions_order: list[str],
     loop_class_order: list[str],
     engine_type: int,
-) -> np.ndarray:
+) -> torch.Tensor:
     """Compose the unitary product for a given engine schedule.
 
     perceptions_order × loop_class_order must align (one (perception, loop_class)
-    main stage per element). Returns numpy product of generator unitaries.
+    main stage per element). Returns torch product of generator unitaries.
     """
     assert len(perceptions_order) == len(loop_class_order)
-    U_total = np.eye(2, dtype=DTYPE)
+    U_total = torch.eye(2, dtype=DTYPE)
     for perception, loop_class in zip(perceptions_order, loop_class_order):
         op, sign = get_loop_class_op_sign(perception, engine_type, loop_class)
         U = _generator_unitary(op, sign)
@@ -239,7 +253,7 @@ def _ordered_schedule_unitary(
     return U_total
 
 
-def _outer_only_unitary(engine_type: int) -> np.ndarray:
+def _outer_only_unitary(engine_type: int) -> torch.Tensor:
     """Compose only the 4 outer-loop main stages of the canonical schedule.
 
     Phi_outer = product over (Se, Ne, Ni, Si) outer-class unitaries in
@@ -250,7 +264,7 @@ def _outer_only_unitary(engine_type: int) -> np.ndarray:
     return _ordered_schedule_unitary(perceptions, loop_classes, engine_type)
 
 
-def _inner_only_unitary(engine_type: int) -> np.ndarray:
+def _inner_only_unitary(engine_type: int) -> torch.Tensor:
     """Compose only the 4 inner-loop main stages of the canonical schedule.
 
     Phi_inner = product over (Se, Si, Ni, Ne) inner-class unitaries in
@@ -261,7 +275,7 @@ def _inner_only_unitary(engine_type: int) -> np.ndarray:
     return _ordered_schedule_unitary(perceptions, loop_classes, engine_type)
 
 
-def canonical_outer_then_inner_unitary(engine_type: int) -> np.ndarray:
+def canonical_outer_then_inner_unitary(engine_type: int) -> torch.Tensor:
     """Phi_inner o Phi_outer: outer 4 stages applied first, inner 4 second.
 
     Composition order: U_outer-then-inner = U_inner @ U_outer (inner on left
@@ -272,7 +286,7 @@ def canonical_outer_then_inner_unitary(engine_type: int) -> np.ndarray:
     return U_inner @ U_outer
 
 
-def canonical_inner_then_outer_unitary(engine_type: int) -> np.ndarray:
+def canonical_inner_then_outer_unitary(engine_type: int) -> torch.Tensor:
     """Phi_outer o Phi_inner: inner 4 stages applied first, outer 4 second."""
     U_outer = _outer_only_unitary(engine_type)
     U_inner = _inner_only_unitary(engine_type)
@@ -284,25 +298,25 @@ def canonical_inner_then_outer_unitary(engine_type: int) -> np.ndarray:
 # =====================================================================
 
 
-def _operator_norm_diff_identity(U: np.ndarray) -> float:
+def _operator_norm_diff_identity(U: torch.Tensor) -> float:
     """||U - I||_2 (largest singular value of the difference)."""
-    diff = U - np.eye(U.shape[0], dtype=DTYPE)
-    s = np.linalg.svd(diff, compute_uv=False)
-    return float(s[0])
+    diff = U - torch.eye(U.shape[0], dtype=DTYPE)
+    s = torch.linalg.svdvals(diff)
+    return float(s[0].item())
 
 
-def _operator_norm(U: np.ndarray) -> float:
+def _operator_norm(U: torch.Tensor) -> float:
     """Operator (spectral) norm = largest singular value."""
-    s = np.linalg.svd(U, compute_uv=False)
-    return float(s[0])
+    s = torch.linalg.svdvals(U)
+    return float(s[0].item())
 
 
-def _product_in_order(unitaries: list[np.ndarray]) -> np.ndarray:
+def _product_in_order(unitaries: list[torch.Tensor]) -> torch.Tensor:
     """Time-ordered product: later entries act later (on the left).
 
     For sequence [U_0, U_1, ..., U_{n-1}], output is U_{n-1} ... U_1 U_0.
     """
-    U_total = np.eye(unitaries[0].shape[0], dtype=DTYPE)
+    U_total = torch.eye(unitaries[0].shape[0], dtype=DTYPE)
     for U in unitaries:
         U_total = U @ U_total
     return U_total
@@ -312,7 +326,7 @@ def random_schedule_commutator_distribution(
     pool: list[dict[str, Any]],
     n_pairs: int,
     sequence_length: int,
-    rng: np.random.Generator,
+    generator: torch.Generator,
 ) -> dict[str, Any]:
     """Sample n_pairs random (S_1, S_2) schedule pairs and compute
     ||U_{S1} U_{S2} U_{S1}^{-1} U_{S2}^{-1} - I||_2 for each.
@@ -321,22 +335,21 @@ def random_schedule_commutator_distribution(
     U_pool = [entry["U"] for entry in pool]
     norms: list[float] = []
     for _ in range(n_pairs):
-        idx_1 = rng.integers(0, n_pool, size=sequence_length)
-        idx_2 = rng.integers(0, n_pool, size=sequence_length)
+        idx_1 = torch.randint(0, n_pool, (sequence_length,), generator=generator).tolist()
+        idx_2 = torch.randint(0, n_pool, (sequence_length,), generator=generator).tolist()
         U_S1 = _product_in_order([U_pool[k] for k in idx_1])
         U_S2 = _product_in_order([U_pool[k] for k in idx_2])
         C = U_S1 @ U_S2 @ U_S1.conj().T @ U_S2.conj().T
         norms.append(_operator_norm_diff_identity(C))
-    arr = np.array(norms, dtype=np.float64)
-    fraction_above = float(np.mean(arr > NONCOMMUTING_THRESHOLD))
+    fraction_above = sum(1 for norm in norms if norm > NONCOMMUTING_THRESHOLD) / len(norms)
     return {
         "n_pairs": n_pairs,
         "sequence_length": sequence_length,
-        "min": float(arr.min()),
-        "max": float(arr.max()),
-        "mean": float(arr.mean()),
-        "median": float(np.median(arr)),
-        "std": float(arr.std()),
+        "min": min(norms),
+        "max": max(norms),
+        "mean": _mean(norms),
+        "median": _median(norms),
+        "std": _std(norms),
         "fraction_above_threshold": fraction_above,
         "threshold": NONCOMMUTING_THRESHOLD,
     }
@@ -351,7 +364,7 @@ def identity_pair_baseline(
     pool: list[dict[str, Any]],
     n_pairs: int,
     sequence_length: int,
-    rng: np.random.Generator,
+    generator: torch.Generator,
 ) -> dict[str, Any]:
     """If S_1 = S_2, the commutator C = U U U^-1 U^-1 = I (exactly numerically).
     Returns the maximum ||C - I|| over identical-pair samples.
@@ -360,7 +373,7 @@ def identity_pair_baseline(
     U_pool = [entry["U"] for entry in pool]
     worst = 0.0
     for _ in range(n_pairs):
-        idx = rng.integers(0, n_pool, size=sequence_length)
+        idx = torch.randint(0, n_pool, (sequence_length,), generator=generator).tolist()
         seq = [U_pool[k] for k in idx]
         U_S = _product_in_order(seq)
         C = U_S @ U_S @ U_S.conj().T @ U_S.conj().T
@@ -376,23 +389,24 @@ def identity_pair_baseline(
 def all_commuting_baseline(
     n_pairs: int,
     sequence_length: int,
-    rng: np.random.Generator,
+    generator: torch.Generator,
 ) -> dict[str, Any]:
     """Replace every generator with sigma_z (mutually commuting). Then
     [U_S1, U_S2] = I and ||C - I|| should sit at machine precision.
     """
     thetas = [OPERATOR_BASE_ANGLES[k] for k in OPERATOR_BASE_ANGLES]
     # 8-entry pool of sigma_z generators with varying angles + signs.
-    pool: list[np.ndarray] = []
+    pool: list[torch.Tensor] = []
     for op_name in ["Ti", "Te", "Fi", "Fe"]:
         for sign in (+1, -1):
             theta = OPERATOR_BASE_ANGLES[op_name]
-            pool.append(sla.expm(-1j * sign * theta * SZ))
+            sz = torch.as_tensor(SZ, dtype=DTYPE)
+            pool.append(torch.linalg.matrix_exp((-1j * sign * theta * sz).to(DTYPE)))
     assert len(pool) == 8
     worst = 0.0
     for _ in range(n_pairs):
-        idx_1 = rng.integers(0, len(pool), size=sequence_length)
-        idx_2 = rng.integers(0, len(pool), size=sequence_length)
+        idx_1 = torch.randint(0, len(pool), (sequence_length,), generator=generator).tolist()
+        idx_2 = torch.randint(0, len(pool), (sequence_length,), generator=generator).tolist()
         U_S1 = _product_in_order([pool[k] for k in idx_1])
         U_S2 = _product_in_order([pool[k] for k in idx_2])
         C = U_S1 @ U_S2 @ U_S1.conj().T @ U_S2.conj().T
@@ -411,7 +425,7 @@ def all_commuting_baseline(
 # =====================================================================
 
 
-def _interleaved_schedule_unitary(engine_type: int) -> np.ndarray:
+def _interleaved_schedule_unitary(engine_type: int) -> torch.Tensor:
     """Interleaved (Se outer, Se inner, Ne outer, Ne inner, ...) schedule.
 
     This is the same 8 (op, sign) generator pool as the canonical schedule
@@ -530,7 +544,7 @@ def outer_then_inner_vs_inner_then_outer_norm() -> dict[str, Any]:
     # equal each other.
     def _block(
         perceptions: list[str], loop_class: str, engine_type: int
-    ) -> np.ndarray:
+    ) -> torch.Tensor:
         loop_classes = [loop_class] * len(perceptions)
         return _ordered_schedule_unitary(perceptions, loop_classes, engine_type)
 
@@ -662,7 +676,7 @@ def sympy_pauli_commutator_check() -> dict[str, Any]:
 
 def main() -> dict[str, Any]:
     started = time.time()
-    rng = np.random.default_rng(RNG_SEED)
+    generator = torch.Generator().manual_seed(RNG_SEED)
 
     pool = build_generator_pool()
     pool_labels = [entry["label"] for entry in pool]
@@ -671,20 +685,20 @@ def main() -> dict[str, Any]:
         pool=pool,
         n_pairs=N_RANDOM_PAIRS,
         sequence_length=SEQUENCE_LENGTH,
-        rng=rng,
+        generator=generator,
     )
 
     identity_baseline = identity_pair_baseline(
         pool=pool,
         n_pairs=64,
         sequence_length=SEQUENCE_LENGTH,
-        rng=np.random.default_rng(RNG_SEED + 1),
+        generator=torch.Generator().manual_seed(RNG_SEED + 1),
     )
 
     commuting_baseline = all_commuting_baseline(
         n_pairs=N_RANDOM_PAIRS,
         sequence_length=SEQUENCE_LENGTH,
-        rng=np.random.default_rng(RNG_SEED + 2),
+        generator=torch.Generator().manual_seed(RNG_SEED + 2),
     )
 
     type_one_two_norm = type_one_vs_type_two_schedule_norm()
@@ -770,8 +784,19 @@ def main() -> dict[str, Any]:
         "random_distribution": random_distribution,
         "positive": positive_predicates,
         "negative_controls": negative_controls,
+        "graveyard_companions": negative_controls,
         "proof": proof_predicates,
         "boundary": boundary,
+        "nearby_variants": {
+            "total": len(negative_controls),
+            "passed": sum(1 for row in negative_controls.values() if row.get("pass")),
+            "variants": sorted(negative_controls),
+        },
+        "why_not_v4_probes": [
+            "v5 formal scout over non-Abelian schedule-order commutator behavior.",
+            "Does not promote canonical axis, bridge, engine, manifold, or target-system claims.",
+            "The commutator evidence is bounded to the finite schedule/operator fixture and proof checks.",
+        ],
         "open_choices": [
             "8-entry pool; later scouts could widen to combinatorial sweeps of (op, sign, theta) triples.",
             "Length-8 sequences match the canonical main-stage count; varying sequence length would be a separate scout.",

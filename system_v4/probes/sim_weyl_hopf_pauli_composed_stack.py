@@ -23,6 +23,15 @@ from typing import Dict, List, Tuple
 import numpy as np
 
 classification = "classical_baseline"
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for sim_weyl_hopf_pauli_composed_stack; it does not promote a "
+        "nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 from hopf_manifold import (

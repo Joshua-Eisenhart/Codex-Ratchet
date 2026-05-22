@@ -18,6 +18,8 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -361,7 +363,7 @@ def run_boundary_tests():
 
         p = 5
         coeffs = {3: 1, 1: p, 0: p**2}  # x³: coeff 1, x¹: coeff p, x⁰: coeff p²
-        
+
         # p-adic valuations
         v_p_coeffs = {}
         for i, c in coeffs.items():

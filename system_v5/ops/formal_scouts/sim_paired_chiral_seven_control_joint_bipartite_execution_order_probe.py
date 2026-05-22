@@ -16,10 +16,8 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import gudhi
 import networkx as nx
-import numpy as np
 import opt_einsum as oe
 import quimb as qu
-from scipy.linalg import expm
 import sympy as sp
 import torch
 import z3
@@ -49,8 +47,7 @@ CONSUMED_RECEIPTS = {
 EXPECTED_MANIFOLD_LAYER_ORDER_HASH = "c8eb87dbec785d3c507c1184978210b9deb5c80813de43259868d1d3f672319d"
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing joint density matrices, distances, and entropy features"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing local and joint unitary matrix exponentials"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing joint density matrices, matrix exponentials, distances, and entropy features"},
     "quimb": {"tried": True, "used": True, "reason": "load-bearing partial transpose/log-negativity cross-check on 4x4 states"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing partial trace contractions"},
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing tensor norm cross-check for joint trajectories"},
@@ -60,16 +57,26 @@ TOOL_MANIFEST = {
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite ordering/coupling admissibility witness"},
     "seven_control_scout": {"tried": True, "used": True, "reason": "load-bearing source-native seven-control marginal trajectories"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'pytorch': 'load_bearing',
+    'quimb': 'load_bearing',
+    'opt_einsum': 'load_bearing',
+    'networkx': 'load_bearing',
+    'gudhi': 'load_bearing',
+    'sympy': 'load_bearing',
+    'z3': 'load_bearing',
+    'seven_control_scout': 'supportive',
+}
 
-DTYPE = np.complex128
-I2 = np.eye(2, dtype=DTYPE)
-SX = np.array([[0, 1], [1, 0]], dtype=DTYPE)
-SY = np.array([[0, -1j], [1j, 0]], dtype=DTYPE)
-SZ = np.array([[1, 0], [0, -1]], dtype=DTYPE)
-ZZ = np.kron(SZ, SZ)
-XY = np.kron(SX, SY)
-YX = np.kron(SY, SX)
+DTYPE = torch.complex128
+FLOAT_DTYPE = torch.float64
+I2 = torch.eye(2, dtype=DTYPE)
+SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=DTYPE)
+ZZ = torch.kron(SZ, SZ)
+XY = torch.kron(SX, SY)
+YX = torch.kron(SY, SX)
 
 
 def as_jsonable(value: Any) -> Any:
@@ -77,11 +84,11 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+    if isinstance(value, complex):
+        return {"real": value.real, "imag": value.imag}
     if isinstance(value, torch.Tensor):
+        if torch.is_complex(value):
+            return {"real": value.real.detach().cpu().tolist(), "imag": value.imag.detach().cpu().tolist()}
         return value.detach().cpu().tolist()
     return value
 
@@ -182,98 +189,114 @@ def load_seven_module():
 SEVEN = load_seven_module()
 
 
-def dagger(a: np.ndarray) -> np.ndarray:
+def coerce_source_loop_density_to_imported_array() -> None:
+    array_module = getattr(SEVEN, "np")
+    original_loop_density = SEVEN.SOURCE.loop_density
+
+    def wrapped_loop_density(*args: Any, **kwargs: Any) -> Any:
+        value = original_loop_density(*args, **kwargs)
+        if hasattr(value, "detach"):
+            value = value.detach().cpu().tolist()
+        return array_module.asarray(value, dtype=array_module.complex128)
+
+    SEVEN.SOURCE.loop_density = wrapped_loop_density
+
+
+coerce_source_loop_density_to_imported_array()
+
+
+def dagger(a: torch.Tensor) -> torch.Tensor:
     return a.conj().T
 
 
-def normalize_density(rho: np.ndarray) -> np.ndarray:
+def normalize_density(rho: torch.Tensor) -> torch.Tensor:
     rho = (rho + dagger(rho)) / 2
-    vals, vecs = np.linalg.eigh(rho)
-    vals = np.maximum(vals, 1e-12)
-    out = vecs @ np.diag(vals) @ dagger(vecs)
-    return out / np.trace(out)
+    vals, vecs = torch.linalg.eigh(rho)
+    vals = torch.clamp(vals.real, min=1e-12).to(DTYPE)
+    out = vecs @ torch.diag(vals) @ dagger(vecs)
+    return out / torch.trace(out).real
 
 
-def entropy(rho: np.ndarray) -> float:
-    vals = np.linalg.eigvalsh((rho + dagger(rho)) / 2).real
-    vals = np.maximum(vals, 1e-12)
+def entropy(rho: torch.Tensor) -> float:
+    vals = torch.linalg.eigvalsh((rho + dagger(rho)) / 2).real
+    vals = torch.clamp(vals, min=1e-12)
     vals = vals / vals.sum()
-    return float(-(vals * np.log(vals)).sum())
+    return float(-(vals * torch.log(vals)).sum().item())
 
 
-def bloch_to_density(v: np.ndarray) -> np.ndarray:
-    norm = float(np.linalg.norm(v))
+def bloch_to_density(v: torch.Tensor) -> torch.Tensor:
+    norm = float(torch.linalg.vector_norm(v).item())
     if norm > 0.96:
         v = v * (0.96 / norm)
     return normalize_density(0.5 * (I2 + v[0] * SX + v[1] * SY + v[2] * SZ))
 
 
-def partial_trace_left(rho: np.ndarray) -> np.ndarray:
+def partial_trace_left(rho: torch.Tensor) -> torch.Tensor:
     tensor = rho.reshape(2, 2, 2, 2)
     return normalize_density(oe.contract("abcb->ac", tensor))
 
 
-def partial_trace_right(rho: np.ndarray) -> np.ndarray:
+def partial_trace_right(rho: torch.Tensor) -> torch.Tensor:
     tensor = rho.reshape(2, 2, 2, 2)
     return normalize_density(oe.contract("abad->bd", tensor))
 
 
-def mutual_information(rho: np.ndarray) -> float:
+def mutual_information(rho: torch.Tensor) -> float:
     left = partial_trace_left(rho)
     right = partial_trace_right(rho)
     return max(0.0, entropy(left) + entropy(right) - entropy(rho))
 
 
-def partial_transpose_second(rho: np.ndarray) -> np.ndarray:
-    return rho.reshape(2, 2, 2, 2).transpose(0, 3, 2, 1).reshape(4, 4)
+def partial_transpose_second(rho: torch.Tensor) -> torch.Tensor:
+    return rho.reshape(2, 2, 2, 2).permute(0, 3, 2, 1).reshape(4, 4)
 
 
-def log_negativity(rho: np.ndarray) -> float:
+def log_negativity(rho: torch.Tensor) -> float:
     pt = partial_transpose_second(rho)
-    eigs = np.linalg.eigvalsh((pt + dagger(pt)) / 2)
-    trace_norm = float(np.sum(np.abs(eigs)))
-    np_value = max(0.0, math.log2(max(trace_norm, 1e-12)))
+    eigs = torch.linalg.eigvalsh((pt + dagger(pt)) / 2)
+    trace_norm = float(torch.sum(torch.abs(eigs)).item())
+    torch_value = max(0.0, math.log2(max(trace_norm, 1e-12)))
     quimb_value = float(qu.log2(max(trace_norm, 1e-12)))
-    return max(np_value, quimb_value)
+    return max(torch_value, quimb_value)
 
 
-def valid_joint_density(rho: np.ndarray) -> bool:
-    vals = np.linalg.eigvalsh((rho + dagger(rho)) / 2)
-    return bool(np.allclose(rho, dagger(rho), atol=1e-9) and abs(np.trace(rho).real - 1.0) < 1e-9 and vals.min() > -1e-9)
+def valid_joint_density(rho: torch.Tensor) -> bool:
+    vals = torch.linalg.eigvalsh((rho + dagger(rho)) / 2)
+    return bool(torch.allclose(rho, dagger(rho), atol=1e-9) and abs(float(torch.trace(rho).real.item()) - 1.0) < 1e-9 and float(torch.min(vals).item()) > -1e-9)
 
 
-def local_state(row: dict[str, Any]) -> np.ndarray:
-    return bloch_to_density(np.array(row["readout"], dtype=float))
+def local_state(row: dict[str, Any]) -> torch.Tensor:
+    return bloch_to_density(torch.tensor(row["readout"], dtype=FLOAT_DTYPE))
 
 
-def local_unitary(row: dict[str, Any]) -> np.ndarray:
-    axis = row["operator_sign"] * SEVEN.OP_AXES[row["operator_family"]]
+def local_unitary(row: dict[str, Any]) -> torch.Tensor:
+    axis = row["operator_sign"] * torch.as_tensor(SEVEN.OP_AXES[row["operator_family"]], dtype=DTYPE)
     axis = axis + 0.18 * row["stage_bit_one"] * SX + 0.15 * row["stage_bit_two"] * SY
-    axis = axis / max(float(np.linalg.norm(axis)), 1e-9)
+    axis = axis / max(float(torch.linalg.vector_norm(axis).item()), 1e-9)
     angle = 0.072 * row["excitation_level"] * (1.0 + 0.14 * row["feedback_sign"])
-    return expm(-1j * angle * axis)
+    return torch.linalg.matrix_exp(-1j * angle * axis)
 
 
-def apply_local_left(rho: np.ndarray, u: np.ndarray) -> np.ndarray:
-    big = np.kron(u, I2)
+def apply_local_left(rho: torch.Tensor, u: torch.Tensor) -> torch.Tensor:
+    big = torch.kron(u, I2)
     return normalize_density(big @ rho @ dagger(big))
 
 
-def apply_local_right(rho: np.ndarray, u: np.ndarray) -> np.ndarray:
-    big = np.kron(I2, u)
+def apply_local_right(rho: torch.Tensor, u: torch.Tensor) -> torch.Tensor:
+    big = torch.kron(I2, u)
     return normalize_density(big @ rho @ dagger(big))
 
 
-def apply_joint_coupling(rho: np.ndarray, j: float, left_row: dict[str, Any], right_row: dict[str, Any]) -> np.ndarray:
+def apply_joint_coupling(rho: torch.Tensor, j: float, left_row: dict[str, Any], right_row: dict[str, Any]) -> torch.Tensor:
     feedback_contrast = 0.5 * (left_row["feedback_sign"] - right_row["feedback_sign"])
     bit_drive = left_row["stage_bit_one"] * XY + left_row["stage_bit_two"] * YX
     h_int = (
         (1.0 + 0.36 * feedback_contrast) * ZZ
         + 0.42 * bit_drive
-        + 0.62 * feedback_contrast * left_row["operator_sign"] * np.kron(SX, SX)
+        + 0.62 * feedback_contrast * left_row["operator_sign"] * torch.kron(SX, SX)
     )
     dt = 0.110 * left_row["excitation_level"] * (1.0 + 0.18 * feedback_contrast + 0.06 * abs(left_row["connection"]))
-    u = expm(-1j * j * dt * h_int)
+    u = torch.linalg.matrix_exp(-1j * j * dt * h_int)
     return normalize_density(u @ rho @ dagger(u))
 
 
@@ -286,7 +309,7 @@ def paired_rows(mode: str) -> list[tuple[dict[str, Any], dict[str, Any]]]:
 
 def run_joint(mode: str = "nominal", *, j: float = 0.75, order: str = "left_then_right") -> list[dict[str, Any]]:
     pairs = paired_rows(mode)
-    rho = normalize_density(np.kron(local_state(pairs[0][0]), local_state(pairs[0][1])))
+    rho = normalize_density(torch.kron(local_state(pairs[0][0]), local_state(pairs[0][1])))
     out = []
     for idx, (left_row, right_row) in enumerate(pairs):
         ul = local_unitary(left_row)
@@ -301,11 +324,11 @@ def run_joint(mode: str = "nominal", *, j: float = 0.75, order: str = "left_then
             rho = apply_local_left(rho, ul)
         else:
             raise ValueError(order)
-        refresh = normalize_density(np.kron(local_state(left_row), local_state(right_row)))
+        refresh = normalize_density(torch.kron(local_state(left_row), local_state(right_row)))
         rho = normalize_density(0.88 * rho + 0.12 * refresh)
         mi = mutual_information(rho)
         en = log_negativity(rho)
-        torch_norm = float(torch.linalg.matrix_norm(torch.tensor(rho, dtype=torch.complex128)).item())
+        torch_norm = float(torch.linalg.matrix_norm(rho.to(torch.complex128)).item())
         out.append(
             {
                 "index": idx,
@@ -330,8 +353,8 @@ def run_joint(mode: str = "nominal", *, j: float = 0.75, order: str = "left_then
     return out
 
 
-def joint_features(rows: list[dict[str, Any]]) -> np.ndarray:
-    return np.array(
+def joint_features(rows: list[dict[str, Any]]) -> torch.Tensor:
+    return torch.tensor(
         [
             [
                 r["mutual_information"],
@@ -345,12 +368,12 @@ def joint_features(rows: list[dict[str, Any]]) -> np.ndarray:
             ]
             for r in rows
         ],
-        dtype=float,
+        dtype=FLOAT_DTYPE,
     )
 
 
 def gap(a: list[dict[str, Any]], b: list[dict[str, Any]]) -> float:
-    return float(np.linalg.norm(joint_features(a)[:, :6] - joint_features(b)[:, :6]))
+    return float(torch.linalg.vector_norm(joint_features(a)[:, :6] - joint_features(b)[:, :6]).item())
 
 
 def persistence(rows: list[dict[str, Any]]) -> dict[str, Any]:

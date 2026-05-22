@@ -33,7 +33,6 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
 import torch
 import torch.nn as nn
 import z3
@@ -62,14 +61,12 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing stage feature tables, adapter controls, and repo decision matrix"},
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing tiny predictive adapter fixture and analytic interval-bound surrogate"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing stage feature tables, adapter controls, repo decision matrix, tiny predictive adapter fixture, and analytic interval-bound surrogate"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite admission witness for repo/adapt/test/control predicates"},
     "pathlib": {"tried": True, "used": True, "reason": "load-bearing local repo inventory and project-boundary checks"},
     "engine_core": {"tried": True, "used": True, "reason": "load-bearing source-native science-method/FEP stage records"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
     "pytorch": "load_bearing",
     "z3": "load_bearing",
     "pathlib": "supportive",
@@ -147,12 +144,8 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+    if isinstance(value, torch.Tensor):
+        return as_jsonable(value.detach().cpu().tolist())
     return value
 
 
@@ -234,7 +227,7 @@ def repo_inventory() -> dict[str, Any]:
     return rows
 
 
-def auto_lirpa_consumption_probe(features: np.ndarray) -> dict[str, Any]:
+def auto_lirpa_consumption_probe(features: torch.Tensor) -> dict[str, Any]:
     root = REPO_SPECS["auto_LiRPA"]["path"]
     import_code = (
         "import sys; "
@@ -262,23 +255,22 @@ def auto_lirpa_consumption_probe(features: np.ndarray) -> dict[str, Any]:
             "decision": "blocked_dependency_missing_not_admitted",
             "claim_ceiling": "Import probe only; does not prove auto_LiRPA bounds or admit the repo.",
         }
-    sample = np.asarray(features[:4], dtype=np.float32)
-    weights = np.linspace(-0.35, 0.45, num=features.shape[1], dtype=np.float32)
-    weights[5:9] += np.asarray([0.5, -0.4, 0.45, 0.3], dtype=np.float32)
-    weights[9:13] += np.asarray([0.25, -0.2, 0.18, 0.32], dtype=np.float32)
-    bias = np.float32(0.07)
-    eps = np.float32(0.01)
+    sample = features[:4].to(torch.float32)
+    weights = torch.linspace(-0.35, 0.45, steps=features.shape[1], dtype=torch.float32)
+    weights[5:9] += torch.tensor([0.5, -0.4, 0.45, 0.3], dtype=torch.float32)
+    weights[9:13] += torch.tensor([0.25, -0.2, 0.18, 0.32], dtype=torch.float32)
+    bias = torch.tensor(0.07, dtype=torch.float32)
+    eps = torch.tensor(0.01, dtype=torch.float32)
     payload = {
         "repo_root": str(root),
         "sample": sample.tolist(),
         "weights": weights.tolist(),
-        "bias": float(bias),
-        "eps": float(eps),
+        "bias": float(bias.item()),
+        "eps": float(eps.item()),
     }
     bound_code = """
 import json
 import sys
-import numpy as np
 import torch
 import torch.nn as nn
 
@@ -307,7 +299,7 @@ w = torch.tensor(payload["weights"], dtype=torch.float32)
 eps = float(payload["eps"])
 linear_model = LinearAdapter(payload["weights"], payload["bias"])
 bounded = BoundedModule(linear_model, x)
-bounded_x = BoundedTensor(x, PerturbationLpNorm(norm=np.inf, eps=eps))
+bounded_x = BoundedTensor(x, PerturbationLpNorm(norm=float("inf"), eps=eps))
 nominal = bounded(bounded_x)
 lb, ub = bounded.compute_bounds(x=(bounded_x,), method="IBP")
 raw = (x @ w.reshape(-1, 1)).reshape(-1) + float(payload["bias"])
@@ -316,7 +308,7 @@ analytic_lb = raw - radius
 analytic_ub = raw + radius
 tanh_model = TanhAdapter(payload["weights"], payload["bias"])
 tanh_bounded = BoundedModule(tanh_model, x)
-tanh_bounded_x = BoundedTensor(x, PerturbationLpNorm(norm=np.inf, eps=eps))
+tanh_bounded_x = BoundedTensor(x, PerturbationLpNorm(norm=float("inf"), eps=eps))
 tanh_nominal = tanh_bounded(tanh_bounded_x)
 tanh_lb, tanh_ub = tanh_bounded.compute_bounds(x=(tanh_bounded_x,), method="IBP")
 tanh_analytic_lb = torch.tanh(analytic_lb)
@@ -429,7 +421,7 @@ def collect_stage_features(
     memory: dict[str, float],
     hash_cells: list[dict[str, Any]],
     active_axis0_candidates: list[str],
-) -> tuple[np.ndarray, list[str], list[dict[str, Any]]]:
+) -> tuple[torch.Tensor, list[str], list[dict[str, Any]]]:
     axis0_feature_names = [f"{AXIS0_FEATURE_PREFIX}{name}" for name in active_axis0_candidates]
     names = [
         "model_after_bloch_x",
@@ -499,11 +491,11 @@ def collect_stage_features(
                         ]
                     )
                     records.append(record)
-    x = np.asarray(rows, dtype=np.float64)
-    mean = x.mean(axis=0, keepdims=True)
-    std = x.std(axis=0, keepdims=True)
-    std[std < 1e-9] = 1.0
-    return ((x - mean) / std).astype(np.float64), names, records
+    x = torch.tensor(rows, dtype=torch.float64)
+    mean = x.mean(dim=0, keepdim=True)
+    std = x.std(dim=0, keepdim=True, unbiased=False)
+    std = torch.where(std < 1e-9, torch.ones_like(std), std)
+    return ((x - mean) / std).to(torch.float64), names, records
 
 
 class TinyPredictiveAdapter(nn.Module):
@@ -546,11 +538,11 @@ class TinyPredictiveAdapter(nn.Module):
 
 
 def tiny_adapter_consumption(
-    features: np.ndarray,
+    features: torch.Tensor,
     names: list[str],
     disabled_feature_names: list[str] | None = None,
 ) -> dict[str, Any]:
-    x = torch.tensor(features, dtype=torch.float64)
+    x = features.to(torch.float64)
     disabled = disabled_feature_names or []
     model = TinyPredictiveAdapter(names, disabled_feature_names=disabled)
     with torch.no_grad():
@@ -608,7 +600,7 @@ def tiny_adapter_consumption(
         ),
         "disabled_feature_values_max_abs": float(
             max(
-                [np.max(np.abs(features[:, names.index(field)])) for field in disabled if field in names]
+                [float(torch.max(torch.abs(features[:, names.index(field)])).item()) for field in disabled if field in names]
                 or [0.0]
             )
         ),
@@ -622,7 +614,7 @@ def tiny_adapter_consumption(
     }
 
 
-def hash_identity_control_report(features: np.ndarray, names: list[str]) -> dict[str, Any]:
+def hash_identity_control_report(features: torch.Tensor, names: list[str]) -> dict[str, Any]:
     hash_fields = [
         "holodeck_semantic_hash_bucket",
         "holodeck_graveyard_hash_bucket",
@@ -632,7 +624,7 @@ def hash_identity_control_report(features: np.ndarray, names: list[str]) -> dict
     if missing:
         return {"pass": False, "missing_hash_fields": missing}
     model = TinyPredictiveAdapter(names)
-    x = torch.tensor(features, dtype=torch.float64)
+    x = features.to(torch.float64)
     with torch.no_grad():
         base = model(x).reshape(-1)
         zeroed = x.clone()

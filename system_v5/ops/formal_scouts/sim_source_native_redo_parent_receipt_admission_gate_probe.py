@@ -33,7 +33,11 @@ TOOL_MANIFEST = {
     "python_pathlib": {"tried": True, "used": True, "reason": "load-bearing parent receipt discovery"},
     "hashlib": {"tried": True, "used": True, "reason": "load-bearing source hash receipts"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'python_json': 'supportive',
+    'python_pathlib': 'supportive',
+    'hashlib': 'supportive',
+}
 
 ADMISSIBLE_LEGOS = {
     "finite_density_matrix_carrier_trace_psd_pytorch_sympy_z3_results.json",

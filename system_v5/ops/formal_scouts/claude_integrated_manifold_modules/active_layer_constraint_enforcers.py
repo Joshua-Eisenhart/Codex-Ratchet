@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 """
-Active Layer Constraint Enforcers — manifold layers as dynamic state filters.
+Active Layer Constraint Enforcers — candidate manifold-fixture layers as dynamic state filters.
 
 Key differentiator from Codex's integrated sim
 (sim_integrated_nested_geometric_constraint_manifold_dynamic_tensor_network_probe.py):
-that module uses the 13 geometry layers as *witnesses* — they record geometry
-properties of a state that evolves independently.  This module makes each layer
-an *active enforcer*: it receives a state, applies a real algebraic or geometric
-constraint, and returns a modified state that satisfies the layer's constraint
-(plus metrics about what changed).  The evolution is therefore shaped by the
-constraint chain, not merely observed through it.
+that module uses the legacy 13-layer fixture as *witnesses* — they record
+geometry properties of a state that evolves independently. This module makes
+each fixture layer an *active enforcer*: it receives a state, applies a real
+algebraic or geometric constraint, and returns a modified state that satisfies
+the layer's constraint (plus metrics about what changed).
+
+Status boundary: this module tests one candidate/legacy stack. It does not make
+the 13-layer count, ordering, or chain topology canonical. F01/N01 do not force
+this exact stack; alternative layer counts, partial orders, and non-chain DAGs
+remain open unless separately excluded by formal receipts.
 
 Allowed libraries: pytorch, numpy, scipy, opt_einsum, sympy, z3, clifford,
 geomstats.  No torch_geometric, networkx.

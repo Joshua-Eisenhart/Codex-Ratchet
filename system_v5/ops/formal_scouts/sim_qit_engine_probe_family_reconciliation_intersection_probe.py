@@ -11,8 +11,8 @@ import time
 from typing import Any
 
 import networkx as nx
-import numpy as np
 import sympy as sp
+import torch
 import z3
 
 
@@ -23,6 +23,7 @@ OUT_PATH = RESULT_DIR / "qit_engine_probe_family_reconciliation_intersection_pro
 NAME = "qit_engine_probe_family_reconciliation_intersection_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 CLAIM_CEILING = (
     "Formal scout only: reconciles the probe-family, admissibility, and "
     "survivor/quotient surfaces of current source-native, QIT-engine, "
@@ -35,12 +36,21 @@ TOOL_MANIFEST = {
     "python_json": {"tried": True, "used": True, "reason": "load-bearing receipt parsing"},
     "pathlib": {"tried": True, "used": True, "reason": "load-bearing canonical receipt path checks"},
     "hashlib": {"tried": True, "used": True, "reason": "load-bearing receipt content hash capture"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing shared-pass vector checks"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing shared-pass vector checks"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing receipt reconciliation graph"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic receipt count"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing required-receipt and shared-invariant witness"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'python_json': 'supportive',
+    'pathlib': 'supportive',
+    'hashlib': 'supportive',
+    'pytorch': 'load_bearing',
+    'networkx': 'load_bearing',
+    'sympy': 'load_bearing',
+    'z3': 'load_bearing',
+}
+TOOL_ROLE_SOURCE = {tool: "local" for tool in TOOL_MANIFEST}
 
 RECEIPTS = [
     {
@@ -84,7 +94,7 @@ RECEIPTS = [
     },
     {
         "name": "qit_engine_work_execution",
-        "path": "constraint_manifold_qit_engine_work_execution_probe_results.json",
+        "path": "constraint_manifold_qit_work_execution_probe_results.json",
         "declared_probe_family_M": "constraint_set_driven_qit_work_records",
         "declared_admissibility_C": [
             "constraint_set_loaded",
@@ -284,7 +294,7 @@ def main() -> int:
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
     rows = [load_row(row) for row in RECEIPTS]
     graph = build_graph(rows)
-    shared_pass_vector = np.array([row["shared_invariants_pass"] for row in rows], dtype=bool)
+    shared_pass_vector = torch.as_tensor([row["shared_invariants_pass"] for row in rows], dtype=torch.bool)
     runtime_kinds = sorted({row["runtime_kind"] for row in rows})
     tool_union = sorted({tool for row in rows for tool in row["tool_keys"]})
     m_union = sorted({row["declared_probe_family_M"] for row in rows})
@@ -301,9 +311,9 @@ def main() -> int:
             "symbolic_count": str(sp.Integer(len(rows))),
         },
         "shared_invariant_intersection_passes": {
-            "pass": bool(np.all(shared_pass_vector)),
+            "pass": bool(torch.all(shared_pass_vector).item()),
             "shared_invariants": SHARED_INVARIANTS,
-            "passing_receipts": int(shared_pass_vector.sum()),
+            "passing_receipts": int(torch.sum(shared_pass_vector).item()),
         },
         "probe_family_reconciliation_graph_is_acyclic": {
             "pass": nx.is_directed_acyclic_graph(graph),
@@ -332,10 +342,12 @@ def main() -> int:
         "generated_at": dt.datetime.now(dt.UTC).isoformat(),
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "claim_ceiling": CLAIM_CEILING,
         "source_alignment_category": "probe_family_reconciliation_for_integrated_qit_engine_suite",
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "probe_family_M_union": m_union,
         "admissibility_C_intersection": c_intersection,
         "admissibility_C_symmetric_difference": c_symmetric,

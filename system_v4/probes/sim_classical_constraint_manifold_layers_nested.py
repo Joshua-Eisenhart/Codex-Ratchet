@@ -8,11 +8,25 @@ section "Constraint manifold / layer nesting"; LADDERS_FENCES_ADMISSION_REFERENC
 admission ladder. Classical baseline.
 """
 import numpy as np
-from _doc_illum_common import build_manifest, write_results
+from _doc_illum_common import write_results
 
-TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH = build_manifest()
-TOOL_MANIFEST["numpy"] = {"tried": True, "used": True, "reason": "set admissibility"}
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
+classification = "classical_baseline"
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for nested constraint-layer admissibility; "
+        "it does not promote a nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "set admissibility"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+}
 
 
 def sample_states(n=2000, seed=0):

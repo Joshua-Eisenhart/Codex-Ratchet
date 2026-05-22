@@ -3,6 +3,8 @@
 import json, os, torch
 from e3nn import o3
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "e3nn": {"tried": True, "used": True,
              "reason": "Wigner-D matrices for l>=1 irreps of SO(3) are order-dependent; e3nn's exact D-matrix construction is load-bearing because a naive cartesian matmul cannot certify the irrep structure preserved by the composition."},

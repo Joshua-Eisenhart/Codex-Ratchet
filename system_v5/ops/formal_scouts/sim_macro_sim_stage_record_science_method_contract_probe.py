@@ -20,8 +20,9 @@ import time
 from typing import Any
 
 import networkx as nx
-import numpy as np
+import torch
 
+import engine_core as engine_core_module
 from engine_core import EngineCore, generate_initial_density
 
 
@@ -54,7 +55,7 @@ REQUIRED_STAGE_FIELDS = [
 ]
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
         "reason": "load-bearing field finiteness, probability normalization, and matched-control deltas",
@@ -65,7 +66,12 @@ TOOL_MANIFEST = {
         "reason": "load-bearing dependency-consumption graph for the repaired stage-record contract",
     },
 }
-TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing", "networkx": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {"pytorch": "load_bearing", "networkx": "load_bearing", "engine_core": "supportive"}
+FLOAT_DTYPE = torch.float64
+
+
+def engine_array_module() -> Any:
+    return getattr(engine_core_module, "np")
 
 
 def sha256_file(path: pathlib.Path) -> str:
@@ -79,11 +85,14 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().tolist()
+    array_module = engine_array_module()
+    if isinstance(value, array_module.ndarray):
         return value.tolist()
-    if isinstance(value, (np.bool_,)):
+    if isinstance(value, (array_module.bool_,)):
         return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
+    if isinstance(value, (array_module.integer, array_module.floating)):
         return value.item()
     return value
 
@@ -125,11 +134,12 @@ def run_perturbation_check() -> dict[str, Any]:
     for main_idx in range(4):
         perception, loop_class = eng.schedule[main_idx]
         rho, _ = eng.run_main_stage(rho, perception, loop_class, main_idx)
-    
+    array_module = engine_array_module()
+
     # Inject rank-2 noise
-    rho_perturbed = 0.7 * rho + 0.3 * np.eye(2) / 2
-    rho_perturbed = rho_perturbed / np.trace(rho_perturbed).real
-    
+    rho_perturbed = 0.7 * rho + 0.3 * array_module.eye(2) / 2
+    rho_perturbed = rho_perturbed / array_module.trace(rho_perturbed).real
+
     # Run Stage 4, Substage 0
     _, records = eng.run_main_stage(rho_perturbed, eng.schedule[4][0], eng.schedule[4][1], 4)
     rec = records[0]
@@ -142,8 +152,8 @@ def run_perturbation_check() -> dict[str, Any]:
 
 
 def distribution_ok(dist: list[float]) -> bool:
-    arr = np.asarray(dist, dtype=float)
-    return bool(np.all(np.isfinite(arr)) and np.all(arr >= 0.0) and abs(float(np.sum(arr)) - 1.0) < 1e-9)
+    arr = torch.tensor(dist, dtype=FLOAT_DTYPE)
+    return bool(torch.all(torch.isfinite(arr)).item() and torch.all(arr >= 0.0).item() and abs(float(torch.sum(arr).item()) - 1.0) < 1e-9)
 
 
 def audit_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
@@ -161,13 +171,13 @@ def audit_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
         for row in rows
         if "prediction" in row and "observation" in row
     ]
-    fep_values = np.array(
+    fep_values = torch.tensor(
         [float(score["expected_free_energy_proxy"]) for score in score_rows],
-        dtype=float,
+        dtype=FLOAT_DTYPE,
     )
-    repair_values = np.array(
+    repair_values = torch.tensor(
         [float(row["update_repair"]["manifold_projection_delta_norm"]) for row in rows],
-        dtype=float,
+        dtype=FLOAT_DTYPE,
     )
     next_policies = [row["next_policy"]["policy_id"] for row in rows if "next_policy" in row]
     return {
@@ -175,13 +185,13 @@ def audit_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "missing_required_fields": missing,
         "all_required_fields_present": not missing and len(rows) == 64,
         "all_observation_distributions_normalized": len(obs_ok) == 64 and all(obs_ok),
-        "fep_proxy_min": float(np.min(fep_values)),
-        "fep_proxy_mean": float(np.mean(fep_values)),
-        "fep_proxy_max": float(np.max(fep_values)),
-        "all_fep_scores_finite": bool(np.all(np.isfinite(fep_values))),
-        "manifold_projection_delta_mean": float(np.mean(repair_values)),
-        "manifold_projection_delta_min": float(np.min(repair_values)),
-        "manifold_projection_delta_max": float(np.max(repair_values)),
+        "fep_proxy_min": float(torch.min(fep_values).item()),
+        "fep_proxy_mean": float(torch.mean(fep_values).item()),
+        "fep_proxy_max": float(torch.max(fep_values).item()),
+        "all_fep_scores_finite": bool(torch.all(torch.isfinite(fep_values)).item()),
+        "manifold_projection_delta_mean": float(torch.mean(repair_values).item()),
+        "manifold_projection_delta_min": float(torch.min(repair_values).item()),
+        "manifold_projection_delta_max": float(torch.max(repair_values).item()),
         "unique_next_policy_count": len(set(next_policies)),
     }
 

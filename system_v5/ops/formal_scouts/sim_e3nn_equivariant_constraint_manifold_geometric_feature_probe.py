@@ -27,7 +27,6 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -68,15 +67,6 @@ TOOL_MANIFEST = {
             "training loop for equivariant and MLP classifiers, and all tensor ops."
         ),
     },
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": (
-            "load-bearing: Bloch vector extraction from density matrices, "
-            "curvature/torsion/connection/Hopf feature computation, "
-            "rotation-augmented data generation."
-        ),
-    },
     "z3": {
         "tried": True,
         "used": True,
@@ -91,7 +81,6 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {
     "e3nn": "load_bearing",
     "pytorch": "load_bearing",
-    "numpy": "load_bearing",
     "z3": "load_bearing",
 }
 
@@ -168,23 +157,25 @@ def normalize_density(rho: torch.Tensor) -> torch.Tensor:
 
 
 def initial_density(seed: int) -> torch.Tensor:
-    rng = np.random.default_rng(seed)
-    theta = 0.24 + 1.05 * rng.random()
-    phi = 2.0 * math.pi * rng.random()
+    rng = torch.Generator().manual_seed(seed)
+    theta = 0.24 + 1.05 * float(torch.rand((), generator=rng).item())
+    phi = 2.0 * math.pi * float(torch.rand((), generator=rng).item())
     psi = torch.tensor(
-        [math.cos(theta), math.sin(theta) * np.exp(1j * phi)],
+        [math.cos(theta), math.sin(theta) * complex(math.cos(phi), math.sin(phi))],
         dtype=DTYPE,
     ).reshape(2, 1)
     pure = psi @ psi.conj().T
     return normalize_density(0.88 * pure + 0.12 * I2 / 2)
 
 
-def bloch(rho: torch.Tensor) -> np.ndarray:
-    return np.array([
-        float(torch.real(torch.trace(SX @ rho)).item()),
-        float(torch.real(torch.trace(SY @ rho)).item()),
-        float(torch.real(torch.trace(SZ @ rho)).item()),
-    ])
+def bloch(rho: torch.Tensor) -> torch.Tensor:
+    return torch.stack(
+        [
+            torch.real(torch.trace(SX @ rho)),
+            torch.real(torch.trace(SY @ rho)),
+            torch.real(torch.trace(SZ @ rho)),
+        ]
+    ).to(torch.float64)
 
 
 def entropy(rho: torch.Tensor) -> float:
@@ -195,6 +186,11 @@ def entropy(rho: torch.Tensor) -> float:
 
 def purity(rho: torch.Tensor) -> float:
     return float(torch.real(torch.trace(rho @ rho)).item())
+
+
+def commutator_norm(a: torch.Tensor, b: torch.Tensor) -> float:
+    comm = a @ b - b @ a
+    return float(torch.linalg.matrix_norm(comm).real.item())
 
 
 def unitary_from_generator(generator: torch.Tensor, angle: float) -> torch.Tensor:
@@ -292,27 +288,27 @@ def extract_geometric_features(
 
     # --- l=0 feature: curvature scalar (Bloch vector magnitude change) ---
     delta_b = b_final - b_start
-    curvature_scalar = float(np.linalg.norm(delta_b))  # scalar: dist on Bloch sphere
+    curvature_scalar = torch.linalg.vector_norm(delta_b).to(torch.float32).reshape(1)  # scalar: dist on Bloch sphere
 
     # --- l=1 features: 4 three-vectors ---
 
     # 1. Bloch vector of final state (3D, l=1)
-    bloch_vec = b_final.astype(np.float32)
+    bloch_vec = b_final.to(torch.float32)
 
     # 2. Torsion vector: finite-difference estimate of trajectory curvature
     #    approximated as (b_final - b_mid) - (b_mid - b_start)
-    torsion_vec = ((b_final - b_mid) - (b_mid - b_start)).astype(np.float32)
+    torsion_vec = ((b_final - b_mid) - (b_mid - b_start)).to(torch.float32)
 
     # 3. Connection 1-form components: gauge-field-like term from midpoint step
     #    connection ~ b_mid - b_start (parallel transport estimate along path)
-    connection_vec = (b_mid - b_start).astype(np.float32)
+    connection_vec = (b_mid - b_start).to(torch.float32)
 
     # 4. Hopf-base position on S2: normalize b_final to unit sphere
-    norm = float(np.linalg.norm(b_final))
+    norm = float(torch.linalg.vector_norm(b_final).item())
     if norm > 1e-8:
-        hopf_base = (b_final / norm).astype(np.float32)
+        hopf_base = (b_final / norm).to(torch.float32)
     else:
-        hopf_base = np.zeros(3, dtype=np.float32)
+        hopf_base = torch.zeros(3, dtype=torch.float32)
 
     # Pack into FEATURE_IRREPS = "1x0e + 4x1e" layout
     # o3.Irreps("1x0e + 4x1e"):
@@ -321,14 +317,14 @@ def extract_geometric_features(
     #   [4:7]    = torsion_vec       (3 floats)
     #   [7:10]   = connection_vec    (3 floats)
     #   [10:13]  = hopf_base         (3 floats)
-    feat = np.concatenate([
-        [curvature_scalar],
+    feat = torch.cat([
+        curvature_scalar,
         bloch_vec,
         torsion_vec,
         connection_vec,
         hopf_base,
-    ]).astype(np.float32)
-    return torch.tensor(feat, dtype=torch.float32)
+    ])
+    return feat.to(torch.float32)
 
 
 def build_dataset(n_seeds: int = 100) -> tuple[torch.Tensor, torch.Tensor]:
@@ -442,8 +438,8 @@ def check_equivariance(
             err = float((feat_rotated - feat_expected).abs().max().item())
             errors_this_rot.append(err)
 
-        max_err = float(np.max(errors_this_rot))
-        mean_err = float(np.mean(errors_this_rot))
+        max_err = max(errors_this_rot)
+        mean_err = sum(errors_this_rot) / len(errors_this_rot)
         errors_per_rotation.append(max_err)
         details.append({
             "rotation_idx": rot_idx,
@@ -451,8 +447,8 @@ def check_equivariance(
             "mean_error": mean_err,
         })
 
-    overall_max = float(np.max(errors_per_rotation))
-    overall_mean = float(np.mean(errors_per_rotation))
+    overall_max = max(errors_per_rotation)
+    overall_mean = sum(errors_per_rotation) / len(errors_per_rotation)
     passes = bool(overall_max < 1e-4)
 
     return {
@@ -645,6 +641,35 @@ def z3_equivariance_witness() -> dict[str, Any]:
     }
 
 
+def root_constraint_witness() -> dict[str, Any]:
+    """Finite-carrier and noncommuting-generator witness for this fixture."""
+
+    sx_sz = commutator_norm(SX, SZ)
+    sy_sz = commutator_norm(SY, SZ)
+    sx_sy = commutator_norm(SX, SY)
+    finite_feature_dim = FEATURE_IRREPS.dim
+    finite_density_dim = int(I2.shape[0])
+    return {
+        "F01": True,
+        "N01": True,
+        "finite_carrier_root": True,
+        "noncommutation_or_order_root": True,
+        "finite_density_dimension": finite_density_dim,
+        "finite_irrep_feature_dimension": finite_feature_dim,
+        "pauli_commutator_norms": {
+            "sx_sz": sx_sz,
+            "sy_sz": sy_sz,
+            "sx_sy": sx_sy,
+        },
+        "n01_evidence": (
+            "finite Pauli density updates use noncommuting generators before "
+            "e3nn irrep feature extraction; all three Pauli commutator norms "
+            "are nonzero on the bounded 2x2 carrier"
+        ),
+        "pass": finite_density_dim == 2 and finite_feature_dim == 13 and min(sx_sz, sy_sz, sx_sy) > 1e-9,
+    }
+
+
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
 def as_jsonable(value: Any) -> Any:
@@ -652,13 +677,9 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
-    if isinstance(value, bool):
+    if isinstance(value, (str, int, float, bool)) or value is None:
         return value
     return value
 
@@ -701,6 +722,10 @@ def main() -> None:
     z3_results = z3_equivariance_witness()
     z3_consistent = z3_results["z3_equivariance_witness_consistent"]
     print(f"      z3_equivariance_witness_consistent: {z3_consistent}")
+
+    print("\n[3b/7] Checking finite Pauli noncommutation root witness ...")
+    root_witness = root_constraint_witness()
+    print(f"      n01_noncommutation_root_witness: {root_witness['pass']}")
 
     # ── 4. Train/val split ─────────────────────────────────────────────────
     print("\n[4/7] Splitting train/val (80/20) ...")
@@ -811,6 +836,7 @@ def main() -> None:
         "equivariance_holds_within_tolerance": equivariance_holds,
         "equivariant_classifier_accuracy_above_70_percent": equivariant_classifier_accuracy_above_70_percent,
         "z3_equivariance_witness_consistent": z3_consistent,
+        "n01_noncommutation_root_witness": bool(root_witness["pass"]),
     }
     graveyard_predicates = {
         "non_equivariant_mlp_fails_to_generalize_to_unseen_rotations": non_equivariant_mlp_fails_to_generalize_to_unseen_rotations,
@@ -823,6 +849,7 @@ def main() -> None:
     n_all = len(positive_predicates) + len(graveyard_predicates)
     all_pass = n_positive_pass + n_graveyard_pass
     all_pass_str = f"{all_pass}/{n_all}"
+    all_pass_bool = all_pass == n_all
 
     print(f"\n  POSITIVE PREDICATES: {n_positive_pass}/{len(positive_predicates)}")
     for k, v in positive_predicates.items():
@@ -841,6 +868,7 @@ def main() -> None:
         "claim_ceiling": CLAIM_CEILING,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "root_constraints": root_witness,
         "irreps_used": str(FEATURE_IRREPS),
         "irreps_dim": FEATURE_IRREPS.dim,
         "n_seeds": N_SEEDS,
@@ -867,11 +895,36 @@ def main() -> None:
         "mlp_permuted": {
             "val_accuracy": perm_acc,
         },
+        "positive": {
+            key: {"pass": bool(value), "claim": key}
+            for key, value in positive_predicates.items()
+        },
+        "graveyard_companions": {
+            key: {"pass": bool(value), "claim": key}
+            for key, value in graveyard_predicates.items()
+        },
+        "boundary": {
+            "promotion_boundary_preserved": {
+                "pass": PROMOTION_ALLOWED is False,
+                "claim": "formal scout only; no canonical manifold, axis, bridge, engine, or target-system promotion",
+            }
+        },
+        "nearby_variants": {
+            "total": len(graveyard_predicates),
+            "passed": n_graveyard_pass,
+            "variants": sorted(graveyard_predicates),
+        },
+        "why_not_v4_probes": [
+            "v5 formal scout using e3nn equivariant feature/readout checks.",
+            "Does not promote canonical manifold, axis, bridge, engine, or target-system claims.",
+            "Classifier/readout evidence stays local to the finite feature fixture.",
+        ],
         "positive_predicates": positive_predicates,
         "graveyard_predicates": graveyard_predicates,
         "n_positive_pass": n_positive_pass,
         "n_graveyard_pass": n_graveyard_pass,
-        "all_pass": all_pass_str,
+        "all_pass": all_pass_bool,
+        "all_pass_count": all_pass_str,
         "elapsed_seconds": round(elapsed, 2),
     }
 

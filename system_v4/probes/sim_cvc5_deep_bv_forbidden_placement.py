@@ -16,6 +16,8 @@ Classification: canonical (bit-vector decision procedure is load-bearing).
 """
 import json, os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not a numeric tensor claim"},
     "pyg":     {"tried": False, "used": False, "reason": "no graph"},

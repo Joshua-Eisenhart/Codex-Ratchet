@@ -17,6 +17,8 @@ cvc5 proves the yanking constraint and rank bounds:
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

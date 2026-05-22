@@ -8,12 +8,11 @@ import math
 import os
 import pathlib
 import time
-from typing import Any
+from typing import Any, Callable
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-from scipy.optimize import minimize_scalar
 import sympy as sp
 import torch
 import z3
@@ -54,12 +53,41 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing effective channel application, Choi matrices, ranks, spectra, and trace distances"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing symmetric effective-rate Choi-distance optimization"},
+    "python_math": {"tried": True, "used": True, "reason": "load-bearing local bounded golden-section scalar search for symmetric effective-rate Choi-distance fit"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing effective channel application, Choi matrices, ranks, spectra, trace distances, and fit objective evaluation"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic Choi dimension and rank boundary"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing Choi-rank survivor/control witness"},
 }
 TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+
+
+def bounded_scalar_minimize(objective: Callable[[float], float], lower: float, upper: float, *, xatol: float = 1e-9, max_iter: int = 256) -> dict[str, Any]:
+    phi = (1.0 + math.sqrt(5.0)) / 2.0
+    inv_phi = 1.0 / phi
+    left = float(lower)
+    right = float(upper)
+    c = right - (right - left) * inv_phi
+    d = left + (right - left) * inv_phi
+    fc = float(objective(c))
+    fd = float(objective(d))
+    iterations = 0
+    while abs(right - left) > xatol and iterations < max_iter:
+        iterations += 1
+        if fc <= fd:
+            right = d
+            d = c
+            fd = fc
+            c = right - (right - left) * inv_phi
+            fc = float(objective(c))
+        else:
+            left = c
+            c = d
+            fc = fd
+            d = left + (right - left) * inv_phi
+            fd = float(objective(d))
+    x = (left + right) / 2.0
+    fun = float(objective(x))
+    return {"x": x, "fun": fun, "success": math.isfinite(fun) and iterations < max_iter, "iterations": iterations}
 
 
 def sequence_kraus(step: int, mode: str, gamma: float | None = None) -> list[torch.Tensor]:
@@ -116,9 +144,9 @@ def spectrum_signature(choi: torch.Tensor) -> list[float]:
 def best_symmetric_fit(target: torch.Tensor) -> dict[str, Any]:
     def objective(rate: float) -> float:
         return trace_distance(target, choi_matrix("symmetric", gamma=float(rate)))
-    result = minimize_scalar(objective, bounds=(0.0, 0.35), method="bounded", options={"xatol": 1e-9})
-    best = choi_matrix("symmetric", gamma=float(result.x))
-    return {"gamma": float(result.x), "choi_trace_distance": float(result.fun), "choi_rank": choi_rank(best), "spectrum": spectrum_signature(best), "success": bool(result.success)}
+    result = bounded_scalar_minimize(objective, 0.0, 0.35, xatol=1e-9)
+    best = choi_matrix("symmetric", gamma=float(result["x"]))
+    return {"gamma": float(result["x"]), "choi_trace_distance": float(result["fun"]), "choi_rank": choi_rank(best), "spectrum": spectrum_signature(best), "success": bool(result["success"])}
 
 
 def sequence_cptp_gap(channel_mode: str, boundary_mode: str = "nearest") -> float:

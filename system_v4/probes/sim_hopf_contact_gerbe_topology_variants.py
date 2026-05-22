@@ -18,6 +18,11 @@ import json, math, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = [
+    "classical-baseline Hopf x Contact x Gerbe topology-variant fixture only; "
+    "compares finite T1/T2/T3 controls without promoting Axis0, bridge, "
+    "GStack, QIT, or nonclassical admission",
+]
 
 H_HOPF_T1 = math.log(2) / 2
 H_HOPF_T2 = math.log(2)
@@ -441,6 +446,7 @@ def main():
     mi_val = mera_MI_dephasing(seed=0)[-1]
     summary = {
         "classification": classification,
+        "divergence_log": divergence_log,
         "total": len(results),
         "passed": sum(1 for v in results.values() if v.get("passed", False)),
         "all_passed": all_passed,

@@ -11,6 +11,16 @@ import math
 import os
 import numpy as np
 
+classification = "classical_baseline"
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical capability probe "
+        "isolates cma; it does not promote a nonclassical, formal-scout, "
+        "bridge, or axis-level claim."
+    ),
+]
+
 # =====================================================================
 # TOOL MANIFEST -- 12 standard tools, all not-used (isolation probe)
 # =====================================================================

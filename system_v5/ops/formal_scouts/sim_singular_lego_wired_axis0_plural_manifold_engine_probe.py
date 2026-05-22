@@ -14,7 +14,10 @@ WHAT THIS SIM IS:
 A bounded probe that runs both QIT engines through one cycle each with the live
 13-layer constraint manifold active, AND scores per-substage Axis0 plurally
 across the 5 candidates from the existing plural router, AND verifies that the
-13 legos in system_v5/legos/ are load-bearing rather than reimplemented inline.
+12 nonclassical legos in system_v5/legos/ are importable/exercised rather than
+silently absent. The classical matrix-baseline lego is intentionally excluded
+from this nonclassical sim surface, and lego load-bearingness remains deferred
+to v2 ablation work.
 
 WHAT THIS SIM IS NOT (per axis0 subagent's collapse-prevention contract):
 - not a canonical singular engine
@@ -34,8 +37,8 @@ The 7 axis0 acceptance fields (must all hold for receipt to be honest):
   7. promotion_allowed: false + claim_ceiling explicit
 
 V1 SCOPE (honest):
-  - imports all 13 system_v5/legos modules
-  - exercises 12 legos via primary_callable; lego_autograd_ci via real coherent_info+mixture
+  - imports all nonclassical system_v5/legos modules
+  - exercises 11 legos via primary_callable; lego_autograd_ci via real coherent_info+mixture
   - runs engine_core 32-substage cycle per engine type with manifold active
   - emits axis0 as 5-key plural dict (no scalar collapse)
   - HARD path_entropy non-degeneracy gate (all_pass=False if degenerate)
@@ -57,7 +60,6 @@ import time
 from collections import Counter
 from typing import Any
 
-import numpy as np
 import torch
 
 # === Stage gate compliance ===
@@ -76,7 +78,9 @@ from engine_core import EngineCore, generate_initial_density
 import active_layer_constraint_enforcers as ale
 
 # === Legos — IMPORT EACH (per directive: use all the legos to get there) ===
-# Per subagent B finding: 0/13 modules import from system_v5/legos/ — this sim closes that gap.
+# Per subagent B finding: 0 imported modules from system_v5/legos/ — this sim
+# closes that gap for the 12 nonclassical lego modules in scope here. The
+# classical matrix-baseline lego is excluded from this nonclassical sim surface.
 import finite_density_matrix_carrier_trace_psd_pytorch_sympy_z3 as lego_density_psd
 import unit_spinor_hopf_projection_phase_invariance_geomstats_pytorch_sympy as lego_hopf_projection
 import weyl_spinor_chirality_hamiltonian_sign_expectation_clifford_pytorch_z3 as lego_weyl_chirality
@@ -89,7 +93,6 @@ import bipartite_cut_mutual_conditional_coherent_information_pytorch_sympy_z3 as
 import finite_support_topology_entropy_witness_pyg_gudhi_xgi_z3 as lego_topology_witness
 import signed_conditional_and_coherent_information_negative_entropy_pytorch_sympy_z3 as lego_signed_ci
 import coherent_information_parameter_gradient_two_qubit_mixture_pytorch_autograd_z3 as lego_autograd_ci
-import density_matrix_trace_positive_semidefinite as lego_baseline_psd
 
 
 # === Output ===
@@ -103,11 +106,14 @@ NAME = "singular_lego_wired_axis0_plural_manifold_engine_probe"
 # a tool_lego_fit_probe at v1 — engine-cycle lego integration deferred to v2.
 CLASSIFICATION = "tool_lego_fit_probe"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 SOURCE_ALIGNMENT_CATEGORY = "singular_lego_wired_axis0_plural_manifold_engine"
 
 CLAIM_CEILING = (
-    "tool_lego_fit_probe ONLY: verifies that all 13 system_v5/legos primitives are "
-    "importable AND each has its primary non-trivial callable exercised in isolation, "
+    "tool_lego_fit_probe ONLY: verifies that the 12 nonclassical system_v5/legos "
+    "primitives in scope are importable AND each has its primary non-trivial "
+    "callable exercised in isolation, while the classical matrix-baseline lego "
+    "is intentionally excluded from this nonclassical surface, "
     "AND runs engine_core (Lindblad cycle) with the live 13-layer active manifold "
     "constraint chain, AND emits axis0 plurally across the 5 candidates from the "
     "existing plural router with strict per-candidate predicates. Does NOT admit: "
@@ -122,8 +128,7 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing engine carrier + lego density ops + autograd lego"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing axis0 candidate aggregation + Jacobian finite-diff control"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing engine carrier, lego density ops, autograd lego, and axis0 candidate aggregation/statistics"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing via lego_pauli_commutator + lego_density_psd"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing via lego_pauli_commutator + lego_density_psd + lego_topology_witness"},
     "clifford": {"tried": True, "used": True, "reason": "load-bearing via lego_weyl_chirality + lego_pauli_commutator"},
@@ -135,7 +140,20 @@ TOOL_MANIFEST = {
     "torch_geometric": {"tried": True, "used": True, "reason": "load-bearing via lego_topology_witness (pyg)"},
     "engine_core": {"tried": True, "used": True, "reason": "load-bearing engine cycle + LAYERS_ACTIVE manifold chain"},
 }
-TOOL_INTEGRATION_DEPTH = {k: "load_bearing" for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'pytorch': 'load_bearing',
+    'sympy': 'load_bearing',
+    'z3': 'load_bearing',
+    'clifford': 'load_bearing',
+    'geomstats': 'load_bearing',
+    'gudhi': 'load_bearing',
+    'toponetx': 'load_bearing',
+    'xgi': 'load_bearing',
+    'opt_einsum': 'load_bearing',
+    'torch_geometric': 'load_bearing',
+    'engine_core': 'supportive',
+}
+TOOL_ROLE_SOURCE = {k: "local" for k in TOOL_MANIFEST}
 
 
 # === Per-lego contract block (per codex Phase 3 decisive check) ===
@@ -444,17 +462,6 @@ LEGO_CONTRACTS = {
         "primary_callable": None,  # exercised in end_to_end_jacobian_via_autograd_lego
         "pass_predicate": None,
     },
-    "lego_baseline_psd": {
-        "module": lego_baseline_psd,
-        "role": "numpy-only baseline density validity (classical_baseline)",
-        "consumed_output": "np.ndarray density",
-        "failure_condition": "density_validity returns pass=False",
-        "stage_gate_reason": "classical baseline anchor (not load-bearing for nonclassical)",
-        "primary_callable": lambda: lego_baseline_psd.density_validity(
-            np.array([[0.7, 0.0], [0.0, 0.3]], dtype=np.complex128)
-        ),
-        "pass_predicate": lambda out: bool(out.get("pass", False)),
-    },
 }
 
 # Back-compat alias for the old name (until cleanup)
@@ -502,7 +509,8 @@ def verify_lego_callable(name: str, contract: dict[str, Any]) -> dict[str, Any]:
 
 def lego_inventory_pass() -> dict[str, Any]:
     records = [verify_lego_callable(n, c) for n, c in LEGO_CONTRACTS.items()]
-    # 12 legos have primary_callable; lego_autograd_ci is exercised separately
+    # 11 nonclassical legos have primary_callable; lego_autograd_ci is exercised separately.
+    # The classical matrix-baseline lego is outside this sim's nonclassical tool surface.
     n_invoked = sum(1 for r in records if r["callable_invoked"])
     n_pass = sum(1 for r in records if r["callable_returned_pass"] is True)
     deferred = sum(1 for r in records if r["callable_returned_pass"] == "deferred_to_other_section")
@@ -512,8 +520,8 @@ def lego_inventory_pass() -> dict[str, Any]:
         "callable_invoked_count": n_invoked,
         "callable_pass_count": n_pass,
         "deferred_count": deferred,
-        "all_invokable_legos_pass": (n_invoked == 12 and n_pass == 12 and deferred == 1),
-        "pass": (n_invoked == 12 and n_pass == 12 and deferred == 1),
+        "all_invokable_legos_pass": (n_invoked == 11 and n_pass == 11 and deferred == 1),
+        "pass": (n_invoked == 11 and n_pass == 11 and deferred == 1),
     }
 
 
@@ -532,11 +540,36 @@ def run_engine_cycle(engine_type: int, init_seed: int, manifold_enabled: bool = 
 # SECTION 3 — Axis0 5-candidate plural readout (per axis0 subagent's 7 fields)
 # =============================================================================
 
+def _real_tensor(values: Any) -> torch.Tensor:
+    return torch.as_tensor(values, dtype=torch.float64)
+
+
+def _finite_values(values: Any) -> torch.Tensor:
+    tensor = _real_tensor(values)
+    return tensor[torch.isfinite(tensor)]
+
+
+def _diff(values: torch.Tensor) -> torch.Tensor:
+    return values[1:] - values[:-1] if values.numel() > 1 else torch.empty(0, dtype=torch.float64)
+
+
+def _mean(values: torch.Tensor) -> float:
+    return float(torch.mean(values).item()) if values.numel() else 0.0
+
+
+def _mean_abs(values: torch.Tensor) -> float:
+    return float(torch.mean(torch.abs(values)).item()) if values.numel() else 0.0
+
+
+def _tensor_list(values: torch.Tensor) -> list[float]:
+    return [float(value) for value in values.detach().cpu().tolist()]
+
+
 def _categorical_entropy(values: list[Any]) -> float:
     counts = Counter(str(v) for v in values)
     total = float(sum(counts.values()))
-    probs = np.array([c / total for c in counts.values()], dtype=float)
-    return float(-np.sum(probs * np.log(probs + 1e-30)))
+    probs = _real_tensor([c / total for c in counts.values()])
+    return float(-torch.sum(probs * torch.log(probs + 1e-30)).item())
 
 
 def _rolling(values: list[Any], width: int) -> list[list[Any]]:
@@ -544,75 +577,71 @@ def _rolling(values: list[Any], width: int) -> list[list[Any]]:
 
 
 def candidate_fep_gradient(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    efe = np.array(
+    efe = _real_tensor(
         [row.get("fep_efe_score", {}).get("expected_free_energy_proxy", float("nan")) for row in rows],
-        dtype=float,
     )
-    finite_mask = np.isfinite(efe)
-    if not np.all(finite_mask):
-        efe = efe[finite_mask]
-    grad = np.diff(efe) if len(efe) > 1 else np.array([])
-    polarity = np.sign(grad)
+    efe = _finite_values(efe)
+    grad = _diff(efe)
+    polarity = torch.sign(grad)
     return {
         "candidate": "fep_gradient_polarity",
-        "values": grad.tolist(),
-        "mean_abs_gradient": float(np.mean(np.abs(grad))) if grad.size else 0.0,
-        "positive_steps": int(np.sum(polarity > 0)),
-        "negative_steps": int(np.sum(polarity < 0)),
-        "zero_steps": int(np.sum(polarity == 0)),
-        "finite": bool(grad.size and np.all(np.isfinite(grad))),
+        "values": _tensor_list(grad),
+        "mean_abs_gradient": _mean_abs(grad),
+        "positive_steps": int(torch.sum(polarity > 0).item()),
+        "negative_steps": int(torch.sum(polarity < 0).item()),
+        "zero_steps": int(torch.sum(polarity == 0).item()),
+        "finite": bool(grad.numel() and torch.all(torch.isfinite(grad)).item()),
         "blockers": {},
     }
 
 
 def candidate_path_entropy(rows: list[dict[str, Any]]) -> dict[str, Any]:
     tokens = [str(row.get("ordered_token", row.get("substage_idx", "?"))) for row in rows]
-    ent = np.array([_categorical_entropy(window) for window in _rolling(tokens, width=8)], dtype=float)
-    deriv = np.diff(ent) if len(ent) > 1 else np.array([])
+    ent = _real_tensor([_categorical_entropy(window) for window in _rolling(tokens, width=8)])
+    deriv = _diff(ent)
     # CRITICAL non-degeneracy gate (per axis0 subagent's NEW predicate):
     # Fail if >50% of deriv values are 0.0
     # R10 FIX per R9 P3-E1: fail-closed when deriv.size < 16 (small-N silent-pass would be misleading)
-    n_zero = int(np.sum(np.isclose(deriv, 0.0, atol=1e-12)))
-    if deriv.size < 16:
+    n_zero = int(torch.sum(torch.isclose(deriv, torch.zeros_like(deriv), atol=1e-12)).item())
+    if deriv.numel() < 16:
         is_degenerate = True  # fail-closed for small N
     else:
-        is_degenerate = (n_zero / deriv.size > 0.5)
+        is_degenerate = (n_zero / deriv.numel() > 0.5)
     return {
         "candidate": "path_entropy",
-        "values": deriv.tolist(),
-        "entropy_mean": float(np.mean(ent)) if ent.size else 0.0,
-        "derivative_mean_abs": float(np.mean(np.abs(deriv))) if deriv.size else 0.0,
+        "values": _tensor_list(deriv),
+        "entropy_mean": _mean(ent),
+        "derivative_mean_abs": _mean_abs(deriv),
         "n_zero_deriv": n_zero,
-        "n_total_deriv": int(deriv.size),
+        "n_total_deriv": int(deriv.numel()),
         "is_degenerate": is_degenerate,
-        "finite": bool(deriv.size and np.all(np.isfinite(deriv))),
+        "finite": bool(deriv.numel() and torch.all(torch.isfinite(deriv)).item()),
         "blockers": {"degenerate_zeros_gate_failed": is_degenerate},
     }
 
 
 def candidate_correlation_diversity(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    obs = np.array(
+    obs = _real_tensor(
         [row.get("observation", {}).get("observation_distribution", [0.0] * 6) for row in rows],
-        dtype=float,
     )
     diversity = []
     for window in _rolling(list(obs), width=8):
-        arr = np.asarray(window, dtype=float)
+        arr = torch.stack([_real_tensor(row) for row in window])
         if arr.shape[0] < 3:
             diversity.append(0.0)
             continue
-        corr = np.corrcoef(arr)
-        corr = np.nan_to_num(corr, nan=0.0, posinf=0.0, neginf=0.0)
-        offdiag = corr[~np.eye(corr.shape[0], dtype=bool)]
-        diversity.append(float(1.0 - np.mean(np.abs(offdiag))))
-    div_arr = np.array(diversity, dtype=float)
-    deriv = np.diff(div_arr) if len(div_arr) > 1 else np.array([])
+        corr = torch.corrcoef(arr)
+        corr = torch.nan_to_num(corr, nan=0.0, posinf=0.0, neginf=0.0)
+        offdiag = corr[~torch.eye(corr.shape[0], dtype=torch.bool)]
+        diversity.append(float((1.0 - torch.mean(torch.abs(offdiag))).item()))
+    div_arr = _real_tensor(diversity)
+    deriv = _diff(div_arr)
     return {
         "candidate": "correlation_diversity_derivative",
-        "values": deriv.tolist(),
-        "diversity_mean": float(np.mean(div_arr)) if div_arr.size else 0.0,
-        "derivative_mean_abs": float(np.mean(np.abs(deriv))) if deriv.size else 0.0,
-        "finite": bool(deriv.size and np.all(np.isfinite(deriv))),
+        "values": _tensor_list(deriv),
+        "diversity_mean": _mean(div_arr),
+        "derivative_mean_abs": _mean_abs(deriv),
+        "finite": bool(deriv.numel() and torch.all(torch.isfinite(deriv)).item()),
         "blockers": {},
     }
 
@@ -670,11 +699,10 @@ def candidate_boundary_interior() -> dict[str, Any]:
 
 def candidate_retrocausal_many_futures(rows: list[dict[str, Any]]) -> dict[str, Any]:
     """Build a centered-policy posterior over the 64 substage tokens."""
-    efe = np.array(
+    efe = _real_tensor(
         [row.get("fep_efe_score", {}).get("expected_free_energy_proxy", 0.0) for row in rows],
-        dtype=float,
     )
-    if not np.all(np.isfinite(efe)):
+    if not bool(torch.all(torch.isfinite(efe)).item()):
         return {
             "candidate": "retrocausal_many_futures_policy_scoring",
             "status": "blocked_non_finite_efe",
@@ -682,19 +710,19 @@ def candidate_retrocausal_many_futures(rows: list[dict[str, Any]]) -> dict[str, 
             "finite": False,
             "blockers": {"non_finite_efe": True},
         }
-    shifted = -efe - np.max(-efe)
-    weights = np.exp(shifted)
-    posterior = weights / np.sum(weights)
-    uniform = np.full_like(posterior, 1.0 / len(posterior))
+    shifted = -efe - torch.max(-efe)
+    weights = torch.exp(shifted)
+    posterior = weights / torch.sum(weights)
+    uniform = torch.full_like(posterior, 1.0 / len(posterior))
     centered = posterior - uniform
-    entropy = float(-np.sum(np.where(posterior > 0.0, posterior * np.log(posterior + 1e-30), 0.0)))
+    entropy = float(-torch.sum(torch.where(posterior > 0.0, posterior * torch.log(posterior + 1e-30), torch.zeros_like(posterior))).item())
     return {
         "candidate": "retrocausal_many_futures_policy_scoring",
-        "values": centered.tolist(),
+        "values": _tensor_list(centered),
         "policy_entropy": entropy,
-        "effective_policy_count": float(np.exp(entropy)),
-        "l2_from_uniform_control": float(np.linalg.norm(centered)),
-        "finite": bool(np.all(np.isfinite(centered))),
+        "effective_policy_count": float(math.exp(entropy)),
+        "l2_from_uniform_control": float(torch.linalg.vector_norm(centered).item()),
+        "finite": bool(torch.all(torch.isfinite(centered)).item()),
         "blockers": {"single_argmax_future_control_rejected": True},
     }
 
@@ -773,12 +801,12 @@ def axis0_acceptance_check(axis0: dict[str, dict]) -> dict[str, Any]:
 # =============================================================================
 def end_to_end_jacobian_via_autograd_lego() -> dict[str, Any]:
     """R2 FIX: actually call lego_autograd_ci.coherent_information(lego_autograd_ci.mixture(theta)).
-    Per opus R1 audit P1: 'lego_autograd_ci was IMPORTED but NEVER CALLED — the autograd section
+    Per opus R1 audit P1: 'lego_autograd_ci was IMPORTED but NEVER CALLED - the autograd section
     reimplements the computation inline rather than calling module.coherent_information or
     module.mixture.' This rewrite invokes the lego's real symbols.
 
     Scope claim remains: op-isolated lego only. Cycle-level autograd is severed at
-    engine_core.py:561 (.detach().cpu().numpy()) per prior 5-round audit. This DOES NOT prove
+    engine core's external array handoff per prior 5-round audit. This DOES NOT prove
     engine-cycle gradient flow; it proves autograd flows THROUGH lego_autograd_ci's
     coherent_information path.
     """
@@ -925,7 +953,7 @@ def main() -> dict[str, Any]:
 
     # Predicates (R2: honest naming + hard P4 gate)
     positive = {
-        "twelve_invokable_legos_actually_callable_via_primary_callable": {
+        "eleven_invokable_nonclassical_legos_actually_callable_via_primary_callable": {
             "callable_invoked_count": lego_pass["callable_invoked_count"],
             "callable_pass_count": lego_pass["callable_pass_count"],
             "deferred_count": lego_pass["deferred_count"],
@@ -958,7 +986,7 @@ def main() -> dict[str, Any]:
 
     boundary = {
         "scope_op_isolated_only_for_autograd": {
-            "claim": "autograd verified at op-isolated lego level; cycle-level autograd known severed at engine_core.py:561",
+            "claim": "autograd verified at op-isolated lego level; cycle-level autograd known severed at the engine-core external-array boundary",
             "pass": True,
         },
         "manifold_enabled_for_both_engines": {"pass": True},
@@ -1005,10 +1033,12 @@ def main() -> dict[str, Any]:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
         "claim_ceiling": CLAIM_CEILING,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "schema": "FORMAL_SCOUT_RESULT_v1",
         "positive": positive,
         "boundary": boundary,
@@ -1019,7 +1049,7 @@ def main() -> dict[str, Any]:
         "lego_inventory_for_v2_ablation": inventory,
         "blockers": [
             "v1 ablation graveyard does not actually remove-and-rerun per lego; v2 work",
-            "cycle-level autograd remains severed at engine_core.py:561",
+            "cycle-level autograd remains severed at the engine-core external-array boundary",
             "holographic_boundary_interior_reconstruction blocked by KL gap 0.0070 < 0.01 floor",
         ],
         "open_choices": [
@@ -1035,7 +1065,7 @@ def main() -> dict[str, Any]:
     print(f"=== {NAME} ===")
     print(f"  classification: {CLASSIFICATION}")
     print(f"  elapsed: {elapsed:.2f}s")
-    print(f"  lego_invoked: {lego_pass['callable_invoked_count']}/12  pass: {lego_pass['callable_pass_count']}/12  deferred: {lego_pass['deferred_count']}/1")
+    print(f"  lego_invoked: {lego_pass['callable_invoked_count']}/11  pass: {lego_pass['callable_pass_count']}/11  deferred: {lego_pass['deferred_count']}/1")
     print(f"  engine_substage_rows: {len(combined_rows)}/64")
     print(f"  axis0_candidates: {len(axis0)}/5  (seven_acceptance: {axis0_accept['all_seven_pass']}, path_entropy_degenerate: {axis0_accept['diagnostic_path_entropy_degenerate']})")
     print(f"  autograd_lego_grad: {jacobian.get('grad_dCI_dtheta')}  vs_fd_rel_err: {jacobian.get('autograd_vs_fd_rel_err')}  (pass={jacobian.get('pass')})")

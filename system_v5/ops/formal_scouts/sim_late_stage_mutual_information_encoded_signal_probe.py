@@ -75,6 +75,7 @@ import json
 import math
 import os
 import pathlib
+import random
 import sys
 import time
 from typing import Any
@@ -82,7 +83,6 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
 import scipy.stats as scipy_stats
 import torch
 import torch.nn as nn
@@ -131,15 +131,6 @@ TOOL_MANIFEST = {
             "inside EngineCore also uses complex tensors."
         ),
     },
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": (
-            "load-bearing: trajectory arrays (n_samples, 32, 3), feature "
-            "slicing per substage subset, alternative-label construction, "
-            "R^2 computation, identity / random baselines."
-        ),
-    },
     "sklearn": {
         "tried": True,
         "used": True,
@@ -162,7 +153,6 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
-    "numpy": "load_bearing",
     "sklearn": "load_bearing",
     "scipy": "supportive",
 }
@@ -170,9 +160,6 @@ TOOL_INTEGRATION_DEPTH = {
 # ---------------------------------------------------------------------------
 # Constants — mirror source-sim dataset; engine pipeline from engine_core.py
 # ---------------------------------------------------------------------------
-
-DTYPE = np.complex128
-I2 = np.eye(2, dtype=DTYPE)
 
 N_MAIN_STAGES = 8
 N_SUB_STAGES = 4
@@ -197,31 +184,38 @@ def generate_input_states(n: int, seed: int = 0):
     """200 mixed-pure states on S^2 with 0.9 purity (matches source sim).
 
     Returns:
-        rho_list — list of np.ndarray density matrices (2x2 complex)
-        bloch_vecs — np.ndarray shape (n, 3) of input Bloch vectors
-        thetas — np.ndarray shape (n,) of polar angles (input)
-        phis — np.ndarray shape (n,) of azimuthal angles (input)
+        rho_list — list of 2x2 complex density matrices for EngineCore
+        bloch_vecs — torch tensor shape (n, 3) of input Bloch vectors
+        thetas — torch tensor shape (n,) of polar angles (input)
+        phis — torch tensor shape (n,) of azimuthal angles (input)
     """
-    rng = np.random.default_rng(seed)
-    rhos: list[np.ndarray] = []
-    bloch_list: list[np.ndarray] = []
+    rng = random.Random(seed)
+    rhos: list[Any] = []
+    bloch_list: list[torch.Tensor] = []
     thetas: list[float] = []
     phis: list[float] = []
     while len(rhos) < n:
-        cos_theta = rng.uniform(-1, 1)
-        phi = rng.uniform(0, 2 * math.pi)
+        cos_theta = rng.uniform(-1.0, 1.0)
+        phi = rng.uniform(0.0, 2 * math.pi)
         theta = math.acos(cos_theta)
         alpha = math.cos(theta / 2)
         beta = math.sin(theta / 2) * complex(math.cos(phi), math.sin(phi))
-        psi = np.array([alpha, beta], dtype=DTYPE).reshape(2, 1)
+        psi = ENGINE_I2[:, :1].copy()
+        psi[0, 0] = alpha
+        psi[1, 0] = beta
         pure = psi @ psi.conj().T
-        rho = _normalize_density(0.90 * pure + 0.10 * I2 / 2)
+        rho = _normalize_density(0.90 * pure + 0.10 * ENGINE_I2 / 2)
         rhos.append(rho)
-        bvec = _bloch_vector(rho)
+        bvec = torch.as_tensor(_bloch_vector(rho), dtype=torch.float64)
         bloch_list.append(bvec)
         thetas.append(theta)
         phis.append(phi)
-    return rhos, np.array(bloch_list), np.array(thetas), np.array(phis)
+    return (
+        rhos,
+        torch.stack(bloch_list, dim=0),
+        torch.tensor(thetas, dtype=torch.float64),
+        torch.tensor(phis, dtype=torch.float64),
+    )
 
 
 def quadrant_label(bx: float, by: float) -> int:
@@ -248,7 +242,7 @@ def octant_label(bx: float, by: float, bz: float) -> int:
 # ---------------------------------------------------------------------------
 
 
-def run_paired_engines(rho_init: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+def run_paired_engines(rho_init: Any) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
     """Run Type 1 + Type 2 EngineCore full cycles. Return per-substage Bloch + entropy.
 
     Returns:
@@ -261,27 +255,27 @@ def run_paired_engines(rho_init: np.ndarray) -> tuple[np.ndarray, np.ndarray, np
     e2 = EngineCore(engine_type=1, manifold_enabled=True)
     res1 = e1.run_full_cycle(rho_init)
     res2 = e2.run_full_cycle(rho_init)
-    bloch_e1 = np.array([r["bloch"] for r in res1["trajectory"]], dtype=np.float64)
-    bloch_e2 = np.array([r["bloch"] for r in res2["trajectory"]], dtype=np.float64)
-    ent_e1 = np.array([r["entropy"] for r in res1["trajectory"]], dtype=np.float64)
-    ent_e2 = np.array([r["entropy"] for r in res2["trajectory"]], dtype=np.float64)
+    bloch_e1 = torch.tensor([r["bloch"] for r in res1["trajectory"]], dtype=torch.float64)
+    bloch_e2 = torch.tensor([r["bloch"] for r in res2["trajectory"]], dtype=torch.float64)
+    ent_e1 = torch.tensor([r["entropy"] for r in res1["trajectory"]], dtype=torch.float64)
+    ent_e2 = torch.tensor([r["entropy"] for r in res2["trajectory"]], dtype=torch.float64)
     return bloch_e1, bloch_e2, ent_e1, ent_e2
 
 
-def run_identity_paired(rho_init: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+def run_identity_paired(rho_init: Any) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
     """Identity-engine baseline: no transformation — constant trajectory at input."""
-    bvec = _bloch_vector(rho_init)
+    bvec = torch.as_tensor(_bloch_vector(rho_init), dtype=torch.float64)
     ent = _von_neumann_entropy(rho_init)
-    bloch_e1 = np.tile(bvec, (N_TOTAL_STAGES, 1))
-    bloch_e2 = np.tile(bvec, (N_TOTAL_STAGES, 1))
-    ent_e1 = np.full(N_TOTAL_STAGES, ent, dtype=np.float64)
-    ent_e2 = np.full(N_TOTAL_STAGES, ent, dtype=np.float64)
+    bloch_e1 = bvec.repeat(N_TOTAL_STAGES, 1)
+    bloch_e2 = bvec.repeat(N_TOTAL_STAGES, 1)
+    ent_e1 = torch.full((N_TOTAL_STAGES,), ent, dtype=torch.float64)
+    ent_e2 = torch.full((N_TOTAL_STAGES,), ent, dtype=torch.float64)
     return bloch_e1, bloch_e2, ent_e1, ent_e2
 
 
 def run_random_paired(
-    rho_init: np.ndarray, rng: np.random.Generator,
-) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    _rho_init: Any, gen: torch.Generator,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
     """Random-engine baseline: trajectory drawn from a label-agnostic random walk on S^2.
 
     The walk is independent of the input — every sample gets a fresh random
@@ -289,12 +283,12 @@ def run_random_paired(
     information about the input."
     """
     # Random unit-vector trajectory + random small entropy walk
-    bloch_e1 = rng.normal(size=(N_TOTAL_STAGES, 3))
-    bloch_e1 = bloch_e1 / np.linalg.norm(bloch_e1, axis=1, keepdims=True) * 0.8
-    bloch_e2 = rng.normal(size=(N_TOTAL_STAGES, 3))
-    bloch_e2 = bloch_e2 / np.linalg.norm(bloch_e2, axis=1, keepdims=True) * 0.8
-    ent_e1 = rng.uniform(0.2, 0.7, size=N_TOTAL_STAGES)
-    ent_e2 = rng.uniform(0.2, 0.7, size=N_TOTAL_STAGES)
+    bloch_e1 = torch.randn((N_TOTAL_STAGES, 3), generator=gen, dtype=torch.float64)
+    bloch_e1 = bloch_e1 / torch.linalg.norm(bloch_e1, dim=1, keepdim=True) * 0.8
+    bloch_e2 = torch.randn((N_TOTAL_STAGES, 3), generator=gen, dtype=torch.float64)
+    bloch_e2 = bloch_e2 / torch.linalg.norm(bloch_e2, dim=1, keepdim=True) * 0.8
+    ent_e1 = 0.2 + 0.5 * torch.rand((N_TOTAL_STAGES,), generator=gen, dtype=torch.float64)
+    ent_e2 = 0.2 + 0.5 * torch.rand((N_TOTAL_STAGES,), generator=gen, dtype=torch.float64)
     return bloch_e1, bloch_e2, ent_e1, ent_e2
 
 
@@ -304,16 +298,16 @@ def run_random_paired(
 
 
 def feature_slice(
-    bloch_e1: np.ndarray, bloch_e2: np.ndarray,
-    ent_e1: np.ndarray, ent_e2: np.ndarray, indices: np.ndarray,
-) -> np.ndarray:
+    bloch_e1: torch.Tensor, bloch_e2: torch.Tensor,
+    ent_e1: torch.Tensor, ent_e2: torch.Tensor, indices: list[int],
+) -> torch.Tensor:
     """Concatenate both engines' Bloch + entropy at the given substage indices."""
-    return np.concatenate([
+    return torch.cat([
         bloch_e1[indices].flatten(),
         bloch_e2[indices].flatten(),
         ent_e1[indices],
         ent_e2[indices],
-    ]).astype(np.float32)
+    ]).to(torch.float32)
 
 
 # ---------------------------------------------------------------------------
@@ -361,10 +355,10 @@ def train_classifier(
     optimizer = optim.Adam(model.parameters(), lr=3e-3)
     criterion = nn.CrossEntropyLoss()
 
-    X_tr = torch.tensor(X_train, dtype=torch.float32)
-    y_tr = torch.tensor(y_train, dtype=torch.long)
-    X_te = torch.tensor(X_test, dtype=torch.float32)
-    y_te = torch.tensor(y_test, dtype=torch.long)
+    X_tr = torch.as_tensor(X_train, dtype=torch.float32)
+    y_tr = torch.as_tensor(y_train, dtype=torch.long)
+    X_te = torch.as_tensor(X_test, dtype=torch.float32)
+    y_te = torch.as_tensor(y_test, dtype=torch.long)
 
     loss_first = None
     loss_last = None
@@ -404,10 +398,10 @@ def train_regressor(
     optimizer = optim.Adam(model.parameters(), lr=3e-3)
     criterion = nn.MSELoss()
 
-    X_tr = torch.tensor(X_train, dtype=torch.float32)
-    y_tr = torch.tensor(y_train, dtype=torch.float32)
-    X_te = torch.tensor(X_test, dtype=torch.float32)
-    y_te = torch.tensor(y_test, dtype=torch.float32)
+    X_tr = torch.as_tensor(X_train, dtype=torch.float32)
+    y_tr = torch.as_tensor(y_train, dtype=torch.float32)
+    X_te = torch.as_tensor(X_test, dtype=torch.float32)
+    y_te = torch.as_tensor(y_test, dtype=torch.float32)
 
     loss_first = None
     loss_last = None
@@ -424,15 +418,13 @@ def train_regressor(
 
     model.eval()
     with torch.no_grad():
-        pred_te = model(X_te).numpy()
-        pred_tr = model(X_tr).numpy()
-    y_te_np = y_te.numpy()
-    y_tr_np = y_tr.numpy()
-    ss_res_te = float(np.sum((y_te_np - pred_te) ** 2))
-    ss_tot_te = float(np.sum((y_te_np - y_te_np.mean()) ** 2))
+        pred_te = model(X_te)
+        pred_tr = model(X_tr)
+    ss_res_te = float(torch.sum((y_te - pred_te) ** 2).item())
+    ss_tot_te = float(torch.sum((y_te - y_te.mean()) ** 2).item())
     r2_te = 1.0 - ss_res_te / max(ss_tot_te, 1e-12)
-    ss_res_tr = float(np.sum((y_tr_np - pred_tr) ** 2))
-    ss_tot_tr = float(np.sum((y_tr_np - y_tr_np.mean()) ** 2))
+    ss_res_tr = float(torch.sum((y_tr - pred_tr) ** 2).item())
+    ss_tot_tr = float(torch.sum((y_tr - y_tr.mean()) ** 2).item())
     r2_tr = 1.0 - ss_res_tr / max(ss_tot_tr, 1e-12)
     return {
         "label": label,
@@ -449,18 +441,20 @@ def train_regressor(
 # ---------------------------------------------------------------------------
 
 
-def mi_to_discrete(X: np.ndarray, y: np.ndarray, seed: int = RANDOM_SEED) -> float:
+def mi_to_discrete(X: torch.Tensor, y: torch.Tensor | list[int], seed: int = RANDOM_SEED) -> float:
     """Sum of per-feature MI to a discrete target (bits-equivalent in nats)."""
-    mi = mutual_info_classif(X, y, discrete_features=False, n_neighbors=MI_N_NEIGHBORS,
+    y_in = y.tolist() if isinstance(y, torch.Tensor) else y
+    mi = mutual_info_classif(X.tolist(), y_in, discrete_features=False, n_neighbors=MI_N_NEIGHBORS,
                              random_state=seed)
-    return float(np.sum(mi))
+    return float(sum(float(v) for v in mi))
 
 
-def mi_to_continuous(X: np.ndarray, y: np.ndarray, seed: int = RANDOM_SEED) -> float:
+def mi_to_continuous(X: torch.Tensor, y: torch.Tensor | list[float], seed: int = RANDOM_SEED) -> float:
     """Sum of per-feature MI to a continuous target."""
-    mi = mutual_info_regression(X, y, discrete_features=False, n_neighbors=MI_N_NEIGHBORS,
+    y_in = y.tolist() if isinstance(y, torch.Tensor) else y
+    mi = mutual_info_regression(X.tolist(), y_in, discrete_features=False, n_neighbors=MI_N_NEIGHBORS,
                                 random_state=seed)
-    return float(np.sum(mi))
+    return float(sum(float(v) for v in mi))
 
 
 # ---------------------------------------------------------------------------
@@ -468,7 +462,7 @@ def mi_to_continuous(X: np.ndarray, y: np.ndarray, seed: int = RANDOM_SEED) -> f
 # ---------------------------------------------------------------------------
 
 
-def within_trajectory_substage_mi(bloch_traj: np.ndarray) -> dict[str, float]:
+def within_trajectory_substage_mi(bloch_traj: torch.Tensor) -> dict[str, float]:
     """Per-engine within-trajectory MI between substage_index and Bloch.
 
     `bloch_traj` shape: (N_SAMPLES, N_TOTAL_STAGES, 3). We flatten substage_idx
@@ -479,11 +473,11 @@ def within_trajectory_substage_mi(bloch_traj: np.ndarray) -> dict[str, float]:
     """
     n, nstages, _ = bloch_traj.shape
     X = bloch_traj.reshape(n * nstages, 3)
-    y = np.tile(np.arange(nstages), n)
-    mi = mutual_info_classif(X, y, discrete_features=False, n_neighbors=MI_N_NEIGHBORS,
+    y = [stage for _sample in range(n) for stage in range(nstages)]
+    mi = mutual_info_classif(X.tolist(), y, discrete_features=False, n_neighbors=MI_N_NEIGHBORS,
                              random_state=RANDOM_SEED)
     return {
-        "mi_sum_substage_idx_to_bloch": float(np.sum(mi)),
+        "mi_sum_substage_idx_to_bloch": float(sum(float(v) for v in mi)),
         "mi_per_axis": [float(v) for v in mi.tolist()],
     }
 
@@ -498,10 +492,6 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating, np.bool_)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
     return value
@@ -518,33 +508,33 @@ def main() -> int:
     # 1. Inputs
     print(f"Generating {N_SAMPLES} input states (theta/phi uniform on S^2)...")
     rhos, input_bloch, input_theta, input_phi = generate_input_states(N_SAMPLES, seed=RANDOM_SEED)
-    input_quadrant = np.array([
+    input_quadrant = torch.tensor([
         quadrant_label(float(b[0]), float(b[1])) for b in input_bloch
-    ], dtype=np.int64)
-    input_octant = np.array([
+    ], dtype=torch.long)
+    input_octant = torch.tensor([
         octant_label(float(b[0]), float(b[1]), float(b[2])) for b in input_bloch
-    ], dtype=np.int64)
-    quad_counts = [int(np.sum(input_quadrant == c)) for c in range(N_QUADRANTS)]
-    oct_counts = [int(np.sum(input_octant == c)) for c in range(N_OCTANTS)]
+    ], dtype=torch.long)
+    quad_counts = [int((input_quadrant == c).sum().item()) for c in range(N_QUADRANTS)]
+    oct_counts = [int((input_octant == c).sum().item()) for c in range(N_OCTANTS)]
     print(f"  quadrant counts: {quad_counts}")
     print(f"  octant counts: {oct_counts}")
 
     # 2. Run paired engines + identity baseline + random baseline
     print(f"Running paired engines (EngineCore, manifold ON) on {N_SAMPLES} states...")
-    bloch_e1_all = np.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=np.float64)
-    bloch_e2_all = np.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=np.float64)
-    ent_e1_all = np.zeros((N_SAMPLES, N_TOTAL_STAGES), dtype=np.float64)
-    ent_e2_all = np.zeros((N_SAMPLES, N_TOTAL_STAGES), dtype=np.float64)
-    id_bloch_e1_all = np.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=np.float64)
-    id_bloch_e2_all = np.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=np.float64)
-    id_ent_e1_all = np.zeros((N_SAMPLES, N_TOTAL_STAGES), dtype=np.float64)
-    id_ent_e2_all = np.zeros((N_SAMPLES, N_TOTAL_STAGES), dtype=np.float64)
-    rand_bloch_e1_all = np.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=np.float64)
-    rand_bloch_e2_all = np.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=np.float64)
-    rand_ent_e1_all = np.zeros((N_SAMPLES, N_TOTAL_STAGES), dtype=np.float64)
-    rand_ent_e2_all = np.zeros((N_SAMPLES, N_TOTAL_STAGES), dtype=np.float64)
+    bloch_e1_all = torch.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=torch.float64)
+    bloch_e2_all = torch.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=torch.float64)
+    ent_e1_all = torch.zeros((N_SAMPLES, N_TOTAL_STAGES), dtype=torch.float64)
+    ent_e2_all = torch.zeros((N_SAMPLES, N_TOTAL_STAGES), dtype=torch.float64)
+    id_bloch_e1_all = torch.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=torch.float64)
+    id_bloch_e2_all = torch.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=torch.float64)
+    id_ent_e1_all = torch.zeros((N_SAMPLES, N_TOTAL_STAGES), dtype=torch.float64)
+    id_ent_e2_all = torch.zeros((N_SAMPLES, N_TOTAL_STAGES), dtype=torch.float64)
+    rand_bloch_e1_all = torch.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=torch.float64)
+    rand_bloch_e2_all = torch.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=torch.float64)
+    rand_ent_e1_all = torch.zeros((N_SAMPLES, N_TOTAL_STAGES), dtype=torch.float64)
+    rand_ent_e2_all = torch.zeros((N_SAMPLES, N_TOTAL_STAGES), dtype=torch.float64)
 
-    rng_rand = np.random.default_rng(RANDOM_SEED + 11)
+    rand_gen = torch.Generator().manual_seed(RANDOM_SEED + 11)
     for i, rho in enumerate(rhos):
         if i % 25 == 0:
             print(f"  state {i}/{N_SAMPLES}  (elapsed {time.time()-t0:.1f}s)")
@@ -560,17 +550,17 @@ def main() -> int:
         id_ent_e1_all[i] = ie1
         id_ent_e2_all[i] = ie2
 
-        rb1, rb2, re1, re2 = run_random_paired(rho, rng_rand)
+        rb1, rb2, re1, re2 = run_random_paired(rho, rand_gen)
         rand_bloch_e1_all[i] = rb1
         rand_bloch_e2_all[i] = rb2
         rand_ent_e1_all[i] = re1
         rand_ent_e2_all[i] = re2
 
     # 3. Substage subsets
-    early_idx = np.arange(0, 8)
-    mid_idx = np.arange(12, 20)
-    late_idx = np.arange(24, 32)
-    full_idx = np.arange(0, N_TOTAL_STAGES)
+    early_idx = list(range(0, 8))
+    mid_idx = list(range(12, 20))
+    late_idx = list(range(24, 32))
+    full_idx = list(range(0, N_TOTAL_STAGES))
 
     subsets = {
         "early_only": early_idx,
@@ -580,14 +570,14 @@ def main() -> int:
     }
 
     def build_features(bloch_e1, bloch_e2, ent_e1, ent_e2, indices):
-        return np.array([
+        return torch.stack([
             feature_slice(bloch_e1[i], bloch_e2[i], ent_e1[i], ent_e2[i], indices)
             for i in range(N_SAMPLES)
-        ], dtype=np.float32)
+        ], dim=0).to(torch.float32)
 
-    engine_features: dict[str, np.ndarray] = {}
-    identity_features: dict[str, np.ndarray] = {}
-    random_features: dict[str, np.ndarray] = {}
+    engine_features: dict[str, torch.Tensor] = {}
+    identity_features: dict[str, torch.Tensor] = {}
+    random_features: dict[str, torch.Tensor] = {}
     for name, idx in subsets.items():
         engine_features[name] = build_features(bloch_e1_all, bloch_e2_all, ent_e1_all, ent_e2_all, idx)
         identity_features[name] = build_features(
@@ -596,20 +586,20 @@ def main() -> int:
         random_features[name] = build_features(
             rand_bloch_e1_all, rand_bloch_e2_all, rand_ent_e1_all, rand_ent_e2_all, idx,
         )
-        print(f"  variant {name}: indices={idx.tolist()}  shape={engine_features[name].shape}")
+        print(f"  variant {name}: indices={idx}  shape={tuple(engine_features[name].shape)}")
 
     # 4. Train / test split
-    train_mask = np.arange(N_SAMPLES) < N_TRAIN
+    train_mask = torch.arange(N_SAMPLES) < N_TRAIN
     test_mask = ~train_mask
 
     y_quad_tr = input_quadrant[train_mask]
     y_quad_te = input_quadrant[test_mask]
     y_oct_tr = input_octant[train_mask]
     y_oct_te = input_octant[test_mask]
-    theta_tr = input_theta[train_mask].astype(np.float32)
-    theta_te = input_theta[test_mask].astype(np.float32)
-    phi_tr = input_phi[train_mask].astype(np.float32)
-    phi_te = input_phi[test_mask].astype(np.float32)
+    theta_tr = input_theta[train_mask].to(torch.float32)
+    theta_te = input_theta[test_mask].to(torch.float32)
+    phi_tr = input_phi[train_mask].to(torch.float32)
+    phi_te = input_phi[test_mask].to(torch.float32)
 
     # 5. For each variant + engine kind, train classifiers/regressors and compute MI
     print("Training MLP readouts and computing MI per (engine_kind × variant × label)...")
@@ -652,8 +642,8 @@ def main() -> int:
             # Mutual information on the full sample (sklearn handles internal splits)
             mi_quad = mi_to_discrete(X, input_quadrant)
             mi_oct = mi_to_discrete(X, input_octant)
-            mi_theta = mi_to_continuous(X, input_theta.astype(np.float64))
-            mi_phi = mi_to_continuous(X, input_phi.astype(np.float64))
+            mi_theta = mi_to_continuous(X, input_theta)
+            mi_phi = mi_to_continuous(X, input_phi)
             # MI to continuous input vector — sum over 3 axes
             mi_input_x = mi_to_continuous(X, input_bloch[:, 0])
             mi_input_y = mi_to_continuous(X, input_bloch[:, 1])
@@ -662,7 +652,7 @@ def main() -> int:
 
             per_variant[name] = {
                 "feature_dim": d,
-                "indices": subsets[name].tolist(),
+                "indices": list(subsets[name]),
                 "classifier": {
                     "quadrant_test_accuracy": quad_res["test_accuracy"],
                     "quadrant_train_accuracy": quad_res["train_accuracy"],
@@ -697,10 +687,10 @@ def main() -> int:
     print("Computing scipy.stats correlation diagnostics (sanity check)...")
     late_eng = engine_features["late_only"]
     # Correlate the first feature axis (Type 1 late-substage-24 bx) with theta and phi
-    corr_theta_pearson = float(scipy_stats.pearsonr(late_eng[:, 0], input_theta).statistic)
-    corr_phi_pearson = float(scipy_stats.pearsonr(late_eng[:, 0], input_phi).statistic)
-    corr_theta_spearman = float(scipy_stats.spearmanr(late_eng[:, 0], input_theta).statistic)
-    corr_phi_spearman = float(scipy_stats.spearmanr(late_eng[:, 0], input_phi).statistic)
+    corr_theta_pearson = float(scipy_stats.pearsonr(late_eng[:, 0].tolist(), input_theta.tolist()).statistic)
+    corr_phi_pearson = float(scipy_stats.pearsonr(late_eng[:, 0].tolist(), input_phi.tolist()).statistic)
+    corr_theta_spearman = float(scipy_stats.spearmanr(late_eng[:, 0].tolist(), input_theta.tolist()).statistic)
+    corr_phi_spearman = float(scipy_stats.spearmanr(late_eng[:, 0].tolist(), input_phi.tolist()).statistic)
 
     # 8. Headline comparisons + verdict
     eng_late = per_kind_results["engine"]["late_only"]
@@ -920,7 +910,7 @@ def main() -> int:
     boundary = {
         "mi_estimates_finite_and_nonneg": {
             "pass": all(
-                v["mutual_information"][k] >= 0.0 and np.isfinite(v["mutual_information"][k])
+                v["mutual_information"][k] >= 0.0 and math.isfinite(v["mutual_information"][k])
                 for kind in feature_kinds
                 for v in per_kind_results[kind].values()
                 for k in v["mutual_information"]
@@ -932,8 +922,8 @@ def main() -> int:
         },
         "engines_run_without_nan": {
             "pass": (
-                np.isfinite(engine_features["full"]).all()
-                and np.isfinite(engine_features["late_only"]).all()
+                bool(torch.isfinite(engine_features["full"]).all().item())
+                and bool(torch.isfinite(engine_features["late_only"]).all().item())
             ),
         },
         "scipy_corr_diagnostic_in_range": {
@@ -1005,7 +995,18 @@ def main() -> int:
         },
         "positive": positive,
         "negative_predicates": negative,
+        "graveyard_companions": negative,
         "boundary": boundary,
+        "nearby_variants": {
+            "total": len(negative),
+            "passed": sum(1 for row in negative.values() if row.get("pass")),
+            "variants": sorted(negative),
+        },
+        "why_not_v4_probes": [
+            "v5 formal scout over late-stage mutual-information encoded signal readouts.",
+            "Does not promote canonical engine, axis, bridge, manifold, or target-system claims.",
+            "The mutual-information result is bounded to the finite readout fixture and controls.",
+        ],
         "dataset": {
             "n_samples": N_SAMPLES,
             "n_train": N_TRAIN,

@@ -23,12 +23,12 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 
 import gudhi
-import numpy as np
 import scipy.sparse.linalg as spla
 import sympy as sp
 import toponetx as tnx
 from toponetx import Cell
 import networkx as nx
+import torch
 
 ROOT = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = ROOT / "results"
@@ -54,11 +54,11 @@ TOOL_MANIFEST = {
             "comparison — not just imported"
         ),
     },
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
         "reason": (
-            "load-bearing: Laplacian eigendecomposition via np.linalg.eigvalsh "
+            "load-bearing: Laplacian eigendecomposition via torch.linalg.eigvalsh "
             "for betti number extraction (kernel dimension counting)"
         ),
     },
@@ -66,8 +66,9 @@ TOOL_MANIFEST = {
         "tried": True,
         "used": True,
         "reason": (
-            "load-bearing: sparse eigenvalue extraction via scipy.sparse.linalg.eigsh "
-            "for top-5 L_0 spectrum; sparse matrix operations on Hodge Laplacians"
+            "supportive: sparse eigenvalue extraction via scipy.sparse.linalg.eigsh "
+            "for an independent top-5 L_0 spectrum cross-check; pass/fail rests on "
+            "TopoNetX/GUDHI construction and PyTorch eigvalsh betti extraction"
         ),
     },
     "gudhi": {
@@ -100,8 +101,8 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {
     "toponetx": "load_bearing",
-    "numpy": "load_bearing",
-    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "scipy": "supportive",
     "gudhi": "load_bearing",
     "sympy": "supportive",
     "networkx": "supportive",
@@ -126,6 +127,7 @@ LAYERS: list[str] = [
 ]
 
 _EIGEN_ZERO_TOL = 1e-8
+FLOAT_DTYPE = torch.float64
 
 
 # ---------------------------------------------------------------------------
@@ -213,13 +215,13 @@ def compute_hodge_laplacians(sc: tnx.SimplicialComplex) -> dict[str, Any]:
     for rank in range(4):  # L_0 through L_3
         try:
             L = sc.hodge_laplacian_matrix(rank=rank)
-            L_dense = L.toarray().astype(float)
-            evals = np.linalg.eigvalsh(L_dense)
-            betti_k = int(np.sum(np.abs(evals) < _EIGEN_ZERO_TOL))
+            L_dense = torch.tensor(L.toarray(), dtype=FLOAT_DTYPE)
+            evals = torch.linalg.eigvalsh(L_dense)
+            betti_k = int(torch.sum(torch.abs(evals) < _EIGEN_ZERO_TOL).item())
             betti[rank] = betti_k
 
             # Top-5 eigenvalues (sorted ascending)
-            evals_sorted = sorted(evals.tolist())
+            evals_sorted = sorted(float(v) for v in evals.tolist())
             results[f"L_{rank}"] = {
                 "shape": list(L_dense.shape),
                 "eigenvalues_ascending_top5": [round(v, 10) for v in evals_sorted[:5]],
@@ -362,18 +364,18 @@ def build_cell_complex_and_compare(sc_stats: dict[str, Any]) -> dict[str, Any]:
 
     # CC L_0 betti_0
     try:
-        L0_cc = cc.hodge_laplacian_matrix(rank=0).toarray().astype(float)
-        evals0_cc = np.linalg.eigvalsh(L0_cc)
-        betti0_cc = int(np.sum(np.abs(evals0_cc) < _EIGEN_ZERO_TOL))
+        L0_cc = torch.tensor(cc.hodge_laplacian_matrix(rank=0).toarray(), dtype=FLOAT_DTYPE)
+        evals0_cc = torch.linalg.eigvalsh(L0_cc)
+        betti0_cc = int(torch.sum(torch.abs(evals0_cc) < _EIGEN_ZERO_TOL).item())
     except Exception as exc:
         betti0_cc = -1
         L0_cc = None  # type: ignore[assignment]
 
     # CC L_2 (2-cell Hodge Laplacian)
     try:
-        L2_cc = cc.hodge_laplacian_matrix(rank=2).toarray().astype(float)
-        evals2_cc = np.linalg.eigvalsh(L2_cc)
-        betti2_cc = int(np.sum(np.abs(evals2_cc) < _EIGEN_ZERO_TOL))
+        L2_cc = torch.tensor(cc.hodge_laplacian_matrix(rank=2).toarray(), dtype=FLOAT_DTYPE)
+        evals2_cc = torch.linalg.eigvalsh(L2_cc)
+        betti2_cc = int(torch.sum(torch.abs(evals2_cc) < _EIGEN_ZERO_TOL).item())
         l2_shape = list(L2_cc.shape)
     except Exception as exc:
         betti2_cc = -1
@@ -486,9 +488,9 @@ def graveyard_random_shuffle_breaks_betti() -> dict[str, Any]:
     # Close cycle: last layer -> first layer (creates a loop)
     sc_cyc.add_simplex([LAYERS[-1], LAYERS[0]])
 
-    L1_cyc = sc_cyc.hodge_laplacian_matrix(rank=1).toarray().astype(float)
-    evals_cyc = np.linalg.eigvalsh(L1_cyc)
-    betti1_cyc = int(np.sum(np.abs(evals_cyc) < _EIGEN_ZERO_TOL))
+    L1_cyc = torch.tensor(sc_cyc.hodge_laplacian_matrix(rank=1).toarray(), dtype=FLOAT_DTYPE)
+    evals_cyc = torch.linalg.eigvalsh(L1_cyc)
+    betti1_cyc = int(torch.sum(torch.abs(evals_cyc) < _EIGEN_ZERO_TOL).item())
 
     # Canonical SC for comparison
     sc_can = tnx.SimplicialComplex()
@@ -496,9 +498,9 @@ def graveyard_random_shuffle_breaks_betti() -> dict[str, Any]:
         sc_can.add_node(name)
     for i in range(len(LAYERS) - 1):
         sc_can.add_simplex([LAYERS[i], LAYERS[i + 1]])
-    L1_can = sc_can.hodge_laplacian_matrix(rank=1).toarray().astype(float)
-    evals_can = np.linalg.eigvalsh(L1_can)
-    betti1_can = int(np.sum(np.abs(evals_can) < _EIGEN_ZERO_TOL))
+    L1_can = torch.tensor(sc_can.hodge_laplacian_matrix(rank=1).toarray(), dtype=FLOAT_DTYPE)
+    evals_can = torch.linalg.eigvalsh(L1_can)
+    betti1_can = int(torch.sum(torch.abs(evals_can) < _EIGEN_ZERO_TOL).item())
 
     return {
         "canonical_betti_1": betti1_can,
@@ -525,8 +527,8 @@ def graveyard_removed_layer_changes_complex() -> dict[str, Any]:
 
     n_simplices_12 = {rank: len(sc12.skeleton(rank)) for rank in range(sc12.dim + 1)}
 
-    L0_12 = sc12.hodge_laplacian_matrix(rank=0).toarray().astype(float)
-    betti0_12 = int(np.sum(np.abs(np.linalg.eigvalsh(L0_12)) < _EIGEN_ZERO_TOL))
+    L0_12 = torch.tensor(sc12.hodge_laplacian_matrix(rank=0).toarray(), dtype=FLOAT_DTYPE)
+    betti0_12 = int(torch.sum(torch.abs(torch.linalg.eigvalsh(L0_12)) < _EIGEN_ZERO_TOL).item())
 
     return {
         "n_nodes": n,
@@ -551,9 +553,9 @@ def graveyard_redundant_edges_inflate_betti1() -> dict[str, Any]:
     sc_extra.add_simplex([LAYERS[5], LAYERS[8]])   # shortcut
     sc_extra.add_simplex([LAYERS[10], LAYERS[12]])  # shortcut
 
-    L1_extra = sc_extra.hodge_laplacian_matrix(rank=1).toarray().astype(float)
-    evals_extra = np.linalg.eigvalsh(L1_extra)
-    betti1_extra = int(np.sum(np.abs(evals_extra) < _EIGEN_ZERO_TOL))
+    L1_extra = torch.tensor(sc_extra.hodge_laplacian_matrix(rank=1).toarray(), dtype=FLOAT_DTYPE)
+    evals_extra = torch.linalg.eigvalsh(L1_extra)
+    betti1_extra = int(torch.sum(torch.abs(evals_extra) < _EIGEN_ZERO_TOL).item())
 
     return {
         "shortcuts_added": 3,

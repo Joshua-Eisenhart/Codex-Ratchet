@@ -5,6 +5,14 @@ import numpy as np
 
 classification = "classical_baseline"
 
+divergence_log = [
+    (
+        "Classical baseline contrast: this MVN differential-entropy probe is a "
+        "classical comparator/control surface; it does not promote a nonclassical, "
+        "formal-scout, bridge, axis-level, or canonical proof claim."
+    ),
+]
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},

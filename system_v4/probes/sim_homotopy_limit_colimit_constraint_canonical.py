@@ -21,6 +21,8 @@ Classification: canonical (constraint-admissibility for derived limit existence)
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

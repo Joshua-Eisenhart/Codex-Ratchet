@@ -10,6 +10,8 @@ import json, os, numpy as np
 from clifford import Cl
 import sympy as sp
 
+classification = "canonical"
+
 SCOPE_NOTE = "Cl(3) bivector <-> Pauli i*sigma cross-check; ENGINE_MATH_REFERENCE.md"
 
 TOOL_MANIFEST = {

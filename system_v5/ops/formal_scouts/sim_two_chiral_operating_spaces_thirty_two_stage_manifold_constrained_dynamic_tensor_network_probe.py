@@ -39,7 +39,6 @@ from typing import Any
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 
-import numpy as np
 import torch
 import z3
 import sympy as sp
@@ -138,11 +137,6 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "load-bearing: 12-qubit (4096-dim) complex128 state vectors, manifold enforcer chain, operator unitaries, terrain channels",
     },
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing: operator matrix exponentials, Frobenius cross-check computations, terrain Lindblad operators",
-    },
     "z3": {
         "tried": True,
         "used": True,
@@ -177,7 +171,6 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {
     "torch": "load_bearing",
-    "numpy": "load_bearing",
     "z3": "load_bearing",
     "sympy": "load_bearing",
     "opt_einsum": "supportive",
@@ -230,28 +223,28 @@ def _frobenius_distance_histories(
         # Engine state: extract 2-dim sub-block, form density
         eng_sub = left_hist[i][:2].detach().cpu()
         eng_sub = eng_sub / (torch.linalg.vector_norm(eng_sub) + 1e-30)
-        rho_eng = torch.outer(eng_sub, eng_sub.conj()).numpy()
+        rho_eng = torch.outer(eng_sub, eng_sub.conj()).to(torch.complex128)
 
         # Source row density: from the readout (Bloch vector reconstruction)
         rx, ry, rz = left_rows[i]["readout"]
-        rho_src = 0.5 * np.array([[1 + rz, rx - 1j * ry], [rx + 1j * ry, 1 - rz]], dtype=complex)
-        dist = float(np.linalg.norm(rho_eng - rho_src, "fro"))
+        rho_src = 0.5 * torch.tensor([[1 + rz, complex(rx, -ry)], [complex(rx, ry), 1 - rz]], dtype=torch.complex128)
+        dist = float(torch.linalg.matrix_norm(rho_eng - rho_src).item())
         left_dists.append(dist)
 
     n_compare_r = min(len(right_hist), len(right_rows))
     for i in range(n_compare_r):
         eng_sub = right_hist[i][:2].detach().cpu()
         eng_sub = eng_sub / (torch.linalg.vector_norm(eng_sub) + 1e-30)
-        rho_eng = torch.outer(eng_sub, eng_sub.conj()).numpy()
+        rho_eng = torch.outer(eng_sub, eng_sub.conj()).to(torch.complex128)
 
         rx, ry, rz = right_rows[i]["readout"]
-        rho_src = 0.5 * np.array([[1 + rz, rx - 1j * ry], [rx + 1j * ry, 1 - rz]], dtype=complex)
-        dist = float(np.linalg.norm(rho_eng - rho_src, "fro"))
+        rho_src = 0.5 * torch.tensor([[1 + rz, complex(rx, -ry)], [complex(rx, ry), 1 - rz]], dtype=torch.complex128)
+        dist = float(torch.linalg.matrix_norm(rho_eng - rho_src).item())
         right_dists.append(dist)
 
     return {
-        "left_mean_frobenius_to_source_native": float(np.mean(left_dists)) if left_dists else float("nan"),
-        "right_mean_frobenius_to_source_native": float(np.mean(right_dists)) if right_dists else float("nan"),
+        "left_mean_frobenius_to_source_native": float(sum(left_dists) / len(left_dists)) if left_dists else float("nan"),
+        "right_mean_frobenius_to_source_native": float(sum(right_dists) / len(right_dists)) if right_dists else float("nan"),
         "left_n_compared": len(left_dists),
         "right_n_compared": len(right_dists),
         "note": (
@@ -860,10 +853,6 @@ def main() -> int:
     def _json_default(obj: Any) -> Any:
         if isinstance(obj, torch.Tensor):
             return obj.detach().cpu().tolist()
-        if isinstance(obj, np.ndarray):
-            return obj.tolist()
-        if isinstance(obj, np.generic):
-            return obj.item()
         if isinstance(obj, complex):
             return [obj.real, obj.imag]
         raise TypeError(f"Not serializable: {type(obj)}")

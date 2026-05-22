@@ -11,7 +11,7 @@ import numpy as np
 import sim_szilard_record_ordering_refinement_sweep as refined
 
 
-CLASSIFICATION = "exploratory"
+CLASSIFICATION = "diagnostic_only"
 classification = CLASSIFICATION
 divergence_log = (
     "Exact-observable recheck for the Szilard record translation blocker. It "

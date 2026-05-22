@@ -14,6 +14,8 @@ import cvc5
 from cvc5 import Kind
 import sympy as sp
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

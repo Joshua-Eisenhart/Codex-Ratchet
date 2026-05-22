@@ -19,6 +19,8 @@ import sympy as sp
 from sympy import symbols, Eq, And, Or
 import cvc5
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

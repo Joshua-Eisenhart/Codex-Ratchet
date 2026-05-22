@@ -16,8 +16,8 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
 import sympy as sp
+import torch
 import z3
 
 import canonical_qit_engine_specs as specs
@@ -30,6 +30,7 @@ OUT_PATH = RESULT_DIR / "h0_mirror_chirality_preflight_probe_results.json"
 NAME = "h0_mirror_chirality_preflight_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 SOURCE_ALIGNMENT_CATEGORY = "h0_mirror_chirality_preflight"
 CLAIM_CEILING = (
     "Formal scout only: exact-matrix preflight for the current H0/SX mirror "
@@ -44,7 +45,7 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "load-bearing exact rational matrix algebra for H0 and mirror conjugation",
     },
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
         "reason": "load-bearing source-code matrix comparison against canonical_qit_engine_specs",
@@ -56,6 +57,7 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_ROLE_SOURCE = {tool: "local" for tool in TOOL_MANIFEST}
 
 
 def as_jsonable(value: Any) -> Any:
@@ -65,12 +67,8 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
+    if isinstance(value, torch.Tensor):
         return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, sp.MatrixBase):
         return [[str(value[i, j]) for j in range(value.shape[1])] for i in range(value.shape[0])]
     if isinstance(value, sp.Basic):
@@ -82,8 +80,12 @@ def sha256_file(path: pathlib.Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def max_abs_np(arr: np.ndarray) -> float:
-    return float(np.max(np.abs(arr)))
+def complex_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=torch.complex128)
+
+
+def max_abs_tensor(value: Any) -> float:
+    return float(torch.max(torch.abs(complex_tensor(value))).item())
 
 
 def matrix_equal(a: sp.Matrix, b: sp.Matrix) -> bool:
@@ -120,12 +122,12 @@ def main() -> int:
     mirror_diagonal_h = sx * diagonal_h * sx
     mirror_offdiag_h = sx * offdiag_h * sx
 
-    source_h0 = np.asarray(specs.H0, dtype=np.complex128)
-    source_type_two = np.asarray(specs.H_TYPE_TWO, dtype=np.complex128)
-    exact_h0 = np.asarray(h0.tolist(), dtype=np.complex128)
+    source_h0 = complex_tensor(specs.H0)
+    source_type_two = complex_tensor(specs.H_TYPE_TWO)
+    exact_h0 = complex_tensor([[complex(value) for value in row] for row in h0.tolist()])
     exact_type_two = -exact_h0
-    source_matches_exact = max_abs_np(source_h0 - exact_h0) < 1e-12
-    source_type_two_matches = max_abs_np(source_type_two - exact_type_two) < 1e-12
+    source_matches_exact = max_abs_tensor(source_h0 - exact_h0) < 1e-12
+    source_type_two_matches = max_abs_tensor(source_type_two - exact_type_two) < 1e-12
     mirror_equals_full_flip = matrix_equal(mirror_h, h_type_two)
     sign_flip_passes = matrix_equal(h_type_two, -h0)
     diagonal_control_hides = matrix_equal(mirror_diagonal_h, -diagonal_h)
@@ -175,8 +177,8 @@ def main() -> int:
     positive = {
         "source_h0_coefficients_match_current_code_exactly": {
             "pass": bool(source_matches_exact and source_type_two_matches),
-            "source_h0_minus_exact_max_abs": max_abs_np(source_h0 - exact_h0),
-            "source_type_two_minus_exact_max_abs": max_abs_np(source_type_two - exact_type_two),
+            "source_h0_minus_exact_max_abs": max_abs_tensor(source_h0 - exact_h0),
+            "source_type_two_minus_exact_max_abs": max_abs_tensor(source_type_two - exact_type_two),
         },
         "sx_mirror_conjugation_is_not_full_h_sign_flip": {
             "pass": bool(not mirror_equals_full_flip),
@@ -243,10 +245,12 @@ def main() -> int:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "claim_ceiling": CLAIM_CEILING,
         "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "repair_receipt": repair_receipt,
         "axis0_outputs_or_blockers": repair_receipt["axis0_outputs_or_blockers"],
         "positive": positive,

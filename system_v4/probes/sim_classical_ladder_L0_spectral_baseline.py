@@ -7,11 +7,25 @@ spectral section; ENGINE_MATH_REFERENCE.md spectral operators. Classical
 baseline; non-canonical geometry.
 """
 import numpy as np
-from _doc_illum_common import build_manifest, write_results
+from _doc_illum_common import write_results
 
-TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH = build_manifest()
-TOOL_MANIFEST["numpy"] = {"tried": True, "used": True, "reason": "eigh"}
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
+classification = "classical_baseline"
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for L0 spectral admissibility; it does not "
+        "promote a nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "eigh"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+}
 
 
 def laplacian(A):

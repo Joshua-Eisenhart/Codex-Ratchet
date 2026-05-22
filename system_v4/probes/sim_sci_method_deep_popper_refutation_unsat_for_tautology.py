@@ -7,10 +7,38 @@ of 'exists w with T(w) = false' is the formal statement.
 import json, os
 from z3 import Solver, Bool, Bools, And, Or, Not, Implies, sat, unsat
 
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in
-    ["pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn",
-     "rustworkx","xgi","toponetx","gudhi"]}
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": ""},
+    "pyg": {"tried": False, "used": False, "reason": ""},
+    "z3": {"tried": False, "used": False, "reason": ""},
+    "cvc5": {"tried": False, "used": False, "reason": ""},
+    "sympy": {"tried": False, "used": False, "reason": ""},
+    "clifford": {"tried": False, "used": False, "reason": ""},
+    "geomstats": {"tried": False, "used": False, "reason": ""},
+    "e3nn": {"tried": False, "used": False, "reason": ""},
+    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "xgi": {"tried": False, "used": False, "reason": ""},
+    "toponetx": {"tried": False, "used": False, "reason": ""},
+    "gudhi": {"tried": False, "used": False, "reason": ""},
+}
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+
+SIM_BASENAME = os.path.splitext(os.path.basename(__file__))[0]
+RUN_BOUNDARY_FIELDS = {
+    "claim_ceiling": "recursive science-method deep micro only; no promotion beyond bounded falsifiability/admissibility fixture",
+    "next_lego_target": SIM_BASENAME,
+    "promotion_condition": "requires later independent admission, executed receipt review, and stage-appropriate lego gate before any higher claim",
+    "blocked_until": "exact runner result receipt validates under strict executable run boundary",
+    "demotion_condition": "demote if used as theory proof beyond this bounded science-method fixture or if execution result omits positive, negative, or boundary checks",
+    "out_of_scope": [
+        "no theory promotion",
+        "no manifold admission",
+        "no scientific coupling claim",
+        "no bridge or axis claim",
+    ],
+}
 TOOL_MANIFEST["z3"]["tried"] = True
 for k in TOOL_MANIFEST:
     if not TOOL_MANIFEST[k]["tried"]:
@@ -62,13 +90,14 @@ if __name__ == "__main__":
     pos, neg, bnd = run_positive_tests(), run_negative_tests(), run_boundary_tests()
     allpass = lambda d: all(v.get("pass", False) for v in d.values())
     ap = allpass(pos) and allpass(neg) and allpass(bnd)
-    res = {"name": "sci_method_deep_popper_refutation_unsat_for_tautology",
+    res = {"name": SIM_BASENAME,
            "classification": "canonical",
            "scope_note": "OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md",
            "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-           "positive": pos, "negative": neg, "boundary": bnd, "all_pass": ap}
+           "positive": pos, "negative": neg, "boundary": bnd,
+           "all_pass": ap, "overall_pass": ap, **RUN_BOUNDARY_FIELDS}
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out = os.path.join(out_dir, "sci_method_deep_popper_refutation_unsat_for_tautology_results.json")
+    out = os.path.join(out_dir, f"{SIM_BASENAME}_results.json")
     with open(out, "w") as f: json.dump(res, f, indent=2, default=str)
     print(f"[{res['name']}] all_pass={ap} -> {out}")

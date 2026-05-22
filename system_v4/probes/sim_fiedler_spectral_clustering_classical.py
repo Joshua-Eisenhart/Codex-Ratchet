@@ -12,6 +12,13 @@ from receipt_boundary import apply_default_receipt_boundary
 
 classification = "classical_baseline"
 NAME = "sim_fiedler_spectral_clustering_classical"
+divergence_log = (
+    "Classical Fiedler partition uses real-symmetric Laplacian eigenvalues only. "
+    "Lost relative to nonclassical shell: density-matrix coherence off-diagonals, "
+    "noncommuting edge-operator algebra, unitary graph walks with phase, and any "
+    "distinguishability-geometry constraint that forbids the zero-eigenvector "
+    "degeneracy from collapsing onto a single classical partition."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "adjacency and Laplacian array construction for the classical baseline"},

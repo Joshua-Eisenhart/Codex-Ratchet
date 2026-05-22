@@ -6,6 +6,8 @@ Paired files:
 - `system_v5/docs/GEOMETRIC_CONSTRAINT_MANIFOLD_FULL_THREAD_HANDOFF_20260515.md` (Codex master)
 - `system_v5/docs/CLAUDE_THREAD_HANDOFF_FLUX_TERRAIN_AXIS_OPERATOR_DISCIPLINE_20260515.md` (Claude thread arc + Weyl-lane work)
 
+**2026-05-20 correction:** this document must not be read as canonizing the 13-layer scaffold. The root canon remains `F01_FINITUDE`, `N01_NONCOMMUTATION`, `C`, `M(C)`, induced geometry on `M(C)`, and axis maps. The 13-layer list below is a scout-authored candidate fixture that accumulated receipts; its exact count, ordering, and chain-vs-DAG topology remain open. See `system_v5/docs/CONSTRAINT_MANIFOLD_ORDERING_STATUS_CORRECTION_20260520.md`.
+
 **READING NOTE — structure of this document:**
 The main body (Sections A through K) uses only pure-math language: topological terms, algebraic structures, Lie groups, bundles, holonomy, Clifford algebras, eigenvalue partitions, homotopy classes, spinors, chirality sheets, projectors, density operators, entropy, Schmidt spectra. No interpretive labels appear here.
 
@@ -19,15 +21,15 @@ Moving terms to the appendix removes no math content. Every math object named th
 
 Owner: *"do we have full running sims of this integrated together? all the legos running as one. this is not something simple to run. it is full rich simulation. and needs all the tools running. and this isn't rungs. this is nested layers. and running a dynamic system. like a real tensor network. don't skip out on stuff."*
 
-Both Codex and Claude had collapsed the geometric constraint manifold into the left/right Weyl operating-space layer. **That is wrong.** The Weyl/chirality layer is one operating layer inside a 13-layer nested tower of simultaneous constraint surfaces, not the manifold itself. The owner-source manifold is much bigger, includes G-structure exploration, and is meant to be run as a coupled dynamic tensor-network simulation across all legos with all tools simultaneously.
+Both Codex and Claude had collapsed the geometric constraint manifold into the left/right Weyl operating-space layer. **That is wrong.** The Weyl/chirality layer is one operating layer inside a larger candidate constraint-geometry family, not the manifold itself. The source-backed working realization is bigger than Weyl alone, includes G-structure exploration, and is meant to be run as a coupled dynamic tensor-network simulation across relevant legos with all load-bearing tools simultaneously.
 
-This doc preserves: (A) the nested 13-layer tower from the actual scout code, (B) the G-structure scaffold currently in use plus alternatives explored, (C) a survey of existing integration sims, (D) the gap — no receipt yet says "all legos integrated as one nested dynamic tensor-network system," (E) the explicit corrections to prior collapse.
+This doc preserves: (A) the candidate 13-layer fixture from the actual scout code, (B) the G-structure scaffold currently in use plus alternatives explored, (C) a survey of existing integration sims, (D) the gap — no receipt yet says "all legos integrated as one nested dynamic tensor-network system," (E) the explicit corrections to prior Weyl-only collapse. It no longer binds later work to the 13-layer count/order.
 
 ---
 
-## A — The nested 13-layer constraint tower
+## A — Candidate 13-layer constraint scaffold
 
-**Layers are simultaneous constraint shells on the same state space, NOT sequential rungs.** Source: `system_v5/ops/formal_scouts/sim_nested_geometry_tower_dependency_order_probe.py:56-70`.
+**Candidate fixture only.** The following layer names are from `system_v5/ops/formal_scouts/sim_nested_geometry_tower_dependency_order_probe.py:56-70`. They are useful for existing fixture receipts, but they are not the canonical layer count, final ordering, or proof that the manifold is a linear chain. Alternative layer counts, alternative total/partial orders, and non-chain DAG topologies remain open unless separately excluded by receipts.
 
 ```
 1.  finite_constraint_complex
@@ -45,7 +47,7 @@ This doc preserves: (A) the nested 13-layer tower from the actual scout code, (B
 13. dynamic_transition_ratchet_geometry
 ```
 
-**The exact final order is open.** Per `system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md:224`, "each layer has to be tested independently, then tested for admissible stacking/nesting." The dependency-order scout instantiates concrete witnesses at each layer and tests with z3 that mutual-dependency cycles are UNSAT. Open choices recorded in the scout itself: "frame bundle structure reduction may need to move earlier before spinor bundle construction"; "dynamic transition geometry needs richer deformation families beyond adjacent dependency edges."
+**The exact final order and exact layer set are open.** Per `system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md:224`, "each layer has to be tested independently, then tested for admissible stacking/nesting." The dependency-order scout instantiates concrete witnesses at each layer and tests with z3 that mutual-dependency cycles are UNSAT for this fixture. Later receipts kill stronger readings: `two_root_constraint_layer_forcing_theorem_or_countermodel_probe_results.json` kills exact 13-layer forcing from F01/N01, and `layer_operator_name_blindness_falsifier_probe_results.json` kills name/label-driven semantic layer claims. Open choices recorded in the scout itself: "frame bundle structure reduction may need to move earlier before spinor bundle construction"; "dynamic transition geometry needs richer deformation families beyond adjacent dependency edges."
 
 **The Weyl/chirality-orientation layers live at layers 8 + 9 + possibly bleeding into 10 (Clifford module).** The source-alignment incident concerned one layer being a missing source object beneath the downstream readouts. Fixing layers 8-9 does NOT mean the whole 13-layer tower is integrated.
 
@@ -170,22 +172,22 @@ Both Claude and Codex made the same error this thread: collapsing the manifold t
 
 - **Claude's first manifold layout** cited `M(C)` + `S³ → S² Hopf ladder` + sheets `ψ_L / ψ_R` + fiber/base-lift loops + 5-DoF independence. That captured **layers 1, 3, 4, 5, 6, 7, 8, 9 partially** — missed 2, 10, 11, 12, 13 entirely, and never named the G-structure scaffold or the special-holonomy alternatives.
 - **Codex's first manifold layout** collapsed the same way: presented the Weyl operating-space + loop + substage pipeline as if it were the manifold. Owner caught it: *"what? this is NOT what the sims show! you have lost the constraint manifold. and its layers."*
-- **Codex's corrected reading** (after re-reading the sims): the 13-layer tower + G-structure exploration + clarification that layers are constraint surfaces not sequential rungs. This doc reflects that corrected reading.
+- **Codex's first corrected reading** (after re-reading the sims): the 13-layer tower + G-structure exploration + clarification that layers are constraint surfaces not sequential rungs. The 2026-05-20 correction supersedes the binding part of that reading: the 13-layer tower is a candidate fixture, not canon.
 
-**Established directive (binding for next thread):** when laying out the manifold, the layer set is the 13-layer tower from `sim_nested_geometry_tower_dependency_order_probe.py:56-70`. The Weyl operating-space layer is one operating layer inside it, not a substitute.
+**Corrected directive:** when laying out the manifold, load the thin root canon first, then the source-backed working realization, then treat the 13-layer scaffold as one candidate fixture among alternatives. The Weyl operating-space layer is not the whole manifold, but the 13-layer fixture is also not the required manifold.
 
 ---
 
 ## F — Re-entry checklist for next-thread manifold work
 
-1. **Do not collapse the manifold to the Weyl layer.** Always start with the 13-layer tower.
-2. Layers are **simultaneous constraint shells**, not sequential rungs. "Nested" not "stacked."
-3. The Weyl operating-space repair scout (Codex's named next build) closes layers 8-9. **It does NOT close the integration gap.**
+1. **Do not collapse the manifold to the Weyl layer.** Also do not collapse it to the 13-layer fixture. Start with thin canon: F01/N01, `C`, `M(C)`, induced geometry, axis maps.
+2. Treat the 13-layer scaffold as `candidate_legacy_stack`, not canon. Reverse/scramble controls inside that scaffold are not a search over alternative layer counts, partial orders, or non-chain topologies.
+3. The Weyl operating-space repair scout closes only a source-object gap around the Weyl/chiral layer. **It does NOT close the integration gap.**
 4. The G-structure scaffold is `GL(2,C)_real → O(4) → SO(4) → Spin(4) → U(2) → SU(2)` and is **scaffold-only, not final ontology**. Alternatives explored: SU3-like, G2-like, Spin7-like, with finite survivor-class evidence.
 5. Wider G-structure mining list (associated bundles, Hitchin fibrations, Higgs bundles, nonabelian Hodge, gerbes, spectral triples, etc.) has not been translated to v5 formal scouts.
-6. The integration question is OPEN. No receipt says "all legos integrated as one nested dynamic tensor-network system" yet. The named next scout does not close this; it extends layers 8-9.
-7. To attempt the all-legos integration, the design must specify: which subset of the 13 layers run simultaneously, which tools are load-bearing in the coupled evolution, what the read-out is, what would falsify it as "still subset coverage," and what graveyards must trip.
-8. **Owner directive: use max Grok and Gemini for this.** Provider audits are proposal/audit support, never canonical evidence.
+6. The integration question is OPEN. No receipt says "all legos integrated as one nested dynamic tensor-network system" yet. Any named next scout must state whether it uses the legacy 13-layer fixture, a source-backed working ladder, or a new alternative scaffold.
+7. To attempt all-legos integration, the design must specify: which candidate scaffold or DAG is being used, which tools are load-bearing in the coupled evolution, what the read-out is, what would falsify it as "still subset coverage," and what graveyards must trip.
+8. Use external provider audits as proposal/audit support, never canonical evidence.
 
 ---
 

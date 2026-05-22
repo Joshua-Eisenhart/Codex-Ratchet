@@ -12,11 +12,12 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import pathlib
 import time
 from typing import Any
 
-import numpy as np
+import torch
 import z3
 
 import axis0_guard_utils as axis0_guard
@@ -29,6 +30,7 @@ OUT_PATH = RESULT_DIR / "axis0_path_entropy_branch_closure_probe_results.json"
 NAME = "axis0_path_entropy_branch_closure_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 SOURCE_ALIGNMENT_CATEGORY = "axis0_path_entropy_blocked_diagnostic_branch_closure"
 CLAIM_CEILING = (
     "Formal scout only: verifies that the finite macro-router path_entropy "
@@ -44,10 +46,10 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "load-bearing receipt parsing for router, guard, falsifiers, and downstream adapters",
     },
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing finite vector and numeric witness checks",
+        "reason": "load-bearing finite vector and numeric witness checks for path-entropy branch closure",
     },
     "z3": {
         "tried": True,
@@ -60,7 +62,18 @@ TOOL_MANIFEST = {
         "reason": "load-bearing admitted/blocked Axis0 feature boundary",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'python_json': 'supportive',
+    'pytorch': 'load_bearing',
+    'z3': 'load_bearing',
+    'axis0_guard_utils': 'supportive',
+}
+TOOL_ROLE_SOURCE = {
+    "python_json": "local",
+    "pytorch": "local",
+    "z3": "local",
+    "axis0_guard_utils": "local",
+}
 
 PATH_ENTROPY_EQUALITY_TOL = 1e-12
 DEEPER_INVARIANT_GAP_FLOOR = 1e-3
@@ -134,13 +147,25 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
+    if isinstance(value, torch.Tensor):
         return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     return value
+
+
+def finite_float(value: Any, default: float = math.nan) -> float:
+    try:
+        out = float(value)
+    except (TypeError, ValueError):
+        return default
+    return out if bool(torch.isfinite(torch.as_tensor(out, dtype=torch.float64)).item()) else default
+
+
+def finite_min(values: list[float]) -> float:
+    tensor = torch.as_tensor(values, dtype=torch.float64)
+    finite = tensor[torch.isfinite(tensor)]
+    if finite.numel() == 0:
+        return math.nan
+    return float(torch.min(finite).item())
 
 
 def sha256_file(path: pathlib.Path) -> str:
@@ -333,19 +358,19 @@ def main() -> int:
         "deeper_invariant_gaps_under_same_path_entropy",
         default={},
     )
-    path_delta = float(
+    path_delta = finite_float(
         get_path(
             schedule,
             "repair_receipt",
             "primary_control/result",
             "path_entropy_delta_same_schedule",
-            default=np.nan,
+            default=math.nan,
         )
     )
     deeper_gap_values = [
-        float(schedule_gaps.get("fep_gradient_l2_gap", 0.0)),
-        float(schedule_gaps.get("bloch_path_length_gap", 0.0)),
-        float(schedule_gaps.get("observation_distribution_l2_gap", 0.0)),
+        finite_float(schedule_gaps.get("fep_gradient_l2_gap", 0.0), default=0.0),
+        finite_float(schedule_gaps.get("bloch_path_length_gap", 0.0), default=0.0),
+        finite_float(schedule_gaps.get("observation_distribution_l2_gap", 0.0), default=0.0),
     ]
     active_hits = active_feature_hits(post_guard)
     raw_hits = raw_router_hits(pre_guard)
@@ -362,8 +387,9 @@ def main() -> int:
         receipt_ok(schedule)
         and schedule_axis0.get("path_entropy_current_reading")
         == "blocked_schedule_token_entropy_derivative_not_downstream_axis0_feature"
+        and math.isfinite(path_delta)
         and abs(path_delta) <= PATH_ENTROPY_EQUALITY_TOL
-        and min(deeper_gap_values) > DEEPER_INVARIANT_GAP_FLOOR
+        and finite_min(deeper_gap_values) > DEEPER_INVARIANT_GAP_FLOOR
         and get_path(
             schedule,
             "axis0_outputs_or_blockers",
@@ -596,10 +622,12 @@ def main() -> int:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "claim_ceiling": CLAIM_CEILING,
         "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "repair_receipt": repair_receipt,
         "axis0_outputs_or_blockers": repair_receipt["axis0_outputs_or_blockers"],
         "positive": positive,

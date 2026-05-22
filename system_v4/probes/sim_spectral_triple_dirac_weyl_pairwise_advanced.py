@@ -12,6 +12,8 @@ import json
 import os
 import math
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},

@@ -1,0 +1,42 @@
+{
+  "schema": "wizard_v4_2_blocked_reason.v1",
+  "kind": "blocked_reason",
+  "generated_at": "2026-05-19T22:19:14Z",
+  "reason": "Runner preflight is green and helper processes are clean, but the live queues are idle while blocked remains nonzero. The backlog is dominated by wizard_admission_blocked rows with contract debt, so broad runner relaunch or success language is not admissible.",
+  "scope": "system_v4/probes/a2_state/queue plus system_v5 ops and formal-scout validation surfaces",
+  "queue_snapshot": {
+    "lane_A": 0,
+    "lane_B": 0,
+    "claimed": 0,
+    "blocked": 852,
+    "done": 8856
+  },
+  "dominant_blocked_reason": {
+    "reason": "wizard_admission_blocked",
+    "count": 632,
+    "total": 852,
+    "percent": 74.2
+  },
+  "current_green_checks": [
+    "make runner-preflight passed on 2026-05-19",
+    "packet conformance passed inside scripts/wizard_v4_2_runtime_audit.py on 2026-05-19",
+    "helper process strict audit passed inside make runner-preflight and runtime audit on 2026-05-19",
+    "direct Grok and direct Gemini provider child route accepted under /tmp/codex_ratchet_v42_provider_route_repair_20260519/decision.evidence_boundary/20260519T212838Z"
+  ],
+  "remaining_blockers": [
+    "scripts/wizard_v4_2_runtime_audit.py still reports runner_idle_with_backlog",
+    "scripts/wizard_v4_2_runtime_audit.py still reports no recent worker-pool receipts on canonical receipt surfaces",
+    "scripts/wizard_v4_2_runtime_audit.py still reports contract_lint_summary red: 10497 checked, 2766 violations, 2416 sims with violations",
+    "scripts/wizard_v4_2_runtime_audit.py still reports never_run_summary red: 3769 never-run rows",
+    "scripts/lint_sim_contract.py system_v5/ops/formal_scouts/sim_*.py is red: 289 checked, 322 violations, 179 sims with violations",
+    "system_v5/ops/formal_scouts/validate_formal_scout_results.py is red on existing result metadata/report-shape failures"
+  ],
+  "next_admissible_step": "Do not relaunch broad queues. Select one smallest wizard_admission_blocked row whose contract subreasons are limited to C1/C4 or a known static lint repair, repair only that row's source/result contract surface, then rerun its exact lint and result validators before any queue movement.",
+  "recommended_next_move": "Use system_v5/ops/blocked_reason_breakdown.json as the selector surface; prefer a single micro tool/function row over manifold, bridge, source-native, or multi-tool coupling rows until contract lint and result metadata are clean for that exact row.",
+  "blocked_until": [
+    "a selected row has a named source path and exact contract subreasons",
+    "the repair scope excludes broad sim reruns and generated result rewrites unless that selected row requires them",
+    "post-repair lint/result validation is green for the selected row"
+  ],
+  "claim_ceiling": "Runtime blocked-state artifact only; not a sim result, queue promotion, Wizard FULL receipt, or scientific evidence."
+}

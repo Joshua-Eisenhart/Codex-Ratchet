@@ -1,26 +1,28 @@
 #!/usr/bin/env python3
-"""Source-native FEP POMDP policy-tree scout.
+"""Bounded canonical QIT FEP POMDP policy-tree scout.
 
 This is the next, stricter step after
 sim_source_native_active_inference_strategy_policy_probe.py.
 
-The earlier scout made finite EngineCore stage windows into policy candidates
-and scored them with an EFE-style observation readout. This scout adds the
-missing active-inference boundary: explicit finite A/B/C/D matrices.
+The earlier scout made finite bounded canonical QIT schedule windows into
+policy candidates and scored them with an EFE-style observation readout. This
+scout adds the missing active-inference boundary: explicit finite A/B/C/D
+matrices.
 
 Formal translation:
 
 - A: non-identity emission matrix P(o | s). This is the sensory blanket /
   projection channel, not a psychology primitive.
-- B_pi: source-native EngineCore-induced latent transition for each finite
-  policy window. It is estimated from density-state rollouts.
+- B_pi: bounded canonical QIT replay-induced latent transition for each finite
+  policy window. It is estimated from density-state rollouts over the recorded
+  schedule/operator metadata, not from source runtime dynamics.
 - C: preference distribution P(o). Emotion/IGT labels remain non-load-bearing.
-- D: prior over latent states, estimated from initial source-native densities.
+- D: prior over latent states, estimated from finite replay-helper densities.
 - Future/time: finite policy-tree prediction depth under B_pi, not primitive
   temporal metaphysics.
 
-Formal scout only. No canonical FEP engine, Holodeck, psychology, TOE, final
-IGT, or physics claim is admitted.
+Formal scout only. No source runtime dynamics, canonical FEP engine,
+Holodeck, psychology, TOE, final IGT, real basin, or physics claim is admitted.
 """
 
 from __future__ import annotations
@@ -34,8 +36,23 @@ from typing import Any
 import networkx as nx
 import torch
 
-from canonical_qit_engine_specs import I2, SX, SY, SZ
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import (
+    I2,
+    OPERATOR_BASE_ANGLES,
+    OPERATOR_GENERATORS,
+    SX,
+    SY,
+    SZ,
+    get_operator_slot_spec,
+    get_schedule,
+)
+from sim_source_native_engine_manifold_attractor_basin_depth_probe import (
+    MANIFOLD_TARGET_MIX,
+    apply_lindblad_step,
+    generate_initial_density,
+    normalize_density_torch,
+    stage_fixed_target,
+)
 
 
 ROOT = Path(__file__).resolve().parent
@@ -45,13 +62,14 @@ OUT_PATH = RESULT_DIR / "source_native_fep_pomdp_policy_tree_probe_results.json"
 NAME = "source_native_fep_pomdp_policy_tree_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
-SOURCE_ALIGNMENT_CATEGORY = "source_native_fep_pomdp_policy_tree_scout"
+SIM_EXECUTION_KIND = "nonclassical"
+SOURCE_ALIGNMENT_CATEGORY = "bounded_canonical_qit_fep_pomdp_policy_tree_replay"
 CLAIM_CEILING = (
     "Formal scout only: finite discrete POMDP-style active-inference probe "
-    "over source-native EngineCore policy windows with explicit A/B/C/D "
-    "matrices. It does not admit a full FEP engine, canonical Holodeck, "
-    "psychology, TOE, final IGT, consciousness, physics, or canonical engine "
-    "identity claim."
+    "over bounded canonical QIT schedule windows with explicit A/B/C/D "
+    "matrices. It does not admit source runtime dynamics, a full FEP "
+    "engine, canonical Holodeck, psychology, TOE, final IGT, consciousness, "
+    "physics, real basin, or canonical engine identity claim."
 )
 
 TOOL_MANIFEST = {
@@ -65,10 +83,15 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "supportive A/B/C/D dependency graph sanity check",
     },
-    "engine_core": {
+    "canonical_qit_engine_specs": {
         "tried": True,
         "used": True,
-        "reason": "supportive source-native stage-window rollout provider consumed by Torch measurements",
+        "reason": "supportive bounded schedule/operator metadata replacing the former source-engine boundary",
+    },
+    "terrain_lindblad_replay_fixture": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive finite density replay helper for Lindblad step, initial densities, and manifold targets",
     },
     "json": {
         "tried": True,
@@ -79,7 +102,8 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {
     "torch": "load_bearing",
     "networkx": "supportive",
-    "engine_core": "supportive",
+    "canonical_qit_engine_specs": "supportive",
+    "terrain_lindblad_replay_fixture": "supportive",
     "json": "supportive",
 }
 
@@ -191,14 +215,67 @@ def policy_id(engine_type: int, start_stage: int) -> str:
     return f"E{engine_type}:stage_window_{start_stage:02d}_{(start_stage + 1) % 8:02d}"
 
 
+def apply_operator_slot_at(
+    rho: torch.Tensor,
+    perception: str,
+    engine_type: int,
+    loop_class: str,
+    substage_idx: int,
+) -> tuple[torch.Tensor, dict[str, Any]]:
+    slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+    generator = OPERATOR_GENERATORS[slot["operator"]]
+    angle = float(slot["sign"]) * float(OPERATOR_BASE_ANGLES[slot["operator"]])
+    unitary = torch.linalg.matrix_exp((-1j * angle) * generator)
+    return unitary @ rho @ unitary.conj().T, slot
+
+
+def run_replay_substage(
+    rho: torch.Tensor,
+    *,
+    engine_type: int,
+    perception: str,
+    loop_class: str,
+    main_stage_idx: int,
+    substage_idx: int,
+    manifold_enabled: bool,
+) -> tuple[torch.Tensor, dict[str, Any]]:
+    rho, slot = apply_operator_slot_at(rho, perception, engine_type, loop_class, substage_idx)
+    rho = apply_lindblad_step(rho, perception, engine_type)
+    if manifold_enabled:
+        target = stage_fixed_target(perception, engine_type)
+        rho = normalize_density_torch((1.0 - MANIFOLD_TARGET_MIX) * rho + MANIFOLD_TARGET_MIX * target)
+    else:
+        rho = normalize_density_torch(rho)
+    return rho, {
+        "engine_type": engine_type,
+        "main_stage_idx": main_stage_idx,
+        "substage_idx": substage_idx,
+        "perception": perception,
+        "loop_class": loop_class,
+        "operator": slot["operator"],
+        "operator_sign": slot["sign"],
+        "ordered_token": slot.get("ordered_token"),
+        "bounded_replay": True,
+        "source_native_dynamics": False,
+    }
+
+
 def run_policy_density(engine_type: int, start_stage: int, seed: int, manifold_enabled: bool = True) -> torch.Tensor:
     rho = generate_initial_density(seed)
-    engine = EngineCore(engine_type, manifold_enabled=manifold_enabled)
+    schedule = get_schedule(engine_type)
     for offset in range(POLICY_WINDOW_STAGES):
-        main_idx = (start_stage + offset) % len(engine.schedule)
-        perception, loop_class = engine.schedule[main_idx]
+        main_idx = (start_stage + offset) % len(schedule)
+        perception, loop_class = schedule[main_idx]
         for substage_idx in range(N_SUBSTAGES_PER_STAGE):
-            rho, _record = engine.run_substage(rho, perception, loop_class, main_idx, substage_idx)
+            rho, _record = run_replay_substage(
+                rho,
+                engine_type=engine_type,
+                perception=perception,
+                loop_class=loop_class,
+                main_stage_idx=main_idx,
+                substage_idx=substage_idx,
+                manifold_enabled=manifold_enabled,
+            )
     return project_density(rho)
 
 
@@ -232,7 +309,7 @@ def score_policy(
     manifold_enabled: bool = True,
     no_engine_control: bool = False,
 ) -> dict[str, Any]:
-    engine = EngineCore(engine_type)
+    schedule = get_schedule(engine_type)
     a_matrix = as_real_tensor(a_matrix)
     c_pref = normalize(c_pref)
     d_prior = normalize(d_prior)
@@ -276,8 +353,8 @@ def score_policy(
 
     expected_free_energy = risk + ambiguity
     stage_pair = [
-        engine.schedule[start_stage],
-        engine.schedule[(start_stage + 1) % len(engine.schedule)],
+        schedule[start_stage],
+        schedule[(start_stage + 1) % len(schedule)],
     ]
     perceptions = [row[0] for row in stage_pair]
     return {
@@ -374,7 +451,7 @@ def dependency_graph() -> dict[str, Any]:
     graph = nx.DiGraph()
     graph.add_edges_from(
         [
-            ("source_native_rollouts", "B_pi_transition"),
+            ("bounded_qit_replay_rollouts", "B_pi_transition"),
             ("sensory_projection_channel", "A_emission"),
             ("preference_profile", "C_preference"),
             ("initial_density_ensemble", "D_prior"),
@@ -456,7 +533,7 @@ def main() -> dict[str, Any]:
         "efe_scores_are_finite": all(math.isfinite(row["expected_free_energy"]) for row in rows),
         "epistemic_value_is_nonzero": float(max(epistemic_values) - min(epistemic_values)) > 0.001,
         "vfe_update_reduces_free_energy": min(vfe_reductions) >= -1e-9 and max(vfe_reductions) > 0.001,
-        "source_native_transition_nontrivial": float(torch.mean(torch.tensor(transition_gaps, dtype=TORCH_REAL)).item()) > 0.01,
+        "bounded_replay_transition_nontrivial": float(torch.mean(torch.tensor(transition_gaps, dtype=TORCH_REAL)).item()) > 0.01,
         "selected_not_risk_only_or_margin": selected["policy_id"] != risk_only["policy_id"]
         or abs(selected["expected_free_energy"] - risk_only["expected_free_energy"]) > 0.01,
         "no_engine_control_changes_policy_or_margin": selected["policy_id"] != no_engine_rows[0]["policy_id"]
@@ -471,13 +548,14 @@ def main() -> dict[str, Any]:
         "schema": "FORMAL_SCOUT_RESULT_v1",
         "name": NAME,
         "classification": CLASSIFICATION,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "promotion_allowed": PROMOTION_ALLOWED,
         "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
         "claim_ceiling": CLAIM_CEILING,
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
-        "math_object": "finite POMDP-style A/B/C/D active-inference policy tree over source-native EngineCore stage windows",
+        "math_object": "finite POMDP-style A/B/C/D active-inference policy tree over bounded canonical QIT schedule windows",
         "doc_grounding": {
             "system_v5/docs/references/FEP_AND_ACTIVE_INFERENCE_REFERENCE.md:76-89": (
                 "Expected free energy G(pi), epistemic/pragmatic decomposition, policy posterior"
@@ -492,16 +570,17 @@ def main() -> dict[str, Any]:
                 "Future/path language is finite refinement depth, not primitive time"
             ),
             "system_v5/READ ONLY Reference Docs/ENGINE_64_SCHEDULE_ATLAS.md:145-152": (
-                "IGT quadrant labels are overlay metadata on source-native stage windows"
+                "IGT quadrant labels are overlay metadata on recorded schedule windows"
             ),
         },
         "formal_translation": {
-            "engine_stage_as_strategy": "policy candidate = source-native two-stage EngineCore schedule window",
+            "engine_stage_as_strategy": "policy candidate = bounded canonical QIT two-stage schedule window",
             "time_future": "future = finite policy-tree prediction depth under B_pi",
             "emotion_projection": "emotion/projection language = C preference distribution over observations",
             "hume_boundary": "causal/order language requires distinguishable A/B/C/D readout changes",
             "nominalism_boundary": "policies are survivor candidates under this finite probe family only",
             "markov_blanket_boundary": "A is a non-identity sensory projection channel separated from B_pi transitions",
+            "source_runtime_boundary": "B_pi is bounded replay over recorded schedule/operator metadata, not source runtime dynamics",
         },
         "summary": {
             "policy_count": len(rows),
@@ -537,8 +616,8 @@ def main() -> dict[str, Any]:
                 "column_sums": torch.sum(a_matrix, dim=0),
                 "max_abs_diff_from_identity": float(torch.max(torch.abs(a_matrix - torch.eye(N_OBSERVATIONS, N_STATES, dtype=TORCH_REAL))).item()),
             },
-            "source_native_b_transition_nontrivial": {
-                "pass": predicates["source_native_transition_nontrivial"],
+            "bounded_replay_b_transition_nontrivial": {
+                "pass": predicates["bounded_replay_transition_nontrivial"],
                 "mean_l1_from_identity": float(torch.mean(torch.tensor(transition_gaps, dtype=TORCH_REAL)).item()),
                 "max_l1_from_identity": float(max(transition_gaps)),
             },
@@ -640,12 +719,12 @@ def main() -> dict[str, Any]:
         "blockers": [],
         "elapsed_seconds": time.time() - started,
         "why_not_v4_probes": [
-            "This is a clean v5 formal scout over source-native EngineCore policy windows.",
+            "This is a clean v5 formal scout over bounded canonical QIT policy windows.",
             "It uses explicit finite A/B/C/D active-inference matrices instead of v4 narrative probes.",
             "It is still a scout and does not promote Holodeck, psychology, IGT, or physics language into canon.",
         ],
         "why_not_canon": [
-            "A/B/C/D are finite scout matrices, not a complete engine rewrite.",
+            "A/B/C/D are finite scout matrices, not a complete engine rewrite or source runtime dynamics.",
             "No learned generative model, no continuous belief propagation, and no canonical Markov blanket are admitted.",
             "The scout only shows a next executable interface for FEP-style engine operation.",
         ],

@@ -47,6 +47,13 @@ TOOL_MANIFEST = {
 }
 
 classification = "classical_baseline"
+divergence_log = [
+    "classical MPO baseline: no genuine quantum channel -- dephasing encoded as density matrix block-zeroing",
+    "data-processing inequality encoded as z3 axiom, not derived from quantum information theory",
+    "bond dimension formula chi*D is exact for no-truncation case -- real MPO-MPS sims truncate at target chi",
+    "local unitary entropy-invariance is algebraic (pure state bipartition) not quantum resource theory",
+    "SWAP entropy invariance holds exactly for product and Bell states -- not tested on generic entangled states",
+]
 
 TOOL_INTEGRATION_DEPTH = {
     "pytorch":   None,
@@ -456,13 +463,7 @@ if __name__ == "__main__":
         "all_pass": all_pass,
         "errors": errors,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "classical MPO baseline: no genuine quantum channel -- dephasing encoded as density matrix block-zeroing",
-            "data-processing inequality encoded as z3 axiom, not derived from quantum information theory",
-            "bond dimension formula chi*D is exact for no-truncation case -- real MPO-MPS sims truncate at target chi",
-            "local unitary entropy-invariance is algebraic (pure state bipartition) not quantum resource theory",
-            "SWAP entropy invariance holds exactly for product and Bell states -- not tested on generic entangled states",
-        ],
+        "divergence_log": divergence_log,
     }
 
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",

@@ -1,3 +1,8 @@
+Historical Tier D launcher prompt from April 2026. Non-executable unless the
+current user explicitly revives this exact lane after fresh repo/status
+preflight. Green/pass language below is historical launch logic, not current
+permission.
+
 You are the Codex Ratchet Tier D controller. Work in /Users/joshuaeisenhart/Desktop/Codex Ratchet.
 
 Read in order:

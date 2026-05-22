@@ -2,6 +2,10 @@
 
 Status: working execution ledger  
 Date: 2026-04-11
+Current status: historical/working lego ledger. `canonical by process` in this
+file is ledger-local wording from the April pass, not a current admission claim.
+Use generated readiness/sim-estate indexes and fresh result receipts for current
+proof or promotion status.
 
 ## Purpose
 

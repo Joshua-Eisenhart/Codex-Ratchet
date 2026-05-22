@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import math
 import os
 import pathlib
 import time
@@ -14,13 +15,30 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import cotengra as ctg
 import networkx as nx
-import numpy as np
 import opt_einsum as oe
 import quimb.tensor as qtn
 import sympy as sp
+import torch
 import z3
 
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import (
+    OPERATOR_BASE_ANGLES,
+    OPERATOR_GENERATORS,
+    get_operator_slot_spec,
+    get_schedule,
+    get_terrain_dynamics_spec,
+)
+from sim_source_native_engine_manifold_attractor_basin_depth_probe import (
+    MANIFOLD_TARGET_MIX,
+    apply_lindblad_step,
+    bloch_vector,
+    density_diagnostics,
+    density_entropy,
+    generate_initial_density,
+    normalize_density_torch,
+    stage_fixed_target,
+    trace_distance,
+)
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -30,32 +48,125 @@ OUT_PATH = RESULT_DIR / "source_native_high_rank_engine_history_family_probe_res
 NAME = "source_native_high_rank_engine_history_family_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 CITES_BLOCKED_UNTIL = "full_64_site_source_native_peps3d_engine_with_high_rank_history_sweep"
 CLAIM_CEILING = (
-    "Formal scout only: generates a richer source-native engine-history family "
-    "from multiple initial densities through both repaired chiral engines, then "
+    "Formal scout only: generates a richer bounded canonical QIT replay "
+    "engine-history family from multiple initial densities through both chiral "
+    "stage schedules, then "
     "checks whether the resulting histories have higher effective rank for "
     "32/64-site PEPS3D carrier stress. It does not run the full 64-site engine "
-    "and does not admit final manifold, physics, cognition, neural architecture, "
-    "or canonical claims."
+    "and does not admit source-native EngineCore dynamics, live PEPS3D Lindblad "
+    "dynamics, real attractor basins, final manifold, physics, cognition, "
+    "neural architecture, or canonical claims."
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing source-history feature matrix and rank metrics"},
+    "pytorch": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing local source-history feature matrices, rank metrics, PEPS3D carrier tensors, contraction arrays, and contraction norms",
+    },
     "quimb": {"tried": True, "used": True, "reason": "load-bearing PEPS3D carrier capacity construction"},
     "cotengra": {"tried": True, "used": True, "reason": "load-bearing contraction tree witness"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing contraction numeric cross-check"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing history dependency graph"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic row-count factorization"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing rank improvement witness"},
-    "engine_core": {"tried": True, "used": True, "reason": "load-bearing repaired source-native 64-slot engine execution"},
+    "canonical_qit_engine_specs": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive canonical terrain/operator schedule records replacing the former direct EngineCore boundary",
+    },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "quimb": "load_bearing",
+    "cotengra": "load_bearing",
+    "opt_einsum": "load_bearing",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "canonical_qit_engine_specs": "supportive",
+}
+TOOL_ROLE_SOURCE = {
+    "pytorch": "local",
+    "quimb": "local",
+    "cotengra": "local",
+    "opt_einsum": "local",
+    "networkx": "local",
+    "sympy": "local",
+    "z3": "local",
+    "canonical_qit_engine_specs": "local",
+}
 
 N_SEEDS = 16
+TORCH_COMPLEX = torch.complex128
 
 
-def feature_from_record(record: dict[str, Any]) -> np.ndarray:
+def apply_operator_slot(
+    rho: torch.Tensor,
+    perception: str,
+    engine_type: int,
+    loop_class: str,
+    substage_idx: int,
+) -> tuple[torch.Tensor, dict[str, Any]]:
+    slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+    generator = torch.as_tensor(OPERATOR_GENERATORS[slot["operator"]], dtype=TORCH_COMPLEX)
+    angle = float(slot["sign"]) * float(OPERATOR_BASE_ANGLES[slot["operator"]])
+    unitary = torch.linalg.matrix_exp((-1j * angle) * generator)
+    return unitary @ rho @ unitary.conj().T, slot
+
+
+def replay_substage(
+    rho: torch.Tensor,
+    perception: str,
+    engine_type: int,
+    loop_class: str,
+    main_idx: int,
+    substage_idx: int,
+    *,
+    manifold_enabled: bool,
+) -> tuple[torch.Tensor, dict[str, Any]]:
+    before = normalize_density_torch(rho)
+    slotted, slot = apply_operator_slot(before, perception, engine_type, loop_class, substage_idx)
+    evolved = apply_lindblad_step(slotted, perception, engine_type)
+    target = stage_fixed_target(perception, engine_type)
+    if manifold_enabled:
+        repaired = normalize_density_torch((1.0 - MANIFOLD_TARGET_MIX) * evolved + MANIFOLD_TARGET_MIX * target)
+    else:
+        repaired = normalize_density_torch(evolved)
+    diagnostics = density_diagnostics(repaired)
+    terrain = get_terrain_dynamics_spec(perception, engine_type)
+    return repaired, {
+        "engine_type": int(engine_type),
+        "main_stage_idx": int(main_idx),
+        "substage_idx": int(substage_idx),
+        "perception": perception,
+        "loop_class": loop_class,
+        "ordered_token": slot["token"],
+        "operator": slot["operator"],
+        "operator_sign": int(slot["sign"]),
+        "is_native_operator": bool(slot["is_native_operator"]),
+        "is_chart_locked": bool(slot["is_chart_locked"]),
+        "terrain_dynamics_family": terrain["family"],
+        "bloch": bloch_vector(repaired),
+        "entropy": density_entropy(repaired),
+        "purity": float(torch.real(torch.trace(repaired @ repaired)).item()),
+        "slot_delta_norm": float(torch.linalg.vector_norm((repaired - before).reshape(-1)).item()),
+        "manifold_applied_count": 1 if manifold_enabled else 0,
+        "manifold_satisfied_count": int(
+            manifold_enabled and trace_distance(repaired, target) <= trace_distance(evolved, target) + 1e-12
+        ),
+        "valid_density": (
+            diagnostics["trace_gap"] < 1e-10
+            and diagnostics["hermitian_gap"] < 1e-10
+            and diagnostics["min_eigenvalue"] >= -1e-10
+        ),
+    }
+
+
+def feature_from_record(record: dict[str, Any]) -> torch.Tensor:
     terrain_index = {
         "pinching_projection": 0.0,
         "kraus_filter": 1.0,
@@ -65,7 +176,7 @@ def feature_from_record(record: dict[str, Any]) -> np.ndarray:
         "outward_projection": 5.0,
         "raising_dissipator": 6.0,
     }.get(str(record.get("terrain_dynamics_family")), -1.0)
-    return np.array(
+    return torch.as_tensor(
         [
             *[float(x) for x in record["bloch"]],
             float(record["entropy"]),
@@ -81,12 +192,12 @@ def feature_from_record(record: dict[str, Any]) -> np.ndarray:
             float(record["substage_idx"]),
             terrain_index,
         ],
-        dtype=float,
+        dtype=torch.float64,
     )
 
 
-def physical_feature_from_record(record: dict[str, Any]) -> np.ndarray:
-    return np.array(
+def physical_feature_from_record(record: dict[str, Any]) -> torch.Tensor:
+    return torch.as_tensor(
         [
             *[float(x) for x in record["bloch"]],
             float(record["entropy"]),
@@ -95,36 +206,43 @@ def physical_feature_from_record(record: dict[str, Any]) -> np.ndarray:
             float(record["manifold_applied_count"]),
             float(record["manifold_satisfied_count"]),
         ],
-        dtype=float,
+        dtype=torch.float64,
     )
 
 
-def history_matrix(*, manifold_enabled: bool, repeated_seed: bool = False) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
-    rows: list[np.ndarray] = []
-    seed_rows: list[np.ndarray] = []
+def history_matrix(*, manifold_enabled: bool, repeated_seed: bool = False) -> tuple[torch.Tensor, torch.Tensor, dict[str, Any]]:
+    rows: list[torch.Tensor] = []
+    seed_rows: list[torch.Tensor] = []
     valid = 0
     for seed_idx in range(N_SEEDS):
         seed = 40000 if repeated_seed else 40000 + seed_idx
         rho_init = generate_initial_density(seed)
-        per_seed: list[np.ndarray] = []
+        per_seed: list[torch.Tensor] = []
         for engine_type in (0, 1):
-            engine = EngineCore(engine_type, manifold_enabled=manifold_enabled)
-            rho = rho_init.copy()
-            for main_idx, (perception, loop_class) in enumerate(engine.schedule):
+            rho = rho_init.clone()
+            for main_idx, (perception, loop_class) in enumerate(get_schedule(engine_type)):
                 for substage_idx in range(4):
-                    rho, record = engine.run_substage(rho, perception, loop_class, main_idx, substage_idx)
+                    rho, record = replay_substage(
+                        rho,
+                        perception,
+                        engine_type,
+                        loop_class,
+                        main_idx,
+                        substage_idx,
+                        manifold_enabled=manifold_enabled,
+                    )
                     rows.append(feature_from_record(record))
                     per_seed.append(physical_feature_from_record(record))
                     valid += int(bool(record["valid_density"]))
-        seed_rows.append(np.concatenate(per_seed))
-    matrix = np.vstack(rows)
-    seed_matrix = np.vstack(seed_rows)
-    centered = matrix - matrix.mean(axis=0, keepdims=True)
-    seed_centered = seed_matrix - seed_matrix.mean(axis=0, keepdims=True)
-    singular = np.linalg.svd(centered, compute_uv=False)
-    seed_singular = np.linalg.svd(seed_centered, compute_uv=False)
-    rank = int(np.sum(singular > 1e-8))
-    seed_rank = int(np.sum(seed_singular > 1e-8))
+        seed_rows.append(torch.cat(per_seed))
+    matrix = torch.stack(rows)
+    seed_matrix = torch.stack(seed_rows)
+    centered = matrix - torch.mean(matrix, dim=0, keepdim=True)
+    seed_centered = seed_matrix - torch.mean(seed_matrix, dim=0, keepdim=True)
+    singular = torch.linalg.svdvals(centered)
+    seed_singular = torch.linalg.svdvals(seed_centered)
+    rank = int(torch.sum(singular > 1e-8).item())
+    seed_rank = int(torch.sum(seed_singular > 1e-8).item())
     return matrix, seed_matrix, {
         "rows": int(matrix.shape[0]),
         "feature_dim": int(matrix.shape[1]),
@@ -132,14 +250,14 @@ def history_matrix(*, manifold_enabled: bool, repeated_seed: bool = False) -> tu
         "seed_family_rows": int(seed_matrix.shape[0]),
         "seed_family_feature_dim": int(seed_matrix.shape[1]),
         "seed_family_effective_rank": seed_rank,
-        "seed_family_singular_values": [float(x) for x in seed_singular],
+        "seed_family_singular_values": [float(x) for x in seed_singular.tolist()],
         "valid_rows": valid,
-        "singular_values": [float(x) for x in singular],
+        "singular_values": [float(x) for x in singular.tolist()],
     }
 
 
 def make_peps3d(shape: tuple[int, int, int], seed: int, bond_dim: int = 2) -> qtn.PEPS3D:
-    rng = np.random.default_rng(seed)
+    generator = torch.Generator().manual_seed(seed)
     lx, ly, lz = shape
     arrays = []
     for i in range(lx):
@@ -161,14 +279,14 @@ def make_peps3d(shape: tuple[int, int, int], seed: int, bond_dim: int = 2) -> qt
                 if k > 0:
                     legs.append(bond_dim)
                 legs.append(2)
-                row.append(rng.normal(scale=0.03 / bond_dim, size=legs))
+                row.append(torch.randn(tuple(legs), dtype=torch.float64, generator=generator) * (0.03 / bond_dim))
             plane.append(row)
         arrays.append(plane)
     return qtn.PEPS3D(arrays)
 
 
 def parameter_count(tn: Any) -> int:
-    return int(sum(np.prod(tensor.shape) for tensor in tn.tensors))
+    return int(sum(math.prod(tensor.shape) for tensor in tn.tensors))
 
 
 def contraction_witness(seed: int) -> dict[str, float]:
@@ -187,17 +305,22 @@ def contraction_witness(seed: int) -> dict[str, float]:
     for ix in output:
         sizes[ix] = 2
     tree = ctg.HyperOptimizer(max_repeats=4, progbar=False).search(inputs, output, sizes)
-    rng = np.random.default_rng(12000 + seed)
-    arrays = [rng.normal(size=tuple(sizes[ix] for ix in term)) for term in inputs]
+    generator = torch.Generator().manual_seed(12000 + seed)
+    arrays = [
+        torch.randn(tuple(sizes[ix] for ix in term), dtype=torch.float64, generator=generator)
+        for term in inputs
+    ]
+    contracted = oe.contract(expr, *arrays)
+    contracted_tensor = torch.as_tensor(contracted, dtype=torch.float64)
     return {
         "cost": float(tree.contraction_cost()),
         "width": float(tree.contraction_width()),
-        "norm": float(np.linalg.norm(oe.contract(expr, *arrays))),
+        "norm": float(torch.linalg.vector_norm(contracted_tensor.reshape(-1)).item()),
     }
 
 
-def carrier_response(matrix: np.ndarray, rank: int) -> dict[str, Any]:
-    seed = int(abs(matrix.sum()) * 1000) % 997
+def carrier_response(matrix: torch.Tensor, rank: int) -> dict[str, Any]:
+    seed = int(abs(float(torch.sum(matrix).item())) * 1000) % 997
     peps32 = make_peps3d((4, 4, 2), seed, bond_dim=2)
     peps64 = make_peps3d((4, 4, 4), seed + 1, bond_dim=2)
     sweep = {
@@ -304,8 +427,26 @@ def main() -> int:
         "cites_blocked_until": CITES_BLOCKED_UNTIL,
         "claim_ceiling": CLAIM_CEILING,
         "source_alignment_category": "source_native_high_rank_engine_history_family_formal_scout",
+        "sim_execution_kind": SIM_EXECUTION_KIND,
+        "root_constraints": {
+            "F01_finitude": {
+                "pass": True,
+                "evidence": "finite 2x2 density carrier, finite Pauli operator-slot basis, finite 8-stage x 4-substage schedules, and finite 16-seed replay grid",
+            },
+            "N01_noncommutation": {
+                "pass": True,
+                "evidence": "bounded canonical QIT replay uses noncommuting Pauli generators and ordered operator/terrain slot records",
+                "te_ti_commutator_norm": float(
+                    torch.linalg.matrix_norm(
+                        OPERATOR_GENERATORS["Te"] @ OPERATOR_GENERATORS["Ti"]
+                        - OPERATOR_GENERATORS["Ti"] @ OPERATOR_GENERATORS["Te"]
+                    ).item()
+                ),
+            },
+        },
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "positive": positive,
         "graveyard_companions": graveyards,
         "boundary": boundary,

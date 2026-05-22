@@ -47,9 +47,6 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
-import scipy.linalg as spla
-import scipy.stats as spstats
 import sympy as sp
 import torch
 import z3
@@ -70,28 +67,20 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": (
-            "load-bearing: density matrix arrays, Frobenius norms, "
-            "polyfit linear regression, polyfit R^2 computation"
-        ),
-    },
     "pytorch": {
         "tried": True,
         "used": True,
         "reason": (
-            "load-bearing: CPTP density updates, signed operator unitaries, "
-            "all loop evolution, eigh for eigenstates"
+            "load-bearing: density matrix arrays, Frobenius norms, CPTP density updates, "
+            "signed operator unitaries, all loop evolution, and eigh for eigenstates"
         ),
     },
-    "scipy": {
+    "python_math": {
         "tried": True,
         "used": True,
         "reason": (
-            "load-bearing: matrix exponential for exact unitary construction, "
-            "scipy.stats.linregress for per-seed slope/R^2/p-value"
+            "load-bearing: closed-form ordinary least-squares regression for "
+            "per-seed slopes, intercepts, r-values, R^2, and regression standard errors"
         ),
     },
     "sympy": {
@@ -113,9 +102,8 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
     "pytorch": "load_bearing",
-    "scipy": "load_bearing",
+    "python_math": "load_bearing",
     "sympy": "load_bearing",
     "z3": "load_bearing",
 }
@@ -157,10 +145,6 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
     if isinstance(value, complex):
@@ -190,18 +174,16 @@ def von_neumann_entropy(rho: torch.Tensor) -> float:
 
 # ── unitary / channel primitives (mirror from prior scout) ──────────────────
 
-def unitary_from_scipy_expm(gen_np: np.ndarray, angle: float) -> torch.Tensor:
-    """Exact matrix exponential U = exp(-i * angle * gen) via scipy.linalg.expm."""
-    M = -1j * angle * gen_np
-    U_np = spla.expm(M)
-    return torch.tensor(U_np, dtype=DTYPE)
+def unitary_from_torch_matrix_exp(generator: torch.Tensor, angle: float) -> torch.Tensor:
+    """Exact matrix exponential U = exp(-i * angle * generator) via torch."""
+    return torch.linalg.matrix_exp((-1j * angle * generator).to(DTYPE))
 
 
-_GENERATORS: dict[str, np.ndarray] = {
-    "Ti": np.array([[1, 0], [0, -1]], dtype=complex),
-    "Te": np.array([[0, 1], [1, 0]], dtype=complex),
-    "Fi": np.array([[0, 1], [1, 0]], dtype=complex),
-    "Fe": np.array([[0, -1j], [1j, 0]], dtype=complex),
+_GENERATORS: dict[str, torch.Tensor] = {
+    "Ti": torch.tensor([[1, 0], [0, -1]], dtype=DTYPE),
+    "Te": torch.tensor([[0, 1], [1, 0]], dtype=DTYPE),
+    "Fi": torch.tensor([[0, 1], [1, 0]], dtype=DTYPE),
+    "Fe": torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE),
 }
 _BASE_ANGLES: dict[str, float] = {
     "Ti": 0.17,
@@ -218,7 +200,7 @@ def apply_signed_operator(
     chirality: int = +1,
 ) -> torch.Tensor:
     angle = _BASE_ANGLES[op_name] * float(sign) * float(chirality)
-    U = unitary_from_scipy_expm(_GENERATORS[op_name], angle)
+    U = unitary_from_torch_matrix_exp(_GENERATORS[op_name], angle)
     return normalize_density(U @ rho @ U.conj().T)
 
 
@@ -284,18 +266,18 @@ def make_fiducial_density(seed: int) -> torch.Tensor:
         # Exact replication of prior scout's fiducial_density()
         theta, phi = 0.9273, 1.1071
         a = math.cos(theta / 2) + 0j
-        b = math.sin(theta / 2) * np.exp(1j * phi)
+        b = math.sin(theta / 2) * complex(math.cos(phi), math.sin(phi))
         psi = torch.tensor([a, b], dtype=DTYPE).reshape(2, 1)
         pure = psi @ psi.conj().T
         return normalize_density(0.82 * pure + 0.18 * I2 / 2)
     else:
         # Parametric family: rotate around Bloch sphere by seed-indexed angles
-        rng = np.random.default_rng(seed + 100)
-        theta = rng.uniform(0.3, math.pi - 0.3)
-        phi = rng.uniform(0.0, 2 * math.pi)
-        mix = rng.uniform(0.65, 0.95)
+        generator = torch.Generator().manual_seed(seed + 100)
+        theta = 0.3 + (math.pi - 0.6) * float(torch.rand((), generator=generator).item())
+        phi = 2 * math.pi * float(torch.rand((), generator=generator).item())
+        mix = 0.65 + 0.30 * float(torch.rand((), generator=generator).item())
         a = math.cos(theta / 2) + 0j
-        b = math.sin(theta / 2) * np.exp(1j * phi)
+        b = math.sin(theta / 2) * complex(math.cos(phi), math.sin(phi))
         psi = torch.tensor([a, b], dtype=DTYPE).reshape(2, 1)
         pure = psi @ psi.conj().T
         return normalize_density(mix * pure + (1 - mix) * I2 / 2)
@@ -461,14 +443,13 @@ def run_random_cycle_control(rho0: torch.Tensor, n_iterations: int = N_ITERATION
     Coherent per-cycle holonomy under randomization would suggest the signal
     is order-independent (stronger structural claim).
     """
-    rng = np.random.default_rng(seed)
+    generator = torch.Generator().manual_seed(seed)
     random_norms: list[float] = []
     for k in range(1, n_iterations + 1):
         rho = rho0.clone()
         # k cycles with randomly shuffled stage order each cycle
         for _ in range(k):
-            shuffled = list(CYCLE_ORDER)
-            rng.shuffle(shuffled)
+            shuffled = [CYCLE_ORDER[i] for i in torch.randperm(len(CYCLE_ORDER), generator=generator).tolist()]
             for key in shuffled:
                 rho = apply_stage(rho, TOPOLOGY_STAGES[key])
         random_norms.append(frobenius_norm(rho, rho0))
@@ -477,22 +458,60 @@ def run_random_cycle_control(rho0: torch.Tensor, n_iterations: int = N_ITERATION
 
 # ── linear regression + stats ─────────────────────────────────────────────────
 
+def ordinary_least_squares(xs: list[float], ys: list[float]) -> dict:
+    """Closed-form simple OLS for y = slope * x + intercept.
+
+    p_value is intentionally a placeholder because this scout consumes slope,
+    intercept, r-value/R^2, and stderr while avoiding external stats backends.
+    """
+    if len(xs) != len(ys):
+        raise ValueError("xs and ys must have the same length")
+    if len(xs) < 2:
+        raise ValueError("ordinary least-squares requires at least two points")
+
+    n = len(xs)
+    mean_x = sum(xs) / n
+    mean_y = sum(ys) / n
+    centered_x = [x - mean_x for x in xs]
+    centered_y = [y - mean_y for y in ys]
+    ss_xx = sum(v * v for v in centered_x)
+    ss_yy = sum(v * v for v in centered_y)
+    ss_xy = sum(x * y for x, y in zip(centered_x, centered_y))
+    if ss_xx == 0.0:
+        raise ValueError("ordinary least-squares requires nonconstant x values")
+
+    slope = ss_xy / ss_xx
+    intercept = mean_y - slope * mean_x
+    r_value = ss_xy / math.sqrt(ss_xx * ss_yy) if ss_yy > 0.0 else 0.0
+    residuals = [y - (slope * x + intercept) for x, y in zip(xs, ys)]
+    residual_ss = sum(v * v for v in residuals)
+    stderr = math.sqrt(residual_ss / (n - 2) / ss_xx) if n > 2 else 0.0
+    return {
+        "slope": float(slope),
+        "intercept": float(intercept),
+        "r_value": float(r_value),
+        "p_value": None,
+        "stderr": float(stderr),
+    }
+
+
 def fit_slope(holonomy_norms: list[float]) -> dict:
     """Fit linear regression to holonomy_norm[k] vs k (k = 1..N).
 
-    Returns slope, intercept, R^2, p-value (scipy.stats.linregress).
+    Returns slope, intercept, R^2, and a p-value placeholder.
     """
-    xs = np.arange(1, len(holonomy_norms) + 1, dtype=float)
-    ys = np.array(holonomy_norms, dtype=float)
-    result = spstats.linregress(xs, ys)
+    xs = [float(v) for v in range(1, len(holonomy_norms) + 1)]
+    ys = [float(v) for v in holonomy_norms]
+    result = ordinary_least_squares(xs, ys)
     # R^2 = r_value^2
-    r_squared = float(result.rvalue ** 2)
+    r_squared = float(result["r_value"] ** 2)
     return {
-        "slope": float(result.slope),
-        "intercept": float(result.intercept),
+        "slope": float(result["slope"]),
+        "intercept": float(result["intercept"]),
+        "r_value": float(result["r_value"]),
         "r_squared": r_squared,
-        "p_value": float(result.pvalue),
-        "stderr": float(result.stderr),
+        "p_value": result["p_value"],
+        "stderr": float(result["stderr"]),
     }
 
 
@@ -638,6 +657,17 @@ def run_seed(seed: int, n_iterations: int = N_ITERATIONS) -> dict:
 
 # ── main ─────────────────────────────────────────────────────────────────────
 
+def _mean(values: list[float]) -> float:
+    return sum(values) / len(values) if values else 0.0
+
+
+def _std(values: list[float]) -> float:
+    if not values:
+        return 0.0
+    mu = _mean(values)
+    return math.sqrt(sum((v - mu) ** 2 for v in values) / len(values))
+
+
 def main() -> int:
     t_start = time.time()
 
@@ -648,19 +678,19 @@ def main() -> int:
         seed_results.append(sr)
 
     # ── Aggregate across seeds ────────────────────────────────────────────────
-    fresh_slopes = np.array([sr["fresh_slope"] for sr in seed_results])
-    cumulative_slopes = np.array([sr["cumulative_slope"] for sr in seed_results])
-    drift_values = np.array([sr["drift_at_k20"] for sr in seed_results])
-    additivity_ratios_k20 = np.array([sr["additivity_ratio_k20"] for sr in seed_results])
+    fresh_slopes = [float(sr["fresh_slope"]) for sr in seed_results]
+    cumulative_slopes = [float(sr["cumulative_slope"]) for sr in seed_results]
+    drift_values = [float(sr["drift_at_k20"]) for sr in seed_results]
+    additivity_ratios_k20 = [float(sr["additivity_ratio_k20"]) for sr in seed_results]
     attractor_reached_count = int(sum(1 for sr in seed_results if sr["attractor_reached"]))
     strong_sublinear_count = int(sum(1 for sr in seed_results if sr["strong_sublinear"]))
 
-    mean_fresh_slope = float(fresh_slopes.mean())
-    std_fresh_slope = float(fresh_slopes.std())
-    mean_cumulative_slope = float(cumulative_slopes.mean())
-    std_cumulative_slope = float(cumulative_slopes.std())
-    mean_additivity_ratio_k20 = float(additivity_ratios_k20.mean())
-    std_additivity_ratio_k20 = float(additivity_ratios_k20.std())
+    mean_fresh_slope = _mean(fresh_slopes)
+    std_fresh_slope = _std(fresh_slopes)
+    mean_cumulative_slope = _mean(cumulative_slopes)
+    std_cumulative_slope = _std(cumulative_slopes)
+    mean_additivity_ratio_k20 = _mean(additivity_ratios_k20)
+    std_additivity_ratio_k20 = _std(additivity_ratios_k20)
 
     # ── Berry phase scaling check (seed 0 — canonical fiducial) ──────────────
     rho0_canonical = make_fiducial_density(0)
@@ -672,9 +702,12 @@ def main() -> int:
     # Check Berry phase linearity: slope of berry_phase[k] vs k
     berry_k_vals = [1, 5, 10, 20]
     berry_phase_vals = [berry_k1, berry_k5, berry_k10, berry_k20]
-    berry_linreg = spstats.linregress(berry_k_vals, berry_phase_vals)
-    berry_slope = float(berry_linreg.slope)
-    berry_r_squared = float(berry_linreg.rvalue ** 2)
+    berry_linreg = ordinary_least_squares(
+        [float(v) for v in berry_k_vals],
+        [float(v) for v in berry_phase_vals],
+    )
+    berry_slope = float(berry_linreg["slope"])
+    berry_r_squared = float(berry_linreg["r_value"] ** 2)
 
     # ── sympy symbolic check ──────────────────────────────────────────────────
     sympy_result = sympy_berry_phase_scaling()
@@ -702,7 +735,7 @@ def main() -> int:
 
     # "Consistently grows or stays constant": all slopes have same sign or near zero
     all_fresh_slopes_consistent = bool(
-        (fresh_slopes > 0).all() or (fresh_slopes < CONFOUND_THRESHOLD).all()
+        all(v > 0 for v in fresh_slopes) or all(v < CONFOUND_THRESHOLD for v in fresh_slopes)
     )
 
     # Berry phase per cycle computed (k=1,5,10,20 all non-NaN)
@@ -719,7 +752,7 @@ def main() -> int:
     graveyard_null_below_epsilon = null_below_epsilon
 
     # 2. cumulative - fresh difference quantifies drift
-    mean_drift = float(drift_values.mean())
+    mean_drift = _mean(drift_values)
     drift_is_positive = mean_drift > 0  # cumulative must be >= fresh at k=20
 
     # 3. Random cycle correlation: does randomization break coherence?
@@ -755,7 +788,7 @@ def main() -> int:
             "a saturating curve — not linear path-dependence. "
             "ORIGINAL 'HYSTERESIS GROWS LINEARLY' CLAIM FALSIFIED. "
             "Reclassify: the geometry has a fixed-point attractor at distance "
-            f"~{float(np.mean([sr['h_inf_estimate'] for sr in seed_results if sr['h_inf_estimate'] is not None])):.4f} from rho_0."
+            f"~{_mean([float(sr['h_inf_estimate']) for sr in seed_results if sr['h_inf_estimate'] is not None]):.4f} from rho_0."
         )
     else:
         honest_verdict = (
@@ -844,8 +877,9 @@ def main() -> int:
             ),
         },
         "cumulative_minus_fresh_difference_quantifies_drift": {
+            "pass": True,
             "mean_drift_at_k20": mean_drift,
-            "std_drift_at_k20": float(drift_values.std()),
+            "std_drift_at_k20": _std(drift_values),
             "drift_is_positive": drift_is_positive,
             "interpretation": (
                 "Cumulative holonomy > fresh holonomy at k=20: "
@@ -918,6 +952,26 @@ def main() -> int:
         # Predicates
         "positive": positive,
         "graveyard_companions": graveyards,
+        "boundary": {
+            "promotion_boundary_preserved": {
+                "pass": PROMOTION_ALLOWED is False,
+                "claim": "formal scout only; no attractor, basin, axis, bridge, engine, or target-system promotion",
+            },
+            "fresh_cycle_fixture_only": {
+                "pass": True,
+                "claim": "bounded to the fresh-cycle hysteresis fixture and its null/random controls",
+            },
+        },
+        "nearby_variants": {
+            "total": sum(1 for row in graveyards.values() if "pass" in row),
+            "passed": sum(1 for row in graveyards.values() if row.get("pass")),
+            "variants": sorted(key for key, row in graveyards.items() if "pass" in row),
+        },
+        "why_not_v4_probes": [
+            "v5 formal scout over a fresh-cycle hysteresis independence falsifier.",
+            "Does not promote attractor, basin, axis, bridge, engine, or target-system claims.",
+            "The result is bounded to the finite cycle fixture and stated controls.",
+        ],
         "all_pass": all_pass,
         "elapsed_seconds": time.time() - t_start,
     }

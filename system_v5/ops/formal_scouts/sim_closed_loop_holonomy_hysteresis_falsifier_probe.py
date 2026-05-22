@@ -23,8 +23,6 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
-import scipy.linalg as spla
 import sympy as sp
 import torch
 import z3
@@ -44,20 +42,10 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing: density matrix arrays, Frobenius norms, linear algebra checks",
-    },
     "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing: CPTP density updates, signed operator unitaries, all loop evolution",
-    },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing: matrix exponential for exact unitary construction, trapz integration",
+        "reason": "load-bearing: CPTP density updates, signed operator unitaries, matrix exponentials, trapz integration, linear fit, and all loop evolution",
     },
     "sympy": {
         "tried": True,
@@ -71,9 +59,7 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
     "pytorch": "load_bearing",
-    "scipy": "load_bearing",
     "sympy": "load_bearing",
     "z3": "load_bearing",
 }
@@ -111,10 +97,6 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
     return value
@@ -133,7 +115,7 @@ def fiducial_density() -> torch.Tensor:
     """Fixed fiducial 2-dim mixed density ρ_0 (seed=42 mixed state)."""
     theta, phi = 0.9273, 1.1071  # arctan(4/3), arctan(2)
     a = math.cos(theta / 2) + 0j
-    b = math.sin(theta / 2) * np.exp(1j * phi)
+    b = math.sin(theta / 2) * complex(math.cos(phi), math.sin(phi))
     psi = torch.tensor([a, b], dtype=DTYPE).reshape(2, 1)
     pure = psi @ psi.conj().T
     return normalize_density(0.82 * pure + 0.18 * I2 / 2)
@@ -153,18 +135,16 @@ def von_neumann_entropy(rho: torch.Tensor) -> float:
 # ── unitary / channel primitives ─────────────────────────────────────────────
 
 
-def unitary_from_scipy_expm(gen_np: np.ndarray, angle: float) -> torch.Tensor:
-    """Exact matrix exponential U = exp(-i·angle·gen) via scipy.linalg.expm."""
-    M = -1j * angle * gen_np
-    U_np = spla.expm(M)
-    return torch.tensor(U_np, dtype=DTYPE)
+def unitary_from_torch_expm(gen: torch.Tensor, angle: float) -> torch.Tensor:
+    """Exact matrix exponential U = exp(-i angle gen) via torch.linalg.matrix_exp."""
+    return torch.linalg.matrix_exp((-1j * angle) * gen)
 
 
-_GENERATORS: dict[str, np.ndarray] = {
-    "Ti": np.array([[1, 0], [0, -1]], dtype=complex),          # SZ
-    "Te": np.array([[0, 1], [1, 0]], dtype=complex),           # SX
-    "Fi": np.array([[0, 1], [1, 0]], dtype=complex),           # SX  (same axis, different scale)
-    "Fe": np.array([[0, -1j], [1j, 0]], dtype=complex),        # SY
+_GENERATORS: dict[str, torch.Tensor] = {
+    "Ti": SZ,
+    "Te": SX,
+    "Fi": SX,
+    "Fe": SY,
 }
 _BASE_ANGLES: dict[str, float] = {
     "Ti": 0.17,
@@ -181,7 +161,7 @@ def apply_signed_operator(
     chirality: int = +1,
 ) -> torch.Tensor:
     angle = _BASE_ANGLES[op_name] * float(sign) * float(chirality)
-    U = unitary_from_scipy_expm(_GENERATORS[op_name], angle)
+    U = unitary_from_torch_expm(_GENERATORS[op_name], angle)
     return normalize_density(U @ rho @ U.conj().T)
 
 
@@ -453,13 +433,13 @@ def compute_berry_phase_loop_C(rho0: torch.Tensor) -> dict:
         A_k = complex(-1j * torch.dot(psi_k.conj(), dpsi))
         connection_values.append(float(A_k.real))
 
-    # trapz Berry phase (scipy)
-    _trapz_fn = getattr(np, "trapezoid", None) or np.trapz  # numpy ≥2.0 renames
-    berry_phase_trapz = float(
-        spla.solve(np.eye(1), np.array([_trapz_fn(connection_values, t_vals)]))[0]
-        if n > 0
-        else 0.0
-    )
+    # Trapezoid Berry phase in torch over the finite connection samples.
+    if n > 0:
+        connection_t = torch.tensor(connection_values, dtype=torch.float64)
+        t_t = torch.tensor(t_vals, dtype=torch.float64)
+        berry_phase_trapz = float(torch.trapezoid(connection_t, t_t).item())
+    else:
+        berry_phase_trapz = 0.0
 
     # ── sympy cross-check: exact formula for 4-step SU(2) cycle ─────────────
     # For an N-step cycle where each step applies a rotation by angle θ around
@@ -515,21 +495,22 @@ def run_hysteresis_test(rho0: torch.Tensor, n_iterations: int = 10) -> dict:
         holonomy_norms.append(frobenius_norm(rho, rho0))
 
     # Linear fit: slope of holonomy_norm vs iteration index
-    xs = np.arange(1, n_iterations + 1, dtype=float)
-    ys = np.array(holonomy_norms, dtype=float)
-    # Least-squares slope via numpy
-    coeffs = np.polyfit(xs, ys, 1)
-    slope = float(coeffs[0])
+    xs = torch.arange(1, n_iterations + 1, dtype=torch.float64)
+    ys = torch.tensor(holonomy_norms, dtype=torch.float64)
+    design = torch.stack([xs, torch.ones_like(xs)], dim=1)
+    coeffs = torch.linalg.lstsq(design, ys).solution
+    slope = float(coeffs[0].item())
 
     grows_linearly = slope > HYSTERESIS_SLOPE_THRESHOLD
-    oscillates = not grows_linearly and (np.std(ys) > HOLONOMY_THRESHOLD / 10)
+    holonomy_std = float(torch.std(ys, unbiased=False).item())
+    oscillates = not grows_linearly and (holonomy_std > HOLONOMY_THRESHOLD / 10)
 
     return {
         "n_iterations": n_iterations,
         "holonomy_norms_per_iteration": holonomy_norms,
         "linear_fit_slope": slope,
-        "linear_fit_intercept": float(coeffs[1]),
-        "holonomy_std": float(np.std(ys)),
+        "linear_fit_intercept": float(coeffs[1].item()),
+        "holonomy_std": holonomy_std,
         "hysteresis_grows_with_iterations": grows_linearly,
         "oscillates_without_trend": oscillates,
         "verdict": "hysteresis" if grows_linearly else ("oscillating" if oscillates else "converging_to_fixed"),

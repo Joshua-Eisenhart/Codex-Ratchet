@@ -69,6 +69,8 @@ LATE_STAGE_TOKENS = ("axis", "bridge", "coupling", "coexistence", "emergence", "
 FINDER_DUPLICATE_RE = re.compile(r" \d+$")
 READ_TIMEOUT_SECONDS = 5.0
 BULK_A2_STATE_RESULT_LIMIT = 1000
+JSON_CACHE_SIZE = 2048
+AST_CACHE_SIZE = 512
 
 CLASSICAL_LANE_TOKENS = (
     "classical",
@@ -242,7 +244,7 @@ def read_text_with_timeout(path: Path, *, errors: str | None = None) -> str:
         signal.signal(signal.SIGALRM, old_handler)
 
 
-@lru_cache(maxsize=32768)
+@lru_cache(maxsize=JSON_CACHE_SIZE)
 def load_json(path: Path) -> Any:
     try:
         return json.loads(read_text_with_timeout(path))
@@ -395,7 +397,7 @@ def imports_from_ast(text: str) -> set[str]:
     return {item for item in found if item}
 
 
-@lru_cache(maxsize=32768)
+@lru_cache(maxsize=AST_CACHE_SIZE)
 def parsed_module(text: str) -> ast.Module | None:
     try:
         with warnings.catch_warnings():
@@ -777,6 +779,8 @@ def detect_engine_roles(
 def status_for(row: dict[str, Any]) -> str:
     if row["admitted"]:
         return "admitted"
+    if row.get("admission_status") == "admission_result_skipped_by_bulk_a2_state":
+        return "admission_result_skipped_by_bulk_a2_state"
     if row.get("admission_status") == "admission_missing_result_link":
         return "admission_missing_result_link"
     if row.get("admission_status") == "admission_missing_contract_shape":
@@ -863,6 +867,8 @@ def garbage_candidate_flags_for(row: dict[str, Any]) -> list[str]:
 def cleanup_bucket_for(row: dict[str, Any]) -> str:
     if row["admitted"]:
         return "keep_admitted_receipt_linked"
+    if row.get("admission_status") == "admission_result_skipped_by_bulk_a2_state":
+        return "bulk_a2_state_result_skipped_diagnostic_only"
     if row.get("admission_status") == "admission_missing_result_link":
         return "repair_admission_result_link"
     if row.get("admission_status") == "admission_missing_contract_shape":
@@ -889,21 +895,41 @@ def admission_expected_result(entry: dict[str, Any] | None) -> str:
     return str(expected or "")
 
 
+def resolved_expected_result_path(expected: str) -> Path | None:
+    if not expected:
+        return None
+    expected_path = Path(expected)
+    if not expected_path.is_absolute():
+        expected_path = ROOT / expected_path
+    return expected_path
+
+
+def is_bulk_a2_state_result_path(path: Path | None) -> bool:
+    if path is None:
+        return False
+    try:
+        return path.resolve().parent == bulk_a2_state_result_dir().resolve()
+    except OSError:
+        return False
+
+
 def admission_status(
     stem: str,
     entry: dict[str, Any] | None,
     linked_results: list[Path],
     result_has_contract_shape: bool,
+    bulk_a2_state_results_skipped: bool = False,
 ) -> str:
     if not entry:
         return "no_admission"
     expected = admission_expected_result(entry)
     linked = {path.resolve() for path in linked_results}
     if expected:
-        expected_path = Path(expected)
-        if not expected_path.is_absolute():
-            expected_path = ROOT / expected_path
+        expected_path = resolved_expected_result_path(expected)
+        assert expected_path is not None
         if expected_path.resolve() not in linked:
+            if bulk_a2_state_results_skipped and is_bulk_a2_state_result_path(expected_path):
+                return "admission_result_skipped_by_bulk_a2_state"
             return "admission_missing_result_link"
     elif not linked_results:
         return "admission_missing_result_link"
@@ -926,6 +952,7 @@ def build_index(
         candidate_bulk_count = bulk_a2_state_result_count()
         if candidate_bulk_count > BULK_A2_STATE_RESULT_LIMIT:
             skipped_bulk_a2_state_result_count = candidate_bulk_count
+    bulk_a2_state_results_skipped = skipped_bulk_a2_state_result_count > 0
     results = result_paths(skip_bulk_a2_state_results=skip_bulk_a2_state_results)
     lookup = result_lookup(results)
     admitted = admissions()
@@ -961,7 +988,13 @@ def build_index(
         )
         entry = admitted.get(stem)
         result_has_contract_shape = any(receipt_schema_present(payload) for payload in payloads)
-        current_admission_status = admission_status(stem, entry, linked_results, result_has_contract_shape)
+        current_admission_status = admission_status(
+            stem,
+            entry,
+            linked_results,
+            result_has_contract_shape,
+            bulk_a2_state_results_skipped=bulk_a2_state_results_skipped,
+        )
         row = {
             "stem": stem,
             "source_path": rel(path),
@@ -1015,6 +1048,9 @@ def build_index(
     load_bearing_counts = Counter(tool for row in rows for tool in row["load_bearing_tools"])
     result_class_counts = Counter(cls for row in rows for cls in row["result_classifications"])
     admitted_rows = [row for row in rows if row["admitted"]]
+    skipped_admission_result_rows = [
+        row for row in rows if row.get("admission_status") == "admission_result_skipped_by_bulk_a2_state"
+    ]
     admission_repair_rows = [
         row
         for row in rows
@@ -1045,6 +1081,9 @@ def build_index(
             "skipped_bulk_a2_state_result_count": skipped_bulk_a2_state_result_count,
             "linked_result_json_count": len(linked_results),
             "unlinked_result_json_count": len(unlinked_results),
+            "historical_admission_record_count": len(admitted),
+            "admitted_evidence_linked_count": len(admitted_rows),
+            "admission_result_skipped_by_bulk_a2_state_count": len(skipped_admission_result_rows),
             "admitted_count": len(admitted_rows),
             "admission_repair_count": len(admission_repair_rows),
             "status_counts": dict(status_counts),
@@ -1066,6 +1105,9 @@ def build_index(
             "source_only_count": len(source_only),
         },
         "admitted_stems": sorted(row["stem"] for row in admitted_rows),
+        "admission_result_skipped_by_bulk_a2_state_samples": [
+            sample_row(row) for row in skipped_admission_result_rows[:100]
+        ],
         "admission_repair_samples": [sample_row(row) for row in admission_repair_rows[:100]],
         "unlinked_result_samples": [rel(path) for path in unlinked_results[:100]],
         "repair_candidate_samples": [sample_row(row) for row in repair_candidates[:100]],
@@ -1099,7 +1141,9 @@ def write_markdown(index: dict[str, Any], path: Path) -> None:
         f"- Bulk a2_state result JSON files skipped: `{summary.get('skipped_bulk_a2_state_result_count', 0)}`",
         f"- Linked result JSON files: `{summary['linked_result_json_count']}`",
         f"- Unlinked result JSON files: `{summary['unlinked_result_json_count']}`",
-        f"- Wizard-admitted stems: `{summary['admitted_count']}`",
+        f"- Historical admission records: `{summary.get('historical_admission_record_count', summary['admitted_count'])}`",
+        f"- Admitted evidence linked rows: `{summary.get('admitted_evidence_linked_count', summary['admitted_count'])}`",
+        f"- Admission rows with bulk a2_state result skipped: `{summary.get('admission_result_skipped_by_bulk_a2_state_count', 0)}`",
         f"- Repair / rerun candidate rows: `{summary['repair_candidate_count']}`",
         f"- Source-only rows: `{summary['source_only_count']}`",
         "",
@@ -1257,7 +1301,12 @@ def main() -> int:
     print(f"wrote {args.md_out}")
     print(f"source_count={summary['source_count']}")
     print(f"result_json_count={summary['result_json_count']}")
+    print(f"historical_admission_record_count={summary.get('historical_admission_record_count', summary['admitted_count'])}")
     print(f"admitted_count={summary['admitted_count']}")
+    print(
+        "admission_result_skipped_by_bulk_a2_state_count="
+        f"{summary.get('admission_result_skipped_by_bulk_a2_state_count', 0)}"
+    )
     print(f"repair_candidate_count={summary['repair_candidate_count']}")
     return 0
 

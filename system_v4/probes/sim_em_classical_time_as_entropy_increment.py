@@ -5,6 +5,8 @@ Cites: user_entropic_monism_doctrine.md
 Numpy load_bearing: simulates coarse-grained diffusion and measures dS/dt>=0.
 """
 import json, os, numpy as np
+classification = "classical_baseline"
+divergence_log = ["Classical baseline measures diffusion entropy increase against ordered and boundary controls; it is not a nonclassical time-arrow proof."]
 SCOPE_NOTE = "Doctrine 'time=entropy increasing'. Baseline diffusion; dS/dt sign test. See user_entropic_monism_doctrine.md"
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "load-bearing diffusion + entropy calc"},
@@ -50,7 +52,7 @@ if __name__ == "__main__":
     pos, neg, bnd = run_positive_tests(), run_negative_tests(), run_boundary_tests()
     all_pass = all(v["pass"] for v in {**pos, **neg, **bnd}.values())
     results = {"name": "sim_em_classical_time_as_entropy_increment", "scope_note": SCOPE_NOTE,
-               "classification": "classical_baseline", "tool_manifest": TOOL_MANIFEST,
+               "classification": "classical_baseline", "divergence_log": divergence_log, "tool_manifest": TOOL_MANIFEST,
                "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "all_pass": all_pass}
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

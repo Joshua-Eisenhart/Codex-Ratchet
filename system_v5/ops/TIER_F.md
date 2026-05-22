@@ -1,19 +1,29 @@
-# Tier F — Axes 1–6 on the Composed Manifold
+# Historical Tier F Proposal — Axes 1-6 on a Candidate Composed Manifold
 
-> **Worker spawn preamble (mandatory):** every spawned Claude worker receives Block B (140-word) from `~/wiki/harness/SALIENCE_PREAMBLE.md` prepended to its system prompt before any task description. See `system_v5/ops/HERMES_RULES.md` §0. Probe-tested 2026-04-17 on fresh Haiku.
+Status: historical/postponed proposal. It depends on Tier E candidate composed
+Axis0 work and is not current admission authority. Current v5 formal-scout
+status does not admit a final manifold, composed Axis0 theorem, real-basin,
+bridge, engine, physics, or Holodeck claim.
+
+> Historical worker preamble from the old plan, not current Codex instruction:
+> spawned Claude workers received Block B from `~/wiki/harness/SALIENCE_PREAMBLE.md`.
 
 
-Runs after Tier E (canonical composed Axis 0). Axes 1–6 inherit the B/C/D/E infrastructure — no new math, just composition.
+Runs after Tier E candidate composed Axis0. Axes 1-6 inherit the B/C/D/E
+proposal infrastructure; current use requires fresh repo authority and
+validators.
 
 Preconditions:
-- Tier E gate GREEN: `~/wiki/projects/codex-ratchet/tier_e.md` confirms canonical composed Axis 0
+- Tier E gate GREEN in the historical plan; current work must not assume canonical composed Axis0 is admitted
 - Composition operator π available
 - Layer-pullback gradient defined
 - Orthogonality matrix rebuilt against composed Axis 0
 
 ## Objective
 
-Each of axes 1–6 gets a composed-manifold canonical sim, using the B/C/D/E legos. Expect: some previously "orthogonal" axes re-couple on the real manifold; some survive; some collapse into each other.
+Each of axes 1-6 gets a candidate composed-manifold sim, using the B/C/D/E
+proposal pieces. Expect: some previously "orthogonal" axes may re-couple on the
+candidate manifold; some survive; some collapse into each other.
 
 ## Axes to sim
 
@@ -32,10 +42,10 @@ These labels are **provisional**. Composed-manifold sims may show multiple axes 
 
 Each worker:
 - Reads harness/00-10, TIER_E.md, axis0_canonical_composed.py
-- Writes `system_v4/probes/axis<N>_canonical_composed.py` following the Axis 0 composed template
+- Writes a proposed `axis<N>_canonical_composed.py` only if current repo authority allows that naming and classification
 - Uses the same composition operator π with axis-specific carrier observables
 - Enqueues to `system_v5/ops/queue_tier_f.txt` (create if missing)
-- Commits per sim: `"tier-f/F<n>: axis<N> canonical composed"`
+- Historical commit template: `"tier-f/F<n>: axis<N> canonical composed"`; do not use it as current status language
 
 ## Collapse detection (harness/09 doctrine)
 
@@ -48,7 +58,7 @@ Preserve all surviving candidates. Do NOT prematurely collapse per harness/08.
 
 ## Gate
 
-- ✓ 6 composed-axis probes exist, canonical, passes local rerun
+- Historical gate: 6 composed-axis probes exist and pass local rerun; current admission still requires explicit current validators and promotion authority
 - ✓ Orthogonality matrix recomputed against composed axes (not flat)
 - ✓ Collapse analysis report at `~/wiki/projects/codex-ratchet/tier_f_collapse.md`
 - ✓ Surviving candidate set documented (could be 6, could be 2 — both valid outcomes)

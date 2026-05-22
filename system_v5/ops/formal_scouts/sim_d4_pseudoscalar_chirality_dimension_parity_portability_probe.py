@@ -9,8 +9,9 @@ Finding (from initial in-line run): D4's chirality property is DIMENSION-PARITY-
 - Even-dim (n=p+q=4): pseudoscalar anticommutes with all generators → chirality holds
 - Odd-dim (n=p+q=5): pseudoscalar COMMUTES with all generators (central in algebra) → chirality FAILS
 
-Contrast with D5 commutative_geometry_collapse which is FULLY signature-portable (8/8 signatures
-including both n=4 and n=5 returned 4-way UNSAT in sim_commutative_geometry_collapse_cl_2_2_portability_probe).
+Contrast with D5 commutative_geometry_collapse, where the companion formal scout reports
+encoded-exclusion portability across the tested signatures. That contrast is receipt-local,
+not a basin or manifold promotion.
 
 This formalizes the methodology: portability gives a discriminating axis between basin claims.
 
@@ -24,7 +25,6 @@ import json
 import pathlib
 import time
 
-import numpy as np
 from clifford import Cl
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -42,14 +42,11 @@ CLAIM_CEILING = (
 
 TOOL_INTEGRATION_DEPTH = {
     "clifford": "load_bearing",
-    "numpy": "supportive",
 }
 
 TOOL_MANIFEST = {
     "clifford": {"tried": True, "used": True,
                   "reason": "Load-bearing Cl(p,q) generator construction + geometric product + pseudoscalar computation across signatures"},
-    "numpy": {"tried": True, "used": True,
-              "reason": "Supportive multivector coefficient norm arithmetic"},
 }
 
 
@@ -65,7 +62,7 @@ def test_signature(p: int, q: int) -> dict:
     I_sq_scalar = float(I_sq.value[0])
     anticomm_per_gen = []
     for g in gens:
-        anticomm_norm = float(np.linalg.norm((I * g + g * I).value))
+        anticomm_norm = float(sum(abs(float(v)) ** 2 for v in (I * g + g * I).value) ** 0.5)
         anticomm_per_gen.append({
             "norm_of_I_g_plus_g_I": anticomm_norm,
             "anticommutes": anticomm_norm < 1e-12,
@@ -112,7 +109,8 @@ def main():
     portability_pattern = (
         f"DIMENSION-PARITY-LOCKED: pseudoscalar anticommutes with all generators in all {len(even_results)} "
         f"even-dimension signatures tested AND fails in all {len(odd_results)} odd-dimension signatures. "
-        f"D4 chirality property is dimension-parity-conditional, contrasting with D5's fully-portable impossibility."
+        "D4 chirality property is dimension-parity-conditional, contrasting with D5's "
+        "receipt-local encoded-exclusion portability label."
     )
 
     results = {
@@ -154,7 +152,7 @@ def main():
             },
         },
         "all_pass": all_even_anticomm and all_odd_commute,
-        "portability_verdict": portability_pattern,
+        "nonpromotion_portability_label": portability_pattern,
         "nearby_variants": nearby_variants,
         "why_not_v4_probes": [
             "This is a v5 formal scout over D4 pseudoscalar portability, not a canonical v4 probe.",
@@ -169,7 +167,7 @@ def main():
     print(f"even-dim pseudoscalar anticommutes-all: {all_even_anticomm}  ({len(even_results)} sigs)")
     print(f"odd-dim pseudoscalar commutes-all: {all_odd_commute}  ({len(odd_results)} sigs)")
     print(f"all_pass: {results['all_pass']}")
-    print(f"VERDICT: {portability_pattern}")
+    print(f"nonpromotion_portability_label: {portability_pattern}")
     return results
 
 

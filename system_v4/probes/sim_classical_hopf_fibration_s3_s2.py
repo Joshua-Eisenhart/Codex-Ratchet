@@ -7,11 +7,25 @@ fibration / U(1) equivariance"; LADDERS_FENCES_ADMISSION_REFERENCE.md
 fibration fences. Classical baseline; e3nn bridge is canonical.
 """
 import numpy as np
-from _doc_illum_common import build_manifest, write_results
+from _doc_illum_common import write_results
 
-TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH = build_manifest()
-TOOL_MANIFEST["numpy"] = {"tried": True, "used": True, "reason": "hopf map"}
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
+classification = "classical_baseline"
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for the Hopf map; it does not promote a "
+        "nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "hopf map"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+}
 
 
 def hopf(z1, z2):

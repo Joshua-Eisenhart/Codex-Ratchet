@@ -18,6 +18,8 @@ import json
 import os
 import sys
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================

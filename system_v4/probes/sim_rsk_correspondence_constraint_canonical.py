@@ -13,6 +13,8 @@ import json
 import os
 import sys
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -141,7 +143,7 @@ def run_positive_tests():
     perm = [2, 1, 3]
     # Simulated RSK output shape
     expected_shape = (2, 1)
-    
+
     results["test_sympy_shape_2_1_3"] = {
         "permutation": str(perm),
         "expected_shape": str(expected_shape),

@@ -11,6 +11,15 @@ import pathlib
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for sim_trace_distance_geometry; it does not promote a "
+        "nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+
 
 EPS = 1e-10
 

@@ -15,6 +15,8 @@ Cyclotomic character formula (sympy): χ_cyc captures the action on p-th roots o
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

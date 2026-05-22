@@ -12,6 +12,11 @@ import numpy as np
 from itertools import product
 
 classification = "classical_baseline"
+divergence_log = [
+    "only bit-flip syndromes; no phase-flip / Z-error channel",
+    "no CSS dual-check structure or Pauli degeneracy classes",
+    "no stabilizer-measurement backaction / random outcome",
+]
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "F_2 linear algebra"},

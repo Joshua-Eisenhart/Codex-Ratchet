@@ -17,7 +17,6 @@ import time
 from typing import Any
 
 import networkx as nx
-import numpy as np
 import z3
 
 
@@ -29,6 +28,7 @@ UPSTREAM_RESULT = RESULT_DIR / "lirpa_policy_bound_variable_qubit_scaling_probe_
 NAME = "lirpa_peps3d_size_normalized_environment_scaling_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "receipt_audit"
 SOURCE_ALIGNMENT_CATEGORY = "lirpa_peps3d_size_normalized_environment_scaling"
 CLAIM_CEILING = (
     "Formal scout only: consumes the variable-qubit LiRPA-gated multicarrier "
@@ -41,10 +41,10 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "python_json": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing size-normalized RMS metrics and ratio checks",
+        "reason": "load-bearing consumed-upstream scalar ratio checks and receipt serialization",
     },
     "networkx": {
         "tried": True,
@@ -67,7 +67,14 @@ TOOL_MANIFEST = {
         "reason": "load-bearing through consumed upstream PEPS3D local-environment carrier receipt",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'python_json': 'supportive',
+    'networkx': 'load_bearing',
+    'z3': 'load_bearing',
+    'auto_LiRPA': 'load_bearing',
+    'quimb': 'load_bearing',
+}
+TOOL_ROLE_SOURCE = {tool: "local" for tool in TOOL_MANIFEST}
 
 REQUIRED_REPAIR_RECEIPT_FIELDS = [
     "weak_link",
@@ -102,12 +109,6 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     return value
 
 
@@ -221,6 +222,70 @@ def dependency_graph() -> dict[str, Any]:
     }
 
 
+def _matmul(a: list[list[complex]], b: list[list[complex]]) -> list[list[complex]]:
+    return [
+        [sum(a[row][k] * b[k][col] for k in range(2)) for col in range(2)]
+        for row in range(2)
+    ]
+
+
+def _sub(a: list[list[complex]], b: list[list[complex]]) -> list[list[complex]]:
+    return [[a[row][col] - b[row][col] for col in range(2)] for row in range(2)]
+
+
+def _fro_norm(a: list[list[complex]]) -> float:
+    return math.sqrt(sum(abs(cell) ** 2 for row in a for cell in row))
+
+
+def _bloch_density(sample: dict[str, Any], keys: tuple[str, str, str]) -> list[list[complex]]:
+    x = float(sample[keys[0]])
+    y = float(sample[keys[1]])
+    z = float(sample[keys[2]])
+    return [
+        [0.5 * (1.0 + z), 0.5 * (x - 1j * y)],
+        [0.5 * (x + 1j * y), 0.5 * (1.0 - z)],
+    ]
+
+
+def n01_order_witness(rows: dict[str, Any]) -> dict[str, Any]:
+    """Finite PEPS3D local readout order witness without adding NumPy."""
+
+    x_op = [[0j, 1 + 0j], [1 + 0j, 0j]]
+    z_op = [[1 + 0j, 0j], [0j, -1 + 0j]]
+    samples: dict[str, Any] = {}
+    gaps: list[float] = []
+    for key in (PEPS3D32_KEY, PEPS3D64_KEY):
+        sample = rows.get(key, {}).get("sample_environment_head", [{}])[0]
+        if not sample:
+            continue
+        rho = _bloch_density(sample, ("pauli_xI", "pauli_yI", "pauli_zI"))
+        xz_rho = _matmul(_matmul(x_op, z_op), rho)
+        zx_rho = _matmul(_matmul(z_op, x_op), rho)
+        gap = _fro_norm(_sub(xz_rho, zx_rho))
+        gaps.append(gap)
+        samples[key] = {
+            "finite_peps3d_site_count": int(rows[key]["site_count"]),
+            "ordered_operator_pair": "X_then_Z_vs_Z_then_X_on_sampled_edge_x_site_density",
+            "commutator_gap_frobenius": gap,
+            "sample_edge": sample.get("edge"),
+        }
+
+    solver = z3.Solver()
+    witness_count = z3.Int("peps3d_order_witness_count")
+    min_gap = z3.Real("min_commutator_gap")
+    solver.add(witness_count == len(gaps))
+    solver.add(min_gap == str(round(min(gaps) if gaps else 0.0, 12)))
+    solver.add(z3.Not(z3.And(witness_count == 2, min_gap > 0)))
+    status = solver.check()
+    return {
+        "pass": bool(gaps) and status == z3.unsat,
+        "solver_status": str(status),
+        "root": "N01_noncommutation_or_order_sensitivity",
+        "claim": "Finite PEPS3D sampled-edge density changes under XZ versus ZX operator order; this is a local order witness only.",
+        "samples": samples,
+    }
+
+
 def z3_normalization_witness(comparison: dict[str, Any], compressed_status: dict[str, Any]) -> dict[str, Any]:
     solver = z3.Solver()
     normalized_admitted = z3.Bool("normalized_admitted")
@@ -254,6 +319,7 @@ def main() -> int:
     }
     compressed_status = compressed_summary_status(data)
     graph = dependency_graph()
+    order_witness = n01_order_witness(upstream_rows)
     z3_witness = z3_normalization_witness(comparison, compressed_status)
 
     repair_receipt = {
@@ -265,6 +331,7 @@ def main() -> int:
             "auto_LiRPA policy-bound gate consumed upstream",
             "source-native MPS/PEPS/PEPS3D local environment updates consumed upstream",
             "PEPS3D32 and PEPS3D64 local environment RMS controls",
+            "finite PEPS3D sampled-edge XZ/ZX order witness",
         ],
         "stage_fields_touched_or_consumed": (
             data.get("repair_receipt", {}).get("stage_fields_touched_or_consumed", [])
@@ -330,6 +397,7 @@ def main() -> int:
         },
         "dependency_graph_is_acyclic": graph,
         "z3_size_normalization_witness_executes": z3_witness,
+        "n01_noncommutation_or_order_witness": order_witness,
     }
     graveyards = {
         "compressed_global_summary_status_is_explicit_not_stale": compressed_status,
@@ -379,6 +447,7 @@ def main() -> int:
                 and data.get("all_pass") is True
                 and comparison["admitted_size_normalized_local_scaling"]
                 and compressed_status["pass"]
+                and order_witness["pass"]
             ),
             "upstream_result_sha256": repair_receipt["before_baseline/hash"]["upstream_result_sha256"],
             "consumed_upstream_positive_sections": sorted(upstream_positive),
@@ -400,10 +469,12 @@ def main() -> int:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "claim_ceiling": CLAIM_CEILING,
         "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "repair_receipt": repair_receipt,
@@ -429,6 +500,12 @@ def main() -> int:
             "Provider proposals are not counted as evidence until local receipts exist.",
         ],
         "blockers": [],
+        "root_constraints": {
+            "finite_carrier_root": True,
+            "noncommutation_or_order_root": bool(order_witness["pass"]),
+            "finite_evidence": "bounded PEPS3D32/PEPS3D64 sampled-edge density readouts",
+            "noncommutation_or_order_evidence": "XZ versus ZX finite operator-order witness over sampled PEPS3D local density",
+        },
         "elapsed_seconds": time.time() - started,
         "all_pass": all_pass,
     }

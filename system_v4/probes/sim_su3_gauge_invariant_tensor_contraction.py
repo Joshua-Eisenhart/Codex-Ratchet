@@ -27,6 +27,15 @@ import traceback
 
 classification = "classical_baseline"
 
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for sim_su3_gauge_invariant_tensor_contraction; it does not promote a "
+        "nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True,  "used": True,
                   "reason": "Construct MPS tensors; apply SU3 gauge on virtual bonds; compute I_c before/after; verify autograd dI_c/dg=0 at g=identity"},

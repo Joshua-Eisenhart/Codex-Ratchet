@@ -1,6 +1,11 @@
 # Tier Status (Resolution Levels on M(C))
 
 Date: 2026-04-05
+Current status: historical tier snapshot. Do not use this file as the current
+readiness/admission surface. For current formal-scout routing, start from
+`system_v5/docs/FORMAL_SCOUT_READINESS_INDEX.md` and, when present,
+`system_v5/docs/SIM_ESTATE_INTEGRATION_INDEX.md`.
+
 Supersedes framing of: CURRENT_PRE_AXIS_SIM_STATUS__KEEP_OPEN_DIAGNOSTIC_BROKEN.md,
                         CURRENT_PREAXIS_STATUS_AND_ORDERING_NOTE.md,
                         WAVE2_AXES_NEXT_SIMS_AUDIT.md,
@@ -19,7 +24,7 @@ simultaneous constraint surface M(C), not floors in a building.
 
 ## Scope and Reporting Rule
 
-This is the live status surface for:
+This was the live status surface for the 2026-04-05 tier pass:
 - what has survived
 - what is still open
 - what remains doctrinal only
@@ -36,7 +41,7 @@ Use this with:
 - `LLM_CONTROLLER_CONTRACT.md` for status-label discipline
 
 Short rule:
-- if you need to report current state, start here
+- if you need to report current state, start from the generated readiness and sim-estate indexes
 - if you need to understand the reference framing behind a state, then expand outward
 
 ## Resolution 0-2: Root Constraints and Charter (Analytical)

@@ -18,7 +18,6 @@ from geomstats.geometry.hypersphere import Hypersphere
 import geomstats.backend as gs
 import gudhi
 import networkx as nx
-import numpy as np
 import opt_einsum as oe
 import rustworkx as rx
 from scipy.linalg import expm
@@ -55,7 +54,6 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing source-history feature extraction and finite control transforms"},
     "scipy": {"tried": True, "used": True, "reason": "supportive sanity propagator for two-level signed Hamiltonian"},
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing eight-qubit state, Hamiltonian evolution, density reductions, and spectra"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing tensor-network partial traces across all cuts"},
@@ -76,21 +74,20 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
     "scipy": "supportive",
     "pytorch": "load_bearing",
     "opt_einsum": "load_bearing",
     "networkx": "load_bearing",
     "torch_geometric": "supportive",
     "gudhi": "load_bearing",
-    "sympy": "supportive",
+    "sympy": "load_bearing",
     "z3": "supportive",
     "clifford": "supportive",
     "geomstats": "supportive",
     "rustworkx": "supportive",
     "toponetx": "supportive",
     "xgi": "supportive",
-    "special_form_constraints": "load_bearing",
+    "special_form_constraints": "supportive",
 }
 
 N_QUBITS = 8
@@ -104,10 +101,6 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, tuple):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.floating, np.integer)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
     return value
@@ -227,8 +220,8 @@ def source_features(rows: list[dict[str, Any]], permute: bool = False, uniform: 
     features = []
     for step in range(8):
         block = ordered[step * 8 : (step + 1) * 8]
-        readouts = np.array([row["readout"] for row in block], dtype=float)
-        coherence = np.array([row["offdiag_coherence"] for row in block], dtype=float)
+        readouts = torch.tensor([row["readout"] for row in block], dtype=torch.float64)
+        coherence = torch.tensor([row["offdiag_coherence"] for row in block], dtype=torch.float64)
         terrains = {row["terrain_law"] for row in block}
         base_lift_fraction = sum(1 for row in block if row["loop"] == "base_lift_loop") / max(len(block), 1)
         left = [row for row in block if row["sheet"].startswith("left")]
@@ -236,16 +229,18 @@ def source_features(rows: list[dict[str, Any]], permute: bool = False, uniform: 
         lr_gap = 0.0
         flux_orientation = 0.0
         if left and right:
-            lr_gap = float(abs(np.mean([r["offdiag_coherence"] for r in left]) - np.mean([r["offdiag_coherence"] for r in right])))
-            left_z = float(np.mean([r["readout"][2] for r in left]))
-            right_z = float(np.mean([r["readout"][2] for r in right]))
+            left_coh = torch.tensor([r["offdiag_coherence"] for r in left], dtype=torch.float64)
+            right_coh = torch.tensor([r["offdiag_coherence"] for r in right], dtype=torch.float64)
+            lr_gap = float(torch.abs(torch.mean(left_coh) - torch.mean(right_coh)).item())
+            left_z = float(torch.mean(torch.tensor([r["readout"][2] for r in left], dtype=torch.float64)).item())
+            right_z = float(torch.mean(torch.tensor([r["readout"][2] for r in right], dtype=torch.float64)).item())
             flux_orientation = left_z - right_z
         if uniform:
             mean_abs, std, coh, lr_gap, flux_orientation, terrain_count, base_lift_fraction = 0.25, 0.0, 0.25, 0.0, 0.0, 1, 0.0
         else:
-            mean_abs = float(np.mean(np.abs(readouts)))
-            std = float(np.std(readouts))
-            coh = float(np.mean(coherence))
+            mean_abs = float(torch.mean(torch.abs(readouts)).item())
+            std = float(torch.std(readouts, unbiased=False).item())
+            coh = float(torch.mean(coherence).item())
             terrain_count = len(terrains)
         features.append(
             {
@@ -503,12 +498,15 @@ def sympy_scipy_checks() -> dict[str, Any]:
     sx = sp.Matrix([[0, 1], [1, 0]])
     sy = sp.Matrix([[0, -sp.I], [sp.I, 0]])
     comm = sp.simplify(sx * sy - sy * sx)
-    h = np.array([[1.0, 0.2], [0.2, -1.0]], dtype=np.complex128)
-    u = expm(-1j * h * 0.03)
+    h = [[1.0 + 0j, 0.2 + 0j], [0.2 + 0j, -1.0 + 0j]]
+    u = expm([[-1j * 0.03 * value for value in row] for row in h])
+    u_t = torch.as_tensor(u, dtype=DTYPE)
+    eye = torch.eye(2, dtype=DTYPE)
+    unitary_gap = float(torch.linalg.vector_norm(u_t.conj().T @ u_t - eye).item())
     return {
         "pauli_commutator": str(comm),
-        "scipy_unitary_gap": float(np.linalg.norm(u.conj().T @ u - np.eye(2))),
-        "pass": comm != sp.zeros(2) and float(np.linalg.norm(u.conj().T @ u - np.eye(2))) < 1e-12,
+        "scipy_unitary_gap": unitary_gap,
+        "pass": comm != sp.zeros(2) and unitary_gap < 1e-12,
     }
 
 

@@ -15,6 +15,8 @@ Classification: canonical.
 import json, os
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "numeric only; geomstats numpy backend used"},
     "pyg": {"tried": False, "used": False, "reason": "no graph"},

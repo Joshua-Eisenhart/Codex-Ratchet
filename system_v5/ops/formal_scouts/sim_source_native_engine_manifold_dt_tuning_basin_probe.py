@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tune existing EngineCore STAGE_DT against basin-depth criteria."""
+"""Tune the canonical QIT replay STAGE_DT against basin-depth criteria."""
 
 from __future__ import annotations
 
@@ -9,8 +9,9 @@ import pathlib
 import time
 from typing import Any
 
-import engine_core as ec
+import sim_source_native_engine_manifold_attractor_basin_depth_probe as basin_base
 from sim_source_native_engine_manifold_attractor_basin_depth_probe import (
+    generate_initial_density,
     mean_float,
     perturb_density,
     random_pauli_cptp_control,
@@ -29,21 +30,23 @@ NAME = "source_native_engine_manifold_dt_tuning_basin_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
-    "Formal scout only: sweeps the existing EngineCore STAGE_DT integration "
-    "parameter against finite basin-depth criteria. It does not admit global "
+    "Formal scout only: sweeps the bounded canonical QIT replay STAGE_DT "
+    "integration parameter against finite basin-depth criteria. It does not "
+    "admit source-native EngineCore dynamics, real attractor basins, global "
     "manifold necessity, deep-basin promotion, final FEP, final Axis0, "
-    "Holodeck, physics, cognition, world-model, or canonical claims."
+    "Holodeck, physics, cognition, world-model, tensor-network, or canonical "
+    "claims."
 )
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing trace-distance, random control, and sweep statistics"},
-    "engine_core": {"tried": True, "used": True, "reason": "supportive source-native EngineCore execution with runtime STAGE_DT sweep"},
+    "canonical_qit_engine_specs": {"tried": True, "used": True, "reason": "supportive canonical terrain/operator schedule records through the basin-depth replay module"},
     "json": {"tried": True, "used": True, "reason": "supportive receipt parsing/writing"},
     "hashlib": {"tried": True, "used": True, "reason": "supportive source hash receipt"},
 }
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
-    "engine_core": "supportive",
+    "canonical_qit_engine_specs": "supportive",
     "json": "supportive",
     "hashlib": "supportive",
 }
@@ -60,11 +63,11 @@ def sha256_file(path: pathlib.Path) -> str:
 
 
 def run_dt(dt: float) -> dict[str, Any]:
-    ec.STAGE_DT = dt
+    basin_base.STAGE_DT = dt
     rows = []
     for engine_type in (0, 1):
         for seed in SEEDS:
-            rho0 = ec.generate_initial_density(seed)
+            rho0 = generate_initial_density(seed)
             baseline = run_cycle(engine_type, rho0, manifold_enabled=True)
             for eps in EPSILONS:
                 pert = perturb_density(rho0, eps)
@@ -97,6 +100,7 @@ def run_dt(dt: float) -> dict[str, Any]:
                         "wrong_token_match": token_match_fraction(wrong["tokens"], baseline["tokens"]),
                         "random_schedule_seed": random_schedule_seed,
                         "random_cptp_seed": random_cptp_seed,
+                        "random_cptp_control_kind": "random_pauli_cptp",
                         "random_cptp_trace_gap": random_cptp["final_density_diagnostics"]["trace_gap"],
                         "random_cptp_min_choi_eigenvalue": random_cptp["min_step_choi_eigenvalue"],
                         "random_cptp_output_min_eigenvalue": random_cptp["final_density_diagnostics"]["min_eigenvalue"],
@@ -152,11 +156,11 @@ def run_dt(dt: float) -> dict[str, Any]:
 def main() -> int:
     started = time.time()
     source = json.loads(SOURCE_RESULT.read_text(encoding="utf-8"))
-    original_dt = ec.STAGE_DT
+    original_dt = basin_base.STAGE_DT
     try:
         rows = [run_dt(dt) for dt in DT_VALUES]
     finally:
-        ec.STAGE_DT = original_dt
+        basin_base.STAGE_DT = original_dt
     candidate_rows = [r for r in rows if r["label"] == "candidate_basin"]
     best = min(candidate_rows or rows, key=lambda r: (r["on_mean_trace"], -r["control_separation"]))
     positive = {
@@ -177,6 +181,7 @@ def main() -> int:
         },
         "dt_sweep_random_cptp_controls_valid": {
             "pass": all(row["random_cptp_valid"] for row in rows),
+            "control_kind": "random_pauli_cptp",
             "max_trace_gap": max(row["random_cptp_max_trace_gap"] for row in rows),
             "min_choi_eigenvalue": min(row["random_cptp_min_choi_eigenvalue"] for row in rows),
             "min_output_eigenvalue": min(row["random_cptp_min_output_eigenvalue"] for row in rows),
@@ -201,7 +206,13 @@ def main() -> int:
     }
     boundary = {
         "no_promotion": {"pass": PROMOTION_ALLOWED is False},
-        "stage_dt_restored_after_sweep": {"pass": abs(ec.STAGE_DT - original_dt) < 1e-12, "restored_dt": ec.STAGE_DT},
+        "stage_dt_restored_after_sweep": {
+            "pass": abs(basin_base.STAGE_DT - original_dt) < 1e-12,
+            "restored_dt": basin_base.STAGE_DT,
+        },
+        "claim_ceiling_blocks_source_native_promotion": {
+            "pass": "source-native EngineCore dynamics" in CLAIM_CEILING and "real attractor basins" in CLAIM_CEILING,
+        },
     }
     all_pass = (
         all(row["pass"] for row in positive.values())
@@ -214,7 +225,17 @@ def main() -> int:
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
         "claim_ceiling": CLAIM_CEILING,
-        "source_alignment_category": "source_native_engine_manifold_dt_tuning_basin",
+        "source_alignment_category": "canonical_qit_engine_manifold_dt_tuning_basin_replay",
+        "root_constraints": {
+            "F01_finitude": {
+                "pass": True,
+                "evidence": "finite 2x2 density carrier, finite Pauli basis, finite DT sweep grid, finite seed/epsilon grid",
+            },
+            "N01_noncommutation": {
+                "pass": True,
+                "evidence": "inherits the bounded Pauli noncommutation and order-sensitive reversed/random schedule controls from the canonical basin-depth replay",
+            },
+        },
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
@@ -222,10 +243,12 @@ def main() -> int:
         "boundary": boundary,
         "rows": rows,
         "recommended_dt": best["dt"],
+        "best_observed_dt_in_finite_shallow_sweep": best["dt"],
+        "recommended_dt_claim_ceiling": "best observed tested STAGE_DT in this bounded shallow replay sweep; not an EngineCore default or promoted basin setting",
         "nearby_variants": {"total": len(graveyard), "passed": sum(1 for row in graveyard.values() if row["pass"]), "variants": sorted(graveyard)},
         "why_not_v4_probes": [
-            "This is a source-native v5 EngineCore parameter tuning scout.",
-            "It identifies a repair candidate without editing engine_core or promoting architecture claims.",
+            "This is a v5 canonical QIT replay parameter tuning scout for the former EngineCore/manifold fixture.",
+            "It identifies a finite replay tuning candidate without editing engine_core.py or promoting architecture claims.",
         ],
         "blockers": [] if all_pass else [key for key, row in {**positive, **graveyard, **boundary}.items() if not row.get("pass")],
         "all_pass": all_pass,
@@ -235,7 +258,7 @@ def main() -> int:
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(result, indent=2, sort_keys=True), encoding="utf-8")
     print(f"RESULT {NAME}: all_pass={all_pass} -> {OUT_PATH}")
-    print(f"  recommended_dt={best['dt']} label={best['label']} on_mean={best['on_mean_trace']:.4f} separation={best['control_separation']:.4f}")
+    print(f"  best_observed_dt_in_finite_shallow_sweep={best['dt']} label={best['label']} on_mean={best['on_mean_trace']:.4f} separation={best['control_separation']:.4f}")
     return 0 if all_pass else 1
 
 

@@ -162,7 +162,14 @@ def main() -> int:
         "locality_control_uses_same_choi_rank_boundary": {"target_rank": 3, "control_rank": 3, "pass": True},
     }
     boundary = {
-        "finite_four_qubit_density_dimension": {"dimension": DIM, "qubits": N_QUBITS, "pass": DIM == 16 and N_QUBITS == 4},
+        "finite_four_qubit_density_dimension": {
+            "dimension": DIM,
+            "qubits": N_QUBITS,
+            "minimum_nonclassical_width": 8,
+            "minimum_width_role": "calibration_only",
+            "minimum_width_reason": "four-qubit density fixture is a finite boundary/control, not nonclassical maturity evidence",
+            "pass": DIM == 16 and N_QUBITS == 4,
+        },
         "z3_locality_preserving_rank3_witness": z3_witness(dynamic_q["class_count"], locality_q["class_count"], min(fit_gaps), max_cptp_gap),
         "promotion_remains_disabled": {"promotion_allowed": PROMOTION_ALLOWED, "pass": PROMOTION_ALLOWED is False},
     }

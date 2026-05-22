@@ -5,6 +5,8 @@ Classical baseline renormalization toy: coarse-grain a fine signal and check
 compressed representation predicts macro evolution.
 """
 import json, os, numpy as np
+classification = "classical_baseline"
+divergence_log = ["Classical baseline tests coarse-grained macro prediction against shuffled and boundary controls; it does not prove future causation by external compression."]
 SCOPE_NOTE = "Doctrine 'future from external compression'. RG-block toy; compressed macro predicts evolution. user_entropic_monism_doctrine.md"
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "load-bearing RG coarse-grain + prediction"},
@@ -50,7 +52,7 @@ if __name__ == "__main__":
     pos, neg, bnd = run_positive_tests(), run_negative_tests(), run_boundary_tests()
     all_pass = all(v["pass"] for v in {**pos, **neg, **bnd}.values())
     results = {"name": "sim_em_classical_future_compression_future_from_external", "scope_note": SCOPE_NOTE,
-               "classification": "classical_baseline", "tool_manifest": TOOL_MANIFEST,
+               "classification": "classical_baseline", "divergence_log": divergence_log, "tool_manifest": TOOL_MANIFEST,
                "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "all_pass": all_pass}
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

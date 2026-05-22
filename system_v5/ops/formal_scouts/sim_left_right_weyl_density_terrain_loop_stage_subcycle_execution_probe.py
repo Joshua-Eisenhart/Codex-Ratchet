@@ -13,9 +13,8 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
-from scipy.linalg import expm
 import sympy as sp
+import torch
 import z3
 
 
@@ -26,6 +25,7 @@ OUT_PATH = RESULT_DIR / "left_right_weyl_density_terrain_loop_stage_subcycle_exe
 NAME = "left_right_weyl_density_terrain_loop_stage_subcycle_execution_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 CLAIM_CEILING = (
     "Formal scout only: executes a finite source-native left/right Weyl density "
     "operating-space fixture through two valid four-stage traversals and four "
@@ -37,24 +37,24 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
         "reason": "load-bearing density matrices, operator substages, microstep histories, quotient signatures, and trace distances",
     },
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing matrix exponentials for signed Hamiltonian substeps"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic mirror check for Hamiltonian and ladder exchange"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite noncollapse witness for the 64-microstep inventory"},
 }
 TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_ROLE_SOURCE = {tool: "local" for tool in TOOL_MANIFEST}
 
-DTYPE = np.complex128
-I2 = np.eye(2, dtype=DTYPE)
-SX = np.array([[0, 1], [1, 0]], dtype=DTYPE)
-SY = np.array([[0, -1j], [1j, 0]], dtype=DTYPE)
-SZ = np.array([[1, 0], [0, -1]], dtype=DTYPE)
-SIGMA_MINUS = np.array([[0, 0], [1, 0]], dtype=DTYPE)
-SIGMA_PLUS = np.array([[0, 1], [0, 0]], dtype=DTYPE)
+DTYPE = torch.complex128
+I2 = torch.eye(2, dtype=DTYPE)
+SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=DTYPE)
+SIGMA_MINUS = torch.tensor([[0, 0], [1, 0]], dtype=DTYPE)
+SIGMA_PLUS = torch.tensor([[0, 1], [0, 0]], dtype=DTYPE)
 H0 = 0.77 * SZ + 0.13 * SX
 H_L = H0
 H_R = -H0
@@ -68,34 +68,44 @@ VALID_TRAVERSALS = {
 SUBCYCLE = ["signed_hamiltonian", "ladder_direction", "terrain_projection", "loop_ownership"]
 
 
-def dagger(a: np.ndarray) -> np.ndarray:
-    return a.conj().T
+def as_complex_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=DTYPE)
 
 
-def normalize_density(rho: np.ndarray) -> np.ndarray:
+def as_real_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=torch.float64)
+
+
+def dagger(a: Any) -> torch.Tensor:
+    tensor = as_complex_tensor(a)
+    return torch.conj(tensor.transpose(-2, -1))
+
+
+def normalize_density(rho: Any) -> torch.Tensor:
+    rho = as_complex_tensor(rho)
     rho = (rho + dagger(rho)) / 2
-    vals, vecs = np.linalg.eigh(rho)
-    vals = np.maximum(vals, 1e-12)
-    out = vecs @ np.diag(vals) @ dagger(vecs)
-    return out / np.trace(out)
+    vals, vecs = torch.linalg.eigh(rho)
+    vals = torch.clamp(torch.real(vals), min=1e-12)
+    out = vecs @ torch.diag(vals.to(DTYPE)) @ dagger(vecs)
+    return out / torch.trace(out)
 
 
-def density(psi: np.ndarray) -> np.ndarray:
-    psi = psi.reshape(2, 1)
+def density(psi: Any) -> torch.Tensor:
+    psi = as_complex_tensor(psi).reshape(2, 1)
     return normalize_density(psi @ dagger(psi))
 
 
-def hopf_spinor(phi: float, chi: float, eta: float) -> np.ndarray:
-    return np.array(
+def hopf_spinor(phi: float, chi: float, eta: float) -> torch.Tensor:
+    return torch.tensor(
         [
-            np.exp(1j * (phi + chi)) * math.cos(eta),
-            np.exp(1j * (phi - chi)) * math.sin(eta),
+            complex(math.cos(phi + chi), math.sin(phi + chi)) * math.cos(eta),
+            complex(math.cos(phi - chi), math.sin(phi - chi)) * math.sin(eta),
         ],
         dtype=DTYPE,
     )
 
 
-def loop_density(loop: str, u: float, eta: float = 0.37, phi0: float = 0.23, chi0: float = -0.41) -> np.ndarray:
+def loop_density(loop: str, u: float, eta: float = 0.37, phi0: float = 0.23, chi0: float = -0.41) -> torch.Tensor:
     if loop == "fiber_loop":
         psi = hopf_spinor(phi0 + u, chi0, eta)
     elif loop == "base_lift_loop":
@@ -105,41 +115,48 @@ def loop_density(loop: str, u: float, eta: float = 0.37, phi0: float = 0.23, chi
     return density(psi)
 
 
-def unitary_update(rho: np.ndarray, hamiltonian: np.ndarray, dt: float) -> np.ndarray:
-    u = expm(-1j * hamiltonian * dt)
-    return normalize_density(u @ rho @ dagger(u))
+def unitary_update(rho: Any, hamiltonian: Any, dt: float) -> torch.Tensor:
+    u = torch.linalg.matrix_exp(-1j * as_complex_tensor(hamiltonian) * dt)
+    return normalize_density(u @ as_complex_tensor(rho) @ dagger(u))
 
 
-def dissipator_update(rho: np.ndarray, op: np.ndarray, gamma: float, dt: float) -> np.ndarray:
+def dissipator_update(rho: Any, op: Any, gamma: float, dt: float) -> torch.Tensor:
+    rho = as_complex_tensor(rho)
+    op = as_complex_tensor(op)
     jump = math.sqrt(max(gamma * dt, 0.0)) * op
     no_jump = I2 - 0.5 * gamma * dt * dagger(op) @ op
     return normalize_density(jump @ rho @ dagger(jump) + no_jump @ rho @ dagger(no_jump))
 
 
-def dephase_update(rho: np.ndarray, projectors: list[np.ndarray], rate: float, dt: float) -> np.ndarray:
+def dephase_update(rho: Any, projectors: list[Any], rate: float, dt: float) -> torch.Tensor:
+    rho = as_complex_tensor(rho)
     pinched = sum(p @ rho @ p for p in projectors)
     return normalize_density((1 - rate * dt) * rho + rate * dt * pinched)
 
 
-def trace_distance(a: np.ndarray, b: np.ndarray) -> float:
-    eigs = np.linalg.eigvalsh((a - b + dagger(a - b)) / 2)
-    return float(0.5 * np.sum(np.abs(eigs)))
+def trace_distance(a: Any, b: Any) -> float:
+    diff = as_complex_tensor(a) - as_complex_tensor(b)
+    eigs = torch.linalg.eigvalsh((diff + dagger(diff)) / 2)
+    return float(0.5 * torch.sum(torch.abs(torch.real(eigs))).item())
 
 
-def is_density_matrix(rho: np.ndarray) -> bool:
-    eigs = np.linalg.eigvalsh((rho + dagger(rho)) / 2)
+def is_density_matrix(rho: Any) -> bool:
+    rho = as_complex_tensor(rho)
+    eigs = torch.linalg.eigvalsh((rho + dagger(rho)) / 2)
     return bool(
-        np.allclose(rho, dagger(rho), atol=1e-10)
-        and abs(np.trace(rho).real - 1.0) < 1e-10
-        and float(np.min(eigs)) > -1e-10
+        torch.allclose(rho, dagger(rho), atol=1e-10)
+        and abs(float(torch.real(torch.trace(rho)).item()) - 1.0) < 1e-10
+        and float(torch.min(torch.real(eigs)).item()) > -1e-10
     )
 
 
-def readout(rho: np.ndarray) -> tuple[float, float, float]:
-    return tuple(float(np.real(np.trace(obs @ rho))) for obs in OBS)
+def readout(rho: Any) -> tuple[float, float, float]:
+    rho = as_complex_tensor(rho)
+    return tuple(float(torch.real(torch.trace(obs @ rho)).item()) for obs in OBS)
 
 
-def offdiag_coherence(rho: np.ndarray) -> float:
+def offdiag_coherence(rho: Any) -> float:
+    rho = as_complex_tensor(rho)
     return float(abs(rho[0, 1]) + abs(rho[1, 0]))
 
 
@@ -160,7 +177,7 @@ def terrain_spec(sheet: str, stage: str) -> dict[str, Any]:
 
 
 def apply_substage(
-    rho: np.ndarray,
+    rho: Any,
     *,
     sheet: str,
     stage: str,
@@ -172,7 +189,7 @@ def apply_substage(
     hide_loop: bool = False,
     one_terrain_only: bool = False,
     collapse_subcycle: bool = False,
-) -> np.ndarray:
+) -> torch.Tensor:
     hamiltonian = H_L if sheet == "left_chiral_operating_space" else H_R
     ladder = SIGMA_MINUS if sheet == "left_chiral_operating_space" else SIGMA_PLUS
     if wrong_hamiltonian:
@@ -235,26 +252,31 @@ def history_signature(rows: list[dict[str, Any]], decimals: int = 4) -> tuple[fl
     for row in rows:
         values.extend(row["readout"])
         values.append(row["offdiag_coherence"])
-    return tuple(np.round(values, decimals=decimals).tolist())
+    tensor = as_real_tensor(values)
+    scale = float(10**decimals)
+    rounded = torch.round(tensor * scale) / scale
+    return tuple(float(v) for v in rounded.tolist())
 
 
 def quotient_classes(rows: list[dict[str, Any]], decimals: int = 3) -> dict[str, list[str]]:
     classes: dict[str, list[str]] = {}
     for row in rows:
-        key = str(tuple(np.round([*row["readout"], row["offdiag_coherence"]], decimals=decimals).tolist()))
+        tensor = as_real_tensor([*row["readout"], row["offdiag_coherence"]])
+        scale = float(10**decimals)
+        key = str(tuple(float(v) for v in (torch.round(tensor * scale) / scale).tolist()))
         label = f"{row['sheet']}::{row['traversal']}::{row['stage_index']}::{row['substage']}"
         classes.setdefault(key, []).append(label)
     return classes
 
 
-def grouped_stage_signatures(rows: list[dict[str, Any]]) -> dict[tuple[str, int], np.ndarray]:
+def grouped_stage_signatures(rows: list[dict[str, Any]]) -> dict[tuple[str, int], torch.Tensor]:
     grouped: dict[tuple[str, int], list[float]] = {}
     for row in rows:
         key = (row["sheet"], int(row["stage_index"]))
         grouped.setdefault(key, [])
         grouped[key].extend(row["readout"])
         grouped[key].append(row["offdiag_coherence"])
-    return {key: np.array(value, dtype=float) for key, value in grouped.items()}
+    return {key: as_real_tensor(value) for key, value in grouped.items()}
 
 
 def min_mirror_stage_gap(rows: list[dict[str, Any]]) -> float:
@@ -263,7 +285,7 @@ def min_mirror_stage_gap(rows: list[dict[str, Any]]) -> float:
     for idx in range(8):
         left = grouped[("left_chiral_operating_space", idx)]
         right = grouped[("right_chiral_operating_space", idx)]
-        gaps.append(float(np.linalg.norm(left - right)))
+        gaps.append(float(torch.linalg.vector_norm(left - right).item()))
     return min(gaps)
 
 
@@ -295,9 +317,7 @@ def strip_rho(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def json_default(value: Any) -> Any:
-    if isinstance(value, np.generic):
-        return value.item()
-    if isinstance(value, np.ndarray):
+    if isinstance(value, torch.Tensor):
         return value.tolist()
     raise TypeError(f"Object of type {type(value).__name__} is not JSON serializable")
 
@@ -324,9 +344,9 @@ def main() -> int:
         "one_terrain_law_only": history_signature(control_one_terrain),
         "collapsed_four_substage_operator_grain": history_signature(control_collapsed_subcycle),
     }
-    signature_gaps = {key: float(np.linalg.norm(np.array(signature) - np.array(value))) for key, value in control_signatures.items()}
-    diagonal_left = np.diag(np.diag(rows[0]["rho"]))
-    diagonal_right = np.diag(np.diag(rows[32]["rho"]))
+    signature_gaps = {key: float(torch.linalg.vector_norm(as_real_tensor(signature) - as_real_tensor(value)).item()) for key, value in control_signatures.items()}
+    diagonal_left = torch.diag(torch.diag(as_complex_tensor(rows[0]["rho"])))
+    diagonal_right = torch.diag(torch.diag(as_complex_tensor(rows[32]["rho"])))
     projection_gap = trace_distance(normalize_density(diagonal_left), normalize_density(diagonal_right))
     final_left = rows[31]["rho"]
     final_right = rows[63]["rho"]
@@ -402,6 +422,7 @@ def main() -> int:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "claim_ceiling": CLAIM_CEILING,
         "math_object": (
             "finite source-native pair of left/right Weyl density operating spaces "
@@ -411,6 +432,7 @@ def main() -> int:
         "source_alignment_category": "source_native_stage_subcycle_execution",
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "positive": positive,
         "graveyard_companions": graveyard_companions,
         "boundary": boundary,

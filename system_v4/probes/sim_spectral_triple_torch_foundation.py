@@ -30,6 +30,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Commutator [D,a], heat kernel trace, Dirac modulus |D| — all torch float64 with autograd via torch.linalg.eigvalsh"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed"},

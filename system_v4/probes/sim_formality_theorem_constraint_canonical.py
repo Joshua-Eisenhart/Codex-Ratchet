@@ -16,6 +16,8 @@ Supportive: sympy (bivector formality verification)
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

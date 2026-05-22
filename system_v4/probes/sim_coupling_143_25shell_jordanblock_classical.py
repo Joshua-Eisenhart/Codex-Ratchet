@@ -18,6 +18,14 @@ import torch
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = [
+    (
+        "Classical baseline contrast: this shell-coupling program is a finite "
+        "entropy-product control surface. Its PyTorch, Z3, SymPy, and Clifford "
+        "checks support the baseline measurement and algebraic guard; they do "
+        "not promote a nonclassical, canonical, bridge, or axis-level claim."
+    ),
+]
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Density matrices as float64 tensors; dephasing + MI computation via eigh+matrix_log; autograd gradient dQ/d(eps); 25-factor product with load-bearing MI component"},

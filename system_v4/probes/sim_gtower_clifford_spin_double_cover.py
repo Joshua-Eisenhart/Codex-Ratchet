@@ -10,17 +10,51 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
-DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+DEMOTE_REASON = "classical G-tower Clifford double-cover baseline only"
 
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in
-    ["pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"]}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+divergence_log = (
+    "Classical Clifford G-tower baseline for the Spin(3) to SO(3) double cover; "
+    "compares valid rotor sandwich behavior with a non-rotor exclusion and "
+    "does not promote a bridge, engine, or nonclassical witness."
+)
 
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed for this Clifford rotor baseline"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed: no graph layer"},
+    "z3": {"tried": False, "used": False, "reason": "not needed: no SMT claim"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed: no SMT claim"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed: Clifford runtime computes rotor products"},
+    "clifford": {"tried": True, "used": True, "reason": "load-bearing rotor sandwich computation for Spin(3) to SO(3) double-cover checks"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed: no manifold-distance computation"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed: no equivariant neural layer"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed: no graph algorithm"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed: no hypergraph"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed: no cell-complex computation"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed: no persistence computation"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": "load_bearing",
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
+CLIFFORD_OK = False
 try:
     from clifford import Cl
-    TOOL_MANIFEST["clifford"]["tried"] = True
+    CLIFFORD_OK = True
 except ImportError:
+    TOOL_MANIFEST["clifford"]["used"] = False
     TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+    TOOL_INTEGRATION_DEPTH["clifford"] = None
 
 from _gtower_common import in_SOn
 
@@ -39,7 +73,7 @@ def rotor_to_matrix(R, layout):
 
 def run_positive_tests():
     r = {}
-    if not TOOL_MANIFEST["clifford"]["tried"]:
+    if not CLIFFORD_OK:
         r["clifford_available"] = False
         return r
     layout, blades = Cl(3)
@@ -61,7 +95,7 @@ def run_positive_tests():
 
 def run_negative_tests():
     r = {}
-    if not TOOL_MANIFEST["clifford"]["tried"]:
+    if not CLIFFORD_OK:
         return {"skipped": True}
     layout, blades = Cl(3)
     e1, e2 = blades["e1"], blades["e2"]
@@ -74,7 +108,7 @@ def run_negative_tests():
 
 def run_boundary_tests():
     r = {}
-    if not TOOL_MANIFEST["clifford"]["tried"]:
+    if not CLIFFORD_OK:
         return {"skipped": True}
     layout, blades = Cl(3)
     e1, e2 = blades["e1"], blades["e2"]
@@ -104,6 +138,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_gtower_clifford_spin_double_cover",
         "classification": classification,
+        "divergence_log": divergence_log,
         "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: SO->Spin double cover via Cl(3)",
         "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

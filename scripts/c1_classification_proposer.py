@@ -22,7 +22,7 @@ def has_classification(path: Path) -> bool:
     except Exception:
         return False
     assigns = lint_sim_contract._module_level_assignments(tree)  # noqa: SLF001 - reuse repo linter parser.
-    return "classification" in assigns
+    return "classification" in assigns or "CLASSIFICATION" in assigns
 
 
 def proposal_for(path: Path) -> dict[str, Any]:

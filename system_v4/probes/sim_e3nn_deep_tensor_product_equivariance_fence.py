@@ -8,6 +8,8 @@ Negative: a shuffled-output linear perturbation breaks the fence.
 import os, json, torch
 from e3nn.o3 import Irreps, FullyConnectedTensorProduct, rand_matrix
 
+classification = "canonical"
+
 NAME = "sim_e3nn_deep_tensor_product_equivariance_fence"
 SCOPE_NOTE = "TP equivariance on 1o x 1o -> 0e+1e+2e; shuffled perturbation excluded."
 TOOL_MANIFEST = {"e3nn": {"tried": True, "used": True,

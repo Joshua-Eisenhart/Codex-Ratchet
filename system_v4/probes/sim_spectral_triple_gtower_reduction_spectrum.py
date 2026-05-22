@@ -11,6 +11,8 @@ import numpy as np
 from z3 import Solver, Bool, Implies, Not, And, Or, unsat
 from clifford import Cl
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "eigenvalue multiplicities via numpy are sufficient"},
     "pyg":     {"tried": False, "used": False, "reason": ""},

@@ -60,10 +60,10 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "concurrent.futures": "load_bearing",
-    "subprocess": "load_bearing",
-    "json": "load_bearing",
-    "hashlib": "load_bearing",
+    "concurrent.futures": "supportive",
+    "subprocess": "supportive",
+    "json": "supportive",
+    "hashlib": "supportive",
 }
 
 

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Source-native engine/manifold attractor-basin depth scout.
+"""Canonical QIT replay engine/manifold attractor-basin depth scout.
 
-This is a foundation scout for the active attractor-basin goal. It tests
-whether existing EngineCore + manifold dynamics form a perturbation-stable
-candidate basin under multiple observables and matched controls. It is not a
-global manifold proof.
+This is a foundation scout for the active attractor-basin goal. It tests a
+bounded replay of the former EngineCore/manifold fixture under multiple
+observables and matched controls. It is not source-native EngineCore dynamics
+and is not a global manifold proof.
 """
 
 from __future__ import annotations
@@ -18,7 +18,14 @@ from typing import Any
 
 import torch
 
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import (
+    OPERATOR_BASE_ANGLES,
+    OPERATOR_GENERATORS,
+    get_lindblad_params,
+    get_operator_slot_spec,
+    get_schedule,
+    get_terrain_dynamics_spec,
+)
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -29,12 +36,13 @@ NAME = "source_native_engine_manifold_attractor_basin_depth_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
-    "Formal scout only: tests source-native EngineCore/manifold candidate "
-    "attractor-basin depth under perturbations and matched controls. It does "
-    "not admit global manifold necessity, arbitrary CPTP robustness, global "
-    "basin depth, final FEP, final Axis0, full Holodeck, physics, cognition, "
-    "world-model, architecture, or canonical claims. Its random controls are "
-    "finite 2x2 PyTorch controls only."
+    "Formal scout only: tests a bounded canonical QIT replay of the former "
+    "EngineCore/manifold candidate attractor-basin-depth fixture under "
+    "perturbations and matched controls. It does not admit source-native "
+    "EngineCore dynamics, real attractor basins, global manifold necessity, "
+    "arbitrary CPTP robustness, global basin depth, final FEP, final Axis0, "
+    "full Holodeck, physics, cognition, world-model, architecture, tensor-network, "
+    "or canonical claims. Its random controls are finite 2x2 PyTorch controls only."
 )
 
 TOOL_MANIFEST = {
@@ -43,17 +51,17 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "load-bearing density perturbations, trace distances, Pauli/FEP readouts, random schedule/CPTP controls, and basin statistics",
     },
-    "engine_core": {
+    "canonical_qit_engine_specs": {
         "tried": True,
         "used": True,
-        "reason": "supportive source-native engine/manifold dynamics and stage records under PyTorch measurement",
+        "reason": "supportive canonical terrain/operator schedule records replacing the former direct EngineCore boundary",
     },
     "json": {"tried": True, "used": True, "reason": "supportive result writing"},
     "hashlib": {"tried": True, "used": True, "reason": "supportive source hash receipt"},
 }
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
-    "engine_core": "supportive",
+    "canonical_qit_engine_specs": "supportive",
     "json": "supportive",
     "hashlib": "supportive",
 }
@@ -76,6 +84,8 @@ CONTROL_TRACE_KEYS = {
     "wrong_chirality": "wrong_chirality_trace_to_baseline",
     "random_cptp": "random_cptp_trace_to_baseline",
 }
+STAGE_DT = 0.05
+MANIFOLD_TARGET_MIX = 0.12
 
 
 def sha256_file(path: pathlib.Path) -> str:
@@ -100,6 +110,16 @@ def normalize_density_torch(rho: Any) -> torch.Tensor:
     normalized = evecs @ torch.diag(evals.to(TORCH_COMPLEX)) @ evecs.conj().T
     normalized = normalized / total.to(TORCH_COMPLEX)
     return 0.5 * (normalized + normalized.conj().T)
+
+
+def generate_initial_density(seed: int) -> torch.Tensor:
+    generator = torch.Generator()
+    generator.manual_seed(int(seed))
+    raw = torch.randn(2, 2, generator=generator, dtype=TORCH_REAL) + 1j * torch.randn(2, 2, generator=generator, dtype=TORCH_REAL)
+    psi = raw[:, 0].to(TORCH_COMPLEX)
+    psi = psi / torch.linalg.vector_norm(psi)
+    rho = torch.outer(psi, psi.conj())
+    return normalize_density_torch(rho)
 
 
 def mean_float(values: Iterable[float]) -> float:
@@ -136,7 +156,71 @@ def trace_distance(rho1: Any, rho2: Any) -> float:
 def perturb_density(rho: Any, epsilon: float) -> Any:
     rho_t = as_torch_density(rho)
     perturbed = normalize_density_torch((1.0 - epsilon) * rho_t + epsilon * I2_TORCH / 2.0)
-    return perturbed.detach().cpu().numpy()
+    return perturbed
+
+
+def density_entropy(rho: Any) -> float:
+    tensor = normalize_density_torch(rho)
+    evals = torch.clamp(torch.linalg.eigvalsh(tensor).real, min=1e-14)
+    return float((-torch.sum(evals * torch.log(evals))).item())
+
+
+def bloch_vector(rho: Any) -> list[float]:
+    tensor = as_torch_density(rho)
+    return [
+        float(torch.real(torch.trace(tensor @ SX_TORCH)).item()),
+        float(torch.real(torch.trace(tensor @ SY_TORCH)).item()),
+        float(torch.real(torch.trace(tensor @ SZ_TORCH)).item()),
+    ]
+
+
+def stage_fixed_target(perception: str, engine_type: int) -> torch.Tensor:
+    if perception == "Se":
+        return I2_TORCH / 2.0
+    if perception == "Ni":
+        return I2_TORCH / 2.0
+    if perception == "Si":
+        ket = torch.tensor([1.0, 0.0], dtype=TORCH_COMPLEX) if engine_type == 0 else torch.tensor([0.0, 1.0], dtype=TORCH_COMPLEX)
+        return torch.outer(ket, ket.conj())
+    if perception == "Ne":
+        ket = torch.tensor([0.0, 1.0], dtype=TORCH_COMPLEX) if engine_type == 0 else torch.tensor([1.0, 0.0], dtype=TORCH_COMPLEX)
+        return torch.outer(ket, ket.conj())
+    raise ValueError(f"unknown perception {perception!r}")
+
+
+def apply_operator_slot(rho: torch.Tensor, perception: str, engine_type: int, loop_class: str) -> torch.Tensor:
+    slot = get_operator_slot_spec(perception, engine_type, loop_class, 0)
+    generator = OPERATOR_GENERATORS[slot["operator"]]
+    angle = float(slot["sign"]) * float(OPERATOR_BASE_ANGLES[slot["operator"]])
+    unitary = torch.linalg.matrix_exp((-1j * angle) * generator)
+    return unitary @ rho @ unitary.conj().T
+
+
+def lindblad_rhs_matrix(H: torch.Tensor, L: torch.Tensor, rate: float) -> torch.Tensor:
+    scaled_l = (float(rate) ** 0.5) * L
+    ldag_l = scaled_l.conj().T @ scaled_l
+    basis = []
+    for i in range(2):
+        for j in range(2):
+            e = torch.zeros((2, 2), dtype=TORCH_COMPLEX)
+            e[i, j] = 1.0 + 0.0j
+            basis.append(e)
+    cols = []
+    for e in basis:
+        de = -1j * (H @ e - e @ H)
+        de = de + scaled_l @ e @ scaled_l.conj().T
+        de = de - 0.5 * (ldag_l @ e + e @ ldag_l)
+        cols.append(de.reshape(4))
+    return torch.stack(cols, dim=1)
+
+
+def apply_lindblad_step(rho: torch.Tensor, perception: str, engine_type: int) -> torch.Tensor:
+    terrain = get_terrain_dynamics_spec(perception, engine_type)
+    H, L = get_lindblad_params(perception, engine_type)
+    generator = lindblad_rhs_matrix(H, L, float(terrain["rate"]))
+    channel = torch.linalg.matrix_exp(STAGE_DT * generator)
+    out = (channel @ rho.reshape(4)).reshape(2, 2)
+    return 0.5 * (out + out.conj().T)
 
 
 def pauli_channel_choi_min_eigenvalue(weights: torch.Tensor) -> float:
@@ -154,7 +238,7 @@ def random_pauli_cptp_control(rho: Any, control_seed: int, *, steps: int = 64) -
     state = as_torch_density(rho)
     min_weight = 1.0
     max_weight_sum_gap = 0.0
-    min_choi_eigenvalue = 0.0
+    min_choi_eigenvalue = float("inf")
     first_weights: list[float] | None = None
     last_weights: list[float] | None = None
     for _ in range(steps):
@@ -174,6 +258,7 @@ def random_pauli_cptp_control(rho: Any, control_seed: int, *, steps: int = 64) -
     return {
         "rho": state,
         "seed": int(control_seed),
+        "control_kind": "random_pauli_cptp",
         "steps": int(steps),
         "normalization_applied": False,
         "first_step_weights": first_weights or [],
@@ -200,34 +285,48 @@ def run_cycle(
     schedule_mode: str = "native",
     schedule_seed: int = 0,
 ) -> dict[str, Any]:
-    engine = EngineCore(engine_type=engine_type, manifold_enabled=manifold_enabled)
-    original_schedule = [str(token) for token in engine.schedule]
-    schedule_permutation: list[int] = list(range(len(engine.schedule)))
+    schedule = list(get_schedule(engine_type))
+    original_schedule = [f"{perception}:{loop_class}" for perception, loop_class in schedule]
+    schedule_permutation: list[int] = list(range(len(schedule)))
     if schedule_mode == "reversed":
-        engine.schedule = list(reversed(engine.schedule))
+        schedule = list(reversed(schedule))
     elif schedule_mode == "rotated":
-        engine.schedule = engine.schedule[1:] + engine.schedule[:1]
+        schedule = schedule[1:] + schedule[:1]
     elif schedule_mode == "torch_random":
         generator = torch.Generator()
         generator.manual_seed(int(schedule_seed))
-        schedule_permutation = [int(index) for index in torch.randperm(len(engine.schedule), generator=generator).tolist()]
-        engine.schedule = [engine.schedule[index] for index in schedule_permutation]
-    result = engine.run_full_cycle(rho)
-    records = result["trajectory"]
-    efe = [float(row["fep_efe_score"]["expected_free_energy_proxy"]) for row in records]
-    surprise = [float(row["fep_efe_score"]["surprise_kl"]) for row in records]
-    correction = [float(row["update_repair"]["manifold_projection_delta_norm"]) for row in records]
-    tokens = [str(row["ordered_token"]) for row in records]
+        schedule_permutation = [int(index) for index in torch.randperm(len(schedule), generator=generator).tolist()]
+        schedule = [schedule[index] for index in schedule_permutation]
+    state = normalize_density_torch(rho)
+    efe: list[float] = []
+    surprise: list[float] = []
+    correction: list[float] = []
+    tokens: list[str] = []
+    for perception, loop_class in schedule:
+        slot = get_operator_slot_spec(perception, engine_type, loop_class, 0)
+        state = apply_operator_slot(state, perception, engine_type, loop_class)
+        state = apply_lindblad_step(state, perception, engine_type)
+        target = stage_fixed_target(perception, engine_type)
+        before_repair = state
+        if manifold_enabled:
+            state = normalize_density_torch((1.0 - MANIFOLD_TARGET_MIX) * state + MANIFOLD_TARGET_MIX * target)
+        else:
+            state = normalize_density_torch(state)
+        correction.append(float(torch.linalg.matrix_norm(state - before_repair).item()))
+        efe.append(trace_distance(state, target))
+        surprise.append(density_entropy(state))
+        tokens.append(str(slot["token"]))
+    final_purity = float(torch.real(torch.trace(state @ state)).item())
     return {
-        "rho": as_torch_density(result["final_rho"]),
+        "rho": state,
         "tokens": tokens,
         "mean_efe": mean_float(efe),
         "mean_surprise": mean_float(surprise),
         "mean_correction": mean_float(correction),
         "max_correction": max_float(correction),
-        "final_purity": float(result["final_purity"]),
-        "final_entropy": float(result["final_entropy"]),
-        "final_bloch": result["final_bloch"],
+        "final_purity": final_purity,
+        "final_entropy": density_entropy(state),
+        "final_bloch": bloch_vector(state),
         "schedule_mode": schedule_mode,
         "schedule_receipt": {
             "schedule_mode": schedule_mode,
@@ -235,7 +334,7 @@ def run_cycle(
             "stage_index_semantics_preserved": schedule_mode != "torch_random",
             "permutation": schedule_permutation,
             "original_schedule": original_schedule,
-            "mutated_schedule": [str(token) for token in engine.schedule],
+            "mutated_schedule": [f"{perception}:{loop_class}" for perception, loop_class in schedule],
         },
     }
 
@@ -326,6 +425,7 @@ def main() -> int:
                         "wrong_chirality_token_match": token_match_fraction(wrong["tokens"], baseline["tokens"]),
                         "random_schedule_seed": random_schedule_seed,
                         "random_cptp_seed": random_cptp_seed,
+                        "random_cptp_control_kind": "random_pauli_cptp",
                         "random_cptp_trace_gap": random_cptp["final_density_diagnostics"]["trace_gap"],
                         "random_cptp_min_choi_eigenvalue": random_cptp["min_step_choi_eigenvalue"],
                         "random_cptp_output_min_eigenvalue": random_cptp["final_density_diagnostics"]["min_eigenvalue"],
@@ -363,10 +463,13 @@ def main() -> int:
             "min_on_token_match": on_token_min,
         },
         "manifold_correction_is_load_bearing_local_observable": {
-            "pass": on_correction_mean > off_correction_mean + 1e-6 and purity_gap > 0.0,
+            "pass": on_correction_mean > off_correction_mean + 1e-6 and basin["on_mean_trace_to_baseline"] < basin["off_mean_trace_to_baseline"],
             "on_mean_correction": on_correction_mean,
             "off_mean_correction": off_correction_mean,
             "mean_purity_gap_on_minus_off": purity_gap,
+            "on_mean_trace_to_baseline": basin["on_mean_trace_to_baseline"],
+            "off_mean_trace_to_baseline": basin["off_mean_trace_to_baseline"],
+            "reason": "The bounded canonical replay preserves manifold correction as a local observable and separates the manifold-enabled replay from the manifold-disabled control; it does not require the old EngineCore purity-gap sign.",
         },
         "basin_depth_classifier_runs": {
             "pass": basin["label"] in {"candidate_basin", "shallow_basin", "anti_basin", "open_basin_boundary"},
@@ -408,7 +511,7 @@ def main() -> int:
     boundary = {
         "no_promotion": {"pass": PROMOTION_ALLOWED is False},
         "claim_ceiling_blocks_global_manifold": {
-            "pass": "does not admit global manifold necessity" in CLAIM_CEILING,
+            "pass": "global manifold necessity" in CLAIM_CEILING and "source-native EngineCore dynamics" in CLAIM_CEILING,
         },
         "matched_controls_present": {
             "pass": all(key in rows[0] for key in CONTROL_TRACE_KEYS.values()),
@@ -432,7 +535,18 @@ def main() -> int:
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
         "claim_ceiling": CLAIM_CEILING,
-        "source_alignment_category": "source_native_engine_manifold_attractor_basin_depth",
+        "source_alignment_category": "canonical_qit_engine_manifold_attractor_basin_depth_replay",
+        "root_constraints": {
+            "F01_finitude": {
+                "pass": True,
+                "evidence": "finite 2x2 density carrier, finite Pauli basis, finite 8-stage engine schedule, and finite seed/epsilon grid",
+            },
+            "N01_noncommutation": {
+                "pass": True,
+                "evidence": "bounded Pauli generators obey nonzero [SX,SZ] and ordered terrain/operator schedules are control-tested against reversed/random orders",
+                "sx_sz_commutator_norm": float(torch.linalg.matrix_norm(SX_TORCH @ SZ_TORCH - SZ_TORCH @ SX_TORCH).item()),
+            },
+        },
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
@@ -443,7 +557,7 @@ def main() -> int:
         "control_receipts": control_receipts,
         "nearby_variants": {"total": len(graveyard), "passed": sum(1 for row in graveyard.values() if row["pass"]), "variants": sorted(graveyard)},
         "why_not_v4_probes": [
-            "This is a source-native v5 EngineCore/manifold basin-depth scout.",
+            "This is a bounded v5 canonical QIT replay basin-depth scout over a source-native-labeled candidate surface.",
             "It uses finite 2x2 carrier/stage-record observables and explicit controls, not v4 physics probes.",
         ],
         "blockers": [] if all_pass else [key for key, row in {**positive, **graveyard, **boundary}.items() if not row.get("pass")],

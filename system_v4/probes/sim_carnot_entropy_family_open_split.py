@@ -7,7 +7,7 @@ import json
 import pathlib
 
 
-CLASSIFICATION = "exploratory"
+CLASSIFICATION = "diagnostic_only"
 classification = CLASSIFICATION
 divergence_log = (
     "Open-carrier successor for the Carnot entropy-family readout split. The "

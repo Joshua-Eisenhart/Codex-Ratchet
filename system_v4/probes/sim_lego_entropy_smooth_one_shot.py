@@ -34,6 +34,9 @@ import traceback
 
 import torch
 classification = "classical_baseline"  # auto-backfill
+divergence_log = [
+    "Classical comparator/control surface only: this runner does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim.",
+]
 
 CLAIM_CEILING = "canonical_local_one_shot_entropy_proxy_lego_only"
 NEXT_LEGO_TARGET = "none"

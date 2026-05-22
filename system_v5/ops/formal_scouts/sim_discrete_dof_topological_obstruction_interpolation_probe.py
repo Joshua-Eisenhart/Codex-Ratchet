@@ -30,8 +30,6 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 
 from clifford import Cl
-import numpy as np
-import scipy.interpolate as sci
 import sympy as sp
 import torch
 import z3
@@ -60,24 +58,6 @@ TOOL_MANIFEST = {
         "reason": (
             "load-bearing spinor state tensors, sigma_z eigenvalue computation, "
             "SU(2) rotation unitarity checks, and loop-norm sampling"
-        ),
-    },
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": (
-            "load-bearing linear interpolation of spinor and generator states, "
-            "Berry-phase accumulation over loop parameterisation, and D3 "
-            "position-coordinate sampling"
-        ),
-    },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": (
-            "load-bearing UnivariateSpline fit to confirm the norm-collapse curve "
-            "in D2 crosses the admissibility threshold smoothly -- not a numerical "
-            "artefact of finite sampling"
         ),
     },
     "sympy": {
@@ -121,33 +101,58 @@ OBSTRUCTION_THRESHOLD = 0.15  # min-norm below this = admissibility failure for 
 # ---------------------------------------------------------------------------
 
 
-def _norm(v: np.ndarray) -> float:
-    return float(np.linalg.norm(v))
+def _norm(v: torch.Tensor) -> float:
+    return float(torch.linalg.norm(v).item())
 
 
-def _is_eigenstate(psi: np.ndarray, op: np.ndarray, tol: float = 1e-6) -> bool:
+def _is_eigenstate(psi: torch.Tensor, op: torch.Tensor, tol: float = 1e-6) -> bool:
     """Return True iff op @ psi is parallel to psi (up to tol)."""
-    rq = float(np.real(np.conj(psi) @ op @ psi))
-    residual = float(np.linalg.norm(op @ psi - rq * psi))
+    rq = float(torch.vdot(psi, op @ psi).real.item())
+    residual = float(torch.linalg.norm(op @ psi - rq * psi).item())
     return residual < tol
 
 
-def _rayleigh(psi: np.ndarray, op: np.ndarray) -> float:
-    return float(np.real(np.conj(psi) @ op @ psi))
+def _rayleigh(psi: torch.Tensor, op: torch.Tensor) -> float:
+    return float(torch.vdot(psi, op @ psi).real.item())
+
+
+def _finite_linear_interpolate(
+    xs: list[float], ys: list[float], x_query: float
+) -> float:
+    """
+    Local finite interpolation helper for sampled scalar observables.
+    Returns an exact sample when present; otherwise linearly interpolates inside
+    the sampled bracket.
+    """
+    if len(xs) != len(ys):
+        raise ValueError("xs and ys must have equal length")
+    if not xs:
+        raise ValueError("cannot interpolate empty samples")
+    pairs = sorted(zip(xs, ys), key=lambda pair: pair[0])
+    if x_query < pairs[0][0] or x_query > pairs[-1][0]:
+        raise ValueError("x_query outside sampled range")
+    for x, y in pairs:
+        if abs(x_query - x) < 1e-12:
+            return float(y)
+    for (x0, y0), (x1, y1) in zip(pairs, pairs[1:]):
+        if x0 <= x_query <= x1:
+            weight = (x_query - x0) / (x1 - x0)
+            return float(y0 + weight * (y1 - y0))
+    return float(pairs[-1][1])
 
 
 # ---------------------------------------------------------------------------
 # D1: chirality eigenvalue ±1
 # ---------------------------------------------------------------------------
 
-_SIGMA_Z = np.array([[1.0, 0.0], [0.0, -1.0]], dtype=complex)
-_PSI_PLUS = np.array([1.0, 0.0], dtype=complex)   # +1 eigenstate
-_PSI_MINUS = np.array([0.0, 1.0], dtype=complex)  # -1 eigenstate
+_SIGMA_Z = torch.tensor([[1.0, 0.0], [0.0, -1.0]], dtype=torch.complex128)
+_PSI_PLUS = torch.tensor([1.0, 0.0], dtype=torch.complex128)   # +1 eigenstate
+_PSI_MINUS = torch.tensor([0.0, 1.0], dtype=torch.complex128)  # -1 eigenstate
 
 
-def _d1_state(t: float) -> np.ndarray:
+def _d1_state(t: float) -> torch.Tensor:
     raw = (1.0 - t) * _PSI_PLUS + t * _PSI_MINUS
-    n = np.linalg.norm(raw)
+    n = _norm(raw)
     return raw / n if n > 1e-15 else raw
 
 
@@ -198,43 +203,44 @@ def d1_chirality_interpolation() -> dict[str, Any]:
 # D2: Hopf loop class -- vertical fiber (winding 1) vs trivial loop (winding 0)
 # ---------------------------------------------------------------------------
 
-_PSI0_HOPF = np.array([1.0 / math.sqrt(2.0), 1.0 / math.sqrt(2.0)], dtype=complex)
+_PSI0_HOPF = torch.tensor([1.0 / math.sqrt(2.0), 1.0 / math.sqrt(2.0)], dtype=torch.complex128)
 
 
-def _hopf_loop_A(s: float) -> np.ndarray:
+def _hopf_loop_A(s: float) -> torch.Tensor:
     """Vertical fiber loop: winding number 1."""
-    return np.exp(2j * np.pi * s) * _PSI0_HOPF
+    phase = complex(math.cos(2.0 * math.pi * s), math.sin(2.0 * math.pi * s))
+    return phase * _PSI0_HOPF
 
 
-def _hopf_loop_B(_s: float) -> np.ndarray:
+def _hopf_loop_B(_s: float) -> torch.Tensor:
     """Trivial constant loop: winding number 0."""
-    return _PSI0_HOPF.copy()
+    return _PSI0_HOPF.clone()
 
 
 def _min_loop_norm(loop_func, N: int = LOOP_SAMPLES) -> float:
     """Minimum Euclidean norm of the UNnormalised loop state over its parameter."""
-    ss = np.linspace(0.0, 1.0, N + 1)
-    return float(min(np.linalg.norm(loop_func(s)) for s in ss))
+    ss = [k / N for k in range(N + 1)]
+    return float(min(_norm(loop_func(s)) for s in ss))
 
 
 def _berry_phase(psi_func, N: int = LOOP_SAMPLES) -> float:
     """Accumulate discrete Berry phase along a closed loop."""
-    ss = np.linspace(0.0, 1.0, N + 1)
+    ss = [k / N for k in range(N + 1)]
     total = 0.0
     for k in range(N):
         p0 = psi_func(ss[k])
         p1 = psi_func(ss[k + 1])
-        n0 = np.linalg.norm(p0)
-        n1 = np.linalg.norm(p1)
+        n0 = _norm(p0)
+        n1 = _norm(p1)
         if n0 < 1e-12 or n1 < 1e-12:
             continue
-        overlap = np.conj(p0 / n0) @ (p1 / n1)
-        total += np.angle(overlap)
+        overlap = torch.vdot(p0 / n0, p1 / n1)
+        total += float(torch.angle(overlap).item())
     return total
 
 
 def _winding_number(berry: float) -> float:
-    return berry / (2.0 * np.pi)
+    return berry / (2.0 * math.pi)
 
 
 def d2_hopf_loop_interpolation() -> dict[str, Any]:
@@ -252,7 +258,7 @@ def d2_hopf_loop_interpolation() -> dict[str, Any]:
     obstruction_t: list[float] = []
 
     for t in T_SAMPLES:
-        def loop(s: float, _t: float = t) -> np.ndarray:
+        def loop(s: float, _t: float = t) -> torch.Tensor:
             raw = (1.0 - _t) * _hopf_loop_A(s) + _t * _hopf_loop_B(s)
             return raw  # deliberately NOT normalised -- min-norm tracks collapse
 
@@ -260,9 +266,9 @@ def d2_hopf_loop_interpolation() -> dict[str, Any]:
         admissible = min_norm > OBSTRUCTION_THRESHOLD
 
         # Berry phase on the normalised loop (only meaningful when min_norm > tol)
-        def loop_normed(s: float, _t: float = t) -> np.ndarray:
+        def loop_normed(s: float, _t: float = t) -> torch.Tensor:
             raw = (1.0 - _t) * _hopf_loop_A(s) + _t * _hopf_loop_B(s)
-            n = np.linalg.norm(raw)
+            n = _norm(raw)
             return raw / n if n > 1e-12 else raw
 
         berry = _berry_phase(loop_normed)
@@ -282,22 +288,21 @@ def d2_hopf_loop_interpolation() -> dict[str, Any]:
     t_high = max(obstruction_t) if obstruction_t else None
     non_trivial_interval = t_low is not None and t_high is not None and t_high > t_low
 
-    # scipy spline fit to confirm the norm-collapse is smooth, not a sampling artefact
-    t_arr = np.array(T_SAMPLES)
-    norm_arr = np.array([s["min_loop_norm"] for s in samples])
-    spline = sci.UnivariateSpline(t_arr, norm_arr, s=0, k=3)
-    min_norm_spline = float(spline(0.5))
-    spline_confirms_collapse = min_norm_spline < OBSTRUCTION_THRESHOLD
+    # Finite local interpolation confirms the sampled collapse at t=0.5 without
+    # introducing SciPy as a nonclassical backend.
+    norm_values = [s["min_loop_norm"] for s in samples]
+    min_norm_finite = _finite_linear_interpolate(T_SAMPLES, norm_values, 0.5)
+    finite_confirms_collapse = min_norm_finite < OBSTRUCTION_THRESHOLD
 
-    passes = non_trivial_interval and spline_confirms_collapse
+    passes = non_trivial_interval and finite_confirms_collapse
     return {
         "samples": samples,
         "obstruction_threshold": OBSTRUCTION_THRESHOLD,
         "obstruction_t_low": t_low,
         "obstruction_t_high": t_high,
         "non_trivial_interval": non_trivial_interval,
-        "spline_min_norm_at_t_half": round(min_norm_spline, 8),
-        "spline_confirms_collapse": spline_confirms_collapse,
+        "finite_min_norm_at_t_half": round(min_norm_finite, 8),
+        "finite_interpolation_confirms_collapse": finite_confirms_collapse,
         "pass": passes,
     }
 
@@ -348,25 +353,21 @@ def d3_ratchet_interpolation() -> dict[str, Any]:
     t_high = max(obstruction_t) if obstruction_t else None
     non_trivial_interval = t_low is not None and t_high is not None and t_high > t_low
 
-    # scipy: interpolate admissibility score (1 admissible, 0 not) and confirm it drops
-    t_arr = np.array(T_SAMPLES)
-    adm_arr = np.array([1.0 if s["admissible"] else 0.0 for s in samples])
     # Use the gap margin: pos_B - pos_A - (pos_C - pos_B) as a continuous measure
-    gap_arr = np.array([
+    gap_values = [
         min(s["pos_B"] - s["pos_A"], s["pos_C"] - s["pos_B"]) for s in samples
-    ])
-    spline_gap = sci.UnivariateSpline(t_arr, gap_arr, s=0, k=3)
-    gap_at_half = float(spline_gap(0.5))
-    spline_confirms_tie = abs(gap_at_half) < 0.5  # gap collapses to 0 at t=0.5
+    ]
+    gap_at_half = _finite_linear_interpolate(T_SAMPLES, gap_values, 0.5)
+    finite_confirms_tie = abs(gap_at_half) < 0.5  # gap collapses to 0 at t=0.5
 
-    passes = non_trivial_interval and spline_confirms_tie
+    passes = non_trivial_interval and finite_confirms_tie
     return {
         "samples": samples,
         "obstruction_t_low": t_low,
         "obstruction_t_high": t_high,
         "non_trivial_interval": non_trivial_interval,
-        "gap_at_t_half_spline": round(gap_at_half, 6),
-        "spline_confirms_order_collapse": spline_confirms_tie,
+        "gap_at_t_half_finite": round(gap_at_half, 6),
+        "finite_interpolation_confirms_order_collapse": finite_confirms_tie,
         "pass": passes,
     }
 
@@ -375,19 +376,20 @@ def d3_ratchet_interpolation() -> dict[str, Any]:
 # D4: Cl(3) generator choice -- discrete but NOT topologically obstructed
 # ---------------------------------------------------------------------------
 
-_G1 = np.array([[0.0, 1.0], [1.0, 0.0]], dtype=complex)   # sigma_x
-_G2 = np.array([[0.0, -1j], [1j, 0.0]], dtype=complex)    # sigma_y
+_G1 = torch.tensor([[0.0, 1.0], [1.0, 0.0]], dtype=torch.complex128)   # sigma_x
+_G2 = torch.tensor([[0.0, -1j], [1j, 0.0]], dtype=torch.complex128)    # sigma_y
 
 
-def _squares_to_pm_identity(M: np.ndarray, tol: float = 1e-8) -> bool:
+def _squares_to_pm_identity(M: torch.Tensor, tol: float = 1e-8) -> bool:
     sq = M @ M
+    eye = torch.eye(2, dtype=torch.complex128)
     return bool(
-        np.allclose(sq, np.eye(2), atol=tol) or np.allclose(sq, -np.eye(2), atol=tol)
+        torch.allclose(sq, eye, atol=tol) or torch.allclose(sq, -eye, atol=tol)
     )
 
 
-def _is_hermitian(M: np.ndarray, tol: float = 1e-8) -> bool:
-    return bool(np.allclose(M, M.conj().T, atol=tol))
+def _is_hermitian(M: torch.Tensor, tol: float = 1e-8) -> bool:
+    return bool(torch.allclose(M, M.conj().T, atol=tol))
 
 
 def d4_generator_interpolation() -> dict[str, Any]:
@@ -403,7 +405,7 @@ def d4_generator_interpolation() -> dict[str, Any]:
         M = (1.0 - t) * _G1 + t * _G2
         herm = _is_hermitian(M)
         gen = _squares_to_pm_identity(M)
-        sq_diag = [round(float(np.real((M @ M)[i, i])), 6) for i in range(2)]
+        sq_diag = [round(float((M @ M)[i, i].real.item()), 6) for i in range(2)]
         samples.append({
             "t": t,
             "is_hermitian": herm,
@@ -443,17 +445,17 @@ def d4_generator_interpolation() -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 
-def _su2_rotation(t: float) -> np.ndarray:
+def _su2_rotation(t: float) -> torch.Tensor:
     """U(t) = cos(t*pi/2)*I + i*sin(t*pi/2)*sigma_x in SU(2)."""
-    sigma_x = np.array([[0.0, 1.0], [1.0, 0.0]], dtype=complex)
+    sigma_x = torch.tensor([[0.0, 1.0], [1.0, 0.0]], dtype=torch.complex128)
     return (
-        math.cos(t * math.pi / 2.0) * np.eye(2, dtype=complex)
+        math.cos(t * math.pi / 2.0) * torch.eye(2, dtype=torch.complex128)
         + 1j * math.sin(t * math.pi / 2.0) * sigma_x
     )
 
 
-def _is_unitary(M: np.ndarray, tol: float = 1e-8) -> bool:
-    return bool(np.allclose(M @ M.conj().T, np.eye(2), atol=tol))
+def _is_unitary(M: torch.Tensor, tol: float = 1e-8) -> bool:
+    return bool(torch.allclose(M @ M.conj().T, torch.eye(2, dtype=torch.complex128), atol=tol))
 
 
 def control_su2_rotation() -> dict[str, Any]:
@@ -465,7 +467,7 @@ def control_su2_rotation() -> dict[str, Any]:
     for t in T_SAMPLES:
         U = _su2_rotation(t)
         unitary = _is_unitary(U)
-        det = float(np.real(np.linalg.det(U)))
+        det = float(torch.linalg.det(U).real.item())
         samples.append({"t": t, "is_unitary": unitary, "det_real": round(det, 8), "admissible": unitary})
 
     all_admissible = all(s["admissible"] for s in samples)
@@ -617,7 +619,7 @@ def graveyard_d1_collapsed_to_identity() -> dict[str, Any]:
     Replace sigma_z with identity.  Interpolated state is always an 'eigenstate'
     of I with eigenvalue 1 at all t -- D1 obstruction disappears.
     """
-    identity = np.eye(2, dtype=complex)
+    identity = torch.eye(2, dtype=torch.complex128)
     obstruction_found = False
     for t in T_SAMPLES:
         psi = _d1_state(t)
@@ -639,15 +641,15 @@ def graveyard_d2_collapsed_to_trivial() -> dict[str, Any]:
     Replace the Hopf bundle with a trivial constant loop for both A and B.
     The interpolation never collapses -- minimum loop norm stays = 1 throughout.
     """
-    def trivial_A(s: float) -> np.ndarray:
-        return _PSI0_HOPF.copy()
+    def trivial_A(s: float) -> torch.Tensor:
+        return _PSI0_HOPF.clone()
 
-    def trivial_B(s: float) -> np.ndarray:
-        return _PSI0_HOPF.copy()
+    def trivial_B(s: float) -> torch.Tensor:
+        return _PSI0_HOPF.clone()
 
     min_norms: list[float] = []
     for t in T_SAMPLES:
-        def loop(s: float, _t: float = t) -> np.ndarray:
+        def loop(s: float, _t: float = t) -> torch.Tensor:
             return (1.0 - _t) * trivial_A(s) + _t * trivial_B(s)
         min_norms.append(_min_loop_norm(loop, N=500))
 
@@ -698,7 +700,7 @@ def graveyard_d3_collapsed_to_reversible() -> dict[str, Any]:
 def torch_d1_eigenvalue_samples() -> dict[str, Any]:
     """
     Same D1 chirality interpolation, now using torch tensors.
-    Confirms pytorch is load-bearing (not just numpy).
+    Confirms pytorch is load-bearing for the eigenvalue obstruction.
     """
     sigma_z_t = torch.tensor([[1.0, 0.0], [0.0, -1.0]], dtype=torch.complex128)
     psi_plus_t = torch.tensor([1.0, 0.0], dtype=torch.complex128)
@@ -783,16 +785,16 @@ def main() -> dict[str, Any]:
         },
         "D2_loop_class_continuous_interpolation_admissibility_breaks": {
             "obstruction_interval": [d2["obstruction_t_low"], d2["obstruction_t_high"]],
-            "min_norm_at_t_half_spline": d2["spline_min_norm_at_t_half"],
+            "min_norm_at_t_half_finite": d2["finite_min_norm_at_t_half"],
             "z3_unsat_witness": z3w["D2_no_integer_winding_between_0_and_1"]["is_unsat"],
-            "scipy_spline_confirms": d2["spline_confirms_collapse"],
+            "finite_interpolation_confirms": d2["finite_interpolation_confirms_collapse"],
             "pass": d2["pass"] and z3w["D2_no_integer_winding_between_0_and_1"]["is_unsat"],
         },
         "D3_ratchet_direction_continuous_interpolation_admissibility_breaks": {
             "obstruction_interval": [d3["obstruction_t_low"], d3["obstruction_t_high"]],
-            "gap_at_t_half_spline": d3["gap_at_t_half_spline"],
+            "gap_at_t_half_finite": d3["gap_at_t_half_finite"],
             "z3_unsat_witness": z3w["D3_no_simultaneous_forward_and_reverse_order"]["is_unsat"],
-            "scipy_spline_confirms": d3["spline_confirms_order_collapse"],
+            "finite_interpolation_confirms": d3["finite_interpolation_confirms_order_collapse"],
             "pass": d3["pass"] and z3w["D3_no_simultaneous_forward_and_reverse_order"]["is_unsat"],
         },
         "D4_cl3_generator_choice_is_discrete_but_not_topologically_obstructed": {

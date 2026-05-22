@@ -47,9 +47,9 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "json": "load_bearing",
-    "pathlib": "load_bearing",
-    "hashlib": "load_bearing",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "hashlib": "supportive",
 }
 
 TMP_EXECUTION_RESULT = RESULT_DIR / "attractor_basin_tmp_engine_v2_candidate_execution_probe_results.json"

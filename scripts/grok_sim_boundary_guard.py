@@ -4,12 +4,15 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
 GROK_RESULTS = ROOT / "system_v5" / "grok_sim" / "results"
 GROK_DOCS = ROOT / "system_v5" / "grok_sim"
+GENERATED_HISTORY_DIRS = {"loop_runner"}
+MAX_EMITTED_FINDINGS = 200
 
 DANGEROUS_JSON_KEYS = {
     "suggested_basin_verdict",
@@ -61,6 +64,37 @@ TEXT_PATTERNS = {
     pattern.lower() for pattern in DANGEROUS_TEXT_PATTERNS
 }
 
+SOURCE_REGENERATION_PATTERNS = (
+    (
+        re.compile(r"^\s*CLASSIFICATION\s*=\s*['\"]formal_scout['\"]"),
+        "grok_source_uses_formal_scout_classification",
+        "grok_sim source must not regenerate formal_scout classification",
+    ),
+    (
+        re.compile(r"['\"]classification['\"]\s*:\s*['\"]formal_scout['\"]"),
+        "grok_source_emits_formal_scout_classification",
+        "grok_sim source must not emit formal_scout result classifications",
+    ),
+    (
+        re.compile(r"deep_basin_candidate \(side-quest\)"),
+        "grok_source_emits_deep_basin_candidate_verdict",
+        "grok_sim source must not emit deep_basin_candidate sidequest verdicts",
+    ),
+    (
+        re.compile(r"formal_scout basin classifier admission"),
+        "grok_source_emits_formal_scout_admission_text",
+        "grok_sim source must not emit formal_scout basin-admission text",
+    ),
+)
+
+
+def is_generated_history_path(path: Path) -> bool:
+    try:
+        parts = path.relative_to(GROK_DOCS).parts
+    except ValueError:
+        return False
+    return bool(parts) and parts[0] in GENERATED_HISTORY_DIRS
+
 
 def main() -> int:
     violations: list[dict[str, str]] = []
@@ -99,6 +133,8 @@ def main() -> int:
                     )
 
     for path in sorted(GROK_DOCS.rglob("*.json")):
+        if is_generated_history_path(path):
+            continue
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
         except json.JSONDecodeError as exc:
@@ -112,11 +148,11 @@ def main() -> int:
             continue
         is_result_json = path.is_relative_to(GROK_RESULTS)
         if is_result_json and "claim_ceiling" not in data:
-            warnings.append(
+            violations.append(
                 {
                     "path": str(path.relative_to(ROOT)),
-                    "rule": "grok_result_missing_claim_ceiling_legacy_warning",
-                    "detail": "legacy grok_sim result lacks explicit claim_ceiling",
+                    "rule": "grok_result_missing_claim_ceiling",
+                    "detail": "grok_sim result lacks explicit side_quest_only claim_ceiling",
                 }
             )
         scan_json_leaf(path, data)
@@ -175,9 +211,19 @@ def main() -> int:
         *GROK_DOCS.rglob("*.log"),
     }
     for path in sorted(text_paths):
+        if is_generated_history_path(path):
+            continue
         text = path.read_text(encoding="utf-8", errors="replace")
         for lineno, line in enumerate(text.splitlines(), start=1):
             lowered_line = line.lower()
+            if path.suffix == ".py":
+                for regex, rule, detail in SOURCE_REGENERATION_PATTERNS:
+                    if regex.search(line):
+                        add_violation(
+                            path,
+                            rule,
+                            f"line {lineno}: {detail}",
+                        )
             for pattern in TEXT_PATTERNS:
                 if pattern in lowered_line and not any(context in lowered_line for context in NEGATED_TEXT_CONTEXT):
                     add_violation(
@@ -192,8 +238,15 @@ def main() -> int:
                     str(GROK_RESULTS.relative_to(ROOT)),
                     str(GROK_DOCS.relative_to(ROOT)),
                 ],
-                "violations": violations,
-                "warnings": warnings,
+                "excluded_generated_history_dirs": sorted(GENERATED_HISTORY_DIRS),
+                "violation_count": len(violations),
+                "warning_count": len(warnings),
+                "violations": violations[:MAX_EMITTED_FINDINGS],
+                "warnings": warnings[:MAX_EMITTED_FINDINGS],
+                "truncated": {
+                    "violations": max(0, len(violations) - MAX_EMITTED_FINDINGS),
+                    "warnings": max(0, len(warnings) - MAX_EMITTED_FINDINGS),
+                },
             },
             indent=2,
         )

@@ -75,7 +75,7 @@ Short rule:
 | 20 | Integrated multi-tool | integrated_multi_tool_results.json | All 4 tools (clifford/TopoNetX/PyG/z3) consistent on same state. |
 | 21 | Active Clifford-driven | active_clifford_driven_results.json | 7/8 stages match (Td<0.06). N01 confirmed on cross-axis pairs. |
 | 22 | Deep tool integration | deep_tool_integration_results.json | 10 tools all producing real results on engine. |
-| 23 | Full tool integration | full_tool_integration_results.json | su(2) proven exactly. Pydantic contracts. All 9 tools verified. |
+| 23 | Full tool integration | full_tool_integration_results.json | su(2) checked exactly in that dated fixture. Pydantic contracts. All 9 tools verified. |
 
 ---
 

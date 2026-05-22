@@ -43,6 +43,15 @@ TOOL_MANIFEST = {
 
 classification = "classical_baseline"
 
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for sim_tensor_network_ic_gradient; it does not promote a "
+        "nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+
 TOOL_INTEGRATION_DEPTH = {
     "clifford": "load_bearing",
     "cvc5": None,

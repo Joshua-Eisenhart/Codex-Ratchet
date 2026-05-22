@@ -7,14 +7,12 @@ import json
 import os
 import pathlib
 import time
-from typing import Any
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import gudhi
 import networkx as nx
-from scipy.optimize import least_squares
 import sympy as sp
 import torch
 from torch_geometric.utils import from_networkx
@@ -40,7 +38,6 @@ CLAIM_CEILING = (
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing shell weight tensors and rate arrays"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing least-squares parameter compression fit"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing shell graph construction from weights"},
     "torch_geometric": {"tried": True, "used": True, "reason": "load-bearing graph tensor conversion"},
     "gudhi": {"tried": True, "used": True, "reason": "load-bearing shell graph persistence summaries"},
@@ -90,13 +87,10 @@ def target_vector(rows: list[dict[str, Any]], key: str) -> torch.Tensor:
 def fit_linear(rows: list[dict[str, Any]], key: str) -> dict[str, Any]:
     x = design_matrix(rows)
     y = target_vector(rows, key)
-    def residual(params: Any) -> Any:
-        p = torch.tensor(params, dtype=torch.float64)
-        return (x @ p - y).numpy()
-    result = least_squares(residual, x0=[0.0, 0.1, 0.1], xtol=1e-14, ftol=1e-14, gtol=1e-14)
-    pred = x @ torch.tensor(result.x, dtype=torch.float64)
+    params = torch.linalg.lstsq(x, y).solution
+    pred = x @ params
     err = float(torch.linalg.vector_norm(pred - y).item())
-    return {"params": [float(v) for v in result.x], "l2_error": err, "success": bool(result.success), "predicted": [float(v) for v in pred]}
+    return {"params": [float(v) for v in params], "l2_error": err, "success": True, "predicted": [float(v) for v in pred]}
 
 
 def random_control_rows(base: list[dict[str, Any]]) -> list[dict[str, Any]]:

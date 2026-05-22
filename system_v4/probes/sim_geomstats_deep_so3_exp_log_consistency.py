@@ -9,6 +9,8 @@ and LADDERS_FENCES_ADMISSION_REFERENCE.md (exp/log fence).
 """
 import json, os, numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": "not required for Lie group exp/log"},

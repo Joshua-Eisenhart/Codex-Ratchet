@@ -9,6 +9,8 @@ non-equivariant map (random matrix) breaks the fence.
 import os, json, torch
 from e3nn.o3 import Irreps, rand_matrix
 
+classification = "canonical"
+
 NAME = "sim_e3nn_deep_so3_irrep_decomposition_admissibility"
 SCOPE_NOTE = "SO(3) irrep decomposition admissibility under D(R); non-equivariant map excluded."
 TOOL_MANIFEST = {"e3nn": {"tried": True, "used": True,

@@ -39,8 +39,8 @@ from collections import Counter
 from typing import Any
 
 import networkx as nx
-import numpy as np
 import sympy as sp
+import torch
 import z3
 
 
@@ -64,15 +64,15 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing rolling-window entropy vectors and pair invariant gaps",
+        "reason": "load-bearing rolling-window entropy vectors, pair invariant gaps, and local Laplacian eigensolver",
     },
     "networkx": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing algebraic connectivity of token transition graph as deeper invariant",
+        "reason": "load-bearing token transition graph construction only; spectral computation is local torch",
     },
     "z3": {
         "tried": True,
@@ -97,6 +97,7 @@ PARTITION_COUNT_GATE_FLOOR = 4          # survivor-quotient classes floor (full 
 DISCRIMINATION_SCORE_FLOOR = 0.75
 N_PAIRS_PER_TYPE = 8
 RNG_SEED = 8511
+FLOAT_DTYPE = torch.float64
 
 
 def as_jsonable(value: Any) -> Any:
@@ -106,12 +107,8 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, np.bool_):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().tolist()
     return value
 
 
@@ -122,17 +119,17 @@ def sha256_file(path: pathlib.Path) -> str:
 def categorical_entropy(values: list[str]) -> float:
     counts = Counter(values)
     total = float(sum(counts.values()))
-    probs = np.array([c / total for c in counts.values()], dtype=float)
-    return float(-np.sum(probs * np.log(probs)))
+    probs = torch.tensor([c / total for c in counts.values()], dtype=FLOAT_DTYPE)
+    return float(-(probs * torch.log(probs)).sum().item())
 
 
 def rolling(values: list[str], width: int = ROLLING_WINDOW) -> list[list[str]]:
     return [values[max(0, i - width + 1): i + 1] for i in range(len(values))]
 
 
-def path_entropy_vector(tokens: list[str]) -> np.ndarray:
-    ent = np.array([categorical_entropy(w) for w in rolling(tokens)], dtype=float)
-    return np.diff(ent)
+def path_entropy_vector(tokens: list[str]) -> torch.Tensor:
+    ent = torch.tensor([categorical_entropy(w) for w in rolling(tokens)], dtype=FLOAT_DTYPE)
+    return torch.diff(ent)
 
 
 def transition_graph(tokens: list[str]) -> nx.DiGraph:
@@ -146,11 +143,32 @@ def transition_graph(tokens: list[str]) -> nx.DiGraph:
     return g
 
 
+def torch_laplacian_algebraic_connectivity(g: nx.Graph) -> float:
+    nodes = list(g.nodes())
+    if len(nodes) < 2:
+        return 0.0
+
+    idx = {node: i for i, node in enumerate(nodes)}
+    adjacency = torch.zeros((len(nodes), len(nodes)), dtype=FLOAT_DTYPE)
+    for u, v, data in g.edges(data=True):
+        if u == v:
+            continue
+        weight = float(data.get("weight", 1.0))
+        i = idx[u]
+        j = idx[v]
+        adjacency[i, j] += weight
+        adjacency[j, i] += weight
+
+    degree = torch.sum(adjacency, dim=1)
+    laplacian = torch.diag(degree) - adjacency
+    eigenvalues = torch.linalg.eigvalsh(laplacian)
+    second_smallest = float(eigenvalues[1].item())
+    return 0.0 if abs(second_smallest) < 1e-12 else max(0.0, second_smallest)
+
+
 def algebraic_connectivity(tokens: list[str]) -> float:
     g = transition_graph(tokens).to_undirected()
-    if g.number_of_nodes() < 2:
-        return 0.0
-    return float(nx.algebraic_connectivity(g, weight="weight"))
+    return torch_laplacian_algebraic_connectivity(g)
 
 
 def survivor_quotient_partition_count(tokens: list[str]) -> int:
@@ -180,9 +198,9 @@ def transition_matrix_rational_spectrum(tokens: list[str]) -> list[str]:
 
 def path_entropy_gate(tokens: list[str]) -> bool:
     v = path_entropy_vector(tokens)
-    if v.size == 0 or not np.all(np.isfinite(v)):
+    if v.numel() == 0 or not bool(torch.all(torch.isfinite(v)).item()):
         return False
-    nonzero_fraction = float(np.mean(np.abs(v) > 1e-12))
+    nonzero_fraction = float(torch.mean((torch.abs(v) > 1e-12).to(FLOAT_DTYPE)).item())
     return nonzero_fraction >= PATH_ENTROPY_GATE_FLOOR
 
 
@@ -203,13 +221,13 @@ def _build_same_entropy_split_deeper_pair(seed: int) -> tuple[list[str], list[st
     # survivor-quotient partition has 4 classes, alg_conn larger.
     # Path entropy gate decision is the same (FAIL on both); deeper gate
     # decision splits (FAIL on A, PASS on B) by construction.
-    rng = np.random.default_rng(seed)
+    generator = torch.Generator().manual_seed(seed)
     period_a = ("a", "b")
     period_b = ALPHABET  # ("a", "b", "c", "d")
     # Tiny seed-driven cyclic shift to keep examples nontrivially distinct
     # while preserving the periodic structure that flattens rolling entropy.
-    shift_a = int(rng.integers(0, len(period_a)))
-    shift_b = int(rng.integers(0, len(period_b)))
+    shift_a = int(torch.randint(0, len(period_a), (), generator=generator).item())
+    shift_b = int(torch.randint(0, len(period_b), (), generator=generator).item())
     seq_a = [period_a[(i + shift_a) % len(period_a)] for i in range(SEQUENCE_LEN)]
     seq_b = [period_b[(i + shift_b) % len(period_b)] for i in range(SEQUENCE_LEN)]
     return seq_a, seq_b
@@ -222,10 +240,10 @@ def _build_split_entropy_same_deeper_pair(seed: int) -> tuple[list[str], list[st
     # Path entropy gate decision splits: Seq A is period-4 cycle (flat
     # rolling entropy -> FAIL); Seq B is RNG-drawn uniform (varying rolling
     # entropy -> PASS).
-    rng = np.random.default_rng(seed + 977)
-    shift_a = int(rng.integers(0, len(ALPHABET)))
+    generator = torch.Generator().manual_seed(seed + 977)
+    shift_a = int(torch.randint(0, len(ALPHABET), (), generator=generator).item())
     seq_a = [ALPHABET[(i + shift_a) % len(ALPHABET)] for i in range(SEQUENCE_LEN)]
-    seq_b = [ALPHABET[int(idx)] for idx in rng.integers(0, len(ALPHABET), size=SEQUENCE_LEN)]
+    seq_b = [ALPHABET[int(idx)] for idx in torch.randint(0, len(ALPHABET), (SEQUENCE_LEN,), generator=generator).tolist()]
     # Force seq_b to contain every alphabet letter so its transition graph
     # matches the seq_a 4-cycle on survivor-quotient partition count.
     for k, letter in enumerate(ALPHABET):
@@ -245,8 +263,8 @@ def pair_diagnostic(seq_a: list[str], seq_b: list[str]) -> dict[str, Any]:
     va = path_entropy_vector(seq_a)
     vb = path_entropy_vector(seq_b)
     return {
-        "path_entropy_l2_delta": float(np.linalg.norm(va - vb)),
-        "path_entropy_max_abs_delta": float(np.max(np.abs(va - vb))) if va.size else 0.0,
+        "path_entropy_l2_delta": float(torch.linalg.vector_norm(va - vb).item()),
+        "path_entropy_max_abs_delta": float(torch.max(torch.abs(va - vb)).item()) if va.numel() else 0.0,
         "alg_conn_a": algebraic_connectivity(seq_a),
         "alg_conn_b": algebraic_connectivity(seq_b),
         "alg_conn_delta": float(abs(algebraic_connectivity(seq_a) - algebraic_connectivity(seq_b))),
@@ -291,14 +309,15 @@ def discrimination_score(pair_diags: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def shuffle_control_consistency(pair_diags: list[dict[str, Any]], seed: int = 4173) -> dict[str, Any]:
-    rng = np.random.default_rng(seed)
+    generator = torch.Generator().manual_seed(seed)
     flips_pe = 0
     flips_deeper = 0
     n_checked = 0
     for d in pair_diags:
         seq = list(d["seq_a"])
         shuffled = list(seq)
-        rng.shuffle(shuffled)
+        order = torch.randperm(len(shuffled), generator=generator).tolist()
+        shuffled = [shuffled[idx] for idx in order]
         if path_entropy_gate(seq) != path_entropy_gate(shuffled):
             flips_pe += 1
         if deeper_gate(seq) != deeper_gate(shuffled):

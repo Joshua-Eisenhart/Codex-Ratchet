@@ -9,6 +9,15 @@ import json, os
 import rustworkx as rx
 classification = "classical_baseline"  # auto-added by adaptive_controller
 
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for its local claim; it does not promote "
+        "a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+    ),
+]
+
 SCOPE_NOTE = (
     "Parity admissibility (probe-relative to 2-coloring): "
     "rustworkx.two_color is load-bearing. Odd-cycle graphs are EXCLUDED; "

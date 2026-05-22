@@ -1,6 +1,13 @@
 # Tier A — Tool Foundation (capability → integration → serializer → rename)
 
-> **Worker spawn preamble (mandatory):** every spawned Claude worker receives Block B (140-word) from `~/wiki/harness/SALIENCE_PREAMBLE.md` prepended to its system prompt before any task description. See `system_v5/ops/HERMES_RULES.md` §0. Probe-tested 2026-04-17 on fresh Haiku.
+Historical April 2026 Hermes tier plan. Do not execute or treat
+`classification = "canonical"` language below as current formal-scout readiness
+or promotion without a fresh repo preflight, current user authorization, and the
+current v5 readiness/sim-estate indexes.
+
+> Historical worker preamble from the old Hermes plan, not current Codex
+> instruction: spawned Claude workers received Block B from
+> `~/wiki/harness/SALIENCE_PREAMBLE.md`.
 
 
 Preconditions: read `system_v5/ops/HERMES_RULES.md` and `system_v5/ops/SIM_RUNNER.md`. Run preflight. Verify harness at `~/wiki/harness/00_READ_FIRST.md`. Verify runner is live: `pgrep -f system_v5/ops/sim_runner.sh` returns a PID.
@@ -41,7 +48,7 @@ the queue row ready.
 - the repo now contains a broader tool-stage estate than the original Tier A surface reflected:
   - 34 capability-style probes
   - 47 integration-style probes
-- use `system_v5/docs/plans/plans/2026-04-18-tool-stage-plan.md` for the current tool-stage normalization and second-wave packet plan
+- use `system_v5/docs/plans/plans/2026-04-18-tool-stage-plan.md` as the dated tool-stage normalization and second-wave packet plan; current status must be checked against the live v5 readiness/sim-estate indexes
 - fresh 2026-04-18 execution confirmed:
   - `sim_rustworkx_capability.py`
   - `sim_geomstats_capability.py`
@@ -72,7 +79,7 @@ Tier A is micro-first. A capability packet should test one named tool function o
 6. one demotion condition;
 7. one ledger loopback.
 
-Each tool should find legos that expose its real value. A z3 packet should prefer fence/impossibility/synthesis legos; a sympy packet should prefer symbolic-identity/derivation legos; graph/topology tools should prefer graph, hypergraph, cell-complex, filtration, or graph-dynamics legos; geometry tools should prefer rotor, spinor, metric, geodesic, holonomy, or equivariance legos. These are still tool-stage packets. They prove the tool/function fit, not the lego.
+Each tool should find legos that expose its real value. A z3 packet should prefer fence/impossibility/synthesis legos; a sympy packet should prefer symbolic-identity/derivation legos; graph/topology tools should prefer graph, hypergraph, cell-complex, filtration, or graph-dynamics legos; geometry tools should prefer rotor, spinor, metric, geodesic, holonomy, or equivariance legos. These are still tool-stage packets. They receipt-validate the tool/function fit, not the lego.
 
 Broad candidate generation is encouraged here: many candidate tools, fixtures,
 and negative cases may be drafted before one packet is accepted. Each accepted
@@ -231,7 +238,7 @@ Tail `overnight_logs/sim_runner_current.log`. Verify each claimed commit against
 
 ## Gate
 
-Do not call Tier A green from the old 7-capability / 6-integration checklist alone. The current gate is broader:
+Do not call Tier A green from the old 7-capability / 6-integration checklist alone. The later plan-era gate was broader, and current gate language must be refreshed from live repo/status preflight:
 
 - 22 capability probes exist and their current status is reflected in `system_v5/docs/plans/plans/TOOL_CAPABILITY_AND_INTEGRATION_LEDGER.md`
 - hdbscan and umap are not missing-capability tools; their remaining debt is integration/truth-label reconciliation

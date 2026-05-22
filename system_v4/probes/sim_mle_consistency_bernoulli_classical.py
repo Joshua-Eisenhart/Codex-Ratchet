@@ -22,9 +22,9 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "sampling and MLE arithmetic"},
     "scipy": {"tried": True, "used": True, "reason": "normal cdf for asymptotic check"},
     "pytorch": {
-        "tried": _torch_ok,
+        "tried": True,
         "used": False,
-        "reason": "supportive import only; autograd not required",
+        "reason": "optional supportive import attempt only; autograd not required",
     },
     "z3": {"tried": False, "used": False, "reason": "no SMT assertion on consistency"},
 }

@@ -5,11 +5,12 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import pathlib
 import time
 from typing import Any
 
-import numpy as np
+import torch
 import z3
 
 import axis0_guard_utils as axis0_guard
@@ -33,18 +34,18 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing policy-gate vector, local carrier signatures, and matched controls"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing tensor gate statistics, finite checks, and signature-gap controls"},
     "quimb": {"tried": True, "used": True, "reason": "load-bearing through reused MPS/PEPS/PEPS3D carrier construction sanity checks"},
     "cotengra": {"tried": True, "used": True, "reason": "supportive through upstream subdense contraction scout dependency"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite witness for gate-consumption and control-separation predicates"},
-    "engine_core": {"tried": True, "used": True, "reason": "load-bearing via reused source-native stage records"},
+    "engine_core": {"tried": True, "used": True, "reason": "supportive provenance through reused source-native stage records"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
+    "pytorch": "load_bearing",
     "quimb": "load_bearing",
     "cotengra": "supportive",
     "z3": "load_bearing",
-    "engine_core": "load_bearing",
+    "engine_core": "supportive",
 }
 
 REQUIRED_STAGE_FIELDS = subdense.REQUIRED_STAGE_FIELDS
@@ -57,13 +58,67 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+    if isinstance(value, torch.Tensor):
+        raw = value.detach().cpu().tolist()
+        return as_jsonable(raw)
     return value
+
+
+def tensor_from_values(values: Any) -> torch.Tensor:
+    if isinstance(values, torch.Tensor):
+        return values.detach().to(dtype=torch.float64).flatten()
+    if hasattr(values, "tolist"):
+        values = values.tolist()
+    return torch.tensor([float(x) for x in values], dtype=torch.float64)
+
+
+def tensor_list(values: Any) -> list[float]:
+    return [float(x) for x in tensor_from_values(values).tolist()]
+
+
+def tensor_mean(values: Any) -> float:
+    tensor = tensor_from_values(values)
+    return float(torch.mean(tensor).item()) if tensor.numel() else 0.0
+
+
+def tensor_variance(values: Any) -> float:
+    tensor = tensor_from_values(values)
+    return float(torch.var(tensor, unbiased=False).item()) if tensor.numel() else 0.0
+
+
+def tensor_l2_gap(a: Any, b: Any) -> float:
+    a_tensor = tensor_from_values(a)
+    b_tensor = tensor_from_values(b)
+    return float(torch.linalg.vector_norm(a_tensor - b_tensor).item())
+
+
+def tensor_all_finite(values: Any) -> bool:
+    tensor = tensor_from_values(values)
+    return bool(torch.isfinite(tensor).all().item()) if tensor.numel() else True
+
+
+def torch_signature_from_rows(rows: list[dict[str, Any]]) -> torch.Tensor:
+    cols = subdense.ENVIRONMENT_SIGNATURE_COLUMNS
+    matrix = torch.tensor(
+        [[float(row[col]) for col in cols] for row in rows],
+        dtype=torch.float64,
+    )
+    if matrix.numel() == 0:
+        return torch.zeros(len(cols) * 3, dtype=torch.float64)
+    return torch.cat(
+        [
+            torch.mean(matrix, dim=0),
+            torch.std(matrix, dim=0, unbiased=False),
+            matrix[-1],
+        ]
+    )
+
+
+def finite_floats(values: Any) -> list[float]:
+    floats = tensor_list(values)
+    if not all(math.isfinite(value) for value in floats):
+        raise ValueError("non-finite value encountered")
+    return floats
 
 
 def sha256_file(path: pathlib.Path) -> str:
@@ -90,30 +145,30 @@ def load_result(name: str) -> dict[str, Any]:
 
 def policy_gate_signal(lirpa_receipt: dict[str, Any]) -> dict[str, Any]:
     bound = (lirpa_receipt.get("positive") or {}).get("auto_lirpa_bounds_contain_bruteforce_perturbation_samples", {})
-    gates = np.asarray(bound.get("policy_bound_gate_vector", []), dtype=float)
-    widths = np.asarray(bound.get("row_interval_widths", []), dtype=float)
-    margins = np.asarray(bound.get("row_nominal_margins", []), dtype=float)
+    gates = tensor_from_values(bound.get("policy_bound_gate_vector", []))
+    widths = tensor_from_values(bound.get("row_interval_widths", []))
+    margins = tensor_from_values(bound.get("row_nominal_margins", []))
     return {
-        "ready": bool(lirpa_receipt.get("all_pass") is True and gates.size >= 4 and np.all(np.isfinite(gates))),
+        "ready": bool(lirpa_receipt.get("all_pass") is True and gates.numel() >= 4 and torch.isfinite(gates).all().item()),
         "source_receipt": lirpa_receipt.get("path"),
-        "policy_bound_gate_vector": [float(x) for x in gates],
-        "row_interval_widths": [float(x) for x in widths],
-        "row_nominal_margins": [float(x) for x in margins],
-        "gate_mean": float(np.mean(gates)) if gates.size else 0.0,
-        "gate_variance": float(np.var(gates)) if gates.size else 0.0,
+        "policy_bound_gate_vector": tensor_list(gates),
+        "row_interval_widths": tensor_list(widths),
+        "row_nominal_margins": tensor_list(margins),
+        "gate_mean": tensor_mean(gates),
+        "gate_variance": tensor_variance(gates),
     }
 
 
 def gate_value(signal: dict[str, Any], idx: int, mode: str) -> float:
-    gates = np.asarray(signal.get("policy_bound_gate_vector", []), dtype=float)
-    if gates.size == 0:
+    gates = tensor_from_values(signal.get("policy_bound_gate_vector", []))
+    if gates.numel() == 0:
         return 1.0
     if mode == "full":
-        return float(gates[idx % len(gates)])
+        return float(gates[idx % gates.numel()].item())
     if mode == "flat":
-        return float(np.mean(gates))
+        return tensor_mean(gates)
     if mode == "shuffled":
-        return float(gates[(idx * 5 + 3) % len(gates)])
+        return float(gates[(idx * 5 + 3) % gates.numel()].item())
     if mode == "zero":
         return 0.0
     raise ValueError(mode)
@@ -147,8 +202,8 @@ def run_policy_gated_carrier(
         strength = subdense.source_strength(record, drive, mem_drive) * (0.60 + gate)
         subdense.apply_physical_slot(site, str(record["operator"]), int(record["operator_sign"]), strength)
     after_rows = subdense.environment_rows(carrier)
-    before_sig = subdense.signature_from_rows(before_rows)
-    after_sig = subdense.signature_from_rows(after_rows)
+    before_sig = torch_signature_from_rows(before_rows)
+    after_sig = torch_signature_from_rows(after_rows)
     row = {
         "carrier": carrier.name,
         "family": carrier.family,
@@ -158,17 +213,24 @@ def run_policy_gated_carrier(
         "edge_count": len(carrier.edges),
         "stage_records_consumed": len(records),
         "unique_model_after_hashes_consumed": len(set(stage_hashes)),
-        "policy_gate_mean": float(np.mean(gate_values)),
-        "policy_gate_variance": float(np.var(gate_values)),
+        "policy_gate_mean": tensor_mean(gate_values),
+        "policy_gate_variance": tensor_variance(gate_values),
         "quimb_count_check": quimb_check,
-        "environment_signature": after_sig,
-        "environment_shift_from_initial": float(np.linalg.norm(after_sig - before_sig)),
+        "signature_backend": "pytorch_from_subdense_environment_rows",
+        "subdense_signature_from_rows_used": False,
+        "upstream_environment_rows_backend_boundary": (
+            "subdense environment_rows remains an upstream quimb/numpy carrier "
+            "surface; this downstream scout makes signature statistics, gate "
+            "controls, and finite checks PyTorch load-bearing."
+        ),
+        "environment_signature": finite_floats(after_sig),
+        "environment_shift_from_initial": tensor_l2_gap(after_sig, before_sig),
         "environment_rows_head": after_rows[:3],
         "pass": (
             len(records) == subdense.N_SOURCE_SEEDS * 64
             and len(set(stage_hashes)) > 16
             and quimb_check["pass"]
-            and bool(np.all(np.isfinite(after_sig)))
+            and tensor_all_finite(after_sig)
         ),
     }
     if include_local_matrix:
@@ -182,7 +244,7 @@ def run_policy_gated_carrier(
 
 
 def signature_gap(a: dict[str, Any], b: dict[str, Any]) -> float:
-    return float(np.linalg.norm(np.asarray(a["environment_signature"], dtype=float) - np.asarray(b["environment_signature"], dtype=float)))
+    return tensor_l2_gap(a["environment_signature"], b["environment_signature"])
 
 
 def carrier_suite(records: list[dict[str, Any]], axis0: dict[str, Any], memory: dict[str, Any], signal: dict[str, Any]) -> dict[str, Any]:
@@ -236,6 +298,16 @@ def z3_gate_witness(suite: dict[str, Any], signal: dict[str, Any]) -> dict[str, 
         "solver_status": str(status),
         "claim_ceiling": "Finite witness over gate variance and local carrier separation only.",
     }
+
+
+def suite_uses_torch_signature_backend(suite: dict[str, Any]) -> bool:
+    modes = ("full", "flat_control", "shuffled_control", "zero_control")
+    return all(
+        row[mode].get("signature_backend") == "pytorch_from_subdense_environment_rows"
+        and row[mode].get("subdense_signature_from_rows_used") is False
+        for row in suite["rows"].values()
+        for mode in modes
+    )
 
 
 def main() -> int:
@@ -326,6 +398,16 @@ def main() -> int:
             **signal,
         },
         "mps_peps_peps3d_environment_consumes_policy_bound_gates": suite,
+        "downstream_environment_signature_statistics_are_pytorch_load_bearing": {
+            "pass": suite_uses_torch_signature_backend(suite),
+            "signature_backend": "pytorch_from_subdense_environment_rows",
+            "subdense_signature_from_rows_used": False,
+            "boundary": (
+                "This kills the local NumPy signature-statistics loophole but "
+                "does not migrate the upstream subdense carrier/environment "
+                "density implementation away from NumPy."
+            ),
+        },
         "z3_gate_consumption_witness_executes": z3_witness,
     }
     graveyards = {
@@ -370,6 +452,14 @@ def main() -> int:
                 ]
             ),
             "keys": sorted(repair_receipt),
+        },
+        "upstream_subdense_numpy_boundary_is_not_promoted": {
+            "pass": "does not admit" in CLAIM_CEILING and "full peps" in CLAIM_CEILING.lower(),
+            "boundary": (
+                "The upstream subdense carrier construction and two-site density "
+                "path still use NumPy/quimb internals; this receipt is not a "
+                "full PyTorch substrate migration."
+            ),
         },
     }
     all_pass = (

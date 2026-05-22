@@ -14,6 +14,9 @@ import json, math, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = [
+    "Classical comparator/control surface only; does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+]
 
 def spectral_gap_sym(seed, size=4):
     rng = np.random.default_rng(seed)

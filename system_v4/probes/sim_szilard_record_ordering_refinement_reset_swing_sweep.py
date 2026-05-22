@@ -11,7 +11,7 @@ import numpy as np
 import sim_szilard_record_ordering_refinement_sweep as refined
 
 
-CLASSIFICATION = "exploratory"
+CLASSIFICATION = "diagnostic_only"
 classification = CLASSIFICATION
 divergence_log = (
     "Row-local reset-swing sensitivity recheck for the Szilard record ordering "

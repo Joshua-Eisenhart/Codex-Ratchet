@@ -7,7 +7,12 @@ Cross-check: sympy symbolic squares for e_i*e_i.
 import json, os, numpy as np
 
 classification = "classical_baseline"
-DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+DEMOTE_REASON = "classical-baseline Clifford algebra basis smoke; no target-system admission"
+divergence_log = [
+    "classical-baseline Cl(3,0) basis axiom smoke only; verifies algebraic "
+    "basis identities and grade structure without promoting a geometric, "
+    "physical, Axis0, bridge, GStack, QIT, or nonclassical admission claim",
+]
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "not needed; algebraic identity test"},
@@ -92,6 +97,7 @@ def main():
         "positive": run_positive_tests(),
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
     }

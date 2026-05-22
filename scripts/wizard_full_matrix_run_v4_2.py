@@ -167,6 +167,8 @@ def route_command(args: argparse.Namespace, route: str, root: Path, repair_child
         str(args.opus_timeout_sec),
         "--haiku-timeout-sec",
         str(args.haiku_timeout_sec),
+        "--grok-timeout-sec",
+        str(getattr(args, "grok_timeout_sec", 90)),
         "--sonnet-count",
         str(sonnet_count),
         "--opus-count",
@@ -199,6 +201,8 @@ def route_command(args: argparse.Namespace, route: str, root: Path, repair_child
         command.append("--full-model-council")
     if args.attempt_gemini and not args.skip_gemini and not (repair_mode and args.repair_skip_gemini):
         command.append("--attempt-gemini")
+    if getattr(args, "attempt_grok", False) and not repair_mode:
+        command.append("--attempt-grok")
     if args.dry_run:
         command.append("--dry-run")
     return command
@@ -471,6 +475,7 @@ def main() -> int:
     parser.add_argument("--sonnet-timeout-sec", type=int, default=260)
     parser.add_argument("--opus-timeout-sec", type=int, default=320)
     parser.add_argument("--haiku-timeout-sec", type=int, default=160)
+    parser.add_argument("--grok-timeout-sec", type=int, default=90)
     parser.add_argument("--sonnet-count", type=int, default=0)
     parser.add_argument("--opus-count", type=int, default=0)
     parser.add_argument("--haiku-count", type=int, default=1)
@@ -483,6 +488,7 @@ def main() -> int:
     parser.add_argument("--full-model-council", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--codex-local-children", action="store_true", help="Use local Codex child receipts instead of Claude/Gemini fanout. Best for compact diagnostics during external quota blocks.")
     parser.add_argument("--attempt-gemini", action="store_true", default=False)
+    parser.add_argument("--attempt-grok", action="store_true", default=False)
     parser.add_argument("--skip-gemini", action="store_true")
     parser.add_argument("--repair-single-model", action=argparse.BooleanOptionalAction, default=True, help="Use a smaller repair fanout instead of another full model council.")
     parser.add_argument("--repair-skip-gemini", action=argparse.BooleanOptionalAction, default=True, help="Skip Gemini during repair loops unless explicitly disabled.")
@@ -520,6 +526,8 @@ def main() -> int:
         "required_routes": required_routes_for_run(args.mode, args.compact_route_mode, args.compact_profile, args.task),
         "run_id": args.run_id,
         "task": args.task,
+        "attempt_gemini": args.attempt_gemini,
+        "attempt_grok": args.attempt_grok,
     }
     (root / "run_config.json").write_text(json.dumps(run_config, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(root)

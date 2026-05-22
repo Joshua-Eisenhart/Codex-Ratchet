@@ -14,6 +14,8 @@ cvc5 proves structural bounds; sympy verifies modular form identities.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

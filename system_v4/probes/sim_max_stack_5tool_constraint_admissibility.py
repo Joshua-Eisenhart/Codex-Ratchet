@@ -44,6 +44,8 @@ import warnings
 
 import numpy as np
 
+classification = "canonical"
+
 warnings.filterwarnings("ignore")
 
 # =====================================================================

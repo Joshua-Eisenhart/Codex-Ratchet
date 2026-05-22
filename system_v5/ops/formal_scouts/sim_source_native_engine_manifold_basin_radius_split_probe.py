@@ -22,8 +22,9 @@ NAME = "source_native_engine_manifold_basin_radius_split_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
-    "Formal scout only: consumes the source-native engine/manifold basin-depth "
-    "receipt and splits its shallow-basin finding by perturbation radius. It "
+    "Formal scout only: consumes the bounded canonical QIT replay basin-depth "
+    "receipt for a source-native-labeled candidate surface and splits its "
+    "shallow-basin finding by perturbation radius. It "
     "does not admit global manifold necessity, deep-basin promotion, final "
     "FEP, final Axis0, Holodeck, physics, cognition, world-model, or "
     "canonical claims."
@@ -143,7 +144,7 @@ def main() -> int:
             "pass": True,
             "reason": "Any candidate radius remains one source-native finite-carrier row, not independent deep convergence.",
         },
-        "large_radius_failure_remains_visible": {
+        "noncandidate_radius_failure_remains_visible": {
             "pass": any(row["label"] != "candidate_basin_radius" for row in radius_rows),
             "labels": labels,
         },
@@ -175,7 +176,7 @@ def main() -> int:
         "radius_rows": radius_rows,
         "nearby_variants": {"total": len(graveyard), "passed": sum(1 for row in graveyard.values() if row["pass"]), "variants": sorted(graveyard)},
         "why_not_v4_probes": [
-            "This is a receipt-consumer radius splitter over a current source-native v5 basin-depth scout.",
+            "This is a receipt-consumer radius splitter over a bounded v5 canonical QIT replay basin-depth scout.",
             "It generates a repair target, not a canonical engine claim.",
         ],
         "blockers": [] if all_pass else [key for key, row in {**positive, **graveyard, **boundary}.items() if not row.get("pass")],

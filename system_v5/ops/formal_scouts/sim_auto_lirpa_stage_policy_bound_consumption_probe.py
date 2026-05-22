@@ -14,7 +14,6 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
 import torch
 import torch.nn as nn
 import z3
@@ -46,11 +45,15 @@ CLAIM_CEILING = (
 TOOL_MANIFEST = {
     "auto_LiRPA": {"tried": True, "used": True, "reason": "load-bearing BoundedModule interval bounds over the stage-policy adapter"},
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing tiny policy adapter and analytic control"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing stage/FEP/Axis0/Holodeck feature table and controls"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite bound-containment witness"},
     "engine_core": {"tried": True, "used": True, "reason": "load-bearing source-native stage records"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'auto_LiRPA': 'load_bearing',
+    'pytorch': 'load_bearing',
+    'z3': 'load_bearing',
+    'engine_core': 'supportive',
+}
 
 REQUIRED_STAGE_FIELDS = [
     "model_before",
@@ -71,12 +74,10 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().tolist()
+    if isinstance(value, (str, int, float, bool)) or value is None:
+        return value
     return value
 
 
@@ -146,7 +147,7 @@ def collect_features(
     axis0: dict[str, list[float]],
     memory: float,
     hash_cells: list[dict[str, Any]],
-) -> tuple[np.ndarray, list[str], list[dict[str, Any]]]:
+) -> tuple[torch.Tensor, list[str], list[dict[str, Any]]]:
     axis0_names = list(axis0)
     names = [
         "bloch_x",
@@ -200,11 +201,11 @@ def collect_features(
                     ]
                 )
                 records.append(record)
-    x = np.asarray(rows, dtype=np.float32)
-    mean = x.mean(axis=0, keepdims=True)
-    std = x.std(axis=0, keepdims=True)
-    std[std < 1e-6] = 1.0
-    return ((x - mean) / std).astype(np.float32), names, records
+    x = torch.tensor(rows, dtype=torch.float32)
+    mean = torch.mean(x, dim=0, keepdim=True)
+    std = torch.std(x, dim=0, keepdim=True, unbiased=False)
+    std = torch.where(std < 1e-6, torch.ones_like(std), std)
+    return ((x - mean) / std).to(torch.float32), names, records
 
 
 class StagePolicyAdapter(nn.Module):
@@ -231,12 +232,12 @@ class StagePolicyAdapter(nn.Module):
         return torch.tanh(self.linear(x))
 
 
-def bounded_policy_report(features: np.ndarray, names: list[str]) -> dict[str, Any]:
-    x = torch.tensor(features[:16], dtype=torch.float32)
+def bounded_policy_report(features: torch.Tensor, names: list[str]) -> dict[str, Any]:
+    x = features[:16].to(torch.float32)
     model = StagePolicyAdapter(names)
     bounded = BoundedModule(model, x)
     eps = 0.01
-    bx = BoundedTensor(x, PerturbationLpNorm(norm=np.inf, eps=eps))
+    bx = BoundedTensor(x, PerturbationLpNorm(norm=float("inf"), eps=eps))
     nominal = bounded(bx)
     lb, ub = bounded.compute_bounds(x=(bx,), method="IBP")
     raw = model.linear(x).reshape(-1)
@@ -253,7 +254,7 @@ def bounded_policy_report(features: np.ndarray, names: list[str]) -> dict[str, A
         if name in names:
             context_zero[:, names.index(name)] = 0.0
     bounded_zero = BoundedModule(model, context_zero)
-    zero_bx = BoundedTensor(context_zero, PerturbationLpNorm(norm=np.inf, eps=eps))
+    zero_bx = BoundedTensor(context_zero, PerturbationLpNorm(norm=float("inf"), eps=eps))
     zero_nominal = bounded_zero(zero_bx)
     zero_lb, zero_ub = bounded_zero.compute_bounds(x=(zero_bx,), method="IBP")
     interval_shift = torch.mean(torch.abs((ub + lb) / 2 - (zero_ub + zero_lb) / 2)).item()
@@ -267,7 +268,7 @@ def bounded_policy_report(features: np.ndarray, names: list[str]) -> dict[str, A
         if name in names:
             hash_zero[:, names.index(name)] = 0.0
     bounded_hash_zero = BoundedModule(model, hash_zero)
-    hash_zero_bx = BoundedTensor(hash_zero, PerturbationLpNorm(norm=np.inf, eps=eps))
+    hash_zero_bx = BoundedTensor(hash_zero, PerturbationLpNorm(norm=float("inf"), eps=eps))
     hash_zero_lb, hash_zero_ub = bounded_hash_zero.compute_bounds(x=(hash_zero_bx,), method="IBP")
     hash_zero_shift = torch.mean(torch.abs((ub + lb) / 2 - (hash_zero_ub + hash_zero_lb) / 2)).item()
 
@@ -277,7 +278,7 @@ def bounded_policy_report(features: np.ndarray, names: list[str]) -> dict[str, A
             col = names.index(name)
             hash_shuffle[:, col] = torch.roll(hash_shuffle[:, col], shifts=5)
     bounded_hash_shuffle = BoundedModule(model, hash_shuffle)
-    hash_shuffle_bx = BoundedTensor(hash_shuffle, PerturbationLpNorm(norm=np.inf, eps=eps))
+    hash_shuffle_bx = BoundedTensor(hash_shuffle, PerturbationLpNorm(norm=float("inf"), eps=eps))
     hash_shuffle_lb, hash_shuffle_ub = bounded_hash_shuffle.compute_bounds(x=(hash_shuffle_bx,), method="IBP")
     hash_shuffle_shift = torch.mean(torch.abs((ub + lb) / 2 - (hash_shuffle_ub + hash_shuffle_lb) / 2)).item()
 
@@ -285,7 +286,7 @@ def bounded_policy_report(features: np.ndarray, names: list[str]) -> dict[str, A
     if "holodeck_graveyard_hash_bucket" in names:
         drop_graveyard[:, names.index("holodeck_graveyard_hash_bucket")] = 0.0
     bounded_drop_graveyard = BoundedModule(model, drop_graveyard)
-    drop_graveyard_bx = BoundedTensor(drop_graveyard, PerturbationLpNorm(norm=np.inf, eps=eps))
+    drop_graveyard_bx = BoundedTensor(drop_graveyard, PerturbationLpNorm(norm=float("inf"), eps=eps))
     drop_graveyard_lb, drop_graveyard_ub = bounded_drop_graveyard.compute_bounds(x=(drop_graveyard_bx,), method="IBP")
     drop_graveyard_shift = torch.mean(torch.abs((ub + lb) / 2 - (drop_graveyard_ub + drop_graveyard_lb) / 2)).item()
     hash_identity_pass = (

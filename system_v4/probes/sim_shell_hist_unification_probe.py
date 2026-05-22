@@ -41,6 +41,11 @@ import math
 import os
 
 classification = "classical_baseline"
+divergence_log = [
+    "classical-baseline shell/history cut comparison only; tests finite "
+    "coherent-information witnesses and z3 guard conditions without closing "
+    "Xi_hist, Axis0, bridge, GStack, QIT, or nonclassical admission",
+]
 
 # =====================================================================
 # TOOL MANIFEST
@@ -859,7 +864,8 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "classification": "classical_baseline",
+        "classification": classification,
+        "divergence_log": divergence_log,
         "caveat": (
             "Step 6 bridge. Shell/history cuts are candidate-equivalent; "
             "this is not promoted to canonical without Steps 1-5 evidence. "

@@ -21,6 +21,8 @@ import json
 import math
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -152,32 +154,32 @@ def run_positive_tests():
         # Example: random walk with decreasing increments that keeps it L²-bounded
         # Simpler: X_n = Z_0 + (1/n)*sum_{i=1}^n ξ_i where ξ_i ~ N(0,1)
         # This converges to Z_0 + 0 = Z_0
-        
+
         for trial in range(50):
             X_0 = torch.randn(1).item()
             trajectory = [X_0]
-            
+
             # Build martingale: X_n = X_0 + (1/n) * sum increments
             increments = torch.randn(200)
             for n in range(1, 201):
                 X_n = X_0 + (increments[:n].sum() / n).item()
                 trajectory.append(X_n)
-            
+
             trajectory = torch.tensor(trajectory)
-            
+
             # Check L² bound: max E[X_n²] should be finite and bounded
             max_x_sq = (trajectory ** 2).max().item()
-            
+
             # Check convergence: last 50 values should be close together
             last_50 = trajectory[-50:]
             final_var = last_50.var().item()
-            
+
             if final_var > 1.0:  # Not converging well
                 p1_violations.append({
                     "trial": trial, "final_var": final_var,
                     "max_x_sq": max_x_sq
                 })
-        
+
         p1_pass = len(p1_violations) <= 10  # Allow some trials to fail
         results["P1_l2_bounded_martingale_convergence"] = {
             "pass": p1_pass,
@@ -200,20 +202,20 @@ def run_positive_tests():
         for trial in range(30):
             X_0 = torch.randn(1).item()
             increments = torch.randn(150)
-            
+
             e_sq_values = []
             for n in range(1, 151):
                 X_n = X_0 + (increments[:n].sum() / n).item()
                 e_sq_values.append(X_n ** 2)
-            
+
             max_e_sq = max(e_sq_values)
             max_e_sq_list.append(max_e_sq)
-        
+
         # sup E[X_n²] should be finite
         sup_e_sq = max(max_e_sq_list)
         if sup_e_sq > 100:  # Very large, may not converge well
             p2_pass = False
-        
+
         results["P2_sup_e_sq_finite"] = {
             "pass": p2_pass,
             "sup_e_xn2": sup_e_sq,
@@ -432,32 +434,32 @@ def run_boundary_tests():
         for trial in range(30):
             X_0 = torch.randn(1).item()
             increments = torch.randn(500)
-            
+
             trajectory = [X_0]
             for n in range(1, 501):
                 X_n = X_0 + (increments[:n].sum() / n).item()
                 trajectory.append(X_n)
-            
+
             trajectory = torch.tensor(trajectory)
-            
+
             # Find when convergence happens (stays within 0.1 of final value)
             final_val = trajectory[-1].item()
             converged_at = None
             for i in range(100, len(trajectory)):
                 if abs(trajectory[i].item() - final_val) < 0.05:
-                    if all(abs(trajectory[j].item() - final_val) < 0.05 
+                    if all(abs(trajectory[j].item() - final_val) < 0.05
                            for j in range(i, min(i+50, len(trajectory)))):
                         converged_at = i
                         break
-            
+
             if converged_at is not None:
                 convergence_times.append(converged_at)
-        
+
         # Most should converge within first half
         if convergence_times:
             median_convergence = torch.tensor(convergence_times).median().item()
             b2_pass = median_convergence < 300
-        
+
         results["B2_martingale_convergence_rate"] = {
             "pass": b2_pass,
             "median_convergence_step": median_convergence if convergence_times else None,

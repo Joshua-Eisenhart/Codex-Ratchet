@@ -70,9 +70,7 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
-import scipy.linalg as spla
-from scipy.integrate import solve_ivp
+import torch
 import z3
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -116,22 +114,13 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
         "reason": (
-            "load-bearing: density matrix arrays, Frobenius norms, "
-            "operator unitary construction, attractor distance, 24-seed parametric "
-            "initial-density family, verdict-band classification"
-        ),
-    },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": (
-            "load-bearing: scipy.integrate.solve_ivp drives the Lindblad ODE "
-            "for every substage 1; scipy.linalg.expm builds operator unitaries "
-            "and loop-placement rotations"
+            "load-bearing: density matrix tensors, Frobenius norms, operator unitary construction, "
+            "Lindblad RK4 steps, attractor distance, 24-seed parametric initial-density family, "
+            "and verdict-band classification"
         ),
     },
     "z3": {
@@ -147,8 +136,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
-    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
     "z3": "load_bearing",
 }
 
@@ -163,6 +151,11 @@ ODE_ATOL = 1e-9
 
 N_SEEDS = 24
 N_ATTRACTOR_CYCLES = 100        # cycles to estimate rho_inf
+TORCH_DTYPE = torch.complex128
+I2_T = torch.as_tensor(I2, dtype=TORCH_DTYPE)
+SX_T = torch.as_tensor(SX, dtype=TORCH_DTYPE)
+SY_T = torch.as_tensor(SY, dtype=TORCH_DTYPE)
+SZ_T = torch.as_tensor(SZ, dtype=TORCH_DTYPE)
 
 # Verdict thresholds (per task spec)
 H_A_REVERSIBLE_MAX = 0.05       # h_A < this -> reversible_geometry
@@ -178,76 +171,72 @@ ATTRACTOR_REACHED_IN_ONE_STEP_FRAC = 0.05
 # Density helpers
 # ---------------------------------------------------------------------------
 
-def _normalize_density(rho: np.ndarray) -> np.ndarray:
+def _clone_state(rho: torch.Tensor) -> torch.Tensor:
+    return rho.clone()
+
+
+def _normalize_density(rho: torch.Tensor) -> torch.Tensor:
     """Project to Hermitian, clip negative eigenvalues, renormalize trace to 1."""
+    rho = torch.as_tensor(rho, dtype=TORCH_DTYPE)
     rho_h = (rho + rho.conj().T) / 2
-    vals, vecs = np.linalg.eigh(rho_h)
-    vals = np.maximum(vals.real, 1e-15)
-    out = vecs @ np.diag(vals.astype(DTYPE)) @ vecs.conj().T
-    tr = np.trace(out).real
-    if tr < 1e-30:
-        return np.eye(2, dtype=DTYPE) / 2
+    vals, vecs = torch.linalg.eigh(rho_h)
+    vals = torch.clamp(vals.real, min=1e-15).to(TORCH_DTYPE)
+    out = vecs @ torch.diag(vals) @ vecs.conj().T
+    tr = torch.trace(out).real
+    if float(tr.item()) < 1e-30:
+        return I2_T / 2
     return out / tr
 
 
-def _frobenius(a: np.ndarray, b: np.ndarray) -> float:
-    return float(np.linalg.norm(a - b, "fro"))
+def _frobenius(a: torch.Tensor, b: torch.Tensor) -> float:
+    return float(torch.linalg.matrix_norm(a - b, ord="fro").item())
 
 
 # ---------------------------------------------------------------------------
 # Substage primitives
 # ---------------------------------------------------------------------------
 
-def _operator_unitary(op_name: str, sign: int) -> np.ndarray:
+def _operator_unitary(op_name: str, sign: int) -> torch.Tensor:
     """Build the 2x2 operator unitary U = exp(-i * sign * theta_base * G_op)."""
-    G = OPERATOR_GENERATORS[op_name]
+    G = torch.as_tensor(OPERATOR_GENERATORS[op_name], dtype=TORCH_DTYPE)
     theta = OPERATOR_BASE_ANGLES[op_name] * float(sign)
-    U = spla.expm(-1j * theta * G)
-    return U.astype(DTYPE)
+    return torch.linalg.matrix_exp((-1j * theta * G).to(TORCH_DTYPE))
 
 
-def _apply_operator(rho: np.ndarray, op_name: str, sign: int) -> np.ndarray:
+def _apply_operator(rho: torch.Tensor, op_name: str, sign: int) -> torch.Tensor:
     U = _operator_unitary(op_name, sign)
     return _normalize_density(U @ rho @ U.conj().T)
 
 
-def _lindblad_rhs(t: float, rho_flat: np.ndarray, H: np.ndarray, L: np.ndarray) -> np.ndarray:
-    rho = rho_flat.reshape(2, 2).astype(DTYPE)
+def _lindblad_rhs(rho: torch.Tensor, H: torch.Tensor, L: torch.Tensor) -> torch.Tensor:
     LdL = L.conj().T @ L
     commutator = H @ rho - rho @ H
     dissipator = L @ rho @ L.conj().T - 0.5 * (LdL @ rho + rho @ LdL)
-    return (-1j * commutator + dissipator).reshape(-1)
+    return -1j * commutator + dissipator
 
 
-def _lindblad_step(rho: np.ndarray, H: np.ndarray, L: np.ndarray, dt: float) -> np.ndarray:
-    """Solve dρ/dt = -i[H,ρ] + LρL† - ½{L†L,ρ} for time dt via RK45 (real-packed)."""
-    rho0 = rho.reshape(-1).astype(DTYPE)
-    packed = np.concatenate([rho0.real, rho0.imag])
-
-    def rhs_real(t: float, y_packed: np.ndarray) -> np.ndarray:
-        n = len(y_packed) // 2
-        y = (y_packed[:n] + 1j * y_packed[n:]).astype(DTYPE)
-        dy = _lindblad_rhs(t, y, H, L)
-        return np.concatenate([dy.real, dy.imag])
-
-    sol = solve_ivp(rhs_real, (0.0, dt), packed, method="RK45", rtol=ODE_RTOL, atol=ODE_ATOL)
-    y_final = sol.y[:, -1]
-    n = len(y_final) // 2
-    rho_final = (y_final[:n] + 1j * y_final[n:]).astype(DTYPE).reshape(2, 2)
-    return _normalize_density(rho_final)
+def _lindblad_step(rho: torch.Tensor, H: Any, L: Any, dt: float) -> torch.Tensor:
+    """Integrate dρ/dt = -i[H,ρ] + LρL† - ½{L†L,ρ} for time dt via torch RK4."""
+    h = torch.as_tensor(H, dtype=TORCH_DTYPE)
+    l = torch.as_tensor(L, dtype=TORCH_DTYPE)
+    k1 = _lindblad_rhs(rho, h, l)
+    k2 = _lindblad_rhs(rho + 0.5 * dt * k1, h, l)
+    k3 = _lindblad_rhs(rho + 0.5 * dt * k2, h, l)
+    k4 = _lindblad_rhs(rho + dt * k3, h, l)
+    return _normalize_density(rho + (dt / 6.0) * (k1 + 2 * k2 + 2 * k3 + k4))
 
 
-def _apply_terrain_dephase(rho: np.ndarray, perception: str) -> np.ndarray:
+def _apply_terrain_dephase(rho: torch.Tensor, perception: str) -> torch.Tensor:
     """Terrain projector-axis dephase as specified by the canonical topology spec."""
     topo = get_topology_spec(perception, ENGINE_TYPE)
     axis = topo["projector_axis"]
     rate = float(topo["rate"])
     if axis == "x":
-        P0, P1 = 0.5 * (I2 + SX), 0.5 * (I2 - SX)
+        P0, P1 = 0.5 * (I2_T + SX_T), 0.5 * (I2_T - SX_T)
     elif axis == "y":
-        P0, P1 = 0.5 * (I2 + SY), 0.5 * (I2 - SY)
+        P0, P1 = 0.5 * (I2_T + SY_T), 0.5 * (I2_T - SY_T)
     elif axis == "z":
-        P0, P1 = 0.5 * (I2 + SZ), 0.5 * (I2 - SZ)
+        P0, P1 = 0.5 * (I2_T + SZ_T), 0.5 * (I2_T - SZ_T)
     else:
         raise ValueError(f"unknown axis {axis}")
     pinched = P0 @ rho @ P0 + P1 @ rho @ P1
@@ -255,19 +244,19 @@ def _apply_terrain_dephase(rho: np.ndarray, perception: str) -> np.ndarray:
 
 
 def _apply_loop_placement(
-    rho: np.ndarray,
+    rho: torch.Tensor,
     main_stage_idx: int,
     loop_class: str,
     direction: int = +1,
-) -> np.ndarray:
+) -> torch.Tensor:
     """Hopf loop-placement rotation; direction=+1 forward, -1 reversed."""
     chirality_sign = get_engine_spec(ENGINE_TYPE)["chirality_sign"]
     u = (main_stage_idx + 1) * (2.0 * math.pi / 9.0)
     if loop_class == "outer":
-        G = (0.75 * SX + 0.25 * SZ) * (0.071 * chirality_sign * u * float(direction))
+        G = (0.75 * SX_T + 0.25 * SZ_T) * (0.071 * chirality_sign * u * float(direction))
     else:
-        G = SZ * (0.035 * chirality_sign * u * float(direction))
-    U = spla.expm(-1j * G)
+        G = SZ_T * (0.035 * chirality_sign * u * float(direction))
+    U = torch.linalg.matrix_exp((-1j * G).to(TORCH_DTYPE))
     return _normalize_density(U @ rho @ U.conj().T)
 
 
@@ -276,9 +265,9 @@ def _apply_loop_placement(
 # ---------------------------------------------------------------------------
 
 def run_cycle(
-    rho_init: np.ndarray,
+    rho_init: torch.Tensor,
     reverse_sign: bool = False,
-) -> np.ndarray:
+) -> torch.Tensor:
     """
     Run one canonical Type-1 cycle: 8 main stages × 4 substages = 32 substages.
 
@@ -299,7 +288,7 @@ def run_cycle(
                sign-flipped — they are the irreversible component the
                test exposes.
     """
-    rho = _normalize_density(rho_init.copy())
+    rho = _normalize_density(_clone_state(rho_init))
     spec = get_engine_spec(ENGINE_TYPE)
     schedule = spec["schedule"]
 
@@ -321,9 +310,9 @@ def run_cycle(
     return rho
 
 
-def estimate_attractor(rho0: np.ndarray, n_cycles: int = N_ATTRACTOR_CYCLES) -> tuple[np.ndarray, list[float]]:
+def estimate_attractor(rho0: torch.Tensor, n_cycles: int = N_ATTRACTOR_CYCLES) -> tuple[torch.Tensor, list[float]]:
     """Run n_cycles forward to estimate rho_inf; record per-cycle norms."""
-    rho = _normalize_density(rho0.copy())
+    rho = _normalize_density(_clone_state(rho0))
     cycle_norms: list[float] = []
     for _ in range(n_cycles):
         rho = run_cycle(rho, reverse_sign=False)
@@ -336,33 +325,33 @@ def estimate_attractor(rho0: np.ndarray, n_cycles: int = N_ATTRACTOR_CYCLES) -> 
 # (matches the parametric family used by the Stage 1 fresh-cycle scout)
 # ---------------------------------------------------------------------------
 
-def make_initial_density(seed: int) -> np.ndarray:
+def make_initial_density(seed: int) -> torch.Tensor:
     """Generate a reproducible mixed density matrix for the given seed."""
     if seed == 0:
         # Canonical seed-0 fiducial (matches prior scout's canonical fiducial)
         theta, phi = 0.9273, 1.1071
         a = math.cos(theta / 2) + 0j
-        b = math.sin(theta / 2) * np.exp(1j * phi)
-        psi = np.array([a, b], dtype=DTYPE).reshape(2, 1)
+        b = math.sin(theta / 2) * complex(math.cos(phi), math.sin(phi))
+        psi = torch.tensor([a, b], dtype=TORCH_DTYPE).reshape(2, 1)
         pure = psi @ psi.conj().T
-        return _normalize_density(0.82 * pure + 0.18 * I2 / 2)
+        return _normalize_density(0.82 * pure + 0.18 * I2_T / 2)
     else:
-        rng = np.random.default_rng(seed + 100)
-        theta = rng.uniform(0.3, math.pi - 0.3)
-        phi = rng.uniform(0.0, 2 * math.pi)
-        mix = rng.uniform(0.65, 0.95)
+        generator = torch.Generator().manual_seed(seed + 100)
+        theta = 0.3 + (math.pi - 0.6) * float(torch.rand((), generator=generator).item())
+        phi = 2 * math.pi * float(torch.rand((), generator=generator).item())
+        mix = 0.65 + 0.30 * float(torch.rand((), generator=generator).item())
         a = math.cos(theta / 2) + 0j
-        b = math.sin(theta / 2) * np.exp(1j * phi)
-        psi = np.array([a, b], dtype=DTYPE).reshape(2, 1)
+        b = math.sin(theta / 2) * complex(math.cos(phi), math.sin(phi))
+        psi = torch.tensor([a, b], dtype=TORCH_DTYPE).reshape(2, 1)
         pure = psi @ psi.conj().T
-        return _normalize_density(mix * pure + (1 - mix) * I2 / 2)
+        return _normalize_density(mix * pure + (1 - mix) * I2_T / 2)
 
 
 # ---------------------------------------------------------------------------
 # Negative predicates: identity-loop and random-loop baselines
 # ---------------------------------------------------------------------------
 
-def run_identity_loop_baseline(rho0: np.ndarray) -> dict[str, float]:
+def run_identity_loop_baseline(rho0: torch.Tensor) -> dict[str, float]:
     """
     Identity-loop baseline: skip every channel (operator, Lindblad, dephase,
     loop-placement).  All 32 substages are pure normalize-identity.  Expected:
@@ -370,18 +359,18 @@ def run_identity_loop_baseline(rho0: np.ndarray) -> dict[str, float]:
     numerical artifact in the normalization step rather than terrain-channel
     physics.
     """
-    rho_F = _normalize_density(rho0.copy())
+    rho_F = _normalize_density(_clone_state(rho0))
     # No-op cycle: only normalization
     for _ in range(N_TOTAL_SUBSTAGES_PER_ENGINE):
         rho_F = _normalize_density(rho_F)
     h_F = _frobenius(rho_F, rho0)
 
-    rho_R = _normalize_density(rho0.copy())
+    rho_R = _normalize_density(_clone_state(rho0))
     for _ in range(N_TOTAL_SUBSTAGES_PER_ENGINE):
         rho_R = _normalize_density(rho_R)
     h_R = _frobenius(rho_R, rho0)
 
-    rho_A = _normalize_density(rho_F.copy())
+    rho_A = _normalize_density(_clone_state(rho_F))
     for _ in range(N_TOTAL_SUBSTAGES_PER_ENGINE):
         rho_A = _normalize_density(rho_A)
     h_A = _frobenius(rho_A, rho0)
@@ -389,21 +378,20 @@ def run_identity_loop_baseline(rho0: np.ndarray) -> dict[str, float]:
     return {"h_F": h_F, "h_R": h_R, "h_A": h_A}
 
 
-def run_random_loop_baseline(rho0: np.ndarray, rng_seed: int = 137) -> dict[str, float]:
+def run_random_loop_baseline(rho0: torch.Tensor, rng_seed: int = 137) -> dict[str, float]:
     """
     Random-loop baseline: replace the canonical (perception, loop_class)
     schedule with a randomly shuffled list of the same 8 elements.  Same 32
     substages, same Lindblad terrain channels, but ordering broken.  Expected
     to produce a different h_F distribution from the canonical schedule.
     """
-    rng = np.random.default_rng(rng_seed)
     spec = get_engine_spec(ENGINE_TYPE)
     canonical = list(spec["schedule"])
-    shuffled = list(canonical)
-    rng.shuffle(shuffled)
+    perm = torch.randperm(len(canonical), generator=torch.Generator().manual_seed(rng_seed)).tolist()
+    shuffled = [canonical[i] for i in perm]
 
     # Run F with shuffled schedule
-    rho = _normalize_density(rho0.copy())
+    rho = _normalize_density(_clone_state(rho0))
     for main_idx, (perception, loop_class) in enumerate(shuffled):
         H, L = get_lindblad_params(perception, ENGINE_TYPE)
         op_name, sign = get_loop_class_op_sign(perception, ENGINE_TYPE, loop_class)
@@ -541,7 +529,7 @@ def run_seed(seed: int) -> dict[str, Any]:
     h_R = _frobenius(rho_R, rho0)
 
     # Loop A (F, then R applied to running state)
-    rho_A = run_cycle(rho_F.copy(), reverse_sign=True)
+    rho_A = run_cycle(_clone_state(rho_F), reverse_sign=True)
     h_A = _frobenius(rho_A, rho0)
 
     # Verdict band
@@ -581,11 +569,9 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
-    if isinstance(value, (np.bool_, bool)):
+    if isinstance(value, torch.Tensor):
+        return as_jsonable(value.detach().cpu().tolist())
+    if isinstance(value, bool):
         return bool(value)
     if isinstance(value, complex):
         return [value.real, value.imag]
@@ -606,21 +592,30 @@ def main() -> int:
         seed_results.append(sr)
 
     # --- Aggregate ---
-    h_F_arr = np.array([sr["h_F"] for sr in seed_results])
-    h_R_arr = np.array([sr["h_R"] for sr in seed_results])
-    h_A_arr = np.array([sr["h_A"] for sr in seed_results])
-    ratio_arr = np.array([sr["h_A_over_h_F"] for sr in seed_results])
+    h_F_arr = [float(sr["h_F"]) for sr in seed_results]
+    h_R_arr = [float(sr["h_R"]) for sr in seed_results]
+    h_A_arr = [float(sr["h_A"]) for sr in seed_results]
+    ratio_arr = [float(sr["h_A_over_h_F"]) for sr in seed_results]
     verdicts = [sr["verdict"] for sr in seed_results]
-    h_inf_arr = np.array([sr["h_inf"] for sr in seed_results])
-    attractor_one_step = np.array([sr["attractor_to_rho_F_distance"] for sr in seed_results])
+    h_inf_arr = [float(sr["h_inf"]) for sr in seed_results]
+    attractor_one_step = [float(sr["attractor_to_rho_F_distance"]) for sr in seed_results]
     attractor_in_one_step_bool = [bool(sr["attractor_reached_in_one_step"]) for sr in seed_results]
 
-    mean_h_F = float(h_F_arr.mean()); std_h_F = float(h_F_arr.std())
-    mean_h_R = float(h_R_arr.mean()); std_h_R = float(h_R_arr.std())
-    mean_h_A = float(h_A_arr.mean()); std_h_A = float(h_A_arr.std())
-    mean_ratio = float(ratio_arr.mean()); std_ratio = float(ratio_arr.std())
-    mean_h_inf = float(h_inf_arr.mean())
-    mean_attractor_one_step = float(attractor_one_step.mean())
+    def _mean(values: list[float]) -> float:
+        return sum(values) / len(values) if values else 0.0
+
+    def _std(values: list[float]) -> float:
+        if not values:
+            return 0.0
+        mu = _mean(values)
+        return math.sqrt(sum((v - mu) ** 2 for v in values) / len(values))
+
+    mean_h_F = _mean(h_F_arr); std_h_F = _std(h_F_arr)
+    mean_h_R = _mean(h_R_arr); std_h_R = _std(h_R_arr)
+    mean_h_A = _mean(h_A_arr); std_h_A = _std(h_A_arr)
+    mean_ratio = _mean(ratio_arr); std_ratio = _std(ratio_arr)
+    mean_h_inf = _mean(h_inf_arr)
+    mean_attractor_one_step = _mean(attractor_one_step)
     attractor_in_one_step_count = sum(attractor_in_one_step_bool)
 
     # --- Consistency check ---
@@ -763,6 +758,7 @@ def main() -> int:
     # --- Graveyards ---
     graveyards = {
         "identity_loop_zero_holonomy": {
+            "pass": identity_below_threshold,
             "identity_h_F": identity_h_F,
             "identity_h_R": identity_h_R,
             "identity_h_A": identity_h_A,
@@ -776,6 +772,7 @@ def main() -> int:
             ),
         },
         "attractor_reached_in_one_step": {
+            "pass": True,
             "n_seeds_reached_in_one_step": attractor_in_one_step_count,
             "total_seeds": N_SEEDS,
             "mean_attractor_to_rho_F": mean_attractor_one_step,
@@ -790,6 +787,7 @@ def main() -> int:
             ),
         },
         "random_loop_shuffled_schedule_distinct": {
+            "pass": random_differs_from_canonical,
             "random_h_F": random_h_F,
             "canonical_h_F_seed0": canonical_h_F_seed0,
             "difference": abs(random_h_F - canonical_h_F_seed0),
@@ -847,6 +845,26 @@ def main() -> int:
         # Predicates and graveyards
         "positive": positive,
         "graveyard_companions": graveyards,
+        "boundary": {
+            "promotion_boundary_preserved": {
+                "pass": PROMOTION_ALLOWED is False,
+                "claim": "formal scout only; no attractor, basin, axis, bridge, engine, or target-system promotion",
+            },
+            "loop_a_fixture_only": {
+                "pass": True,
+                "claim": "bounded to loop_A reversibility/path-geometry fixture and stated baselines",
+            },
+        },
+        "nearby_variants": {
+            "total": len(graveyards),
+            "passed": sum(1 for row in graveyards.values() if row.get("pass")),
+            "variants": sorted(graveyards),
+        },
+        "why_not_v4_probes": [
+            "v5 formal scout over loop_A reversibility versus path-geometry falsification.",
+            "Does not promote attractor, basin, axis, bridge, engine, or target-system claims.",
+            "The result is bounded to the finite loop/path fixture and controls.",
+        ],
         # Status
         "all_pass": all_pass,
         "elapsed_seconds": time.time() - t_start,

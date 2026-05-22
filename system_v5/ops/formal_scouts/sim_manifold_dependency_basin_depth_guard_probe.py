@@ -53,7 +53,11 @@ TOOL_MANIFEST = {
         "reason": "load-bearing source/result hash receipts",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'json': 'supportive',
+    'pathlib': 'supportive',
+    'hashlib': 'supportive',
+}
 
 RECEIPTS = {
     "matrix": "manifold_dependency_task_matrix_probe_results.json",

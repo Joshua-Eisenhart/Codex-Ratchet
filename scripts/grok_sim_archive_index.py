@@ -290,7 +290,7 @@ def write_markdown(index: dict[str, Any], path: Path) -> None:
         "",
         f"Generated: `{index['generated_at']}`",
         "",
-        "Boundary: sidequest archive index only. This does not move, delete, admit, or promote `grok_sim` artifacts.",
+        "Boundary: sidequest archive index snapshot only. Counts are point-in-time and must be regenerated before being used as current inventory. This does not move, delete, admit, or promote `grok_sim` artifacts.",
         "",
         "## Summary",
         "",

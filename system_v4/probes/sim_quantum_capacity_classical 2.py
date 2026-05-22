@@ -11,6 +11,13 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Shannon capacity is a single-letter max over input distributions; quantum "
+    "capacity Q requires regularized coherent information and can show "
+    "nonadditivity. This Lane B NumPy baseline does not establish private, "
+    "assisted, nonadditive, canonical, bridge, or nonclassical channel-capacity "
+    "claims."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "Blahut-Arimoto iteration and closed-form checks"},

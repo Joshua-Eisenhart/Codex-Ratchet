@@ -48,9 +48,9 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "json": "load_bearing",
-    "pathlib": "load_bearing",
-    "hashlib": "load_bearing",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "hashlib": "supportive",
 }
 
 TMP_ENGINE_V2 = pathlib.Path("/private/tmp/engine_v2")

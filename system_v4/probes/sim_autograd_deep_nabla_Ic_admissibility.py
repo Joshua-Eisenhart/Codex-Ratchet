@@ -21,6 +21,8 @@ import json, os, math
 import numpy as np
 import torch
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":  {"tried": True,  "used": True,  "reason": "autograd is load-bearing: gradient of I_c through partial_trace+eigvalsh is computed only via autograd; finite-diff would change the claim"},
     "pyg":      {"tried": False, "used": False, "reason": "graph message passing not required for this scalar/matrix-functional claim"},

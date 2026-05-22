@@ -7,6 +7,8 @@ Tests homotopy constraint: π_0(Ω) = {true, false} for Boolean ∞-topos.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

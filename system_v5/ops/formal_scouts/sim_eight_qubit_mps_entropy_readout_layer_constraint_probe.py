@@ -55,7 +55,7 @@ def ghz_mps_state(n: int = 8) -> torch.Tensor:
     tensors.append(last)
     letters = "abcdefghijklmnopqrstuvwxyz"
     expr = ",".join(f"{letters[i]}{letters[8+i]}{letters[i+1]}" for i in range(n)) + "->" + "".join(letters[8 : 8 + n])
-    psi = torch.from_numpy(oe.contract(expr, *[t.numpy() for t in tensors]).reshape(2**n))
+    psi = oe.contract(expr, *tensors).reshape(2**n)
     return psi / torch.linalg.vector_norm(psi)
 
 

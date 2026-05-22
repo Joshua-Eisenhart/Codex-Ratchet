@@ -1,6 +1,11 @@
 # Tier VIZ — Visualization Deepening (parallel track)
 
-> **Worker spawn preamble (mandatory):** every spawned Claude worker receives Block B (140-word) from `~/wiki/harness/SALIENCE_PREAMBLE.md` prepended to its system prompt before any task description. See `system_v5/ops/HERMES_RULES.md` §0. Probe-tested 2026-04-17 on fresh Haiku.
+Historical April 2026 Hermes/VIZ tier plan. Do not execute the worker/cron
+language below without fresh repo preflight and current user authorization.
+
+> Historical worker preamble from the old Hermes plan, not current Codex
+> instruction: spawned Claude workers received Block B from
+> `~/wiki/harness/SALIENCE_PREAMBLE.md`.
 
 
 Independent of Tier A/B/D. Runs in parallel. Produces the truth→live→explainer visualization stack.
@@ -54,17 +59,17 @@ Viewer/status surfaces display constraint→probe→admission→claim before per
 6. No cross-tier work. If tier A/B/D probe landing looks related, log in `~/wiki/projects/codex-ratchet/_steward_questions.md` and continue viz work.
 7. Fail-closed on runtime/model mismatch or protected-file write-back ambiguity (per the canonical failure rules the viz terminal derived).
 
-## Cron spec (for the Hermes terminal that owns this track)
+## Historical cron spec (for the Hermes terminal that owned this track)
 
 - Cadence: every 10 min (tighten/loosen if slice cycle changes)
 - Model: `gpt-5.4-low` (viz work is mostly mechanical; low is sufficient)
 - Provider: `openai-codex`
-- Repeat: indefinite until owner stops
-- First tick: run one slice now
+- Repeat: plan-era only; not current automation authority
+- First tick: historical instruction only; do not run without current owner authorization
 
-## Autonomy defaults (viz-specific)
+## Historical autonomy defaults (viz-specific)
 
-- If `system_v4/visualization/exporters/` produces a new exporter, enqueue one smoke-test probe to `system_v5/ops/queue_tier_a.txt`.
+- If `system_v4/visualization/exporters/` produces a new exporter, the plan-era instruction was to enqueue one smoke-test probe to `system_v5/ops/queue_tier_a.txt`; current queue mutation requires current owner authorization.
 - If pytest fails at full viz rerun, revert the last slice and report blocker to `_steward_questions.md`.
 - If the viz terminal needs to add a new Python dep, write a proposal to `_steward_questions.md` and wait for owner — do not auto-install.
 - Manim is available as the Hermes `manim-video` skill. Use the skill; do NOT pip-install. Prototype scene work is allowed using the skill surface.

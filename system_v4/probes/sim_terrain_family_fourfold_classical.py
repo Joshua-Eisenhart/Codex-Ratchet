@@ -3,8 +3,23 @@
 Four parametric scalar terrains {f1..f4} on R^2; checks disjoint argmin basins, Z4
 symmetry under 90-deg rotation, and single global minimum per family member."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 classification = "classical_baseline"
+divergence_log = [
+    (
+        "Classical baseline contrast: this NumPy helper exercises "
+        "commutative finite-dimensional numeric identities and control cases; "
+        "it does not promote a nonclassical, canonical, bridge, or axis-level "
+        "claim."
+    ),
+]
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing finite-dimensional numerical arrays and linear algebra for the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 NAME = "terrain_family_fourfold"
 
 def terrain(k, x, y):

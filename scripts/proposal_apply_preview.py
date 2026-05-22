@@ -30,6 +30,30 @@ def load(path: Path) -> dict[str, Any]:
     return data if isinstance(data, dict) else {}
 
 
+def counts_by(rows: list[Any], key: str) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            value = "unknown"
+        else:
+            value = str(row.get(key) or "unknown")
+        counts[value] = counts.get(value, 0) + 1
+    return dict(sorted(counts.items()))
+
+
+def next_action_for(name: str, rows: list[Any]) -> str:
+    if name == "c4":
+        kinds = counts_by(rows, "proposal_kind")
+        simple = kinds.get("simple_classical_divergence_log", 0)
+        review = sum(count for kind, count in kinds.items() if kind != "simple_classical_divergence_log")
+        if review:
+            return (
+                f"review_required_before_source_edit; {simple} simple classical candidates, "
+                f"{review} classification_or_stage_review candidates"
+            )
+    return "owner_review_required_before_any_source_edit"
+
+
 def main() -> int:
     sections: dict[str, Any] = {}
     action_items = []
@@ -43,6 +67,8 @@ def main() -> int:
             "present": True,
             "path": str(path.relative_to(ROOT)),
             "row_count": len(rows),
+            "proposal_kind_counts": counts_by(rows, "proposal_kind"),
+            "runner_class_counts": counts_by(rows, "runner_class"),
             "sample": rows[:20],
         }
         action_items.append(
@@ -50,7 +76,7 @@ def main() -> int:
                 "proposal_family": name,
                 "path": str(path.relative_to(ROOT)),
                 "row_count": len(rows),
-                "next_action": "owner_review_required_before_any_source_edit",
+                "next_action": next_action_for(name, rows),
             }
         )
     report = {

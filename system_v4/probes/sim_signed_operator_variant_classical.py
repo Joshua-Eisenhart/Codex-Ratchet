@@ -3,12 +3,17 @@
 Signed variants A_+ = A, A_- = -A. Checks: spectrum negation, eigenvector
 preservation, composition A_+ A_- = -A^2, and sign-flip idempotence."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"
 NAME = "sim_signed_operator_variant_classical"
-TOOL_MANIFEST["numpy"] = {"tried": True, "used": True, "reason": "symmetric spectra, eigenspace, and sign-flip checks"}
-TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "symmetric spectra, eigenspace, and sign-flip checks",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 divergence_details = [
     "Classical captures spectrum negation, eigenspace preservation, and sign-flip involution.",
     "Nonclassical signed-operator admissibility under coupling or charge-like constraints is not represented.",

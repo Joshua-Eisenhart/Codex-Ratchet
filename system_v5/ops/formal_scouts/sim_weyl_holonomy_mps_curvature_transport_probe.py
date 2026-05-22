@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Source-native Weyl holonomy / MPS curvature transport scout."""
+"""Canonical QIT replay Weyl holonomy / MPS curvature transport scout."""
 
 from __future__ import annotations
 
@@ -14,14 +14,25 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import cotengra as ctg
 import networkx as nx
-import numpy as np
 import opt_einsum as oe
 import quimb.tensor as qtn
-from scipy.linalg import expm
 import sympy as sp
+import torch
 import z3
 
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import (
+    OPERATOR_BASE_ANGLES,
+    OPERATOR_GENERATORS,
+    get_operator_slot_spec,
+    get_schedule,
+)
+from sim_source_native_engine_manifold_attractor_basin_depth_probe import (
+    MANIFOLD_TARGET_MIX,
+    apply_lindblad_step,
+    generate_initial_density,
+    normalize_density_torch,
+    stage_fixed_target,
+)
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -31,62 +42,122 @@ OUT_PATH = RESULT_DIR / "weyl_holonomy_mps_curvature_transport_probe_results.jso
 NAME = "weyl_holonomy_mps_curvature_transport_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 CLAIM_CEILING = (
     "Formal scout only: tests a finite closed-loop holonomy transport built from "
-    "source-native left/right Weyl density histories and an MPS carrier. It does "
-    "not prove a canonical connection, does not admit physics, cognition, neural "
-    "capability, or final manifold claims, and does not replace long-horizon "
-    "64-site engine validation."
+    "bounded canonical QIT replay left/right Weyl density histories and an MPS "
+    "carrier. It does not admit a canonical connection, source-native EngineCore "
+    "dynamics, physics, cognition, neural capability, final manifold claims, or "
+    "long-horizon 64-site engine validation."
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing finite connection, holonomy, and MPS tensor updates"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing matrix exponentials for loop transport"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing finite connection, holonomy, MPS tensor updates, and contraction numerics"},
     "quimb": {"tried": True, "used": True, "reason": "load-bearing MPS carrier construction and tensor arrays"},
     "cotengra": {"tried": True, "used": True, "reason": "load-bearing contraction path mutation witness"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing contraction numeric cross-check"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing transport dependency graph"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic curvature commutator determinant"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing nonidentity holonomy witness"},
-    "engine_core": {"tried": True, "used": True, "reason": "load-bearing source-native left/right density histories"},
+    "canonical_qit_engine_specs": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive canonical QIT schedule and operator-slot source for bounded replay; PyTorch carries the load-bearing transport numerics",
+    },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "quimb": "load_bearing",
+    "cotengra": "load_bearing",
+    "opt_einsum": "load_bearing",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "canonical_qit_engine_specs": "supportive",
+}
+TOOL_ROLE_SOURCE = {tool: "local" for tool in TOOL_MANIFEST}
 
-I2 = np.eye(2, dtype=np.complex128)
-SX = np.array([[0, 1], [1, 0]], dtype=np.complex128)
-SY = np.array([[0, -1j], [1j, 0]], dtype=np.complex128)
-SZ = np.array([[1, 0], [0, -1]], dtype=np.complex128)
+TORCH_REAL = torch.float64
+TORCH_COMPLEX = torch.complex128
+I2 = torch.eye(2, dtype=TORCH_COMPLEX)
+SX = torch.tensor([[0, 1], [1, 0]], dtype=TORCH_COMPLEX)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=TORCH_COMPLEX)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=TORCH_COMPLEX)
+
+
+def as_real_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=TORCH_REAL)
+
+
+def as_complex_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=TORCH_COMPLEX)
+
+
+def density_entropy_torch(rho: torch.Tensor) -> float:
+    evals = torch.clamp(torch.linalg.eigvalsh((rho + rho.conj().T) / 2).real, min=1e-12)
+    evals = evals / torch.sum(evals)
+    return float((-torch.sum(evals * torch.log(evals))).item())
+
+
+def apply_operator_slot(
+    rho: torch.Tensor,
+    perception: str,
+    engine_type: int,
+    loop_class: str,
+    substage_idx: int,
+) -> tuple[torch.Tensor, dict[str, Any]]:
+    slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+    generator = torch.as_tensor(OPERATOR_GENERATORS[slot["operator"]], dtype=TORCH_COMPLEX)
+    angle = float(slot["sign"]) * float(OPERATOR_BASE_ANGLES[slot["operator"]])
+    unitary = torch.linalg.matrix_exp((-1j * angle) * generator)
+    return unitary @ rho @ unitary.conj().T, slot
 
 
 def source_histories(seed: int) -> dict[str, list[dict[str, Any]]]:
     histories: dict[str, list[dict[str, Any]]] = {"left": [], "right": []}
     rho0 = generate_initial_density(seed)
     for label, engine_type in (("left", 0), ("right", 1)):
-        engine = EngineCore(engine_type, manifold_enabled=True)
-        rho = rho0.copy()
-        for main_idx, (perception, loop_class) in enumerate(engine.schedule):
+        rho = normalize_density_torch(rho0.clone())
+        for main_idx, (perception, loop_class) in enumerate(get_schedule(engine_type)):
             for substage_idx in range(4):
-                rho, record = engine.run_substage(rho, perception, loop_class, main_idx, substage_idx)
-                histories[label].append(record)
+                before = normalize_density_torch(rho)
+                slotted, slot = apply_operator_slot(before, perception, engine_type, loop_class, substage_idx)
+                evolved = apply_lindblad_step(slotted, perception, engine_type)
+                target = stage_fixed_target(perception, engine_type)
+                rho = normalize_density_torch((1.0 - MANIFOLD_TARGET_MIX) * evolved + MANIFOLD_TARGET_MIX * target)
+                histories[label].append(
+                    {
+                        "engine_type": engine_type,
+                        "main_idx": main_idx,
+                        "substage_idx": substage_idx,
+                        "perception": perception,
+                        "loop_class": loop_class,
+                        "ordered_token": slot["token"],
+                        "operator": slot["operator"],
+                        "operator_sign": int(slot["sign"]),
+                        "entropy": density_entropy_torch(rho),
+                        "slot_delta_norm": float(torch.linalg.vector_norm((rho - before).reshape(-1)).item()),
+                    }
+                )
     return histories
 
 
-def entropy_signal(records: list[dict[str, Any]]) -> np.ndarray:
-    ent = np.array([float(row["entropy"]) for row in records], dtype=float)
-    delta = np.array([float(row["slot_delta_norm"]) for row in records], dtype=float)
-    sign = np.array([float(row["operator_sign"]) for row in records], dtype=float)
-    return np.array(
+def entropy_signal(records: list[dict[str, Any]]) -> torch.Tensor:
+    ent = as_real_tensor([float(row["entropy"]) for row in records])
+    delta = as_real_tensor([float(row["slot_delta_norm"]) for row in records])
+    sign = as_real_tensor([float(row["operator_sign"]) for row in records])
+    return torch.tensor(
         [
-            float(np.mean(ent)),
-            float(np.std(ent) + 0.1 * np.mean(delta)),
-            float(np.mean(sign * delta)),
+            float(torch.mean(ent).item()),
+            float((torch.std(ent, unbiased=False) + 0.1 * torch.mean(delta)).item()),
+            float(torch.mean(sign * delta).item()),
         ],
-        dtype=float,
+        dtype=TORCH_REAL,
     )
 
 
-def connection_pair(signal_l: np.ndarray, signal_r: np.ndarray, mode: str) -> tuple[np.ndarray, np.ndarray]:
-    if mode == "source_native":
+def connection_pair(signal_l: torch.Tensor, signal_r: torch.Tensor, mode: str) -> tuple[torch.Tensor, torch.Tensor]:
+    if mode in {"canonical_qit", "source_native"}:
         diff = signal_l - signal_r
         ax = -1j * (0.18 * SX + (0.05 + abs(diff[0])) * SZ + 0.03 * diff[1] * SY)
         ay = -1j * ((0.11 + abs(diff[2])) * SY + 0.07 * SX - 0.04 * diff[0] * SZ)
@@ -96,38 +167,38 @@ def connection_pair(signal_l: np.ndarray, signal_r: np.ndarray, mode: str) -> tu
         ay = -1j * (0.18 * SX)
         return ax, ay
     if mode == "scrambled_gradient":
-        avg = 0.5 * (signal_l[::-1] + signal_r)
+        avg = 0.5 * (torch.flip(signal_l, dims=[0]) + signal_r)
         ax = -1j * (0.06 * SX + 0.03 * avg[0] * SZ)
         ay = -1j * (0.06 * SX + 0.03 * avg[0] * SZ)
         return ax, ay
     raise ValueError(mode)
 
 
-def closed_loop_holonomy(ax: np.ndarray, ay: np.ndarray, step: float = 0.35) -> dict[str, Any]:
-    ux = expm(step * ax)
-    uy = expm(step * ay)
-    hol = ux @ uy @ np.linalg.inv(ux) @ np.linalg.inv(uy)
+def closed_loop_holonomy(ax: torch.Tensor, ay: torch.Tensor, step: float = 0.35) -> dict[str, Any]:
+    ux = torch.linalg.matrix_exp(step * ax)
+    uy = torch.linalg.matrix_exp(step * ay)
+    hol = ux @ uy @ torch.linalg.inv(ux) @ torch.linalg.inv(uy)
     comm = ax @ ay - ay @ ax
     return {
         "matrix": hol,
-        "trace_real": float(np.trace(hol).real),
-        "trace_imag": float(np.trace(hol).imag),
-        "nonidentity_norm": float(np.linalg.norm(hol - I2)),
-        "commutator_norm": float(np.linalg.norm(comm)),
-        "unitarity_error": float(np.linalg.norm(hol.conj().T @ hol - I2)),
+        "trace_real": float(torch.real(torch.trace(hol)).item()),
+        "trace_imag": float(torch.imag(torch.trace(hol)).item()),
+        "nonidentity_norm": float(torch.linalg.vector_norm((hol - I2).reshape(-1)).item()),
+        "commutator_norm": float(torch.linalg.vector_norm(comm.reshape(-1)).item()),
+        "unitarity_error": float(torch.linalg.vector_norm((torch.conj(hol.transpose(-2, -1)) @ hol - I2).reshape(-1)).item()),
     }
 
 
-def transport_mps(hol: np.ndarray, seed: int) -> dict[str, Any]:
+def transport_mps(hol: torch.Tensor, seed: int) -> dict[str, Any]:
     mps = qtn.MPS_computational_state("0" * 8)
-    arrays = [np.array(arr, dtype=np.complex128, copy=True) for arr in mps.arrays]
-    before = float(np.sqrt(sum(float(np.vdot(arr, arr).real) for arr in arrays)))
+    arrays = [as_complex_tensor(arr.copy()) for arr in mps.arrays]
+    before = float(torch.sqrt(sum(torch.real(torch.vdot(arr.reshape(-1), arr.reshape(-1))) for arr in arrays)).item())
     for idx, arr in enumerate(arrays):
         if arr.shape[-1] != 2:
             continue
-        arrays[idx] = np.tensordot(arr, hol.T, axes=([-1], [0]))
-    after = float(np.sqrt(sum(float(np.vdot(arr, arr).real) for arr in arrays)))
-    endpoint_delta = float(np.sqrt(sum(float(np.vdot(a - b, a - b).real) for a, b in zip(arrays, mps.arrays))))
+        arrays[idx] = torch.tensordot(arr, torch.transpose(hol, 0, 1), dims=([-1], [0]))
+    after = float(torch.sqrt(sum(torch.real(torch.vdot(arr.reshape(-1), arr.reshape(-1))) for arr in arrays)).item())
+    endpoint_delta = float(torch.sqrt(sum(torch.real(torch.vdot((a - as_complex_tensor(b)).reshape(-1), (a - as_complex_tensor(b)).reshape(-1))) for a, b in zip(arrays, mps.arrays))).item())
     return {
         "num_tensors": int(mps.num_tensors),
         "tensor_norm_before": before,
@@ -138,7 +209,7 @@ def transport_mps(hol: np.ndarray, seed: int) -> dict[str, Any]:
     }
 
 
-def contraction_path_series(signal_l: np.ndarray, signal_r: np.ndarray, mode: str) -> dict[str, Any]:
+def contraction_path_series(signal_l: torch.Tensor, signal_r: torch.Tensor, mode: str) -> dict[str, Any]:
     inputs, output, expr = [
         ("a", "b", "e"),
         ("b", "c", "f"),
@@ -147,29 +218,29 @@ def contraction_path_series(signal_l: np.ndarray, signal_r: np.ndarray, mode: st
     ], ("a", "d"), "abe,bcf,efh,hcd->ad"
     rows = []
     for step in range(4):
-        if mode == "source_native":
-            scale = np.abs(signal_l - signal_r) + step + 1
+        if mode in {"canonical_qit", "source_native"}:
+            scale = torch.abs(signal_l - signal_r) + step + 1
         else:
-            scale = np.ones(3) * 2
+            scale = torch.ones(3, dtype=TORCH_REAL) * 2
         sizes = {
             "a": 2,
             "d": 2,
-            "b": int(2 + scale[0] % 3),
-            "c": int(2 + scale[1] % 3),
-            "e": int(2 + scale[2] % 3),
-            "f": int(3 + ((scale[0] + step) if mode == "source_native" else scale[0]) % 3),
-            "h": int(3 + ((scale[1] + step) if mode == "source_native" else scale[1]) % 3),
+            "b": int(2 + float(scale[0].item()) % 3),
+            "c": int(2 + float(scale[1].item()) % 3),
+            "e": int(2 + float(scale[2].item()) % 3),
+            "f": int(3 + (float((scale[0] + step).item()) if mode in {"canonical_qit", "source_native"} else float(scale[0].item())) % 3),
+            "h": int(3 + (float((scale[1] + step).item()) if mode in {"canonical_qit", "source_native"} else float(scale[1].item())) % 3),
         }
         tree = ctg.HyperOptimizer(max_repeats=4, progbar=False).search(inputs, output, sizes)
-        rng = np.random.default_rng(92000 + step)
-        arrays = [rng.normal(size=tuple(sizes[ix] for ix in term)) for term in inputs]
+        generator = torch.Generator().manual_seed(92000 + step)
+        arrays = [torch.randn(tuple(sizes[ix] for ix in term), generator=generator, dtype=TORCH_REAL) for term in inputs]
         rows.append(
             {
                 "step": step,
                 "sizes": sizes,
                 "cost": float(tree.contraction_cost()),
                 "width": float(tree.contraction_width()),
-                "norm": float(np.linalg.norm(oe.contract(expr, *arrays))),
+                "norm": float(torch.linalg.vector_norm(oe.contract(expr, *arrays).reshape(-1)).item()),
             }
         )
     return {
@@ -190,8 +261,8 @@ def run_mode(mode: str) -> dict[str, Any]:
     paths = contraction_path_series(sig_l, sig_r, mode)
     return {
         "mode": mode,
-        "left_signal": np.round(sig_l, 8).tolist(),
-        "right_signal": np.round(sig_r, 8).tolist(),
+        "left_signal": (torch.round(sig_l * 1e8) / 1e8).tolist(),
+        "right_signal": (torch.round(sig_r * 1e8) / 1e8).tolist(),
         "holonomy": {k: v for k, v in hol.items() if k != "matrix"},
         "mps_transport": mps,
         "contraction_path_series": paths,
@@ -222,15 +293,18 @@ def z3_holonomy_witness(row: dict[str, Any]) -> dict[str, Any]:
 
 def main() -> int:
     started = time.time()
-    source = run_mode("source_native")
+    source = run_mode("canonical_qit")
     rigid = run_mode("rigid_metric")
     scrambled = run_mode("scrambled_gradient")
     x, y = sp.symbols("x y")
-    symbolic_comm_det = sp.factor((x * SX + y * SZ)[0, 1] * (x * SY)[1, 0] - (x * SY)[0, 1] * (x * SX + y * SZ)[1, 0])
+    sx_sym = sp.Matrix([[0, 1], [1, 0]])
+    sy_sym = sp.Matrix([[0, -sp.I], [sp.I, 0]])
+    sz_sym = sp.Matrix([[1, 0], [0, -1]])
+    symbolic_comm_det = sp.factor((x * sx_sym + y * sz_sym)[0, 1] * (x * sy_sym)[1, 0] - (x * sy_sym)[0, 1] * (x * sx_sym + y * sz_sym)[1, 0])
     graph = nx.DiGraph()
     graph.add_edges_from([("rho_L", "entropy_signal"), ("rho_R", "entropy_signal"), ("entropy_signal", "connection"), ("connection", "holonomy"), ("holonomy", "mps_transport")])
     positive = {
-        "source_native_closed_loop_transport_has_nonidentity_holonomy": source,
+        "canonical_qit_replay_closed_loop_transport_has_nonidentity_holonomy": source,
         "symbolic_connection_commutator_is_nontrivial": {
             "determinant_expression": str(symbolic_comm_det),
             "pass": str(symbolic_comm_det) != "0",
@@ -245,7 +319,7 @@ def main() -> int:
             "pass": rigid["holonomy"]["nonidentity_norm"] < source["holonomy"]["nonidentity_norm"] * 0.25
             and rigid["contraction_path_series"]["unique_size_signatures"] == 1,
         },
-        "scrambled_gradient_control_kills_source_native_path_mutation": {
+        "scrambled_gradient_control_kills_canonical_qit_path_mutation": {
             "scrambled_nonidentity_norm": scrambled["holonomy"]["nonidentity_norm"],
             "scrambled_path_signatures": scrambled["contraction_path_series"]["unique_size_signatures"],
             "pass": scrambled["contraction_path_series"]["unique_size_signatures"] == 1
@@ -262,10 +336,16 @@ def main() -> int:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "claim_ceiling": CLAIM_CEILING,
-        "source_alignment_category": "downstream_on_source_native_operating_space",
+        "source_alignment_category": "canonical_qit_weyl_holonomy_mps_curvature_replay",
+        "root_constraints": {
+            "F01": "finite 2x2 density histories, finite 64 replay records, finite 8-site MPS carrier",
+            "N01": "noncommuting canonical QIT slot generators induce nonzero connection commutator and holonomy witness",
+        },
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "positive": positive,
         "graveyard_companions": graveyards,
         "boundary": boundary,
@@ -273,6 +353,7 @@ def main() -> int:
         "why_not_v4_probes": [
             "Finite holonomy scout only.",
             "MPS carrier is 8 sites, not a 64-site PEPS3D long-horizon engine.",
+            "Canonical QIT replay is not source-native EngineCore dynamics.",
             "Keeps canonical geometry and neural claims blocked.",
         ],
         "blockers": [],

@@ -32,6 +32,10 @@ import sympy as sp
 import torch
 from z3 import And, Or, Real, Solver, unsat, sat
 classification = "classical_baseline"  # auto-backfill
+divergence_log = [
+    "Classical comparator/control surface only; does not promote nonclassical, formal-scout, bridge, axis-level, or canonical proof claims."
+]
+
 
 
 torch.set_default_dtype(torch.float64)

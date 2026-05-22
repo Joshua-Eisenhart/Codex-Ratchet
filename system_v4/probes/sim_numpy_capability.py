@@ -13,6 +13,10 @@ import numpy as np
 from receipt_boundary import apply_default_receipt_boundary
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical numpy dense-array capability baseline only; it checks local array algebra behavior "
+    "and cannot prove nonclassical, bridge, axis, GStack, or QIT claims."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "capability under test -- dense array algebra"},
@@ -103,7 +107,7 @@ if __name__ == "__main__":
         "classification_note": "Numpy is admitted only as a classical baseline/supportive numerical tool, not as load-bearing evidence for QIT, bridge, axis, GStack, or nonclassical claims.",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "divergence_log": "Classical numpy dense-array capability baseline only; it checks local array algebra behavior and cannot prove nonclassical, bridge, axis, GStack, or QIT claims.",
+        "divergence_log": divergence_log,
         "positive": pos,
         "negative": neg,
         "boundary": bnd,

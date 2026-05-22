@@ -20,7 +20,6 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 
 from clifford import Cl
-import numpy as np
 import opt_einsum as oe
 import sympy as sp
 import torch
@@ -64,14 +63,6 @@ TOOL_MANIFEST = {
             "load-bearing: pairwise collision witness — for all C(64,2)=2016 pairs, asserts that "
             "the AND of 8 observable equalities holds for some pair; UNSAT confirms full "
             "pairwise distinguishability; SAT identifies a collision"
-        ),
-    },
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": (
-            "load-bearing: Cartesian product enumeration of all DoF index tuples via "
-            "np.random.default_rng for deterministic generic fiducial state construction"
         ),
     },
     "sympy": {
@@ -205,9 +196,9 @@ def _make_fiducial_state() -> torch.Tensor:
     parts, ensuring all single-qubit and two-qubit Pauli observables are
     non-zero and distinguishable under the 5 DoF transformations.
     """
-    rng = np.random.default_rng(seed=137)
-    psi_np = rng.standard_normal(16) + 1j * rng.standard_normal(16)
-    psi = torch.tensor(psi_np, dtype=torch.complex128)
+    rng = torch.Generator().manual_seed(137)
+    psi = torch.randn(16, dtype=torch.float64, generator=rng).to(torch.complex128)
+    psi = psi + 1j * torch.randn(16, dtype=torch.float64, generator=rng).to(torch.complex128)
     return psi / torch.linalg.vector_norm(psi)
 
 

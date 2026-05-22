@@ -16,6 +16,11 @@ import json, math, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = [
+    "classical-baseline Hopf x MERA x Gerbe topology-variant fixture only; "
+    "compares finite T1/T2/T3 controls without promoting Axis0, bridge, "
+    "GStack, QIT, or nonclassical admission",
+]
 
 H_HOPF_T1 = math.log(2) / 2
 H_HOPF_T2 = math.log(2)
@@ -398,6 +403,7 @@ def main():
 
     summary = {
         "classification": classification,
+        "divergence_log": divergence_log,
         "program": "Hopf×MERA×Gerbe",
         "step": 3,
         "step_name": "topology_variants",

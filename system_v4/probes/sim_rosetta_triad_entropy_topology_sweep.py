@@ -38,6 +38,7 @@ except Exception:  # pragma: no cover
 
 CLASSIFICATION = "canonical"
 classification = CLASSIFICATION
+SIM_EXECUTION_KIND = "classical"
 divergence_log = (
     "Rosetta triad entropy/topology sweep over Carnot, Szilard, and I Ching-64. "
     "It applies shared entropy families and graph/topology signatures to the "
@@ -74,7 +75,20 @@ TOOL_MANIFEST = {
     "toponetx": {"tried": True, "used": tnx is not None, "reason": "cell-complex shape/Euler witness when installed"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    tool: ("load_bearing" if spec["used"] else None) for tool, spec in TOOL_MANIFEST.items()
+    "json": "supportive",
+    "numpy": "load_bearing",
+    "scipy": "load_bearing",
+    "sympy": "load_bearing",
+    "torch": "load_bearing",
+    "pyg": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "qiskit": "load_bearing",
+    "qutip": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "gudhi": "supportive",
+    "toponetx": "supportive",
 }
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -378,7 +392,7 @@ def main() -> None:
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
-        "sim_execution_kind": "bridge",
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "allowed_claims": [
             "more entropy families run across Carnot, Szilard, and I Ching-64",
             "more topology signatures run across the same triad",

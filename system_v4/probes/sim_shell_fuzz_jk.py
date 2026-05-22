@@ -2,16 +2,14 @@
 import json
 import pathlib
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = "Canonical local shell fuzz j/k support row on one bounded shell index family."
 LEGO_IDS = ["shell_fuzz_jk"]
 PRIMARY_LEGO_IDS = ["shell_fuzz_jk"]
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": "not needed"} for k in [
-    "pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"
-]}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_MANIFEST = {}
+TOOL_INTEGRATION_DEPTH = {}
 TOOL_MANIFEST["python_stdlib"] = {
     "tried": True,
     "used": True,

@@ -1,6 +1,13 @@
-# Tier E — Composed Engine: Canonical Axis 0
+# Historical Tier E Proposal — Composed Axis0 Candidate
 
-> **Worker spawn preamble (mandatory):** every spawned Claude worker receives Block B (140-word) from `~/wiki/harness/SALIENCE_PREAMBLE.md` prepended to its system prompt before any task description. See `system_v5/ops/HERMES_RULES.md` §0. Probe-tested 2026-04-17 on fresh Haiku.
+Status: historical/postponed proposal. This file is not current Axis0 admission
+authority. Current v5 formal-scout/readiness status keeps Axis0 open and denies
+final manifold, real-basin, Axis0 theorem, bridge, engine, physics, and
+Holodeck promotion unless a later explicit promotion manifest and current
+validators say otherwise.
+
+> Historical worker preamble from the old plan, not current Codex instruction:
+> spawned Claude workers received Block B from `~/wiki/harness/SALIENCE_PREAMBLE.md`.
 
 
 Runs after Tier D (boundary UNSAT certificates). L3 + owner collaboration — research tier, NOT a low-reasoning mechanical job.
@@ -13,15 +20,16 @@ Preconditions:
 
 ## Objective
 
-Build the canonical Axis 0: ∇I_c lifted through the full composed manifold, not flat 3-qubit Hilbert.
+Build a candidate composed Axis0: ∇I_c lifted through the full composed-manifold
+proposal, not flat 3-qubit Hilbert.
 
-Replace the flat-substrate `classical_baseline` Axis 0 result (`I_c = 0.647`) with a **canonical by process** run on:
+Replace the flat-substrate `classical_baseline` Axis 0 result (`I_c = 0.647`) with a candidate composed run on:
 
 ```
 π = Pauli ∘ Flux ∘ Weyl ∘ Hopf ∘ G-stack
 ```
 
-simultaneously admitted at each layer per Tier D boundary predicates.
+simultaneously constrained at each layer per the historical Tier D proposal.
 
 ## Why this tier is NOT for low-reasoning Hermes
 
@@ -55,10 +63,10 @@ Opus (L3) drafts each step. Owner confirms judgment calls. Hermes executes only 
 - Use z3/cvc5 (load-bearing) to verify no admissibility violation during evaluation
 - Gate: engine runs without predicate violation; result JSON includes per-layer admission trace
 
-### E4 — Canonical Axis 0 sim
+### E4 — Candidate composed Axis0 sim
 - `system_v4/probes/axis0_canonical_composed.py`
 - Full SIM_TEMPLATE compliance
-- `classification = "canonical"`
+- proposed classification in the historical plan was `canonical`; current use requires fresh repo authority and validators before any such label is admitted
 - `TOOL_INTEGRATION_DEPTH` with ≥3 load-bearing tools (z3 OR cvc5 for predicates, sympy for composition, torch/PyG for gradient)
 - Positive: I_c > 0 admitted at some composed point
 - Negative: UNSAT certificate that flat-substrate I_c > 0 CANNOT be substrate-invariant (ties back to D-tier exclusions)
@@ -77,7 +85,7 @@ Opus (L3) drafts each step. Owner confirms judgment calls. Hermes executes only 
 - Gate: orthogonality matrix rebuilt
 
 ### E7 — Memory + doctrine updates
-- Update memory `project_axis0_status.md` with canonical-composed result (replacing flat-substrate claims)
+- Update memory `project_axis0_status.md` only if a fresh admitted result exists; do not replace flat-substrate claims from this historical proposal alone
 - Update `CLAUDE.md` Phase 7 table to reflect actual migration state
 - Reflect composed vs flat distinction in `~/wiki/concepts/axis0.md`
 

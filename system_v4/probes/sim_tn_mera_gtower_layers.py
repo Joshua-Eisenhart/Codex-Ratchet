@@ -61,6 +61,15 @@ TOOL_MANIFEST = {
 
 classification = "classical_baseline"
 
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for sim_tn_mera_gtower_layers; it does not promote a "
+        "nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+
 TOOL_INTEGRATION_DEPTH = {
     "pytorch":   None,
     "pyg":       None,

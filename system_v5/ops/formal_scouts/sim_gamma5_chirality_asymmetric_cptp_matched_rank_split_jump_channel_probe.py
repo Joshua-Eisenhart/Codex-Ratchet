@@ -12,7 +12,6 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-from scipy.optimize import minimize_scalar
 import sympy as sp
 import torch
 import z3
@@ -20,6 +19,7 @@ import z3
 from sim_gamma5_chirality_asymmetric_cptp_choi_distance_effective_channel_probe import (
     DIM,
     asymmetric_kraus,
+    bounded_scalar_minimize,
     choi_matrix,
     cptp_gap,
     gamma5_boundary,
@@ -46,8 +46,8 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing Kraus, Choi, Stinespring projector, rank, and CPTP checks"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing continuous equal-rate and combined-rate minimization"},
+    "python_math": {"tried": True, "used": True, "reason": "load-bearing local bounded scalar search for equal-rate and combined-rate minimization"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing Kraus, Choi, Stinespring projector, rank, CPTP checks, and bounded-search objective evaluation"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic rank-order sanity"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing matched-rank contradiction witness"},
 }
@@ -69,16 +69,19 @@ def fit_family(target: list[torch.Tensor], family: str) -> dict[str, Any]:
         raise ValueError(family)
     def objective(gamma: float) -> float:
         return trace_distance(target_choi, choi_matrix(kraus(float(gamma))))
-    result = minimize_scalar(objective, bounds=(0.0, 0.50), method="bounded", options={"xatol": 1e-12})
-    best = kraus(float(result.x))
+    result = bounded_scalar_minimize(objective, 0.0, 0.50, xatol=1e-12)
+    gamma = float(result["x"])
+    best = kraus(gamma)
     return {
         "family": family,
-        "gamma": float(result.x),
-        "choi_trace_distance": float(result.fun),
+        "gamma": gamma,
+        "choi_trace_distance": float(result["fun"]),
         "stinespring_projector_distance": stinespring_projector_distance(target, best),
         "choi_rank": choi_rank(choi_matrix(best)),
         "cptp_gap": cptp_gap(best),
-        "success": bool(result.success),
+        "success": bool(result["success"]),
+        "optimizer": "local_dense_refined_golden_section",
+        "optimizer_evaluations": int(result["evaluations"]),
     }
 
 

@@ -2,6 +2,11 @@
 """Classical baseline: density matrix eigendecomp + von Neumann entropy."""
 import json, os, numpy as np
 
+classification = "classical_baseline"
+divergence_log = [
+    "Density eigendecomposition and entropy checks detect invalid-density controls within numeric baseline scope."
+]
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "baseline uses numpy only"},
     "pyg": {"tried": False, "used": False, "reason": "no graph structure"},
@@ -81,6 +86,7 @@ if __name__ == "__main__":
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

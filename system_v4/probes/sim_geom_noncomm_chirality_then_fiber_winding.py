@@ -5,6 +5,8 @@ from clifford import Cl
 layout, blades = Cl(3)
 e1, e2, e3 = blades['e1'], blades['e2'], blades['e3']
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "clifford": {"tried": True, "used": True,
                  "reason": "chirality flip is grade-reversal combined with a vector reflection; this cannot be encoded as an orthogonal matrix plus rotor composition — only Cl(3) versor action preserves the Pin structure whose commutator with a rotor is nontrivial."},

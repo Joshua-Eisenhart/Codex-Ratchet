@@ -18,7 +18,7 @@ The current thesis is:
 - the earliest governing constraint surface is constraint on distinguishability
 - probes are load-bearing for identity claims
 - entropy is a later admissible measure, not a front-door primitive
-- density matrices are early stable working objects once a finite carrier is admitted
+- density matrices are early stable working carriers once a finite carrier is admitted; they are not yet forced at L0/L1 by the root constraints alone
 - geometry is constraint compatibility on that carrier
 - correlation, entanglement, and operator structure are not decorative; they are the thing being measured
 

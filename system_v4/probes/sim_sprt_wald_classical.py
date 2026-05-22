@@ -23,9 +23,9 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "cumulative LLR and stopping"},
     "scipy": {"tried": True, "used": True, "reason": "normal pdf closed-form"},
     "pytorch": {
-        "tried": _torch_ok,
+        "tried": True,
         "used": False,
-        "reason": "supportive import only",
+        "reason": "optional supportive import attempt only",
     },
     "z3": {"tried": False, "used": False, "reason": "no SMT optimality proof here"},
 }

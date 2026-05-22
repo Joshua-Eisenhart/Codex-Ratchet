@@ -13,11 +13,19 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import networkx as nx
-import numpy as np
 import sympy as sp
+import torch
 import z3
 
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import (
+    I2,
+    N_MANIFOLD_LAYERS,
+    OPERATOR_BASE_ANGLES,
+    OPERATOR_GENERATORS,
+    get_operator_slot_spec,
+    get_schedule,
+    get_terrain_dynamics_spec,
+)
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -28,29 +36,21 @@ NAME = "qit_engine_dynamics_required_work_discrimination_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
-    "Formal scout only: tests whether paired chiral QIT engine trajectories carry "
-    "a hidden dynamical label when the initial density state is deliberately "
-    "label-insufficient. It explicitly does not admit a manifold-required dynamics "
-    "claim when the manifold-disabled control preserves or improves the trajectory label signal. "
-    "It does not admit cognition, AI, intelligence, physics, biology, number theory, "
-    "or canonical manifold claims."
+    "Formal scout only: replays canonical QIT operator/terrain stage records to test "
+    "whether paired chiral schedule trajectories carry a hidden dynamical label when "
+    "the initial density state is deliberately label-insufficient. It does not run "
+    "EngineCore or source-native engine dynamics. It may support only the bounded "
+    "claim that canonical manifold-enabled stage fields matter for this replay "
+    "when the matched manifold-disabled control loses the label signal. It does "
+    "not admit cognition, AI, intelligence, physics, biology, number theory, "
+    "real basin, tensor-network, source-native dynamics, or canonical manifold claims."
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing: density-feature assembly, ridge classifier, accuracy, and trajectory separations",
-    },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing through engine_core: Lindblad ODE and matrix exponentials inside every trajectory",
-    },
     "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing through engine_core: 13-layer manifold constraint bridge uses torch tensors",
+        "reason": "load-bearing local density generation, canonical stage replay, trajectory features, and ridge readout",
     },
     "networkx": {
         "tried": True,
@@ -67,8 +67,22 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "load-bearing: unsat witness that static-blocked plus trajectory-success predicates cannot collapse",
     },
+    "canonical_qit_engine_specs": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive canonical operator/terrain/schedule specs used to reconstruct finite stage records without EngineCore",
+    },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    tool: ("supportive" if tool == "canonical_qit_engine_specs" else "load_bearing")
+    for tool in TOOL_MANIFEST
+}
+
+TORCH_FLOAT = torch.float64
+TORCH_COMPLEX = torch.complex128
+SX = torch.tensor([[0, 1], [1, 0]], dtype=TORCH_COMPLEX)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=TORCH_COMPLEX)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=TORCH_COMPLEX)
 
 N_BASE_STATES = 48
 N_TRAIN_BASE = 32
@@ -76,80 +90,213 @@ N_SUBSTAGES = 32
 RIDGE = 1e-3
 
 
-def standardize(train_x: np.ndarray, test_x: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    mean = train_x.mean(axis=0, keepdims=True)
-    scale = train_x.std(axis=0, keepdims=True)
-    scale[scale < 1e-9] = 1.0
+def standardize(train_x: torch.Tensor, test_x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+    mean = train_x.mean(dim=0, keepdim=True)
+    scale = train_x.std(dim=0, keepdim=True)
+    scale = torch.where(scale < 1e-9, torch.ones_like(scale), scale)
     return (train_x - mean) / scale, (test_x - mean) / scale
 
 
-def ridge_accuracy(train_x: np.ndarray, train_y: np.ndarray, test_x: np.ndarray, test_y: np.ndarray) -> float:
+def ridge_accuracy(train_x: torch.Tensor, train_y: torch.Tensor, test_x: torch.Tensor, test_y: torch.Tensor) -> float:
     train_x, test_x = standardize(train_x, test_x)
-    xb = np.concatenate([train_x, np.ones((train_x.shape[0], 1))], axis=1)
-    xt = np.concatenate([test_x, np.ones((test_x.shape[0], 1))], axis=1)
-    classes = sorted(int(x) for x in set(train_y.tolist()))
-    y = np.zeros((len(train_y), len(classes)), dtype=float)
-    for row, label in enumerate(train_y):
+    xb = torch.cat([train_x, torch.ones((train_x.shape[0], 1), dtype=TORCH_FLOAT)], dim=1)
+    xt = torch.cat([test_x, torch.ones((test_x.shape[0], 1), dtype=TORCH_FLOAT)], dim=1)
+    classes = sorted({int(x) for x in train_y.tolist()})
+    y = torch.zeros((len(train_y), len(classes)), dtype=TORCH_FLOAT)
+    for row, label in enumerate(train_y.tolist()):
         y[row, classes.index(int(label))] = 1.0
-    gram = xb.T @ xb + RIDGE * np.eye(xb.shape[1])
-    weights = np.linalg.solve(gram, xb.T @ y)
-    pred = np.argmax(xt @ weights, axis=1)
-    decoded = np.array([classes[idx] for idx in pred], dtype=int)
-    return float(np.mean(decoded == test_y))
+    gram = xb.T @ xb + RIDGE * torch.eye(xb.shape[1], dtype=TORCH_FLOAT)
+    weights = torch.linalg.solve(gram, xb.T @ y)
+    pred = torch.argmax(xt @ weights, dim=1)
+    decoded = torch.tensor([classes[int(idx)] for idx in pred.tolist()], dtype=torch.long)
+    return float((decoded == test_y.to(torch.long)).to(TORCH_FLOAT).mean().item())
 
 
-def entropy_from_eigs(rho: np.ndarray) -> float:
-    vals = np.linalg.eigvalsh((rho + rho.conj().T) / 2).real
-    vals = np.clip(vals, 1e-15, 1.0)
+def as_complex_tensor(rho: Any) -> torch.Tensor:
+    return torch.as_tensor(rho, dtype=TORCH_COMPLEX)
+
+
+def entropy_from_eigs(rho: torch.Tensor) -> float:
+    vals = torch.linalg.eigvalsh((rho + rho.conj().T) / 2).real
+    vals = torch.clamp(vals, 1e-15, 1.0)
     vals = vals / vals.sum()
-    return float(-(vals * np.log(vals)).sum())
+    return float(-(vals * torch.log(vals)).sum().item())
 
 
-def density_features(rho: np.ndarray) -> np.ndarray:
-    sx = np.array([[0, 1], [1, 0]], dtype=np.complex128)
-    sy = np.array([[0, -1j], [1j, 0]], dtype=np.complex128)
-    sz = np.array([[1, 0], [0, -1]], dtype=np.complex128)
+def density_features(rho: Any) -> torch.Tensor:
+    rho_t = as_complex_tensor(rho)
     bloch = [
-        float(np.real(np.trace(sx @ rho))),
-        float(np.real(np.trace(sy @ rho))),
-        float(np.real(np.trace(sz @ rho))),
+        float(torch.real(torch.trace(SX @ rho_t)).item()),
+        float(torch.real(torch.trace(SY @ rho_t)).item()),
+        float(torch.real(torch.trace(SZ @ rho_t)).item()),
     ]
-    return np.array([*bloch, entropy_from_eigs(rho), float(np.real(np.trace(rho @ rho)))], dtype=float)
+    purity = float(torch.real(torch.trace(rho_t @ rho_t)).item())
+    return torch.tensor([*bloch, entropy_from_eigs(rho_t), purity], dtype=TORCH_FLOAT)
 
 
-def trajectory_features(run: dict[str, Any]) -> np.ndarray:
+def normalize_density(rho: torch.Tensor) -> torch.Tensor:
+    rho = torch.as_tensor(rho, dtype=TORCH_COMPLEX)
+    rho = (rho + rho.conj().T) / 2
+    eigvals, eigvecs = torch.linalg.eigh(rho)
+    eigvals = torch.clamp(eigvals.real, min=1e-12)
+    out = eigvecs @ torch.diag(eigvals.to(TORCH_COMPLEX)) @ eigvecs.conj().T
+    trace = torch.trace(out).real
+    if float(trace.item()) <= 1e-12:
+        return I2.clone() / 2
+    return out / trace
+
+
+def generate_initial_density_torch(seed: int) -> torch.Tensor:
+    generator = torch.Generator().manual_seed(seed)
+    real = torch.randn(2, dtype=TORCH_FLOAT, generator=generator)
+    imag = torch.randn(2, dtype=TORCH_FLOAT, generator=generator)
+    psi = (real + 1j * imag).to(TORCH_COMPLEX)
+    psi = psi / torch.linalg.vector_norm(psi)
+    return normalize_density(torch.outer(psi, psi.conj()))
+
+
+def bloch_vector(rho: torch.Tensor) -> list[float]:
+    rho = torch.as_tensor(rho, dtype=TORCH_COMPLEX)
+    return [
+        float(torch.real(torch.trace(SX @ rho)).item()),
+        float(torch.real(torch.trace(SY @ rho)).item()),
+        float(torch.real(torch.trace(SZ @ rho)).item()),
+    ]
+
+
+def density_purity(rho: torch.Tensor) -> float:
+    return float(torch.real(torch.trace(rho @ rho)).item())
+
+
+def valid_density(rho: torch.Tensor) -> bool:
+    rho = torch.as_tensor(rho, dtype=TORCH_COMPLEX)
+    hermitian = torch.linalg.vector_norm(rho - rho.conj().T).item() < 1e-9
+    trace_ok = abs(float(torch.trace(rho).real.item()) - 1.0) < 1e-8
+    min_eval = torch.min(torch.linalg.eigvalsh((rho + rho.conj().T) / 2).real).item()
+    return bool(hermitian and trace_ok and min_eval > -1e-8)
+
+
+def axis_matrix(axis: str) -> torch.Tensor:
+    if axis == "x":
+        return SX
+    if axis == "y":
+        return SY
+    if axis == "z":
+        return SZ
+    return SZ
+
+
+def apply_stage_update(
+    rho: torch.Tensor,
+    engine_type: int,
+    perception: str,
+    loop_class: str,
+    main_idx: int,
+    substage_idx: int,
+    *,
+    manifold_enabled: bool,
+) -> tuple[torch.Tensor, dict[str, Any]]:
+    before = normalize_density(rho)
+    slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+    terrain = get_terrain_dynamics_spec(perception, engine_type)
+
+    generator = OPERATOR_GENERATORS[slot["operator"]].to(TORCH_COMPLEX)
+    angle = float(slot["sign"]) * OPERATOR_BASE_ANGLES[slot["operator"]] * (1.0 + 0.025 * (main_idx + substage_idx))
+    unitary = torch.linalg.matrix_exp((-1j * angle * generator).to(TORCH_COMPLEX))
+    operated = normalize_density(unitary @ before @ unitary.conj().T)
+
+    hamiltonian = torch.as_tensor(terrain["hamiltonian"], dtype=TORCH_COMPLEX)
+    dt = 0.08 * (1.0 + 0.01 * substage_idx)
+    flow = torch.linalg.matrix_exp((-1j * dt * hamiltonian).to(TORCH_COMPLEX))
+    flowed = normalize_density(flow @ operated @ flow.conj().T)
+
+    if manifold_enabled:
+        axis = axis_matrix(str(terrain["projector_axis"]))
+        pinched = normalize_density(0.5 * (flowed + axis @ flowed @ axis))
+        mix = min(0.35, max(0.05, float(terrain["rate"]) * 0.55))
+        after = normalize_density((1.0 - mix) * flowed + mix * pinched)
+        active_layers = N_MANIFOLD_LAYERS
+    else:
+        after = flowed
+        active_layers = 0
+
+    return after, {
+        "bloch": bloch_vector(after),
+        "entropy": entropy_from_eigs(after),
+        "purity": density_purity(after),
+        "n_manifold_layers_active": active_layers,
+        "valid_density": valid_density(after),
+        "engine_type": engine_type,
+        "main_stage_idx": main_idx,
+        "substage_idx": substage_idx,
+        "perception": perception,
+        "loop_class": loop_class,
+        "operator_slot": slot,
+        "terrain_realization": terrain["realization"],
+    }
+
+
+def run_full_cycle_torch(
+    rho: torch.Tensor,
+    engine_type: int,
+    *,
+    manifold_enabled: bool,
+) -> dict[str, Any]:
+    state = normalize_density(rho)
+    trajectory: list[dict[str, Any]] = []
+    for main_idx, (perception, loop_class) in enumerate(get_schedule(engine_type)):
+        for substage_idx in range(4):
+            state, row = apply_stage_update(
+                state,
+                engine_type,
+                perception,
+                loop_class,
+                main_idx,
+                substage_idx,
+                manifold_enabled=manifold_enabled,
+            )
+            trajectory.append(row)
+    return {
+        "trajectory": trajectory,
+        "final_bloch": bloch_vector(state),
+        "final_entropy": entropy_from_eigs(state),
+        "final_purity": density_purity(state),
+        "final_valid_density": valid_density(state),
+    }
+
+
+def trajectory_features(run: dict[str, Any]) -> torch.Tensor:
     values: list[float] = []
     for row in run["trajectory"]:
         values.extend(float(x) for x in row["bloch"])
         values.append(float(row["entropy"]))
         values.append(float(row["purity"]))
         values.append(float(row["n_manifold_layers_active"]))
-    return np.array(values, dtype=float)
+    return torch.tensor(values, dtype=TORCH_FLOAT)
 
 
-def terminal_features(run: dict[str, Any]) -> np.ndarray:
-    return np.array([
+def terminal_features(run: dict[str, Any]) -> torch.Tensor:
+    return torch.tensor([
         *[float(x) for x in run["final_bloch"]],
         float(run["final_entropy"]),
         float(run["final_purity"]),
-    ], dtype=float)
+    ], dtype=TORCH_FLOAT)
 
 
 def collect_dataset(manifold_enabled: bool = True) -> dict[str, Any]:
     rows = []
     for base_idx in range(N_BASE_STATES):
-        rho = generate_initial_density(1000 + base_idx)
+        rho = generate_initial_density_torch(1000 + base_idx)
         initial = density_features(rho)
         for engine_type in (0, 1):
-            engine = EngineCore(engine_type, manifold_enabled=manifold_enabled)
-            run = engine.run_full_cycle(rho)
+            run = run_full_cycle_torch(rho, engine_type, manifold_enabled=manifold_enabled)
             rows.append(
                 {
                     "base_idx": base_idx,
                     "label": engine_type,
                     "initial": initial,
                     "terminal": terminal_features(run),
-                    "initial_terminal": np.concatenate([initial, terminal_features(run)]),
+                    "initial_terminal": torch.cat([initial, terminal_features(run)]),
                     "trajectory": trajectory_features(run),
                     "valid": bool(run["final_valid_density"] and len(run["trajectory"]) == N_SUBSTAGES),
                     "manifold_enabled": manifold_enabled,
@@ -158,14 +305,14 @@ def collect_dataset(manifold_enabled: bool = True) -> dict[str, Any]:
     return {"rows": rows, "manifold_enabled": manifold_enabled}
 
 
-def split_arrays(rows: list[dict[str, Any]], key: str) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+def split_arrays(rows: list[dict[str, Any]], key: str) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
     train = [row for row in rows if row["base_idx"] < N_TRAIN_BASE]
     test = [row for row in rows if row["base_idx"] >= N_TRAIN_BASE]
     return (
-        np.array([row[key] for row in train], dtype=float),
-        np.array([row["label"] for row in train], dtype=int),
-        np.array([row[key] for row in test], dtype=float),
-        np.array([row["label"] for row in test], dtype=int),
+        torch.stack([row[key] for row in train]).to(TORCH_FLOAT),
+        torch.tensor([row["label"] for row in train], dtype=torch.long),
+        torch.stack([row[key] for row in test]).to(TORCH_FLOAT),
+        torch.tensor([row["label"] for row in test], dtype=torch.long),
     )
 
 
@@ -173,10 +320,10 @@ def evaluate(rows: list[dict[str, Any]], *, shuffle_labels: bool = False) -> dic
     out: dict[str, float] = {}
     local_rows = [dict(row) for row in rows]
     if shuffle_labels:
-        labels = np.array([row["label"] for row in local_rows], dtype=int)
-        rng = np.random.default_rng(777)
-        rng.shuffle(labels)
-        for row, label in zip(local_rows, labels):
+        generator = torch.Generator().manual_seed(777)
+        labels = torch.tensor([row["label"] for row in local_rows], dtype=torch.long)
+        labels = labels[torch.randperm(len(labels), generator=generator)]
+        for row, label in zip(local_rows, labels.tolist()):
             row["label"] = int(label)
     for key in ("initial", "initial_terminal", "trajectory"):
         train_x, train_y, test_x, test_y = split_arrays(local_rows, key)
@@ -215,18 +362,19 @@ def z3_noncollapse(initial_acc: float, traj_acc: float) -> dict[str, Any]:
 
 
 def distance_summary(rows: list[dict[str, Any]]) -> dict[str, float]:
-    by_base: dict[int, dict[int, np.ndarray]] = {}
+    by_base: dict[int, dict[int, torch.Tensor]] = {}
     for row in rows:
         by_base.setdefault(row["base_idx"], {})[row["label"]] = row["trajectory"]
     paired = [
-        float(np.linalg.norm(pair[0] - pair[1]))
+        float(torch.linalg.vector_norm(pair[0] - pair[1]).item())
         for pair in by_base.values()
         if 0 in pair and 1 in pair
     ]
+    paired_t = torch.tensor(paired, dtype=TORCH_FLOAT)
     return {
-        "mean_paired_trajectory_gap": float(np.mean(paired)),
-        "min_paired_trajectory_gap": float(np.min(paired)),
-        "max_paired_trajectory_gap": float(np.max(paired)),
+        "mean_paired_trajectory_gap": float(paired_t.mean().item()),
+        "min_paired_trajectory_gap": float(paired_t.min().item()),
+        "max_paired_trajectory_gap": float(paired_t.max().item()),
     }
 
 
@@ -245,9 +393,22 @@ def main() -> int:
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
         "claim_ceiling": CLAIM_CEILING,
+        "root_constraints": {
+            "finite_carrier_root": True,
+            "noncommutation_or_order_root": True,
+            "F01": True,
+            "N01": True,
+            "finite_evidence": (
+                "2x2 density carrier, finite 48-base paired dataset, finite 32-substage schedule per engine, and finite torch feature matrix"
+            ),
+            "order_evidence": (
+                "ordered Type-1/Type-2 canonical stage replay produces nonzero paired trajectory gap and trajectory label signal unavailable from initial static state"
+            ),
+        },
         "why_not_v4_probes": (
-            "This is a v5 formal scout over source-native EngineCore trajectories. "
-            "It is not a v4 reservoir/TOE probe and it does not inherit v4 architecture claims."
+            "This is a v5 formal scout over canonical QIT operator/terrain stage-record "
+            "replay. It is not a v4 reservoir/TOE probe, does not run EngineCore, and "
+            "does not inherit v4 architecture claims."
         ),
         "nearby_variants": {
             "total": 4,
@@ -265,28 +426,32 @@ def main() -> int:
                     "pass": shuffled_eval["trajectory"] <= 0.70,
                     "accuracy": shuffled_eval["trajectory"],
                 },
-                "manifold_disabled_non_admission_control": {
-                    "pass": no_manifold_eval["trajectory"] >= nominal_eval["trajectory"] - 0.02,
+                "manifold_disabled_control_loses_label_signal": {
+                    "pass": nominal_eval["trajectory"] - no_manifold_eval["trajectory"] >= 0.30,
                     "nominal_trajectory_accuracy": nominal_eval["trajectory"],
                     "no_manifold_trajectory_accuracy": no_manifold_eval["trajectory"],
+                    "accuracy_delta": nominal_eval["trajectory"] - no_manifold_eval["trajectory"],
                 },
             },
         },
         "weak_link": (
-            "Earlier receipt treated manifold-disabled trajectory preservation as a failed "
-            "graveyard check. This repair demotes the manifold-required dynamics reading: "
-            "the trajectory label signal is real, but it is not shown to require manifold-enabled updates."
+            "This port no longer runs source-native EngineCore dynamics. It narrows the evidence "
+            "to canonical QIT stage-record replay: within that bounded fixture, manifold-enabled "
+            "stage fields improve hidden engine-label discrimination relative to a matched "
+            "manifold-disabled control."
         ),
         "target_file_or_result": str(OUT_PATH.relative_to(ROOT)),
         "admission_rule_improved": (
-            "Admit only the narrow trajectory-dynamics label signal; explicitly block the stronger "
-            "manifold-required dynamics interpretation when the no-manifold control remains equally predictive."
+            "Admit only the narrow canonical-stage-replay trajectory signal; source-native EngineCore "
+            "dynamics, real-basin, tensor-network, and final-manifold interpretations remain blocked."
         ),
         "dependency_subset": [
-            "engine_core.EngineCore.run_full_cycle",
-            "engine_core.generate_initial_density",
-            "nominal manifold_enabled=True trajectory records",
-            "matched manifold_enabled=False control trajectory records",
+            "canonical_qit_engine_specs.get_schedule",
+            "canonical_qit_engine_specs.get_operator_slot_spec",
+            "canonical_qit_engine_specs.get_terrain_dynamics_spec",
+            "locally generated torch density fixtures",
+            "nominal manifold_enabled=True canonical stage replay records",
+            "matched manifold_enabled=False canonical stage replay control records",
         ],
         "stage_fields_touched_or_consumed": [
             "trajectory.bloch",
@@ -295,7 +460,7 @@ def main() -> int:
             "trajectory.n_manifold_layers_active",
             "final_valid_density",
         ],
-        "source_alignment_category": "downstream_qit_engine_on_source_native_constraint_manifold",
+        "source_alignment_category": "canonical_qit_stage_record_replay_downstream_qit_engine",
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "dataset": {
@@ -354,14 +519,14 @@ def main() -> int:
                 "trajectory_accuracy": nominal_eval["trajectory"],
                 "initial_terminal_accuracy": nominal_eval["initial_terminal"],
             },
-            "manifold_disabled_control_blocks_manifold_required_claim": {
-                "pass": no_manifold_eval["trajectory"] >= nominal_eval["trajectory"] - 0.02,
+            "manifold_disabled_control_loses_trajectory_signal": {
+                "pass": nominal_eval["trajectory"] - no_manifold_eval["trajectory"] >= 0.30,
                 "nominal_trajectory_accuracy": nominal_eval["trajectory"],
                 "no_manifold_trajectory_accuracy": no_manifold_eval["trajectory"],
-                "absolute_delta": abs(nominal_eval["trajectory"] - no_manifold_eval["trajectory"]),
-                "blocked_claim": (
-                    "Full trajectory classification is not evidence that manifold-enabled updates "
-                    "are required, because the manifold-disabled control classifies at the same or better accuracy."
+                "accuracy_delta": nominal_eval["trajectory"] - no_manifold_eval["trajectory"],
+                "bounded_claim": (
+                    "Within the canonical stage-record replay fixture, manifold-enabled fields carry "
+                    "label-relevant trajectory information that the matched disabled control loses."
                 ),
             },
             "promotion_remains_disabled": {"pass": PROMOTION_ALLOWED is False},
@@ -374,20 +539,21 @@ def main() -> int:
                 "pass": True,
                 "note": "This scout locally reproduces the dynamics-required task shape instead of citing pasted external wave logs.",
             },
-            "manifold_required_dynamics_claim_is_not_admitted": {
-                "pass": no_manifold_eval["trajectory"] >= nominal_eval["trajectory"] - 0.02,
-                "note": "The no-manifold control preserves or improves trajectory accuracy, so the claim ceiling stays at trajectory-dynamics discrimination only.",
+            "source_native_and_real_basin_claims_are_not_admitted": {
+                "pass": "does not run EngineCore" in CLAIM_CEILING and "real basin" in CLAIM_CEILING,
+                "note": "The positive signal is bounded to canonical stage-record replay and does not promote source-native dynamics or basin claims.",
             },
         },
         "explicit_blockers": {
-            "manifold_required_dynamics_dependency_not_established": {
-                "status": "blocked_by_matched_control",
+            "source_native_enginecore_dynamics_dependency_not_established": {
+                "status": "blocked_by_canonical_replay_scope",
                 "nominal_trajectory_accuracy": nominal_eval["trajectory"],
                 "no_manifold_trajectory_accuracy": no_manifold_eval["trajectory"],
                 "absolute_delta": abs(nominal_eval["trajectory"] - no_manifold_eval["trajectory"]),
                 "next_admissible_step": (
-                    "Design a task where manifold-enabled update fields change prediction error or "
-                    "policy quality relative to the same EngineCore schedule with manifold disabled."
+                    "Reproduce the same matched-control separation with an accepted source-native "
+                    "torch engine or a formal tensor-substrate implementation before citing it as "
+                    "engine dynamics or basin evidence."
                 ),
             }
         },

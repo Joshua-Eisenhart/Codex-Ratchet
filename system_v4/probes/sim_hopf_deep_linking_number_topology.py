@@ -12,9 +12,10 @@ SCOPE_NOTE = "Hopf fiber linking number via Gauss integral; gudhi H1 witness; EN
 
 TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": ""},
+    "numpy": {"tried": True, "used": True, "reason": "load-bearing Gauss linking integral and Hopf-fiber coordinate arrays"},
     "pytorch": {"tried": False, "used": False, "reason": "vectorized numpy is sufficient"},
 }
-TOOL_INTEGRATION_DEPTH = {}
+TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
 try:
     import gudhi

@@ -19,6 +19,12 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = [
+    "classical-baseline shell-local spectral-triple/Dirac/Clifford finite "
+    "truncation only; verifies algebraic, spectral, and tool-structure "
+    "controls without promoting noncommutative geometry, Axis0, bridge, "
+    "GStack, QIT, or nonclassical admission",
+]
 
 _NOT_USED = "not load-bearing for this shell-local spectral triple probe"
 
@@ -417,6 +423,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_spectral_triple_dirac_clifford",
         "classification": classification,
+        "divergence_log": divergence_log,
         "overall_pass": overall,
         "shell": "Spectral triple (A=C(S^1), H=L^2(S^1,C^2), D=Dirac)",
         "capability_summary": {

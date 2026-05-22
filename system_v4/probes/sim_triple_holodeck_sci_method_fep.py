@@ -10,6 +10,22 @@ Three-way coupling axiom (additive):
 """
 from _triple_common import run_triple, write_results
 
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "z3": {"tried": True, "used": True, "reason": "load-bearing: triple-coupling SAT/UNSAT witness for three-way exclusion"},
+    "sympy": {"tried": True, "used": False, "reason": "supportive only; Boolean admissibility does not require symbolic algebra"},
+    "clifford": {"tried": True, "used": False, "reason": "not applicable at triple-level Boolean coupling layer"},
+    "pytorch": {"tried": True, "used": False, "reason": "no gradient surface at this Boolean triple-admissibility layer"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "z3": "load_bearing",
+    "sympy": "supportive",
+    "clifford": None,
+    "pytorch": None,
+}
+
 NAME = "sim_triple_holodeck_sci_method_fep"
 
 def pair_py(e):

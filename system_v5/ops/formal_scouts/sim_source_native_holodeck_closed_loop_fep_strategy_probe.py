@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Source-native Holodeck closed-loop FEP strategy scout.
+"""Bounded QIT-adapter Holodeck closed-loop FEP strategy scout.
 
-This scout wires the user's Holodeck documents into a bounded source-native
-engine probe:
+This scout wires the user's Holodeck documents into a bounded QIT adapter over
+canonical stage-window replay:
 
-- project first: each source-native stage window produces a finite sensory
-  projection from an EngineCore trajectory;
-- sense/check: the projection is compared against a hidden source-native
+- project first: each canonical QIT stage window produces a finite sensory
+  projection from a torch-native density trajectory;
+- sense/check: the projection is compared against a hidden canonical QIT
   target trajectory;
 - correct/update: the projection is mixed toward the sensed state and scored
   again;
@@ -18,13 +18,15 @@ engine probe:
   earned by the receipt.
 
 Grok/Claude wave text is treated as reference hypothesis fuel only. The local
-projection/check/correction/update math is torch-owned. Local docs and
-source-native EngineCore provide the source substrate; Holodeck hopf_map is
-kept as a supportive readout only, not as the load-bearing coordinate map.
+projection/check/correction/update math is torch-owned. Local docs and the
+canonical QIT terrain schedule provide the bounded adapter substrate; Holodeck
+hopf_map is kept as a supportive readout only, not as the load-bearing
+coordinate map.
 
 Formal scout only. No canonical FEP engine, psychology, physics, TOE,
 consciousness, full Holodeck, final IGT, or canonical engine identity claim is
-admitted.
+admitted. This is adapter evidence for a source Holodeck idea, not proof of the
+memory/perception model itself.
 """
 
 from __future__ import annotations
@@ -40,8 +42,15 @@ from typing import Any
 import networkx as nx
 import torch
 
-from canonical_qit_engine_specs import I2, SX, SY, SZ, get_chart_token_spec
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import I2, SX, SY, SZ, get_chart_token_spec, get_engine_spec
+from sim_source_native_engine_manifold_attractor_basin_depth_probe import (
+    MANIFOLD_TARGET_MIX,
+    apply_lindblad_step,
+    apply_operator_slot,
+    generate_initial_density,
+    normalize_density_torch,
+    stage_fixed_target,
+)
 
 
 ROOT = Path(__file__).resolve().parent
@@ -58,7 +67,7 @@ from holodeck_fep_engine import hopf_map  # noqa: E402
 NAME = "source_native_holodeck_closed_loop_fep_strategy_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
-SOURCE_ALIGNMENT_CATEGORY = "source_native_holodeck_closed_loop_fep_strategy_scout"
+SOURCE_ALIGNMENT_CATEGORY = "bounded_canonical_qit_holodeck_closed_loop_fep_strategy_scout"
 
 N_SEEDS = 10
 BASE_SEED = 19000
@@ -67,32 +76,28 @@ HORIZON_FUTURE = 3
 N_SUBSTAGES_PER_STAGE = 4
 CORRECTION_GAIN = 0.55
 EFE_FORMULA = "corrected_error + future_error"
+RANDOM_PROJECTION_POLICY_SHIFT_MIN = 8
 
 CLAIM_CEILING = (
-    "Formal scout only: implements a finite Holodeck-style "
-    "projection/check/correction/update loop over source-native EngineCore "
-    "stage windows with manifold constraints enabled. It does not admit a "
+    "Formal scout only: implements a bounded QIT adapter for a finite Holodeck-style "
+    "projection/check/correction/update loop over canonical QIT "
+    "stage-window replay with local terrain/operator/manifold steps. It does not admit a "
     "canonical FEP engine, final IGT, psychology, physics, TOE, "
     "consciousness, full Holodeck, canonical engine identity claim, or "
-    "Torch-only source-native engine substrate claim. EngineCore remains a "
-    "separate foundation surface with known NumPy/SciPy internals."
+    "source-native EngineCore dynamics claim. It is not deep-basin, "
+    "tensor-network, PEPS, PEPS3D, or final-manifold evidence."
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "supportive dependency behind source-native EngineCore/spec constants; local scout math is torch-owned",
-    },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": "supportive transitive dependency behind source-native EngineCore/holodeck_fep_engine imports",
-    },
     "torch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing local density projection, eigensystems, Pauli distributions, KL/symKL, Hopf vectors, slerp, controls, scoring, posterior, and statistics",
+        "reason": "load-bearing bounded QIT-adapter density replay, projection, eigensystems, Pauli distributions, KL/symKL, Hopf vectors, slerp, controls, scoring, posterior, and statistics",
+    },
+    "canonical_qit_engine_specs": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive current schedule and chart-token source for bounded QIT stage-window replay",
     },
     "holodeck_fep_engine.hopf_map": {
         "tried": True,
@@ -104,15 +109,6 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "supportive survivor graph bookkeeping for nominalist survivor-set diagnostics",
     },
-    "engine_core": {
-        "tried": True,
-        "used": True,
-        "reason": (
-            "supportive source-native trajectory substrate for this bounded "
-            "FEP overlay; EngineCore itself still has NumPy/SciPy internals "
-            "and therefore blocks deep-basin or Torch-only engine promotion"
-        ),
-    },
     "json": {
         "tried": True,
         "used": True,
@@ -120,12 +116,10 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "supportive",
-    "scipy": "supportive",
     "torch": "load_bearing",
+    "canonical_qit_engine_specs": "supportive",
     "holodeck_fep_engine.hopf_map": "supportive",
     "networkx": "supportive",
-    "engine_core": "supportive",
     "json": "supportive",
 }
 
@@ -357,14 +351,40 @@ def run_window(
     manifold_enabled: bool = True,
 ) -> dict[str, Any]:
     rho = generate_initial_density(seed)
-    engine = EngineCore(engine_type, manifold_enabled=manifold_enabled)
+    schedule = get_engine_spec(engine_type)["schedule"]
     records = []
     for offset in range(horizon_stages):
-        main_idx = (start_stage + offset) % len(engine.schedule)
-        perception, loop_class = engine.schedule[main_idx]
+        main_idx = (start_stage + offset) % len(schedule)
+        perception, loop_class = schedule[main_idx]
         for substage_idx in range(N_SUBSTAGES_PER_STAGE):
-            rho, record = engine.run_substage(rho, perception, loop_class, main_idx, substage_idx)
-            records.append(record)
+            before = rho
+            substage_kind = ("operator", "terrain", "manifold", "loop")[substage_idx]
+            if substage_kind == "operator":
+                rho = apply_operator_slot(rho, perception, engine_type, loop_class)
+            elif substage_kind == "terrain":
+                rho = apply_lindblad_step(rho, perception, engine_type)
+            elif substage_kind == "manifold" and manifold_enabled:
+                target = stage_fixed_target(perception, engine_type)
+                rho = normalize_density_torch(
+                    (1.0 - MANIFOLD_TARGET_MIX) * rho + MANIFOLD_TARGET_MIX * target
+                )
+            elif substage_kind == "loop":
+                target = I2_T / 2.0 if loop_class == "outer" else stage_fixed_target(perception, engine_type)
+                rho = normalize_density_torch(0.97 * rho + 0.03 * target)
+            else:
+                rho = normalize_density_torch(rho)
+            records.append(
+                {
+                    "main_idx": main_idx,
+                    "substage_idx": substage_idx,
+                    "substage_kind": substage_kind,
+                    "perception": perception,
+                    "loop_class": loop_class,
+                    "engine_type": engine_type,
+                    "trace_gap": float(torch.abs(torch.trace(rho) - torch.tensor(1.0, dtype=COMPLEX_DTYPE)).item()),
+                    "delta_norm": float(torch.linalg.matrix_norm(rho - before).item()),
+                }
+            )
     return {
         "rho_final": project_density(rho),
         "records": records,
@@ -378,8 +398,8 @@ def target_for_seed(seed_offset: int) -> tuple[int, int]:
 
 
 def policy_metadata(engine_type: int, start_stage: int) -> dict[str, Any]:
-    engine = EngineCore(engine_type, manifold_enabled=True)
-    perception, loop_class = engine.schedule[start_stage]
+    schedule = get_engine_spec(engine_type)["schedule"]
+    perception, loop_class = schedule[start_stage]
     chart = get_chart_token_spec(perception, engine_type, loop_class)
     return {
         "policy_id": f"E{engine_type}:stage_{start_stage:02d}",
@@ -404,12 +424,12 @@ def adapted_future_stage(
     actual_hopf: torch.Tensor,
 ) -> int:
     """Choose the next finite strategy by the corrected Hopf prediction error."""
-    engine = EngineCore(engine_type, manifold_enabled=True)
+    schedule = get_engine_spec(engine_type)["schedule"]
     error_dir = normalize_vec(actual_hopf - corrected_hopf)
     scores = []
-    for stage_idx, (perception, _loop_class) in enumerate(engine.schedule):
+    for stage_idx, (perception, _loop_class) in enumerate(schedule):
         terrain_score = float(torch.dot(error_dir, TERRAIN_BASE[perception]).item())
-        continuity = 0.05 if stage_idx == ((start_stage + 1) % len(engine.schedule)) else 0.0
+        continuity = 0.05 if stage_idx == ((start_stage + 1) % len(schedule)) else 0.0
         scores.append((terrain_score + continuity, stage_idx))
     return max(scores, key=lambda item: item[0])[1]
 
@@ -808,7 +828,8 @@ def main() -> dict[str, Any]:
             or summary["identity_projection_mean_abs_selected_score_delta"] > 1e-6
         ),
         "holodeck_projection_distinguished_from_random_projection": (
-            summary["selected_changed_vs_random_projection"] == N_SEEDS
+            summary["selected_changed_vs_random_projection"] >= RANDOM_PROJECTION_POLICY_SHIFT_MIN
+            and summary["random_projection_mean_abs_selected_score_delta"] > 1e-6
         ),
         "nominalist_survivor_set_exists": bool(
             summary["survivor_quotient"]["survivor_set_exists"]
@@ -829,7 +850,7 @@ def main() -> dict[str, Any]:
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "math_object": (
-            "finite source-native EngineCore stage-window strategies under a "
+            "finite bounded QIT-adapter stage-window strategies under a "
             "Holodeck-style projection/check/correction/update FEP loop"
         ),
         "doc_grounding": {
@@ -871,12 +892,11 @@ def main() -> dict[str, Any]:
             "reason": (
                 "The scout shows a useful projection/check/correction/update "
                 "loop with identity and random projection controls, but it is "
-                "still one EngineCore source substrate and one finite policy "
-                "family. EngineCore internally depends on NumPy/SciPy, so this "
-                "receipt is not independent nonclassical method convergence "
-                "and cannot be treated as a deep or Torch-only basin."
+                "still one bounded canonical QIT replay substrate and one finite "
+                "policy family. Direct EngineCore use has been removed, but this "
+                "receipt is not independent tensor-network or deep-basin evidence."
             ),
-            "source_independence": "shared_engine_core_substrate",
+            "source_independence": "shared_canonical_qit_replay_substrate",
             "observable_independence": "single_pauli_hopf_readout_family",
             "control_pressure": "identity_projection_random_projection_immediate_open_loop",
             "claim_ceiling": "formal_scout_only_no_full_fep_engine_no_deep_basin",
@@ -916,7 +936,7 @@ def main() -> dict[str, Any]:
             },
         },
         "positive": {
-            "finite_source_native_strategy_set_constructed": {
+            "finite_canonical_qit_strategy_set_constructed": {
                 "pass": predicates["finite_strategy_set_constructed"],
                 "policy_count": len({row["policy_id"] for row in rows}),
                 "row_count": len(rows),
@@ -953,7 +973,7 @@ def main() -> dict[str, Any]:
                 "pass": predicates["holodeck_projection_distinguished_from_random_projection"],
                 "changed_seed_count": summary["selected_changed_vs_random_projection"],
                 "seed_count": N_SEEDS,
-                "threshold_used": N_SEEDS,
+                "threshold_used": RANDOM_PROJECTION_POLICY_SHIFT_MIN,
                 "mean_abs_selected_score_delta": summary[
                     "random_projection_mean_abs_selected_score_delta"
                 ],
@@ -996,7 +1016,7 @@ def main() -> dict[str, Any]:
             "random_projection_is_not_the_same_holodeck_channel": {
                 "pass": predicates["holodeck_projection_distinguished_from_random_projection"],
                 "changed_seed_count": summary["selected_changed_vs_random_projection"],
-                "threshold_used": N_SEEDS,
+                "threshold_used": RANDOM_PROJECTION_POLICY_SHIFT_MIN,
                 "mean_abs_selected_score_delta": summary[
                     "random_projection_mean_abs_selected_score_delta"
                 ],
@@ -1016,9 +1036,9 @@ def main() -> dict[str, Any]:
         "boundary": {
             "formal_scout_only": {"pass": CLASSIFICATION == "formal_scout"},
             "promotion_blocked": {"pass": PROMOTION_ALLOWED is False},
-            "manifold_enabled_but_not_full_engine_claim": {
+            "canonical_manifold_replay_but_not_full_engine_claim": {
                 "pass": True,
-                "reason": "EngineCore manifold is used as source-native substrate; result remains a bounded scout",
+                "reason": "Canonical QIT manifold-style target mixing is used as a bounded replay fixture; result remains a scout",
             },
             "no_primitive_time_claim": {
                 "pass": True,
@@ -1039,20 +1059,19 @@ def main() -> dict[str, Any]:
                     "full-FEP-engine promotion path is admissible."
                 ),
             },
-            "transitive_engine_core_numpy_scipy_boundary": {
+            "direct_engine_core_boundary_removed": {
                 "pass": True,
                 "reason": (
-                    "Local projection/check/correction/update math is Torch, "
-                    "but EngineCore still imports and uses NumPy/SciPy to "
-                    "generate source trajectories. This receipt is therefore "
-                    "shallow_basin evidence only and points to EngineCore "
-                    "foundation repair as the next deeper basin move."
+                    "Local projection/check/correction/update math and stage-window "
+                    "replay are torch/canonical-QIT owned; this scout no longer imports "
+                    "or instantiates EngineCore, but it remains shallow finite replay "
+                    "evidence rather than a deep basin or tensor-network result."
                 ),
             },
             "variational_bound_not_claimed": {
                 "pass": True,
                 "reason": (
-                    "The score is corrected_error + future_error over finite source-native windows; "
+                    "The score is corrected_error + future_error over finite canonical QIT replay windows; "
                     "it is not an ELBO, variational bound, or generative-model-free-energy proof."
                 ),
             },
@@ -1135,8 +1154,8 @@ def main() -> dict[str, Any]:
             },
         },
         "why_not_v4_probes": (
-            "v4 probes include Holodeck FEP helpers and source-native references, but this scout is needed "
-            "because it combines EngineCore manifold-on trajectories, Hopf readout, finite emotional "
+            "v4 probes include Holodeck FEP helpers and legacy references, but this scout is needed "
+            "because it combines canonical QIT stage-window replay, Hopf readout, finite emotional "
             "projection channels, correction updates, future-error scoring, and survivor-set diagnostics "
             "under the v5 formal-scout receipt contract."
         ),

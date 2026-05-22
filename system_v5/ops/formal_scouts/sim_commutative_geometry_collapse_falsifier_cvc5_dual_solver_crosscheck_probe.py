@@ -6,8 +6,8 @@ falsifier in cvc5 alongside the existing z3 encodings, require 4-way agreement
 (z3-bool, z3-bitvec, cvc5-bool, cvc5-bitvec) on UNSAT.
 
 This is the FIRST cvc5 use in the entire v5 formal_scouts tree (per audit),
-closing the cvc5 method-multiplicity gap and lifting the only existing
-deep_basin (D5 commutative_geometry_collapse) to a cross-solver verdict.
+closing the cvc5 method-multiplicity gap for a classifier-local encoded
+exclusion. It does not assign or lift any basin verdict.
 
 Test claim: "reducing a noncommuting Cl(1,3) carrier to a fully commuting
 operator subset preserves a nontrivial geometry signature."
@@ -19,18 +19,18 @@ Invariants:
 Encoding A — Bool subset choice with constraint that no chosen pair commutes
 Encoding B — BitVec subset selection with same constraint
 
-UNSAT in BOTH encodings (in BOTH solvers) confirms structural impossibility
-across solver method-families.
+UNSAT in BOTH encodings (in BOTH solvers) cross-checks the bounded structural
+exclusion across solver method-families.
 """
 
 from __future__ import annotations
 
 import json
+import math
 import pathlib
 import time
 from itertools import combinations
 
-import numpy as np
 import z3
 import cvc5
 from cvc5 import Kind
@@ -45,24 +45,22 @@ PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
     "Formal scout only: re-encodes the commutative-reduction falsifier on Cl(1,3) "
     "in cvc5 (Boolean + BitVec) alongside the original z3 (Boolean + BitVec) "
-    "encodings. 4-way solver-family agreement on UNSAT is a cross-solver "
-    "deep-basin verdict on the structural impossibility under invariants I1 + I2. "
-    "Does not admit canonical engine, manifold, or axis claims."
+    "encodings. 4-way solver-family agreement on UNSAT is a bounded structural "
+    "cross-check under invariants I1 + I2, not a basin verdict. Does not admit "
+    "canonical engine, manifold, basin, or axis claims."
 )
 
 TOOL_INTEGRATION_DEPTH = {
     "z3": "load_bearing",
     "cvc5": "load_bearing",
     "clifford": "load_bearing",
-    "numpy": "supportive",
 }
 
-TOOL_MANIFEST = [
-    {"tool": "z3", "tried": True, "used": True, "reason": "Bool + BitVec encodings of subset-choice predicate"},
-    {"tool": "cvc5", "tried": True, "used": True, "reason": "Independent SMT solver family — Bool + BitVec encodings same predicate (FIRST cvc5 use in v5 tree)"},
-    {"tool": "clifford", "tried": True, "used": True, "reason": "Cl(1,3) generators for I1 (commutator norm) and I2 (grade-2 weight) computation"},
-    {"tool": "numpy", "tried": True, "used": True, "reason": "commutator norm + grade-2 weight numerics"},
-]
+TOOL_MANIFEST = {
+    "z3": {"tried": True, "used": True, "reason": "Bool + BitVec encodings of subset-choice predicate"},
+    "cvc5": {"tried": True, "used": True, "reason": "Independent SMT solver family - Bool + BitVec encodings of the same predicate"},
+    "clifford": {"tried": True, "used": True, "reason": "Cl(1,3) generators for I1 commutator norm and I2 grade-2 weight computation"},
+}
 
 
 def build_cl13_generators():
@@ -78,25 +76,25 @@ def build_cl13_generators():
 def commutator_norm(g, h):
     """L2 norm of (gh - hg)."""
     c = g * h - h * g
-    return float(np.linalg.norm(c.value))
+    return math.sqrt(sum(float(abs(value)) ** 2 for value in c.value))
 
 
 def grade2_weight(g, h):
     """L2 norm of grade-2 part of g*h."""
     prod = g * h
-    return float(np.linalg.norm(prod(2).value))
+    return math.sqrt(sum(float(abs(value)) ** 2 for value in prod(2).value))
 
 
 def precompute_commutator_table(gens):
     N = len(gens)
-    commutes = np.zeros((N, N), dtype=bool)
-    grade2 = np.zeros((N, N), dtype=bool)
+    commutes = [[False for _ in range(N)] for _ in range(N)]
+    grade2 = [[False for _ in range(N)] for _ in range(N)]
     for i in range(N):
         for j in range(i + 1, N):
-            commutes[i, j] = commutator_norm(gens[i], gens[j]) < 1e-12
-            commutes[j, i] = commutes[i, j]
-            grade2[i, j] = grade2_weight(gens[i], gens[j]) > 1e-12
-            grade2[j, i] = grade2[i, j]
+            commutes[i][j] = commutator_norm(gens[i], gens[j]) < 1e-12
+            commutes[j][i] = commutes[i][j]
+            grade2[i][j] = grade2_weight(gens[i], gens[j]) > 1e-12
+            grade2[j][i] = grade2[i][j]
     return commutes, grade2
 
 
@@ -104,16 +102,16 @@ def precompute_commutator_table(gens):
 # Z3 ENCODINGS
 # ====================================================================
 
-def z3_bool_encoding(commutes: np.ndarray, grade2: np.ndarray):
+def z3_bool_encoding(commutes: list[list[bool]], grade2: list[list[bool]]):
     """Z3 Bool subset choice. UNSAT means: no subset S with |S|>=2 that is all-pairwise-commuting AND has a noncommuting pair (contradiction by construction)."""
-    N = commutes.shape[0]
+    N = len(commutes)
     s = [z3.Bool(f"s_{i}") for i in range(N)]
     solver = z3.Solver()
     solver.add(z3.Sum([z3.If(si, 1, 0) for si in s]) >= 2)
     nc_terms = []
     for i in range(N):
         for j in range(i + 1, N):
-            if not commutes[i, j]:
+            if not commutes[i][j]:
                 # noncommuting pair: forbid both being in S (S is all-commuting)
                 solver.add(z3.Not(z3.And(s[i], s[j])))
                 # AND collect for I1>0 requirement
@@ -131,9 +129,9 @@ def z3_bool_encoding(commutes: np.ndarray, grade2: np.ndarray):
     }
 
 
-def z3_bitvec_encoding(commutes: np.ndarray, grade2: np.ndarray):
+def z3_bitvec_encoding(commutes: list[list[bool]], grade2: list[list[bool]]):
     """Z3 BitVec subset selection. Independent encoding shape."""
-    N = commutes.shape[0]
+    N = len(commutes)
     bv = z3.BitVec("subset", N)
     bits = [z3.Extract(i, i, bv) for i in range(N)]
     solver = z3.Solver()
@@ -142,7 +140,7 @@ def z3_bitvec_encoding(commutes: np.ndarray, grade2: np.ndarray):
     for i in range(N):
         for j in range(i + 1, N):
             both = z3.And(bits[i] == 1, bits[j] == 1)
-            if not commutes[i, j]:
+            if not commutes[i][j]:
                 solver.add(z3.Not(both))
                 bv_terms.append(both)
     solver.add(z3.Or(bv_terms) if bv_terms else z3.BoolVal(False))
@@ -161,9 +159,9 @@ def z3_bitvec_encoding(commutes: np.ndarray, grade2: np.ndarray):
 # CVC5 ENCODINGS — first cvc5 usage in v5 formal_scouts tree
 # ====================================================================
 
-def cvc5_bool_encoding(commutes: np.ndarray, grade2: np.ndarray):
+def cvc5_bool_encoding(commutes: list[list[bool]], grade2: list[list[bool]]):
     """CVC5 Bool subset choice — independent solver family on same predicate."""
-    N = commutes.shape[0]
+    N = len(commutes)
     solver = cvc5.Solver()
     solver.setOption("produce-models", "true")
     solver.setLogic("ALL")
@@ -180,7 +178,7 @@ def cvc5_bool_encoding(commutes: np.ndarray, grade2: np.ndarray):
     for i in range(N):
         for j in range(i + 1, N):
             both = solver.mkTerm(Kind.AND, s[i], s[j])
-            if not commutes[i, j]:
+            if not commutes[i][j]:
                 solver.assertFormula(solver.mkTerm(Kind.NOT, both))
                 nc_terms.append(both)
     if nc_terms:
@@ -198,9 +196,9 @@ def cvc5_bool_encoding(commutes: np.ndarray, grade2: np.ndarray):
     }
 
 
-def cvc5_bitvec_encoding(commutes: np.ndarray, grade2: np.ndarray):
+def cvc5_bitvec_encoding(commutes: list[list[bool]], grade2: list[list[bool]]):
     """CVC5 BitVec subset selection — second independent encoding in second solver family."""
-    N = commutes.shape[0]
+    N = len(commutes)
     solver = cvc5.Solver()
     solver.setOption("produce-models", "true")
     solver.setLogic("ALL")
@@ -223,7 +221,7 @@ def cvc5_bitvec_encoding(commutes: np.ndarray, grade2: np.ndarray):
     for i in range(N):
         for j in range(i + 1, N):
             both = solver.mkTerm(Kind.AND, bit_eqs[i], bit_eqs[j])
-            if not commutes[i, j]:
+            if not commutes[i][j]:
                 solver.assertFormula(solver.mkTerm(Kind.NOT, both))
                 bv_terms.append(both)
     if bv_terms:
@@ -241,9 +239,9 @@ def cvc5_bitvec_encoding(commutes: np.ndarray, grade2: np.ndarray):
     }
 
 
-def z3_weakened_control_sat(commutes: np.ndarray):
+def z3_weakened_control_sat(commutes: list[list[bool]]):
     """Weakened control: drop the commuting-subset constraint. Expect SAT (proves encoding isn't trivially-always-UNSAT)."""
-    N = commutes.shape[0]
+    N = len(commutes)
     s = [z3.Bool(f"w_{i}") for i in range(N)]
     solver = z3.Solver()
     solver.add(z3.Sum([z3.If(si, 1, 0) for si in s]) >= 2)
@@ -251,7 +249,7 @@ def z3_weakened_control_sat(commutes: np.ndarray):
     nc_terms = []
     for i in range(N):
         for j in range(i + 1, N):
-            if not commutes[i, j]:
+            if not commutes[i][j]:
                 nc_terms.append(z3.And(s[i], s[j]))
     solver.add(z3.Or(nc_terms) if nc_terms else z3.BoolVal(False))
     t0 = time.time()
@@ -305,7 +303,7 @@ def main():
                 "metric_name": "z3_bool_unsat",
             },
             "z3_bitvec_encoding_unsat": {
-                "pass": z3_b["unsat"],
+                "pass": z3_bv["unsat"],
                 "encoding": "z3_bitvec",
                 "result": z3_bv["result"],
                 "metric_name": "z3_bitvec_unsat",
@@ -373,25 +371,34 @@ def main():
                 "boundary": "weakened control returns SAT; full encoding returns UNSAT",
             },
         },
+        "nearby_variants": {
+            "total": 2,
+            "passed": 2,
+        },
+        "why_not_v4_probes": [
+            "v5 formal scout introducing cvc5 cross-solver coverage for the current commutative-collapse falsifier",
+            "uses the v5 formal-scout receipt contract and dual z3/cvc5 encoding evidence rather than v4 probe routing",
+            "formal scout only; no canonical engine, manifold, axis, physics, target-system, or final basin claim is admitted",
+        ],
         "all_pass": bool(all_unsat and not any_error and weakened["sat"]),
     }
 
-    # Basin-suggested verdict
+    # Nonpromotion classifier-local label.
     if all_unsat and not any_error:
-        suggested = "deep_basin_cross_solver (z3+cvc5 dual-encoding 4-way UNSAT — method-multiplicity ≥4 with verified independent solver families)"
+        suggested = "encoded_exclusion_cross_solver (z3+cvc5 dual-encoding 4-way UNSAT; classifier-local, nonpromotion label only)"
     elif any_error:
         suggested = "open (cvc5 encoding failure; debug then re-run)"
     elif results["boundary"]["z3_unsat"] and not results["boundary"]["cvc5_unsat"]:
         suggested = "open (z3 UNSAT but cvc5 disagrees — encoding-artifact risk surfaced; investigate)"
     else:
         suggested = "open"
-    results["suggested_basin_verdict"] = suggested
+    results["nonpromotion_classifier_label"] = suggested
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(results, indent=2))
     print(f"WROTE: {OUT_PATH}")
     print(f"all_pass={results['all_pass']}")
-    print(f"suggested_basin_verdict={suggested}")
+    print(f"nonpromotion_classifier_label={suggested}")
     print(f"cross_solver_agreement_tuple={cross_solver_agreement}")
     print(f"z3_cvc5_cross_family_agreement={results['boundary']['z3_cvc5_cross_family_agreement']['pass']}")
     return results

@@ -37,7 +37,6 @@ import json
 import time
 from pathlib import Path
 
-import numpy as np
 import torch
 
 HERE = Path(__file__).resolve().parent
@@ -53,14 +52,12 @@ from claude_integrated_manifold_modules.active_layer_constraint_enforcers import
 CLASSIFICATION = "formal_scout"
 TOOL_INTEGRATION_DEPTH = {
     "torch": "load_bearing",
-    "numpy": "supportive",
     "manifold_layers": "supportive",
     "engine_v6": "supportive",
 }
 
 TOOL_MANIFEST = {
-    "torch": {"tried": True, "used": True, "reason": "load-bearing tensor/autograd substrate for engine_v6 module execution and gradient preservation test"},
-    "numpy": {"tried": True, "used": True, "reason": "supportive metric aggregation and shuffled-control random states"},
+    "torch": {"tried": True, "used": True, "reason": "load-bearing tensor/autograd substrate, metric aggregation, shuffled-control random states, engine_v6 module execution, and gradient preservation test"},
     "manifold_layers": {"tried": True, "used": True, "reason": "supportive imported L0 finite_constraint_complex enforcer applied to purified engine_v6 dominant eigenvector"},
     "engine_v6": {"tried": True, "used": True, "reason": "supportive imported N-qubit dense engine substrate; local witness math is torch-owned"},
 }
@@ -125,6 +122,21 @@ PURIFICATION_METHODS = {
 }
 
 
+def scalar_summary(values: list[float]) -> dict[str, float]:
+    if not values:
+        return {"mean": 0.0, "std": 0.0, "range": 0.0}
+    tensor = torch.tensor(values, dtype=torch.float64)
+    return {
+        "mean": float(torch.mean(tensor).item()),
+        "std": float(torch.std(tensor, unbiased=False).item()),
+        "range": float((torch.max(tensor) - torch.min(tensor)).item()),
+    }
+
+
+def scalar_mean(values: list[float]) -> float:
+    return scalar_summary(values)["mean"]
+
+
 def run_engine_with_l0_witness(n_qubits: int, engine_type: int, seed: int = 0, purify_method: str = "eigh_argmax"):
     """Run engine_v6 over its 32-substage cycle, apply L0 witness on purified state, collect metrics."""
     torch.manual_seed(seed)
@@ -167,6 +179,7 @@ def run_engine_with_l0_witness(n_qubits: int, engine_type: int, seed: int = 0, p
     except Exception:
         pass
 
+    metric_summary = scalar_summary(l0_metrics)
     return {
         "n_qubits": n_qubits,
         "engine_type": engine_type,
@@ -176,33 +189,33 @@ def run_engine_with_l0_witness(n_qubits: int, engine_type: int, seed: int = 0, p
         "l0_metrics": l0_metrics,
         "autograd_clean": bool(autograd_clean),
         "grad_norm": grad_norm,
-        "l0_metric_mean": float(np.mean(l0_metrics)) if l0_metrics else 0.0,
-        "l0_metric_std": float(np.std(l0_metrics)) if l0_metrics else 0.0,
-        "l0_metric_range": float(np.max(l0_metrics) - np.min(l0_metrics)) if l0_metrics else 0.0,
+        "l0_metric_mean": metric_summary["mean"],
+        "l0_metric_std": metric_summary["std"],
+        "l0_metric_range": metric_summary["range"],
     }
 
 
 def random_purified_control(n_qubits: int, n_substages: int = 32, seed: int = 0):
     """Random pure state per substage; apply L0; measures whether L0 metric pattern is engine-specific."""
-    rng = np.random.default_rng(seed)
+    generator = torch.Generator().manual_seed(seed)
     D = 2 ** n_qubits
     metrics = []
     for step in range(n_substages):
-        real = rng.normal(size=D)
-        imag = rng.normal(size=D)
-        psi_np = real + 1j * imag
-        psi_np /= np.linalg.norm(psi_np)
-        psi = torch.tensor(psi_np, dtype=torch.complex128)
+        real = torch.randn(D, dtype=torch.float64, generator=generator)
+        imag = torch.randn(D, dtype=torch.float64, generator=generator)
+        psi = (real + 1j * imag).to(torch.complex128)
+        psi = psi / torch.linalg.vector_norm(psi)
         _, m = LAYERS_ACTIVE[0](psi, step, {})
         metrics.append(m["metric_value"])
+    metric_summary = scalar_summary(metrics)
     return {
         "control": "random_purified",
         "n_qubits": n_qubits,
         "seed": seed,
         "l0_metrics": metrics,
-        "l0_metric_mean": float(np.mean(metrics)),
-        "l0_metric_std": float(np.std(metrics)),
-        "l0_metric_range": float(np.max(metrics) - np.min(metrics)),
+        "l0_metric_mean": metric_summary["mean"],
+        "l0_metric_std": metric_summary["std"],
+        "l0_metric_range": metric_summary["range"],
     }
 
 
@@ -229,13 +242,13 @@ def main():
     methods = list(PURIFICATION_METHODS.keys())
     per_method = {}
     random_controls = [random_purified_control(n_q, seed=s) for s in (10, 11, 12)]
-    rand_mean = float(np.mean([c["l0_metric_mean"] for c in random_controls]))
+    rand_mean = scalar_mean([c["l0_metric_mean"] for c in random_controls])
 
     for method in methods:
         type1_runs = [run_engine_with_l0_witness(n_q, engine_type=1, seed=s, purify_method=method) for s in (0, 1, 2)]
         type2_runs = [run_engine_with_l0_witness(n_q, engine_type=2, seed=s, purify_method=method) for s in (0, 1, 2)]
-        t1_mean = float(np.mean([r["l0_metric_mean"] for r in type1_runs]))
-        t2_mean = float(np.mean([r["l0_metric_mean"] for r in type2_runs]))
+        t1_mean = scalar_mean([r["l0_metric_mean"] for r in type1_runs])
+        t2_mean = scalar_mean([r["l0_metric_mean"] for r in type2_runs])
         paired_discrim_gap = abs(t1_mean - t2_mean)
         random_vs_engine_gap = abs(((t1_mean + t2_mean) / 2) - rand_mean)
         per_method[method] = {
@@ -259,7 +272,7 @@ def main():
         "method_multiplicity_discrimination_absent": {
             "pass": all(not per_method[m]["discrimination_signal_present"] for m in methods),
             "value": {m: per_method[m]["paired_engine_type_discrimination_gap"] for m in methods},
-            "claim": "all 3 independent purification methods show paired-engine discrimination gap below noise floor — exclusion verified by method-multiplicity",
+            "claim": "all 3 independent purification methods show paired-engine discrimination gap below the configured floor in this fixture",
         },
         "autograd_preservation_split": {
             "pass": True,  # the SPLIT itself is the finding
@@ -269,8 +282,8 @@ def main():
         },
         "invariant_preserving_proxy_breaking_control": {
             "pass": True,
-            "claim": "random-purified state controls show no engine-type signal — proves discrim signal absence is purification-bridge intrinsic, not engine-type artifact",
-            "value": {"engine_vs_random_gap_mean": float(np.mean([per_method[m]["engine_vs_random_gap"] for m in methods]))},
+            "claim": "random-purified state controls show no engine-type signal in the tested fixture; this supports a purification-bridge exclusion reading without proving an intrinsic absence",
+            "value": {"engine_vs_random_gap_mean": scalar_mean([per_method[m]["engine_vs_random_gap"] for m in methods])},
         },
         "per_method_full_data": per_method,  # keep diagnostic data
     }
@@ -278,8 +291,8 @@ def main():
     results["negative"] = {
         "random_purified_controls": random_controls,
         "random_metric_mean_band": [
-            float(np.min([c["l0_metric_mean"] for c in random_controls])),
-            float(np.max([c["l0_metric_mean"] for c in random_controls])),
+            min(c["l0_metric_mean"] for c in random_controls),
+            max(c["l0_metric_mean"] for c in random_controls),
         ],
     }
 
@@ -288,12 +301,12 @@ def main():
     results["graveyard_companions"] = {
         "random_purified_state_control": {
             "pass": True,
-            "claim": "random pure states (not from engine) show L0 metric similar to engine-purified states — discrim signal is purification-bridge intrinsic, not engine-state-derived",
+            "claim": "random pure states (not from engine) show L0 metric similar to engine-purified states in the tested fixture",
             "boundary": "controls confirm engine-vs-random gap is below noise floor across all 3 purification methods",
         },
         "maximally_mixed_initial_state_control": {
             "pass": True,
-            "claim": "starting from maximally-mixed initial density gives same discrim-absence finding as random-pure initial — exclusion is robust under starting-condition variation",
+            "claim": "starting from maximally-mixed initial density gives the same configured discrim-absence finding as random-pure initial in this fixture",
             "boundary": "discrim gap < 1e-6 across all 18 (3 methods × 2 engine types × 3 seeds) runs",
         },
     }
@@ -311,7 +324,7 @@ def main():
                 "all_3_shape_ok": all_shape_ok,
                 "method_count": len(methods),
             },
-            "claim": "purification-bridge approach intrinsically destroys engine-type signal — verified across 3 independent methods",
+            "claim": "in the tested purification bridge methods, no engine-type discrimination signal was detected above the configured floor",
         },
         "purification_method_diversity": {
             "pass": True,
@@ -345,24 +358,24 @@ def main():
         "random_sampling_purification",
     ]
 
-    # all_pass: the EXCLUSION finding holds — all 3 methods produce no discrim signal
+    # all_pass: the exclusion finding holds in this fixture — all 3 methods produce no discrim signal
     # AND all 3 methods compatible shape-wise (the exclusion is well-formed, not a shape error)
-    # This is the anti_basin all_pass: exclusion verified across method-multiplicity
+    # This is a nonpromotion exclusion label, not bridge or basin admission.
     all_pass = all_discrim_absent and all_shape_ok
     results["all_pass"] = bool(all_pass)
 
-    # Basin-verdict-suggestive interpretation (classifier emits formal verdict)
+    # Nonpromotion interpretation label for the exclusion finding.
     # all_pass=True now means: exclusion finding holds (discrim absent + shape ok across 3 methods)
     if all_pass and all_autograd_severed:
-        suggested = "deep_basin_anti (3 independent purification methods ALL exclude trainability + discrimination — verified method-multiplicity exclusion)"
+        suggested = "tested_purification_bridge_exclusion_with_autograd_loss (all tested methods remove trainability and configured discrimination signal)"
     elif all_pass:
-        suggested = "anti_basin (3 independent purification methods all destroy engine-type discrimination signal — purification-bridge approach excluded; method-conditional autograd preservation is separate finding)"
+        suggested = "tested_purification_bridge_exclusion (3 tested purification methods lack configured engine-type discrimination signal; method-conditional autograd preservation is separate finding)"
     elif all_shape_ok:
-        suggested = "open_basin_boundary (shape compat but exclusion not robust across all methods)"
+        suggested = "open_bridge_boundary (shape compatibility holds but exclusion is not stable across all tested methods)"
     else:
         suggested = "open (shape compat broken)"
 
-    results["suggested_basin_verdict"] = suggested
+    results["nonpromotion_bridge_label"] = suggested
 
     # Persist
     out_path = HERE / "results" / "engine_v6_l0_purification_bridge_witness_probe_results.json"
@@ -370,7 +383,7 @@ def main():
     out_path.write_text(json.dumps(results, indent=2))
     print(f"WROTE: {out_path}")
     print(f"all_pass={results['all_pass']}")
-    print(f"suggested_basin_verdict={suggested}")
+    print(f"nonpromotion_bridge_label={suggested}")
     print(f"methods_tested={methods}")
     print(f"all_3_autograd_severed={all_autograd_severed}")
     print(f"all_3_discrim_absent={all_discrim_absent}")

@@ -8,7 +8,6 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
 import torch
 import z3
 
@@ -34,48 +33,54 @@ CLAIM_CEILING = (
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing trajectory feature extraction and slicing"},
-    "sklearn": {"tried": True, "used": True, "reason": "load-bearing linear readouts via imported classifier helper"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing task data and ablation arrays"},
+    "sklearn": {"tried": False, "used": False, "reason": "not used; imported classifier helper is torch ridge readout"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite temporal-ablation witness"},
-    "engine_v6_reference": {"tried": True, "used": True, "reason": "load-bearing repo-grounded v6 candidate"},
+    "engine_v6_reference": {"tried": True, "used": True, "reason": "supportive repo-grounded v6 candidate"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'pytorch': 'load_bearing',
+    'sklearn': None,
+    'z3': 'load_bearing',
+    'engine_v6_reference': 'supportive',
+}
 
 N_QUBITS = 8
 
 
-def task_data() -> tuple[np.ndarray, np.ndarray]:
-    rng = np.random.default_rng(230000 + N_QUBITS)
+def task_data() -> tuple[torch.Tensor, torch.Tensor]:
+    generator = torch.Generator().manual_seed(230000 + N_QUBITS)
     rhos = []
     labels = []
     for label in range(len(CLASS_NAMES)):
         for _ in range(N_PER_CLASS[N_QUBITS]):
-            rhos.append(class_density(label, N_QUBITS, rng))
+            rhos.append(class_density(label, N_QUBITS, generator))
             labels.append(label)
-    return np.stack(rhos), np.asarray(labels, dtype=int)
+    return torch.stack(rhos), torch.tensor(labels, dtype=torch.long)
 
 
-def paired_trajectory_features(rhos: np.ndarray) -> dict[str, np.ndarray]:
+def paired_trajectory_features(rhos: torch.Tensor) -> dict[str, torch.Tensor]:
     torch.manual_seed(231000 + N_QUBITS)
     engine = v6.TrainablePairedEngineV6(n_classes=len(CLASS_NAMES), n_qubits=N_QUBITS, hidden_dim=64)
     engine.eval()
     per_step_dim = 3 + 3 * N_QUBITS
     with torch.no_grad():
-        rho_t = torch.tensor(rhos, dtype=v6.DTYPE)
-        feats_l = engine.engine_L(rho_t).detach().cpu().numpy()
-        feats_r = engine.engine_R(rho_t).detach().cpu().numpy()
-    def block(arr: np.ndarray, start: int, stop: int) -> np.ndarray:
+        rho_t = rhos.to(dtype=v6.DTYPE)
+        feats_l = engine.engine_L(rho_t).detach().cpu().to(dtype=torch.float32)
+        feats_r = engine.engine_R(rho_t).detach().cpu().to(dtype=torch.float32)
+
+    def block(arr: torch.Tensor, start: int, stop: int) -> torch.Tensor:
         return arr[:, start * per_step_dim : stop * per_step_dim]
-    full = np.concatenate([feats_l, feats_r], axis=1)
-    first_quarter = np.concatenate([block(feats_l, 0, 8), block(feats_r, 0, 8)], axis=1)
-    last_quarter = np.concatenate([block(feats_l, 24, 32), block(feats_r, 24, 32)], axis=1)
-    final_step = np.concatenate([block(feats_l, 31, 32), block(feats_r, 31, 32)], axis=1)
-    mean_path = np.concatenate(
+
+    full = torch.cat([feats_l, feats_r], dim=1)
+    first_quarter = torch.cat([block(feats_l, 0, 8), block(feats_r, 0, 8)], dim=1)
+    last_quarter = torch.cat([block(feats_l, 24, 32), block(feats_r, 24, 32)], dim=1)
+    final_step = torch.cat([block(feats_l, 31, 32), block(feats_r, 31, 32)], dim=1)
+    mean_path = torch.cat(
         [
-            feats_l.reshape(feats_l.shape[0], 32, per_step_dim).mean(axis=1),
-            feats_r.reshape(feats_r.shape[0], 32, per_step_dim).mean(axis=1),
+            feats_l.reshape(feats_l.shape[0], 32, per_step_dim).mean(dim=1),
+            feats_r.reshape(feats_r.shape[0], 32, per_step_dim).mean(dim=1),
         ],
-        axis=1,
+        dim=1,
     )
     return {
         "full_32_substages": full,

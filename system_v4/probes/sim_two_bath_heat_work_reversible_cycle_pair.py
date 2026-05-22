@@ -45,6 +45,7 @@ except Exception:  # pragma: no cover
 
 CLASSIFICATION = "canonical"
 classification = CLASSIFICATION
+SIM_EXECUTION_KIND = "classical"
 divergence_log = (
     "Two-bath heat/work reversible cycle-pair row: same finite qubit working "
     "substance, two opposite cycle directions. It supports cycle visualization "
@@ -80,7 +81,22 @@ TOOL_MANIFEST = {
     "e3nn": {"tried": False, "used": False, "reason": "not used because this calibration has no equivariant tensor field"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    tool: ("load_bearing" if entry["used"] else None) for tool, entry in TOOL_MANIFEST.items()
+    "numpy": "load_bearing",
+    "scipy": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "qutip": "load_bearing",
+    "qiskit": "load_bearing",
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "supportive",
+    "gudhi": "supportive",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
 }
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -514,7 +530,7 @@ def main() -> None:
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
-        "sim_execution_kind": "bridge",
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "allowed_claims": [
             "two-bath heat/work reversible cycle-pair sim exists and runs",
             "opposite-direction heating/cooling loop bookkeeping",

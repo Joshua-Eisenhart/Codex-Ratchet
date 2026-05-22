@@ -13,12 +13,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import pathlib
 import time
 from collections import Counter
 from typing import Any
 
-import numpy as np
+import torch
 import z3
 
 import axis0_guard_utils as axis0_guard
@@ -42,7 +43,7 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
         "reason": "load-bearing entropy vectors, invariant gaps, and token-inventory controls",
@@ -58,13 +59,18 @@ TOOL_MANIFEST = {
         "reason": "load-bearing source-native 64-substage records and ordered_token schedule",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'pytorch': 'load_bearing',
+    'z3': 'load_bearing',
+    'engine_core': 'supportive',
+}
 
 NONZERO_FRACTION_FLOOR = 0.20
 VARIANCE_FLOOR = 1e-8
 PATH_ENTROPY_EQUALITY_TOL = 1e-12
 DEEPER_INVARIANT_GAP_FLOOR = 1e-3
 DECYCLICIZED_STRIDE = 5
+FLOAT_DTYPE = torch.float64
 
 
 def as_jsonable(value: Any) -> Any:
@@ -74,12 +80,8 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().tolist()
     return value
 
 
@@ -100,23 +102,23 @@ def load_result(name: str) -> dict[str, Any]:
 def categorical_entropy(values: list[str]) -> float:
     counts = Counter(values)
     total = float(sum(counts.values()))
-    probs = np.array([count / total for count in counts.values()], dtype=float)
-    return float(-np.sum(probs * np.log(probs)))
+    probs = torch.tensor([count / total for count in counts.values()], dtype=FLOAT_DTYPE)
+    return float(-(probs * torch.log(probs)).sum().item())
 
 
 def rolling(values: list[str], width: int = 8) -> list[list[str]]:
     return [values[max(0, i - width + 1): i + 1] for i in range(len(values))]
 
 
-def path_entropy_vector(tokens: list[str]) -> np.ndarray:
-    ent = np.array([categorical_entropy(window) for window in rolling(tokens, width=8)], dtype=float)
-    return np.diff(ent)
+def path_entropy_vector(tokens: list[str]) -> torch.Tensor:
+    ent = torch.tensor([categorical_entropy(window) for window in rolling(tokens, width=8)], dtype=FLOAT_DTYPE)
+    return torch.diff(ent)
 
 
-def candidate_status(vector: np.ndarray) -> dict[str, Any]:
-    finite = bool(vector.size and np.all(np.isfinite(vector)))
-    nonzero_fraction = float(np.mean(np.abs(vector) > 1e-12)) if vector.size else 0.0
-    variance = float(np.var(vector)) if vector.size else 0.0
+def candidate_status(vector: torch.Tensor) -> dict[str, Any]:
+    finite = bool(vector.numel() and torch.all(torch.isfinite(vector)).item())
+    nonzero_fraction = float(torch.mean((torch.abs(vector) > 1e-12).to(FLOAT_DTYPE)).item()) if vector.numel() else 0.0
+    variance = float(torch.var(vector, unbiased=False).item()) if vector.numel() else 0.0
     blockers: dict[str, Any] = {}
     if not finite:
         blockers["candidate_vector_missing_or_nonfinite"] = {"claim": "candidate vector is missing or nonfinite"}
@@ -129,10 +131,10 @@ def candidate_status(vector: np.ndarray) -> dict[str, Any]:
         blockers["candidate_vector_variance_too_small"] = {"variance": variance, "floor": VARIANCE_FLOOR}
     return {
         "finite": finite,
-        "vector_len": int(vector.size),
+        "vector_len": int(vector.numel()),
         "nonzero_fraction": nonzero_fraction,
         "variance": variance,
-        "mean_abs": float(np.mean(np.abs(vector))) if vector.size else 0.0,
+        "mean_abs": float(torch.mean(torch.abs(vector)).item()) if vector.numel() else 0.0,
         "explicit_blockers": blockers,
         "candidate_admissible_for_downstream_drop_controls": bool(finite and not blockers),
     }
@@ -147,23 +149,23 @@ def run_rows(*, manifold_enabled: bool) -> list[dict[str, Any]]:
 
 
 def decyclicize_tokens(tokens: list[str], stride: int = DECYCLICIZED_STRIDE) -> list[str]:
-    if np.gcd(stride, len(tokens)) != 1:
+    if math.gcd(stride, len(tokens)) != 1:
         raise ValueError("stride must be coprime with token count")
     return [tokens[(idx * stride) % len(tokens)] for idx in range(len(tokens))]
 
 
 def bloch_path_length(rows: list[dict[str, Any]]) -> float:
-    bloch = np.asarray([row["model_after"]["bloch"] for row in rows], dtype=float)
-    return float(np.sum(np.linalg.norm(np.diff(bloch, axis=0), axis=1)))
+    bloch = torch.tensor([row["model_after"]["bloch"] for row in rows], dtype=FLOAT_DTYPE)
+    return float(torch.sum(torch.linalg.vector_norm(torch.diff(bloch, dim=0), dim=1)).item())
 
 
-def fep_gradient(rows: list[dict[str, Any]]) -> np.ndarray:
-    efe = np.asarray([row["fep_efe_score"]["expected_free_energy_proxy"] for row in rows], dtype=float)
-    return np.diff(efe)
+def fep_gradient(rows: list[dict[str, Any]]) -> torch.Tensor:
+    efe = torch.tensor([row["fep_efe_score"]["expected_free_energy_proxy"] for row in rows], dtype=FLOAT_DTYPE)
+    return torch.diff(efe)
 
 
-def observation_matrix(rows: list[dict[str, Any]]) -> np.ndarray:
-    return np.asarray([row["observation"]["observation_distribution"] for row in rows], dtype=float)
+def observation_matrix(rows: list[dict[str, Any]]) -> torch.Tensor:
+    return torch.tensor([row["observation"]["observation_distribution"] for row in rows], dtype=FLOAT_DTYPE)
 
 
 def z3_confound_witness(
@@ -212,12 +214,12 @@ def main() -> int:
     no_manifold_status = candidate_status(no_manifold_vector)
     decyclicized_status = candidate_status(decyclicized_vector)
 
-    fep_gap = float(np.linalg.norm(fep_gradient(rows_on) - fep_gradient(rows_off)))
+    fep_gap = float(torch.linalg.vector_norm(fep_gradient(rows_on) - fep_gradient(rows_off)).item())
     bloch_path_on = bloch_path_length(rows_on)
     bloch_path_off = bloch_path_length(rows_off)
     bloch_path_gap = float(abs(bloch_path_on - bloch_path_off))
-    observation_gap = float(np.linalg.norm(observation_matrix(rows_on) - observation_matrix(rows_off)))
-    path_entropy_delta = float(np.max(np.abs(base_vector - no_manifold_vector)))
+    observation_gap = float(torch.linalg.vector_norm(observation_matrix(rows_on) - observation_matrix(rows_off)).item())
+    path_entropy_delta = float(torch.max(torch.abs(base_vector - no_manifold_vector)).item())
     inventory_equal = Counter(tokens_on) == Counter(decyclicized_tokens)
     base_blocked_by_active_guard = "path_entropy" in guard.get("blocked_candidate_names", [])
     constant_entropy = tokens_on == tokens_off and path_entropy_delta <= PATH_ENTROPY_EQUALITY_TOL
@@ -319,8 +321,8 @@ def main() -> int:
     }
     graveyards = {
         "same_token_inventory_is_not_a_path_entropy_invariant": {
-            "pass": bool(inventory_equal and float(np.linalg.norm(base_vector - decyclicized_vector)) > DEEPER_INVARIANT_GAP_FLOOR),
-            "base_vs_decyclicized_path_entropy_l2": float(np.linalg.norm(base_vector - decyclicized_vector)),
+            "pass": bool(inventory_equal and float(torch.linalg.vector_norm(base_vector - decyclicized_vector).item()) > DEEPER_INVARIANT_GAP_FLOOR),
+            "base_vs_decyclicized_path_entropy_l2": float(torch.linalg.vector_norm(base_vector - decyclicized_vector).item()),
             "token_inventory_equal": inventory_equal,
         },
         "manifold_toggle_is_not_detected_by_schedule_token_path_entropy": {

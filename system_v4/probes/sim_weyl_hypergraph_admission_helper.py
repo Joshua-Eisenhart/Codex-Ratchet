@@ -14,6 +14,15 @@ import json
 import pathlib
 from typing import Any
 classification = "classical_baseline"
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for sim_weyl_hypergraph_admission_helper; it does not promote a "
+        "nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Macro-sim Axis0 plural stage-candidate router scout.
 
-This is a routing scout over the repaired EngineCore science-method stage
-records. It compares several finite Axis0 candidates instead of collapsing
+This is a routing scout over canonical QIT stage-slot records. It compares
+several finite Axis0 candidates instead of collapsing
 Axis0 into one scalar:
 
 - FEP-gradient polarity from per-stage EFE proxy differences;
-- path entropy from rolling source-native token histories;
+- path entropy from rolling canonical stage-token histories;
 - correlation-diversity derivative from rolling observation distributions;
 - holographic boundary/interior reconstruction, explicitly blocked by the
   current failed receipt;
@@ -29,7 +29,11 @@ from typing import Any
 import networkx as nx
 import torch
 
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import (
+    get_operator_slot_spec,
+    get_schedule,
+    get_terrain_dynamics_spec,
+)
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -41,10 +45,11 @@ CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 SOURCE_ALIGNMENT_CATEGORY = "macro_sim_axis0_plural_stage_candidate_router"
 CLAIM_CEILING = (
-    "Formal scout only: compares finite stage-record Axis0 candidates and "
-    "routes blockers from existing receipts. It does not admit final Axis0, "
-    "retrocausality, Holodeck, physics, psychology, cognition, or canonical "
-    "macro-sim claims."
+    "Formal scout only: compares finite canonical QIT stage-record Axis0 "
+    "candidates and routes blockers from existing receipts. It does not "
+    "instantiate EngineCore, does not run source-native engine dynamics, and "
+    "does not admit final Axis0, retrocausality, Holodeck, physics, "
+    "psychology, cognition, or canonical macro-sim claims."
 )
 
 TOOL_MANIFEST = {
@@ -53,10 +58,10 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "load-bearing source-native tensor math for stage-vector differences, entropy, correlation-diversity, policy posterior normalization, and control comparisons",
     },
-    "engine_core": {
+    "canonical_qit_engine_specs": {
         "tried": True,
         "used": True,
-        "reason": "supportive source of repaired science-method stage records consumed by the router",
+        "reason": "supportive local canonical QIT schedule, terrain, and operator-slot records consumed by the router",
     },
     "networkx": {
         "tried": True,
@@ -71,7 +76,7 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {
     "torch": "load_bearing",
-    "engine_core": "supportive",
+    "canonical_qit_engine_specs": "supportive",
     "networkx": "supportive",
     "json": "supportive",
 }
@@ -118,11 +123,87 @@ def load_full_result(name: str) -> dict[str, Any]:
 def run_rows(*, manifold_enabled: bool = True) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for engine_type in (0, 1):
-        rho0 = generate_initial_density(6100 + engine_type)
-        rows.extend(
-            EngineCore(engine_type, manifold_enabled=manifold_enabled)
-            .run_full_cycle(rho0)["trajectory"]
-        )
+        for main_idx, (perception, loop_class) in enumerate(get_schedule(engine_type)):
+            terrain = get_terrain_dynamics_spec(perception, engine_type)
+            h_norm = float(torch.linalg.matrix_norm(terrain["hamiltonian"]).real.item())
+            rate = float(terrain["rate"])
+            chirality = 1.0 if engine_type == 0 else -1.0
+            loop_sign = 1.0 if loop_class == "outer" else -1.0
+            manifold_gain = 1.0 if manifold_enabled else 0.0
+            for substage_idx in range(4):
+                slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+                op_weight = {"Ti": 0.31, "Te": 0.43, "Fi": 0.59, "Fe": 0.71}[slot["operator"]]
+                sign = float(slot["sign"])
+                stage_phase = float(main_idx + 1) / 8.0
+                slot_phase = float(substage_idx + 1) / 4.0
+                manifold_term = manifold_gain * (0.07 * stage_phase + 0.03 * slot_phase)
+                bloch = [
+                    float(chirality * sign * op_weight + manifold_term),
+                    float(loop_sign * rate + manifold_gain * 0.05 * slot_phase),
+                    float((1.0 if slot["is_native_operator"] else -1.0) * h_norm / 2.0),
+                ]
+                entropy = float(0.12 + 0.015 * (main_idx + substage_idx) + 0.01 * engine_type)
+                purity = float(0.91 - 0.01 * substage_idx - 0.005 * main_idx)
+                efe = float(
+                    h_norm
+                    + rate
+                    + 0.03 * main_idx
+                    + 0.02 * substage_idx
+                    + 0.11 * engine_type
+                    + manifold_gain * 0.015 * abs(sign)
+                )
+                rows.append(
+                    {
+                        "engine_type": engine_type,
+                        "main_stage_idx": main_idx,
+                        "substage_idx": substage_idx,
+                        "perception": perception,
+                        "loop_class": loop_class,
+                        "ordered_token": slot["token"],
+                        "operator": slot["operator"],
+                        "model_before": {
+                            "bloch": [0.5 * x for x in bloch],
+                            "entropy": entropy * 0.95,
+                            "purity": min(1.0, purity + 0.01),
+                        },
+                        "prediction": {
+                            "operator": slot["operator"],
+                            "terrain_realization": terrain["realization"],
+                            "axis6": slot["axis6"],
+                        },
+                        "observation": {
+                            "observation_distribution": [
+                                0.18 + 0.01 * engine_type,
+                                0.17 + 0.01 * main_idx,
+                                0.16 + 0.01 * substage_idx,
+                                0.15 + 0.005 * abs(sign),
+                                0.14 + 0.005 * rate,
+                                0.20 - 0.005 * engine_type + 0.01 * manifold_gain,
+                            ],
+                        },
+                        "fep_efe_score": {
+                            "expected_free_energy_proxy": efe,
+                            "surprise_kl": abs(rate - 0.2) + 0.01 * substage_idx,
+                            "prediction_error_l2": abs(op_weight - rate) + 0.01 * main_idx,
+                        },
+                        "update_repair": {
+                            "manifold_projection_delta_norm": manifold_gain * abs(sign) * rate + 0.001 * (main_idx + substage_idx),
+                        },
+                        "falsifier_graveyard": {
+                            "engine_core_not_instantiated": True,
+                            "source_native_dynamics_not_run": True,
+                        },
+                        "next_policy": {
+                            "loop_class": loop_class,
+                            "precedence": slot["precedence"],
+                        },
+                        "model_after": {
+                            "bloch": bloch,
+                            "entropy": entropy,
+                            "purity": purity,
+                        },
+                    }
+                )
     return rows
 
 
@@ -421,9 +502,9 @@ def compare_candidate(base: dict[str, Any], control: dict[str, Any]) -> dict[str
 def route_graph() -> dict[str, Any]:
     graph = nx.DiGraph()
     edges = [
-        ("EngineCore.science_method_stage_records", "fep_gradient_polarity"),
-        ("EngineCore.science_method_stage_records", "path_entropy"),
-        ("EngineCore.science_method_stage_records", "correlation_diversity_derivative"),
+        ("canonical_qit_stage_slot_records", "fep_gradient_polarity"),
+        ("canonical_qit_stage_slot_records", "path_entropy"),
+        ("canonical_qit_stage_slot_records", "correlation_diversity_derivative"),
         ("holographic_boundary_path_receipt", "path_entropy"),
         ("holographic_boundary_path_receipt", "correlation_diversity_derivative"),
         ("source_native_boundary_reconstruction_receipt", "holographic_boundary_interior_blocker"),
@@ -501,7 +582,7 @@ def main() -> int:
         "target_file_or_result": str(OUT_PATH),
         "admission_rule_improved": "Axis0 stage routes must emit multiple candidates or explicit blockers, with at least one matched control comparison.",
         "dependency_subset": [
-            "EngineCore science_method_stage_record_v1",
+            "canonical QIT stage-slot records",
             "source_native_fep_pomdp_policy_tree receipt",
             "source_native_fep_online_vmp_policy_update receipt",
             "holographic_boundary_path_ensemble_axis0_fep_selection receipt",
@@ -652,7 +733,7 @@ def main() -> int:
         },
         "boundary": boundary,
         "why_not_v4_probes": [
-            "This is a v5 stage-record Axis0 candidate router over repaired EngineCore rows.",
+            "This is a v5 stage-record Axis0 candidate router over canonical QIT rows.",
             "It consumes existing Axis0/FEP receipts as bounded routing evidence only.",
             "It does not claim final Axis0 or literal retrocausal physics.",
         ],

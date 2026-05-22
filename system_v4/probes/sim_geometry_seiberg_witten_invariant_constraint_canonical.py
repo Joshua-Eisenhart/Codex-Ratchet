@@ -11,6 +11,8 @@ import os
 import sympy as sp
 from sympy import symbols, Eq, Integer, simplify
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

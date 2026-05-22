@@ -15,12 +15,20 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import gudhi
 import networkx as nx
-import numpy as np
 import sympy as sp
 import torch
 import z3
 
-from engine_core import EngineCore, generate_initial_density, _embed_density_in_higher_dim
+from canonical_qit_engine_specs import (
+    OPERATOR_BASE_ANGLES,
+    OPERATOR_GENERATORS,
+    PERCEPTION_L_MATRICES,
+    SX,
+    SZ,
+    get_operator_slot_spec,
+    get_schedule,
+    get_terrain_dynamics_spec,
+)
 from claude_integrated_manifold_modules.active_layer_constraint_enforcers import (
     LAYER_NAMES,
     N_LAYERS,
@@ -38,20 +46,25 @@ CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
     "Formal scout only: measures per-layer causal responsibility in the 13-layer "
-    "constraint manifold under matched operator-slot density histories. It reports "
-    "effective manifold rank and does not admit final manifold, physics, cognition, "
-    "ontology, or canonical engine claims."
+    "constraint manifold under matched canonical QIT operator-slot density histories. "
+    "It reports effective manifold rank, does not instantiate EngineCore, and "
+    "does not admit source-native engine dynamics, final manifold, physics, "
+    "cognition, ontology, or canonical engine claims."
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing trajectory feature distances and rank matrix"},
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing 13-layer tensor constraint enforcer execution"},
+    "numpy": {"tried": True, "used": False, "reason": "not used directly; trajectory feature distances and rank matrix are torch-native"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing 13-layer tensor constraint enforcer execution, trajectory features, distances, and rank matrix"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing layer dependency graph and reachability sanity"},
     "gudhi": {"tried": True, "used": True, "reason": "load-bearing persistence over layer responsibility vectors"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic 13-layer inventory"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing encoded rank/count witness"},
+    "canonical_qit_engine_specs": {"tried": True, "used": True, "reason": "supportive canonical schedule/operator/terrain metadata for finite density-history fixtures without EngineCore"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    tool: (None if tool == "numpy" else "supportive" if tool == "canonical_qit_engine_specs" else "load_bearing")
+    for tool in TOOL_MANIFEST
+}
 
 
 def as_jsonable(value: Any) -> Any:
@@ -59,40 +72,128 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+    if isinstance(value, torch.Tensor):
+        if value.numel() == 1:
+            return value.item()
+        return value.detach().cpu().tolist()
     return value
 
 
-def state_features(psi: torch.Tensor) -> np.ndarray:
-    arr = psi.detach().cpu().numpy()
-    probs = np.abs(arr) ** 2
-    probs = probs / max(float(probs.sum()), 1e-12)
-    entropy = -float(np.sum(np.clip(probs, 1e-12, None) * np.log(np.clip(probs, 1e-12, None))))
-    return np.array(
-        [
-            float(np.linalg.norm(arr)),
-            entropy,
-            float(np.sum(probs[: len(probs) // 2])),
-            float(np.sum(probs[::2])),
-            float(np.max(probs)),
-            float(np.linalg.norm(arr.real)),
-            float(np.linalg.norm(arr.imag)),
-        ],
-        dtype=float,
-    )
+def state_features(psi: torch.Tensor) -> torch.Tensor:
+    arr = psi.detach().to(torch.complex128)
+    probs = torch.abs(arr) ** 2
+    probs = probs / max(float(probs.sum().item()), 1e-12)
+    clipped = torch.clamp(probs, min=1e-12)
+    entropy = -torch.sum(clipped * torch.log(clipped))
+    return torch.stack(
+        (
+            torch.linalg.norm(arr).real,
+            entropy.real,
+            torch.sum(probs[: len(probs) // 2]).real,
+            torch.sum(probs[::2]).real,
+            torch.max(probs).real,
+            torch.linalg.norm(arr.real),
+            torch.linalg.norm(arr.imag),
+        )
+    ).to(torch.float64)
 
 
-def matched_density_history() -> list[np.ndarray]:
-    engine = EngineCore(0, manifold_enabled=False)
-    rho = generate_initial_density(8801)
-    states: list[np.ndarray] = []
-    for main_idx, (perception, loop_class) in enumerate(engine.schedule):
+def normalize_density(rho: torch.Tensor) -> torch.Tensor:
+    rho = rho.to(torch.complex128)
+    rho = (rho + rho.conj().T) / 2
+    trace = torch.trace(rho)
+    if abs(complex(trace.detach().cpu().item())) < 1e-14:
+        return torch.eye(2, dtype=torch.complex128) / 2
+    rho = rho / trace
+    vals, vecs = torch.linalg.eigh(rho)
+    vals = torch.clamp(vals.real, min=0.0)
+    if float(vals.sum().item()) < 1e-14:
+        return torch.eye(2, dtype=torch.complex128) / 2
+    rho = (vecs * (vals / vals.sum()).to(torch.complex128).unsqueeze(0)) @ vecs.conj().T
+    return (rho + rho.conj().T) / 2
+
+
+def generate_initial_density_torch(seed: int) -> torch.Tensor:
+    generator = torch.Generator().manual_seed(seed)
+    theta = 0.24 + 1.05 * float(torch.rand((), generator=generator).item())
+    phi = 2.0 * math.pi * float(torch.rand((), generator=generator).item())
+    psi = torch.tensor(
+        [math.cos(theta), math.sin(theta) * complex(math.cos(phi), math.sin(phi))],
+        dtype=torch.complex128,
+    ).reshape(2, 1)
+    pure = psi @ psi.conj().T
+    return normalize_density(0.88 * pure + 0.12 * torch.eye(2, dtype=torch.complex128) / 2)
+
+
+def pinch_density(rho: torch.Tensor, axis: str) -> torch.Tensor:
+    if axis == "x":
+        basis = SX
+    elif axis == "z":
+        basis = SZ
+    else:
+        # Use a diagonalizing projection surrogate for the y-labeled terrain channel.
+        basis = OPERATOR_GENERATORS["Fe"]
+    projectors = [
+        (torch.eye(2, dtype=torch.complex128) + basis) / 2,
+        (torch.eye(2, dtype=torch.complex128) - basis) / 2,
+    ]
+    return normalize_density(sum(proj @ rho @ proj.conj().T for proj in projectors))
+
+
+def apply_operator_map(rho: torch.Tensor, op_name: str, sign: int) -> torch.Tensor:
+    if op_name == "Ti":
+        return normalize_density((1.0 - 0.18) * rho + 0.18 * pinch_density(rho, "z"))
+    if op_name == "Te":
+        return normalize_density((1.0 - 0.20) * rho + 0.20 * pinch_density(rho, "x"))
+    generator = OPERATOR_GENERATORS[op_name]
+    angle = float(sign) * OPERATOR_BASE_ANGLES[op_name]
+    unitary = torch.linalg.matrix_exp(-1j * angle * generator)
+    return normalize_density(unitary @ rho @ unitary.conj().T)
+
+
+def apply_terrain_map(rho: torch.Tensor, perception: str, engine_type: int) -> torch.Tensor:
+    spec = get_terrain_dynamics_spec(perception, engine_type)
+    rate = min(max(float(spec["rate"]), 0.0), 1.0)
+    hamiltonian = spec["hamiltonian"].to(torch.complex128)
+    unitary = torch.linalg.matrix_exp(-1j * 0.05 * hamiltonian)
+    evolved = normalize_density(unitary @ rho @ unitary.conj().T)
+    collapse = PERCEPTION_L_MATRICES[perception].to(torch.complex128)
+    dissipated = normalize_density(collapse @ evolved @ collapse.conj().T)
+    return normalize_density((1.0 - rate) * evolved + rate * dissipated)
+
+
+def embed_density_in_higher_dim(rho: torch.Tensor, dim: int = 16) -> torch.Tensor:
+    vals, vecs = torch.linalg.eigh(normalize_density(rho))
+    dominant = vecs[:, int(torch.argmax(vals.real).item())]
+    psi = torch.zeros(dim, dtype=torch.complex128)
+    psi[:2] = dominant
+    generator = torch.Generator().manual_seed(0)
+    pad = (
+        torch.randn(dim - 2, generator=generator, dtype=torch.float64)
+        + 1j * torch.randn(dim - 2, generator=generator, dtype=torch.float64)
+    ).to(torch.complex128) * 0.01
+    psi[2:] = pad
+    norm = torch.linalg.norm(psi)
+    if float(norm.real.item()) < 1e-14:
+        psi[0] = 1.0
+        return psi
+    return psi / norm
+
+
+def matched_density_history() -> list[Any]:
+    engine_type = 0
+    rho = generate_initial_density_torch(8801)
+    states: list[Any] = []
+    for main_idx, (perception, loop_class) in enumerate(get_schedule(engine_type)):
         for sub_idx in range(4):
-            rho, _record = engine.run_substage(rho, perception, loop_class, main_idx, sub_idx)
-            states.append(rho.copy())
+            slot = get_operator_slot_spec(perception, engine_type, loop_class, sub_idx)
+            if slot["precedence"] == "operator_first":
+                rho = apply_operator_map(rho, slot["operator"], int(slot["sign"]))
+                rho = apply_terrain_map(rho, perception, engine_type)
+            else:
+                rho = apply_terrain_map(rho, perception, engine_type)
+                rho = apply_operator_map(rho, slot["operator"], int(slot["sign"]))
+            states.append(rho.clone())
     return states
 
 
@@ -108,13 +209,13 @@ def layer_orders(layer_idx: int) -> dict[str, list[int]]:
 
 
 def run_layer_variant(
-    rho: np.ndarray,
+    rho: Any,
     step: int,
     layer_idx: int,
     variant: str,
     context: dict,
-) -> np.ndarray:
-    psi = _embed_density_in_higher_dim(rho, dim=16)
+) -> torch.Tensor:
+    psi = embed_density_in_higher_dim(rho, dim=16)
     if variant == "full":
         out, _metrics = apply_all_layer_constraints(psi, step, context)
     elif variant == "removed":
@@ -131,12 +232,9 @@ def run_layer_variant(
     return state_features(out)
 
 
-def run_variant_sequence(history: list[np.ndarray], layer_idx: int, variant: str) -> np.ndarray:
+def run_variant_sequence(history: list[Any], layer_idx: int, variant: str) -> torch.Tensor:
     context: dict = {}
-    return np.stack(
-        [run_layer_variant(rho, step, layer_idx, variant, context) for step, rho in enumerate(history)],
-        axis=0,
-    )
+    return torch.stack([run_layer_variant(rho, step, layer_idx, variant, context) for step, rho in enumerate(history)])
 
 
 def responsibility_matrix() -> dict[str, Any]:
@@ -144,10 +242,9 @@ def responsibility_matrix() -> dict[str, Any]:
     variants = ["removed", "validator_only", "delayed", "advanced", "reverse", "adversarial_phase"]
     rows = []
     for layer_idx, name in enumerate(LAYER_NAMES):
-        full_feats = []
         full_arr = run_variant_sequence(history, layer_idx, "full")
         distances = {
-            variant: float(np.linalg.norm(full_arr - run_variant_sequence(history, layer_idx, variant), axis=1).mean())
+            variant: float(torch.linalg.norm(full_arr - run_variant_sequence(history, layer_idx, variant), dim=1).mean().item())
             for variant in variants
         }
         non_substitutable = (
@@ -168,10 +265,10 @@ def responsibility_matrix() -> dict[str, Any]:
 
 
 def persistence(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    points = np.array(
-        [[row["distances"][key] for key in ["removed", "validator_only", "delayed", "advanced", "reverse", "adversarial_phase"]] for row in rows],
-        dtype=float,
-    )
+    points = [
+        [row["distances"][key] for key in ["removed", "validator_only", "delayed", "advanced", "reverse", "adversarial_phase"]]
+        for row in rows
+    ]
     complex_ = gudhi.RipsComplex(points=points, max_edge_length=5.0).create_simplex_tree(max_dimension=2)
     bars = complex_.persistence()
     finite_h0 = sum(1 for dim, bd in bars if dim == 0 and math.isfinite(bd[1]))

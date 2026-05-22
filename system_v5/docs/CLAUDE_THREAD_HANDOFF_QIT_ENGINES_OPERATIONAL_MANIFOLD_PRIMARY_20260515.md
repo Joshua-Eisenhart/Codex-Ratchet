@@ -6,7 +6,7 @@ This document hands off the comprehensive context from the prior Claude thread t
 
 ## Bottom line — where we are
 
-Paired QIT engines run operationally. 18+ formal_scouts on disk this session, all `passes local rerun`. Audit chain round 1 closed (zero P1, two P2 + two P3 findings all patched). Engines compose into bipartite entanglement on a shared 4-dim carrier (peak log-negativity 0.41 at J=0.5). The 13-layer constraint manifold actively constrains the dynamics (13/13 layers fire with state diff > 1e-6 per substage; all required by negative controls). The schedule is non-abelian on random walks (92.6%) but the canonical 8-stage cycle is identity-on-2×2 by designed sign cancellation — non-trivial canonical-cycle holonomy needs higher-dim test.
+Paired QIT engines run operationally. This is a 2026-05-15 handoff snapshot, not the current formal-scout readiness state. Audit chain round 1 closed in that session (zero P1, two P2 + two P3 findings all patched). Engines compose into bipartite entanglement on a shared 4-dim carrier (peak log-negativity 0.41 at J=0.5). The 13-layer constraint manifold actively constrains the dynamics (13/13 layers fire with state diff > 1e-6 per substage; all required by negative controls). The schedule is non-abelian on random walks (92.6%) but the canonical 8-stage cycle is identity-on-2×2 by designed sign cancellation — non-trivial canonical-cycle holonomy needs higher-dim test.
 
 Three load-bearing structural findings emerged this session:
 
@@ -46,7 +46,7 @@ Opus audit ran on all 11 wave-1+2 receipts in fresh context. Verdict: 3 CLEAN, 4
 | Hysteresis is `irreversible_basin_fall`, not path geometry | `passes local rerun` | `sim_fresh_cycle_hysteresis_independence_falsifier_probe.py` (r(20)=0.10); `sim_loop_A_reversibility_attractor_vs_path_geometry_falsifier_probe.py` (h_A/h_F=1.03) |
 | Engines preserve total information, destroy the 4-quadrant label on Bloch | `passes local rerun` | `sim_engine_late_stage_feature_only_classification_falsifier_probe.py` (verdict `front_loaded`); `sim_engine_late_stage_mutual_information_encoded_signal_probe.py` (MI ratio 2.84×) |
 | Manifold-metric trajectory > Bloch trajectory for label decode | `passes local rerun` | `sim_late_stage_richer_readout_family_information_recovery_probe.py` (manifold-metric quadrant 0.63 vs Bloch 0.55) |
-| 4 topology classes (Funnel/Vortex/Pit/Hill) separate via persistence ≥ raw on 32-substage trajectories | `passes local rerun` (Δ=+0.01) | `sim_engine_trajectory_persistent_homology_readout_feature_probe.py` |
+| Historical predecessor: 4 topology classes (Funnel/Vortex/Pit/Hill) separate via persistence >= raw on 32-substage trajectories | dated handoff snapshot only (delta +0.01); do not use as current authority for the later red `sim_chiral_trajectory_persistent_homology_readout_feature_probe.py` row, where persistence underperforms raw | `sim_engine_trajectory_persistent_homology_readout_feature_probe.py` |
 | Full 13-layer + G-structure + both-chiral + source-native composition runs in one sim (dense) | `passes local rerun` | `sim_full_thirteen_layer_active_g_structure_both_chiral_source_native_composition_probe.py` |
 | TEBD-native 13-layer composition runs (bond_max=16, faster than dense) | `passes local rerun` | `sim_full_thirteen_layer_tebd_native_evolution_strict_composition_probe.py` |
 | Track A MPS bug located + fixed (XX+YY annihilates vacuum); α-sweep validates α=0.31 | `passes local rerun` | `claude_integrated_manifold_modules/mps_contraction_and_special_holonomy_comparator.py`; α-sweep 0.305→0.536 |

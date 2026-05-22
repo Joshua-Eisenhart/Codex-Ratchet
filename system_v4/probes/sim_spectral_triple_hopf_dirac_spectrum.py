@@ -12,6 +12,8 @@ from z3 import Solver, Real, Or, And, unsat
 
 from receipt_boundary import apply_default_receipt_boundary
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed; finite-dim Dirac handled symbolically"},
     "pyg":     {"tried": False, "used": False, "reason": "no message passing here"},

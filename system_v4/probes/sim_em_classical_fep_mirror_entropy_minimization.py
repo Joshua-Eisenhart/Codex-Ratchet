@@ -5,6 +5,8 @@ user_entropic_monism_doctrine.md). Classical baseline: gradient descent on
 variational free energy F = E - S shows entropy minimization of surprisal.
 """
 import json, os, numpy as np
+classification = "classical_baseline"
+divergence_log = ["Classical baseline uses numeric free-energy descent with negative and boundary controls; it is not a nonclassical FEP identity proof."]
 SCOPE_NOTE = "Doctrine 'FEP literal physics mirror'. Grad descent on F=E-S; convergence. user_entropic_monism_doctrine.md"
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "load-bearing variational gradient descent"},
@@ -54,7 +56,7 @@ if __name__ == "__main__":
     pos, neg, bnd = run_positive_tests(), run_negative_tests(), run_boundary_tests()
     all_pass = all(v["pass"] for v in {**pos, **neg, **bnd}.values())
     results = {"name": "sim_em_classical_fep_mirror_entropy_minimization", "scope_note": SCOPE_NOTE,
-               "classification": "classical_baseline", "tool_manifest": TOOL_MANIFEST,
+               "classification": "classical_baseline", "divergence_log": divergence_log, "tool_manifest": TOOL_MANIFEST,
                "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "all_pass": all_pass}
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

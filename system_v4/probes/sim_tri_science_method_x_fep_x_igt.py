@@ -22,6 +22,15 @@ import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for sim_tri_science_method_x_fep_x_igt; it does not promote a "
+        "nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "descent + selection"},
     "z3":    {"tried": False, "used": False, "reason": ""},

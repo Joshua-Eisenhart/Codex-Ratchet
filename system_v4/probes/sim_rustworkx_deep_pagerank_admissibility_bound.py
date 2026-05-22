@@ -8,6 +8,8 @@ attention set (probe-relative to the restart vector).
 import json, os
 import rustworkx as rx
 
+classification = "canonical"
+
 SCOPE_NOTE = (
     "Probe-relative attention: rustworkx.pagerank supplies the "
     "load-bearing stationary distribution. Exclusion floor is defined on "

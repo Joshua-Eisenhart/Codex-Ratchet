@@ -6,6 +6,17 @@ Boundary: inventory only. This does not admit, promote, or validate a sim.
 
 Tracked JSON keeps summary and samples by default; run with `--include-rows` for local full-row audits.
 
+Current audit note, 2026-05-21: this is a stale full snapshot. A safe
+`--skip-bulk-a2-state-results` diagnostic now preserves the distinction between
+historical admission records and linked admitted evidence, but it is not a
+canonical full refresh because it skips `6795` old `a2_state` result files.
+That fast diagnostic saw `6827` historical admission records and `6824` rows
+whose admission result was skipped by the bulk-a2-state filter. The full
+non-skip refresh is still blocked on the large old result estate; shrinking the
+JSON/AST caches reduced memory pressure, but the no-skip temp run was still too
+slow and was stopped after more than five minutes. Add a bounded bulk-result
+metadata path before replacing this generated snapshot.
+
 ## Summary
 
 - Sim source files indexed: `10855`
@@ -13,7 +24,7 @@ Tracked JSON keeps summary and samples by default; run with `--include-rows` for
 - Bulk a2_state result JSON files skipped: `0`
 - Linked result JSON files: `7088`
 - Unlinked result JSON files: `1430`
-- Wizard-admitted stems: `6247`
+- Stems with historical admission records: `6247`
 - Repair / rerun candidate rows: `772`
 - Source-only rows: `3259`
 

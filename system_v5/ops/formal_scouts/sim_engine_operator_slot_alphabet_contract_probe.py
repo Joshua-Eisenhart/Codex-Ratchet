@@ -13,8 +13,8 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import networkx as nx
-import numpy as np
 import sympy as sp
+import torch
 import z3
 
 from canonical_qit_engine_specs import (
@@ -41,7 +41,7 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing runtime trajectory inventory and gap summaries"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing runtime trajectory inventory and gap summaries"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing stage/operator bipartite graph witness"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic count factorization"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing noncollapse witness for operator-slot coverage"},
@@ -138,7 +138,7 @@ def z3_witness(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def dynamic_integrity(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    slot_deltas = np.array([float(row.get("slot_delta_norm", 0.0)) for row in rows], dtype=float)
+    slot_deltas = torch.tensor([float(row.get("slot_delta_norm", 0.0)) for row in rows], dtype=torch.float64)
     called_counts = [int(row.get("manifold_called_count", 0)) for row in rows]
     applied_counts = [int(row.get("manifold_applied_count", 0)) for row in rows]
     satisfied_counts = [int(row.get("manifold_satisfied_count", 0)) for row in rows]
@@ -146,15 +146,15 @@ def dynamic_integrity(rows: list[dict[str, Any]]) -> dict[str, Any]:
     return {
         "pass": (
             len(rows) == 64
-            and bool(np.all(slot_deltas > 1e-9))
+            and bool(torch.all(slot_deltas > 1e-9).item())
             and all(bool(row.get("valid_density", False)) for row in rows)
             and all(count == 13 for count in called_counts)
             and len(terrain_families) >= 7
         ),
         "valid_density_rows": sum(1 for row in rows if row.get("valid_density", False)),
-        "slot_delta_min": float(np.min(slot_deltas)),
-        "slot_delta_mean": float(np.mean(slot_deltas)),
-        "slot_delta_max": float(np.max(slot_deltas)),
+        "slot_delta_min": float(torch.min(slot_deltas).item()),
+        "slot_delta_mean": float(torch.mean(slot_deltas).item()),
+        "slot_delta_max": float(torch.max(slot_deltas).item()),
         "manifold_called_count_min": min(called_counts),
         "manifold_called_count_max": max(called_counts),
         "manifold_applied_count_min": min(applied_counts),

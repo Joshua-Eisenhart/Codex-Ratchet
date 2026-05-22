@@ -14,6 +14,8 @@ cvc5 proves the coherence constraint:
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

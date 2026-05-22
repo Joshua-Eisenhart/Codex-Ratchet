@@ -190,7 +190,14 @@ def main() -> int:
         },
     }
     boundary = {
-        "finite_four_qubit_dimension": {"dimension": DIM, "qubits": N_QUBITS, "pass": DIM == 16},
+        "finite_four_qubit_dimension": {
+            "dimension": DIM,
+            "qubits": N_QUBITS,
+            "minimum_nonclassical_width": 8,
+            "minimum_width_role": "calibration_only",
+            "minimum_width_reason": "four-qubit density fixture is a finite boundary/control, not nonclassical maturity evidence",
+            "pass": DIM == 16,
+        },
         "z3_threshold_window_witness": z3_window_witness(sweep),
         "promotion_remains_disabled": {"promotion_allowed": PROMOTION_ALLOWED, "pass": PROMOTION_ALLOWED is False},
     }

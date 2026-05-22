@@ -25,6 +25,9 @@ import json
 import os
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = ["Classical baseline models Popperian refutation with logical/probabilistic controls; it is not a nonclassical proof of the refutation operator."]
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -370,6 +373,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_science_method_refutation_operator",
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "scope_note": (
             "system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md; "
             "Popperian refutation operator R: (H, O) -> {REFUTED, SURVIVED}. "

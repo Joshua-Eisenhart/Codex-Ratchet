@@ -21,6 +21,8 @@ import json, os, math
 import numpy as np
 import torch
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":  {"tried": True,  "used": True,  "reason": "autograd is load-bearing: both partial Jacobians ∂g/∂x, ∂g/∂y come from autograd; IFT claim rests on their invertibility"},
     "pyg":      {"tried": False, "used": False, "reason": "graph message passing not required for this scalar/matrix-functional claim"},

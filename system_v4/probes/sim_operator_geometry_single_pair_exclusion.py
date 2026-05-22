@@ -21,6 +21,8 @@ from z3 import And, Not, Q, Real, Solver, unsat
 from receipt_boundary import apply_default_receipt_boundary
 
 
+classification = "supporting"
+
 SCRIPT_DIR = Path(__file__).resolve().parent
 RESULTS_DIR = SCRIPT_DIR / "a2_state" / "sim_results"
 

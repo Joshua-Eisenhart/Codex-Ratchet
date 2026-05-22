@@ -10,6 +10,10 @@ spectral triples as wider G-structure candidates beyond GL(2,C)→SU(2) scaffold
 CLAIM CEILING: formal scout only. Finite fixtures exercising structural ideas.
 Not canonical evidence for any coupling, bridge, axis, or target-system claim.
 PROMOTION_ALLOWED = False.
+
+NUMPY/SCIPY BOUNDARY: NumPy and SciPy remain fixture-local reviewed boundaries.
+They are not admissible nonclassical claim support under the current quarantine
+gate until ported source-native.
 """
 
 from __future__ import annotations
@@ -50,8 +54,9 @@ TOOL_MANIFEST = {
         "tried": True,
         "used": True,
         "reason": (
-            "load-bearing: matrix exponential for flat connection, "
-            "condition-number stability filtration, perturbation construction"
+            "fixture-local load-bearing reviewed boundary: matrix exponential "
+            "for flat connection, condition-number stability filtration, "
+            "perturbation construction; not nonclassical promotion support"
         ),
     },
     "scipy": {

@@ -10,6 +10,8 @@ import numpy as np
 import sympy as sp
 from clifford import Cl
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "symbolic/rotor work only"},
     "pyg":     {"tried": False, "used": False, "reason": ""},

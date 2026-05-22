@@ -29,9 +29,9 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "polytope inequality assembly"},
     "scipy": {"tried": True, "used": True, "reason": "linprog Phase-I feasibility"},
     "pytorch": {
-        "tried": _torch_ok,
-        "used": _torch_ok,
-        "reason": "supportive import; not load-bearing for LP",
+        "tried": True,
+        "used": False,
+        "reason": "optional supportive import attempt only; not load-bearing for LP",
     },
     "z3": {"tried": False, "used": False, "reason": "no SMT proof claim"},
 }

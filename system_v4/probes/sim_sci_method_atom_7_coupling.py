@@ -22,10 +22,38 @@ import json
 import os
 from itertools import product
 
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in
-                 ["pytorch", "pyg", "z3", "cvc5", "sympy", "clifford",
-                  "geomstats", "e3nn", "rustworkx", "xgi", "toponetx", "gudhi"]}
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": ""},
+    "pyg": {"tried": False, "used": False, "reason": ""},
+    "z3": {"tried": False, "used": False, "reason": ""},
+    "cvc5": {"tried": False, "used": False, "reason": ""},
+    "sympy": {"tried": False, "used": False, "reason": ""},
+    "clifford": {"tried": False, "used": False, "reason": ""},
+    "geomstats": {"tried": False, "used": False, "reason": ""},
+    "e3nn": {"tried": False, "used": False, "reason": ""},
+    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "xgi": {"tried": False, "used": False, "reason": ""},
+    "toponetx": {"tried": False, "used": False, "reason": ""},
+    "gudhi": {"tried": False, "used": False, "reason": ""},
+}
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+
+SIM_BASENAME = os.path.splitext(os.path.basename(__file__))[0]
+RUN_BOUNDARY_FIELDS = {
+    "claim_ceiling": "recursive science-method atom micro only; no promotion beyond bounded falsifiability/admissibility fixture",
+    "next_lego_target": SIM_BASENAME,
+    "promotion_condition": "requires later independent admission, executed receipt review, and stage-appropriate lego gate before any higher claim",
+    "blocked_until": "exact runner result receipt validates under strict executable run boundary",
+    "demotion_condition": "demote if used as theory proof beyond this bounded science-method fixture or if execution result omits positive, negative, or boundary checks",
+    "out_of_scope": [
+        "no theory promotion",
+        "no manifold admission",
+        "no scientific coupling claim",
+        "no bridge or axis claim",
+    ],
+}
 
 # --- backfill empty TOOL_MANIFEST reasons (cleanup) ---
 def _backfill_reasons(tm):
@@ -134,16 +162,17 @@ if __name__ == "__main__":
     TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
 
     results = {
-        "name": "sci_method_atom_7_coupling",
+        "name": SIM_BASENAME,
         "classification": "canonical",
         "tool_manifest": _backfill_reasons(TOOL_MANIFEST),
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,
         "overall_pass": pos["all_pass"] and neg["all_pass"] and bnd["all_pass"],
+        **RUN_BOUNDARY_FIELDS,
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "sci_method_atom_7_coupling_results.json")
+    out_path = os.path.join(out_dir, f"{SIM_BASENAME}_results.json")
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"PASS={results['overall_pass']} -> {out_path}")

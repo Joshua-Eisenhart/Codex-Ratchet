@@ -9,6 +9,8 @@ Does not modify parent.
 import os, sys
 from _cvc5_parity_helper import write_results, all_pass
 
+classification = "canonical"
+
 TOOL_MANIFEST = {"z3":{"tried":False,"used":False,"reason":""},
                  "cvc5":{"tried":False,"used":False,"reason":""}}
 TOOL_INTEGRATION_DEPTH = {"z3": None, "cvc5": None}

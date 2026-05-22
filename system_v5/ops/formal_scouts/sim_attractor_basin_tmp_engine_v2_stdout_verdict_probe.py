@@ -33,7 +33,7 @@ TOOL_MANIFEST = {
     "pathlib": {"tried": True, "used": True, "reason": "load-bearing bounded result path checks"},
     "hashlib": {"tried": True, "used": True, "reason": "load-bearing source receipt hashes"},
 }
-TOOL_INTEGRATION_DEPTH = {"json": "load_bearing", "re": "load_bearing", "pathlib": "load_bearing", "hashlib": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {"json": "supportive", "re": "supportive", "pathlib": "supportive", "hashlib": "supportive"}
 
 NEGATIVE_TOKENS = [
     "VERDICT: FAIL",

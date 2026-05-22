@@ -8,6 +8,8 @@ LADDERS_FENCES_ADMISSION_REFERENCE.md (congruence invariance fence).
 """
 import json, os, numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": "no graph"},

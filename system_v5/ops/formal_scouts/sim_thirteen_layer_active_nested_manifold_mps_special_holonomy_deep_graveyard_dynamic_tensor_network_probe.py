@@ -29,9 +29,7 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import gudhi
 import networkx as nx
-import numpy as np
 import opt_einsum as oe
-import scipy.linalg
 import sympy as sp
 import torch
 import z3
@@ -144,13 +142,9 @@ CLAIM_CEILING = (
 # load_bearing = tool's functions are called DIRECTLY in main() or a controller-defined helper.
 # supportive  = imported and used only transitively through claude_integrated_manifold_modules.*
 TOOL_MANIFEST = {
-    "numpy": {
-        "tried": True, "used": True,
-        "reason": "load_bearing: np.array / np.mean / np.abs / np.std called directly in source_features() and state_features_for_holonomy() in this controller",
-    },
     "scipy": {
         "tried": True, "used": True,
-        "reason": "supportive: imported but matrix exponential is performed via torch.linalg.matrix_exp in the controller; scipy used transitively by modules",
+        "reason": "supportive: matrix exponential is performed via torch.linalg.matrix_exp in the controller; scipy is used transitively by imported modules",
     },
     "pytorch": {
         "tried": True, "used": True,
@@ -182,7 +176,7 @@ TOOL_MANIFEST = {
     },
     "networkx": {
         "tried": True, "used": True,
-        "reason": "load_bearing: nx.Graph built directly in main() over 13 nodes with state_diff edge weights; clustering_coefficient and connectivity computed in the controller",
+        "reason": "supportive: nx.Graph built directly in main() over 13 nodes as graph-diagnostic context; the pass gate uses GUDHI plus controller-owned adjacency weights",
     },
     "torch_geometric": {
         "tried": True, "used": True,
@@ -203,10 +197,9 @@ TOOL_MANIFEST = {
 }
 
 # Honest depths after controller audit.
-# load_bearing: numpy, pytorch, opt_einsum, z3, networkx, gudhi  (6 tools)
-# supportive:   scipy, sympy, clifford, geomstats, rustworkx, torch_geometric, toponetx, xgi  (8 tools)
+# load_bearing: pytorch, opt_einsum, z3, gudhi  (4 tools)
+# supportive:   scipy, sympy, clifford, geomstats, rustworkx, networkx, torch_geometric, toponetx, xgi  (9 tools)
 TOOL_INTEGRATION_DEPTH = {
-    "numpy":          "load_bearing",
     "scipy":          "supportive",
     "pytorch":        "load_bearing",
     "opt_einsum":     "load_bearing",
@@ -215,7 +208,7 @@ TOOL_INTEGRATION_DEPTH = {
     "clifford":       "supportive",
     "geomstats":      "supportive",
     "rustworkx":      "supportive",
-    "networkx":       "load_bearing",
+    "networkx":       "supportive",
     "torch_geometric":"supportive",
     "gudhi":          "load_bearing",
     "toponetx":       "supportive",
@@ -236,9 +229,9 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, tuple):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist() if value.size < 200 else f"<ndarray shape={value.shape}>"
-    if isinstance(value, (np.floating, np.integer, np.bool_)):
+    if not isinstance(value, torch.Tensor) and hasattr(value, "tolist") and hasattr(value, "size"):
+        return value.tolist() if value.size < 200 else f"<array shape={value.shape}>"
+    if not isinstance(value, torch.Tensor) and hasattr(value, "item"):
         return value.item()
     if isinstance(value, torch.Tensor):
         return v if (v := value).numel() < 200 and not value.is_complex() else f"<tensor shape={list(value.shape)} dtype={value.dtype}>"
@@ -252,18 +245,20 @@ def source_features(rows: list[dict[str, Any]]) -> list[dict[str, float]]:
     features = []
     for step in range(8):
         block = rows[step * 8 : (step + 1) * 8]
-        readouts = np.array([row["readout"] for row in block], dtype=float)
-        coherence = np.array([row["offdiag_coherence"] for row in block], dtype=float)
+        readouts = torch.tensor([row["readout"] for row in block], dtype=torch.float64)
+        coherence = torch.tensor([float(row["offdiag_coherence"]) for row in block], dtype=torch.float64)
         left = [row for row in block if row["sheet"].startswith("left")]
         right = [row for row in block if row["sheet"].startswith("right")]
         lr_gap = 0.0
         if left and right:
-            lr_gap = float(abs(np.mean([r["offdiag_coherence"] for r in left]) - np.mean([r["offdiag_coherence"] for r in right])))
+            left_mean = torch.tensor([float(r["offdiag_coherence"]) for r in left], dtype=torch.float64).mean()
+            right_mean = torch.tensor([float(r["offdiag_coherence"]) for r in right], dtype=torch.float64).mean()
+            lr_gap = float(torch.abs(left_mean - right_mean).item())
         features.append({
             "step": step,
-            "mean_abs": float(np.mean(np.abs(readouts))),
-            "std": float(np.std(readouts)),
-            "coherence": float(np.mean(coherence)),
+            "mean_abs": float(torch.mean(torch.abs(readouts)).item()),
+            "std": float(torch.std(readouts, unbiased=False).item()),
+            "coherence": float(torch.mean(coherence).item()),
             "lr_gap": lr_gap,
         })
     return features
@@ -491,15 +486,16 @@ def state_features_for_holonomy(history: list[dict[str, Any]]) -> torch.Tensor:
         rows.append([f.get("mean_abs", 0.5), f.get("std", 0.1), f.get("coherence", 0.5), f.get("lr_gap", 0.0)])
     while len(rows) < 8:
         rows.append([0.5, 0.1, 0.5, 0.0])
-    arr = np.array(rows[:8], dtype=np.float64)  # shape (8, 4)
+    arr = torch.tensor(rows[:8], dtype=torch.float64)  # shape (8, 4)
     # Centre each column around its median so values straddle zero, yielding mixed signs.
-    arr = arr - np.median(arr, axis=0, keepdims=True)
+    sorted_arr = torch.sort(arr, dim=0).values
+    median = 0.5 * (sorted_arr[3:4, :] + sorted_arr[4:5, :])
+    arr = arr - median
     # Use varying per-element thresholds to break symmetry further: subtract a
     # small linear ramp so consecutive elements have alternating sign tendency.
     flat = arr.flatten()  # 32 values
-    ramp = np.linspace(-0.02, 0.02, len(flat))
-    flat = flat - ramp
-    return torch.tensor(flat, dtype=torch.float64)
+    ramp = torch.linspace(-0.02, 0.02, flat.numel(), dtype=torch.float64)
+    return flat - ramp
 
 
 
@@ -513,9 +509,9 @@ def layer_removal_persistence_and_graph(
     one 1-simplex per adjacent pair (i, i+1) with filtration value = max state_diff of
     the two endpoints.  Compute persistence; extract Betti-0 count and persistence pair count.
 
-    networkx: build a Graph with 13 nodes, edges i-(i+1) weighted by state_diff.
-    Compute: number of edges above diff_threshold, average clustering coefficient,
-    and whether the graph is connected.
+    controller-owned adjacency: count adjacent layer-removal edges above threshold.
+    networkx: build the same Graph as a supportive diagnostic and compute
+    clustering/connectivity, without making NetworkX the pass gate.
     """
     n = len(layer_removal_sub_results)  # 13
 
@@ -535,21 +531,26 @@ def layer_removal_persistence_and_graph(
     persistence_pair_count = len(pairs)
     betti0 = sum(1 for dim, (birth, death) in pairs if dim == 0 and (death == float("inf") or death > diff_threshold))
 
-    # --- networkx Graph ---
-    G = nx.Graph()
-    G.add_nodes_from(range(n))
-    for i in range(n - 1):
-        w = max(
+    adjacent_weights = [
+        max(
             layer_removal_sub_results[i]["state_diff"],
             layer_removal_sub_results[i + 1]["state_diff"],
         )
+        for i in range(n - 1)
+    ]
+    edges_above_threshold = sum(1 for w in adjacent_weights if w > diff_threshold)
+
+    # --- networkx Graph diagnostic ---
+    G = nx.Graph()
+    G.add_nodes_from(range(n))
+    for i, w in enumerate(adjacent_weights):
         G.add_edge(i, i + 1, weight=w)
 
-    edges_above_threshold = sum(1 for u, v, d in G.edges(data=True) if d["weight"] > diff_threshold)
     avg_clustering = nx.average_clustering(G, weight="weight")
     is_connected = nx.is_connected(G)
 
-    # Pass: at least half the adjacent pairs produce diffs above threshold, and betti0 >= 1.
+    # Pass: at least half the adjacent pairs produce diffs above threshold, and
+    # GUDHI sees a persistent component. NetworkX remains diagnostic only.
     has_structure = edges_above_threshold >= (n - 1) // 2 and betti0 >= 1
 
     return {

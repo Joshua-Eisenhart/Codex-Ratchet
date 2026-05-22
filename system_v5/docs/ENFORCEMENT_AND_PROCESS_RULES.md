@@ -3,7 +3,8 @@
 ## Document Status
 | Field | Value |
 |-------|-------|
-| **last_verified** | 2026-05-01 |
+| **last_verified** | 2026-05-20 for live evidence pointers; process doctrine remains older and partially aspirational |
+| **current_evidence_authority** | Count-bearing live status belongs to `system_v5/docs/FORMAL_SCOUT_READINESS_INDEX.md` and `system_v5/docs/SIM_ESTATE_INTEGRATION_INDEX.md` |
 | **current_reviewed_policy** | SIM_TEMPLATE.py structure, tool manifest requirement, hard stage gate, controller-side review discipline, and commit-time manifest checks for canonical result JSONs; full CI promotion remains future work |
 | **discovered** | L0-L7 constraint cascade, 28 irreducible families, 9 independent observables, simultaneous shell geometry |
 | **planned** | Manifest checker CI, canonical promotion gate, Lean 4 / TLAPS proof layer, PyTorch migration of all 28 families |
@@ -71,7 +72,7 @@ This is not new information. It is the already-corrected operating plan that mus
    - while the active stage is still `lego`, record most stack/coupling ideas as future candidates rather than live execution
 
 Concrete examples that must stay preserved:
-- density matrices are near-first admissible objects under the root constraints
+- density matrices are early working carriers after finite-carrier admission; they are not yet forced at L0/L1 by the root constraints alone
 - left/right Weyl spinors must run on nested Hopf tori
 - flux is an open derived family and must be built from its dependency chain, not assumed as primitive
 - Pauli / Bloch / channel / differential machinery should be simmed as independent legos before compound claims
@@ -81,6 +82,9 @@ If a sim batch violates that order, it is off-plan even if it reports passing ou
 ---
 
 ## CURRENT STATE (what exists now)
+- This section is a process overview, not the live count authority. For current
+  formal-scout, provider, sim-estate, and tool-gate counts, use the generated
+  readiness and sim-estate indexes named in Document Status.
 - numpy legos = classical baselines (present, committed). Count: see `system_v4/probes/` manifest.
 - Negative battery concepts with multiple battery files and 100+ failure modes. Count: see [BATTERY_INDEX.md](BATTERY_INDEX.md).
 - L0-L7 constraint cascade mapped. Counts: see PYTORCH_RATCHET_BUILD_PLAN.md Phase 2.
@@ -106,7 +110,7 @@ All 13 rules below describe the target regime. They are the standard new work sh
 - **Layer / shell**: a simultaneous constraint surface, not a sequential rung. Higher layers do not replace lower layers; they restrict the same state space further.
 - **Classical baseline**: a numpy-era baseline artifact/result family. Useful as a baseline and negative control, not the target substrate. Its public status label still has to be checked separately (`exists`, `runs`, `passes local rerun`, or `canonical by process`).
 - **Canonical sim / canonical by process**: a result status earned by fresh rerun, SIM_TEMPLATE-style structure, `classification`, non-empty tool manifest reasons, and claim-relevant load-bearing tool depth. It does not by itself mean `nonclassical`.
-- **Micro tool sim**: the smallest tool-stage probe. It tests one named tool function or API surface against one tiny claim, including positive, negative, and boundary behavior. It proves only that function/surface under that claim.
+- **Micro tool sim**: the smallest tool-stage probe. It tests one named tool function or API surface against one tiny claim, including positive, negative, and boundary behavior. It receipt-validates only that function/surface under that claim.
 - **Tool-lego fit probe**: a pre-lego tool-stage probe where a tool applies one already-named function/API surface to one useful bounded lego target. It answers whether the tool can carry that lego-shaped question. It does not promote the lego.
 - **Tool-tool coupling**: a tool-stage integration probe where two already-tested tool functions exchange an output/input or cross-check the same tiny claim. Parallel use in one file is not coupling.
 - **Supporting work**: docs, manifests, audits, indexes, and migration helpers. These have lighter tool requirements than canonical sims.
@@ -126,7 +130,7 @@ Do not report process terms like `survived` or internal terms like `classical_ba
 ---
 
 ## Rule 1: PyTorch-native computation
-All new core computation uses PyTorch tensors. numpy is for loading data, conversion, or legacy comparison, NOT for core computation. Density matrices = torch tensors. Operators = torch operations. Gradients = autograd.
+All new core nonclassical computation uses PyTorch tensors. NumPy may remain in first-class classical baselines, legacy comparison rows, and explicit reviewed helper/boundary surfaces only. NumPy imports, `np.*` calls, and `.numpy()` tensor conversions are not allowed inside nonclassical sims as claim-bearing computation or as a quiet bridge to NumPy; any reviewed helper/boundary surface that still uses them remains blocked from nonclassical, QIT-engine, manifold, basin, axis, or bridge promotion until ported or explicitly reclassified. Density matrices = torch tensors. Operators = torch operations. Gradients = autograd.
 
 **Why:** numpy arrays encourage Cartesian, coordinate-first computation. PyTorch computational graphs are a better fit for the current relational/non-coordinate design target. Treat this as current build rationale, not as a standalone proof of ontology.
 
@@ -177,7 +181,7 @@ Required tool-role contract:
 - **Lean 4**: interactive theorem prover for math-side formalization above SMT level.
 - **TLAPS**: temporal logic model checking for ratchet safety/liveness properties.
 
-**Why:** Each tool carries a different mathematical commitment. z3/cvc5 do constraint logic. Clifford does geometric product. TopoNetX/GUDHI do topology. geomstats does Riemannian geometry. e3nn does equivariant computation. PyG does graph computation. A tool pressures a classical fallback only when the claim fails or cannot be certified without it and the result passes the sim contract; imports, wrappers, and parallel checks are decorative or supportive unless an ablation would break the claim.
+**Why:** Each tool carries a different mathematical commitment. z3/cvc5 do constraint logic. Clifford does geometric product. TopoNetX/GUDHI do topology. geomstats does Riemannian geometry. e3nn does equivariant computation. PyG does graph computation. The two root constraints apply to the tool surface itself before the tool can be load-bearing for a nonclassical claim: the tool must act on a finite/bounded carrier and must certify, preserve, or pressure noncommuting or order-sensitive structure. A tool pressures a classical fallback only when the claim fails or cannot be certified without it and the result passes the sim contract; imports, wrappers, and parallel checks are decorative or supportive unless an ablation would break the claim.
 
 ### Rule 2a: Tool depth is micro-first
 
@@ -194,7 +198,7 @@ Do not build sims on stacks of untested tool behavior. Before a tool is used as 
 
 Every tool should search for the legos that best expose its actual value. z3/cvc5 should find fence, impossibility, and synthesis legos; sympy should find derivation and identity legos; Clifford should find rotor/spinor/operator legos; geomstats should find metric/geodesic/holonomy legos; rustworkx/XGI/TopoNetX/GUDHI/PyG should find graph, hypergraph, cell-complex, filtration, and graph-dynamics legos. These are tool-stage probes using lego-shaped targets, not lego-stage promotions.
 
-Tool-tool coupling is later than the individual tool-function receipts. A coupling packet must name the two proven functions, the data exchanged or cross-check performed, and the single claim under test. If two tools are merely imported or run side by side, the packet is not a tool coupling.
+Tool-tool coupling is later than the individual tool-function receipts. A coupling packet must name the two receipt-validated functions, the data exchanged or cross-check performed, and the single claim under test. If two tools are merely imported or run side by side, the packet is not a tool coupling.
 
 This micro-first rule is a parallelization rule as much as a safety rule: many workers can test different tool/function/lego triples at once, and several workers may test the same triple in different ways. The controller accepts only receipts that stay inside one variable of uncertainty. If a worker has to debug the tool, the lego, and the coupling at the same time, the packet is too large.
 

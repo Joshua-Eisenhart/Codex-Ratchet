@@ -20,6 +20,8 @@ from typing import Any
 
 import sympy as sp
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "bounded p-adic comparison packet is integer SMT plus symbolic rank bookkeeping, with no tensor/autograd computation"},
     "pyg": {"tried": False, "used": False, "reason": "no graph message-passing surface is present in the Hodge-Tate weight and D_cris dimension constraints"},

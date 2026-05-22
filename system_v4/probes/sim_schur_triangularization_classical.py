@@ -14,6 +14,15 @@ from receipt_boundary import apply_default_receipt_boundary
 
 classification = "classical_baseline"
 NAME = "sim_schur_triangularization_classical"
+divergence_log = (
+    "Classical Schur decomposition triangularizes any square matrix over C and "
+    "reads off its spectrum from the diagonal. Lost relative to the nonclassical "
+    "shell: the super-diagonal nilpotent part of a defective operator carries no "
+    "physical meaning here (no Jordan-block coherence geometry), no "
+    "constraint-admissibility filter on which spectra can co-exist under a probe "
+    "family, and no noncommutative spectral overlap structure between multiple "
+    "non-normal generators."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "complex matrix fixtures, spectrum comparison, and triangularity checks"},

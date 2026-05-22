@@ -18,6 +18,8 @@ evidence for "candidate transition manifold is an expander").
 import json, os
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "numeric not needed"},
     "pyg": {"tried": False, "used": False, "reason": "no message passing"},

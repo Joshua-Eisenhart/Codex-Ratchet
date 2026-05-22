@@ -664,6 +664,13 @@ def main() -> int:
         "elapsed_seconds": time.time() - started,
     }
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
+    result["root_constraints"] = {
+        "F01": True,
+        "N01": True,
+        "finite_carrier_root": True,
+        "noncommutation_or_order_root": True,
+        "n01_evidence": "bounded online-update dependency graph, wrong-observation controls, and z3 VMP witness record order-sensitive policy evidence",
+    }
     OUT_PATH.write_text(json.dumps(as_jsonable(result), indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(f"RESULT {NAME}: all_pass={all_pass} -> {OUT_PATH}")
     return 0 if all_pass else 1

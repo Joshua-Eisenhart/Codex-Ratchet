@@ -8,6 +8,8 @@ not. Exclusion: treating Y^1 as even parity is excluded by the residual.
 import os, json, torch
 from e3nn.o3 import Irreps, spherical_harmonics
 
+classification = "canonical"
+
 NAME = "sim_e3nn_deep_spherical_harmonics_chirality"
 SCOPE_NOTE = "Y^l parity: odd-l flip under inversion; even-l invariant; chirality fence."
 TOOL_MANIFEST = {"e3nn": {"tried": True, "used": True,

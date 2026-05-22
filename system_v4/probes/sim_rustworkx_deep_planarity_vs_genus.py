@@ -8,6 +8,8 @@ are the canonical excluded witnesses (Kuratowski).
 import json, os
 import rustworkx as rx
 
+classification = "canonical"
+
 SCOPE_NOTE = (
     "Topological admissibility (probe-relative to sphere embedding): "
     "rustworkx.is_planar is load-bearing. Non-planar graphs are EXCLUDED "

@@ -18,6 +18,9 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = [
+    "Classical comparator/control surface only; does not promote nonclassical, formal-scout, bridge, axis-level, or canonical proof claims."
+]
 
 # =====================================================================
 # TOOL MANIFEST

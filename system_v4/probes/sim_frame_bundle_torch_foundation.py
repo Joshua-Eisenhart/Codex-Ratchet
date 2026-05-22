@@ -25,6 +25,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Frame matrix E as 3×3 torch float64 SO(3) element, orthonormality verification via E^T E = I, determinant via torch.det and autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed for local frame bundle geometry"},

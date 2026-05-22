@@ -19,6 +19,11 @@ import json, math, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = [
+    "classical-baseline SpectralTriple x Dirac x Symplectic topology-variant "
+    "fixture only; compares finite T1/T2/T3 controls without promoting "
+    "Axis0, bridge, GStack, QIT, or nonclassical admission",
+]
 
 def spectral_gap_sym(seed, size=4):
     rng = np.random.default_rng(seed)
@@ -392,6 +397,7 @@ def main():
     mi0 = mera_MI_dephasing(seed=0)[-1]
     summary = {
         "classification": classification,
+        "divergence_log": divergence_log,
         "total": len(results),
         "passed": sum(1 for v in results.values() if v.get("passed", False)),
         "all_passed": all_passed,

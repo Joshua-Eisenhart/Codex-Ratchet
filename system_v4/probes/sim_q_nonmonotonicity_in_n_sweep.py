@@ -10,6 +10,8 @@ The zero-in-subshell property is N-independent and structural.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

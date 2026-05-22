@@ -59,10 +59,10 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "subprocess": "load_bearing",
-    "json": "load_bearing",
-    "pathlib": "load_bearing",
-    "hashlib": "load_bearing",
+    "subprocess": "supportive",
+    "json": "supportive",
+    "pathlib": "supportive",
+    "hashlib": "supportive",
 }
 
 

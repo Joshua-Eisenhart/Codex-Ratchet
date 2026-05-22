@@ -19,6 +19,8 @@ from sympy import symbols, Matrix, factorial, binomial, Rational, simplify
 import cvc5
 from cvc5 import Kind
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

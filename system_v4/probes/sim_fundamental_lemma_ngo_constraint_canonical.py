@@ -14,6 +14,8 @@ sympy: Affine Springer fiber cohomology dim formula dim(Sp_γ) = ⟨ρ, μ⟩
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

@@ -22,7 +22,8 @@ import json, os, time, traceback
 import numpy as np
 from clifford import Cl
 classification = "classical_baseline"
-DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+SIM_EXECUTION_KIND = "classical"
+DEMOTE_REASON = "classical baseline only: NumPy arrays plus Cl(3) checks, no nonclassical execution claim"
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
 os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
@@ -37,6 +38,7 @@ EPS = 1e-12
 # =====================================================================
 
 TOOL_MANIFEST = {
+    "numpy":      {"tried": True, "used": True, "reason": "numeric spinor arrays, inner products, theta sweeps, and tolerance checks"},
     "pytorch":    {"tried": False, "used": False, "reason": "classical baseline -- numpy + clifford only"},
     "pyg":        {"tried": False, "used": False, "reason": "classical baseline -- numpy + clifford only"},
     "z3":         {"tried": False, "used": False, "reason": "not needed for this baseline"},
@@ -52,8 +54,19 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    **{k: None for k in TOOL_MANIFEST},
+    "numpy": "load_bearing",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
     "clifford": "load_bearing",
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
 }
 
 CLASSIFICATION = "classical_baseline"
@@ -474,6 +487,7 @@ if __name__ == "__main__":
         "description": "Chiral overlap <L|R> for Weyl spinors: orthogonality, completeness, Cl(3) projectors",
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,

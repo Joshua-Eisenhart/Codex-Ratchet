@@ -14,6 +14,8 @@ import os
 import numpy as np
 from math import sqrt
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

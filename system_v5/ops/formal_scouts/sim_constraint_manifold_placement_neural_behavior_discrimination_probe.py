@@ -14,8 +14,6 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import networkx as nx
-import numpy as np
-from scipy.linalg import expm
 import sympy as sp
 import torch
 import torch.nn as nn
@@ -39,22 +37,30 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing density updates, trajectory features, and controls"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing matrix exponentials for placement substage dynamics"},
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing neural readout trained on placement trajectories"},
-    "networkx": {"tried": True, "used": True, "reason": "load-bearing placement graph/factorization witness"},
+    "pytorch": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing density updates, matrix exponentials, trajectory features, controls, and neural readout",
+    },
+    "networkx": {"tried": True, "used": True, "reason": "supportive placement graph/factorization witness"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic 2x2x4x4 count witness"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing noncollapse witness over 16 placement labels"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "networkx": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+}
 
-DTYPE = np.complex128
-I2 = np.eye(2, dtype=DTYPE)
-SX = np.array([[0, 1], [1, 0]], dtype=DTYPE)
-SY = np.array([[0, -1j], [1j, 0]], dtype=DTYPE)
-SZ = np.array([[1, 0], [0, -1]], dtype=DTYPE)
-SM = np.array([[0, 0], [1, 0]], dtype=DTYPE)
-SP = np.array([[0, 1], [0, 0]], dtype=DTYPE)
+DTYPE = torch.complex128
+RTYPE = torch.float64
+I2 = torch.eye(2, dtype=DTYPE)
+SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=DTYPE)
+SM = torch.tensor([[0, 0], [1, 0]], dtype=DTYPE)
+SP = torch.tensor([[0, 1], [0, 0]], dtype=DTYPE)
 H0 = 0.73 * SZ + 0.17 * SX
 
 SHEETS = ["left_chiral_density_space", "right_chiral_density_space"]
@@ -80,62 +86,63 @@ N_EPOCHS = 160
 HIDDEN_DIM = 64
 
 
-def dagger(a: np.ndarray) -> np.ndarray:
+def dagger(a: torch.Tensor) -> torch.Tensor:
     return a.conj().T
 
 
-def normalize_density(rho: np.ndarray) -> np.ndarray:
+def normalize_density(rho: torch.Tensor) -> torch.Tensor:
     rho = (rho + dagger(rho)) / 2
-    vals, vecs = np.linalg.eigh(rho)
-    vals = np.maximum(vals.real, 1e-12)
-    out = vecs @ np.diag(vals) @ dagger(vecs)
-    return out / np.trace(out)
+    vals, vecs = torch.linalg.eigh(rho)
+    vals = torch.clamp(vals.real, min=1e-12)
+    out = vecs @ torch.diag(vals.to(DTYPE)) @ dagger(vecs)
+    return out / torch.trace(out)
 
 
-def entropy(rho: np.ndarray) -> float:
-    vals = np.linalg.eigvalsh((rho + dagger(rho)) / 2).real
-    vals = np.maximum(vals, 1e-12)
+def entropy(rho: torch.Tensor) -> float:
+    vals = torch.linalg.eigvalsh((rho + dagger(rho)) / 2).real
+    vals = torch.clamp(vals, min=1e-12)
     vals = vals / vals.sum()
-    return float(-(vals * np.log(vals)).sum())
+    return float((-(vals * torch.log(vals)).sum()).item())
 
 
-def purity(rho: np.ndarray) -> float:
-    return float(np.real(np.trace(rho @ rho)))
+def purity(rho: torch.Tensor) -> float:
+    return float(torch.real(torch.trace(rho @ rho)).item())
 
 
-def bloch(rho: np.ndarray) -> list[float]:
+def bloch(rho: torch.Tensor) -> list[float]:
     return [
-        float(np.real(np.trace(SX @ rho))),
-        float(np.real(np.trace(SY @ rho))),
-        float(np.real(np.trace(SZ @ rho))),
+        float(torch.real(torch.trace(SX @ rho)).item()),
+        float(torch.real(torch.trace(SY @ rho)).item()),
+        float(torch.real(torch.trace(SZ @ rho)).item()),
     ]
 
 
-def trace_distance(a: np.ndarray, b: np.ndarray) -> float:
-    vals = np.linalg.eigvalsh((a - b + dagger(a - b)) / 2)
-    return float(0.5 * np.sum(np.abs(vals)))
+def trace_distance(a: torch.Tensor, b: torch.Tensor) -> float:
+    diff = a - b
+    vals = torch.linalg.eigvalsh((diff + dagger(diff)) / 2).real
+    return float((0.5 * torch.sum(torch.abs(vals))).item())
 
 
-def unitary_update(rho: np.ndarray, h: np.ndarray, dt: float) -> np.ndarray:
-    u = expm(-1j * h * dt)
+def unitary_update(rho: torch.Tensor, h: torch.Tensor, dt: float) -> torch.Tensor:
+    u = torch.linalg.matrix_exp((-1j * dt) * h)
     return normalize_density(u @ rho @ dagger(u))
 
 
-def dissipative_update(rho: np.ndarray, op: np.ndarray, gamma: float, dt: float) -> np.ndarray:
+def dissipative_update(rho: torch.Tensor, op: torch.Tensor, gamma: float, dt: float) -> torch.Tensor:
     jump = math.sqrt(max(gamma * dt, 0.0)) * op
     no_jump = I2 - 0.5 * gamma * dt * dagger(op) @ op
     return normalize_density(jump @ rho @ dagger(jump) + no_jump @ rho @ dagger(no_jump))
 
 
-def projective_update(rho: np.ndarray, axis: np.ndarray, strength: float) -> np.ndarray:
-    axis = axis / max(float(np.linalg.norm(axis)), 1e-12)
+def projective_update(rho: torch.Tensor, axis: torch.Tensor, strength: float) -> torch.Tensor:
+    axis = axis / max(float(torch.linalg.norm(axis).item()), 1e-12)
     p_plus = 0.5 * (I2 + axis)
     p_minus = 0.5 * (I2 - axis)
     pinched = p_plus @ rho @ p_plus + p_minus @ rho @ p_minus
     return normalize_density((1 - strength) * rho + strength * pinched)
 
 
-def stage_axis(stage: str) -> np.ndarray:
+def stage_axis(stage: str) -> torch.Tensor:
     return {"Si": SZ, "Se": SX, "Ne": SY, "Ni": (SX + SZ) / math.sqrt(2)}[stage]
 
 
@@ -147,11 +154,12 @@ def load_constraint_set() -> tuple[dict[str, Any], dict[str, Any]]:
     return data, constraint_set
 
 
-def initial_density(seed: int) -> np.ndarray:
-    rng = np.random.default_rng(seed)
-    theta = 0.18 + 1.20 * rng.random()
-    phi = 2.0 * math.pi * rng.random()
-    psi = np.array([math.cos(theta), math.sin(theta) * np.exp(1j * phi)], dtype=DTYPE).reshape(-1, 1)
+def initial_density(seed: int) -> torch.Tensor:
+    rng = torch.Generator().manual_seed(seed)
+    theta = 0.18 + 1.20 * float(torch.rand((), generator=rng, dtype=RTYPE).item())
+    phi = 2.0 * math.pi * float(torch.rand((), generator=rng, dtype=RTYPE).item())
+    amp1 = math.sin(theta) * complex(math.cos(phi), math.sin(phi))
+    psi = torch.tensor([math.cos(theta), amp1], dtype=DTYPE).reshape(-1, 1)
     pure = psi @ dagger(psi)
     return normalize_density(0.84 * pure + 0.16 * I2 / 2)
 
@@ -161,37 +169,41 @@ def placement_label(sheet_idx: int, loop_idx: int, stage_idx: int) -> int:
 
 
 def placement_dynamics(
-    rho: np.ndarray,
+    rho: torch.Tensor,
     constraint_set: dict[str, Any],
     sheet_idx: int,
     loop_idx: int,
     stage_idx: int,
     *,
     collapsed: str | None = None,
-) -> np.ndarray:
+) -> torch.Tensor:
     layer_rows = list(constraint_set["layers"])
-    weights = np.array([row["support_weight"] for row in layer_rows], dtype=float)
-    offsets = np.array([row["engine_gate_pair_offset"] for row in layer_rows], dtype=float)
+    weights = torch.tensor([row["support_weight"] for row in layer_rows], dtype=RTYPE)
+    offsets = torch.tensor([row["engine_gate_pair_offset"] for row in layer_rows], dtype=RTYPE)
     if collapsed == "flat_constraints":
-        weights = np.full_like(weights, float(np.mean(weights)))
-        offsets = np.zeros_like(offsets)
-    h_sign = +1 if sheet_idx == 0 else -1
-    ladder = SM if sheet_idx == 0 else SP
-    if collapsed == "sheet":
-        h_sign = +1
-        ladder = SM
-    stage = STAGES[stage_idx]
-    loop = LOOPS[loop_idx]
-    if collapsed == "loop":
-        loop = "fiber"
+        weights = torch.full_like(weights, float(weights.mean().item()))
+        offsets = torch.zeros_like(offsets)
+    effective_sheet_idx = 0 if collapsed == "sheet" else sheet_idx
+    effective_loop_idx = 0 if collapsed == "loop" else loop_idx
+    effective_stage_idx = 0 if collapsed == "stage" else stage_idx
+    h_sign = +1 if effective_sheet_idx == 0 else -1
+    ladder = SM if effective_sheet_idx == 0 else SP
+    stage = STAGES[effective_stage_idx]
+    loop = LOOPS[effective_loop_idx]
     features: list[float] = []
     for sub_idx, substage in enumerate(SUBSTAGES):
-        before = rho.copy()
-        op_name, op_sign = OPERATOR_SCHEDULE[(stage_idx * len(SUBSTAGES) + sub_idx + loop_idx) % len(OPERATOR_SCHEDULE)]
-        if collapsed == "operator_sign":
-            op_sign = +1
-        constraint_idx = (sheet_idx * 11 + loop_idx * 7 + stage_idx * 5 + sub_idx * 3) % len(weights)
-        geometry_drive = float(weights[constraint_idx] * (1.0 + offsets[constraint_idx] / max(len(offsets) - 1, 1)))
+        before = rho.clone()
+        op_name, op_sign = OPERATOR_SCHEDULE[
+            (effective_stage_idx * len(SUBSTAGES) + sub_idx + effective_loop_idx)
+            % len(OPERATOR_SCHEDULE)
+        ]
+        constraint_idx = (
+            effective_sheet_idx * 11
+            + effective_loop_idx * 7
+            + effective_stage_idx * 5
+            + sub_idx * 3
+        ) % len(weights)
+        geometry_drive = float((weights[constraint_idx] * (1.0 + offsets[constraint_idx] / max(len(offsets) - 1, 1))).item())
         dt = 0.030 + 0.034 * geometry_drive
         if substage == "signed_hamiltonian":
             rho = unitary_update(rho, h_sign * H0 + 0.22 * op_sign * geometry_drive * OPERATORS[op_name], dt)
@@ -211,13 +223,13 @@ def placement_dynamics(
             float(h_sign),
             float(op_sign),
         ])
-    return np.array(features, dtype=float)
+    return torch.tensor(features, dtype=RTYPE)
 
 
-def build_dataset(constraint_set: dict[str, Any], *, collapsed: str | None = None) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    rows: list[np.ndarray] = []
+def build_dataset(constraint_set: dict[str, Any], *, collapsed: str | None = None) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    rows: list[torch.Tensor] = []
     labels: list[int] = []
-    initial_rows: list[np.ndarray] = []
+    initial_rows: list[torch.Tensor] = []
     for sheet_idx, _sheet in enumerate(SHEETS):
         for loop_idx, _loop in enumerate(LOOPS):
             for stage_idx, _stage in enumerate(STAGES):
@@ -226,25 +238,27 @@ def build_dataset(constraint_set: dict[str, Any], *, collapsed: str | None = Non
                     rho = initial_density(10_000 + sample_idx)
                     rows.append(placement_dynamics(rho, constraint_set, sheet_idx, loop_idx, stage_idx, collapsed=collapsed))
                     labels.append(label)
-                    initial_rows.append(np.array(bloch(rho) + [entropy(rho), purity(rho)], dtype=float))
-    return np.array(rows, dtype=float), np.array(labels, dtype=int), np.array(initial_rows, dtype=float)
+                    initial_rows.append(torch.tensor(bloch(rho) + [entropy(rho), purity(rho)], dtype=RTYPE))
+    return torch.stack(rows, dim=0), torch.tensor(labels, dtype=torch.long), torch.stack(initial_rows, dim=0)
 
 
-def split_balanced(x: np.ndarray, y: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+def split_balanced(x: torch.Tensor, y: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
     train_idx: list[int] = []
     test_idx: list[int] = []
     for label in range(N_CLASSES):
-        indices = np.where(y == label)[0].tolist()
+        indices = (y == label).nonzero(as_tuple=False).flatten().tolist()
         train_idx.extend(indices[:N_TRAIN_PER_PLACEMENT])
         test_idx.extend(indices[N_TRAIN_PER_PLACEMENT:])
-    return x[train_idx], y[train_idx], x[test_idx], y[test_idx]
+    train = torch.tensor(train_idx, dtype=torch.long)
+    test = torch.tensor(test_idx, dtype=torch.long)
+    return x[train], y[train], x[test], y[test]
 
 
-def torch_readout_accuracy(x: np.ndarray, y: np.ndarray, seed: int = 0) -> float:
+def torch_readout_accuracy(x: torch.Tensor, y: torch.Tensor, seed: int = 0) -> float:
     x_train, y_train, x_test, y_test = split_balanced(x, y)
-    mean = x_train.mean(axis=0, keepdims=True)
-    std = x_train.std(axis=0, keepdims=True)
-    std[std < 1e-9] = 1.0
+    mean = x_train.mean(dim=0, keepdim=True)
+    std = x_train.std(dim=0, keepdim=True)
+    std = torch.where(std < 1e-9, torch.ones_like(std), std)
     x_train = (x_train - mean) / std
     x_test = (x_test - mean) / std
     torch.manual_seed(seed)
@@ -255,10 +269,10 @@ def torch_readout_accuracy(x: np.ndarray, y: np.ndarray, seed: int = 0) -> float
     ).double()
     opt = optim.Adam(model.parameters(), lr=0.015, weight_decay=1e-4)
     loss_fn = nn.CrossEntropyLoss()
-    tx = torch.tensor(x_train, dtype=torch.float64)
-    ty = torch.tensor(y_train, dtype=torch.long)
-    vx = torch.tensor(x_test, dtype=torch.float64)
-    vy = torch.tensor(y_test, dtype=torch.long)
+    tx = x_train.to(dtype=RTYPE)
+    ty = y_train.to(dtype=torch.long)
+    vx = x_test.to(dtype=RTYPE)
+    vy = y_test.to(dtype=torch.long)
     for _ in range(N_EPOCHS):
         opt.zero_grad()
         loss = loss_fn(model(tx), ty)
@@ -307,7 +321,7 @@ def main() -> int:
     x, y, x_initial = build_dataset(constraint_set)
     controls = {
         name: build_dataset(constraint_set, collapsed=name)[0]
-        for name in ("flat_constraints", "sheet", "loop", "operator_sign")
+        for name in ("flat_constraints", "sheet", "loop", "stage")
     }
     nominal_acc = torch_readout_accuracy(x, y, seed=1)
     initial_acc = torch_readout_accuracy(x_initial, y, seed=2)
@@ -382,9 +396,9 @@ def main() -> int:
                 "collapsed_accuracy": control_acc["loop"],
                 "nominal_accuracy": nominal_acc,
             },
-            "operator_sign_collapse_degrades_readout": {
-                "pass": nominal_acc - control_acc["operator_sign"] >= 0.08,
-                "collapsed_accuracy": control_acc["operator_sign"],
+            "stage_collapse_degrades_readout": {
+                "pass": nominal_acc - control_acc["stage"] >= 0.08,
+                "collapsed_accuracy": control_acc["stage"],
                 "nominal_accuracy": nominal_acc,
             },
             "promotion_remains_disabled": {"pass": PROMOTION_ALLOWED is False},
@@ -400,8 +414,26 @@ def main() -> int:
         },
         "all_pass": True,
         "blockers": [],
+        "nearby_variants": {
+            "total": 5,
+            "passed": 0,
+            "variants": [
+                "flat_constraint_collapse_degrades_readout",
+                "sheet_collapse_degrades_readout",
+                "loop_collapse_degrades_readout",
+                "stage_collapse_degrades_readout",
+                "promotion_remains_disabled",
+            ],
+        },
+        "why_not_v4_probes": [
+            "This is a v5 downstream formal scout that consumes the nested constraint-manifold operational assembly receipt.",
+            "It tests finite trajectory/readout behavior under placement-factor collapses rather than isolated v4 tool capability.",
+        ],
         "elapsed_seconds": time.time() - started,
     }
+    result["nearby_variants"]["passed"] = sum(
+        1 for row in result["graveyard_companions"].values() if row["pass"]
+    )
     result["all_pass"] = (
         result["consumed_receipt_status"]["pass"]
         and all(row["pass"] for row in result["positive"].values())
@@ -409,6 +441,13 @@ def main() -> int:
         and all(row["pass"] for row in result["boundary"].values())
     )
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
+    result["root_constraints"] = {
+        "F01": True,
+        "N01": True,
+        "finite_carrier_root": True,
+        "noncommutation_or_order_root": True,
+        "n01_evidence": "bounded sheet/loop/stage placement controls and z3 collapse rejection record order-sensitive terrain placement evidence",
+    }
     OUT_PATH.write_text(json.dumps(result, indent=2, sort_keys=True), encoding="utf-8")
     print(f"RESULT {NAME}: all_pass={result['all_pass']} -> {OUT_PATH}")
     return 0 if result["all_pass"] else 1

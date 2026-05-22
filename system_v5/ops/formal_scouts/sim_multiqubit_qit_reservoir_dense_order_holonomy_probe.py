@@ -4,16 +4,15 @@
 from __future__ import annotations
 
 import json
+import math
 import pathlib
 import time
 from typing import Any
 
-import numpy as np
 import torch
 import z3
 
 import engine_v6_proper_multiqubit_reference as v6
-from sim_multiqubit_qit_reservoir_grok_task_replication_probe import CLASS_NAMES, class_density
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -33,14 +32,19 @@ CLAIM_CEILING = (
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing dense v6 order-dependent state evolution"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing state construction and gap aggregation"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite noncommutation witness"},
     "engine_v6_reference": {"tried": True, "used": True, "reason": "load-bearing repo-grounded v6 candidate"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'pytorch': 'load_bearing',
+    'z3': 'load_bearing',
+    'engine_v6_reference': 'supportive',
+}
 
-N_QUBITS = 4
+MIN_NONCLASSICAL_WIDTH = 8
+N_QUBITS = 8
 DTYPE = v6.DTYPE
+CLASS_NAMES = ["product", "ghz", "w", "haar"]
 
 
 def tokens_for_order(engine: v6.TrainableEngineV6, stage_order: list[int]) -> list[tuple[int, int, int]]:
@@ -51,8 +55,8 @@ def tokens_for_order(engine: v6.TrainableEngineV6, stage_order: list[int]) -> li
     return tokens
 
 
-def evolve_tokens(engine: v6.TrainableEngineV6, rho_np: np.ndarray, tokens: list[tuple[int, int, int]]) -> torch.Tensor:
-    rho = torch.tensor(rho_np, dtype=DTYPE)
+def evolve_tokens(engine: v6.TrainableEngineV6, rho_in: torch.Tensor, tokens: list[tuple[int, int, int]]) -> torch.Tensor:
+    rho = rho_in.to(DTYPE)
     with torch.no_grad():
         for terrain_idx, op_idx, sign in tokens:
             rho = engine.run_substage(rho, terrain_idx, op_idx, sign)
@@ -63,17 +67,73 @@ def fro_gap(a: torch.Tensor, b: torch.Tensor) -> float:
     return float(torch.linalg.matrix_norm(a - b).detach().cpu().item())
 
 
-def density_for_name(name: str, rng: np.random.Generator) -> np.ndarray:
+def _complex_normal(shape: tuple[int, ...], generator: torch.Generator) -> torch.Tensor:
+    real = torch.randn(shape, generator=generator, dtype=torch.float32)
+    imag = torch.randn(shape, generator=generator, dtype=torch.float32)
+    return torch.complex(real, imag).to(DTYPE)
+
+
+def _pure_density(psi: torch.Tensor) -> torch.Tensor:
+    psi = psi.to(DTYPE)
+    return torch.outer(psi, psi.conj())
+
+
+def _kron_all(states: list[torch.Tensor]) -> torch.Tensor:
+    out = states[0]
+    for state in states[1:]:
+        out = torch.kron(out, state)
+    return out.to(DTYPE)
+
+
+def _random_product_density(generator: torch.Generator) -> torch.Tensor:
+    states = []
+    for _ in range(N_QUBITS):
+        psi = _complex_normal((2,), generator)
+        states.append(psi / torch.linalg.vector_norm(psi))
+    return _pure_density(_kron_all(states))
+
+
+def _ghz_density(generator: torch.Generator) -> torch.Tensor:
+    d = 2**N_QUBITS
+    psi = torch.zeros(d, dtype=DTYPE)
+    phase = float((2 * math.pi * torch.rand((), generator=generator, dtype=torch.float32)).item())
+    psi[0] = 1.0 / math.sqrt(2.0)
+    psi[-1] = complex(math.cos(phase), math.sin(phase)) / math.sqrt(2.0)
+    return _pure_density(psi)
+
+
+def _w_density() -> torch.Tensor:
+    d = 2**N_QUBITS
+    psi = torch.zeros(d, dtype=DTYPE)
+    amp = 1.0 / math.sqrt(float(N_QUBITS))
+    for q in range(N_QUBITS):
+        psi[1 << q] = amp
+    return _pure_density(psi)
+
+
+def _random_pure_density(generator: torch.Generator) -> torch.Tensor:
+    psi = _complex_normal((2**N_QUBITS,), generator)
+    return _pure_density(psi / torch.linalg.vector_norm(psi))
+
+
+def density_for_name(name: str, generator: torch.Generator) -> torch.Tensor:
     if name == "max_mixed":
         d = 2**N_QUBITS
-        return (np.eye(d, dtype=np.complex64) / d).astype(np.complex64)
-    label = CLASS_NAMES.index(name)
-    return class_density(label, N_QUBITS, rng)
+        return torch.eye(d, dtype=DTYPE) / d
+    if name == "product":
+        return _random_product_density(generator)
+    if name == "ghz":
+        return _ghz_density(generator)
+    if name == "w":
+        return _w_density()
+    if name == "haar":
+        return _random_pure_density(generator)
+    raise ValueError(name)
 
 
 def run_engine_class(engine_type: int, class_name: str, seed: int) -> dict[str, Any]:
     torch.manual_seed(200000 + engine_type)
-    rng = np.random.default_rng(seed)
+    generator = torch.Generator().manual_seed(seed)
     engine = v6.TrainableEngineV6(engine_type=engine_type, n_qubits=N_QUBITS, dt=0.06, n_steps_per_substage=2)
     engine.eval()
     native = engine.stage_sequence()
@@ -81,7 +141,7 @@ def run_engine_class(engine_type: int, class_name: str, seed: int) -> dict[str, 
     native_tokens = tokens_for_order(engine, native)
     reverse_tokens = list(reversed(native_tokens))
     mirrored_tokens = tokens_for_order(engine, mirrored)
-    rho = density_for_name(class_name, rng)
+    rho = density_for_name(class_name, generator)
     fwd = evolve_tokens(engine, rho, native_tokens)
     rev = evolve_tokens(engine, rho, reverse_tokens)
     mirrored_out = evolve_tokens(engine, rho, mirrored_tokens)
@@ -103,11 +163,11 @@ def run_matrix() -> dict[str, Any]:
             rows.append(run_engine_class(engine_type, class_name, 210000 + 100 * engine_type + idx))
     nontrivial = [row for row in rows if row["class_name"] != "max_mixed"]
     trivial = [row for row in rows if row["class_name"] == "max_mixed"]
-    mean_fwd_rev = float(np.mean([row["fwd_vs_rev_gap"] for row in nontrivial]))
-    mean_native_mirror = float(np.mean([row["native_vs_mirrored_gap"] for row in nontrivial]))
+    mean_fwd_rev = float(torch.tensor([row["fwd_vs_rev_gap"] for row in nontrivial], dtype=torch.float64).mean().item())
+    mean_native_mirror = float(torch.tensor([row["native_vs_mirrored_gap"] for row in nontrivial], dtype=torch.float64).mean().item())
     max_trivial = float(max(max(row["fwd_vs_rev_gap"], row["native_vs_mirrored_gap"]) for row in trivial))
-    t1_mean = float(np.mean([row["fwd_vs_rev_gap"] for row in nontrivial if row["engine_type"] == 1]))
-    t2_mean = float(np.mean([row["fwd_vs_rev_gap"] for row in nontrivial if row["engine_type"] == 2]))
+    t1_mean = float(torch.tensor([row["fwd_vs_rev_gap"] for row in nontrivial if row["engine_type"] == 1], dtype=torch.float64).mean().item())
+    t2_mean = float(torch.tensor([row["fwd_vs_rev_gap"] for row in nontrivial if row["engine_type"] == 2], dtype=torch.float64).mean().item())
     return {
         "n_qubits": N_QUBITS,
         "rows": rows,
@@ -124,18 +184,21 @@ def run_matrix() -> dict[str, Any]:
 
 def z3_holonomy_witness(matrix: dict[str, Any]) -> dict[str, Any]:
     solver = z3.Solver()
+    n = z3.Int("n_qubits")
     fwd = z3.Real("mean_fwd_rev")
     mirror = z3.Real("mean_native_mirror")
     trivial = z3.Real("max_trivial")
+    solver.add(n == matrix["n_qubits"])
     solver.add(fwd == str(round(matrix["mean_nontrivial_fwd_vs_rev_gap"], 8)))
     solver.add(mirror == str(round(matrix["mean_nontrivial_native_vs_mirrored_gap"], 8)))
     solver.add(trivial == str(round(matrix["max_trivial_max_mixed_gap"], 8)))
-    solver.add(z3.Not(z3.And(fwd > 0, mirror > 0, trivial < fwd)))
+    solver.add(z3.Not(z3.And(n >= MIN_NONCLASSICAL_WIDTH, fwd > 0, mirror > 0, trivial < fwd)))
     status = solver.check()
     return {
         "solver_status": str(status),
         "pass": status == z3.unsat,
-        "claim_ceiling": "Z3 encodes only finite dense-v6 order-gap inequalities.",
+        "minimum_width_qubits": MIN_NONCLASSICAL_WIDTH,
+        "claim_ceiling": "Z3 encodes only finite dense-v6 order-gap inequalities at the current minimum-width floor.",
     }
 
 
@@ -158,8 +221,14 @@ def main() -> int:
         },
     }
     boundary = {
+        "eight_qubit_width_floor_is_direct": {
+            "n_qubits": N_QUBITS,
+            "minimum_width_qubits": MIN_NONCLASSICAL_WIDTH,
+            "minimum_width_role": "maturity_gate",
+            "pass": N_QUBITS >= MIN_NONCLASSICAL_WIDTH,
+        },
         "promotion_remains_disabled": {"pass": PROMOTION_ALLOWED is False},
-        "dense_holonomy_does_not_replace_peps3d_holonomy": {"pass": "dense-v6" in CLAIM_CEILING and N_QUBITS == 4},
+        "dense_holonomy_does_not_replace_peps3d_holonomy": {"pass": "dense-v6" in CLAIM_CEILING and N_QUBITS >= MIN_NONCLASSICAL_WIDTH},
     }
     all_pass = all(row["pass"] for row in positive.values()) and all(row["pass"] for row in graveyards.values()) and all(row["pass"] for row in boundary.values())
     result = {

@@ -15,7 +15,6 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import gudhi
 import networkx as nx
-import numpy as np
 import opt_einsum as oe
 import sympy as sp
 import torch
@@ -40,7 +39,6 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing source-history deltas and layer-removal controls"},
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing density evolution, flux Hamiltonian, and entropy readouts"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing tensor-network partial trace for coherent-information readout"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing directed flux graph from Hopf-torus shell transport"},
@@ -49,7 +47,6 @@ TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True, "reason": "load-bearing exact Hopf curvature/area scaling sanity check"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
     "pytorch": "load_bearing",
     "opt_einsum": "load_bearing",
     "networkx": "load_bearing",
@@ -69,10 +66,6 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, tuple):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.floating, np.integer)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
     return value
@@ -82,20 +75,20 @@ def source_blocks(rows: list[dict[str, Any]]) -> list[dict[str, float]]:
     blocks = []
     for step in range(8):
         block = [row for row in rows if int(row["stage_index"]) == step]
-        readouts = np.array([row["readout"] for row in block], dtype=float)
         left = [row for row in block if row["sheet"].startswith("left")]
         right = [row for row in block if row["sheet"].startswith("right")]
         base_lift_fraction = sum(1 for row in block if row["loop"] == "base_lift_loop") / max(len(block), 1)
         terrain_count = len({row["terrain_law"] for row in block})
-        left_z = float(np.mean([row["readout"][2] for row in left]))
-        right_z = float(np.mean([row["readout"][2] for row in right]))
-        left_coh = float(np.mean([row["offdiag_coherence"] for row in left]))
-        right_coh = float(np.mean([row["offdiag_coherence"] for row in right]))
+        readouts_t = torch.tensor([row["readout"] for row in block], dtype=torch.float64)
+        left_z = float(torch.tensor([row["readout"][2] for row in left], dtype=torch.float64).mean().item())
+        right_z = float(torch.tensor([row["readout"][2] for row in right], dtype=torch.float64).mean().item())
+        left_coh = float(torch.tensor([row["offdiag_coherence"] for row in left], dtype=torch.float64).mean().item())
+        right_coh = float(torch.tensor([row["offdiag_coherence"] for row in right], dtype=torch.float64).mean().item())
         blocks.append(
             {
                 "step": float(step),
-                "mean_abs": float(np.mean(np.abs(readouts))),
-                "std": float(np.std(readouts)),
+                "mean_abs": float(torch.mean(torch.abs(readouts_t)).item()),
+                "std": float(torch.std(readouts_t, unbiased=False).item()),
                 "left_right_z_delta": left_z - right_z,
                 "left_right_coherence_gap": abs(left_coh - right_coh),
                 "base_lift_fraction": float(base_lift_fraction),
@@ -327,13 +320,13 @@ def evolve_flux(rows: list[dict[str, float]]) -> dict[str, Any]:
                 "normalized_subsystem_entropy": s_a / math.log(2**cut),
             }
         )
-    flux_values = np.array([row["strong_flux"] for row in rows], dtype=float)
+    flux_values = torch.tensor([row["strong_flux"] for row in rows], dtype=torch.float64)
     return {
         "history": history,
         "cuts": cuts,
-        "flux_l1": float(np.sum(np.abs(flux_values))),
-        "flux_signed_sum": float(np.sum(flux_values)),
-        "flux_variance": float(np.var(flux_values)),
+        "flux_l1": float(torch.sum(torch.abs(flux_values)).item()),
+        "flux_signed_sum": float(torch.sum(flux_values).item()),
+        "flux_variance": float(torch.var(flux_values, unbiased=False).item()),
         "max_coherent_information": max(row["coherent_information"] for row in cuts),
         "max_mutual_information": max(row["mutual_information"] for row in cuts),
         "max_normalized_subsystem_entropy": max(row["normalized_subsystem_entropy"] for row in cuts),
@@ -478,7 +471,7 @@ def main() -> int:
         "tool_depth_declared": {
             "tool_count": len(TOOL_MANIFEST),
             "load_bearing_count": sum(1 for value in TOOL_INTEGRATION_DEPTH.values() if value == "load_bearing"),
-            "pass": len(TOOL_MANIFEST) == 7 and sum(1 for value in TOOL_INTEGRATION_DEPTH.values() if value == "load_bearing") >= 6,
+            "pass": len(TOOL_MANIFEST) == 6 and sum(1 for value in TOOL_INTEGRATION_DEPTH.values() if value == "load_bearing") >= 5,
         },
     }
     all_checks = [row["pass"] for row in positive.values()] + [row["pass"] for row in graveyard_companions.values()] + [row["pass"] for row in boundary.values()]

@@ -14,6 +14,12 @@ state into named quantities:
   - holonomy_phase:       Berry phase along the trajectory.
   - full_readout:         all of the above combined.
 
+Boundary: these are diagnostic labels/readouts over the current QIT engine
+state trajectory. They are not source-native terrain/operator evidence by
+themselves, and they must not be cited as the full terrain generator,
+Weyl-sheet placement, or source operator-layer model without separate
+source-generator receipts.
+
 Source alignment:
   - canonical_qit_engine_specs.py (topology dicts, Bloch axes)
   - sim_closed_loop_holonomy_hysteresis_falsifier_probe.py (Berry phase reference)
@@ -33,17 +39,34 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 
 import gudhi
-import numpy as np
+import torch
 
 _ROOT = pathlib.Path(__file__).resolve().parent
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from canonical_qit_engine_specs import (
-    DTYPE,
+    SX,
+    SY,
+    SZ,
     TYPE_ONE_TOPOLOGIES,
     TYPE_TWO_TOPOLOGIES,
 )
+
+TORCH_COMPLEX_DTYPE = torch.complex128
+TORCH_REAL_DTYPE = torch.float64
+I2_T = torch.eye(2, dtype=TORCH_COMPLEX_DTYPE)
+SX_T = torch.as_tensor(SX, dtype=TORCH_COMPLEX_DTYPE)
+SY_T = torch.as_tensor(SY, dtype=TORCH_COMPLEX_DTYPE)
+SZ_T = torch.as_tensor(SZ, dtype=TORCH_COMPLEX_DTYPE)
+
+
+def _as_complex_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=TORCH_COMPLEX_DTYPE)
+
+
+def _rho_from_bloch(rx: float, ry: float, rz: float) -> torch.Tensor:
+    return 0.5 * (I2_T + float(rx) * SX_T + float(ry) * SY_T + float(rz) * SZ_T)
 
 
 # ---------------------------------------------------------------------------
@@ -67,13 +90,13 @@ from canonical_qit_engine_specs import (
 #   "lose" → -0.5 along the axis (negative but weaker)
 
 
-def _axis_unit_vector(axis: str) -> np.ndarray:
+def _axis_unit_vector(axis: str) -> torch.Tensor:
     if axis == "x":
-        return np.array([1.0, 0.0, 0.0])
+        return torch.tensor([1.0, 0.0, 0.0], dtype=TORCH_REAL_DTYPE)
     elif axis == "y":
-        return np.array([0.0, 1.0, 0.0])
+        return torch.tensor([0.0, 1.0, 0.0], dtype=TORCH_REAL_DTYPE)
     elif axis == "z":
-        return np.array([0.0, 0.0, 1.0])
+        return torch.tensor([0.0, 0.0, 1.0], dtype=TORCH_REAL_DTYPE)
     else:
         raise ValueError(f"unknown axis: {axis}")
 
@@ -91,7 +114,7 @@ def _result_sign_magnitude(result: str) -> float:
         raise ValueError(f"unknown result: {result}")
 
 
-def _topology_centroid(topology_spec: dict) -> np.ndarray:
+def _topology_centroid(topology_spec: dict) -> torch.Tensor:
     """Build a Bloch centroid for a topology spec."""
     axis = topology_spec["projector_axis"]
     outer_result = topology_spec["outer"]["result"]
@@ -102,23 +125,23 @@ def _topology_centroid(topology_spec: dict) -> np.ndarray:
     inner_mag = _result_sign_magnitude(inner_result)
     # Orthogonal axis for inner contribution
     if axis == "x":
-        ortho = np.array([0.0, 0.5, 0.5]) / math.sqrt(0.5)
+        ortho = torch.tensor([0.0, 0.5, 0.5], dtype=TORCH_REAL_DTYPE) / math.sqrt(0.5)
     elif axis == "y":
-        ortho = np.array([0.5, 0.0, 0.5]) / math.sqrt(0.5)
+        ortho = torch.tensor([0.5, 0.0, 0.5], dtype=TORCH_REAL_DTYPE) / math.sqrt(0.5)
     else:
-        ortho = np.array([0.5, 0.5, 0.0]) / math.sqrt(0.5)
+        ortho = torch.tensor([0.5, 0.5, 0.0], dtype=TORCH_REAL_DTYPE) / math.sqrt(0.5)
     centroid = outer_mag * base_dir + 0.3 * inner_mag * ortho
-    norm = float(np.linalg.norm(centroid))
+    norm = float(torch.linalg.vector_norm(centroid).item())
     if norm > 1e-12:
-        return centroid / norm * min(1.0, float(np.linalg.norm(centroid)))
+        return centroid / norm * min(1.0, norm)
     return base_dir * outer_mag
 
 
-def _build_topology_centroid_catalogue() -> dict[str, dict[str, np.ndarray]]:
+def _build_topology_centroid_catalogue() -> dict[str, dict[str, torch.Tensor]]:
     """
     Return {"type_one": {perception: centroid}, "type_two": {perception: centroid}}.
     """
-    out: dict[str, dict[str, np.ndarray]] = {"type_one": {}, "type_two": {}}
+    out: dict[str, dict[str, torch.Tensor]] = {"type_one": {}, "type_two": {}}
     for perception, spec in TYPE_ONE_TOPOLOGIES.items():
         out["type_one"][perception] = _topology_centroid(spec)
     for perception, spec in TYPE_TWO_TOPOLOGIES.items():
@@ -138,7 +161,7 @@ class EngineReadout:
 
     @staticmethod
     def terrain_of_arrival(
-        final_state: np.ndarray,
+        final_state: Any,
         all_topology_specs: dict[str, dict[str, dict]] | None = None,
     ) -> dict[str, Any]:
         """
@@ -148,13 +171,12 @@ class EngineReadout:
 
         final_state: 2x2 density matrix.
         """
-        from canonical_qit_engine_specs import SX, SY, SZ
-        rho = np.array(final_state, dtype=DTYPE)
-        bloch = np.array([
-            float(np.real(np.trace(SX @ rho))),
-            float(np.real(np.trace(SY @ rho))),
-            float(np.real(np.trace(SZ @ rho))),
-        ])
+        rho = _as_complex_tensor(final_state)
+        bloch = torch.stack([
+            torch.real(torch.trace(SX_T @ rho)),
+            torch.real(torch.trace(SY_T @ rho)),
+            torch.real(torch.trace(SZ_T @ rho)),
+        ]).to(TORCH_REAL_DTYPE)
 
         catalogue = all_topology_specs if all_topology_specs is not None else {
             "type_one": TYPE_ONE_TOPOLOGIES,
@@ -172,7 +194,7 @@ class EngineReadout:
             centroid_dict = TOPOLOGY_CENTROIDS[engine_type_label]
             for perception, spec in perception_dict.items():
                 centroid = centroid_dict[perception]
-                d = float(np.linalg.norm(bloch - centroid))
+                d = float(torch.linalg.vector_norm(bloch - centroid).item())
                 all_distances[engine_type_label][perception] = d
                 if d < best_distance:
                     best_distance = d
@@ -185,7 +207,7 @@ class EngineReadout:
             "engine_type": best_engine_type,
             "perception": best_perception,
             "distance": best_distance,
-            "bloch": bloch.tolist(),
+            "bloch": [float(x) for x in bloch.tolist()],
             "all_distances": all_distances,
         }
 
@@ -208,11 +230,23 @@ class EngineReadout:
         outer_records = [r for r in trajectory if r.get("loop_class") == "outer"]
         inner_records = [r for r in trajectory if r.get("loop_class") == "inner"]
 
-        outer_mean_ent = float(np.mean([r["entropy"] for r in outer_records])) if outer_records else 0.0
-        inner_mean_ent = float(np.mean([r["entropy"] for r in inner_records])) if inner_records else 0.0
+        outer_mean_ent = (
+            float(torch.tensor([r["entropy"] for r in outer_records], dtype=TORCH_REAL_DTYPE).mean().item())
+            if outer_records else 0.0
+        )
+        inner_mean_ent = (
+            float(torch.tensor([r["entropy"] for r in inner_records], dtype=TORCH_REAL_DTYPE).mean().item())
+            if inner_records else 0.0
+        )
 
-        outer_mean_pur = float(np.mean([r["purity"] for r in outer_records])) if outer_records else 0.0
-        inner_mean_pur = float(np.mean([r["purity"] for r in inner_records])) if inner_records else 0.0
+        outer_mean_pur = (
+            float(torch.tensor([r["purity"] for r in outer_records], dtype=TORCH_REAL_DTYPE).mean().item())
+            if outer_records else 0.0
+        )
+        inner_mean_pur = (
+            float(torch.tensor([r["purity"] for r in inner_records], dtype=TORCH_REAL_DTYPE).mean().item())
+            if inner_records else 0.0
+        )
 
         # Classification: lower entropy / higher purity = "WIN" (dominant);
         # higher entropy / lower purity = "lose"
@@ -257,7 +291,7 @@ class EngineReadout:
         if not trajectory:
             return {}
 
-        def get_eigs(record: dict) -> np.ndarray:
+        def get_eigs(record: dict) -> torch.Tensor:
             # Approximate eigenvalues from purity and entropy:
             # For 2-dim: eigs (p, 1-p) with purity = p² + (1-p)²
             # Use von Neumann entropy directly + purity to recover (p, 1-p)
@@ -268,7 +302,7 @@ class EngineReadout:
             r = math.sqrt(disc)
             p_high = (1 + r) / 2
             p_low = (1 - r) / 2
-            return np.array([max(p_low, 1e-15), max(p_high, 1e-15)])
+            return torch.tensor([max(p_low, 1e-15), max(p_high, 1e-15)], dtype=TORCH_REAL_DTYPE)
 
         positions = {
             "start": 0,
@@ -279,9 +313,9 @@ class EngineReadout:
         for label, pos in positions.items():
             eigs = get_eigs(trajectory[pos])
             eigs = eigs / eigs.sum()
-            shannon = float(-(eigs * np.log(eigs)).sum())
-            renyi2 = float(-np.log((eigs ** 2).sum()))
-            tsallis2 = float(1 - (eigs ** 2).sum())
+            shannon = float((-(eigs * torch.log(eigs)).sum()).item())
+            renyi2 = float((-torch.log((eigs ** 2).sum())).item())
+            tsallis2 = float((1 - (eigs ** 2).sum()).item())
             out[label] = {
                 "shannon": shannon,
                 "renyi_2": renyi2,
@@ -297,7 +331,7 @@ class EngineReadout:
         if not trajectory:
             return {"h0_count": 0, "max_finite_h0_persistence": 0.0}
 
-        points = np.array([r["bloch"] for r in trajectory], dtype=float)
+        points = [[float(x) for x in r["bloch"]] for r in trajectory]
         # Rips complex with edge length matched to typical Bloch ball scale
         rips = gudhi.RipsComplex(points=points, max_edge_length=0.6)
         st = rips.create_simplex_tree(max_dimension=1)
@@ -327,7 +361,6 @@ class EngineReadout:
 
         For a closed loop, γ ≠ 0 indicates non-trivial holonomy.
         """
-        from canonical_qit_engine_specs import SX, SY, SZ
         if not trajectory:
             return {"berry_phase": 0.0, "n_records": 0}
 
@@ -335,14 +368,14 @@ class EngineReadout:
         eigenvectors = []
         for record in trajectory:
             rx, ry, rz = record["bloch"]
-            rho = 0.5 * (np.eye(2, dtype=DTYPE) + rx * SX + ry * SY + rz * SZ)
-            vals, vecs = np.linalg.eigh((rho + rho.conj().T) / 2)
+            rho = _rho_from_bloch(float(rx), float(ry), float(rz))
+            _, vecs = torch.linalg.eigh((rho + rho.mH) / 2)
             # Dominant eigenvector
-            psi = vecs[:, -1].astype(DTYPE)
+            psi = vecs[:, -1].clone()
             # Phase fix: first non-zero component positive real
             for i in range(2):
-                if abs(psi[i]) > 1e-12:
-                    psi = psi * np.conj(psi[i]) / abs(psi[i])
+                if float(torch.abs(psi[i]).item()) > 1e-12:
+                    psi = psi * torch.conj(psi[i]) / torch.abs(psi[i])
                     break
             eigenvectors.append(psi)
 
@@ -351,11 +384,11 @@ class EngineReadout:
         for k in range(len(eigenvectors)):
             psi_k = eigenvectors[k]
             psi_kp1 = eigenvectors[(k + 1) % len(eigenvectors)]
-            ovr = complex(np.dot(np.conj(psi_k), psi_kp1))
+            ovr = complex(torch.vdot(psi_k, psi_kp1).item())
             if abs(ovr) > 1e-12:
                 product *= ovr / abs(ovr)
 
-        berry_phase = float(-np.angle(product))
+        berry_phase = float(-math.atan2(product.imag, product.real))
         return {
             "berry_phase": berry_phase,
             "abs_berry_phase": abs(berry_phase),
@@ -374,8 +407,7 @@ class EngineReadout:
             return {"empty": True}
         last_record = trajectory[-1]
         rx, ry, rz = last_record["bloch"]
-        from canonical_qit_engine_specs import SX, SY, SZ
-        rho_final = 0.5 * (np.eye(2, dtype=DTYPE) + rx * SX + ry * SY + rz * SZ)
+        rho_final = _rho_from_bloch(float(rx), float(ry), float(rz))
 
         return {
             "terrain_of_arrival": cls.terrain_of_arrival(rho_final),
@@ -418,16 +450,15 @@ if __name__ == "__main__":
     print(f"\n1. Centroid catalogue (Type 1 perceptions):")
     for perception, centroid in TOPOLOGY_CENTROIDS["type_one"].items():
         print(f"   {perception} ({TYPE_ONE_TOPOLOGIES[perception]['realization']}): "
-              f"{[round(x, 3) for x in centroid]}")
+              f"{[round(float(x), 3) for x in centroid]}")
     print(f"\n   Type 2 perceptions:")
     for perception, centroid in TOPOLOGY_CENTROIDS["type_two"].items():
         print(f"   {perception} ({TYPE_TWO_TOPOLOGIES[perception]['realization']}): "
-              f"{[round(x, 3) for x in centroid]}")
+              f"{[round(float(x), 3) for x in centroid]}")
 
     print("\n2. terrain_of_arrival")
-    from canonical_qit_engine_specs import SX, SY, SZ
     rx, ry, rz = out["final_bloch"]
-    rho_final = 0.5 * (np.eye(2, dtype=DTYPE) + rx * SX + ry * SY + rz * SZ)
+    rho_final = _rho_from_bloch(float(rx), float(ry), float(rz))
     toa = EngineReadout.terrain_of_arrival(rho_final)
     print(f"   terrain={toa['terrain']}  engine_type={toa['engine_type']}  "
           f"perception={toa['perception']}  distance={toa['distance']:.4f}")

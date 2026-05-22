@@ -17,6 +17,8 @@ import os
 import itertools
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed -- no gradient"},
     "pyg": {"tried": False, "used": False, "reason": "no graph learning required"},

@@ -14,7 +14,6 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import networkx as nx
-from scipy.stats import linregress
 import sympy as sp
 import torch
 from torch_geometric.utils import from_networkx
@@ -40,7 +39,7 @@ TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing diagonal density states, conditional expectation, trace, positivity, and entropy spectra"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing finite cubic shell graph and boundary-node extraction"},
     "torch_geometric": {"tried": True, "used": True, "reason": "load-bearing graph tensor conversion for shell graph features"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing log-log entropy scaling fits"},
+    "python_math": {"tried": True, "used": True, "reason": "load-bearing closed-form log-log least-squares scaling fits"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic volume-versus-boundary exponent check"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing area-law scaling witness"},
 }
@@ -96,11 +95,31 @@ def random_volume_like_projection(prob: torch.Tensor, count: int, salt: int) -> 
     return projected
 
 
+def closed_form_loglog_regression(xs: list[float], ys: list[float]) -> dict[str, float]:
+    n = len(xs)
+    if n != len(ys) or n < 2:
+        raise ValueError("closed_form_loglog_regression requires matching inputs with at least two points")
+    x_mean = math.fsum(xs) / n
+    y_mean = math.fsum(ys) / n
+    x_deltas = [x - x_mean for x in xs]
+    y_deltas = [y - y_mean for y in ys]
+    ss_xx = math.fsum(dx * dx for dx in x_deltas)
+    ss_yy = math.fsum(dy * dy for dy in y_deltas)
+    if ss_xx <= 0.0:
+        raise ValueError("closed_form_loglog_regression requires non-constant x values")
+    ss_xy = math.fsum(dx * dy for dx, dy in zip(x_deltas, y_deltas))
+    slope_value = ss_xy / ss_xx
+    intercept = y_mean - slope_value * x_mean
+    rvalue = 0.0 if ss_yy <= 0.0 else ss_xy / math.sqrt(ss_xx * ss_yy)
+    residual_ss = math.fsum((y - (slope_value * x + intercept)) ** 2 for x, y in zip(xs, ys))
+    stderr = math.sqrt(max(0.0, residual_ss / (n - 2) / ss_xx)) if n > 2 else 0.0
+    return {"slope": float(slope_value), "rvalue": float(rvalue), "stderr": float(stderr)}
+
+
 def slope(rows: list[dict[str, Any]], key: str) -> dict[str, Any]:
     xs = [math.log(row["length"]) for row in rows]
     ys = [math.log(max(row[key], 1e-12)) for row in rows]
-    fit = linregress(xs, ys)
-    return {"slope": float(fit.slope), "rvalue": float(fit.rvalue), "stderr": float(fit.stderr)}
+    return closed_form_loglog_regression(xs, ys)
 
 
 def z3_witness(volume_slope: float, boundary_slope: float, trace_gap: float, positivity_gap: float) -> dict[str, Any]:

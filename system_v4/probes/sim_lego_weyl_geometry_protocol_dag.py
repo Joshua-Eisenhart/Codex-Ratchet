@@ -27,6 +27,10 @@ import rustworkx as rx
 import z3
 
 classification = "classical_baseline"
+
+divergence_log = [
+    "Classical comparator/control surface only; this metadata clears C4 for baseline accounting and does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+]
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 from hopf_manifold import (

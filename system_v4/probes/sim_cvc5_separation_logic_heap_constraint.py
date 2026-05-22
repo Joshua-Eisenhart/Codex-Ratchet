@@ -15,6 +15,8 @@ See: Reynolds "Intuitionistic Reasoning about Shared Mutable Data Structure"
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

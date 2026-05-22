@@ -108,8 +108,8 @@ def sequence_mode(rho: torch.Tensor, mode: str, boundary_mode: str = "nearest") 
 
 def persistence_signature(values: list[float]) -> dict[str, Any]:
     points = torch.tensor(values, dtype=torch.float64).reshape(-1, 1)
-    distance = torch.cdist(points, points).numpy()
-    rips = gudhi.RipsComplex(distance_matrix=distance, max_edge_length=float(distance.max() + 1e-12))
+    distance = torch.cdist(points, points)
+    rips = gudhi.RipsComplex(distance_matrix=distance.tolist(), max_edge_length=float(distance.max().item() + 1e-12))
     st = rips.create_simplex_tree(max_dimension=2)
     st.persistence()
     h0 = st.persistence_intervals_in_dimension(0)
@@ -118,11 +118,12 @@ def persistence_signature(values: list[float]) -> dict[str, Any]:
     finite1 = [float(b - a) for a, b in h1 if b != float("inf")]
     graph = nx.Graph()
     graph.add_nodes_from(range(len(values)))
-    cutoff = float(torch.tensor(distance).median().item())
+    cutoff = float(distance.median().item())
     for i in range(len(values)):
         for j in range(i + 1, len(values)):
-            if 0 < distance[i, j] <= cutoff:
-                graph.add_edge(i, j, weight=float(distance[i, j]))
+            d_ij = float(distance[i, j].item())
+            if 0 < d_ij <= cutoff:
+                graph.add_edge(i, j, weight=d_ij)
     pyg = from_networkx(graph)
     return {
         "h0_count": len(h0),

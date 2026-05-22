@@ -11,6 +11,14 @@ from receipt_boundary import apply_default_receipt_boundary
 
 classification = "classical_baseline"
 NAME = "sim_pca_variance_explained_classical"
+divergence_log = (
+    "Classical PCA variance-explained uses a real symmetric sample-covariance "
+    "matrix with non-negative eigenvalues and commuting directions. Lost relative "
+    "to the nonclassical/qPCA shell: density-matrix coherences and relative phases "
+    "between principal directions, noncommuting probe covariances (uncertainty "
+    "floor), and distinguishability-constraint-admissible subspaces whose variance "
+    "decomposition cannot be identified with a classical orthogonal direct sum."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "sample covariance, trace, and variance-fraction array calculations"},

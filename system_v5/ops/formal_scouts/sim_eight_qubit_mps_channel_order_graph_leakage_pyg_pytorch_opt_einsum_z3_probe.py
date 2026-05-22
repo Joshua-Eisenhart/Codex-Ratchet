@@ -71,8 +71,8 @@ def ghz_mps_state(num_qubits: int = 8) -> tuple[torch.Tensor, list[int]]:
         terms.append(f"{letters[idx]}{letters[8 + idx]}{letters[idx + 1]}")
     output = "".join(letters[8 : 8 + num_qubits])
     expr = ",".join(terms) + "->" + output
-    contracted = oe.contract(expr, *[tensor.numpy() for tensor in tensors])
-    psi = torch.from_numpy(contracted.reshape(2**num_qubits))
+    contracted = oe.contract(expr, *tensors)
+    psi = contracted.reshape(2**num_qubits)
     return psi / torch.linalg.vector_norm(psi), [2] * (num_qubits - 1)
 
 

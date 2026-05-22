@@ -1,14 +1,14 @@
 # Geometry Stack = Constraint Ratchet Doctrine
 
-*Owner doctrine, 2026-04-14. Repo-tracked copy of memory entry `user_geometry_stack_ratchet_doctrine.md`.*
+*Owner doctrine snapshot, 2026-04-14. Repo-tracked copy of memory entry `user_geometry_stack_ratchet_doctrine.md`. This is historical/source-reservoir doctrine, not current formal-scout promotion by itself.*
 
 ## Core Claim
 
-Stacked geometries form a **real ratcheting constraint layer** IFF the stack is **non-commutative** (A∘B ≠ B∘A on some probe state). If you can freely swap order, it's not a ratchet — just independent filters.
+Stacked geometries form a **candidate ratcheting constraint layer** when the stack is **non-commutative** (A∘B != B∘A on some probe state). If you can freely swap order, it is not a ratchet -- just independent filters.
 
 ## Why This Matters
 
-The geometric constraint manifold is described as nested simultaneous shells where inner shells are MORE constrained than outer. For this nesting to be a ratchet (rather than a decorative hierarchy), the composition of shells must be order-sensitive. Non-commutativity IS the constraint ratchet.
+The geometric constraint manifold is described as nested simultaneous shells where inner shells are MORE constrained than outer. For this nesting to act like a ratchet rather than a decorative hierarchy, the composition of shells must be order-sensitive. Non-commutativity is the candidate ratchet signal in this snapshot.
 
 ## Tests / Markers
 
@@ -22,7 +22,7 @@ The geometric constraint manifold is described as nested simultaneous shells whe
 
 The **G-tower reduction chain** (GL→O→SO→U→SU→Sp) is the leading candidate for the ratchet carrier:
 - Each reduction tightens structure group
-- Chain order is rigid in 5/6 tested adjacent pairs (session 2026-04-14)
+- Chain order is reported rigid in 5/6 tested adjacent pairs (session 2026-04-14)
 - z3 UNSAT proofs exist for invalid-order reductions (sim_gtower_order_z3_unsat_invalid_reduction_order, sim_gtower_order_full_chain_unique_path_admissibility)
 
 ## Tool Discipline
@@ -35,8 +35,8 @@ The **G-tower reduction chain** (GL→O→SO→U→SU→Sp) is the leading candi
 
 ## Evidence from Session 2026-04-14
 
-- **10/10 non-commutative pairs** confirmed A∘B ≠ B∘A (sim_geom_noncomm_*)
-- **5 rigid G-tower adjacent reductions** (sim_gtower_order_*)
+- **10/10 non-commutative pairs** reported A∘B != B∘A in the dated snapshot (sim_geom_noncomm_*)
+- **5 reported rigid G-tower adjacent reductions** (sim_gtower_order_*)
 - **Commuting controls** (same-plane rotors, scalar irrep, same-axis rotation) correctly classified as non-ratcheting
 - **Clifford rotor deep**: 8/8 PASS with non-commutative composition as the load-bearing claim
 

@@ -25,7 +25,7 @@ from pathlib import Path
 from typing import Any
 
 import networkx as nx
-import numpy as np
+import torch
 import z3
 
 try:
@@ -42,6 +42,7 @@ OUT_PATH = RESULT_DIR / "holographic_boundary_path_ensemble_axis0_fep_selection_
 NAME = "holographic_boundary_path_ensemble_axis0_fep_selection_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 SOURCE_ALIGNMENT_CATEGORY = "noncanonical_legacy_fuel_to_finite_qit_formal_scout"
 CLAIM_CEILING = (
     "Formal scout only: translates noncanonical legacy Holodeck/TOE fuel into "
@@ -52,10 +53,10 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing finite density matrices, partial traces, spectra, KL, and Kraus histories",
+        "reason": "load-bearing finite density matrices, partial traces, spectra, KL, Kraus histories, and path/FEP statistics",
     },
     "networkx": {
         "tried": True,
@@ -74,105 +75,143 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
+    "pytorch": "load_bearing",
     "networkx": "load_bearing",
     "gudhi": "load_bearing" if gd is not None else None,
     "z3": "load_bearing",
 }
+TOOL_ROLE_SOURCE = {
+    "pytorch": "local",
+    "networkx": "local",
+    "gudhi": "local" if gd is not None else "not_available",
+    "z3": "local",
+}
 
-I2 = np.eye(2, dtype=complex)
-SX = np.array([[0, 1], [1, 0]], dtype=complex)
-SY = np.array([[0, -1j], [1j, 0]], dtype=complex)
-SZ = np.array([[1, 0], [0, -1]], dtype=complex)
+TORCH_REAL = torch.float64
+TORCH_COMPLEX = torch.complex128
+I2 = torch.eye(2, dtype=TORCH_COMPLEX)
+SX = torch.as_tensor([[0, 1], [1, 0]], dtype=TORCH_COMPLEX)
+SY = torch.as_tensor([[0, -1j], [1j, 0]], dtype=TORCH_COMPLEX)
+SZ = torch.as_tensor([[1, 0], [0, -1]], dtype=TORCH_COMPLEX)
 
 
-def dagger(a: np.ndarray) -> np.ndarray:
-    return np.conjugate(a.T)
+def as_complex_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=TORCH_COMPLEX)
 
 
-def project_density(rho: np.ndarray) -> np.ndarray:
+def as_real_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=TORCH_REAL)
+
+
+def dagger(a: Any) -> torch.Tensor:
+    a = as_complex_tensor(a)
+    return torch.conj(a.transpose(-2, -1))
+
+
+def vector_norm(value: Any) -> float:
+    tensor = as_complex_tensor(value)
+    return float(torch.linalg.vector_norm(tensor.reshape(-1)).item())
+
+
+def mean_float(values: Any) -> float:
+    return float(torch.mean(as_real_tensor(list(values))).item())
+
+
+def sum_float(values: Any) -> float:
+    return float(torch.sum(as_real_tensor(list(values))).item())
+
+
+def project_density(rho: Any) -> torch.Tensor:
+    rho = as_complex_tensor(rho)
     rho = 0.5 * (rho + dagger(rho))
-    vals, vecs = np.linalg.eigh(rho)
-    vals = np.clip(vals.real, 0.0, None)
-    if float(np.sum(vals)) <= 1e-14:
-        vals = np.ones_like(vals) / len(vals)
+    vals, vecs = torch.linalg.eigh(rho)
+    vals = torch.clamp(torch.real(vals), min=0.0)
+    if float(torch.sum(vals).item()) <= 1e-14:
+        vals = torch.ones_like(vals) / vals.numel()
     rho = (vecs * vals) @ dagger(vecs)
-    return rho / np.trace(rho)
+    return rho / torch.trace(rho)
 
 
-def entropy(rho: np.ndarray) -> float:
-    vals = np.linalg.eigvalsh(project_density(rho)).real
+def entropy(rho: Any) -> float:
+    vals = torch.real(torch.linalg.eigvalsh(project_density(rho)))
     vals = vals[vals > 1e-12]
-    return -float(np.sum(vals * np.log(vals)))
+    return -float(torch.sum(vals * torch.log(vals)).item())
 
 
-def purity(rho: np.ndarray) -> float:
+def purity(rho: Any) -> float:
     rho = project_density(rho)
-    return float(np.real(np.trace(rho @ rho)))
+    return float(torch.real(torch.trace(rho @ rho)).item())
 
 
-def kl(p: np.ndarray, q: np.ndarray) -> float:
-    p = np.clip(np.asarray(p, dtype=float), 1e-12, None)
-    q = np.clip(np.asarray(q, dtype=float), 1e-12, None)
-    p = p / np.sum(p)
-    q = q / np.sum(q)
-    return float(np.sum(p * (np.log(p) - np.log(q))))
+def kl(p: Any, q: Any) -> float:
+    p = torch.clamp(as_real_tensor(p), min=1e-12)
+    q = torch.clamp(as_real_tensor(q), min=1e-12)
+    p = p / torch.sum(p)
+    q = q / torch.sum(q)
+    return float(torch.sum(p * (torch.log(p) - torch.log(q))).item())
 
 
-def shannon(prob: np.ndarray) -> float:
-    prob = np.clip(np.asarray(prob, dtype=float), 1e-12, None)
-    prob = prob / np.sum(prob)
-    return -float(np.sum(prob * np.log(prob)))
+def shannon(prob: Any) -> float:
+    prob = torch.clamp(as_real_tensor(prob), min=1e-12)
+    prob = prob / torch.sum(prob)
+    return -float(torch.sum(prob * torch.log(prob)).item())
 
 
 def exp_diversity(weights: list[float]) -> float:
-    arr = np.clip(np.asarray(weights, dtype=float), 1e-12, None)
-    arr = arr / np.sum(arr)
+    arr = torch.clamp(as_real_tensor(weights), min=1e-12)
+    arr = arr / torch.sum(arr)
     return float(math.exp(shannon(arr)))
 
 
-def ry(theta: float) -> np.ndarray:
+def ry(theta: float) -> torch.Tensor:
     c = math.cos(theta / 2)
     s = math.sin(theta / 2)
-    return np.array([[c, -s], [s, c]], dtype=complex)
+    return torch.as_tensor([[c, -s], [s, c]], dtype=TORCH_COMPLEX)
 
 
-def rz(phi: float) -> np.ndarray:
-    return np.diag([np.exp(-0.5j * phi), np.exp(0.5j * phi)]).astype(complex)
+def rz(phi: float) -> torch.Tensor:
+    vals = torch.as_tensor(
+        [complex(math.cos(-0.5 * phi), math.sin(-0.5 * phi)), complex(math.cos(0.5 * phi), math.sin(0.5 * phi))],
+        dtype=TORCH_COMPLEX,
+    )
+    return torch.diag(vals)
 
 
-def partial_trace_two_qubit(rho: np.ndarray, keep: str) -> np.ndarray:
+def partial_trace_two_qubit(rho: Any, keep: str) -> torch.Tensor:
+    rho = as_complex_tensor(rho)
     t = rho.reshape(2, 2, 2, 2)
     if keep == "I":
-        return np.einsum("abcb->ac", t)
+        return torch.einsum("abcb->ac", t)
     if keep == "B":
-        return np.einsum("abad->bd", t)
+        return torch.einsum("abad->bd", t)
     raise ValueError("keep must be I or B")
 
 
-def fidelity_trace_proxy(a: np.ndarray, b: np.ndarray) -> float:
+def fidelity_trace_proxy(a: Any, b: Any) -> float:
     """Bounded similarity proxy sufficient for finite scout controls."""
-    gap = np.linalg.norm(project_density(a) - project_density(b), ord="fro")
+    gap = vector_norm(project_density(a) - project_density(b))
     return float(max(0.0, 1.0 - gap))
 
 
-def boundary_density(r: int) -> np.ndarray:
+def boundary_density(r: int) -> torch.Tensor:
     p = 0.72 - 0.06 * r
     axis = rz(0.37 * r) @ ry(0.22 + 0.17 * r)
-    return project_density(axis @ np.diag([p, 1 - p]).astype(complex) @ dagger(axis))
+    diag = torch.diag(torch.as_tensor([p, 1 - p], dtype=TORCH_COMPLEX))
+    return project_density(axis @ diag @ dagger(axis))
 
 
-def purification_for_boundary(rho_b: np.ndarray, interior_angle: float, phase: float) -> np.ndarray:
-    vals, vecs = np.linalg.eigh(project_density(rho_b))
-    order = np.argsort(vals)[::-1]
+def purification_for_boundary(rho_b: Any, interior_angle: float, phase: float) -> torch.Tensor:
+    vals, vecs = torch.linalg.eigh(project_density(rho_b))
+    vals = torch.real(vals)
+    order = torch.argsort(vals, descending=True)
     vals = vals[order]
     vecs = vecs[:, order]
     u_i = rz(phase) @ ry(interior_angle)
-    base = np.zeros(4, dtype=complex)
+    base = torch.zeros(4, dtype=TORCH_COMPLEX)
     base[0] = math.sqrt(max(float(vals[0]), 0.0))
-    base[3] = np.exp(1j * phase) * math.sqrt(max(float(vals[1]), 0.0))
-    psi = np.kron(u_i, vecs) @ base
-    rho = np.outer(psi, np.conjugate(psi))
+    base[3] = complex(math.cos(phase), math.sin(phase)) * math.sqrt(max(float(vals[1]), 0.0))
+    psi = torch.kron(u_i, vecs) @ base
+    rho = torch.outer(psi, torch.conj(psi))
     return project_density(rho)
 
 
@@ -191,7 +230,7 @@ def compatible_refinements(r: int) -> list[dict[str, Any]]:
                 "rho": rho,
                 "rho_i": project_density(rho_i),
                 "rho_b": project_density(rho_b_got),
-                "boundary_gap": float(np.linalg.norm(rho_b_got - rho_b, ord="fro")),
+                "boundary_gap": vector_norm(rho_b_got - rho_b),
                 "interior_entropy": entropy(rho_i),
                 "boundary_entropy": entropy(rho_b_got),
                 "mutual_information": entropy(rho_i) + entropy(rho_b_got) - entropy(rho),
@@ -203,24 +242,30 @@ def compatible_refinements(r: int) -> list[dict[str, Any]]:
 
 
 def random_product_controls(r: int, n: int = 9) -> list[dict[str, Any]]:
-    rng = np.random.default_rng(1000 + r)
+    generator = torch.Generator().manual_seed(1000 + r)
     rho_b_target = boundary_density(r)
     rows = []
     for idx in range(n):
-        v_i = rng.normal(size=2) + 1j * rng.normal(size=2)
-        v_i = v_i / np.linalg.norm(v_i)
-        v_b = rng.normal(size=2) + 1j * rng.normal(size=2)
-        v_b = v_b / np.linalg.norm(v_b)
-        rho_i = np.outer(v_i, np.conjugate(v_i))
-        rho_b = np.outer(v_b, np.conjugate(v_b))
-        rho = np.kron(rho_i, rho_b)
+        v_i = (
+            torch.randn(2, generator=generator, dtype=TORCH_REAL)
+            + 1j * torch.randn(2, generator=generator, dtype=TORCH_REAL)
+        ).to(TORCH_COMPLEX)
+        v_i = v_i / torch.linalg.vector_norm(v_i)
+        v_b = (
+            torch.randn(2, generator=generator, dtype=TORCH_REAL)
+            + 1j * torch.randn(2, generator=generator, dtype=TORCH_REAL)
+        ).to(TORCH_COMPLEX)
+        v_b = v_b / torch.linalg.vector_norm(v_b)
+        rho_i = torch.outer(v_i, torch.conj(v_i))
+        rho_b = torch.outer(v_b, torch.conj(v_b))
+        rho = torch.kron(rho_i, rho_b)
         rows.append(
             {
                 "r": r,
                 "idx": idx,
                 "rho": project_density(rho),
                 "rho_b": project_density(rho_b),
-                "boundary_gap": float(np.linalg.norm(rho_b - rho_b_target, ord="fro")),
+                "boundary_gap": vector_norm(rho_b - rho_b_target),
                 "mutual_information": entropy(rho_i) + entropy(rho_b) - entropy(rho),
                 "coherent_information_i_to_b": entropy(rho_b) - entropy(rho),
             }
@@ -228,58 +273,60 @@ def random_product_controls(r: int, n: int = 9) -> list[dict[str, Any]]:
     return rows
 
 
-def boundary_instrument(q_basis: float) -> list[tuple[str, np.ndarray]]:
-    pz0 = np.array([[1, 0], [0, 0]], dtype=complex)
-    pz1 = np.array([[0, 0], [0, 1]], dtype=complex)
-    plus = 0.5 * np.array([[1, 1], [1, 1]], dtype=complex)
-    minus = 0.5 * np.array([[1, -1], [-1, 1]], dtype=complex)
+def boundary_instrument(q_basis: float) -> list[tuple[str, torch.Tensor]]:
+    pz0 = torch.as_tensor([[1, 0], [0, 0]], dtype=TORCH_COMPLEX)
+    pz1 = torch.as_tensor([[0, 0], [0, 1]], dtype=TORCH_COMPLEX)
+    plus = 0.5 * torch.as_tensor([[1, 1], [1, 1]], dtype=TORCH_COMPLEX)
+    minus = 0.5 * torch.as_tensor([[1, -1], [-1, 1]], dtype=TORCH_COMPLEX)
     return [
-        ("j0k0_z0", np.kron(I2, math.sqrt(q_basis) * pz0)),
-        ("j0k1_z1", np.kron(I2, math.sqrt(q_basis) * pz1)),
-        ("j1k0_x0", np.kron(I2, math.sqrt(1.0 - q_basis) * plus)),
-        ("j1k1_x1", np.kron(I2, math.sqrt(1.0 - q_basis) * minus)),
+        ("j0k0_z0", torch.kron(I2, math.sqrt(q_basis) * pz0)),
+        ("j0k1_z1", torch.kron(I2, math.sqrt(q_basis) * pz1)),
+        ("j1k0_x0", torch.kron(I2, math.sqrt(1.0 - q_basis) * plus)),
+        ("j1k1_x1", torch.kron(I2, math.sqrt(1.0 - q_basis) * minus)),
     ]
 
 
-def apply_instrument(rho: np.ndarray, kraus: list[tuple[str, np.ndarray]]) -> np.ndarray:
-    out = np.zeros_like(rho, dtype=complex)
+def apply_instrument(rho: Any, kraus: list[tuple[str, torch.Tensor]]) -> torch.Tensor:
+    rho = as_complex_tensor(rho)
+    out = torch.zeros_like(rho)
     for _, k in kraus:
         out += k @ rho @ dagger(k)
     return project_density(out)
 
 
-def enumerate_histories(rho: np.ndarray, depth: int, q_basis: float) -> dict[str, Any]:
+def enumerate_histories(rho: Any, depth: int, q_basis: float) -> dict[str, Any]:
+    rho = as_complex_tensor(rho)
     kraus = boundary_instrument(q_basis)
     branches = []
-    summed = np.zeros_like(rho, dtype=complex)
+    summed = torch.zeros_like(rho)
     for picks in itertools.product(range(len(kraus)), repeat=depth):
-        k_total = np.eye(rho.shape[0], dtype=complex)
+        k_total = torch.eye(rho.shape[0], dtype=TORCH_COMPLEX)
         labels = []
         for pick in picks:
             label, k = kraus[pick]
             labels.append(label)
             k_total = k @ k_total
         branch = k_total @ rho @ dagger(k_total)
-        weight = float(np.real(np.trace(branch)))
+        weight = float(torch.real(torch.trace(branch)).item())
         if weight > 1e-14:
             summed += branch
         branches.append({"labels": labels, "weight": weight})
-    weights = np.array([max(row["weight"], 0.0) for row in branches], dtype=float)
-    total = float(np.sum(weights))
+    weights = torch.as_tensor([max(row["weight"], 0.0) for row in branches], dtype=TORCH_REAL)
+    total = float(torch.sum(weights).item())
     probs = weights / max(total, 1e-15)
-    direct = rho.copy()
+    direct = rho.clone()
     for _ in range(depth):
         direct = apply_instrument(direct, kraus)
     path_entropy = shannon(probs)
     return {
         "branch_count": len(branches),
-        "nonzero_branch_count": int(np.sum(probs > 1e-10)),
+        "nonzero_branch_count": int(torch.sum(probs > 1e-10).item()),
         "trace_sum": total,
         "path_entropy": path_entropy,
         "effective_paths": float(math.exp(path_entropy)),
         "summed_state": project_density(summed),
         "direct_state": direct,
-        "sum_vs_direct_gap": float(np.linalg.norm(project_density(summed) - direct, ord="fro")),
+        "sum_vs_direct_gap": vector_norm(project_density(summed) - direct),
     }
 
 
@@ -307,20 +354,20 @@ def axis0_response(rows: list[dict[str, Any]], q0: float, q1: float, depth: int)
     return {
         "q0": q0,
         "q1": q1,
-        "path_entropy_delta": float(np.mean([r["path_entropy"] for r in high]) - np.mean([r["path_entropy"] for r in low])),
+        "path_entropy_delta": mean_float(r["path_entropy"] for r in high) - mean_float(r["path_entropy"] for r in low),
         "correlation_diversity_delta": exp_diversity(high_mi) - exp_diversity(low_mi),
-        "coherent_information_delta": float(np.mean([r["coh"] for r in high]) - np.mean([r["coh"] for r in low])),
+        "coherent_information_delta": mean_float(r["coh"] for r in high) - mean_float(r["coh"] for r in low),
         "max_sum_vs_direct_gap": float(max(max(r["sum_vs_direct_gap"] for r in low), max(r["sum_vs_direct_gap"] for r in high))),
-        "low_mean": {key: float(np.mean([r[key] for r in low])) for key in ["path_entropy", "effective_paths", "mi", "coh", "purity"]},
-        "high_mean": {key: float(np.mean([r[key] for r in high])) for key in ["path_entropy", "effective_paths", "mi", "coh", "purity"]},
+        "low_mean": {key: mean_float(r[key] for r in low) for key in ["path_entropy", "effective_paths", "mi", "coh", "purity"]},
+        "high_mean": {key: mean_float(r[key] for r in high) for key in ["path_entropy", "effective_paths", "mi", "coh", "purity"]},
     }
 
 
 def fep_selection(rows: list[dict[str, Any]], controls: list[dict[str, Any]]) -> dict[str, Any]:
-    def spectrum(rho: np.ndarray) -> np.ndarray:
-        vals = np.linalg.eigvalsh(project_density(rho)).real
-        vals = np.sort(np.clip(vals, 1e-12, None))[::-1]
-        return vals / np.sum(vals)
+    def spectrum(rho: Any) -> torch.Tensor:
+        vals = torch.real(torch.linalg.eigvalsh(project_density(rho)))
+        vals = torch.sort(torch.clamp(vals, min=1e-12), descending=True).values
+        return vals / torch.sum(vals)
 
     compatible = []
     for row in rows:
@@ -350,10 +397,10 @@ def fep_selection(rows: list[dict[str, Any]], controls: list[dict[str, Any]]) ->
     return {
         "compatible_best": compatible_best,
         "control_best": control_best,
-        "compatible_mean_kl": float(np.mean([row["kl"] for row in compatible])),
-        "control_mean_kl": float(np.mean([row["kl"] for row in control])),
+        "compatible_mean_kl": mean_float(row["kl"] for row in compatible),
+        "control_mean_kl": mean_float(row["kl"] for row in control),
         "selection_gap": float(control_best["kl"] - compatible_best["kl"]),
-        "mean_gap": float(np.mean([row["kl"] for row in control]) - np.mean([row["kl"] for row in compatible])),
+        "mean_gap": mean_float(row["kl"] for row in control) - mean_float(row["kl"] for row in compatible),
     }
 
 
@@ -435,7 +482,7 @@ def main() -> dict[str, Any]:
     control_boundary_gaps = [row["boundary_gap"] for row in all_controls]
     interior_states = [row["rho_i"] for row in all_rows]
     interior_spread = max(
-        float(np.linalg.norm(a - b, ord="fro"))
+        vector_norm(a - b)
         for i, a in enumerate(interior_states)
         for b in interior_states[i + 1 :]
     )
@@ -460,11 +507,13 @@ def main() -> dict[str, Any]:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
         "claim_ceiling": CLAIM_CEILING,
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "math_object": (
             "finite boundary density family with compatible interior refinements, "
             "Kraus-history path ensemble, Axis0 correlation/path-diversity response, "
@@ -577,6 +626,13 @@ def main() -> dict[str, Any]:
         and all(row["pass"] for row in result["graveyard_companions"].values())
         and all(row["pass"] for row in result["boundary"].values())
     )
+    result["root_constraints"] = {
+        "F01": True,
+        "N01": True,
+        "finite_carrier_root": True,
+        "noncommutation_or_order_root": True,
+        "n01_evidence": "bounded boundary path-ensemble controls, Kraus history sums, and z3 collapse rejection record order-sensitive selection evidence",
+    }
     OUT_PATH.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
     return result
 

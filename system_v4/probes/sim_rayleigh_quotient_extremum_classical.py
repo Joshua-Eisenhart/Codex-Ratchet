@@ -13,6 +13,15 @@ from receipt_boundary import apply_default_receipt_boundary
 
 classification = "classical_baseline"
 NAME = "sim_rayleigh_quotient_extremum_classical"
+divergence_log = (
+    "Classical Rayleigh quotient extremum requires a real symmetric "
+    "(Hermitian-on-reals) operator and a real inner product. Lost relative to the "
+    "nonclassical shell: complex-phase-sensitive variational forms, joint "
+    "extremization under noncommuting constraints (uncertainty-coupled quotients), "
+    "and constraint-admissibility bounds where the extremal direction is not a "
+    "single eigenvector but a coherent superposition stabilized only under a "
+    "specific probe family."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "Rayleigh quotient arithmetic and random symmetric fixtures"},

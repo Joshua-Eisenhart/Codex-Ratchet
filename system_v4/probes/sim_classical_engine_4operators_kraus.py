@@ -7,11 +7,25 @@ engine / Kraus form"; CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md CPTP maps.
 Classical baseline.
 """
 import numpy as np
-from _doc_illum_common import build_manifest, write_results
+from _doc_illum_common import write_results
 
-TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH = build_manifest()
-TOOL_MANIFEST["numpy"] = {"tried": True, "used": True, "reason": "Kraus completeness"}
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
+classification = "classical_baseline"
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for four-operator Kraus completeness; "
+        "it does not promote a nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "Kraus completeness"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+}
 
 # Amplitude damping with 2 Kraus, augmented to 4 with phase-damping channel
 def kraus_set(p=0.2, q=0.1):

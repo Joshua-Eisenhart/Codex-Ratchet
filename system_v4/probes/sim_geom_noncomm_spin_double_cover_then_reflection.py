@@ -11,6 +11,8 @@ from clifford import Cl
 layout, blades = Cl(3)
 e1, e2, e3 = blades['e1'], blades['e2'], blades['e3']
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "clifford": {"tried": True, "used": True,
                  "reason": "Pin(3) reflection is an odd-grade versor; its non-commutativity with an even-grade Spin(3) rotor depends on the double-cover sign which is only present in the Cl(3) versor algebra — matrix SO(3) collapses the ±1 ambiguity and misses the sign witness."},

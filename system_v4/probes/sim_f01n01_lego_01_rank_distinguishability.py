@@ -7,6 +7,8 @@ import json, os, numpy as np
 import z3
 import sympy as sp
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed; numeric baseline via numpy"},
     "z3": {"tried": True, "used": True, "reason": "UNSAT proof that rank-differing states admit equal probes"},

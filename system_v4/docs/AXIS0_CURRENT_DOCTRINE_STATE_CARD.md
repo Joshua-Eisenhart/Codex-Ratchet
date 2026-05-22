@@ -1,34 +1,34 @@
 # Axis 0 Current Doctrine State Card
 
-**Date:** 2026-03-30  
-**Purpose:** Controller-grade integration card for the current `Axis 0` stack after the worker lanes and cleanup passes.  
-**Discipline:** This card summarizes the live stack. It does not replace the owner packets.
+**Date:** 2026-03-30
+**Purpose:** Historical controller-grade integration card for the March 2026 `Axis 0` stack after worker lanes and cleanup passes.
+**Discipline:** This card summarizes that dated stack. It does not replace owner packets or current v5 formal-scout/spec-mirror status.
 
 ---
 
 ## 1. Earned
 
-These statements are currently earned by the live owner stack and supporting probes.
+These statements were reported as earned by the then-live owner stack and supporting probes. Treat them as dated support genealogy unless refreshed by current v5 receipts.
 
 | Layer | Current earned read |
 |---|---|
 | geometry seat | `Axis 0` is geometry-seated on the torus-latitude / hemisphere diagnostic layer, but geometry is still not the final `Axis 0` bridge/cut doctrine |
 | kernel family | coherent information / negative conditional entropy remains the strongest simple signed candidate family; mutual-information family remains a weaker unsigned companion |
-| executable bridge | `Xi_hist` is the strongest live executable bridge family |
-| strongest exploratory constructive bridge family | cross-temporal chiral (Weyl/chirality-weighted) bridge is the strongest current constructive candidate from strict sweeps; it remains a constructed cut-state and is not final canon `Xi`. (Phase 5C demotes retro-temporal weighting as a robust discriminator, and fixed-marginal preserving lane stays near-zero.) |
-| executable cut family | history-window cut is the strongest live executable cut family |
-| doctrine-facing cut family | shell/interior-boundary is the strongest doctrine-facing cut family |
-| pointwise discriminator | point-reference is the strongest live pointwise discriminator |
-| typed executable target | the history side now has a typed cut target contract \((t,c,w_c,\rho_c(t))\) |
-| typed doctrine-facing target | the shell side now has a typed cut target contract \((r,w_r,A_r|B_r,\rho_r)\) |
+| executable bridge | `Xi_hist` was reported as the strongest executable bridge family in this dated card |
+| strongest exploratory constructive bridge family | cross-temporal chiral (Weyl/chirality-weighted) bridge was reported as the strongest constructive candidate from strict sweeps in this dated card; it remains a constructed cut-state and is not final canon `Xi`. (Phase 5C demotes retro-temporal weighting as a robust discriminator, and fixed-marginal preserving lane stays near-zero.) |
+| executable cut family | history-window cut was reported as the strongest executable cut family in this dated card |
+| doctrine-facing cut family | shell/interior-boundary was reported as the strongest doctrine-facing cut family in this dated card |
+| pointwise discriminator | point-reference was reported as the strongest pointwise discriminator in this dated card |
+| typed executable target | the history side had a typed cut target contract \((t,c,w_c,\rho_c(t))\) in this dated card |
+| typed doctrine-facing target | the shell side had a typed cut target contract \((r,w_r,A_r|B_r,\rho_r)\) in this dated card |
 | bridge-to-cut handoff | `Xi_hist` emission into the typed history target is explicitly owned and separated from cut-side legitimacy |
 | controls and kills | raw local `L|R` stays control-only; old shell-strata pointwise stays killed |
 
 ---
 
-## 2. Live But Open
+## 2. Dated Live-But-Open Items
 
-These are live parts of the stack that remain open and should not be silently closed.
+These were live parts of the March 2026 stack that remained open and should not be silently closed if reused.
 
 | Item | Current open read |
 |---|---|

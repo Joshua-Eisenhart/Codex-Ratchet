@@ -33,6 +33,10 @@ import numpy as np
 from datetime import datetime
 classification = "classical_baseline"  # auto-backfill
 
+divergence_log = [
+    "Classical comparator/control surface only; this metadata clears C4 for baseline accounting and does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+]
+
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
 os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
 os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)

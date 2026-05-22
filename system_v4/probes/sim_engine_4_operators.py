@@ -21,6 +21,10 @@ import sympy as sp
 from sympy import sqrt as sp_sqrt, exp as sp_exp, Matrix, Symbol, I as sp_I
 from sympy import eye as sp_eye, simplify, trigsimp, series
 classification = "classical_baseline"
+divergence_log = [
+    "Classical comparator/control surface only; does not promote nonclassical, formal-scout, bridge, axis-level, or canonical proof claims."
+]
+
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 from z3 import (
     RealVal, Real, Solver, sat, ForAll, And, Implies,

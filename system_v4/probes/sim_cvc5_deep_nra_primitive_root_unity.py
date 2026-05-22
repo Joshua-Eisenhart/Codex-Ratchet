@@ -12,6 +12,8 @@ numerical evaluation cannot certify "no real root" without an argument).
 """
 import json, os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "numeric search cannot certify no-solution"},
     "pyg":     {"tried": False, "used": False, "reason": "no graph"},

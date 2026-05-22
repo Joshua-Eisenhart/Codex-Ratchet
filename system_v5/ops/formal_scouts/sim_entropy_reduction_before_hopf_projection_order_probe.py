@@ -50,7 +50,7 @@ TOOL_MANIFEST = {
         "reason": "load-bearing imports from existing entropy and Hopf formal legos",
     },
 }
-TOOL_INTEGRATION_DEPTH = {"pytorch": "load_bearing", "importlib": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {"pytorch": "load_bearing", "importlib": "supportive"}
 
 
 def load_module(label: str, path: pathlib.Path) -> tuple[Any | None, dict[str, Any]]:

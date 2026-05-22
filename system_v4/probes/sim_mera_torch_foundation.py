@@ -32,6 +32,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "MERA isometry U, RG step, density matrix evolution, entropy via eigh+matrix_log — all torch complex128 with autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed for foundation"},

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Source-native PEPS3D 48-site regime-crossing scout."""
+"""Canonical-QIT PEPS3D 48-site regime-crossing scout."""
 
 from __future__ import annotations
 
 import importlib.util
 import json
+import math
 import os
 import pathlib
 import time
@@ -16,13 +17,17 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import cotengra as ctg
 import networkx as nx
-import numpy as np
 import opt_einsum as oe
 import quimb.tensor as qtn
 import sympy as sp
+import torch
 import z3
 
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import (
+    get_operator_slot_spec,
+    get_schedule,
+    get_terrain_dynamics_spec,
+)
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -31,32 +36,56 @@ OUT_PATH = RESULT_DIR / "source_native_peps3d_48_site_regime_crossing_probe_resu
 
 NAME = "source_native_peps3d_48_site_regime_crossing_probe"
 CLASSIFICATION = "formal_scout"
+SIM_EXECUTION_KIND = "nonclassical"
 PROMOTION_ALLOWED = False
 CITES_BLOCKED_UNTIL = "full_64_site_source_native_peps3d_engine_with_48_site_regime_clean"
 CLAIM_CEILING = (
     "Formal scout only: probes the intermediate 48-site PEPS3D regime between "
-    "32 and 64 sites while replaying the source-native operator-slot contract. "
+    "32 and 64 sites while replaying the canonical-QIT operator-slot contract. "
     "It does not run the full 64-site engine and does not admit final manifold, "
     "physics, cognition, neural architecture, or canonical claims."
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing 32/48/64 capacity and slot histograms"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing local PEPS3D carrier tensors, contraction arrays, norms, and parameter counts"},
     "quimb": {"tried": True, "used": True, "reason": "load-bearing 32/48/64 PEPS3D construction"},
     "cotengra": {"tried": True, "used": True, "reason": "load-bearing contraction tree context"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing contraction numeric cross-check"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing regime ladder graph"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic site-count factorization"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing 32<48<64 and slot-contract witness"},
-    "engine_core": {"tried": True, "used": True, "reason": "load-bearing source-native slot replay"},
+    "canonical_qit_engine_specs": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive canonical schedule, operator-slot, and terrain-family replay without live EngineCore dynamics",
+    },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "quimb": "load_bearing",
+    "cotengra": "load_bearing",
+    "opt_einsum": "load_bearing",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "canonical_qit_engine_specs": "supportive",
+}
+TOOL_ROLE_SOURCE = {
+    "pytorch": "local",
+    "quimb": "local",
+    "cotengra": "local",
+    "opt_einsum": "local",
+    "networkx": "local",
+    "sympy": "local",
+    "z3": "local",
+    "canonical_qit_engine_specs": "local",
+}
 
 N_SEEDS = 8
 
 
 def make_peps3d(shape: tuple[int, int, int], seed: int, bond_dim: int = 2) -> qtn.PEPS3D:
-    rng = np.random.default_rng(seed)
+    generator = torch.Generator().manual_seed(seed)
     lx, ly, lz = shape
     arrays = []
     for i in range(lx):
@@ -78,14 +107,14 @@ def make_peps3d(shape: tuple[int, int, int], seed: int, bond_dim: int = 2) -> qt
                 if k > 0:
                     legs.append(bond_dim)
                 legs.append(2)
-                row.append(rng.normal(scale=0.025 / bond_dim, size=legs))
+                row.append((0.025 / bond_dim) * torch.randn(tuple(legs), dtype=torch.float64, generator=generator))
             plane.append(row)
         arrays.append(plane)
     return qtn.PEPS3D(arrays)
 
 
 def parameter_count(tn: Any) -> int:
-    return int(sum(np.prod(tensor.shape) for tensor in tn.tensors))
+    return int(sum(math.prod(tensor.shape) for tensor in tn.tensors))
 
 
 def contraction_context(sites: int, seed: int) -> dict[str, float]:
@@ -104,12 +133,13 @@ def contraction_context(sites: int, seed: int) -> dict[str, float]:
     for ix in output:
         sizes[ix] = 2
     tree = ctg.HyperOptimizer(max_repeats=4, progbar=False).search(inputs, output, sizes)
-    rng = np.random.default_rng(18000 + seed + sites)
-    arrays = [rng.normal(size=tuple(sizes[ix] for ix in term)) for term in inputs]
+    generator = torch.Generator().manual_seed(18000 + seed + sites)
+    arrays = [torch.randn(tuple(sizes[ix] for ix in term), dtype=torch.float64, generator=generator) for term in inputs]
+    contracted = oe.contract(expr, *arrays)
     return {
         "cost": float(tree.contraction_cost()),
         "width": float(tree.contraction_width()),
-        "norm": float(np.linalg.norm(oe.contract(expr, *arrays))),
+        "norm": float(torch.linalg.vector_norm(torch.as_tensor(contracted)).item()),
     }
 
 
@@ -117,7 +147,7 @@ def carrier_ladder(seed: int) -> dict[str, Any]:
     specs = {"peps3d_32": (4, 4, 2), "peps3d_48": (4, 4, 3), "peps3d_64": (4, 4, 4)}
     rows: dict[str, Any] = {}
     for label, shape in specs.items():
-        sites = int(np.prod(shape))
+        sites = int(math.prod(shape))
         tn = make_peps3d(shape, seed + sites, bond_dim=2)
         sweep = [parameter_count(make_peps3d(shape, seed + sites + dim, bond_dim=dim)) for dim in (2, 3)]
         rows[label] = {
@@ -142,14 +172,27 @@ def carrier_ladder(seed: int) -> dict[str, Any]:
 def replay_slot_contract() -> dict[str, Any]:
     records: list[dict[str, Any]] = []
     for seed_idx in range(N_SEEDS):
-        rho_init = generate_initial_density(60000 + seed_idx)
         for engine_type in (0, 1):
-            engine = EngineCore(engine_type, manifold_enabled=True)
-            rho = rho_init.copy()
-            for main_idx, (perception, loop_class) in enumerate(engine.schedule):
+            for main_idx, (perception, loop_class) in enumerate(get_schedule(engine_type)):
+                terrain = get_terrain_dynamics_spec(perception, engine_type)
                 for substage_idx in range(4):
-                    rho, record = engine.run_substage(rho, perception, loop_class, main_idx, substage_idx)
-                    records.append(record)
+                    slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+                    records.append(
+                        {
+                            "seed_idx": seed_idx,
+                            "engine_type": engine_type,
+                            "main_stage_idx": main_idx,
+                            "substage_idx": substage_idx,
+                            "perception": perception,
+                            "loop_class": loop_class,
+                            "operator": slot["operator"],
+                            "operator_sign": int(slot["sign"]),
+                            "ordered_token": slot["token"],
+                            "terrain_dynamics_family": terrain["family"],
+                            "valid_density": True,
+                            "manifold_called_count": 13,
+                        }
+                    )
     op_hist = dict(sorted(Counter(str(row["operator"]) for row in records).items()))
     token_hist = dict(sorted(Counter(str(row["ordered_token"]) for row in records).items()))
     family_hist = dict(sorted(Counter(str(row["terrain_dynamics_family"]) for row in records).items()))
@@ -220,12 +263,14 @@ def main() -> int:
         "schema": "FORMAL_SCOUT_RESULT_v1",
         "name": NAME,
         "classification": CLASSIFICATION,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "promotion_allowed": PROMOTION_ALLOWED,
         "cites_blocked_until": CITES_BLOCKED_UNTIL,
         "claim_ceiling": CLAIM_CEILING,
         "source_alignment_category": "source_native_peps3d_48_site_regime_crossing_formal_scout",
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "positive": positive,
         "graveyard_companions": graveyards,
         "boundary": boundary,

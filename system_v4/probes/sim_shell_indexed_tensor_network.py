@@ -15,16 +15,40 @@ divergence_log = (
     "shell chain. It does not establish tensor-network dynamics, bridge behavior, "
     "GStack, axis, QIT, or nonclassical admission."
 )
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": "not needed"} for k in [
-    "pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"
-]}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
-TOOL_MANIFEST["numpy"] = {
-    "tried": True,
-    "used": True,
-    "reason": "load-bearing finite array/matrix computation for this bounded classical lego receipt",
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing finite array/matrix computation for this bounded classical lego receipt",
+    },
+    "pytorch": {"tried": False, "used": False, "reason": "not needed for this finite numpy tensor-contraction support row"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed: no graph layer"},
+    "z3": {"tried": False, "used": False, "reason": "not needed: no SMT claim"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed: no SMT claim"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed: direct finite array computation"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed: no Clifford algebra operation"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed: no geomstats metric call"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed: no equivariant neural layer"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed: no graph algorithm"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed: no hypergraph"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed: no cell-complex computation"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed: no persistence computation"},
 }
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 def contract_chain(tensors):
     out = tensors[0]

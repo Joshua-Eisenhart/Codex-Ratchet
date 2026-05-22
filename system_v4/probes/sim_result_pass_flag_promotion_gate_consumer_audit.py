@@ -37,7 +37,7 @@ TOOL_MANIFEST = {
     "python_ast": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing for static inspection of result consumer code paths",
+        "reason": "supportive static inspection of result consumer code paths; not a promoted tool-capability witness",
     },
     "numpy": {
         "tried": False,
@@ -52,7 +52,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "python_ast": "load_bearing",
+    "python_ast": "supportive",
     "numpy": None,
     "z3": None,
 }

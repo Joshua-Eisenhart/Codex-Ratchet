@@ -8,13 +8,12 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
 import torch
 import z3
 
 import engine_v6_proper_multiqubit_reference as v6
 from sim_multiqubit_qit_reservoir_global_structure_probe import classifier_accuracy
-from sim_multiqubit_qit_reservoir_grok_task_replication_probe import CLASS_NAMES, N_PER_CLASS, class_density
+from sim_multiqubit_qit_reservoir_grok_task_replication_probe import CLASS_NAMES, N_PER_CLASS
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -34,47 +33,131 @@ CLAIM_CEILING = (
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing default and mean-field v6 feature extraction"},
-    "sklearn": {"tried": True, "used": True, "reason": "load-bearing linear readout via imported helper"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing task data and delta aggregation"},
+    "sklearn": {"tried": False, "used": False, "reason": "not used; imported classifier helper is torch ridge readout"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite ablation-ordering witness"},
-    "engine_v6_reference": {"tried": True, "used": True, "reason": "load-bearing repo-grounded v6 candidate"},
+    "engine_v6_reference": {"tried": True, "used": True, "reason": "supportive repo-grounded v6 candidate"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'pytorch': 'load_bearing',
+    'sklearn': None,
+    'z3': 'load_bearing',
+    'engine_v6_reference': 'supportive',
+}
 
 N_QUBITS = 8
 
 
-def task_data() -> tuple[np.ndarray, np.ndarray]:
-    rng = np.random.default_rng(260000 + N_QUBITS)
+def _complex_normal(shape: tuple[int, ...], generator: torch.Generator) -> torch.Tensor:
+    real = torch.randn(shape, generator=generator, dtype=torch.float32)
+    imag = torch.randn(shape, generator=generator, dtype=torch.float32)
+    return torch.complex(real, imag)
+
+
+def _pure_density(psi: torch.Tensor) -> torch.Tensor:
+    psi = psi.to(v6.DTYPE)
+    return torch.outer(psi, psi.conj())
+
+
+def _kron_all(mats: list[torch.Tensor]) -> torch.Tensor:
+    out = mats[0]
+    for mat in mats[1:]:
+        out = torch.kron(out, mat)
+    return out.to(v6.DTYPE)
+
+
+def _random_unitary_2(generator: torch.Generator) -> torch.Tensor:
+    z = _complex_normal((2, 2), generator)
+    q, r = torch.linalg.qr(z)
+    diag = torch.diagonal(r)
+    phase = diag / torch.clamp(torch.abs(diag), min=1e-12)
+    return (q * phase).to(v6.DTYPE)
+
+
+def _locally_scramble(rho: torch.Tensor, generator: torch.Generator) -> torch.Tensor:
+    u = _kron_all([_random_unitary_2(generator) for _ in range(N_QUBITS)])
+    out = u @ rho @ u.conj().T
+    out = (out + out.conj().T) / 2
+    return (out / torch.trace(out).real).to(v6.DTYPE)
+
+
+def _ghz_density(generator: torch.Generator) -> torch.Tensor:
+    d = 2**N_QUBITS
+    psi = torch.zeros(d, dtype=v6.DTYPE)
+    phase = torch.rand((), generator=generator, dtype=torch.float32) * (2 * torch.pi)
+    psi[0] = 1.0 / torch.sqrt(torch.tensor(2.0, dtype=torch.float32))
+    psi[-1] = torch.exp(1j * phase).to(v6.DTYPE) / torch.sqrt(torch.tensor(2.0, dtype=torch.float32))
+    return _pure_density(psi)
+
+
+def _w_density() -> torch.Tensor:
+    d = 2**N_QUBITS
+    psi = torch.zeros(d, dtype=v6.DTYPE)
+    amp = 1.0 / torch.sqrt(torch.tensor(float(N_QUBITS), dtype=torch.float32))
+    for q in range(N_QUBITS):
+        psi[1 << q] = amp
+    return _pure_density(psi)
+
+
+def _random_product_density(generator: torch.Generator) -> torch.Tensor:
+    states = []
+    for _ in range(N_QUBITS):
+        psi = _complex_normal((2,), generator)
+        states.append((psi / torch.linalg.norm(psi)).to(v6.DTYPE))
+    return _pure_density(_kron_all(states))
+
+
+def _random_pure_density(generator: torch.Generator) -> torch.Tensor:
+    psi = _complex_normal((2**N_QUBITS,), generator)
+    psi = psi / torch.linalg.norm(psi)
+    return _pure_density(psi)
+
+
+def class_density(label: int, generator: torch.Generator) -> torch.Tensor:
+    if label == 0:
+        rho = _random_product_density(generator)
+    elif label == 1:
+        rho = _ghz_density(generator)
+    elif label == 2:
+        rho = _w_density()
+    elif label == 3:
+        rho = _random_pure_density(generator)
+    else:
+        raise ValueError(label)
+    return _locally_scramble(rho, generator)
+
+
+def task_data() -> tuple[torch.Tensor, list[int]]:
+    generator = torch.Generator().manual_seed(260000 + N_QUBITS)
     rhos = []
     labels = []
     for label in range(len(CLASS_NAMES)):
         for _ in range(N_PER_CLASS[N_QUBITS]):
-            rhos.append(class_density(label, N_QUBITS, rng))
+            rhos.append(class_density(label, generator))
             labels.append(label)
-    return np.stack(rhos), np.asarray(labels, dtype=int)
+    return torch.stack(rhos), labels
 
 
-def paired_features_with_coupling(rhos: np.ndarray, coupling: float) -> np.ndarray:
+def paired_features_with_coupling(rhos: torch.Tensor, coupling: float) -> torch.Tensor:
     torch.manual_seed(261000 + int(coupling * 1000))
     engine_l = v6.TrainableEngineV6(engine_type=1, n_qubits=N_QUBITS, nn_coupling=coupling)
     engine_r = v6.TrainableEngineV6(engine_type=2, n_qubits=N_QUBITS, nn_coupling=coupling)
     engine_l.eval()
     engine_r.eval()
     with torch.no_grad():
-        rho_t = torch.tensor(rhos, dtype=v6.DTYPE)
+        rho_t = rhos.to(v6.DTYPE)
         feats_l = engine_l(rho_t)
         feats_r = engine_r(rho_t)
-        return torch.cat([feats_l, feats_r], dim=-1).detach().cpu().numpy().astype(float)
+        return torch.cat([feats_l, feats_r], dim=-1).detach().cpu().to(torch.float32)
 
 
-def mean_accuracy(feats: np.ndarray, y: np.ndarray, seeds: list[int], *, shuffle_labels: bool = False) -> dict[str, Any]:
-    values = [classifier_accuracy(feats, y, seed=seed, shuffle_labels=shuffle_labels) for seed in seeds]
+def mean_accuracy(feats: torch.Tensor, y: list[int], seeds: list[int], *, shuffle_labels: bool = False) -> dict[str, Any]:
+    feature_rows = feats.tolist()
+    values = [classifier_accuracy(feature_rows, y, seed=seed, shuffle_labels=shuffle_labels) for seed in seeds]
     return {
         "values": values,
-        "mean": float(np.mean(values)),
-        "min": float(np.min(values)),
-        "max": float(np.max(values)),
+        "mean": float(sum(values) / len(values)),
+        "min": float(min(values)),
+        "max": float(max(values)),
     }
 
 

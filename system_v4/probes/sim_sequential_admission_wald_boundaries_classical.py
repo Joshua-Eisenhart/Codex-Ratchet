@@ -30,9 +30,9 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "LLR accumulation"},
     "scipy": {"tried": True, "used": True, "reason": "normal pdf closed form"},
     "pytorch": {
-        "tried": _torch_ok,
-        "used": _torch_ok,
-        "reason": "supportive import only",
+        "tried": True,
+        "used": False,
+        "reason": "optional supportive import attempt only",
     },
     "z3": {"tried": False, "used": False, "reason": "no SMT claim"},
 }

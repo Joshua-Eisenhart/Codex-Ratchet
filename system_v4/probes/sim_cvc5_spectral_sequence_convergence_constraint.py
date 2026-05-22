@@ -17,6 +17,10 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = [
+    "Classical comparator/control surface only; does not promote nonclassical, formal-scout, bridge, axis-level, or canonical proof claims."
+]
+
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True,  "used": False, "reason": "tensor containers considered; numpy arrays sufficient for constraint validation"},

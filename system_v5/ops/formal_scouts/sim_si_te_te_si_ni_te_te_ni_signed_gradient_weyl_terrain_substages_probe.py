@@ -9,8 +9,6 @@ import pathlib
 import time
 from typing import Any, Callable
 
-import numpy as np
-from scipy.linalg import expm
 import torch
 import z3
 
@@ -22,6 +20,7 @@ OUT_PATH = RESULT_DIR / f"{NAME}_results.json"
 
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 CLAIM_CEILING = (
     "Formal scout only: runs the four Te-bearing source-table substages SiTe, "
     "TeSi, NiTe, and TeNi on finite Weyl-density terrain laws. It checks the "
@@ -32,20 +31,20 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing density matrices, Pauli projectors, terrain channels, readouts, and trace distances"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing matrix exponentials for Hamiltonian terrain components"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing density matrices, Pauli projectors, terrain channels, readouts, and trace distances"},
     "pytorch_autograd": {"tried": True, "used": True, "reason": "load-bearing gradient of the Hopf/spinor coordinate objective defining Te up/down"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing non-collapse constraints over topology, terrain, sign, and order slots"},
 }
 TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_ROLE_SOURCE = {tool: "local" for tool in TOOL_MANIFEST}
 
-DTYPE = np.complex128
-I2 = np.eye(2, dtype=DTYPE)
-SX = np.array([[0, 1], [1, 0]], dtype=DTYPE)
-SY = np.array([[0, -1j], [1j, 0]], dtype=DTYPE)
-SZ = np.array([[1, 0], [0, -1]], dtype=DTYPE)
-SIGMA_MINUS = np.array([[0, 0], [1, 0]], dtype=DTYPE)
-SIGMA_PLUS = np.array([[0, 1], [0, 0]], dtype=DTYPE)
+DTYPE = torch.complex128
+I2 = torch.eye(2, dtype=DTYPE)
+SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=DTYPE)
+SIGMA_MINUS = torch.tensor([[0, 0], [1, 0]], dtype=DTYPE)
+SIGMA_PLUS = torch.tensor([[0, 1], [0, 0]], dtype=DTYPE)
 
 H0 = 0.73 * SZ + 0.19 * SX
 H_L = H0
@@ -59,22 +58,27 @@ PX_MINUS = 0.5 * (I2 - SX)
 OBS = {"x": SX, "y": SY, "z": SZ}
 
 
-def dagger(a: np.ndarray) -> np.ndarray:
-    return a.conj().T
+def as_complex_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=DTYPE)
 
 
-def spinor_np(eta: float, phi: float = 0.31, chi: float = -0.27) -> np.ndarray:
-    return np.array(
+def dagger(a: Any) -> torch.Tensor:
+    tensor = as_complex_tensor(a)
+    return torch.conj(tensor.transpose(-2, -1))
+
+
+def spinor_np(eta: float, phi: float = 0.31, chi: float = -0.27) -> torch.Tensor:
+    return torch.tensor(
         [
-            np.exp(1j * (phi + chi)) * math.cos(eta),
-            np.exp(1j * (phi - chi)) * math.sin(eta),
+            complex(math.cos(phi + chi), math.sin(phi + chi)) * math.cos(eta),
+            complex(math.cos(phi - chi), math.sin(phi - chi)) * math.sin(eta),
         ],
         dtype=DTYPE,
     )
 
 
-def density_np(psi: np.ndarray) -> np.ndarray:
-    psi = psi.reshape(2, 1)
+def density_np(psi: Any) -> torch.Tensor:
+    psi = as_complex_tensor(psi).reshape(2, 1)
     return psi @ dagger(psi)
 
 
@@ -105,7 +109,7 @@ def te_signed_gradient_eta(eta_value: float, direction: str, lr: float = 0.08) -
         eta_after = eta_value - lr * grad
     else:
         raise ValueError(direction)
-    eta_after = float(np.clip(eta_after, 1e-6, math.pi / 2 - 1e-6))
+    eta_after = max(1e-6, min(float(eta_after), math.pi / 2 - 1e-6))
     before = float(objective.item())
     after = float(z_expectation_torch(torch.tensor(eta_after, dtype=torch.float64)).item())
     return {
@@ -119,72 +123,79 @@ def te_signed_gradient_eta(eta_value: float, direction: str, lr: float = 0.08) -
     }
 
 
-def hamiltonian_update(rho: np.ndarray, hamiltonian: np.ndarray, dt: float) -> np.ndarray:
-    u = expm(-1j * hamiltonian * dt)
-    return u @ rho @ dagger(u)
+def hamiltonian_update(rho: Any, hamiltonian: Any, dt: float) -> torch.Tensor:
+    u = torch.linalg.matrix_exp(-1j * as_complex_tensor(hamiltonian) * dt)
+    return u @ as_complex_tensor(rho) @ dagger(u)
 
 
-def normalize_density(rho: np.ndarray) -> np.ndarray:
+def normalize_density(rho: Any) -> torch.Tensor:
+    rho = as_complex_tensor(rho)
     rho = (rho + dagger(rho)) / 2
-    vals, vecs = np.linalg.eigh(rho)
-    vals = np.maximum(vals, 1e-12)
-    out = vecs @ np.diag(vals) @ dagger(vecs)
-    return out / np.trace(out)
+    vals, vecs = torch.linalg.eigh(rho)
+    vals = torch.clamp(torch.real(vals), min=1e-12)
+    out = vecs @ torch.diag(vals.to(DTYPE)) @ dagger(vecs)
+    return out / torch.trace(out)
 
 
-def dissipator_euler(rho: np.ndarray, op: np.ndarray, gamma: float, dt: float) -> np.ndarray:
+def dissipator_euler(rho: Any, op: Any, gamma: float, dt: float) -> torch.Tensor:
+    rho = as_complex_tensor(rho)
+    op = as_complex_tensor(op)
     d = op @ rho @ dagger(op) - 0.5 * (dagger(op) @ op @ rho + rho @ dagger(op) @ op)
     return normalize_density(rho + gamma * dt * d)
 
 
-def dephase_projector_euler(rho: np.ndarray, projectors: list[np.ndarray], kappa: float, dt: float) -> np.ndarray:
+def dephase_projector_euler(rho: Any, projectors: list[Any], kappa: float, dt: float) -> torch.Tensor:
+    rho = as_complex_tensor(rho)
     projected = sum(p @ rho @ p for p in projectors)
     return normalize_density(rho + kappa * dt * (projected - rho))
 
 
-def pit_left_ni_terrain(rho: np.ndarray, dt: float = 0.12) -> np.ndarray:
+def pit_left_ni_terrain(rho: Any, dt: float = 0.12) -> torch.Tensor:
     """X_P^L(rho_L)=gamma D[sigma_-](rho_L)-i eps[H_L,rho_L]."""
     return dissipator_euler(hamiltonian_update(rho, H_L, 0.35 * dt), SIGMA_MINUS, 0.8, dt)
 
 
-def source_right_ni_terrain(rho: np.ndarray, dt: float = 0.12) -> np.ndarray:
+def source_right_ni_terrain(rho: Any, dt: float = 0.12) -> torch.Tensor:
     """X_So^R(rho_R)=gamma D[sigma_+](rho_R)-i eps[H_R,rho_R]."""
     return dissipator_euler(hamiltonian_update(rho, H_R, 0.35 * dt), SIGMA_PLUS, 0.8, dt)
 
 
-def hill_left_si_terrain(rho: np.ndarray, dt: float = 0.12) -> np.ndarray:
+def hill_left_si_terrain(rho: Any, dt: float = 0.12) -> torch.Tensor:
     """X_H^L(rho_L)=-i[K_L,rho_L]+kappa(P_z rho P_z - rho)."""
     return dephase_projector_euler(hamiltonian_update(rho, K_L, 0.35 * dt), [PZ_PLUS, PZ_MINUS], 0.65, dt)
 
 
-def citadel_right_si_terrain(rho: np.ndarray, dt: float = 0.12) -> np.ndarray:
+def citadel_right_si_terrain(rho: Any, dt: float = 0.12) -> torch.Tensor:
     """X_Ci^R(rho_R)=-i[K_R,rho_R]+kappa(P_x rho P_x - rho)."""
     return dephase_projector_euler(hamiltonian_update(rho, K_R, 0.35 * dt), [PX_PLUS, PX_MINUS], 0.65, dt)
 
 
-def readouts(rho: np.ndarray) -> dict[str, float]:
-    return {key: float(np.real(np.trace(obs @ rho))) for key, obs in OBS.items()}
+def readouts(rho: Any) -> dict[str, float]:
+    rho = as_complex_tensor(rho)
+    return {key: float(torch.real(torch.trace(obs @ rho)).item()) for key, obs in OBS.items()}
 
 
-def trace_distance(a: np.ndarray, b: np.ndarray) -> float:
-    eigs = np.linalg.eigvalsh((a - b + dagger(a - b)) / 2)
-    return float(0.5 * np.sum(np.abs(eigs)))
+def trace_distance(a: Any, b: Any) -> float:
+    diff = as_complex_tensor(a) - as_complex_tensor(b)
+    eigs = torch.linalg.eigvalsh((diff + dagger(diff)) / 2)
+    return float(0.5 * torch.sum(torch.abs(torch.real(eigs))).item())
 
 
-def is_density_matrix(rho: np.ndarray) -> bool:
-    eigs = np.linalg.eigvalsh((rho + dagger(rho)) / 2)
-    return bool(np.allclose(rho, dagger(rho), atol=1e-10) and abs(np.trace(rho).real - 1.0) < 1e-10 and float(np.min(eigs)) > -1e-10)
+def is_density_matrix(rho: Any) -> bool:
+    rho = as_complex_tensor(rho)
+    eigs = torch.linalg.eigvalsh((rho + dagger(rho)) / 2)
+    return bool(torch.allclose(rho, dagger(rho), atol=1e-10) and abs(float(torch.real(torch.trace(rho)).item()) - 1.0) < 1e-10 and float(torch.min(torch.real(eigs)).item()) > -1e-10)
 
 
-def te_density(eta0: float, signed_te: str) -> tuple[np.ndarray, dict[str, Any]]:
+def te_density(eta0: float, signed_te: str) -> tuple[torch.Tensor, dict[str, Any]]:
     direction = "up" if signed_te == "Te_up" else "down"
     te = te_signed_gradient_eta(eta0, direction)
     return density_np(spinor_np(float(te["eta_after"]))), te
 
 
-def run_substage(spec: dict[str, Any], eta0: float = 0.62, input_rho: np.ndarray | None = None) -> dict[str, Any]:
+def run_substage(spec: dict[str, Any], eta0: float = 0.62, input_rho: Any | None = None) -> dict[str, Any]:
     rho0 = normalize_density(input_rho) if input_rho is not None else density_np(spinor_np(eta0))
-    terrain: Callable[[np.ndarray], np.ndarray] = spec["terrain_fn"]
+    terrain: Callable[[Any], Any] = spec["terrain_fn"]
     if spec["precedence"] == "operator_first_then_terrain":
         moved, te = te_density(eta0, spec["signed_te"])
         out = terrain(moved)
@@ -348,13 +359,13 @@ def main() -> dict[str, Any]:
         "hill_and_citadel_projectors_differ": {
             "hill_projector": "Pz",
             "citadel_projector": "Px",
-            "pass": not np.allclose(PZ_PLUS, PX_PLUS),
+            "pass": not torch.allclose(PZ_PLUS, PX_PLUS),
         },
         "pit_and_source_ladders_differ": {
-            "pass": not np.allclose(SIGMA_MINUS, SIGMA_PLUS),
+            "pass": not torch.allclose(SIGMA_MINUS, SIGMA_PLUS),
         },
         "left_right_hamiltonian_signs_opposed": {
-            "pass": bool(np.allclose(H_R, -H_L)),
+            "pass": bool(torch.allclose(H_R, -H_L)),
         },
         "si_and_ni_terrain_laws_not_same_channel": {
             "SiTe_vs_TeNi_gap": pair_gaps["left_pair_SiTe_vs_TeNi"],
@@ -383,9 +394,13 @@ def main() -> dict[str, Any]:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "claim_ceiling": CLAIM_CEILING,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "source_assignment": {
             token: strip_rho(row_by_token[token]) for token in ["SiTe", "TeSi", "NiTe", "TeNi"]
         },

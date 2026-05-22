@@ -6,6 +6,8 @@ Ramsey Theory Constraint Canonical Sim
 import json
 import os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},

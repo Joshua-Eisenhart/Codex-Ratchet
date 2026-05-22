@@ -18,6 +18,8 @@ import os
 import numpy as np
 from receipt_boundary import apply_default_receipt_boundary
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

@@ -24,6 +24,37 @@ from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical foundation baseline: axis orthogonality is a geometric consistency check, not a canonical nonclassical proof object."
 
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "load-bearing finite Choi-matrix and axis-overlap numerical validation"},
+    "pytorch": {"tried": False, "used": False, "reason": "not needed for this classical axis-orthogonality baseline"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed: no graph layer"},
+    "z3": {"tried": False, "used": False, "reason": "not needed: no SMT claim"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed: no SMT claim"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed: direct numeric Choi checks"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed: no Clifford algebra operation"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed: no geomstats metric call"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed: no equivariant neural layer"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed: no graph algorithm"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed: no hypergraph"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed: no cell-complex computation"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed: no persistence computation"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import coherent_state_density
 from geometric_operators import (

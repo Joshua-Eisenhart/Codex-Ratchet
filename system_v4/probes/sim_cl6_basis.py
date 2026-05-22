@@ -15,12 +15,34 @@ divergence_log = (
 )
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": r} for k,r in {
-    "pytorch":"not needed","pyg":"no graph","z3":"numeric","cvc5":"numeric",
-    "sympy":"not used","clifford":"load_bearing: Cl(6,0) construction","geomstats":"not used",
-    "e3nn":"not used","rustworkx":"no graph","xgi":"no hypergraph","toponetx":"no cells","gudhi":"no persistence",
-}.items()}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed for this Cl(6,0) basis baseline"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed: no graph layer"},
+    "z3": {"tried": False, "used": False, "reason": "not needed: no SMT claim"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed: no SMT claim"},
+    "sympy": {"tried": False, "used": False, "reason": "not used: Clifford runtime constructs the algebra"},
+    "clifford": {"tried": False, "used": False, "reason": "load-bearing Cl(6,0) construction"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed: no manifold-distance computation"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed: no equivariant neural layer"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed: no graph algorithm"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed: no hypergraph"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed: no cell-complex computation"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed: no persistence computation"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 from clifford import Cl
 TOOL_MANIFEST["clifford"].update(tried=True, used=True); TOOL_INTEGRATION_DEPTH["clifford"] = "load_bearing"

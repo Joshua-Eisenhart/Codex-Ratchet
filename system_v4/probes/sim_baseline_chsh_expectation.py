@@ -2,6 +2,11 @@
 """Classical baseline: CHSH expectation value; separable states must satisfy |S|<=2."""
 import json, os, numpy as np
 
+classification = "classical_baseline"
+divergence_log = [
+    "Separable-state |S| <= 2 checks are kept distinct from Bell or Tsirelson reference behavior."
+]
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "numpy baseline"},
     "pyg": {"tried": False, "used": False, "reason": "no graph"},
@@ -97,6 +102,7 @@ if __name__ == "__main__":
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

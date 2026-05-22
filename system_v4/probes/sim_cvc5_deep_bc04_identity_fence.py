@@ -14,6 +14,8 @@ the admission evidence; numeric baselines cannot produce it).
 """
 import json, os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed; fence is a first-order admissibility claim, not a numeric one"},
     "pyg": {"tried": False, "used": False, "reason": "no graph message-passing in a FOL fence proof"},

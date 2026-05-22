@@ -154,6 +154,10 @@ def run_triple(name, shell_a, shell_b, shell_c,
                pair_coupling_py, pair_coupling_z3,
                triple_coupling_py, triple_coupling_z3,
                coupling_desc, extra_atoms=None):
+    claim_ceiling = (
+        "triple-coupling Boolean admissibility micro only; "
+        "no promotion beyond bounded framework-coupling fixture"
+    )
     atoms_a, pred_a, clauses_a = SHELL_SPECS[shell_a]
     atoms_b, pred_b, clauses_b = SHELL_SPECS[shell_b]
     atoms_c, pred_c, clauses_c = SHELL_SPECS[shell_c]
@@ -211,6 +215,23 @@ def run_triple(name, shell_a, shell_b, shell_c,
         "overall_pass": overall,
         "interacting": pos_enum["interacting"],
         "additive": pos_enum["additive"],
+        "claim_ceiling": claim_ceiling,
+        "next_lego_target": name,
+        "promotion_condition": (
+            "requires a later independent admission, executed receipt review, "
+            "and stage-appropriate coupling gate before any higher claim"
+        ),
+        "blocked_until": "exact runner result receipt validates under strict executable run boundary",
+        "demotion_condition": (
+            "demote if used as proof beyond this bounded triple-coupling fixture "
+            "or if positive/negative/boundary checks are incomplete"
+        ),
+        "out_of_scope": [
+            "no theory promotion",
+            "no manifold admission",
+            "no scientific coupling claim",
+            "no bridge or axis evidence",
+        ],
         "tool_manifest": {
             "z3": {
                 "tried": _HAVE_Z3,

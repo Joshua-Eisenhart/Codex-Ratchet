@@ -16,9 +16,8 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import gudhi
 import networkx as nx
-import numpy as np
-from scipy.linalg import expm
 import sympy as sp
+import torch
 import z3
 
 
@@ -46,23 +45,30 @@ CONSUMED_RECEIPTS = {
 EXPECTED_MANIFOLD_LAYER_ORDER_HASH = "c8eb87dbec785d3c507c1184978210b9deb5c80813de43259868d1d3f672319d"
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing density states, control signatures, and distance controls"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing matrix exponentials for stage/substage evolution"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing density states, matrix exponentials, control signatures, and distance controls"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing 64-node execution graph"},
     "gudhi": {"tried": True, "used": True, "reason": "load-bearing persistence over seven-control trajectory signatures"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic seven-control count inventory"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing seven-control noncollapse witness"},
     "source_density_scout": {"tried": True, "used": True, "reason": "load-bearing source-native density, loop, and terrain helpers"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'pytorch': 'load_bearing',
+    'networkx': 'load_bearing',
+    'gudhi': 'load_bearing',
+    'sympy': 'load_bearing',
+    'z3': 'load_bearing',
+    'source_density_scout': 'supportive',
+}
 
-DTYPE = np.complex128
-I2 = np.eye(2, dtype=DTYPE)
-SX = np.array([[0, 1], [1, 0]], dtype=DTYPE)
-SY = np.array([[0, -1j], [1j, 0]], dtype=DTYPE)
-SZ = np.array([[1, 0], [0, -1]], dtype=DTYPE)
-SM = np.array([[0, 0], [1, 0]], dtype=DTYPE)
-SP = np.array([[0, 1], [0, 0]], dtype=DTYPE)
+DTYPE = torch.complex128
+FLOAT_DTYPE = torch.float64
+I2 = torch.eye(2, dtype=DTYPE)
+SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=DTYPE)
+SM = torch.tensor([[0, 0], [1, 0]], dtype=DTYPE)
+SP = torch.tensor([[0, 1], [0, 0]], dtype=DTYPE)
 H0 = 0.77 * SZ + 0.13 * SX
 
 STAGE_BITS = {
@@ -86,10 +92,12 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+    if isinstance(value, complex):
+        return {"real": value.real, "imag": value.imag}
+    if isinstance(value, torch.Tensor):
+        if torch.is_complex(value):
+            return {"real": value.real.detach().cpu().tolist(), "imag": value.imag.detach().cpu().tolist()}
+        return value.detach().cpu().tolist()
     return value
 
 
@@ -181,53 +189,54 @@ def load_source_module():
 SOURCE = load_source_module()
 
 
-def dagger(a: np.ndarray) -> np.ndarray:
+def dagger(a: torch.Tensor) -> torch.Tensor:
     return a.conj().T
 
 
-def normalize_density(rho: np.ndarray) -> np.ndarray:
+def normalize_density(rho: torch.Tensor) -> torch.Tensor:
+    rho = torch.as_tensor(rho, dtype=DTYPE)
     rho = (rho + dagger(rho)) / 2
-    vals, vecs = np.linalg.eigh(rho)
-    vals = np.maximum(vals, 1e-12)
-    out = vecs @ np.diag(vals) @ dagger(vecs)
-    return out / np.trace(out)
+    vals, vecs = torch.linalg.eigh(rho)
+    vals = torch.clamp(vals.real, min=1e-12).to(DTYPE)
+    out = vecs @ torch.diag(vals) @ dagger(vecs)
+    return out / torch.trace(out).real
 
 
-def unitary_update(rho: np.ndarray, hamiltonian: np.ndarray, dt: float) -> np.ndarray:
-    u = expm(-1j * hamiltonian * dt)
+def unitary_update(rho: torch.Tensor, hamiltonian: torch.Tensor, dt: float) -> torch.Tensor:
+    u = torch.linalg.matrix_exp(-1j * hamiltonian * dt)
     return normalize_density(u @ rho @ dagger(u))
 
 
-def dissipator_update(rho: np.ndarray, op: np.ndarray, gamma: float, dt: float) -> np.ndarray:
+def dissipator_update(rho: torch.Tensor, op: torch.Tensor, gamma: float, dt: float) -> torch.Tensor:
     jump = math.sqrt(max(gamma * dt, 0.0)) * op
     no_jump = I2 - 0.5 * gamma * dt * dagger(op) @ op
     return normalize_density(jump @ rho @ dagger(jump) + no_jump @ rho @ dagger(no_jump))
 
 
-def dephase_update(rho: np.ndarray, axis: np.ndarray, rate: float, dt: float) -> np.ndarray:
+def dephase_update(rho: torch.Tensor, axis: torch.Tensor, rate: float, dt: float) -> torch.Tensor:
     projectors = [0.5 * (I2 + axis), 0.5 * (I2 - axis)]
     pinched = sum(p @ rho @ p for p in projectors)
     return normalize_density((1 - rate * dt) * rho + rate * dt * pinched)
 
 
-def entropy(rho: np.ndarray) -> float:
-    vals = np.linalg.eigvalsh((rho + dagger(rho)) / 2).real
-    vals = np.maximum(vals, 1e-12)
+def entropy(rho: torch.Tensor) -> float:
+    vals = torch.linalg.eigvalsh((rho + dagger(rho)) / 2).real
+    vals = torch.clamp(vals, min=1e-12)
     vals = vals / vals.sum()
-    return float(-(vals * np.log(vals)).sum())
+    return float(-(vals * torch.log(vals)).sum().item())
 
 
-def readout(rho: np.ndarray) -> np.ndarray:
-    return np.array([np.real(np.trace(obs @ rho)) for obs in (SX, SY, SZ)], dtype=float)
+def readout(rho: torch.Tensor) -> list[float]:
+    return [float(torch.real(torch.trace(obs @ rho)).item()) for obs in (SX, SY, SZ)]
 
 
-def normalize_axis(axis: np.ndarray) -> np.ndarray:
-    return axis / max(float(np.linalg.norm(axis)), 1e-9)
+def normalize_axis(axis: torch.Tensor) -> torch.Tensor:
+    return axis / max(float(torch.linalg.vector_norm(axis).item()), 1e-9)
 
 
-def valid_density(rho: np.ndarray) -> bool:
-    vals = np.linalg.eigvalsh((rho + dagger(rho)) / 2)
-    return bool(np.allclose(rho, dagger(rho), atol=1e-9) and abs(np.trace(rho).real - 1.0) < 1e-9 and vals.min() > -1e-9)
+def valid_density(rho: torch.Tensor) -> bool:
+    vals = torch.linalg.eigvalsh((rho + dagger(rho)) / 2)
+    return bool(torch.allclose(rho, dagger(rho), atol=1e-9) and abs(float(torch.trace(rho).real.item()) - 1.0) < 1e-9 and float(torch.min(vals).item()) > -1e-9)
 
 
 def stage_spec(sheet: str, stage: str) -> dict[str, Any]:
@@ -243,7 +252,7 @@ def op_pair(stage_index: int, substage_index: int, collapse: bool) -> tuple[str,
 
 
 def entropy_feedback_update(
-    rho: np.ndarray,
+    rho: torch.Tensor,
     geom: dict[str, float],
     feedback_sign: int,
     rate: float,
@@ -273,15 +282,15 @@ def entropy_feedback_update(
             "twist": 0.075 * bit_one * bit_two * excitation * operator_sign,
         }[key]
         out[key] = out[key] + feedback_sign * gain * grad + structural_drive
-    out["metric_scale"] = float(np.clip(out["metric_scale"], 0.55, 1.85))
-    out["connection"] = float(np.clip(out["connection"], -1.80, 1.80))
-    out["twist"] = float(np.clip(out["twist"], -1.30, 1.30))
-    return out, float(np.linalg.norm(grads))
+    out["metric_scale"] = min(1.85, max(0.55, out["metric_scale"]))
+    out["connection"] = min(1.80, max(-1.80, out["connection"]))
+    out["twist"] = min(1.30, max(-1.30, out["twist"]))
+    return out, float(torch.linalg.vector_norm(torch.tensor(grads, dtype=FLOAT_DTYPE)).item())
 
 
-def local_projected_entropy(rho: np.ndarray, geom: dict[str, float], rate: float) -> float:
+def local_projected_entropy(rho: torch.Tensor, geom: dict[str, float], rate: float) -> float:
     axis = math.tanh(geom["twist"]) * SX + (1.0 - abs(math.tanh(geom["twist"]))) * SZ
-    axis = axis / max(float(np.linalg.norm(axis)), 1e-9)
+    axis = axis / max(float(torch.linalg.vector_norm(axis).item()), 1e-9)
     trial = dephase_update(rho, axis, min(0.50, rate * geom["metric_scale"]), 0.07)
     mix = min(0.40, 0.024 * abs(geom["connection"]) + 0.016 * abs(geom["twist"]))
     return entropy(normalize_density((1 - mix) * trial + mix * I2 / 2.0))
@@ -314,7 +323,7 @@ def excitation_level(stage_index: int, substage_index: int, mode: str) -> float:
 
 
 def apply_step(
-    rho: np.ndarray,
+    rho: torch.Tensor,
     *,
     sheet: str,
     stage: str,
@@ -323,7 +332,7 @@ def apply_step(
     substage_index: int,
     geom: dict[str, float],
     mode: str,
-) -> tuple[np.ndarray, tuple[str, int], float]:
+) -> tuple[torch.Tensor, tuple[str, int], float]:
     spec = stage_spec(sheet, stage)
     bit_one, bit_two = STAGE_BITS[stage]
     family, sign = op_pair(stage_index, substage_index, mode == "collapse_operator_sign")
@@ -332,7 +341,7 @@ def apply_step(
     ladder = SM if sheet == "left_chiral_operating_space" else SP
     axis = OP_AXES[family]
     stage_axis = bit_one * SX + bit_two * SY + 0.35 * bit_one * bit_two * SZ
-    stage_axis = stage_axis / max(float(np.linalg.norm(stage_axis)), 1e-9)
+    stage_axis = stage_axis / max(float(torch.linalg.vector_norm(stage_axis).item()), 1e-9)
     stage_gain = 1.0 + 0.18 * bit_one + 0.13 * bit_two
     if substage_index == 0:
         h = h_base + 0.24 * sign * heat * axis + 0.18 * heat * stage_axis
@@ -342,7 +351,7 @@ def apply_step(
     if substage_index == 2:
         mixed_axis = normalize_axis(0.62 * axis + 0.38 * sign * stage_axis)
         return dephase_update(rho, mixed_axis, min(0.58, float(spec["rate"]) * heat * stage_gain * (1 + 0.16 * abs(geom["twist"]))), 0.090), (family, sign), heat
-    loop_rho = SOURCE.loop_density(loop, (stage_index + 1) * (2 * math.pi / 9) + 0.22 * sign * heat + 0.09 * (bit_one - bit_two))
+    loop_rho = torch.as_tensor(SOURCE.loop_density(loop, (stage_index + 1) * (2 * math.pi / 9) + 0.22 * sign * heat + 0.09 * (bit_one - bit_two)), dtype=DTYPE)
     weight = min(0.52, (0.08 if loop == "fiber_loop" else 0.28) * heat * stage_gain + 0.030 * abs(geom["connection"]))
     return normalize_density((1 - weight) * rho + weight * loop_rho), (family, sign), heat
 
@@ -361,7 +370,7 @@ def run(mode: str = "nominal") -> list[dict[str, Any]]:
             for raw_stage in stages:
                 stage = stage_for_mode(raw_stage, mode)
                 stage_bits = STAGE_BITS[stage]
-                rho = SOURCE.loop_density(loop, (stage_index + 1) * (2 * math.pi / 9))
+                rho = torch.as_tensor(SOURCE.loop_density(loop, (stage_index + 1) * (2 * math.pi / 9)), dtype=DTYPE)
                 spec = stage_spec(sheet, stage)
                 for substage_index, substage in enumerate(SUBSTAGES):
                     family_preview, sign_preview = op_pair(stage_index, substage_index, mode == "collapse_operator_sign")
@@ -416,8 +425,8 @@ def run(mode: str = "nominal") -> list[dict[str, Any]]:
     return rows
 
 
-def features(rows: list[dict[str, Any]]) -> np.ndarray:
-    return np.array(
+def features(rows: list[dict[str, Any]]) -> torch.Tensor:
+    return torch.tensor(
         [
             [
                 r["entropy"],
@@ -435,11 +444,11 @@ def features(rows: list[dict[str, Any]]) -> np.ndarray:
             ]
             for r in rows
         ],
-        dtype=float,
+        dtype=FLOAT_DTYPE,
     )
 
 
-def dynamic_features(rows: list[dict[str, Any]]) -> np.ndarray:
+def dynamic_features(rows: list[dict[str, Any]]) -> torch.Tensor:
     return features(rows)[:, :9]
 
 
@@ -460,11 +469,11 @@ def inventory(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def trajectory_gap(a: list[dict[str, Any]], b: list[dict[str, Any]]) -> float:
-    return float(np.linalg.norm(dynamic_features(a) - dynamic_features(b)))
+    return float(torch.linalg.vector_norm(dynamic_features(a) - dynamic_features(b)).item())
 
 
 def full_signature_gap(a: list[dict[str, Any]], b: list[dict[str, Any]]) -> float:
-    return float(np.linalg.norm(features(a) - features(b)))
+    return float(torch.linalg.vector_norm(features(a) - features(b)).item())
 
 
 def effect_summary(nominal: list[dict[str, Any]], modes: dict[str, list[dict[str, Any]]]) -> dict[str, Any]:
@@ -488,7 +497,7 @@ def effect_summary(nominal: list[dict[str, Any]], modes: dict[str, list[dict[str
     }
 
 
-def persistence(points: np.ndarray) -> dict[str, Any]:
+def persistence(points: torch.Tensor) -> dict[str, Any]:
     rips = gudhi.RipsComplex(points=points[:, :8].tolist(), max_edge_length=3.0)
     st = rips.create_simplex_tree(max_dimension=2)
     pairs = st.persistence()

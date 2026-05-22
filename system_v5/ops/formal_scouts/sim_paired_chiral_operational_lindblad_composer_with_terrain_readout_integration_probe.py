@@ -47,7 +47,6 @@ from typing import Any
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 
-import numpy as np
 import opt_einsum as oe
 import sympy as sp
 import torch
@@ -93,6 +92,7 @@ from engine_readouts import EngineReadout, TOPOLOGY_CENTROIDS
 
 NAME = "paired_chiral_operational_lindblad_composer_with_terrain_readout_integration_probe"
 OUT_PATH = RESULT_DIR / f"{NAME}_results.json"
+TORCH_DTYPE = torch.complex128
 
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
@@ -110,20 +110,10 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing: density matrices, Bloch vectors, Frobenius norms, eigenvalue checks, Lindblad ODE state representation",
-    },
     "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing: 13-layer manifold enforcer chain uses torch tensors throughout (active_layer_constraint_enforcers); engine_core bridges via torch.from_numpy",
-    },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing: scipy.integrate.solve_ivp for proper Lindblad ODE integration per substage; scipy.linalg.expm for operator unitaries",
+        "reason": "load-bearing: density matrices, Bloch vectors, Frobenius norms, eigenvalue checks, Lindblad state representation, local RK4/matrix-exponential engine internals, and 13-layer manifold enforcer chain tensors",
     },
     "opt_einsum": {
         "tried": True,
@@ -142,9 +132,7 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
     "pytorch": "load_bearing",
-    "scipy": "load_bearing",
     "opt_einsum": "load_bearing",
     "sympy": "load_bearing",
     "z3": "load_bearing",
@@ -160,10 +148,6 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating, np.bool_)):
-        return value.item()
     if isinstance(value, complex):
         return [float(value.real), float(value.imag)]
     if isinstance(value, torch.Tensor):
@@ -242,26 +226,26 @@ def _z3_stage_count_unsat_witness(
 # ---------------------------------------------------------------------------
 
 def _opt_einsum_partial_trace_check() -> dict[str, Any]:
-    """Cross-check that opt_einsum.contract gives the same partial trace as numpy.einsum."""
+    """Cross-check that opt_einsum.contract gives the same partial trace as torch matmul."""
     # Build a 4-qubit state and compute partial trace over qubits 0,1
-    rng = np.random.default_rng(99)
-    psi = rng.normal(size=16) + 1j * rng.normal(size=16)
-    psi = psi / np.linalg.norm(psi)
-    psi_t = torch.tensor(psi, dtype=torch.complex128)
+    generator = torch.Generator().manual_seed(99)
+    psi_t = (
+        torch.randn(16, generator=generator, dtype=torch.float64)
+        + 1j * torch.randn(16, generator=generator, dtype=torch.float64)
+    ).to(TORCH_DTYPE)
+    psi_t = psi_t / torch.linalg.norm(psi_t)
 
     # Partial trace via opt_einsum
     state = psi_t.reshape([2, 2, 2, 2])
     matrix = state.permute(0, 1, 2, 3).reshape(4, 4)
-    rho_oe = oe.contract("ab,cb->ac", matrix, matrix.conj()).numpy()
+    rho_oe = oe.contract("ab,cb->ac", matrix, matrix.conj())
 
-    # Partial trace via numpy.einsum
-    state_np = psi.reshape(2, 2, 2, 2)
-    matrix_np = state_np.reshape(4, 4)
-    rho_np = np.einsum("ab,cb->ac", matrix_np, matrix_np.conj())
+    # Reference partial trace via direct torch matmul.
+    rho_ref = matrix @ matrix.conj().T
 
-    diff = float(np.linalg.norm(rho_oe - rho_np, "fro"))
+    diff = float(torch.linalg.matrix_norm(rho_oe - rho_ref, ord="fro").item())
     return {
-        "opt_einsum_matches_numpy": bool(diff < 1e-10),
+        "opt_einsum_matches_torch_reference": bool(diff < 1e-10),
         "frobenius_diff": diff,
         "pass": bool(diff < 1e-10),
     }
@@ -279,7 +263,8 @@ def _lindblad_preserves_trace_check() -> dict[str, Any]:
         H = H_TYPE_ONE
         L = SIGMA_MINUS
         rho1 = lindblad_step(rho0, H, L, 0.08)
-        diffs.append(abs(np.trace(rho1).real - 1.0))
+        rho1_t = torch.as_tensor(rho1, dtype=TORCH_DTYPE)
+        diffs.append(abs(float(torch.trace(rho1_t).real.item()) - 1.0))
     max_drift = float(max(diffs))
     return {
         "max_trace_drift_across_10_seeds": max_drift,
@@ -295,8 +280,9 @@ def _lindblad_psd_check() -> dict[str, Any]:
         for perc in ["Se", "Ne", "Ni", "Si"]:
             H, L = get_lindblad_params(perc, 0)
             rho1 = lindblad_step(rho0, H, L, 0.08)
-            eigs = np.linalg.eigvalsh((rho1 + rho1.conj().T) / 2).real
-            if np.min(eigs) < -1e-8:
+            rho1_t = torch.as_tensor(rho1, dtype=TORCH_DTYPE)
+            eigs = torch.linalg.eigvalsh((rho1_t + rho1_t.conj().T) / 2).real
+            if float(torch.min(eigs).item()) < -1e-8:
                 bad += 1
     return {
         "n_psd_violations": bad,
@@ -354,7 +340,15 @@ def _build_engines_and_run(n_seeds: int = 24) -> dict[str, Any]:
 # Graveyard: schedule disabled
 # ---------------------------------------------------------------------------
 
-def _graveyard_schedule_disabled(rho_init: np.ndarray) -> dict[str, Any]:
+def _state_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=TORCH_DTYPE)
+
+
+def _state_diff(a: Any, b: Any) -> float:
+    return float(torch.linalg.matrix_norm(_state_tensor(a) - _state_tensor(b), ord="fro").item())
+
+
+def _graveyard_schedule_disabled(rho_init: Any) -> dict[str, Any]:
     """
     Graveyard: run only ONE engine (no composition). Compare to paired-engine run.
     The two final states should differ.
@@ -368,11 +362,7 @@ def _graveyard_schedule_disabled(rho_init: np.ndarray) -> dict[str, Any]:
     sched_paired = Schedule(engines=[eng_a, eng_b], n_iter=1)
     out_paired = sched_paired.run(rho_init)
 
-    diff = float(np.linalg.norm(
-        np.array(out_only["final_state"], dtype=DTYPE)
-        - np.array(out_paired["final_state"], dtype=DTYPE),
-        "fro"
-    ))
+    diff = _state_diff(out_only["final_state"], out_paired["final_state"])
     n_only = out_only["schedule_record"]["total_substages"]
     n_paired = out_paired["schedule_record"]["total_substages"]
     return {
@@ -385,7 +375,7 @@ def _graveyard_schedule_disabled(rho_init: np.ndarray) -> dict[str, Any]:
     }
 
 
-def _graveyard_manifold_disabled(rho_init: np.ndarray) -> dict[str, Any]:
+def _graveyard_manifold_disabled(rho_init: Any) -> dict[str, Any]:
     """
     Graveyard: disable manifold constraints. Final readout should differ.
     """
@@ -399,11 +389,7 @@ def _graveyard_manifold_disabled(rho_init: np.ndarray) -> dict[str, Any]:
     sched_off = Schedule(engines=[eng_a_off, eng_b_off], n_iter=1)
     out_off = sched_off.run(rho_init)
 
-    diff = float(np.linalg.norm(
-        np.array(out_on["final_state"], dtype=DTYPE)
-        - np.array(out_off["final_state"], dtype=DTYPE),
-        "fro"
-    ))
+    diff = _state_diff(out_on["final_state"], out_off["final_state"])
     # Also compare readout patterns
     read_on = EngineReadout.full_readout(out_on["trajectory"], out_on["schedule_record"])
     read_off = EngineReadout.full_readout(out_off["trajectory"], out_off["schedule_record"])
@@ -443,7 +429,7 @@ def _graveyard_readout_disabled() -> dict[str, Any]:
     }
 
 
-def _graveyard_collapsed_engine_types(rho_init: np.ndarray) -> dict[str, Any]:
+def _graveyard_collapsed_engine_types(rho_init: Any) -> dict[str, Any]:
     """
     Graveyard: collapse Type 1 and Type 2 to the SAME engine_type.
     The paired-engine readout should collapse to a single distinguishable terrain.
@@ -462,11 +448,7 @@ def _graveyard_collapsed_engine_types(rho_init: np.ndarray) -> dict[str, Any]:
     full_real = EngineReadout.full_readout(out_real["trajectory"], out_real["schedule_record"])
 
     # The collapsed run should produce a different readout than the real run
-    state_diff = float(np.linalg.norm(
-        np.array(out["final_state"], dtype=DTYPE)
-        - np.array(out_real["final_state"], dtype=DTYPE),
-        "fro"
-    ))
+    state_diff = _state_diff(out["final_state"], out_real["final_state"])
     return {
         "collapsed_terrain": full["terrain_of_arrival"]["terrain"],
         "real_terrain": full_real["terrain_of_arrival"]["terrain"],
@@ -478,7 +460,7 @@ def _graveyard_collapsed_engine_types(rho_init: np.ndarray) -> dict[str, Any]:
     }
 
 
-def _graveyard_random_topology_assignment(rho_init: np.ndarray) -> dict[str, Any]:
+def _graveyard_random_topology_assignment(rho_init: Any) -> dict[str, Any]:
     """
     Graveyard: scramble the topology specs by shuffling the perception keys.
     Pattern resolution should differ vs the canonical assignment.
@@ -493,8 +475,7 @@ def _graveyard_random_topology_assignment(rho_init: np.ndarray) -> dict[str, Any
     eng_scram_a = EngineCore(engine_type=0)
     eng_scram_b = EngineCore(engine_type=1)
     # Override schedules with a random permutation
-    rng = np.random.default_rng(7)
-    perm = list(rng.permutation(8))
+    perm = torch.randperm(8, generator=torch.Generator().manual_seed(7)).tolist()
     eng_scram_a.schedule = [eng_scram_a.schedule[i] for i in perm]
     eng_scram_b.schedule = [eng_scram_b.schedule[i] for i in perm]
     sched_scram = Schedule(engines=[eng_scram_a, eng_scram_b], n_iter=1)
@@ -502,11 +483,7 @@ def _graveyard_random_topology_assignment(rho_init: np.ndarray) -> dict[str, Any
     pat_scram = EngineReadout.pattern_resolution(out_scram["trajectory"])
 
     diff_pat = pat_canonical["pattern"] != pat_scram["pattern"]
-    diff_state = float(np.linalg.norm(
-        np.array(out_canonical["final_state"], dtype=DTYPE)
-        - np.array(out_scram["final_state"], dtype=DTYPE),
-        "fro"
-    ))
+    diff_state = _state_diff(out_canonical["final_state"], out_scram["final_state"])
     return {
         "canonical_pattern": pat_canonical["pattern"],
         "scrambled_pattern": pat_scram["pattern"],

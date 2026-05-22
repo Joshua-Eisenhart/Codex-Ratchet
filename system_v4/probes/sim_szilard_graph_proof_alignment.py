@@ -24,6 +24,15 @@ import sim_qit_szilard_bidirectional_protocol as base
 classification = "classical_baseline"  # auto-backfill
 
 
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for its local claim; it does not promote "
+        "a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+    ),
+]
+
 CLASSIFICATION = "research_support"
 CLASSIFICATION_NOTE = (
     "Graph/proof alignment bridge for the bounded Szilard family. It adds "

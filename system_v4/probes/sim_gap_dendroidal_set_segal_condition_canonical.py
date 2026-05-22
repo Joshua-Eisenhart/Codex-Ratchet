@@ -23,6 +23,10 @@ import numpy as np
 # =====================================================================
 
 classification = "classical_baseline"
+divergence_log = [
+    "Classical comparator/control surface only; does not promote nonclassical, formal-scout, bridge, axis-level, or canonical proof claims."
+]
+
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed; dendroidal structure is combinatorial, not tensor network"},

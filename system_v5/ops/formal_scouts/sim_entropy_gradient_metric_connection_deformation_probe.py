@@ -15,7 +15,6 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import gudhi
 import networkx as nx
-import numpy as np
 import sympy as sp
 import torch
 
@@ -35,8 +34,7 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing finite-difference gradients, trajectory distances, and controls"},
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing density matrices, entropy, CPTP-style updates, and geometry-coupled evolution"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing density matrices, entropy, finite-difference gradients, trajectory distances, controls, and geometry-coupled evolution"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing deformation dependency graph"},
     "gudhi": {"tried": True, "used": True, "reason": "load-bearing persistence over deformed trajectory point cloud"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic check that entropy gradient is distinct from operator generator"},
@@ -44,6 +42,7 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
 
 DTYPE = torch.complex128
+FLOAT_DTYPE = torch.float64
 I2 = torch.eye(2, dtype=DTYPE)
 SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
 SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
@@ -69,13 +68,13 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
     return value
+
+
+def clamp_float(value: float, low: float, high: float) -> float:
+    return min(high, max(low, value))
 
 
 def normalize_density(rho: torch.Tensor) -> torch.Tensor:
@@ -97,15 +96,12 @@ def purity(rho: torch.Tensor) -> float:
     return float(torch.real(torch.trace(rho @ rho)).item())
 
 
-def bloch(rho: torch.Tensor) -> np.ndarray:
-    return np.array(
-        [
-            float(torch.real(torch.trace(SX @ rho)).item()),
-            float(torch.real(torch.trace(SY @ rho)).item()),
-            float(torch.real(torch.trace(SZ @ rho)).item()),
-        ],
-        dtype=float,
-    )
+def bloch(rho: torch.Tensor) -> list[float]:
+    return [
+        float(torch.real(torch.trace(SX @ rho)).item()),
+        float(torch.real(torch.trace(SY @ rho)).item()),
+        float(torch.real(torch.trace(SZ @ rho)).item()),
+    ]
 
 
 def unitary(axis: torch.Tensor, angle: float) -> torch.Tensor:
@@ -155,10 +151,16 @@ def entropy_gradient(rho: torch.Tensor, law: dict[str, Any], geom: dict[str, flo
 
 
 def initial_density(seed: int) -> torch.Tensor:
-    rng = np.random.default_rng(seed)
-    theta = 0.18 + 1.1 * rng.random()
-    phi = 2.0 * math.pi * rng.random()
-    psi = torch.tensor([math.cos(theta), math.sin(theta) * np.exp(1j * phi)], dtype=DTYPE).reshape(2, 1)
+    generator = torch.Generator().manual_seed(seed)
+    theta = 0.18 + 1.1 * float(torch.rand((), dtype=FLOAT_DTYPE, generator=generator).item())
+    phi = 2.0 * math.pi * float(torch.rand((), dtype=FLOAT_DTYPE, generator=generator).item())
+    phase = torch.exp(torch.tensor(1j * phi, dtype=DTYPE))
+    psi = torch.stack(
+        [
+            torch.tensor(math.cos(theta), dtype=DTYPE),
+            torch.tensor(math.sin(theta), dtype=DTYPE) * phase,
+        ]
+    ).reshape(2, 1)
     return normalize_density(0.84 * (psi @ psi.conj().T) + 0.16 * I2 / 2.0)
 
 
@@ -167,18 +169,30 @@ def run_trajectory(mode: str, seed: int = 0) -> list[dict[str, Any]]:
     geom = {"metric_scale": 1.0, "theta": 0.55, "connection": 0.50}
     rows = []
     sequence = ["funnel", "vortex", "pit", "hill", "cannon", "spiral", "source", "citadel"] * 3
-    rng = np.random.default_rng(seed + 800)
+    generator = torch.Generator().manual_seed(seed + 800)
     for step, name in enumerate(sequence):
         law = TOPOLOGY_LAWS[name]
         grad = entropy_gradient(rho, law, geom)
         if mode == "entropy_deformed":
-            geom["metric_scale"] = float(np.clip(geom["metric_scale"] - 0.42 * grad["metric_scale"], 0.55, 1.75))
-            geom["theta"] = float(np.clip(geom["theta"] - 0.35 * grad["theta"], 0.08, math.pi - 0.08))
-            geom["connection"] = float(np.clip(geom["connection"] - 0.30 * grad["connection"], -1.5, 1.5))
+            geom["metric_scale"] = clamp_float(geom["metric_scale"] - 0.42 * grad["metric_scale"], 0.55, 1.75)
+            geom["theta"] = clamp_float(geom["theta"] - 0.35 * grad["theta"], 0.08, math.pi - 0.08)
+            geom["connection"] = clamp_float(geom["connection"] - 0.30 * grad["connection"], -1.5, 1.5)
         elif mode == "random_deformed":
-            geom["metric_scale"] = float(np.clip(geom["metric_scale"] + 0.025 * rng.normal(), 0.55, 1.75))
-            geom["theta"] = float(np.clip(geom["theta"] + 0.025 * rng.normal(), 0.08, math.pi - 0.08))
-            geom["connection"] = float(np.clip(geom["connection"] + 0.025 * rng.normal(), -1.5, 1.5))
+            geom["metric_scale"] = clamp_float(
+                geom["metric_scale"] + 0.025 * float(torch.randn((), dtype=FLOAT_DTYPE, generator=generator).item()),
+                0.55,
+                1.75,
+            )
+            geom["theta"] = clamp_float(
+                geom["theta"] + 0.025 * float(torch.randn((), dtype=FLOAT_DTYPE, generator=generator).item()),
+                0.08,
+                math.pi - 0.08,
+            )
+            geom["connection"] = clamp_float(
+                geom["connection"] + 0.025 * float(torch.randn((), dtype=FLOAT_DTYPE, generator=generator).item()),
+                -1.5,
+                1.5,
+            )
         elif mode == "readout_only":
             _ = entropy(rho)
         elif mode == "frozen_geometry":
@@ -205,8 +219,8 @@ def run_trajectory(mode: str, seed: int = 0) -> list[dict[str, Any]]:
     return rows
 
 
-def trajectory_features(rows: list[dict[str, Any]]) -> np.ndarray:
-    return np.array(
+def trajectory_features(rows: list[dict[str, Any]]) -> torch.Tensor:
+    return torch.tensor(
         [
             [
                 row["entropy"],
@@ -219,23 +233,23 @@ def trajectory_features(rows: list[dict[str, Any]]) -> np.ndarray:
             ]
             for row in rows
         ],
-        dtype=float,
+        dtype=FLOAT_DTYPE,
     )
 
 
 def compare_modes() -> dict[str, Any]:
     modes = ["entropy_deformed", "frozen_geometry", "readout_only", "random_deformed"]
     samples = {mode: [trajectory_features(run_trajectory(mode, seed)) for seed in range(10)] for mode in modes}
-    centroids = {mode: np.mean(np.stack(vals), axis=(0, 1)) for mode, vals in samples.items()}
+    centroids = {mode: torch.mean(torch.stack(vals), dim=(0, 1)) for mode, vals in samples.items()}
     distances = {}
     for i, a in enumerate(modes):
         for b in modes[i + 1 :]:
-            distances[f"{a}_vs_{b}"] = float(np.linalg.norm(centroids[a] - centroids[b]))
+            distances[f"{a}_vs_{b}"] = float(torch.linalg.vector_norm(centroids[a] - centroids[b]).item())
     entropy_vs_frozen = distances["entropy_deformed_vs_frozen_geometry"]
     entropy_vs_readout = distances["entropy_deformed_vs_readout_only"]
     random_vs_frozen = distances["frozen_geometry_vs_random_deformed"]
     return {
-        "centroids": {k: np.round(v, 6).tolist() for k, v in centroids.items()},
+        "centroids": {k: [round(float(x), 6) for x in v.tolist()] for k, v in centroids.items()},
         "distances": {k: round(v, 6) for k, v in distances.items()},
         "entropy_vs_frozen": entropy_vs_frozen,
         "entropy_vs_readout_only": entropy_vs_readout,

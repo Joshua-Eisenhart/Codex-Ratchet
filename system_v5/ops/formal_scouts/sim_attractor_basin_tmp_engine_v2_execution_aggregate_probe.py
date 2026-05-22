@@ -29,7 +29,7 @@ TOOL_MANIFEST = {
     "pathlib": {"tried": True, "used": True, "reason": "load-bearing bounded receipt checks"},
     "hashlib": {"tried": True, "used": True, "reason": "load-bearing source hash receipts"},
 }
-TOOL_INTEGRATION_DEPTH = {"json": "load_bearing", "pathlib": "load_bearing", "hashlib": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {"json": "supportive", "pathlib": "supportive", "hashlib": "supportive"}
 
 INPUTS = {
     "full_wave": RESULT_DIR / "attractor_basin_tmp_engine_v2_full_wave_execution_probe_results.json",

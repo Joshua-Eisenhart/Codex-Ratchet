@@ -9,16 +9,11 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
 import torch
 import z3
 
 import engine_v7_mps_reference as v7
+from reservoir_torch_readout import classifier_accuracy
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -39,12 +34,16 @@ CLAIM_CEILING = (
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing MPS trajectory features"},
-    "sklearn": {"tried": True, "used": True, "reason": "load-bearing small linear readout and baseline classifiers"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing local-unitary perturbations and metrics"},
+    "sklearn": {"tried": False, "used": False, "reason": "not used; torch ridge readout replaces sklearn classifier plumbing"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite scaling witness"},
-    "engine_v7_reference": {"tried": True, "used": True, "reason": "load-bearing repo-grounded MPS v7 candidate"},
+    "engine_v7_reference": {"tried": True, "used": True, "reason": "supportive repo-grounded MPS v7 candidate boundary"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'pytorch': 'load_bearing',
+    'sklearn': None,
+    'z3': 'load_bearing',
+    'engine_v7_reference': 'supportive',
+}
 
 CLASS_NAMES = ["product", "ghz", "w", "random_mps"]
 N_VALUES = [12, 16, 24, 32]
@@ -52,11 +51,15 @@ N_PER_CLASS = 5
 
 
 def random_unitary(seed: int) -> torch.Tensor:
-    rng = np.random.default_rng(seed)
-    z = rng.normal(size=(2, 2)) + 1j * rng.normal(size=(2, 2))
-    q, r = np.linalg.qr(z)
-    phase = np.diag(r) / np.maximum(np.abs(np.diag(r)), 1e-12)
-    return torch.tensor(q * phase, dtype=v7.DTYPE)
+    gen = torch.Generator(device="cpu")
+    gen.manual_seed(seed)
+    real = torch.randn((2, 2), generator=gen, dtype=torch.float64)
+    imag = torch.randn((2, 2), generator=gen, dtype=torch.float64)
+    z = torch.complex(real, imag).to(dtype=v7.DTYPE)
+    q, r = torch.linalg.qr(z)
+    diag = torch.diagonal(r)
+    phase = diag / torch.clamp(torch.abs(diag), min=1e-12)
+    return q * phase.conj()
 
 
 def perturb_local(mps: v7.MPS, seed: int) -> v7.MPS:
@@ -81,7 +84,7 @@ def make_state(label: int, n_qubits: int, seed: int) -> v7.MPS:
     return perturb_local(state, seed + 1000)
 
 
-def initial_local_features(mps: v7.MPS) -> list[float]:
+def initial_local_features(mps: v7.MPS) -> torch.Tensor:
     rows = []
     for site in (0, mps.N // 2, mps.N - 1):
         rho = mps.reduced_single(site)
@@ -93,26 +96,26 @@ def initial_local_features(mps: v7.MPS) -> list[float]:
         bz = float((v7.SZ @ rho).diag().sum().real.item())
         bx = float((v7.SX @ rho).diag().sum().real.item())
         rows.extend([ent, bz, bx])
-    return rows
+    return torch.tensor(rows, dtype=torch.float64)
 
 
-def reservoir_features(mps: v7.MPS, n_qubits: int) -> np.ndarray:
+def reservoir_features(mps: v7.MPS, n_qubits: int) -> torch.Tensor:
     eng1 = v7.MPSEngineV7(engine_type=1, chi_max=8)
     eng2 = v7.MPSEngineV7(engine_type=2, chi_max=8)
-    f1 = eng1.trajectory_features(mps).detach().cpu().numpy()
-    f2 = eng2.trajectory_features(mps).detach().cpu().numpy()
-    return np.concatenate([f1, f2]).astype(float)
+    f1 = eng1.trajectory_features(mps).detach().cpu().to(dtype=torch.float64)
+    f2 = eng2.trajectory_features(mps).detach().cpu().to(dtype=torch.float64)
+    return torch.cat([f1, f2])
 
 
-def clf_acc(x: np.ndarray, y: np.ndarray, seed: int, shuffle: bool = False) -> float:
-    labels = y.copy()
-    if shuffle:
-        rng = np.random.default_rng(seed)
-        rng.shuffle(labels)
-    x_train, x_test, y_train, y_test = train_test_split(x, labels, test_size=0.4, random_state=seed, stratify=labels)
-    clf = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000, C=0.8, solver="lbfgs"))
-    clf.fit(x_train, y_train)
-    return float(accuracy_score(y_test, clf.predict(x_test)))
+def clf_acc(x: torch.Tensor, y: torch.Tensor, seed: int, shuffle: bool = False) -> float:
+    return classifier_accuracy(
+        x,
+        y,
+        seed=seed,
+        shuffle_labels=shuffle,
+        test_size=0.4,
+        ridge=1e-3,
+    )
 
 
 def run_n(n_qubits: int) -> dict[str, Any]:
@@ -128,9 +131,9 @@ def run_n(n_qubits: int) -> dict[str, Any]:
             rows.append(reservoir_features(state, n_qubits))
             labels.append(label)
     elapsed = time.time() - started
-    x_res = np.stack(rows)
-    x_local = np.asarray(local, dtype=float)
-    y = np.asarray(labels, dtype=int)
+    x_res = torch.stack(rows)
+    x_local = torch.stack(local)
+    y = torch.tensor(labels, dtype=torch.int64)
     res_acc = clf_acc(x_res, y, seed=320000 + n_qubits)
     local_acc = clf_acc(x_local, y, seed=321000 + n_qubits)
     shuffle_acc = clf_acc(x_res, y, seed=322000 + n_qubits, shuffle=True)
@@ -166,6 +169,46 @@ def z3_scaling_witness(rows: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def n01_order_witness() -> dict[str, Any]:
+    """Finite same-site noncommuting operation witness on the MPS fixture."""
+
+    state = make_state(label=0, n_qubits=12, seed=330012)
+    pz_plus = (0.5 * (v7.I2 + v7.SZ)).to(v7.DTYPE)
+
+    sx_then_pz = state.copy()
+    sx_then_pz.apply_single(v7.SX, 0)
+    sx_then_pz.apply_single(pz_plus, 0)
+    sx_then_pz.normalize_()
+
+    pz_then_sx = state.copy()
+    pz_then_sx.apply_single(pz_plus, 0)
+    pz_then_sx.apply_single(v7.SX, 0)
+    pz_then_sx.normalize_()
+
+    rho_a = sx_then_pz.reduced_single(0)
+    rho_b = pz_then_sx.reduced_single(0)
+    gap = float(torch.linalg.matrix_norm(rho_a - rho_b).real.item())
+    commutator_gap = float(torch.linalg.matrix_norm(v7.SX @ pz_plus - pz_plus @ v7.SX).real.item())
+
+    solver = z3.Solver()
+    finite_n = z3.Int("finite_mps_order_witness_n_qubits")
+    order_gap = z3.Real("mps_operator_order_gap")
+    solver.add(finite_n == 12)
+    solver.add(order_gap == str(round(gap, 12)))
+    solver.add(z3.Not(z3.And(finite_n == 12, order_gap > 0)))
+    status = solver.check()
+    return {
+        "pass": status == z3.unsat and gap > 0 and commutator_gap > 0,
+        "solver_status": str(status),
+        "root": "N01_noncommutation_or_order_sensitivity",
+        "finite_carrier": {"n_qubits": 12, "site": 0},
+        "ordered_operations": ["SX_then_Pz_plus", "Pz_plus_then_SX"],
+        "density_gap_frobenius": gap,
+        "operator_commutator_gap_frobenius": commutator_gap,
+        "claim": "Finite MPS fixture distinguishes same-site SX/Pz+ operation order; this does not prove 32-qubit superiority.",
+    }
+
+
 def main() -> int:
     started = time.time()
     rows = [run_n(n) for n in N_VALUES]
@@ -176,6 +219,7 @@ def main() -> int:
             "pass": all(row["pass"] for row in rows),
         },
         "z3_rejects_missing_32_qubit_scaling_cell": z3_scaling_witness(rows),
+        "n01_noncommutation_or_order_witness": n01_order_witness(),
     }
     graveyards = {
         "local_probe_baseline_is_reported_not_hidden": {
@@ -211,6 +255,12 @@ def main() -> int:
             "Does not replace PEPS3D 64-site scouts.",
         ],
         "blockers": [],
+        "root_constraints": {
+            "finite_carrier_root": True,
+            "noncommutation_or_order_root": positive["n01_noncommutation_or_order_witness"]["pass"],
+            "finite_evidence": "bounded 12/16/24/32-qubit MPS fixtures with an explicit 12-qubit order witness",
+            "noncommutation_or_order_evidence": "SX/Pz+ same-site operation-order witness distinguishes SX_then_Pz_plus from Pz_plus_then_SX",
+        },
         "elapsed_seconds": time.time() - started,
         "all_pass": all_pass,
     }

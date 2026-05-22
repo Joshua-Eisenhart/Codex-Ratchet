@@ -36,6 +36,7 @@ except Exception:  # pragma: no cover
 
 CLASSIFICATION = "canonical"
 classification = CLASSIFICATION
+SIM_EXECUTION_KIND = "classical"
 divergence_log = (
     "Six-bit Gray-code single-flip cycle invariant row. It tests a six-bit, "
     "one-line-transition schedule as a comparison surface for heat/work and "
@@ -73,7 +74,22 @@ TOOL_MANIFEST = {
     "e3nn": {"tried": False, "used": False, "reason": "not used because this schedule has no equivariant tensor field"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    tool: ("load_bearing" if spec["used"] else None) for tool, spec in TOOL_MANIFEST.items()
+    "numpy": "load_bearing",
+    "pytorch": "load_bearing",
+    "torch": "load_bearing",
+    "pyg": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "qiskit": "load_bearing",
+    "qutip": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "gudhi": "supportive",
+    "toponetx": "supportive",
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
 }
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -408,7 +424,7 @@ def main() -> None:
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
-        "sim_execution_kind": "bridge",
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,

@@ -23,6 +23,9 @@ import math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = [
+    "Classical comparator/control surface only; does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+]
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},

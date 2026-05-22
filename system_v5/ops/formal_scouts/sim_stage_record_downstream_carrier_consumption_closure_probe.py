@@ -61,7 +61,11 @@ TOOL_MANIFEST = {
         "reason": "load-bearing closure graph witness for the downstream consumption guard",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'python_json': 'supportive',
+    'pathlib': 'supportive',
+    'networkx': 'load_bearing',
+}
 
 
 def read_json(path: pathlib.Path) -> dict[str, Any]:

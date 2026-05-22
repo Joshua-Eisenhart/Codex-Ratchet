@@ -25,6 +25,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Transition functions g_ij as SO(2) torch float64 matrices, group multiplication g_ij·g_jk via torch.mm, cocycle chain computation via autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed for principal bundle cocycle foundation"},

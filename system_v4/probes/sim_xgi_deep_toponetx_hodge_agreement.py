@@ -25,6 +25,8 @@ Classification: canonical.
 import json, os
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "numeric eig"},
     "pyg": {"tried": False, "used": False, "reason": "not pairwise GNN"},

@@ -24,7 +24,6 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -57,14 +56,12 @@ CLAIM_CEILING = (
 TOOL_MANIFEST = {
     "auto_LiRPA": {"tried": True, "used": True, "reason": "load-bearing certified interval bounds for the trained stage-policy adapter"},
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing trained adapter, shuffled-label control, and brute-force perturbation samples"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing feature assembly, split, normalization, and summary metrics"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite witness for trained accuracy plus bound containment predicates"},
     "engine_core": {"tried": True, "used": True, "reason": "supportive source-native stage records and policy fields consumed by the trained adapter fixture"},
 }
 TOOL_INTEGRATION_DEPTH = {
     "auto_LiRPA": "load_bearing",
     "pytorch": "load_bearing",
-    "numpy": "load_bearing",
     "z3": "load_bearing",
     "engine_core": "supportive",
 }
@@ -90,12 +87,10 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().tolist()
+    if isinstance(value, (str, int, float, bool)) or value is None:
+        return value
     return value
 
 
@@ -174,10 +169,10 @@ HASH_CONTROL_THRESHOLDS = {
 
 
 def collect_training_rows(
-    axis0: dict[str, np.ndarray],
+    axis0: dict[str, Any],
     memory: float,
     hash_cells: list[dict[str, Any]],
-) -> tuple[np.ndarray, np.ndarray, np.ndarray, list[str], list[dict[str, Any]]]:
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, list[str], list[dict[str, Any]]]:
     axis0_names = list(axis0)
     names = [
         "bloch_x",
@@ -213,8 +208,8 @@ def collect_training_rows(
                     model = record["model_after"]
                     fep = record["fep_efe_score"]
                     repair = record["update_repair"]
-                    pred = np.asarray(record["prediction"]["observation_distribution"], dtype=float)
-                    obs = np.asarray(record["observation"]["observation_distribution"], dtype=float)
+                    pred = torch.tensor(record["prediction"]["observation_distribution"], dtype=torch.float64)
+                    obs = torch.tensor(record["observation"]["observation_distribution"], dtype=torch.float64)
                     axis_values = [
                         float(axis0[name][idx % len(axis0[name])]) if len(axis0[name]) else 0.0
                         for name in axis0_names
@@ -240,7 +235,7 @@ def collect_training_rows(
                             float(fep["surprise_kl"]),
                             float(fep["expected_free_energy_proxy"]),
                             float(repair["manifold_projection_delta_norm"]),
-                            *[float(x) for x in (pred - obs)[:3]],
+                            *[float(x.item()) for x in (pred - obs)[:3]],
                             *[1.0 if record["operator"] == op else 0.0 for op in OPERATORS],
                             *[1.0 if perception == item else 0.0 for item in PERCEPTIONS],
                             *axis_values,
@@ -252,14 +247,14 @@ def collect_training_rows(
                     )
                     seeds.append(seed_idx)
                     records.append(record)
-    x = np.asarray(rows, dtype=np.float32)
-    y = np.asarray(labels, dtype=np.int64)
-    seed_arr = np.asarray(seeds, dtype=np.int64)
+    x = torch.tensor(rows, dtype=torch.float32)
+    y = torch.tensor(labels, dtype=torch.long)
+    seed_arr = torch.tensor(seeds, dtype=torch.long)
     train = seed_arr < 6
-    mean = x[train].mean(axis=0, keepdims=True)
-    std = x[train].std(axis=0, keepdims=True)
-    std[std < 1e-6] = 1.0
-    return ((x - mean) / std).astype(np.float32), y, seed_arr, names, records
+    mean = torch.mean(x[train], dim=0, keepdim=True)
+    std = torch.std(x[train], dim=0, keepdim=True, unbiased=False)
+    std = torch.where(std < 1e-6, torch.ones_like(std), std)
+    return ((x - mean) / std).to(torch.float32), y, seed_arr, names, records
 
 
 class PolicyNet(nn.Module):
@@ -271,19 +266,18 @@ class PolicyNet(nn.Module):
         return self.net(x)
 
 
-def train_model(x: np.ndarray, y: np.ndarray, seeds: np.ndarray, *, shuffle_labels: bool = False) -> tuple[PolicyNet, dict[str, Any]]:
+def train_model(x: torch.Tensor, y: torch.Tensor, seeds: torch.Tensor, *, shuffle_labels: bool = False) -> tuple[PolicyNet, dict[str, Any]]:
     train = seeds < 6
     test = ~train
-    x_train = torch.tensor(x[train], dtype=torch.float32)
-    y_train_np = y[train].copy()
+    x_train = x[train].to(torch.float32)
+    y_train = y[train].clone()
     if shuffle_labels:
-        rng = np.random.default_rng(8128)
-        rng.shuffle(y_train_np)
-    y_train = torch.tensor(y_train_np, dtype=torch.long)
-    x_test = torch.tensor(x[test], dtype=torch.float32)
-    y_test = torch.tensor(y[test], dtype=torch.long)
+        rng = torch.Generator().manual_seed(8128)
+        y_train = y_train[torch.randperm(len(y_train), generator=rng)]
+    x_test = x[test].to(torch.float32)
+    y_test = y[test].to(torch.long)
     torch.manual_seed(8128 if shuffle_labels else 2)
-    model = PolicyNet(x.shape[1])
+    model = PolicyNet(int(x.shape[1]))
     opt = optim.Adam(model.parameters(), lr=0.02, weight_decay=1e-4)
     loss_fn = nn.CrossEntropyLoss()
     for _ in range(360):
@@ -298,17 +292,17 @@ def train_model(x: np.ndarray, y: np.ndarray, seeds: np.ndarray, *, shuffle_labe
         "train_accuracy": train_acc,
         "test_accuracy": test_acc,
         "shuffle_labels": shuffle_labels,
-        "train_rows": int(train.sum()),
-        "test_rows": int(test.sum()),
+        "train_rows": int(train.sum().item()),
+        "test_rows": int(test.sum().item()),
     }
 
 
-def lirpa_bruteforce_report(model: PolicyNet, x: np.ndarray, seeds: np.ndarray, names: list[str]) -> dict[str, Any]:
-    test_rows = np.where(seeds >= 6)[0]
-    sample = torch.tensor(x[test_rows], dtype=torch.float32)
+def lirpa_bruteforce_report(model: PolicyNet, x: torch.Tensor, seeds: torch.Tensor, names: list[str]) -> dict[str, Any]:
+    test_rows = torch.where(seeds >= 6)[0]
+    sample = x[test_rows].to(torch.float32)
     eps = 0.005
     bounded = BoundedModule(model, sample)
-    bx = BoundedTensor(sample, PerturbationLpNorm(norm=np.inf, eps=eps))
+    bx = BoundedTensor(sample, PerturbationLpNorm(norm=float("inf"), eps=eps))
     nominal = bounded(bx)
     lb, ub = bounded.compute_bounds(x=(bx,), method="IBP")
     row_widths = torch.mean(ub - lb, dim=1)
@@ -341,7 +335,7 @@ def lirpa_bruteforce_report(model: PolicyNet, x: np.ndarray, seeds: np.ndarray, 
         if field in names:
             hash_zero[:, names.index(field)] = 0.0
     bounded_hash_zero = BoundedModule(model, hash_zero)
-    hash_zero_bx = BoundedTensor(hash_zero, PerturbationLpNorm(norm=np.inf, eps=eps))
+    hash_zero_bx = BoundedTensor(hash_zero, PerturbationLpNorm(norm=float("inf"), eps=eps))
     hash_zero_lb, hash_zero_ub = bounded_hash_zero.compute_bounds(x=(hash_zero_bx,), method="IBP")
     hash_zero_shift = torch.mean(torch.abs((ub + lb) / 2 - (hash_zero_ub + hash_zero_lb) / 2)).item()
 
@@ -351,7 +345,7 @@ def lirpa_bruteforce_report(model: PolicyNet, x: np.ndarray, seeds: np.ndarray, 
             col = names.index(field)
             hash_shuffle[:, col] = torch.roll(hash_shuffle[:, col], shifts=7)
     bounded_hash_shuffle = BoundedModule(model, hash_shuffle)
-    hash_shuffle_bx = BoundedTensor(hash_shuffle, PerturbationLpNorm(norm=np.inf, eps=eps))
+    hash_shuffle_bx = BoundedTensor(hash_shuffle, PerturbationLpNorm(norm=float("inf"), eps=eps))
     hash_shuffle_lb, hash_shuffle_ub = bounded_hash_shuffle.compute_bounds(x=(hash_shuffle_bx,), method="IBP")
     hash_shuffle_shift = torch.mean(torch.abs((ub + lb) / 2 - (hash_shuffle_ub + hash_shuffle_lb) / 2)).item()
 
@@ -359,7 +353,7 @@ def lirpa_bruteforce_report(model: PolicyNet, x: np.ndarray, seeds: np.ndarray, 
     if "holodeck_graveyard_hash_bucket" in names:
         drop_graveyard[:, names.index("holodeck_graveyard_hash_bucket")] = 0.0
     bounded_drop_graveyard = BoundedModule(model, drop_graveyard)
-    drop_graveyard_bx = BoundedTensor(drop_graveyard, PerturbationLpNorm(norm=np.inf, eps=eps))
+    drop_graveyard_bx = BoundedTensor(drop_graveyard, PerturbationLpNorm(norm=float("inf"), eps=eps))
     drop_graveyard_lb, drop_graveyard_ub = bounded_drop_graveyard.compute_bounds(x=(drop_graveyard_bx,), method="IBP")
     drop_graveyard_shift = torch.mean(torch.abs((ub + lb) / 2 - (drop_graveyard_ub + drop_graveyard_lb) / 2)).item()
 
@@ -511,7 +505,7 @@ def main() -> int:
         "trained_context_conditioned_stage_policy_adapter_learns": {
             "pass": train_report["test_accuracy"] >= 0.70 and train_report["train_accuracy"] >= 0.95,
             "target": "context_conditioned_next_operator_class",
-            "class_counts": np.bincount(y, minlength=len(OPERATORS)).tolist(),
+            "class_counts": torch.bincount(y, minlength=len(OPERATORS)).tolist(),
             **train_report,
         },
         "auto_lirpa_bounds_contain_bruteforce_perturbation_samples": bound_report,

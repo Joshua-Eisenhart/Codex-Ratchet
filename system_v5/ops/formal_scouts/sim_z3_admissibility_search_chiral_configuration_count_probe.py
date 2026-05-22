@@ -1,24 +1,26 @@
 #!/usr/bin/env python3
-"""z3 admissibility search: engine configuration count proof.
+"""z3 admissibility search: encoded engine configuration count check.
 
 Uses z3 as a genuine CONSTRAINT SOLVER (not just a witness) to:
   1. Encode the canonical engine-configuration space as integer variables.
   2. Enumerate all models satisfying the structural constraints.
-  3. PROVE that exactly 2 × 4 = 8 (engine_type × topology) are admissible,
+  3. Check that exactly 2 × 4 = 8 (engine_type × topology) are admissible
+     inside the encoded finite spec,
      with exactly 2 × 4 × 2 = 16 (engine × topology × loop_class) stage-instance triples.
   4. Return UNSAT on alternative configurations (3rd engine type, 5th topology, 3rd loop class).
-  5. PROVE the 3:1 Fe sign-asymmetry via the operator→generator mapping and PROVE
-     that chirality inversion (Type 2) inverts the unique "+" → win operator.
+  5. Check the 3:1 Fe sign-asymmetry via the operator→generator mapping and
+     that chirality inversion (Type 2) inverts the unique "+" → win operator
+     inside the encoded finite spec.
 
-z3 is the engine of proof throughout: UNSAT verdicts on excluded configurations
-are the primary evidence for the counting claim.
+z3 is the finite-spec solver throughout: UNSAT verdicts on excluded
+configurations are the primary evidence for the encoded counting claim.
 
 POSITIVE PREDICATES:
   - z3_finds_exactly_16_admissible_stage_instance_triples_per_engine_pair
-  - z3_proves_no_alternative_configuration_satisfies_constraints (UNSAT)
-  - z3_proves_3_to_1_fe_asymmetry_via_operator_generator_mapping
-  - z3_proves_chirality_inverts_3_to_1_asymmetry
-  - z3_proves_8_unique_op_sign_pairs_per_engine
+  - z3_checks_no_alternative_configuration_satisfies_constraints (UNSAT)
+  - z3_checks_3_to_1_fe_asymmetry_via_operator_generator_mapping
+  - z3_checks_chirality_inverts_3_to_1_asymmetry
+  - z3_checks_8_unique_op_sign_pairs_per_engine
 
 GRAVEYARDS:
   - relaxed_constraint_admits_extra_configurations
@@ -27,9 +29,10 @@ GRAVEYARDS:
 
 classification: formal_scout
 promotion_allowed: false
-claim_ceiling: Formal scout only — uses z3 constraint-satisfaction to prove the
-  canonical engine count and 3:1 operator-sign asymmetry are forced by the algebraic
-  structure. Does not admit final manifold, physics, or ontology claims.
+claim_ceiling: Formal scout only — uses z3 constraint-satisfaction to verify
+  the encoded finite spec has the stated engine count and 3:1 operator-sign
+  asymmetry under current algebraic constraints. Does not admit final manifold,
+  physics, or ontology claims.
 
 Reference:
   sim_four_topology_behavior_class_chiral_loop_operator_separation_probe.py lines 68–144
@@ -47,7 +50,6 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
 import sympy as sp
 from z3 import (
     And,
@@ -77,9 +79,9 @@ NAME = "z3_admissibility_search_chiral_configuration_count_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
-    "Formal scout only: uses z3 constraint-satisfaction to prove the canonical "
-    "engine count (2 × 4 = 8 engine-topology pairs, 16 stage-instance triples) "
-    "and the 3:1 Fe sign-direction asymmetry are forced by the algebraic structure "
+    "Formal scout only: uses z3 constraint-satisfaction to verify that the encoded finite spec "
+    "has the stated engine count (2 × 4 = 8 engine-topology pairs, 16 stage-instance triples) "
+    "and the 3:1 Fe sign-direction asymmetry under the current algebraic constraints "
     "encoded in the spec constraints. Does not admit final manifold, physics, "
     "personality, psychology, or ontology claims. promotion_allowed: false."
 )
@@ -90,8 +92,8 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": (
             "load-bearing: constraint solver — enumerates all admissible engine "
-            "configurations, returns UNSAT on excluded alternatives, proves 3:1 "
-            "asymmetry and uniqueness of the canonical count"
+            "configurations, returns UNSAT on excluded alternatives, and checks the encoded 3:1 "
+            "asymmetry plus uniqueness of the stated finite count"
         ),
     },
     "sympy": {
@@ -103,20 +105,10 @@ TOOL_MANIFEST = {
             "and the Fe/SY structural distinction from Ti/SZ, Te/SX, Fi/SX"
         ),
     },
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": (
-            "load-bearing: numeric cross-check of the z3-proven operator-sign pair "
-            "uniqueness — verifies all 8 (op, sign) pairs are distinct as integer tuples "
-            "and counts the canonical 32 stage instances numerically against z3 enumeration"
-        ),
-    },
 }
 TOOL_INTEGRATION_DEPTH = {
     "z3": "load_bearing",
     "sympy": "load_bearing",
-    "numpy": "load_bearing",
 }
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -261,7 +253,7 @@ def test_z3_enumerate_stage_instances() -> dict[str, Any]:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# TEST 2 — z3 proves no alternative configuration satisfies constraints (UNSAT)
+# TEST 2 — z3 checks no alternative configuration satisfies constraints (UNSAT)
 # ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -338,8 +330,8 @@ def test_z3_unsat_alternative_configurations() -> dict[str, Any]:
         "falsifier_queries": results,
         "all_alternatives_unsat": all_unsat,
         "interpretation": (
-            "UNSAT on all three alternative queries confirms: the constraint structure "
-            "forces exactly 2 engine types, 4 topologies, and 2 loop classes. "
+            "UNSAT on all three alternative queries confirms: the encoded constraint structure "
+            "allows exactly 2 engine types, 4 topologies, and 2 loop classes. "
             "No valid 3rd engine, 5th topology, or 3rd loop class exists in the spec."
         ),
         "pass": all_unsat,
@@ -347,7 +339,7 @@ def test_z3_unsat_alternative_configurations() -> dict[str, Any]:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# TEST 3 — z3 proves 8 unique (op, sign) pairs per engine
+# TEST 3 — z3 checks 8 unique (op, sign) pairs per engine
 # ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -358,7 +350,7 @@ def test_z3_unique_op_sign_pairs_per_engine() -> dict[str, Any]:
 
     z3 checks: there is NO pair of distinct stage instances within an engine
     that share both operator_idx AND ax6_sign_enc. UNSAT on the existence of
-    such a collision proves uniqueness.
+    such a collision checks uniqueness inside the encoded finite table.
     """
     results_per_engine = {}
 
@@ -372,10 +364,9 @@ def test_z3_unique_op_sign_pairs_per_engine() -> dict[str, Any]:
         op_sign_pairs = [
             (spec[0], spec[1]) for spec in engine_stages.values()
         ]
-        # Check all 8 are distinct as numpy array
-        pairs_arr = np.array(op_sign_pairs)
-        unique_rows = np.unique(pairs_arr, axis=0)
-        all_distinct_numpy = len(unique_rows) == 8
+        # Check all 8 are distinct as a finite table.
+        unique_rows = sorted(set(op_sign_pairs))
+        all_distinct_table = len(unique_rows) == 8
 
         # z3: ask whether any two DISTINCT stage instances share (op, sign) — UNSAT expected
         s = Solver()
@@ -408,11 +399,11 @@ def test_z3_unique_op_sign_pairs_per_engine() -> dict[str, Any]:
 
         results_per_engine[f"engine_{eng}"] = {
             "stage_op_sign_pairs": op_sign_pairs,
-            "unique_pairs_count_numpy": int(len(unique_rows)),
-            "all_distinct_numpy": bool(all_distinct_numpy),
+            "unique_pairs_count_table": int(len(unique_rows)),
+            "all_distinct_table": bool(all_distinct_table),
             "z3_collision_query_result": str(r),
             "z3_no_collision_unsat": is_unsat,
-            "pass": all_distinct_numpy and is_unsat,
+            "pass": all_distinct_table and is_unsat,
         }
 
     all_pass = all(v["pass"] for v in results_per_engine.values())
@@ -420,7 +411,7 @@ def test_z3_unique_op_sign_pairs_per_engine() -> dict[str, Any]:
     return {
         "per_engine_results": results_per_engine,
         "interpretation": (
-            "z3 UNSAT on the collision query proves: within each engine, "
+            "z3 UNSAT on the collision query checks: within each engine, "
             "all 8 stage-instance (operator, sign) pairs are distinct. "
             "No two stages share both operator and sign direction."
         ),
@@ -429,7 +420,7 @@ def test_z3_unique_op_sign_pairs_per_engine() -> dict[str, Any]:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# TEST 4 — z3 proves 3:1 Fe asymmetry via operator→generator mapping
+# TEST 4 — z3 checks 3:1 Fe asymmetry via operator→generator mapping
 # ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -438,12 +429,12 @@ def test_z3_fe_asymmetry_type1() -> dict[str, Any]:
     In Type 1:
       - For each operator × sign assignment in the canonical spec, collect
         which (op, sign) → result_dir (0=lose, 1=win).
-      - z3 proves: exactly ONE operator has (+1 sign) → win (result_dir=1)
+      - z3 checks: exactly ONE operator has (+1 sign) → win (result_dir=1)
         in the Type 1 stage instances. That operator must be Fe (idx=3).
-      - z3 proves: if we demand any other single operator is the unique
+      - z3 checks: if we demand any other single operator is the unique
         "+1 → win" operator, z3 returns UNSAT.
 
-    This proof is over the declared spec table, grounded by the algebraic
+    This check is over the declared spec table, grounded by the algebraic
     commutator structure verified in Test 5 (sympy).
     """
     # Extract Type 1 stages
@@ -524,7 +515,7 @@ def test_z3_fe_asymmetry_type1() -> dict[str, Any]:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# TEST 5 — z3 proves chirality inversion flips the 3:1 asymmetry (Type 2)
+# TEST 5 — z3 checks chirality inversion flips the 3:1 asymmetry (Type 2)
 # ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -536,7 +527,7 @@ def test_z3_chirality_inverts_asymmetry() -> dict[str, Any]:
       - Under chirality inversion, Fe goes from unique +1-winner to unique +1-loser.
       - This is the correct inversion: the 3:1 structure is preserved but flipped.
 
-    z3 proves:
+    z3 checks:
       (a) Fe(+1)→WIN is UNSAT in Type 2 (Fe cannot win with +1 in Type 2).
       (b) Fe(+1)→lose is the only +1→lose assignment (Ti,Te,Fi all have +1→win in T2).
       (c) The mirror structure is exact: 1:3 in T1 ↔ 3:1 in T2, Fe is structurally odd in both.
@@ -615,7 +606,7 @@ def test_z3_chirality_inverts_asymmetry() -> dict[str, Any]:
         },
         "z3_ti_te_fi_plus1_win_sat_in_type2": sat_checks_t2,
         "all_three_non_fe_have_plus1_win_in_type2": bool(all_three_plus1_win_sat),
-        "perfect_chirality_inversion_proven": bool(perfect_inversion),
+        "perfect_chirality_inversion_verified_in_encoded_spec": bool(perfect_inversion),
         "interpretation": (
             "Type 1: Fe(+1)→WIN is unique (3:1 — 3 others have +1→lose). "
             "Type 2: Fe(+1)→lose is unique (1:3 — 3 others have +1→win). "
@@ -754,7 +745,7 @@ def graveyard_removed_asymmetry_breaks_uniqueness() -> dict[str, Any]:
     assigned +1→win freely (no 3:1 constraint). z3 finds MULTIPLE operators
     that could be the unique +1→win operator.
 
-    Without the asymmetry constraint, z3 cannot prove Fe uniqueness → SAT on
+    Without the asymmetry constraint, z3 cannot verify Fe uniqueness → SAT on
     alternatives (Ti, Te, Fi could each be the unique +1→win operator).
     """
     # Symmetric hypothetical: any operator can take any (sign, result) freely
@@ -866,27 +857,24 @@ def graveyard_wrong_generator_breaks_3to1() -> dict[str, Any]:
 # ─────────────────────────────────────────────────────────────────────────────
 
 
-def numpy_canonical_instance_crosscheck() -> dict[str, Any]:
+def finite_table_canonical_instance_crosscheck() -> dict[str, Any]:
     """
     Numeric verification: the CANONICAL_SPEC has exactly 16 entries (2 engines × 4 topologies
     × 2 loop classes). Collect all (engine, topology, loop, op, sign, result) tuples as a
-    numpy array and verify: 16 rows, 8 distinct (op, sign) pairs within each engine,
+    finite table and verify: 16 rows, 8 distinct (op, sign) pairs within each engine,
     and 32 total if we count both engines as independent instances.
     """
     rows = []
     for (e, t, lc), (op, sign, res) in CANONICAL_SPEC.items():
         rows.append([e, t, lc, op, sign, res])
-    arr = np.array(rows, dtype=int)
 
-    total_instances = len(arr)
-    instances_type1 = int(np.sum(arr[:, 0] == 0))
-    instances_type2 = int(np.sum(arr[:, 0] == 1))
+    total_instances = len(rows)
+    instances_type1 = sum(1 for row in rows if row[0] == 0)
+    instances_type2 = sum(1 for row in rows if row[0] == 1)
 
     # Verify 8 distinct (op, sign) pairs per engine
     for eng in [0, 1]:
-        mask = arr[:, 0] == eng
-        op_sign = arr[mask][:, 3:5]
-        unique_op_sign = np.unique(op_sign, axis=0)
+        unique_op_sign = {tuple(row[3:5]) for row in rows if row[0] == eng}
         assert len(unique_op_sign) == 8, f"Engine {eng} has {len(unique_op_sign)} unique (op,sign) pairs, expected 8"
 
     # The 32 "stage instances" interpretation: 16 triples × 2 (one per engine, independently assigned)
@@ -911,9 +899,9 @@ def numpy_canonical_instance_crosscheck() -> dict[str, Any]:
         "total_matches_16": total_instances == 16,
         "unique_op_sign_pairs_type1": 8,  # verified in assertion above
         "unique_op_sign_pairs_type2": 8,
-        "all_instance_rows": arr.tolist(),
+        "all_instance_rows": rows,
         "interpretation": (
-            "Numpy confirms 16 canonical stage instances total "
+            "Finite table confirms 16 canonical stage instances total "
             "(8 for Type 1 engine + 8 for Type 2 engine). "
             "Each engine has 8 distinct (op, sign) pairs across 4 topologies × 2 loop classes."
         ),
@@ -931,10 +919,6 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, bool):
         return value
     if isinstance(value, int):
@@ -968,7 +952,7 @@ def main() -> int:
 
     print("  Test 5: z3 chirality inversion flips 3:1...")
     t5 = test_z3_chirality_inverts_asymmetry()
-    print(f"    -> fe_unique_lose_t2={t5['fe_is_unique_plus1_lose_type2']}, perfect_inversion={t5['perfect_chirality_inversion_proven']}, pass={t5['pass']}")
+    print(f"    -> fe_unique_lose_t2={t5['fe_is_unique_plus1_lose_type2']}, perfect_inversion={t5['perfect_chirality_inversion_verified_in_encoded_spec']}, pass={t5['pass']}")
 
     print("  Test 6: sympy generator algebra...")
     t6 = test_sympy_generator_algebra()
@@ -986,16 +970,16 @@ def main() -> int:
     g3 = graveyard_wrong_generator_breaks_3to1()
     print(f"    -> pass={g3['pass']}")
 
-    print("  Numpy crosscheck...")
-    n1 = numpy_canonical_instance_crosscheck()
+    print("  Finite-table crosscheck...")
+    n1 = finite_table_canonical_instance_crosscheck()
     print(f"    -> total={n1['total_spec_entries']}, pass={n1['pass']}")
 
     positive = {
         "z3_finds_exactly_16_admissible_stage_instance_triples_per_engine_pair": t1,
-        "z3_proves_no_alternative_configuration_satisfies_constraints": t2,
-        "z3_proves_8_unique_op_sign_pairs_per_engine": t3,
-        "z3_proves_3_to_1_fe_asymmetry_via_operator_generator_mapping": t4,
-        "z3_proves_chirality_inverts_3_to_1_asymmetry": t5,
+        "z3_checks_no_alternative_configuration_satisfies_constraints": t2,
+        "z3_checks_8_unique_op_sign_pairs_per_engine": t3,
+        "z3_checks_3_to_1_fe_asymmetry_via_operator_generator_mapping": t4,
+        "z3_checks_chirality_inverts_3_to_1_asymmetry": t5,
         "sympy_generator_algebra_grounds_fe_structural_distinction": t6,
     }
     graveyard = {
@@ -1004,7 +988,7 @@ def main() -> int:
         "wrong_generator_mapping_breaks_3_to_1": g3,
     }
     boundary = {
-        "numpy_canonical_instance_crosscheck": n1,
+        "finite_table_canonical_instance_crosscheck": n1,
     }
 
     all_positive = all(v.get("pass", False) for v in positive.values())

@@ -7,11 +7,25 @@ projection / chirality"; LADDERS_FENCES_ADMISSION_REFERENCE.md chirality fences.
 Classical baseline; Cl(3) rotor bridge is the canonical one.
 """
 import numpy as np
-from _doc_illum_common import build_manifest, write_results
+from _doc_illum_common import write_results
 
-TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH = build_manifest()
-TOOL_MANIFEST["numpy"] = {"tried": True, "used": True, "reason": "projector matmul"}
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
+classification = "classical_baseline"
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for Weyl left/right projector extraction; "
+        "it does not promote a nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "projector matmul"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+}
 
 # Chiral (Weyl) basis: gamma5 = diag(-I, +I)
 g5 = np.diag([-1, -1, 1, 1]).astype(complex)

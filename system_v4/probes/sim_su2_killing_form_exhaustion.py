@@ -30,6 +30,15 @@ import json
 import os
 classification = "classical_baseline"  # auto-backfill
 
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for sim_su2_killing_form_exhaustion; it does not promote a "
+        "nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
 os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
 os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)

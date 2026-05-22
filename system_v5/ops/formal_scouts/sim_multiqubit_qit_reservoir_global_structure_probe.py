@@ -9,16 +9,11 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
 import torch
 import z3
 
 import engine_v6_proper_multiqubit_reference as v6
+from reservoir_torch_readout import classifier_accuracy as torch_classifier_accuracy
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -38,190 +33,219 @@ CLAIM_CEILING = (
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing frozen multi-qubit engine feature extraction"},
-    "sklearn": {"tried": True, "used": True, "reason": "load-bearing linear readout and baseline classifiers"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing density construction and local-unitary perturbations"},
+    "sklearn": {"tried": False, "used": False, "reason": "not used; torch ridge readout replaces sklearn classifier plumbing"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite pass-predicate witness"},
-    "engine_v6_reference": {"tried": True, "used": True, "reason": "load-bearing repo-grounded copy of the external v6 candidate"},
+    "engine_v6_reference": {"tried": True, "used": True, "reason": "supportive repo-grounded copy of the external v6 candidate"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'pytorch': 'load_bearing',
+    'sklearn': None,
+    'z3': 'load_bearing',
+    'engine_v6_reference': 'supportive',
+}
 
-DTYPE = np.complex64
+DTYPE = torch.complex64
+REAL_DTYPE = torch.float32
 CLASS_NAMES = ["ghz_coherent", "ghz_dephased", "bell_pair_product", "even_parity_mixture"]
 N_PER_CLASS = {4: 28, 8: 20}
+MIN_NONCLASSICAL_WIDTH = 8
 
 
-def random_unitary_2(rng: np.random.Generator) -> np.ndarray:
-    z = rng.normal(size=(2, 2)) + 1j * rng.normal(size=(2, 2))
-    q, r = np.linalg.qr(z)
-    phase = np.diag(r) / np.maximum(np.abs(np.diag(r)), 1e-12)
-    return (q * phase).astype(DTYPE)
+def width_role(n_qubits: int) -> dict[str, Any]:
+    if n_qubits < MIN_NONCLASSICAL_WIDTH:
+        return {
+            "minimum_width_qubits": n_qubits,
+            "minimum_width_role": "calibration_only",
+            "minimum_width_reason": "sub-8 row is retained only as a calibration/control boundary, not maturity evidence",
+        }
+    return {
+        "minimum_width_qubits": n_qubits,
+        "minimum_width_role": "maturity_gate",
+        "minimum_width_reason": "row meets the current minimum nonclassical width floor",
+    }
 
 
-def kron_all(mats: list[np.ndarray]) -> np.ndarray:
+def _rand_angle(generator: torch.Generator) -> torch.Tensor:
+    return torch.rand((), generator=generator, dtype=REAL_DTYPE) * (2 * math.pi)
+
+
+def _complex_phase(angle: torch.Tensor) -> torch.Tensor:
+    return torch.complex(torch.cos(angle), torch.sin(angle)).to(DTYPE)
+
+
+def random_unitary_2(generator: torch.Generator) -> torch.Tensor:
+    z = torch.complex(
+        torch.randn((2, 2), generator=generator, dtype=REAL_DTYPE),
+        torch.randn((2, 2), generator=generator, dtype=REAL_DTYPE),
+    )
+    q, r = torch.linalg.qr(z.to(DTYPE))
+    diag = torch.diagonal(r)
+    phase = diag / diag.abs().clamp_min(1e-12)
+    return (q * phase).to(DTYPE)
+
+
+def kron_all(mats: list[torch.Tensor]) -> torch.Tensor:
     out = mats[0]
     for mat in mats[1:]:
-        out = np.kron(out, mat)
-    return out.astype(DTYPE)
+        out = torch.kron(out, mat)
+    return out.to(DTYPE)
 
 
-def ghz_density(n_qubits: int, phase: float) -> np.ndarray:
+def ghz_density(n_qubits: int, phase: torch.Tensor) -> torch.Tensor:
     d = 2**n_qubits
-    psi = np.zeros(d, dtype=DTYPE)
+    psi = torch.zeros(d, dtype=DTYPE)
     psi[0] = 1.0 / math.sqrt(2)
-    psi[-1] = np.exp(1j * phase) / math.sqrt(2)
-    return np.outer(psi, psi.conj()).astype(DTYPE)
+    psi[-1] = _complex_phase(phase) / math.sqrt(2)
+    return torch.outer(psi, psi.conj()).to(DTYPE)
 
 
-def ghz_dephased_density(n_qubits: int) -> np.ndarray:
+def ghz_dephased_density(n_qubits: int) -> torch.Tensor:
     d = 2**n_qubits
-    rho = np.zeros((d, d), dtype=DTYPE)
+    rho = torch.zeros((d, d), dtype=DTYPE)
     rho[0, 0] = 0.5
     rho[-1, -1] = 0.5
     return rho
 
 
-def bell_pair_product_density(n_qubits: int, rng: np.random.Generator) -> np.ndarray:
+def bell_pair_product_density(n_qubits: int, generator: torch.Generator) -> torch.Tensor:
     assert n_qubits % 2 == 0
-    pair = np.zeros(4, dtype=DTYPE)
-    phase = np.exp(1j * rng.uniform(0, 2 * math.pi))
+    pair = torch.zeros(4, dtype=DTYPE)
+    phase = _complex_phase(_rand_angle(generator))
     pair[0] = 1.0 / math.sqrt(2)
     pair[3] = phase / math.sqrt(2)
     psi = pair
     for _ in range(n_qubits // 2 - 1):
-        phase = np.exp(1j * rng.uniform(0, 2 * math.pi))
-        pair = np.zeros(4, dtype=DTYPE)
+        phase = _complex_phase(_rand_angle(generator))
+        pair = torch.zeros(4, dtype=DTYPE)
         pair[0] = 1.0 / math.sqrt(2)
         pair[3] = phase / math.sqrt(2)
-        psi = np.kron(psi, pair)
-    return np.outer(psi, psi.conj()).astype(DTYPE)
+        psi = torch.kron(psi, pair)
+    return torch.outer(psi, psi.conj()).to(DTYPE)
 
 
-def even_parity_mixture_density(n_qubits: int) -> np.ndarray:
+def even_parity_mixture_density(n_qubits: int) -> torch.Tensor:
     d = 2**n_qubits
-    rho = np.zeros((d, d), dtype=DTYPE)
+    rho = torch.zeros((d, d), dtype=DTYPE)
     states = [idx for idx in range(d) if bin(idx).count("1") % 2 == 0]
     for idx in states:
         rho[idx, idx] = 1.0 / len(states)
     return rho
 
 
-def base_density(label: int, n_qubits: int, rng: np.random.Generator) -> np.ndarray:
+def base_density(label: int, n_qubits: int, generator: torch.Generator) -> torch.Tensor:
     if label == 0:
-        return ghz_density(n_qubits, rng.uniform(0, 2 * math.pi))
+        return ghz_density(n_qubits, _rand_angle(generator))
     if label == 1:
         return ghz_dephased_density(n_qubits)
     if label == 2:
-        return bell_pair_product_density(n_qubits, rng)
+        return bell_pair_product_density(n_qubits, generator)
     if label == 3:
         return even_parity_mixture_density(n_qubits)
     raise ValueError(label)
 
 
-def sample_density(label: int, n_qubits: int, rng: np.random.Generator) -> np.ndarray:
-    rho = base_density(label, n_qubits, rng)
-    local_u = kron_all([random_unitary_2(rng) for _ in range(n_qubits)])
+def sample_density(label: int, n_qubits: int, generator: torch.Generator) -> torch.Tensor:
+    rho = base_density(label, n_qubits, generator)
+    local_u = kron_all([random_unitary_2(generator) for _ in range(n_qubits)])
     rho = local_u @ rho @ local_u.conj().T
     rho = (rho + rho.conj().T) / 2
-    rho = rho / np.trace(rho).real
-    return rho.astype(DTYPE)
+    rho = rho / torch.trace(rho).real
+    return rho.to(DTYPE)
 
 
-def partial_trace_np(rho: np.ndarray, n_qubits: int, keep: list[int]) -> np.ndarray:
+def partial_trace_torch(rho: torch.Tensor, n_qubits: int, keep: list[int]) -> torch.Tensor:
     keep = sorted(keep)
-    trace = [idx for idx in range(n_qubits) if idx not in keep]
+    trace_out = [idx for idx in range(n_qubits) if idx not in keep]
     reshaped = rho.reshape([2] * (2 * n_qubits))
-    for q in sorted(trace, reverse=True):
+    for q in sorted(trace_out, reverse=True):
         n_now = reshaped.ndim // 2
-        reshaped = np.trace(reshaped, axis1=q, axis2=n_now + q)
+        reshaped = reshaped.diagonal(dim1=q, dim2=n_now + q).sum(dim=-1)
     d = 2 ** len(keep)
     return reshaped.reshape(d, d)
 
 
-def entropy_np(rho: np.ndarray) -> float:
-    vals = np.linalg.eigvalsh((rho + rho.conj().T) / 2).real
-    vals = np.clip(vals, 1e-9, None)
+def entropy_torch(rho: torch.Tensor) -> float:
+    vals = torch.linalg.eigvalsh((rho + rho.conj().T) / 2).real
+    vals = vals.clamp_min(1e-9)
     vals = vals / vals.sum()
-    return float(-(vals * np.log(vals)).sum())
+    return float(-(vals * vals.log()).sum().item())
 
 
-def local_bloch_features(rhos: np.ndarray, n_qubits: int) -> np.ndarray:
-    x = np.array([[0, 1], [1, 0]], dtype=DTYPE)
-    y = np.array([[0, -1j], [1j, 0]], dtype=DTYPE)
-    z = np.array([[1, 0], [0, -1]], dtype=DTYPE)
+def local_bloch_features(rhos: torch.Tensor, n_qubits: int) -> torch.Tensor:
+    x = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
+    y = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
+    z = torch.tensor([[1, 0], [0, -1]], dtype=DTYPE)
     rows = []
     for rho in rhos:
         feat = []
         for q in range(n_qubits):
-            red = partial_trace_np(rho, n_qubits, [q])
-            feat.extend([np.trace(x @ red).real, np.trace(y @ red).real, np.trace(z @ red).real])
+            red = partial_trace_torch(rho, n_qubits, [q])
+            feat.extend([torch.trace(x @ red).real, torch.trace(y @ red).real, torch.trace(z @ red).real])
         rows.append(feat)
-    return np.asarray(rows, dtype=float)
+    return torch.tensor(rows, dtype=REAL_DTYPE)
 
 
-def structural_static_features(rhos: np.ndarray, n_qubits: int) -> np.ndarray:
+def structural_static_features(rhos: torch.Tensor, n_qubits: int) -> torch.Tensor:
     rows = []
     half = list(range(n_qubits // 2))
     other = list(range(n_qubits // 2, n_qubits))
     for rho in rhos:
-        rho_a = partial_trace_np(rho, n_qubits, half)
-        rho_b = partial_trace_np(rho, n_qubits, other)
-        s_ab = entropy_np(rho)
-        mi = entropy_np(rho_a) + entropy_np(rho_b) - s_ab
-        purity = float(np.trace(rho @ rho).real)
-        spectrum = np.sort(np.linalg.eigvalsh((rho + rho.conj().T) / 2).real)[-8:]
+        rho_a = partial_trace_torch(rho, n_qubits, half)
+        rho_b = partial_trace_torch(rho, n_qubits, other)
+        s_ab = entropy_torch(rho)
+        mi = entropy_torch(rho_a) + entropy_torch(rho_b) - s_ab
+        purity = float(torch.trace(rho @ rho).real.item())
+        spectrum = torch.sort(torch.linalg.eigvalsh((rho + rho.conj().T) / 2).real).values[-8:]
         rows.append([s_ab, mi, purity, *spectrum.tolist()])
-    return np.asarray(rows, dtype=float)
+    return torch.tensor(rows, dtype=REAL_DTYPE)
 
 
-def full_static_projection_features(rhos: np.ndarray, seed: int, dim: int = 512) -> np.ndarray:
-    flat = np.concatenate([rhos.real.reshape(len(rhos), -1), rhos.imag.reshape(len(rhos), -1)], axis=1)
-    rng = np.random.default_rng(seed)
-    proj = rng.normal(scale=1.0 / math.sqrt(dim), size=(flat.shape[1], dim))
+def full_static_projection_features(rhos: torch.Tensor, seed: int, dim: int = 512) -> torch.Tensor:
+    flat = torch.cat([rhos.real.reshape(len(rhos), -1), rhos.imag.reshape(len(rhos), -1)], dim=1)
+    generator = torch.Generator().manual_seed(seed)
+    proj = torch.randn((flat.shape[1], dim), generator=generator, dtype=REAL_DTYPE) * (1.0 / math.sqrt(dim))
     return flat @ proj
 
 
-def reservoir_features(rhos: np.ndarray, n_qubits: int) -> np.ndarray:
+def reservoir_features(rhos: torch.Tensor, n_qubits: int) -> torch.Tensor:
     torch.manual_seed(1234 + n_qubits)
     engine = v6.TrainablePairedEngineV6(n_classes=len(CLASS_NAMES), n_qubits=n_qubits, hidden_dim=64)
     engine.eval()
     with torch.no_grad():
-        rho_t = torch.tensor(rhos, dtype=v6.DTYPE)
+        rho_t = rhos.to(dtype=v6.DTYPE)
         feats_l = engine.engine_L(rho_t)
         feats_r = engine.engine_R(rho_t)
-        feats = torch.cat([feats_l, feats_r], dim=-1).detach().cpu().numpy()
-    return feats.astype(float)
+        feats = torch.cat([feats_l, feats_r], dim=-1).detach().cpu()
+    return feats.to(dtype=REAL_DTYPE)
 
 
-def classifier_accuracy(x: np.ndarray, y: np.ndarray, seed: int, shuffle_labels: bool = False) -> float:
-    labels = y.copy()
-    if shuffle_labels:
-        rng = np.random.default_rng(seed)
-        rng.shuffle(labels)
-    x_train, x_test, y_train, y_test = train_test_split(
+def _label_tensor(value: Any) -> torch.Tensor:
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().to(dtype=torch.long).clone()
+    return torch.tensor(value, dtype=torch.long)
+
+
+def classifier_accuracy(x: Any, y: Any, seed: int, shuffle_labels: bool = False) -> float:
+    return torch_classifier_accuracy(
         x,
-        labels,
+        _label_tensor(y),
+        seed=seed,
+        shuffle_labels=shuffle_labels,
         test_size=0.35,
-        random_state=seed,
-        stratify=labels,
+        ridge=1e-3,
     )
-    clf = make_pipeline(
-        StandardScaler(),
-        LogisticRegression(max_iter=1200, C=1.0, solver="lbfgs"),
-    )
-    clf.fit(x_train, y_train)
-    return float(accuracy_score(y_test, clf.predict(x_test)))
 
 
 def run_for_n(n_qubits: int) -> dict[str, Any]:
-    rng = np.random.default_rng(120000 + n_qubits)
+    generator = torch.Generator().manual_seed(120000 + n_qubits)
     rhos = []
     labels = []
     for label in range(len(CLASS_NAMES)):
         for _ in range(N_PER_CLASS[n_qubits]):
-            rhos.append(sample_density(label, n_qubits, rng))
+            rhos.append(sample_density(label, n_qubits, generator))
             labels.append(label)
-    rhos_arr = np.stack(rhos)
-    y = np.asarray(labels, dtype=int)
+    rhos_arr = torch.stack(rhos)
+    y = torch.tensor(labels, dtype=torch.long)
     local = local_bloch_features(rhos_arr, n_qubits)
     static = structural_static_features(rhos_arr, n_qubits)
     projected = full_static_projection_features(rhos_arr, seed=130000 + n_qubits)
@@ -233,8 +257,9 @@ def run_for_n(n_qubits: int) -> dict[str, Any]:
         "frozen_reservoir_accuracy": classifier_accuracy(reservoir, y, seed=4 + n_qubits),
         "frozen_reservoir_shuffled_label_accuracy": classifier_accuracy(reservoir, y, seed=5 + n_qubits, shuffle_labels=True),
     }
-    local_norm = float(np.max(np.abs(local)))
+    local_norm = float(local.abs().max().item())
     return {
+        **width_role(n_qubits),
         "n_qubits": n_qubits,
         "samples": int(len(y)),
         "chance": 1.0 / len(CLASS_NAMES),
@@ -280,6 +305,9 @@ def main() -> int:
     positive = {
         "frozen_multiqubit_reservoir_separates_global_structure_at_8q": {
             "rows": rows,
+            "minimum_width_qubits": MIN_NONCLASSICAL_WIDTH,
+            "minimum_width_role": "maturity_gate",
+            "minimum_width_reason": "only the 8q row is used for the positive pass predicate; the 4q row is calibration-only",
             "pass": row8["pass"],
         },
         "z3_rejects_local_or_shuffle_only_explanation_at_8q": z3_scaling_witness(rows),
@@ -300,9 +328,35 @@ def main() -> int:
     }
     boundary = {
         "eight_qubit_is_the_evidence_floor": {"min_evidence_qubits": 8, "pass": row8["n_qubits"] == 8},
+        "four_qubit_row_is_calibration_only": {
+            "pass": all(
+                row.get("minimum_width_role") == "calibration_only"
+                for row in rows
+                if row["n_qubits"] < MIN_NONCLASSICAL_WIDTH
+            ),
+            "subminimum_rows": [
+                {
+                    "n_qubits": row["n_qubits"],
+                    "minimum_width_role": row.get("minimum_width_role"),
+                    "minimum_width_reason": row.get("minimum_width_reason"),
+                }
+                for row in rows
+                if row["n_qubits"] < MIN_NONCLASSICAL_WIDTH
+            ],
+        },
+        "structural_static_baseline_does_not_dominate_reservoir": {
+            "pass": row8["metrics"]["structural_static_accuracy"] < row8["metrics"]["frozen_reservoir_accuracy"],
+            "structural_static_accuracy": row8["metrics"]["structural_static_accuracy"],
+            "frozen_reservoir_accuracy": row8["metrics"]["frozen_reservoir_accuracy"],
+            "reason": (
+                "A static global-feature baseline solving the task blocks any claim "
+                "that the frozen reservoir is the load-bearing source of global-structure separation."
+            ),
+        },
         "promotion_remains_disabled": {"pass": PROMOTION_ALLOWED is False},
     }
     all_pass = all(row["pass"] for row in positive.values()) and all(row["pass"] for row in graveyards.values()) and all(row["pass"] for row in boundary.values())
+    checks = {**positive, **graveyards, **boundary}
     result = {
         "schema": "FORMAL_SCOUT_RESULT_v1",
         "name": NAME,
@@ -321,7 +375,7 @@ def main() -> int:
             "Does not prove learned engine dynamics.",
             "Includes full-static baseline as overclaim guard.",
         ],
-        "blockers": [],
+        "blockers": [key for key, row in checks.items() if row.get("pass") is not True],
         "elapsed_seconds": time.time() - started,
         "all_pass": all_pass,
     }

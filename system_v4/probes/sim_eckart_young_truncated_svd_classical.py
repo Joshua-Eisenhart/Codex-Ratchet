@@ -12,6 +12,15 @@ from receipt_boundary import apply_default_receipt_boundary
 
 classification = "classical_baseline"
 NAME = "sim_eckart_young_truncated_svd_classical"
+divergence_log = (
+    "Classical Eckart-Young bounds rest on Frobenius/spectral norms of real "
+    "matrices with ordered real singular values. Lost relative to nonclassical "
+    "compression: operator-Schatten-p bounds with noncommuting corrections, "
+    "purification-dependent rank (rank of density matrix vs rank of its classical "
+    "embedding), entanglement spectrum structure, and constraint-admissibility "
+    "restrictions on which truncations preserve distinguishability under a probe "
+    "family."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "SVD, low-rank truncation, and norm calculations for the classical baseline"},

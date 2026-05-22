@@ -10,10 +10,13 @@
 
 ---
 
-## Current Truth
+## Historical 2026-04-08 Snapshot
 
-The older full recursive scan below is still useful as a broad repo inventory,
-but it is no longer the best picture of current simulation reality.
+Historical 2026-04-08 truth only. The older full recursive scan below is still
+useful as a broad repo inventory, but it is no longer the best picture of
+current simulation reality. For current formal-scout counts, use
+`FORMAL_SCOUT_READINESS_INDEX.md` plus the current tool/function and sim-estate
+indexes.
 
 For current controller work, the more useful view is the sim-like subset:
 - files beginning with `sim_`

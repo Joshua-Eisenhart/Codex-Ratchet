@@ -121,7 +121,14 @@ def main() -> int:
         "unrestricted_time_dependent_rank3_comparison_is_too_broad": {"max_exact_gap": max_exact_gap, "pass": max_exact_gap < 1e-12},
         "constant_rate_comparison_was_the_prior_weaker_control": {"min_constant_gap": min_constant_gap, "pass": min_constant_gap > 0.004},
         "entropy_contraction_path_is_exercised": {"imported_opt_einsum": oe.__name__, "pass": oe.__name__ == "opt_einsum"},
-        "finite_dimension_boundary": {"dimension": DIM, "qubits": N_QUBITS, "pass": DIM == 16 and N_QUBITS == 4},
+        "finite_dimension_boundary": {
+            "dimension": DIM,
+            "qubits": N_QUBITS,
+            "minimum_nonclassical_width": 8,
+            "minimum_width_role": "calibration_only",
+            "minimum_width_reason": "four-qubit density fixture is a finite boundary/control, not nonclassical maturity evidence",
+            "pass": DIM == 16 and N_QUBITS == 4,
+        },
     }
     boundary = {
         "z3_time_dependent_rank3_equivalence_kill": z3_witness(max_exact_gap, min_constant_gap, max_cptp_gap),

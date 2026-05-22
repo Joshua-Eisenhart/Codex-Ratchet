@@ -16,6 +16,8 @@ Supportive: sympy (intersection multiplicity verification)
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

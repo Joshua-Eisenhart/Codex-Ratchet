@@ -21,11 +21,9 @@ from geomstats.geometry.hypersphere import Hypersphere
 import geomstats.backend as gs
 import gudhi
 import networkx as nx
-import numpy as np
 import opt_einsum as oe
 import quimb.tensor as qtn
 import rustworkx as rx
-from scipy.linalg import expm
 import sympy as sp
 import torch
 from torch_geometric.data import Data
@@ -64,8 +62,6 @@ TOOL_MANIFEST = {
     "cotengra": {"tried": True, "used": True, "reason": "load-bearing contraction path planning for layer-handle tensor contractions"},
     "pytorch": {"tried": True, "used": True, "reason": "load-bearing active 13-layer enforcers and dense state handoff"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing reduced-density contraction and support tensor contraction"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing gates, readouts, and numerical assembly dynamics"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing matrix exponentials for layer deformation gates"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing layer-handle support graph diagnostics"},
     "rustworkx": {"tried": True, "used": True, "reason": "load-bearing directed nested-layer runtime graph"},
     "torch_geometric": {"tried": True, "used": True, "reason": "load-bearing message pass over runtime support graph"},
@@ -96,10 +92,10 @@ EXPECTED_LAYER_ORDER_HASH = "c8eb87dbec785d3c507c1184978210b9deb5c80813de4325986
 
 assert MAX_BOND >= 2 ** (N_QUBITS // 2), f"MAX_BOND={MAX_BOND} truncates middle cut for N_QUBITS={N_QUBITS}"
 
-I2 = np.eye(2, dtype=np.complex128)
-SX = np.array([[0, 1], [1, 0]], dtype=np.complex128)
-SY = np.array([[0, -1j], [1j, 0]], dtype=np.complex128)
-SZ = np.array([[1, 0], [0, -1]], dtype=np.complex128)
+I2 = torch.eye(2, dtype=DTYPE_TORCH)
+SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE_TORCH)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE_TORCH)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=DTYPE_TORCH)
 
 
 def as_jsonable(value: Any) -> Any:
@@ -107,12 +103,10 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple, set)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
     if isinstance(value, torch.Tensor):
-        return value.detach().cpu().tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+        return as_jsonable(value.detach().cpu().tolist())
+    if isinstance(value, complex):
+        return {"real": float(value.real), "imag": float(value.imag)}
     if hasattr(value, "item"):
         return value.item()
     return value
@@ -163,33 +157,33 @@ def constraint_set_for_engine(primary: dict[str, Any], current_hash: str) -> dic
     }
 
 
-def normalized_dense(mps: qtn.MatrixProductState) -> np.ndarray:
-    psi = np.asarray(mps.to_dense()).reshape(-1).astype(np.complex128)
-    norm = max(float(np.linalg.norm(psi)), 1e-15)
+def normalized_dense(mps: qtn.MatrixProductState) -> torch.Tensor:
+    psi = torch.as_tensor(mps.to_dense(), dtype=DTYPE_TORCH).reshape(-1)
+    norm = max(float(torch.linalg.vector_norm(psi).item()), 1e-15)
     return psi / norm
 
 
-def mps_from_dense(psi: np.ndarray) -> qtn.MatrixProductState:
-    psi = np.asarray(psi, dtype=np.complex128).reshape(-1)
-    psi = psi / max(float(np.linalg.norm(psi)), 1e-15)
-    return qtn.MatrixProductState.from_dense(psi, dims=2, max_bond=MAX_BOND, cutoff=1e-10)
+def mps_from_dense(psi: torch.Tensor) -> qtn.MatrixProductState:
+    psi = torch.as_tensor(psi, dtype=DTYPE_TORCH).reshape(-1)
+    psi = psi / max(float(torch.linalg.vector_norm(psi).item()), 1e-15)
+    return qtn.MatrixProductState.from_dense(psi.detach().cpu().tolist(), dims=2, max_bond=MAX_BOND, cutoff=1e-10)
 
 
-def reduced_density(psi: np.ndarray, keep: int) -> np.ndarray:
+def reduced_density(psi: torch.Tensor, keep: int) -> torch.Tensor:
     tensor = psi.reshape([2] * N_QUBITS)
-    rho = oe.contract("aB,cB->ac", tensor.reshape(2, -1), tensor.conj().reshape(2, -1))
+    rho = oe.contract("aB,cB->ac", tensor.reshape(2, -1), tensor.conj().reshape(2, -1), backend="torch")
     if keep == 0:
-        return rho / max(float(np.trace(rho).real), 1e-15)
-    moved = np.moveaxis(tensor, keep, 0).reshape(2, -1)
-    rho = oe.contract("aB,cB->ac", moved, moved.conj())
-    return rho / max(float(np.trace(rho).real), 1e-15)
+        return rho / max(float(torch.trace(rho).real.item()), 1e-15)
+    moved = torch.movedim(tensor, keep, 0).reshape(2, -1)
+    rho = oe.contract("aB,cB->ac", moved, moved.conj(), backend="torch")
+    return rho / max(float(torch.trace(rho).real.item()), 1e-15)
 
 
-def entropy(rho: np.ndarray) -> float:
-    vals = np.linalg.eigvalsh((rho + rho.conj().T) / 2).real
-    vals = np.maximum(vals, 1e-12)
+def entropy(rho: torch.Tensor) -> float:
+    vals = torch.linalg.eigvalsh((rho + rho.conj().T) / 2).real
+    vals = torch.clamp(vals, min=1e-12)
     vals = vals / vals.sum()
-    return float(-(vals * np.log(vals)).sum())
+    return float((-(vals * torch.log(vals)).sum()).item())
 
 
 def layer_support_weights() -> dict[str, float]:
@@ -201,13 +195,13 @@ def layer_support_weights() -> dict[str, float]:
     return {layer: 0.55 + 0.45 * counts[layer] / max_count for layer in LAYERS}
 
 
-def layer_gate(layer_idx: int, step: int, weight: float, support_drive: float) -> np.ndarray:
+def layer_gate(layer_idx: int, step: int, weight: float, support_drive: float) -> torch.Tensor:
     a = 0.30 + 0.04 * (layer_idx % 5)
     b = 0.18 + 0.03 * ((layer_idx + step) % 7)
     c = 0.12 + 0.02 * (layer_idx % 3)
-    h = a * np.kron(SX, SX) + b * np.kron(SY, SY) + c * np.kron(SZ, I2)
-    h += (0.05 * support_drive) * np.kron(I2, SZ)
-    return expm(-1j * DT * weight * h)
+    h = a * torch.kron(SX, SX) + b * torch.kron(SY, SY) + c * torch.kron(SZ, I2)
+    h = h + (0.05 * support_drive) * torch.kron(I2, SZ)
+    return torch.linalg.matrix_exp(-1j * DT * weight * h)
 
 
 def support_drive_for_step(step: int) -> float:
@@ -225,13 +219,12 @@ def apply_operational_manifold_step(
 ) -> tuple[qtn.MatrixProductState, dict[str, Any]]:
     if sorted(layer_order) != list(range(len(LAYERS))):
         raise ValueError("layer_order must be an explicit permutation of all manifold layers")
-    psi_np = normalized_dense(mps)
-    psi_t = torch.tensor(psi_np, dtype=DTYPE_TORCH)
+    psi_t = normalized_dense(mps)
     if skip_layer is None:
         constrained_t, metrics = apply_all_layer_constraints(psi_t, step, context, layer_order=layer_order)
     else:
         constrained_t, metrics = layer_removal_graveyard(psi_t, step, context, skip_layer, layer_order=layer_order)
-    mps = mps_from_dense(constrained_t.detach().cpu().numpy())
+    mps = mps_from_dense(constrained_t)
     weights = layer_support_weights()
     support_drive = support_drive_for_step(step)
     applied = []
@@ -241,7 +234,7 @@ def apply_operational_manifold_step(
             continue
         pair = ((step + layer_idx) % (N_QUBITS - 1), (step + layer_idx) % (N_QUBITS - 1) + 1)
         gate = layer_gate(layer_idx, step, weights[layer], support_drive)
-        mps.gate_(gate, pair, contract="swap+split", max_bond=MAX_BOND, cutoff=1e-10)
+        mps.gate_(gate.detach().cpu().tolist(), pair, contract="swap+split", max_bond=MAX_BOND, cutoff=1e-10)
         applied.append({"layer": layer, "pair": pair, "weight": weights[layer]})
     psi_final = normalized_dense(mps)
     mps = mps_from_dense(psi_final)
@@ -310,7 +303,7 @@ def cotengra_witness() -> dict[str, Any]:
     return {"width": float(tree.contraction_width()), "cost": float(tree.contraction_cost()), "pass": tree.contraction_cost() > 0}
 
 
-def exact_witnesses(psi: np.ndarray) -> dict[str, Any]:
+def exact_witnesses(psi: torch.Tensor) -> dict[str, Any]:
     x = sp.symbols("x")
     comm = sp.Matrix([[0, 1], [1, 0]]) * sp.Matrix([[1, 0], [0, -1]]) - sp.Matrix([[1, 0], [0, -1]]) * sp.Matrix([[0, 1], [1, 0]])
     det_poly = sp.factor((x - 1) * (x + 1))
@@ -318,10 +311,10 @@ def exact_witnesses(psi: np.ndarray) -> dict[str, Any]:
     pseudo_square = float((blades["e1234"] * blades["e1234"])[()])
     rho0 = reduced_density(psi, 0)
     rho1 = reduced_density(psi, 1)
-    comm_np = SX @ SZ - SZ @ SX
-    state_commutator_expectation = float(abs(np.trace(comm_np @ rho0)))
-    rho1_det = float(np.linalg.det(rho1).real)
-    purity = float(np.trace(rho0 @ rho0).real)
+    comm_t = SX @ SZ - SZ @ SX
+    state_commutator_expectation = float(torch.abs(torch.trace(comm_t @ rho0)).item())
+    rho1_det = float(torch.linalg.det(rho1).real.item())
+    purity = float(torch.trace(rho0 @ rho0).real.item())
     return {
         "sympy_commutator_rank": int(comm.rank()),
         "det_boundary": str(det_poly),
@@ -340,10 +333,17 @@ def exact_witnesses(psi: np.ndarray) -> dict[str, Any]:
     }
 
 
-def geomstats_witness(psi: np.ndarray) -> dict[str, Any]:
+def geomstats_witness(psi: torch.Tensor) -> dict[str, Any]:
     rho = reduced_density(psi, 0)
-    bloch = np.array([np.real(np.trace(SX @ rho)), np.real(np.trace(SY @ rho)), np.real(np.trace(SZ @ rho))])
-    norm = max(float(np.linalg.norm(bloch)), 1e-12)
+    bloch = torch.tensor(
+        [
+            float(torch.trace(SX @ rho).real.item()),
+            float(torch.trace(SY @ rho).real.item()),
+            float(torch.trace(SZ @ rho).real.item()),
+        ],
+        dtype=torch.float64,
+    )
+    norm = max(float(torch.linalg.vector_norm(bloch).item()), 1e-12)
     point = gs.array((bloch / norm).tolist())
     sphere = Hypersphere(dim=2)
     north = gs.array([0.0, 0.0, 1.0])
@@ -407,7 +407,7 @@ def run_assembly(reverse_layers: bool = False, skip_layer: int | None = None) ->
         rho0 = reduced_density(psi, step % N_QUBITS)
         entropies.append(entropy(rho0))
         bonds.append(int(mps.max_bond()))
-        traces.append(float(np.trace(rho0).real))
+        traces.append(float(torch.trace(rho0).real.item()))
     return {
         "final_state": normalized_dense(mps),
         "entropies": entropies,
@@ -428,16 +428,16 @@ def main() -> int:
     reverse = run_assembly(reverse_layers=True)
     final = primary["final_state"]
     reverse_final = reverse["final_state"]
-    ordering_gap = float(np.linalg.norm(final - reverse_final))
+    ordering_gap = float(torch.linalg.vector_norm(final - reverse_final).item())
     layer_diffs = []
     reverse_layer_diffs = []
     layer_rows = []
     reverse_layer_rows = []
     for idx, layer in enumerate(LAYERS):
         skipped = run_assembly(skip_layer=idx)
-        diff = float(np.linalg.norm(final - skipped["final_state"]))
+        diff = float(torch.linalg.vector_norm(final - skipped["final_state"]).item())
         reverse_skipped = run_assembly(reverse_layers=True, skip_layer=idx)
-        reverse_diff = float(np.linalg.norm(reverse_final - reverse_skipped["final_state"]))
+        reverse_diff = float(torch.linalg.vector_norm(reverse_final - reverse_skipped["final_state"]).item())
         layer_diffs.append(diff)
         reverse_layer_diffs.append(reverse_diff)
         layer_rows.append({"layer": layer, "state_diff": diff, "differs": diff > 1e-5})
@@ -529,13 +529,13 @@ def main() -> int:
         },
     }
     boundary = {
-        "tool_manifest_is_all_load_bearing_in_controller": {
+        "tool_manifest_is_direct_operational_set_load_bearing_in_controller": {
             "tool_count": len(TOOL_MANIFEST),
             "load_bearing_count": sum(1 for value in TOOL_INTEGRATION_DEPTH.values() if value == "load_bearing"),
             "module_count": len(MODULE_MANIFEST),
             "module_load_bearing_count": sum(1 for value in MODULE_INTEGRATION_DEPTH.values() if value == "load_bearing"),
             "pass": (
-                len(TOOL_MANIFEST) >= 15
+                len(TOOL_MANIFEST) >= 14
                 and all(value == "load_bearing" for value in TOOL_INTEGRATION_DEPTH.values())
                 and len(MODULE_MANIFEST) >= 1
                 and all(value == "load_bearing" for value in MODULE_INTEGRATION_DEPTH.values())

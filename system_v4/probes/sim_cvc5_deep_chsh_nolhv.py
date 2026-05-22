@@ -13,6 +13,8 @@ Classification: canonical (cvc5 UNSAT IS the no-LHV evidence).
 """
 import json, os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed; combinatorial SMT claim"},
     "pyg":     {"tried": False, "used": False, "reason": "no graph content"},

@@ -3,6 +3,8 @@
 import json, os
 from z3 import Solver, Reals, And, sat, unsat, Not, RealVal
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "z3": {"tried": True, "used": True,
            "reason": "UNSAT is the primary proof form — z3 certifies that NO real assignment satisfies 'probe admissible under A then B AND under B then A' for the chosen A,B, turning a numerical noncommute check into a structural exclusion."},

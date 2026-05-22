@@ -38,8 +38,8 @@ BASE_PROMPT = """Read-only premortem audit for Codex Ratchet geometric-constrain
 
 Authority boundary:
 - Provider output is proposal/audit only. Local formal-scout receipts and validators remain authority.
-- The geometric constraint manifold is the root object: 13 simultaneous constraint shells, not axis labels and not only Weyl/chirality.
-- PEPS/PEPS3D, Axis0, attractor-basin receipts, graph/proof tools, auto_LiRPA, and le-wm are evidence surfaces over that manifold.
+- The geometric constraint manifold is the candidate root surface; the 13-shell inventory is a current indexing fixture / candidate scaffold, not an admitted source-model layer order.
+- PEPS/PEPS3D, Axis0, attractor-basin receipts, graph/proof tools, auto_LiRPA, and le-wm are evidence surfaces over that candidate, not final manifold promotion.
 
 Indexed local receipt facts from sim_estate_integration_index; do not treat this prompt as fresh validation:
 - Formal-scout source/result estate: 331 sources and 331 result receipts.

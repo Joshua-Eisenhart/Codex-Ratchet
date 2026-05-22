@@ -21,8 +21,6 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
-
 from engine_core import EngineCore, I2, _normalize_density, generate_initial_density
 
 
@@ -42,10 +40,10 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "engine_core": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing density perturbation, rank, KL, and repair-delta checks",
+        "reason": "load-bearing source-native density perturbation, rank, KL, and repair-delta checks",
     },
     "json": {
         "tried": True,
@@ -58,7 +56,11 @@ TOOL_MANIFEST = {
         "reason": "load-bearing receipt/source hash capture",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'engine_core': 'supportive',
+    'json': 'supportive',
+    'hashlib': 'supportive',
+}
 
 EPSILONS = [0.05, 0.15, 0.30, 0.45]
 SEEDS = [42, 77, 123, 211, 377]
@@ -84,7 +86,7 @@ def load_receipt(filename: str) -> dict[str, Any]:
     return data
 
 
-def prep_engine(engine_type: int, seed: int, manifold_enabled: bool) -> tuple[EngineCore, np.ndarray]:
+def prep_engine(engine_type: int, seed: int, manifold_enabled: bool) -> tuple[EngineCore, Any]:
     engine = EngineCore(engine_type=engine_type, manifold_enabled=manifold_enabled)
     rho = generate_initial_density(seed)
     for main_idx in range(STAGE_IDX):
@@ -93,7 +95,7 @@ def prep_engine(engine_type: int, seed: int, manifold_enabled: bool) -> tuple[En
     return engine, rho
 
 
-def perturb_density(rho: np.ndarray, epsilon: float) -> np.ndarray:
+def perturb_density(rho: Any, epsilon: float) -> Any:
     return _normalize_density((1.0 - epsilon) * rho + epsilon * I2 / 2.0)
 
 

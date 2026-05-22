@@ -26,6 +26,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Curvature computation as torch tensor, Chern class integration c₁=(i/2π)∫F via torch sum, winding number extraction, topological invariance under deformation"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed for characteristic classes"},

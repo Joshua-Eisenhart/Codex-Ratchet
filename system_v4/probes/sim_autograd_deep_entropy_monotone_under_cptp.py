@@ -21,6 +21,8 @@ import json, os, math
 import numpy as np
 import torch
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":  {"tried": True,  "used": True,  "reason": "autograd is load-bearing: derivative of S w.r.t. channel parameter p is obtained via autograd through eigvalsh of Phi(rho)"},
     "pyg":      {"tried": False, "used": False, "reason": "graph message passing not required for this scalar/matrix-functional claim"},

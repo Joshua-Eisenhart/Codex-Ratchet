@@ -15,7 +15,6 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 from clifford import Cl
 import opt_einsum as oe
-from scipy.optimize import minimize_scalar
 import sympy as sp
 import torch
 import z3
@@ -38,8 +37,8 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing Kraus maps, Choi matrices, trace norms, and Stinespring isometries"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing continuous effective-gamma minimization"},
+    "python_math": {"tried": True, "used": True, "reason": "load-bearing local bounded scalar search for effective-gamma minimization"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing Kraus maps, Choi matrices, trace norms, Stinespring isometries, and bounded-search objective evaluation"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing Choi partial-trace CPTP verification"},
     "clifford": {"tried": True, "used": True, "reason": "load-bearing Cl(1,3) chirality orientation boundary"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic projector identity boundary"},
@@ -49,6 +48,63 @@ TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
 
 DTYPE = torch.complex128
 DIM = 4
+
+
+def bounded_scalar_minimize(
+    objective: Any,
+    lower: float,
+    upper: float,
+    *,
+    xatol: float = 1e-12,
+    grid_points: int = 257,
+    max_iter: int = 128,
+) -> dict[str, Any]:
+    if not lower < upper:
+        raise ValueError("lower bound must be smaller than upper bound")
+    if grid_points < 3:
+        raise ValueError("grid_points must be at least 3")
+    evaluations = 0
+
+    def evaluate(x: float) -> tuple[float, float]:
+        nonlocal evaluations
+        y = float(objective(float(x)))
+        evaluations += 1
+        return float(x), y
+
+    candidates = [evaluate(lower), evaluate(upper)]
+    step = (upper - lower) / (grid_points - 1)
+    grid = [evaluate(lower + step * idx) for idx in range(grid_points)]
+    candidates.extend(grid)
+    best_index = min(range(len(grid)), key=lambda idx: grid[idx][1])
+    left_index = max(0, best_index - 1)
+    right_index = min(grid_points - 1, best_index + 1)
+    left = lower + step * left_index
+    right = lower + step * right_index
+
+    if right > left:
+        inv_phi = (math.sqrt(5.0) - 1.0) / 2.0
+        inv_phi_sq = (3.0 - math.sqrt(5.0)) / 2.0
+        x1 = left + inv_phi_sq * (right - left)
+        x2 = left + inv_phi * (right - left)
+        f1 = evaluate(x1)
+        f2 = evaluate(x2)
+        for _ in range(max_iter):
+            if abs(right - left) <= xatol:
+                break
+            if f1[1] < f2[1]:
+                right = x2
+                x2, f2 = x1, f1
+                x1 = left + inv_phi_sq * (right - left)
+                f1 = evaluate(x1)
+            else:
+                left = x1
+                x1, f1 = x2, f2
+                x2 = left + inv_phi * (right - left)
+                f2 = evaluate(x2)
+        candidates.extend([f1, f2, evaluate((left + right) / 2.0)])
+
+    x, fun = min(candidates, key=lambda item: item[1])
+    return {"x": x, "fun": fun, "success": math.isfinite(fun), "evaluations": evaluations}
 
 
 def gamma5_projectors() -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
@@ -150,14 +206,16 @@ def best_symmetric_fit(target: list[torch.Tensor]) -> dict[str, Any]:
     target_choi = choi_matrix(target)
     def objective(gamma: float) -> float:
         return trace_distance(target_choi, choi_matrix(symmetric_kraus(float(gamma))))
-    result = minimize_scalar(objective, bounds=(0.0, 0.45), method="bounded", options={"xatol": 1e-12})
-    gamma = float(result.x)
+    result = bounded_scalar_minimize(objective, 0.0, 0.45, xatol=1e-12)
+    gamma = float(result["x"])
     sym = symmetric_kraus(gamma)
     return {
         "gamma": gamma,
-        "choi_trace_distance": float(result.fun),
+        "choi_trace_distance": float(result["fun"]),
         "stinespring_projector_distance": stinespring_projector_distance(target, sym),
-        "success": bool(result.success),
+        "success": bool(result["success"]),
+        "optimizer": "local_dense_refined_golden_section",
+        "optimizer_evaluations": int(result["evaluations"]),
     }
 
 

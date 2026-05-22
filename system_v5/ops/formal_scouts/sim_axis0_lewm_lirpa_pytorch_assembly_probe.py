@@ -529,6 +529,13 @@ def main() -> int:
         },
     }
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
+    result["root_constraints"] = {
+        "F01": True,
+        "N01": True,
+        "finite_carrier_root": True,
+        "noncommutation_or_order_root": True,
+        "n01_evidence": "bounded guard/context/control ordering and LiRPA separation evidence is recorded in positive and graveyard rows",
+    }
     OUT_PATH.write_text(json.dumps(as_jsonable(result), indent=2, sort_keys=True), encoding="utf-8")
     print(f"RESULT {NAME}: all_pass={all_pass} -> {OUT_PATH}")
     return 0 if all_pass else 1

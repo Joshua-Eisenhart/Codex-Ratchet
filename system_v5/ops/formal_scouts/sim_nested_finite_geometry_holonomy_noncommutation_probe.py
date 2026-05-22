@@ -66,7 +66,7 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
-    "importlib": "load_bearing",
+    "importlib": "supportive",
     "sympy": "supportive",
     "z3": "supportive",
 }

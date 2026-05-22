@@ -9,8 +9,12 @@ Part B — Real connection + holonomy computation
     U(1) Hopf connection 1-form A = -i ψ† dψ, parallel transport along
     shell-graph cycles, and loop holonomy computation.
 
-Tools: pytorch (load-bearing), numpy (load-bearing).
+Tools: pytorch (load-bearing); numpy (reviewed boundary adapters/readouts).
 All numerical work uses complex128.
+
+NUMPY BOUNDARY: NumPy is preserved here for audit/readout compatibility only.
+It is not admissible nonclassical evidence and remains blocked from promotion
+until source-native.
 """
 from __future__ import annotations
 

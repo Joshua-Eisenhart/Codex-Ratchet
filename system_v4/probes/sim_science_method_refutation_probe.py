@@ -14,12 +14,18 @@ Coupling stub: consumes candidate list from conjecture_generation format.
 """
 import os
 import sys
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 sys.path.insert(0, os.path.dirname(__file__))
-from _sci_method_common import new_manifest, write_results, all_pass
+from _sci_method_common import write_results, all_pass
 
-TOOL_MANIFEST = new_manifest()
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_MANIFEST = {
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing SMT refutation search; SAT supplies a counterexample and UNSAT marks survival of the tested negated claim",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {"z3": "load_bearing"}
 
 try:
     import z3

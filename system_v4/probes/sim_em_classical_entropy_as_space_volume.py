@@ -9,6 +9,9 @@ This does NOT claim space IS entropy; it checks co-variation under probe.
 """
 import json, os, numpy as np
 
+classification = "classical_baseline"
+divergence_log = ["Classical baseline tracks entropy-volume co-variation on a toy lattice; it does not claim identity of physical space and entropy."]
+
 SCOPE_NOTE = (
     "Illumination of doctrine 'space=entropy'. Classical baseline only; "
     "co-variation test of log-microstate-count vs lattice volume on toy box. "
@@ -80,6 +83,7 @@ if __name__ == "__main__":
         "name": "sim_em_classical_entropy_as_space_volume",
         "scope_note": SCOPE_NOTE,
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

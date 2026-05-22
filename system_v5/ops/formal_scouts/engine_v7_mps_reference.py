@@ -227,32 +227,28 @@ class MPSEngineV7:
         self._build_gates()
 
     def _build_gates(self):
-        from scipy.linalg import expm
-        import numpy as np
         # Single-qubit operator gates (used per terrain × per substage)
-        H_0_dir = np.array([0.77, 0.13, 0.6])
-        h_unit = sum(c * P for c, P in zip(H_0_dir, [SX.numpy(), SY.numpy(), SZ.numpy()]))
+        h_unit = 0.77 * SX + 0.13 * SY + 0.6 * SZ
         # Time-evolution gates per Hamiltonian
-        self.U_H_local = torch.tensor(expm(-1j * self.dt * 0.5 * self.sign * h_unit), dtype=DTYPE)
+        self.U_H_local = torch.linalg.matrix_exp(-1j * self.dt * 0.5 * self.sign * h_unit).to(DTYPE)
         # K Hamiltonian (diagonal in Z or X)
         if self.engine_type == 1:
-            self.U_K_local = torch.tensor(expm(-1j * self.dt * 0.5 * SZ.numpy()), dtype=DTYPE)
-            self.proj_a = torch.tensor(0.5 * (np.eye(2) + SZ.numpy()), dtype=DTYPE)
-            self.proj_b = torch.tensor(0.5 * (np.eye(2) - SZ.numpy()), dtype=DTYPE)
+            self.U_K_local = torch.linalg.matrix_exp(-1j * self.dt * 0.5 * SZ).to(DTYPE)
+            self.proj_a = (0.5 * (I2 + SZ)).to(DTYPE)
+            self.proj_b = (0.5 * (I2 - SZ)).to(DTYPE)
         else:
-            self.U_K_local = torch.tensor(expm(-1j * self.dt * 0.5 * SX.numpy()), dtype=DTYPE)
-            self.proj_a = torch.tensor(0.5 * (np.eye(2) + SX.numpy()), dtype=DTYPE)
-            self.proj_b = torch.tensor(0.5 * (np.eye(2) - SX.numpy()), dtype=DTYPE)
+            self.U_K_local = torch.linalg.matrix_exp(-1j * self.dt * 0.5 * SX).to(DTYPE)
+            self.proj_a = (0.5 * (I2 + SX)).to(DTYPE)
+            self.proj_b = (0.5 * (I2 - SX)).to(DTYPE)
         # ZZ 2-site gate
-        H_zz = np.kron(SZ.numpy(), SZ.numpy())
-        self.U_ZZ = torch.tensor(expm(-1j * self.dt * 0.3 * H_zz).reshape(2, 2, 2, 2), dtype=DTYPE)
+        H_zz = torch.kron(SZ, SZ)
+        self.U_ZZ = torch.linalg.matrix_exp(-1j * self.dt * 0.3 * H_zz).reshape(2, 2, 2, 2).to(DTYPE)
         # Dissipator approximations as small unitary (Trotter trick — single-site sigma_+- as unitary kick toward target)
         # σ_- pulls toward |0>, σ_+ pulls toward |1>
         gamma = 0.3
-        L_minus = SM.numpy(); L_plus = SP.numpy()
         # Approximate Lindblad effect as unitary kick (rough approximation)
-        self.U_diss_minus = torch.tensor(expm(-self.dt * gamma * (L_minus.conj().T @ L_minus / 2)), dtype=DTYPE)
-        self.U_diss_plus = torch.tensor(expm(-self.dt * gamma * (L_plus.conj().T @ L_plus / 2)), dtype=DTYPE)
+        self.U_diss_minus = torch.linalg.matrix_exp(-self.dt * gamma * (SM.conj().T @ SM / 2)).to(DTYPE)
+        self.U_diss_plus = torch.linalg.matrix_exp(-self.dt * gamma * (SP.conj().T @ SP / 2)).to(DTYPE)
 
     def apply_terrain(self, mps: MPS, terrain_idx: int):
         """Apply one stage of terrain dynamics. Acts on every site."""
@@ -277,11 +273,9 @@ class MPSEngineV7:
 
     def operator_kick(self, mps: MPS, op_idx: int, sign: int):
         """Single-qubit kick on site 0 (could extend to all sites)."""
-        from scipy.linalg import expm
-        import numpy as np
-        op = [SZ.numpy(), SX.numpy(), SX.numpy(), SY.numpy()][op_idx]
+        op = [SZ, SX, SX, SY][op_idx]
         angle = 0.18 * sign
-        U = torch.tensor(expm(-1j * angle * op), dtype=DTYPE)
+        U = torch.linalg.matrix_exp(-1j * angle * op).to(DTYPE)
         mps.apply_single(U, 0)
 
     def stage_substages(self, terrain_idx):

@@ -124,7 +124,7 @@ ROW_CLASSES = {
     },
     "system_v5/ops/formal_scouts/sim_numpy_quarantine_source_native_nonclassical_gate_probe.py": {
         "boundary_class": "active_numpy_scipy_spectral_backend_quarantine_gate",
-        "next_move": "Port or demote the 16 hard source rows and 9 load-bearing SciPy receipt rows before treating the nonclassical/source-native backend surface as clean.",
+        "next_move": "Port or demote the current hard source and receipt quarantine rows reported by the NumPy/SciPy/spectral backend gate before treating the nonclassical/source-native backend surface as clean.",
         "reason": "The stricter gate intentionally fails closed when nonclassical/formal-scout support uses NumPy, load-bearing SciPy, or NumPy-backed NetworkX spectral calls.",
     },
 }

@@ -16,6 +16,8 @@ Supportive: sympy (cotangent complex verification for polynomial algebras)
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

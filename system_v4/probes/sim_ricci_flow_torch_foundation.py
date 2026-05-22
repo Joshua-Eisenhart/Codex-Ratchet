@@ -25,6 +25,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Metric g_ij as 2×2 torch float64 tensor, Ricci tensor computation via metric derivatives and autograd, volume via torch.det, Ricci flow steps"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed for local Ricci flow evolution"},

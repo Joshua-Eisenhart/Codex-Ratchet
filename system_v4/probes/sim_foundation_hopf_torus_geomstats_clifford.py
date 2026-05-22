@@ -23,6 +23,10 @@ from typing import Dict, List, Tuple
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = [
+    "Classical comparator/control surface only; does not promote nonclassical, formal-scout, bridge, axis-level, or canonical proof claims."
+]
+
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
 os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")

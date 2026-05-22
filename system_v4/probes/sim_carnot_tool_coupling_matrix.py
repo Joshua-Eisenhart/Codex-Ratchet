@@ -40,6 +40,7 @@ except Exception:  # pragma: no cover - import verified by the row itself
 
 CLASSIFICATION = "tool_lego_fit_probe"
 classification = CLASSIFICATION
+SIM_EXECUTION_KIND = "classical"
 divergence_log = (
     "Carnot tool-coupling matrix.  This is pre-admission fit evidence across "
     "classical, bridge, and nonclassical-adjacent tools, not a claim that the "
@@ -73,7 +74,21 @@ TOOL_MANIFEST = {
     "clifford": {"tried": True, "used": True, "reason": "geometric-algebra noncommutation witness for leg-order variants"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    tool: ("load_bearing" if spec["used"] else None) for tool, spec in TOOL_MANIFEST.items()
+    "numpy": "load_bearing",
+    "scipy": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "qutip": "load_bearing",
+    "qiskit": "load_bearing",
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "supportive",
+    "gudhi": "load_bearing",
+    "geomstats": "load_bearing",
+    "clifford": "load_bearing",
 }
 
 RESULT_DIR = pathlib.Path(__file__).resolve().parent / "a2_state" / "sim_results"
@@ -261,10 +276,10 @@ def main() -> None:
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
-        "sim_execution_kind": "bridge",
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "allowed_claims": [
             "tool-lego fit evidence for Carnot rows",
-            "classical/bridge/nonclassical-adjacent tool availability",
+            "classical support-tool availability before bridge/nonclassical admission",
             "no runtime engine promotion",
         ],
         "promotion_status": "keep_but_open",

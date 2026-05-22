@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import math
 import os
 import pathlib
 import time
@@ -14,9 +15,9 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import networkx as nx
-import numpy as np
 import quimb.tensor as qtn
 import sympy as sp
+import torch
 import z3
 
 from engine_core import EngineCore, generate_initial_density
@@ -40,17 +41,26 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing tensor families and discrimination metrics"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing tensor families, RNG, and discrimination metrics"},
     "quimb": {"tried": True, "used": True, "reason": "load-bearing PEPS3D carriers for 8/16/32 cells"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing discrimination dependency graph"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic N and chi factorization"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing class separation and chi-transport witness"},
     "engine_core": {"tried": True, "used": True, "reason": "load-bearing source-native slot histories"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'pytorch': 'load_bearing',
+    'quimb': 'load_bearing',
+    'networkx': 'load_bearing',
+    'sympy': 'load_bearing',
+    'z3': 'load_bearing',
+    'engine_core': 'supportive',
+}
 
 SHAPES = {8: (2, 2, 2), 16: (2, 2, 4), 32: (4, 4, 2)}
 CHIS = {8: [2, 4, 8], 16: [2, 4, 8], 32: [2, 4, 8]}
+DTYPE = torch.complex128
+FLOAT_DTYPE = torch.float64
 
 
 def source_records(seed: int) -> list[dict[str, Any]]:
@@ -66,8 +76,8 @@ def source_records(seed: int) -> list[dict[str, Any]]:
     return records
 
 
-def make_arrays(shape: tuple[int, int, int], chi: int, seed: int, family: str) -> list[list[list[np.ndarray]]]:
-    rng = np.random.default_rng(seed)
+def make_arrays(shape: tuple[int, int, int], chi: int, seed: int, family: str) -> list[list[list[torch.Tensor]]]:
+    generator = torch.Generator().manual_seed(seed)
     lx, ly, lz = shape
     arrays = []
     for i in range(lx):
@@ -90,35 +100,41 @@ def make_arrays(shape: tuple[int, int, int], chi: int, seed: int, family: str) -
                     legs.append(chi)
                 legs.append(2)
                 if family == "classical_product":
-                    arr = np.zeros(legs, dtype=np.complex128)
+                    arr = torch.zeros(tuple(legs), dtype=DTYPE)
                     arr[..., 0] = 0.02
                 else:
                     scale = 0.02 / max(chi, 1)
-                    arr = rng.normal(scale=scale, size=legs).astype(np.complex128)
+                    arr = (scale * torch.randn(tuple(legs), dtype=FLOAT_DTYPE, generator=generator)).to(DTYPE)
                     if family == "random_null":
-                        arr = arr + 1j * rng.normal(scale=scale, size=legs)
+                        arr = arr + 1j * scale * torch.randn(tuple(legs), dtype=FLOAT_DTYPE, generator=generator)
                 row.append(arr)
             plane.append(row)
         arrays.append(plane)
     return arrays
 
 
-def tensor_norm(arrays: list[list[list[np.ndarray]]]) -> float:
-    return float(np.sqrt(sum(float(np.vdot(arr, arr).real) for plane in arrays for row in plane for arr in row)))
+def tensor_norm(arrays: list[list[list[torch.Tensor]]]) -> float:
+    total = sum(
+        float(torch.vdot(arr.reshape(-1), arr.reshape(-1)).real.item())
+        for plane in arrays
+        for row in plane
+        for arr in row
+    )
+    return math.sqrt(total)
 
 
-def physical_coherence(arrays: list[list[list[np.ndarray]]]) -> float:
+def physical_coherence(arrays: list[list[list[torch.Tensor]]]) -> float:
     total = 0.0
     for plane in arrays:
         for row in plane:
             for arr in row:
                 flat = arr.reshape(-1, 2)
-                total += float(np.sum(np.abs(flat[:, 0] * np.conj(flat[:, 1]))))
+                total += float(torch.sum(torch.abs(flat[:, 0] * torch.conj(flat[:, 1]))).item())
     return total
 
 
-def parameter_count(arrays: list[list[list[np.ndarray]]]) -> int:
-    return int(sum(np.prod(arr.shape) for plane in arrays for row in plane for arr in row))
+def parameter_count(arrays: list[list[list[torch.Tensor]]]) -> int:
+    return int(sum(arr.numel() for plane in arrays for row in plane for arr in row))
 
 
 def apply_family_cell(n_sites: int, chi: int, family: str, records: list[dict[str, Any]]) -> dict[str, Any]:
@@ -142,7 +158,8 @@ def apply_family_cell(n_sites: int, chi: int, family: str, records: list[dict[st
         elif family == "classical_product":
             arrays[i][j][k] = arrays[i][j][k] * (1.0 + 0.0005 * abs(int(record["operator_sign"])))
         elif family == "random_null":
-            arrays[i][j][k] = arrays[i][j][k] * np.exp(1j * 0.001 * (idx + 1))
+            phase = torch.exp(torch.tensor(1j * 0.001 * (idx + 1), dtype=DTYPE))
+            arrays[i][j][k] = arrays[i][j][k] * phase
     after = tensor_norm(arrays)
     after_coh = physical_coherence(arrays)
     tn = qtn.PEPS3D(arrays)

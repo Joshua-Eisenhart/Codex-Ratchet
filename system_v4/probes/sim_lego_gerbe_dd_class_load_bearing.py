@@ -19,6 +19,8 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST -- All 12 tools documented
 # =====================================================================

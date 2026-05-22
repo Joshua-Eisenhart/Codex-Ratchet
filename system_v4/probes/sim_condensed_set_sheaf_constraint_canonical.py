@@ -16,6 +16,8 @@ sympy is supportive: verifies embeddings and rank calculations symbolically
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

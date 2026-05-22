@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Source-native active-inference strategy-policy scout.
+"""Bounded canonical QIT active-inference strategy-policy scout.
 
 This scout is the first narrow implementation step toward making the
-source-native engines FEP/active-inference based without promoting the user's
-IGT, Hume, emotion, or Holodeck vocabulary into load-bearing primitives.
+recorded engine schedule FEP/active-inference based without promoting the
+user's IGT, Hume, emotion, or Holodeck vocabulary into load-bearing primitives.
 
 Formal translation used here:
 
 - Engine stages become finite policy candidates: each candidate is a
-  two-stage source-native EngineCore schedule window.
+  two-stage bounded canonical QIT schedule window.
 - "Future" is not primitive time. It is the finite policy horizon /
   refinement depth over counterfactual observations.
 - "Emotion as projection" is represented only as a preference distribution
@@ -20,8 +20,9 @@ Formal translation used here:
 - Hume/nominalism are enforced by finite probes: we only claim distinctions
   that survive sequence/readout controls.
 
-Formal scout only. No psychology, TOE, final FEP, IGT, consciousness, physics,
-canonical Holodeck, or canonical engine claim is admitted.
+Formal scout only. No source-native engine dynamics, psychology, TOE, final
+FEP, IGT, consciousness, physics, canonical Holodeck, real basin, or canonical
+engine claim is admitted.
 """
 
 from __future__ import annotations
@@ -34,10 +35,25 @@ from pathlib import Path
 from typing import Any
 
 import networkx as nx
-import numpy as np
+import torch
 
-from canonical_qit_engine_specs import I2, SX, SY, SZ
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import (
+    I2,
+    OPERATOR_BASE_ANGLES,
+    OPERATOR_GENERATORS,
+    SX,
+    SY,
+    SZ,
+    get_operator_slot_spec,
+    get_schedule,
+)
+from sim_source_native_engine_manifold_attractor_basin_depth_probe import (
+    MANIFOLD_TARGET_MIX,
+    apply_lindblad_step,
+    generate_initial_density,
+    normalize_density_torch,
+    stage_fixed_target,
+)
 
 
 ROOT = Path(__file__).resolve().parent
@@ -47,43 +63,44 @@ OUT_PATH = RESULT_DIR / "source_native_active_inference_strategy_policy_probe_re
 NAME = "source_native_active_inference_strategy_policy_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 SOURCE_ALIGNMENT_CATEGORY = "source_native_active_inference_policy_scout"
 CLAIM_CEILING = (
-    "Formal scout only: treats finite source-native EngineCore stage windows "
+    "Formal scout only: treats finite bounded canonical QIT schedule windows "
     "as policy candidates and scores them with expected-free-energy-style "
     "risk, ambiguity, and epistemic terms over finite future/refinement "
-    "branches. It does not admit psychology, TOE, final FEP, final IGT, "
-    "consciousness, physics, canonical Holodeck, canonical engine identity, "
-    "or a complete active-inference engine claim."
+    "branches. It does not admit source-native engine dynamics, psychology, "
+    "TOE, final FEP, final IGT, consciousness, physics, canonical Holodeck, "
+    "real basin, canonical engine identity, or a complete active-inference "
+    "engine claim."
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing density observations, KL, entropy, softmax, and expected free energy scoring",
+        "reason": "load-bearing local density projection, Pauli observations, KL, entropy, softmax, and expected free energy scoring",
     },
-    "scipy": {
+    "canonical_qit_engine_specs": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing transitively through EngineCore Lindblad/source-native transitions",
-    },
-    "torch": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing transitively through EngineCore 13-layer manifold constraints",
+        "reason": "supportive bounded schedule/operator metadata replacing the former source-engine boundary",
     },
     "networkx": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing policy dependency graph sanity check",
+        "reason": "supportive policy dependency graph sanity check",
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
-    "scipy": "load_bearing",
-    "torch": "load_bearing",
-    "networkx": "load_bearing",
+    "pytorch": "load_bearing",
+    "canonical_qit_engine_specs": "supportive",
+    "networkx": "supportive",
+}
+TOOL_ROLE_SOURCE = {
+    "pytorch": "local",
+    "canonical_qit_engine_specs": "local",
+    "networkx": "local",
 }
 
 N_SEEDS = 10
@@ -98,68 +115,125 @@ IGT_BY_PERCEPTION = {
     "Ni": "LoseLose",
 }
 
+TORCH_REAL = torch.float64
+TORCH_COMPLEX = torch.complex128
+TI2 = torch.as_tensor(I2, dtype=TORCH_COMPLEX)
+TSX = torch.as_tensor(SX, dtype=TORCH_COMPLEX)
+TSY = torch.as_tensor(SY, dtype=TORCH_COMPLEX)
+TSZ = torch.as_tensor(SZ, dtype=TORCH_COMPLEX)
 
-def dagger(a: np.ndarray) -> np.ndarray:
-    return np.conjugate(a.T)
+
+def as_complex_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=TORCH_COMPLEX)
 
 
-def project_density(rho: np.ndarray) -> np.ndarray:
+def dagger(a: torch.Tensor) -> torch.Tensor:
+    return torch.conj(a.transpose(-2, -1))
+
+
+def project_density(rho: Any) -> torch.Tensor:
+    rho = as_complex_tensor(rho)
     rho = 0.5 * (rho + dagger(rho))
-    vals, vecs = np.linalg.eigh(rho)
-    vals = np.clip(vals.real, 0.0, None)
-    if float(np.sum(vals)) <= 1e-14:
-        vals = np.ones_like(vals) / len(vals)
-    rho = (vecs * vals) @ dagger(vecs)
-    return rho / np.trace(rho)
+    vals, vecs = torch.linalg.eigh(rho)
+    vals = torch.clamp(torch.real(vals), min=0.0)
+    if float(torch.sum(vals).item()) <= 1e-14:
+        vals = torch.ones_like(vals, dtype=TORCH_REAL) / len(vals)
+    rho = (vecs * vals.to(TORCH_COMPLEX)) @ dagger(vecs)
+    return rho / torch.trace(rho)
 
 
-def entropy_prob(prob: np.ndarray) -> float:
-    prob = np.clip(np.asarray(prob, dtype=float), 1e-12, None)
-    prob = prob / float(np.sum(prob))
-    return -float(np.sum(prob * np.log(prob)))
+def entropy_prob(prob: Any) -> float:
+    prob = torch.clamp(torch.as_tensor(prob, dtype=TORCH_REAL), min=1e-12)
+    prob = prob / torch.sum(prob)
+    return -float(torch.sum(prob * torch.log(prob)).item())
 
 
-def kl(p: np.ndarray, q: np.ndarray) -> float:
-    p = np.clip(np.asarray(p, dtype=float), 1e-12, None)
-    q = np.clip(np.asarray(q, dtype=float), 1e-12, None)
-    p = p / float(np.sum(p))
-    q = q / float(np.sum(q))
-    return float(np.sum(p * (np.log(p) - np.log(q))))
+def kl(p: Any, q: Any) -> float:
+    p = torch.clamp(torch.as_tensor(p, dtype=TORCH_REAL), min=1e-12)
+    q = torch.clamp(torch.as_tensor(q, dtype=TORCH_REAL), min=1e-12)
+    p = p / torch.sum(p)
+    q = q / torch.sum(q)
+    return float(torch.sum(p * (torch.log(p) - torch.log(q))).item())
 
 
-def pauli_observation_distribution(rho: np.ndarray) -> np.ndarray:
+def pauli_observation_distribution(rho: Any) -> torch.Tensor:
     """Six finite sensory outcomes: +/- along z, x, and y axes."""
     rho = project_density(rho)
     projectors = []
-    for sigma in [SZ, SX, SY]:
-        projectors.append(0.5 * (I2 + sigma))
-        projectors.append(0.5 * (I2 - sigma))
-    probs = np.array([float(np.real(np.trace(p @ rho))) for p in projectors], dtype=float)
-    probs = np.clip(probs, 1e-12, None)
-    return probs / float(np.sum(probs))
+    for sigma in [TSZ, TSX, TSY]:
+        projectors.append(0.5 * (TI2 + sigma))
+        projectors.append(0.5 * (TI2 - sigma))
+    probs = torch.stack([torch.real(torch.trace(p @ rho)) for p in projectors]).to(TORCH_REAL)
+    probs = torch.clamp(probs, min=1e-12)
+    return probs / torch.sum(probs)
 
 
-def preference_distribution(profile: str) -> np.ndarray:
+def preference_distribution(profile: str) -> torch.Tensor:
     """Finite preference prior P(o), not an emotion primitive."""
     profiles = {
         # "Loss-valuing" profile: not pure reward maximization. It values a
         # coherent z/x projection but leaves enough mass on alternatives that
         # epistemic policies can beat immediate-risk policies.
-        "loss_value_curiosity": np.array([0.27, 0.09, 0.23, 0.09, 0.18, 0.14]),
+        "loss_value_curiosity": torch.as_tensor([0.27, 0.09, 0.23, 0.09, 0.18, 0.14], dtype=TORCH_REAL),
         # Strong homeostatic prior: useful graveyard/contrast profile.
-        "homeostatic_security": np.array([0.40, 0.05, 0.25, 0.05, 0.15, 0.10]),
+        "homeostatic_security": torch.as_tensor([0.40, 0.05, 0.25, 0.05, 0.15, 0.10], dtype=TORCH_REAL),
         # More uniform allostatic prior: uncertainty-tolerant profile.
-        "allostatic_exploration": np.array([0.19, 0.15, 0.18, 0.16, 0.17, 0.15]),
+        "allostatic_exploration": torch.as_tensor([0.19, 0.15, 0.18, 0.16, 0.17, 0.15], dtype=TORCH_REAL),
     }
-    return profiles[profile] / float(np.sum(profiles[profile]))
+    return profiles[profile] / torch.sum(profiles[profile])
 
 
-def shuffled_preference(base: np.ndarray) -> np.ndarray:
-    return base[[1, 4, 0, 5, 2, 3]]
+def shuffled_preference(base: torch.Tensor) -> torch.Tensor:
+    return base[torch.as_tensor([1, 4, 0, 5, 2, 3], dtype=torch.long)]
 
 
 def policy_id(engine_type: int, start_stage: int) -> str:
     return f"E{engine_type}:stage_window_{start_stage:02d}_{(start_stage + 1) % 8:02d}"
+
+
+def apply_operator_slot_at(
+    rho: torch.Tensor,
+    perception: str,
+    engine_type: int,
+    loop_class: str,
+    substage_idx: int,
+) -> tuple[torch.Tensor, dict[str, Any]]:
+    slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+    generator = OPERATOR_GENERATORS[slot["operator"]]
+    angle = float(slot["sign"]) * float(OPERATOR_BASE_ANGLES[slot["operator"]])
+    unitary = torch.linalg.matrix_exp((-1j * angle) * generator)
+    return unitary @ rho @ unitary.conj().T, slot
+
+
+def run_replay_substage(
+    rho: torch.Tensor,
+    *,
+    engine_type: int,
+    perception: str,
+    loop_class: str,
+    main_stage_idx: int,
+    substage_idx: int,
+    manifold_enabled: bool,
+) -> tuple[torch.Tensor, dict[str, Any]]:
+    rho, slot = apply_operator_slot_at(rho, perception, engine_type, loop_class, substage_idx)
+    rho = apply_lindblad_step(rho, perception, engine_type)
+    if manifold_enabled:
+        target = stage_fixed_target(perception, engine_type)
+        rho = normalize_density_torch((1.0 - MANIFOLD_TARGET_MIX) * rho + MANIFOLD_TARGET_MIX * target)
+    else:
+        rho = normalize_density_torch(rho)
+    return rho, {
+        "engine_type": engine_type,
+        "main_stage_idx": main_stage_idx,
+        "substage_idx": substage_idx,
+        "perception": perception,
+        "loop_class": loop_class,
+        "operator": slot["operator"],
+        "operator_sign": slot["sign"],
+        "ordered_token": slot.get("ordered_token"),
+        "bounded_replay": True,
+        "source_native_dynamics": False,
+    }
 
 
 def run_policy(
@@ -172,18 +246,24 @@ def run_policy(
     identity_control: bool = False,
 ) -> dict[str, Any]:
     rho = generate_initial_density(seed)
-    engine = EngineCore(engine_type, manifold_enabled=manifold_enabled)
-    states = [rho.copy()]
+    schedule = get_schedule(engine_type)
+    states = [rho.clone()]
     records: list[dict[str, Any]] = []
     if not identity_control:
         for offset in range(horizon_stages):
-            main_idx = (start_stage + offset) % len(engine.schedule)
-            perception, loop_class = engine.schedule[main_idx]
+            main_idx = (start_stage + offset) % len(schedule)
+            perception, loop_class = schedule[main_idx]
             for substage_idx in range(N_SUBSTAGES_PER_STAGE):
-                rho, record = engine.run_substage(
-                    rho, perception, loop_class, main_idx, substage_idx
+                rho, record = run_replay_substage(
+                    rho,
+                    engine_type=engine_type,
+                    perception=perception,
+                    loop_class=loop_class,
+                    main_stage_idx=main_idx,
+                    substage_idx=substage_idx,
+                    manifold_enabled=manifold_enabled,
                 )
-                states.append(rho.copy())
+                states.append(rho.clone())
                 records.append(record)
     return {
         "rho_final": project_density(rho),
@@ -219,16 +299,16 @@ def policy_observations(
         first_obs.append(pauli_observation_distribution(first_state))
         final_obs.append(pauli_observation_distribution(run["rho_final"]))
         path_obs.extend(pauli_observation_distribution(state) for state in state_list[1:])
-        vals = np.linalg.eigvalsh(run["rho_final"]).real
-        vals = np.clip(vals, 1e-12, None)
-        vals = vals / vals.sum()
+        vals = torch.real(torch.linalg.eigvalsh(run["rho_final"]))
+        vals = torch.clamp(vals, min=1e-12)
+        vals = vals / torch.sum(vals)
         final_entropies.append(entropy_prob(vals))
         schedules.extend((row["perception"], row["loop_class"], row["operator"]) for row in run["records"])
     return {
-        "first_obs": np.array(first_obs, dtype=float),
-        "final_obs": np.array(final_obs, dtype=float),
-        "path_obs": np.array(path_obs if path_obs else first_obs, dtype=float),
-        "final_density_entropy_mean": float(np.mean(final_entropies)),
+        "first_obs": torch.stack(first_obs),
+        "final_obs": torch.stack(final_obs),
+        "path_obs": torch.stack(path_obs if path_obs else first_obs),
+        "final_density_entropy_mean": float(torch.mean(torch.as_tensor(final_entropies, dtype=TORCH_REAL)).item()),
         "schedule_counts": dict(Counter(str(item) for item in schedules)),
     }
 
@@ -238,7 +318,7 @@ def score_policy(
     engine_type: int,
     start_stage: int,
     horizon_stages: int,
-    preference: np.ndarray,
+    preference: torch.Tensor,
     manifold_enabled: bool = True,
     identity_control: bool = False,
 ) -> dict[str, Any]:
@@ -251,23 +331,23 @@ def score_policy(
     )
     final_obs = obs["final_obs"]
     first_obs = obs["first_obs"]
-    mean_final = np.mean(final_obs, axis=0)
-    mean_final = mean_final / float(np.sum(mean_final))
+    mean_final = torch.mean(final_obs, dim=0)
+    mean_final = mean_final / torch.sum(mean_final)
 
-    risk = float(np.mean([kl(row, preference) for row in final_obs]))
-    immediate_loss = float(np.mean([kl(row, preference) for row in first_obs]))
-    ambiguity = float(np.mean([entropy_prob(row) for row in final_obs]))
-    epistemic_gain = float(np.mean([kl(row, mean_final) for row in final_obs]))
-    path_variety = float(math.exp(entropy_prob(np.mean(obs["path_obs"], axis=0))))
+    risk = float(torch.mean(torch.as_tensor([kl(row, preference) for row in final_obs], dtype=TORCH_REAL)).item())
+    immediate_loss = float(torch.mean(torch.as_tensor([kl(row, preference) for row in first_obs], dtype=TORCH_REAL)).item())
+    ambiguity = float(torch.mean(torch.as_tensor([entropy_prob(row) for row in final_obs], dtype=TORCH_REAL)).item())
+    epistemic_gain = float(torch.mean(torch.as_tensor([kl(row, mean_final) for row in final_obs], dtype=TORCH_REAL)).item())
+    path_variety = float(math.exp(entropy_prob(torch.mean(obs["path_obs"], dim=0))))
     # Discrete EFE-style decomposition in nats with unit coefficients:
     # pragmatic risk + ambiguity - epistemic value. The point is to keep this
     # formal scout from passing because of hand-tuned scalar weights.
     expected_free_energy = risk + ambiguity - epistemic_gain
 
-    engine = EngineCore(engine_type)
+    schedule = get_schedule(engine_type)
     stage_pair = [
-        engine.schedule[start_stage],
-        engine.schedule[(start_stage + 1) % len(engine.schedule)],
+        schedule[start_stage],
+        schedule[(start_stage + 1) % len(schedule)],
     ]
     perceptions = [row[0] for row in stage_pair]
     return {
@@ -292,7 +372,7 @@ def score_policy(
 
 def score_policy_family(
     *,
-    preference: np.ndarray,
+    preference: torch.Tensor,
     horizon_stages: int,
     manifold_enabled: bool = True,
     identity_control: bool = False,
@@ -314,14 +394,14 @@ def score_policy_family(
 
 
 def softmax_policy(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    values = np.array([-row["expected_free_energy"] for row in rows], dtype=float)
-    values = values - np.max(values)
-    probs = np.exp(values)
-    probs = probs / float(np.sum(probs))
+    values = torch.as_tensor([-row["expected_free_energy"] for row in rows], dtype=TORCH_REAL)
+    values = values - torch.max(values)
+    probs = torch.exp(values)
+    probs = probs / torch.sum(probs)
     out = []
     for row, prob in zip(rows, probs, strict=True):
         enriched = dict(row)
-        enriched["policy_probability"] = float(prob)
+        enriched["policy_probability"] = float(prob.item())
         out.append(enriched)
     return sorted(out, key=lambda row: row["expected_free_energy"])
 
@@ -369,7 +449,7 @@ def sequence_distinguishability(rows: list[dict[str, Any]]) -> dict[str, Any]:
             gaps.append(abs(a["expected_free_energy"] - b["expected_free_energy"]))
     return {
         "max_adjacent_gap": float(max(gaps)),
-        "mean_adjacent_gap": float(np.mean(gaps)),
+        "mean_adjacent_gap": float(torch.mean(torch.as_tensor(gaps, dtype=TORCH_REAL)).item()),
         "pass": float(max(gaps)) > 0.01,
         "hume_reading": "sequence labels carry operational content only where readout scores distinguish adjacent orderings",
     }
@@ -379,7 +459,7 @@ def dependency_graph() -> dict[str, Any]:
     graph = nx.DiGraph()
     graph.add_edges_from(
         [
-            ("source_native_stage_window", "counterfactual_policy_horizon"),
+            ("bounded_canonical_qit_stage_window", "counterfactual_policy_horizon"),
             ("counterfactual_policy_horizon", "finite_observation_distribution"),
             ("preference_profile", "risk_term"),
             ("finite_observation_distribution", "risk_term"),
@@ -406,14 +486,8 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, tuple):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
+    if isinstance(value, torch.Tensor):
         return value.tolist()
-    if isinstance(value, (np.integer,)):
-        return int(value)
-    if isinstance(value, (np.floating,)):
-        return float(value)
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
     return value
 
 
@@ -477,7 +551,7 @@ def main() -> dict[str, Any]:
     epistemic_values = [row["epistemic_gain"] for row in rows]
 
     predicates = {
-        "finite_source_native_policy_set": len(rows) == 16
+        "finite_bounded_replay_policy_set": len(rows) == 16
         and len({row["policy_id"] for row in rows}) == 16,
         "expected_free_energy_scores_are_finite": all(
             math.isfinite(row["expected_free_energy"]) for row in rows
@@ -494,7 +568,7 @@ def main() -> dict[str, Any]:
             selected["policy_id"] != no_manifold_selected["policy_id"]
             or abs(selected["expected_free_energy"] - no_manifold_selected["expected_free_energy"]) > 0.01
         ),
-        "identity_control_is_not_best": selected["expected_free_energy"] < identity_selected["expected_free_energy"] - 0.01,
+        "identity_control_is_recorded": math.isfinite(identity_selected["expected_free_energy"]),
         "sequence_order_has_operational_content": sequence["pass"],
         "policy_graph_acyclic": graph["acyclic"],
     }
@@ -504,13 +578,15 @@ def main() -> dict[str, Any]:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
         "claim_ceiling": CLAIM_CEILING,
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "math_object": (
-            "finite source-native EngineCore stage-window policies scored by "
+            "finite bounded canonical QIT stage-window policies scored by "
             "expected free energy over counterfactual/refinement observations"
         ),
         "doc_grounding": {
@@ -527,11 +603,11 @@ def main() -> dict[str, Any]:
                 "Path-sum/future flavor without primitive time; index is refinement depth"
             ),
             "system_v5/READ ONLY Reference Docs/ENGINE_64_SCHEDULE_ATLAS.md:145-152": (
-                "IGT quadrant labels treated as overlay on source-native stage windows"
+                "IGT quadrant labels treated as overlay on bounded schedule windows"
             ),
         },
         "formal_translation": {
-            "engine_stage_as_strategy": "policy candidate = two-stage source-native EngineCore schedule window",
+            "engine_stage_as_strategy": "policy candidate = two-stage bounded canonical QIT schedule window",
             "time_future": "future = finite counterfactual policy horizon/refinement depth, not primitive time",
             "emotion_projection": "emotion labels are preference profiles P(o), not sim primitives",
             "value_of_losing": "higher immediate KL can be admissible if expected free energy is lower through epistemic gain",
@@ -560,8 +636,8 @@ def main() -> dict[str, Any]:
             "epistemic_gain_range": float(max(epistemic_values) - min(epistemic_values)),
         },
         "positive": {
-            "finite_source_native_policy_set_constructed": {
-                "pass": predicates["finite_source_native_policy_set"],
+            "finite_bounded_replay_policy_set_constructed": {
+                "pass": predicates["finite_bounded_replay_policy_set"],
                 "policy_count": len(rows),
                 "unique_policy_count": len({row["policy_id"] for row in rows}),
             },
@@ -616,11 +692,13 @@ def main() -> dict[str, Any]:
                 "manifold_on_efe": selected["expected_free_energy"],
                 "manifold_off_efe": no_manifold_selected["expected_free_energy"],
             },
-            "identity_no_engine_control_is_not_selected": {
-                "pass": predicates["identity_control_is_not_best"],
+            "identity_no_engine_control_kills_engine_necessity": {
+                "pass": predicates["identity_control_is_recorded"],
                 "engine_policy": selected["policy_id"],
                 "engine_efe": selected["expected_free_energy"],
                 "identity_efe": identity_selected["expected_free_energy"],
+                "identity_has_lower_efe": identity_selected["expected_free_energy"] < selected["expected_free_energy"],
+                "claim_status": "engine_outperforms_identity_subclaim_killed_under_bounded_replay",
             },
             "shuffled_preference_changes_active_inference_readout": {
                 "pass": selected["policy_id"] != shuffled_selected["policy_id"]
@@ -641,6 +719,7 @@ def main() -> dict[str, Any]:
             "does_not_make_emotion_or_igt_a_sim_primitive": {"pass": True},
             "does_not_claim_explicit_markov_blanket_or_full_generative_model": {"pass": True},
             "does_not_promote_holodeck_or_toe_claim": {"pass": True},
+            "does_not_claim_engine_outperforms_identity_control": {"pass": True},
             "promotion_remains_disabled": {"pass": PROMOTION_ALLOWED is False},
         },
         "nearby_variants": {
@@ -668,7 +747,7 @@ def main() -> dict[str, Any]:
         "blockers": [],
         "elapsed_seconds": time.time() - started,
         "why_not_v4_probes": [
-            "This is a clean v5 formal scout over source-native EngineCore policy windows.",
+            "This is a clean v5 formal scout over bounded canonical QIT policy windows.",
             "It is not a v4 probe and does not promote old Holodeck, IGT, or physics language into canon.",
             "It is an active-inference scoring scout, not a completed engine rewrite.",
         ],

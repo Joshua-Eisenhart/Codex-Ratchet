@@ -54,8 +54,6 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
-import scipy.linalg  # noqa: F401 — listed in TOOL_MANIFEST, used for fallback unitary checks
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -96,28 +94,9 @@ TOOL_MANIFEST = {
             "via complex128 tensors (5 variants × full training loop)."
         ),
     },
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": (
-            "load-bearing: per-substage Bloch+entropy assembly, feature slicing "
-            "by substage subset, trajectory variance computation, and random "
-            "substage index sampling."
-        ),
-    },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": (
-            "load-bearing: scipy.linalg.expm cross-check of pytorch eigendecomp-"
-            "based unitary construction inside the engine pipeline."
-        ),
-    },
 }
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
-    "numpy": "load_bearing",
-    "scipy": "load_bearing",
 }
 
 # ---------------------------------------------------------------------------
@@ -175,12 +154,12 @@ def normalize_density(rho: torch.Tensor) -> torch.Tensor:
     return out / tr
 
 
-def bloch_vec(rho: torch.Tensor) -> np.ndarray:
-    return np.array([
+def bloch_vec(rho: torch.Tensor) -> torch.Tensor:
+    return torch.tensor([
         float(torch.real(torch.trace(SX @ rho)).item()),
         float(torch.real(torch.trace(SY @ rho)).item()),
         float(torch.real(torch.trace(SZ @ rho)).item()),
-    ])
+    ], dtype=torch.float64)
 
 
 def von_neumann_entropy(rho: torch.Tensor) -> float:
@@ -194,7 +173,21 @@ def unitary_from_generator(gen: torch.Tensor, angle: float) -> torch.Tensor:
     return vecs @ torch.diag(torch.exp(vals)) @ torch.linalg.inv(vecs)
 
 
+def _unwrap_angle_diffs(angles: list[float]) -> list[float]:
+    diffs: list[float] = []
+    for prev, cur in zip(angles, angles[1:]):
+        diff = cur - prev
+        while diff > math.pi:
+            diff -= 2.0 * math.pi
+        while diff < -math.pi:
+            diff += 2.0 * math.pi
+        diffs.append(diff)
+    return diffs
+
+
 def quadrant_label(bx: float, by: float, bz: float) -> int:
+    bx = float(bx)
+    by = float(by)
     if bx >= 0 and by >= 0:
         return 0
     if bx < 0 and by >= 0:
@@ -205,11 +198,11 @@ def quadrant_label(bx: float, by: float, bz: float) -> int:
 
 
 def generate_input_states(n: int, seed: int = 0):
-    rng = np.random.default_rng(seed)
+    generator = torch.Generator().manual_seed(seed)
     states, labels, bloch_vecs = [], [], []
     while len(states) < n:
-        cos_theta = rng.uniform(-1, 1)
-        phi = rng.uniform(0, 2 * math.pi)
+        cos_theta = -1.0 + 2.0 * float(torch.rand((), generator=generator).item())
+        phi = 2 * math.pi * float(torch.rand((), generator=generator).item())
         theta = math.acos(cos_theta)
         alpha = math.cos(theta / 2)
         beta = math.sin(theta / 2) * complex(math.cos(phi), math.sin(phi))
@@ -220,7 +213,7 @@ def generate_input_states(n: int, seed: int = 0):
         states.append(rho)
         labels.append(quadrant_label(bvec[0], bvec[1], bvec[2]))
         bloch_vecs.append(bvec)
-    return states, labels, np.array(bloch_vecs)
+    return states, labels, torch.stack(bloch_vecs, dim=0)
 
 
 def apply_operator_step(rho, operator_name, sign, chirality_sign):
@@ -290,10 +283,9 @@ def run_engine(rho_input, topology_specs, terrain_sequence, loop_placement, chir
             entropy_traj.append(von_neumann_entropy(rho))
             rho00 = complex(rho[0, 0].item())
             holonomy_angles.append(math.atan2(rho00.imag, rho00.real))
-    bloch_traj_arr = np.array(bloch_traj, dtype=np.float64)        # (32, 3)
-    entropy_traj_arr = np.array(entropy_traj, dtype=np.float64)    # (32,)
-    increments = np.diff(np.unwrap(holonomy_angles))
-    holonomy_phase = float(np.sum(increments))
+    bloch_traj_arr = torch.stack(bloch_traj, dim=0).to(torch.float64)        # (32, 3)
+    entropy_traj_arr = torch.tensor(entropy_traj, dtype=torch.float64)       # (32,)
+    holonomy_phase = sum(_unwrap_angle_diffs(holonomy_angles))
     return {
         "bloch_trajectory": bloch_traj_arr,
         "entropy_trajectory": entropy_traj_arr,
@@ -305,8 +297,8 @@ def run_identity_engine(rho_input) -> dict[str, Any]:
     bvec = bloch_vec(rho_input)
     ent = von_neumann_entropy(rho_input)
     return {
-        "bloch_trajectory": np.tile(bvec, (N_TOTAL_STAGES, 1)),
-        "entropy_trajectory": np.full(N_TOTAL_STAGES, ent, dtype=np.float64),
+        "bloch_trajectory": bvec.repeat(N_TOTAL_STAGES, 1),
+        "entropy_trajectory": torch.full((N_TOTAL_STAGES,), ent, dtype=torch.float64),
         "holonomy_phase": 0.0,
     }
 
@@ -315,25 +307,24 @@ def run_identity_engine(rho_input) -> dict[str, Any]:
 # Variant builders — slice trajectories by substage subset
 # ---------------------------------------------------------------------------
 
-def feature_full(e1, e2) -> np.ndarray:
-    return np.concatenate([
+def feature_full(e1, e2) -> torch.Tensor:
+    return torch.cat([
         e1["bloch_trajectory"].flatten(),
         e2["bloch_trajectory"].flatten(),
         e1["entropy_trajectory"],
         e2["entropy_trajectory"],
-        [e1["holonomy_phase"]],
-        [e2["holonomy_phase"]],
-    ]).astype(np.float32)
+        torch.tensor([e1["holonomy_phase"], e2["holonomy_phase"]], dtype=torch.float64),
+    ]).to(torch.float32)
 
 
-def feature_substage_subset(e1, e2, indices: np.ndarray) -> np.ndarray:
+def feature_substage_subset(e1, e2, indices: torch.Tensor) -> torch.Tensor:
     """Slice both engines' Bloch + entropy at the given substage indices."""
-    return np.concatenate([
+    return torch.cat([
         e1["bloch_trajectory"][indices].flatten(),     # |indices| * 3
         e2["bloch_trajectory"][indices].flatten(),     # |indices| * 3
         e1["entropy_trajectory"][indices],             # |indices|
         e2["entropy_trajectory"][indices],             # |indices|
-    ]).astype(np.float32)
+    ]).to(torch.float32)
 
 
 # ---------------------------------------------------------------------------
@@ -363,10 +354,10 @@ def train_and_evaluate(
     optimizer = optim.Adam(model.parameters(), lr=lr)
     criterion = nn.CrossEntropyLoss()
 
-    X_tr = torch.tensor(X_train, dtype=torch.float32)
-    y_tr = torch.tensor(y_train, dtype=torch.long)
-    X_te = torch.tensor(X_test, dtype=torch.float32)
-    y_te = torch.tensor(y_test, dtype=torch.long)
+    X_tr = torch.as_tensor(X_train, dtype=torch.float32)
+    y_tr = torch.as_tensor(y_train, dtype=torch.long)
+    X_te = torch.as_tensor(X_test, dtype=torch.float32)
+    y_te = torch.as_tensor(y_test, dtype=torch.long)
 
     loss_curve, train_acc_curve = [], []
     for _ in range(n_epochs):
@@ -400,16 +391,15 @@ def train_and_evaluate(
 
 
 # ---------------------------------------------------------------------------
-# scipy expm cross-check (load-bearing: confirms engine unitary construction)
+# torch matrix-exp cross-check (load-bearing: confirms engine unitary construction)
 # ---------------------------------------------------------------------------
 
-def scipy_unitary_crosscheck() -> dict[str, Any]:
-    """One spot check: confirm pytorch eig-based unitary matches scipy.linalg.expm."""
+def torch_matrix_exp_unitary_crosscheck() -> dict[str, Any]:
+    """One spot check: confirm eig-based unitary matches torch.linalg.matrix_exp."""
     angle = 0.17
-    gen_np = SZ.numpy()
-    u_scipy = scipy.linalg.expm(-1j * angle * gen_np)
-    u_torch = unitary_from_generator(SZ, angle).numpy()
-    diff = float(np.max(np.abs(u_torch - u_scipy)))
+    u_exp = torch.linalg.matrix_exp((-1j * angle * SZ).to(DTYPE))
+    u_eig = unitary_from_generator(SZ, angle)
+    diff = float(torch.max(torch.abs(u_eig - u_exp)).item())
     return {"max_abs_diff": diff, "pass": diff < 1e-8}
 
 
@@ -422,13 +412,9 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
-    if isinstance(value, (np.bool_,)):
+    if isinstance(value, bool):
         return bool(value)
     return value
 
@@ -443,8 +429,8 @@ def main() -> int:
     # 1. Inputs
     print("Generating 200 input states...")
     states, labels, bloch_vecs = generate_input_states(N_SAMPLES, seed=RANDOM_SEED)
-    labels_arr = np.array(labels, dtype=np.int64)
-    class_counts = [int(np.sum(labels_arr == c)) for c in range(N_CLASSES)]
+    labels_arr = torch.tensor(labels, dtype=torch.long)
+    class_counts = [int((labels_arr == c).sum().item()) for c in range(N_CLASSES)]
     print(f"  Class distribution: {class_counts}")
 
     # 2. Run both engines for every input and record full trajectories
@@ -453,7 +439,7 @@ def main() -> int:
     engine_outputs_e2 = []
     identity_outputs_e1 = []
     identity_outputs_e2 = []
-    input_bloch_per_substage = np.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=np.float64)
+    input_bloch_per_substage = torch.zeros((N_SAMPLES, N_TOTAL_STAGES, 3), dtype=torch.float64)
 
     for i, rho_input in enumerate(states):
         if i % 50 == 0:
@@ -469,16 +455,15 @@ def main() -> int:
         identity_outputs_e2.append(id2)
 
         # Save a copy of the input Bloch vec at every substage slot for trajectory variance comparison
-        input_bloch_per_substage[i, :, :] = np.tile(bloch_vecs[i], (N_TOTAL_STAGES, 1))
+        input_bloch_per_substage[i, :, :] = bloch_vecs[i].repeat(N_TOTAL_STAGES, 1)
 
     # 3. Define substage index subsets
-    full_idx = np.arange(N_TOTAL_STAGES)
-    early_idx = np.arange(0, 8)
-    mid_idx = np.arange(12, 20)
-    late_idx = np.arange(24, 32)
+    full_idx = torch.arange(N_TOTAL_STAGES)
+    early_idx = torch.arange(0, 8)
+    mid_idx = torch.arange(12, 20)
+    late_idx = torch.arange(24, 32)
 
-    rng_random8 = np.random.default_rng(RANDOM_SEED + 7)
-    random8_idx = np.sort(rng_random8.choice(N_TOTAL_STAGES, size=8, replace=False))
+    random8_idx = torch.sort(torch.randperm(N_TOTAL_STAGES, generator=torch.Generator().manual_seed(RANDOM_SEED + 7))[:8]).values
 
     subsets = {
         "full":       full_idx,
@@ -490,27 +475,27 @@ def main() -> int:
 
     # 4. Build feature matrices per variant
     print("Building feature matrices for 5 variants...")
-    variants_engine: dict[str, np.ndarray] = {}
-    variants_identity: dict[str, np.ndarray] = {}
+    variants_engine: dict[str, torch.Tensor] = {}
+    variants_identity: dict[str, torch.Tensor] = {}
 
     for name, idx in subsets.items():
         if name == "full":
-            engine_feats = np.array(
+            engine_feats = torch.stack(
                 [feature_full(engine_outputs_e1[i], engine_outputs_e2[i]) for i in range(N_SAMPLES)],
-                dtype=np.float32,
+                dim=0,
             )
-            identity_feats = np.array(
+            identity_feats = torch.stack(
                 [feature_full(identity_outputs_e1[i], identity_outputs_e2[i]) for i in range(N_SAMPLES)],
-                dtype=np.float32,
+                dim=0,
             )
         else:
-            engine_feats = np.array(
+            engine_feats = torch.stack(
                 [feature_substage_subset(engine_outputs_e1[i], engine_outputs_e2[i], idx) for i in range(N_SAMPLES)],
-                dtype=np.float32,
+                dim=0,
             )
-            identity_feats = np.array(
+            identity_feats = torch.stack(
                 [feature_substage_subset(identity_outputs_e1[i], identity_outputs_e2[i], idx) for i in range(N_SAMPLES)],
-                dtype=np.float32,
+                dim=0,
             )
         variants_engine[name] = engine_feats
         variants_identity[name] = identity_feats
@@ -523,8 +508,7 @@ def main() -> int:
     # 6. Train per-variant classifiers (engine, shuffled-labels, identity-engine)
     print("Training per-variant classifiers...")
     variant_results: dict[str, dict[str, Any]] = {}
-    rng_shuffle = np.random.default_rng(RANDOM_SEED + 2)
-    y_tr_shuf = rng_shuffle.permutation(y_tr)
+    y_tr_shuf = y_tr[torch.randperm(len(y_tr), generator=torch.Generator().manual_seed(RANDOM_SEED + 2))]
 
     for name in subsets:
         X = variants_engine[name]
@@ -566,18 +550,18 @@ def main() -> int:
     #    For each substage i, distance between (engine bloch_i) and (input bloch).
     print("Computing per-substage trajectory variance vs. input Bloch...")
     # Stack: shape (N_SAMPLES, 32, 3)
-    e1_traj = np.array([eo["bloch_trajectory"] for eo in engine_outputs_e1])  # (N, 32, 3)
-    e2_traj = np.array([eo["bloch_trajectory"] for eo in engine_outputs_e2])  # (N, 32, 3)
+    e1_traj = torch.stack([eo["bloch_trajectory"] for eo in engine_outputs_e1], dim=0)  # (N, 32, 3)
+    e2_traj = torch.stack([eo["bloch_trajectory"] for eo in engine_outputs_e2], dim=0)  # (N, 32, 3)
 
     # Distance per substage averaged over samples and engines
-    dist_e1 = np.linalg.norm(e1_traj - input_bloch_per_substage, axis=2)  # (N, 32)
-    dist_e2 = np.linalg.norm(e2_traj - input_bloch_per_substage, axis=2)  # (N, 32)
-    dist_per_substage = (dist_e1.mean(axis=0) + dist_e2.mean(axis=0)) / 2.0  # (32,)
+    dist_e1 = torch.linalg.norm(e1_traj - input_bloch_per_substage, dim=2)  # (N, 32)
+    dist_e2 = torch.linalg.norm(e2_traj - input_bloch_per_substage, dim=2)  # (N, 32)
+    dist_per_substage = (dist_e1.mean(dim=0) + dist_e2.mean(dim=0)) / 2.0  # (32,)
 
-    mean_dist_early = float(np.mean(dist_per_substage[early_idx]))
-    mean_dist_mid = float(np.mean(dist_per_substage[mid_idx]))
-    mean_dist_late = float(np.mean(dist_per_substage[late_idx]))
-    mean_dist_random8 = float(np.mean(dist_per_substage[random8_idx]))
+    mean_dist_early = float(dist_per_substage[early_idx].mean().item())
+    mean_dist_mid = float(dist_per_substage[mid_idx].mean().item())
+    mean_dist_late = float(dist_per_substage[late_idx].mean().item())
+    mean_dist_random8 = float(dist_per_substage[random8_idx].mean().item())
 
     trajectory_variance = {
         "mean_dist_per_substage_to_input_bloch": dist_per_substage.tolist(),
@@ -688,7 +672,7 @@ def main() -> int:
             "pass": popper_verdict in {"killed", "survived", "front_loaded", "inconclusive"},
             "verdict": popper_verdict,
         },
-        "scipy_unitary_crosscheck_holds": scipy_unitary_crosscheck(),
+        "torch_matrix_exp_unitary_crosscheck_holds": torch_matrix_exp_unitary_crosscheck(),
     }
 
     # Negative predicates (shuffled labels, identity engine on each variant)
@@ -750,9 +734,9 @@ def main() -> int:
         },
         "engines_run_without_nan": {
             "pass": all(
-                np.isfinite(variants_engine[v]).all() for v in subsets
+                torch.isfinite(variants_engine[v]).all().item() for v in subsets
             ),
-            "n_nan": {v: int(np.sum(~np.isfinite(variants_engine[v]))) for v in subsets},
+            "n_nan": {v: int((~torch.isfinite(variants_engine[v])).sum().item()) for v in subsets},
         },
     }
 
@@ -775,7 +759,18 @@ def main() -> int:
         "trajectory_variance": trajectory_variance,
         "positive": positive,
         "negative_predicates": negative,
+        "graveyard_companions": negative,
         "boundary": boundary,
+        "nearby_variants": {
+            "total": len(negative),
+            "passed": sum(1 for row in negative.values() if row.get("pass")),
+            "variants": sorted(negative),
+        },
+        "why_not_v4_probes": [
+            "v5 formal scout over late-stage feature-only classification falsification.",
+            "Does not promote canonical engine, axis, bridge, manifold, or target-system claims.",
+            "The classifier result is bounded to the finite feature/readout fixture.",
+        ],
         "dataset": {
             "n_samples": N_SAMPLES,
             "n_train": N_TRAIN,

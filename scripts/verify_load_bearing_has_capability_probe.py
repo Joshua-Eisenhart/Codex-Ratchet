@@ -15,12 +15,15 @@ import json
 import sys
 from pathlib import Path
 
+import two_root_constraints
+
 REPO = Path("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
 PROBES_DIR = REPO / "system_v4" / "probes"
 RESULTS_DIR = PROBES_DIR / "a2_state" / "sim_results"
 REPORT_PATH = RESULTS_DIR / "load_bearing_capability_audit.json"
 
-# Canonical probe-name normalization.
+# Canonical probe-name normalization. Families are centralized in
+# two_root_constraints; this table keeps legacy capability probe stems stable.
 ALIASES = {
     "pytorch": "pytorch",
     "torch": "pytorch",
@@ -58,8 +61,7 @@ ALIASES = {
 
 
 def canonical(tool: str) -> str:
-    key = tool.strip().lower().replace("-", "_")
-    return ALIASES.get(key, key)
+    return two_root_constraints.capability_probe_stem(ALIASES.get(tool.strip().lower().replace("-", "_"), tool))
 
 
 def _is_ignored_sim_path(path: Path) -> bool:

@@ -6,7 +6,7 @@ window.SIX_BIT_GRAY_CODE_CYCLE_DATA = {
     "invariant_count": 7,
     "cycle_invariant_row_count": 4,
     "graveyard_variant_count": 3,
-    "load_bearing_tool_count": 12,
+    "load_bearing_tool_count": 10,
     "tool_count": 16,
     "visual_payload": "visualizer/six-bit-gray-code-cycle-data.js",
     "scope_note": "Six-bit Gray-code single-flip cycle invariant row. It tests a six-bit, one-line-transition schedule as a comparison surface for heat/work and measurement/feedback cycle grammar. It is symbolic and pre-admission, not QIT runtime promotion."

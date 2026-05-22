@@ -19,6 +19,9 @@ import json
 import os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = [
+    "Classical comparator/control surface only; does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+]
 
 # =====================================================================
 # TOOL MANIFEST

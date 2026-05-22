@@ -20,6 +20,8 @@ import os
 import numpy as np
 from typing import Dict, List, Tuple, Any
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

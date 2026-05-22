@@ -22,9 +22,9 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "Beta posterior sampling and moment check"},
     "scipy": {"tried": True, "used": True, "reason": "Beta/Normal closed forms"},
     "pytorch": {
-        "tried": _torch_ok,
+        "tried": True,
         "used": False,
-        "reason": "supportive import only",
+        "reason": "optional supportive import attempt only",
     },
     "z3": {"tried": False, "used": False, "reason": "no SMT claim on posterior shape"},
 }

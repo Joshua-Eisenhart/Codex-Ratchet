@@ -21,6 +21,10 @@ from datetime import datetime, timezone
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+divergence_log = [
+    "Classical comparator/control surface only; this metadata clears C4 for baseline accounting and does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+]
+
 EPS = 1e-12
 
 TOOL_MANIFEST = {

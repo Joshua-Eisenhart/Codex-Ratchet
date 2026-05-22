@@ -29,8 +29,6 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
-import scipy.linalg
 import sympy as sp
 import torch
 import torch.nn as nn
@@ -39,10 +37,6 @@ import torch.optim as optim
 from canonical_qit_engine_specs import (
     TYPE_ONE_TOPOLOGIES,
     TYPE_TWO_TOPOLOGIES,
-    OPERATOR_GENERATORS,
-    H_TYPE_ONE,
-    H_TYPE_TWO,
-    PERCEPTION_L_MATRICES,
 )
 
 # ---------------------------------------------------------------------------
@@ -72,17 +66,6 @@ TOOL_MANIFEST = {
         "reason": "load-bearing: MLP readout, training loop (Adam + cross-entropy), "
                   "and engine state updates via complex128 tensors",
     },
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing: Bloch vector extraction, feature array assembly, "
-                  "random state generation, and baseline comparisons",
-    },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": "supportive: scipy.linalg.expm used in unitary construction fallback check",
-    },
     "sympy": {
         "tried": True,
         "used": True,
@@ -92,8 +75,6 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
-    "numpy": "load_bearing",
-    "scipy": "supportive",
     "sympy": "supportive",
 }
 
@@ -102,6 +83,8 @@ TOOL_INTEGRATION_DEPTH = {
 # ---------------------------------------------------------------------------
 
 DTYPE = torch.complex128
+REAL_DTYPE = torch.float64
+MLP_DTYPE = torch.float32
 I2 = torch.eye(2, dtype=DTYPE)
 SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
 SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
@@ -166,12 +149,12 @@ def normalize_density(rho: torch.Tensor) -> torch.Tensor:
     return out / tr
 
 
-def bloch_vec(rho: torch.Tensor) -> np.ndarray:
-    return np.array([
+def bloch_vec(rho: torch.Tensor) -> torch.Tensor:
+    return torch.tensor([
         float(torch.real(torch.trace(SX @ rho)).item()),
         float(torch.real(torch.trace(SY @ rho)).item()),
         float(torch.real(torch.trace(SZ @ rho)).item()),
-    ])
+    ], dtype=REAL_DTYPE)
 
 
 def von_neumann_entropy(rho: torch.Tensor) -> float:
@@ -207,12 +190,12 @@ def quadrant_label(bx: float, by: float, bz: float) -> int:
     return 3
 
 
-def generate_input_states(n: int, seed: int = 0) -> tuple[list[torch.Tensor], list[int], np.ndarray]:
+def generate_input_states(n: int, seed: int = 0) -> tuple[list[torch.Tensor], list[int], torch.Tensor]:
     """
     Generate n random density states with uniform S² Bloch coverage.
     Returns (states, labels, bloch_vecs).
     """
-    rng = np.random.default_rng(seed)
+    generator = torch.Generator().manual_seed(seed)
     states = []
     labels = []
     bloch_vecs = []
@@ -223,8 +206,8 @@ def generate_input_states(n: int, seed: int = 0) -> tuple[list[torch.Tensor], li
     while generated < n:
         # Sample uniformly over S² using spherical coordinates
         # cos(theta) uniform in [-1, 1], phi uniform in [0, 2pi]
-        cos_theta = rng.uniform(-1, 1)
-        phi = rng.uniform(0, 2 * math.pi)
+        cos_theta = float((2 * torch.rand((), generator=generator) - 1).item())
+        phi = float((2 * math.pi * torch.rand((), generator=generator)).item())
         theta = math.acos(cos_theta)
 
         # Pure state on Bloch sphere
@@ -237,14 +220,23 @@ def generate_input_states(n: int, seed: int = 0) -> tuple[list[torch.Tensor], li
         rho = normalize_density(0.90 * pure + 0.10 * I2 / 2)
 
         bvec = bloch_vec(rho)
-        label = quadrant_label(bvec[0], bvec[1], bvec[2])
+        label = quadrant_label(float(bvec[0].item()), float(bvec[1].item()), float(bvec[2].item()))
 
         states.append(rho)
         labels.append(label)
         bloch_vecs.append(bvec)
         generated += 1
 
-    return states, labels, np.array(bloch_vecs)
+    return states, labels, torch.stack(bloch_vecs).to(REAL_DTYPE)
+
+
+def unwrap_angles(angles: list[float]) -> torch.Tensor:
+    values = torch.tensor(angles, dtype=REAL_DTYPE)
+    if values.numel() < 2:
+        return values
+    diffs = torch.diff(values)
+    wrapped_diffs = (diffs + math.pi) % (2 * math.pi) - math.pi
+    return torch.cat([values[:1], values[:1] + torch.cumsum(wrapped_diffs, dim=0)])
 
 
 # ---------------------------------------------------------------------------
@@ -328,8 +320,8 @@ def run_engine(
     chirality_sign field — it is an engine-type property.
 
     Returns:
-      bloch_trajectory: np.ndarray shape (32, 3)
-      entropy_trajectory: np.ndarray shape (32,)
+      bloch_trajectory: torch.Tensor shape (32, 3)
+      entropy_trajectory: torch.Tensor shape (32,)
       holonomy_phase: float (cumulative phase angle of sub-block evolution)
       final_rho: torch.Tensor
     """
@@ -382,11 +374,11 @@ def run_engine(
 
             substage_idx += 1
 
-    bloch_traj_arr = np.array(bloch_traj, dtype=np.float64)   # (32, 3)
-    entropy_traj_arr = np.array(entropy_traj, dtype=np.float64)  # (32,)
+    bloch_traj_arr = torch.stack(bloch_traj).to(REAL_DTYPE)   # (32, 3)
+    entropy_traj_arr = torch.tensor(entropy_traj, dtype=REAL_DTYPE)  # (32,)
     # Cumulative holonomy: sum of angular increments (mod-2pi wrapped)
-    increments = np.diff(np.unwrap(holonomy_angles))
-    holonomy_phase = float(np.sum(increments))
+    increments = torch.diff(unwrap_angles(holonomy_angles))
+    holonomy_phase = float(increments.sum().item())
 
     return {
         "bloch_trajectory": bloch_traj_arr,
@@ -402,7 +394,7 @@ def run_engine(
 
 def run_random_engine(
     rho_input: torch.Tensor,
-    rng: np.random.Generator,
+    generator: torch.Generator,
 ) -> dict[str, Any]:
     """
     32-stage engine where each substage applies a Haar-random 2×2 unitary.
@@ -414,13 +406,14 @@ def run_random_engine(
     holonomy_angles = []
 
     for substage_idx in range(N_TOTAL_STAGES):
-        # Haar-random 2×2 unitary via QR of complex Gaussian matrix
-        Z = rng.standard_normal((2, 2)) + 1j * rng.standard_normal((2, 2))
-        Q, R = np.linalg.qr(Z)
-        D = np.diag(R.diagonal() / np.abs(R.diagonal()))
-        U_np = Q @ D
-        U = torch.tensor(U_np, dtype=DTYPE)
-        rho = normalize_density(U @ rho @ U.conj().T)
+        # Haar-random 2x2 unitary via torch QR of a complex Gaussian matrix.
+        z_real = torch.randn((2, 2), generator=generator, dtype=REAL_DTYPE)
+        z_imag = torch.randn((2, 2), generator=generator, dtype=REAL_DTYPE)
+        z = torch.complex(z_real, z_imag).to(DTYPE)
+        q, r = torch.linalg.qr(z)
+        phases = torch.diagonal(r) / torch.abs(torch.diagonal(r))
+        u = q @ torch.diag(phases)
+        rho = normalize_density(u @ rho @ u.conj().T)
 
         bvec = bloch_vec(rho)
         ent = von_neumann_entropy(rho)
@@ -430,10 +423,10 @@ def run_random_engine(
         rho00 = complex(rho[0, 0].item())
         holonomy_angles.append(math.atan2(rho00.imag, rho00.real))
 
-    bloch_traj_arr = np.array(bloch_traj, dtype=np.float64)
-    entropy_traj_arr = np.array(entropy_traj, dtype=np.float64)
-    increments = np.diff(np.unwrap(holonomy_angles))
-    holonomy_phase = float(np.sum(increments))
+    bloch_traj_arr = torch.stack(bloch_traj).to(REAL_DTYPE)
+    entropy_traj_arr = torch.tensor(entropy_traj, dtype=REAL_DTYPE)
+    increments = torch.diff(unwrap_angles(holonomy_angles))
+    holonomy_phase = float(increments.sum().item())
 
     return {
         "bloch_trajectory": bloch_traj_arr,
@@ -457,8 +450,8 @@ def run_identity_engine(rho_input: torch.Tensor) -> dict[str, Any]:
     bvec = bloch_vec(rho)
     ent = von_neumann_entropy(rho)
 
-    bloch_traj = np.tile(bvec, (N_TOTAL_STAGES, 1))  # (32, 3), constant
-    entropy_traj = np.full(N_TOTAL_STAGES, ent, dtype=np.float64)
+    bloch_traj = bvec.repeat((N_TOTAL_STAGES, 1))  # (32, 3), constant
+    entropy_traj = torch.full((N_TOTAL_STAGES,), ent, dtype=REAL_DTYPE)
     holonomy_phase = 0.0
 
     return {
@@ -476,7 +469,7 @@ def run_identity_engine(rho_input: torch.Tensor) -> dict[str, Any]:
 def extract_features(
     e1_result: dict[str, Any],
     e2_result: dict[str, Any],
-) -> np.ndarray:
+) -> torch.Tensor:
     """
     Build feature vector from two engine trajectory outputs.
 
@@ -489,15 +482,15 @@ def extract_features(
       Engine 2 cumulative holonomy phase: 1
       Total: 258
     """
-    feat = np.concatenate([
+    feat = torch.cat([
         e1_result["bloch_trajectory"].flatten(),     # 96
         e2_result["bloch_trajectory"].flatten(),     # 96
         e1_result["entropy_trajectory"],             # 32
         e2_result["entropy_trajectory"],             # 32
-        [e1_result["holonomy_phase"]],               # 1
-        [e2_result["holonomy_phase"]],               # 1
+        torch.tensor([e1_result["holonomy_phase"]], dtype=REAL_DTYPE),  # 1
+        torch.tensor([e2_result["holonomy_phase"]], dtype=REAL_DTYPE),  # 1
     ])
-    return feat.astype(np.float32)  # float32 for MLP
+    return feat.to(MLP_DTYPE)  # float32 for MLP
 
 
 FEATURE_DIM = 96 + 96 + 32 + 32 + 1 + 1  # = 258
@@ -523,10 +516,10 @@ class ReadoutMLP(nn.Module):
 
 
 def train_and_evaluate(
-    X_train: np.ndarray,
-    y_train: np.ndarray,
-    X_test: np.ndarray,
-    y_test: np.ndarray,
+    X_train: torch.Tensor,
+    y_train: torch.Tensor,
+    X_test: torch.Tensor,
+    y_test: torch.Tensor,
     input_dim: int,
     model_seed: int = 0,
     n_epochs: int = N_EPOCHS,
@@ -542,10 +535,10 @@ def train_and_evaluate(
     optimizer = optim.Adam(model.parameters(), lr=lr)
     criterion = nn.CrossEntropyLoss()
 
-    X_tr = torch.tensor(X_train, dtype=torch.float32)
-    y_tr = torch.tensor(y_train, dtype=torch.long)
-    X_te = torch.tensor(X_test, dtype=torch.float32)
-    y_te = torch.tensor(y_test, dtype=torch.long)
+    X_tr = X_train.to(dtype=MLP_DTYPE)
+    y_tr = y_train.to(dtype=torch.long)
+    X_te = X_test.to(dtype=MLP_DTYPE)
+    y_te = y_test.to(dtype=torch.long)
 
     loss_curve = []
     train_acc_curve = []
@@ -636,14 +629,8 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
     return value
 
 
@@ -653,15 +640,13 @@ def as_jsonable(value: Any) -> Any:
 
 def main() -> int:
     t0 = time.time()
-    rng_global = np.random.default_rng(RANDOM_SEED)
-
     # ------------------------------------------------------------------
     # 1. Generate 200 input states with quadrant labels
     # ------------------------------------------------------------------
     print("Generating input states...")
     states, labels, bloch_vecs = generate_input_states(N_SAMPLES, seed=RANDOM_SEED)
-    labels_arr = np.array(labels, dtype=np.int64)
-    class_counts = [int(np.sum(labels_arr == c)) for c in range(N_CLASSES)]
+    labels_arr = torch.tensor(labels, dtype=torch.long)
+    class_counts = [int((labels_arr == c).sum().item()) for c in range(N_CLASSES)]
     print(f"  Class distribution: {class_counts}")
 
     four_class_task_defined = True
@@ -676,7 +661,7 @@ def main() -> int:
     identity_features = []
     random_features = []
 
-    rng_rand = np.random.default_rng(RANDOM_SEED + 1)
+    rng_rand = torch.Generator().manual_seed(RANDOM_SEED + 1)
 
     for i, rho_input in enumerate(states):
         if i % 50 == 0:
@@ -703,10 +688,10 @@ def main() -> int:
         r2 = run_random_engine(rho_input, rng_rand)
         random_features.append(extract_features(r1, r2))
 
-    engine_features = np.array(engine_features, dtype=np.float32)   # (200, 258)
-    identity_features = np.array(identity_features, dtype=np.float32)
-    random_features = np.array(random_features, dtype=np.float32)
-    bloch_raw = bloch_vecs.astype(np.float32)                        # (200, 3)
+    engine_features = torch.stack(engine_features).to(MLP_DTYPE)   # (200, 258)
+    identity_features = torch.stack(identity_features).to(MLP_DTYPE)
+    random_features = torch.stack(random_features).to(MLP_DTYPE)
+    bloch_raw = bloch_vecs.to(MLP_DTYPE)                            # (200, 3)
 
     feature_dim_actual = engine_features.shape[1]
     engine_feature_dim_correct = feature_dim_actual == FEATURE_DIM
@@ -727,8 +712,8 @@ def main() -> int:
     y_tr = labels_arr[:N_TRAIN]
     y_te = labels_arr[N_TRAIN:]
 
-    train_class_counts = [int(np.sum(y_tr == c)) for c in range(N_CLASSES)]
-    test_class_counts = [int(np.sum(y_te == c)) for c in range(N_CLASSES)]
+    train_class_counts = [int((y_tr == c).sum().item()) for c in range(N_CLASSES)]
+    test_class_counts = [int((y_te == c).sum().item()) for c in range(N_CLASSES)]
     print(f"  Train class distribution: {train_class_counts}")
     print(f"  Test class distribution:  {test_class_counts}")
 
@@ -760,8 +745,8 @@ def main() -> int:
     )
 
     print("Training shuffled-labels graveyard (engine features, shuffled labels)...")
-    rng_shuf = np.random.default_rng(RANDOM_SEED + 2)
-    y_tr_shuffled = rng_shuf.permutation(y_tr)
+    rng_shuf = torch.Generator().manual_seed(RANDOM_SEED + 2)
+    y_tr_shuffled = y_tr[torch.randperm(len(y_tr), generator=rng_shuf)]
     shuffled_result = train_and_evaluate(
         X_tr_eng, y_tr_shuffled, X_te_eng, y_te,
         input_dim=feature_dim_actual, model_seed=4, label="shuffled_labels_mlp"
@@ -857,8 +842,8 @@ def main() -> int:
     # Boundary
     boundary = {
         "feature_extraction_pipeline_runs_without_nan": {
-            "pass": bool(np.isfinite(engine_features).all()),
-            "n_nan": int(np.sum(~np.isfinite(engine_features))),
+            "pass": bool(torch.isfinite(engine_features).all().item()),
+            "n_nan": int((~torch.isfinite(engine_features)).sum().item()),
         },
         "type1_type2_topologies_cited": {
             "pass": True,

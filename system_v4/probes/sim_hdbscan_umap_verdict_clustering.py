@@ -15,6 +15,8 @@ import os
 import glob
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "hdbscan": {"tried": False, "used": False, "reason": ""},
     "umap": {"tried": False, "used": False, "reason": ""},

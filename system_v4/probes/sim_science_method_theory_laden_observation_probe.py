@@ -14,11 +14,32 @@ Chirality: the negative result IS the canonical result here.
 """
 import os, sys
 classification = "classical_baseline"  # auto-backfill
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this science-method probe is a "
+        "local comparator/control surface with optional supportive tooling; "
+        "it does not promote a nonclassical, canonical, bridge, axis-level, "
+        "or formal proof claim."
+    ),
+]
+
 sys.path.insert(0, os.path.dirname(__file__))
 from _sci_method_common import new_manifest, write_results, all_pass
 
-TOOL_MANIFEST = new_manifest()
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_MANIFEST = {
+    "python_stdlib": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive local control flow and bounded classical science-method checks",
+    },
+    "numpy": {
+        "tried": False,
+        "used": False,
+        "reason": "supportive optional feature extraction carrier when installed",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {"python_stdlib": "supportive", "numpy": None}
 
 try:
     import numpy as np

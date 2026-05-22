@@ -2,6 +2,8 @@
 """Non-commutativity: BCH expansion exp(A)exp(B) != exp(A+B) when [A,B]!=0."""
 import json, os, sympy as sp
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True,
               "reason": "Baker-Campbell-Hausdorff must be expanded symbolically to witness the [A,B]/2 second-order term; any float truncation collapses the commutator into roundoff — sympy exact arithmetic is the only way to prove exp(A)exp(B) - exp(A+B) has nonzero leading term."},

@@ -16,6 +16,8 @@ Supportive: sympy (Poisson bracket Jacobi identity verification)
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

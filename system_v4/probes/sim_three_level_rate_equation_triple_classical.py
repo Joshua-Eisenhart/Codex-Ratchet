@@ -15,6 +15,15 @@ from scipy.integrate import solve_ivp
 
 classification = "classical_baseline"
 
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for sim_three_level_rate_equation_triple_classical; it does not promote a "
+        "nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": "n/a"},

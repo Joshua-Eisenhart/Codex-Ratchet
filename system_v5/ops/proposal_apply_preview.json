@@ -5,19 +5,19 @@
     {
       "proposal_family": "c1",
       "path": "system_v5/ops/c1_classification_proposals.json",
-      "row_count": 8507,
+      "row_count": 1735,
       "next_action": "owner_review_required_before_any_source_edit"
     },
     {
       "proposal_family": "c4",
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 508,
-      "next_action": "owner_review_required_before_any_source_edit"
+      "row_count": 231,
+      "next_action": "review_required_before_source_edit; 0 simple classical candidates, 231 classification_or_stage_review candidates"
     },
     {
       "proposal_family": "c6",
       "path": "system_v5/ops/c6_loadbearing_report.json",
-      "row_count": 1462,
+      "row_count": 0,
       "next_action": "owner_review_required_before_any_source_edit"
     }
   ],
@@ -25,7 +25,15 @@
     "c1": {
       "present": true,
       "path": "system_v5/ops/c1_classification_proposals.json",
-      "row_count": 8507,
+      "row_count": 1735,
+      "proposal_kind_counts": {
+        "unknown": 1735
+      },
+      "runner_class_counts": {
+        "bridge": 562,
+        "classical": 13,
+        "nonclassical": 1160
+      },
       "sample": [
         {
           "sim": "system_v4/probes/sim_a1_homotopy_motivic_filtration.py",
@@ -85,36 +93,6 @@
           "rationale": "nonclassical/bridge runner class or load-bearing tool evidence",
           "load_bearing_tools": [
             "sympy",
-            "z3"
-          ],
-          "manifest_tools": [
-            "clifford",
-            "cvc5",
-            "e3nn",
-            "geomstats",
-            "gudhi",
-            "pyg",
-            "pytorch",
-            "rustworkx",
-            "sympy",
-            "toponetx",
-            "xgi",
-            "z3"
-          ]
-        },
-        {
-          "sim": "system_v4/probes/sim_arrow_of_time_l1_l3_asymmetry.py",
-          "runner_class": "nonclassical",
-          "runner_class_reason": "nonclassical_tool_reference",
-          "proposed_classification": "canonical",
-          "confidence": "review_required",
-          "rationale": "nonclassical/bridge runner class or load-bearing tool evidence",
-          "load_bearing_tools": [
-            "clifford",
-            "pytorch",
-            "rustworkx",
-            "sympy",
-            "xgi",
             "z3"
           ],
           "manifest_tools": [
@@ -472,39 +450,45 @@
           "rationale": "nonclassical/bridge runner class or load-bearing tool evidence",
           "load_bearing_tools": [],
           "manifest_tools": []
+        },
+        {
+          "sim": "system_v4/probes/sim_autograd_ntk.py",
+          "runner_class": "nonclassical",
+          "runner_class_reason": "nonclassical_tool_reference",
+          "proposed_classification": "canonical",
+          "confidence": "review_required",
+          "rationale": "nonclassical/bridge runner class or load-bearing tool evidence",
+          "load_bearing_tools": [],
+          "manifest_tools": []
         }
       ]
     },
     "c4": {
       "present": true,
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 508,
+      "row_count": 231,
+      "proposal_kind_counts": {
+        "classification_or_stage_review_required": 231
+      },
+      "runner_class_counts": {
+        "bridge": 139,
+        "classical": 22,
+        "nonclassical": 56,
+        "unknown": 14
+      },
       "sample": [
         {
-          "sim": "system_v4/probes/sim_adams_spectral_sequence_constraint_canonical.py",
+          "sim": "system_v4/probes/sim_arrow_of_time_l1_l3_asymmetry.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
-          "runner_class": "classical",
+          "runner_class": "nonclassical",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
-          "sim": "system_v4/probes/sim_affine_grassmannian_schubert_cell_constraint_canonical.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "classical",
-          "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
-          "sim": "system_v4/probes/sim_araki_lieb_z3_canonical.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "classical",
-          "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
@@ -512,8 +496,19 @@
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
           "runner_class": "bridge",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [
+            {
+              "line": 116,
+              "kind": "result_literal_classification",
+              "emitted": "canonical"
+            }
+          ],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
@@ -521,8 +516,19 @@
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
           "runner_class": "bridge",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [
+            {
+              "line": 714,
+              "kind": "result_literal_classification",
+              "emitted": "canonical"
+            }
+          ],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
@@ -530,17 +536,13 @@
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
           "runner_class": "bridge",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
-          "sim": "system_v4/probes/sim_bishop_gromov_constraint_canonical.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "classical",
-          "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
@@ -548,8 +550,19 @@
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
           "runner_class": "bridge",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [
+            {
+              "line": 443,
+              "kind": "result_literal_classification",
+              "emitted": "canonical"
+            }
+          ],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
@@ -557,8 +570,19 @@
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
           "runner_class": "bridge",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [
+            {
+              "line": 480,
+              "kind": "result_literal_classification",
+              "emitted": "canonical"
+            }
+          ],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
@@ -566,8 +590,19 @@
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
           "runner_class": "bridge",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [
+            {
+              "line": 1280,
+              "kind": "result_literal_classification",
+              "emitted": "canonical"
+            }
+          ],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
@@ -575,8 +610,13 @@
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
           "runner_class": "bridge",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
@@ -584,8 +624,13 @@
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
           "runner_class": "bridge",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
@@ -593,71 +638,153 @@
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
           "runner_class": "bridge",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
-          "sim": "system_v4/probes/sim_c2_c4_independence_crosscheck.py",
+          "sim": "system_v4/probes/sim_carnot_two_bath_four_stroke_work_heat_bounds.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
-          "runner_class": "classical",
+          "runner_class": "unknown",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
-          "sim": "system_v4/probes/sim_c2_topology_remaining.py",
+          "sim": "system_v4/probes/sim_clifford_global_relative_phase_vector_rotation_nonpole_sweep.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
-          "runner_class": "classical",
+          "runner_class": "nonclassical",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
-          "sim": "system_v4/probes/sim_carnot_two_reservoir_stroke_order_work_sign.py",
+          "sim": "system_v4/probes/sim_clifford_holo_dirac_triple_coexistence.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
-          "runner_class": "classical",
+          "runner_class": "bridge",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
-          "sim": "system_v4/probes/sim_chiral_density_bookkeeping.py",
+          "sim": "system_v4/probes/sim_clifford_hopf_outer_rotation_readout.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
-          "runner_class": "classical",
+          "runner_class": "nonclassical",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
-          "sim": "system_v4/probes/sim_cl3_basis.py",
+          "sim": "system_v4/probes/sim_clifford_hopf_weyl_fiber_horizontal_base_tangent_inner_product.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
-          "runner_class": "classical",
+          "runner_class": "nonclassical",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
-          "sim": "system_v4/probes/sim_cl6_chirality.py",
+          "sim": "system_v4/probes/sim_clifford_hopf_weyl_vertical_horizontal_tangent_projection_sweep.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
-          "runner_class": "classical",
+          "runner_class": "nonclassical",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         },
         {
-          "sim": "system_v4/probes/sim_cl6_spin_group_embedding.py",
+          "sim": "system_v4/probes/sim_contact_holo_weyl_bridge_claims_canonical.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
-          "runner_class": "classical",
+          "runner_class": "bridge",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
           "current_divergence_log": null,
-          "proposed_action": "Add a non-empty divergence_log explaining the classical baseline contrast, or reclassify through the C1 proposal surface if this is not a classical baseline.",
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_contact_holo_weyl_triple_coexistence.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "bridge",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
+          "current_divergence_log": null,
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_cvc5_bare_pauli_no_carrier_fiber_base_metric_unsat.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "nonclassical",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
+          "current_divergence_log": null,
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_cvc5_hopf_torus_readout_vector_separation.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "nonclassical",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
+          "current_divergence_log": null,
+          "classification_conflicts": [],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
           "mode": "dry_run_no_source_edits"
         }
       ]
@@ -665,169 +792,10 @@
     "c6": {
       "present": true,
       "path": "system_v5/ops/c6_loadbearing_report.json",
-      "row_count": 1462,
-      "sample": [
-        {
-          "sim": "system_v4/probes/sim_3qubit_bridge_prototype.py",
-          "tool": "pytorch",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_3qubit_full_cascade.py",
-          "tool": "pytorch",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_4qubit_cascade.py",
-          "tool": "pytorch",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_L11_placement_admissibility.py",
-          "tool": "z3",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_adams_spectral_sequence_constraint_canonical.py",
-          "tool": "cvc5",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_adversarial_ratchet.py",
-          "tool": "pytorch",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_affine_grassmannian_schubert_cell_constraint_canonical.py",
-          "tool": "cvc5",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_araki_lieb_z3_canonical.py",
-          "tool": "z3",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_assoc_bundle_associated_bundle_coupling_to_g_tower.py",
-          "tool": "sympy",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_axiom_n01_noncommutation_generic.py",
-          "tool": "pytorch",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_axiom_n01_noncommutation_generic.py",
-          "tool": "sympy",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
-          "tool": "scipy",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
-          "tool": "pytorch",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
-          "tool": "clifford",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
-          "tool": "torch_ga",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
-          "tool": "rustworkx",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
-          "tool": "xgi",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
-          "tool": "toponetx",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
-          "tool": "gudhi",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        },
-        {
-          "sim": "system_v4/probes/sim_axis0_attractor_basin_boundary.py",
-          "tool": "sympy",
-          "bucket": "inconclusive_needs_owner",
-          "result_path": null,
-          "tool_integration_depth": null,
-          "evidence": "no_result_tool_evidence"
-        }
-      ]
+      "row_count": 0,
+      "proposal_kind_counts": {},
+      "runner_class_counts": {},
+      "sample": []
     }
   }
 }

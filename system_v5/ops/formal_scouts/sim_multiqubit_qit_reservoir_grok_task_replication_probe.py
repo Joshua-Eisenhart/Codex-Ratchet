@@ -9,7 +9,7 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
+import torch
 import z3
 
 import engine_v6_proper_multiqubit_reference as v6
@@ -17,14 +17,14 @@ from sim_multiqubit_qit_reservoir_global_structure_probe import (
     CLASS_NAMES as _OLD_CLASS_NAMES,
     DTYPE,
     classifier_accuracy,
-    entropy_np,
     full_static_projection_features,
     kron_all,
     local_bloch_features,
-    partial_trace_np,
+    partial_trace_torch,
     random_unitary_2,
     reservoir_features,
     structural_static_features,
+    entropy_torch,
 )
 
 
@@ -44,69 +44,108 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing v6 frozen reservoir feature extraction via imported reference"},
-    "sklearn": {"tried": True, "used": True, "reason": "load-bearing linear readout and baseline classifiers via imported helpers"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing Grok-task density construction and marginal audit"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing task density construction and v6 frozen reservoir feature extraction"},
+    "sklearn": {"tried": False, "used": False, "reason": "not used; imported classifier helper is torch ridge readout"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite metric-ordering witness"},
-    "engine_v6_reference": {"tried": True, "used": True, "reason": "load-bearing repo-grounded v6 candidate"},
+    "engine_v6_reference": {"tried": True, "used": True, "reason": "supportive repo-grounded v6 candidate"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'pytorch': 'load_bearing',
+    'sklearn': None,
+    'z3': 'load_bearing',
+    'engine_v6_reference': 'supportive',
+}
 
 CLASS_NAMES = ["product", "ghz", "w", "haar"]
 N_PER_CLASS = {4: 24, 8: 12}
 
 
-def ghz_density(n_qubits: int, phase: float) -> np.ndarray:
+def _complex_normal(shape: tuple[int, ...], generator: torch.Generator) -> torch.Tensor:
+    real = torch.randn(shape, generator=generator, dtype=torch.float32)
+    imag = torch.randn(shape, generator=generator, dtype=torch.float32)
+    return torch.complex(real, imag).to(DTYPE)
+
+
+def _pure_density(psi: torch.Tensor) -> torch.Tensor:
+    psi = psi.to(DTYPE)
+    return torch.outer(psi, psi.conj())
+
+
+def _random_product_density(n_qubits: int, generator: torch.Generator) -> torch.Tensor:
+    states = []
+    for _ in range(n_qubits):
+        psi = _complex_normal((2,), generator)
+        states.append(psi / torch.linalg.vector_norm(psi))
+    psi_all = kron_all(states)
+    return _pure_density(psi_all)
+
+
+def ghz_density(n_qubits: int, phase: float) -> torch.Tensor:
     d = 2**n_qubits
-    psi = np.zeros(d, dtype=DTYPE)
+    psi = torch.zeros(d, dtype=DTYPE)
     psi[0] = 1.0 / math.sqrt(2)
-    psi[-1] = np.exp(1j * phase) / math.sqrt(2)
-    return np.outer(psi, psi.conj()).astype(DTYPE)
+    psi[-1] = complex(math.cos(phase), math.sin(phase)) / math.sqrt(2)
+    return _pure_density(psi)
 
 
-def locally_scramble(rho: np.ndarray, n_qubits: int, rng: np.random.Generator) -> np.ndarray:
-    u = kron_all([random_unitary_2(rng) for _ in range(n_qubits)])
+def _w_density(n_qubits: int) -> torch.Tensor:
+    d = 2**n_qubits
+    psi = torch.zeros(d, dtype=DTYPE)
+    amp = 1.0 / math.sqrt(float(n_qubits))
+    for q in range(n_qubits):
+        psi[1 << q] = amp
+    return _pure_density(psi)
+
+
+def _random_pure_density(n_qubits: int, generator: torch.Generator) -> torch.Tensor:
+    psi = _complex_normal((2**n_qubits,), generator)
+    return _pure_density(psi / torch.linalg.vector_norm(psi))
+
+
+def locally_scramble(rho: torch.Tensor, n_qubits: int, generator: torch.Generator) -> torch.Tensor:
+    u = kron_all([random_unitary_2(generator) for _ in range(n_qubits)])
     out = u @ rho @ u.conj().T
     out = (out + out.conj().T) / 2
-    return (out / np.trace(out).real).astype(DTYPE)
+    return (out / torch.trace(out).real).to(DTYPE)
 
 
-def class_density(label: int, n_qubits: int, rng: np.random.Generator) -> np.ndarray:
+def class_density(label: int, n_qubits: int, generator: torch.Generator) -> torch.Tensor:
     if label == 0:
-        rho = v6.random_product_state(n_qubits, rng)
+        rho = _random_product_density(n_qubits, generator)
     elif label == 1:
-        rho = ghz_density(n_qubits, rng.uniform(0, 2 * math.pi))
+        phase = float((2 * math.pi * torch.rand((), generator=generator, dtype=torch.float32)).item())
+        rho = ghz_density(n_qubits, phase)
     elif label == 2:
-        rho = v6.w_state(n_qubits).astype(DTYPE)
+        rho = _w_density(n_qubits)
     elif label == 3:
-        rho = v6.random_pure_nqubit_state(n_qubits, rng).astype(DTYPE)
+        rho = _random_pure_density(n_qubits, generator)
     else:
         raise ValueError(label)
-    return locally_scramble(rho.astype(DTYPE), n_qubits, rng)
+    return locally_scramble(rho.to(DTYPE), n_qubits, generator)
 
 
-def local_spectrum_features(rhos: np.ndarray, n_qubits: int) -> np.ndarray:
+def local_spectrum_features(rhos: torch.Tensor, n_qubits: int) -> torch.Tensor:
     rows = []
     for rho in rhos:
         feat = []
         for q in range(n_qubits):
-            red = partial_trace_np(rho, n_qubits, [q])
-            vals = np.sort(np.linalg.eigvalsh((red + red.conj().T) / 2).real)
-            feat.extend([float(vals[0]), float(vals[1]), entropy_np(red)])
-        rows.append(feat)
-    return np.asarray(rows, dtype=float)
+            red = partial_trace_torch(rho, n_qubits, [q])
+            vals = torch.sort(torch.linalg.eigvalsh((red + red.conj().T) / 2).real).values
+            feat.extend([float(vals[0].item()), float(vals[1].item()), entropy_torch(red)])
+        rows.append(torch.tensor(feat, dtype=torch.float32))
+    return torch.stack(rows)
 
 
 def run_for_n(n_qubits: int) -> dict[str, Any]:
-    rng = np.random.default_rng(160000 + n_qubits)
+    generator = torch.Generator().manual_seed(160000 + n_qubits)
     rhos = []
     labels = []
     for label in range(len(CLASS_NAMES)):
         for _ in range(N_PER_CLASS[n_qubits]):
-            rhos.append(class_density(label, n_qubits, rng))
+            rhos.append(class_density(label, n_qubits, generator))
             labels.append(label)
-    rhos_arr = np.stack(rhos)
-    y = np.asarray(labels, dtype=int)
+    rhos_arr = torch.stack(rhos)
+    y = torch.tensor(labels, dtype=torch.long)
     local_bloch = local_bloch_features(rhos_arr, n_qubits)
     local_spectrum = local_spectrum_features(rhos_arr, n_qubits)
     structural = structural_static_features(rhos_arr, n_qubits)
@@ -175,7 +214,11 @@ def main() -> int:
         "grok_local_blind_reading_is_audited_not_assumed": {
             "local_spectrum_accuracy_by_n": {str(row["n_qubits"]): row["metrics"]["local_spectrum_accuracy"] for row in rows},
             "supported_by_current_cells": {str(row["n_qubits"]): row["grok_local_blind_reading_supported"] for row in rows},
-            "pass": True,
+            "pass": all(row["grok_local_blind_reading_supported"] for row in rows),
+            "reason": (
+                "This translated task is not local-blind when local-spectrum features solve or match it; "
+                "that leakage blocks treating reservoir parity as a Grok-task replication success."
+            ),
         },
         "static_global_baselines_are_reported_not_hidden": {
             "structural_static_accuracy_by_n": {str(row["n_qubits"]): row["metrics"]["structural_static_accuracy"] for row in rows},
@@ -192,6 +235,7 @@ def main() -> int:
         "old_class_names_not_reused": {"old_classes": list(_OLD_CLASS_NAMES), "new_classes": CLASS_NAMES, "pass": list(_OLD_CLASS_NAMES) != CLASS_NAMES},
     }
     all_pass = all(row["pass"] for row in positive.values()) and all(row["pass"] for row in graveyards.values()) and all(row["pass"] for row in boundary.values())
+    checks = {**positive, **graveyards, **boundary}
     result = {
         "schema": "FORMAL_SCOUT_RESULT_v1",
         "name": NAME,
@@ -210,7 +254,7 @@ def main() -> int:
             "Does not prove learned dynamics.",
             "Does not hide static global baselines or local-spectrum leakage.",
         ],
-        "blockers": [],
+        "blockers": [key for key, row in checks.items() if row.get("pass") is not True],
         "elapsed_seconds": time.time() - started,
         "all_pass": all_pass,
     }

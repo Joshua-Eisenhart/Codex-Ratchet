@@ -16,6 +16,8 @@ cvc5 proves the typing and rank constraints:
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

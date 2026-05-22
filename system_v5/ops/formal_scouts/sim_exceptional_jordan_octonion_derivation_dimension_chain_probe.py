@@ -13,7 +13,6 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 from clifford import Cl
-import numpy as np
 import sympy as sp
 import torch
 import z3
@@ -34,8 +33,7 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing octonion and Jordan structure tensors plus constraint matrices"},
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing SVD/rank/nullity computation for derivation constraints"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing octonion and Jordan structure tensors, constraint matrices, SVD/rank/nullity computation"},
     "clifford": {"tried": True, "used": True, "reason": "load-bearing Cl(0,7) signature sanity check"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing independent dimension arithmetic for the exceptional root count"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing non-associativity and dimension-chain checks"},
@@ -44,12 +42,13 @@ TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
 
 DIM_O = 8
 DIM_J = 27
+FLOAT_DTYPE = torch.float64
 
 
-def octonion_structure() -> np.ndarray:
-    table = np.zeros((DIM_O, DIM_O, DIM_O), dtype=np.float64)
-    table[0, :, :] = np.eye(DIM_O)
-    table[:, 0, :] = np.eye(DIM_O)
+def octonion_structure() -> torch.Tensor:
+    table = torch.zeros((DIM_O, DIM_O, DIM_O), dtype=FLOAT_DTYPE)
+    table[0, :, :] = torch.eye(DIM_O, dtype=FLOAT_DTYPE)
+    table[:, 0, :] = torch.eye(DIM_O, dtype=FLOAT_DTYPE)
     cycles = [
         (1, 2, 3),
         (1, 4, 5),
@@ -74,18 +73,18 @@ def octonion_structure() -> np.ndarray:
 O_STRUCT = octonion_structure()
 
 
-def omul(a: np.ndarray, b: np.ndarray) -> np.ndarray:
-    return np.einsum("i,j,ijk->k", a, b, O_STRUCT)
+def omul(a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
+    return torch.einsum("i,j,ijk->k", a, b, O_STRUCT)
 
 
-def oconj(a: np.ndarray) -> np.ndarray:
-    out = a.copy()
+def oconj(a: torch.Tensor) -> torch.Tensor:
+    out = a.clone()
     out[1:] *= -1
     return out
 
 
-def basis_element(index: int) -> np.ndarray:
-    mat = np.zeros((3, 3, DIM_O), dtype=np.float64)
+def basis_element(index: int) -> torch.Tensor:
+    mat = torch.zeros((3, 3, DIM_O), dtype=FLOAT_DTYPE)
     if index < 3:
         mat[index, index, 0] = 1.0
         return mat
@@ -93,7 +92,7 @@ def basis_element(index: int) -> np.ndarray:
     pair_idx, component = divmod(slot, DIM_O)
     pairs = [(0, 1), (0, 2), (1, 2)]
     i, j = pairs[pair_idx]
-    unit = np.zeros(DIM_O, dtype=np.float64)
+    unit = torch.zeros(DIM_O, dtype=FLOAT_DTYPE)
     unit[component] = 1.0
     mat[i, j] = unit
     mat[j, i] = oconj(unit)
@@ -103,8 +102,8 @@ def basis_element(index: int) -> np.ndarray:
 BASIS = [basis_element(idx) for idx in range(DIM_J)]
 
 
-def flatten(mat: np.ndarray) -> np.ndarray:
-    out = np.zeros(DIM_J, dtype=np.float64)
+def flatten(mat: torch.Tensor) -> torch.Tensor:
+    out = torch.zeros(DIM_J, dtype=FLOAT_DTYPE)
     out[0] = mat[0, 0, 0]
     out[1] = mat[1, 1, 0]
     out[2] = mat[2, 2, 0]
@@ -116,36 +115,36 @@ def flatten(mat: np.ndarray) -> np.ndarray:
     return out
 
 
-def matmul_oct(a: np.ndarray, b: np.ndarray) -> np.ndarray:
-    out = np.zeros((3, 3, DIM_O), dtype=np.float64)
+def matmul_oct(a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
+    out = torch.zeros((3, 3, DIM_O), dtype=FLOAT_DTYPE)
     for i in range(3):
         for j in range(3):
-            acc = np.zeros(DIM_O, dtype=np.float64)
+            acc = torch.zeros(DIM_O, dtype=FLOAT_DTYPE)
             for k in range(3):
                 acc += omul(a[i, k], b[k, j])
             out[i, j] = acc
     return out
 
 
-def jordan_product(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+def jordan_product(a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
     return 0.5 * (matmul_oct(a, b) + matmul_oct(b, a))
 
 
-def jordan_structure_tensor() -> np.ndarray:
-    tensor = np.zeros((DIM_J, DIM_J, DIM_J), dtype=np.float64)
+def jordan_structure_tensor() -> torch.Tensor:
+    tensor = torch.zeros((DIM_J, DIM_J, DIM_J), dtype=FLOAT_DTYPE)
     for i, a in enumerate(BASIS):
         for j, b in enumerate(BASIS):
             tensor[i, j] = flatten(jordan_product(a, b))
     return tensor
 
 
-def derivation_constraint_matrix(jstruct: np.ndarray, fixed_idempotents: list[int] | None = None) -> torch.Tensor:
+def derivation_constraint_matrix(jstruct: torch.Tensor, fixed_idempotents: list[int] | None = None) -> torch.Tensor:
     rows = []
     for i in range(DIM_J):
         for j in range(i, DIM_J):
             prod = jstruct[i, j]
             for out in range(DIM_J):
-                row = np.zeros((DIM_J, DIM_J), dtype=np.float64)
+                row = torch.zeros((DIM_J, DIM_J), dtype=FLOAT_DTYPE)
                 # D(x_i o x_j)
                 for m in range(DIM_J):
                     row[out, m] += prod[m]
@@ -158,10 +157,10 @@ def derivation_constraint_matrix(jstruct: np.ndarray, fixed_idempotents: list[in
                 rows.append(row.reshape(-1))
     for fixed in fixed_idempotents or []:
         for out in range(DIM_J):
-            row = np.zeros((DIM_J, DIM_J), dtype=np.float64)
+            row = torch.zeros((DIM_J, DIM_J), dtype=FLOAT_DTYPE)
             row[out, fixed] = 1.0
             rows.append(row.reshape(-1))
-    return torch.tensor(np.vstack(rows), dtype=torch.float64)
+    return torch.stack(rows)
 
 
 def nullity(matrix: torch.Tensor, tol: float = 1e-9) -> dict[str, Any]:
@@ -185,12 +184,12 @@ def idempotent_checks() -> dict[str, Any]:
     e = [BASIS[0], BASIS[1], BASIS[2]]
     errors = []
     for idx in range(3):
-        errors.append(float(np.max(np.abs(jordan_product(e[idx], e[idx]) - e[idx]))))
+        errors.append(float(torch.max(torch.abs(jordan_product(e[idx], e[idx]) - e[idx])).item()))
     for i in range(3):
         for j in range(i + 1, 3):
-            errors.append(float(np.max(np.abs(jordan_product(e[i], e[j])))))
+            errors.append(float(torch.max(torch.abs(jordan_product(e[i], e[j]))).item()))
     identity = e[0] + e[1] + e[2]
-    errors.append(float(np.max(np.abs(flatten(identity)[:3] - np.ones(3)))))
+    errors.append(float(torch.max(torch.abs(flatten(identity)[:3] - torch.ones(3, dtype=FLOAT_DTYPE))).item()))
     return {"max_error": max(errors), "pass": max(errors) < 1e-12}
 
 
@@ -204,13 +203,13 @@ def clifford_signature_check() -> dict[str, Any]:
 
 
 def nonassociativity_check() -> dict[str, Any]:
-    a = np.zeros(DIM_O)
-    b = np.zeros(DIM_O)
-    c = np.zeros(DIM_O)
+    a = torch.zeros(DIM_O, dtype=FLOAT_DTYPE)
+    b = torch.zeros(DIM_O, dtype=FLOAT_DTYPE)
+    c = torch.zeros(DIM_O, dtype=FLOAT_DTYPE)
     a[1] = b[2] = c[4] = 1.0
     left = omul(omul(a, b), c)
     right = omul(a, omul(b, c))
-    norm = float(np.linalg.norm(left - right))
+    norm = float(torch.linalg.vector_norm(left - right).item())
     solver = z3.Solver()
     n = z3.Real("associator_norm")
     solver.add(n == norm, n > 0)

@@ -9,7 +9,6 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
@@ -21,7 +20,7 @@ import z3
 from sim_multiqubit_qit_reservoir_global_structure_probe import (
     CLASS_NAMES,
     N_PER_CLASS,
-    classifier_accuracy,
+    REAL_DTYPE,
     full_static_projection_features,
     reservoir_features,
     sample_density,
@@ -45,8 +44,7 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing density fixtures and ESN state dynamics"},
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing v6 reservoir feature extraction through imported reference"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing density fixtures, ESN state dynamics, and v6 reservoir feature extraction through imported reference"},
     "sklearn": {"tried": True, "used": True, "reason": "load-bearing readout classifiers for all baselines"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite baseline-order witness"},
 }
@@ -57,28 +55,36 @@ ESN_STATE_DIM = 256
 ESN_INPUT_DIM = 64
 
 
-def task_data() -> tuple[np.ndarray, np.ndarray]:
-    rng = np.random.default_rng(310000 + N_QUBITS)
-    rhos: list[np.ndarray] = []
+def task_data() -> tuple[torch.Tensor, torch.Tensor]:
+    generator = torch.Generator().manual_seed(310000 + N_QUBITS)
+    rhos: list[torch.Tensor] = []
     labels: list[int] = []
     for label in range(len(CLASS_NAMES)):
         for _ in range(N_PER_CLASS[N_QUBITS]):
-            rhos.append(sample_density(label, N_QUBITS, rng))
+            rhos.append(sample_density(label, N_QUBITS, generator))
             labels.append(label)
-    return np.stack(rhos), np.asarray(labels, dtype=int)
+    return torch.stack(rhos), torch.tensor(labels, dtype=torch.long)
 
 
-def readout_accuracy(x: np.ndarray, y: np.ndarray, seed: int, *, shuffle_labels: bool = False) -> float:
-    labels = y.copy()
+def _sklearn_rows(value: Any) -> list[Any]:
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().tolist()
+    return value
+
+
+def readout_accuracy(x: torch.Tensor, y: torch.Tensor, seed: int, *, shuffle_labels: bool = False) -> float:
+    labels = y.detach().cpu().to(dtype=torch.long).clone()
     if shuffle_labels:
-        rng = np.random.default_rng(seed)
-        rng.shuffle(labels)
+        generator = torch.Generator().manual_seed(seed)
+        labels = labels[torch.randperm(labels.numel(), generator=generator)]
+    x_rows = _sklearn_rows(x)
+    y_rows = labels.tolist()
     x_train, x_test, y_train, y_test = train_test_split(
-        x,
-        labels,
+        x_rows,
+        y_rows,
         test_size=0.35,
         random_state=seed,
-        stratify=labels,
+        stratify=y_rows,
     )
     clf = make_pipeline(
         StandardScaler(),
@@ -88,26 +94,30 @@ def readout_accuracy(x: np.ndarray, y: np.ndarray, seed: int, *, shuffle_labels:
     return float(accuracy_score(y_test, clf.predict(x_test)))
 
 
-def esn_features(static_projection: np.ndarray, seed: int) -> np.ndarray:
-    rng = np.random.default_rng(seed)
-    x = static_projection[:, :ESN_INPUT_DIM].astype(float)
-    chunks = np.array_split(x, 16, axis=1)
-    w_in = rng.normal(scale=0.35, size=(ESN_STATE_DIM, max(chunk.shape[1] for chunk in chunks)))
-    w = rng.normal(scale=1.0 / math.sqrt(ESN_STATE_DIM), size=(ESN_STATE_DIM, ESN_STATE_DIM))
-    eigs = np.linalg.eigvals(w)
-    radius = max(float(np.max(np.abs(eigs))), 1e-12)
+def esn_features(static_projection: torch.Tensor, seed: int) -> torch.Tensor:
+    generator = torch.Generator().manual_seed(seed)
+    x = static_projection[:, :ESN_INPUT_DIM].detach().cpu().to(dtype=REAL_DTYPE)
+    chunks = torch.tensor_split(x, 16, dim=1)
+    max_width = max(chunk.shape[1] for chunk in chunks)
+    w_in = torch.randn((ESN_STATE_DIM, max_width), generator=generator, dtype=REAL_DTYPE) * 0.35
+    w = torch.randn((ESN_STATE_DIM, ESN_STATE_DIM), generator=generator, dtype=REAL_DTYPE) * (
+        1.0 / math.sqrt(ESN_STATE_DIM)
+    )
+    eigs = torch.linalg.eigvals(w.to(torch.complex64))
+    radius = eigs.abs().max().real.clamp_min(1e-12)
     w = 0.82 * w / radius
-    states = []
+    states: list[torch.Tensor] = []
     for row in range(x.shape[0]):
-        h = np.zeros(ESN_STATE_DIM, dtype=float)
-        row_states = []
+        h = torch.zeros(ESN_STATE_DIM, dtype=REAL_DTYPE)
+        row_states: list[torch.Tensor] = []
         for chunk in chunks:
-            padded = np.zeros(w_in.shape[1], dtype=float)
+            padded = torch.zeros(max_width, dtype=REAL_DTYPE)
             padded[: chunk.shape[1]] = chunk[row]
-            h = np.tanh(w @ h + w_in @ padded)
-            row_states.append(h.copy())
-        states.append(np.concatenate([np.mean(row_states, axis=0), row_states[-1]]))
-    return np.asarray(states, dtype=float)
+            h = torch.tanh(w @ h + w_in @ padded)
+            row_states.append(h.clone())
+        row_stack = torch.stack(row_states)
+        states.append(torch.cat([row_stack.mean(dim=0), row_states[-1]]))
+    return torch.stack(states).to(dtype=REAL_DTYPE)
 
 
 def run_baselines() -> dict[str, Any]:
@@ -118,7 +128,7 @@ def run_baselines() -> dict[str, Any]:
     esn = esn_features(projected, seed=312000 + N_QUBITS)
     reservoir = reservoir_features(rhos, N_QUBITS)
     metrics = {
-        "structural_static_accuracy": classifier_accuracy(structural, labels, seed=313001),
+        "structural_static_accuracy": readout_accuracy(structural, labels, seed=313001),
         "static_random_projection_accuracy": readout_accuracy(projected, labels, seed=313002),
         "classical_esn_accuracy": readout_accuracy(esn, labels, seed=313003),
         "qit_reservoir_accuracy": readout_accuracy(reservoir, labels, seed=313004),
@@ -141,10 +151,10 @@ def run_baselines() -> dict[str, Any]:
         "samples": int(len(labels)),
         "chance": 1.0 / len(CLASS_NAMES),
         "feature_dims": {
-            "structural_static": int(structural.shape[1]),
-            "static_random_projection": int(projected.shape[1]),
-            "classical_esn": int(esn.shape[1]),
-            "qit_reservoir": int(reservoir.shape[1]),
+        "structural_static": int(structural.shape[1]),
+        "static_random_projection": int(projected.shape[1]),
+        "classical_esn": int(esn.shape[1]),
+        "qit_reservoir": int(reservoir.shape[1]),
         },
         "metrics": metrics,
         "risk_margin_vs_best_classical_static_esn": float(risk_margin),

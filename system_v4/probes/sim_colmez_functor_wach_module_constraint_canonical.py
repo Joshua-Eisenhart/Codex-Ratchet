@@ -16,6 +16,8 @@ Sympy: Wach module formula N(V) = (A_{Q_p} ⊗ D_crys(V))^{φ=p^r}.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

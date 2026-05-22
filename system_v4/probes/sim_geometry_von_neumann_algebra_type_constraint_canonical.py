@@ -12,6 +12,8 @@ cvc5 proves mutual exclusivity and trace properties.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

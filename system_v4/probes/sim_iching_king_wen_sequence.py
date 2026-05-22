@@ -24,6 +24,9 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = [
+    "Classical comparator/control surface only: this runner does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim.",
+]
 
 # Traditional King Wen sequence as decimal values, bottom line = bit 0
 KING_WEN_SEQUENCE = [

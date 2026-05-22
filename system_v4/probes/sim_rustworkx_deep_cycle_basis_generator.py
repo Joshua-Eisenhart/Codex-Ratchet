@@ -9,6 +9,8 @@ set.
 import json, os
 import rustworkx as rx
 
+classification = "canonical"
+
 SCOPE_NOTE = (
     "Cycle basis from rustworkx spans H_1(graph; Z). Membership of a "
     "probe edge in any basis cycle is load-bearing for the admissibility "

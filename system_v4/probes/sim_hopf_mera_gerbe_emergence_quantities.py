@@ -14,6 +14,11 @@ import json, math, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = [
+    "classical-baseline Hopf x MERA x Gerbe emergence-quantity fixture only; "
+    "tests finite scalar/tensor controls without promoting Axis0, bridge, "
+    "GStack, QIT, or nonclassical admission",
+]
 
 H_HOPF_T1 = math.log(2) / 2
 H_HOPF_T2 = math.log(2)
@@ -463,6 +468,7 @@ def main():
 
     summary = {
         "classification": classification,
+        "divergence_log": divergence_log,
         "program": "Hopf×MERA×Gerbe",
         "step": 4,
         "step_name": "emergence_quantities",

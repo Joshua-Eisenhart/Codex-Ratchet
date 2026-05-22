@@ -6,6 +6,8 @@ import os
 
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {
         "tried": True,

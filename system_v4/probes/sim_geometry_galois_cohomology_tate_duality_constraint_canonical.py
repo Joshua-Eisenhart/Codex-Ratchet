@@ -18,6 +18,8 @@ Supportive: sympy (algebraic verification of pairing properties and duality)
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================

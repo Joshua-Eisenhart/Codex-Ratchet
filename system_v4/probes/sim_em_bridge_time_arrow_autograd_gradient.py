@@ -5,6 +5,7 @@ nabla_theta S along trajectory; grad points in positive-entropy direction.
 Doctrine: time = entropy-increasing. user_entropic_monism_doctrine.md
 """
 import json, os
+classification = "tool_lego_fit_probe"
 SCOPE_NOTE = "Bridge: pytorch autograd computes dS/dtheta; time-arrow = entropy gradient direction. user_entropic_monism_doctrine.md"
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
@@ -66,7 +67,7 @@ if __name__ == "__main__":
     pos, neg, bnd = run_positive_tests(), run_negative_tests(), run_boundary_tests()
     all_pass = all(v["pass"] for v in {**pos, **neg, **bnd}.values())
     results = {"name": "sim_em_bridge_time_arrow_autograd_gradient", "scope_note": SCOPE_NOTE,
-               "classification": "canonical", "tool_manifest": TOOL_MANIFEST,
+               "classification": "tool_lego_fit_probe", "tool_manifest": TOOL_MANIFEST,
                "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "all_pass": all_pass}
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

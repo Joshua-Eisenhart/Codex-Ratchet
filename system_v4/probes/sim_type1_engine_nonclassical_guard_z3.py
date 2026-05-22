@@ -21,6 +21,8 @@ Tools: z3 (load_bearing proof layer), cvc5 (cross-verify), sympy (commutation gr
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

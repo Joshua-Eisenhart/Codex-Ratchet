@@ -20,6 +20,11 @@ import os
 import torch
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = [
+    "Generated shell-coupling controls bound this classical baseline without promoting shell coexistence or bridge claims."
+]
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Density matrices as float64 tensors; dephasing + MI computation via eigh+matrix_log; autograd gradient dQ/d(eps); 29-factor product with load-bearing MI component"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph topology not required for direct entropy algebra of Ramsey monochromatic grading and clifford structure"},
@@ -303,6 +308,7 @@ if __name__ == "__main__":
         "name": "sim_coupling_158_29shell_ramsey_classical",
         "description": "Coupling Program #158: 29-shell extension with Ramsey Monochromatic Grading. Q_29 = MI × log(2)^25 × log(3)^3 × log(4)^2; torch+z3 load-bearing; autograd Axis 0.",
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "positive": {k: v for k, v in tests.items() if k.startswith("P")},

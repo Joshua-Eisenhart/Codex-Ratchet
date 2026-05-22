@@ -15,6 +15,8 @@ from torch_geometric.nn import MessagePassing
 from torch_geometric.utils import to_undirected
 from toponetx.classes import CellComplex
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "tensors for MP features"},
     "pyg": {"tried": True, "used": True, "reason": "MessagePassing on the 1-skeleton graph; load-bearing"},

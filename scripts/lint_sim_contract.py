@@ -31,22 +31,86 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
+import two_root_constraints
+
 REPO = Path(__file__).resolve().parent.parent
 PROBES_DIR = REPO / "system_v4" / "probes"
 RESULTS_DIR = PROBES_DIR / "a2_state" / "sim_results"
 FORMAL_SCOUT_RESULTS_DIR = REPO / "system_v5" / "ops" / "formal_scouts" / "results"
 
-VALID_CLASSIFICATIONS = {"classical_baseline", "canonical", "tool_lego_fit_probe", "formal_scout"}
+VALID_CLASSIFICATIONS = {
+    "audit",
+    "canonical",
+    "classical_baseline",
+    "companion_index",
+    "comparison_surface",
+    "controller_audit",
+    "controller_index",
+    "controller_overlay",
+    "controller_queue_audit",
+    "controller_routing_surface",
+    "diagnostic_only",
+    "formal_scout",
+    "supporting",
+    "tool_lego_fit_probe",
+}
 VALID_DEPTHS = {"load_bearing", "supportive", "decorative", None}
 TRANSITIVE_ROLE_VALUES = {"transitive", "upstream", "imported", "delegated", "engine-core", "engine_core"}
+ADMIN_INTERNAL_TOOLS = {
+    "concurrent.futures",
+    "concurrent_futures",
+    "hashlib",
+    "importlib",
+    "json",
+    "pathlib",
+    "python_json",
+    "python_pathlib",
+    "python_re",
+    "python_stdlib",
+    "re",
+    "subprocess",
+}
+INTERNAL_REFERENCE_TOOLS = {
+    "axis0_guard_utils",
+    "composed_manifold_scout",
+    "engine_core",
+    "engine_v6_reference",
+    "engine_v7_reference",
+    "holodeck_fep_engine.hopf_map",
+    "multitool_carrier_scout",
+    "seven_control_scout",
+    "source_density_scout",
+    "special_form_constraints",
+}
+MICRO_TOOL_FUNCTION_TOOLS = {
+    "auto_lirpa",
+    "cotengra",
+    "cvc5",
+    "e3nn",
+    "geomstats",
+    "gudhi",
+    "le_wm",
+    "networkx",
+    "opt_einsum",
+    "pyg",
+    "quimb",
+    "rustworkx",
+    "sympy",
+    "toponetx",
+    "xgi",
+    "z3",
+}
 FORMAL_TOOL_ADMISSION_RESULTS = {
     "auto_lirpa": ("auto_lirpa_lewm_latent_surprise_bound_probe_results.json",),
     "cotengra": ("quimb_cotengra_tensor_network_geometry_contraction_probe_results.json",),
+    "le_wm": ("lewm_branch_order_latent_dynamics_micro_probe_results.json",),
+    "opt_einsum": ("opt_einsum_index_order_contraction_micro_probe_results.json",),
     "quimb": ("quimb_cotengra_tensor_network_geometry_contraction_probe_results.json",),
 }
 
 ALIASES = {
     "pytorch": "pytorch", "torch": "pytorch",
+    "pytorch_autograd": "pytorch", "torch_autograd": "pytorch",
     "auto_lirpa": "auto_lirpa",
     "pyg": "pyg", "torch_geometric": "pyg", "torch-geometric": "pyg",
     "z3": "z3", "z3-solver": "z3", "z3_solver": "z3",
@@ -64,6 +128,7 @@ ALIASES = {
     "evotorch": "evotorch",
     "datasketch": "datasketch",
     "pynndescent": "pynndescent",
+    "lewm": "le_wm", "le_wm": "le_wm", "le_wm_module": "le_wm",
     "numpy": "numpy", "np": "numpy",
     "networkx": "networkx", "nx": "networkx",
 }
@@ -72,6 +137,13 @@ ALIASES = {
 def canonical(tool: str) -> str:
     return ALIASES.get(tool.strip().lower().replace("-", "_"),
                        tool.strip().lower().replace("-", "_"))
+
+
+for _tool, _receipt in two_root_constraints.TWO_ROOT_TOOL_MICRO_RECEIPTS.items():
+    _canon = canonical(str(_tool))
+    _existing = FORMAL_TOOL_ADMISSION_RESULTS.get(_canon, ())
+    if _receipt not in _existing:
+        FORMAL_TOOL_ADMISSION_RESULTS[_canon] = (*_existing, _receipt)
 
 
 def _normalized_execution_kind(value: object) -> str:
@@ -97,6 +169,14 @@ def _is_ignored_sim_path(path: Path) -> bool:
     return path.name.endswith(" 2.py")
 
 
+def _has_nonempty_divergence_log(value: object) -> bool:
+    if isinstance(value, str):
+        return bool(value.strip())
+    if isinstance(value, (list, tuple)):
+        return any(isinstance(item, str) and item.strip() for item in value)
+    return False
+
+
 def _is_capability_probe(path: Path, tool_canon: str | None = None) -> bool:
     if tool_canon is not None:
         return path.name in {
@@ -112,28 +192,78 @@ def _is_integration_probe(path: Path) -> bool:
     return path.name.startswith("sim_integration_")
 
 
+def _c5_static_overclaim_rule(tool_canon: str) -> str | None:
+    if tool_canon in ADMIN_INTERNAL_TOOLS:
+        return "C5_admin_internal_load_bearing_overclaim"
+    if tool_canon in INTERNAL_REFERENCE_TOOLS:
+        return "C5_internal_reference_load_bearing_overclaim"
+    return None
+
+
+def _is_formal_micro_tool_function_probe(path: Path, cls: object, load_bearing: set[str]) -> bool:
+    if cls != "formal_scout":
+        return False
+    if not path.name.endswith("_micro_probe.py"):
+        return False
+    if not load_bearing or "numpy" in load_bearing:
+        return False
+    return load_bearing <= MICRO_TOOL_FUNCTION_TOOLS
+
+
 def _module_level_assignments(tree: ast.Module) -> dict:
     """Collect module-level assignments that are static after simple name resolution."""
     out: dict = {}
 
-    def _literalish_eval(node: ast.AST):
+    def _literalish_eval(node: ast.AST, local_env: dict | None = None):
+        env = out if local_env is None else {**out, **local_env}
         if isinstance(node, ast.Constant):
             return node.value
         if isinstance(node, ast.Name):
-            if node.id in out:
-                return out[node.id]
+            if node.id in env:
+                return env[node.id]
+            if node.id.startswith("HAVE_"):
+                return False
             raise ValueError(node.id)
         if isinstance(node, ast.List):
-            return [_literalish_eval(elt) for elt in node.elts]
+            return [_literalish_eval(elt, local_env) for elt in node.elts]
         if isinstance(node, ast.Tuple):
-            return tuple(_literalish_eval(elt) for elt in node.elts)
+            return tuple(_literalish_eval(elt, local_env) for elt in node.elts)
         if isinstance(node, ast.Set):
-            return {_literalish_eval(elt) for elt in node.elts}
+            return {_literalish_eval(elt, local_env) for elt in node.elts}
         if isinstance(node, ast.Dict):
             return {
-                _literalish_eval(k): _literalish_eval(v)
+                _literalish_eval(k, local_env): _literalish_eval(v, local_env)
                 for k, v in zip(node.keys, node.values)
             }
+        if isinstance(node, ast.IfExp):
+            return _literalish_eval(node.body if _literalish_eval(node.test, local_env) else node.orelse, local_env)
+        if (
+            isinstance(node, ast.Compare)
+            and len(node.ops) == 1
+            and len(node.comparators) == 1
+            and isinstance(node.ops[0], (ast.Eq, ast.NotEq, ast.Is, ast.IsNot, ast.In, ast.NotIn))
+        ):
+            try:
+                left = _literalish_eval(node.left, local_env)
+            except ValueError:
+                left = None
+            right = _literalish_eval(node.comparators[0], local_env)
+            if isinstance(node.ops[0], ast.In):
+                return left in right
+            if isinstance(node.ops[0], ast.NotIn):
+                return left not in right
+            equal = left is right if isinstance(node.ops[0], (ast.Is, ast.IsNot)) else left == right
+            return equal if isinstance(node.ops[0], (ast.Eq, ast.Is)) else not equal
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "dict":
+            if not node.args:
+                return {}
+            try:
+                value = _literalish_eval(node.args[0], local_env)
+            except ValueError:
+                return {}
+            if isinstance(value, dict):
+                return dict(value)
+            raise ValueError("dict_arg")
         if (
             isinstance(node, ast.DictComp)
             and len(node.generators) == 1
@@ -149,15 +279,11 @@ def _module_level_assignments(tree: ast.Module) -> dict:
             for key in source:
                 local_env = dict(out)
                 local_env[target_name] = key
-                result_key = key if isinstance(node.key, ast.Name) and node.key.id == target_name else _literalish_eval(node.key)
+                result_key = key if isinstance(node.key, ast.Name) and node.key.id == target_name else _literalish_eval(node.key, local_env)
                 if isinstance(node.value, ast.Name) and node.value.id == target_name:
                     result_val = key
                 else:
-                    # Only support the common "{k: None for k in TOOL_MANIFEST}" pattern.
-                    if isinstance(node.value, ast.Constant):
-                        result_val = node.value.value
-                    else:
-                        raise ValueError("dictcomp_value")
+                    result_val = _literalish_eval(node.value, local_env)
                 result[result_key] = result_val
             return result
         raise ValueError(type(node).__name__)
@@ -168,9 +294,61 @@ def _module_level_assignments(tree: ast.Module) -> dict:
         if isinstance(node, ast.Assign):
             targets = node.targets
             value = node.value
+            applied_subscript_update = False
+            for target in targets:
+                if (
+                    isinstance(target, ast.Subscript)
+                    and isinstance(target.value, ast.Name)
+                    and isinstance(out.get(target.value.id), dict)
+                ):
+                    try:
+                        key = _literalish_eval(target.slice)
+                        out[target.value.id][key] = _literalish_eval(value)
+                        applied_subscript_update = True
+                    except (ValueError, SyntaxError):
+                        pass
+            if applied_subscript_update:
+                continue
         elif isinstance(node, ast.AnnAssign) and node.value is not None:
             targets = [node.target]
             value = node.value
+        elif (
+            isinstance(node, ast.Expr)
+            and isinstance(node.value, ast.Call)
+            and isinstance(node.value.func, ast.Attribute)
+            and node.value.func.attr == "update"
+            and isinstance(node.value.func.value, ast.Name)
+            and node.value.args
+        ):
+            target = node.value.func.value.id
+            if isinstance(out.get(target), dict):
+                try:
+                    out[target].update(_literalish_eval(node.value.args[0]))
+                except (ValueError, SyntaxError):
+                    pass
+            continue
+        elif isinstance(node, ast.For) and isinstance(node.target, ast.Name):
+            try:
+                iter_values = _literalish_eval(node.iter)
+            except (ValueError, SyntaxError):
+                continue
+            for item in iter_values:
+                for stmt in node.body:
+                    if not isinstance(stmt, ast.Assign):
+                        continue
+                    for target in stmt.targets:
+                        if (
+                            isinstance(target, ast.Subscript)
+                            and isinstance(target.value, ast.Name)
+                            and isinstance(out.get(target.value.id), dict)
+                            and isinstance(target.slice, ast.Name)
+                            and target.slice.id == node.target.id
+                        ):
+                            try:
+                                out[target.value.id][item] = _literalish_eval(stmt.value, {node.target.id: item})
+                            except (ValueError, SyntaxError):
+                                pass
+            continue
         else:
             continue
         for t in targets:
@@ -335,7 +513,7 @@ def lint_sim(path: Path) -> list[dict]:
         dl = assigns.get("divergence_log", "__MISSING__")
         if dl == "__MISSING__":
             violations.append({"sim": rel, "rule": "C4_divergence_log_missing", "detail": None})
-        elif not (isinstance(dl, str) and dl.strip()):
+        elif not _has_nonempty_divergence_log(dl):
             violations.append({"sim": rel, "rule": "C4_divergence_log_empty",
                                "detail": repr(dl)})
 
@@ -345,6 +523,11 @@ def lint_sim(path: Path) -> list[dict]:
             if lvl != "load_bearing":
                 continue
             canon = canonical(str(tool))
+            static_rule = _c5_static_overclaim_rule(canon)
+            if static_rule:
+                violations.append({"sim": rel, "rule": static_rule,
+                                   "detail": f"{tool}->{canon}"})
+                continue
             # Self-probe exception
             if _is_capability_probe(path, canon):
                 continue
@@ -373,7 +556,12 @@ def lint_sim(path: Path) -> list[dict]:
                 "rule": "C7_numpy_load_bearing_for_bridge_or_nonclassical",
                 "detail": execution_kind,
             })
-        if execution_kind == "nonclassical" and "pytorch" not in local_load_bearing:
+        micro_tool_probe = _is_formal_micro_tool_function_probe(path, cls, load_bearing)
+        if (
+            execution_kind == "nonclassical"
+            and "pytorch" not in local_load_bearing
+            and not micro_tool_probe
+        ):
             violations.append({
                 "sim": rel,
                 "rule": "C8_nonclassical_requires_local_pytorch_load_bearing",

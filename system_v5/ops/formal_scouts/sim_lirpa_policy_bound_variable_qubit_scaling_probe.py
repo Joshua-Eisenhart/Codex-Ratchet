@@ -9,8 +9,8 @@ import pathlib
 import time
 from typing import Any
 
-import networkx as nx
-import numpy as np
+import rustworkx as rx
+import torch
 import z3
 
 import axis0_guard_utils as axis0_guard
@@ -36,12 +36,12 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing finite-size signature gaps and gate-control statistics",
+        "reason": "load-bearing finite-size signature gaps, local per-edge RMS readouts, and gate-control statistics across 8/16/32/64 carriers",
     },
-    "networkx": {
+    "rustworkx": {
         "tried": True,
         "used": True,
         "reason": "load-bearing dependency graph for stage/FEP/Axis0/Holodeck/LiRPA scaling path",
@@ -54,7 +54,7 @@ TOOL_MANIFEST = {
     "engine_core": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing via reused source-native stage records",
+        "reason": "supportive provenance through reused source-native stage records",
     },
     "quimb": {
         "tried": True,
@@ -62,7 +62,13 @@ TOOL_MANIFEST = {
         "reason": "load-bearing through reused MPS/PEPS/PEPS3D carrier construction checks",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "z3": "load_bearing",
+    "engine_core": "supportive",
+    "quimb": "load_bearing",
+}
 
 REQUIRED_REPAIR_RECEIPT_FIELDS = [
     "weak_link",
@@ -96,12 +102,9 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+    if isinstance(value, torch.Tensor):
+        raw = value.detach().cpu().tolist()
+        return as_jsonable(raw)
     return value
 
 
@@ -114,9 +117,9 @@ def scaling_specs() -> list[tuple[str, tuple[int, ...], int]]:
         ("mps", (8,), 6108),
         ("mps", (16,), 6116),
         ("mps", (32,), 6132),
-        ("peps", (2, 2), 6204),
         ("peps", (3, 3), 6209),
         ("peps", (4, 4), 6216),
+        ("peps", (5, 5), 6225),
         ("peps3d", (2, 2, 2), 6308),
         ("peps3d", (3, 3, 2), 6318),
         ("peps3d", (4, 4, 2), 6332),
@@ -175,18 +178,18 @@ def run_size_mode_suite(
 
 
 def local_signature_gap(a: dict[str, Any], b: dict[str, Any]) -> dict[str, Any]:
-    a_mat = np.asarray(a.get("environment_signature_matrix", []), dtype=float)
-    b_mat = np.asarray(b.get("environment_signature_matrix", []), dtype=float)
-    n = min(len(a_mat), len(b_mat))
+    a_mat = torch.tensor(a.get("environment_signature_matrix", []), dtype=torch.float64)
+    b_mat = torch.tensor(b.get("environment_signature_matrix", []), dtype=torch.float64)
+    n = min(int(a_mat.shape[0]) if a_mat.ndim else 0, int(b_mat.shape[0]) if b_mat.ndim else 0)
     if n == 0:
         return {"rms": 0.0, "mean": 0.0, "q90": 0.0, "max": 0.0, "nonzero_edges": 0, "sampled_edges": 0}
-    edge_norms = np.linalg.norm(a_mat[:n] - b_mat[:n], axis=1)
+    edge_norms = torch.linalg.vector_norm(a_mat[:n] - b_mat[:n], dim=1)
     return {
-        "rms": float(np.sqrt(np.mean(edge_norms ** 2))),
-        "mean": float(np.mean(edge_norms)),
-        "q90": float(np.quantile(edge_norms, 0.90)),
-        "max": float(np.max(edge_norms)),
-        "nonzero_edges": int(np.sum(edge_norms > GAP_FLOOR)),
+        "rms": float(torch.sqrt(torch.mean(edge_norms**2)).item()),
+        "mean": float(torch.mean(edge_norms).item()),
+        "q90": float(torch.quantile(edge_norms, 0.90).item()),
+        "max": float(torch.max(edge_norms).item()),
+        "nonzero_edges": int(torch.sum(edge_norms > GAP_FLOOR).item()),
         "sampled_edges": int(n),
     }
 
@@ -320,7 +323,7 @@ def robust_scaling_admission(rows: dict[str, Any]) -> dict[str, Any]:
 
 
 def dependency_graph() -> dict[str, Any]:
-    graph = nx.DiGraph()
+    graph = rx.PyDiGraph()
     edges = [
         ("EngineCore.stage_records", "trained_auto_LiRPA_policy_gate"),
         ("Axis0.plural_router", "trained_auto_LiRPA_policy_gate"),
@@ -332,12 +335,18 @@ def dependency_graph() -> dict[str, Any]:
         ("shuffled_gate_control", "repair_receipt"),
         ("zero_gate_control", "repair_receipt"),
     ]
-    graph.add_edges_from(edges)
+    node_ids: dict[str, int] = {}
+    for left, right in edges:
+        if left not in node_ids:
+            node_ids[left] = graph.add_node(left)
+        if right not in node_ids:
+            node_ids[right] = graph.add_node(right)
+        graph.add_edge(node_ids[left], node_ids[right], {"dependency": True})
     return {
-        "nodes": graph.number_of_nodes(),
-        "edges": graph.number_of_edges(),
+        "nodes": graph.num_nodes(),
+        "edges": graph.num_edges(),
         "edge_list": edges,
-        "pass": nx.is_directed_acyclic_graph(graph),
+        "pass": rx.is_directed_acyclic_graph(graph),
     }
 
 

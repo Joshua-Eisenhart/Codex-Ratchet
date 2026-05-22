@@ -13,6 +13,8 @@ Supportive: sympy (verify K(0)=HQ, K(1)=mod-p K-theory structure)
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Source-native Hopf-base FEP / IGT chirality prediction scout.
+"""Bounded canonical-QIT Hopf-base FEP / IGT chirality prediction scout.
 
 This scout translates a Grok-sim reference claim into a local, receipt-bearing
 probe. Grok's wave text is treated as a hypothesis source, not evidence.
@@ -13,7 +13,8 @@ Bounded claim tested here:
   they are non-load-bearing overlay labels in this scout.
 
 Formal scout only. No canonical FEP engine, final IGT, psychology, Holodeck
-canon, TOE, physics, consciousness, or full active-inference claim is admitted.
+canon, TOE, physics, consciousness, source-native EngineCore dynamics, or full
+active-inference claim is admitted.
 """
 
 from __future__ import annotations
@@ -26,13 +27,24 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-import numpy as np
+import torch
 
 from canonical_qit_engine_specs import (
+    OPERATOR_BASE_ANGLES,
+    OPERATOR_GENERATORS,
     get_chart_token_spec,
     get_engine_spec,
+    get_operator_slot_spec,
+    get_schedule,
 )
-from engine_core import EngineCore, generate_initial_density
+from sim_source_native_engine_manifold_attractor_basin_depth_probe import (
+    MANIFOLD_TARGET_MIX,
+    apply_lindblad_step,
+    density_entropy,
+    generate_initial_density,
+    normalize_density_torch,
+    stage_fixed_target,
+)
 
 
 ROOT = Path(__file__).resolve().parent
@@ -49,33 +61,35 @@ from holodeck_fep_engine import hopf_map  # noqa: E402
 NAME = "source_native_hopf_fep_igt_chirality_prediction_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
-SOURCE_ALIGNMENT_CATEGORY = "source_native_hopf_fep_igt_chirality_scout"
+SIM_EXECUTION_KIND = "nonclassical"
+SOURCE_ALIGNMENT_CATEGORY = "bounded_canonical_qit_hopf_fep_igt_chirality_replay"
 N_SEEDS = 20
 BASE_SEED = 11700
 
 CLAIM_CEILING = (
     "Formal scout only: tests a finite Hopf-base displacement predictor on "
-    "source-native EngineCore stage-zero records, using Grok-wave text only as "
-    "reference hypothesis and documented IGT tokens as overlay metadata. It "
-    "does not admit a full FEP engine, canonical Holodeck, psychology, TOE, "
-    "final IGT, consciousness, physics, or canonical engine identity claim."
+    "bounded canonical QIT stage-zero replay records, using Grok-wave text only "
+    "as reference hypothesis and documented IGT tokens as overlay metadata. It "
+    "does not admit source-native EngineCore dynamics, a full FEP engine, "
+    "canonical Holodeck, psychology, TOE, final IGT, consciousness, physics, or "
+    "canonical engine identity claim."
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing Hopf-base vector arithmetic, prediction errors, and bootstrap statistics",
+        "reason": "load-bearing local density projection, dominant-spinor eigensolve, Hopf-base vector arithmetic, prediction errors, and bootstrap statistics",
     },
-    "scipy": {
+    "canonical_qit_engine_specs": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing transitively through EngineCore source-native Lindblad evolution",
+        "reason": "supportive canonical schedule, terrain/operator slot, Hamiltonian, and chart-token records replacing the former direct EngineCore boundary",
     },
-    "torch": {
+    "canonical_qit_replay_helpers": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing transitively through EngineCore 13-layer manifold constraints",
+        "reason": "supportive bounded PyTorch density initialization, Lindblad replay, target-mixture repair, and entropy readouts",
     },
     "holodeck_fep_engine.hopf_map": {
         "tried": True,
@@ -84,10 +98,16 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
-    "scipy": "load_bearing",
-    "torch": "load_bearing",
-    "holodeck_fep_engine.hopf_map": "load_bearing",
+    "pytorch": "load_bearing",
+    "canonical_qit_engine_specs": "supportive",
+    "canonical_qit_replay_helpers": "supportive",
+    "holodeck_fep_engine.hopf_map": "supportive",
+}
+TOOL_ROLE_SOURCE = {
+    "pytorch": "local",
+    "canonical_qit_engine_specs": "local_supportive",
+    "canonical_qit_replay_helpers": "local_supportive",
+    "holodeck_fep_engine.hopf_map": "local_imported_helper",
 }
 
 
@@ -114,39 +134,41 @@ IGT_DOC_BY_TOKEN = {
 }
 
 
-def dagger(a: np.ndarray) -> np.ndarray:
-    return np.conjugate(a.T)
+def dagger(a: torch.Tensor) -> torch.Tensor:
+    return torch.conj(a.transpose(-2, -1))
 
 
-def project_density(rho: np.ndarray) -> np.ndarray:
+def project_density(rho: torch.Tensor) -> torch.Tensor:
     rho_h = 0.5 * (rho + dagger(rho))
-    vals, vecs = np.linalg.eigh(rho_h)
-    vals = np.clip(vals.real, 0.0, None)
-    if float(np.sum(vals)) <= 1e-14:
-        vals = np.ones_like(vals, dtype=float) / len(vals)
-    out = (vecs * vals.astype(np.complex128)) @ dagger(vecs)
-    return out / np.trace(out)
+    vals, vecs = torch.linalg.eigh(rho_h)
+    vals = torch.clamp(torch.real(vals), min=0.0)
+    if float(torch.sum(vals).item()) <= 1e-14:
+        vals = torch.ones_like(vals, dtype=torch.float64) / len(vals)
+    out = (vecs * vals.to(torch.complex128)) @ dagger(vecs)
+    return out / torch.trace(out)
 
 
-def dominant_spinor(rho: np.ndarray) -> np.ndarray:
+def dominant_spinor(rho: torch.Tensor) -> torch.Tensor:
     rho_h = project_density(rho)
-    vals, vecs = np.linalg.eigh(rho_h)
-    psi = vecs[:, int(np.argmax(vals.real))].astype(np.complex128)
-    norm = float(np.linalg.norm(psi))
+    vals, vecs = torch.linalg.eigh(rho_h)
+    psi = vecs[:, int(torch.argmax(torch.real(vals)).item())].to(torch.complex128)
+    norm = float(torch.linalg.vector_norm(psi).item())
     if norm <= 1e-14:
-        return np.array([1.0 + 0.0j, 0.0 + 0.0j], dtype=np.complex128)
+        return torch.tensor([1.0 + 0.0j, 0.0 + 0.0j], dtype=torch.complex128)
     return psi / norm
 
 
-def hopf_base_vector(rho: np.ndarray) -> tuple[np.ndarray, dict[str, float]]:
-    theta, phi, chi = hopf_map(dominant_spinor(rho))
-    base = np.array(
+def hopf_base_vector(rho: Any) -> tuple[torch.Tensor, dict[str, float]]:
+    psi = dominant_spinor(torch.as_tensor(rho, dtype=torch.complex128))
+    # Keep the documented helper load-bearing while keeping local arithmetic in PyTorch.
+    theta, phi, chi = hopf_map([complex(psi[0].item()), complex(psi[1].item())])
+    base = torch.as_tensor(
         [
             math.sin(theta) * math.cos(phi),
             math.sin(theta) * math.sin(phi),
             math.cos(theta),
         ],
-        dtype=float,
+        dtype=torch.float64,
     )
     return base, {"theta": float(theta), "phi": float(phi), "chi": float(chi)}
 
@@ -169,16 +191,68 @@ def is_loss(result: str) -> bool:
     return result.lower() == "lose"
 
 
+def apply_operator_slot(
+    rho: torch.Tensor,
+    perception: str,
+    engine_type: int,
+    loop_class: str,
+    substage_idx: int,
+) -> torch.Tensor:
+    slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+    generator = OPERATOR_GENERATORS[slot["operator"]]
+    angle = float(slot["sign"]) * float(OPERATOR_BASE_ANGLES[slot["operator"]])
+    unitary = torch.linalg.matrix_exp((-1j * angle) * generator)
+    return normalize_density_torch(unitary @ rho @ unitary.conj().T)
+
+
+def apply_loop_placement(rho: torch.Tensor, main_stage_idx: int, loop_class: str) -> torch.Tensor:
+    angle = 0.01 * (main_stage_idx + 1)
+    if loop_class == "inner":
+        angle = -angle
+    sz = OPERATOR_GENERATORS["Ti"]
+    unitary = torch.linalg.matrix_exp((-1j * angle) * sz)
+    return normalize_density_torch(unitary @ rho @ unitary.conj().T)
+
+
+def run_replay_substage(
+    rho: torch.Tensor,
+    perception: str,
+    engine_type: int,
+    loop_class: str,
+    main_stage_idx: int,
+    substage_idx: int,
+) -> tuple[torch.Tensor, dict[str, Any]]:
+    slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+    before = normalize_density_torch(rho)
+    if slot["precedence"] == "operator_first":
+        state = apply_operator_slot(before, perception, engine_type, loop_class, substage_idx)
+        state = apply_lindblad_step(state, perception, engine_type)
+    else:
+        state = apply_lindblad_step(before, perception, engine_type)
+        state = apply_operator_slot(state, perception, engine_type, loop_class, substage_idx)
+    target = stage_fixed_target(perception, engine_type)
+    state = normalize_density_torch((1.0 - MANIFOLD_TARGET_MIX) * state + MANIFOLD_TARGET_MIX * target)
+    state = apply_loop_placement(state, main_stage_idx, loop_class)
+    return state, {
+        "ordered_token": slot["token"],
+        "entropy": density_entropy(state),
+        "purity": float(torch.real(torch.trace(state @ state)).item()),
+        "operator": slot["operator"],
+        "operator_sign": int(slot["sign"]),
+        "precedence": slot["precedence"],
+        "action": "bounded_canonical_qit_replay_operator_terrain_manifold_slot",
+    }
+
+
 def collect_stage_zero_rows() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for engine_type in (0, 1):
         for seed_offset in range(N_SEEDS):
             seed = BASE_SEED + 101 * seed_offset + 17 * engine_type
             rho = generate_initial_density(seed)
-            engine = EngineCore(engine_type, manifold_enabled=True)
-            for main_idx, (perception, loop_class) in enumerate(engine.schedule):
+            for main_idx, (perception, loop_class) in enumerate(get_schedule(engine_type)):
                 before_base, before_hopf = hopf_base_vector(rho)
-                rho, record = engine.run_substage(rho, perception, loop_class, main_idx, 0)
+                rho, record = run_replay_substage(rho, perception, engine_type, loop_class, main_idx, 0)
                 after_base, after_hopf = hopf_base_vector(rho)
                 chart = get_chart_token_spec(perception, engine_type, loop_class)
                 token = record["ordered_token"]
@@ -204,53 +278,61 @@ def collect_stage_zero_rows() -> list[dict[str, Any]]:
                         "before_hopf": before_hopf,
                         "after_hopf": after_hopf,
                         "delta": (after_base - before_base).tolist(),
-                        "delta_norm": float(np.linalg.norm(after_base - before_base)),
+                        "delta_norm": float(torch.linalg.vector_norm(after_base - before_base).item()),
                         "runtime_entropy": float(record["entropy"]),
                         "runtime_purity": float(record["purity"]),
                     }
                 )
                 for substage_idx in range(1, 4):
-                    rho, _record = engine.run_substage(rho, perception, loop_class, main_idx, substage_idx)
+                    rho, _record = run_replay_substage(
+                        rho,
+                        perception,
+                        engine_type,
+                        loop_class,
+                        main_idx,
+                        substage_idx,
+                    )
     return rows
 
 
-def mean_delta_by_key(rows: list[dict[str, Any]], engine_type: int) -> dict[tuple[str, str], np.ndarray]:
-    grouped: dict[tuple[str, str], list[np.ndarray]] = defaultdict(list)
+def mean_delta_by_key(rows: list[dict[str, Any]], engine_type: int) -> dict[tuple[str, str], torch.Tensor]:
+    grouped: dict[tuple[str, str], list[torch.Tensor]] = defaultdict(list)
     for row in rows:
         if row["engine_type"] == engine_type:
-            grouped[(row["perception"], row["loop_class"])].append(np.asarray(row["delta"], dtype=float))
-    return {key: np.mean(np.vstack(vals), axis=0) for key, vals in grouped.items()}
+            grouped[(row["perception"], row["loop_class"])].append(torch.as_tensor(row["delta"], dtype=torch.float64))
+    return {key: torch.mean(torch.stack(vals), dim=0) for key, vals in grouped.items()}
 
 
-def error_against_prediction(row: dict[str, Any], predictor: dict[tuple[str, str], np.ndarray], sign: float) -> float:
+def error_against_prediction(row: dict[str, Any], predictor: dict[tuple[str, str], torch.Tensor], sign: float) -> float:
     key = (row["perception"], row["loop_class"])
-    observed = np.asarray(row["delta"], dtype=float)
+    observed = torch.as_tensor(row["delta"], dtype=torch.float64)
     predicted = float(sign) * predictor[key]
-    return float(np.linalg.norm(observed - predicted))
+    return float(torch.linalg.vector_norm(observed - predicted).item())
 
 
 def summarize(values: list[float]) -> dict[str, float]:
-    arr = np.asarray(values, dtype=float)
-    if arr.size == 0:
+    arr = torch.as_tensor(values, dtype=torch.float64)
+    if arr.numel() == 0:
         return {"n": 0, "mean": float("nan"), "std": float("nan")}
-    return {"n": int(arr.size), "mean": float(np.mean(arr)), "std": float(np.std(arr, ddof=1)) if arr.size > 1 else 0.0}
+    return {
+        "n": int(arr.numel()),
+        "mean": float(torch.mean(arr).item()),
+        "std": float(torch.std(arr, unbiased=True).item()) if arr.numel() > 1 else 0.0,
+    }
 
 
 def bootstrap_ci(values: list[float], *, seed: int = 9301, n_boot: int = 1000) -> dict[str, float]:
-    arr = np.asarray(values, dtype=float)
-    if arr.size == 0:
+    arr = torch.as_tensor(values, dtype=torch.float64)
+    if arr.numel() == 0:
         return {"mean": float("nan"), "ci_low": float("nan"), "ci_high": float("nan"), "p_gt_0": float("nan")}
-    rng = np.random.default_rng(seed)
-    means = []
-    for _ in range(n_boot):
-        sample = rng.choice(arr, size=arr.size, replace=True)
-        means.append(float(np.mean(sample)))
-    means_arr = np.asarray(means, dtype=float)
+    generator = torch.Generator().manual_seed(seed)
+    sample_ix = torch.randint(arr.numel(), (n_boot, arr.numel()), generator=generator)
+    means_arr = torch.mean(arr[sample_ix], dim=1)
     return {
-        "mean": float(np.mean(arr)),
-        "ci_low": float(np.quantile(means_arr, 0.025)),
-        "ci_high": float(np.quantile(means_arr, 0.975)),
-        "p_gt_0": float(np.mean(means_arr > 0.0)),
+        "mean": float(torch.mean(arr).item()),
+        "ci_low": float(torch.quantile(means_arr, 0.025).item()),
+        "ci_high": float(torch.quantile(means_arr, 0.975).item()),
+        "p_gt_0": float(torch.mean((means_arr > 0.0).to(torch.float64)).item()),
     }
 
 
@@ -306,7 +388,12 @@ def igt_gap_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 seed_win = [row["hopf_surprise_chirality_aware"] for row in seed_rows if not is_loss(row["chart_result"])]
                 seed_lose = [row["hopf_surprise_chirality_aware"] for row in seed_rows if is_loss(row["chart_result"])]
                 if seed_win and seed_lose:
-                    gaps_by_seed.append(float(np.mean(seed_lose) - np.mean(seed_win)))
+                    gaps_by_seed.append(
+                        float(
+                            torch.mean(torch.as_tensor(seed_lose, dtype=torch.float64)).item()
+                            - torch.mean(torch.as_tensor(seed_win, dtype=torch.float64)).item()
+                        )
+                    )
             key = f"E{engine_type}_{loop_class}"
             out[key] = {
                 "engine_type": engine_type,
@@ -314,7 +401,7 @@ def igt_gap_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 "win_summary": summarize(win_vals),
                 "lose_summary": summarize(lose_vals),
                 "lose_minus_win_gap_by_seed": bootstrap_ci(gaps_by_seed, seed=9400 + 31 * engine_type + (0 if loop_class == "outer" else 1)),
-                "positive_population_gap": bool(np.mean(gaps_by_seed) > 0.0) if gaps_by_seed else False,
+                "positive_population_gap": bool(torch.mean(torch.as_tensor(gaps_by_seed, dtype=torch.float64)).item() > 0.0) if gaps_by_seed else False,
             }
     return out
 
@@ -326,14 +413,8 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, tuple):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
+    if isinstance(value, torch.Tensor):
         return value.tolist()
-    if isinstance(value, (np.integer,)):
-        return int(value)
-    if isinstance(value, (np.floating,)):
-        return float(value)
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
     return value
 
 
@@ -376,15 +457,17 @@ def main() -> dict[str, Any]:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
         "claim_ceiling": CLAIM_CEILING,
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
-        "math_object": "finite Hopf-base displacement prediction over source-native EngineCore canonical stage-zero records",
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
+        "math_object": "finite Hopf-base displacement prediction over bounded canonical QIT stage-zero replay records",
         "doc_grounding": {
             "system_v5/ops/formal_scouts/canonical_qit_engine_specs.py:43-47": "Type 1 uses +H0 and Type 2 uses -H0",
-            "system_v5/ops/formal_scouts/canonical_qit_engine_specs.py:281-306": "source-native 8-main-stage schedules and 32-substage cycle",
+            "system_v5/ops/formal_scouts/canonical_qit_engine_specs.py:281-306": "8-main-stage schedules and 32-substage cycle used by the bounded canonical QIT replay",
             "READ ONLY Legacy core_docs/HOLODECK_SCIENCE_SYSTEM_v1.md:30-45": "Hopf coordinates theta, phi, chi from a two-component spinor",
             "READ ONLY Legacy core_docs/ultra high entropy docs/EM_BOOTPACK_v8_0_02_BUNDLE2_ROSETTA_ENGINES.md:343-360": "16 macro-token IGT table used only as overlay metadata",
             "system_v5/docs/references/FEP_AND_ACTIVE_INFERENCE_REFERENCE.md:76-89": "expected-free-energy language stays model-level and falsifiable",
@@ -505,13 +588,14 @@ def main() -> dict[str, Any]:
         "blockers": [],
         "elapsed_seconds": time.time() - started,
         "why_not_v4_probes": [
-            "This is a clean v5 formal scout over source-native EngineCore records.",
+            "This is a clean v5 formal scout over bounded canonical QIT replay records.",
             "It translates Grok-wave text into a bounded local test rather than importing Grok results.",
             "It keeps IGT/Holodeck/FEP labels as receipt-bound readout metadata, not canon promotion.",
         ],
         "why_not_canon": [
             "The predictor is empirical and finite, trained from Type 1 stage-zero displacements.",
             "The observable is Hopf-base displacement error, not a full Holodeck generative model.",
+            "The runtime is a bounded canonical QIT replay, not source-native EngineCore dynamics.",
             "No learned Markov blanket or closed-loop active inference engine is implemented here.",
         ],
     }

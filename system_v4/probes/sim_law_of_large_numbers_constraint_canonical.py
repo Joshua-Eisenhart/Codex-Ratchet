@@ -21,6 +21,8 @@ import json
 import math
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -152,7 +154,7 @@ def run_positive_tests():
         true_mean = 2.5
         true_var = 1.0
         true_std = math.sqrt(true_var)
-        
+
         n_values = [10, 50, 100, 500]
         for n in n_values:
             means = []
@@ -160,13 +162,13 @@ def run_positive_tests():
                 X = torch.randn(n) * true_std + true_mean
                 sample_mean = X.mean().item()
                 means.append(sample_mean)
-            
+
             empirical_mean_of_means = torch.tensor(means).mean().item()
             empirical_var_of_means = torch.tensor(means).var().item()
-            
+
             # Expected: E[X̄_n] = μ = 2.5, Var[X̄_n] = σ²/n
             expected_var = true_var / n
-            
+
             if abs(empirical_mean_of_means - true_mean) > 0.2:
                 p1_violations.append({
                     "n": n, "empirical_mean": empirical_mean_of_means,
@@ -194,7 +196,7 @@ def run_positive_tests():
         true_mean = 3.0
         true_std = 1.5
         true_var = true_std ** 2
-        
+
         n_values = [10, 20, 50, 100]
         var_means = {}
         for n in n_values:
@@ -204,7 +206,7 @@ def run_positive_tests():
                 sample_mean = X.mean().item()
                 means.append(sample_mean)
             var_means[n] = torch.tensor(means).var().item()
-        
+
         # Check that Var[X̄_n] ≈ σ²/n
         for n in n_values:
             expected_var = true_var / n
@@ -215,7 +217,7 @@ def run_positive_tests():
                     "n": n, "empirical_var": empirical_var,
                     "expected_var": expected_var
                 })
-        
+
         p2_pass = len(p2_violations) <= 1
         results["P2_variance_decreases_as_one_over_n"] = {
             "pass": p2_pass,
@@ -430,33 +432,33 @@ def run_boundary_tests():
         true_mean = 0.0
         true_std = 2.0
         true_var = true_std ** 2
-        
+
         n = 100
         epsilon = 0.5
-        
+
         violations = 0
         for trial in range(50):
             X = torch.randn(n) * true_std + true_mean
             sample_mean = X.mean().item()
-            
+
             # Count how many trials violate Chebyshev
             # P(|X̄_n - μ| > ε) empirically should be ≤ σ²/(nε²)
             chebyshev_bound = true_var / (n * epsilon ** 2)
-            
+
             # In this trial, either |X̄_n - μ| > ε or not
             deviates = abs(sample_mean - true_mean) > epsilon
             if deviates:
                 violations += 1
-        
+
         empirical_prob = violations / 50
         chebyshev_bound = true_var / (n * epsilon ** 2)
-        
+
         # Allow some margin
         if empirical_prob <= chebyshev_bound + 0.05:
             b2_pass = True
         else:
             b2_pass = False
-        
+
         results["B2_empirical_chebyshev_verification"] = {
             "pass": b2_pass,
             "empirical_prob": empirical_prob,

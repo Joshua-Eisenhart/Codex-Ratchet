@@ -1370,6 +1370,214 @@ def test_lint_v5_formal_tool_admission_is_curated_not_globbed(
     auto_lirpa_rules = {v["rule"] for v in module.lint_sim(auto_lirpa_integration)}
     assert "C5_missing_probe" not in auto_lirpa_rules
 
+    opt_einsum_integration = probes / "sim_opt_einsum_index_order_contraction_micro_probe.py"
+    opt_einsum_integration.write_text(
+        "\n".join(
+            [
+                'classification = "formal_scout"',
+                'sim_execution_kind = "nonclassical"',
+                'TOOL_MANIFEST = {"opt_einsum": {"tried": True, "used": True, "reason": "load-bearing index-order contraction"}}',
+                'TOOL_INTEGRATION_DEPTH = {"opt_einsum": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    opt_einsum_rules = {v["rule"] for v in module.lint_sim(opt_einsum_integration)}
+    assert "C5_missing_probe" in opt_einsum_rules
+    assert "C8_nonclassical_requires_local_pytorch_load_bearing" not in opt_einsum_rules
+
+    (formal_results / "opt_einsum_index_order_contraction_micro_probe_results.json").write_text(
+        json.dumps(
+            {
+                "classification": "formal_scout",
+                "promotion_allowed": False,
+                "all_pass": True,
+                "claim_ceiling": "Formal scout only: admits opt_einsum as a finite index-order contraction tool.",
+                "source_alignment_category": "opt_einsum_tool_admission_index_order_micro_probe",
+                "TOOL_INTEGRATION_DEPTH": {"opt_einsum": "load_bearing"},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    opt_einsum_rules = {v["rule"] for v in module.lint_sim(opt_einsum_integration)}
+    assert "C5_missing_probe" not in opt_einsum_rules
+
+
+def test_lint_splits_admin_and_internal_load_bearing_overclaims(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "lint_sim_contract_admin_overclaim_under_test",
+        REPO_ROOT / "scripts" / "lint_sim_contract.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+
+    admin_row = probes / "sim_admin_json_overclaim.py"
+    admin_row.write_text(
+        "\n".join(
+            [
+                'classification = "formal_scout"',
+                'TOOL_MANIFEST = {"python_json": {"used": True, "reason": "receipt serialization"}}',
+                'TOOL_INTEGRATION_DEPTH = {"python_json": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    internal_row = probes / "sim_engine_reference_overclaim.py"
+    internal_row.write_text(
+        "\n".join(
+            [
+                'classification = "formal_scout"',
+                'TOOL_MANIFEST = {"engine_core": {"used": True, "reason": "source reference"}}',
+                'TOOL_INTEGRATION_DEPTH = {"engine_core": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES_DIR", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    admin_rules = {v["rule"] for v in module.lint_sim(admin_row)}
+    internal_rules = {v["rule"] for v in module.lint_sim(internal_row)}
+
+    assert "C5_missing_probe" not in admin_rules
+    assert "C5_admin_internal_load_bearing_overclaim" in admin_rules
+    assert "C5_missing_probe" not in internal_rules
+    assert "C5_internal_reference_load_bearing_overclaim" in internal_rules
+
+
+def test_lint_honors_direct_depth_subscript_overrides(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "lint_sim_contract_depth_subscript_override_under_test",
+        REPO_ROOT / "scripts" / "lint_sim_contract.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+
+    sim_path = probes / "sim_depth_subscript_override.py"
+    sim_path.write_text(
+        "\n".join(
+            [
+                'classification = "formal_scout"',
+                'TOOL_MANIFEST = {"python_json": {"used": True, "reason": "receipt serialization"}}',
+                'TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}',
+                'TOOL_INTEGRATION_DEPTH["python_json"] = "supportive"',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES_DIR", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    rules = {v["rule"] for v in module.lint_sim(sim_path)}
+    assert "C3_depth_malformed" not in rules
+    assert "C5_admin_internal_load_bearing_overclaim" not in rules
+
+
+def test_lint_accepts_nonpromotion_controller_classifications(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "lint_sim_contract_controller_classifications_under_test",
+        REPO_ROOT / "scripts" / "lint_sim_contract.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+
+    for label in ["audit", "controller_audit", "controller_overlay", "diagnostic_only"]:
+        sim_path = probes / f"sim_{label}.py"
+        sim_path.write_text(
+            "\n".join(
+                [
+                    f'classification = "{label}"',
+                    'TOOL_MANIFEST = {"python_json": {"used": True, "reason": "supportive receipt serialization"}}',
+                    'TOOL_INTEGRATION_DEPTH = {"python_json": "supportive"}',
+                ]
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        monkeypatch.setattr(module, "REPO", repo)
+        monkeypatch.setattr(module, "PROBES_DIR", probes)
+        monkeypatch.setattr(module, "RESULTS_DIR", results)
+        rules = {v["rule"] for v in module.lint_sim(sim_path)}
+        assert "C1_classification_invalid" not in rules
+
+    bad_path = probes / "sim_bad_status.py"
+    bad_path.write_text(
+        "\n".join(
+            [
+                'classification = "made_up_status"',
+                'TOOL_MANIFEST = {"python_json": {"used": True, "reason": "supportive receipt serialization"}}',
+                'TOOL_INTEGRATION_DEPTH = {"python_json": "supportive"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    rules = {v["rule"] for v in module.lint_sim(bad_path)}
+    assert "C1_classification_invalid" in rules
+
+
+def test_lint_accepts_nonempty_divergence_log_sequence(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "lint_sim_contract_divergence_sequence_under_test",
+        REPO_ROOT / "scripts" / "lint_sim_contract.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+
+    sim_path = probes / "sim_list_divergence_log.py"
+    sim_path.write_text(
+        "\n".join(
+            [
+                'classification = "classical_baseline"',
+                'TOOL_MANIFEST = {"numpy": {"used": True, "reason": "classical numeric baseline"}}',
+                'TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}',
+                'divergence_log = ["classical baseline omits the nonclassical admissibility exclusion."]',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES_DIR", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    rules = {v["rule"] for v in module.lint_sim(sim_path)}
+    assert "C4_divergence_log_empty" not in rules
+
+
+def test_c1_proposer_recognizes_uppercase_classification(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "c1_classification_proposer_under_test",
+        REPO_ROOT / "scripts" / "c1_classification_proposer.py",
+    )
+    sim_path = tmp_path / "sim_uppercase_classification.py"
+    sim_path.write_text('CLASSIFICATION = "canonical"\n', encoding="utf-8")
+
+    assert module.has_classification(sim_path) is True
+
 
 def test_lint_blocks_numpy_bridge_and_requires_pytorch_for_nonclassical(
     tmp_path, monkeypatch
@@ -1467,6 +1675,19 @@ def test_lint_blocks_numpy_bridge_and_requires_pytorch_for_nonclassical(
         + "\n",
         encoding="utf-8",
     )
+    micro_tool_function = probes / "sim_cvc5_order_gap_countermodel_micro_probe.py"
+    micro_tool_function.write_text(
+        "\n".join(
+            [
+                'classification = "formal_scout"',
+                'sim_execution_kind = "nonclassical"',
+                'TOOL_MANIFEST = {"cvc5": {"used": True, "reason": "bounded tool-function micro probe"}}',
+                'TOOL_INTEGRATION_DEPTH = {"cvc5": "load_bearing"}',
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
 
     monkeypatch.setattr(module, "REPO", repo)
     monkeypatch.setattr(module, "PROBES_DIR", probes)
@@ -1479,6 +1700,7 @@ def test_lint_blocks_numpy_bridge_and_requires_pytorch_for_nonclassical(
         violation["rule"] for violation in module.lint_sim(nonclassical_transitive_pytorch)
     }
     bridge_alias_rules = {violation["rule"] for violation in module.lint_sim(nonclassical_bridge_numpy)}
+    micro_rules = {violation["rule"] for violation in module.lint_sim(micro_tool_function)}
 
     assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" in bridge_rules
     assert "C8_nonclassical_requires_local_pytorch_load_bearing" in z3_rules
@@ -1486,6 +1708,7 @@ def test_lint_blocks_numpy_bridge_and_requires_pytorch_for_nonclassical(
     assert "C8_nonclassical_requires_local_pytorch_load_bearing" not in pytorch_rules
     assert "C8_nonclassical_requires_local_pytorch_load_bearing" in transitive_pytorch_rules
     assert "C7_numpy_load_bearing_for_bridge_or_nonclassical" in bridge_alias_rules
+    assert "C8_nonclassical_requires_local_pytorch_load_bearing" not in micro_rules
 
 
 def test_adaptive_controller_honors_explicit_sim_execution_kind(tmp_path) -> None:
@@ -2202,6 +2425,124 @@ def test_adaptive_controller_accepts_all_pass_and_summary_all_passed() -> None:
     }) is True
     assert module.is_legacy_schema({"timestamp": "x", "all_pass": True}) is False
     assert module.is_legacy_schema({"timestamp": "x", "ALL_PASS": True}) is False
+
+
+def test_receipt_schema_derives_legacy_formal_scout_pass_without_promoting() -> None:
+    module = _load_module(
+        "receipt_schema_legacy_formal_scout_pass_under_test",
+        REPO_ROOT / "scripts" / "receipt_schema.py",
+    )
+    payload = {
+        "name": "legacy formal scout fixture",
+        "classification": "formal_scout",
+        "promotion_allowed": False,
+        "claim_ceiling": "Formal scout only.",
+        "tool_manifest": {
+            "z3": {
+                "tried": True,
+                "used": True,
+                "reason": "bounded symbolic fixture",
+            }
+        },
+        "tool_integration_depth": {"z3": "supportive"},
+        "positive": {"bounded": {"pass": True}},
+        "graveyard_companions": {"control": {"pass": True}},
+        "boundary": {"ceiling": {"pass": True}},
+        "nearby_variants": {"total": 2, "passed": 2},
+    }
+
+    report = module.validate_result_payload(payload)
+    hard_kinds = {finding["kind"] for finding in report["hard_findings"]}
+
+    assert module.summary_all_pass(payload) is True
+    assert report["facts"]["all_pass"] is True
+    assert "result_not_all_pass" not in hard_kinds
+    assert "invalid_or_missing_classification" in hard_kinds
+    assert report["ok"] is False
+
+
+def test_receipt_schema_keeps_failed_legacy_formal_scout_red() -> None:
+    module = _load_module(
+        "receipt_schema_legacy_formal_scout_red_under_test",
+        REPO_ROOT / "scripts" / "receipt_schema.py",
+    )
+    payload = {
+        "name": "legacy formal scout red fixture",
+        "classification": "formal_scout",
+        "promotion_allowed": False,
+        "claim_ceiling": "Formal scout only.",
+        "tool_manifest": {
+            "z3": {
+                "tried": True,
+                "used": True,
+                "reason": "bounded symbolic fixture",
+            }
+        },
+        "tool_integration_depth": {"z3": "supportive"},
+        "positive": {"bounded": {"pass": False}},
+        "graveyard_companions": {"control": {"pass": True}},
+        "boundary": {"ceiling": {"pass": True}},
+        "nearby_variants": {"total": 2, "passed": 2},
+    }
+
+    report = module.validate_result_payload(payload)
+    hard_kinds = {finding["kind"] for finding in report["hard_findings"]}
+
+    assert module.summary_all_pass(payload) is False
+    assert report["facts"]["all_pass"] is False
+    assert "result_not_all_pass" in hard_kinds
+    assert "invalid_or_missing_classification" in hard_kinds
+
+
+def test_indexes_label_derived_legacy_formal_scout_pass_source() -> None:
+    readiness = _load_module(
+        "formal_scout_readiness_index_legacy_pass_source_under_test",
+        REPO_ROOT / "scripts" / "formal_scout_readiness_index.py",
+    )
+    estate = _load_module(
+        "sim_estate_integration_index_legacy_pass_source_under_test",
+        REPO_ROOT / "scripts" / "sim_estate_integration_index.py",
+    )
+    payload = {
+        "classification": "formal_scout",
+        "promotion_allowed": False,
+        "positive": {"bounded": {"pass": True}},
+        "graveyard_companions": {"control": {"pass": True}},
+        "boundary": {"ceiling": {"pass": True}},
+        "nearby_variants": {"total": 1, "passed": 1},
+    }
+    failed_payload = {
+        **payload,
+        "positive": {"bounded": {"pass": False}},
+    }
+
+    assert readiness.all_pass_status(payload) == (True, "derived_formal_scout_sections")
+    assert estate.all_pass_status(payload) == (True, "derived_formal_scout_sections")
+    assert readiness.all_pass_status(failed_payload) == (
+        False,
+        "derived_formal_scout_sections",
+    )
+    assert estate.all_pass_status(failed_payload) == (
+        False,
+        "derived_formal_scout_sections",
+    )
+    promoted_width_payload = {
+        **payload,
+        "classification": "canonical",
+        "all_pass": True,
+        "promotion_allowed": True,
+        "positive": {
+            "minimum_width_policy_is_explicit": {
+                "pass": True,
+                "minimum_nonclassical_width": 8,
+                "minimum_width_role": "maturity_gate",
+            }
+        },
+    }
+    formal_width_payload = {**promoted_width_payload, "promotion_allowed": False}
+
+    assert estate.width_metadata(formal_width_payload)["maturity_eligible"] is False
+    assert estate.width_metadata(promoted_width_payload)["maturity_eligible"] is True
 
 
 def test_adaptive_controller_find_result_file_skips_oversized_candidates(tmp_path) -> None:
@@ -6746,6 +7087,10 @@ def test_qit_admission_rehearsal_script_accepts_temp_canonical_shape(tmp_path) -
                 "TOOL_INTEGRATION_DEPTH": {"pytorch": "load_bearing"},
                 "tool_manifest": {"pytorch": {"tried": True, "used": True, "reason": "fixture"}},
                 "tool_integration_depth": {"pytorch": "load_bearing"},
+                "two_root_constraints": {
+                    "finite_carrier_root": True,
+                    "noncommutation_or_order_root": True,
+                },
                 "positive": {"passed": True, "function_surface": "pytorch.linalg.eigvalsh"},
                 "negative": {"passed": True},
                 "boundary": {"passed": True},
@@ -6812,6 +7157,10 @@ def test_qit_admission_rehearsal_derives_nested_positive_function_surface(tmp_pa
                 "all_passed": True,
                 "tool_manifest": {"pytorch": {"tried": True, "used": True, "reason": "fixture"}},
                 "tool_integration_depth": {"pytorch": "load_bearing"},
+                "two_root_constraints": {
+                    "finite_carrier_root": True,
+                    "noncommutation_or_order_root": True,
+                },
                 "positive": {"P_entropy": {"passed": True, "function_surface": "torch.linalg.eigvalsh"}},
                 "negative": {"passed": True},
                 "boundary": {"passed": True},
@@ -6857,40 +7206,104 @@ def test_qit_admission_rehearsal_derives_nested_positive_function_surface(tmp_pa
     assert report["accepted"] == 1
 
 
-def test_wizard_autoresearch_dry_loop_writes_numbered_iteration_receipts(tmp_path) -> None:
+def test_wizard_autoresearch_dry_loop_writes_numbered_iteration_receipts(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "wizard_autoresearch_sim_loop_dry_loop_under_test",
+        REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py",
+    )
     out_dir = tmp_path / "dry_loop"
     evidence_index = out_dir / "qit_engine_evidence_index.json"
+    qit_summary = {
+        "operational_status": "has_accepted_qit_entry",
+        "status_reason": "accepted_qit_entries_present",
+        "summary": {
+            "accepted": 1,
+            "admitted_micro_entries": 1,
+            "missing_or_invalid_admission": 0,
+            "scanned_result_count": 1,
+            "qit_signal_result_count": 1,
+        },
+        "qit_signal_filter": {"tokens": ["qit"], "fields": ["claim_ceiling"]},
+        "scan_sample": {
+            "scanned_result_files": ["system_v4/probes/a2_state/sim_results/qit_fixture_results.json"],
+            "qit_signal_result_files": ["system_v4/probes/a2_state/sim_results/qit_fixture_results.json"],
+            "sample_limit": 20,
+        },
+        "out_of_scope_qit_result_scan": {
+            "status": "out_of_scope_qit_like_results_present",
+            "external_result_count": 1,
+            "external_qit_signal_count": 1,
+            "admission_boundary": "diagnostic_only_not_accepted_evidence",
+            "triage": {
+                "bucket_counts": {"already_admitted_duplicate_reference": 1},
+                "provisional_rerun_target_count": 0,
+                "provisional_rerun_targets": [],
+                "triage_boundary": "diagnostic_only_not_accepted_evidence",
+            },
+        },
+        "next_acceptance_targets": [],
+    }
+    stage_payload = {
+        "all_pass": True,
+        "active_stage": "lego",
+        "decisions": {
+            "tool_micro": {"allowed": True},
+            "tool_lego_fit": {"allowed": True},
+            "tool_integration_micro": {"allowed": True},
+            "lego": {"allowed": True},
+            "bridge": {"allowed": False},
+            "axis": {"allowed": False},
+            "engine": {"allowed": False},
+            "scientific_coupling": {"allowed": False},
+            "tier_d": {"allowed": False},
+        },
+    }
+    helper_payload = {
+        "all_pass": True,
+        "helper_process_count": 0,
+        "guard": "non_browser_sim_preflight",
+    }
 
-    proc = subprocess.run(
-        [
-            sys.executable,
-            str(REPO_ROOT / "scripts" / "wizard_autoresearch_sim_loop.py"),
-            "--iterations",
-            "2",
-            "--run-tag",
-            "pytest-multi-iteration",
-            "--out-dir",
-            str(out_dir),
-            "--evidence-index-out",
-            str(evidence_index),
-            "--run-runner",
-            "--runner-minutes",
-            "1",
-            "--lane-a-parallel",
-            "2",
-            "--lane-b-parallel",
-            "4",
-            "--skip-wizard-matrix",
-        ],
-        cwd=REPO_ROOT,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        text=True,
-        check=False,
-        timeout=60,
-    )
+    def fake_run(command: list[str], *, cwd: Path = module.REPO_ROOT) -> dict[str, object]:
+        text = " ".join(command)
+        if "qit_engine_evidence_index.py" in text:
+            evidence_index.parent.mkdir(parents=True, exist_ok=True)
+            evidence_index.write_text(json.dumps(qit_summary), encoding="utf-8")
+            return {"command": command, "returncode": 0, "stdout": json.dumps(qit_summary)}
+        if "stage_gate.py" in text:
+            return {"command": command, "returncode": 0, "stdout": json.dumps(stage_payload)}
+        if "helper_process_audit.py" in text:
+            return {"command": command, "returncode": 0, "stdout": json.dumps(helper_payload)}
+        if command[:2] == ["make", "parallel-runner-dry"]:
+            return {"command": command, "returncode": 0, "stdout": "dry runner ok"}
+        raise AssertionError(f"unexpected command: {command}")
 
-    assert proc.returncode == 0, proc.stdout[-4000:]
+    argv = [
+        "wizard_autoresearch_sim_loop.py",
+        "--iterations",
+        "2",
+        "--run-tag",
+        "pytest-multi-iteration",
+        "--out-dir",
+        str(out_dir),
+        "--evidence-index-out",
+        str(evidence_index),
+        "--run-runner",
+        "--runner-minutes",
+        "1",
+        "--lane-a-parallel",
+        "2",
+        "--lane-b-parallel",
+        "4",
+        "--skip-wizard-matrix",
+        "--dry-runner",
+    ]
+    monkeypatch.setattr(module, "run", fake_run)
+    monkeypatch.setattr(sys, "argv", argv)
+
+    assert module.main() == 0
     manifest = json.loads((out_dir / "run_manifest.json").read_text(encoding="utf-8"))
     assert manifest["schema"] == "wizard_autoresearch_run_manifest"
     assert manifest["schema_version"] == 1
@@ -6916,6 +7329,7 @@ def test_wizard_autoresearch_dry_loop_writes_numbered_iteration_receipts(tmp_pat
     }
     assert "--iterations" in manifest["argv"]
     assert "--skip-wizard-matrix" in manifest["argv"]
+    assert "--dry-runner" in manifest["argv"]
     expected_argv_hash = hashlib.sha256(
         json.dumps(manifest["argv"], separators=(",", ":"), ensure_ascii=True).encode("utf-8")
     ).hexdigest()
@@ -8280,7 +8694,8 @@ def test_wizard_child_matrix_blocks_accepted_status_on_usefulness_failures() -> 
 
     assert "blocking_failures = blocking_usefulness_failures(groups, formal_completed, active_formal_children)" in text
     assert "launched_families_completed" in text
-    assert "route_quality_ok = formal_ok and launched_families_completed and usefulness_ok" in text
+    assert "provider_families_ok = not attempted_provider_failures" in text
+    assert "route_quality_ok = formal_ok and launched_families_completed and usefulness_ok and provider_families_ok" in text
     assert "matrix_ok = (route_quality_ok if v4_2_route else core_families_completed and route_quality_ok)" in text
     assert "and not rescore_stale" in text
     assert '"status": "accepted" if matrix_ok else "rescored_stale" if rescore_stale else "partial"' in text
@@ -8311,6 +8726,66 @@ def test_wizard_child_matrix_gemini_launches_direct_api_without_cli(monkeypatch,
     assert seen["headers"]["x-goog-api-key"] == "test-gemini-key"
     assert "test-gemini-key" not in seen["url"]
     assert output["text"] == "receipt text"
+
+
+def test_wizard_child_matrix_grok_group_counts_direct_provider_children(monkeypatch, tmp_path) -> None:
+    module = _load_module(
+        "wizard_child_matrix_grok_group_under_test",
+        REPO_ROOT / "scripts" / "wizard_child_matrix.py",
+    )
+
+    monkeypatch.setattr(module, "child_prompt", lambda args, child_id, role: "bounded child prompt")
+
+    def fake_run_one_grok_child(args, out_dir, child_id, role):
+        output_path = out_dir / f"{child_id}.json"
+        output_path.write_text(
+            json.dumps(
+                {
+                    "text": (
+                        f"id: {child_id}\n"
+                        "status: accepted\n"
+                        "distinct_delta: ok\n"
+                        "evidence_boundary: direct_xai_api\n"
+                        "conclusion: ready\n"
+                    )
+                }
+            ),
+            encoding="utf-8",
+        )
+        return {
+            "id": child_id,
+            "role": role,
+            "model": "grok",
+            "launch_surface": "direct_xai_api",
+            "status": "completed",
+            "output_path": str(output_path),
+            "receipt_path": str(out_dir / f"{child_id}.json"),
+        }
+
+    monkeypatch.setattr(module, "run_one_grok_child", fake_run_one_grok_child)
+    args = argparse.Namespace(
+        full_model_council=True,
+        dry_run=False,
+        attempt_grok=True,
+        route="decision.context_strategy",
+        max_concurrency=2,
+        prompt="parent",
+        followup_prompt="follow",
+        payoff="pay",
+        use_when="use",
+        stop_if="stop",
+        boundary="bound",
+    )
+
+    receipt = module.run_grok(args, tmp_path, ["voice.hume", "voice.orwell"])
+
+    assert receipt["status"] == "completed"
+    assert receipt["counts"]["completed"] == 2
+    assert receipt["completed_child_ids"] == [
+        "decision.context_strategy-voice.hume-grok-1",
+        "decision.context_strategy-voice.orwell-grok-2",
+    ]
+    assert (tmp_path / "grok_group_receipt.json").exists()
 
 
 def test_wizard_child_matrix_delegates_expensive_failure_skill_child_to_opus() -> None:
@@ -8480,6 +8955,48 @@ def test_wizard_full_matrix_passes_parallel_model_groups_to_child_matrix() -> No
 
     assert "--parallel-model-groups" in command
     assert "--full-model-council" in command
+
+
+def test_wizard_full_matrix_can_forward_grok_to_child_matrix() -> None:
+    module = _load_module(
+        "wizard_full_matrix_run_v4_2_grok_forward_under_test",
+        REPO_ROOT / "scripts" / "wizard_full_matrix_run_v4_2.py",
+    )
+
+    class Args:
+        task = "audit v4.2 provider topology"
+        followup_prompt = "next"
+        payoff = "prove grok provider family"
+        use_when = "running v4.2"
+        stop_if = "blocked"
+        boundary = "tmp receipts only"
+        cwd = REPO_ROOT
+        run_id = "test-run"
+        sonnet_timeout_sec = 1
+        opus_timeout_sec = 1
+        haiku_timeout_sec = 1
+        grok_timeout_sec = 7
+        sonnet_count = 0
+        opus_count = 0
+        haiku_count = 1
+        sonnet_budget = 0.1
+        opus_budget = 0.1
+        haiku_budget = 0.1
+        global_max_active = 4
+        max_concurrency = 2
+        parallel_model_groups = True
+        full_model_council = True
+        attempt_gemini = False
+        attempt_grok = True
+        skip_gemini = True
+        repair_single_model = True
+        repair_skip_gemini = True
+        dry_run = False
+
+    command = module.route_command(Args, "decision.context_strategy", REPO_ROOT)
+
+    assert "--attempt-grok" in command
+    assert command[command.index("--grok-timeout-sec") + 1] == "7"
 
 
 def test_wizard_full_matrix_can_forward_dry_run_to_child_matrix() -> None:
@@ -8668,6 +9185,7 @@ def test_wizard_v42_level_presets_build_expected_runner_commands(tmp_path) -> No
         out_dir=tmp_path / "high",
         cwd=REPO_ROOT,
         attempt_gemini=True,
+        attempt_grok=True,
     )
 
     assert low_command[low_command.index("--mode") + 1] == "compact"
@@ -8680,6 +9198,7 @@ def test_wizard_v42_level_presets_build_expected_runner_commands(tmp_path) -> No
     assert "--full-model-council" in high_command
     assert "--parallel-model-groups" in high_command
     assert "--attempt-gemini" in high_command
+    assert "--attempt-grok" in high_command
     assert "--skip-gemini" not in high_command
 
 
@@ -9074,6 +9593,35 @@ def test_wizard_child_matrix_dry_run_children_are_not_useful_or_accepted() -> No
     assert module.child_usefulness_failure_reason(dry_child) == "child_not_completed"
     assert module.child_is_useful(dry_child) is False
     assert module.accepted_child_count(groups, gemini) == 0
+
+
+def test_wizard_child_matrix_rejects_provider_child_semantic_block(tmp_path) -> None:
+    module = _load_module(
+        "wizard_child_matrix_provider_semantic_block_under_test",
+        REPO_ROOT / "scripts" / "wizard_child_matrix.py",
+    )
+    output_path = tmp_path / "provider_output.json"
+    output_path.write_text(
+        json.dumps(
+            {
+                "text": (
+                    "id: decision.evidence_boundary-voice.hume-grok-1\n"
+                    "status: blocked\n"
+                    "distinct_delta: ok\n"
+                    "evidence_boundary: direct_xai_api\n"
+                    "conclusion: blocked\n"
+                )
+            }
+        ),
+        encoding="utf-8",
+    )
+    child = {
+        "id": "decision.evidence_boundary-voice.hume-grok-1",
+        "status": "completed",
+        "output_path": str(output_path),
+    }
+
+    assert module.child_usefulness_failure_reason(child) == "child_semantic_status:blocked"
 
 
 def test_wizard_full_matrix_repairs_partial_routes_but_not_accepted_unclean_by_default() -> None:
@@ -9521,6 +10069,8 @@ def test_formal_scout_readiness_index_keeps_noncanonical_status(tmp_path) -> Non
     module.RESULTS = results
     module.README = scout_root / "README.md"
     module.VALIDATOR = scout_root / "validate_formal_scout_results.py"
+    module.PROVIDER_RECEIPTS = scout_root / "provider_receipts"
+    module.PROVIDER_VALIDATOR = scout_root / "validate_provider_receipts.py"
 
     module.VALIDATOR.write_text(
         "import json\n"
@@ -9561,7 +10111,10 @@ def test_formal_scout_readiness_index_keeps_noncanonical_status(tmp_path) -> Non
     assert index["summary"]["source_count"] == 6
     assert index["summary"]["source_without_result_count"] == 1
     assert index["summary"]["validator_pass_count"] == 3
-    assert index["summary"]["validator_fail_count"] == 1
+    assert index["summary"]["validator_fail_count"] == 0
+    assert index["summary"]["non_formal_boundary_count"] == 1
+    assert index["summary"]["provider_receipts"]["receipt_count"] == 0
+    assert index["summary"]["provider_receipts"]["strict_live_validator_fail_count"] == 0
     assert index["summary"]["readme_indexed_count"] == 1
     assert index["summary"]["readme_missing_count"] == 3
     assert index["summary"]["fresh_rerun_mapping_defect_count"] == 0
@@ -9569,10 +10122,17 @@ def test_formal_scout_readiness_index_keeps_noncanonical_status(tmp_path) -> Non
     assert rows["good_probe"]["readiness_status"] == "schema_ready"
     assert rows["good_probe"]["public_status_label"] == "exists"
     assert "formal_scout_noncanonical" in rows["good_probe"]["promotion_blockers"]
-    assert rows["bad_probe"]["readiness_status"] == "validator_failed"
+    assert rows["bad_probe"]["readiness_status"] == "non_formal_boundary"
+    assert "classification_not_formal_scout" in rows["bad_probe"]["promotion_blockers"]
     assert rows["sim_mapping_probe"]["fresh_rerun_mapping_defect"] is False
     assert rows["sim_mapping_probe"]["validator_expected_source_path"].endswith("sim_mapping_probe.py")
     assert rows["sim_dual_probe"]["fresh_rerun_dual_source_defect"] is True
+    md_out = tmp_path / "readiness.md"
+    module.write_markdown(index, md_out)
+    text = md_out.read_text(encoding="utf-8")
+    assert "- Non-formal boundary rows: `1`" in text
+    assert "## Non-Formal Boundary Rows" in text
+    assert "| `system_v5/ops/formal_scouts/results/bad_probe_results.json` | `canonical` |" in text
 
 
 def test_formal_scout_validator_uses_configurable_fresh_rerun_timeout(tmp_path, monkeypatch) -> None:
@@ -10226,6 +10786,7 @@ def test_wizard_child_matrix_full_model_council_expands_opus_and_haiku() -> None
     assert "haiku_count = full_role_count if args.full_model_council and args.haiku_count > 0 else args.haiku_count" in text
     assert "roles = roles if args.full_model_council and roles else [\"outside-model contrast and sanity check\"]" in text
     assert "gemini_group_receipt.json" in text
+    assert "grok_group_receipt.json" in text
     assert '"mode": "full_model_council" if args.full_model_council else "asymmetric_model_council"' in text
 
 
@@ -11792,6 +12353,10 @@ def test_qit_engine_evidence_index_accepts_strict_result_with_wizard_admission(t
                 "summary": {"tests_passed": 1, "tests_total": 1},
                 "tool_manifest": {"z3": {"tried": True, "used": True, "reason": "exact structural fixture check"}},
                 "tool_integration_depth": {"z3": "load_bearing"},
+                "two_root_constraints": {
+                    "finite_carrier_root": True,
+                    "noncommutation_or_order_root": True,
+                },
                 "positive": {"passed": True},
                 "negative": {"passed": True},
                 "boundary": {"passed": True},
@@ -11953,6 +12518,10 @@ def test_qit_engine_evidence_index_does_not_rerun_already_admitted_duplicate(tmp
         "all_pass": True,
         "tool_manifest": {"z3": {"tried": True, "used": True, "reason": "qit fixture"}},
         "tool_integration_depth": {"z3": "load_bearing"},
+        "two_root_constraints": {
+            "finite_carrier_root": True,
+            "noncommutation_or_order_root": True,
+        },
         "positive": {"passed": True, "function_surface": "z3.Solver.check"},
         "negative": {"passed": True},
         "boundary": {"passed": True},
@@ -12164,7 +12733,7 @@ def test_wizard_sim_admission_rejects_qit_canonical_without_nonclassical_tool(tm
         sim_path="system_v4/probes/sim_qit_probe.py",
     )
 
-    assert "nonclassical_suitable_load_bearing_tool_missing" in findings
+    assert "nonclassical_missing_n01_noncommutation_or_order_evidence" in findings
 
 
 def test_wizard_sim_admission_rejects_hidden_coupling_result_without_nonclassical_tool(tmp_path) -> None:
@@ -12216,7 +12785,7 @@ def test_wizard_sim_admission_rejects_hidden_coupling_result_without_nonclassica
         sim_path="system_v4/probes/sim_probe_object.py",
     )
 
-    assert "nonclassical_suitable_load_bearing_tool_missing" in findings
+    assert "nonclassical_requires_local_load_bearing_pytorch" in findings
 
 
 def test_wizard_sim_admission_hidden_signal_does_not_match_substrings(tmp_path) -> None:
@@ -12454,7 +13023,7 @@ def test_wizard_sim_admission_rejects_hidden_coupling_source_without_nonclassica
         sim_path="system_v4/probes/sim_probe_object.py",
     )
 
-    assert "nonclassical_suitable_load_bearing_tool_missing" in findings
+    assert "nonclassical_requires_local_load_bearing_pytorch" in findings
 
 
 def test_qit_engine_evidence_index_blocks_stale_admission_artifact_hash(tmp_path) -> None:

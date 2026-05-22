@@ -25,10 +25,14 @@ PROVIDER PROVENANCE:
   evidence_allowed = false — this module is a structural implementation of the
   proposals; its results do not constitute canonical evidence.
 
-DEPENDENCIES (load-bearing): torch, numpy
-DEPENDENCIES (supportive): scipy.linalg (matrix inversion fallback)
+DEPENDENCIES (fixture-local load-bearing): torch; numpy/scipy reviewed boundary
+for inversion and finite-chain audit helpers
 DTYPE: complex128 throughout
 PROJECTOR SIZE CONSTRAINT: all matrices ≤ 16×16
+
+NUMPY/SCIPY BOUNDARY: proposal-only fixture support. These paths are blocked
+from nonclassical-claim promotion by the NumPy quarantine gate until ported
+source-native.
 """
 
 from __future__ import annotations

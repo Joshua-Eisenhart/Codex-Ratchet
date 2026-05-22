@@ -14,6 +14,9 @@ import xgi
 from toponetx import CellComplex
 from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"  # auto-backfill
+divergence_log = [
+    "Classical comparator/control surface only: this runner does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim.",
+]
 
 
 CLASSIFICATION = "canonical"

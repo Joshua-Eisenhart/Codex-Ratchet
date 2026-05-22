@@ -22,9 +22,9 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "Monte Carlo variance and Fisher eval"},
     "scipy": {"tried": True, "used": True, "reason": "normal/bernoulli pmf reference"},
     "pytorch": {
-        "tried": _torch_ok,
+        "tried": True,
         "used": False,
-        "reason": "imported as supportive dependency; not load-bearing for classical CRB",
+        "reason": "optional supportive import attempt only; not load-bearing for classical CRB",
     },
     "z3": {"tried": False, "used": False, "reason": "no SMT proof claim for this baseline"},
 }

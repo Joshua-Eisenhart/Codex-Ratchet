@@ -31,6 +31,15 @@ import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
 
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for its local claim; it does not promote "
+        "a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+    ),
+]
+
 CLASSIFICATION = "exploratory"
 CLASSIFICATION_NOTE = (
     "Explicit stochastic substep probe for Szilard-style memory mechanics. "

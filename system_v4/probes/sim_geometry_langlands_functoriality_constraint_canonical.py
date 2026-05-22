@@ -15,6 +15,8 @@ import os
 import numpy as np
 from typing import Dict, Any
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

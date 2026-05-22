@@ -53,6 +53,7 @@ class LevelPreset:
     full_model_council: bool
     skip_gemini: bool
     attempt_gemini: bool
+    attempt_grok: bool
     capacity_preflight_models: str
 
 
@@ -71,6 +72,7 @@ PRESETS: dict[str, LevelPreset] = {
         full_model_council=False,
         skip_gemini=True,
         attempt_gemini=False,
+        attempt_grok=False,
         capacity_preflight_models="sonnet",
     ),
     "medium": LevelPreset(
@@ -87,6 +89,7 @@ PRESETS: dict[str, LevelPreset] = {
         full_model_council=False,
         skip_gemini=True,
         attempt_gemini=False,
+        attempt_grok=False,
         capacity_preflight_models="sonnet",
     ),
     "high": LevelPreset(
@@ -103,6 +106,7 @@ PRESETS: dict[str, LevelPreset] = {
         full_model_council=True,
         skip_gemini=False,
         attempt_gemini=True,
+        attempt_grok=False,
         capacity_preflight_models="sonnet,opus,haiku",
     ),
 }
@@ -210,6 +214,7 @@ def build_runner_command(
     dry_run: bool = False,
     codex_local_children: bool = False,
     attempt_gemini: bool = False,
+    attempt_grok: bool = False,
     no_capacity_preflight: bool = False,
     compact_profile: str = "auto",
 ) -> list[str]:
@@ -257,6 +262,8 @@ def build_runner_command(
         command.append("--skip-gemini")
     if should_attempt_gemini:
         command.append("--attempt-gemini")
+    if attempt_grok or preset.attempt_grok:
+        command.append("--attempt-grok")
     if dry_run:
         command.append("--dry-run")
     if codex_local_children:
@@ -515,6 +522,7 @@ def run_level_loop(args: argparse.Namespace, preset: LevelPreset, loop_count: in
                 dry_run=args.dry_run,
                 codex_local_children=args.codex_local_children,
                 attempt_gemini=args.attempt_gemini,
+                attempt_grok=getattr(args, "attempt_grok", False),
                 no_capacity_preflight=args.no_capacity_preflight,
                 compact_profile=getattr(args, "compact_profile", "auto"),
             )
@@ -613,6 +621,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--codex-local-children", action="store_true")
     parser.add_argument("--attempt-gemini", action="store_true")
+    parser.add_argument("--attempt-grok", action="store_true")
     parser.add_argument("--no-capacity-preflight", action="store_true")
     parser.add_argument(
         "--compact-profile",

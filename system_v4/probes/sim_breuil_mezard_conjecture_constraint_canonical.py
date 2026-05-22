@@ -15,6 +15,8 @@ Sympy: Serre weight multiplicity m_σ(ρ̄) encoding weight labels and mod-p rep
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

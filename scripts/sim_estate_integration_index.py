@@ -138,7 +138,7 @@ def rel(path: Path) -> str:
 
 def load_json(path: Path) -> Any:
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        return json.loads(path.read_bytes().decode("utf-8"))
     except Exception:
         return None
 
@@ -338,6 +338,12 @@ def source_for_result(stem: str) -> Path:
     return FORMAL / f"sim_{stem}.py"
 
 
+def formal_scout_candidate_surface_allowed(row: dict[str, Any]) -> Any:
+    if "formal_scout_candidate_surface_allowed" in row:
+        return row.get("formal_scout_candidate_surface_allowed")
+    return row.get("nonclassical_basin_claim_allowed")
+
+
 def infer_tags(text: str, stem: str) -> list[str]:
     tags = []
     if MANIFOLD_RE.search(text) or stem in CORE_MANIFOLD_RECEIPTS:
@@ -379,6 +385,7 @@ def build_result_rows(role_by_result: dict[str, dict[str, Any]]) -> list[dict[st
         role_row = role_by_result.get(f"results/{path.name}", {})
         width = width_metadata(data)
         pass_value, pass_source = all_pass_status(data)
+        tool_gate_claim_allowed = formal_scout_candidate_surface_allowed(role_row)
         rows.append(
             {
                 "name": data.get("name") or stem,
@@ -401,7 +408,7 @@ def build_result_rows(role_by_result: dict[str, dict[str, Any]]) -> list[dict[st
                 "load_bearing_tools": lb_tools,
                 "supportive_tools": sup_tools,
                 "tool_role_status": role_row.get("tool_role_status"),
-                "nonclassical_basin_claim_allowed": role_row.get("nonclassical_basin_claim_allowed"),
+                "formal_scout_candidate_surface_allowed": tool_gate_claim_allowed,
                 "blocker_count": len(blocker_names(data)),
                 "blockers": blocker_names(data),
                 "nearby_variants": data.get("nearby_variants"),
@@ -422,7 +429,7 @@ def build_tool_gate_summary() -> dict[str, Any]:
     rows = rows if isinstance(rows, list) else []
     status_counts = Counter(str(row.get("tool_role_status")) for row in rows)
     candidates = [row for row in rows if row.get("tool_role_status") == "tool_role_candidate"]
-    blocked = [row for row in rows if row.get("nonclassical_basin_claim_allowed") is not True]
+    blocked = [row for row in rows if formal_scout_candidate_surface_allowed(row) is not True]
     by_tool: dict[str, Counter[str]] = defaultdict(Counter)
     for row in rows:
         status = str(row.get("tool_role_status"))
@@ -441,7 +448,7 @@ def build_tool_gate_summary() -> dict[str, Any]:
                 "name": row.get("name"),
                 "result_path": row.get("result_path"),
                 "load_bearing_tools": row.get("load_bearing_tools", []),
-                "nonclassical_basin_claim_allowed": row.get("nonclassical_basin_claim_allowed"),
+                "formal_scout_candidate_surface_allowed": formal_scout_candidate_surface_allowed(row),
             }
             for row in candidates
         ],
@@ -518,14 +525,24 @@ def build_axis0_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
 def count_files(path: Path) -> int:
     if not path.exists():
         return 0
-    return sum(1 for item in path.rglob("*") if item.is_file())
+    return sum(1 for item in path.rglob("*") if is_inventory_file(item))
+
+
+def is_inventory_file(path: Path) -> bool:
+    if not path.is_file():
+        return False
+    if path.name == ".DS_Store":
+        return False
+    if path.suffix == ".pyc":
+        return False
+    return "__pycache__" not in path.parts
 
 
 def build_process_lines() -> dict[str, Any]:
     grok_counts = Counter()
     if GROK_SIM.exists():
         for item in GROK_SIM.rglob("*"):
-            if item.is_file():
+            if is_inventory_file(item):
                 try:
                     first = item.relative_to(GROK_SIM).parts[0]
                 except ValueError:
@@ -623,7 +640,7 @@ def compact_row(row: dict[str, Any]) -> dict[str, Any]:
         "layers": row["candidate_layer_count"],
         "load_bearing_tools": row["load_bearing_tools"],
         "tool_role_status": row["tool_role_status"],
-        "nonclassical_basin_claim_allowed": row["nonclassical_basin_claim_allowed"],
+        "formal_scout_candidate_surface_allowed": row["formal_scout_candidate_surface_allowed"],
         "tags": row.get("tags", []),
         "subject_tags": row.get("subject_tags", []),
         "summary": row["summary"],
@@ -706,7 +723,7 @@ def build_markdown(index: dict[str, Any]) -> str:
         "",
         "## Root Object",
         "",
-        "The current working root surface is the geometric constraint manifold candidate: 13 simultaneous constraint shells, not axis labels and not only the Weyl/chirality layer. PEPS/PEPS3D, Axis0, attractor-basin receipts, provider outputs, and graph/proof tools are indexed here only as evidence surfaces over that candidate, not as final manifold promotion.",
+        "The current working root surface is the geometric constraint manifold candidate. The 13-shell inventory is a current indexing fixture / candidate scaffold, not an admitted source-model layer order, not axis labels, and not only the Weyl/chirality layer. PEPS/PEPS3D, Axis0, attractor-basin receipts, provider outputs, and graph/proof tools are indexed here only as evidence surfaces over that candidate, not as final manifold promotion.",
         "",
         "## Axis Overlay Map",
         "",
@@ -727,7 +744,7 @@ def build_markdown(index: dict[str, Any]) -> str:
         f"- The active evidence estate contains {integrated_candidate_count} 13-layer integrated manifold candidates with pass evidence, `promotion_allowed=false`, and 64 microsteps.",
         "- The strongest manifold receipts are still formal scouts. They do not promote a final manifold, final G-structure, physics, bridge, axis, engine, or target-system claim.",
         f"- Tool-role gate: {tool_gate.get('candidate_count')} candidate surfaces and {tool_gate.get('blocked_count')} blocked result-not-all-pass surfaces from {tool_gate.get('positive', {}).get('result_surface_scanned', {}).get('nonclassical_surface_count')} scanned nonclassical/source-native result surfaces.",
-        f"- NumPy quarantine: source scan sees {numpy_gate.get('source_scan', {}).get('numpy_tainted_file_count')} NumPy-pattern files total, hard-quarantines {numpy_gate.get('source_scan', {}).get('hard_quarantine_count')} files, marks {numpy_gate.get('source_scan', {}).get('review_required_count')} review-required surfaces, preserves {numpy_gate.get('source_scan', {}).get('reviewed_numpy_boundary_count')} reviewed NumPy-bearing boundary files as nonclassical-claim blocked, and keeps {numpy_gate.get('source_scan', {}).get('legacy_or_baseline_boundary_count')} quarantine-scanner self-hit / legacy-baseline boundary file separate; receipt scan hard-quarantines {numpy_gate.get('result_scan', {}).get('current_receipt_quarantine_count')} result receipts.",
+        f"- NumPy/SciPy/spectral backend quarantine: source scan sees {numpy_gate.get('source_scan', {}).get('numpy_tainted_file_count')} direct NumPy-pattern files, hard-quarantines {numpy_gate.get('source_scan', {}).get('hard_quarantine_count')} files for direct NumPy, load-bearing SciPy, or NumPy-backed NetworkX spectral paths, marks {numpy_gate.get('source_scan', {}).get('review_required_count')} review-required surfaces, preserves {numpy_gate.get('source_scan', {}).get('reviewed_numpy_boundary_count')} reviewed NumPy-bearing boundary files as nonclassical-claim blocked, and keeps {numpy_gate.get('source_scan', {}).get('legacy_or_baseline_boundary_count')} quarantine-scanner self-hit / legacy-baseline boundary file separate; receipt scan hard-quarantines {numpy_gate.get('result_scan', {}).get('current_receipt_quarantine_count')} result receipts.",
         f"- Axis0 is partially repaired but not solid: admitted {axis0.get('admitted_candidate_names', [])}; blocked {axis0.get('blocked_candidate_names', [])}; scalar projection blocker admitted={axis0.get('scalar_weighted_drive_blocker', {}).get('admitted')}.",
         f"- Axis0 row counts are split: broad mention-tagged rows `{axis0.get('axis0_row_count')}`, subject-tagged rows `{axis0.get('axis0_subject_row_count')}`. Broad rows may include negative claim-ceiling boilerplate and should not be treated as subject evidence.",
         f"- Row summaries may preserve row-local historical flags such as `cleanup_authorized=False`; these are not the D86 final closeout state. Conversely, D86 closeout does not override the current readiness tuple or the {validator_red_count} validator-red rows preserved as nonpromotional evidence.",
@@ -735,7 +752,7 @@ def build_markdown(index: dict[str, Any]) -> str:
         "## Sim Process Lines",
         "",
         f"- Formal-scout source/result estate: `{process['formal_scout_index_surface']['source_dir']}` has {process['formal_scout_index_surface']['source_count']} sources and {process['formal_scout_index_surface']['result_count']} result receipts.",
-        f"- Independent `grok_sim` process line: `{process['grok_sim_proposal_process_line']['path']}` has {process['grok_sim_proposal_process_line']['file_count']} files; role is proposal/failure mining until translated.",
+        f"- Independent `grok_sim` process line: `{process['grok_sim_proposal_process_line']['path']}` has {process['grok_sim_proposal_process_line']['file_count']} inventory files, excluding generated bytecode caches and `.DS_Store`; role is proposal/failure mining until translated.",
         f"- Scratch/council estate: `{process['tmp_engine_v2_scratch']['path']}` has {process['tmp_engine_v2_scratch']['file_count']} files; not canonical evidence.",
         f"- Lego result estate: `{process['lego_results']['path']}` has {process['lego_results']['file_count']} files.",
         "",

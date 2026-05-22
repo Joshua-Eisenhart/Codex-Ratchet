@@ -7,8 +7,14 @@ mid-cycle and confirming that the manifold (Patch C) collapses it back to
 rank-1 in the science-method records.
 """
 
-import numpy as np
+import torch
 from engine_core import EngineCore, generate_initial_density, I2, _normalize_density
+
+
+def hermitian_rank(matrix, tol: float = 1e-10) -> int:
+    tensor = torch.as_tensor(matrix, dtype=torch.complex128)
+    eigvals = torch.linalg.eigvalsh(tensor)
+    return int(torch.count_nonzero(eigvals > tol).item())
 
 def run_perturbation_test(seed: int = 42):
     print(f"Running perturbation test with seed {seed}...")
@@ -30,7 +36,7 @@ def run_perturbation_test(seed: int = 42):
     noise_strength = 0.3
     rho_perturbed = _normalize_density((1.0 - noise_strength) * rho + noise_strength * I2 / 2)
     
-    print(f"Injecting noise at Stage 4. Rank before: {trajectory[-1]['model_after']['carrier_rank']}, Rank after perturbation: {int(np.sum(np.linalg.eigvalsh(rho_perturbed) > 1e-10))}")
+    print(f"Injecting noise at Stage 4. Rank before: {trajectory[-1]['model_after']['carrier_rank']}, Rank after perturbation: {hermitian_rank(rho_perturbed)}")
     
     # Run Stage 4 with the perturbed state
     main_idx = 4

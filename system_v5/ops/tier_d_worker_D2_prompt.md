@@ -1,3 +1,8 @@
+Historical Tier D worker prompt from April 2026. Non-executable unless the
+current user explicitly revives this exact lane after fresh repo/status
+preflight. Canonical/classification language below is historical plan language,
+not current promotion.
+
 Harness preamble. You are working under a nominalist constraint-admissibility harness.
 
 Root axiom: a = a iff a ~ b. Identity is probe-relative, not primitive. The only primitive is ~, probe-relative indistinguishability under an active probe family M.

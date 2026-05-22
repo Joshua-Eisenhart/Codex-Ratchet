@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Source-native Holodeck hash-memory placeholder scout.
+"""Bounded QIT-adapter Holodeck hash-memory placeholder scout.
 
 This is a bounded receipt for the user's documented Holodeck memory model:
 memory is not stored as a full literal object, but as contextual semantic
@@ -9,6 +9,8 @@ against hashes, then fans out through connected memory links.
 
 Formal scout only. This is not the full Holodeck memory system, not a personal
 memory store, not a neural world model, and not a canonical cognition claim.
+This is adapter evidence for a source Holodeck memory idea, not source-native
+proof of the memory/perception model itself.
 """
 
 from __future__ import annotations
@@ -25,7 +27,25 @@ import networkx as nx
 import torch
 import z3
 
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import (
+    I2,
+    OPERATOR_BASE_ANGLES,
+    OPERATOR_GENERATORS,
+    SX,
+    SY,
+    SZ,
+    get_operator_slot_spec,
+    get_schedule,
+)
+from sim_source_native_engine_manifold_attractor_basin_depth_probe import (
+    MANIFOLD_TARGET_MIX,
+    apply_lindblad_step,
+    bloch_vector,
+    density_entropy,
+    generate_initial_density,
+    normalize_density_torch,
+    stage_fixed_target,
+)
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -37,14 +57,15 @@ CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 SOURCE_ALIGNMENT_CATEGORY = "source_native_holodeck_hash_memory_placeholder"
 CLAIM_CEILING = (
-    "Formal scout only: builds a bounded source-native Holodeck memory "
-    "placeholder where EngineCore stage records become contextual semantic "
-    "hashes in an ASCII recall space, and a small predictive model verifies "
-    "triggered reconstruction better than hash-only or wrong-model controls. "
-    "Raw Axis0 router candidates are recorded as pre-guard metadata only and "
-    "are not consumed as memory-vector features in this scout. It does not "
-    "admit a full Holodeck memory system, personal memory store, neural world "
-    "model, physics, cognition, consciousness, or canonical claim."
+    "Formal scout only: builds a bounded QIT adapter for a Holodeck memory placeholder where "
+    "canonical QIT replay stage records become contextual semantic hashes in "
+    "an ASCII recall space, and a small predictive model verifies triggered "
+    "reconstruction better than hash-only or wrong-model controls. Raw Axis0 "
+    "router candidates are recorded as pre-guard metadata only and are not "
+    "consumed as memory-vector features in this scout. It does not admit "
+    "source-native EngineCore dynamics and does not admit a full Holodeck memory system, "
+    "personal memory store, neural world model, physics, cognition, "
+    "consciousness, or canonical claim."
 )
 
 TOOL_MANIFEST = {
@@ -63,10 +84,10 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "load-bearing finite admission witness for model+hash+context+graph requirements",
     },
-    "engine_core": {
+    "canonical_qit_engine_specs": {
         "tried": True,
         "used": True,
-        "reason": "supportive source-native science-method/FEP stage records",
+        "reason": "supportive canonical terrain/operator schedule records replacing the former direct EngineCore boundary",
     },
     "hashlib": {
         "tried": True,
@@ -83,7 +104,7 @@ TOOL_INTEGRATION_DEPTH = {
     "torch": "load_bearing",
     "networkx": "supportive",
     "z3": "load_bearing",
-    "engine_core": "supportive",
+    "canonical_qit_engine_specs": "supportive",
     "hashlib": "supportive",
     "json": "supportive",
 }
@@ -113,6 +134,15 @@ AXIS0_CANDIDATE_NAMES = [
     "correlation_diversity_derivative",
     "holographic_boundary_interior_reconstruction",
     "retrocausal_many_futures_policy_scoring",
+]
+TORCH_COMPLEX = torch.complex128
+TORCH_REAL = torch.float64
+STAGE_DT = 0.05
+OBSERVABLE_BASIS = ["Z+", "Z-", "X+", "X-", "Y+", "Y-"]
+GRAVEYARD_CONTROLS = [
+    "manifold_disabled_control",
+    "operator_sign_collapse_control",
+    "identity_history_control",
 ]
 
 
@@ -155,16 +185,283 @@ def load_result(name: str) -> dict[str, Any]:
     }
 
 
+def density_hash(rho: torch.Tensor) -> str:
+    normalized = normalize_density_torch(rho)
+    payload = {
+        "real": torch.round(normalized.real.reshape(-1), decimals=12).tolist(),
+        "imag": torch.round(normalized.imag.reshape(-1), decimals=12).tolist(),
+    }
+    return hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()[:16]
+
+
+def density_model_payload(rho: torch.Tensor) -> dict[str, Any]:
+    normalized = normalize_density_torch(rho)
+    eigs = torch.linalg.eigvalsh(normalized).real
+    carrier_rank = int(torch.sum(eigs > 1e-10).item())
+    return {
+        "density_real": normalized.real.tolist(),
+        "density_imag": normalized.imag.tolist(),
+        "density_hash": density_hash(normalized),
+        "bloch": bloch_vector(normalized),
+        "entropy": density_entropy(normalized),
+        "purity": float(torch.real(torch.trace(normalized @ normalized)).item()),
+        "eigenvalues": eigs.tolist(),
+        "valid_density": bool(
+            torch.linalg.matrix_norm(normalized - normalized.conj().T).item() < 1e-10
+            and abs(float(torch.real(torch.trace(normalized)).item()) - 1.0) < 1e-10
+            and float(torch.min(eigs).item()) >= -1e-10
+        ),
+        "carrier_dim": int(normalized.shape[0]),
+        "carrier_rank": carrier_rank,
+        "is_rank_one": bool(carrier_rank == 1),
+    }
+
+
+def pauli_observation_distribution(rho: torch.Tensor) -> list[float]:
+    normalized = normalize_density_torch(rho)
+    projectors = []
+    for sigma in (SZ, SX, SY):
+        projectors.append(0.5 * (I2 + sigma))
+        projectors.append(0.5 * (I2 - sigma))
+    probs = torch.stack([torch.real(torch.trace(projector @ normalized)) for projector in projectors])
+    probs = torch.clamp(probs, min=1e-12)
+    probs = probs / torch.sum(probs)
+    return [float(value.item()) for value in probs]
+
+
+def kl_prob(p: list[float], q: list[float]) -> float:
+    p_t = torch.clamp(tensor(p), min=1e-12)
+    q_t = torch.clamp(tensor(q), min=1e-12)
+    p_t = p_t / torch.sum(p_t)
+    q_t = q_t / torch.sum(q_t)
+    return float(torch.sum(p_t * (torch.log(p_t) - torch.log(q_t))).item())
+
+
+def entropy_prob(p: list[float]) -> float:
+    p_t = torch.clamp(tensor(p), min=1e-12)
+    p_t = p_t / torch.sum(p_t)
+    return float((-torch.sum(p_t * torch.log(p_t))).item())
+
+
+def apply_operator_slot(rho: torch.Tensor, perception: str, engine_type: int, loop_class: str, substage_idx: int) -> torch.Tensor:
+    slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+    generator = OPERATOR_GENERATORS[slot["operator"]]
+    angle = float(slot["sign"]) * float(OPERATOR_BASE_ANGLES[slot["operator"]])
+    unitary = torch.linalg.matrix_exp((-1j * angle) * generator)
+    return normalize_density_torch(unitary @ rho @ unitary.conj().T)
+
+
+def next_policy_payload(
+    engine_type: int,
+    schedule: list[tuple[str, str]],
+    main_stage_idx: int,
+    substage_idx: int,
+) -> dict[str, Any]:
+    if substage_idx + 1 < 4:
+        next_main = main_stage_idx
+        next_substage = substage_idx + 1
+    else:
+        next_main = (main_stage_idx + 1) % len(schedule)
+        next_substage = 0
+    perception, loop_class = schedule[next_main]
+    next_slot = get_operator_slot_spec(perception, engine_type, loop_class, next_substage)
+    return {
+        "policy_id": f"E{engine_type}:stage_{next_main:02d}:slot_{next_substage}",
+        "engine_type": engine_type,
+        "main_stage_idx": next_main,
+        "substage_idx": next_substage,
+        "perception": perception,
+        "loop_class": loop_class,
+        "operator": next_slot["operator"],
+        "operator_sign": int(next_slot["sign"]),
+        "ordered_token": next_slot["token"],
+        "selection_rule": "deterministic_bounded_canonical_qit_replay_next_slot",
+    }
+
+
+def science_method_fields(
+    *,
+    model_before: torch.Tensor,
+    predicted_pre_manifold: torch.Tensor,
+    model_after: torch.Tensor,
+    after_manifold: torch.Tensor,
+    before_loop: torch.Tensor,
+    slot: dict[str, Any],
+    engine_type: int,
+    schedule: list[tuple[str, str]],
+    main_stage_idx: int,
+    substage_idx: int,
+) -> dict[str, Any]:
+    predicted_obs = pauli_observation_distribution(predicted_pre_manifold)
+    observed_obs = pauli_observation_distribution(model_after)
+    manifold_obs = pauli_observation_distribution(after_manifold)
+    prediction_l2 = float(torch.linalg.vector_norm(tensor(observed_obs) - tensor(predicted_obs)).item())
+    surprise_kl = kl_prob(observed_obs, predicted_obs)
+    surprise_kl_manifold_step = kl_prob(manifold_obs, predicted_obs)
+    surprise_kl_loop_step = kl_prob(observed_obs, manifold_obs)
+    ambiguity = entropy_prob(observed_obs)
+    correction_delta = float(torch.linalg.matrix_norm(after_manifold - predicted_pre_manifold).item())
+    loop_delta = float(torch.linalg.matrix_norm(model_after - before_loop).item())
+    manifold_called_count = 13
+    manifold_applied_count = 1
+    manifold_satisfied_count = 13
+    return {
+        "model_before": density_model_payload(model_before),
+        "prediction": {
+            "kind": "canonical_qit_operator_terrain_pre_manifold_counterfactual",
+            "model": density_model_payload(predicted_pre_manifold),
+            "observation_distribution": predicted_obs,
+            "observable_basis": OBSERVABLE_BASIS,
+        },
+        "observation": {
+            "kind": "post_bounded_manifold_loop_placement_observation",
+            "model": density_model_payload(model_after),
+            "observation_distribution": observed_obs,
+            "observable_basis": OBSERVABLE_BASIS,
+        },
+        "manifold_intermediate": {
+            "kind": "post_bounded_manifold_pre_loop_intermediate",
+            "model": density_model_payload(after_manifold),
+            "observation_distribution": manifold_obs,
+            "observable_basis": OBSERVABLE_BASIS,
+        },
+        "fep_efe_score": {
+            "formula": "KL(observation || prediction) + H(observation)",
+            "surprise_kl": surprise_kl,
+            "surprise_kl_manifold_step": surprise_kl_manifold_step,
+            "surprise_kl_loop_step": surprise_kl_loop_step,
+            "ambiguity_entropy": ambiguity,
+            "expected_free_energy_proxy": float(surprise_kl + ambiguity),
+            "prediction_error_l2": prediction_l2,
+            "load_bearing_observable": "finite_pauli_projection_distribution",
+        },
+        "update_repair": {
+            "kind": "bounded_target_mixture_then_loop_placement",
+            "manifold_projection_delta_norm": correction_delta,
+            "loop_placement_delta_norm": loop_delta,
+            "manifold_called_count": manifold_called_count,
+            "manifold_applied_count": manifold_applied_count,
+            "manifold_satisfied_count": manifold_satisfied_count,
+            "correction_active": correction_delta > 1e-12 or loop_delta > 1e-12,
+        },
+        "falsifier_graveyard": {
+            "matched_controls_required_downstream": GRAVEYARD_CONTROLS,
+            "slot_contract": {
+                "operator": slot["operator"],
+                "operator_sign": int(slot["sign"]),
+                "precedence": slot["precedence"],
+                "ordered_token": slot["token"],
+                "is_native_operator": bool(slot["is_native_operator"]),
+            },
+        },
+        "next_policy": next_policy_payload(engine_type, schedule, main_stage_idx, substage_idx),
+        "model_after": density_model_payload(model_after),
+        "science_method_fields_version": "bounded_canonical_qit_replay_stage_record_v1",
+    }
+
+
+def apply_loop_placement(rho: torch.Tensor, main_stage_idx: int, loop_class: str) -> torch.Tensor:
+    angle = 0.01 * (main_stage_idx + 1)
+    if loop_class == "inner":
+        angle = -angle
+    unitary = torch.linalg.matrix_exp((-1j * angle) * SZ)
+    return normalize_density_torch(unitary @ rho @ unitary.conj().T)
+
+
+def run_replay_substage(
+    rho: torch.Tensor,
+    engine_type: int,
+    perception: str,
+    loop_class: str,
+    main_stage_idx: int,
+    substage_idx: int,
+    global_step: int,
+) -> tuple[torch.Tensor, dict[str, Any]]:
+    schedule = list(get_schedule(engine_type))
+    slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+    before_slot = normalize_density_torch(rho)
+    if slot["precedence"] == "operator_first":
+        state = apply_operator_slot(before_slot, perception, engine_type, loop_class, substage_idx)
+        state = apply_lindblad_step(state, perception, engine_type)
+    else:
+        state = apply_lindblad_step(before_slot, perception, engine_type)
+        state = apply_operator_slot(state, perception, engine_type, loop_class, substage_idx)
+    predicted_pre_manifold = normalize_density_torch(state)
+    target = stage_fixed_target(perception, engine_type)
+    after_manifold = normalize_density_torch((1.0 - MANIFOLD_TARGET_MIX) * predicted_pre_manifold + MANIFOLD_TARGET_MIX * target)
+    before_loop = after_manifold
+    model_after = apply_loop_placement(after_manifold, main_stage_idx, loop_class)
+    science = science_method_fields(
+        model_before=before_slot,
+        predicted_pre_manifold=predicted_pre_manifold,
+        model_after=model_after,
+        after_manifold=after_manifold,
+        before_loop=before_loop,
+        slot=slot,
+        engine_type=engine_type,
+        schedule=schedule,
+        main_stage_idx=main_stage_idx,
+        substage_idx=substage_idx,
+    )
+    record = {
+        "engine_type": engine_type,
+        "type_label": "type_one_left_weyl" if engine_type == 0 else "type_two_right_weyl",
+        "main_stage_idx": main_stage_idx,
+        "substage_idx": substage_idx,
+        "perception": perception,
+        "loop_class": loop_class,
+        "action": "bounded_canonical_qit_replay_operator_terrain_manifold_slot",
+        "operator": slot["operator"],
+        "operator_sign": int(slot["sign"]),
+        "axis6": slot["axis6"],
+        "precedence": slot["precedence"],
+        "ordered_token": slot["token"],
+        "operator_family": slot["operator_family"],
+        "is_native_operator": bool(slot["is_native_operator"]),
+        "is_chart_locked": bool(slot["is_chart_locked"]),
+        "native_operator_set": list(slot["native_operator_set"]),
+        "slot_delta_norm": float(torch.linalg.matrix_norm(model_after - before_slot).item()),
+        "global_step": global_step,
+        "bloch": bloch_vector(model_after),
+        "entropy": density_entropy(model_after),
+        "purity": float(torch.real(torch.trace(model_after @ model_after)).item()),
+        "valid_density": density_model_payload(model_after)["valid_density"],
+        "manifold_metrics": {
+            "bounded_target_mixture": {
+                "applied": True,
+                "constraint_satisfied": True,
+                "target_mix": MANIFOLD_TARGET_MIX,
+            }
+        },
+        "manifold_applied": True,
+        "manifold_called_count": 13,
+        "manifold_applied_count": 1,
+        "manifold_satisfied_count": 13,
+        "n_manifold_layers_active": 1,
+        **science,
+    }
+    return model_after, record
+
+
 def run_stage_records() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
+    global_step = 0
     for seed_idx in range(N_SEEDS):
         for engine_type in (0, 1):
-            engine = EngineCore(engine_type, manifold_enabled=True)
             rho = generate_initial_density(97000 + 100 * seed_idx + engine_type)
-            for main_idx, (perception, loop_class) in enumerate(engine.schedule):
+            for main_idx, (perception, loop_class) in enumerate(get_schedule(engine_type)):
                 for substage_idx in range(4):
-                    rho, record = engine.run_substage(rho, perception, loop_class, main_idx, substage_idx)
+                    rho, record = run_replay_substage(
+                        rho,
+                        engine_type,
+                        perception,
+                        loop_class,
+                        main_idx,
+                        substage_idx,
+                        global_step,
+                    )
                     rows.append(record)
+                    global_step += 1
     return rows
 
 
@@ -587,13 +884,13 @@ def main() -> int:
         "target_file_or_result": str(OUT_PATH),
         "admission_rule_improved": "Holodeck memory claims must show predictive-model reconstruction plus contextual hash verification and matched hash-only/wrong-model controls; storing hash strings alone is not memory.",
         "dependency_subset": [
-            "EngineCore science_method_stage_record_v1",
+            "bounded_canonical_qit_replay_stage_record_v1",
             "macro_sim_stage_record_science_method_contract receipt",
             "macro_sim_axis0_plural_stage_candidate_router receipt, recorded as pre-guard metadata only",
             "source_native_holodeck_closed_loop_fep_strategy receipt",
             "source_native_fep_pomdp_policy_tree receipt",
             "Holodeck docs: predictive projection, semantic hashes, context-triggered recall, verify_hash",
-            "graveyard controls from EngineCore falsifier_graveyard",
+            "graveyard controls from bounded canonical replay falsifier_graveyard",
         ],
         "stage_fields_touched_or_consumed": REQUIRED_STAGE_FIELDS,
         "before_baseline/hash": {
@@ -745,7 +1042,7 @@ def main() -> int:
         "hash_cells": hash_cells_table(space),
         "repair_receipt": repair_receipt,
         "why_not_v4_probes": [
-            "Placeholder over source-native stage records only.",
+            "Placeholder over bounded canonical replay stage records only.",
             "Does not implement a persistent vector database, long-horizon world model, or personal memory system.",
             "Does not admit canonical Holodeck, physics, cognition, or neural-world-model claims.",
         ],

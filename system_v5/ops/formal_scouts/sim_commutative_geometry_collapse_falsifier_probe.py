@@ -16,11 +16,11 @@ addresses the council failure mode: z3 UNSAT could be encoding artifact.
 from __future__ import annotations
 
 import json
+import math
 import pathlib
 import time
 from itertools import combinations
 
-import numpy as np
 import z3
 from clifford import Cl
 
@@ -49,11 +49,9 @@ TOOL_MANIFEST = {
         "reason": "load-bearing symbolic anticommutation prediction for non-circular grounding of z3 commutator table"},
     "z3": {"tried": True, "used": True,
         "reason": "load-bearing dual-encoding UNSAT plus weakened SAT control"},
-    "numpy": {"tried": True, "used": True,
-        "reason": "supportive matrix-form norm/grade extraction for clifford output"},
 }
 TOOL_INTEGRATION_DEPTH = {"clifford": "load_bearing", "sympy": "load_bearing",
-                          "z3": "load_bearing", "numpy": "supportive"}
+                          "z3": "load_bearing"}
 
 LAYOUT, BLADES = Cl(1, 3)
 GEN_NAMES = ["e1", "e2", "e3", "e4"]
@@ -65,8 +63,8 @@ def commutator_table():
     rows = []
     for i, j in combinations(range(N_GEN), 2):
         a, b = GENERATORS[i], GENERATORS[j]
-        cn = float(np.linalg.norm(np.array((a * b - b * a).value, dtype=float)))
-        bv = float(np.sum(np.abs(np.array((a * b)(2).value, dtype=float))))
+        cn = math.sqrt(sum(float(abs(value)) ** 2 for value in (a * b - b * a).value))
+        bv = sum(float(abs(value)) for value in (a * b)(2).value)
         rows.append({"pair": (GEN_NAMES[i], GEN_NAMES[j]),
                      "commutator_norm": cn, "bivector_weight": bv,
                      "commutes": cn < 1e-9, "has_bivector": bv > 1e-9})
@@ -133,14 +131,14 @@ def weakened_control_sat(table):
             "claim": "subset with I1>0 exists when commuting requirement dropped; control must be SAT"}
 
 
-def sympy_numpy_crosscheck(table):
+def clifford_symbolic_crosscheck(table):
     """Cl(1,3) signature (+,-,-,-): distinct generators must anti-commute.
-    Cross-checks numpy commutator table against symbolic prediction."""
+    Cross-checks clifford commutator table against symbolic prediction."""
     predicted = N_GEN * (N_GEN - 1) // 2
     observed = sum(1 for r in table["rows"] if not r["commutes"])
     return {"signature": [1, -1, -1, -1],
             "sympy_predicted_anticommute_pairs": predicted,
-            "numpy_observed_noncommute_pairs": observed,
+            "clifford_observed_noncommute_pairs": observed,
             "pass": predicted == observed}
 
 
@@ -150,7 +148,7 @@ def main():
     enc_a = encoding_a_unsat(table)
     enc_b = encoding_b_unsat(table)
     control = weakened_control_sat(table)
-    cross = sympy_numpy_crosscheck(table)
+    cross = clifford_symbolic_crosscheck(table)
     dual_unsat = enc_a["unsat"] and enc_b["unsat"]
     agree = enc_a["unsat"] == enc_b["unsat"]
     risk = "low" if dual_unsat and agree else "elevated"
@@ -159,7 +157,7 @@ def main():
         "encoding_a_unsat": {"pass": enc_a["unsat"], **enc_a},
         "encoding_b_unsat": {"pass": enc_b["unsat"], **enc_b},
         "weakened_control_sat": {"pass": control["sat"], **control},
-        "sympy_numpy_crosscheck": {"pass": cross["pass"], **cross},
+        "clifford_symbolic_crosscheck": {"pass": cross["pass"], **cross},
         "dual_encoding_agreement": {"pass": agree,
             "encoding_a_unsat": enc_a["unsat"], "encoding_b_unsat": enc_b["unsat"]},
     }
@@ -203,7 +201,7 @@ def main():
         "constraint_set": "C_commuting_subset_must_preserve_I1_or_I2",
         "commutator_table": table,
         "encoding_a": enc_a, "encoding_b": enc_b,
-        "weakened_control": control, "sympy_numpy_crosscheck": cross,
+        "weakened_control": control, "clifford_symbolic_crosscheck": cross,
         "dual_encoding_agreement": agree, "dual_unsat": dual_unsat,
         "encoding_artifact_risk": risk,
         "council_failure_modes_addressed": [
@@ -214,6 +212,11 @@ def main():
         ],
         "positive": positive, "graveyard_companions": graveyard,
         "boundary": boundary, "nearby_variants": nearby,
+        "why_not_v4_probes": [
+            "v5 formal scout over Cl(1,3) commutative-collapse falsifier encodings.",
+            "Does not promote canonical geometry, axis, bridge, engine, coupling, or QIT claims.",
+            "Dual z3 encodings and weakened SAT control are bounded local evidence only.",
+        ],
         "surviving_alternatives": [
             "weakened geometry-signature definitions could remain SAT under commutative reduction",
             "different ambient algebra (Cl(3,0), Cl(0,3)) could change content but not structural argument",
@@ -224,7 +227,7 @@ def main():
             "no claim that all readings of 'commutative collapse preserves geometry' are excluded",
         ],
         "criteria_checked": ["encoding A UNSAT", "encoding B UNSAT", "weakened control SAT",
-                             "dual-encoding agreement", "sympy/numpy crosscheck",
+                             "dual-encoding agreement", "clifford symbolic crosscheck",
                              "claim ceiling encoding-artifact acknowledgment"],
         "elapsed_seconds": time.time() - started, "all_pass": all_pass,
     }

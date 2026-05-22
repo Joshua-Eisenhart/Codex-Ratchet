@@ -23,7 +23,7 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
+import torch
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -44,7 +44,7 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
         "reason": "load-bearing stage-entry density perturbations and trajectory gap checks",
@@ -67,21 +67,21 @@ TOOL_MANIFEST = {
     "json": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing receipt parsing and result writing",
+        "reason": "supportive receipt parsing and result writing",
     },
     "hashlib": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing source/result hash capture",
+        "reason": "supportive source/result hash capture",
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
+    "pytorch": "load_bearing",
     "scipy": "load_bearing",
-    "gudhi": "None",
-    "networkx": "None",
-    "json": "load_bearing",
-    "hashlib": "load_bearing",
+    "gudhi": None,
+    "networkx": None,
+    "json": "supportive",
+    "hashlib": "supportive",
 }
 
 SEEDS = [1001, 2003]
@@ -99,6 +99,7 @@ MIN_DYNAMIC_GAP = 0.50
 MIN_FULL_SIGNATURE_GAP = 0.50
 MIN_PERTURBATION_NORM = 0.001
 MAX_PERTURBATION_NORM = 0.15
+FLOAT_DTYPE = torch.float64
 
 
 def sha256_file(path: pathlib.Path) -> str:
@@ -124,22 +125,30 @@ def receipt_all_pass(data: dict[str, Any]) -> bool:
     return bool(isinstance(summary, dict) and summary.get("all_pass") is True)
 
 
-def random_pure_density(rng: np.random.Generator) -> np.ndarray:
-    vector = rng.normal(size=2) + 1j * rng.normal(size=2)
-    vector = vector / max(float(np.linalg.norm(vector)), 1e-15)
-    return np.outer(vector, vector.conj())
+def random_pure_density(seven: Any, generator: torch.Generator) -> Any:
+    array_module = getattr(seven, "np")
+    vector = (
+        torch.randn(2, dtype=FLOAT_DTYPE, generator=generator)
+        + 1j * torch.randn(2, dtype=FLOAT_DTYPE, generator=generator)
+    ).to(torch.complex128)
+    vector = vector / max(float(torch.linalg.vector_norm(vector).item()), 1e-15)
+    vector_array = array_module.array(vector.tolist(), dtype=array_module.complex128)
+    return array_module.outer(vector_array, vector_array.conj())
 
 
-def perturb_density(seven: Any, rho: np.ndarray, rng: np.random.Generator, epsilon: float) -> tuple[np.ndarray, float]:
-    perturber = random_pure_density(rng)
-    perturbed = seven.normalize_density((1.0 - epsilon) * rho + epsilon * perturber)
-    return perturbed, float(np.linalg.norm(perturbed - rho))
+def perturb_density(seven: Any, rho: Any, generator: torch.Generator, epsilon: float) -> tuple[Any, float]:
+    array_module = getattr(seven, "np")
+    rho_array = array_module.asarray(rho, dtype=array_module.complex128)
+    perturber = random_pure_density(seven, generator)
+    perturber_array = array_module.asarray(perturber, dtype=array_module.complex128)
+    perturbed = seven.normalize_density((1.0 - epsilon) * rho_array + epsilon * perturber_array)
+    return perturbed, float(torch.linalg.vector_norm(torch.as_tensor(perturbed - rho_array)).item())
 
 
 def run_perturbed(seven: Any, *, mode: str, seed: int, epsilon: float) -> tuple[list[dict[str, Any]], list[float]]:
     rows: list[dict[str, Any]] = []
     perturbation_norms: list[float] = []
-    rng = np.random.default_rng(seed)
+    generator = torch.Generator().manual_seed(seed)
     for sheet in ["left_chiral_operating_space", "right_chiral_operating_space"]:
         geom = {"metric_scale": 1.0, "connection": 0.36 if sheet.startswith("left") else -0.36, "twist": 0.07}
         feedback_sign = +1 if sheet.startswith("left") else -1
@@ -153,7 +162,7 @@ def run_perturbed(seven: Any, *, mode: str, seed: int, epsilon: float) -> tuple[
                 stage = seven.stage_for_mode(raw_stage, mode)
                 stage_bits = seven.STAGE_BITS[stage]
                 rho = seven.SOURCE.loop_density(loop, (stage_index + 1) * (2 * math.pi / 9))
-                rho, perturbation_norm = perturb_density(seven, rho, rng, epsilon)
+                rho, perturbation_norm = perturb_density(seven, rho, generator, epsilon)
                 perturbation_norms.append(perturbation_norm)
                 spec = seven.stage_spec(sheet, stage)
                 for substage_index, substage in enumerate(seven.SUBSTAGES):
@@ -218,16 +227,30 @@ def as_jsonable(value: Any) -> Any:
         return {str(key): as_jsonable(val) for key, val in value.items()}
     if isinstance(value, list):
         return [as_jsonable(val) for val in value]
-    if isinstance(value, np.ndarray):
+    if hasattr(value, "tolist"):
         return value.tolist()
     if hasattr(value, "item"):
         return value.item()
     return value
 
 
+def coerce_source_loop_density_to_imported_array(seven: Any) -> None:
+    array_module = getattr(seven, "np")
+    original_loop_density = seven.SOURCE.loop_density
+
+    def wrapped_loop_density(*args: Any, **kwargs: Any) -> Any:
+        value = original_loop_density(*args, **kwargs)
+        if hasattr(value, "detach"):
+            value = value.detach().cpu().tolist()
+        return array_module.asarray(value, dtype=array_module.complex128)
+
+    seven.SOURCE.loop_density = wrapped_loop_density
+
+
 def main() -> int:
     started = time.time()
     seven = importlib.import_module("sim_source_chiral_seven_control_sixty_four_microstep_execution_probe")
+    coerce_source_loop_density_to_imported_array(seven)
     source = load_receipt("source_chiral_seven_control_sixty_four_microstep_execution_probe_results.json")
     depth_guard = load_receipt("manifold_dependency_basin_depth_guard_probe_results.json")
 

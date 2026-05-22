@@ -13,6 +13,8 @@ cvc5 proves KMS rank constraints and preservation properties.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

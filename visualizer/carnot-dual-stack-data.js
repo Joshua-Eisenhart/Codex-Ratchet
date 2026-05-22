@@ -10,7 +10,7 @@ window.CARNOT_DUAL_STACK_DATA = {
     "q_cold_rejected": 0.1877957548868926,
     "q_cold_absorbed_reverse": 0.1877957548868926,
     "tool_count": 16,
-    "load_bearing_tool_count": 13,
+    "load_bearing_tool_count": 11,
     "visual_payload": "visualizer/carnot-dual-stack-data.js",
     "scope_note": "Two-bath heat/work reversible cycle-pair row: same finite qubit working substance, two opposite cycle directions. It supports cycle visualization and tool coupling; it does not promote a final QIT runtime or admitted-axis claim."
   },
@@ -265,7 +265,7 @@ window.CARNOT_DUAL_STACK_DATA = {
   },
   "tool_summary": {
     "tool_count": 16,
-    "load_bearing_tool_count": 13
+    "load_bearing_tool_count": 11
   },
   "boundaries": {
     "super_carnot_blocked_by_z3": {

@@ -17,6 +17,10 @@ from cvc5 import Kind
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+divergence_log = [
+    "Classical comparator/control surface only; this metadata clears C4 for baseline accounting and does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+]
+
 CLAIM_CEILING = "canonical_local_measurement_instrument_lego_only"
 NEXT_LEGO_TARGET = "none"
 PROMOTION_CONDITION = (

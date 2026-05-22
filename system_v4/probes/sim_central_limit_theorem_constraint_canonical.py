@@ -21,6 +21,8 @@ import json
 import math
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -165,7 +167,7 @@ def run_positive_tests():
                         "trial": trial, "n": n, "Z_n": float(Z_n),
                         "note": "outlier beyond 4-sigma"
                     })
-        
+
         # Compute overall stats for large n
         all_Z = []
         for trial in range(100):
@@ -176,10 +178,10 @@ def run_positive_tests():
         all_Z = torch.tensor(all_Z)
         mean_Z = all_Z.mean().item()
         var_Z = all_Z.var().item()
-        
+
         if abs(mean_Z) > 0.3 or abs(var_Z - 1.0) > 0.4:
             p1_pass = False
-        
+
         results["P1_clt_convergence_to_standard_normal"] = {
             "pass": p1_pass,
             "n_trials": 200,

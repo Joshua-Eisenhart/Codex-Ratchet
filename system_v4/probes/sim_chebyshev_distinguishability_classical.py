@@ -20,19 +20,13 @@ divergence_log = (
     "hierarchies (e.g. NPA). This baseline drops all operator noncommutativity."
 )
 
-try:
-    import torch  # noqa: F401
-    _torch_ok = True
-except Exception:
-    _torch_ok = False
-
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "moment vectors and arithmetic"},
     "scipy": {"tried": False, "used": False, "reason": "not required"},
     "pytorch": {
-        "tried": _torch_ok,
-        "used": _torch_ok,
-        "reason": "supportive import; moments computed in numpy",
+        "tried": False,
+        "used": False,
+        "reason": "not required; moments computed in numpy",
     },
     "z3": {"tried": False, "used": False, "reason": "no SMT moment-problem proof"},
 }

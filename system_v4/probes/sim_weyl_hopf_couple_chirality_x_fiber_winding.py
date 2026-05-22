@@ -9,6 +9,8 @@ See system_v5/docs/ENGINE_MATH_REFERENCE.md.
 import json, os, numpy as np
 from clifford import Cl
 
+classification = "canonical"
+
 SCOPE_NOTE = "Weyl chirality x Hopf winding compound sim; ENGINE_MATH_REFERENCE.md"
 layout, blades = Cl(3)
 e1,e2,e3 = blades["e1"], blades["e2"], blades["e3"]

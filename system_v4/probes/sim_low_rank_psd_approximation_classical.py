@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 """Classical baseline: low_rank_psd_approximation."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 from receipt_boundary import apply_default_receipt_boundary
 classification = "classical_baseline"
 
 NAME = "sim_low_rank_psd_approximation_classical"
-TOOL_MANIFEST["numpy"] = {"tried": True, "used": True, "reason": "PSD eigendecomposition, low-rank projection, and Loewner checks"}
-TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "PSD eigendecomposition, low-rank projection, and Loewner checks",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 divergence_details = [
     "Classical captures PSD low-rank via eigh plus clipping, Frobenius Eckart-Young, and Loewner dominance.",
     "Trace-preserving CP-map approximation and density-matrix trace=1 constraints are not imposed.",

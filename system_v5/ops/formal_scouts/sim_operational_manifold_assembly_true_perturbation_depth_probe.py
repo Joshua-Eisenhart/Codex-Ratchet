@@ -22,7 +22,7 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
+import torch
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -43,11 +43,6 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing perturbed dense-state construction and norm/readout checks",
-    },
     "quimb": {
         "tried": True,
         "used": True,
@@ -69,7 +64,12 @@ TOOL_MANIFEST = {
         "reason": "load-bearing receipt/source hash capture",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'quimb': 'load_bearing',
+    'pytorch': 'load_bearing',
+    'json': 'supportive',
+    'hashlib': 'supportive',
+}
 
 SEEDS = [1001, 2003]
 EPSILONS = [0.02, 0.05]
@@ -119,19 +119,22 @@ def source_weakest_layer(source: dict[str, Any]) -> dict[str, Any]:
     return {"index": idx, "layer": layer_name, "state_diff": state_diff}
 
 
-def perturbed_initial(assembly: Any, seed: int, epsilon: float) -> np.ndarray:
-    base = np.zeros(2 ** assembly.N_QUBITS, dtype=np.complex128)
+def perturbed_initial(assembly: Any, seed: int, epsilon: float) -> torch.Tensor:
+    base = torch.zeros(2 ** assembly.N_QUBITS, dtype=torch.complex128)
     base[0] = 1.0
-    rng = np.random.default_rng(seed)
-    noise = rng.normal(size=base.shape) + 1j * rng.normal(size=base.shape)
-    noise = noise / max(float(np.linalg.norm(noise)), 1e-15)
+    generator = torch.Generator().manual_seed(seed)
+    noise = (
+        torch.randn(base.shape, generator=generator, dtype=torch.float64)
+        + 1j * torch.randn(base.shape, generator=generator, dtype=torch.float64)
+    ).to(torch.complex128)
+    noise = noise / max(float(torch.linalg.vector_norm(noise).item()), 1e-15)
     psi = (1.0 - epsilon) * base + epsilon * noise
-    return psi / max(float(np.linalg.norm(psi)), 1e-15)
+    return psi / max(float(torch.linalg.vector_norm(psi).item()), 1e-15)
 
 
 def run_assembly_from_initial(
     assembly: Any,
-    psi0: np.ndarray,
+    psi0: torch.Tensor,
     *,
     reverse_layers: bool = False,
     skip_layer: int | None = None,
@@ -168,8 +171,8 @@ def as_jsonable(value: Any) -> Any:
         return {str(key): as_jsonable(val) for key, val in value.items()}
     if isinstance(value, list):
         return [as_jsonable(val) for val in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().tolist()
     if hasattr(value, "item"):
         return value.item()
     return value
@@ -186,14 +189,14 @@ def main() -> int:
     for seed in SEEDS:
         for epsilon in EPSILONS:
             psi0 = perturbed_initial(assembly, seed, epsilon)
-            base = np.zeros_like(psi0)
+            base = torch.zeros_like(psi0)
             base[0] = 1.0
-            perturbation_norm = float(np.linalg.norm(psi0 - base))
+            perturbation_norm = float(torch.linalg.vector_norm(psi0 - base).item())
             full = run_assembly_from_initial(assembly, psi0)
             reverse = run_assembly_from_initial(assembly, psi0, reverse_layers=True)
             skipped = run_assembly_from_initial(assembly, psi0, skip_layer=int(weakest["index"]))
-            ordering_gap = float(np.linalg.norm(full["final_state"] - reverse["final_state"]))
-            layer_diff = float(np.linalg.norm(full["final_state"] - skipped["final_state"]))
+            ordering_gap = float(torch.linalg.vector_norm(torch.as_tensor(full["final_state"]) - torch.as_tensor(reverse["final_state"])).item())
+            layer_diff = float(torch.linalg.vector_norm(torch.as_tensor(full["final_state"]) - torch.as_tensor(skipped["final_state"])).item())
             control_separation_delta = abs(ordering_gap - layer_diff)
             rows.append(
                 {

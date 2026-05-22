@@ -35,7 +35,10 @@ TOOL_MANIFEST = {
     "python_json": {"tried": True, "used": True, "reason": "load-bearing receipt schema and claim-ceiling audit"},
     "pathlib": {"tried": True, "used": True, "reason": "load-bearing target result path resolution"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'python_json': 'supportive',
+    'pathlib': 'supportive',
+}
 
 
 def audit_receipt(path: pathlib.Path) -> dict[str, Any]:

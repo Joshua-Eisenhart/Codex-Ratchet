@@ -41,7 +41,12 @@ from datetime import datetime, timezone
 
 import numpy as np
 classification = "classical_baseline"
-DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+DEMOTE_REASON = "classical-baseline finite relay-angle sweep; no bridge or nonclassical admission"
+divergence_log = [
+    "classical-baseline finite relay-angle sweep comparing chiral, nonchiral, "
+    "and product controls; does not promote Weyl relay, Axis0, bridge, GStack, "
+    "QIT, or nonclassical admission",
+]
 
 # =====================================================================
 # TOOL MANIFEST
@@ -1071,7 +1076,8 @@ if __name__ == "__main__":
     results = {
         "name": "sim_weyl_relay_gradient_sweep",
         "timestamp": ts,
-        "classification": "classical_baseline",
+        "classification": classification,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

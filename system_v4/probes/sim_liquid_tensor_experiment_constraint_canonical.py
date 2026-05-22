@@ -15,6 +15,8 @@ sympy is supportive: verifies tensor inequality and universal property algebraic
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

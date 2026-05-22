@@ -9,6 +9,8 @@ import networkx as nx
 from torch_geometric.nn import MessagePassing
 from torch_geometric.utils import from_networkx
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "tensors for diffusion state"},
     "pyg": {"tried": True, "used": True, "reason": "MessagePassing applies row-stochastic walk step; load-bearing for empirical mixing"},

@@ -9,6 +9,8 @@ Language: admissibility/exclusion; never causal.
 """
 import json, os, traceback
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "z3":       {"tried": False, "used": False, "reason": ""},

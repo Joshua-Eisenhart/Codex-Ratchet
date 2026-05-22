@@ -16,6 +16,9 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = [
+    "Classical comparator/control surface only: this runner does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim.",
+]
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {

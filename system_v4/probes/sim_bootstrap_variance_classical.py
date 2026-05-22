@@ -22,9 +22,9 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "resampling and variance arithmetic"},
     "scipy": {"tried": True, "used": True, "reason": "normal/chi2 closed-form reference"},
     "pytorch": {
-        "tried": _torch_ok,
+        "tried": True,
         "used": False,
-        "reason": "supportive import only; no gradients needed",
+        "reason": "optional supportive import attempt only; no gradients needed",
     },
     "z3": {"tried": False, "used": False, "reason": "no SMT assertion for bootstrap"},
 }

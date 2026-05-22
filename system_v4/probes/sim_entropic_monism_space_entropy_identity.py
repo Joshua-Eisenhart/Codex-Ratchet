@@ -23,6 +23,9 @@ import os
 import math
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = ["Classical baseline probes entropy-space co-variation and constraints; it does not prove literal identity of physical space and entropy."]
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -513,6 +516,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_entropic_monism_space_entropy_identity",
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

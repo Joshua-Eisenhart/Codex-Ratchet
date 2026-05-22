@@ -106,9 +106,9 @@ primitive.
 Plato said: forms exist in an abstract realm, separate from matter.
 This system says: forms exist, but they are treated as the same material substrate as everything else, not as separate abstract objects.
 
-The form of a triangle is real — it is a constraint-compatibility pattern in the substrate. But it doesn't live in a separate realm. It lives in the same spacetime as the particular triangles.
+The form of a triangle is real in the owner-model sense: it is a constraint-compatibility pattern in the substrate. But it doesn't live in a separate realm. Treat the spacetime/substrate wording here as owner-thesis reservoir language; the current formal primitive remains constraint on distinguishability until receipts admit a spacetime-identity layer.
 
-Nothingness (spacetime, the substrate of distinguishability) is treated here as the base material. The "nothing" between things is part of that substrate. Forms are patterns in that material. Not separate. Not abstract.
+Nothingness (spacetime, the substrate of distinguishability) is treated in the source model as the base material. The "nothing" between things is part of that substrate. Forms are patterns in that material. Not separate. Not abstract. Current repo formalization should still say "constraint on distinguishability" unless a named receipt admits stronger spacetime/substance language.
 
 ### Why statistics is prior to identity
 

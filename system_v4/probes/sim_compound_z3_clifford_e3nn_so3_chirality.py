@@ -18,6 +18,8 @@ from clifford import Cl
 import e3nn.o3 as o3
 import z3
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "hosts e3nn tensors"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},

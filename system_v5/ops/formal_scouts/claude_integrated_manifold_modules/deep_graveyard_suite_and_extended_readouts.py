@@ -10,12 +10,16 @@ Extends Codex's existing graveyards (zero_strength / uniform / permuted) with:
   - PARTIAL-CE α-SWEEP readout (alpha in {0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.0})
   - RANDOM-BOUNDARY CE collision graveyard (random 2D projector vs chirality-aware CE)
 
-Tools (all load-bearing):
+Tools:
   pytorch  — all tensor / quantum-state operations
-  numpy    — mock history construction, feature arrays
-  scipy    — von-Neumann entropy via matrix functions (eigvalsh fallback)
+  numpy    — reviewed boundary: mock history construction and feature arrays
+  scipy    — reviewed boundary: von-Neumann entropy cross-check path
   sympy    — symbolic cumulative-decay asymptotic prediction
   z3       — threshold admissibility witnesses for graveyard pass/fail criteria
+
+NUMPY/SCIPY BOUNDARY: the NumPy/SciPy paths are preserved for graveyard/readout
+cross-checks only. They do not support nonclassical promotion under the current
+quarantine gate until ported source-native.
 """
 from __future__ import annotations
 
@@ -188,11 +192,11 @@ def _z3_threshold_witness(value: float, threshold: float,
 
 
 # ---------------------------------------------------------------------------
-# Scipy load-bearing usage: entropy via scipy eigvalsh
+# Scipy reviewed-boundary usage: entropy via scipy eigvalsh
 # ---------------------------------------------------------------------------
 
 def _vn_scipy(matrix_np: np.ndarray) -> float:
-    """Von-Neumann entropy via scipy.linalg.eigvalsh (load-bearing scipy path)."""
+    """Von-Neumann entropy via scipy.linalg.eigvalsh (reviewed-boundary path)."""
     H = (matrix_np + matrix_np.conj().T) / 2
     evals = spla.eigvalsh(H)
     evals = np.clip(evals, 1e-15, None)
@@ -562,7 +566,7 @@ def graveyard_symmetric_channel_reduces_signature(
     vn_sym = _vn(rho_sym)
     diff = abs(vn_asym - vn_sym)
 
-    # Also check via scipy (load-bearing scipy usage)
+    # Also check via scipy (reviewed-boundary cross-check)
     vn_asym_scipy = _vn_scipy(rho_asym.numpy())
     passes = diff > 1e-4
     z3_check = _z3_threshold_witness(diff, 1e-4, direction="above")

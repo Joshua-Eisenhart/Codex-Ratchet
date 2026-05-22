@@ -114,7 +114,7 @@ Current status:
 
 Architecture to preserve:
 
-- terrains are local/substage pseudo-attractor components;
+- current operational scoping hypothesis: terrains are local/substage pseudo-attractor components;
 - each terrain is a Topology4 density-law stage embedded/realized on Weyl sheets;
 - engines are composite pseudo-attractor schedules built from ordered terrain placements;
 - paired engines are an E=16 pseudo-basin substrate when one qubit/site is assigned per terrain-stage or engine-stage placement;
@@ -184,7 +184,7 @@ Done condition for this prompt:
 Allowed:
 
 - W3 supports bounded finite CPTP terrain-channel composition.
-- Terrain micro-pseudo-basins and engine pseudo-basins are the correct architecture to encode.
+- Terrain micro-pseudo-basins and engine pseudo-basins are the current operational scoping hypothesis to encode, not admitted source-model architecture until explicit 8-terrain generator, 16-placement, and operator-layer receipts exist.
 - W7 scopes E=8/E=16 as the natural next tensor-substrate design: one qubit/site per terrain-stage or engine-stage placement.
 - Full tensor-network basin evidence remains open until a real MPS/PEPS/PEPS3D or equivalent multi-site Lindblad implementation runs.
 

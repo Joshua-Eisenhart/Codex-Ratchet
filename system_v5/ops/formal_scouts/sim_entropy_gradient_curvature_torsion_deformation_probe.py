@@ -16,8 +16,6 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 import geomstats.backend as gs
 import gudhi
 import networkx as nx
-import numpy as np
-from scipy.integrate import solve_ivp
 import sympy as sp
 import torch
 
@@ -37,9 +35,7 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing density states, entropy, and finite gradient signals"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing metric tensors, curvature samples, and trajectory distances"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing ODE integration for geometry-flow parameters"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing density states, entropy, finite gradient signals, metric tensors, curvature samples, and trajectory distances"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic curvature and torsion-style formulas"},
     "geomstats": {"tried": True, "used": True, "reason": "load-bearing backend tensor sanity for positive metric samples"},
     "gudhi": {"tried": True, "used": True, "reason": "load-bearing persistence over curvature/twist trajectory point clouds"},
@@ -48,6 +44,7 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
 
 DTYPE = torch.complex128
+FLOAT_DTYPE = torch.float64
 I2 = torch.eye(2, dtype=DTYPE)
 SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
 SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
@@ -59,10 +56,6 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
     return value
@@ -83,19 +76,22 @@ def entropy(rho: torch.Tensor) -> float:
     return float(-(vals * torch.log(vals)).sum().item())
 
 
-def bloch(rho: torch.Tensor) -> np.ndarray:
-    return np.array(
-        [
-            float(torch.real(torch.trace(SX @ rho)).item()),
-            float(torch.real(torch.trace(SY @ rho)).item()),
-            float(torch.real(torch.trace(SZ @ rho)).item()),
-        ],
-        dtype=float,
-    )
+def bloch(rho: torch.Tensor) -> list[float]:
+    return [
+        float(torch.real(torch.trace(SX @ rho)).item()),
+        float(torch.real(torch.trace(SY @ rho)).item()),
+        float(torch.real(torch.trace(SZ @ rho)).item()),
+    ]
 
 
 def density_from_angles(theta: float, phi: float, mix: float) -> torch.Tensor:
-    psi = torch.tensor([math.cos(theta), math.sin(theta) * np.exp(1j * phi)], dtype=DTYPE).reshape(2, 1)
+    phase = torch.exp(torch.tensor(1j * phi, dtype=DTYPE))
+    psi = torch.stack(
+        [
+            torch.tensor(math.cos(theta), dtype=DTYPE),
+            torch.tensor(math.sin(theta), dtype=DTYPE) * phase,
+        ]
+    ).reshape(2, 1)
     return normalize_density((1 - mix) * (psi @ psi.conj().T) + mix * I2 / 2.0)
 
 
@@ -104,58 +100,86 @@ def unitary(axis: torch.Tensor, angle: float) -> torch.Tensor:
     return vecs @ torch.diag(torch.exp(vals)) @ torch.linalg.inv(vecs)
 
 
-def metric_tensor(params: np.ndarray) -> np.ndarray:
+def metric_tensor(params: Any) -> torch.Tensor:
     conformal, shear, twist = params
+    conformal = float(conformal)
+    shear = float(shear)
+    twist = float(twist)
     scale = math.exp(conformal)
-    g = scale * np.array([[math.exp(shear), 0.18 * math.tanh(twist)], [0.18 * math.tanh(twist), math.exp(-shear)]], dtype=float)
-    return g
+    return scale * torch.tensor(
+        [[math.exp(shear), 0.18 * math.tanh(twist)], [0.18 * math.tanh(twist), math.exp(-shear)]],
+        dtype=FLOAT_DTYPE,
+    )
 
 
-def curvature_scalar(params: np.ndarray, x: float, y: float) -> float:
+def curvature_scalar(params: Any, x: float, y: float) -> float:
     conformal, shear, twist = params
+    conformal = float(conformal)
+    shear = float(shear)
+    twist = float(twist)
     phi = conformal + 0.30 * shear * math.sin(x) + 0.22 * twist * math.cos(y)
     lap_phi = -0.30 * shear * math.sin(x) - 0.22 * twist * math.cos(y)
     return float(-2.0 * math.exp(-2.0 * phi) * lap_phi)
 
 
-def torsion_style_norm(params: np.ndarray, x: float, y: float) -> float:
+def torsion_style_norm(params: Any, x: float, y: float) -> float:
     _conformal, shear, twist = params
+    shear = float(shear)
+    twist = float(twist)
     a_xy = twist * math.sin(x - y) + 0.25 * shear * math.sin(x + y)
     da_dx = twist * math.cos(x - y) + 0.25 * shear * math.cos(x + y)
     da_dy = -twist * math.cos(x - y) + 0.25 * shear * math.cos(x + y)
     return float(abs(da_dx - da_dy) + abs(a_xy))
 
 
-def entropy_gradient_signal(rho: torch.Tensor) -> np.ndarray:
+def entropy_gradient_signal(rho: torch.Tensor) -> list[float]:
     b = bloch(rho)
     s = entropy(rho)
-    return np.array([s - 0.38, b[0] * b[2], b[1] - b[0]], dtype=float)
+    return [s - 0.38, b[0] * b[2], b[1] - b[0]]
 
 
-def geometry_flow_rhs(_t: float, params: np.ndarray, signal: np.ndarray, mode: str) -> np.ndarray:
+def geometry_flow_rhs(_t: float, params: Any, signal: list[float], mode: str) -> list[float]:
     if mode == "entropy_curvature_flow":
         conformal, shear, twist = params
-        return np.array(
-            [
-                0.62 * signal[0] - 0.18 * conformal,
-                0.47 * signal[1] - 0.15 * shear,
-                0.53 * signal[2] - 0.17 * twist,
-            ],
-            dtype=float,
-        )
+        return [
+            0.62 * signal[0] - 0.18 * float(conformal),
+            0.47 * signal[1] - 0.15 * float(shear),
+            0.53 * signal[2] - 0.17 * float(twist),
+        ]
     if mode == "frozen_geometry":
-        return np.zeros(3, dtype=float)
+        return [0.0, 0.0, 0.0]
     if mode == "random_geometry_flow":
-        return np.array([0.04, -0.03, 0.02], dtype=float)
+        return [0.04, -0.03, 0.02]
     if mode == "curvature_flat_control":
-        return np.array([0.00, -0.55 * params[1], -0.55 * params[2]], dtype=float)
+        return [0.00, -0.55 * float(params[1]), -0.55 * float(params[2])]
     raise ValueError(mode)
 
 
-def density_update(rho: torch.Tensor, params: np.ndarray, step: int) -> torch.Tensor:
+def add_scaled(left: list[float], right: list[float], scale: float) -> list[float]:
+    return [float(a) + scale * float(b) for a, b in zip(left, right)]
+
+
+def rk4_integrate_params(params: list[float], signal: list[float], mode: str, dt: float, substeps: int = 4) -> list[float]:
+    y = [float(v) for v in params]
+    h = dt / float(substeps)
+    t = 0.0
+    for _ in range(substeps):
+        k1 = geometry_flow_rhs(t, y, signal, mode)
+        k2 = geometry_flow_rhs(t + h / 2.0, add_scaled(y, k1, h / 2.0), signal, mode)
+        k3 = geometry_flow_rhs(t + h / 2.0, add_scaled(y, k2, h / 2.0), signal, mode)
+        k4 = geometry_flow_rhs(t + h, add_scaled(y, k3, h), signal, mode)
+        y = [
+            y_i + (h / 6.0) * (float(k1_i) + 2.0 * float(k2_i) + 2.0 * float(k3_i) + float(k4_i))
+            for y_i, k1_i, k2_i, k3_i, k4_i in zip(y, k1, k2, k3, k4)
+        ]
+        t += h
+    return y
+
+
+def density_update(rho: torch.Tensor, params: Any, step: int) -> torch.Tensor:
     g = metric_tensor(params)
-    eigvals = np.linalg.eigvalsh(g)
-    metric_drive = float(np.sqrt(max(eigvals[1] / max(eigvals[0], 1e-9), 1e-9)))
+    eigvals = torch.linalg.eigvalsh(g)
+    metric_drive = math.sqrt(max(float(eigvals[1].item()) / max(float(eigvals[0].item()), 1e-9), 1e-9))
     curv = curvature_scalar(params, 0.3 * step, 0.17 * step)
     torsion = torsion_style_norm(params, 0.3 * step, 0.17 * step)
     axis = (0.55 + 0.08 * curv) * SX + (0.35 + 0.05 * torsion) * SY + 0.25 * SZ
@@ -166,17 +190,20 @@ def density_update(rho: torch.Tensor, params: np.ndarray, step: int) -> torch.Te
 
 
 def run(mode: str, seed: int) -> list[dict[str, Any]]:
-    rng = np.random.default_rng(seed)
-    rho = density_from_angles(0.18 + rng.random(), 2 * math.pi * rng.random(), 0.11)
-    params = np.array([0.05, 0.03, -0.02], dtype=float)
+    generator = torch.Generator().manual_seed(seed)
+    rho = density_from_angles(
+        0.18 + float(torch.rand((), dtype=FLOAT_DTYPE, generator=generator).item()),
+        2 * math.pi * float(torch.rand((), dtype=FLOAT_DTYPE, generator=generator).item()),
+        0.11,
+    )
+    params: list[float] = [0.05, 0.03, -0.02]
     rows = []
     for step in range(20):
         signal = entropy_gradient_signal(rho)
-        sol = solve_ivp(lambda t, y: geometry_flow_rhs(t, y, signal, mode), (0.0, 0.10), params, rtol=1e-7, atol=1e-9)
-        params = sol.y[:, -1]
+        params = rk4_integrate_params(params, signal, mode, dt=0.10)
         rho = density_update(rho, params, step)
         g = metric_tensor(params)
-        eigvals = np.linalg.eigvalsh(g)
+        eigvals = torch.linalg.eigvalsh(g)
         curv = curvature_scalar(params, 0.3 * step, 0.17 * step)
         tors = torsion_style_norm(params, 0.3 * step, 0.17 * step)
         rows.append(
@@ -188,8 +215,8 @@ def run(mode: str, seed: int) -> list[dict[str, Any]]:
                 "conformal": params[0],
                 "shear": params[1],
                 "twist": params[2],
-                "metric_min_eigenvalue": float(eigvals[0]),
-                "metric_max_eigenvalue": float(eigvals[1]),
+                "metric_min_eigenvalue": float(eigvals[0].item()),
+                "metric_max_eigenvalue": float(eigvals[1].item()),
                 "curvature_scalar": curv,
                 "torsion_style_norm": tors,
             }
@@ -197,8 +224,8 @@ def run(mode: str, seed: int) -> list[dict[str, Any]]:
     return rows
 
 
-def features(rows: list[dict[str, Any]]) -> np.ndarray:
-    return np.array(
+def features(rows: list[dict[str, Any]]) -> torch.Tensor:
+    return torch.tensor(
         [
             [
                 r["entropy"],
@@ -213,23 +240,23 @@ def features(rows: list[dict[str, Any]]) -> np.ndarray:
             ]
             for r in rows
         ],
-        dtype=float,
+        dtype=FLOAT_DTYPE,
     )
 
 
 def mode_comparison() -> dict[str, Any]:
     modes = ["entropy_curvature_flow", "frozen_geometry", "random_geometry_flow", "curvature_flat_control"]
-    data = {m: np.stack([features(run(m, seed)) for seed in range(8)]) for m in modes}
-    centroids = {m: vals.mean(axis=(0, 1)) for m, vals in data.items()}
+    data = {m: torch.stack([features(run(m, seed)) for seed in range(8)]) for m in modes}
+    centroids = {m: torch.mean(vals, dim=(0, 1)) for m, vals in data.items()}
     dist = {}
     for i, a in enumerate(modes):
         for b in modes[i + 1 :]:
-            dist[f"{a}_vs_{b}"] = float(np.linalg.norm(centroids[a] - centroids[b]))
-    curvature_var = float(np.var(data["entropy_curvature_flow"][:, :, 7]))
-    torsion_var = float(np.var(data["entropy_curvature_flow"][:, :, 8]))
-    metric_positive = bool(np.min(data["entropy_curvature_flow"][:, :, 9]) > 0)
+            dist[f"{a}_vs_{b}"] = float(torch.linalg.vector_norm(centroids[a] - centroids[b]).item())
+    curvature_var = float(torch.var(data["entropy_curvature_flow"][:, :, 7], unbiased=False).item())
+    torsion_var = float(torch.var(data["entropy_curvature_flow"][:, :, 8], unbiased=False).item())
+    metric_positive = bool(torch.min(data["entropy_curvature_flow"][:, :, 9]).item() > 0)
     return {
-        "centroids": {k: np.round(v, 6).tolist() for k, v in centroids.items()},
+        "centroids": {k: [round(float(x), 6) for x in v.tolist()] for k, v in centroids.items()},
         "distances": {k: round(v, 6) for k, v in dist.items()},
         "curvature_variance": curvature_var,
         "torsion_variance": torsion_var,
@@ -291,7 +318,7 @@ def graph_report() -> dict[str, Any]:
 
 
 def geomstats_sanity() -> dict[str, Any]:
-    sample = gs.array(metric_tensor(np.array([0.1, 0.2, -0.3])))
+    sample = gs.array(metric_tensor([0.1, 0.2, -0.3]).tolist())
     det = float(gs.linalg.det(sample))
     return {"metric_det": det, "pass": det > 0}
 

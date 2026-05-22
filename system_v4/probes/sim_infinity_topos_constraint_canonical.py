@@ -14,6 +14,8 @@ Supportive: sympy (spaces axiom verification)
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

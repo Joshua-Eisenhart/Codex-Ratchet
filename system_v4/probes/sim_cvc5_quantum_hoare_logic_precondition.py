@@ -15,6 +15,8 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -78,7 +80,7 @@ def run_positive_tests():
 
             # Declare eigenvalue variable: 0 <= lambda <= 1
             lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
-            constraint = solver.mkTerm(cvc5.Kind.AND, 
+            constraint = solver.mkTerm(cvc5.Kind.AND,
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_val, solver.mkReal(1)),
             )
@@ -100,7 +102,7 @@ def run_positive_tests():
 
             lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
             # Constraint: lambda must be < 0 AND >= 0 (contradictory)
-            constraint = solver.mkTerm(cvc5.Kind.AND, 
+            constraint = solver.mkTerm(cvc5.Kind.AND,
                 solver.mkTerm(cvc5.Kind.LT, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_val, solver.mkReal(0)),
             )
@@ -123,7 +125,7 @@ def run_positive_tests():
 
             lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
             # Constraint: lambda > 1 AND <= 1 (contradictory)
-            constraint = solver.mkTerm(cvc5.Kind.AND, 
+            constraint = solver.mkTerm(cvc5.Kind.AND,
                 solver.mkTerm(cvc5.Kind.GT, lambda_val, solver.mkReal(1)),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_val, solver.mkReal(1)),
             )
@@ -185,7 +187,7 @@ def run_negative_tests():
 
             # Set probabilities: prob_P = 1, prob_Q = 0
             # (since I |0⟩⟨0| I† = |0⟩⟨0|, not |1⟩⟨1|)
-            constraint = solver.mkTerm(cvc5.Kind.AND, 
+            constraint = solver.mkTerm(cvc5.Kind.AND,
                 solver.mkTerm(cvc5.Kind.EQUAL, prob_P, solver.mkReal(1)),
                 solver.mkTerm(cvc5.Kind.EQUAL, prob_Q, solver.mkReal(0)),
                 # But we claim {|0⟩⟨0|} I {|1⟩⟨1|} is valid: prob_Q >= prob_P
@@ -212,7 +214,7 @@ def run_negative_tests():
             constraint = solver.mkTerm(cvc5.Kind.EQUAL, lambda_val, solver.mkReal(-0.5))
 
             # But also require 0 <= lambda <= 1
-            valid_constraint = solver.mkTerm(cvc5.Kind.AND, 
+            valid_constraint = solver.mkTerm(cvc5.Kind.AND,
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_val, solver.mkReal(1)),
             )
@@ -296,7 +298,7 @@ def run_boundary_tests():
             solver.setLogic("QF_NRA")
 
             lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
-            constraint = solver.mkTerm(cvc5.Kind.AND, 
+            constraint = solver.mkTerm(cvc5.Kind.AND,
                 solver.mkTerm(cvc5.Kind.EQUAL, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_val, solver.mkReal(1)),
@@ -318,7 +320,7 @@ def run_boundary_tests():
             solver.setLogic("QF_NRA")
 
             lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
-            constraint = solver.mkTerm(cvc5.Kind.AND, 
+            constraint = solver.mkTerm(cvc5.Kind.AND,
                 solver.mkTerm(cvc5.Kind.EQUAL, lambda_val, solver.mkReal(1)),
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_val, solver.mkReal(1)),

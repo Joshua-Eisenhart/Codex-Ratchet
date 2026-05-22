@@ -7,7 +7,7 @@ window.SZILARD_DUAL_STACK_DATA = {
     "erasure_cost": 0.6931471805599453,
     "net_after_erasure": 0.0,
     "tool_count": 16,
-    "load_bearing_tool_count": 13,
+    "load_bearing_tool_count": 11,
     "visual_payload": "visualizer/szilard-dual-stack-data.js",
     "scope_note": "Measurement/feedback/erasure recovery cycle-pair row on a finite two-qubit carrier. It models measurement/feedback/erasure and the reverse recovery bookkeeping as opposite information-cycle traversals without claiming a universal demon."
   },

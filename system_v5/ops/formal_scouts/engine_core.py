@@ -39,8 +39,6 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 
 import numpy as np
 import torch
-from scipy.integrate import solve_ivp
-from scipy.linalg import expm
 
 # ---------------------------------------------------------------------------
 # Path setup — import canonical specs + manifold enforcers
@@ -85,8 +83,7 @@ from active_layer_constraint_enforcers import apply_all_layer_constraints
 TORCH_DTYPE = torch.complex128
 NP_DTYPE = np.complex128
 STAGE_DT = 0.08      # ODE integration duration per substage
-ODE_RTOL = 1e-7
-ODE_ATOL = 1e-9
+RK4_STEPS_PER_STAGE = 8
 
 
 def _np_matrix(value: Any) -> np.ndarray:
@@ -94,6 +91,12 @@ def _np_matrix(value: Any) -> np.ndarray:
     if isinstance(value, np.ndarray):
         return value.astype(NP_DTYPE)
     return torch.as_tensor(value, dtype=TORCH_DTYPE).detach().cpu().numpy().astype(NP_DTYPE)
+
+
+def _matrix_exp(value: Any) -> np.ndarray:
+    """Small complex matrix exponential via torch, returned at the NumPy boundary."""
+    tensor = torch.as_tensor(value, dtype=TORCH_DTYPE)
+    return torch.linalg.matrix_exp(tensor).detach().cpu().numpy().astype(NP_DTYPE)
 
 
 I2 = _np_matrix(CANON_I2)
@@ -392,34 +395,24 @@ def lindblad_step(
     """
     Integrate dρ/dt = -i[H,ρ] + LρL† - ½{L†L,ρ} for time dt.
 
-    Uses scipy.integrate.solve_ivp with RK45. Returns the evolved (and
-    renormalized) density matrix.
+    Uses a fixed-step RK4 integrator for the finite 2x2 stage carrier. Returns
+    the evolved and renormalized density matrix.
     """
     rho = _np_matrix(rho)
     H = _np_matrix(H)
     L = _np_matrix(L)
-    rho0 = rho.reshape(-1).astype(NP_DTYPE)
-    # Solve real + imag separately for solve_ivp's real-only signature
-    rho0_packed = np.concatenate([rho0.real, rho0.imag])
-
-    def rhs_real(t: float, y_packed: np.ndarray) -> np.ndarray:
-        n = len(y_packed) // 2
-        y = (y_packed[:n] + 1j * y_packed[n:]).astype(NP_DTYPE)
-        dy = _lindblad_rhs(t, y, H, L)
-        return np.concatenate([dy.real, dy.imag])
-
-    sol = solve_ivp(
-        rhs_real,
-        (0.0, dt),
-        rho0_packed,
-        method="RK45",
-        rtol=ODE_RTOL,
-        atol=ODE_ATOL,
-    )
-    y_final = sol.y[:, -1]
-    n = len(y_final) // 2
-    rho_final_flat = (y_final[:n] + 1j * y_final[n:]).astype(NP_DTYPE)
-    rho_final = rho_final_flat.reshape(2, 2)
+    y = rho.reshape(-1).astype(NP_DTYPE)
+    n_steps = max(1, int(math.ceil(abs(float(dt)) / STAGE_DT * RK4_STEPS_PER_STAGE)))
+    h = float(dt) / float(n_steps)
+    t = 0.0
+    for _ in range(n_steps):
+        k1 = _lindblad_rhs(t, y, H, L)
+        k2 = _lindblad_rhs(t + 0.5 * h, y + 0.5 * h * k1, H, L)
+        k3 = _lindblad_rhs(t + 0.5 * h, y + 0.5 * h * k2, H, L)
+        k4 = _lindblad_rhs(t + h, y + h * k3, H, L)
+        y = y + (h / 6.0) * (k1 + 2.0 * k2 + 2.0 * k3 + k4)
+        t += h
+    rho_final = y.reshape(2, 2)
     return _normalize_density(rho_final)
 
 
@@ -433,7 +426,7 @@ def _operator_unitary(op_name: str, sign: int) -> np.ndarray:
     """
     G = OPERATOR_GENERATORS[op_name]
     theta = OPERATOR_BASE_ANGLES[op_name] * float(sign)
-    U = expm(-1j * theta * G)
+    U = _matrix_exp(-1j * theta * G)
     return U.astype(NP_DTYPE)
 
 
@@ -460,11 +453,11 @@ def apply_operator_map_family_to_density(
         return _normalize_density((1.0 - 0.20) * rho + 0.20 * _pinch(rho, "x"))
     if op_name == "Fi":
         angle = sign * 0.23 * dt / STAGE_DT
-        U = expm(-1j * angle * SX / 2)
+        U = _matrix_exp(-1j * angle * SX / 2)
         return _normalize_density(U @ rho @ U.conj().T)
     if op_name == "Fe":
         angle = sign * 0.21 * dt / STAGE_DT
-        U = expm(-1j * angle * SZ / 2)
+        U = _matrix_exp(-1j * angle * SZ / 2)
         return _normalize_density(U @ rho @ U.conj().T)
     raise ValueError(f"unknown operator {op_name!r}")
 
@@ -520,27 +513,32 @@ def apply_terrain_dynamics_to_density(
     if family == "pinching_projection":
         target = _pinch(rho, axis)
         rho = _normalize_density((1.0 - rate) * rho + rate * target)
-        rho = _normalize_density(expm(-1j * 0.12 * dt * H) @ rho @ expm(1j * 0.12 * dt * H))
+        U = _matrix_exp(-1j * 0.12 * dt * H)
+        rho = _normalize_density(U @ rho @ U.conj().T)
     elif family == "kraus_filter":
         filtered = _kraus_filter(rho, axis, min(0.42, 1.6 * rate), release=False)
         rho = _normalize_density((1.0 - 0.35) * rho + 0.35 * filtered)
-        rho = _normalize_density(expm(-1j * dt * H) @ rho @ expm(1j * dt * H))
+        U = _matrix_exp(-1j * dt * H)
+        rho = _normalize_density(U @ rho @ U.conj().T)
     elif family == "lowering_dissipator":
         rho = lindblad_step(rho, H, SIGMA_MINUS, dt * (1.0 + rate))
     elif family == "kraus_release":
         filtered = _kraus_filter(rho, axis, min(0.42, 1.5 * rate), release=True)
         rho = _normalize_density((1.0 + 0.25 * rate) * rho - 0.25 * rate * filtered)
-        rho = _normalize_density(expm(1j * 0.7 * dt * H) @ rho @ expm(-1j * 0.7 * dt * H))
+        U = _matrix_exp(1j * 0.7 * dt * H)
+        rho = _normalize_density(U @ rho @ U.conj().T)
     elif family == "outward_projection":
         target = _pinch(rho, axis)
         rho = _normalize_density((1.0 - 0.55 * rate) * rho + 0.55 * rate * target)
-        rho = _normalize_density(expm(1j * dt * H) @ rho @ expm(-1j * dt * H))
+        U = _matrix_exp(1j * dt * H)
+        rho = _normalize_density(U @ rho @ U.conj().T)
     elif family == "raising_dissipator":
         rho = lindblad_step(rho, H, SIGMA_PLUS, dt * (1.0 + rate))
     elif family == "pinching_dissipator":
         target = _pinch(rho, axis)
         rho = _normalize_density((1.0 - rate) * rho + rate * target)
-        rho = _normalize_density(expm(-1j * chirality_sign * 0.5 * dt * H) @ rho @ expm(1j * chirality_sign * 0.5 * dt * H))
+        U = _matrix_exp(-1j * chirality_sign * 0.5 * dt * H)
+        rho = _normalize_density(U @ rho @ U.conj().T)
     else:
         raise ValueError(f"unknown terrain dynamics family {family!r}")
 
@@ -676,7 +674,7 @@ class EngineCore:
         else:
             # fiber_loop: SZ-dominated phase
             G = SZ * (0.035 * chirality_sign * u)
-        U = expm(-1j * G)
+        U = _matrix_exp(-1j * G)
         return _normalize_density(U @ rho @ U.conj().T)
 
     def run_substage(

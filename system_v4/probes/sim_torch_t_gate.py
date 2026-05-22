@@ -25,6 +25,9 @@ os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
 os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
 os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 classification = "classical_baseline"  # auto-backfill
+divergence_log = [
+    "Classical comparator/control surface only; does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+]
 
 # =====================================================================
 # TOOL MANIFEST

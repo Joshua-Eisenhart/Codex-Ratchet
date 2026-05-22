@@ -17,6 +17,8 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -175,10 +177,10 @@ def run_positive_tests():
 
             # Fundamental solution: G(x, t) = (4πα t)^(-n/2) exp(-|x|²/4αt)
             # In 1D: G(x, t) = 1/sqrt(4πα t) exp(-x²/4αt)
-            
+
             # 1D fundamental solution
             G_1d = 1 / sp.sqrt(4 * sp.pi * alpha * t) * sp.exp(-(x**2) / (4 * alpha * t))
-            
+
             # Verify normalization: integral over R of G(x,t) dx = 1
             # This is satisfied by construction of fundamental solution
             integral_normalized = True
@@ -206,19 +208,19 @@ def run_positive_tests():
         # For u_t = α∇²u with α > 0, if max is in interior, u is constant
         u_initial = np.array([0.0, 0.5, 1.0, 0.5, 0.0])
         u_max_initial = np.max(u_initial)
-        
+
         # After heat diffusion, max can only stay same or decrease
         alpha = 0.1
         dt = 0.01
         dx = 0.25
-        
+
         # Simple explicit finite difference: u_{n+1} = u_n + α*dt/dx² * (u_{n-1} - 2u_n + u_{n+1})
         u_next = u_initial.copy()
         for i in range(1, len(u_initial) - 1):
             u_next[i] = u_initial[i] + (alpha * dt / (dx**2)) * (u_initial[i-1] - 2*u_initial[i] + u_initial[i+1])
-        
+
         u_max_next = np.max(u_next)
-        
+
         results["maximum_principle"] = {
             "u_max_initial": float(u_max_initial),
             "u_max_after_step": float(u_max_next),
@@ -314,19 +316,19 @@ def run_negative_tests():
         # Interior max can grow
         u_initial = np.array([0.0, 0.5, 1.0, 0.5, 0.0])
         u_max_initial = np.max(u_initial)
-        
+
         # Backward heat diffusion (negative diffusivity)
         alpha = -0.1
         dt = 0.01
         dx = 0.25
-        
+
         # Explicit FD with negative α
         u_next = u_initial.copy()
         for i in range(1, len(u_initial) - 1):
             u_next[i] = u_initial[i] + (alpha * dt / (dx**2)) * (u_initial[i-1] - 2*u_initial[i] + u_initial[i+1])
-        
+
         u_max_next = np.max(u_next)
-        
+
         results["max_principle_violated"] = {
             "u_max_initial": float(u_max_initial),
             "u_max_after_step": float(u_max_next),
@@ -386,7 +388,7 @@ def run_boundary_tests():
 
         # Fourier stability: α dt / dx² ≤ 1/2
         fourier = alpha_large * dt / (dx**2)
-        
+
         results["heat_large_alpha"] = {
             "alpha": alpha_large,
             "fourier_number": float(fourier),

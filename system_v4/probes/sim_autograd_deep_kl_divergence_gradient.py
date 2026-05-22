@@ -21,6 +21,8 @@ import json, os, math
 import numpy as np
 import torch
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":  {"tried": True,  "used": True,  "reason": "autograd is load-bearing: ∇KL computed through log-softmax via autograd; used to test gradient descent fixed-point admissibility"},
     "pyg":      {"tried": False, "used": False, "reason": "graph message passing not required for this scalar/matrix-functional claim"},

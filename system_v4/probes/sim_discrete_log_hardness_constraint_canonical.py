@@ -20,6 +20,8 @@ Canonical: cvc5 UNSAT for contradictory discrete log
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

@@ -18,6 +18,8 @@ from typing import Any
 
 import sympy as sp
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not required for finite order-theory constraint proof"},
     "pyg": {"tried": False, "used": False, "reason": "not required for finite order-theory constraint proof"},

@@ -14,6 +14,8 @@ cvc5 proves homomorphism axioms; sympy verifies quadratic reciprocity and class 
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

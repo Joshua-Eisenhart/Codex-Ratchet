@@ -8,8 +8,8 @@ Fixes v5's bottlenecks:
 Tests scaling: does increasing N_QUBITS help or hurt at this param budget?
 """
 from __future__ import annotations
+import math
 import torch, torch.nn as nn
-import numpy as np
 from itertools import combinations
 
 DTYPE = torch.complex64
@@ -289,42 +289,44 @@ class TrainablePairedEngineV6(nn.Module):
 
 def random_pure_nqubit_state(n_qubits, rng=None):
     """Sample a random pure state in 2^n-dim Hilbert space (Haar measure)."""
-    rng = rng or np.random
+    generator = rng if isinstance(rng, torch.Generator) else None
     d = 2 ** n_qubits
-    psi = rng.normal(size=d) + 1j * rng.normal(size=d)
-    psi = psi / np.linalg.norm(psi)
-    return np.outer(psi, psi.conj())
+    psi = torch.randn(d, generator=generator, dtype=DTYPE_F) + 1j * torch.randn(d, generator=generator, dtype=DTYPE_F)
+    psi = psi.to(DTYPE)
+    psi = psi / torch.linalg.vector_norm(psi)
+    return torch.outer(psi, psi.conj())
 
 
 def random_product_state(n_qubits, rng=None):
     """Sample a random product state |ψ_1⟩⊗|ψ_2⟩⊗...⊗|ψ_n⟩."""
-    rng = rng or np.random
+    generator = rng if isinstance(rng, torch.Generator) else None
     factors = []
     for _ in range(n_qubits):
-        a = rng.normal() + 1j * rng.normal()
-        b = rng.normal() + 1j * rng.normal()
-        psi = np.array([a, b]); psi = psi / np.linalg.norm(psi)
-        factors.append(np.outer(psi, psi.conj()))
+        psi = torch.randn(2, generator=generator, dtype=DTYPE_F) + 1j * torch.randn(2, generator=generator, dtype=DTYPE_F)
+        psi = psi.to(DTYPE)
+        psi = psi / torch.linalg.vector_norm(psi)
+        factors.append(torch.outer(psi, psi.conj()))
     out = factors[0]
     for f in factors[1:]:
-        out = np.kron(out, f)
+        out = torch.kron(out, f)
     return out
 
 
 def ghz_state(n_qubits):
     """|GHZ_n⟩ = (|0...0⟩ + |1...1⟩)/√2"""
     d = 2 ** n_qubits
-    psi = np.zeros(d, dtype=complex); psi[0] = psi[-1] = 1/np.sqrt(2)
-    return np.outer(psi, psi.conj())
+    psi = torch.zeros(d, dtype=DTYPE)
+    psi[0] = psi[-1] = 1 / math.sqrt(2)
+    return torch.outer(psi, psi.conj())
 
 
 def w_state(n_qubits):
     """|W_n⟩ = sum_i |0...010...0⟩/√n  (single excitation symmetric)"""
     d = 2 ** n_qubits
-    psi = np.zeros(d, dtype=complex)
+    psi = torch.zeros(d, dtype=DTYPE)
     for i in range(n_qubits):
-        psi[1 << (n_qubits - 1 - i)] = 1.0 / np.sqrt(n_qubits)
-    return np.outer(psi, psi.conj())
+        psi[1 << (n_qubits - 1 - i)] = 1.0 / math.sqrt(n_qubits)
+    return torch.outer(psi, psi.conj())
 
 
 if __name__ == "__main__":
@@ -332,7 +334,7 @@ if __name__ == "__main__":
     for nq in [3, 4, 6]:
         eng = TrainablePairedEngineV6(n_classes=8, n_qubits=nq)
         n_params = sum(p.numel() for p in eng.parameters() if p.requires_grad)
-        rho_init = torch.tensor(random_pure_nqubit_state(nq), dtype=DTYPE).unsqueeze(0)
+        rho_init = random_pure_nqubit_state(nq).unsqueeze(0)
         t0 = time.time()
         logits = eng(rho_init)
         forward_t = time.time() - t0

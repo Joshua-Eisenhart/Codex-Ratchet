@@ -48,6 +48,11 @@ PARENT_RESULT_NAMES = [
 OUT_PATH = RESULTS_DIR / "clifford_hopf_geometry_closure_results.json"
 EPS = 1e-9
 
+classification = "classical_baseline"
+divergence_log = [
+    "Finite Clifford/Hopf closure controls stay lego-stage only and explicitly block QIT, GStack, axis, bridge, and nonclassical promotion."
+]
+
 TOOL_MANIFEST = {
     "clifford": {"tried": True, "used": True, "reason": "load-bearing Cl(3) vector, bivector, and rotor checks"},
     "geomstats": {"tried": True, "used": True, "reason": "load-bearing S2 membership and geodesic distance cross-checks"},

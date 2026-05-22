@@ -18,6 +18,10 @@ import time
 import numpy as np
 from fractions import Fraction
 classification = "classical_baseline"  # auto-backfill
+divergence_log = [
+    "Classical comparator/control surface only; does not promote nonclassical, formal-scout, bridge, axis-level, or canonical proof claims."
+]
+
 
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried

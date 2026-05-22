@@ -9,6 +9,10 @@ No strong load-bearing tool per cut list; sympy for motivic weight filtration sy
 import json, os, numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+divergence_log = [
+    "Classical comparator/control surface only; this metadata clears C4 for baseline accounting and does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+]
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for symbolic/proof lego"},
     "pyg": {"tried": False, "used": False, "reason": "not needed for symbolic/proof lego"},

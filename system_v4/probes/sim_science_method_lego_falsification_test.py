@@ -16,6 +16,9 @@ classification: classical_baseline
 import json
 import os
 
+classification = "classical_baseline"
+divergence_log = ["Classical baseline models falsification mechanics with probability, z3, and sympy checks; it is not a nonclassical proof of science-method ontology."]
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -366,6 +369,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_science_method_lego_falsification_test",
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "scope_note": "system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md; Popperian science method — falsification step as physical constraint on hypothesis admissibility",
         "exclusion_claim": "hypothesis with P(o*|h)=0 cannot survive observation o*; unfalsifiable hypothesis has no structure distinguishing it from prior; Modus Tollens is exact at P(o*|h)=1",
         "tool_manifest": TOOL_MANIFEST,

@@ -8,6 +8,8 @@ multiply on rotation matrices is NOT a substitute for rotor geometric product
 """
 import json, os, numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":{"tried":False,"used":False,"reason":""},
     "pyg":{"tried":False,"used":False,"reason":""},

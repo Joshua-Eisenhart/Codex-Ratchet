@@ -402,6 +402,15 @@ def run_boundary_tests():
 
 classification = "classical_baseline"
 
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for sim_ultraproduct_constraint_canonical; it does not promote a "
+        "nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+
 
 # =====================================================================
 # MAIN

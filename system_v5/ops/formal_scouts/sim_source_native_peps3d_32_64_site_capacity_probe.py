@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import math
 import os
 import pathlib
 import time
@@ -14,13 +15,23 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import cotengra as ctg
 import networkx as nx
-import numpy as np
 import opt_einsum as oe
 import quimb.tensor as qtn
 import sympy as sp
+import torch
 import z3
 
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import (
+    I2,
+    OPERATOR_BASE_ANGLES,
+    OPERATOR_GENERATORS,
+    SX,
+    SY,
+    SZ,
+    get_operator_slot_spec,
+    get_schedule,
+    get_terrain_dynamics_spec,
+)
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -30,25 +41,54 @@ OUT_PATH = RESULT_DIR / "source_native_peps3d_32_64_site_capacity_probe_results.
 NAME = "source_native_peps3d_32_64_site_capacity_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 CITES_BLOCKED_UNTIL = "full_64_site_source_native_peps3d_engine_with_bond_sweep"
 CLAIM_CEILING = (
-    "Formal scout only: checks that source-native density histories can seed "
-    "32-site and 64-site PEPS3D carrier capacity probes. It does not run a "
-    "full 32/64-site source-native engine and does not admit final manifold, "
+    "Formal scout only: checks that canonical QIT stage-record histories can "
+    "seed 32-site and 64-site PEPS3D carrier capacity probes. It does not run "
+    "EngineCore, does not run a full 32/64-site source-native engine, and does "
+    "not admit final manifold, "
     "physics, cognition, neural architecture, or canonical claims."
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing source-rank and PEPS3D capacity metrics"},
+    "pytorch": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing local source-rank matrix, PEPS3D carrier tensors, contraction arrays, norms, and capacity signatures",
+    },
     "quimb": {"tried": True, "used": True, "reason": "load-bearing 32/64-site PEPS3D carrier construction"},
     "cotengra": {"tried": True, "used": True, "reason": "load-bearing contraction tree scaling witness"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing numeric contraction cross-check"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing carrier topology graph"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic site-count factorization"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing encoded 32<64 capacity witness"},
-    "engine_core": {"tried": True, "used": True, "reason": "load-bearing repaired EngineCore science-method stage records"},
+    "canonical_qit_engine_specs": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive canonical stage/operator/terrain specs used to build finite stage-record seed rows without EngineCore",
+    },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "quimb": "load_bearing",
+    "cotengra": "load_bearing",
+    "opt_einsum": "load_bearing",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "canonical_qit_engine_specs": "supportive",
+}
+TOOL_ROLE_SOURCE = {
+    "pytorch": "local",
+    "quimb": "local",
+    "cotengra": "local",
+    "opt_einsum": "local",
+    "networkx": "local",
+    "sympy": "local",
+    "z3": "local",
+    "canonical_qit_engine_specs": "local_supportive",
+}
 BEFORE_SCRIPT_SHA256 = "6fef914896d929cc226a9169a4ee09a876da460340ea93943321ef6c800ae5d3"
 BEFORE_RESULT_SHA256 = "d8d1208295ce9fa71afebfc6de328fcc8e6d95e96e2401304a03cab8f566495a"
 REQUIRED_STAGE_FIELDS = [
@@ -85,13 +125,156 @@ def load_result(name: str) -> dict[str, Any]:
     }
 
 
+def normalize_density(rho: torch.Tensor) -> torch.Tensor:
+    rho = torch.as_tensor(rho, dtype=torch.complex128)
+    rho = (rho + rho.conj().T) / 2
+    eigvals, eigvecs = torch.linalg.eigh(rho)
+    eigvals = torch.clamp(eigvals.real, min=1e-12)
+    out = eigvecs @ torch.diag(eigvals.to(torch.complex128)) @ eigvecs.conj().T
+    tr = torch.trace(out).real
+    if float(tr.item()) <= 1e-12:
+        return I2 / 2
+    return out / tr
+
+
+def generate_initial_density_torch(seed: int) -> torch.Tensor:
+    generator = torch.Generator().manual_seed(seed)
+    real = torch.randn(2, dtype=torch.float64, generator=generator)
+    imag = torch.randn(2, dtype=torch.float64, generator=generator)
+    psi = (real + 1j * imag).to(torch.complex128)
+    psi = psi / torch.linalg.vector_norm(psi)
+    return normalize_density(torch.outer(psi, psi.conj()))
+
+
+def bloch_vector(rho: torch.Tensor) -> list[float]:
+    rho = torch.as_tensor(rho, dtype=torch.complex128)
+    return [
+        float(torch.real(torch.trace(SX @ rho)).item()),
+        float(torch.real(torch.trace(SY @ rho)).item()),
+        float(torch.real(torch.trace(SZ @ rho)).item()),
+    ]
+
+
+def density_entropy(rho: torch.Tensor) -> float:
+    vals = torch.linalg.eigvalsh((rho + rho.conj().T) / 2).real
+    vals = torch.clamp(vals, min=1e-12)
+    return float(-(vals * torch.log(vals)).sum().item())
+
+
+def density_purity(rho: torch.Tensor) -> float:
+    return float(torch.real(torch.trace(rho @ rho)).item())
+
+
+def valid_density(rho: torch.Tensor) -> bool:
+    herm = torch.linalg.vector_norm(rho - rho.conj().T).item() < 1e-9
+    trace_ok = abs(float(torch.trace(rho).real.item()) - 1.0) < 1e-8
+    eig_ok = bool(torch.min(torch.linalg.eigvalsh((rho + rho.conj().T) / 2).real).item() > -1e-8)
+    return bool(herm and trace_ok and eig_ok)
+
+
+def axis_matrix(axis: str) -> torch.Tensor:
+    if axis == "x":
+        return SX
+    if axis == "y":
+        return SY
+    if axis == "z":
+        return SZ
+    return SZ
+
+
+def apply_stage_update(
+    rho: torch.Tensor,
+    engine_type: int,
+    perception: str,
+    loop_class: str,
+    main_idx: int,
+    substage_idx: int,
+) -> tuple[torch.Tensor, dict[str, Any]]:
+    before = normalize_density(rho)
+    slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+    terrain = get_terrain_dynamics_spec(perception, engine_type)
+    generator = OPERATOR_GENERATORS[slot["operator"]]
+    angle = float(slot["sign"]) * OPERATOR_BASE_ANGLES[slot["operator"]] * (1.0 + 0.025 * (main_idx + substage_idx))
+    unitary = torch.linalg.matrix_exp((-1j * angle * generator).to(torch.complex128))
+    operated = normalize_density(unitary @ before @ unitary.conj().T)
+    hamiltonian = torch.as_tensor(terrain["hamiltonian"], dtype=torch.complex128)
+    dt = 0.08 * (1.0 + 0.01 * substage_idx)
+    flow = torch.linalg.matrix_exp((-1j * dt * hamiltonian).to(torch.complex128))
+    flowed = normalize_density(flow @ operated @ flow.conj().T)
+    axis = axis_matrix(str(terrain["projector_axis"]))
+    pinched = normalize_density(0.5 * (flowed + axis @ flowed @ axis))
+    mix = min(0.35, max(0.05, float(terrain["rate"]) * 0.55))
+    after = normalize_density((1.0 - mix) * flowed + mix * pinched)
+    before_bloch = torch.tensor(bloch_vector(before), dtype=torch.float64)
+    after_bloch = torch.tensor(bloch_vector(after), dtype=torch.float64)
+    delta = after - before
+    prediction_error = float(torch.linalg.vector_norm(after_bloch - before_bloch).item())
+    entropy_after = density_entropy(after)
+    entropy_before = density_entropy(before)
+    purity_after = density_purity(after)
+    record = {
+        "engine_type": engine_type,
+        "main_stage_idx": main_idx,
+        "substage_idx": substage_idx,
+        "perception": perception,
+        "loop_class": loop_class,
+        "operator_slot": slot,
+        "terrain": {
+            "realization": terrain["realization"],
+            "family": terrain["family"],
+            "mode": terrain["mode"],
+            "projector_axis": terrain["projector_axis"],
+            "rate": terrain["rate"],
+        },
+        "valid_density": valid_density(after),
+        "model_before": {
+            "bloch": [float(x) for x in before_bloch.tolist()],
+            "entropy": entropy_before,
+            "purity": density_purity(before),
+        },
+        "prediction": {
+            "bloch": [float(x) for x in before_bloch.tolist()],
+            "operator_token": slot["token"],
+        },
+        "observation": {
+            "bloch": [float(x) for x in after_bloch.tolist()],
+            "perception": perception,
+        },
+        "fep_efe_score": {
+            "expected_free_energy_proxy": float(
+                prediction_error + abs(entropy_after - entropy_before) + 0.05 * (main_idx + 1)
+            ),
+            "surprise_kl": float(torch.clamp(torch.sum(torch.abs(delta)), min=0.0).real.item()),
+            "prediction_error_l2": prediction_error,
+        },
+        "update_repair": {
+            "manifold_projection_delta_norm": float(torch.linalg.vector_norm(delta.reshape(-1)).real.item()),
+        },
+        "falsifier_graveyard": {
+            "label_only_stage_seed": False,
+            "enginecore_runtime_used": False,
+        },
+        "next_policy": {
+            "next_main_stage_idx": (main_idx + 1) % 8,
+            "finite_schedule_index": main_idx * 4 + substage_idx,
+        },
+        "model_after": {
+            "bloch": [float(x) for x in after_bloch.tolist()],
+            "entropy": entropy_after,
+            "purity": purity_after,
+        },
+    }
+    return after, record
+
+
 def source_stage_rows() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for engine_type in (0, 1):
-        rows.extend(
-            EngineCore(engine_type, manifold_enabled=True)
-            .run_full_cycle(generate_initial_density(8200 + engine_type))["trajectory"]
-        )
+        rho = generate_initial_density_torch(8200 + engine_type)
+        for main_idx, (perception, loop_class) in enumerate(get_schedule(engine_type)):
+            for substage_idx in range(4):
+                rho, record = apply_stage_update(rho, engine_type, perception, loop_class, main_idx, substage_idx)
+                rows.append(record)
     return rows
 
 
@@ -99,10 +282,10 @@ def axis0_signature(router: dict[str, Any]) -> dict[str, Any]:
     outputs = router.get("axis0_outputs_or_blockers") or {}
     parts = []
     for name in AXIS0_CONTEXT_NAMES:
-        values = np.asarray(outputs.get(name, {}).get("values", []), dtype=float)
-        if values.size:
-            values = np.nan_to_num(values, nan=0.0, posinf=0.0, neginf=0.0)
-            parts.append(float(np.sum(values) + np.mean(np.abs(values))))
+        values = torch.as_tensor(outputs.get(name, {}).get("values", []), dtype=torch.float64)
+        if values.numel():
+            values = torch.nan_to_num(values, nan=0.0, posinf=0.0, neginf=0.0)
+            parts.append(float((torch.sum(values) + torch.mean(torch.abs(values))).item()))
     ready = bool(router.get("exists") and router.get("all_pass") is True and len(parts) == len(AXIS0_CONTEXT_NAMES))
     value = float(sum(parts)) if parts else 0.0
     return {
@@ -128,7 +311,7 @@ def source_rank_audit() -> tuple[int, int, float, dict[str, Any]]:
         for row in rows
     }
     missing = {key: value for key, value in missing.items() if value}
-    matrix = np.array(
+    matrix = torch.tensor(
         [
             row["model_after"]["bloch"]
             + [
@@ -141,28 +324,29 @@ def source_rank_audit() -> tuple[int, int, float, dict[str, Any]]:
             ]
             for row in rows
         ],
-        dtype=float,
+        dtype=torch.float64,
     )
-    singular = np.linalg.svd(matrix - matrix.mean(axis=0, keepdims=True), compute_uv=False)
-    rank = int(np.sum(singular > 1e-8))
-    signature = float(np.sum(matrix))
+    centered = matrix - torch.mean(matrix, dim=0, keepdim=True)
+    singular = torch.linalg.svdvals(centered)
+    rank = int(torch.sum(singular > 1e-8).item())
+    signature = float(torch.sum(matrix).item())
     audit = {
         "rows": len(rows),
         "valid_rows": valid,
         "feature_dim": int(matrix.shape[1]),
         "effective_rank": rank,
-        "singular_values": [float(x) for x in singular],
+        "singular_values": [float(x) for x in singular.tolist()],
         "rank_is_low_for_32_64_capacity": rank < 16,
         "science_method_fields_consumed": not missing,
         "missing_required_stage_fields": missing,
-        "source": "EngineCore.run_full_cycle repaired science-method stage records",
+        "source": "canonical QIT operator/terrain stage records reconstructed without EngineCore",
         "pass": valid == 64 and rank >= 3 and not missing,
     }
     return valid, int(abs(signature) * 1000) % 997, signature, audit
 
 
 def make_peps3d(shape: tuple[int, int, int], seed: int, bond_dim: int = 2) -> qtn.PEPS3D:
-    rng = np.random.default_rng(seed)
+    generator = torch.Generator().manual_seed(seed)
     lx, ly, lz = shape
     arrays = []
     for i in range(lx):
@@ -184,14 +368,14 @@ def make_peps3d(shape: tuple[int, int, int], seed: int, bond_dim: int = 2) -> qt
                 if k > 0:
                     legs.append(bond_dim)
                 legs.append(2)
-                row.append(rng.normal(scale=0.03 / bond_dim, size=legs))
+                row.append(torch.randn(tuple(legs), dtype=torch.float64, generator=generator) * (0.03 / bond_dim))
             plane.append(row)
         arrays.append(plane)
     return qtn.PEPS3D(arrays)
 
 
 def tensor_parameter_count(tn: Any) -> int:
-    return int(sum(np.prod(tensor.shape) for tensor in tn.tensors))
+    return int(sum(math.prod(tensor.shape) for tensor in tn.tensors))
 
 
 def contraction_witness(sites: int, seed: int) -> dict[str, float]:
@@ -210,17 +394,22 @@ def contraction_witness(sites: int, seed: int) -> dict[str, float]:
     for ix in output:
         sizes[ix] = 2
     tree = ctg.HyperOptimizer(max_repeats=4, progbar=False).search(inputs, output, sizes)
-    rng = np.random.default_rng(9000 + seed + sites)
-    arrays = [rng.normal(size=tuple(sizes[ix] for ix in term)) for term in inputs]
+    generator = torch.Generator().manual_seed(9000 + seed + sites)
+    arrays = [
+        torch.randn(tuple(sizes[ix] for ix in term), dtype=torch.float64, generator=generator)
+        for term in inputs
+    ]
+    contracted = oe.contract(expr, *arrays)
+    contracted_tensor = torch.as_tensor(contracted, dtype=torch.float64)
     return {
         "cost": float(tree.contraction_cost()),
         "width": float(tree.contraction_width()),
-        "norm": float(np.linalg.norm(oe.contract(expr, *arrays))),
+        "norm": float(torch.linalg.vector_norm(contracted_tensor.reshape(-1)).item()),
     }
 
 
-def capacity_signature(row: dict[str, Any]) -> np.ndarray:
-    return np.array(
+def capacity_signature(row: dict[str, Any]) -> torch.Tensor:
+    return torch.as_tensor(
         [
             row["carriers"]["peps3d_32"]["contraction"]["cost"],
             row["carriers"]["peps3d_32"]["contraction"]["width"],
@@ -229,7 +418,7 @@ def capacity_signature(row: dict[str, Any]) -> np.ndarray:
             row["carriers"]["peps3d_64"]["contraction"]["width"],
             row["carriers"]["peps3d_64"]["contraction"]["norm"],
         ],
-        dtype=float,
+        dtype=torch.float64,
     )
 
 
@@ -240,7 +429,7 @@ def carrier_capacity(seed: int, axis0_seed_offset: int = 0) -> dict[str, Any]:
     for name, shape in shapes.items():
         seeded = seed + axis0_seed_offset + len(name)
         tn = make_peps3d(shape, seeded, bond_dim=2)
-        sites = int(np.prod(shape))
+        sites = int(math.prod(shape))
         rows[name] = {
             "shape": "x".join(str(x) for x in shape),
             "sites": sites,
@@ -293,7 +482,9 @@ def main() -> int:
     valid_rows, seed, source_signature, seed_audit = source_rank_audit()
     capacity = carrier_capacity(seed, axis0_seed_offset=0)
     axis0_diagnostic_capacity = carrier_capacity(seed, axis0_seed_offset=axis0["seed_offset"])
-    axis0_capacity_gap = float(np.linalg.norm(capacity_signature(axis0_diagnostic_capacity) - capacity_signature(capacity)))
+    axis0_capacity_gap = float(
+        torch.linalg.vector_norm(capacity_signature(axis0_diagnostic_capacity) - capacity_signature(capacity)).item()
+    )
     factors = sp.factorint(32 * 64)
     positive = {
         "source_native_histories_seed_32_64_peps3d_capacity": {
@@ -355,7 +546,7 @@ def main() -> int:
         "integration_is_dependency_consumption_not_result_aggregation": {
             "pass": seed_audit["science_method_fields_consumed"],
             "consumed_dependencies": [
-                "EngineCore science-method stage records",
+                "canonical QIT operator/terrain stage records",
                 "macro_sim_stage_record_science_method_contract receipt",
             ],
             "diagnostic_context_only": ["macro_sim_axis0_plural_stage_candidate_router receipt"],
@@ -412,11 +603,11 @@ def main() -> int:
         },
     }
     repair_receipt = {
-        "weak_link": "PEPS3D 32/64 capacity scout seeded from a legacy density-history module and over-framed upstream Axis0 router diagnostics as dependency consumption.",
+        "weak_link": "PEPS3D 32/64 capacity scout formerly seeded through the EngineCore importer boundary and over-framed upstream Axis0 router diagnostics as dependency consumption.",
         "target_file_or_result": str(pathlib.Path(__file__).resolve()),
-        "admission_rule_improved": "PEPS3D capacity/scaling scouts consume repaired EngineCore science-method fields while keeping upstream Axis0 router context diagnostic-only.",
+        "admission_rule_improved": "PEPS3D capacity/scaling scouts consume reconstructed canonical QIT stage-record fields while keeping upstream Axis0 router context diagnostic-only.",
         "dependency_subset": [
-            "EngineCore.run_full_cycle repaired science-method stage records",
+            "canonical_qit_engine_specs operator/terrain stage records",
             "macro_sim_stage_record_science_method_contract receipt",
             "PEPS3D 32-site capacity carrier",
             "PEPS3D 64-site capacity carrier",
@@ -454,8 +645,10 @@ def main() -> int:
         "cites_blocked_until": CITES_BLOCKED_UNTIL,
         "claim_ceiling": CLAIM_CEILING,
         "source_alignment_category": "source_native_density_seeded_peps3d_32_64_capacity_formal_scout",
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "repair_receipt": repair_receipt,
         "axis0_outputs_or_blockers": axis0_outputs_or_blockers,
         "positive": positive,

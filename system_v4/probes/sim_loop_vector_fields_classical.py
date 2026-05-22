@@ -5,8 +5,23 @@ Curl/divergence of 2D vector fields on closed loops (circle). Tests:
 - Divergence-free rotational field has zero line integral of dot-normal (flux)
 - Curl of gradient = 0"""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 classification = "classical_baseline"
+divergence_log = [
+    (
+        "Classical baseline contrast: this NumPy helper exercises "
+        "commutative finite-dimensional numeric identities and control cases; "
+        "it does not promote a nonclassical, canonical, bridge, or axis-level "
+        "claim."
+    ),
+]
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing finite-dimensional numerical arrays and linear algebra for the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 NAME = "loop_vector_fields"
 
 def loop(R=1.0, n=2000):

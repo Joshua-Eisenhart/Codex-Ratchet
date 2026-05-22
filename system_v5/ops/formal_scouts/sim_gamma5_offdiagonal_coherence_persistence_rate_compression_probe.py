@@ -106,12 +106,12 @@ def evolve_points(rho: torch.Tensor, mode: str) -> dict[str, Any]:
         points.append(offdiag_vector(current))
         traces.append(local_trace_sanity(current))
     stacked = torch.stack(points)
-    distance = torch.cdist(stacked, stacked).numpy()
+    distance = torch.cdist(stacked, stacked)
     return {"points": stacked, "distance": distance, "traces": traces, "max_cptp_gap": max(cptp_gaps)}
 
 
 def persistence_signature(distance: Any) -> dict[str, Any]:
-    rips = gudhi.RipsComplex(distance_matrix=distance, max_edge_length=float(distance.max() + 1e-12))
+    rips = gudhi.RipsComplex(distance_matrix=distance.tolist(), max_edge_length=float(distance.max().item() + 1e-12))
     st = rips.create_simplex_tree(max_dimension=2)
     st.persistence()
     intervals0 = st.persistence_intervals_in_dimension(0)
@@ -121,11 +121,12 @@ def persistence_signature(distance: Any) -> dict[str, Any]:
     graph = nx.Graph()
     for idx in range(distance.shape[0]):
         graph.add_node(idx)
-    cutoff = float(torch.tensor(distance).median().item())
+    cutoff = float(distance.median().item())
     for i in range(distance.shape[0]):
         for j in range(i + 1, distance.shape[0]):
-            if 0 < distance[i, j] <= cutoff:
-                graph.add_edge(i, j, weight=float(distance[i, j]))
+            d_ij = float(distance[i, j].item())
+            if 0 < d_ij <= cutoff:
+                graph.add_edge(i, j, weight=d_ij)
     pyg = from_networkx(graph)
     return {
         "h0_count": len(intervals0),
@@ -221,7 +222,14 @@ def main() -> int:
         "provider_suggested_persistence_readout_is_not_enough": {"random_gap": min_random_gap, "permuted_gap": min_permuted_gap, "constant_gap": min_constant_gap, "pass": min_random_gap < 0.001 and min_permuted_gap < 0.001 and min_constant_gap < 0.001},
         "unconstrained_time_dependent_rank3_same_rate_control_matches_exactly": {"max_exact_gap": max_exact_gap, "pass": max_exact_gap < 1e-12},
         "all_rate_sequences_are_cptp": {"max_cptp_gap": max_cptp_gap, "pass": max_cptp_gap < 1e-12},
-        "finite_four_qubit_density_boundary": {"dimension": DIM, "qubits": N_QUBITS, "pass": DIM == 16 and N_QUBITS == 4},
+        "finite_four_qubit_density_boundary": {
+            "dimension": DIM,
+            "qubits": N_QUBITS,
+            "minimum_nonclassical_width": 8,
+            "minimum_width_role": "calibration_only",
+            "minimum_width_reason": "four-qubit density fixture is a finite boundary/control, not nonclassical maturity evidence",
+            "pass": DIM == 16 and N_QUBITS == 4,
+        },
     }
     boundary = {
         "z3_persistence_rate_compression_kill_witness": z3_witness(min_random_gap, min_permuted_gap, min_constant_gap, max_exact_gap, max_cptp_gap),

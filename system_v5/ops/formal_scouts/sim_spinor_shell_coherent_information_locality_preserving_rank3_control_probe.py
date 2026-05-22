@@ -209,7 +209,14 @@ def main() -> int:
         "unrestricted_self_match_boundary_remains_exact": {"self_gap": 0.0, "pass": True},
     }
     boundary = {
-        "finite_four_qubit_density_dimension": {"dimension": DIM, "qubits": N_QUBITS, "pass": DIM == 16 and N_QUBITS == 4},
+        "finite_four_qubit_density_dimension": {
+            "dimension": DIM,
+            "qubits": N_QUBITS,
+            "minimum_nonclassical_width": 8,
+            "minimum_width_role": "calibration_only",
+            "minimum_width_reason": "four-qubit density fixture is a finite boundary/control, not nonclassical maturity evidence",
+            "pass": DIM == 16 and N_QUBITS == 4,
+        },
         "z3_coherent_information_rank3_witness": z3_witness(quotient_row["class_count"], min(fit_gaps), max_cptp, threshold),
         "promotion_remains_disabled": {"promotion_allowed": PROMOTION_ALLOWED, "pass": PROMOTION_ALLOWED is False},
     }

@@ -57,11 +57,6 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "used through imported Hopf connection loop-integral callable",
     },
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "used through imported Hopf connection loop-integral callable",
-    },
     "z3": {
         "tried": True,
         "used": True,
@@ -69,10 +64,9 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "importlib": "load_bearing",
+    "importlib": "supportive",
     "sympy": "load_bearing",
     "pytorch": "supportive",
-    "numpy": "supportive",
     "z3": "supportive",
 }
 

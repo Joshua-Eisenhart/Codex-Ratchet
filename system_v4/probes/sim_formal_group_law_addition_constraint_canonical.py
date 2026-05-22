@@ -17,6 +17,8 @@ import os
 import sympy as sp
 from sympy import symbols, expand, Poly
 
+classification = "canonical"
+
 try:
     import cvc5
     from cvc5 import Kind

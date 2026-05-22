@@ -9,8 +9,6 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
-from scipy.linalg import expm
 import torch
 import z3
 
@@ -22,6 +20,7 @@ OUT_PATH = RESULT_DIR / "te_ni_pit_source_signed_gradient_on_weyl_density_manifo
 NAME = "te_ni_pit_source_signed_gradient_on_weyl_density_manifold_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 CLAIM_CEILING = (
     "Formal scout only: instantiates TeNi as Te-up signed gradient on the left "
     "Ni-in/Pit Weyl density terrain and NiTe as Te-down signed gradient on the "
@@ -32,40 +31,45 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing density matrices, Pauli operators, Lindblad terrain updates, and readout signatures"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing matrix exponentials for finite Hamiltonian terrain components"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing density matrices, Pauli operators, Hamiltonian/Lindblad terrain updates, and readout signatures"},
     "pytorch_autograd": {"tried": True, "used": True, "reason": "load-bearing gradient of the Hopf/spinor coordinate objective defining Te up/down"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing non-collapse checks for same topology with distinct terrain/sign assignments"},
 }
 TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_ROLE_SOURCE = {tool: "local" for tool in TOOL_MANIFEST}
 
-DTYPE = np.complex128
-I2 = np.eye(2, dtype=DTYPE)
-SX = np.array([[0, 1], [1, 0]], dtype=DTYPE)
-SY = np.array([[0, -1j], [1j, 0]], dtype=DTYPE)
-SZ = np.array([[1, 0], [0, -1]], dtype=DTYPE)
-SIGMA_MINUS = np.array([[0, 0], [1, 0]], dtype=DTYPE)
-SIGMA_PLUS = np.array([[0, 1], [0, 0]], dtype=DTYPE)
+DTYPE = torch.complex128
+I2 = torch.eye(2, dtype=DTYPE)
+SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=DTYPE)
+SIGMA_MINUS = torch.tensor([[0, 0], [1, 0]], dtype=DTYPE)
+SIGMA_PLUS = torch.tensor([[0, 1], [0, 0]], dtype=DTYPE)
 H0 = 0.73 * SZ + 0.19 * SX
 H_L = H0
 H_R = -H0
 OBS = {"x": SX, "y": SY, "z": SZ}
 
 
-def dagger(a: np.ndarray) -> np.ndarray:
-    return a.conj().T
+def as_complex_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=DTYPE)
 
 
-def density_np(psi: np.ndarray) -> np.ndarray:
-    psi = psi.reshape(2, 1)
+def dagger(a: Any) -> torch.Tensor:
+    tensor = as_complex_tensor(a)
+    return torch.conj(tensor.transpose(-2, -1))
+
+
+def density_np(psi: Any) -> torch.Tensor:
+    psi = as_complex_tensor(psi).reshape(2, 1)
     return psi @ dagger(psi)
 
 
-def spinor_np(eta: float, phi: float = 0.31, chi: float = -0.27) -> np.ndarray:
-    return np.array(
+def spinor_np(eta: float, phi: float = 0.31, chi: float = -0.27) -> torch.Tensor:
+    return torch.tensor(
         [
-            np.exp(1j * (phi + chi)) * math.cos(eta),
-            np.exp(1j * (phi - chi)) * math.sin(eta),
+            complex(math.cos(phi + chi), math.sin(phi + chi)) * math.cos(eta),
+            complex(math.cos(phi - chi), math.sin(phi - chi)) * math.sin(eta),
         ],
         dtype=DTYPE,
     )
@@ -98,7 +102,7 @@ def te_signed_gradient_eta(eta_value: float, direction: str, lr: float = 0.08) -
         eta_after = eta_value - lr * grad
     else:
         raise ValueError(direction)
-    eta_after = float(np.clip(eta_after, 1e-6, math.pi / 2 - 1e-6))
+    eta_after = max(1e-6, min(float(eta_after), math.pi / 2 - 1e-6))
     before = float(objective.item())
     after = float(z_expectation_torch(torch.tensor(eta_after, dtype=torch.float64)).item())
     return {
@@ -112,43 +116,60 @@ def te_signed_gradient_eta(eta_value: float, direction: str, lr: float = 0.08) -
     }
 
 
-def hamiltonian_update(rho: np.ndarray, hamiltonian: np.ndarray, dt: float) -> np.ndarray:
-    u = expm(-1j * hamiltonian * dt)
+def hamiltonian_update(rho: Any, hamiltonian: Any, dt: float) -> torch.Tensor:
+    rho = as_complex_tensor(rho)
+    u = torch.linalg.matrix_exp(-1j * as_complex_tensor(hamiltonian) * dt)
     return u @ rho @ dagger(u)
 
 
-def dissipator_euler(rho: np.ndarray, op: np.ndarray, gamma: float, dt: float) -> np.ndarray:
+def dissipator_euler(rho: Any, op: Any, gamma: float, dt: float) -> torch.Tensor:
+    rho = as_complex_tensor(rho)
+    op = as_complex_tensor(op)
     d = op @ rho @ dagger(op) - 0.5 * (dagger(op) @ op @ rho + rho @ dagger(op) @ op)
     out = rho + gamma * dt * d
     out = (out + dagger(out)) / 2
-    vals, vecs = np.linalg.eigh(out)
-    vals = np.maximum(vals, 1e-12)
-    out = vecs @ np.diag(vals) @ dagger(vecs)
-    return out / np.trace(out)
+    vals, vecs = torch.linalg.eigh(out)
+    vals = torch.clamp(torch.real(vals), min=1e-12)
+    out = vecs @ torch.diag(vals.to(DTYPE)) @ dagger(vecs)
+    return out / torch.trace(out)
 
 
-def pit_left_ni_terrain(rho: np.ndarray, dt: float = 0.12) -> np.ndarray:
+def pit_left_ni_terrain(rho: Any, dt: float = 0.12) -> torch.Tensor:
     """X_P^L(rho_L)=gamma D[sigma_-](rho_L)-i eps[H_L,rho_L]."""
     return dissipator_euler(hamiltonian_update(rho, H_L, 0.35 * dt), SIGMA_MINUS, 0.8, dt)
 
 
-def source_right_ni_terrain(rho: np.ndarray, dt: float = 0.12) -> np.ndarray:
+def source_right_ni_terrain(rho: Any, dt: float = 0.12) -> torch.Tensor:
     """X_So^R(rho_R)=gamma D[sigma_+](rho_R)-i eps[H_R,rho_R]."""
     return dissipator_euler(hamiltonian_update(rho, H_R, 0.35 * dt), SIGMA_PLUS, 0.8, dt)
 
 
-def readouts(rho: np.ndarray) -> dict[str, float]:
-    return {key: float(np.real(np.trace(obs @ rho))) for key, obs in OBS.items()}
+def readouts(rho: Any) -> dict[str, float]:
+    rho = as_complex_tensor(rho)
+    return {key: float(torch.real(torch.trace(obs @ rho)).item()) for key, obs in OBS.items()}
 
 
-def trace_distance(a: np.ndarray, b: np.ndarray) -> float:
-    eigs = np.linalg.eigvalsh((a - b + dagger(a - b)) / 2)
-    return float(0.5 * np.sum(np.abs(eigs)))
+def trace_distance(a: Any, b: Any) -> float:
+    diff = as_complex_tensor(a) - as_complex_tensor(b)
+    eigs = torch.linalg.eigvalsh((diff + dagger(diff)) / 2)
+    return float(0.5 * torch.sum(torch.abs(torch.real(eigs))).item())
 
 
-def is_density_matrix(rho: np.ndarray) -> bool:
-    eigs = np.linalg.eigvalsh((rho + dagger(rho)) / 2)
-    return bool(np.allclose(rho, dagger(rho), atol=1e-10) and abs(np.trace(rho).real - 1.0) < 1e-10 and float(np.min(eigs)) > -1e-10)
+def commutator_norm(a: Any, b: Any) -> float:
+    a = as_complex_tensor(a)
+    b = as_complex_tensor(b)
+    comm = a @ b - b @ a
+    return float(torch.linalg.matrix_norm(comm).real.item())
+
+
+def is_density_matrix(rho: Any) -> bool:
+    rho = as_complex_tensor(rho)
+    eigs = torch.linalg.eigvalsh((rho + dagger(rho)) / 2)
+    return bool(
+        torch.allclose(rho, dagger(rho), atol=1e-10)
+        and abs(float(torch.real(torch.trace(rho)).item()) - 1.0) < 1e-10
+        and float(torch.min(torch.real(eigs)).item()) > -1e-10
+    )
 
 
 def run_teni_pit(eta0: float) -> dict[str, Any]:
@@ -176,7 +197,7 @@ def run_nite_source(eta0: float) -> dict[str, Any]:
     # finite-density placement, keeping the terrain-first order explicit.
     after_te = density_np(spinor_np(float(te["eta_after"])))
     after = 0.62 * after_terrain + 0.38 * after_te
-    after = after / np.trace(after)
+    after = after / torch.trace(after)
     return {
         "token": "NiTe",
         "topology": "Ni",
@@ -212,6 +233,7 @@ def main() -> dict[str, Any]:
     teni = run_teni_pit(eta0)
     nite = run_nite_source(eta0)
     gap = trace_distance(teni["rho"], nite["rho"])
+    h_ladder_commutator = commutator_norm(H_L, SIGMA_MINUS)
 
     wrong_same_terrain = run_teni_pit(eta0)
     wrong_same_terrain["rho"] = source_right_ni_terrain(density_np(spinor_np(float(wrong_same_terrain["te_gradient"]["eta_after"]))))
@@ -230,6 +252,12 @@ def main() -> dict[str, Any]:
         "NiTe_uses_Te_down_descent": {"delta": nite["te_gradient"]["delta"], "pass": float(nite["te_gradient"]["delta"]) < 0},
         "pit_and_source_outputs_valid_densities": {"pass": is_density_matrix(teni["rho"]) and is_density_matrix(nite["rho"])},
         "pit_source_trace_distance_separates": {"trace_distance": gap, "pass": gap > 0.02},
+        "n01_noncommutation_and_precedence_order_witness": {
+            "hamiltonian_ladder_commutator_norm": h_ladder_commutator,
+            "precedence_tokens": [teni["precedence"], nite["precedence"]],
+            "pit_source_trace_distance": gap,
+            "pass": h_ladder_commutator > 1e-9 and teni["precedence"] != nite["precedence"] and gap > 0.02,
+        },
     }
     graveyard_companions = {
         "wrong_collapse_topology_equals_terrain_unsat": z3_same_topology_not_same_terrain(),
@@ -246,8 +274,8 @@ def main() -> dict[str, Any]:
             "control_terrain": "right_Ni_out_Source_used_for_TeNi",
             "pass": trace_distance(teni["rho"], wrong_same_terrain["rho"]) > 0.01,
         },
-        "Hamiltonian_signs_are_opposed": {"H_L_trace": float(np.trace(H_L).real), "H_R_equals_negative_H_L": bool(np.allclose(H_R, -H_L)), "pass": bool(np.allclose(H_R, -H_L))},
-        "ladder_operators_are_opposed": {"sigma_minus_equals_sigma_plus": bool(np.allclose(SIGMA_MINUS, SIGMA_PLUS)), "pass": not bool(np.allclose(SIGMA_MINUS, SIGMA_PLUS))},
+        "Hamiltonian_signs_are_opposed": {"H_L_trace": float(torch.real(torch.trace(H_L)).item()), "H_R_equals_negative_H_L": bool(torch.allclose(H_R, -H_L)), "pass": bool(torch.allclose(H_R, -H_L))},
+        "ladder_operators_are_opposed": {"sigma_minus_equals_sigma_plus": bool(torch.allclose(SIGMA_MINUS, SIGMA_PLUS)), "pass": not bool(torch.allclose(SIGMA_MINUS, SIGMA_PLUS))},
     }
     boundary = {
         "claim_ceiling_blocks_engine_identity": {"promotion_allowed": PROMOTION_ALLOWED, "pass": PROMOTION_ALLOWED is False},
@@ -261,13 +289,30 @@ def main() -> dict[str, Any]:
 
     nearby_total = len(positive) + len(graveyard_companions) + len(boundary)
     nearby_passed = sum(1 for section in (positive, graveyard_companions, boundary) for row in section.values() if row.get("pass"))
+    all_pass = nearby_passed == nearby_total
     result = {
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "claim_ceiling": CLAIM_CEILING,
+        "root_constraints": {
+            "F01": True,
+            "N01": True,
+            "finite_carrier_root": True,
+            "noncommutation_or_order_root": True,
+            "finite_density_dimension": 2,
+            "n01_evidence": (
+                "bounded Weyl density placement records opposed operator/terrain "
+                "precedence plus a nonzero Hamiltonian-ladder commutator and "
+                "pit/source separation controls"
+            ),
+        },
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "source_assignment": {
             "TeNi": strip_rho(teni),
             "NiTe": strip_rho(nite),
@@ -278,9 +323,26 @@ def main() -> dict[str, Any]:
                 "Te_down": "eta <- eta - lr * grad_z_expectation(eta)",
             },
         },
+        "root_constraints": {
+            "finite_carrier_root": True,
+            "noncommutation_or_order_root": all_pass,
+            "F01": True,
+            "N01": all_pass,
+            "finite_evidence": {
+                "carrier": "two finite 2x2 complex Weyl-density matrices with bounded signed-gradient eta updates",
+                "density_validity_predicate": "pit_and_source_outputs_valid_densities",
+            },
+            "noncommutation_or_order_evidence": {
+                "order_witness": "TeNi uses operator_first_then_terrain; NiTe uses terrain_first_then_operator",
+                "signed_direction_witness": "Te_up ascent and Te_down descent pass with wrong-sign controls failing",
+                "noncollapse_witness": "wrong_collapse_topology_equals_terrain_unsat",
+            },
+        },
         "positive": positive,
         "graveyard_companions": graveyard_companions,
         "boundary": boundary,
+        "all_pass": all_pass,
+        "all_pass_count": f"{nearby_passed}/{nearby_total}",
         "nearby_variants": {"passed": nearby_passed, "total": nearby_total},
         "blockers": [],
         "why_not_v4_probes": "This is a clean v5 formal scout repairing the TeNi/NiTe topology-terrain-sign confusion without adding to the mixed v4 probe estate.",

@@ -52,6 +52,7 @@ except Exception:  # pragma: no cover
 
 CLASSIFICATION = "canonical"
 classification = CLASSIFICATION
+SIM_EXECUTION_KIND = "classical"
 divergence_log = (
     "Measurement/feedback/erasure recovery cycle-pair row on a finite two-qubit carrier. It models "
     "measurement/feedback/erasure and the reverse recovery bookkeeping as opposite "
@@ -87,7 +88,22 @@ TOOL_MANIFEST = {
     "e3nn": {"tried": False, "used": False, "reason": "not used because this calibration has no equivariant tensor field"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    tool: ("load_bearing" if spec["used"] else None) for tool, spec in TOOL_MANIFEST.items()
+    "numpy": "load_bearing",
+    "scipy": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "qutip": "load_bearing",
+    "qiskit": "load_bearing",
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "supportive",
+    "gudhi": "supportive",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
 }
 
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"
@@ -382,7 +398,7 @@ def main() -> None:
         "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
-        "sim_execution_kind": "bridge",
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "allowed_claims": ["measurement/feedback/erasure recovery cycle-pair sim exists and runs", "finite two-qubit information-cycle inspection", "no universal demon claim"],
         "promotion_status": "keep_but_open",
         "promotion_blockers": ["not yet coupled to two-bath heat/work cycle row", "not yet nested in GStack"],

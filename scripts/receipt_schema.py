@@ -12,6 +12,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+import two_root_constraints
+
 
 VALID_CLASSIFICATIONS = {
     "canonical",
@@ -43,21 +45,12 @@ RUN_BOUNDARY_FIELDS = (
 )
 
 TOOL_ALIASES = {
-    "np": "numpy",
-    "numpy": "numpy",
-    "torch": "pytorch",
-    "pytorch": "pytorch",
-    "z3": "z3",
+    key: value
+    for key, value in two_root_constraints.TOOL_ALIASES.items()
+    if value in {"numpy", "pytorch", "torch_geometric", "auto_lirpa", "le_wm", "z3", "cvc5", "sympy", "clifford", "geomstats", "e3nn", "rustworkx", "networkx", "xgi", "toponetx", "gudhi", "quimb", "cotengra", "kahypar", "opt_einsum", "python_json", "python_pathlib", "python_re", "hashlib", "time", "engine_core", "scipy"}
 }
 
-TRANSITIVE_ROLE_VALUES = {
-    "transitive",
-    "upstream",
-    "imported",
-    "delegated",
-    "engine_core",
-    "engine-core",
-}
+TRANSITIVE_ROLE_VALUES = two_root_constraints.TRANSITIVE_ROLE_VALUES
 
 
 def repo_root() -> Path:
@@ -82,58 +75,19 @@ def load_json(path: Path) -> Any:
 
 
 def canonical_tool_name(tool: str) -> str:
-    normalized = str(tool).strip().lower().replace("-", "_")
-    family = normalized.split(".", 1)[0]
-    return TOOL_ALIASES.get(family, family)
+    return two_root_constraints.canonical_tool_name(tool)
 
 
 def normalized_execution_kind(value: Any) -> str:
-    normalized = str(value or "").strip().lower().replace("-", "_")
-    if normalized in {
-        "bridge",
-        "qit_bridge",
-        "nonclassical_bridge",
-        "semiclassical",
-        "semi_classical",
-        "semiclassical_bridge",
-        "semiclassical_szilard",
-    }:
-        return "bridge"
-    if normalized == "nonclassical":
-        return "nonclassical"
-    if normalized == "classical":
-        return "classical"
-    return ""
+    return two_root_constraints.normalized_execution_kind(value)
 
 
 def _tool_role_sources(payload: dict[str, Any], manifest: dict[str, Any]) -> dict[str, str]:
-    raw = payload.get("tool_role_source") or payload.get("TOOL_ROLE_SOURCE") or {}
-    role_sources: dict[str, str] = {}
-    if isinstance(raw, dict):
-        for tool, source in raw.items():
-            role_sources[str(tool)] = str(source).strip().lower().replace("_", "-")
-    for tool, entry in manifest.items():
-        if not isinstance(entry, dict):
-            continue
-        source = (
-            entry.get("role_source")
-            or entry.get("tool_role_source")
-            or entry.get("integration_source")
-        )
-        if source:
-            role_sources.setdefault(str(tool), str(source).strip().lower().replace("_", "-"))
-            continue
-        reason = str(entry.get("reason") or "").lower()
-        if "transitive" in reason or "through enginecore" in reason or "through engine_core" in reason:
-            role_sources.setdefault(str(tool), "transitive")
-    return role_sources
+    return two_root_constraints.tool_role_sources(payload, manifest)
 
 
 def _is_transitive_role(tool: str, role_sources: dict[str, str]) -> bool:
-    direct = role_sources.get(tool)
-    canonical = role_sources.get(canonical_tool_name(tool))
-    values = {value for value in (direct, canonical) if value}
-    return any(value in TRANSITIVE_ROLE_VALUES for value in values)
+    return two_root_constraints.is_transitive_role(tool, role_sources)
 
 
 def summary_all_pass(payload: dict[str, Any]) -> bool | None:
@@ -161,6 +115,11 @@ def summary_all_pass(payload: dict[str, Any]) -> bool | None:
         value = payload.get(key)
         if isinstance(value, bool):
             return value
+
+    if two_root_constraints.legacy_sections_all_pass(payload):
+        return True
+    if payload.get("classification") == "formal_scout":
+        return False
 
     return None
 
@@ -266,6 +225,7 @@ def validate_result_payload(
         "next_lego_target": None,
         "promotion_condition": None,
         "blocked_until": None,
+        "two_root_receipt_evidence": None,
     }
     hard_findings: list[dict[str, Any]] = []
     warnings: list[dict[str, Any]] = []
@@ -442,15 +402,53 @@ def validate_result_payload(
                 sim_execution_kind=execution_kind,
             )
         )
-    if execution_kind == "nonclassical" and "pytorch" not in local_load_bearing_canonical:
-        hard_findings.append(
-            _finding(
-                "nonclassical_requires_local_load_bearing_pytorch",
-                "hard",
-                load_bearing_tools=sorted(load_bearing_canonical),
-                local_load_bearing_tools=sorted(local_load_bearing_canonical),
+    if execution_kind == "nonclassical":
+        if "pytorch" not in local_load_bearing_canonical:
+            hard_findings.append(
+                _finding(
+                    "nonclassical_requires_local_load_bearing_pytorch",
+                    "hard",
+                    load_bearing_tools=sorted(load_bearing_canonical),
+                    local_load_bearing_tools=sorted(local_load_bearing_canonical),
+                )
             )
+        classical_admin = sorted(
+            tool
+            for tool in load_bearing_canonical
+            if two_root_constraints.is_classical_or_admin_tool(tool)
         )
+        if classical_admin:
+            hard_findings.append(
+                _finding(
+                    "nonclassical_classical_or_admin_load_bearing_tool",
+                    "hard",
+                    tools=classical_admin,
+                )
+            )
+        missing_two_root = sorted(
+            tool
+            for tool in local_load_bearing_canonical
+            if not two_root_constraints.is_two_root_tool(tool)
+            and not two_root_constraints.is_classical_or_admin_tool(tool)
+        )
+        if missing_two_root:
+            hard_findings.append(
+                _finding(
+                    "nonclassical_load_bearing_tool_missing_two_root_registry",
+                    "hard",
+                    tools=missing_two_root,
+                )
+            )
+        root_evidence = two_root_constraints.receipt_root_evidence(payload).as_dict()
+        facts["two_root_receipt_evidence"] = root_evidence
+        if not root_evidence["finite_carrier_root"]:
+            hard_findings.append(
+                _finding("nonclassical_missing_f01_finite_bounded_carrier_evidence", "hard")
+            )
+        if not root_evidence["noncommutation_or_order_root"]:
+            hard_findings.append(
+                _finding("nonclassical_missing_n01_noncommutation_or_order_evidence", "hard")
+            )
 
     if classification == "canonical":
         if not facts["load_bearing_tools"]:

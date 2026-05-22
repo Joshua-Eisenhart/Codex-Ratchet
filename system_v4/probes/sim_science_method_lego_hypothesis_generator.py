@@ -15,6 +15,9 @@ classification: classical_baseline
 import json
 import os
 
+classification = "classical_baseline"
+divergence_log = ["Classical baseline models hypothesis generation with Bayesian and z3 controls; it is not a nonclassical proof of hypothesis ontology."]
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -335,6 +338,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_science_method_lego_hypothesis_generator",
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "scope_note": "system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md; Popperian science method as physical process — hypothesis generation step",
         "exclusion_claim": "constraint manifold excludes hypotheses with P=0 prior; Bayesian update cannot resurrect excluded candidates; posterior > 1 is UNSAT",
         "tool_manifest": TOOL_MANIFEST,

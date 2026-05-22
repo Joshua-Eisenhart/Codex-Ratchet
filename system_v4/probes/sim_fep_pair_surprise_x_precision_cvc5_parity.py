@@ -9,6 +9,8 @@ redundant-SMT cross-check. Does not modify the parent.
 import os, sys
 from _cvc5_parity_helper import write_results, all_pass
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "z3":   {"tried": False, "used": False, "reason": ""},

@@ -32,6 +32,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Multivector tensors, geometric product, rotor exp, sandwich product — all torch float64 with autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed"},

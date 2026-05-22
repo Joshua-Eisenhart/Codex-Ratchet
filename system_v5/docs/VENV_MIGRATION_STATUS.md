@@ -11,7 +11,8 @@ Supersedes: VENV_SPEC_GRAPH_POST_MIGRATION_VALIDATION.md,
 ## Status: COMPLETE — Deletion-ready pending owner confirmation
 
 All 5 tier-1/tier-2 runtime skills migrated to `/opt/homebrew/bin/python3`.
-Zero live runtime blockers remaining.
+Zero live runtime blockers remaining for this `.venv_spec_graph` migration only.
+This is not a current formal-scout, sim-readiness, or proof-status claim.
 
 ### Migrated Skills
 

@@ -15,8 +15,8 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import gudhi
 import networkx as nx
-import numpy as np
 import rustworkx as rx
+import torch
 import z3
 
 from sim_left_right_weyl_density_terrain_loop_placement_mirror_non_equivalence_probe import (
@@ -34,6 +34,7 @@ OUT_PATH = RESULT_DIR / "left_right_weyl_density_hopf_loop_shell_graph_persisten
 NAME = "left_right_weyl_density_hopf_loop_shell_graph_persistence_coupling_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 CLAIM_CEILING = (
     "Formal scout only: consumes the source-native left/right Weyl density "
     "terrain-loop placement signatures and maps them into finite shell graph "
@@ -43,17 +44,32 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing placement signatures, edge weights, and distance vectors"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing placement signatures, edge weights, and distance vectors"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing shell graph construction from placement histories"},
     "rustworkx": {"tried": True, "used": True, "reason": "load-bearing directed graph cycle and edge inventory cross-check"},
     "gudhi": {"tried": True, "used": True, "reason": "load-bearing H0 persistence diagrams for shell graph filtrations"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite survivor-count witness"},
 }
 TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_ROLE_SOURCE = {tool: "local" for tool in TOOL_MANIFEST}
 
 
-def graph_from_signature(sig: np.ndarray, mode: str = "source") -> nx.Graph:
-    values = sig[:, :3]
+def as_real_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=torch.float64)
+
+
+def norm_float(value: Any) -> float:
+    tensor = as_real_tensor(value)
+    return float(torch.linalg.vector_norm(tensor.reshape(-1)).item())
+
+
+def mean_abs_float(value: Any) -> float:
+    tensor = as_real_tensor(value)
+    return float(torch.mean(torch.abs(tensor)).item())
+
+
+def graph_from_signature(sig: Any, mode: str = "source") -> nx.Graph:
+    values = as_real_tensor(sig)[:, :3]
     nodes = range(4)
     graph = nx.Graph()
     graph.add_nodes_from(nodes)
@@ -61,13 +77,13 @@ def graph_from_signature(sig: np.ndarray, mode: str = "source") -> nx.Graph:
         for j in range(i + 1, 4):
             vi = values[(i * 2) % len(values)]
             vj = values[(j * 2 + 1) % len(values)]
-            base = float(np.linalg.norm(vi - vj))
+            base = norm_float(vi - vj)
             if mode == "source":
                 weight = base + 0.05 * abs(float(vi[2] - vj[2])) + 0.01 * (i + j + 1)
             elif mode == "uniform":
                 weight = 1.0
             elif mode == "mean_only":
-                weight = float(np.mean(np.abs(values))) + 0.01
+                weight = mean_abs_float(values) + 0.01
             elif mode == "permuted":
                 weight = base + 0.05 * abs(float(vi[0] - vj[0])) + 0.01 * (4 - i + j)
             else:
@@ -133,7 +149,7 @@ def min_left_right_gap(rows: list[dict[str, Any]]) -> float:
         for loop in LOOPS:
             left = next(row for row in rows if row["sheet"] == "left_weyl_density" and row["terrain"] == left_terrain and row["loop"] == loop)
             right = next(row for row in rows if row["sheet"] == "right_weyl_density" and row["terrain"] == right_terrain and row["loop"] == loop)
-            gaps.append(float(np.linalg.norm(np.array(left["persistence"]) - np.array(right["persistence"]))))
+            gaps.append(norm_float(as_real_tensor(left["persistence"]) - as_real_tensor(right["persistence"])))
     return min(gaps)
 
 
@@ -143,7 +159,7 @@ def min_fiber_base_gap(rows: list[dict[str, Any]]) -> float:
         for terrain in terrains:
             fiber = next(row for row in rows if row["sheet"] == sheet and row["terrain"] == terrain and row["loop"] == "fiber_loop")
             base = next(row for row in rows if row["sheet"] == sheet and row["terrain"] == terrain and row["loop"] == "base_lift_loop")
-            gaps.append(float(np.linalg.norm(np.array(fiber["persistence"]) - np.array(base["persistence"]))))
+            gaps.append(norm_float(as_real_tensor(fiber["persistence"]) - as_real_tensor(base["persistence"])))
     return min(gaps)
 
 
@@ -243,6 +259,7 @@ def main() -> int:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "claim_ceiling": CLAIM_CEILING,
         "math_object": (
             "source-native left/right Weyl density terrain-loop placement histories "
@@ -251,6 +268,7 @@ def main() -> int:
         "source_alignment_category": "downstream_on_source_native_operating_space",
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "positive": positive,
         "graveyard_companions": graveyard_companions,
         "boundary": boundary,

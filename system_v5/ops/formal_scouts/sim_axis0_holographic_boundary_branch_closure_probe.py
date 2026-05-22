@@ -11,11 +11,12 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import pathlib
 import time
 from typing import Any
 
-import numpy as np
+import torch
 import z3
 
 import axis0_guard_utils as axis0_guard
@@ -28,6 +29,7 @@ OUT_PATH = RESULT_DIR / "axis0_holographic_boundary_branch_closure_probe_results
 NAME = "axis0_holographic_boundary_branch_closure_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 SOURCE_ALIGNMENT_CATEGORY = "axis0_holographic_boundary_blocked_branch_closure"
 CLAIM_CEILING = (
     "Formal scout only: verifies that the finite holographic_boundary_interior_"
@@ -44,10 +46,10 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "supportive receipt parsing for source, router, guard, and downstream adapters",
     },
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing finite vector and numeric blocker checks",
+        "reason": "load-bearing finite vector and numeric blocker checks for the HBI branch closure",
     },
     "z3": {
         "tried": True,
@@ -62,9 +64,15 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {
     "python_json": "supportive",
-    "numpy": "load_bearing",
+    "pytorch": "load_bearing",
     "z3": "load_bearing",
     "axis0_guard_utils": "supportive",
+}
+TOOL_ROLE_SOURCE = {
+    "python_json": "local",
+    "pytorch": "local",
+    "z3": "local",
+    "axis0_guard_utils": "local",
 }
 
 HBI = "holographic_boundary_interior_reconstruction"
@@ -164,13 +172,24 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
+    if isinstance(value, torch.Tensor):
         return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     return value
+
+
+def finite_float(value: Any, default: float = math.nan) -> float:
+    try:
+        out = float(value)
+    except (TypeError, ValueError):
+        return default
+    return out if bool(torch.isfinite(torch.as_tensor(out, dtype=torch.float64)).item()) else default
+
+
+def finite_all(values: list[Any]) -> bool:
+    if not values:
+        return False
+    tensor = torch.as_tensor([finite_float(value) for value in values], dtype=torch.float64)
+    return bool(torch.all(torch.isfinite(tensor)).item())
 
 
 def sha256_file(path: pathlib.Path) -> str:
@@ -312,7 +331,7 @@ def finite_hbi_values(hbi: dict[str, Any]) -> bool:
         hbi.get("selection_gap"),
         hbi.get("axis0_path_entropy_mean_abs_delta"),
     ]
-    return bool(values and all(np.isfinite(float(value)) for value in values))
+    return finite_all(values)
 
 
 def blocker_statuses(source_hbi: dict[str, Any], router_hbi: dict[str, Any]) -> dict[str, Any]:
@@ -321,24 +340,23 @@ def blocker_statuses(source_hbi: dict[str, Any], router_hbi: dict[str, Any]) -> 
     router_blockers = router_hbi.get("explicit_blockers") or {}
     router_strict = router_blockers.get("strict_best_kl_selection_gap") or {}
     router_path = router_blockers.get("path_label_recovery") or {}
-    strict_gap = float(source_strict.get("selection_gap", np.nan))
-    strict_floor = float(source_strict.get("old_selection_gap_floor", np.nan))
-    engine_accuracy = float(source_path.get("engine_accuracy", np.nan))
-    engine_floor = float(source_path.get("old_required_engine_floor", np.nan))
-    engine_margin = engine_accuracy - float(source_path.get("engine_shuffled_accuracy", np.nan))
-    engine_margin_floor = float(source_path.get("old_required_engine_margin_over_shuffle", np.nan))
-    terrain_accuracy = float(source_path.get("terrain_accuracy", np.nan))
-    terrain_floor = float(source_path.get("old_required_terrain_floor", np.nan))
-    terrain_margin = terrain_accuracy - float(source_path.get("terrain_shuffled_accuracy", np.nan))
-    terrain_margin_floor = float(source_path.get("old_required_terrain_margin_over_shuffle", np.nan))
-    stage_accuracy = float(source_path.get("stage_accuracy", np.nan))
+    strict_gap = finite_float(source_strict.get("selection_gap"))
+    strict_floor = finite_float(source_strict.get("old_selection_gap_floor"))
+    engine_accuracy = finite_float(source_path.get("engine_accuracy"))
+    engine_floor = finite_float(source_path.get("old_required_engine_floor"))
+    engine_margin = engine_accuracy - finite_float(source_path.get("engine_shuffled_accuracy"))
+    engine_margin_floor = finite_float(source_path.get("old_required_engine_margin_over_shuffle"))
+    terrain_accuracy = finite_float(source_path.get("terrain_accuracy"))
+    terrain_floor = finite_float(source_path.get("old_required_terrain_floor"))
+    terrain_margin = terrain_accuracy - finite_float(source_path.get("terrain_shuffled_accuracy"))
+    terrain_margin_floor = finite_float(source_path.get("old_required_terrain_margin_over_shuffle"))
+    stage_accuracy = finite_float(source_path.get("stage_accuracy"))
     return {
         "strict_best_kl": {
             "source": source_strict,
             "router": router_strict,
             "numeric_failure": bool(
-                np.isfinite(strict_gap)
-                and np.isfinite(strict_floor)
+                finite_all([strict_gap, strict_floor])
                 and strict_gap < strict_floor
                 and source_strict.get("status") == STRICT_BEST_KL_STATUS
                 and router_strict.get("status") == STRICT_BEST_KL_STATUS
@@ -350,6 +368,19 @@ def blocker_statuses(source_hbi: dict[str, Any], router_hbi: dict[str, Any]) -> 
             "numeric_failure": bool(
                 source_path.get("status") == PATH_LABEL_STATUS
                 and router_path.get("status") == PATH_LABEL_STATUS
+                and finite_all(
+                    [
+                        engine_accuracy,
+                        engine_floor,
+                        engine_margin,
+                        engine_margin_floor,
+                        terrain_accuracy,
+                        terrain_floor,
+                        terrain_margin,
+                        terrain_margin_floor,
+                        stage_accuracy,
+                    ]
+                )
                 and (
                     engine_accuracy < engine_floor
                     or engine_margin < engine_margin_floor
@@ -695,10 +726,12 @@ def main() -> int:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "claim_ceiling": CLAIM_CEILING,
         "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "repair_receipt": repair_receipt,
         "axis0_outputs_or_blockers": repair_receipt["axis0_outputs_or_blockers"],
         "positive": positive,

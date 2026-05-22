@@ -26,8 +26,12 @@ Option (a) — partial application — is used throughout:
 TOOL_MANIFEST:
   pytorch — load-bearing: all matrix and vector algebra, projector construction,
             trajectory evolution, eigendecomposition, norm checks
-  numpy   — load-bearing: bridge to torch.linalg.eigh via numpy intermediate
-             in projector verification; also used in __main__ for report arrays
+  numpy   — reviewed boundary: report arrays and compatibility helpers only;
+            not valid nonclassical-claim support until source-native
+
+NUMPY BOUNDARY: this module remains a reviewed NumPy-bearing boundary surface.
+It may preserve proposal/debug readouts, but the quarantine gate blocks it from
+nonclassical promotion until the NumPy path is removed or ported.
 
 CLASSIFICATION: formal_scout
 PROMOTION_ALLOWED: False

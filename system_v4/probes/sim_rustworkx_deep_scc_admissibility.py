@@ -9,6 +9,8 @@ probe pair are EXCLUDED from the admissible set.
 import json, os
 import rustworkx as rx
 
+classification = "canonical"
+
 SCOPE_NOTE = (
     "Probe-relative: admissibility is defined by whether the probe pair "
     "(forbidden_src, forbidden_dst) lies in a common SCC. rustworkx SCC "

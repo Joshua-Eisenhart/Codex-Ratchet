@@ -26,7 +26,6 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
 import torch
 import sympy as sp
 import z3
@@ -69,17 +68,12 @@ TOOL_MANIFEST = {
         "tried": True, "used": True,
         "reason": "load-bearing symbolic gamma5^2 = I check in Weyl basis and exact symbolic verification of off-diagonal-Weyl-block falsifier density matrix expectations",
     },
-    "numpy": {
-        "tried": True, "used": True,
-        "reason": "supportive matrix construction and trace computation",
-    },
 }
 TOOL_INTEGRATION_DEPTH = {
     "clifford": "load_bearing",
     "pytorch": "load_bearing",
     "z3": "load_bearing",
     "sympy": "load_bearing",
-    "numpy": "load_bearing",
 }
 
 
@@ -90,14 +84,8 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(v) for v in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
-        return value.tolist()
     if isinstance(value, torch.Tensor):
-        return value.detach().cpu().numpy().tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+        return as_jsonable(value.detach().cpu().tolist())
     if isinstance(value, complex):
         return {"re": value.real, "im": value.imag}
     return value
@@ -105,18 +93,22 @@ def as_jsonable(value: Any) -> Any:
 
 # --- Weyl-basis Dirac matrices (load-bearing convention) ---
 # gamma^0 = [[0, I2], [I2, 0]] ; gamma^k = [[0, sigma_k], [-sigma_k, 0]] ; gamma5 = diag(-I2, +I2)
-I2 = np.eye(2, dtype=np.complex128)
-Z2 = np.zeros((2, 2), dtype=np.complex128)
-SX = np.array([[0, 1], [1, 0]], dtype=np.complex128)
-SY = np.array([[0, -1j], [1j, 0]], dtype=np.complex128)
-SZ = np.array([[1, 0], [0, -1]], dtype=np.complex128)
+I2 = torch.eye(2, dtype=torch.complex128)
+Z2 = torch.zeros((2, 2), dtype=torch.complex128)
+SX = torch.tensor([[0, 1], [1, 0]], dtype=torch.complex128)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=torch.complex128)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=torch.complex128)
 
 
-def gamma_matrices_weyl() -> dict[str, np.ndarray]:
-    g0 = np.block([[Z2, I2], [I2, Z2]])
-    g1 = np.block([[Z2, SX], [-SX, Z2]])
-    g2 = np.block([[Z2, SY], [-SY, Z2]])
-    g3 = np.block([[Z2, SZ], [-SZ, Z2]])
+def block2x2(a: torch.Tensor, b: torch.Tensor, c: torch.Tensor, d: torch.Tensor) -> torch.Tensor:
+    return torch.cat((torch.cat((a, b), dim=1), torch.cat((c, d), dim=1)), dim=0)
+
+
+def gamma_matrices_weyl() -> dict[str, torch.Tensor]:
+    g0 = block2x2(Z2, I2, I2, Z2)
+    g1 = block2x2(Z2, SX, -SX, Z2)
+    g2 = block2x2(Z2, SY, -SY, Z2)
+    g3 = block2x2(Z2, SZ, -SZ, Z2)
     g5 = 1j * g0 @ g1 @ g2 @ g3
     return {"g0": g0, "g1": g1, "g2": g2, "g3": g3, "g5": g5}
 
@@ -140,10 +132,10 @@ def weyl_basis_gamma5_check() -> dict[str, Any]:
     g = gamma_matrices_weyl()
     g5 = g["g5"]
     g5_sq = g5 @ g5
-    is_diag = bool(np.allclose(g5, np.diag(np.diag(g5)), atol=1e-12))
-    diag_g5 = np.diag(g5).real.tolist()
-    sq_is_identity = bool(np.allclose(g5_sq, np.eye(4), atol=1e-12))
-    hermitian = bool(np.allclose(g5, g5.conj().T, atol=1e-12))
+    is_diag = bool(torch.allclose(g5, torch.diag(torch.diag(g5)), atol=1e-12))
+    diag_g5 = torch.real(torch.diag(g5)).tolist()
+    sq_is_identity = bool(torch.allclose(g5_sq, torch.eye(4, dtype=torch.complex128), atol=1e-12))
+    hermitian = bool(torch.allclose(g5, g5.conj().T, atol=1e-12))
     return {
         "pass": is_diag and sq_is_identity and hermitian
         and abs(diag_g5[0] + 1) < 1e-12 and abs(diag_g5[1] + 1) < 1e-12
@@ -160,37 +152,37 @@ def trial_density_matrices() -> list[dict[str, Any]]:
     diagonal-Weyl-block, and OFF-diagonal-Weyl-block (the falsifier candidate)."""
     states = []
 
-    def pure(psi: np.ndarray, label: str, kind: str) -> dict[str, Any]:
-        psi = psi / np.linalg.norm(psi)
-        rho = np.outer(psi, psi.conj())
+    def pure(psi: torch.Tensor, label: str, kind: str) -> dict[str, Any]:
+        psi = psi / torch.linalg.norm(psi)
+        rho = torch.outer(psi, psi.conj())
         return {"label": label, "kind": kind, "rho": rho}
 
     # 1-2: pure left-handed (gamma5 = -1) eigenstates (upper Weyl block)
-    states.append(pure(np.array([1, 0, 0, 0], dtype=np.complex128), "psi_L_up", "pure_left"))
-    states.append(pure(np.array([0, 1, 0, 0], dtype=np.complex128), "psi_L_dn", "pure_left"))
+    states.append(pure(torch.tensor([1, 0, 0, 0], dtype=torch.complex128), "psi_L_up", "pure_left"))
+    states.append(pure(torch.tensor([0, 1, 0, 0], dtype=torch.complex128), "psi_L_dn", "pure_left"))
     # 3-4: pure right-handed (gamma5 = +1) eigenstates (lower Weyl block)
-    states.append(pure(np.array([0, 0, 1, 0], dtype=np.complex128), "psi_R_up", "pure_right"))
-    states.append(pure(np.array([0, 0, 0, 1], dtype=np.complex128), "psi_R_dn", "pure_right"))
+    states.append(pure(torch.tensor([0, 0, 1, 0], dtype=torch.complex128), "psi_R_up", "pure_right"))
+    states.append(pure(torch.tensor([0, 0, 0, 1], dtype=torch.complex128), "psi_R_dn", "pure_right"))
     # 5: diagonal mixed within left block
-    rho_L_mixed = np.zeros((4, 4), dtype=np.complex128)
+    rho_L_mixed = torch.zeros((4, 4), dtype=torch.complex128)
     rho_L_mixed[0, 0] = 0.6
     rho_L_mixed[1, 1] = 0.4
     states.append({"label": "rho_L_diag_mixed", "kind": "diag_left_block", "rho": rho_L_mixed})
     # 6: half-half left/right diagonal (no Weyl coherence)
-    rho_half = np.diag([0.25, 0.25, 0.25, 0.25]).astype(np.complex128)
+    rho_half = torch.diag(torch.tensor([0.25, 0.25, 0.25, 0.25], dtype=torch.complex128))
     states.append({"label": "rho_uniform_diag", "kind": "diag_no_weyl_coherence", "rho": rho_half})
     # 7: OFF-diagonal Weyl-block coherence (FALSIFIER CANDIDATE)
     # psi = (|L_up> + |R_up>)/sqrt(2) -- Weyl-mixed pure state
-    states.append(pure(np.array([1, 0, 1, 0], dtype=np.complex128), "psi_LR_super_up", "weyl_offdiag_pure"))
+    states.append(pure(torch.tensor([1, 0, 1, 0], dtype=torch.complex128), "psi_LR_super_up", "weyl_offdiag_pure"))
     # 8: OFF-diagonal Weyl-block density (mixed coherent superposition with phase)
-    states.append(pure(np.array([1, 0, 1j, 0], dtype=np.complex128), "psi_LR_phase_super", "weyl_offdiag_phase"))
+    states.append(pure(torch.tensor([1, 0, 1j, 0], dtype=torch.complex128), "psi_LR_phase_super", "weyl_offdiag_phase"))
     # 9: maximally Weyl-coherent (all four basis states with relative phase)
-    states.append(pure(np.array([1, 1, 1, 1], dtype=np.complex128), "psi_full_super", "full_super"))
+    states.append(pure(torch.tensor([1, 1, 1, 1], dtype=torch.complex128), "psi_full_super", "full_super"))
 
     return states
 
 
-def sigma_z_proxy_expectation(rho4: np.ndarray) -> dict[str, float]:
+def sigma_z_proxy_expectation(rho4: torch.Tensor) -> dict[str, float]:
     """Proxy convention: sigma_z applied to each 2-component Weyl block, then
     weighted by block trace. This is the structural form of the 13-layer
     chirality scouts when they call rho 'a 2-component density'.
@@ -205,11 +197,11 @@ def sigma_z_proxy_expectation(rho4: np.ndarray) -> dict[str, float]:
     block pattern as a sigma_z on a constructed 2-spinor (block-trace vector).
     """
     # Block-trace 2-spinor: rho_LR_blocks[i] = Tr(rho restricted to block i)
-    tr_L = float(np.real(rho4[0, 0] + rho4[1, 1]))
-    tr_R = float(np.real(rho4[2, 2] + rho4[3, 3]))
+    tr_L = float(torch.real(rho4[0, 0] + rho4[1, 1]).item())
+    tr_R = float(torch.real(rho4[2, 2] + rho4[3, 3]).item())
     # Construct effective 2-component "block density"
-    rho_block = np.array([[tr_L, 0], [0, tr_R]], dtype=np.complex128)
-    proxy_expect = float(np.real(np.trace(SZ @ rho_block)))
+    rho_block = torch.tensor([[tr_L, 0], [0, tr_R]], dtype=torch.complex128)
+    proxy_expect = float(torch.real(torch.trace(SZ @ rho_block)).item())
     # Convention: gamma5 = diag(-I2, +I2) -> proxy sign = +tr_R - tr_L
     # sigma_z = diag(+1, -1) -> +tr_L - tr_R = -gamma5_proxy
     # So sigma_z proxy and gamma5 expectation are anti-correlated by convention.
@@ -222,14 +214,13 @@ def sigma_z_proxy_expectation(rho4: np.ndarray) -> dict[str, float]:
     }
 
 
-def gamma5_full_expectation(rho4: np.ndarray, g5: np.ndarray) -> float:
-    return float(np.real(np.trace(g5 @ rho4)))
+def gamma5_full_expectation(rho4: torch.Tensor, g5: torch.Tensor) -> float:
+    return float(torch.real(torch.trace(g5 @ rho4)).item())
 
 
 def torch_chirality_battery() -> dict[str, Any]:
     g = gamma_matrices_weyl()
-    g5 = torch.tensor(g["g5"], dtype=torch.complex128)
-    sz = torch.tensor(SZ, dtype=torch.complex128)
+    g5 = g["g5"]
 
     per_state = []
     max_gap = 0.0
@@ -237,7 +228,7 @@ def torch_chirality_battery() -> dict[str, Any]:
     off_diag_gap_witnessed = False
 
     for s in trial_density_matrices():
-        rho_t = torch.tensor(s["rho"], dtype=torch.complex128)
+        rho_t = s["rho"]
         g5_exp = float(torch.real(torch.trace(g5 @ rho_t)).item())
         proxy = sigma_z_proxy_expectation(s["rho"])
         # The honest proxy comparison (magnitude only, since sign convention differs):
@@ -251,14 +242,14 @@ def torch_chirality_battery() -> dict[str, Any]:
             "absolute_gap": gap,
             "block_trace_L": proxy["tr_L_block"],
             "block_trace_R": proxy["tr_R_block"],
-            "weyl_offdiag_norm": float(np.linalg.norm(s["rho"][0:2, 2:4])),
+            "weyl_offdiag_norm": float(torch.linalg.norm(s["rho"][0:2, 2:4]).item()),
         })
         if gap > max_gap:
             max_gap = gap
             max_gap_state = s["label"]
         if s["kind"].startswith("weyl_offdiag") or s["kind"] == "full_super":
             # Off-diagonal Weyl coherence: check whether proxy LOSES information
-            offdiag_norm = float(np.linalg.norm(s["rho"][0:2, 2:4]))
+            offdiag_norm = float(torch.linalg.norm(s["rho"][0:2, 2:4]).item())
             if offdiag_norm > 1e-9:
                 off_diag_gap_witnessed = True
 
@@ -349,16 +340,16 @@ def convention_compatibility_check() -> dict[str, Any]:
     g5 = g["g5"]
     # Check 1: gamma5 in Weyl basis is diagonal -> block-trace proxy is the
     # convention-correct reduction
-    is_block_diag = bool(np.allclose(g5, np.diag(np.diag(g5)), atol=1e-12))
+    is_block_diag = bool(torch.allclose(g5, torch.diag(torch.diag(g5)), atol=1e-12))
     # Check 2: sigma_z proxy sign convention matches the gamma5 block sign
     # gamma5 = diag(-I2, +I2): upper block (L) -> -1, lower block (R) -> +1
     # sigma_z = diag(+1, -1): upper -> +1, lower -> -1
     # The proxy claim is on MAGNITUDE / structural agreement, not sign
-    upper_block_g5_eigval = float(g5[0, 0].real)
-    lower_block_g5_eigval = float(g5[2, 2].real)
+    upper_block_g5_eigval = float(torch.real(g5[0, 0]).item())
+    lower_block_g5_eigval = float(torch.real(g5[2, 2]).item())
     # Check 3: anticommutation gamma5*gamma^mu + gamma^mu*gamma5 = 0
     anticomm_zero = all(
-        bool(np.allclose(g5 @ g[k] + g[k] @ g5, np.zeros((4, 4)), atol=1e-12))
+        bool(torch.allclose(g5 @ g[k] + g[k] @ g5, torch.zeros((4, 4), dtype=torch.complex128), atol=1e-12))
         for k in ("g0", "g1", "g2", "g3")
     )
     return {
@@ -489,6 +480,11 @@ def main() -> int:
         "graveyard_companions": graveyards,
         "boundary": boundary,
         "nearby_variants": nearby_variants,
+        "why_not_v4_probes": [
+            "v5 formal scout over full Cl(1,3) gamma5 chirality convention checks.",
+            "Does not promote a canonical chirality, axis, bridge, engine, or coupling claim.",
+            "Downstream sigma_z usage still requires per-scout audit if it depends on off-diagonal Weyl resolution.",
+        ],
         "proxy_verdict": proxy_verdict,
         "addresses_open_choice": "discrete_dof_topological_obstruction_interpolation_probe open_choice: 'Clifford algebra size (Cl(3) vs Cl(1,3)) does not affect D1 since sigma_z is used as the chirality proxy; a full Cl(1,3) gamma5 computation is load-bearing in the Clifford orientation check'",
         "premortem_rank": "codex+gemini ranked #2 among open_choice candidates",

@@ -15,6 +15,8 @@ Supportive: sympy (ideal norm computation in number rings)
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

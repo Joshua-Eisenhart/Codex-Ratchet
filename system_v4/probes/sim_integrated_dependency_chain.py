@@ -29,6 +29,9 @@ import os
 import sys
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = [
+    "Classical comparator/control surface only: this runner does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim.",
+]
 
 # =====================================================================
 # TOOL MANIFEST

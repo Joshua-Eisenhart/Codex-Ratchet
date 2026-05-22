@@ -12,9 +12,10 @@ from pathlib import Path
 from typing import Any
 
 import receipt_schema
+import two_root_constraints
 
 
-NONCLASSICAL_LOAD_BEARING_TOOLS = {"z3", "cvc5", "clifford", "torch", "pytorch", "pyg", "qiskit", "qutip"}
+NONCLASSICAL_LOAD_BEARING_TOOLS = two_root_constraints.nonclassical_tool_names()
 HIDDEN_NONCLASSICAL_TOKENS = ("rho_ab", "rho_AB", "Phi0", "phi0", "Xi", "xi", "coupling witness")
 CANONICAL_SCHEMA = "wizard_sim_admission_v4_2"
 LEGACY_SCHEMA = "wizard_sim_admission_v4_1"
@@ -110,7 +111,7 @@ def _load_json(path: Path) -> dict[str, Any]:
 
 
 def _tool_family(value: str) -> str:
-    return receipt_schema.canonical_tool_name(value)
+    return two_root_constraints.canonical_tool_name(value)
 
 
 def _load_bearing_tool_families(result_payload: dict[str, Any]) -> set[str]:
@@ -124,45 +125,11 @@ def _load_bearing_tool_families(result_payload: dict[str, Any]) -> set[str]:
 
 def _tool_role_sources(result_payload: dict[str, Any]) -> dict[str, str]:
     manifest = result_payload.get("tool_manifest") or result_payload.get("TOOL_MANIFEST") or {}
-    raw = result_payload.get("tool_role_source") or result_payload.get("TOOL_ROLE_SOURCE") or {}
-    sources: dict[str, str] = {}
-    if isinstance(raw, dict):
-        sources.update(
-            {
-                str(tool): str(source).strip().lower().replace("_", "-")
-                for tool, source in raw.items()
-            }
-        )
-    if isinstance(manifest, dict):
-        for tool, entry in manifest.items():
-            if not isinstance(entry, dict):
-                continue
-            source = (
-                entry.get("role_source")
-                or entry.get("tool_role_source")
-                or entry.get("integration_source")
-            )
-            if source:
-                sources.setdefault(str(tool), str(source).strip().lower().replace("_", "-"))
-                continue
-            reason = str(entry.get("reason") or "").lower()
-            if "transitive" in reason or "through enginecore" in reason or "through engine_core" in reason:
-                sources.setdefault(str(tool), "transitive")
-    return sources
+    return two_root_constraints.tool_role_sources(result_payload, manifest if isinstance(manifest, dict) else {})
 
 
 def _local_load_bearing_tool_families(result_payload: dict[str, Any]) -> set[str]:
-    depths = result_payload.get("tool_integration_depth") or result_payload.get("TOOL_INTEGRATION_DEPTH") or {}
-    sources = _tool_role_sources(result_payload)
-    local_tools: set[str] = set()
-    for tool, depth in depths.items():
-        if str(depth) != "load_bearing":
-            continue
-        source = sources.get(str(tool)) or sources.get(_tool_family(str(tool)))
-        if source in {"transitive", "upstream", "imported", "delegated", "engine-core", "engine_core"}:
-            continue
-        local_tools.add(_tool_family(str(tool)))
-    return local_tools
+    return set(two_root_constraints.local_load_bearing_tools(result_payload))
 
 
 def _result_execution_kind(result_payload: dict[str, Any]) -> str:
@@ -219,7 +186,8 @@ def validate_admission(
         contract = {}
 
     stage = str(profile.get("stage") or "micro")
-    gate_finding = check_stage_gate(root, stage_claim(stage))
+    normalized_stage = stage_claim(stage)
+    gate_finding = check_stage_gate(root, normalized_stage)
     if gate_finding:
         findings.append(gate_finding)
 
@@ -261,7 +229,7 @@ def validate_admission(
         findings.append("packet_contract_missing_promotion_boundary")
 
     prior = contract.get("prior_function_receipts") or []
-    if stage in {"integration_micro", "qit", "engine", "bridge", "axis"}:
+    if normalized_stage in {"tool_integration_micro", "engine", "bridge", "axis"}:
         if prior and not all(str(item).startswith("system_v4/probes/a2_state/sim_results/") and str(item).endswith("_results.json") for item in prior):
             findings.append("packet_contract_parent_receipts_not_exact_result_paths")
         for item in prior:
@@ -286,8 +254,23 @@ def validate_admission(
     ).lower()
     hidden_nonclassical = _has_hidden_nonclassical_signal(root, sim_path, result_payload)
     result_execution_kind = _result_execution_kind(result_payload)
-    if (any(token in claim_text for token in ("qit", "engine", "nonclassical")) or hidden_nonclassical) and tool and tool not in NONCLASSICAL_LOAD_BEARING_TOOLS:
+    nonclassical_like = any(token in claim_text for token in ("qit", "engine", "nonclassical")) or hidden_nonclassical
+    if nonclassical_like and tool and tool not in NONCLASSICAL_LOAD_BEARING_TOOLS:
         findings.append("nonclassical_suitable_load_bearing_tool_missing")
+    if nonclassical_like:
+        local_missing_two_root = sorted(
+            local_tool
+            for local_tool in local_load_bearing
+            if not two_root_constraints.is_two_root_tool(local_tool)
+            and not two_root_constraints.is_classical_or_admin_tool(local_tool)
+        )
+        if local_missing_two_root:
+            findings.append("nonclassical_load_bearing_tool_missing_two_root_registry")
+        root_evidence = two_root_constraints.receipt_root_evidence(result_payload)
+        if not root_evidence.finite_carrier_root:
+            findings.append("nonclassical_missing_f01_finite_bounded_carrier_evidence")
+        if not root_evidence.noncommutation_or_order_root:
+            findings.append("nonclassical_missing_n01_noncommutation_or_order_evidence")
     strict_nonclassical = (
         result_execution_kind == "nonclassical"
         or "nonclassical" in claim_text

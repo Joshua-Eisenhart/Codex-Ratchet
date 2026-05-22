@@ -25,7 +25,7 @@ def pass_values(section: dict[str, Any]) -> list[bool]:
 
 
 def validate(path: pathlib.Path) -> dict[str, Any]:
-    data = json.loads(path.read_text(encoding="utf-8"))
+    data = json.loads(path.read_bytes().decode("utf-8"))
     errors = []
     if data.get("classification") != "formal_scout":
         errors.append("classification is not formal_scout")

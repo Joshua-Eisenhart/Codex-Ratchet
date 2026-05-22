@@ -436,8 +436,13 @@ if __name__ == "__main__":
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "sim_gudhi_capability_results.json")
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2, default=str)
-    print(f"Results written to {out_path}")
+    out_paths = [
+        os.path.join(out_dir, "sim_gudhi_capability_results.json"),
+        os.path.join(out_dir, "gudhi_capability_results.json"),
+    ]
+    for out_path in out_paths:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(results, f, indent=2, default=str)
+            f.write("\n")
+    print(f"Results written to {', '.join(out_paths)}")
     print(f"all_pass={all_pass}")

@@ -11,7 +11,7 @@ The controller previously treated `queue_default.txt` as a general drain surface
 1. Smoke test — does the tool import and run a minimal example.
 2. Function/API micro-probe — does one named tool function or API surface produce the invariant claimed of it.
 3. Tool-lego fit probe — can that one tool function carry a useful bounded lego-shaped question.
-4. Tool-tool coupling probe — do two individually proven tool functions exchange output/input or cross-check one scoped question.
+4. Tool-tool coupling probe — do two individually receipt-validated tool functions exchange output/input or cross-check one scoped question.
 5. Tool-serving real-lego test (skip-ahead) — a bounded row answering one tool-integration question against a real lego, with mandatory loopback to the ledger.
 6. Full sim (classical baseline, canonical, or gray-zone) — downstream consumer of tool-stage closure, not part of it.
 
@@ -31,7 +31,7 @@ Tool-stage work moves in tiny steps:
 6. record the failure condition that would demote the tool role;
 7. update the ledger with the exact evidence path.
 
-This is pre-lego work even when it uses a real lego-shaped target. It proves the tool/function surface, not the lego, not the stack, and not a downstream coupling. Workers may run many independent micro-probes in parallel, and multiple workers may test the same triple in different ways, but each accepted row must keep only one thing uncertain.
+This is pre-lego work even when it uses a real lego-shaped target. It receipt-validates the tool/function surface for one bounded claim, not the lego, not the stack, and not a downstream coupling. Workers may run many independent micro-probes in parallel, and multiple workers may test the same triple in different ways, but each accepted row must keep only one thing uncertain.
 
 Do not debug stacked uncertainty. If a packet requires debugging the tool, the lego object, and another tool coupling at the same time, split it.
 
@@ -123,13 +123,13 @@ Any row entering stage 3 or 4 should carry these micro packet fields in its plan
 #   "next_lego_target": "<named lego row/fixture this may unlock, or none>",
 #   "promotion_condition": "<exact evidence required before any lego/coupling use>",
 #   "blocked_until": "<what remains missing before promotion>",
-#   "function_receipt": "<existing receipt for this function, or 'new' for a first proof>",
+#   "function_receipt": "<existing receipt for this function, or 'new' for a first receipt>",
 #   "prior_function_receipts": ["<required before tool-tool coupling; empty for first proof>"],
 #   "why_this_lego": "<why this target exposes the function>",
 #   "positive_case": "<what must pass>",
 #   "negative_case": "<what must fail>",
 #   "boundary_case": "<edge condition>",
-#   "demotion_condition": "<what would prove the tool/function is not suitable here>",
+#   "demotion_condition": "<what would show the tool/function is not suitable here>",
 #   "out_of_scope": ["<anything this row must not claim>"]
 # }
 ```

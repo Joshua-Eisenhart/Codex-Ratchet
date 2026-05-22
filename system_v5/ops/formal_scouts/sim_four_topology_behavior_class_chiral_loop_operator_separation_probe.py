@@ -15,7 +15,6 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import gudhi
 import networkx as nx
-import numpy as np
 import sympy as sp
 import torch
 
@@ -36,14 +35,12 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing density matrices, Bloch features, class centroids, and controls"},
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing CPTP-style density updates and signed operator maps"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing density matrices, Bloch features, class centroids, controls, CPTP-style density updates, and signed operator maps"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing topology-transition graph and edge inventory"},
     "gudhi": {"tried": True, "used": True, "reason": "load-bearing persistence of behavior-signature point cloud"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic inventory check for four topologies x two chiral realizations"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
     "pytorch": "load_bearing",
     "networkx": "load_bearing",
     "gudhi": "load_bearing",
@@ -149,10 +146,6 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
     return value
@@ -167,11 +160,12 @@ def normalize_density(rho: torch.Tensor) -> torch.Tensor:
 
 
 def initial_density(seed: int) -> torch.Tensor:
-    rng = np.random.default_rng(seed)
-    theta = 0.24 + 1.05 * rng.random()
-    phi = 2.0 * math.pi * rng.random()
+    generator = torch.Generator().manual_seed(seed + 23)
+    theta = 0.24 + 1.05 * float(torch.rand((), generator=generator).item())
+    phi = 2.0 * math.pi * float(torch.rand((), generator=generator).item())
+    phase = complex(math.cos(phi), math.sin(phi))
     psi = torch.tensor(
-        [math.cos(theta), math.sin(theta) * np.exp(1j * phi)],
+        [math.cos(theta), math.sin(theta) * phase],
         dtype=DTYPE,
     ).reshape(2, 1)
     pure = psi @ psi.conj().T
@@ -201,13 +195,14 @@ def purity(rho: torch.Tensor) -> float:
     return float(torch.real(torch.trace(rho @ rho)).item())
 
 
-def bloch(rho: torch.Tensor) -> np.ndarray:
-    return np.array(
+def bloch(rho: torch.Tensor) -> torch.Tensor:
+    return torch.tensor(
         [
             float(torch.real(torch.trace(SX @ rho)).item()),
             float(torch.real(torch.trace(SY @ rho)).item()),
             float(torch.real(torch.trace(SZ @ rho)).item()),
-        ]
+        ],
+        dtype=torch.float64,
     )
 
 
@@ -297,16 +292,16 @@ def topology_update(
 
     b0 = bloch(start)
     b1 = bloch(h)
-    feature = np.array(
+    feature = torch.tensor(
         [
-            *(b1 - b0),
+            *[(v.item()) for v in (b1 - b0)],
             entropy(h) - entropy(start),
             purity(h) - purity(start),
-            float(np.linalg.norm(b1[:2])),
+            float(torch.linalg.norm(b1[:2]).item()),
             float(b1[2]),
-            float(np.arctan2(b1[1], b1[0])),
+            float(torch.atan2(b1[1], b1[0]).item()),
         ],
-        dtype=float,
+        dtype=torch.float64,
     )
     return {
         "topology": topo,
@@ -363,11 +358,11 @@ def shuffled_generator_laws(specs: dict[str, dict[str, Any]]) -> dict[str, dict[
     return out
 
 
-def centroids(rows: list[dict[str, Any]]) -> dict[str, np.ndarray]:
+def centroids(rows: list[dict[str, Any]]) -> dict[str, torch.Tensor]:
     out = {}
     for topo in sorted({r["topology"] for r in rows}):
-        feats = np.array([r["feature"] for r in rows if r["topology"] == topo])
-        out[topo] = feats.mean(axis=0)
+        feats = torch.stack([r["feature"] for r in rows if r["topology"] == topo], dim=0)
+        out[topo] = feats.mean(dim=0)
     return out
 
 
@@ -378,7 +373,7 @@ def separation_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
     min_dist = float("inf")
     for i, a in enumerate(keys):
         for b in keys[i + 1 :]:
-            d = float(np.linalg.norm(c[a] - c[b]))
+            d = float(torch.linalg.norm(c[a] - c[b]).item())
             dists[f"{a}-{b}"] = d
             min_dist = min(min_dist, d)
     paired_minima = []
@@ -394,19 +389,19 @@ def separation_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
         seed_by_topology = {}
         for row in seed_rows:
             seed_by_topology.setdefault(row["topology"], []).append(row["feature"])
-        seed_centroids = {k: np.mean(v, axis=0) for k, v in seed_by_topology.items()}
+        seed_centroids = {k: torch.stack(v, dim=0).mean(dim=0) for k, v in seed_by_topology.items()}
         seed_keys = sorted(seed_centroids)
         for i, a in enumerate(seed_keys):
             for b in seed_keys[i + 1 :]:
-                paired_minima.append(float(np.linalg.norm(seed_centroids[a] - seed_centroids[b])))
+                paired_minima.append(float(torch.linalg.norm(seed_centroids[a] - seed_centroids[b]).item()))
     min_paired_same_seed_distance = min(paired_minima) if paired_minima else 0.0
     correct = 0
     for row in rows:
-        nearest = min(keys, key=lambda k: float(np.linalg.norm(row["feature"] - c[k])))
+        nearest = min(keys, key=lambda k: float(torch.linalg.norm(row["feature"] - c[k]).item()))
         correct += int(nearest == row["topology"])
     accuracy = correct / max(len(rows), 1)
     return {
-        "centroids": {k: np.round(v, 6).tolist() for k, v in c.items()},
+        "centroids": {k: (torch.round(v * 1e6) / 1e6).tolist() for k, v in c.items()},
         "pairwise_centroid_distances": {k: round(v, 6) for k, v in dists.items()},
         "min_centroid_distance": min_dist,
         "min_paired_same_seed_distance": min_paired_same_seed_distance,
@@ -416,8 +411,8 @@ def separation_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def persistence_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    points = np.array([r["feature"] for r in rows], dtype=float)
-    st = gudhi.RipsComplex(points=points, max_edge_length=0.42).create_simplex_tree(max_dimension=1)
+    points = torch.stack([r["feature"] for r in rows], dim=0).to(torch.float64)
+    st = gudhi.RipsComplex(points=points.tolist(), max_edge_length=0.42).create_simplex_tree(max_dimension=1)
     intervals = st.persistence()
     h0 = [p for dim, p in intervals if dim == 0]
     finite_h0 = [death - birth for birth, death in h0 if death < float("inf")]

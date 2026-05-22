@@ -11,6 +11,15 @@ import rustworkx as rx
 
 classification = "classical_baseline"
 
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for its local claim; it does not promote "
+        "a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+    ),
+]
+
 TOOL_MANIFEST = {
     "rustworkx": {"tried": True, "used": True,
                   "reason": "all_pairs_dijkstra_path_lengths with edge_cost_fn — load-bearing typed-weight APSP"},

@@ -3,17 +3,44 @@
 import json, os, numpy as np
 
 classification = "classical_baseline"
-DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+DEMOTE_REASON = "classical Clifford-algebra baseline only"
 
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": r} for k,r in {
-    "pytorch":"not needed","pyg":"no graph","z3":"numeric","cvc5":"numeric",
-    "sympy":"not used","clifford":"load_bearing: Spin(6) sandwich + Cl(3) subalgebra check","geomstats":"not used",
-    "e3nn":"not used","rustworkx":"no graph","xgi":"no hypergraph","toponetx":"no cells","gudhi":"no persistence",
-}.items()}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+divergence_log = (
+    "Classical Clifford-algebra baseline for Spin(6) rotor preservation and "
+    "Cl(3) embedding; compares valid rotor preservation against a scaled-rotor "
+    "failure mode without promoting a nonclassical bridge claim."
+)
+
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed for this Clifford spin-group baseline"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed: no graph layer"},
+    "z3": {"tried": False, "used": False, "reason": "not needed: no SMT claim"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed: no SMT claim"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed: Clifford runtime computes rotor products"},
+    "clifford": {"tried": True, "used": True, "reason": "load-bearing Spin(6) sandwich action and Cl(3) subalgebra embedding check"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed: no manifold-distance computation"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed: no equivariant neural layer"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed: no graph algorithm"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed: no hypergraph"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed: no cell-complex computation"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed: no persistence computation"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": "load_bearing",
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 from clifford import Cl
-TOOL_MANIFEST["clifford"].update(tried=True, used=True); TOOL_INTEGRATION_DEPTH["clifford"] = "load_bearing"
 
 layout6, blades6 = Cl(6)
 E6 = [blades6[f'e{i}'] for i in range(1,7)]
@@ -88,6 +115,7 @@ def run_boundary_tests():
 
 def main():
     results = {"name":"sim_cl6_spin_group_embedding","classification":classification,
+               "divergence_log":divergence_log,
                "positive":run_positive_tests(),"negative":run_negative_tests(),"boundary":run_boundary_tests(),
                "tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH}
     ok = all(v for s in ("positive","negative","boundary") for v in results[s].values())

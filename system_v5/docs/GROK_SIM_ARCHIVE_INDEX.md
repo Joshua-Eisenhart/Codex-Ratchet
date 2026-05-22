@@ -1,13 +1,13 @@
 # Grok Sim Archive Index
 
-Generated: `2026-05-17T23:28:52.009235+00:00`
+Generated: `2026-05-21T17:55:13.012539+00:00`
 
-Boundary: sidequest archive index only. This does not move, delete, admit, or promote `grok_sim` artifacts.
+Boundary: sidequest archive index snapshot only. Counts are point-in-time and must be regenerated before being used as current inventory. This does not move, delete, admit, or promote `grok_sim` artifacts.
 
 ## Summary
 
-- Grok sim files: `2256`
-- Grok sim size bytes: `10041620`
+- Grok sim files: `2507`
+- Grok sim size bytes: `13255089`
 - Receipt run directories: `159`
 - Receipt tree files: `1919`
 - Receipt tree size bytes: `5944716`
@@ -21,7 +21,7 @@ Boundary: sidequest archive index only. This does not move, delete, admit, or pr
 - Complete all-pass sidequest bundles: `52`
 - Bundles with phase count at least live contract count: `0`
 - Live phase contracts: `49`
-- Proposed source files: `122`
+- Proposed source files: `93`
 - High-risk proposal files: `0`
 
 ## Receipt Archive Buckets
@@ -34,7 +34,6 @@ Boundary: sidequest archive index only. This does not move, delete, admit, or pr
 
 - `keep_noncanonical_lego_shelf_candidate`: 50
 - `keep_sidequest_proposal_or_archive_review`: 40
-- `keep_graveyard_quarantine`: 29
 - `keep_graveyard_generated_assembly_candidate`: 2
 - `keep_current_handbuilt_proposal_source`: 1
 

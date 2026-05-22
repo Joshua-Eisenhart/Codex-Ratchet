@@ -12,11 +12,11 @@ from typing import Any
 
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
+os.environ.setdefault("GEOMSTATS_BACKEND", "pytorch")
 
 from clifford import Cl
 import geomstats.backend as gs
 from geomstats.geometry.hypersphere import Hypersphere
-import numpy as np
 import opt_einsum as oe
 import sympy as sp
 import torch
@@ -59,8 +59,8 @@ def mps_state() -> tuple[torch.Tensor, list[int]]:
     a1[1, 1, 1] = 1
     a2[0, 0, 0] = 1
     a2[1, 1, 0] = 1
-    state = oe.contract("aib,bjc,ckd->ijk", a0.numpy(), a1.numpy(), a2.numpy())
-    psi = torch.from_numpy(state.reshape(8))
+    state = oe.contract("aib,bjc,ckd->ijk", a0, a1, a2)
+    psi = state.reshape(8)
     return psi / torch.linalg.vector_norm(psi), [2, 2]
 
 
@@ -119,12 +119,13 @@ def hopf_local_readout(local_rho: torch.Tensor) -> dict[str, Any]:
     psi = psi / torch.linalg.vector_norm(psi)
     a, b = psi[0], psi[1]
     base = torch.stack([2 * torch.real(a * torch.conj(b)), 2 * torch.imag(a * torch.conj(b)), torch.abs(a) ** 2 - torch.abs(b) ** 2]).to(torch.float64)
-    embed = np.array([float(torch.real(a)), float(torch.imag(a)), float(torch.real(b)), float(torch.imag(b))])
+    embed = [float(torch.real(a)), float(torch.imag(a)), float(torch.real(b)), float(torch.imag(b))]
+    base_values = [float(x.item()) for x in base]
     return {
         "dominant_weight": float(torch.max(eigvals).item()),
-        "base": [float(x.item()) for x in base],
+        "base": base_values,
         "s3_belongs": bool(gs.all(Hypersphere(dim=3).belongs(gs.array(embed), atol=1e-10))),
-        "s2_belongs": bool(gs.all(Hypersphere(dim=2).belongs(gs.array(base.detach().numpy()), atol=1e-10))),
+        "s2_belongs": bool(gs.all(Hypersphere(dim=2).belongs(gs.array(base_values), atol=1e-10))),
     }
 
 

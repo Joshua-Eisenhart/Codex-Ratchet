@@ -1,15 +1,15 @@
 """
 sim_commutative_geometry_collapse_cl_2_2_portability_probe.py
 
-Portability test for D5 commutative_geometry_collapse_falsifier_probe (the only currently
-earned deep_basin in the basin classifier). D5 proved that commutative reduction of Cl(1,3)
-generators preserves nontrivial geometry invariants is structurally impossible (z3 UNSAT
-on Bool + BitVec dual encodings).
+Portability test for D5 commutative_geometry_collapse_falsifier_probe, a
+classifier-local encoded-exclusion case. The prior receipt records that
+commutative reduction of Cl(1,3) generators cannot preserve the named
+nontrivial geometry invariants under its Bool + BitVec encodings.
 
 This portability probe asks: does the same impossibility hold under signature Cl(2,2)?
-If UNSAT in Cl(2,2) as well, D5's deep_basin is signature-portable (robust_basin candidate
-under grok-1's alt classifier axes). If SAT, D5 is Cl(1,3)-locked (grok-1's permeable_edge
-verdict for D5 stands; portability axis missing).
+If UNSAT in Cl(2,2) as well, the encoded exclusion is portable to this
+signature. If SAT, the exclusion is Cl(1,3)-locked. Either outcome remains a
+formal-scout portability result, not a basin verdict.
 
 Design (per grok wizard-iter): Cl(2,2) has 4 generators e1..e4 with signature (+,+,-,-).
 Bivector basis (grade 2) is 6 elements. I1 = commutator norm; I2 = grade-2 weight.
@@ -17,7 +17,7 @@ Encoding: same predicate as D5 — exists subset S of generators with |S|>=2 tha
 all-pairwise-commuting AND has a noncommuting pair (contradiction, UNSAT expected).
 
 Cross-solver: z3 Boolean + z3 BitVec + cvc5 Boolean + cvc5 BitVec = 4-way dual-encoding
-agreement (same shape as D5's cross-solver lift earned in this session).
+agreement (same shape as the prior cross-solver encoded-exclusion check).
 
 Anti-smuggling: this probe AUTHORS a new sim that exists. It does NOT add a CASES entry
 to the basin classifier (that requires cross-lineage external authorship). Receipt sits
@@ -27,11 +27,11 @@ in results/ awaiting external classifier-case authorship.
 from __future__ import annotations
 
 import json
+import math
 import pathlib
 import time
 from itertools import combinations
 
-import numpy as np
 import z3
 import cvc5
 from cvc5 import Kind
@@ -44,19 +44,16 @@ OUT_PATH = RESULT_DIR / "commutative_geometry_collapse_cl_2_2_portability_probe_
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
-    "Formal scout only: tests whether the commutative-reduction impossibility proven "
-    "structurally for Cl(1,3) (D5 commutative_geometry_collapse, only deep_basin in current "
-    "classifier) also holds under signature Cl(2,2). Cross-solver verification via z3 + cvc5 "
-    "dual encodings (4-way UNSAT or split). Does not admit canonical engine, manifold, axis, "
-    "or basin verdict — that requires fresh-context external case authorship per "
-    "anti-smuggling rule. Surfaces portability evidence only."
+    "Formal scout only: tests whether the classifier-local commutative-reduction encoded "
+    "exclusion for Cl(1,3) also holds under signature Cl(2,2). Cross-solver verification via "
+    "z3 + cvc5 dual encodings (4-way UNSAT or split). Does not admit canonical engine, "
+    "manifold, axis, or basin verdict; it surfaces portability evidence only."
 )
 
 TOOL_INTEGRATION_DEPTH = {
     "z3": "load_bearing",
     "cvc5": "load_bearing",
     "clifford": "load_bearing",
-    "numpy": "supportive",
 }
 
 TOOL_MANIFEST = {
@@ -75,11 +72,6 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "Load-bearing Cl(2,2) generator construction and geometric-product witness tables",
     },
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "Supportive finite vector norm arithmetic for clifford multivector coefficients",
-    },
 }
 
 
@@ -95,24 +87,24 @@ def build_cl22_generators():
 
 def commutator_norm(g, h):
     c = g * h - h * g
-    return float(np.linalg.norm(c.value))
+    return math.sqrt(sum(float(abs(value)) ** 2 for value in c.value))
 
 
 def grade2_weight(g, h):
     prod = g * h
-    return float(np.linalg.norm(prod(2).value))
+    return math.sqrt(sum(float(abs(value)) ** 2 for value in prod(2).value))
 
 
 def precompute_tables(gens):
     N = len(gens)
-    commutes = np.zeros((N, N), dtype=bool)
-    grade2 = np.zeros((N, N), dtype=bool)
+    commutes = [[False for _ in range(N)] for _ in range(N)]
+    grade2 = [[False for _ in range(N)] for _ in range(N)]
     for i in range(N):
         for j in range(i + 1, N):
-            commutes[i, j] = commutator_norm(gens[i], gens[j]) < 1e-12
-            commutes[j, i] = commutes[i, j]
-            grade2[i, j] = grade2_weight(gens[i], gens[j]) > 1e-12
-            grade2[j, i] = grade2[i, j]
+            commutes[i][j] = commutator_norm(gens[i], gens[j]) < 1e-12
+            commutes[j][i] = commutes[i][j]
+            grade2[i][j] = grade2_weight(gens[i], gens[j]) > 1e-12
+            grade2[j][i] = grade2[i][j]
     return commutes, grade2
 
 
@@ -120,16 +112,16 @@ def precompute_tables(gens):
 # Z3 ENCODINGS
 # ====================================================================
 
-def z3_bool_encoding(commutes: np.ndarray):
+def z3_bool_encoding(commutes: list[list[bool]]):
     """Bool subset choice; UNSAT means no commuting subset of size >=2 has noncommuting pair."""
-    N = commutes.shape[0]
+    N = len(commutes)
     s = [z3.Bool(f"s_{i}") for i in range(N)]
     solver = z3.Solver()
     solver.add(z3.Sum([z3.If(si, 1, 0) for si in s]) >= 2)
     nc_terms = []
     for i in range(N):
         for j in range(i + 1, N):
-            if not commutes[i, j]:
+            if not commutes[i][j]:
                 solver.add(z3.Not(z3.And(s[i], s[j])))
                 nc_terms.append(z3.And(s[i], s[j]))
     solver.add(z3.Or(nc_terms) if nc_terms else z3.BoolVal(False))
@@ -139,8 +131,8 @@ def z3_bool_encoding(commutes: np.ndarray):
     return {"encoding": "z3_bool", "result": str(st), "unsat": st == z3.unsat, "check_time_s": dt}
 
 
-def z3_bitvec_encoding(commutes: np.ndarray):
-    N = commutes.shape[0]
+def z3_bitvec_encoding(commutes: list[list[bool]]):
+    N = len(commutes)
     bv = z3.BitVec("subset", N)
     bits = [z3.Extract(i, i, bv) for i in range(N)]
     solver = z3.Solver()
@@ -149,7 +141,7 @@ def z3_bitvec_encoding(commutes: np.ndarray):
     for i in range(N):
         for j in range(i + 1, N):
             both = z3.And(bits[i] == 1, bits[j] == 1)
-            if not commutes[i, j]:
+            if not commutes[i][j]:
                 solver.add(z3.Not(both))
                 bv_terms.append(both)
     solver.add(z3.Or(bv_terms) if bv_terms else z3.BoolVal(False))
@@ -163,8 +155,8 @@ def z3_bitvec_encoding(commutes: np.ndarray):
 # CVC5 ENCODINGS
 # ====================================================================
 
-def cvc5_bool_encoding(commutes: np.ndarray):
-    N = commutes.shape[0]
+def cvc5_bool_encoding(commutes: list[list[bool]]):
+    N = len(commutes)
     solver = cvc5.Solver()
     solver.setOption("produce-models", "true")
     solver.setLogic("ALL")
@@ -180,7 +172,7 @@ def cvc5_bool_encoding(commutes: np.ndarray):
     for i in range(N):
         for j in range(i + 1, N):
             both = solver.mkTerm(Kind.AND, s[i], s[j])
-            if not commutes[i, j]:
+            if not commutes[i][j]:
                 solver.assertFormula(solver.mkTerm(Kind.NOT, both))
                 nc_terms.append(both)
     if nc_terms:
@@ -193,8 +185,8 @@ def cvc5_bool_encoding(commutes: np.ndarray):
     return {"encoding": "cvc5_bool", "result": str(res), "unsat": res.isUnsat(), "check_time_s": dt}
 
 
-def cvc5_bitvec_encoding(commutes: np.ndarray):
-    N = commutes.shape[0]
+def cvc5_bitvec_encoding(commutes: list[list[bool]]):
+    N = len(commutes)
     solver = cvc5.Solver()
     solver.setOption("produce-models", "true")
     solver.setLogic("ALL")
@@ -215,7 +207,7 @@ def cvc5_bitvec_encoding(commutes: np.ndarray):
     for i in range(N):
         for j in range(i + 1, N):
             both = solver.mkTerm(Kind.AND, bit_eqs[i], bit_eqs[j])
-            if not commutes[i, j]:
+            if not commutes[i][j]:
                 solver.assertFormula(solver.mkTerm(Kind.NOT, both))
                 bv_terms.append(both)
     if bv_terms:
@@ -228,16 +220,16 @@ def cvc5_bitvec_encoding(commutes: np.ndarray):
     return {"encoding": "cvc5_bitvec", "result": str(res), "unsat": res.isUnsat(), "check_time_s": dt}
 
 
-def z3_weakened_control(commutes: np.ndarray):
+def z3_weakened_control(commutes: list[list[bool]]):
     """Drop the all-commuting requirement; expect SAT (proves encoding isn't trivially-UNSAT)."""
-    N = commutes.shape[0]
+    N = len(commutes)
     s = [z3.Bool(f"w_{i}") for i in range(N)]
     solver = z3.Solver()
     solver.add(z3.Sum([z3.If(si, 1, 0) for si in s]) >= 2)
     nc_terms = []
     for i in range(N):
         for j in range(i + 1, N):
-            if not commutes[i, j]:
+            if not commutes[i][j]:
                 nc_terms.append(z3.And(s[i], s[j]))
     solver.add(z3.Or(nc_terms) if nc_terms else z3.BoolVal(False))
     t0 = time.time()
@@ -269,7 +261,7 @@ def main():
     agreement = (z3_b["unsat"], z3_bv["unsat"], cvc_b.get("unsat"), cvc_bv.get("unsat"))
 
     # Count commuting pairs in Cl(2,2) vs Cl(1,3) for diagnostic
-    n_commuting = int(np.sum(commutes) // 2)
+    n_commuting = sum(1 for i in range(N) for j in range(i + 1, N) if commutes[i][j])
     n_pairs = N * (N - 1) // 2
 
     positive = {
@@ -296,9 +288,9 @@ def main():
             "families": ["z3", "cvc5"],
             "encodings": ["bool", "bitvec"],
         },
-        "numpy_is_supportive_not_admission_surface": {
-            "pass": TOOL_INTEGRATION_DEPTH.get("numpy") == "supportive",
-            "role": TOOL_INTEGRATION_DEPTH.get("numpy"),
+        "finite_arithmetic_has_no_numpy_tool_surface": {
+            "pass": "numpy" not in TOOL_INTEGRATION_DEPTH and "numpy" not in TOOL_MANIFEST,
+            "role": "plain finite coefficient sums",
         },
     }
     boundary = {
@@ -341,16 +333,16 @@ def main():
         "all_pass": all_pass,
     }
 
-    # Portability interpretation
+    # Nonpromotion portability interpretation.
     if all_unsat and not any_error:
-        portability_verdict = "PORTABLE — Cl(2,2) UNSAT across all 4 encodings; D5's commutative-reduction impossibility holds across signature change. Signature-independent result."
+        portability_label = "portable_encoded_exclusion_cl_2_2 (UNSAT across all 4 encodings; classifier-local portability evidence only)"
     elif any_error:
-        portability_verdict = "OPEN — solver error blocks definitive answer; debug then re-run."
+        portability_label = "open (solver error blocks interpretation; debug then re-run)"
     elif not all_unsat:
-        portability_verdict = "NOT PORTABLE — at least one encoding returned SAT for Cl(2,2). D5's impossibility is Cl(1,3)-locked, not signature-independent. Grok-alt-classifier's 'permeable_edge' verdict for D5 (failing cross-domain portability axis) is supported."
+        portability_label = "not_portable (at least one encoding returned SAT for Cl(2,2); prior encoded exclusion is signature-limited)"
     else:
-        portability_verdict = "OPEN"
-    results["portability_verdict"] = portability_verdict
+        portability_label = "open"
+    results["nonpromotion_portability_label"] = portability_label
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(results, indent=2))
@@ -360,7 +352,7 @@ def main():
     print(f"all_4_unsat: {all_unsat}")
     print(f"cross_solver_agreement: {agreement}")
     print(f"weakened_control_sat: {weakened['sat']}")
-    print(f"PORTABILITY VERDICT: {portability_verdict}")
+    print(f"nonpromotion_portability_label={portability_label}")
     return results
 
 

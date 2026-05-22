@@ -9,6 +9,8 @@ they are EXCLUDED from the equivalence class.
 import json, os
 import rustworkx as rx
 
+classification = "canonical"
+
 SCOPE_NOTE = (
     "Distinguishability is probe-relative to BFS layer structure from a "
     "chosen source. rustworkx.distance_matrix supplies the load-bearing "

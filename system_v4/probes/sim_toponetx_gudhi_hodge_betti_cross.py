@@ -6,6 +6,8 @@ import json, os, numpy as np
 from toponetx.classes import CellComplex
 import gudhi
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "numeric linalg only"},
     "pyg": {"tried": False, "used": False, "reason": "no MP"},

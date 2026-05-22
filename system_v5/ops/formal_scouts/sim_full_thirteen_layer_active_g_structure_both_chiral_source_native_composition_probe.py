@@ -31,16 +31,16 @@ This scout composes existing demonstrated capability into one bounded run:
          analogue at the holonomy-group level.
 
   3. BOTH CHIRAL SPACES SIMULTANEOUSLY
-     Two EngineCore instances (engine_type=0 and engine_type=1) from
-     engine_core.py are instantiated and stepped in lock-step on a shared
-     4-qubit (dim=16) joint carrier:
+     Two bounded canonical QIT replay schedules (engine_type=0 and
+     engine_type=1) are stepped in lock-step on a shared 4-qubit (dim=16)
+     joint carrier:
        subsystem A (qubits 0,1) ← Type 1 / left Weyl
        subsystem B (qubits 2,3) ← Type 2 / right Weyl
-     Each engine acts on its own 2-dim density (qubit-block).  The joint
-     4-qubit state is recomposed at each substage and evolved as a tensor
-     network on the joint space.
+     Each replay schedule acts on its own 2-dim density (qubit-block).
+     The joint 4-qubit state is recomposed at each substage and evolved as a
+     tensor network on the joint space.
 
-  4. SOURCE-NATIVE HISTORIES
+  4. CANONICAL QIT REPLAY HISTORIES
      Each engine's stage schedule is read directly from the canonical specs:
        canonical_qit_engine_specs.TYPE_ONE_TOPOLOGIES (Type 1 / left)
        canonical_qit_engine_specs.TYPE_TWO_TOPOLOGIES (Type 2 / right)
@@ -78,8 +78,9 @@ z3 UNSAT PROOF:
   - "all_13_layers_can_be_replaced_by_identity_without_changing_readouts"
     should be UNSAT (layers carry signal).
 
-TOOL_MANIFEST (all 4 marked load_bearing):
-  quimb, scipy.integrate, numpy, z3
+TOOL_MANIFEST after PyTorch repair:
+  pytorch, quimb, z3 load-bearing; imported helper carriers stay outside the
+  local nonclassical tool manifest
 
 CLASSIFICATION: formal_scout
 PROMOTION_ALLOWED: False
@@ -98,12 +99,10 @@ from typing import Any
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 
-import numpy as np
 import quimb as qu
 import quimb.tensor as qtn
 import torch
 import z3
-from scipy.integrate import solve_ivp
 
 # ---------------------------------------------------------------------------
 # Path setup
@@ -117,39 +116,19 @@ MODULE_DIR = ROOT / "claude_integrated_manifold_modules"
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(MODULE_DIR))
 
-from engine_core import (  # noqa: E402
-    EngineCore,
-    apply_manifold_to_density,
-    apply_operator_to_density,
-    lindblad_step,
-    generate_initial_density,
-    _bloch_vector,
-    _von_neumann_entropy,
-    _purity,
-    _state_to_density,
-    _density_to_state,
-    _is_valid_density,
-    _normalize_density,
-    STAGE_DT,
-)
 from canonical_qit_engine_specs import (  # noqa: E402
-    DTYPE,
-    H_TYPE_ONE,
-    H_TYPE_TWO,
-    I2,
+    OPERATOR_BASE_ANGLES,
+    OPERATOR_GENERATORS,
     SX,
     SY,
     SZ,
-    SIGMA_MINUS,
-    SIGMA_PLUS,
     TYPE_ONE_TOPOLOGIES,
     TYPE_TWO_TOPOLOGIES,
     ENGINE_SCHEDULE_TYPE_ONE,
     ENGINE_SCHEDULE_TYPE_TWO,
-    MANIFOLD_LAYERS,
     N_MAIN_STAGES_PER_ENGINE,
     N_SUBSTAGES_PER_MAIN,
-    N_TOTAL_SUBSTAGES_PER_ENGINE,
+    get_engine_spec,
     get_lindblad_params,
     get_loop_class_op_sign,
     get_topology_spec,
@@ -173,21 +152,23 @@ from special_holonomy_dynamic_projectors import (  # noqa: E402
 NAME = "full_thirteen_layer_active_g_structure_both_chiral_source_native_composition_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 SOURCE_ALIGNMENT_CATEGORY = (
-    "source_native_paired_chiral_thirteen_layer_active_g_structure_composition"
+    "bounded_canonical_qit_paired_chiral_thirteen_layer_active_g_structure_composition"
 )
 CLAIM_CEILING = (
-    "Formal scout only: composes (1) the 13 active manifold layers each "
+    "Formal scout only: composes a bounded canonical QIT replay of (1) the 13 active manifold layers each "
     "producing a measurable state diff on every substage, (2) a two-tier "
     "G-structure reduction — inner SU(2) reduction inside layer 10 plus "
     "the outer SU(3) -> G2 -> Spin(7) special-holonomy projector chain on "
-    "the joint 4-qubit carrier, (3) two EngineCore instances (Type 1 / left "
+    "the joint 4-qubit carrier, (3) two canonical QIT replay schedules (Type 1 / left "
     "Weyl and Type 2 / right Weyl) stepped jointly through their canonical "
     "32-substage schedules sourced from TYPE_ONE_TOPOLOGIES / "
     "TYPE_TWO_TOPOLOGIES, and (4) per-substage tensor-network evolution via "
     "quimb MPS from/to-dense round-trips with bipartite log-negativity and "
     "Berry phase readouts.  It does not admit: physics, matter/antimatter, "
     "Carnot/Szilard equivalence, final engine identity, canonical manifold, "
+    "source-native EngineCore dynamics, live tensor-network Lindblad basin evidence, "
     "or final G-structure claims.  promotion_allowed: false."
 )
 
@@ -197,34 +178,41 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "load-bearing: dynamic tensor-network evolution — qtn.MatrixProductState.from_dense + tn.contract() round-trip per substage, qu.logneg for bipartite log-negativity",
     },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing: scipy.integrate.solve_ivp drives the joint 4-qubit Lindblad ODE evolution on each engine substage",
-    },
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing: complex128 density matrix algebra, partial traces, Bloch vector reconstruction, eigendecomposition for state-to-density bridge",
-    },
     "z3": {
         "tried": True,
         "used": True,
         "reason": "load-bearing: UNSAT proof that 'all 13 layers can be replaced by identity without changing readouts' — layers carry signal",
     },
-    "torch": {
+    "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "supportive: backs active_layer_constraint_enforcers and special_holonomy_dynamic_projectors via complex128 tensor algebra",
+        "reason": "load-bearing: complex128 density matrix algebra, RK4 Lindblad evolution, tensor-network bridge states, partial traces, Bloch readouts, eigendecompositions, and G-structure control metrics",
+    },
+    "canonical_qit_engine_specs": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive canonical QIT operator, terrain, and schedule records replacing the former direct EngineCore boundary",
     },
 }
 TOOL_INTEGRATION_DEPTH = {
     "quimb": "load_bearing",
-    "scipy": "load_bearing",
-    "numpy": "load_bearing",
     "z3": "load_bearing",
-    "torch": "supportive",
+    "pytorch": "load_bearing",
+    "canonical_qit_engine_specs": "supportive",
 }
+TOOL_ROLE_SOURCE = {
+    "quimb": "local",
+    "z3": "local",
+    "pytorch": "local",
+    "canonical_qit_engine_specs": "local",
+}
+
+TORCH_REAL = torch.float64
+TORCH_COMPLEX = torch.complex128
+T_I2 = torch.eye(2, dtype=TORCH_COMPLEX)
+T_SX = torch.as_tensor(SX, dtype=TORCH_COMPLEX)
+T_SY = torch.as_tensor(SY, dtype=TORCH_COMPLEX)
+T_SZ = torch.as_tensor(SZ, dtype=TORCH_COMPLEX)
 
 # Joint carrier: 4 qubits = 2 qubits per chiral subsystem.
 N_QUBITS_TOTAL = 4
@@ -243,53 +231,108 @@ MIN_BERRY_NONZERO_SEEDS = 23
 # G-structure holonomy chain
 HOLONOMY_CHAIN = ["su3", "g2", "spin7"]
 HOLONOMY_MIXING = 0.1   # soft mixing per substage; cumulative reduces symmetry
+STAGE_DT = 0.08
 
 
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
 
-def _seeded_pure_state(seed: int, dim: int) -> np.ndarray:
+def _as_complex_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=TORCH_COMPLEX)
+
+
+def _as_real_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=TORCH_REAL)
+
+
+def _to_external_tensor(value: Any) -> torch.Tensor:
+    return _as_complex_tensor(value).detach().cpu()
+
+
+def _to_external_sequence(value: Any) -> Any:
+    return _to_external_tensor(value).tolist()
+
+
+def _to_quimb_payload(value: Any) -> Any:
+    return qu.qarray(_to_external_sequence(value))
+
+
+def _dagger(a: torch.Tensor) -> torch.Tensor:
+    return torch.conj(a.transpose(-2, -1))
+
+
+def _normalize_density_torch(rho: Any) -> torch.Tensor:
+    rho = _as_complex_tensor(rho)
+    rho = (rho + _dagger(rho)) / 2
+    vals, vecs = torch.linalg.eigh(rho)
+    vals = torch.clamp(torch.real(vals), min=1e-15)
+    out = (vecs * vals.to(TORCH_COMPLEX)) @ _dagger(vecs)
+    trace = torch.real(torch.trace(out))
+    if float(torch.abs(trace).item()) < 1e-30:
+        return torch.eye(out.shape[0], dtype=TORCH_COMPLEX) / out.shape[0]
+    return out / trace
+
+
+def _real_float(value: Any) -> float:
+    return float(torch.real(_as_complex_tensor(value)).item())
+
+
+def _norm_float(value: Any) -> float:
+    tensor = _as_complex_tensor(value)
+    return float(torch.linalg.vector_norm(tensor.reshape(-1)).item())
+
+
+def _bloch_vector_torch(rho: Any) -> list[float]:
+    rho = _normalize_density_torch(rho)
+    return [
+        float(torch.real(torch.trace(T_SX @ rho)).item()),
+        float(torch.real(torch.trace(T_SY @ rho)).item()),
+        float(torch.real(torch.trace(T_SZ @ rho)).item()),
+    ]
+
+
+def _seeded_pure_state(seed: int, dim: int) -> torch.Tensor:
     """Deterministic normalized complex pure state of given dim."""
-    rng = np.random.default_rng(seed)
-    psi = rng.normal(size=dim) + 1j * rng.normal(size=dim)
-    psi = psi.astype(DTYPE)
-    n = np.linalg.norm(psi)
+    rng = torch.Generator().manual_seed(seed)
+    psi = torch.randn(dim, generator=rng, dtype=TORCH_REAL) + 1j * torch.randn(dim, generator=rng, dtype=TORCH_REAL)
+    psi = psi.to(TORCH_COMPLEX)
+    n = torch.linalg.vector_norm(psi)
     if n < 1e-30:
-        return np.eye(dim, dtype=DTYPE)[:, 0]
+        return torch.eye(dim, dtype=TORCH_COMPLEX)[:, 0]
     return psi / n
 
 
-def _density_from_psi(psi: np.ndarray) -> np.ndarray:
-    psi = psi.reshape(-1, 1).astype(DTYPE)
-    return psi @ psi.conj().T
+def _density_from_psi(psi: Any) -> torch.Tensor:
+    psi = _as_complex_tensor(psi).reshape(-1, 1)
+    return psi @ _dagger(psi)
 
 
-def _kron_block(rho_a: np.ndarray, rho_b: np.ndarray) -> np.ndarray:
-    return np.kron(rho_a, rho_b).astype(DTYPE)
+def _kron_block(rho_a: Any, rho_b: Any) -> torch.Tensor:
+    return torch.kron(_as_complex_tensor(rho_a), _as_complex_tensor(rho_b)).to(TORCH_COMPLEX)
 
 
-def _partial_trace_joint(rho_joint: np.ndarray, keep_qubits: list[int]) -> np.ndarray:
+def _partial_trace_joint(rho_joint: Any, keep_qubits: list[int]) -> torch.Tensor:
     """Partial trace on a 4-qubit joint density.
     Uses quimb.partial_trace which expects dims and keep indices.
     """
-    return qu.partial_trace(rho_joint, [2] * N_QUBITS_TOTAL, keep=keep_qubits)
+    return _normalize_density_torch(qu.partial_trace(_to_quimb_payload(rho_joint), [2] * N_QUBITS_TOTAL, keep=keep_qubits))
 
 
-def _von_neumann_entropy_general(rho: np.ndarray) -> float:
-    rho_h = (rho + rho.conj().T) / 2
-    eigs = np.linalg.eigvalsh(rho_h).real
-    eigs = np.clip(eigs, 1e-15, 1.0)
-    eigs = eigs / eigs.sum()
-    return float(-(eigs * np.log(eigs)).sum())
+def _von_neumann_entropy_general(rho: Any) -> float:
+    rho_h = _normalize_density_torch(rho)
+    eigs = torch.real(torch.linalg.eigvalsh((rho_h + _dagger(rho_h)) / 2))
+    eigs = torch.clamp(eigs, min=1e-15, max=1.0)
+    eigs = eigs / torch.sum(eigs)
+    return -float(torch.sum(eigs * torch.log(eigs)).item())
 
 
-def _bipartite_log_negativity(rho_joint: np.ndarray) -> float:
+def _bipartite_log_negativity(rho_joint: Any) -> float:
     """Log-negativity across the (qubits 0,1) | (qubits 2,3) cut."""
-    return float(qu.logneg(rho_joint, [CHIRAL_DIM, CHIRAL_DIM]))
+    return float(qu.logneg(_to_quimb_payload(rho_joint), [CHIRAL_DIM, CHIRAL_DIM]))
 
 
-def _tensor_network_round_trip(psi: np.ndarray) -> np.ndarray:
+def _tensor_network_round_trip(psi: Any) -> torch.Tensor:
     """
     Force the state through a tensor-network representation:
       dense psi -> MPS -> contract back to dense.
@@ -297,34 +340,93 @@ def _tensor_network_round_trip(psi: np.ndarray) -> np.ndarray:
     guarantees that the tensor-network primitive is actually exercised per
     substage as the task card requires.
     """
-    psi = psi.astype(DTYPE)
-    mps = qtn.MatrixProductState.from_dense(psi, dims=[2] * N_QUBITS_TOTAL)
+    psi = _as_complex_tensor(psi)
+    mps = qtn.MatrixProductState.from_dense(_to_quimb_payload(psi), dims=[2] * N_QUBITS_TOTAL)
     # Contract MPS back to dense vector
-    contracted = mps.to_dense().reshape(-1).astype(DTYPE)
-    n = np.linalg.norm(contracted)
+    contracted = _as_complex_tensor(mps.to_dense()).reshape(-1)
+    n = torch.linalg.vector_norm(contracted)
     if n < 1e-30:
         return psi
     return contracted / n
 
 
-def _dominant_eigvec(rho: np.ndarray) -> np.ndarray:
-    rho_h = (rho + rho.conj().T) / 2
-    vals, vecs = np.linalg.eigh(rho_h)
-    return vecs[:, -1].astype(DTYPE)
+def _dominant_eigvec(rho: Any) -> torch.Tensor:
+    rho_h = _normalize_density_torch(rho)
+    vals, vecs = torch.linalg.eigh((rho_h + _dagger(rho_h)) / 2)
+    return vecs[:, -1].to(TORCH_COMPLEX)
+
+
+def _generate_initial_density_torch(seed: int) -> torch.Tensor:
+    """EngineCore-compatible finite 2-dim density generator, implemented in torch."""
+    generator = torch.Generator().manual_seed(int(seed))
+    theta = 0.24 + 1.05 * torch.rand((), generator=generator, dtype=TORCH_REAL)
+    phi = 2.0 * math.pi * torch.rand((), generator=generator, dtype=TORCH_REAL)
+    psi = torch.stack([
+        torch.cos(theta).to(TORCH_COMPLEX),
+        torch.sin(theta).to(TORCH_COMPLEX) * torch.exp(1j * phi.to(TORCH_COMPLEX)),
+    ]).reshape(-1, 1)
+    pure = psi @ _dagger(psi)
+    return _normalize_density_torch(0.88 * pure + 0.12 * T_I2 / 2)
+
+
+def _operator_unitary_torch(op_name: str, sign: int) -> torch.Tensor:
+    generator = _as_complex_tensor(OPERATOR_GENERATORS[op_name])
+    theta = float(OPERATOR_BASE_ANGLES[op_name]) * float(sign)
+    return torch.linalg.matrix_exp(-1j * theta * generator)
+
+
+def _pinch_density(rho: Any, axis: str) -> torch.Tensor:
+    rho = _normalize_density_torch(rho)
+    if axis == "x":
+        sigma = T_SX
+    elif axis == "y":
+        sigma = T_SY
+    elif axis == "z":
+        sigma = T_SZ
+    else:
+        raise ValueError(f"Unknown axis: {axis}")
+    P0, P1 = 0.5 * (T_I2 + sigma), 0.5 * (T_I2 - sigma)
+    return _normalize_density_torch(P0 @ rho @ P0 + P1 @ rho @ P1)
+
+
+def _apply_terrain_dephase_torch(rho: Any, perception: str, engine_type: int) -> torch.Tensor:
+    topo = get_topology_spec(perception, engine_type)
+    rate = float(topo["rate"])
+    pinched = _pinch_density(rho, topo["projector_axis"])
+    return _normalize_density_torch((1.0 - rate) * _normalize_density_torch(rho) + rate * pinched)
+
+
+def _apply_loop_placement_torch(
+    rho: Any,
+    engine_type: int,
+    main_stage_idx: int,
+    loop_class: str,
+) -> torch.Tensor:
+    rho = _normalize_density_torch(rho)
+    chirality_sign = int(get_engine_spec(engine_type)["chirality_sign"])
+    u = (main_stage_idx + 1) * (2.0 * math.pi / 9.0)
+    if loop_class == "outer":
+        generator = (0.75 * T_SX + 0.25 * T_SZ) * (0.071 * chirality_sign * u)
+    elif loop_class == "inner":
+        generator = T_SZ * (0.035 * chirality_sign * u)
+    else:
+        raise ValueError(f"loop_class must be outer or inner, got {loop_class!r}")
+    U = torch.linalg.matrix_exp(-1j * generator)
+    return _normalize_density_torch(U @ rho @ _dagger(U))
 
 
 # ---------------------------------------------------------------------------
 # G-structure holonomy step
 # ---------------------------------------------------------------------------
 
-def _apply_holonomy_chain_to_joint(psi_joint: np.ndarray) -> tuple[np.ndarray, dict]:
+def _apply_holonomy_chain_to_joint(psi_joint: Any) -> tuple[torch.Tensor, dict]:
     """
     Apply SU(3) -> G2 -> Spin(7) projector chain to the joint state.
     Returns (new_psi, metrics).
     Mixing is small so the joint state remains close to its previous form;
     repeated application accumulates reduction.
     """
-    psi_t = torch.tensor(psi_joint, dtype=torch.complex128)
+    psi_t = _as_complex_tensor(psi_joint)
     # Pre-norm
     pre_norm = float(torch.linalg.vector_norm(psi_t).item())
 
@@ -349,17 +451,17 @@ def _apply_holonomy_chain_to_joint(psi_joint: np.ndarray) -> tuple[np.ndarray, d
         "per_step_diffs": diffs,
         "total_chain_diff": total_chain_diff,
     }
-    return psi_t.numpy().astype(DTYPE), metrics
+    return psi_t.to(TORCH_COMPLEX), metrics
 
 
-def _principal_axis_count(psi: np.ndarray, tol: float = 1e-3) -> int:
+def _principal_axis_count(psi: Any, tol: float = 1e-3) -> int:
     """
     Count distinct singular values of the reshaped state (4x4 matrix) above tol.
     A higher count = more spread (full symmetry); fewer = symmetry-reduced.
     """
-    M = psi.reshape(CHIRAL_DIM, CHIRAL_DIM)
-    svals = np.linalg.svd(M, compute_uv=False)
-    return int(np.sum(svals > tol))
+    M = _as_complex_tensor(psi).reshape(CHIRAL_DIM, CHIRAL_DIM)
+    svals = torch.linalg.svdvals(M)
+    return int(torch.sum(svals > tol).item())
 
 
 # ---------------------------------------------------------------------------
@@ -367,13 +469,13 @@ def _principal_axis_count(psi: np.ndarray, tol: float = 1e-3) -> int:
 # ---------------------------------------------------------------------------
 
 def _joint_lindblad_step(
-    rho_joint: np.ndarray,
-    H_A: np.ndarray,
-    L_A: np.ndarray,
-    H_B: np.ndarray,
-    L_B: np.ndarray,
+    rho_joint: Any,
+    H_A: Any,
+    L_A: Any,
+    H_B: Any,
+    L_B: Any,
     dt: float,
-) -> np.ndarray:
+) -> torch.Tensor:
     """
     Joint Lindblad evolution on the 4-qubit joint state, using a coupled
     Hamiltonian H_joint = H_A ⊗ I_B + I_A ⊗ H_B + J * (SZ_A ⊗ SZ_B)
@@ -381,91 +483,78 @@ def _joint_lindblad_step(
     Coupling constant J modulates how much A and B entangle.
     """
     # Joint Hamiltonian: local + ZZ coupling
-    I_A = np.eye(CHIRAL_DIM, dtype=DTYPE)
-    I_B = np.eye(CHIRAL_DIM, dtype=DTYPE)
+    rho_joint = _normalize_density_torch(rho_joint)
+    H_A = _as_complex_tensor(H_A)
+    H_B = _as_complex_tensor(H_B)
+    L_A = _as_complex_tensor(L_A)
+    L_B = _as_complex_tensor(L_B)
+    I_A = torch.eye(CHIRAL_DIM, dtype=TORCH_COMPLEX)
+    I_B = torch.eye(CHIRAL_DIM, dtype=TORCH_COMPLEX)
 
     # Embed 2x2 H_A, H_B onto the 4-dim subsystem via H_A ⊗ I_qubit
-    H_A_full = np.kron(H_A, np.eye(2, dtype=DTYPE))
-    H_B_full = np.kron(H_B, np.eye(2, dtype=DTYPE))
+    H_A_full = torch.kron(H_A, T_I2)
+    H_B_full = torch.kron(H_B, T_I2)
 
-    SZ_A = np.kron(SZ, np.eye(2, dtype=DTYPE))
-    SZ_B = np.kron(SZ, np.eye(2, dtype=DTYPE))
+    SZ_A = torch.kron(T_SZ, T_I2)
+    SZ_B = torch.kron(T_SZ, T_I2)
 
     # ZZ coupling: detect "B disabled" via H_B and L_B both ~0 and zero the coupling
     # too so that the joint dynamics actually factorise.
-    H_B_active = float(np.linalg.norm(H_B)) > 1e-12
-    L_B_active = float(np.linalg.norm(L_B)) > 1e-12
+    H_B_active = _norm_float(H_B) > 1e-12
+    L_B_active = _norm_float(L_B) > 1e-12
     J = 0.35 if (H_B_active and L_B_active) else 0.0
-    H_joint = np.kron(H_A_full, I_B) + np.kron(I_A, H_B_full) + J * np.kron(SZ_A, SZ_B)
+    H_joint = torch.kron(H_A_full, I_B) + torch.kron(I_A, H_B_full) + J * torch.kron(SZ_A, SZ_B)
 
     # Joint Lindblad operators (collapse on each subsystem)
-    L_A_full = np.kron(np.kron(L_A, np.eye(2, dtype=DTYPE)), I_B)
-    L_B_full = np.kron(I_A, np.kron(L_B, np.eye(2, dtype=DTYPE)))
+    L_A_full = torch.kron(torch.kron(L_A, T_I2), I_B)
+    L_B_full = torch.kron(I_A, torch.kron(L_B, T_I2))
 
-    def _rhs(t, y_packed):
-        n = len(y_packed) // 2
-        rho_flat = (y_packed[:n] + 1j * y_packed[n:]).astype(DTYPE)
-        rho = rho_flat.reshape(JOINT_DIM, JOINT_DIM)
+    def _rhs(rho: torch.Tensor) -> torch.Tensor:
         comm = H_joint @ rho - rho @ H_joint
-        Ld_A = L_A_full.conj().T
-        Ld_B = L_B_full.conj().T
+        Ld_A = _dagger(L_A_full)
+        Ld_B = _dagger(L_B_full)
         diss = (
             L_A_full @ rho @ Ld_A - 0.5 * (Ld_A @ L_A_full @ rho + rho @ Ld_A @ L_A_full)
             + L_B_full @ rho @ Ld_B - 0.5 * (Ld_B @ L_B_full @ rho + rho @ Ld_B @ L_B_full)
         )
-        drho = -1j * comm + diss
-        df = drho.reshape(-1)
-        return np.concatenate([df.real, df.imag])
+        return -1j * comm + diss
 
-    rho0 = rho_joint.reshape(-1).astype(DTYPE)
-    y0 = np.concatenate([rho0.real, rho0.imag])
-    sol = solve_ivp(
-        _rhs,
-        (0.0, dt),
-        y0,
-        method="RK45",
-        rtol=1e-6,
-        atol=1e-8,
-    )
-    yf = sol.y[:, -1]
-    n = len(yf) // 2
-    rho_flat = (yf[:n] + 1j * yf[n:]).astype(DTYPE)
-    rho = rho_flat.reshape(JOINT_DIM, JOINT_DIM)
-    # Hermitize, clip, renorm trace
-    rho = (rho + rho.conj().T) / 2
-    vals, vecs = np.linalg.eigh(rho)
-    vals = np.maximum(vals.real, 1e-15)
-    rho = vecs @ np.diag(vals.astype(DTYPE)) @ vecs.conj().T
-    tr = np.trace(rho).real
-    if tr < 1e-30:
-        return np.eye(JOINT_DIM, dtype=DTYPE) / JOINT_DIM
-    return rho / tr
+    step = float(dt) / 4.0
+    rho = rho_joint
+    for _ in range(4):
+        k1 = _rhs(rho)
+        k2 = _rhs(rho + 0.5 * step * k1)
+        k3 = _rhs(rho + 0.5 * step * k2)
+        k4 = _rhs(rho + step * k3)
+        rho = rho + (step / 6.0) * (k1 + 2 * k2 + 2 * k3 + k4)
+    return _normalize_density_torch(rho)
 
 
 def _apply_joint_operator_unitary(
-    rho_joint: np.ndarray,
+    rho_joint: Any,
     op_A: str,
     sign_A: int,
     op_B: str,
     sign_B: int,
-) -> np.ndarray:
+) -> torch.Tensor:
     """Apply (U_A ⊗ I) (I ⊗ U_B) on the joint density, where U acts on the
     2-dim chiral sub-block (qubit 0 of each chiral subsystem)."""
-    from engine_core import _operator_unitary
-    U_A = _operator_unitary(op_A, sign_A)
-    U_B = _operator_unitary(op_B, sign_B)
-    U_A_full = np.kron(np.kron(U_A, np.eye(2, dtype=DTYPE)), np.eye(CHIRAL_DIM, dtype=DTYPE))
-    U_B_full = np.kron(np.eye(CHIRAL_DIM, dtype=DTYPE), np.kron(U_B, np.eye(2, dtype=DTYPE)))
+    rho_joint = _normalize_density_torch(rho_joint)
+    U_A = _operator_unitary_torch(op_A, sign_A)
+    U_B = _operator_unitary_torch(op_B, sign_B)
+    I_chiral = torch.eye(CHIRAL_DIM, dtype=TORCH_COMPLEX)
+    U_A_full = torch.kron(torch.kron(U_A, T_I2), I_chiral)
+    U_B_full = torch.kron(I_chiral, torch.kron(U_B, T_I2))
     U = U_A_full @ U_B_full
-    return U @ rho_joint @ U.conj().T
+    return U @ rho_joint @ _dagger(U)
 
 
 def _apply_joint_manifold_constraints(
-    rho_joint: np.ndarray,
+    rho_joint: Any,
     global_step: int,
     context: dict,
     layers_disabled: set[int] | None = None,
-) -> tuple[np.ndarray, dict[str, dict]]:
+) -> tuple[torch.Tensor, dict[str, dict]]:
     """
     Apply 13-layer manifold constraints to the joint state.
     Embeds the joint density's dominant eigenvector into the 16-dim torch
@@ -475,8 +564,8 @@ def _apply_joint_manifold_constraints(
     that specific layer).
     """
     # Use the joint density's dominant eigenvector directly (already 16-dim)
-    psi_np = _dominant_eigvec(rho_joint)
-    psi_t = torch.tensor(psi_np, dtype=torch.complex128)
+    rho_joint = _normalize_density_torch(rho_joint)
+    psi_t = _dominant_eigvec(rho_joint)
 
     # Always apply layer-by-layer so we can record state_diff_l2 per layer.
     from active_layer_constraint_enforcers import LAYERS_ACTIVE
@@ -502,88 +591,70 @@ def _apply_joint_manifold_constraints(
     psi_constrained = s
 
     # Reconstruct joint density: ψ_constrained -> |ψ⟩⟨ψ| then renormalize to trace 1
-    psi_out = psi_constrained.detach().cpu().numpy().astype(DTYPE)
-    nrm = np.linalg.norm(psi_out)
+    psi_out = psi_constrained.to(TORCH_COMPLEX)
+    nrm = torch.linalg.vector_norm(psi_out)
     if nrm < 1e-30:
-        return rho_joint.copy(), all_metrics
+        return rho_joint.clone(), all_metrics
     psi_out = psi_out / nrm
-    rho_pure = np.outer(psi_out, psi_out.conj()).astype(DTYPE)
+    rho_pure = torch.outer(psi_out, torch.conj(psi_out)).to(TORCH_COMPLEX)
     # Blend the constrained pure-state density with the original mixed density
     # to preserve some of the mixed-state information from the Lindblad evolution
     rho_new = 0.6 * rho_pure + 0.4 * rho_joint
-    rho_new = (rho_new + rho_new.conj().T) / 2
-    vals, vecs = np.linalg.eigh(rho_new)
-    vals = np.maximum(vals.real, 1e-15)
-    rho_new = vecs @ np.diag(vals.astype(DTYPE)) @ vecs.conj().T
-    tr = np.trace(rho_new).real
-    if tr < 1e-30:
-        return rho_joint.copy(), all_metrics
-    return rho_new / tr, all_metrics
+    return _normalize_density_torch(rho_new), all_metrics
 
 
 def _apply_joint_terrain_and_loop(
-    rho_joint: np.ndarray,
+    rho_joint: Any,
     perception_A: str,
     perception_B: str,
     main_stage_idx: int,
     loop_class_A: str,
     loop_class_B: str,
-) -> np.ndarray:
+) -> torch.Tensor:
     """Apply per-chiral terrain dephase + loop placement to each subsystem."""
-    from engine_core import EngineCore
+    rho_joint = _normalize_density_torch(rho_joint)
     # Reduce to per-subsystem densities, apply terrain+loop, recombine.
-    eng_A = EngineCore(engine_type=0, manifold_enabled=False)
-    eng_B = EngineCore(engine_type=1, manifold_enabled=False)
     rho_A_full = _partial_trace_joint(rho_joint, [0, 1])
     rho_B_full = _partial_trace_joint(rho_joint, [2, 3])
     # Project to 2x2 chirality sub-block (qubit 0 of each chiral)
     rho_A = _partial_trace_within(rho_A_full, [0])
     rho_B = _partial_trace_within(rho_B_full, [0])
 
-    rho_A = eng_A._apply_terrain_dephase(rho_A, perception_A)
-    rho_A = eng_A._apply_loop_placement(rho_A, main_stage_idx, loop_class_A)
-    rho_B = eng_B._apply_terrain_dephase(rho_B, perception_B)
-    rho_B = eng_B._apply_loop_placement(rho_B, main_stage_idx, loop_class_B)
+    rho_A = _apply_terrain_dephase_torch(rho_A, perception_A, 0)
+    rho_A = _apply_loop_placement_torch(rho_A, 0, main_stage_idx, loop_class_A)
+    rho_B = _apply_terrain_dephase_torch(rho_B, perception_B, 1)
+    rho_B = _apply_loop_placement_torch(rho_B, 1, main_stage_idx, loop_class_B)
 
     # Recombine: each 2x2 -> 4-dim by tensoring with I/2 for the second qubit
-    rho_A_full_new = np.kron(rho_A, np.eye(2, dtype=DTYPE) / 2)
-    rho_B_full_new = np.kron(rho_B, np.eye(2, dtype=DTYPE) / 2)
+    rho_A_full_new = torch.kron(rho_A, T_I2 / 2)
+    rho_B_full_new = torch.kron(rho_B, T_I2 / 2)
     rho_joint_new = _kron_block(rho_A_full_new, rho_B_full_new)
     # Blend with previous joint to preserve coupling
     rho_blended = 0.5 * rho_joint_new + 0.5 * rho_joint
-    rho_blended = (rho_blended + rho_blended.conj().T) / 2
-    vals, vecs = np.linalg.eigh(rho_blended)
-    vals = np.maximum(vals.real, 1e-15)
-    rho_blended = vecs @ np.diag(vals.astype(DTYPE)) @ vecs.conj().T
-    tr = np.trace(rho_blended).real
-    return rho_blended / tr
+    return _normalize_density_torch(rho_blended)
 
 
-def _partial_trace_within(rho_4: np.ndarray, keep: list[int]) -> np.ndarray:
+def _partial_trace_within(rho_4: Any, keep: list[int]) -> torch.Tensor:
     """Partial trace a 4-dim (2-qubit) density to keep one qubit."""
-    return qu.partial_trace(rho_4, [2, 2], keep=keep)
+    return _normalize_density_torch(qu.partial_trace(_to_quimb_payload(rho_4), [2, 2], keep=keep))
 
 
 # ---------------------------------------------------------------------------
 # Main composition run
 # ---------------------------------------------------------------------------
 
-def _initial_joint_state(seed: int = 7) -> np.ndarray:
-    """Joint 4-qubit pure state, derived from each chiral subsystem's
-    EngineCore.generate_initial_density extended to 4-dim."""
-    rho_A_2 = generate_initial_density(seed)
-    rho_B_2 = generate_initial_density(seed + 13)
+def _initial_joint_state(seed: int = 7) -> torch.Tensor:
+    """Joint 4-qubit density from finite canonical QIT chiral seed states."""
+    rho_A_2 = _generate_initial_density_torch(seed)
+    rho_B_2 = _generate_initial_density_torch(seed + 13)
     # Extend each to 4-dim by tensoring with maximally-mixed second qubit
-    rho_A = np.kron(rho_A_2, np.eye(2, dtype=DTYPE) / 2)
-    rho_B = np.kron(rho_B_2, np.eye(2, dtype=DTYPE) / 2)
-    rho_joint = np.kron(rho_A, rho_B)
-    # Hermitize, normalize
-    rho_joint = (rho_joint + rho_joint.conj().T) / 2
-    return rho_joint / np.trace(rho_joint).real
+    rho_A = torch.kron(rho_A_2, T_I2 / 2)
+    rho_B = torch.kron(rho_B_2, T_I2 / 2)
+    return _normalize_density_torch(torch.kron(rho_A, rho_B))
 
 
 def _run_paired_composition(
-    rho_joint_init: np.ndarray,
+    rho_joint_init: Any,
     *,
     layers_disabled: set[int] | None = None,
     holonomy_enabled: bool = True,
@@ -596,22 +667,22 @@ def _run_paired_composition(
     Run the joint 64-substage composition.
     Returns a record dict with per-substage measurements.
     """
-    rho_joint = rho_joint_init.copy()
+    rho_joint = _normalize_density_torch(rho_joint_init).clone()
     manifold_context: dict = {}
 
     schedule_A = list(ENGINE_SCHEDULE_TYPE_ONE)
     schedule_B = list(ENGINE_SCHEDULE_TYPE_TWO)
 
     if random_history:
-        rng = np.random.default_rng(rand_seed)
+        rng = torch.Generator().manual_seed(rand_seed)
         perceptions = ["Se", "Ne", "Ni", "Si"]
         loops = ["outer", "inner"]
         schedule_A = [
-            (perceptions[rng.integers(0, 4)], loops[rng.integers(0, 2)])
+            (perceptions[int(torch.randint(0, 4, (1,), generator=rng).item())], loops[int(torch.randint(0, 2, (1,), generator=rng).item())])
             for _ in range(N_MAIN_STAGES_PER_ENGINE)
         ]
         schedule_B = [
-            (perceptions[rng.integers(0, 4)], loops[rng.integers(0, 2)])
+            (perceptions[int(torch.randint(0, 4, (1,), generator=rng).item())], loops[int(torch.randint(0, 2, (1,), generator=rng).item())])
             for _ in range(N_MAIN_STAGES_PER_ENGINE)
         ]
 
@@ -650,15 +721,16 @@ def _run_paired_composition(
             elif substage_idx == 1:
                 H_A, L_A = get_lindblad_params(perception_A, 0)
                 H_B, L_B = get_lindblad_params(perception_B, 1)
+                H_A, L_A = _as_complex_tensor(H_A), _as_complex_tensor(L_A)
+                H_B, L_B = _as_complex_tensor(H_B), _as_complex_tensor(L_B)
                 if single_chiral_mode:
-                    H_B = np.zeros_like(H_B)
-                    L_B = np.zeros_like(L_B)
+                    H_B = torch.zeros_like(H_B)
+                    L_B = torch.zeros_like(L_B)
                 rho_joint = _joint_lindblad_step(rho_joint, H_A, L_A, H_B, L_B, STAGE_DT)
                 action = "joint_lindblad_ode"
 
             # ---- Substage 2: manifold constraint enforcement (13 layers) ----
             elif substage_idx == 2:
-                rho_joint_before = rho_joint.copy()
                 rho_joint, manifold_metrics = _apply_joint_manifold_constraints(
                     rho_joint, global_step, manifold_context,
                     layers_disabled=layers_disabled,
@@ -682,13 +754,9 @@ def _run_paired_composition(
                     holonomy_total_diff += h_metrics["total_chain_diff"]
                     g_structure_reductions.append(axes_before - axes_after)
                     # Blend the holonomy-projected pure state back in
-                    rho_h = np.outer(psi_after, psi_after.conj()).astype(DTYPE)
+                    rho_h = torch.outer(psi_after, torch.conj(psi_after)).to(TORCH_COMPLEX)
                     rho_joint = 0.6 * rho_h + 0.4 * rho_joint
-                    rho_joint = (rho_joint + rho_joint.conj().T) / 2
-                    vals, vecs = np.linalg.eigh(rho_joint)
-                    vals = np.maximum(vals.real, 1e-15)
-                    rho_joint = vecs @ np.diag(vals.astype(DTYPE)) @ vecs.conj().T
-                    rho_joint /= np.trace(rho_joint).real
+                    rho_joint = _normalize_density_torch(rho_joint)
                 action = "manifold_constraints_plus_g_structure"
 
             # ---- Substage 3: terrain dephase + loop placement ----
@@ -708,10 +776,9 @@ def _run_paired_composition(
                 psi_tn = _tensor_network_round_trip(psi_proxy)
                 # Blend back lightly so the tensor-network primitive is part
                 # of the evolution path (small mixing keeps numerical stability)
-                rho_tn = np.outer(psi_tn, psi_tn.conj()).astype(DTYPE)
+                rho_tn = torch.outer(psi_tn, torch.conj(psi_tn)).to(TORCH_COMPLEX)
                 rho_joint = 0.95 * rho_joint + 0.05 * rho_tn
-                rho_joint = (rho_joint + rho_joint.conj().T) / 2
-                rho_joint /= np.trace(rho_joint).real
+                rho_joint = _normalize_density_torch(rho_joint)
                 axes = _principal_axis_count(psi_tn)
                 principal_axes_history.append(axes)
 
@@ -720,10 +787,8 @@ def _run_paired_composition(
             if single_chiral_mode:
                 rho_A_full = _partial_trace_joint(rho_joint, [0, 1])
                 # B as fixed maximally-mixed 4-dim state
-                rho_B_fixed = np.eye(CHIRAL_DIM, dtype=DTYPE) / CHIRAL_DIM
-                rho_joint = np.kron(rho_A_full, rho_B_fixed).astype(DTYPE)
-                rho_joint = (rho_joint + rho_joint.conj().T) / 2
-                rho_joint /= np.trace(rho_joint).real
+                rho_B_fixed = torch.eye(CHIRAL_DIM, dtype=TORCH_COMPLEX) / CHIRAL_DIM
+                rho_joint = _normalize_density_torch(torch.kron(rho_A_full, rho_B_fixed))
 
             # ---- Per-substage readouts ----
             log_neg = _bipartite_log_negativity(rho_joint)
@@ -737,8 +802,8 @@ def _run_paired_composition(
             # Bloch vectors on qubit 0 of each chiral
             rho_A_qubit = _partial_trace_within(rho_A_red, [0])
             rho_B_qubit = _partial_trace_within(rho_B_red, [0])
-            bloch_history_A.append(_bloch_vector(rho_A_qubit).tolist())
-            bloch_history_B.append(_bloch_vector(rho_B_qubit).tolist())
+            bloch_history_A.append(_bloch_vector_torch(rho_A_qubit))
+            bloch_history_B.append(_bloch_vector_torch(rho_B_qubit))
 
             # Emit one record per engine per joint substage (4 substages × 8
             # main stages × 2 engines = 64 per-engine records, matching the
@@ -761,7 +826,7 @@ def _run_paired_composition(
                     "n_principal_axes_proxy": (
                         principal_axes_history[-1] if principal_axes_history else None
                     ),
-                    "valid_joint": float(np.real(np.trace(rho_joint)).item()) > 0.99,
+                    "valid_joint": _real_float(torch.trace(rho_joint)) > 0.99,
                 })
 
             global_step += 1
@@ -799,7 +864,7 @@ def _berry_phase_for_seed(seed: int) -> float:
     rho_joint = _initial_joint_state(seed=seed)
     psi_0 = _dominant_eigvec(rho_joint)
 
-    psis: list[np.ndarray] = [psi_0]
+    psis: list[torch.Tensor] = [psi_0]
     manifold_context: dict = {}
     for step in range(16):
         # alternate operator + manifold on subsystem A only for the phase loop
@@ -817,10 +882,10 @@ def _berry_phase_for_seed(seed: int) -> float:
 
     phi = 0.0
     for k in range(len(psis) - 1):
-        inner = np.vdot(psis[k], psis[k + 1])
-        if abs(inner) < 1e-30:
+        inner = torch.vdot(psis[k], psis[k + 1])
+        if float(torch.abs(inner).item()) < 1e-30:
             continue
-        phi += float(np.angle(inner))
+        phi += float(torch.angle(inner).item())
     return abs(phi)
 
 
@@ -983,9 +1048,9 @@ def main() -> int:
         holonomy_enabled=True,
         tensor_network_enabled=True,
     )
-    rho_full_final = np.array(full_record["final_rho_joint"], dtype=DTYPE)
-    rho_ablated_final = np.array(ablated_record["final_rho_joint"], dtype=DTYPE)
-    layer_disabled_diff = float(np.linalg.norm(rho_full_final - rho_ablated_final, "fro"))
+    rho_full_final = _as_complex_tensor(full_record["final_rho_joint"])
+    rho_ablated_final = _as_complex_tensor(ablated_record["final_rho_joint"])
+    layer_disabled_diff = _norm_float(rho_full_final - rho_ablated_final)
     layer_disabled_passes = layer_disabled_diff > 0.1
     print(f"  layer_disabled_final_diff_frobenius: {layer_disabled_diff:.6f}")
     print(f"[neg-predicate] layer_disabled_baseline_diverges (>0.1): "
@@ -1021,16 +1086,16 @@ def main() -> int:
     # other (3 different rand_seeds → 3 different final states with high
     # variance among bloch endpoints).
     final_blochs = [
-        np.array(rec["bloch_history_A"][-1] + rec["bloch_history_B"][-1])
+        _as_real_tensor(rec["bloch_history_A"][-1] + rec["bloch_history_B"][-1])
         for rec in random_records
     ]
     pairwise_distances = []
     for i in range(len(final_blochs)):
         for j in range(i + 1, len(final_blochs)):
             pairwise_distances.append(
-                float(np.linalg.norm(final_blochs[i] - final_blochs[j]))
+                float(torch.linalg.vector_norm(final_blochs[i] - final_blochs[j]).item())
             )
-    mean_pairwise = float(np.mean(pairwise_distances)) if pairwise_distances else 0.0
+    mean_pairwise = float(torch.mean(_as_real_tensor(pairwise_distances)).item()) if pairwise_distances else 0.0
     random_pass = mean_pairwise > 0.05
     print(f"  random_schedule_mean_pairwise_bloch_distance: {mean_pairwise:.6f}")
     print(f"[neg-predicate] random_history_baseline_kills_readout (>0.05): "
@@ -1161,10 +1226,12 @@ def main() -> int:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
         "claim_ceiling": CLAIM_CEILING,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "elapsed_seconds": elapsed,
         "summary": {
             "n_substages_joint": full_record["n_substages"],
@@ -1179,7 +1246,17 @@ def main() -> int:
         },
         "positive": positive,
         "graveyard_companions": graveyard_companions,
+        "nearby_variants": {
+            "total": len(graveyard_companions),
+            "passed": sum(1 for row in graveyard_companions.values() if row["pass"]),
+            "variants": sorted(graveyard_companions),
+        },
         "boundary": boundary,
+        "why_not_v4_probes": [
+            "Clean v5 formal scout only; not a mixed v4 probe.",
+            "It composes the active 13-layer G-structure chain with both chiral source-native histories, but still blocks final manifold and final G-structure promotion.",
+            "It is a bounded 4-qubit joint carrier composition scout; it does not replace newer 8-64 qubit/site PEPS3D/MPS maturity evidence.",
+        ],
         "all_pass": all_pass,
         "candidate_layers": list(LAYER_NAMES),
         "holonomy_chain": HOLONOMY_CHAIN,

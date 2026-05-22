@@ -8,6 +8,8 @@ import json, os, time, itertools
 import numpy as np
 import rustworkx as rx
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "rustworkx": {"tried": True, "used": True,
                   "reason": "Rust-backed BFS layers + all-pairs dijkstra; load-bearing for diameter/girth on |S_4|=24 Cayley graph"},

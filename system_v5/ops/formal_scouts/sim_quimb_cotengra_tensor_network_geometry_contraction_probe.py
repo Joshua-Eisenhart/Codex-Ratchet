@@ -14,7 +14,6 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import cotengra as ctg
-import numpy as np
 import opt_einsum as oe
 import quimb as qu
 import quimb.tensor as qtn
@@ -40,18 +39,23 @@ TOOL_MANIFEST = {
     "quimb": {"tried": True, "used": True, "reason": "load-bearing MPS construction, gate application, and bond entropy readouts"},
     "cotengra": {"tried": True, "used": True, "reason": "load-bearing contraction-tree search over geometry-shaped tensor equations"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing reference contraction path and numeric contraction cross-check"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing tensor fixtures and distance calculations"},
-    "pytorch": {"tried": True, "used": True, "reason": "supportive dense-state entropy cross-check"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing tensor fixtures, gate construction, dense-state entropy, and distance calculations"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic contraction-inventory sanity check"},
 }
 TOOL_INTEGRATION_DEPTH = {
     "quimb": "load_bearing",
     "cotengra": "load_bearing",
     "opt_einsum": "load_bearing",
-    "numpy": "load_bearing",
-    "pytorch": "supportive",
+    "pytorch": "load_bearing",
     "sympy": "load_bearing",
 }
+
+DTYPE = torch.complex128
+RTYPE = torch.float64
+I2 = torch.eye(2, dtype=DTYPE)
+SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=DTYPE)
 
 
 def as_jsonable(value: Any) -> Any:
@@ -59,24 +63,23 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
+    if hasattr(value, "item") and not isinstance(value, (str, bytes)):
+        return value.item()
     return value
 
 
-def topology_gates() -> dict[str, np.ndarray]:
-    sx = qu.pauli("X").A
-    sy = qu.pauli("Y").A
-    sz = qu.pauli("Z").A
+def to_quimb_array(value: torch.Tensor) -> Any:
+    return qu.qarray(value.detach().cpu().tolist())
+
+
+def topology_gates() -> dict[str, Any]:
     return {
-        "funnel": qu.expm(-1j * 0.12 * np.kron(sx, sz)),
-        "vortex": qu.expm(-1j * 0.18 * np.kron(sy, sx)),
-        "pit": qu.expm(-1j * 0.21 * np.kron(sz, sz)),
-        "hill": qu.expm(-1j * 0.09 * np.kron(sz, sx)),
+        "funnel": to_quimb_array(torch.linalg.matrix_exp(-1j * 0.12 * torch.kron(SX, SZ))),
+        "vortex": to_quimb_array(torch.linalg.matrix_exp(-1j * 0.18 * torch.kron(SY, SX))),
+        "pit": to_quimb_array(torch.linalg.matrix_exp(-1j * 0.21 * torch.kron(SZ, SZ))),
+        "hill": to_quimb_array(torch.linalg.matrix_exp(-1j * 0.09 * torch.kron(SZ, SX))),
     }
 
 
@@ -103,25 +106,24 @@ def mps_topology_readout() -> dict[str, Any]:
 
 
 def dense_entropy_crosscheck() -> dict[str, Any]:
-    ghz_vec = np.zeros((2**4, 1), dtype=complex)
+    ghz_vec = torch.zeros((2**4, 1), dtype=DTYPE)
     ghz_vec[0, 0] = 1.0 / math.sqrt(2.0)
     ghz_vec[15, 0] = 1.0 / math.sqrt(2.0)
-    ghz = qu.qarray(ghz_vec)
-    rho_full = qu.qarray(ghz_vec @ ghz_vec.conj().T)
+    rho_full = to_quimb_array(ghz_vec @ torch.conj(ghz_vec.T))
     rho = qu.ptr(rho_full, dims=[2, 2, 2, 2], keep=[0, 1])
-    vals = torch.linalg.eigvalsh(torch.tensor(np.asarray(rho), dtype=torch.complex128)).real
+    vals = torch.linalg.eigvalsh(torch.as_tensor(rho, dtype=DTYPE)).real
     vals = torch.clamp(vals, min=1e-12)
     entropy = float(-(vals * torch.log(vals)).sum().item())
     return {"two_qubit_reduced_entropy": entropy, "pass": entropy > 0.65}
 
 
 def contraction_tree_report() -> dict[str, Any]:
-    rng = np.random.default_rng(5)
+    generator = torch.Generator().manual_seed(5)
     arrays = [
-        rng.normal(size=(2, 3)),
-        rng.normal(size=(3, 4)),
-        rng.normal(size=(4, 5)),
-        rng.normal(size=(5, 2)),
+        torch.randn((2, 3), generator=generator, dtype=RTYPE),
+        torch.randn((3, 4), generator=generator, dtype=RTYPE),
+        torch.randn((4, 5), generator=generator, dtype=RTYPE),
+        torch.randn((5, 2), generator=generator, dtype=RTYPE),
     ]
     inputs = [("a", "b"), ("b", "c"), ("c", "d"), ("d", "e")]
     output = ("a", "e")
@@ -131,27 +133,28 @@ def contraction_tree_report() -> dict[str, Any]:
     contract_expr = "ab,bc,cd,de->ae"
     ref = oe.contract(contract_expr, *arrays)
     path, info = oe.contract_path(contract_expr, *arrays, optimize="optimal")
+    ref_norm = float(torch.linalg.vector_norm(torch.as_tensor(ref)).item())
     return {
         "cotengra_width": float(tree.contraction_width()),
         "cotengra_cost": float(tree.contraction_cost()),
         "opt_einsum_path": [str(x) for x in path],
         "opt_einsum_optimized_flops": float(info.opt_cost),
-        "reference_norm": float(np.linalg.norm(ref)),
-        "pass": float(tree.contraction_cost()) <= float(info.opt_cost) * 2.0 and float(np.linalg.norm(ref)) > 0,
+        "reference_norm": ref_norm,
+        "pass": float(tree.contraction_cost()) <= float(info.opt_cost) * 2.0 and ref_norm > 0,
     }
 
 
 def collapsed_contraction_control() -> dict[str, Any]:
-    rng = np.random.default_rng(7)
+    generator = torch.Generator().manual_seed(7)
     arrays = [
-        rng.normal(size=(2, 2)),
-        rng.normal(size=(2, 2)),
-        rng.normal(size=(2, 2)),
-        rng.normal(size=(2, 2)),
+        torch.randn((2, 2), generator=generator, dtype=RTYPE),
+        torch.randn((2, 2), generator=generator, dtype=RTYPE),
+        torch.randn((2, 2), generator=generator, dtype=RTYPE),
+        torch.randn((2, 2), generator=generator, dtype=RTYPE),
     ]
     structured = oe.contract("ab,bc,cd,de->ae", *arrays)
     collapsed = oe.contract("ab,ab,ab,ab->ab", *arrays)
-    diff = float(np.linalg.norm(structured - collapsed))
+    diff = float(torch.linalg.vector_norm(torch.as_tensor(structured - collapsed)).item())
     return {"structured_vs_collapsed_norm": diff, "pass": diff > 0.1}
 
 

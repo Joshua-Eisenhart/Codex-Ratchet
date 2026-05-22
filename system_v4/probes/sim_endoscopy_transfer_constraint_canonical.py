@@ -14,6 +14,8 @@ sympy: transfer factor product formula
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

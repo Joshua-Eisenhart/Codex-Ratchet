@@ -2,6 +2,11 @@
 """Classical baseline: Bloch vector parametrization of 1-qubit states."""
 import json, os, numpy as np
 
+classification = "classical_baseline"
+divergence_log = [
+    "Bloch-ball and PSD boundary controls expose the reference baseline scope without promoting manifold or emergence claims."
+]
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "numpy baseline"},
     "pyg": {"tried": False, "used": False, "reason": "no graph"},
@@ -80,6 +85,7 @@ if __name__ == "__main__":
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

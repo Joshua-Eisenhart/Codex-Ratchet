@@ -55,7 +55,11 @@ TOOL_MANIFEST = {
         "reason": "load-bearing script and consumed-receipt hash receipts",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'json': 'supportive',
+    'pathlib': 'supportive',
+    'hashlib': 'supportive',
+}
 
 RECEIPTS = {
     "qit_dynamics": "qit_engine_dynamics_required_work_discrimination_probe_results.json",
@@ -67,7 +71,7 @@ RECEIPTS = {
     "handle_support": "nested_constraint_manifold_operational_handle_support_probe_results.json",
     "operational_assembly": "nested_constraint_manifold_operational_assembly_tensor_network_probe_results.json",
     "seven_control_execution": "source_chiral_seven_control_sixty_four_microstep_execution_probe_results.json",
-    "qit_work_execution": "constraint_manifold_qit_engine_work_execution_probe_results.json",
+    "qit_work_execution": "constraint_manifold_qit_work_execution_probe_results.json",
     "variable_qubit_topology": "variable_qubit_topology_flux_channel_order_entropy_scaling_probe_results.json",
     "integrated_suite": "integrated_constraint_manifold_suite_fresh_rerun_probe_results.json",
 }

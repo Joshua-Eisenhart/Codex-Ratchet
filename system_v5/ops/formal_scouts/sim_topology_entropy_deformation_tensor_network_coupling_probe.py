@@ -16,7 +16,6 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 import cotengra as ctg
 import gudhi
 import networkx as nx
-import numpy as np
 import opt_einsum as oe
 import quimb as qu
 import quimb.tensor as qtn
@@ -43,8 +42,7 @@ TOOL_MANIFEST = {
     "quimb": {"tried": True, "used": True, "reason": "load-bearing MPS state evolution, gate application, and cut entropy readouts"},
     "cotengra": {"tried": True, "used": True, "reason": "load-bearing contraction-tree search whose index sizes are geometry-shaped"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing numeric contraction cross-check for the cotengra index pattern"},
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing geometry parameters, signatures, distances, and controls"},
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing entropy-gradient signal and finite-density update proxy"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing geometry parameters, signatures, distances, controls, entropy-gradient signal, and finite-density update proxy"},
     "gudhi": {"tried": True, "used": True, "reason": "load-bearing persistence of coupled trajectory signatures"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing dependency graph for coupled deformation path"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic inventory for four classes and deformation fields"},
@@ -52,6 +50,7 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
 
 DTYPE = torch.complex128
+FLOAT_DTYPE = torch.float64
 I2 = torch.eye(2, dtype=DTYPE)
 SX_T = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
 SY_T = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
@@ -62,10 +61,10 @@ SY = qu.pauli("Y").A
 SZ = qu.pauli("Z").A
 
 TOPOLOGY_CLASSES = {
-    "funnel": {"axis": np.kron(SX, SZ), "rate": 0.18, "shear": -0.18, "twist": 0.08, "pairs": [(0, 1), (2, 3), (4, 5), (6, 7), (1, 2)]},
-    "vortex": {"axis": np.kron(SY, SX), "rate": 0.14, "shear": 0.10, "twist": 0.31, "pairs": [(1, 2), (3, 4), (5, 6), (0, 1), (6, 7)]},
-    "pit": {"axis": np.kron(SZ, SZ), "rate": 0.27, "shear": -0.27, "twist": -0.16, "pairs": [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]},
-    "hill": {"axis": np.kron(SZ, SX), "rate": 0.20, "shear": 0.25, "twist": -0.05, "pairs": [(6, 7), (5, 6), (4, 5), (3, 4), (2, 3)]},
+    "funnel": {"axis": qu.kron(SX, SZ), "rate": 0.18, "shear": -0.18, "twist": 0.08, "pairs": [(0, 1), (2, 3), (4, 5), (6, 7), (1, 2)]},
+    "vortex": {"axis": qu.kron(SY, SX), "rate": 0.14, "shear": 0.10, "twist": 0.31, "pairs": [(1, 2), (3, 4), (5, 6), (0, 1), (6, 7)]},
+    "pit": {"axis": qu.kron(SZ, SZ), "rate": 0.27, "shear": -0.27, "twist": -0.16, "pairs": [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]},
+    "hill": {"axis": qu.kron(SZ, SX), "rate": 0.20, "shear": 0.25, "twist": -0.05, "pairs": [(6, 7), (5, 6), (4, 5), (3, 4), (2, 3)]},
 }
 
 
@@ -74,10 +73,6 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
     return value
@@ -92,10 +87,16 @@ def normalize_density(rho: torch.Tensor) -> torch.Tensor:
 
 
 def density_seed(seed: int) -> torch.Tensor:
-    rng = np.random.default_rng(seed)
-    theta = 0.17 + rng.random()
-    phi = 2.0 * math.pi * rng.random()
-    psi = torch.tensor([math.cos(theta), math.sin(theta) * np.exp(1j * phi)], dtype=DTYPE).reshape(2, 1)
+    generator = torch.Generator().manual_seed(seed)
+    theta = 0.17 + float(torch.rand((), dtype=FLOAT_DTYPE, generator=generator).item())
+    phi = 2.0 * math.pi * float(torch.rand((), dtype=FLOAT_DTYPE, generator=generator).item())
+    phase = torch.exp(torch.tensor(1j * phi, dtype=DTYPE))
+    psi = torch.stack(
+        [
+            torch.tensor(math.cos(theta), dtype=DTYPE),
+            torch.tensor(math.sin(theta), dtype=DTYPE) * phase,
+        ]
+    ).reshape(2, 1)
     return normalize_density(0.86 * (psi @ psi.conj().T) + 0.14 * I2 / 2.0)
 
 
@@ -106,28 +107,23 @@ def entropy(rho: torch.Tensor) -> float:
     return float(-(vals * torch.log(vals)).sum().item())
 
 
-def bloch(rho: torch.Tensor) -> np.ndarray:
-    return np.array(
-        [
-            float(torch.real(torch.trace(SX_T @ rho)).item()),
-            float(torch.real(torch.trace(SY_T @ rho)).item()),
-            float(torch.real(torch.trace(SZ_T @ rho)).item()),
-        ],
-        dtype=float,
-    )
+def bloch(rho: torch.Tensor) -> list[float]:
+    return [
+        float(torch.real(torch.trace(SX_T @ rho)).item()),
+        float(torch.real(torch.trace(SY_T @ rho)).item()),
+        float(torch.real(torch.trace(SZ_T @ rho)).item()),
+    ]
 
 
-def density_step(rho: torch.Tensor, class_row: dict[str, Any], params: np.ndarray, step: int) -> torch.Tensor:
+def density_step(rho: torch.Tensor, class_row: dict[str, Any], params: list[float], step: int) -> torch.Tensor:
     b = bloch(rho)
-    signal = np.array([entropy(rho) - 0.34, b[0] * b[2], b[1] - b[0]], dtype=float)
-    params[:] = 0.88 * params + 0.12 * np.array(
-        [
-            class_row["rate"] + 0.40 * signal[0],
-            class_row["shear"] + 0.34 * signal[1],
-            class_row["twist"] + 0.28 * signal[2],
-        ],
-        dtype=float,
-    )
+    signal = [entropy(rho) - 0.34, b[0] * b[2], b[1] - b[0]]
+    next_params = [
+        class_row["rate"] + 0.40 * signal[0],
+        class_row["shear"] + 0.34 * signal[1],
+        class_row["twist"] + 0.28 * signal[2],
+    ]
+    params[:] = [0.88 * params[idx] + 0.12 * next_params[idx] for idx in range(3)]
     axis = (0.55 + 0.13 * params[1]) * SX_T + (0.31 + 0.17 * params[2]) * SY_T + (0.20 + 0.09 * params[0]) * SZ_T
     vals, vecs = torch.linalg.eig((-1j * (0.035 + 0.02 * class_row["rate"]) * axis).to(DTYPE))
     u = vecs @ torch.diag(torch.exp(vals)) @ torch.linalg.inv(vecs)
@@ -135,25 +131,25 @@ def density_step(rho: torch.Tensor, class_row: dict[str, Any], params: np.ndarra
     return normalize_density((1.0 - 0.025 * abs(params[2])) * mixed + 0.025 * abs(params[2]) * I2 / 2.0)
 
 
-def metric_values(params: np.ndarray) -> tuple[float, float, float]:
+def metric_values(params: list[float]) -> tuple[float, float, float]:
     conformal, shear, twist = params
-    g = math.exp(conformal) * np.array(
+    g = math.exp(conformal) * torch.tensor(
         [[math.exp(shear), 0.16 * math.tanh(twist)], [0.16 * math.tanh(twist), math.exp(-shear)]],
-        dtype=float,
+        dtype=FLOAT_DTYPE,
     )
-    eigvals = np.linalg.eigvalsh(g)
+    eigvals = torch.linalg.eigvalsh(g)
     curvature = float(0.42 * shear - 0.27 * twist + 0.15 * conformal * shear)
     torsion = float(abs(0.65 * twist) + abs(0.18 * shear))
-    return float(eigvals[0]), curvature, torsion
+    return float(eigvals[0].item()), curvature, torsion
 
 
-def geometry_gate(class_row: dict[str, Any], params: np.ndarray, step: int) -> np.ndarray:
+def geometry_gate(class_row: dict[str, Any], params: list[float], step: int) -> Any:
     metric_min, curvature, torsion = metric_values(params)
     angle = class_row["rate"] * (1.0 + 0.22 * curvature + 0.08 * torsion + 0.03 * metric_min + 0.015 * step)
     return qu.expm(-1j * angle * class_row["axis"])
 
 
-def contraction_report(params: np.ndarray) -> dict[str, Any]:
+def contraction_report(params: list[float]) -> dict[str, Any]:
     metric_min, curvature, torsion = metric_values(params)
     sizes = {
         "a": 2,
@@ -166,14 +162,15 @@ def contraction_report(params: np.ndarray) -> dict[str, Any]:
     output = ("a", "e")
     optimizer = ctg.HyperOptimizer(max_repeats=8, progbar=False, on_trial_error="raise")
     tree = optimizer.search(inputs, output, sizes)
-    rng = np.random.default_rng(int(1000 * (abs(curvature) + abs(torsion) + metric_min)))
-    arrays = [rng.normal(size=(sizes[i], sizes[j])) for i, j in inputs]
+    seed = int(1000 * (abs(curvature) + abs(torsion) + metric_min))
+    generator = torch.Generator().manual_seed(seed)
+    arrays = [torch.randn((sizes[i], sizes[j]), dtype=FLOAT_DTYPE, generator=generator) for i, j in inputs]
     ref = oe.contract("ab,bc,cd,de->ae", *arrays)
     return {
         "sizes": sizes,
         "cost": float(tree.contraction_cost()),
         "width": float(tree.contraction_width()),
-        "reference_norm": float(np.linalg.norm(ref)),
+        "reference_norm": float(torch.linalg.vector_norm(ref).item()),
     }
 
 
@@ -182,7 +179,7 @@ def run_class(name: str, seed: int, *, frozen: bool = False, collapsed: bool = F
     active_row = TOPOLOGY_CLASSES["hill"] if collapsed else row
     mps = qtn.MPS_rand_state(8, bond_dim=3, seed=100 + seed)
     rho = density_seed(seed)
-    params = np.array([0.04, active_row["shear"], active_row["twist"]], dtype=float)
+    params = [0.04, active_row["shear"], active_row["twist"]]
     records = []
     for step in range(10):
         if not frozen:
@@ -190,13 +187,13 @@ def run_class(name: str, seed: int, *, frozen: bool = False, collapsed: bool = F
         gate = geometry_gate(active_row, params, step)
         for pair in active_row["pairs"][: 3 + (step % 3)]:
             mps.gate_(gate, pair, contract="swap+split", max_bond=10, cutoff=1e-10)
-        ents = np.array([float(mps.entropy(cut)) for cut in range(1, 8)], dtype=float)
+        ents = torch.tensor([float(mps.entropy(cut)) for cut in range(1, 8)], dtype=FLOAT_DTYPE)
         metric_min, curvature, torsion = metric_values(params)
         contract = contraction_report(params)
         records.append(
             {
-                "entropy_sum": float(ents.sum()),
-                "entropy_std": float(ents.std()),
+                "entropy_sum": float(ents.sum().item()),
+                "entropy_std": float(torch.std(ents, unbiased=False).item()),
                 "max_bond": int(mps.max_bond()),
                 "density_entropy": entropy(rho),
                 "metric_min": metric_min,
@@ -210,8 +207,8 @@ def run_class(name: str, seed: int, *, frozen: bool = False, collapsed: bool = F
     return records
 
 
-def signature(records: list[dict[str, Any]]) -> np.ndarray:
-    arr = np.array(
+def signature(records: list[dict[str, Any]]) -> torch.Tensor:
+    arr = torch.tensor(
         [
             [
                 r["entropy_sum"],
@@ -227,17 +224,17 @@ def signature(records: list[dict[str, Any]]) -> np.ndarray:
             ]
             for r in records
         ],
-        dtype=float,
+        dtype=FLOAT_DTYPE,
     )
-    return np.r_[arr.mean(axis=0), arr.std(axis=0), arr[-1]]
+    return torch.cat([torch.mean(arr, dim=0), torch.std(arr, dim=0, unbiased=False), arr[-1]])
 
 
-def pairwise_min_distance(vectors: dict[str, np.ndarray]) -> float:
+def pairwise_min_distance(vectors: dict[str, torch.Tensor]) -> float:
     vals = []
     keys = sorted(vectors)
     for i, a in enumerate(keys):
         for b in keys[i + 1 :]:
-            vals.append(float(np.linalg.norm(vectors[a] - vectors[b])))
+            vals.append(float(torch.linalg.vector_norm(vectors[a] - vectors[b]).item()))
     return min(vals) if vals else 0.0
 
 
@@ -247,13 +244,13 @@ def coupled_class_report() -> dict[str, Any]:
         vectors = {name: signature(run_class(name, seed)) for name in TOPOLOGY_CLASSES}
         per_seed.append(pairwise_min_distance(vectors))
     centroid_vectors = {
-        name: np.stack([signature(run_class(name, seed)) for seed in range(6)]).mean(axis=0)
+        name: torch.mean(torch.stack([signature(run_class(name, seed)) for seed in range(6)]), dim=0)
         for name in TOPOLOGY_CLASSES
     }
     return {
         "min_same_seed_pair_distance": float(min(per_seed)),
         "min_centroid_distance": pairwise_min_distance(centroid_vectors),
-        "centroid_signature_head": {k: np.round(v[:6], 6).tolist() for k, v in centroid_vectors.items()},
+        "centroid_signature_head": {k: [round(float(x), 6) for x in v[:6].tolist()] for k, v in centroid_vectors.items()},
         "pass": min(per_seed) > 0.45 and pairwise_min_distance(centroid_vectors) > 0.55,
     }
 
@@ -263,7 +260,7 @@ def graveyard_report() -> dict[str, Any]:
     frozen = {name: signature(run_class(name, 2, frozen=True)) for name in TOPOLOGY_CLASSES}
     collapsed = {name: signature(run_class(name, 2, collapsed=True)) for name in TOPOLOGY_CLASSES}
     dynamic_gap = pairwise_min_distance(dynamic)
-    frozen_shift = min(float(np.linalg.norm(dynamic[k] - frozen[k])) for k in TOPOLOGY_CLASSES)
+    frozen_shift = min(float(torch.linalg.vector_norm(dynamic[k] - frozen[k]).item()) for k in TOPOLOGY_CLASSES)
     collapsed_gap = pairwise_min_distance(collapsed)
     return {
         "frozen_entropy_deformation_changes_trajectory": {"shift": frozen_shift, "pass": frozen_shift > 0.12},

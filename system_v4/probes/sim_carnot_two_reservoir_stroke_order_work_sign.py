@@ -81,6 +81,11 @@ import xgi
 from clifford import Cl
 
 classification = "classical_baseline"
+divergence_log = [
+    "classical thermodynamic calibration only; compares scalar two-reservoir "
+    "stroke-order work signs and orientation controls without promoting a "
+    "nonclassical engine, Axis0, bridge, GStack, QIT, or target-system claim",
+]
 
 # Physical setup
 T_H = 600.0   # hot reservoir temperature (K)
@@ -461,7 +466,8 @@ if __name__ == "__main__":
 
     results = {
         "name": NAME,
-        "classification": "classical_baseline",
+        "classification": classification,
+        "divergence_log": divergence_log,
         "claim": (
             "A Carnot-style two-reservoir four-stroke cycle has opposite work signs under "
             "forward versus reversed stroke order. This is a classical calibration of "

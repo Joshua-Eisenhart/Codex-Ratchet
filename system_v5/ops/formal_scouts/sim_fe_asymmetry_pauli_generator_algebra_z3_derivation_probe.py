@@ -42,7 +42,7 @@ GRAVEYARDS:
 
 classification: formal_scout
 promotion_allowed: false
-claim_ceiling: Formal scout only — proves 3:1 Fe asymmetry follows from Pauli
+claim_ceiling: Formal scout only — derives, within this finite fixture, that 3:1 Fe asymmetry follows from Pauli
   generator algebra via z3 SAT/UNSAT, independent of declared table. Closes the
   Zhuangzi-open reading from the z3 admissibility scout. Does not admit physics,
   personality, psychology, engine-identity, axis, or manifold claims.
@@ -63,8 +63,8 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
 import sympy as sp
+import torch
 from z3 import (
     And,
     Not,
@@ -84,7 +84,7 @@ NAME = "fe_asymmetry_pauli_generator_algebra_z3_derivation_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
-    "Formal scout only: proves 3:1 Fe asymmetry follows from Pauli generator algebra "
+    "Formal scout only: derives within this finite z3/SymPy/Torch fixture that 3:1 Fe asymmetry follows from Pauli generator algebra "
     "via z3 SAT/UNSAT, independent of declared table. Closes the Zhuangzi-open reading "
     "from the z3 admissibility scout. Does not admit physics, personality, psychology, "
     "engine-identity, axis, or manifold claims. promotion_allowed: false."
@@ -96,7 +96,7 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": (
             "load-bearing: SAT/UNSAT engine — encodes Pauli commutation constraints as "
-            "Real-valued matrix equations; proves canonical assignment SAT, symmetric-swap "
+            "Real-valued matrix equations; checks canonical assignment SAT, symmetric-swap "
             "2:2 SAT, all-identical UNSAT, σ_y-absent UNSAT; all proof verdicts from z3"
         ),
     },
@@ -109,12 +109,12 @@ TOOL_MANIFEST = {
             "z3 encoding mirrors; cross-validates the z3 Real constraint formulation"
         ),
     },
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
         "reason": (
             "load-bearing: numeric validation of Pauli matrix constraints (commutators, "
-            "trace conditions, σ_a²=I) with complex128 arithmetic; cross-checks "
+            "trace conditions, σ_a²=I) with torch complex128 arithmetic; cross-checks "
             "that the z3-encoded constraint values match the analytic matrix entries"
         ),
     },
@@ -122,7 +122,7 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {
     "z3": "load_bearing",
     "sympy": "load_bearing",
-    "numpy": "load_bearing",
+    "pytorch": "load_bearing",
 }
 
 # ── Generator index encoding ──────────────────────────────────────────────────
@@ -135,13 +135,13 @@ GEN_NAMES = {GEN_X: "σ_x", GEN_Y: "σ_y", GEN_Z: "σ_z"}
 # Canonical operator→generator assignment from reference sims
 CANONICAL_ASSIGNMENT = {"Ti": GEN_Z, "Te": GEN_X, "Fi": GEN_X, "Fe": GEN_Y}
 
-# ── Numpy Paulis for numeric cross-validation ─────────────────────────────────
-DTYPE = np.complex128
-SX_np = np.array([[0, 1], [1, 0]], dtype=DTYPE)
-SY_np = np.array([[0, -1j], [1j, 0]], dtype=DTYPE)
-SZ_np = np.array([[1, 0], [0, -1]], dtype=DTYPE)
-I2_np = np.eye(2, dtype=DTYPE)
-PAULI = {GEN_X: SX_np, GEN_Y: SY_np, GEN_Z: SZ_np}
+# ── Torch Paulis for numeric cross-validation ─────────────────────────────────
+DTYPE = torch.complex128
+SX_T = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
+SY_T = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
+SZ_T = torch.tensor([[1, 0], [0, -1]], dtype=DTYPE)
+I2_T = torch.eye(2, dtype=DTYPE)
+PAULI = {GEN_X: SX_T, GEN_Y: SY_T, GEN_Z: SZ_T}
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -675,7 +675,7 @@ def test_p5_no_all_identical_assignment_z3_unsat() -> dict[str, Any]:
         "is_unsat": is_unsat,
         "query": "all_same_generator AND exactly_one_sigma_y",
         "interpretation": (
-            "UNSAT proves: it is impossible to have all 4 operators mapped to the "
+            "UNSAT in this fixture shows: it is impossible to have all 4 operators mapped to the "
             "same generator while also having the 3:1 σ_y asymmetry. "
             "The 3:1 asymmetry REQUIRES generator diversity — specifically that "
             "exactly one operator is assigned σ_y while the others are not."
@@ -698,7 +698,7 @@ def test_p6_sigma_y_swap_falsifier_z3_unsat() -> dict[str, Any]:
     Ask z3: under this swapped assignment, is there an operator with σ_y?
     Expected: UNSAT (no σ_y in the assignment → 3:1 structure breaks).
 
-    This proves: the 3:1 asymmetry REQUIRES σ_y to be assigned to exactly one
+    In this fixture this shows: the 3:1 asymmetry REQUIRES σ_y to be assigned to exactly one
     operator. Without σ_y, no operator has coupling_class = -1, and the 3:1
     structure cannot hold. σ_y is the algebraic SOURCE, not the Fe label.
     """
@@ -764,7 +764,7 @@ def test_p6_sigma_y_swap_falsifier_z3_unsat() -> dict[str, Any]:
             "UNSAT on swapped assignment + 3:1 predicate: "
             "when Fe is assigned σ_z (removing σ_y from all operators), "
             "z3 cannot find any operator with σ_y, so the 3:1 asymmetry BREAKS. "
-            "This proves: σ_y must be present in the assignment for 3:1 to hold. "
+            "This fixture shows: σ_y must be present in the assignment for 3:1 to hold. "
             "The asymmetry is carried by the σ_y generator, not by the Fe label."
         ),
         "pass": is_unsat and swapped_itself_is_sat,
@@ -971,30 +971,29 @@ def graveyard_g3_removing_anticommutation_breaks_proof() -> dict[str, Any]:
     # SPECIFIC numerical values of the Pauli commutators.
     # Without these pinned values, the coupling-sign distinction collapses.
 
-    # Numeric verification: using complex128 numpy, compute commutator values
+    # Numeric verification: using torch complex128, compute commutator values
     # for Pauli vs hypothetical "free generators" (e.g., arbitrary rotation)
-    from scipy.linalg import expm as scipy_expm
 
     # Standard Pauli commutators
     def comm(A, B):
         return A @ B - B @ A
 
-    comm_zx = comm(SZ_np, SX_np)
-    comm_zy = comm(SZ_np, SY_np)
-    comm_zz = comm(SZ_np, SZ_np)
+    comm_zx = comm(SZ_T, SX_T)
+    comm_zy = comm(SZ_T, SY_T)
+    comm_zz = comm(SZ_T, SZ_T)
 
     # Coupling sign: imaginary off-diagonal entry
-    def coupling_sign_np(C):
-        v = C[0, 1]
+    def coupling_sign_torch(C):
+        v = complex(C[0, 1].item())
         if abs(v.imag) > abs(v.real):
             return +1 if v.imag > 0 else -1
         if abs(v.real) > 1e-10:
             return +1 if v.real > 0 else -1
         return 0
 
-    cc_zx_np = coupling_sign_np(comm_zx)
-    cc_zy_np = coupling_sign_np(comm_zy)
-    cc_zz_np = coupling_sign_np(comm_zz)
+    cc_zx_np = coupling_sign_torch(comm_zx)
+    cc_zy_np = coupling_sign_torch(comm_zy)
+    cc_zz_np = coupling_sign_torch(comm_zz)
 
     # Now: hypothetical "free generator" — a traceless matrix with arbitrary
     # off-diagonal values (not constrained to be Pauli).
@@ -1007,7 +1006,7 @@ def graveyard_g3_removing_anticommutation_breaks_proof() -> dict[str, Any]:
     # So any generator with G_free[0,1] having negative imaginary part has cc = -1
     # → multiple generators can have cc = -1 if G_free values are unconstrained
 
-    # This proves: the UNIQUENESS of σ_y as the only negative-coupling generator
+    # This checks fixture-local uniqueness of σ_y as the only negative-coupling generator
     # among {σ_x, σ_y, σ_z} depends on σ_y being the specific Pauli choice where
     # the off-diagonal is purely imaginary with negative sign.
 
@@ -1028,9 +1027,9 @@ def graveyard_g3_removing_anticommutation_breaks_proof() -> dict[str, Any]:
 
     # Without anticommutation: a hypothetical G with [0,1] entry = -2 (real negative)
     # would also have cc = -1, showing the uniqueness BREAKS without pinned values
-    G_free_neg_real = np.array([[0, -2], [-2, 0]], dtype=DTYPE)  # traceless, Hermitian
-    comm_z_free = comm(SZ_np, G_free_neg_real)
-    cc_free = coupling_sign_np(comm_z_free)
+    G_free_neg_real = torch.tensor([[0, -2], [-2, 0]], dtype=DTYPE)  # traceless, Hermitian
+    comm_z_free = comm(SZ_T, G_free_neg_real)
+    cc_free = coupling_sign_torch(comm_z_free)
 
     uniqueness_breaks_without_anticommutation = cc_free == -1  # a second generator with cc=-1
 
@@ -1040,8 +1039,8 @@ def graveyard_g3_removing_anticommutation_breaks_proof() -> dict[str, Any]:
         "sigma_y_is_unique_negative_coupling": only_sigma_y_negative,
         "free_generator_neg_coupling_class": cc_free,
         "free_generator_also_negative": uniqueness_breaks_without_anticommutation,
-        "sigma_y_value_01": str(SY_np[0, 1]),  # -1j
-        "free_gen_value_01": str(G_free_neg_real[0, 1]),  # -2
+        "sigma_y_value_01": str(complex(SY_T[0, 1].item())),  # -1j
+        "free_gen_value_01": str(complex(G_free_neg_real[0, 1].item())),  # -2
         "interpretation": (
             "Pauli coupling classes {σ_x:+1, σ_y:-1, σ_z:0} are all distinct — "
             "uniqueness holds within the Pauli algebra. "
@@ -1055,46 +1054,47 @@ def graveyard_g3_removing_anticommutation_breaks_proof() -> dict[str, Any]:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# NUMPY CROSS-VALIDATION
+# TORCH CROSS-VALIDATION
 # ══════════════════════════════════════════════════════════════════════════════
 
-def numpy_cross_validation() -> dict[str, Any]:
+def torch_cross_validation() -> dict[str, Any]:
     """
     Numeric validation of the Pauli matrix constraints used in the z3 encoding.
-    Verifies commutator values, trace conditions, σ_a²=I with complex128.
+    Verifies commutator values, trace conditions, σ_a²=I with torch complex128.
     """
     def comm(A, B):
         return A @ B - B @ A
 
     def check_close(A, B, name):
-        diff = np.max(np.abs(A - B))
+        diff = torch.max(torch.abs(A - B)).item()
         return {"name": name, "max_diff": float(diff), "pass": diff < 1e-12}
 
     checks = []
 
     # σ_a² = I
-    for name, M in [("σ_x²=I", SX_np @ SX_np), ("σ_y²=I", SY_np @ SY_np), ("σ_z²=I", SZ_np @ SZ_np)]:
-        checks.append(check_close(M, I2_np, name))
+    for name, M in [("σ_x²=I", SX_T @ SX_T), ("σ_y²=I", SY_T @ SY_T), ("σ_z²=I", SZ_T @ SZ_T)]:
+        checks.append(check_close(M, I2_T, name))
 
     # Tr(σ_a) = 0
-    for name, M in [("Tr(σ_x)=0", SX_np), ("Tr(σ_y)=0", SY_np), ("Tr(σ_z)=0", SZ_np)]:
-        checks.append({"name": name, "value": float(np.trace(M).real), "pass": abs(np.trace(M)) < 1e-12})
+    for name, M in [("Tr(σ_x)=0", SX_T), ("Tr(σ_y)=0", SY_T), ("Tr(σ_z)=0", SZ_T)]:
+        trace_value = float(torch.trace(M).real.item())
+        checks.append({"name": name, "value": trace_value, "pass": abs(trace_value) < 1e-12})
 
     # Tr(σ_a σ_b) = 2δ_ab
-    for a_name, A in [("x", SX_np), ("y", SY_np), ("z", SZ_np)]:
-        for b_name, B in [("x", SX_np), ("y", SY_np), ("z", SZ_np)]:
-            tr = np.trace(A @ B).real
+    for a_name, A in [("x", SX_T), ("y", SY_T), ("z", SZ_T)]:
+        for b_name, B in [("x", SX_T), ("y", SY_T), ("z", SZ_T)]:
+            tr = float(torch.trace(A @ B).real.item())
             expected = 2.0 if a_name == b_name else 0.0
             checks.append({"name": f"Tr(σ_{a_name}σ_{b_name})={expected}",
-                            "value": float(tr), "pass": abs(tr - expected) < 1e-12})
+                            "value": tr, "pass": abs(tr - expected) < 1e-12})
 
     # Commutators
-    C_zx = comm(SZ_np, SX_np)
-    C_zy = comm(SZ_np, SY_np)
-    C_xy = comm(SX_np, SY_np)
-    expected_zx = np.array([[0, 2], [-2, 0]], dtype=DTYPE)
-    expected_zy = np.array([[0, -2j], [-2j, 0]], dtype=DTYPE)
-    expected_xy = np.array([[2j, 0], [0, -2j]], dtype=DTYPE)
+    C_zx = comm(SZ_T, SX_T)
+    C_zy = comm(SZ_T, SY_T)
+    C_xy = comm(SX_T, SY_T)
+    expected_zx = torch.tensor([[0, 2], [-2, 0]], dtype=DTYPE)
+    expected_zy = torch.tensor([[0, -2j], [-2j, 0]], dtype=DTYPE)
+    expected_xy = torch.tensor([[2j, 0], [0, -2j]], dtype=DTYPE)
     checks.append(check_close(C_zx, expected_zx, "[σ_z,σ_x]=2iσ_y"))
     checks.append(check_close(C_zy, expected_zy, "[σ_z,σ_y]=-2iσ_x"))
     checks.append(check_close(C_xy, expected_xy, "[σ_x,σ_y]=2iσ_z"))
@@ -1116,14 +1116,8 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer,)):
-        return int(value)
-    if isinstance(value, (np.floating,)):
-        return float(value)
+    if isinstance(value, torch.Tensor):
+        return as_jsonable(value.detach().cpu().tolist())
     if isinstance(value, complex):
         return {"real": value.real, "imag": value.imag}
     if isinstance(value, bool):
@@ -1167,8 +1161,8 @@ def main() -> int:
     print("Graveyard G3: Removing anticommutation breaks proof...")
     g3 = graveyard_g3_removing_anticommutation_breaks_proof()
 
-    print("Numpy cross-validation...")
-    nv = numpy_cross_validation()
+    print("Torch cross-validation...")
+    nv = torch_cross_validation()
 
     positive = {
         "z3_pauli_commutator_constraints_encoded_correctly": p1,
@@ -1184,7 +1178,7 @@ def main() -> int:
         "removing_pauli_anticommutation_breaks_uniqueness_proof": g3,
     }
     boundary = {
-        "numpy_pauli_constraint_numeric_validation": nv,
+        "torch_pauli_constraint_numeric_validation": nv,
     }
 
     all_positive = all(v.get("pass") for v in positive.values())
@@ -1217,8 +1211,8 @@ def main() -> int:
         "zhuangzi_closure_verdict": (
             "CLOSED: The 3:1 Fe asymmetry is derivable from Pauli generator algebra alone, "
             "independent of the declared spec table. "
-            "z3 UNSAT on [all_same_generator AND 3:1] proves generator diversity is necessary. "
-            "z3 UNSAT on [Fe=σ_z assignment AND exactly_one_σ_y] proves σ_y must be "
+            "z3 UNSAT on [all_same_generator AND 3:1] shows generator diversity is necessary in this fixture. "
+            "z3 UNSAT on [Fe=σ_z assignment AND exactly_one_σ_y] shows σ_y must be "
             "assigned to exactly one operator for the 3:1 structure to hold. "
             "The asymmetry is carried by the σ_y generator (coupling_class = -1 under "
             "σ_z-commutation), not by the Fe label. Sympy and numpy cross-validate "
@@ -1231,6 +1225,16 @@ def main() -> int:
         "positive": positive,
         "graveyard_companions": graveyard,
         "boundary": boundary,
+        "nearby_variants": {
+            "total": len(graveyard),
+            "passed": sum(1 for row in graveyard.values() if row.get("pass")),
+            "variants": sorted(graveyard),
+        },
+        "why_not_v4_probes": [
+            "v5 formal scout deriving the Fe asymmetry from Pauli generator algebra and z3 checks.",
+            "Does not promote a canonical axis, bridge, engine, psychology, or target-system claim.",
+            "The algebraic closure is local to this finite generator fixture.",
+        ],
         "all_pass": all_pass,
         "pass_count": n_pass,
         "total_count": n_total,

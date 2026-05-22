@@ -40,6 +40,9 @@ def axis0_guard_signal(guard_receipt: dict[str, Any], *, feature_prefix: str = "
     classified = set(admitted) | set(blocked)
     unclassified = [name for name in AXIS0_CANDIDATE_NAMES if name not in classified]
     candidate_status = outputs.get("candidate_status", {})
+    degeneracy_blocker = outputs.get("control_family_degeneracy_blocker")
+    if not degeneracy_blocker:
+        degeneracy_blocker = outputs.get("scalar_weighted_drive_blocker", {})
     return {
         "pass": bool(
             guard_receipt.get("all_pass") is True
@@ -56,6 +59,7 @@ def axis0_guard_signal(guard_receipt: dict[str, Any], *, feature_prefix: str = "
         "adapter_active_axis0_feature_names": [f"{feature_prefix}{name}" for name in admitted],
         "blocked_axis0_feature_names_excluded": [f"{feature_prefix}{name}" for name in blocked],
         "scalar_weighted_drive_blocker": outputs.get("scalar_weighted_drive_blocker", {}),
+        "control_family_degeneracy_blocker": degeneracy_blocker,
         "control_family_degeneracy_blockers": correlation_report.get("control_family_degeneracy_blockers", {}),
         "guard_claim_ceiling": guard_receipt.get("claim_ceiling", ""),
     }
@@ -98,5 +102,6 @@ def filter_subdense_axis0_signature(axis0: dict[str, Any], guard: dict[str, Any]
     filtered["candidate_vectors"] = vectors
     filtered["blocked_candidate_names_excluded"] = list(guard.get("blocked_candidate_names", []))
     filtered["scalar_weighted_drive_blocker"] = guard.get("scalar_weighted_drive_blocker", {})
+    filtered["control_family_degeneracy_blocker"] = guard.get("control_family_degeneracy_blocker") or guard.get("scalar_weighted_drive_blocker", {})
     filtered["control_family_degeneracy_blockers"] = guard.get("control_family_degeneracy_blockers", {})
     return filtered

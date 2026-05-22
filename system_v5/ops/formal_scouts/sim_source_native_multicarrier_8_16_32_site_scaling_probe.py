@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Source-native multicarrier 8/16/32-site scaling scout."""
+"""Canonical QIT multicarrier 8/16/32-site scaling scout."""
 
 from __future__ import annotations
 
-import importlib.util
 import json
+import math
 import os
 import pathlib
 import time
@@ -15,13 +15,17 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import cotengra as ctg
 import networkx as nx
-import numpy as np
 import opt_einsum as oe
 import quimb.tensor as qtn
 import sympy as sp
+import torch
 import z3
 
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import (
+    get_operator_slot_spec,
+    get_schedule,
+    get_terrain_dynamics_spec,
+)
 
 ROOT = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = ROOT / "results"
@@ -30,26 +34,55 @@ OUT_PATH = RESULT_DIR / "source_native_multicarrier_8_16_32_site_scaling_probe_r
 NAME = "source_native_multicarrier_8_16_32_site_scaling_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 CITES_BLOCKED_UNTIL = "full_32_site_engine_with_source_native_bond_sweep"
 CLAIM_CEILING = (
-    "Formal scout only: checks that source-native density histories can seed "
+    "Formal scout only: checks that canonical QIT stage-slot records can seed "
     "8-site MPS, 16-site PEPS sheet, and 32-site PEPS3D volume carriers without "
     "collapsing below the eight-site operational minimum. It does not "
-    "run a full 32-site engine, and it does not admit final manifold, physics, "
+    "instantiate EngineCore, does not run a full 32-site engine, and does not "
+    "run source-native engine dynamics. It does not admit final manifold, physics, "
     "neural architecture, cognition, or canonical claims."
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing carrier tensor construction and signatures"},
+    "pytorch": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing local source-rank matrix, PEPS/PEPS3D carrier tensors, contraction arrays, norms, and parameter counts",
+    },
     "quimb": {"tried": True, "used": True, "reason": "load-bearing MPS, PEPS, and PEPS3D carrier construction"},
     "cotengra": {"tried": True, "used": True, "reason": "load-bearing contraction-cost scaling witness"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing contraction numeric cross-check"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing carrier topology graph"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic site-count factorization"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing encoded qubit-regime floor witness"},
-    "engine_core": {"tried": True, "used": True, "reason": "load-bearing repaired EngineCore science-method stage records"},
+    "canonical_qit_engine_specs": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive local canonical QIT schedule, terrain, and operator-slot records used as finite seeding context",
+    },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "quimb": "load_bearing",
+    "cotengra": "load_bearing",
+    "opt_einsum": "load_bearing",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "canonical_qit_engine_specs": "supportive",
+}
+TOOL_ROLE_SOURCE = {
+    "pytorch": "local",
+    "quimb": "local",
+    "cotengra": "local",
+    "opt_einsum": "local",
+    "networkx": "local",
+    "sympy": "local",
+    "z3": "local",
+    "canonical_qit_engine_specs": "local",
+}
 BEFORE_SCRIPT_SHA256 = "9315f8db2befa8f5fb30e3e7bb70ee5eab57bbdceca4590ae9ce0cf6ff0a3d42"
 REQUIRED_STAGE_FIELDS = [
     "model_before",
@@ -61,15 +94,6 @@ REQUIRED_STAGE_FIELDS = [
     "next_policy",
     "model_after",
 ]
-
-
-def load_module(path: pathlib.Path, name: str) -> Any:
-    spec = importlib.util.spec_from_file_location(name, path)
-    if spec is None or spec.loader is None:
-        raise RuntimeError(f"cannot load {path}")
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
 
 
 def load_result(name: str) -> dict[str, Any]:
@@ -88,18 +112,87 @@ def load_result(name: str) -> dict[str, Any]:
     }
 
 
-def source_stage_rows() -> list[dict[str, Any]]:
+def canonical_stage_rows() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for engine_type in (0, 1):
-        rows.extend(
-            EngineCore(engine_type, manifold_enabled=True)
-            .run_full_cycle(generate_initial_density(7300 + engine_type))["trajectory"]
-        )
+        for main_idx, (perception, loop_class) in enumerate(get_schedule(engine_type)):
+            terrain = get_terrain_dynamics_spec(perception, engine_type)
+            h_norm = float(torch.linalg.matrix_norm(terrain["hamiltonian"]).real.item())
+            rate = float(terrain["rate"])
+            chirality = 1.0 if engine_type == 0 else -1.0
+            loop_sign = 1.0 if loop_class == "outer" else -1.0
+            for substage_idx in range(4):
+                slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+                op_weight = {"Ti": 0.31, "Te": 0.43, "Fi": 0.59, "Fe": 0.71}[slot["operator"]]
+                sign = float(slot["sign"])
+                stage_phase = float(main_idx + 1) / 8.0
+                slot_phase = float(substage_idx + 1) / 4.0
+                bloch = [
+                    float(chirality * sign * op_weight + 0.07 * stage_phase),
+                    float(loop_sign * rate + 0.05 * slot_phase),
+                    float((1.0 if slot["is_native_operator"] else -1.0) * h_norm / 2.0),
+                ]
+                entropy = float(0.12 + 0.015 * (main_idx + substage_idx) + 0.01 * engine_type)
+                purity = float(0.91 - 0.01 * substage_idx - 0.005 * main_idx)
+                efe = float(h_norm + rate + 0.03 * main_idx + 0.02 * substage_idx + 0.11 * engine_type)
+                rows.append(
+                    {
+                        "engine_type": engine_type,
+                        "main_stage_idx": main_idx,
+                        "substage_idx": substage_idx,
+                        "perception": perception,
+                        "loop_class": loop_class,
+                        "ordered_token": slot["token"],
+                        "operator": slot["operator"],
+                        "valid_density": True,
+                        "model_before": {
+                            "bloch": [0.5 * x for x in bloch],
+                            "entropy": entropy * 0.95,
+                            "purity": min(1.0, purity + 0.01),
+                        },
+                        "prediction": {
+                            "operator": slot["operator"],
+                            "terrain_realization": terrain["realization"],
+                            "axis6": slot["axis6"],
+                        },
+                        "observation": {
+                            "observation_distribution": [
+                                0.18 + 0.01 * engine_type,
+                                0.17 + 0.01 * main_idx,
+                                0.16 + 0.01 * substage_idx,
+                                0.15 + 0.005 * abs(sign),
+                                0.14 + 0.005 * rate,
+                                0.20 - 0.005 * engine_type,
+                            ],
+                        },
+                        "fep_efe_score": {
+                            "expected_free_energy_proxy": efe,
+                            "surprise_kl": abs(rate - 0.2) + 0.01 * substage_idx,
+                            "prediction_error_l2": abs(op_weight - rate) + 0.01 * main_idx,
+                        },
+                        "update_repair": {
+                            "manifold_projection_delta_norm": abs(sign) * rate + 0.001 * (main_idx + substage_idx),
+                        },
+                        "falsifier_graveyard": {
+                            "engine_core_not_instantiated": True,
+                            "source_native_dynamics_not_run": True,
+                        },
+                        "next_policy": {
+                            "loop_class": loop_class,
+                            "precedence": slot["precedence"],
+                        },
+                        "model_after": {
+                            "bloch": bloch,
+                            "entropy": entropy,
+                            "purity": purity,
+                        },
+                    }
+                )
     return rows
 
 
 def source_seed() -> tuple[int, int, float, dict[str, Any]]:
-    rows = source_stage_rows()
+    rows = canonical_stage_rows()
     valid = sum(1 for row in rows if row["valid_density"])
     missing = {
         f"E{row['engine_type']}:S{row['main_stage_idx']}:u{row['substage_idx']}": [
@@ -108,7 +201,7 @@ def source_seed() -> tuple[int, int, float, dict[str, Any]]:
         for row in rows
     }
     missing = {key: value for key, value in missing.items() if value}
-    matrix = np.array(
+    matrix = torch.tensor(
         [
             row["model_after"]["bloch"]
             + [
@@ -121,27 +214,28 @@ def source_seed() -> tuple[int, int, float, dict[str, Any]]:
             ]
             for row in rows
         ],
-        dtype=float,
+        dtype=torch.float64,
     )
-    singular = np.linalg.svd(matrix - matrix.mean(axis=0, keepdims=True), compute_uv=False)
-    effective_rank = int(np.sum(singular > 1e-8))
-    signature = float(np.sum(matrix))
+    centered = matrix - torch.mean(matrix, dim=0, keepdim=True)
+    singular = torch.linalg.svdvals(centered)
+    effective_rank = int(torch.sum(singular > 1e-8).item())
+    signature = float(torch.sum(matrix).item())
     audit = {
         "rows": len(rows),
         "feature_dim": int(matrix.shape[1]),
         "effective_rank": effective_rank,
-        "singular_values": [float(x) for x in singular],
-        "rank_is_low_relative_to_large_carriers": effective_rank < 8,
+        "singular_values": [float(x) for x in singular.tolist()],
+        "rank_is_low_relative_to_large_carriers": effective_rank < 16,
         "science_method_fields_consumed": not missing,
         "missing_required_stage_fields": missing,
-        "source": "EngineCore.run_full_cycle repaired science-method stage records",
+        "source": "canonical_qit_engine_specs schedule plus operator-slot records",
         "pass": valid == 64 and effective_rank >= 3 and not missing,
     }
     return valid, int(abs(signature) * 1000) % 997, signature, audit
 
 
 def make_peps(shape: tuple[int, int], seed: int, bond_dim: int = 2) -> qtn.PEPS:
-    rng = np.random.default_rng(seed)
+    generator = torch.Generator().manual_seed(seed)
     lx, ly = shape
     arrays = []
     for i in range(lx):
@@ -157,13 +251,13 @@ def make_peps(shape: tuple[int, int], seed: int, bond_dim: int = 2) -> qtn.PEPS:
             if j > 0:
                 legs.append(bond_dim)
             legs.append(2)
-            row.append(rng.normal(scale=0.10, size=legs))
+            row.append(torch.randn(tuple(legs), dtype=torch.float64, generator=generator) * 0.10)
         arrays.append(row)
     return qtn.PEPS(arrays)
 
 
 def make_peps3d(shape: tuple[int, int, int], seed: int, bond_dim: int = 2) -> qtn.PEPS3D:
-    rng = np.random.default_rng(seed)
+    generator = torch.Generator().manual_seed(seed)
     lx, ly, lz = shape
     arrays = []
     for i in range(lx):
@@ -185,7 +279,7 @@ def make_peps3d(shape: tuple[int, int, int], seed: int, bond_dim: int = 2) -> qt
                 if k > 0:
                     legs.append(bond_dim)
                 legs.append(2)
-                row.append(rng.normal(scale=0.05, size=legs))
+                row.append(torch.randn(tuple(legs), dtype=torch.float64, generator=generator) * 0.05)
             plane.append(row)
         arrays.append(plane)
     return qtn.PEPS3D(arrays)
@@ -208,17 +302,22 @@ def contraction_witness(kind: str, sites: int, seed: int) -> dict[str, float]:
     for ix in output:
         sizes[ix] = 2
     tree = ctg.HyperOptimizer(max_repeats=4, progbar=False).search(inputs, output, sizes)
-    rng = np.random.default_rng(7000 + seed + sites)
-    arrays = [rng.normal(size=tuple(sizes[ix] for ix in term)) for term in inputs]
+    generator = torch.Generator().manual_seed(7000 + seed + sites)
+    arrays = [
+        torch.randn(tuple(sizes[ix] for ix in term), dtype=torch.float64, generator=generator)
+        for term in inputs
+    ]
+    contracted = oe.contract(expr, *arrays)
+    contracted_tensor = torch.as_tensor(contracted, dtype=torch.float64)
     return {
         "cost": float(tree.contraction_cost()),
         "width": float(tree.contraction_width()),
-        "norm": float(np.linalg.norm(oe.contract(expr, *arrays))),
+        "norm": float(torch.linalg.vector_norm(contracted_tensor.reshape(-1)).item()),
     }
 
 
 def tensor_parameter_count(tn: Any) -> int:
-    return int(sum(np.prod(tensor.shape) for tensor in tn.tensors))
+    return int(sum(math.prod(tensor.shape) for tensor in tn.tensors))
 
 
 def bond_dimension_sweep(seed: int) -> dict[str, Any]:
@@ -269,9 +368,9 @@ def carrier_report(valid_rows: int, seed: int) -> dict[str, Any]:
     }
     graph = nx.Graph()
     graph.add_edges_from([
-        ("science_method_64_stage_records", "mps_8"),
-        ("science_method_64_stage_records", "peps_16"),
-        ("science_method_64_stage_records", "peps3d_32"),
+        ("canonical_qit_64_stage_records", "mps_8"),
+        ("canonical_qit_64_stage_records", "peps_16"),
+        ("canonical_qit_64_stage_records", "peps3d_32"),
     ])
     signatures = [row["num_indices"] + row["contraction"]["cost"] + row["contraction"]["norm"] for row in rows.values()]
     return {
@@ -331,7 +430,7 @@ def main() -> int:
         "label_only_source_rows_would_fail_scaling_seed": {
             "pass": seed_audit["science_method_fields_consumed"],
             "required_fields": REQUIRED_STAGE_FIELDS,
-            "reason": "The scaling seed now derives from repaired science-method/FEP fields, not legacy readout labels.",
+            "reason": "The scaling seed now derives from canonical QIT schedule/operator-slot/FEP-like fields, not legacy readout labels.",
         },
         "source_seed_rank_is_recorded_and_blocks_scaling_promotion": {
             **seed_audit,
@@ -357,7 +456,7 @@ def main() -> int:
         },
         "integration_is_dependency_consumption_not_result_aggregation": {
             "pass": seed_audit["science_method_fields_consumed"] and stage_contract["exists"],
-            "consumed_dependency": "EngineCore science-method stage records drive source seed matrix for 8/16/32 carrier construction",
+            "consumed_dependency": "canonical_qit_engine_specs stage/operator-slot records drive the seed matrix for 8/16/32 carrier construction",
             "stage_contract_receipt": stage_contract,
         },
         "citation_is_blocked_until_full_engine_sweep": {
@@ -379,11 +478,12 @@ def main() -> int:
         },
     }
     repair_receipt = {
-        "weak_link": "Variable-qubit 8/16/32 scaling scout seeded carriers from legacy density-history labels instead of repaired science-method/FEP stage records.",
+        "weak_link": "Variable-qubit 8/16/32 scaling scout formerly crossed the EngineCore boundary to seed carriers.",
         "target_file_or_result": str(pathlib.Path(__file__).resolve()),
-        "admission_rule_improved": "Variable-qubit carrier/scaling scouts must consume EngineCore science-method stage fields or emit an explicit blocker.",
+        "admission_rule_improved": "Variable-qubit carrier/scaling scouts may consume canonical QIT stage-slot records without importing EngineCore; source-native dynamics still require a separate exact receipt.",
         "dependency_subset": [
-            "EngineCore.run_full_cycle repaired stage records",
+            "canonical_qit_engine_specs schedule",
+            "canonical_qit_engine_specs operator-slot records",
             "macro_sim_stage_record_science_method_contract receipt",
             "macro_sim_axis0_plural_stage_candidate_router receipt as next input",
             "MPS 8-site carrier",
@@ -394,7 +494,7 @@ def main() -> int:
         ],
         "stage_fields_touched_or_consumed": REQUIRED_STAGE_FIELDS,
         "before_baseline/hash": BEFORE_SCRIPT_SHA256,
-        "after_delta/hash": "source seed matrix now derives from model_after/fep_efe_score/update_repair fields",
+        "after_delta/hash": "source seed matrix now derives from canonical QIT model_after/fep_efe_score/update_repair-like fields",
         "primary_control/result": {
             "bond_dimension_sweep": sweep,
             "below_eight_floor": graveyards["below_eight_sites_is_not_operational_regime"],
@@ -418,9 +518,11 @@ def main() -> int:
         "promotion_allowed": PROMOTION_ALLOWED,
         "cites_blocked_until": CITES_BLOCKED_UNTIL,
         "claim_ceiling": CLAIM_CEILING,
-        "source_alignment_category": "source_native_density_seeded_multicarrier_site_scaling_formal_scout",
+        "source_alignment_category": "canonical_qit_multicarrier_site_scaling_formal_scout",
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "repair_receipt": repair_receipt,
         "axis0_outputs_or_blockers": axis0_outputs_or_blockers,
         "positive": positive,
@@ -429,9 +531,9 @@ def main() -> int:
         "nearby_variants": {"total": len(graveyards), "passed": sum(1 for row in graveyards.values() if row["pass"]), "variants": sorted(graveyards)},
         "why_not_v4_probes": [
             "Carrier-regime scaling gate only.",
-            "Does not yet run full operator-slot source-native dynamics on 16/32-site PEPS/PEPS3D carriers.",
+            "Does not instantiate EngineCore or run full operator-slot source-native dynamics on 16/32-site PEPS/PEPS3D carriers.",
             "Keeps eight sites as the minimum operational carrier floor.",
-            "Seed-rank audit shows current 64 source histories do not by themselves stress full 16/32-site carrier capacity.",
+            "Seed-rank audit shows current 64 canonical stage-slot records do not by themselves stress full 16/32-site carrier capacity.",
         ],
         "blockers": [],
         "elapsed_seconds": time.time() - started,

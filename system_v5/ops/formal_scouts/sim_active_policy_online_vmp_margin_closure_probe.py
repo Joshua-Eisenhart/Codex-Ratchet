@@ -24,7 +24,7 @@ import pathlib
 import time
 from typing import Any
 
-import numpy as np
+import torch
 
 import sim_source_native_fep_online_vmp_policy_update_probe as vmp
 import sim_source_native_fep_pomdp_policy_tree_probe as pomdp
@@ -47,7 +47,7 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
+    "python_stdlib": {
         "tried": True,
         "used": True,
         "reason": "load-bearing policy-row sorting, margins, and finite online-VMP control comparisons",
@@ -69,10 +69,10 @@ TOOL_MANIFEST = {
     },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
-    "json": "load_bearing",
-    "hashlib": "load_bearing",
-    "engine_core": "load_bearing",
+    "python_stdlib": "supportive",
+    "json": "supportive",
+    "hashlib": "supportive",
+    "engine_core": "supportive",
 }
 
 MARGIN_FLOOR = 0.01
@@ -105,12 +105,16 @@ def as_jsonable(value: Any) -> Any:
         return [as_jsonable(val) for val in value]
     if isinstance(value, pathlib.Path):
         return str(value)
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().tolist()
+    array_module = getattr(vmp, "np", None) or getattr(pomdp, "np", None)
+    if array_module is not None:
+        if isinstance(value, array_module.ndarray):
+            return value.tolist()
+        if isinstance(value, (array_module.bool_,)):
+            return bool(value)
+        if isinstance(value, (array_module.integer, array_module.floating)):
+            return value.item()
     return value
 
 

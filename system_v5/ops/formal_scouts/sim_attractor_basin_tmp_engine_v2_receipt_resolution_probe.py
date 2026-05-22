@@ -33,10 +33,10 @@ TOOL_MANIFEST = {
     "hashlib": {"tried": True, "used": True, "reason": "load-bearing receipt hash capture"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "json": "load_bearing",
-    "re": "load_bearing",
-    "pathlib": "load_bearing",
-    "hashlib": "load_bearing",
+    "json": "supportive",
+    "re": "supportive",
+    "pathlib": "supportive",
+    "hashlib": "supportive",
 }
 
 RECEIPT_RE = re.compile(r"(?:Receipt|Results JSON):\s+(/(?:private/)?tmp/engine_v2/[^\s]+?\.json)")

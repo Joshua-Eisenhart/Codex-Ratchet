@@ -27,6 +27,8 @@ import torch
 import torch.nn.functional as F
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "Density matrices as float64 tensors; dephasing, partial trace, entropy, MI all native torch ops; autograd for Axis 0 gradient"},
     "pyg": {"tried": False, "used": False, "reason": "Graph structure not needed for MI primitive"},

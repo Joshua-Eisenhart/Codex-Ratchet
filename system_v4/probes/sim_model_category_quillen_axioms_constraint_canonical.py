@@ -21,6 +21,8 @@ Classification: canonical (constraint-admissibility for model category structure
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

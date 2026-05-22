@@ -20,9 +20,13 @@ PART C — Verdict:
 
 TOOL_MANIFEST:
   pytorch  — load-bearing: all MPS tensors, SVD truncation, evolution unitaries
-  numpy    — load-bearing: SVD backend, weight matrix construction
-  scipy    — load-bearing: scipy.linalg.expm for two-site unitary generation
+  numpy    — reviewed boundary: generator/weight matrix construction
+  scipy    — reviewed boundary: scipy.linalg.expm for two-site unitary generation
   psutil   — supportive: memory profiling in 12-qubit run
+
+NUMPY/SCIPY BOUNDARY: preserved for scale/regime exploration only. These paths
+are blocked from nonclassical-claim promotion by the NumPy quarantine gate until
+ported source-native.
 
 CLASSIFICATION: formal_scout
 PROMOTION_ALLOWED: False

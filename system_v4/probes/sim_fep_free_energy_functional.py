@@ -19,6 +19,10 @@ from __future__ import annotations
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = [
+    "Classical comparator/control surface only; does not promote nonclassical, formal-scout, bridge, axis-level, or canonical proof claims."
+]
+
 
 TOOL_MANIFEST = {
     "sympy": {"tried": False, "used": False, "reason": ""},

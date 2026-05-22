@@ -26,6 +26,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Moment map μ(x) computation from SO(3) action on S²; equivariance check via torch tensor rotations; symplectic 2-form ω and Hamiltonian vector fields"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed for symplectic moment maps"},

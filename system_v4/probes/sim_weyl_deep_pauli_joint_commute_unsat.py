@@ -9,6 +9,8 @@ See system_v5/docs/ENGINE_MATH_REFERENCE.md.
 import json, os
 from z3 import Solver, Reals, And, Or, Not, sat, unsat
 
+classification = "canonical"
+
 SCOPE_NOTE = "z3 exclusion of joint commutation for distinct Pauli axes; ENGINE_MATH_REFERENCE.md"
 
 TOOL_MANIFEST = {

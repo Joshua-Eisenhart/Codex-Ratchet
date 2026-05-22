@@ -12,11 +12,11 @@ from typing import Any
 
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
+os.environ.setdefault("GEOMSTATS_BACKEND", "pytorch")
 
 from clifford import Cl
 import geomstats.backend as gs
 from geomstats.geometry.hypersphere import Hypersphere
-import numpy as np
 import sympy as sp
 import torch
 import z3
@@ -76,13 +76,13 @@ def hopf_projection(psi: torch.Tensor) -> torch.Tensor:
 def hopf_valid(psi: torch.Tensor) -> dict[str, Any]:
     s3 = Hypersphere(dim=3)
     s2 = Hypersphere(dim=2)
-    embedded = np.array([float(torch.real(psi[0])), float(torch.imag(psi[0])), float(torch.real(psi[1])), float(torch.imag(psi[1]))])
+    embedded = torch.stack([torch.real(psi[0]), torch.imag(psi[0]), torch.real(psi[1]), torch.imag(psi[1])]).to(torch.float64)
     base = hopf_projection(psi)
     return {
         "carrier_norm": float(torch.linalg.vector_norm(psi).item()),
         "base_norm": float(torch.linalg.vector_norm(base).item()),
-        "s3_belongs": bool(gs.all(s3.belongs(gs.array(embedded), atol=1e-10))),
-        "s2_belongs": bool(gs.all(s2.belongs(gs.array(base.detach().numpy()), atol=1e-10))),
+        "s3_belongs": bool(gs.all(s3.belongs(embedded, atol=1e-10)).item()),
+        "s2_belongs": bool(gs.all(s2.belongs(base, atol=1e-10)).item()),
         "base": [float(x.item()) for x in base],
     }
 

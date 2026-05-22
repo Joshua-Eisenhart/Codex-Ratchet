@@ -31,13 +31,12 @@ from typing import Any
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 
-import numpy as np
+import torch
 
 _ROOT = pathlib.Path(__file__).resolve().parent
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-from canonical_qit_engine_specs import DTYPE, I2
 from engine_core import (
     EngineCore,
     N_TOTAL_SUBSTAGES_PER_ENGINE,
@@ -48,6 +47,44 @@ from engine_core import (
     _von_neumann_entropy,
     generate_initial_density,
 )
+
+
+# ---------------------------------------------------------------------------
+# Schedule-local tensor adapters
+# ---------------------------------------------------------------------------
+
+TORCH_DTYPE = torch.complex128
+REAL_DTYPE = torch.float64
+
+
+def _as_density_tensor(value: Any) -> torch.Tensor:
+    """Return a 2x2 complex tensor for schedule-local math.
+
+    EngineCore is still the explicit upstream NumPy/SciPy boundary. This file
+    keeps its own composition distances and summaries torch-native, converting
+    to EngineCore's expected array shape only at the call boundary.
+    """
+    return torch.as_tensor(value, dtype=TORCH_DTYPE)
+
+
+def _to_engine_density(value: Any) -> Any:
+    """Adapter for the current EngineCore boundary."""
+    return _as_density_tensor(value).detach().cpu().numpy()
+
+
+def _matrix_distance(a: Any, b: Any) -> float:
+    return float(torch.linalg.matrix_norm(_as_density_tensor(a) - _as_density_tensor(b)).item())
+
+
+def _summary(values: list[float]) -> dict[str, float]:
+    if not values:
+        return {"mean": 0.0, "min": 0.0, "max": 0.0}
+    tensor = torch.as_tensor(values, dtype=REAL_DTYPE)
+    return {
+        "mean": float(tensor.mean().item()),
+        "min": float(tensor.min().item()),
+        "max": float(tensor.max().item()),
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -101,7 +138,7 @@ class Schedule:
 
     def run(
         self,
-        initial_state: np.ndarray,
+        initial_state: Any,
     ) -> dict[str, Any]:
         """
         Run the schedule: apply each engine in compose order, repeat n_iter times.
@@ -112,7 +149,7 @@ class Schedule:
           dict with keys:
             final_state, full_trajectory, schedule_record
         """
-        rho = _normalize_density(initial_state.copy())
+        rho = _normalize_density(_to_engine_density(initial_state))
         full_trajectory: list[dict[str, Any]] = []
         per_iteration_records: list[dict[str, Any]] = []
         engine_order = self._resolve_engine_order()
@@ -122,7 +159,7 @@ class Schedule:
             for eng in engine_order:
                 cycle_result = eng.run_full_cycle(rho)
                 # Update state for next engine
-                rho = np.array(cycle_result["final_rho"], dtype=DTYPE)
+                rho = _to_engine_density(cycle_result["final_rho"])
                 # Tag trajectory records with iter_idx
                 for record in cycle_result["trajectory"]:
                     record["iter_idx"] = iter_idx
@@ -159,7 +196,7 @@ class Schedule:
 
     def run_paired_engines(
         self,
-        initial_state: np.ndarray,
+        initial_state: Any,
         n_pairs: int = 4,
     ) -> dict[str, Any]:
         """
@@ -176,7 +213,7 @@ class Schedule:
         """
         paired_runs: list[dict[str, Any]] = []
         divergences = []
-        rho_init = _normalize_density(initial_state.copy())
+        rho_init = _normalize_density(_to_engine_density(initial_state))
 
         for pair_idx in range(n_pairs):
             pair_record = {"pair_idx": pair_idx, "engine_results": []}
@@ -187,13 +224,13 @@ class Schedule:
                 eng.global_step = 0
                 cycle_result = eng.run_full_cycle(rho_init)
                 pair_record["engine_results"].append(cycle_result)
-                engine_finals.append(np.array(cycle_result["final_rho"], dtype=DTYPE))
+                engine_finals.append(_as_density_tensor(cycle_result["final_rho"]))
 
             # Compute pair-wise divergence (max over all engine pairs in this pair)
             divs = []
             for i in range(len(engine_finals)):
                 for j in range(i + 1, len(engine_finals)):
-                    d = float(np.linalg.norm(engine_finals[i] - engine_finals[j], "fro"))
+                    d = _matrix_distance(engine_finals[i], engine_finals[j])
                     divs.append(d)
             pair_max_div = max(divs) if divs else 0.0
             divergences.append(pair_max_div)
@@ -205,9 +242,7 @@ class Schedule:
             "paired_runs": paired_runs,
             "divergence_summary": {
                 "per_pair_max_divergence": divergences,
-                "mean": float(np.mean(divergences)) if divergences else 0.0,
-                "min": float(np.min(divergences)) if divergences else 0.0,
-                "max": float(np.max(divergences)) if divergences else 0.0,
+                **_summary(divergences),
             },
         }
 
@@ -217,7 +252,7 @@ class Schedule:
 # ---------------------------------------------------------------------------
 
 def order_dependence_check(
-    rho_init: np.ndarray,
+    rho_init: Any,
     engine_a: EngineCore,
     engine_b: EngineCore,
 ) -> dict[str, Any]:
@@ -228,7 +263,7 @@ def order_dependence_check(
     Returns dict with:
       ab_final, ba_final, frobenius_distance
     """
-    rho_init_n = _normalize_density(rho_init.copy())
+    rho_init_n = _normalize_density(_to_engine_density(rho_init))
 
     # Reset engines to fresh state for clean comparison
     engine_a.manifold_context = {}
@@ -238,11 +273,11 @@ def order_dependence_check(
 
     # A then B
     out_a = engine_a.run_full_cycle(rho_init_n)
-    rho_after_a = np.array(out_a["final_rho"], dtype=DTYPE)
+    rho_after_a = _to_engine_density(out_a["final_rho"])
     engine_b.manifold_context = {}
     engine_b.global_step = 0
     out_ba = engine_b.run_full_cycle(rho_after_a)
-    rho_ab = np.array(out_ba["final_rho"], dtype=DTYPE)
+    rho_ab = _to_engine_density(out_ba["final_rho"])
 
     # Reset and run B then A
     engine_a.manifold_context = {}
@@ -250,14 +285,14 @@ def order_dependence_check(
     engine_b.manifold_context = {}
     engine_b.global_step = 0
     out_b = engine_b.run_full_cycle(rho_init_n)
-    rho_after_b = np.array(out_b["final_rho"], dtype=DTYPE)
+    rho_after_b = _to_engine_density(out_b["final_rho"])
     engine_a.manifold_context = {}
     engine_a.global_step = 0
     out_ab = engine_a.run_full_cycle(rho_after_b)
-    rho_ba = np.array(out_ab["final_rho"], dtype=DTYPE)
+    rho_ba = _to_engine_density(out_ab["final_rho"])
 
     # Compose order: AB = engine A first then engine B; BA = engine B first then engine A
-    distance = float(np.linalg.norm(rho_ab - rho_ba, "fro"))
+    distance = _matrix_distance(rho_ab, rho_ba)
     return {
         "ab_final": rho_ab.tolist(),
         "ba_final": rho_ba.tolist(),
@@ -299,9 +334,7 @@ if __name__ == "__main__":
     print(f"   final_bloch: {[round(x, 4) for x in out2['final_bloch']]}")
 
     # 3. Compose orders differ
-    final_otc = np.array(out1["final_state"], dtype=DTYPE)
-    final_ito = np.array(out2["final_state"], dtype=DTYPE)
-    diff = float(np.linalg.norm(final_otc - final_ito, "fro"))
+    diff = _matrix_distance(out1["final_state"], out2["final_state"])
     print(f"\n3. outer_then_inner vs inner_then_outer Frobenius distance: {diff:.6f}")
     assert diff > 1e-6, "Compose orders should produce different outputs (non-commutative)"
 

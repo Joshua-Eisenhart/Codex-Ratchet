@@ -11,6 +11,8 @@ This sim encodes the arity constraint in cvc5 and checks consistency.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

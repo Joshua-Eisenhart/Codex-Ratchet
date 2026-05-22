@@ -23,6 +23,10 @@ CPTP preservation: all terrain operators are cast as Kraus maps
   rho' = sum_k K_k rho K_k†
 with explicit Kraus operator construction. Trace-preservation, Hermiticity,
 and positivity enforced at every application step.
+
+NUMPY BOUNDARY: NumPy matrix-exponential helpers are retained as a reviewed
+boundary for this finite operator fixture. They are blocked from nonclassical
+promotion until ported source-native.
 """
 
 from __future__ import annotations

@@ -12,10 +12,15 @@ PART B: Special-holonomy parallel comparator.
 
 TOOL_MANIFEST:
   pytorch  — load-bearing: all MPS tensors, evolution unitaries, SVD truncation
-  numpy    — load-bearing: SVD backend via torch.linalg.svd; numpy used in conversion utilities
-  scipy    — load-bearing: scipy.linalg.expm for two-site unitary generation in __main__
+  numpy    — reviewed boundary: conversion into matrix-exponential helpers;
+             torch.linalg.svd is the actual SVD backend
+  scipy    — reviewed boundary: scipy.linalg.expm for two-site unitary generation
   sympy    — load-bearing: exact exterior-form sign checks inside survivor filters
   z3       — load-bearing: UNSAT non-collapse witness (special holonomies differ from generic)
+
+NUMPY/SCIPY BOUNDARY: these paths are intentionally preserved for audit and
+classical/numerical comparison only. They are blocked from nonclassical-claim
+promotion by the NumPy quarantine gate until ported source-native.
 
 CLASSIFICATION: formal_scout
 PROMOTION_ALLOWED: False

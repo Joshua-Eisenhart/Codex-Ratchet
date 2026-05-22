@@ -22,6 +22,9 @@ import math
 import os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = [
+    "Classical comparator/control surface only: this runner does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim.",
+]
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
 os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")

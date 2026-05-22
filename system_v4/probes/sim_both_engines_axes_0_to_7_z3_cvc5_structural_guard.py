@@ -11,13 +11,15 @@ Proves that both engines must satisfy the following to avoid stalling:
   6. Root constraints F01 + N01 (finite Hilbert, non-commuting ops required)
 
 Classification: canonical (z3+cvc5+sympy all load_bearing)
-TOOL_MANIFEST: z3, cvc5, sympy (all load_bearing); torch (supportive numeric cross-check)
+TOOL_MANIFEST: z3, cvc5, sympy (all load_bearing); other tool slots unused
 """
 
 import json
 import os
 import sys
 from typing import Dict, List, Tuple, Any
+
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST
@@ -38,7 +40,20 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": ""},
 }
 
-TOOL_INTEGRATION_DEPTH = {tool: None for tool in TOOL_MANIFEST.keys()}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "sympy": "load_bearing",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 # Try importing tools
 try:
@@ -629,7 +644,8 @@ def main():
 
     print(f"z3 UNSAT count: {z3_unsat_count}")
     print(f"z3 SAT count: {z3_sat_count}")
-    print(f"cvc5 available: {not z3_results.get('z3_failed')}")
+    cvc5_available = not cvc5_results.get("cvc5_not_available", False)
+    print(f"cvc5 available: {cvc5_available}")
 
     # Aggregate results
     final_results = {
@@ -673,8 +689,9 @@ def main():
         "sim_both_engines_axes_0_to_7_z3_cvc5_structural_guard_results.json"
     )
 
-    with open(out_path, "w") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(final_results, f, indent=2, default=str)
+        f.write("\n")
 
     print(f"\nResults written to {out_path}")
     return final_results

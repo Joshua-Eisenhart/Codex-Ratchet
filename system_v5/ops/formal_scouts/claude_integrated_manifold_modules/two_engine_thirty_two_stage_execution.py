@@ -51,6 +51,10 @@ Manifold constraint interface:
   Uses apply_all_layer_constraints() from active_layer_constraint_enforcers.
   Engine state is a 2048-dim sub-vector; manifold enforces on this sub-vector.
   Returns constrained state + metrics dict per stage.
+
+NUMPY BOUNDARY: NumPy exponentiation/adapters are preserved as a reviewed
+boundary in this finite engine fixture. They are blocked from nonclassical
+promotion by the quarantine gate until ported source-native.
 """
 
 from __future__ import annotations

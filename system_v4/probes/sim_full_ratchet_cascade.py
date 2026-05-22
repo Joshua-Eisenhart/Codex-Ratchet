@@ -30,6 +30,10 @@ import traceback
 import time
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = [
+    "Classical comparator/control surface only; does not promote nonclassical, formal-scout, bridge, axis-level, or canonical proof claims."
+]
+
 
 # =====================================================================
 # TOOL MANIFEST

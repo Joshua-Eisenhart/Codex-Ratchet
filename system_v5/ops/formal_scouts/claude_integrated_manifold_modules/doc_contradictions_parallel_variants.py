@@ -46,7 +46,7 @@ Source citations per contradiction:
 
 TOOL_MANIFEST:
   torch:   tried=True, used=True, reason="load-bearing tensor evolution for all 6 contradictions"
-  numpy:   tried=True, used=True, reason="load-bearing matrix construction and comparison"
+  numpy:   tried=True, used=True, reason="fixture-local reviewed-boundary matrix construction and comparison; blocked from nonclassical promotion"
   z3:      tried=True, used=True, reason="load-bearing UNSAT witness that no two variant pairs collapse"
   clifford: tried=True, used=True, reason="supportive — gamma5 constructed numerically as diag from clifford algebra"
 
@@ -64,6 +64,11 @@ claim_ceiling: >
   evidence, or canonical admission of any axis reading. Each variant is a candidate;
   the distinguishability test says whether the contradiction is load-bearing (variants
   differ) or decorative (variants collapse).
+
+NumPy boundary:
+  NumPy use is local to this audit fixture only. It is not nonclassical
+  evidence and remains blocked from promotion under the current source-native
+  NumPy quarantine gate.
 """
 
 from __future__ import annotations

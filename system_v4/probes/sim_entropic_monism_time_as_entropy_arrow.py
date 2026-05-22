@@ -23,6 +23,9 @@ import os
 import math
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = ["Classical baseline probes entropy production as a time-arrow proxy; it does not prove time is entropy."]
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -498,6 +501,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_entropic_monism_time_as_entropy_arrow",
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

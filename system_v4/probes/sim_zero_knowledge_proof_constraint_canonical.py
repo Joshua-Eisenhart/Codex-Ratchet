@@ -26,6 +26,8 @@ Canonical: cvc5 UNSAT for soundness=0 AND cheating accepted
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

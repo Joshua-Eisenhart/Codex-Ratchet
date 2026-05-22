@@ -39,7 +39,11 @@ TOOL_MANIFEST = {
     "pathlib": {"tried": True, "used": True, "reason": "load-bearing result path resolution"},
     "hashlib": {"tried": True, "used": True, "reason": "load-bearing receipt hash capture"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'json': 'supportive',
+    'pathlib': 'supportive',
+    'hashlib': 'supportive',
+}
 
 
 def sha256_file(path: pathlib.Path) -> str:

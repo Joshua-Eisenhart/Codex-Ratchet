@@ -58,7 +58,11 @@ TOOL_MANIFEST = {
         "reason": "load-bearing source/result hash receipts",
     },
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    'importlib': 'supportive',
+    'json': 'supportive',
+    'hashlib': 'supportive',
+}
 
 MARGIN_FLOOR = 0.01
 CONTROL_MARGIN_FLOOR = 0.02

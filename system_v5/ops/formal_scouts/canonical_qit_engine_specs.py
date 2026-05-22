@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-canonical_qit_engine_specs.py — single source of truth for operational QIT engine specs.
+canonical_qit_engine_specs.py — single source of truth for current operational QIT engine specs.
 
 Centralizes:
   - Pauli matrices and Hamiltonian H0 = 0.77 * SZ + 0.13 * SX
@@ -8,7 +8,7 @@ Centralizes:
   - Per-perception Lindblad collapse operator L matrices (Se, Ne, Ni, Si)
   - Operator generators (Ti, Te, Fi, Fe) → algebraic (SZ, SX, SY) basis
   - Per-topology (op, sign) pairs for outer/inner loop classes
-  - 13-layer manifold names
+  - candidate 13-layer manifold-fixture names used by current engine scouts
   - Engine schedule per loop (8 main stages = 4 outer + 4 inner per engine)
   - Accessor functions for engine specs and Lindblad parameters
 
@@ -16,12 +16,13 @@ Source alignment (load-bearing references):
   - sim_four_topology_behavior_class_chiral_loop_operator_separation_probe.py:68-144
   - sim_left_right_weyl_density_terrain_loop_stage_subcycle_execution_probe.py:53-69
   - sim_fe_three_to_one_asymmetry_structural_origin_probe.py (Fe asymmetry → operator generators)
-  - sim_nested_geometry_tower_dependency_order_probe.py:56-70 (manifold layer names)
+  - sim_nested_geometry_tower_dependency_order_probe.py:56-70 (candidate fixture layer names)
   - claude_integrated_manifold_modules/two_engine_thirty_two_stage_execution.py:96-181
     (TYPE_ONE_TOPOLOGY_SPECS, TYPE_TWO_TOPOLOGY_SPECS canonical specs)
 
-All matrices are complex128 numpy arrays. Tensor versions are derived on demand
-via torch.from_numpy() in EngineCore. No tensor conversion at import time.
+All canonical matrices are torch complex128 tensors. Legacy NumPy/SciPy engine
+code must convert them explicitly at the EngineCore boundary; this module is no
+longer a direct NumPy import surface.
 
 This module does not run simulations. It is read by:
   - engine_core.py (EngineCore class)
@@ -32,24 +33,24 @@ This module does not run simulations. It is read by:
 
 from __future__ import annotations
 
-import math
 from typing import Any
 
-import numpy as np
+import torch
 
 
 # ---------------------------------------------------------------------------
-# Numerical constants and Pauli basis (complex128 throughout)
+# Numerical constants and Pauli basis (torch complex128 throughout)
 # ---------------------------------------------------------------------------
 
-DTYPE = np.complex128
+DTYPE = torch.complex128
+TORCH_DTYPE = DTYPE
 
-I2 = np.eye(2, dtype=DTYPE)
-SX = np.array([[0, 1], [1, 0]], dtype=DTYPE)
-SY = np.array([[0, -1j], [1j, 0]], dtype=DTYPE)
-SZ = np.array([[1, 0], [0, -1]], dtype=DTYPE)
-SIGMA_MINUS = np.array([[0, 0], [1, 0]], dtype=DTYPE)  # σ_-
-SIGMA_PLUS = np.array([[0, 1], [0, 0]], dtype=DTYPE)   # σ_+
+I2 = torch.eye(2, dtype=DTYPE)
+SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
+SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
+SZ = torch.tensor([[1, 0], [0, -1]], dtype=DTYPE)
+SIGMA_MINUS = torch.tensor([[0, 0], [1, 0]], dtype=DTYPE)  # σ_-
+SIGMA_PLUS = torch.tensor([[0, 1], [0, 0]], dtype=DTYPE)   # σ_+
 
 # Base Hamiltonian on the 2-dim chirality sub-block.
 # Source: LEFT_RIGHT_CHIRAL_OPERATING_SPACE_BUILD_NOTE.md:44-45
@@ -77,11 +78,11 @@ MIRROR = SX
 #   Ne: σ_+         — raising (drives ground → excited)
 #   Ni: -i σ_y      — rotation generator (off-diagonal antisymmetric)
 #   Si: σ_-         — lowering (drives excited → ground)
-PERCEPTION_L_MATRICES: dict[str, np.ndarray] = {
-    "Se": SZ.copy(),                       # σ_z dephasing
-    "Ne": SIGMA_PLUS.copy(),               # σ_+ raising
+PERCEPTION_L_MATRICES: dict[str, torch.Tensor] = {
+    "Se": SZ.clone(),                       # σ_z dephasing
+    "Ne": SIGMA_PLUS.clone(),               # σ_+ raising
     "Ni": -1j * SY,                        # -i σ_y rotation
-    "Si": SIGMA_MINUS.copy(),              # σ_- lowering
+    "Si": SIGMA_MINUS.clone(),              # σ_- lowering
 }
 
 # ---------------------------------------------------------------------------
@@ -100,11 +101,11 @@ PERCEPTION_L_MATRICES: dict[str, np.ndarray] = {
 # Note: Ti and Fi share the SX/SZ basis BUT differ in their semantic role
 # (Ti outer vs Fi inner) and their topology assignments — see TYPE_ONE / TYPE_TWO
 # topology dicts below.
-OPERATOR_GENERATORS: dict[str, np.ndarray] = {
-    "Ti": SZ.copy(),
-    "Te": SX.copy(),
-    "Fi": SX.copy(),
-    "Fe": SY.copy(),
+OPERATOR_GENERATORS: dict[str, torch.Tensor] = {
+    "Ti": SZ.clone(),
+    "Te": SX.clone(),
+    "Fi": SX.clone(),
+    "Fe": SY.clone(),
 }
 
 # Default operator rotation angles per (op, sign) — scaled by sign at use time.
@@ -279,11 +280,17 @@ REALIZATION_TO_TOPOLOGY_KEY_TYPE_TWO: dict[str, str] = {
 }
 
 # ---------------------------------------------------------------------------
-# 13-layer manifold names
+# Candidate 13-layer manifold-fixture names
 # ---------------------------------------------------------------------------
 #
 # Source: sim_nested_geometry_tower_dependency_order_probe.py:56-70
 # Also: claude_integrated_manifold_modules/active_layer_constraint_enforcers.py:51-65
+#
+# Status: operational fixture, not root-derived canon. F01/N01 do not force this
+# exact layer count, ordering, or linear topology. Existing sims may use this
+# list for compatibility with accumulated receipts, but claim surfaces must call
+# it a candidate/legacy stack unless a separate layer-discriminator receipt
+# promotes it.
 
 MANIFOLD_LAYERS: list[str] = [
     "finite_constraint_complex",          # 0
@@ -355,8 +362,8 @@ def get_engine_spec(engine_type: int) -> dict[str, Any]:
         return {
             "type_label": "type_one_left_weyl",
             "name": "Type 1 / left Weyl chiral",
-            "hamiltonian": H_TYPE_ONE.copy(),
-            "ladder": SIGMA_MINUS.copy(),
+            "hamiltonian": H_TYPE_ONE.clone(),
+            "ladder": SIGMA_MINUS.clone(),
             "topologies": TYPE_ONE_TOPOLOGIES,
             "schedule": ENGINE_SCHEDULE_TYPE_ONE,
             "realization_to_topology_key": REALIZATION_TO_TOPOLOGY_KEY_TYPE_ONE,
@@ -367,8 +374,8 @@ def get_engine_spec(engine_type: int) -> dict[str, Any]:
         return {
             "type_label": "type_two_right_weyl",
             "name": "Type 2 / right Weyl chiral",
-            "hamiltonian": H_TYPE_TWO.copy(),
-            "ladder": SIGMA_PLUS.copy(),
+            "hamiltonian": H_TYPE_TWO.clone(),
+            "ladder": SIGMA_PLUS.clone(),
             "topologies": TYPE_TWO_TOPOLOGIES,
             "schedule": ENGINE_SCHEDULE_TYPE_TWO,
             "realization_to_topology_key": REALIZATION_TO_TOPOLOGY_KEY_TYPE_TWO,
@@ -382,7 +389,7 @@ def get_engine_spec(engine_type: int) -> dict[str, Any]:
 def get_lindblad_params(
     perception: str,
     engine_type: int,
-) -> tuple[np.ndarray, np.ndarray]:
+) -> tuple[torch.Tensor, torch.Tensor]:
     """
     Return (Hamiltonian, Lindblad-L) for a (perception, engine_type) pair.
 
@@ -409,18 +416,18 @@ def get_lindblad_params(
     else:
         # Mirror: L_R = σ_x L σ_x
         L = MIRROR @ L_type_one @ MIRROR
-    return H.copy(), L.copy()
+    return H.clone(), L.clone()
 
 
-def get_hamiltonian_by_key(key: str, engine_type: int) -> np.ndarray:
+def get_hamiltonian_by_key(key: str, engine_type: int) -> torch.Tensor:
     """Return a signed Hamiltonian family for the requested chiral sector."""
     sign = +1.0 if engine_type == 0 else -1.0
     if key == "H0":
-        return (sign * H0).copy()
+        return (sign * H0).clone()
     if key == "H3":
-        return (sign * H3).copy()
+        return (sign * H3).clone()
     if key == "HS":
-        return (sign * H_STRATA).copy()
+        return (sign * H_STRATA).clone()
     raise ValueError(f"unknown hamiltonian_key {key!r}")
 
 
@@ -574,8 +581,8 @@ if __name__ == "__main__":
     # 1. Hamiltonian sign flip
     sum_h = H_TYPE_ONE + H_TYPE_TWO
     print(f"\nH_TYPE_ONE + H_TYPE_TWO = 0:  "
-          f"max_abs={float(np.max(np.abs(sum_h))):.2e}  "
-          f"ok={np.allclose(sum_h, 0.0)}")
+          f"max_abs={float(torch.max(torch.abs(sum_h)).item()):.2e}  "
+          f"ok={bool(torch.allclose(sum_h, torch.zeros_like(sum_h)))}")
 
     # 2. Mirror identity
     mirror_check_h = MIRROR @ H_TYPE_ONE @ MIRROR + H_TYPE_ONE   # σ_x H_L σ_x = -H_L ?
@@ -594,7 +601,7 @@ if __name__ == "__main__":
     # 3. Mirror lowering ↔ raising
     mirror_ladder = MIRROR @ SIGMA_MINUS @ MIRROR
     print(f"\nMIRROR @ σ_- @ MIRROR = σ_+? "
-          f"{np.allclose(mirror_ladder, SIGMA_PLUS)}")
+          f"{bool(torch.allclose(mirror_ladder, SIGMA_PLUS))}")
 
     # 4. Engine specs
     for engine_type in [0, 1]:
@@ -616,7 +623,7 @@ if __name__ == "__main__":
             H, L = get_lindblad_params(perception, engine_type)
             print(f"  (eng={engine_type}, perc={perception})  "
                   f"H.shape={H.shape}  L.shape={L.shape}  "
-                  f"L_nnz={int(np.sum(np.abs(L) > 1e-12))}")
+                  f"L_nnz={int(torch.sum(torch.abs(L) > 1e-12).item())}")
 
     # 6. Loop class accessor
     print("\nLoop-class op/sign pairs (Type 1):")

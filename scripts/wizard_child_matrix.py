@@ -421,6 +421,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--codex-local-children", action="store_true", help="Generate bounded local Codex child receipts instead of launching Claude children. Intended for compact diagnostics when external model quota is exhausted.")
     parser.add_argument("--skip-claude-groups", action="store_true", help="Run only non-Claude provider lanes such as Gemini direct API. Intended for provider health checks.")
     parser.add_argument("--attempt-gemini", action="store_true", help="Actually launch Gemini through the direct API. Default is degraded-safe to avoid provider hangs.")
+    parser.add_argument("--attempt-grok", action="store_true", help="Actually launch Grok through the direct xAI API. Default is degraded-safe to avoid provider hangs.")
     parser.add_argument("--rescore-existing", help="Existing route timestamp directory containing fanout receipts; rescore without launching children.")
     parser.add_argument("--run-id", default="", help="Shared Wizard run id. Required by full-run harness to prevent mixed-run FULL claims.")
     parser.add_argument("--dry-run", action="store_true")
@@ -462,7 +463,7 @@ def extract_gemini_text(raw: Any) -> str:
 
 
 def load_child_result_text(child: dict[str, Any]) -> str:
-    output_path = child.get("bridge_output_path")
+    output_path = child.get("bridge_output_path") or child.get("output_path")
     if output_path:
         try:
             output_data = json.loads(Path(str(output_path)).read_text(encoding="utf-8", errors="replace"))
@@ -470,6 +471,9 @@ def load_child_result_text(child: dict[str, Any]) -> str:
                 result = output_data.get("result")
                 if result:
                     return str(result)
+                text = output_data.get("text")
+                if text:
+                    return str(text)
         except Exception:
             pass
     receipt_path = child.get("bridge_receipt_path")
@@ -1325,6 +1329,19 @@ def score_existing_gemini(existing_root: Path) -> dict[str, Any]:
     return receipt
 
 
+def score_existing_grok(existing_root: Path) -> dict[str, Any]:
+    receipts = sorted((existing_root / "grok").rglob("grok_receipt.json"), key=lambda path: path.stat().st_mtime)
+    if not receipts:
+        return {
+            "model": "grok",
+            "status": "degraded_alt_not_launched",
+            "reason": "No Grok receipt found in existing route directory.",
+        }
+    receipt = load_receipt(receipts[-1])
+    receipt["receipt_path"] = str(receipts[-1])
+    return receipt
+
+
 def extract_openai_chat_text(raw: Any) -> str:
     try:
         return str(raw["choices"][0]["message"]["content"]).strip()
@@ -1396,7 +1413,7 @@ def run_one_gemini_child(args: argparse.Namespace, out_dir: Path, child_id: str,
     child_dir.mkdir(parents=True, exist_ok=True)
     output_path = child_dir / "gemini_output.json"
     receipt_path = child_dir / "gemini_receipt.json"
-    model_name = os.environ.get("WIZARD_GEMINI_MODEL", "gemini-2.5-flash").strip() or "gemini-2.5-flash"
+    model_name = os.environ.get("WIZARD_GEMINI_MODEL", "gemini-3.5-flash").strip() or "gemini-3.5-flash"
     started = now_iso()
     key = gemini_api_key()
     raw: Any = None
@@ -1447,6 +1464,81 @@ def run_one_gemini_child(args: argparse.Namespace, out_dir: Path, child_id: str,
     return receipt
 
 
+def run_grok(args: argparse.Namespace, out_dir: Path, roles: list[str] | None = None) -> dict[str, Any]:
+    roles = roles if args.full_model_council and roles else ["outside-model contrast and sanity check"]
+    jobs = [
+        {
+            "id": f"{slug(args.route)}-{slug(role)}-grok-{idx + 1}",
+            "role": role,
+            "prompt": child_prompt(args, f"{slug(args.route)}-{slug(role)}-grok-{idx + 1}", role),
+        }
+        for idx, role in enumerate(roles)
+    ]
+    if args.dry_run:
+        return {
+            "model": "grok",
+            "status": "dry_run",
+            "counts": {"completed": 0, "failed": 0, "timed_out": 0, "total": len(jobs)},
+            "jobs": jobs,
+        }
+    if not args.attempt_grok:
+        return {
+            "model": "grok",
+            "status": "degraded_alt_not_launched",
+            "reason": "Grok direct API launch requires --attempt-grok.",
+            "jobs": [{"id": job["id"], "role": job["role"], "prompt_preview": job["prompt"][:500]} for job in jobs],
+        }
+    out_dir.mkdir(parents=True, exist_ok=True)
+    started = now_iso()
+    with ThreadPoolExecutor(max_workers=max(1, min(len(jobs), args.max_concurrency))) as executor:
+        children = list(
+            executor.map(
+                lambda job: run_one_grok_child(args, out_dir, str(job["id"]), str(job["role"])),
+                jobs,
+            )
+        )
+    useful_children = [child for child in children if child_is_useful(child)]
+    completed_count = len(useful_children)
+    timed_out_count = sum(1 for child in children if child.get("status") == "timed_out")
+    failed_count = sum(1 for child in children if child.get("status") == "failed")
+    completed_child_ids = [str(child.get("id")) for child in useful_children]
+    completed_child_receipt_paths = [
+        str(child.get("receipt_path"))
+        for child in useful_children
+        if child.get("receipt_path")
+    ]
+    receipt_path = out_dir / "grok_group_receipt.json"
+    receipt = {
+        "model": "grok",
+        "status": "completed" if completed_count else "timed_out" if timed_out_count and not failed_count else "failed",
+        "returncode": 0 if completed_count else 124 if timed_out_count and not failed_count else 1,
+        "started_at": started,
+        "completed_at": now_iso(),
+        "children": children,
+        "counts": {
+            "completed": completed_count,
+            "failed": failed_count,
+            "timed_out": timed_out_count,
+            "total": len(children),
+        },
+        "completed_child_ids": completed_child_ids,
+        "completed_child_receipt_paths": completed_child_receipt_paths,
+        "usefulness_failures": [
+            {
+                "id": str(child.get("id")),
+                "status": child.get("status"),
+                "reason": child_usefulness_failure_reason(child),
+                "receipt_path": child.get("receipt_path"),
+            }
+            for child in children
+            if not child_is_useful(child)
+        ],
+    }
+    receipt_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    receipt["receipt_path"] = str(receipt_path)
+    return receipt
+
+
 def run_gemini(args: argparse.Namespace, out_dir: Path, roles: list[str] | None = None) -> dict[str, Any]:
     roles = roles if args.full_model_council and roles else ["outside-model contrast and sanity check"]
     jobs = [
@@ -1480,14 +1572,15 @@ def run_gemini(args: argparse.Namespace, out_dir: Path, roles: list[str] | None 
                 jobs,
             )
         )
-    completed_count = sum(1 for child in children if child.get("status") == "completed")
+    useful_children = [child for child in children if child_is_useful(child)]
+    completed_count = len(useful_children)
     timed_out_count = sum(1 for child in children if child.get("status") == "timed_out")
     failed_count = sum(1 for child in children if child.get("status") == "failed")
-    completed_child_ids = [str(child.get("id")) for child in children if child.get("status") == "completed"]
+    completed_child_ids = [str(child.get("id")) for child in useful_children]
     completed_child_receipt_paths = [
         str(child.get("receipt_path"))
-        for child in children
-        if child.get("status") == "completed" and child.get("receipt_path")
+        for child in useful_children
+        if child.get("receipt_path")
     ]
     receipt_path = out_dir / "gemini_group_receipt.json"
     receipt = {
@@ -1509,11 +1602,11 @@ def run_gemini(args: argparse.Namespace, out_dir: Path, roles: list[str] | None 
             {
                 "id": str(child.get("id")),
                 "status": child.get("status"),
-                "reason": "gemini_direct_api_child_not_completed",
+                "reason": child_usefulness_failure_reason(child),
                 "receipt_path": child.get("receipt_path"),
             }
             for child in children
-            if child.get("status") != "completed"
+            if not child_is_useful(child)
         ],
     }
     receipt_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -1601,6 +1694,10 @@ def child_usefulness_failure_reason(child: Any) -> str:
     )
     if any(marker in preview for marker in clarification_markers):
         return "asked_for_clarification_instead_of_receipt"
+    if isinstance(parsed, dict):
+        parsed_status = str(parsed.get("status") or "").strip().lower()
+        if parsed_status and parsed_status not in {"accepted", "completed", "usable"}:
+            return f"child_semantic_status:{parsed_status}"
     if missing:
         return "missing_receipt_fields:" + ",".join(missing)
     return "usable"
@@ -1610,12 +1707,14 @@ def child_is_useful(child: Any) -> bool:
     return child_usefulness_failure_reason(child) == "usable"
 
 
-def accepted_child_count(groups: list[dict[str, Any]], gemini: dict[str, Any]) -> int:
+def accepted_child_count(groups: list[dict[str, Any]], gemini: dict[str, Any], grok: dict[str, Any] | None = None) -> int:
     total = 0
     for group in groups:
         total += int((group.get("counts") or {}).get("completed") or 0)
     if gemini.get("status") == "completed":
         total += int((gemini.get("counts") or {}).get("completed") or 1)
+    if grok and grok.get("status") == "completed":
+        total += int((grok.get("counts") or {}).get("completed") or 1)
     return total
 
 
@@ -1707,6 +1806,7 @@ def main() -> int:
             score_existing_group(out_root, "haiku"),
         ]
         gemini = score_existing_gemini(out_root)
+        grok = score_existing_grok(out_root)
     elif args.codex_local_children:
         groups = [run_codex_local_group(args, out_root, roles)]
         gemini = {
@@ -1715,9 +1815,16 @@ def main() -> int:
             "reason": "Codex-local compact mode bypasses external Gemini/Claude fanout.",
             "counts": {"completed": 0, "failed": 0, "timed_out": 0, "total": 0},
         }
+        grok = {
+            "model": "grok",
+            "status": "skipped_codex_local_compact",
+            "reason": "Codex-local compact mode bypasses external Grok/Claude fanout.",
+            "counts": {"completed": 0, "failed": 0, "timed_out": 0, "total": 0},
+        }
     elif args.skip_claude_groups:
         groups = []
         gemini = run_gemini(args, out_root / "gemini", roles)
+        grok = run_grok(args, out_root / "grok", roles)
     else:
         role_specs = asymmetric_model_role_specs(
             route=args.route,
@@ -1784,8 +1891,13 @@ def main() -> int:
                 for spec in group_specs
             ]
         gemini = run_gemini(args, out_root / "gemini", roles)
-    completed = accepted_child_count(groups, gemini)
-    formal_groups = groups + ([gemini] if args.skip_claude_groups and gemini.get("status") == "completed" else [])
+        grok = run_grok(args, out_root / "grok", roles)
+    completed = accepted_child_count(groups, gemini, grok)
+    formal_groups = list(groups)
+    if args.skip_claude_groups and gemini.get("status") == "completed":
+        formal_groups.append(gemini)
+    if args.skip_claude_groups and grok.get("status") == "completed":
+        formal_groups.append(grok)
     formal_completed = completed_formal_children_any_group(formal_groups, active_formal_children)
     formal_receipt_paths = formal_receipt_paths_any_group(formal_groups, formal_completed)
     core_families_completed = all(
@@ -1798,11 +1910,17 @@ def main() -> int:
         for group in groups
         if str(group.get("model") or "") != "haiku" or args.haiku_count > 0
     )
+    attempted_provider_failures = []
+    if args.attempt_gemini and gemini.get("status") != "completed":
+        attempted_provider_failures.append({"model": "gemini", "status": gemini.get("status")})
+    if args.attempt_grok and grok.get("status") != "completed":
+        attempted_provider_failures.append({"model": "grok", "status": grok.get("status")})
+    provider_families_ok = not attempted_provider_failures
     blocking_failures = blocking_usefulness_failures(groups, formal_completed, active_formal_children)
     usefulness_ok = not blocking_failures
     rescore_stale = bool(args.rescore_existing)
     v4_2_route = args.route in V4_2_FORMAL_CHILDREN
-    route_quality_ok = formal_ok and launched_families_completed and usefulness_ok
+    route_quality_ok = formal_ok and launched_families_completed and usefulness_ok and provider_families_ok
     matrix_ok = (route_quality_ok if v4_2_route else core_families_completed and route_quality_ok) and not rescore_stale
     groups_by_model = {str(group.get("model")): group for group in groups}
 
@@ -1810,9 +1928,17 @@ def main() -> int:
         return int(((groups_by_model.get(model) or {}).get("counts") or {}).get("completed") or 0)
 
     def family_status(model: str) -> str:
+        if args.skip_claude_groups and model in {"sonnet", "opus", "haiku"}:
+            return "skipped"
+        if args.codex_local_children and model in {"sonnet", "opus", "haiku"}:
+            return "skipped"
         if model == "haiku" and args.haiku_count <= 0:
             return "disabled"
         return "completed" if completed_for(model) else "blocked"
+
+    liveness_deadlines = [args.gemini_timeout_sec, args.grok_timeout_sec]
+    if not args.skip_claude_groups and not args.codex_local_children:
+        liveness_deadlines.extend([args.sonnet_timeout_sec, args.opus_timeout_sec, args.haiku_timeout_sec])
 
     receipt = {
         "parent_receipt_id": f"{slug(args.route)}-{int(time.time())}",
@@ -1826,6 +1952,7 @@ def main() -> int:
             "codex_local_children": args.codex_local_children,
             "claude_groups_skipped": args.skip_claude_groups,
             "gemini_status": gemini.get("status"),
+            "grok_status": grok.get("status"),
         },
         "status": "accepted" if matrix_ok else "rescored_stale" if rescore_stale else "partial",
         "created_at": now_iso(),
@@ -1842,12 +1969,14 @@ def main() -> int:
             "formal_child_obligation": active_formal_children,
             "full_formal_child_obligation": formal_children,
             "active_formal_child_obligation": active_formal_children,
-            "liveness_deadline_sec": max(args.sonnet_timeout_sec, args.opus_timeout_sec, args.haiku_timeout_sec, args.gemini_timeout_sec),
+            "liveness_deadline_sec": max(liveness_deadlines),
             "action_on_timeout": "mark_timed_out_continue_and_reroute_smaller_if_load_bearing",
             "terminal_disposition": "accepted" if matrix_ok else "rescored_stale" if rescore_stale else "partial",
             "quality_blockers": {
                 "formal_ok": formal_ok,
                 "launched_families_completed": launched_families_completed,
+                "provider_families_ok": provider_families_ok,
+                "attempted_provider_failures": attempted_provider_failures,
                 "usefulness_ok": usefulness_ok,
                 "blocking_usefulness_failures": blocking_failures,
             },
@@ -1861,6 +1990,7 @@ def main() -> int:
         },
         "groups": groups,
         "gemini": gemini,
+        "grok": grok,
         "counts": {
             "accepted_children": completed,
             "required_min": max(1, len(active_formal_children)),
@@ -1868,12 +1998,14 @@ def main() -> int:
             "opus_completed": completed_for("opus"),
             "haiku_completed": completed_for("haiku"),
             "gemini_completed": int((gemini.get("counts") or {}).get("completed") or int(gemini.get("status") == "completed")),
+            "grok_completed": int((grok.get("counts") or {}).get("completed") or int(grok.get("status") == "completed")),
         },
         "model_family_statuses": {
             "sonnet": family_status("sonnet"),
             "opus": family_status("opus"),
             "haiku": family_status("haiku"),
             "gemini": "completed" if gemini.get("status") == "completed" else "degraded_alt_attempted",
+            "grok": "completed" if grok.get("status") == "completed" else "degraded_alt_attempted",
             "codex-local": "completed" if any(group.get("model") == "codex-local" for group in groups) else "disabled",
         },
     }

@@ -13,6 +13,8 @@ Classification: canonical.
 """
 import json, os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "FOL admissibility claim, not numeric"},
     "pyg":     {"tried": False, "used": False, "reason": "no graph message passing"},

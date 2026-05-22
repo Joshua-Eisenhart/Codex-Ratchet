@@ -38,6 +38,15 @@ from datetime import UTC, datetime
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for sim_sasakian_structure_s3; it does not promote a "
+        "nonclassical, formal-scout, bridge, or axis-level claim."
+    ),
+]
+
+
 PROBE_DIR = os.path.dirname(os.path.abspath(__file__))
 if PROBE_DIR not in sys.path:
     sys.path.insert(0, PROBE_DIR)

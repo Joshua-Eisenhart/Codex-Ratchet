@@ -21,6 +21,8 @@ import sympy as sp
 from clifford import Cl
 import z3
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},

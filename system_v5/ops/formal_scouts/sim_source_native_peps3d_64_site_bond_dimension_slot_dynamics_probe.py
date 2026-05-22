@@ -13,8 +13,8 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import networkx as nx
-import numpy as np
 import sympy as sp
+import torch
 import z3
 
 from sim_source_native_peps3d_64_site_slot_dynamics_closeout_probe import (
@@ -32,6 +32,7 @@ OUT_PATH = RESULT_DIR / "source_native_peps3d_64_site_bond_dimension_slot_dynami
 
 NAME = "source_native_peps3d_64_site_bond_dimension_slot_dynamics_probe"
 CLASSIFICATION = "formal_scout"
+SIM_EXECUTION_KIND = "nonclassical"
 PROMOTION_ALLOWED = False
 CITES_BLOCKED_UNTIL = "long_horizon_64_site_bond_dimension_convergence"
 CLAIM_CEILING = (
@@ -42,18 +43,33 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing bond-dimension tensor updates"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing bond-dimension PEPS3D carrier tensors, slot updates, and parameter counts"},
     "quimb": {"tried": True, "used": True, "reason": "load-bearing via imported PEPS3D closeout construction"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing bond-dimension graph"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic bond/site factorization"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing bond-dimension finite witness"},
     "engine_core": {"tried": True, "used": True, "reason": "load-bearing via imported source-native records"},
 }
-TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "quimb": "load_bearing",
+    "networkx": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "engine_core": "supportive",
+}
+TOOL_ROLE_SOURCE = {
+    "pytorch": "local",
+    "quimb": "local_imported_helper",
+    "networkx": "local",
+    "sympy": "local",
+    "z3": "local",
+    "engine_core": "local_imported_helper",
+}
 
 
-def parameter_count(arrays: list[list[list[np.ndarray]]]) -> int:
-    return int(sum(np.prod(arr.shape) for plane in arrays for row in plane for arr in row))
+def parameter_count(arrays: list[list[list[torch.Tensor]]]) -> int:
+    return int(sum(arr.numel() for plane in arrays for row in plane for arr in row))
 
 
 def apply_records_at_bond_dim(records: list[dict[str, Any]], bond_dim: int) -> dict[str, Any]:
@@ -149,12 +165,14 @@ def main() -> int:
         "schema": "FORMAL_SCOUT_RESULT_v1",
         "name": NAME,
         "classification": CLASSIFICATION,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "promotion_allowed": PROMOTION_ALLOWED,
         "cites_blocked_until": CITES_BLOCKED_UNTIL,
         "claim_ceiling": CLAIM_CEILING,
         "source_alignment_category": "source_native_peps3d_64_site_bond_dimension_formal_scout",
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "positive": positive,
         "graveyard_companions": graveyards,
         "boundary": boundary,

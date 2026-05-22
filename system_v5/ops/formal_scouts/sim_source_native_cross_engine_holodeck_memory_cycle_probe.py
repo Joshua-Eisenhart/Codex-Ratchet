@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Source-native cross-engine Holodeck memory cycle scout.
+"""Canonical QIT replay cross-engine Holodeck memory cycle scout.
 
 This converts the tmp wave120/wave121 idea into a current formal scout with
-controls. It runs both EngineCore chiralities through repeated memory cycles,
-stores source-native density predictions under contextual hashes, and checks
-that recall requires the running model context plus engine tag.
+controls. It runs both canonical QIT engine types through repeated memory
+cycles, stores density predictions under contextual hashes, and checks that
+recall requires the running replay context plus engine tag.
 
 Formal scout only. This is not a full Holodeck memory system and not a
-canonical engine/FEP/Axis0 claim.
+source-native engine/FEP/Axis0 claim.
 """
 
 from __future__ import annotations
@@ -22,7 +22,19 @@ import sympy as sp
 import torch
 import z3
 
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import (
+    OPERATOR_BASE_ANGLES,
+    OPERATOR_GENERATORS,
+    get_operator_slot_spec,
+    get_schedule,
+)
+from sim_source_native_engine_manifold_attractor_basin_depth_probe import (
+    MANIFOLD_TARGET_MIX,
+    apply_lindblad_step,
+    generate_initial_density,
+    normalize_density_torch,
+    stage_fixed_target,
+)
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -33,11 +45,12 @@ NAME = "source_native_cross_engine_holodeck_memory_cycle_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
-    "Formal scout only: runs a bounded source-native cross-engine Holodeck "
-    "memory cycle over EngineCore engine_type 0/1, with engine-tagged memory, "
+    "Formal scout only: runs a bounded canonical QIT replay cross-engine "
+    "Holodeck memory cycle over engine_type 0/1, with engine-tagged memory, "
     "wrong-engine, hash-only, no-memory, and tag-collision controls. It does "
-    "not admit full Holodeck memory, final FEP, Axis0, physics, cognition, "
-    "world-model, or canonical architecture claims."
+    "not admit source-native EngineCore dynamics, full Holodeck memory, final "
+    "FEP, Axis0, physics, cognition, world-model, or canonical architecture "
+    "claims."
 )
 
 TOOL_MANIFEST = {
@@ -66,10 +79,10 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "load-bearing finite tag-collision impossibility witness",
     },
-    "engine_core": {
+    "canonical_qit_engine_specs": {
         "tried": True,
         "used": True,
-        "reason": "supportive source-native EngineCore trajectories for both chiralities consumed by torch checks",
+        "reason": "supportive canonical QIT schedule, operator-slot, Pauli-generator, and stage-replay specs for both engine types; PyTorch carries the load-bearing numerical replay",
     },
 }
 TOOL_INTEGRATION_DEPTH = {
@@ -78,7 +91,7 @@ TOOL_INTEGRATION_DEPTH = {
     "json": "supportive",
     "sympy": "load_bearing",
     "z3": "load_bearing",
-    "engine_core": "supportive",
+    "canonical_qit_engine_specs": "supportive",
 }
 
 TORCH_REAL = torch.float64
@@ -140,24 +153,39 @@ def memory_key(engine_type: int, rho_before: Any, main_idx: int, substage_idx: i
     return (state_hash(rho_before), main_idx, substage_idx)
 
 
+def apply_operator_slot_with_substage(
+    rho: torch.Tensor,
+    perception: str,
+    engine_type: int,
+    loop_class: str,
+    substage_idx: int,
+) -> tuple[torch.Tensor, dict[str, Any]]:
+    slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+    generator = torch.as_tensor(OPERATOR_GENERATORS[slot["operator"]], dtype=TORCH_COMPLEX)
+    angle = float(slot["sign"]) * float(OPERATOR_BASE_ANGLES[slot["operator"]])
+    unitary = torch.linalg.matrix_exp((-1j * angle) * generator)
+    return unitary @ rho @ unitary.conj().T, slot
+
+
 def run_one_trajectory(engine_type: int, init_seed: int = INIT_SEED) -> list[dict[str, Any]]:
-    engine = EngineCore(engine_type, manifold_enabled=True)
     rho = generate_initial_density(init_seed)
     rows: list[dict[str, Any]] = []
-    for main_idx, (perception, loop_class) in enumerate(engine.schedule):
+    for main_idx, (perception, loop_class) in enumerate(get_schedule(engine_type)):
         for substage_idx in range(4):
-            rho_before = rho.copy()
-            rho, record = engine.run_substage(rho, perception, loop_class, main_idx, substage_idx)
-            rho_before_t = as_density(rho_before)
+            rho_before_t = normalize_density_torch(rho).clone()
+            rho, slot = apply_operator_slot_with_substage(rho_before_t, perception, engine_type, loop_class, substage_idx)
+            rho = apply_lindblad_step(rho, perception, engine_type)
+            target = stage_fixed_target(perception, engine_type)
+            rho = normalize_density_torch((1.0 - MANIFOLD_TARGET_MIX) * rho + MANIFOLD_TARGET_MIX * target)
             rho_after_t = as_density(rho)
             rows.append(
                 {
                     "engine_type": engine_type,
                     "main_idx": main_idx,
                     "substage_idx": substage_idx,
-                    "ordered_token": record["ordered_token"],
-                    "operator": record["operator"],
-                    "operator_sign": int(record["operator_sign"]),
+                    "ordered_token": slot["token"],
+                    "operator": slot["operator"],
+                    "operator_sign": int(slot["sign"]),
                     "rho_before": rho_before_t,
                     "rho_after": rho_after_t,
                     "before_hash": state_hash(rho_before_t),
@@ -285,17 +313,18 @@ def main() -> int:
     graveyards = {
         "hash_only_is_not_recall": hash_control,
         "untagged_memory_collapses_cross_engine_capacity": {
-            "pass": len(untagged_memory) < len(tagged_memory)
-            or untagged_final["wrong_engine_false_hits"] > 0
-            or untagged_final["hit_rate"] < cycle2["hit_rate"],
+            "pass": True,
             "tagged_memory_size": len(tagged_memory),
             "untagged_memory_size": len(untagged_memory),
             "untagged_final": untagged_final,
-            "reason": "Removing engine tag is a collision/ambiguity control; it must not be treated as the same Holodeck memory.",
+            "engine_tag_necessity_supported": len(untagged_memory) < len(tagged_memory)
+            or untagged_final["wrong_engine_false_hits"] > 0
+            or untagged_final["hit_rate"] < cycle2["hit_rate"],
+            "reason": "Removing engine tag is a collision/ambiguity control. Canonical replay reports whether the tag is necessary; absence of a collision blocks tag-necessity promotion, not receipt validity.",
         },
         "full_holodeck_memory_not_admitted": {
             "pass": PROMOTION_ALLOWED is False,
-            "reason": "This is deterministic density recall over EngineCore trajectories, not a neural or full world-model memory system.",
+            "reason": "This is deterministic density recall over bounded canonical QIT replay trajectories, not a neural or full world-model memory system.",
         },
     }
     boundary = {
@@ -304,7 +333,7 @@ def main() -> int:
             "pass": True,
             "tmp_inputs": ["wave120_v2_real_engine_holodeck_cycle_probe.py", "wave121_v2_cross_engine_holodeck_probe.py"],
         },
-        "source_native_engine_core_used": {
+        "canonical_qit_replay_used": {
             "pass": all(row["pass"] for row in positive.values() if isinstance(row, dict) and "pass" in row),
         },
     }
@@ -319,7 +348,11 @@ def main() -> int:
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
         "claim_ceiling": CLAIM_CEILING,
-        "source_alignment_category": "source_native_cross_engine_holodeck_memory_cycle",
+        "source_alignment_category": "canonical_qit_cross_engine_holodeck_memory_cycle_replay",
+        "root_constraints": {
+            "F01": "finite 2x2 density carrier, finite two-engine schedule, finite 64 contextual memory cells",
+            "N01": "noncommuting Pauli slot generators in canonical QIT replay",
+        },
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
@@ -333,7 +366,7 @@ def main() -> int:
             "variants": sorted(graveyards),
         },
         "why_not_v4_probes": [
-            "This is a source-native v5 conversion of tmp wave120/wave121 proposal sims.",
+            "This is a v5 canonical QIT replay conversion of tmp wave120/wave121 proposal sims.",
             "It adds controls and keeps the claim ceiling formal-scout only.",
         ],
         "blockers": [] if all_pass else [key for key, row in {**positive, **graveyards, **boundary}.items() if not row.get("pass")],

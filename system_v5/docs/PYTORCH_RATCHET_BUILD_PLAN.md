@@ -32,7 +32,7 @@ That means the build program has two distinct jobs:
 2. simulate which subsets and sequences of layers can actually nest on each other
 
 Concrete preserved examples:
-- density matrices are near-first admissible objects
+- density matrices are early working carriers after finite-carrier admission; they are not yet forced at L0/L1 by the root constraints alone
 - left/right Weyl spinors run on nested Hopf tori
 - flux is a derived candidate family downstream of stagewise differential machinery
 - bridge / cut-state / `Phi0` work comes after the relevant geometry/chirality/delta objects exist

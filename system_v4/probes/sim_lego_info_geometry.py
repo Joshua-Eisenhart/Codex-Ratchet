@@ -15,6 +15,9 @@ import warnings
 import numpy as np
 from scipy.linalg import logm, sqrtm, expm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = [
+    "Classical comparator/control surface only: this runner does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim.",
+]
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 

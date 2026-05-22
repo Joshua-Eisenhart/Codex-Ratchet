@@ -37,6 +37,14 @@ import numpy as np
 
 from receipt_boundary import apply_default_receipt_boundary
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical-baseline divergence controls: Hopf-fiber graph message passing is compared "
+    "against identity-weight/no-information-flow, same-density random graph, near-zero threshold "
+    "no-edge behavior, and near-full threshold saturation; this does not promote graph-shell "
+    "geometry, bridge, axis, GStack, QIT, or nonclassical admission."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -524,7 +532,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_pyg_hopf_graph_deep_capability",
-        "classification": "classical_baseline",
+        "classification": classification,
         "overall_pass": overall_pass,
         **CANDIDATE_SIM_SPEC,
         "tool_manifest": TOOL_MANIFEST,
@@ -532,11 +540,7 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "divergence_log": (
-            "Classical-baseline divergence controls: Hopf-fiber graph message passing is compared "
-            "against identity-weight/no-information-flow, same-density random graph, near-zero threshold "
-            "no-edge behavior, and near-full threshold saturation; failures demote this baseline receipt."
-        ),
+        "divergence_log": divergence_log,
         "surviving_alternatives": [
             "This receipt covers only bounded PyG Hopf-graph message-passing behavior as a classical baseline; it does not promote graph-shell geometry, Werner structure, bridge, axis, GStack, or nonclassical admission."
         ],

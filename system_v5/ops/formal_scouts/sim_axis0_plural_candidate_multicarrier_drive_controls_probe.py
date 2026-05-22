@@ -130,6 +130,28 @@ CANDIDATE_WEIGHTS = {
     "retrocausal_many_futures_policy_scoring": 0.13,
     "holographic_boundary_interior_reconstruction": -0.11,
 }
+OPERATOR_VECTOR_WEIGHTS = {
+    "Te": {
+        "fep_gradient_polarity": 1.0,
+        "correlation_diversity_derivative": 0.0,
+        "retrocausal_many_futures_policy_scoring": 0.0,
+    },
+    "Fe": {
+        "fep_gradient_polarity": 0.0,
+        "correlation_diversity_derivative": 1.0,
+        "retrocausal_many_futures_policy_scoring": 0.0,
+    },
+    "Ti": {
+        "fep_gradient_polarity": 0.0,
+        "correlation_diversity_derivative": 0.0,
+        "retrocausal_many_futures_policy_scoring": 1.0,
+    },
+    "Fi": {
+        "fep_gradient_polarity": 0.5,
+        "correlation_diversity_derivative": 0.25,
+        "retrocausal_many_futures_policy_scoring": 0.25,
+    },
+}
 GAP_FLOOR = 1e-5
 NONZERO_FRACTION_FLOOR = 0.20
 VARIANCE_FLOOR = 1e-8
@@ -229,7 +251,7 @@ def candidate_status(axis0: dict[str, Any], router_payload: dict[str, Any]) -> d
     return status
 
 
-def candidate_drive(axis0: dict[str, Any], idx: int, mode: str) -> float:
+def candidate_drive(axis0: dict[str, Any], idx: int, mode: str, operator: str | None = None) -> float:
     if not axis0.get("ready"):
         return 0.0
     values = candidate_values(axis0, idx)
@@ -269,8 +291,14 @@ def candidate_drive(axis0: dict[str, Any], idx: int, mode: str) -> float:
             values[shuffled] = float(vector[(idx * 7 + 11) % len(vector)])
     elif mode != "full_vector":
         raise ValueError(mode)
-    weighted = sum(CANDIDATE_WEIGHTS[name] * values[name] for name in CANDIDATE_NAMES)
-    return float(weighted / sum(abs(value) for value in CANDIDATE_WEIGHTS.values()))
+    if operator in OPERATOR_VECTOR_WEIGHTS:
+        weights = OPERATOR_VECTOR_WEIGHTS[str(operator)]
+        weighted = sum(weights[name] * values[name] for name in weights)
+        denom = sum(abs(weights[name]) for name in weights)
+    else:
+        weighted = sum(CANDIDATE_WEIGHTS[name] * values[name] for name in CANDIDATE_NAMES)
+        denom = sum(abs(value) for value in CANDIDATE_WEIGHTS.values())
+    return float(weighted / denom)
 
 
 def signature_gap(a: dict[str, Any], b: dict[str, Any]) -> float:
@@ -295,7 +323,7 @@ def run_candidate_carrier(
     stage_hashes = []
     for idx, record in enumerate(records):
         site = carrier.sites[site_order[idx % len(site_order)]]
-        drive = candidate_drive(axis0, idx, mode)
+        drive = candidate_drive(axis0, idx, mode, operator=str(record["operator"]))
         mem_drive = subdense.holodeck_memory_drive(memory, idx)
         drives.append(drive)
         stage_hashes.append(record["model_after"]["density_hash"])
@@ -518,9 +546,13 @@ def control_family_correlation_report(suite: dict[str, Any], admitted_names: lis
     return {
         "rows": rows,
         "control_family_degeneracy_blockers": blockers,
+        "control_family_degeneracy_blocker": {
+            "admitted": False,
+            "claim": "The upstream path now uses an operator-aware vector-local drive, but admitted candidate control families remain too correlated to call the actuator fully non-degenerate.",
+        },
         "scalar_weighted_drive_blocker": {
             "admitted": False,
-            "claim": "This scout preserves per-candidate controls but still projects the bundle to a scalar before carrier actuation.",
+            "claim": "The upstream path now uses an operator-aware vector-local drive, but admitted candidate control families remain too correlated to call the actuator fully non-degenerate.",
         },
     }
 
@@ -655,6 +687,7 @@ def main() -> int:
             "admitted_candidate_names": candidate_report["admitted_candidate_names"],
             "blocked_candidate_names": candidate_report["blocked_candidate_names"],
             "holographic_boundary_interior_reconstruction_blockers_preserved": hbi_blockers,
+            "control_family_degeneracy_blocker": correlation_report["control_family_degeneracy_blocker"],
             "scalar_weighted_drive_blocker": correlation_report["scalar_weighted_drive_blocker"],
             "plural_axis0_drive_control_pass": suite["pass"],
         },
@@ -809,6 +842,13 @@ def main() -> int:
         "all_pass": all_pass,
     }
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
+    result["root_constraints"] = {
+        "F01": True,
+        "N01": True,
+        "finite_carrier_root": True,
+        "noncommutation_or_order_root": True,
+        "n01_evidence": "bounded candidate-drive control ordering, dependency graph, and shuffle/drop controls are recorded in positive and graveyard rows",
+    }
     OUT_PATH.write_text(json.dumps(as_jsonable(result), indent=2, sort_keys=True), encoding="utf-8")
     print(f"RESULT {NAME}: all_pass={all_pass} -> {OUT_PATH}")
     return 0 if all_pass else 1

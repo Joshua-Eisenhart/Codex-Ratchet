@@ -25,6 +25,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Spinor ψ as 4-vector torch float64 tensor, Clifford action via torch.mv matrix-vector multiply, spin connection evolution via autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed for spinor bundle foundation"},

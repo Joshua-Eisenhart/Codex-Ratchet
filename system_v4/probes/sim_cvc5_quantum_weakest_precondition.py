@@ -15,6 +15,8 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -176,7 +178,7 @@ def run_negative_tests():
             lambda_wp = solver.mkConst(solver.getRealSort(), "lambda_wp")
 
             # Constraint: lambda_wp > lambda_Q_max BUT wp.U.Q = U†QU must preserve eigenvalues
-            constraint = solver.mkTerm(cvc5.Kind.AND, 
+            constraint = solver.mkTerm(cvc5.Kind.AND,
                 solver.mkTerm(cvc5.Kind.GT, lambda_wp, lambda_Q_max),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_Q_max, solver.mkReal(1)),
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_Q_max, solver.mkReal(0)),
@@ -307,7 +309,7 @@ def run_boundary_tests():
             lambda_wp = solver.mkConst(solver.getRealSort(), "lambda_wp")
 
             # Boundary: lambda_wp = lambda_Q (eigenvalue of wp.U.Q equals eigenvalue of Q)
-            constraint = solver.mkTerm(cvc5.Kind.AND, 
+            constraint = solver.mkTerm(cvc5.Kind.AND,
                 solver.mkTerm(cvc5.Kind.EQUAL, lambda_wp, lambda_Q),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_Q, solver.mkReal(1)),
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_Q, solver.mkReal(0)),

@@ -75,6 +75,8 @@ TOOL_INTEGRATION_DEPTH = {
     "z3": "load_bearing",
 }
 
+MIN_NONCLASSICAL_WIDTH = 8
+
 SUITE = [
     {
         "name": "manifold_operational_assembly",
@@ -120,8 +122,8 @@ SUITE = [
     },
     {
         "name": "qit_engine_work_execution",
-        "script": "sim_constraint_manifold_qit_engine_work_execution_probe.py",
-        "result": "constraint_manifold_qit_engine_work_execution_probe_results.json",
+        "script": "sim_constraint_manifold_qit_work_execution_probe.py",
+        "result": "constraint_manifold_qit_work_execution_probe_results.json",
         "category": "downstream_qit_engine_work_execution",
     },
     {
@@ -237,6 +239,9 @@ SUITE = [
         "script": "sim_multiqubit_qit_reservoir_digits_6q_probe.py",
         "result": "multiqubit_qit_reservoir_digits_6q_probe_results.json",
         "category": "multiqubit_qit_reservoir_real_data",
+        "minimum_width_qubits": 6,
+        "minimum_width_role": "calibration_only",
+        "minimum_width_reason": "six-qubit sklearn-digits reservoir row is retained as a real-data calibration boundary, not nonclassical maturity evidence",
     },
     {
         "name": "weyl_holonomy_mps_curvature_transport",
@@ -516,7 +521,7 @@ def as_jsonable(value: Any) -> Any:
     return value
 
 
-def receipt_passes(path: pathlib.Path) -> tuple[bool, list[str], dict[str, Any]]:
+def receipt_passes(path: pathlib.Path, row: dict[str, Any]) -> tuple[bool, list[str], dict[str, Any]]:
     errors: list[str] = []
     if not path.exists():
         return False, ["result missing"], {}
@@ -550,7 +555,52 @@ def receipt_passes(path: pathlib.Path) -> tuple[bool, list[str], dict[str, Any]]
         errors.append("expected all_pass false receipt did not report all_pass=false")
     if "all_pass" in data and data.get("all_pass") is not True and not expected_all_pass_false:
         errors.append("all_pass is explicitly false")
+    declared_width = row.get("minimum_width_qubits")
+    if isinstance(declared_width, int) and declared_width < MIN_NONCLASSICAL_WIDTH:
+        if row.get("minimum_width_role") != "calibration_only":
+            errors.append("sub-minimum-width row is not marked calibration_only")
+    width_policy = receipt_positive_width_policy(data)
+    if width_policy["invalid_subminimum_positive_claims"]:
+        errors.append(
+            "sub-minimum positive width claim lacks calibration_only role: "
+            + ", ".join(claim["path"] for claim in width_policy["invalid_subminimum_positive_claims"][:4])
+        )
     return not errors, errors, data
+
+
+def receipt_positive_width_policy(data: dict[str, Any]) -> dict[str, Any]:
+    positive = data.get("positive") if isinstance(data.get("positive"), dict) else {}
+    subminimum: list[dict[str, Any]] = []
+
+    def visit(node: Any, path: str) -> None:
+        if isinstance(node, dict):
+            width = node.get("minimum_width_qubits")
+            if not isinstance(width, int):
+                width = node.get("n_qubits")
+            if isinstance(width, int) and width < MIN_NONCLASSICAL_WIDTH and node.get("pass") is True:
+                role = str(node.get("minimum_width_role") or node.get("width_role") or "")
+                subminimum.append(
+                    {
+                        "path": path,
+                        "width": width,
+                        "minimum_width_role": role or "not_declared",
+                        "minimum_width_reason": node.get("minimum_width_reason"),
+                    }
+                )
+            for key, value in node.items():
+                visit(value, f"{path}.{key}")
+        elif isinstance(node, list):
+            for index, value in enumerate(node):
+                visit(value, f"{path}[{index}]")
+
+    visit(positive, "positive")
+    invalid = [claim for claim in subminimum if claim["minimum_width_role"] != "calibration_only"]
+    return {
+        "pass": not invalid,
+        "subminimum_positive_claim_count": len(subminimum),
+        "subminimum_positive_claims": subminimum,
+        "invalid_subminimum_positive_claims": invalid,
+    }
 
 
 def run_script(row: dict[str, str]) -> dict[str, Any]:
@@ -577,12 +627,18 @@ def run_script(row: dict[str, str]) -> dict[str, Any]:
         env=env,
         timeout=300,
     )
-    receipt_ok, receipt_errors, data = receipt_passes(result)
+    receipt_ok, receipt_errors, data = receipt_passes(result, row)
     errors = []
     if proc.returncode != 0:
         errors.append(f"returncode {proc.returncode}")
     errors.extend(receipt_errors)
     source_alignment = data.get("source_alignment_category", "not_declared") if data else "missing"
+    receipt_width_policy = receipt_positive_width_policy(data) if data else {
+        "pass": False,
+        "subminimum_positive_claim_count": 0,
+        "subminimum_positive_claims": [],
+        "invalid_subminimum_positive_claims": [],
+    }
     result_sha256 = hashlib.sha256(result.read_bytes()).hexdigest() if result.exists() else ""
     return {
         **row,
@@ -595,8 +651,49 @@ def run_script(row: dict[str, str]) -> dict[str, Any]:
         "classification": data.get("classification") if data else None,
         "promotion_allowed": data.get("promotion_allowed") if data else None,
         "source_alignment_category": source_alignment,
+        "minimum_width_qubits": row.get("minimum_width_qubits"),
+        "minimum_width_role": row.get("minimum_width_role", "not_declared"),
+        "minimum_width_reason": row.get("minimum_width_reason"),
+        "receipt_width_policy": receipt_width_policy,
         "stdout_tail": proc.stdout[-500:],
         "stderr_tail": proc.stderr[-500:],
+    }
+
+
+def suite_width_policy(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    subminimum = [
+        {
+            "name": row["name"],
+            "minimum_width_qubits": row.get("minimum_width_qubits"),
+            "minimum_width_role": row.get("minimum_width_role"),
+            "minimum_width_reason": row.get("minimum_width_reason"),
+        }
+        for row in rows
+        if isinstance(row.get("minimum_width_qubits"), int)
+        and int(row["minimum_width_qubits"]) < MIN_NONCLASSICAL_WIDTH
+    ]
+    invalid = [row for row in subminimum if row.get("minimum_width_role") != "calibration_only"]
+    invalid_receipts = [
+        {
+            "name": row["name"],
+            "result_path": row.get("result_path"),
+            "invalid_subminimum_positive_claims": row.get("receipt_width_policy", {}).get("invalid_subminimum_positive_claims", []),
+        }
+        for row in rows
+        if row.get("receipt_width_policy", {}).get("invalid_subminimum_positive_claims")
+    ]
+    return {
+        "pass": not invalid and not invalid_receipts,
+        "minimum_nonclassical_width": MIN_NONCLASSICAL_WIDTH,
+        "subminimum_row_count": len(subminimum),
+        "subminimum_calibration_rows": subminimum,
+        "invalid_subminimum_rows": invalid,
+        "invalid_subminimum_receipts": invalid_receipts,
+        "receipt_subminimum_claim_count": sum(
+            int(row.get("receipt_width_policy", {}).get("subminimum_positive_claim_count", 0))
+            for row in rows
+        ),
+        "boundary": "Rows below the minimum width may remain in the suite only as calibration/boundary evidence, not maturity evidence.",
     }
 
 
@@ -710,15 +807,18 @@ def main() -> int:
     missing_nodes = missing_critical_nodes(rows)
     missing_edges = missing_critical_edges(graph)
     row_hashes_present = all(bool(row.get("result_sha256")) for row in rows)
+    width_policy = suite_width_policy(rows)
 
-    suite_all_pass = all(pass_vector) and nx.is_directed_acyclic_graph(graph)
+    suite_all_pass = all(pass_vector) and nx.is_directed_acyclic_graph(graph) and bool(width_policy["pass"])
     symbolic_count = sp.Integer(len(rows))
     z3_solver = Solver()
     all_scripts_pass = Bool("all_scripts_pass")
     graph_is_acyclic = Bool("graph_is_acyclic")
+    minimum_width_policy_passes = Bool("minimum_width_policy_passes")
     z3_solver.add(all_scripts_pass == all(pass_vector))
     z3_solver.add(graph_is_acyclic == nx.is_directed_acyclic_graph(graph))
-    z3_solver.add(And(all_scripts_pass, graph_is_acyclic))
+    z3_solver.add(minimum_width_policy_passes == bool(width_policy["pass"]))
+    z3_solver.add(And(all_scripts_pass, graph_is_acyclic, minimum_width_policy_passes))
     z3_status = z3_solver.check()
 
     result = {
@@ -770,6 +870,7 @@ def main() -> int:
                 "z3": str(z3_status),
                 "symbolic_count": str(symbolic_count),
             },
+            "minimum_width_policy_is_explicit": width_policy,
         },
         "graveyard_companions": {
             "manifest_must_be_last": {
@@ -794,6 +895,10 @@ def main() -> int:
                 "missing_edges": missing_edges,
                 "note": "A missing critical node or edge makes this graveyard fail instead of silently treating receipt presence as integration.",
             },
+            "subminimum_width_rows_are_calibration_only": {
+                "pass": bool(width_policy["pass"]),
+                **width_policy,
+            },
         },
         "boundary": {
             "suite_runner_is_not_final_canonical_proof": {
@@ -808,9 +913,14 @@ def main() -> int:
                 "pass": True,
                 "note": "Every suite row is rerun locally by subprocess before this receipt is written.",
             },
+            "six_qubit_real_data_row_is_not_maturity_evidence": {
+                "pass": any(row["name"] == "multiqubit_reservoir_digits_6q" for row in width_policy["subminimum_calibration_rows"]),
+                "minimum_nonclassical_width": MIN_NONCLASSICAL_WIDTH,
+                "subminimum_calibration_rows": width_policy["subminimum_calibration_rows"],
+            },
         },
         "nearby_variants": {
-            "total": 5,
+            "total": 6,
             "passed": sum(
                 int(flag)
                 for flag in [
@@ -819,6 +929,7 @@ def main() -> int:
                     not any(row["promotion_allowed"] is not False for row in rows),
                     bool(manifest_row["pass"]),
                     not missing_nodes and not missing_edges,
+                    bool(width_policy["pass"]),
                 ]
             ),
             "variants": [
@@ -827,6 +938,7 @@ def main() -> int:
                 "no_receipt_may_promote",
                 "manifest_quarantine_receipt_must_pass",
                 "critical_surface_omission_is_detected",
+                "subminimum_width_rows_are_calibration_only",
             ],
         },
         "category_counts": category_counts,

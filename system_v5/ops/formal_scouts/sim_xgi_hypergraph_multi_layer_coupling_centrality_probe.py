@@ -5,7 +5,8 @@ Models the constraint manifold's multi-layer couplings as a hypergraph where
 each hyperedge is one stage of an engine execution, connecting the active
 topology (terrain), the judging operator, multiple manifold layers, and the
 loop class simultaneously. XGI is load-bearing: the multi-layer simultaneous
-coupling cannot be captured by pairwise graph structure alone.
+coupling is compared against a pairwise graph reduction as a diagnostic
+fixture, not accepted as a manifold-coupling proof.
 
 Source alignment:
   - 13 layer names: sim_nested_geometry_tower_dependency_order_probe.py:56-70
@@ -29,10 +30,9 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 
 import gudhi
 import networkx as nx
-import numpy as np
+import torch
 import xgi
 import z3
-from scipy import stats as spstats
 
 ROOT = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = ROOT / "results"
@@ -44,8 +44,9 @@ CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
     "Formal scout only: tests whether the constraint manifold's multi-layer "
-    "couplings encode genuinely higher-order interactions captured by hypergraph "
-    "structure. Does not admit final manifold or physics claims."
+    "coupling fixture produces hypergraph centrality signals that diverge from "
+    "a pairwise graph reduction. Does not prove structural uniqueness, final "
+    "manifold status, or physics claims."
 )
 
 TOOL_MANIFEST = {
@@ -67,20 +68,13 @@ TOOL_MANIFEST = {
             "to compare against hypergraph centrality"
         ),
     },
-    "numpy": {
+    "pytorch": {
         "tried": True,
         "used": True,
         "reason": (
-            "load-bearing: edge size distribution, centrality vector normalization, "
-            "Spearman correlation via scipy on numpy arrays, graveyard shuffling"
-        ),
-    },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": (
-            "load-bearing: Spearman rank correlation comparing hypergraph vs pairwise "
-            "centrality vectors; statistical test for centrality divergence"
+            "load-bearing: dense normalized-Laplacian eigensolve, edge size "
+            "distribution, centrality vector normalization, local tie-aware "
+            "Spearman rank correlation, and graveyard shuffling"
         ),
     },
     "gudhi": {
@@ -95,9 +89,9 @@ TOOL_MANIFEST = {
         "tried": True,
         "used": True,
         "reason": (
-            "load-bearing: UNSAT witness on the graveyard 'randomized_hyperedge_assignment' "
-            "predicate — proves the canonical stage->layer mapping cannot be replicated "
-            "by random assignment while preserving degree sequence"
+            "supportive diagnostic: checks a narrow zero-assignment predicate on "
+            "hopf_fiber_bundle counts; not accepted as proof of canonical stage-layer "
+            "uniqueness or random-assignment impossibility"
         ),
     },
 }
@@ -105,11 +99,57 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {
     "xgi": "load_bearing",
     "networkx": "supportive",
-    "numpy": "load_bearing",
-    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
     "gudhi": "load_bearing",
-    "z3": "load_bearing",
+    "z3": "supportive",
 }
+
+
+def _average_tie_ranks(values: list[float]) -> torch.Tensor:
+    """Return 1-based average ranks, with ties sharing their mean rank."""
+    ranks = [0.0] * len(values)
+    ordered = sorted(range(len(values)), key=lambda i: (values[i], i))
+    i = 0
+    while i < len(ordered):
+        j = i + 1
+        while j < len(ordered) and values[ordered[j]] == values[ordered[i]]:
+            j += 1
+        avg_rank = (i + 1 + j) / 2.0
+        for k in range(i, j):
+            ranks[ordered[k]] = avg_rank
+        i = j
+    return torch.tensor(ranks, dtype=torch.float64)
+
+
+def spearman_rank_correlation(x_values: list[float], y_values: list[float]) -> tuple[float, float]:
+    """Compute tie-aware Spearman rho with a bounded local p-value approximation.
+
+    The finite probe only needs deterministic rank-correlation behavior. Ties
+    receive average ranks, rho is Pearson correlation over those ranks, and the
+    p-value is a normal approximation used as metadata rather than proof.
+    """
+    if len(x_values) != len(y_values):
+        raise ValueError("Spearman inputs must have the same length")
+    n = len(x_values)
+    if n < 2:
+        return 1.0, 1.0
+
+    x = _average_tie_ranks([float(v) for v in x_values])
+    y = _average_tie_ranks([float(v) for v in y_values])
+    x_centered = x - torch.mean(x)
+    y_centered = y - torch.mean(y)
+    denom = torch.linalg.vector_norm(x_centered) * torch.linalg.vector_norm(y_centered)
+    if float(denom) <= 1e-12:
+        return 0.0, 1.0
+
+    rho = float(torch.dot(x_centered, y_centered) / denom)
+    rho = max(-1.0, min(1.0, rho))
+    if n <= 2 or abs(rho) >= 1.0:
+        return rho, 0.0 if abs(rho) >= 1.0 else 1.0
+
+    t_stat = abs(rho) * math.sqrt((n - 2) / max(1e-12, 1.0 - rho * rho))
+    p_approx = math.erfc(t_stat / math.sqrt(2.0))
+    return rho, max(0.0, min(1.0, float(p_approx)))
 
 # ---------------------------------------------------------------------------
 # Node definitions — 25 nodes
@@ -394,7 +434,7 @@ def hypergraph_stats(H: xgi.Hypergraph) -> dict[str, Any]:
         "n_edges": n_edges,
         "edge_size_min": int(min(edge_sizes)),
         "edge_size_max": int(max(edge_sizes)),
-        "edge_size_mean": float(np.mean(edge_sizes)),
+        "edge_size_mean": float(sum(edge_sizes) / len(edge_sizes)) if edge_sizes else 0.0,
         "edge_size_distribution": {str(k): v for k, v in sorted(size_counts.items())},
         "edge_density": float(density),
     }
@@ -408,9 +448,10 @@ def compute_centralities(H: xgi.Hypergraph) -> dict[str, dict]:
     """Compute four hypergraph centralities including normalized Laplacian spectral centrality.
 
     The normalized hypergraph Laplacian spectral centrality (diffusion centrality) is
-    the primary load-bearing higher-order measure: it is derived from the XGI
-    normalized_hypergraph_laplacian eigendecomposition and captures simultaneous
-    multi-body interactions that pairwise graph centrality cannot replicate.
+    the primary load-bearing hypergraph measure: it is derived from the XGI
+    normalized_hypergraph_laplacian eigendecomposition over the full incidence
+    matrix. Divergence from pairwise graph centrality is diagnostic evidence,
+    not by itself a proof of irreducible multi-layer coupling.
     """
     # Clique eigenvector centrality (H-eigenvector via clique expansion)
     clique_eig = xgi.clique_eigenvector_centrality(H)
@@ -426,24 +467,22 @@ def compute_centralities(H: xgi.Hypergraph) -> dict[str, dict]:
     max_deg = max(deg_dict.values()) if deg_dict else 1
     degree_cent = {n: d / max_deg for n, d in deg_dict.items()}
 
-    # Normalized hypergraph Laplacian spectral (diffusion) centrality — HIGHER-ORDER
-    # Uses xgi.normalized_hypergraph_laplacian (sparse), then scipy eigendecomposition.
+    # Normalized hypergraph Laplacian spectral (diffusion) centrality.
+    # Uses xgi.normalized_hypergraph_laplacian (sparse), then torch eigendecomposition.
     # Diffusion centrality for node i = sum_k |v_k[i]| / (lambda_k + eps)
     # where lambda_k are eigenvalues and v_k are eigenvectors.
     # This is distinct from pairwise graph centrality because the Laplacian is
-    # constructed from the full incidence matrix B (node × hyperedge), not B_reduced.
-    from scipy.sparse.linalg import eigsh
+    # constructed from the full incidence matrix B (node x hyperedge), not B_reduced.
     L_sparse = xgi.normalized_hypergraph_laplacian(H, sparse=True)
     # Convert to dense for full eigendecomposition (25 nodes: tractable)
-    L_dense = L_sparse.toarray().astype(float)
+    L_dense = torch.tensor(L_sparse.toarray(), dtype=torch.float64)
     n = L_dense.shape[0]
-    from scipy.linalg import eigh
-    eigenvalues, eigenvectors = eigh(L_dense)
+    eigenvalues, eigenvectors = torch.linalg.eigh(L_dense)
     # Diffusion centrality: sum over non-trivial eigenmodes
     ho_laplacian_cent = {}
     for i, node in enumerate(ALL_NODES):
         val = sum(
-            abs(float(eigenvectors[i, k])) / (float(eigenvalues[k]) + 1e-10)
+            abs(float(eigenvectors[i, k].item())) / (float(eigenvalues[k].item()) + 1e-10)
             for k in range(1, n)  # skip trivial k=0 (zero eigenvalue)
         )
         ho_laplacian_cent[node] = val
@@ -496,7 +535,7 @@ def cluster_analysis(H: xgi.Hypergraph, n_clusters: int = 6) -> dict[str, Any]:
     topo_exclusive_clusters = topo_cluster_ids - op_cluster_ids
 
     # The primary predicate: 4 topology nodes are in 4 distinct clusters
-    # (each topology class has its own structural role, not merged)
+    # (each topology class has its own cluster-local role, not merged)
     topology_classes_cluster_separately = all_4_topo_distinct
 
     # Count distinct clusters represented
@@ -528,11 +567,11 @@ def pairwise_comparison(H: xgi.Hypergraph, centralities: dict) -> dict[str, Any]
 
     Primary comparison: XGI normalized hypergraph Laplacian spectral (diffusion)
     centrality vs NX pairwise eigenvector centrality. The normalized hypergraph
-    Laplacian is constructed from the full incidence matrix B (node × hyperedge),
-    encoding ALL simultaneous multi-body interactions. The pairwise reduction
-    (xgi.to_graph) replaces each k-hyperedge with k-choose-2 edges, losing
-    higher-order structure. If Spearman rho between the two is < 0.95 (or negative),
-    the multi-layer coupling is genuinely higher-order.
+    Laplacian is constructed from the full incidence matrix B (node x hyperedge).
+    The pairwise reduction (xgi.to_graph) replaces each k-hyperedge with
+    k-choose-2 edges. If Spearman rho between the two is < 0.95, this fixture
+    records a centrality-rank divergence that still needs the topology and
+    graveyard controls before it can support a coupling claim.
 
     Secondary: katz centrality vs pairwise for additional evidence.
     """
@@ -545,17 +584,17 @@ def pairwise_comparison(H: xgi.Hypergraph, centralities: dict) -> dict[str, Any]
         nx_cent = nx.degree_centrality(G_pairwise)
 
     common_nodes = sorted(set(ALL_NODES) & set(nx_cent.keys()))
-    nx_vals = np.array([float(nx_cent.get(n, 0.0)) for n in common_nodes])
+    nx_vals = [float(nx_cent.get(n, 0.0)) for n in common_nodes]
 
     # Primary: Normalized HO Laplacian spectral centrality (load-bearing XGI measure)
     ho_laplacian = centralities["ho_laplacian_spectral"]
-    hg_ho_vals = np.array([float(ho_laplacian.get(n, 0.0)) for n in common_nodes])
-    rho_ho, p_ho = spstats.spearmanr(hg_ho_vals, nx_vals)
+    hg_ho_vals = [float(ho_laplacian.get(n, 0.0)) for n in common_nodes]
+    rho_ho, p_ho = spearman_rank_correlation(hg_ho_vals, nx_vals)
 
     # Secondary: Katz centrality
     hg_katz = centralities["katz"]
-    hg_katz_vals = np.array([float(hg_katz.get(n, 0.0)) for n in common_nodes])
-    rho_katz, _ = spstats.spearmanr(hg_katz_vals, nx_vals)
+    hg_katz_vals = [float(hg_katz.get(n, 0.0)) for n in common_nodes]
+    rho_katz, _ = spearman_rank_correlation(hg_katz_vals, nx_vals)
 
     # Rank difference for top-5 (using HO Laplacian as primary)
     hg_ranked = sorted(common_nodes, key=lambda n: ho_laplacian.get(n, 0.0), reverse=True)
@@ -590,7 +629,7 @@ def pairwise_comparison(H: xgi.Hypergraph, centralities: dict) -> dict[str, Any]
 # ---------------------------------------------------------------------------
 
 def modularity_test(H: xgi.Hypergraph, cluster_map: dict) -> dict[str, Any]:
-    """Test whether the hypergraph block structure aligns with 4 topology classes.
+    """Record whether the cluster surface separates the 4 topology classes.
 
     Method: for each pair of topology nodes, check whether they land in the
     same cluster more often than chance. Use the pairwise graph modularity
@@ -612,7 +651,7 @@ def modularity_test(H: xgi.Hypergraph, cluster_map: dict) -> dict[str, Any]:
     except Exception:
         q = float("nan")
 
-    # Check: do all 4 topology nodes appear in at most 2 distinct clusters?
+    # Check: do all 4 topology nodes collapse together or separate cleanly?
     topo_cluster_ids = [cluster_map[n] for n in TOPOLOGY_NODES if n in cluster_map]
     n_topo_clusters = len(set(topo_cluster_ids))
 
@@ -623,7 +662,8 @@ def modularity_test(H: xgi.Hypergraph, cluster_map: dict) -> dict[str, Any]:
         "modularity_q": float(q) if not math.isnan(q) else None,
         "n_topology_clusters": n_topo_clusters,
         "topology_nodes_share_clusters": shared_topo_clusters,
-        "block_structure_aligns_to_topology": n_topo_clusters <= 4,
+        "topology_nodes_collapse_to_single_cluster": n_topo_clusters == 1,
+        "block_structure_aligns_to_topology": n_topo_clusters == len(TOPOLOGY_NODES),
         "community_sizes": {str(k): len(v) for k, v in community_map.items()},
     }
 
@@ -646,7 +686,7 @@ def gudhi_persistence(centralities: dict[str, dict]) -> dict[str, Any]:
     deg_c = centralities["degree"]
     ho_c = centralities["ho_laplacian_spectral"]
 
-    pts = np.array(
+    pts = torch.tensor(
         [
             [
                 clique_c.get(n, 0.0),
@@ -657,15 +697,16 @@ def gudhi_persistence(centralities: dict[str, dict]) -> dict[str, Any]:
             ]
             for n in ALL_NODES
         ],
-        dtype=np.float64,
+        dtype=torch.float64,
     )
 
     # Normalize columns
-    col_ranges = pts.max(axis=0) - pts.min(axis=0)
-    col_ranges[col_ranges == 0] = 1.0
-    pts_norm = (pts - pts.min(axis=0)) / col_ranges
+    col_min = torch.amin(pts, dim=0)
+    col_ranges = torch.amax(pts, dim=0) - col_min
+    col_ranges = torch.where(col_ranges == 0, torch.ones_like(col_ranges), col_ranges)
+    pts_norm = (pts - col_min) / col_ranges
 
-    rc = gudhi.RipsComplex(points=pts_norm, max_edge_length=1.5)
+    rc = gudhi.RipsComplex(points=pts_norm.tolist(), max_edge_length=1.5)
     st = rc.create_simplex_tree(max_dimension=2)
     st.compute_persistence()
     pd = st.persistence()
@@ -694,9 +735,9 @@ def graveyard_pairwise_collapses(pairwise_result: dict) -> dict[str, Any]:
     """GRAVEYARD: pairwise_reduction_collapses_hyperedge_information.
 
     Predicate: the pairwise reduction's centrality ranking must match the
-    hypergraph's (Spearman rho >= 0.95). If rho < 0.95, the graveyard
-    condition is triggered — confirming the pairwise graph cannot
-    reproduce the multi-layer coupling signal.
+    hypergraph's (Spearman rho >= 0.95). If rho < 0.95, this fixture records a
+    pairwise centrality
+    divergence. It does not by itself prove irreducible coupling.
 
     Result: TRIGGERED means the graveyard is in the graveyard (the claim
     that pairwise suffices is dead). SURVIVED means pairwise matches.
@@ -708,8 +749,8 @@ def graveyard_pairwise_collapses(pairwise_result: dict) -> dict[str, Any]:
         "spearman_rho": rho,
         "graveyard_triggered": triggered,
         "interpretation": (
-            "GRAVEYARD TRIGGERED: pairwise graph cannot replicate hypergraph centrality "
-            f"(rho={rho:.4f} < 0.95) — multi-layer coupling is genuinely higher-order"
+            "GRAVEYARD TRIGGERED: pairwise graph centrality diverges from hypergraph centrality "
+            f"(rho={rho:.4f} < 0.95); this is diagnostic, not standalone coupling proof"
             if triggered
             else
             f"GRAVEYARD SURVIVED: pairwise graph matches hypergraph (rho={rho:.4f} >= 0.95)"
@@ -752,10 +793,7 @@ def graveyard_layer_removal(H: xgi.Hypergraph) -> dict[str, Any]:
     full_range = max(vals_full) - min(vals_full) if len(vals_full) > 1 else 0.0
     red_range = max(vals_red) - min(vals_red) if len(vals_red) > 1 else 0.0
     if len(op_common) >= 3 and full_range > 1e-12 and red_range > 1e-12:
-        import warnings
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            rho, _ = spstats.spearmanr(vals_full, vals_red)
+        rho, _ = spearman_rank_correlation(vals_full, vals_red)
     elif len(op_common) >= 3 and full_range > 1e-12 and red_range <= 1e-12:
         # Constant reduced vector: all operators now tied — this IS a ranking change
         rho = 0.0
@@ -783,17 +821,15 @@ def graveyard_layer_removal(H: xgi.Hypergraph) -> dict[str, Any]:
 def graveyard_random_hyperedge_z3(H: xgi.Hypergraph, all_stages: list[dict]) -> dict[str, Any]:
     """GRAVEYARD: randomized_hyperedge_assignment_destroys_cluster_structure.
 
-    Uses Z3 to prove that a randomly-assigned hyperedge membership (preserving
-    degree sequence) cannot satisfy the canonical stage constraints. The Z3
-    UNSAT witness confirms that the canonical stage->layer mapping is
-    structurally unique, not achievable by any random permutation.
+    Uses Z3 only as a narrow diagnostic on hopf_fiber_bundle count predicates.
+    This is not accepted as a proof that random hyperedge assignments cannot
+    satisfy the canonical stage constraints, and it does not prove structural
+    uniqueness of the stage->layer mapping.
 
-    Constraint encoded: in the canonical hypergraph, each fiber_loop stage
-    must include 'hopf_fiber_bundle'. Z3 checks whether there exists a valid
-    random assignment that (a) preserves each node's degree and (b) assigns
-    hopf_fiber_bundle to exactly the same number of edges as canonical, but
-    distributes them uniformly at random. The UNSAT result means no such
-    assignment respects all constraints simultaneously.
+    Constraint encoded: in the canonical hypergraph, count how often
+    hopf_fiber_bundle appears, then test a zero-assignment contradiction. That
+    contradiction is useful for detecting a trivial impossible assignment, but
+    not for killing the random-assignment graveyard.
     """
     solver = z3.Solver()
 
@@ -811,17 +847,9 @@ def graveyard_random_hyperedge_z3(H: xgi.Hypergraph, all_stages: list[dict]) -> 
     # Constraint 1: total count must match canonical
     solver.add(z3.Sum([z3.If(v, 1, 0) for v in edge_vars]) == canonical_hopf_count)
 
-    # Constraint 2 (structure-breaking): assign hopf uniformly — it cannot
-    # be exclusively in fiber_loop stages. Under randomization, hopf_fiber_bundle
-    # would appear in at least 1 base_lift_loop stage (indices 16-31 for engine1,
-    # indices 48-63 for engine2). Check if hopf can appear in exactly 0 base_lift edges
-    # while still hitting canonical_hopf_count. The canonical schedule has hopf in
-    # all fiber_loop stages (0-15 for engine1, 32-47 for engine2) = 16+16=32 edges.
-    # A random schedule cannot place ALL 32 into the first 32-edge range and
-    # simultaneously satisfy uniform randomness. We encode:
-    # - At most k of the hopf assignments can fall in the non-fiber_loop edges (idx 16-31, 48-63)
-    # where k=0 under canonical. Under randomization, k>=1 is expected.
-    # Z3 checks: does a valid assignment exist where k=0 AND count=canonical_hopf_count?
+    # Narrow diagnostic: ask whether hopf can appear in exactly 0 base_lift
+    # edges while still hitting canonical_hopf_count. This is a count predicate,
+    # not a model of a random schedule or a uniqueness proof.
     fiber_loop_indices = list(range(16)) + list(range(32, 48))  # engine1+engine2 fiber stages
     base_lift_indices = list(range(16, 32)) + list(range(48, 64))
 
@@ -836,8 +864,8 @@ def graveyard_random_hyperedge_z3(H: xgi.Hypergraph, all_stages: list[dict]) -> 
     # Now ask: can we additionally enforce that NONE of the fiber_loop_indices
     # edges contain hopf either — i.e., no valid assignment exists under
     # the canonical loop-structure constraint AND count-zero condition?
-    # This is the UNSAT witness: canonical structure CANNOT be reproduced by
-    # a zero-hopf random assignment while matching canonical count > 0.
+    # This only checks that an all-false zero-hopf assignment cannot match a
+    # positive canonical count. It is not a uniqueness witness for the schedule.
     solver2 = z3.Solver()
     edge_vars2 = [z3.Bool(f"hopf2_in_edge_{i}") for i in range(64)]
     solver2.add(z3.Sum([z3.If(v, 1, 0) for v in edge_vars2]) == canonical_hopf_count)
@@ -847,7 +875,7 @@ def graveyard_random_hyperedge_z3(H: xgi.Hypergraph, all_stages: list[dict]) -> 
 
     # This should be UNSAT when canonical_hopf_count > 0
     result2 = solver2.check()
-    unsat_witness = (result2 == z3.unsat) and (canonical_hopf_count > 0)
+    zero_assignment_unsat = (result2 == z3.unsat) and (canonical_hopf_count > 0)
 
     # Also check the main solver (canonical constraint is satisfiable)
     result1 = solver.check()
@@ -857,15 +885,12 @@ def graveyard_random_hyperedge_z3(H: xgi.Hypergraph, all_stages: list[dict]) -> 
         "canonical_hopf_count": canonical_hopf_count,
         "z3_canonical_constraint_sat": str(result1),
         "z3_zero_assignment_unsat": str(result2),
-        "unsat_witness_holds": bool(unsat_witness),
-        "graveyard_triggered": bool(unsat_witness),
+        "zero_assignment_unsat_holds": bool(zero_assignment_unsat),
+        "graveyard_triggered": False,
+        "accepted_as_uniqueness_proof": False,
         "interpretation": (
-            "GRAVEYARD TRIGGERED via Z3 UNSAT: canonical hyperedge structure cannot be "
-            "replicated by zero-hopf random assignment while preserving count — the "
-            "stage->layer mapping is structurally constrained, not random"
-            if unsat_witness
-            else
-            "GRAVEYARD SURVIVED: random assignment can match canonical structure"
+            "GRAVEYARD NOT TRIGGERED: Z3 only shows the zero-hopf assignment cannot "
+            "match a positive canonical count; this is not a uniqueness or randomization proof"
         ),
     }
 
@@ -873,9 +898,8 @@ def graveyard_random_hyperedge_z3(H: xgi.Hypergraph, all_stages: list[dict]) -> 
 def graveyard_topology_label_shuffle(H: xgi.Hypergraph) -> dict[str, Any]:
     """GRAVEYARD: topology_label_shuffle_collapses_clustering_signal.
 
-    Shuffle topology node labels and re-run spectral clustering. If the
-    cluster assignment changes (topology nodes land in different clusters),
-    the original clustering was driven by the label structure, not arbitrary.
+    Shuffle topology node labels and re-run spectral clustering. This is only a
+    diagnostic because the primary clustering predicates can still collapse.
     """
     # Original cluster assignment for topology nodes
     orig_clustering = xgi.spectral_clustering(H, k=6, seed=42)
@@ -908,11 +932,11 @@ def graveyard_topology_label_shuffle(H: xgi.Hypergraph) -> dict[str, Any]:
         "shuffled_topo_cluster_ids": shuffled_topo_clusters,
         "graveyard_triggered": clustering_changed,
         "interpretation": (
-            "GRAVEYARD TRIGGERED: topology label shuffle changes cluster assignment — "
-            "clustering signal is tied to structural role, not node-label artifact"
+            "GRAVEYARD TRIGGERED: topology label shuffle changes this diagnostic's "
+            "cluster IDs, but the primary topology/operator cluster predicates still "
+            "control admission; diagnostic-only, not structural-role evidence"
             if clustering_changed
-            else
-            "GRAVEYARD SURVIVED: cluster structure invariant under topology label shuffle"
+            else "GRAVEYARD SURVIVED: cluster IDs are invariant under topology label shuffle"
         ),
     }
 
@@ -960,17 +984,13 @@ def evaluate_positive_predicates(
 # ---------------------------------------------------------------------------
 
 def as_jsonable(value: Any) -> Any:
-    """Recursively convert numpy/z3 types to JSON-serializable."""
+    """Recursively convert tensor/z3 types to JSON-serializable."""
     if isinstance(value, dict):
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.bool_)):
-        return value.item()
-    if isinstance(value, np.floating):
-        return value.item()
+    if isinstance(value, torch.Tensor):
+        return as_jsonable(value.detach().cpu().tolist())
     if isinstance(value, z3.BoolRef):
         return str(value)
     return value
@@ -1018,14 +1038,51 @@ def run() -> dict[str, Any]:
         stats, centralities, cluster_result, pairwise_result, graveyards
     )
     all_pass_count = sum(1 for v in positive_predicates.values() if v)
+    positive = {
+        name: {
+            "pass": bool(passed),
+            "reason": "Required XGI hypergraph centrality predicate.",
+        }
+        for name, passed in positive_predicates.items()
+    }
+    graveyard_companions = {
+        row["graveyard_name"]: {
+            "pass": bool(row.get("graveyard_triggered")),
+            "reason": row.get("interpretation", ""),
+        }
+        for row in graveyards
+    }
+    boundary = {
+        "six_cluster_assignment_available": {
+            "pass": cluster_result["n_distinct_clusters_found"] == 6,
+            "value": cluster_result["n_distinct_clusters_found"],
+            "reason": "Spectral clustering should produce the requested six cluster surface.",
+        },
+        "pairwise_reduction_diverges_from_hypergraph": {
+            "pass": pairwise_result["higher_order_differs_from_pairwise"],
+            "spearman_rho": pairwise_result["spearman_rho"],
+            "reason": "Pairwise graph reduction should not replicate the XGI higher-order centrality order.",
+        },
+    }
+    all_pass = (
+        all(row["pass"] for row in positive.values())
+        and all(row["pass"] for row in graveyard_companions.values())
+        and all(row["pass"] for row in boundary.values())
+    )
+    checks = {**positive, **graveyard_companions, **boundary}
+    blockers = [key for key, row in checks.items() if row.get("pass") is not True]
 
     elapsed = time.monotonic() - t0
 
     result = {
+        "schema": "FORMAL_SCOUT_RESULT_v1",
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
         "claim_ceiling": CLAIM_CEILING,
+        "all_pass": all_pass,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "elapsed_seconds": round(elapsed, 3),
@@ -1049,6 +1106,25 @@ def run() -> dict[str, Any]:
         "gudhi_persistence": persistence_result,
         "graveyards": graveyards,
         "positive_predicates": positive_predicates,
+        "positive": positive,
+        "graveyard_companions": graveyard_companions,
+        "boundary": boundary,
+        "nearby_variants": {
+            "passed": all_pass_count,
+            "total": len(positive_predicates),
+            "note": f"The count mirrors the five positive XGI predicates; {all_pass_count}/{len(positive_predicates)} leaves this scout red.",
+        },
+        "why_not_v4_probes": [
+            (
+                "This is a tool-specific XGI hypergraph scout, not a v4 topology "
+                "or manifold-canonical proof."
+            ),
+            (
+                "The topology-cluster predicate fails, so the receipt cannot be "
+                "used as a completed multi-layer coupling claim."
+            ),
+        ],
+        "blockers": blockers,
         "all_pass_count": all_pass_count,
         "all_pass_total": len(positive_predicates),
         "summary": {
@@ -1057,7 +1133,9 @@ def run() -> dict[str, Any]:
             "top5_central_nodes": [n for n, _ in top5_clique],
             "n_distinct_clusters": cluster_result["n_distinct_clusters_found"],
             "spearman_rho_hypergraph_vs_pairwise": pairwise_result["spearman_rho"],
-            "all_pass": f"{all_pass_count}/{len(positive_predicates)}",
+            "positive_predicates_passed": all_pass_count,
+            "positive_predicates_total": len(positive_predicates),
+            "receipt_all_pass": all_pass,
         },
     }
     return result
@@ -1074,5 +1152,6 @@ if __name__ == "__main__":
     print(f"Top 5 central nodes: {s['top5_central_nodes']}")
     print(f"Distinct clusters: {s['n_distinct_clusters']}")
     print(f"Spearman rho (hypergraph vs pairwise): {s['spearman_rho_hypergraph_vs_pairwise']:.4f}")
-    print(f"All-pass: {s['all_pass']}")
+    print(f"Positive predicates: {s['positive_predicates_passed']}/{s['positive_predicates_total']}")
+    print(f"Receipt all-pass: {s['receipt_all_pass']}")
     print(f"Elapsed: {result['elapsed_seconds']}s")

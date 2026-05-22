@@ -14,6 +14,8 @@ cvc5 proves structural impossibilities (UNSAT); sympy verifies CM elliptic curve
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

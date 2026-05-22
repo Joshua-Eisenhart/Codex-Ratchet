@@ -7,7 +7,7 @@ import json
 import pathlib
 
 
-CLASSIFICATION = "exploratory"
+CLASSIFICATION = "diagnostic_only"
 classification = CLASSIFICATION
 divergence_log = (
     "Bounded successor for the Szilard record/reset repair sweep. The source "

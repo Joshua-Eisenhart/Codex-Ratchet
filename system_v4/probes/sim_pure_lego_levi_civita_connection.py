@@ -25,6 +25,10 @@ from pathlib import Path
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
+divergence_log = [
+    "Classical comparator/control surface only; does not promote a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+]
+
 import os
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
 os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")

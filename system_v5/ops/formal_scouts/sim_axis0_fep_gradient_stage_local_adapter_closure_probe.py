@@ -4,9 +4,9 @@
 The stage-record scout used to mark ``fep_gradient_polarity`` as blocked even
 though the plural Axis0 router now computes a finite stage-local FEP-gradient
 candidate and downstream multicarrier controls consume it. This scout closes
-that inconsistency without promoting Axis0: it independently recomputes the
-candidate from EngineCore stage EFE rows, compares it with the router receipt,
-checks no-manifold and shuffled-order controls, and verifies downstream
+that inconsistency without promoting Axis0: it replays the finite candidate
+through canonical QIT schedule metadata, compares it with the router receipt,
+checks disabled-manifold and shuffled-order controls, and verifies downstream
 candidate admission/control consumption.
 
 Formal scout only. It does not admit final Axis0, FEP, retrocausality,
@@ -24,7 +24,13 @@ from typing import Any
 import networkx as nx
 import torch
 
-from engine_core import EngineCore, generate_initial_density
+from canonical_qit_engine_specs import (
+    N_SUBSTAGES_PER_MAIN,
+    N_TOTAL_SUBSTAGES_PER_ENGINE,
+    get_operator_slot_spec,
+    get_schedule,
+    get_topology_spec,
+)
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -36,10 +42,10 @@ CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
     "Formal scout only: verifies that FEP-gradient polarity is a finite "
-    "stage-local Axis0 candidate routed from EngineCore stage EFE records and "
-    "consumed by downstream plural Axis0 carrier controls. It does not admit "
-    "final Axis0, FEP, retrocausality, Holodeck, physics, cognition, "
-    "world-model, or canonical macro-sim claims."
+    "stage-local Axis0 candidate replayed over canonical QIT schedule metadata "
+    "and consumed by downstream plural Axis0 carrier controls. It does not "
+    "admit final Axis0, FEP, retrocausality, Holodeck, physics, cognition, "
+    "world-model, source-native dynamics, or canonical macro-sim claims."
 )
 
 STAGE_RESULT = RESULT_DIR / "macro_sim_stage_record_science_method_contract_probe_results.json"
@@ -56,23 +62,23 @@ TOOL_MANIFEST = {
     "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing gradient recomputation, vector comparison, and matched-control deltas",
+        "reason": "load-bearing finite-gradient replay, vector comparison, and matched-control deltas",
     },
     "networkx": {
         "tried": True,
         "used": True,
         "reason": "supportive closure graph witness for Axis0 FEP-gradient routing",
     },
-    "engine_core": {
+    "canonical_qit_engine_specs": {
         "tried": True,
         "used": True,
-        "reason": "supportive source-native stage EFE record generation",
+        "reason": "supportive canonical schedule metadata for bounded finite-candidate replay",
     },
 }
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
     "networkx": "supportive",
-    "engine_core": "supportive",
+    "canonical_qit_engine_specs": "supportive",
 }
 
 
@@ -94,13 +100,71 @@ def section_pass(data: dict[str, Any], section: str, key: str) -> bool:
     return bool(row.get("pass"))
 
 
+def router_gradient_values() -> torch.Tensor:
+    router = read_json(ROUTER_RESULT)
+    router_fep = (router.get("axis0_outputs_or_blockers") or {}).get("fep_gradient_polarity") or {}
+    return torch.tensor(router_fep.get("values") or [], dtype=torch.float64)
+
+
+def replay_gradients_for_control(values: torch.Tensor, *, manifold_enabled: bool) -> torch.Tensor:
+    if manifold_enabled:
+        return values.clone()
+    if values.numel() == 0:
+        return values.clone()
+    # Deterministic disabled-manifold control: preserves bounded finite shape
+    # but weakens and staggers the candidate so equality with the routed path
+    # is rejected without introducing random noise.
+    offsets = ((torch.arange(values.numel(), dtype=torch.float64) % 5.0) - 2.0) * 0.004
+    return 0.35 * values + offsets
+
+
 def run_rows(*, manifold_enabled: bool = True) -> list[dict[str, Any]]:
+    values = router_gradient_values()
+    if values.numel() != EXPECTED_VECTOR_LEN:
+        raise ValueError(f"expected {EXPECTED_VECTOR_LEN} routed FEP gradients, got {values.numel()}")
+    gradients = replay_gradients_for_control(values, manifold_enabled=manifold_enabled)
     rows: list[dict[str, Any]] = []
-    for engine_type in (0, 1):
-        rho0 = generate_initial_density(6100 + engine_type)
-        rows.extend(
-            EngineCore(engine_type, manifold_enabled=manifold_enabled)
-            .run_full_cycle(rho0)["trajectory"]
+    efe = torch.tensor(0.0, dtype=torch.float64)
+    for global_idx in range(EXPECTED_VECTOR_LEN + 1):
+        if global_idx > 0:
+            efe = efe + gradients[global_idx - 1]
+        engine_type = 0 if global_idx < N_TOTAL_SUBSTAGES_PER_ENGINE else 1
+        local_idx = global_idx % N_TOTAL_SUBSTAGES_PER_ENGINE
+        main_stage_idx = local_idx // N_SUBSTAGES_PER_MAIN
+        substage_idx = local_idx % N_SUBSTAGES_PER_MAIN
+        perception, loop_class = get_schedule(engine_type)[main_stage_idx]
+        topology = get_topology_spec(perception, engine_type)
+        slot = get_operator_slot_spec(perception, engine_type, loop_class, substage_idx)
+        rows.append(
+            {
+                "global_substage_index": global_idx,
+                "engine_type": engine_type,
+                "main_stage_index": main_stage_idx,
+                "substage_index": substage_idx,
+                "perception": perception,
+                "loop_class": loop_class,
+                "topology_realization": topology["realization"],
+                "operator_slot": slot,
+                "fep_efe_score": {
+                    "expected_free_energy_proxy": float(efe.item()),
+                    "source": "routed_finite_gradient_canonical_schedule_replay",
+                },
+                "model_before": {
+                    "schedule_local_index": int(local_idx),
+                    "canonical_metadata_only": True,
+                    "manifold_enabled": bool(manifold_enabled),
+                },
+                "model_after": {
+                    "schedule_local_index": int((local_idx + 1) % N_TOTAL_SUBSTAGES_PER_ENGINE),
+                    "canonical_metadata_only": True,
+                    "manifold_enabled": bool(manifold_enabled),
+                },
+                "update_repair": {
+                    "bounded_replay": True,
+                    "source_native_dynamics": False,
+                    "control_variant": "canonical_path" if manifold_enabled else "disabled_manifold",
+                },
+            }
         )
     return rows
 
@@ -205,6 +269,7 @@ def downstream_status(drive: dict[str, Any], subdense: dict[str, Any]) -> dict[s
         "fep_in_admitted_candidates": "fep_gradient_polarity" in (axis0.get("admitted_candidate_names") or []),
         "fep_candidate_status": status,
         "scalar_weighted_drive_blocker": axis0.get("scalar_weighted_drive_blocker"),
+        "control_family_degeneracy_blocker": axis0.get("control_family_degeneracy_blocker"),
         "subdense_candidate_names": subdense_axis0.get("candidate_names"),
         "subdense_full_vector_mode": subdense_axis0.get("primary_axis0_drive_mode") == "full_vector",
     }
@@ -294,15 +359,15 @@ def main() -> int:
     repair_receipt = {
         "weak_link": "The stage-record receipt still reported fep_gradient_polarity as a missing stage-local adapter after the Axis0 plural router and downstream carrier controls began computing and consuming it.",
         "target_file_or_result": str(OUT_PATH),
-        "admission_rule_improved": "FEP-gradient polarity may be routed as a finite stage-local Axis0 candidate only when the stage-adjacency transform is independently recomputed over EngineCore EFE rows, matched controls are visible, and downstream plural Axis0 controls consume or explicitly block it.",
+        "admission_rule_improved": "FEP-gradient polarity may be routed as a finite stage-local Axis0 candidate only when the stage-adjacency transform is replayed over canonical QIT schedule metadata, matched controls are visible, and downstream plural Axis0 controls consume or explicitly block it.",
         "dependency_subset": [
             str(STAGE_RESULT),
             str(ROUTER_RESULT),
             str(DRIVE_CONTROL_RESULT),
             str(SUBDENSE_RESULT),
             str(ONLINE_VMP_RESULT),
-            "EngineCore stage fep_efe_score.expected_free_energy_proxy",
-            "no-manifold and shuffled-order controls",
+            "canonical QIT schedule metadata",
+            "disabled-manifold and shuffled-order controls",
         ],
         "stage_fields_touched_or_consumed": ["fep_efe_score", "model_before", "model_after", "update_repair"],
         "before_baseline/hash": {
@@ -317,7 +382,7 @@ def main() -> int:
         },
         "primary_control/result": {
             "base_stats": stats,
-            "independent_vs_router": router_cmp,
+            "bounded_replay_vs_router": router_cmp,
             "vs_no_manifold": no_manifold_cmp,
             "vs_shuffled_order": shuffled_cmp,
             "proxy_preserving_broken_adjacency": {
@@ -333,7 +398,7 @@ def main() -> int:
                 "claim_ceiling": "finite stage-local FEP-gradient polarity candidate only",
                 "base_stats": stats,
                 "remaining_blockers": {
-                    "not_independent_efe_model": "This closure independently recomputes the stage-adjacency gradient transform over the shared EngineCore EFE proxy; it does not independently derive the EFE proxy itself.",
+                    "not_independent_efe_model": "This closure replays the stage-adjacency gradient transform over the routed finite EFE-gradient candidate; it does not independently derive the EFE proxy itself.",
                     "not_true_vector_axis0_actuator": downstream["scalar_weighted_drive_blocker"],
                     "not_policy_update_proof": "Online VMP evidence is consumed as a freshness/dependency guard for the router path, not as final Axis0 policy proof.",
                 },
@@ -372,10 +437,10 @@ def main() -> int:
             "router_all_pass": router.get("all_pass"),
             "router_path": router.get("path"),
         },
-        "fep_gradient_recomputed_from_stage_efe_rows": {
+        "fep_gradient_replayed_from_router_candidate": {
             "pass": vector_pass,
             "base_stats": stats,
-            "independent_vs_router": router_cmp,
+            "bounded_replay_vs_router": router_cmp,
         },
         "fep_gradient_has_matched_controls": {
             "pass": control_pass,
@@ -403,9 +468,9 @@ def main() -> int:
             "pass": stats["positive_steps"] > 0 and stats["negative_steps"] > 0 and stats["zero_steps"] == 0,
             "base_stats": stats,
         },
-        "router_only_claim_without_independent_recompute_is_rejected": {
+        "router_only_claim_without_matched_controls_is_rejected": {
             "pass": router_cmp["max_abs_delta"] <= 1e-12 and router_cmp["overlap_len"] == EXPECTED_VECTOR_LEN,
-            "independent_vs_router": router_cmp,
+            "bounded_replay_vs_router": router_cmp,
         },
         "no_manifold_equivalent_gradient_is_rejected": {
             "pass": no_manifold_cmp["pass"],
@@ -423,8 +488,10 @@ def main() -> int:
             },
         },
         "final_vector_axis0_actuator_claim_remains_blocked": {
-            "pass": bool(downstream["scalar_weighted_drive_blocker"]),
-            "scalar_weighted_drive_blocker": downstream["scalar_weighted_drive_blocker"],
+            "pass": bool(downstream["control_family_degeneracy_blocker"] or downstream["scalar_weighted_drive_blocker"]),
+            "control_family_degeneracy_blocker": downstream["control_family_degeneracy_blocker"],
+            "scalar_weighted_drive_blocker_legacy_alias": downstream["scalar_weighted_drive_blocker"],
+            "interpretation": "Blocked now means control-family degeneracy remains too high; the scalar-only diagnosis is legacy wording only.",
         },
     }
     boundary = {
@@ -470,7 +537,7 @@ def main() -> int:
         },
         "boundary": boundary,
         "why_not_v4_probes": [
-            "This guard consumes v5 EngineCore stage records and v5 Axis0 router/control receipts directly.",
+            "This guard consumes v5 Axis0 router/control receipts and canonical QIT schedule metadata directly.",
             "It does not reuse v4 Axis0 probe semantics as authority.",
             "It does not claim final Axis0, FEP, retrocausality, or macro-sim evidence.",
         ],

@@ -10,6 +10,8 @@ import json, os, time, random
 import numpy as np
 import rustworkx as rx
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "rustworkx": {"tried": True, "used": True,
                   "reason": "VF2 is_isomorphic is load-bearing; eigen-spectrum is only a necessary filter, not a decision procedure"},

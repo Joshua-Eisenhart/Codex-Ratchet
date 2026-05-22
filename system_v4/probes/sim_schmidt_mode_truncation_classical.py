@@ -1,8 +1,23 @@
 #!/usr/bin/env python3
 """Classical baseline: schmidt_mode_truncation on known bipartite states."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 classification = "classical_baseline"
+divergence_log = [
+    (
+        "Classical baseline contrast: this NumPy helper exercises "
+        "commutative finite-dimensional numeric identities and control cases; "
+        "it does not promote a nonclassical, canonical, bridge, or axis-level "
+        "claim."
+    ),
+]
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing finite-dimensional numerical arrays and linear algebra for the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
 
 NAME = "schmidt_mode_truncation"
 

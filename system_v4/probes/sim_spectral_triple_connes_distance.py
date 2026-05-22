@@ -10,6 +10,8 @@ import numpy as np
 import sympy as sp
 from z3 import Solver, Real, Not, And, unsat
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "scipy/numpy sufficient for small optimization"},
     "pyg":     {"tried": False, "used": False, "reason": ""},

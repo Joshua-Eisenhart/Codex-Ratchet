@@ -7,6 +7,8 @@ Tests rank constraint: rank of element in {0,1,2,3} in 27-dimensional algebra.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

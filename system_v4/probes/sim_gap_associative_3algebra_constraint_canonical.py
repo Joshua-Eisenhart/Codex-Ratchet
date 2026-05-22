@@ -7,6 +7,8 @@ Tests ternary bracket [x,y,z] with degree constraint: output degree = sum of inp
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

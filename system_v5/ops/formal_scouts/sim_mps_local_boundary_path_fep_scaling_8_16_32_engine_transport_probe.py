@@ -23,8 +23,8 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import networkx as nx
-import numpy as np
 import quimb.tensor as qtn
+import torch
 import z3
 
 import axis0_guard_utils as axis0_guard
@@ -40,6 +40,7 @@ OUT_PATH = RESULT_DIR / "mps_local_boundary_path_fep_scaling_8_16_32_engine_tran
 NAME = "mps_local_boundary_path_fep_scaling_8_16_32_engine_transport_probe"
 CLASSIFICATION = "formal_scout"
 PROMOTION_ALLOWED = False
+SIM_EXECUTION_KIND = "nonclassical"
 SOURCE_ALIGNMENT_CATEGORY = "downstream_on_source_native_operator_slot_engine_mps_local_boundary_scaling"
 CLAIM_CEILING = (
     "Formal scout only: runs paired source-native EngineCore slot transport on "
@@ -51,22 +52,28 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing finite density reconstruction, signatures, and controls"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing local density reconstruction, signatures, controls, and finite statistics"},
     "quimb": {"tried": True, "used": True, "reason": "load-bearing MPS transport, local expectations, and cut entropy"},
-    "pytorch": {"tried": True, "used": True, "reason": "supportive through EngineCore source signal and gradient helper"},
     "scipy": {"tried": True, "used": True, "reason": "supportive through EngineCore Lindblad and slot-gate helpers"},
     "cotengra": {"tried": True, "used": True, "reason": "load-bearing through geometry-shaped contraction_report helper"},
-    "networkx": {"tried": True, "used": True, "reason": "load-bearing slot dependency graph"},
+    "networkx": {"tried": True, "used": True, "reason": "supportive slot dependency graph"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing finite scaling witness"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
+    "pytorch": "load_bearing",
     "quimb": "load_bearing",
-    "pytorch": "supportive",
     "scipy": "supportive",
     "cotengra": "load_bearing",
-    "networkx": "load_bearing",
+    "networkx": "supportive",
     "z3": "load_bearing",
+}
+TOOL_ROLE_SOURCE = {
+    "pytorch": "local",
+    "quimb": "local",
+    "scipy": "transitive_supportive",
+    "cotengra": "transitive_helper",
+    "networkx": "local",
+    "z3": "local",
 }
 
 N_VALUES = [8, 16, 32]
@@ -87,10 +94,82 @@ REQUIRED_STAGE_FIELDS = [
     "model_after",
 ]
 
-I2 = np.eye(2, dtype=np.complex128)
-SX = np.array([[0, 1], [1, 0]], dtype=np.complex128)
-SY = np.array([[0, -1j], [1j, 0]], dtype=np.complex128)
-SZ = np.array([[1, 0], [0, -1]], dtype=np.complex128)
+TORCH_REAL = torch.float64
+TORCH_COMPLEX = torch.complex128
+TI2 = torch.eye(2, dtype=TORCH_COMPLEX)
+TSX = torch.as_tensor([[0, 1], [1, 0]], dtype=TORCH_COMPLEX)
+TSY = torch.as_tensor([[0, -1j], [1j, 0]], dtype=TORCH_COMPLEX)
+TSZ = torch.as_tensor([[1, 0], [0, -1]], dtype=TORCH_COMPLEX)
+
+
+def as_complex_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=TORCH_COMPLEX)
+
+
+def as_real_tensor(value: Any) -> torch.Tensor:
+    return torch.as_tensor(value, dtype=TORCH_REAL)
+
+
+def to_external_matrix(value: Any) -> list:
+    tensor = as_complex_tensor(value).detach().cpu().resolve_conj()
+    return tensor.tolist()
+
+
+def dagger(a: torch.Tensor) -> torch.Tensor:
+    return torch.conj(a.transpose(-2, -1))
+
+
+def project_density(rho: Any) -> torch.Tensor:
+    rho = as_complex_tensor(rho)
+    rho = 0.5 * (rho + dagger(rho))
+    vals, vecs = torch.linalg.eigh(rho)
+    vals = torch.clamp(torch.real(vals), min=1e-12)
+    out = (vecs * vals.to(TORCH_COMPLEX)) @ dagger(vecs)
+    trace = torch.real(torch.trace(out))
+    if float(torch.abs(trace).item()) <= 1e-14:
+        return TI2 / 2.0
+    return out / trace
+
+
+def entropy(rho: Any) -> float:
+    vals = torch.real(torch.linalg.eigvalsh(project_density(rho)))
+    vals = torch.clamp(vals, min=1e-12)
+    vals = vals / torch.sum(vals)
+    return -float(torch.sum(vals * torch.log(vals)).item())
+
+
+def purity(rho: Any) -> float:
+    rho = project_density(rho)
+    return float(torch.real(torch.trace(rho @ rho)).item())
+
+
+def kl(p: Any, q: Any) -> float:
+    p = torch.clamp(as_real_tensor(p), min=1e-12)
+    q = torch.clamp(as_real_tensor(q), min=1e-12)
+    p = p / torch.sum(p)
+    q = q / torch.sum(q)
+    return float(torch.sum(p * (torch.log(p) - torch.log(q))).item())
+
+
+def mean_float(values: Any) -> float:
+    return float(torch.mean(as_real_tensor(list(values))).item())
+
+
+def min_float(values: Any) -> float:
+    return float(torch.min(as_real_tensor(list(values))).item())
+
+
+def max_float(values: Any) -> float:
+    return float(torch.max(as_real_tensor(list(values))).item())
+
+
+def variance_float(values: Any) -> float:
+    return float(torch.var(as_real_tensor(list(values)), unbiased=False).item())
+
+
+def norm_float(value: Any) -> float:
+    tensor = as_complex_tensor(value)
+    return float(torch.linalg.vector_norm(tensor.reshape(-1)).item())
 
 
 def as_jsonable(value: Any) -> Any:
@@ -98,14 +177,10 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
+    if isinstance(value, torch.Tensor):
         return value.tolist()
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
-    if isinstance(value, (np.complexfloating, complex)):
-        return {"real": float(np.real(value)), "imag": float(np.imag(value))}
+    if isinstance(value, complex):
+        return {"real": float(value.real), "imag": float(value.imag)}
     return value
 
 
@@ -186,11 +261,11 @@ def axis0_bundle_drive(bundle: dict[str, Any], slot: int) -> float:
             values.append(float(vector[slot % len(vector)]))
     if not values:
         return 0.0
-    return float(np.mean(values))
+    return mean_float(values)
 
 
-def local_expectation(mps: qtn.MatrixProductState, op: np.ndarray, site: int) -> complex:
-    out = mps.compute_local_expectation({(site,): op}, max_bond=64, optimize="auto-hq")
+def local_expectation(mps: qtn.MatrixProductState, op: torch.Tensor, site: int) -> complex:
+    out = mps.compute_local_expectation({(site,): to_external_matrix(op)}, max_bond=64, optimize="auto-hq")
     if isinstance(out, dict):
         out = out[(site,)]
     return complex(out)
@@ -202,64 +277,69 @@ def mps_tensor_guard(mps: qtn.MatrixProductState, n_qubits: int) -> dict[str, An
     dense_dim = 2**n_qubits
     return {
         "max_tensor_axis": int(max(all_dims)),
-        "max_tensor_size": int(max(np.prod(shape) for shape in shapes)),
+        "max_tensor_size": int(max(math.prod(shape) for shape in shapes)),
         "dense_axis_seen": bool(any(dim >= dense_dim for dim in all_dims)),
         "dense_state_array_shapes_seen": [shape for shape in shapes if any(dim >= dense_dim for dim in shape)],
         "sample_shapes": shapes[:3],
     }
 
 
-def local_boundary_density(mps: qtn.MatrixProductState, site: int) -> np.ndarray:
-    bloch = np.array(
+def local_boundary_density(mps: qtn.MatrixProductState, site: int) -> torch.Tensor:
+    bloch = as_real_tensor(
         [
-            local_expectation(mps, SX, site).real,
-            local_expectation(mps, SY, site).real,
-            local_expectation(mps, SZ, site).real,
+            local_expectation(mps, TSX, site).real,
+            local_expectation(mps, TSY, site).real,
+            local_expectation(mps, TSZ, site).real,
         ],
-        dtype=float,
     )
-    norm = float(np.linalg.norm(bloch))
+    norm = float(torch.linalg.vector_norm(bloch).item())
     if norm > 1.0:
         bloch = bloch / norm
-    return hb.project_density(0.5 * (I2 + bloch[0] * SX + bloch[1] * SY + bloch[2] * SZ))
+    return project_density(0.5 * (TI2 + bloch[0] * TSX + bloch[1] * TSY + bloch[2] * TSZ))
 
 
-def density_stats(rho: np.ndarray) -> dict[str, Any]:
-    rho = hb.project_density(rho)
+def density_stats(rho: Any) -> dict[str, Any]:
+    rho = project_density(rho)
     return {
-        "entropy": hb.entropy(rho),
-        "purity": hb.purity(rho),
+        "entropy": entropy(rho),
+        "purity": purity(rho),
         "bloch": [
-            float(np.real(np.trace(SX @ rho))),
-            float(np.real(np.trace(SY @ rho))),
-            float(np.real(np.trace(SZ @ rho))),
+            float(torch.real(torch.trace(TSX @ rho)).item()),
+            float(torch.real(torch.trace(TSY @ rho)).item()),
+            float(torch.real(torch.trace(TSZ @ rho)).item()),
         ],
-        "valid": bool(abs(np.trace(rho).real - 1.0) < 1e-9 and np.min(np.linalg.eigvalsh(rho).real) > -1e-9),
+        "valid": bool(
+            abs(float(torch.real(torch.trace(rho)).item()) - 1.0) < 1e-9
+            and float(torch.min(torch.real(torch.linalg.eigvalsh(rho))).item()) > -1e-9
+        ),
     }
 
 
-def purification_for_boundary(rho_b: np.ndarray, seed: int) -> np.ndarray:
-    return hb.purification_for_boundary(
-        hb.project_density(rho_b),
-        interior_angle=0.24 + 0.011 * (seed % 37),
-        phase=0.36 + 0.017 * (seed % 41),
+def purification_for_boundary(rho_b: Any, seed: int) -> torch.Tensor:
+    return project_density(
+        hb.purification_for_boundary(
+            project_density(rho_b),
+            interior_angle=0.24 + 0.011 * (seed % 37),
+            phase=0.36 + 0.017 * (seed % 41),
+        )
     )
 
 
-def path_readout(rho_b: np.ndarray, seed: int, depth: int = 2) -> dict[str, float]:
+def path_readout(rho_b: Any, seed: int, depth: int = 2) -> dict[str, float]:
     rho = purification_for_boundary(rho_b, seed)
     low = hb.enumerate_histories(rho, depth=depth, q_basis=0.45)
     high = hb.enumerate_histories(rho, depth=depth, q_basis=0.90)
     out: dict[str, float] = {}
     for name, hist in [("low", low), ("high", high)]:
-        rho_i = hb.partial_trace_two_qubit(hist["summed_state"], "I")
-        rho_b2 = hb.partial_trace_two_qubit(hist["summed_state"], "B")
+        summed = project_density(hist["summed_state"])
+        rho_i = project_density(hb.partial_trace_two_qubit(summed, "I"))
+        rho_b2 = project_density(hb.partial_trace_two_qubit(summed, "B"))
         out[f"{name}_path_entropy"] = hist["path_entropy"]
         out[f"{name}_effective_paths"] = hist["effective_paths"]
-        out[f"{name}_mi"] = hb.entropy(rho_i) + hb.entropy(rho_b2) - hb.entropy(hist["summed_state"])
-        out[f"{name}_conditional_entropy"] = hb.entropy(hist["summed_state"]) - hb.entropy(rho_b2)
-        out[f"{name}_coh"] = hb.entropy(rho_b2) - hb.entropy(hist["summed_state"])
-        out[f"{name}_purity"] = hb.purity(hist["summed_state"])
+        out[f"{name}_mi"] = entropy(rho_i) + entropy(rho_b2) - entropy(summed)
+        out[f"{name}_conditional_entropy"] = entropy(summed) - entropy(rho_b2)
+        out[f"{name}_coh"] = entropy(rho_b2) - entropy(summed)
+        out[f"{name}_purity"] = purity(summed)
         out[f"{name}_sum_vs_direct_gap"] = hist["sum_vs_direct_gap"]
     out["axis0_path_entropy_delta"] = out["high_path_entropy"] - out["low_path_entropy"]
     out["axis0_mi_delta"] = out["high_mi"] - out["low_mi"]
@@ -269,17 +349,18 @@ def path_readout(rho_b: np.ndarray, seed: int, depth: int = 2) -> dict[str, floa
     return out
 
 
-def pauli_distribution(rho: np.ndarray) -> np.ndarray:
+def pauli_distribution(rho: Any) -> torch.Tensor:
+    rho = project_density(rho)
     projectors = []
-    for sigma in [SZ, SX, SY]:
-        projectors.extend([0.5 * (I2 + sigma), 0.5 * (I2 - sigma)])
-    probs = np.array([float(np.real(np.trace(p @ rho))) for p in projectors], dtype=float)
-    probs = np.clip(probs, 1e-12, None)
-    return probs / float(np.sum(probs))
+    for sigma in [TSZ, TSX, TSY]:
+        projectors.extend([0.5 * (TI2 + sigma), 0.5 * (TI2 - sigma)])
+    probs = torch.stack([torch.real(torch.trace(p @ rho)) for p in projectors]).to(TORCH_REAL)
+    probs = torch.clamp(probs, min=1e-12)
+    return probs / torch.sum(probs)
 
 
-def tomographic_kl(target: np.ndarray, candidate: np.ndarray) -> float:
-    return hb.kl(pauli_distribution(target), pauli_distribution(candidate))
+def tomographic_kl(target: Any, candidate: Any) -> float:
+    return kl(pauli_distribution(target), pauli_distribution(candidate))
 
 
 def topology_pairs(perception: str, slot: int, n_qubits: int, side: str) -> list[tuple[int, int]]:
@@ -304,7 +385,7 @@ def run_scaling_transport(
     rho_l = transport.generate_initial_density(3101)
     rho_r = transport.generate_initial_density(4101)
     mps = qtn.MPS_rand_state(n_qubits, bond_dim=3, seed=9100 + n_qubits)
-    params = np.array([0.05, 0.03, -0.02, 0.35], dtype=float)
+    params = as_real_tensor([0.05, 0.03, -0.02, 0.35])
     source_history: list[dict[str, float]] = []
     rows = []
     graph = nx.DiGraph()
@@ -352,7 +433,7 @@ def run_scaling_transport(
             stats = density_stats(rho_b)
             path = path_readout(rho_b, seed=1000 * n_qubits + slot)
             cut_sites = sorted({1, max(1, n_qubits // 4), max(1, n_qubits // 2), max(1, (3 * n_qubits) // 4), n_qubits - 1})
-            cuts = np.array([float(mps.entropy(cut)) for cut in cut_sites if 0 < cut < n_qubits], dtype=float)
+            cuts = as_real_tensor([float(mps.entropy(cut)) for cut in cut_sites if 0 < cut < n_qubits])
             midcut_entropy = float(mps.entropy(max(1, n_qubits // 2)))
             tensor_guard = mps_tensor_guard(mps, n_qubits)
             contract = transport.contraction_report(params, source_signal, static_tree=(mode == "static_tree"))
@@ -400,8 +481,8 @@ def run_scaling_transport(
                     "curvature": geom["curvature"],
                     "torsion": geom["torsion"],
                     "coupling": geom["coupling"],
-                    "mps_entropy_sum": float(cuts.sum()),
-                    "mps_entropy_std": float(cuts.std()),
+                    "mps_entropy_sum": float(torch.sum(cuts).item()),
+                    "mps_entropy_std": float(torch.std(cuts, unbiased=False).item()),
                     "mps_max_bond": int(mps.max_bond()),
                     "mps_max_bond_cap": max_bond,
                     "mps_bond_cap_saturated": bool(mps.max_bond() >= max_bond),
@@ -430,9 +511,9 @@ def run_scaling_transport(
     }
 
 
-def signature(run: dict[str, Any]) -> np.ndarray:
+def signature(run: dict[str, Any]) -> torch.Tensor:
     # Keep blocked local path-entropy readouts out of the load-bearing signature.
-    arr = np.array(
+    arr = as_real_tensor(
         [
             [
                 r["phi0"],
@@ -446,16 +527,15 @@ def signature(run: dict[str, Any]) -> np.ndarray:
                 r["contract_norm"],
             ]
             for r in run["rows"]
-        ],
-        dtype=float,
+        ]
     )
-    return np.r_[arr.mean(axis=0), arr.std(axis=0), arr[-1]]
+    return torch.cat([torch.mean(arr, dim=0), torch.std(arr, dim=0, unbiased=False), arr[-1]])
 
 
 def fep_selection(rows: list[dict[str, Any]]) -> dict[str, float]:
-    rng = np.random.default_rng(66000 + int(rows[0]["n_qubits"]))
+    generator = torch.Generator().manual_seed(66000 + int(rows[0]["n_qubits"]))
     boundaries = [
-        hb.project_density(0.5 * (I2 + row["boundary_bloch"][0] * SX + row["boundary_bloch"][1] * SY + row["boundary_bloch"][2] * SZ))
+        project_density(0.5 * (TI2 + row["boundary_bloch"][0] * TSX + row["boundary_bloch"][1] * TSY + row["boundary_bloch"][2] * TSZ))
         for row in rows
     ]
     compatible = []
@@ -464,30 +544,33 @@ def fep_selection(rows: list[dict[str, Any]]) -> dict[str, float]:
     for idx, target in enumerate(boundaries):
         candidate = hb.partial_trace_two_qubit(purification_for_boundary(target, 7000 + idx), "B")
         compatible.append(tomographic_kl(target, candidate))
-        v = rng.normal(size=2) + 1j * rng.normal(size=2)
-        v = v / np.linalg.norm(v)
-        randoms.append(tomographic_kl(target, np.outer(v, np.conjugate(v))))
+        v = (
+            torch.randn(2, generator=generator, dtype=TORCH_REAL)
+            + 1j * torch.randn(2, generator=generator, dtype=TORCH_REAL)
+        ).to(TORCH_COMPLEX)
+        v = v / torch.linalg.vector_norm(v)
+        randoms.append(tomographic_kl(target, torch.outer(v, torch.conj(v))))
         shuffled.append(tomographic_kl(target, boundaries[(idx * 7 + 5) % len(boundaries)]))
     return {
-        "compatible_mean_kl": float(np.mean(compatible)),
-        "random_mean_kl": float(np.mean(randoms)),
-        "shuffled_mean_kl": float(np.mean(shuffled)),
-        "random_mean_gap": float(np.mean(randoms) - np.mean(compatible)),
-        "shuffled_mean_gap": float(np.mean(shuffled) - np.mean(compatible)),
-        "compatible_max_kl": float(np.max(compatible)),
+        "compatible_mean_kl": mean_float(compatible),
+        "random_mean_kl": mean_float(randoms),
+        "shuffled_mean_kl": mean_float(shuffled),
+        "random_mean_gap": mean_float(randoms) - mean_float(compatible),
+        "shuffled_mean_gap": mean_float(shuffled) - mean_float(compatible),
+        "compatible_max_kl": max_float(compatible),
     }
 
 
 def summarize_n(full: dict[str, Any], controls: dict[str, dict[str, Any]]) -> dict[str, Any]:
     rows = full["rows"]
     full_sig = signature(full)
-    distances = {name: float(np.linalg.norm(full_sig - signature(run))) for name, run in controls.items()}
-    entropy_values = np.array([row["mps_entropy_sum"] for row in rows], dtype=float)
-    boundary_entropy_values = np.array([row["boundary_entropy"] for row in rows], dtype=float)
-    path_deltas = np.array([row["path_axis0_path_entropy_delta"] for row in rows], dtype=float)
-    path_gaps = np.array([row["path_max_sum_vs_direct_gap"] for row in rows], dtype=float)
-    gradients = np.array([row["axis0_gradient"] for row in rows], dtype=float)
-    curvatures = np.array([row["curvature"] for row in rows], dtype=float)
+    distances = {name: norm_float(full_sig - signature(run)) for name, run in controls.items()}
+    entropy_values = [row["mps_entropy_sum"] for row in rows]
+    boundary_entropy_values = [row["boundary_entropy"] for row in rows]
+    path_deltas = [row["path_axis0_path_entropy_delta"] for row in rows]
+    path_gaps = [row["path_max_sum_vs_direct_gap"] for row in rows]
+    gradients = [row["axis0_gradient"] for row in rows]
+    curvatures = [row["curvature"] for row in rows]
     max_tensor_axis = max(row["mps_max_tensor_axis"] for row in rows)
     max_tensor_size = max(row["mps_max_tensor_size"] for row in rows)
     dense_axis_seen = any(row["mps_dense_axis_seen"] for row in rows)
@@ -495,8 +578,8 @@ def summarize_n(full: dict[str, Any], controls: dict[str, dict[str, Any]]) -> di
         shape for row in rows for shape in row["mps_dense_state_array_shapes_seen"]
     ]
     cap_hit_slots = [int(row["slot"]) for row in rows if row["mps_bond_cap_saturated"]]
-    bond_cap_saturation_fraction = float(np.mean([row["mps_bond_cap_saturated"] for row in rows]))
-    midcut_entropies = np.array([row["mps_midcut_entropy"] for row in rows], dtype=float)
+    bond_cap_saturation_fraction = mean_float(int(row["mps_bond_cap_saturated"]) for row in rows)
+    midcut_entropies = [row["mps_midcut_entropy"] for row in rows]
     fep = fep_selection(rows)
     phi0_alias = max(abs(row["phi0"] - row["coherent_information"]) for row in rows)
     path_alias = max(abs(row["path_axis0_mi_delta"] - row["path_axis0_coh_delta"]) for row in rows)
@@ -516,15 +599,12 @@ def summarize_n(full: dict[str, Any], controls: dict[str, dict[str, Any]]) -> di
         and row["right_stage_science"]["fields_present"]
         for row in rows
     )
-    stage_efe_values = np.array(
-        [
-            row["left_stage_science"]["expected_free_energy_proxy"]
-            + row["right_stage_science"]["expected_free_energy_proxy"]
-            for row in rows
-        ],
-        dtype=float,
-    )
-    axis0_bundle_drives = np.array([row["axis0_plural_bundle_drive"] for row in rows], dtype=float)
+    stage_efe_values = [
+        row["left_stage_science"]["expected_free_energy_proxy"]
+        + row["right_stage_science"]["expected_free_energy_proxy"]
+        for row in rows
+    ]
+    axis0_bundle_drives = [row["axis0_plural_bundle_drive"] for row in rows]
     axis0_bundle_ready = all(row["axis0_plural_bundle_ready"] for row in rows)
     return {
         "n_qubits": full["n_qubits"],
@@ -539,17 +619,17 @@ def summarize_n(full: dict[str, Any], controls: dict[str, dict[str, Any]]) -> di
         "mps_cap_hit_count": len(cap_hit_slots),
         "mps_cap_hit_slots": cap_hit_slots,
         "bond_cap_saturation_fraction": bond_cap_saturation_fraction,
-        "midcut_entropy_min": float(np.min(midcut_entropies)),
-        "midcut_entropy_max": float(np.max(midcut_entropies)),
-        "mps_entropy_variance": float(np.var(entropy_values)),
-        "boundary_entropy_variance": float(np.var(boundary_entropy_values)),
-        "mean_abs_axis0_path_entropy_delta": float(np.mean(np.abs(path_deltas))),
-        "max_path_sum_gap": float(np.max(path_gaps)),
-        "max_abs_axis0_gradient": float(np.max(np.abs(gradients))),
-        "curvature_variance": float(np.var(curvatures)),
+        "midcut_entropy_min": min_float(midcut_entropies),
+        "midcut_entropy_max": max_float(midcut_entropies),
+        "mps_entropy_variance": variance_float(entropy_values),
+        "boundary_entropy_variance": variance_float(boundary_entropy_values),
+        "mean_abs_axis0_path_entropy_delta": mean_float(abs(value) for value in path_deltas),
+        "max_path_sum_gap": max_float(path_gaps),
+        "max_abs_axis0_gradient": max_float(abs(value) for value in gradients),
+        "curvature_variance": variance_float(curvatures),
         "fep": fep,
         "control_signature_distances": distances,
-        "min_control_signature_distance": float(min(distances.values())),
+        "min_control_signature_distance": min_float(distances.values()),
         "graph": full["graph"],
         "all_boundaries_valid": all(row["boundary_valid"] for row in rows),
         "source_native_engine_slots_propagated": bool(
@@ -566,11 +646,11 @@ def summarize_n(full: dict[str, Any], controls: dict[str, dict[str, Any]]) -> di
             "right_non_native_count": int(len(rows) - right_native_count),
         },
         "stage_science_fields_consumed": bool(stage_science_fields_consumed),
-        "mean_stage_expected_free_energy_proxy": float(np.mean(stage_efe_values)),
-        "stage_expected_free_energy_variance": float(np.var(stage_efe_values)),
+        "mean_stage_expected_free_energy_proxy": mean_float(stage_efe_values),
+        "stage_expected_free_energy_variance": variance_float(stage_efe_values),
         "axis0_plural_bundle_ready": bool(axis0_bundle_ready),
-        "mean_abs_axis0_plural_bundle_drive": float(np.mean(np.abs(axis0_bundle_drives))),
-        "axis0_plural_bundle_drive_variance": float(np.var(axis0_bundle_drives)),
+        "mean_abs_axis0_plural_bundle_drive": mean_float(abs(value) for value in axis0_bundle_drives),
+        "axis0_plural_bundle_drive_variance": variance_float(axis0_bundle_drives),
         "chart_locked_slot_counts": {
             "left_chart_locked_count": int(left_chart_locked_count),
             "right_chart_locked_count": int(right_chart_locked_count),
@@ -591,17 +671,17 @@ def summarize_n(full: dict[str, Any], controls: dict[str, dict[str, Any]]) -> di
             and not dense_axis_seen
             and max_tensor_axis <= max(MAX_BOND, 2)
             and max(row["mps_max_bond"] for row in rows) > 3
-            and float(np.var(entropy_values)) > 1e-6
-            and float(np.var(boundary_entropy_values)) > 1e-6
-            and float(np.max(path_gaps)) < 1e-9
+            and variance_float(entropy_values) > 1e-6
+            and variance_float(boundary_entropy_values) > 1e-6
+            and max_float(path_gaps) < 1e-9
             and fep["random_mean_gap"] > 0.05
             and fep["shuffled_mean_gap"] > 0.005
-            and float(np.max(np.abs(gradients))) > 1e-5
-            and float(np.var(curvatures)) > 1e-8
+            and max_float(abs(value) for value in gradients) > 1e-5
+            and variance_float(curvatures) > 1e-8
             and min(distances.values()) > 0.001
             and stage_science_fields_consumed
             and axis0_bundle_ready
-            and float(np.mean(np.abs(axis0_bundle_drives))) > 0.001
+            and mean_float(abs(value) for value in axis0_bundle_drives) > 0.001
         ),
     }
 
@@ -614,7 +694,7 @@ def bond_sweep_diagnostic(n_qubits: int, axis0_bundle: dict[str, Any]) -> dict[s
     signatures = {chi: signature(run) for chi, run in runs.items()}
     reference = str(max(BOND_SWEEP_VALUES))
     distances = {
-        f"{chi}_to_{reference}": float(np.linalg.norm(sig - signatures[reference]))
+        f"{chi}_to_{reference}": norm_float(sig - signatures[reference])
         for chi, sig in signatures.items()
         if chi != reference
     }
@@ -623,10 +703,10 @@ def bond_sweep_diagnostic(n_qubits: int, axis0_bundle: dict[str, Any]) -> dict[s
         rows = run["rows"]
         summaries[chi] = {
             "max_mps_bond": max(row["mps_max_bond"] for row in rows),
-            "bond_cap_saturation_fraction": float(np.mean([row["mps_bond_cap_saturated"] for row in rows])),
+            "bond_cap_saturation_fraction": mean_float(int(row["mps_bond_cap_saturated"]) for row in rows),
             "dense_axis_seen": any(row["mps_dense_axis_seen"] for row in rows),
-            "mps_entropy_variance": float(np.var([row["mps_entropy_sum"] for row in rows])),
-            "boundary_entropy_variance": float(np.var([row["boundary_entropy"] for row in rows])),
+            "mps_entropy_variance": variance_float(row["mps_entropy_sum"] for row in rows),
+            "boundary_entropy_variance": variance_float(row["boundary_entropy"] for row in rows),
         }
     return {
         "n_qubits": n_qubits,
@@ -733,7 +813,7 @@ def main() -> dict[str, Any]:
         "local_expectation_call_count_full_runs": 3 * N_PAIRED_ROWS * len(N_VALUES),
         "passed": all(not row["dense_axis_seen"] for row in per_n),
     }
-    identity = hb.enumerate_histories(purification_for_boundary(np.eye(2) / 2, 1), depth=0, q_basis=0.5)
+    identity = hb.enumerate_histories(purification_for_boundary(TI2 / 2.0, 1), depth=0, q_basis=0.5)
     positive = {
         "mps_local_boundary_scaling_runs_8_16_32_without_dense_handoff": {
             "pass": all(row["pass"] for row in per_n),
@@ -1049,11 +1129,13 @@ def main() -> dict[str, Any]:
         "name": NAME,
         "classification": CLASSIFICATION,
         "promotion_allowed": PROMOTION_ALLOWED,
+        "sim_execution_kind": SIM_EXECUTION_KIND,
         "source_alignment_category": SOURCE_ALIGNMENT_CATEGORY,
         "claim_ceiling": CLAIM_CEILING,
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "TOOL_ROLE_SOURCE": TOOL_ROLE_SOURCE,
         "repair_receipt": repair_receipt,
         "axis0_outputs_or_blockers": axis0_outputs_or_blockers,
         "math_object": "8/16/32-qubit MPS local-boundary transport driven by paired source-native engine slots with path/FEP readouts",

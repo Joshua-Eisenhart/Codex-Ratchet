@@ -27,6 +27,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Hopf bundle S³ total space as 4-vector, projection π: S³→S² as Hopf map, fiber circles, normalization constraints — all torch float64 with autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed"},

@@ -11,6 +11,8 @@ import json, os, time, itertools
 import numpy as np
 import rustworkx as rx
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "rustworkx": {"tried": True, "used": True,
                   "reason": "cliques enumeration via rx; Rust backend needed vs brute 2^16 subset scan for ablation speedup"},

@@ -8,13 +8,12 @@ import math
 import os
 import pathlib
 import time
-from typing import Any
+from typing import Any, Callable
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import networkx as nx
-from scipy.optimize import minimize_scalar
 import sympy as sp
 import torch
 from torch_geometric.utils import from_networkx
@@ -51,14 +50,43 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing density states, Kraus maps, boundary expectation, trace distance, entropy, and CPTP checks"},
+    "python_math": {"tried": True, "used": True, "reason": "load-bearing local bounded golden-section scalar search for symmetric effective-rate fit"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing density states, Kraus maps, boundary expectation, trace distance, entropy, CPTP checks, and fit objective evaluation"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing finite 4x4 boundary graph and interior/boundary partition"},
     "torch_geometric": {"tried": True, "used": True, "reason": "load-bearing graph tensor conversion for boundary graph features"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing symmetric effective-rate fit against boundary-projected orbit"},
     "sympy": {"tried": True, "used": True, "reason": "load-bearing symbolic boundary/interior count check"},
     "z3": {"tried": True, "used": True, "reason": "load-bearing boundary-projected separation witness"},
 }
 TOOL_INTEGRATION_DEPTH = {tool: "load_bearing" for tool in TOOL_MANIFEST}
+
+
+def bounded_scalar_minimize(objective: Callable[[float], float], lower: float, upper: float, *, xatol: float = 1e-10, max_iter: int = 256) -> dict[str, Any]:
+    phi = (1.0 + math.sqrt(5.0)) / 2.0
+    inv_phi = 1.0 / phi
+    left = float(lower)
+    right = float(upper)
+    c = right - (right - left) * inv_phi
+    d = left + (right - left) * inv_phi
+    fc = float(objective(c))
+    fd = float(objective(d))
+    iterations = 0
+    while abs(right - left) > xatol and iterations < max_iter:
+        iterations += 1
+        if fc <= fd:
+            right = d
+            d = c
+            fd = fc
+            c = right - (right - left) * inv_phi
+            fc = float(objective(c))
+        else:
+            left = c
+            c = d
+            fc = fd
+            d = left + (right - left) * inv_phi
+            fd = float(objective(d))
+    x = (left + right) / 2.0
+    fun = float(objective(x))
+    return {"x": x, "fun": fun, "success": math.isfinite(fun) and iterations < max_iter, "iterations": iterations}
 
 
 def boundary_graph() -> tuple[nx.Graph, list[int], list[int]]:
@@ -162,9 +190,9 @@ def best_symmetric_fit(rho: torch.Tensor, target: list[float], boundary_mode: st
     def objective(rate: float) -> float:
         row = channel_sequence(rho, "symmetric", boundary_mode, gamma=float(rate))
         return l2_gap(target, row["distance_orbit"])
-    result = minimize_scalar(objective, bounds=(0.0, 0.35), method="bounded", options={"xatol": 1e-10})
-    row = channel_sequence(rho, "symmetric", boundary_mode, gamma=float(result.x))
-    return {"gamma": float(result.x), "gap": float(result.fun), "orbit": row["distance_orbit"], "success": bool(result.success)}
+    result = bounded_scalar_minimize(objective, 0.0, 0.35, xatol=1e-10)
+    row = channel_sequence(rho, "symmetric", boundary_mode, gamma=float(result["x"]))
+    return {"gamma": float(result["x"]), "gap": float(result["fun"]), "orbit": row["distance_orbit"], "success": bool(result["success"])}
 
 
 def symbolic_boundary_count() -> dict[str, Any]:

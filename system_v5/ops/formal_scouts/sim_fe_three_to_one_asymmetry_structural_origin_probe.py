@@ -52,7 +52,6 @@ from typing import Any
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
-import numpy as np
 import sympy as sp
 import torch
 from z3 import (
@@ -82,15 +81,10 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing: density matrix algebra, Bloch vector extraction, mean-z comparison across seeds",
-    },
     "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing: Lindblad evolution step, unitary rotation, dissipator, dephasing, chirality-pair sign test",
+        "reason": "load-bearing: density matrix algebra, Bloch vector extraction, mean-z comparison across seeds, Lindblad evolution step, unitary rotation, dissipator, dephasing, and chirality-pair sign test",
     },
     "sympy": {
         "tried": True,
@@ -102,18 +96,11 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "load-bearing: UNSAT check — no SZ-symmetric assignment can force 3:1 distinguishability",
     },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": "supportive: scipy.linalg.expm cross-check on SY vs SX rotation direction on reference state",
-    },
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
     "pytorch": "load_bearing",
     "sympy": "load_bearing",
     "z3": "load_bearing",
-    "scipy": "supportive",
 }
 
 # ── Pauli matrices (pytorch complex128) ───────────────────────────────────────
@@ -197,11 +184,12 @@ def normalize_density(rho: torch.Tensor) -> torch.Tensor:
 
 
 def initial_density(seed: int) -> torch.Tensor:
-    rng = np.random.default_rng(seed)
-    theta = 0.24 + 1.05 * rng.random()
-    phi = 2.0 * math.pi * rng.random()
+    generator = torch.Generator().manual_seed(seed)
+    theta = 0.24 + 1.05 * float(torch.rand((), generator=generator).item())
+    phi = 2.0 * math.pi * float(torch.rand((), generator=generator).item())
+    phase = complex(math.cos(phi), math.sin(phi))
     psi = torch.tensor(
-        [math.cos(theta), math.sin(theta) * np.exp(1j * phi)],
+        [math.cos(theta), math.sin(theta) * phase],
         dtype=DTYPE,
     ).reshape(2, 1)
     pure = psi @ psi.conj().T
@@ -507,7 +495,7 @@ def numeric_generator_delta_z_comparison() -> dict[str, Any]:
                 h = dissipator(h, SM, rate)
                 h = dephase(h, axis, dephase_rate)
                 z_deltas.append(bloch_z(h) - start)
-            results[key] = round(float(np.mean(z_deltas)), 6)
+            results[key] = round(sum(z_deltas) / len(z_deltas), 6)
 
     # Key test: SY(+) and SX(+) should produce DIFFERENT delta_z (algebraically distinct)
     sy_pos_differs_from_sx_pos = abs(results["SY_+"] - results["SX_+"]) > 0.005
@@ -625,8 +613,8 @@ def graveyard_symmetrized_generators() -> dict[str, Any]:
                 h_s = dephase(h_s, axis, dephase_rate)
                 sym_vals.append(bloch_z(h_s) - start)
 
-            operator_delta_z_canonical[op][sign] = round(float(np.mean(canonical_vals)), 6)
-            operator_delta_z_sym[op][sign] = round(float(np.mean(sym_vals)), 6)
+            operator_delta_z_canonical[op][sign] = round(sum(canonical_vals) / len(canonical_vals), 6)
+            operator_delta_z_sym[op][sign] = round(sum(sym_vals) / len(sym_vals), 6)
 
     # With SZ for all: Fe and Ti should have same delta_z (both now SZ)
     fe_ti_canonical_diff = abs(
@@ -711,13 +699,13 @@ def graveyard_z3_unsat_symmetrized() -> dict[str, Any]:
 
 
 # ═════════════════════════════════════════════════════════════════════════════
-# GRAVEYARD 4 — Scipy cross-check: SY vs SX off-diagonal rotation direction
+# GRAVEYARD 4 — Torch cross-check: SY vs SX off-diagonal rotation direction
 # ═════════════════════════════════════════════════════════════════════════════
 
 
-def graveyard_scipy_rotation_offdiagonal() -> dict[str, Any]:
+def graveyard_torch_rotation_offdiagonal() -> dict[str, Any]:
     """
-    Supportive: use scipy.linalg.expm to verify that SY and SX rotations
+    Supportive: use torch.matrix_exp to verify that SY and SX rotations
     produce DIFFERENT off-diagonal coherence patterns, which is what makes
     them distinguishable under SM dissipation.
 
@@ -725,25 +713,21 @@ def graveyard_scipy_rotation_offdiagonal() -> dict[str, Any]:
     SX(+θ): off-diagonal element = -i*sin(θ) (imaginary)
     This phase difference is what makes the dissipator absorption differ.
     """
-    from scipy.linalg import expm as scipy_expm
-
     theta = 0.19
-    SY_np = np.array([[0, -1j], [1j, 0]], dtype=complex)
-    SX_np = np.array([[0, 1], [1, 0]], dtype=complex)
 
     # Starting from |0> = [1, 0]
-    psi0 = np.array([1, 0], dtype=complex)
-    rho0 = np.outer(psi0, psi0.conj())
+    psi0 = torch.tensor([1, 0], dtype=DTYPE).reshape(2, 1)
+    rho0 = psi0 @ psi0.conj().T
 
-    U_SY = scipy_expm(-1j * theta * SY_np)
-    U_SX = scipy_expm(-1j * theta * SX_np)
+    U_SY = torch.linalg.matrix_exp((-1j * theta * SY).to(DTYPE))
+    U_SX = torch.linalg.matrix_exp((-1j * theta * SX).to(DTYPE))
 
     rho_SY = U_SY @ rho0 @ U_SY.conj().T
     rho_SX = U_SX @ rho0 @ U_SX.conj().T
 
     # Off-diagonal elements
-    od_SY = complex(rho_SY[0, 1])
-    od_SX = complex(rho_SX[0, 1])
+    od_SY = complex(rho_SY[0, 1].item())
+    od_SX = complex(rho_SX[0, 1].item())
 
     # SY should give real off-diagonal; SX should give imaginary off-diagonal
     sy_offdiag_mostly_real = abs(od_SY.real) > abs(od_SY.imag)
@@ -784,10 +768,6 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
     if isinstance(value, bool):
@@ -819,8 +799,8 @@ def main() -> int:
     print("Graveyard 3: z3 UNSAT...")
     g3 = graveyard_z3_unsat_symmetrized()
 
-    print("Graveyard 4: Scipy off-diagonal rotation...")
-    g4 = graveyard_scipy_rotation_offdiagonal()
+    print("Graveyard 4: Torch off-diagonal rotation...")
+    g4 = graveyard_torch_rotation_offdiagonal()
 
     positive = {
         "declared_label_3to1_in_spec": t1,
@@ -832,7 +812,7 @@ def main() -> int:
         "perception_pairing_hypothesis_denied": g1,
         "symmetrized_generators_collapse_distinction": g2,
         "z3_unsat_symmetrized_cannot_preserve_3to1": g3,
-        "scipy_offdiagonal_phase_differs_SY_vs_SX": g4,
+        "torch_offdiagonal_phase_differs_SY_vs_SX": g4,
     }
     boundary = {
         "operator_generator_map": {
@@ -878,6 +858,16 @@ def main() -> int:
         "positive": positive,
         "graveyard_companions": graveyard,
         "boundary": boundary,
+        "nearby_variants": {
+            "total": len(graveyard),
+            "passed": sum(1 for row in graveyard.values() if row.get("pass")),
+            "variants": sorted(graveyard),
+        },
+        "why_not_v4_probes": [
+            "v5 formal scout over the 3:1 Fe asymmetry structural-origin question.",
+            "Does not promote a canonical axis, bridge, engine, psychology, or target-system claim.",
+            "The verdict is bounded to the Pauli-generator fixture and stated source comparison.",
+        ],
         "all_pass": all_pass,
         "pass_count": n_pass,
         "total_count": n_total,

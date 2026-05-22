@@ -16,6 +16,8 @@ import os
 import numpy as np
 import math
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================

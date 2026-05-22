@@ -9,6 +9,8 @@ See system_v5/docs/ENGINE_MATH_REFERENCE.md.
 import json, os
 from z3 import Solver, Reals, And, Or, Not, sat, unsat
 
+classification = "canonical"
+
 SCOPE_NOTE = "Weyl P_L/P_R orthogonal projector exclusion; see ENGINE_MATH_REFERENCE.md"
 
 TOOL_MANIFEST = {

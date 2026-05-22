@@ -41,7 +41,6 @@ os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex_ratchet_matplotlib")
 os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 
 import gudhi
-import numpy as np
 import opt_einsum as oe
 import sympy as sp
 import torch
@@ -67,17 +66,15 @@ TOOL_MANIFEST = {
     "pytorch": {
         "tried": True,
         "used": True,
-        "reason": "load-bearing: builds N-qubit initial pure states; provides DTYPE infrastructure",
+        "reason": (
+            "load-bearing: builds N-qubit complex state vectors, diagonal ZZ phases, "
+            "single-qubit gates, reduced-density algebra, centroids, and feature math"
+        ),
     },
     "opt_einsum": {
         "tried": True,
         "used": True,
         "reason": "load-bearing: partial trace contraction to extract qubit-0 reduced density from N-qubit state",
-    },
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "load-bearing: diagonal ZZ Hamiltonian, sparse SX/SY embedded operators, centroid math, SVD",
     },
     "gudhi": {
         "tried": True,
@@ -98,7 +95,6 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": "load_bearing",
     "opt_einsum": "load_bearing",
-    "numpy": "load_bearing",
     "gudhi": "load_bearing",
     "z3": "load_bearing",
     "sympy": "load_bearing",
@@ -201,12 +197,15 @@ COLLAPSED_SPEC: dict[str, Any] = {
 }
 
 # ---------------------------------------------------------------------------
-# 2×2 Pauli matrices (numpy)
+# 2x2 Pauli matrices
 # ---------------------------------------------------------------------------
-_I2 = np.eye(2, dtype=complex)
-_SX = np.array([[0, 1], [1, 0]], dtype=complex)
-_SY = np.array([[0, -1j], [1j, 0]], dtype=complex)
-_SZ = np.array([[1, 0], [0, -1]], dtype=complex)
+DTYPE = torch.complex128
+REAL_DTYPE = torch.float64
+
+_I2 = torch.eye(2, dtype=DTYPE)
+_SX = torch.tensor([[0, 1], [1, 0]], dtype=DTYPE)
+_SY = torch.tensor([[0, -1j], [1j, 0]], dtype=DTYPE)
+_SZ = torch.tensor([[1, 0], [0, -1]], dtype=DTYPE)
 
 _PROJ2 = {
     "x": [0.5 * (_I2 + _SX), 0.5 * (_I2 - _SX)],
@@ -222,13 +221,13 @@ _PROJ2 = {
 # Single-qubit topology ops applied at qubit 0 via fast vector operations.
 # ---------------------------------------------------------------------------
 
-def _build_zz_diag_be(N: int, strength: float) -> np.ndarray:
+def _build_zz_diag_be(N: int, strength: float) -> torch.Tensor:
     """Diagonal of nearest-neighbor ZZ Hamiltonian (big-endian bit ordering).
 
     Qubit i at bit position N-1-i.  H = strength * sum_i Z_i Z_{i+1}.
     """
     dim = 2**N
-    d = np.zeros(dim, dtype=float)
+    d = torch.zeros(dim, dtype=REAL_DTYPE)
     for k in range(dim):
         val = 0.0
         for i in range(N - 1):
@@ -258,7 +257,7 @@ class NQubitSystem:
         self.coupling_strength = coupling_strength
         self.zz_dt = zz_dt
         # Build ZZ diagonal once
-        self._zz_phase = np.exp(-1j * _build_zz_diag_be(N, coupling_strength) * zz_dt)
+        self._zz_phase = torch.exp((-1j * _build_zz_diag_be(N, coupling_strength) * zz_dt).to(DTYPE))
         # Generator bases (from reference scout)
         self._base = {"Ti": 0.17, "Te": 0.14, "Fi": 0.22, "Fe": 0.19}
         # Loop generator bases
@@ -267,31 +266,31 @@ class NQubitSystem:
 
     # --- Qubit-0 single-qubit gates (big-endian) ---
 
-    def _apply_sz_q0(self, psi: np.ndarray, angle: float) -> np.ndarray:
+    def _apply_sz_q0(self, psi: torch.Tensor, angle: float) -> torch.Tensor:
         """exp(-i*angle*SZ) at qubit 0: upper half *= e^{-i*angle}, lower *= e^{+i*angle}."""
-        psi = psi.copy()
-        psi[: self.half] *= np.exp(-1j * angle)
-        psi[self.half :] *= np.exp(+1j * angle)
-        psi /= np.linalg.norm(psi)
+        psi = psi.clone()
+        psi[: self.half] *= complex(math.cos(-angle), math.sin(-angle))
+        psi[self.half :] *= complex(math.cos(angle), math.sin(angle))
+        psi = psi / torch.linalg.norm(psi)
         return psi
 
-    def _apply_sx_q0(self, psi: np.ndarray, angle: float) -> np.ndarray:
+    def _apply_sx_q0(self, psi: torch.Tensor, angle: float) -> torch.Tensor:
         """exp(-i*angle*SX) at qubit 0: cos*I - i*sin*SX (block-off-diagonal flip)."""
-        c, s = np.cos(angle), np.sin(angle)
-        upper = psi[: self.half].copy()
-        lower = psi[self.half :].copy()
-        psi_new = np.empty_like(psi)
+        c, s = math.cos(angle), math.sin(angle)
+        upper = psi[: self.half].clone()
+        lower = psi[self.half :].clone()
+        psi_new = torch.empty_like(psi)
         psi_new[: self.half] = c * upper - 1j * s * lower
         psi_new[self.half :] = c * lower - 1j * s * upper
-        psi_new /= np.linalg.norm(psi_new)
+        psi_new = psi_new / torch.linalg.norm(psi_new)
         return psi_new
 
-    def _apply_sy_q0(self, psi: np.ndarray, angle: float) -> np.ndarray:
+    def _apply_sy_q0(self, psi: torch.Tensor, angle: float) -> torch.Tensor:
         """exp(-i*angle*SY) at qubit 0: cos*I - i*sin*SY (SY block: [[0,-i],[i,0]])."""
-        c, s = np.cos(angle), np.sin(angle)
-        upper = psi[: self.half].copy()
-        lower = psi[self.half :].copy()
-        psi_new = np.empty_like(psi)
+        c, s = math.cos(angle), math.sin(angle)
+        upper = psi[: self.half].clone()
+        lower = psi[self.half :].clone()
+        psi_new = torch.empty_like(psi)
         psi_new[: self.half] = c * upper + (-s) * lower    # -i*(-i) = -1... careful
         psi_new[self.half :] = c * lower + (s) * upper     # SY = [[0,-i],[i,0]]
         # More precisely: exp(-i*a*SY) = cos(a)*I - i*sin(a)*SY
@@ -300,10 +299,10 @@ class NQubitSystem:
         # => lower_new = sin(a)*upper + cos(a)*lower
         psi_new[: self.half] = c * upper - s * lower
         psi_new[self.half :] = s * upper + c * lower
-        psi_new /= np.linalg.norm(psi_new)
+        psi_new = psi_new / torch.linalg.norm(psi_new)
         return psi_new
 
-    def apply_signed_op(self, psi: np.ndarray, name: str, sign: int, chirality_sign: int) -> np.ndarray:
+    def apply_signed_op(self, psi: torch.Tensor, name: str, sign: int, chirality_sign: int) -> torch.Tensor:
         """Apply topology operator unitary to qubit 0."""
         base = self._base[name]
         angle = base * float(sign) * float(chirality_sign)
@@ -316,7 +315,7 @@ class NQubitSystem:
         else:
             raise ValueError(name)
 
-    def apply_loop(self, psi: np.ndarray, loop: str, step: int, chirality_sign: int) -> np.ndarray:
+    def apply_loop(self, psi: torch.Tensor, loop: str, step: int, chirality_sign: int) -> torch.Tensor:
         """Loop update (fiber: SZ generator; base: 0.75*SX + 0.25*SZ generator)."""
         u = (step + 1) * 2.0 * math.pi / 9.0
         if loop == "fiber":
@@ -328,105 +327,108 @@ class NQubitSystem:
             # exp(-i*a*(0.75*SX + 0.25*SZ)) -- no closed-form diagonal trick;
             # use Rodrigues-like: eigenvalues of (0.75*SX + 0.25*SZ) = ±sqrt(0.75^2+0.25^2)
             gen2 = 0.75 * _SX + 0.25 * _SZ  # 2x2 generator
-            eigs, vecs = np.linalg.eig(-1j * angle * gen2)
-            U2 = vecs @ np.diag(np.exp(eigs)) @ np.linalg.inv(vecs)
+            eigs, vecs = torch.linalg.eig((-1j * angle * gen2).to(DTYPE))
+            U2 = vecs @ torch.diag(torch.exp(eigs)) @ torch.linalg.inv(vecs)
             # Embed: U_full = U2 ⊗ I_{N-1}
-            c = float(U2[0, 0].real)  # approximated as SX-like but full 2x2
             # Apply via the block structure: U2[0,0] U2[0,1] upper, U2[1,0] U2[1,1] lower
-            upper = psi[: self.half].copy()
-            lower = psi[self.half :].copy()
-            psi_new = np.empty_like(psi)
+            upper = psi[: self.half].clone()
+            lower = psi[self.half :].clone()
+            psi_new = torch.empty_like(psi)
             psi_new[: self.half] = U2[0, 0] * upper + U2[0, 1] * lower
             psi_new[self.half :] = U2[1, 0] * upper + U2[1, 1] * lower
-            psi_new /= np.linalg.norm(psi_new)
+            psi_new = psi_new / torch.linalg.norm(psi_new)
             return psi_new
         else:
             raise ValueError(loop)
 
-    def apply_zz_steps(self, psi: np.ndarray, n_steps: int) -> np.ndarray:
+    def apply_zz_steps(self, psi: torch.Tensor, n_steps: int) -> torch.Tensor:
         """Apply n_steps iterations of diagonal ZZ coupling unitary."""
         phase_n = self._zz_phase ** n_steps
         psi = phase_n * psi
-        psi /= np.linalg.norm(psi)
+        psi = psi / torch.linalg.norm(psi)
         return psi
 
-    def reduced_density_q0(self, psi: np.ndarray) -> np.ndarray:
+    def reduced_density_q0(self, psi: torch.Tensor) -> torch.Tensor:
         """Qubit-0 reduced density via opt_einsum partial trace.
 
         psi reshaped to (2, dim//2); rho_0[a,b] = sum_k psi[a,k]*conj(psi[b,k]).
         Uses opt_einsum (load-bearing) for the contraction.
         """
-        psi_t = torch.from_numpy(psi.reshape(2, self.half).copy())
-        rho0 = oe.contract("ak,bk->ab", psi_t, psi_t.conj()).numpy()
+        psi_t = psi.reshape(2, self.half)
+        rho0 = oe.contract("ak,bk->ab", psi_t, psi_t.conj())
         return rho0
 
-    def q0_entropy(self, rho0: np.ndarray) -> float:
+    def q0_entropy(self, rho0: torch.Tensor) -> float:
         """VN entropy of qubit-0 reduced density = entanglement of qubit 0 with rest."""
-        vals = np.linalg.eigvalsh((rho0 + rho0.conj().T) / 2).real
-        vals = np.clip(vals, 1e-15, None)
-        return float(-np.sum(vals * np.log(vals)))
+        vals = torch.linalg.eigvalsh((rho0 + rho0.conj().T) / 2).real
+        vals = torch.clamp(vals, min=1e-15)
+        return float(-(vals * torch.log(vals)).sum().item())
 
-    def bloch_q0(self, rho0: np.ndarray) -> np.ndarray:
-        return np.array(
+    def bloch_q0(self, rho0: torch.Tensor) -> torch.Tensor:
+        return torch.tensor(
             [
-                float(np.real(np.trace(_SX @ rho0))),
-                float(np.real(np.trace(_SY @ rho0))),
-                float(np.real(np.trace(_SZ @ rho0))),
-            ]
+                float(torch.real(torch.trace(_SX @ rho0)).item()),
+                float(torch.real(torch.trace(_SY @ rho0)).item()),
+                float(torch.real(torch.trace(_SZ @ rho0)).item()),
+            ],
+            dtype=REAL_DTYPE,
         )
 
-    def purity_q0(self, rho0: np.ndarray) -> float:
-        return float(np.real(np.trace(rho0 @ rho0)))
+    def purity_q0(self, rho0: torch.Tensor) -> float:
+        return float(torch.real(torch.trace(rho0 @ rho0)).item())
 
-    def dephase_q0(self, rho0: np.ndarray, axis: str, rate: float) -> np.ndarray:
+    def dephase_q0(self, rho0: torch.Tensor, axis: str, rate: float) -> torch.Tensor:
         pinched = sum(p @ rho0 @ p for p in _PROJ2[axis])
         rho_out = (1.0 - rate) * rho0 + rate * pinched
-        return rho_out / float(np.real(np.trace(rho_out)))
+        return rho_out / float(torch.real(torch.trace(rho_out)).item())
 
 
 # ---------------------------------------------------------------------------
 # Initial states
 # ---------------------------------------------------------------------------
 
-def _q_plus() -> np.ndarray:
-    return np.array([1.0, 1.0], dtype=complex) / math.sqrt(2)
+def _q_plus() -> torch.Tensor:
+    return torch.tensor([1.0, 1.0], dtype=DTYPE) / math.sqrt(2)
 
 
-def initial_psi(N: int, seed: int) -> np.ndarray:
+def initial_psi(N: int, seed: int) -> torch.Tensor:
     """N-qubit product state: qubit 0 = random Bloch, qubits 1..N-1 = |+>."""
-    rng = np.random.default_rng(seed)
-    theta = 0.24 + 1.05 * rng.random()
-    phi = 2.0 * math.pi * rng.random()
-    q0 = np.array([math.cos(theta), math.sin(theta) * np.exp(1j * phi)], dtype=complex)
-    psi = q0.copy()
+    gen = torch.Generator().manual_seed(seed)
+    theta = 0.24 + 1.05 * float(torch.rand((), generator=gen).item())
+    phi = 2.0 * math.pi * float(torch.rand((), generator=gen).item())
+    q0 = torch.tensor(
+        [math.cos(theta), math.sin(theta) * complex(math.cos(phi), math.sin(phi))],
+        dtype=DTYPE,
+    )
+    psi = q0.clone()
     qp = _q_plus()
     for _ in range(N - 1):
-        psi = np.kron(psi, qp)
-    psi /= np.linalg.norm(psi)
+        psi = torch.kron(psi, qp)
+    psi = psi / torch.linalg.norm(psi)
     return psi
 
 
-def adversarial_psi(N: int, seed: int) -> np.ndarray:
+def adversarial_psi(N: int, seed: int) -> torch.Tensor:
     """Fixed adversarial qubit-0 states near Bloch sphere extremes, rest |+>."""
     q0_fixtures = [
-        np.array([1.0, 0.0], dtype=complex),
-        np.array([0.0, 1.0], dtype=complex),
-        np.array([1.0, 1.0], dtype=complex) / math.sqrt(2),
-        np.array([1.0, 1j], dtype=complex) / math.sqrt(2),
-        np.array([math.sqrt(0.52), math.sqrt(0.48) * np.exp(1j * 0.8)], dtype=complex),
-        np.array([math.sqrt(0.50), math.sqrt(0.50) * np.exp(-1j * 1.1)], dtype=complex),
+        torch.tensor([1.0, 0.0], dtype=DTYPE),
+        torch.tensor([0.0, 1.0], dtype=DTYPE),
+        torch.tensor([1.0, 1.0], dtype=DTYPE) / math.sqrt(2),
+        torch.tensor([1.0, 1j], dtype=DTYPE) / math.sqrt(2),
+        torch.tensor([math.sqrt(0.52), math.sqrt(0.48) * complex(math.cos(0.8), math.sin(0.8))], dtype=DTYPE),
+        torch.tensor([math.sqrt(0.50), math.sqrt(0.50) * complex(math.cos(-1.1), math.sin(-1.1))], dtype=DTYPE),
     ]
     q0 = q0_fixtures[seed % len(q0_fixtures)]
-    q0 = q0 / np.linalg.norm(q0)
-    psi = q0.copy()
+    q0 = q0 / torch.linalg.norm(q0)
+    psi = q0.clone()
     qp = _q_plus()
     for _ in range(N - 1):
-        psi = np.kron(psi, qp)
-    psi /= np.linalg.norm(psi)
+        psi = torch.kron(psi, qp)
+    psi = psi / torch.linalg.norm(psi)
     return psi
 
 
-def _depolarize_q0(rho0: np.ndarray, mix: float = 0.12) -> np.ndarray:
+def _depolarize_q0(rho0: torch.Tensor, mix: float = 0.12) -> torch.Tensor:
     """Match reference scout's 12% depolarizing noise on qubit-0 reduced density."""
     return (1.0 - mix) * rho0 + mix * _I2 / 2.0
 
@@ -437,7 +439,7 @@ def _depolarize_q0(rho0: np.ndarray, mix: float = 0.12) -> np.ndarray:
 
 def topology_update_N(
     sys: NQubitSystem,
-    psi_init: np.ndarray,
+    psi_init: torch.Tensor,
     topo: str,
     spec: dict[str, Any],
     chirality_sign: int,
@@ -455,7 +457,7 @@ def topology_update_N(
     minor = dict(cfg["minor"])
     steps = [("major", "base", major), ("minor", "fiber", minor)]
 
-    psi = psi_init.copy()
+    psi = psi_init.clone()
 
     # Pre-update qubit-0 features
     rho0_start = _depolarize_q0(sys.reduced_density_q0(psi))
@@ -481,17 +483,17 @@ def topology_update_N(
     s1 = sys.q0_entropy(rho0_end)
     p1 = sys.purity_q0(rho0_end)
 
-    feature = np.array(
+    feature = torch.tensor(
         [
-            *(b1 - b0),                       # delta Bloch x, y, z of qubit 0
+            *[(v.item()) for v in (b1 - b0)],  # delta Bloch x, y, z of qubit 0
             s1 - s0,                           # delta qubit-0 VN entropy (= delta entanglement)
             p1 - p0,                           # delta purity of qubit 0
-            float(np.linalg.norm(b1[:2])),     # xy Bloch radius
-            float(b1[2]),                      # final Bloch z
-            float(np.arctan2(b1[1], b1[0])),   # final Bloch phase
+            float(torch.linalg.norm(b1[:2]).item()),  # xy Bloch radius
+            float(b1[2].item()),               # final Bloch z
+            float(torch.atan2(b1[1], b1[0]).item()),  # final Bloch phase
             s1,                                # absolute qubit-0 entropy (N-dependent feature)
         ],
-        dtype=float,
+        dtype=REAL_DTYPE,
     )
     return {
         "topology": topo,
@@ -544,20 +546,16 @@ def as_jsonable(value: Any) -> Any:
         return {str(k): as_jsonable(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)):
         return [as_jsonable(v) for v in value]
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.integer, np.floating)):
-        return value.item()
     if isinstance(value, torch.Tensor):
         return value.detach().cpu().tolist()
     return value
 
 
-def centroids(rows: list[dict[str, Any]]) -> dict[str, np.ndarray]:
-    out: dict[str, np.ndarray] = {}
+def centroids(rows: list[dict[str, Any]]) -> dict[str, torch.Tensor]:
+    out: dict[str, torch.Tensor] = {}
     for topo in sorted({r["topology"] for r in rows}):
-        feats = np.array([r["feature"] for r in rows if r["topology"] == topo])
-        out[topo] = feats.mean(axis=0)
+        feats = torch.stack([r["feature"] for r in rows if r["topology"] == topo], dim=0)
+        out[topo] = feats.mean(dim=0)
     return out
 
 
@@ -568,23 +566,27 @@ def separation_report(rows: list[dict[str, Any]], threshold: float = 0.02) -> di
     min_dist = float("inf")
     for i, a in enumerate(keys):
         for b in keys[i + 1:]:
-            d = float(np.linalg.norm(c[a] - c[b]))
+            d = float(torch.linalg.norm(c[a] - c[b]).item())
             dists[f"{a}-{b}"] = round(d, 6)
             min_dist = min(min_dist, d)
     correct = 0
     for row in rows:
-        nearest = min(keys, key=lambda k: float(np.linalg.norm(row["feature"] - c[k])))
+        nearest = min(keys, key=lambda k: float(torch.linalg.norm(row["feature"] - c[k]).item()))
         correct += int(nearest == row["topology"])
     accuracy = correct / max(len(rows), 1)
     # Per-topology qubit-0 entropy (N-dependent feature)
     ent_by_topo = {
-        t: round(float(np.mean([r["q0_entropy_final"] for r in rows if r["topology"] == t])), 6)
+        t: round(
+            sum(float(r["q0_entropy_final"]) for r in rows if r["topology"] == t)
+            / max(sum(1 for r in rows if r["topology"] == t), 1),
+            6,
+        )
         for t in keys
     }
     ent_vals = list(ent_by_topo.values())
     ent_spread = round(max(ent_vals) - min(ent_vals), 6) if ent_vals else 0.0
     return {
-        "centroids": {k: np.round(v, 6).tolist() for k, v in c.items()},
+        "centroids": {k: (torch.round(v * 1e6) / 1e6).tolist() for k, v in c.items()},
         "pairwise_centroid_distances": dists,
         "min_centroid_distance": round(min_dist, 6),
         "nearest_centroid_accuracy": round(accuracy, 4),
@@ -595,8 +597,8 @@ def separation_report(rows: list[dict[str, Any]], threshold: float = 0.02) -> di
 
 
 def persistence_report(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    points = np.array([r["feature"] for r in rows], dtype=float)
-    st = gudhi.RipsComplex(points=points, max_edge_length=1.0).create_simplex_tree(max_dimension=1)
+    points = torch.stack([r["feature"] for r in rows], dim=0).to(REAL_DTYPE)
+    st = gudhi.RipsComplex(points=points.tolist(), max_edge_length=1.0).create_simplex_tree(max_dimension=1)
     intervals = st.persistence()
     h0 = [p for dim, p in intervals if dim == 0]
     finite_h0 = [death - birth for birth, death in h0 if death < float("inf")]
@@ -619,13 +621,13 @@ def z3_distinguishability_witness(
     If the centroids differ on ANY feature component, z3 returns UNSAT,
     refuting indistinguishability.
     """
-    c_a = np.array([r["feature"] for r in rows_a]).mean(axis=0)
-    c_b = np.array([r["feature"] for r in rows_b]).mean(axis=0)
+    c_a = torch.stack([r["feature"] for r in rows_a], dim=0).mean(dim=0)
+    c_b = torch.stack([r["feature"] for r in rows_b], dim=0).mean(dim=0)
     diff = c_a - c_b
 
     s = z3.Solver()
     # Assert: for all i, (c_A[i] - c_B[i]) == 0 (indistinguishability)
-    constraints = [z3.RealVal(float(d)) == z3.RealVal(0.0) for d in diff]
+    constraints = [z3.RealVal(float(d.item())) == z3.RealVal(0.0) for d in diff]
     s.add(z3.And(*constraints))
     result = s.check()
     is_unsat = result == z3.unsat
@@ -633,7 +635,7 @@ def z3_distinguishability_witness(
         "pair": f"{label_a} vs {label_b}",
         "z3_result": str(result),
         "unsat_refutes_indistinguishability": is_unsat,
-        "centroid_distance": round(float(np.linalg.norm(diff)), 6),
+        "centroid_distance": round(float(torch.linalg.norm(diff).item()), 6),
         "pass": is_unsat,
     }
 
@@ -878,6 +880,21 @@ def main() -> int:
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "graveyard_companions": graveyard_companions,
+        "boundary": {
+            "promotion_boundary_preserved": {
+                "pass": PROMOTION_ALLOWED is False,
+                "claim": "formal scout only; no physics, psychology, final manifold, axis, bridge, engine, or target-system promotion",
+            },
+            "finite_scaling_fixture_only": {
+                "pass": True,
+                "claim": "bounded to the eight- and twelve-qubit topology behavior-class scaling fixture",
+            },
+        },
+        "nearby_variants": {
+            "total": len(graveyard_companions),
+            "passed": sum(1 for row in graveyard_companions.values() if row.get("pass")),
+            "variants": sorted(graveyard_companions),
+        },
         "timing": timing,
         "scaling_summary": {
             "N8_combined_min_centroid_dist": min8,

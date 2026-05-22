@@ -24,6 +24,15 @@ os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
 os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 
 classification = "classical_baseline"
+
+divergence_log = [
+    (
+        "Classical baseline contrast: this runner-classical probe provides a "
+        "comparator/control surface for its local claim; it does not promote "
+        "a nonclassical, formal-scout, bridge, axis-level, or canonical proof claim."
+    ),
+]
+
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 from itertools import combinations
 

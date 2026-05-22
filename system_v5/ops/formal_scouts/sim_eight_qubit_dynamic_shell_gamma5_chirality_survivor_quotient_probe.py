@@ -17,7 +17,6 @@ os.environ.setdefault("NUMBA_DISABLE_JIT", "1")
 import gudhi
 import networkx as nx
 import opt_einsum as oe
-from scipy.optimize import minimize_scalar
 import sympy as sp
 import torch
 from torch_geometric.utils import from_networkx
@@ -49,9 +48,9 @@ CLAIM_CEILING = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": True, "used": True, "reason": "load-bearing eight-qubit density states, embedded Kraus updates, gamma5 projectors, and trace norms"},
+    "python_math": {"tried": True, "used": True, "reason": "load-bearing local bounded scalar minimizer for effective-gamma Choi fit"},
+    "pytorch": {"tried": True, "used": True, "reason": "load-bearing eight-qubit density states, embedded Kraus updates, gamma5 projectors, trace norms, and effective-gamma Choi objective evaluation"},
     "opt_einsum": {"tried": True, "used": True, "reason": "load-bearing four-qubit reduced entropy contraction inside orbit signatures"},
-    "scipy": {"tried": True, "used": True, "reason": "load-bearing symmetric effective-gamma Choi fit per shell step"},
     "networkx": {"tried": True, "used": True, "reason": "load-bearing dynamic shell graph and quotient graph"},
     "torch_geometric": {"tried": True, "used": True, "reason": "load-bearing graph tensor conversion"},
     "gudhi": {"tried": True, "used": True, "reason": "load-bearing quotient graph persistence"},
@@ -181,13 +180,52 @@ def signature(coherence: list[float], entropy: list[float]) -> tuple[Any, ...]:
     )
 
 
+def bounded_scalar_minimize(
+    objective: Any,
+    lower: float,
+    upper: float,
+    *,
+    xatol: float = 1e-11,
+    max_iter: int = 200,
+) -> dict[str, Any]:
+    inv_phi = (math.sqrt(5.0) - 1.0) / 2.0
+    inv_phi_sq = 1.0 - inv_phi
+    a = float(lower)
+    b = float(upper)
+    h = b - a
+    c = a + inv_phi_sq * h
+    d = a + inv_phi * h
+    fc = float(objective(c))
+    fd = float(objective(d))
+    iterations = 0
+    while h > xatol and iterations < max_iter:
+        if fc < fd:
+            b = d
+            d = c
+            fd = fc
+            h = b - a
+            c = a + inv_phi_sq * h
+            fc = float(objective(c))
+        else:
+            a = c
+            c = d
+            fc = fd
+            h = b - a
+            d = a + inv_phi * h
+            fd = float(objective(d))
+        iterations += 1
+    candidates = [(a, float(objective(a))), (b, float(objective(b))), (c, fc), (d, fd)]
+    x, fun = min(candidates, key=lambda item: item[1])
+    return {"x": float(x), "fun": float(fun), "success": h <= xatol, "iterations": iterations}
+
+
 def best_symmetric_choi_gap(gamma_left: float, gamma_right: float) -> dict[str, Any]:
     target = asymmetric_kraus(gamma_left, gamma_right)
     target_choi = choi_matrix(target)
     def objective(gamma: float) -> float:
         return trace_distance(target_choi, choi_matrix(symmetric_kraus(float(gamma))))
-    result = minimize_scalar(objective, bounds=(0.0, 0.50), method="bounded", options={"xatol": 1e-11})
-    return {"gamma": float(result.x), "choi_trace_distance": float(result.fun), "success": bool(result.success)}
+    result = bounded_scalar_minimize(objective, 0.0, 0.50, xatol=1e-11)
+    return {"gamma": result["x"], "choi_trace_distance": result["fun"], "success": result["success"]}
 
 
 def run_sequence(rho: torch.Tensor, mode: str) -> dict[str, Any]:

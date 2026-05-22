@@ -6,6 +6,8 @@ Numpy load_bearing: coarse-grain an ordered pocket; measure I = H_max - H_actual
 tracks mass-like conserved reservoir under coarse-graining probe.
 """
 import json, os, numpy as np
+classification = "classical_baseline"
+divergence_log = ["Classical baseline compares a negentropy reservoir toy against coarse-graining controls; it is not a nonclassical dark-matter proof."]
 SCOPE_NOTE = "Doctrine 'dark-matter=negentropy'. Coarse-grain negentropy pocket; conserved-reservoir probe. user_entropic_monism_doctrine.md"
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "load-bearing negentropy calc"},
@@ -45,7 +47,7 @@ if __name__ == "__main__":
     pos, neg, bnd = run_positive_tests(), run_negative_tests(), run_boundary_tests()
     all_pass = all(v["pass"] for v in {**pos, **neg, **bnd}.values())
     results = {"name": "sim_em_classical_dark_matter_as_negentropy_reservoir", "scope_note": SCOPE_NOTE,
-               "classification": "classical_baseline", "tool_manifest": TOOL_MANIFEST,
+               "classification": "classical_baseline", "divergence_log": divergence_log, "tool_manifest": TOOL_MANIFEST,
                "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "all_pass": all_pass}
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

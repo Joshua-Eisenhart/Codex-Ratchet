@@ -2,6 +2,8 @@
 """Non-commutativity: Pauli X then Z vs Z then X; commutator = 2i Y ≠ 0."""
 import json, os, sympy as sp
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "sympy": {"tried": True, "used": True,
               "reason": "exact symbolic verification that [X,Z] = -2iY ≠ 0; floating-point matrix algebra could hide degeneracies at exact zero, sympy's exact arithmetic is load-bearing for the UNSAT-style exclusion claim."},

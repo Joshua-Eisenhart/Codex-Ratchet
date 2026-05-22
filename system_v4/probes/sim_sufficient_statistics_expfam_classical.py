@@ -23,9 +23,9 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "sample arithmetic and histogram"},
     "scipy": {"tried": True, "used": True, "reason": "chi2 / KS reference for conditional check"},
     "pytorch": {
-        "tried": _torch_ok,
+        "tried": True,
         "used": False,
-        "reason": "supportive; not used in sufficiency derivation",
+        "reason": "optional supportive import attempt only; not used in sufficiency derivation",
     },
     "z3": {"tried": False, "used": False, "reason": "no SMT proof of factorization"},
 }

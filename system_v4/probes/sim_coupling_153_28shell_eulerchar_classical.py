@@ -19,6 +19,11 @@ import os
 import torch
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = [
+    "Generated shell-coupling controls bound this classical baseline without promoting shell coexistence or bridge claims."
+]
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Density matrices as float64 tensors; dephasing + MI computation via eigh+matrix_log; autograd gradient dQ/d(eps); 28-factor product with load-bearing MI component"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph topology not required for direct entropy algebra of Euler characteristic and clifford structure"},
@@ -290,6 +295,7 @@ if __name__ == "__main__":
         "name": "sim_coupling_153_28shell_eulerchar_classical",
         "description": "Coupling Program #153: 28-shell extension with Euler Characteristic. Q_28 = MI × log(2)^24 × log(3)^3 × log(4)^2; torch+z3 load-bearing; autograd Axis 0.",
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "positive": {k: v for k, v in tests.items() if k.startswith("P")},

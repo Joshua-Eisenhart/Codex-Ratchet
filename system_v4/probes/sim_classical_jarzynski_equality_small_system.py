@@ -7,14 +7,50 @@ scope_note: Illuminates Landauer section of
   by a stochastic work protocol.
 """
 import numpy as np
-from _doc_illum_common import build_manifest, write_results
+from _doc_illum_common import write_results
 
 NAME = "classical_jarzynski_equality_small_system"
 SCOPE_NOTE = ("Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md "
               "(Landauer section): Jarzynski equality as identity linking "
               "fluctuating work to free-energy difference.")
 CLASSIFICATION = "classical_baseline"
-TM, DEPTH = build_manifest()
+divergence_log = (
+    "Classical stochastic-work baseline for the Jarzynski equality; contrasts "
+    "exponential work averaging against naive mean-work estimates without "
+    "promoting a nonclassical thermodynamic witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "load-bearing stochastic work sampling and exponential averaging"},
+    "pytorch": {"tried": False, "used": False, "reason": "not needed for this classical stochastic-work baseline"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed: no graph layer"},
+    "z3": {"tried": False, "used": False, "reason": "not needed: no SMT claim"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed: no SMT claim"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed: no symbolic manipulation"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed: no geometric algebra"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed: no manifold-distance computation"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed: no equivariant neural layer"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed: no graph algorithm"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed: no hypergraph"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed: no cell-complex computation"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed: no persistence computation"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+TM = TOOL_MANIFEST
+DEPTH = TOOL_INTEGRATION_DEPTH
 
 
 def jarzynski_estimate(work_samples, beta=1.0):
@@ -64,6 +100,7 @@ if __name__ == "__main__":
     results = {
         "name": NAME, "scope_note": SCOPE_NOTE,
         "classification": CLASSIFICATION,
+        "divergence_log": divergence_log,
         "tool_manifest": TM, "tool_integration_depth": DEPTH,
         "load_bearing_tool": "numpy",
         "positive": pos, "negative": neg, "boundary": bnd,

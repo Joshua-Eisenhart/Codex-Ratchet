@@ -10,6 +10,8 @@ import os, json, torch
 from e3nn.o3 import Irreps, rand_matrix
 from e3nn.nn import Gate
 
+classification = "canonical"
+
 NAME = "sim_e3nn_deep_gate_layer_equivariance_bound"
 SCOPE_NOTE = "Gate-layer equivariance; disruption by mixing gates/gated features excluded."
 TOOL_MANIFEST = {"e3nn": {"tried": True, "used": True,

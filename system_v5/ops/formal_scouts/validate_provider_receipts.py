@@ -10,7 +10,12 @@ from typing import Any
 
 
 ROOT = pathlib.Path(__file__).resolve().parent
+REPO = ROOT.parents[2]
 RECEIPTS = ROOT / "provider_receipts"
+CANONICAL_SCHEMA = "PROVIDER_PROPOSAL_RECEIPT_v1"
+LEGACY_GROUNDED_SCHEMAS = {
+    "PROVIDER_SELECTOR_ENERGY_CROSS_AUDIT_v1",
+}
 
 REQUIRED = [
     "schema",
@@ -44,13 +49,48 @@ def has_live_api_proof(data: dict[str, Any]) -> bool:
     return bool(proof.get("endpoint") and proof.get("model") and proof.get("answer_sha256"))
 
 
+def normalized_source_raw_receipt(data: dict[str, Any]) -> str:
+    raw = data.get("source_raw_receipt")
+    if isinstance(raw, str) and raw.strip():
+        return raw.strip()
+    grounding = data.get("repo_grounding")
+    if isinstance(grounding, dict):
+        raw = grounding.get("source_raw_receipt")
+        if isinstance(raw, str) and raw.strip():
+            return raw.strip()
+    return ""
+
+
+def source_raw_receipt_exists(ref: str) -> bool:
+    path = pathlib.Path(ref)
+    if not path.is_absolute():
+        path = REPO / path
+    return path.exists()
+
+
+def grounding_targets(data: dict[str, Any], grounding: dict[str, Any]) -> list[str]:
+    targets = grounding.get("targets")
+    if isinstance(targets, list) and any(str(target).strip() for target in targets):
+        return [str(target) for target in targets if str(target).strip()]
+    if data.get("schema") not in LEGACY_GROUNDED_SCHEMAS:
+        return []
+    result_path = str(grounding.get("result_path") or "").strip()
+    plan_path = str(grounding.get("plan_path") or "").strip()
+    if not result_path or not plan_path:
+        return []
+    if not grounding.get("result_sha256") or not grounding.get("plan_sha256"):
+        return []
+    return [result_path, plan_path]
+
+
 def validate(path: pathlib.Path, *, strict_live: bool = False) -> dict[str, Any]:
     data = json.loads(path.read_text(encoding="utf-8"))
     errors = []
     for key in REQUIRED:
         if key not in data:
             errors.append(f"missing {key}")
-    if data.get("schema") != "PROVIDER_PROPOSAL_RECEIPT_v1":
+    schema = data.get("schema")
+    if schema != CANONICAL_SCHEMA and schema not in LEGACY_GROUNDED_SCHEMAS:
         errors.append("wrong schema")
     if data.get("promotion_allowed") is not False:
         errors.append("promotion_allowed must be false")
@@ -66,15 +106,19 @@ def validate(path: pathlib.Path, *, strict_live: bool = False) -> dict[str, Any]
     if not isinstance(grounding, dict):
         errors.append("repo_grounding is not an object")
     elif data.get("status") == "completed":
-        targets = grounding.get("targets")
-        if not isinstance(targets, list) or not targets:
+        targets = grounding_targets(data, grounding)
+        if not targets:
             errors.append("completed receipt has no grounding targets")
     if strict_live and data.get("status") == "completed":
         provider = str(data.get("provider") or "").lower()
         if provider in LIVE_PROVIDER_NAMES and not has_live_api_proof(data):
             errors.append("strict-live completed provider receipt missing raw_response or live_api_proof")
-        if "normalized" in path.name and not data.get("source_raw_receipt"):
-            errors.append("strict-live normalized receipt missing source_raw_receipt")
+        if "normalized" in path.name:
+            source_raw = normalized_source_raw_receipt(data)
+            if not source_raw:
+                errors.append("strict-live normalized receipt missing source_raw_receipt")
+            elif not source_raw_receipt_exists(source_raw):
+                errors.append("strict-live normalized receipt source_raw_receipt path missing")
     return {"path": str(path), "pass": not errors, "errors": errors}
 
 

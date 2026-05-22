@@ -1,8 +1,14 @@
 # Next Goal Prompt: Full QIT Engine / Constraint Manifold Build
 
 **Updated:** 2026-05-21
-**Status:** active paste-ready goal prompt
+**Status:** RETIRED - audit freeze as of 2026-05-22T05:00:34Z
 **Plan:** `system_v5/ops/QIT_ENGINE_MANIFOLD_FULL_BUILD_PLAN_20260521.md`
+
+## 2026-05-22 Retirement Notice
+
+Do not use this as the next goal prompt.
+
+The full engine/manifold build is halted by `system_v5/ops/QIT_ENGINE_MANIFOLD_AUDIT_FREEZE_20260522.md`. The next admissible goal is not to continue PEPS/PEPS3D, Phi0, or basin construction. The next admissible goal is to audit and repair the source-to-runtime mapping for axes/operators/terrains, then quarantine or reclassify all dependent results.
 
 ## Paste-Ready Goal
 

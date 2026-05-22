@@ -2,6 +2,14 @@
 
 Status: exploratory, noncanonical
 
+## 2026-05-22 QIT Engine Audit Freeze
+
+The full QIT engine / geometric constraint manifold build is halted by `system_v5/ops/QIT_ENGINE_MANIFOLD_AUDIT_FREEZE_20260522.md`.
+
+Reason: current runtime/evidence paths allowed operator-axis mapping drift. Recent terrain/runtime scouts can omit chart-locked ordered tokens such as `NiTe` and `SiTe`, Axis 5 family, Axis 6 sign, precedence, loop placement, and exact class-correct readout semantics. Results depending on that simplified runtime are quarantined for operator-axis promotion until a source-authority and runtime-conformance audit closes.
+
+New PEPS/PEPS3D MPDO, Phi0 promotion, basin admission, and final manifold admission work is blocked. Allowed work is limited to source audit, runtime conformance audit, result quarantine classification, and a repaired runtime plan.
+
 This directory is the clean middle layer between informal provider proposals and
 canonical `system_v4/probes` sims.
 

@@ -3007,6 +3007,47 @@ Receipts:
 
 ---
 
+## 47. iter_219 — owner correction: only 2 of 16 stages are gradient descent
+
+**Methodology failure to log explicitly**: iter_217 applied ∇S analysis uniformly to all 16 placements, treating them as if all 16 had the same dynamical class. SCREENSHOTS_INDEX.md (built in this session) contains the explicit 16-stage operator-token table — I ignored my own doc and generated from memory instead.
+
+**Owner correction**: only NiTe and SiTe are gradient-descent stages. The 16 stages split into 5 distinct dynamical classes per the atlas tables (re-consulted from SCREENSHOTS_INDEX.md §0):
+
+| Class | Count | Tokens | Diagnostic |
+|---|---|---|---|
+| **gradient_descent** | **2** | **SiTe, NiTe** | ∇⟨H⟩, descent rate, Δr_z |
+| rotation_unitary | 8 | NiFe, FeSi, SeFi, FiNe, FiSe, NeFi, FeNi, SiFe | purity preserved, Bloch rotation |
+| secondary_dephasing_op_first | 2 | TeNi, TeSi | dephasing in alternate basis |
+| signal_release_op_first | 2 | TiSe, TiNe | signal output |
+| filter_terrain_first | 2 | NeTi, SeTi | filter response |
+
+**Verification at single-qubit**:
+
+| Stage | Token | Sheet | ΔE | Δr_z | ΔS |
+|---|---|---|---|---|---|
+| T1.inner.2 | SiTe | L | **−0.374** | +0.100 | +0.338 |
+| T2.outer.3 | NiTe | R | **−0.027** | +0.680 | +0.184 |
+
+Both have ΔE < 0 — actual energy descent confirmed.
+
+**Implication for prior iters:**
+
+- iter_217's ∇S catalogue across all 16 stages: numerical values valid, but dynamical interpretation conflates 5 classes. Should be split per class.
+- iter_218's 4-loop entropy values: still hold; loop-level analysis isn't broken by the stage-level reclassification. But the loops can now be re-examined as "where is the 1 gradient-descent stage in each loop?" → T1 inner has SiTe, T2 outer has NiTe, T1 outer + T2 inner have ZERO.
+- iter_208's mutual-info-as-best-Φ_0-discriminator: still valid (was an engine-level diagnostic, not stage-level).
+
+**Structural symmetry of the gradient-descent pair:**
+- Both are Te operator + terrain-first (DOWN axis 6) + polar terrain (Si or Ni)
+- One per engine (1 in T1, 1 in T2)
+- One per loop class (1 inner, 1 outer)
+- They form a "balanced descent" pair across the full T1∘T2 schedule
+
+**Going forward: SCREENSHOTS_INDEX.md is the data spine, consulted per iter.** The 16-stage token table is the source of truth for stage identity. Stage classes are 5 distinct dynamical classes, not one uniform "∇S target".
+
+Receipt: `results/iter_219_gradient_descent_only_NiTe_SiTe_results.json`
+
+---
+
 ## 44. Deep audit by Grok-4 and Gemini-2.5-Pro (2026-05-21)
 
 Owner requested deep audit. Both models received the same 10-claim prompt. Substantial divergence — preserved per kernel rule (don't collapse divergent options under pushback).

@@ -2,8 +2,16 @@
 
 **Created:** 2026-05-21
 **Updated:** 2026-05-21
-**Status:** active v2 implementation plan
+**Status:** HALTED - audit freeze as of 2026-05-22T05:00:34Z
 **Companion prompt:** `system_v5/ops/NEXT_GOAL_FULL_QIT_ENGINE_MANIFOLD_BUILD_PROMPT_20260521.md`
+
+## 2026-05-22 Audit Freeze Notice
+
+This plan is no longer an active implementation instruction.
+
+The build is halted by `system_v5/ops/QIT_ENGINE_MANIFOLD_AUDIT_FREEZE_20260522.md` because the current runtime/evidence path allowed operator-axis mapping drift. In particular, recent work treated terrain labels and simplified runtime channels as sufficient where the source docs require chart-locked ordered tokens, Axis 5 family, Axis 6 sign, precedence, loop placement, sheet/type, and class-correct operator/readout semantics.
+
+Do not continue workstreams from this plan until the audit freeze closes. The only admissible work is source-authority audit, runtime-conformance audit, result quarantine classification, and then a repaired runtime plan.
 
 ## Purpose
 

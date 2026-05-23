@@ -79,6 +79,7 @@ ACTIVE_RECEIPTS = {
     "xi_bridge": "spinor_twistor_xi_cut_phi0_bridge_candidate_probe_results.json",
     "xi_path_weighted": "xi_phi0_path_weighted_cut_candidate_probe_results.json",
     "xi_boundary_capacity": "xi_phi0_boundary_capacity_cut_candidate_probe_results.json",
+    "xi_free_energy": "two_root_constraint_qit_fep_free_energy_phi0_candidate_probe_results.json",
     "xi_l7_history": "two_root_constraint_l7_xi_history_phi0_bridge_probe_results.json",
     "xi_causal_irreversibility": "two_root_constraint_xi_causal_irreversibility_phi0_bridge_probe_results.json",
     "xi_mps_rescue": "two_root_constraint_mps_phi0_bridge_rescue_or_falsifier_probe_results.json",
@@ -146,6 +147,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_bridge = receipts["xi_bridge"]
     xi_path_weighted = receipts["xi_path_weighted"]
     xi_boundary_capacity = receipts["xi_boundary_capacity"]
+    xi_free_energy = receipts["xi_free_energy"]
     xi_l7_history = receipts["xi_l7_history"]
     xi_causal_irreversibility = receipts["xi_causal_irreversibility"]
     xi_mps_rescue = receipts["xi_mps_rescue"]
@@ -179,6 +181,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_path_boundary = section_keys(xi_path_weighted, "boundary")
     xi_capacity_graveyard = section_keys(xi_boundary_capacity, "graveyard_companions")
     xi_capacity_boundary = section_keys(xi_boundary_capacity, "boundary")
+    xi_free_energy_keys = section_keys(xi_free_energy, "positive")
+    xi_free_energy_graveyard = section_keys(xi_free_energy, "graveyard_companions")
+    xi_free_energy_boundary = section_keys(xi_free_energy, "boundary")
     xi_l7_keys = section_keys(xi_l7_history, "positive")
     xi_l7_graveyard = section_keys(xi_l7_history, "graveyard_companions")
     xi_l7_boundary = section_keys(xi_l7_history, "boundary")
@@ -298,6 +303,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 xi_bridge.get("all_pass")
                 and xi_path_weighted.get("all_pass")
                 and xi_boundary_capacity.get("all_pass")
+                and xi_free_energy.get("all_pass")
                 and xi_l7_history.get("all_pass")
                 and xi_causal_irreversibility.get("all_pass")
                 and xi_mps_rescue.get("all_pass")
@@ -318,6 +324,12 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and "zero_uniform_random_controls_beat_candidate" in xi_capacity_graveyard
                 and "over_capacity_control_rejected" in xi_capacity_graveyard
                 and "final_xi_phi0_not_admitted" in xi_capacity_boundary
+                and "free_energy_cut_surface_built" in xi_free_energy_keys
+                and "energy_correction_is_load_bearing" in xi_free_energy_keys
+                and "noncommuting_path_difference_measured" in xi_free_energy_keys
+                and "candidate_not_control_separated" in xi_free_energy_graveyard
+                and "energy_term_not_sufficient_for_admission" in xi_free_energy_graveyard
+                and "final_xi_phi0_not_admitted" in xi_free_energy_boundary
                 and "bridge_status_classified" in xi_l7_keys
                 and "not_final_axis0_closure" in xi_l7_graveyard
                 and "final_manifold_admission_allowed" in xi_l7_boundary
@@ -354,6 +366,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 | xi_path_boundary
                 | xi_capacity_graveyard
                 | xi_capacity_boundary
+                | xi_free_energy_keys
+                | xi_free_energy_graveyard
+                | xi_free_energy_boundary
                 | xi_l7_keys
                 | xi_l7_graveyard
                 | xi_l7_boundary
@@ -384,7 +399,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 | full_trace_after_stress_graveyard
                 | full_trace_after_stress_boundary
             ),
-            "limit": "raw/path/capacity candidates are killed; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
+            "limit": "raw/path/capacity/free-energy candidates are killed or nonseparating; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
         },
         "formal_scout_boundaries": {
             "status": "preserved",
@@ -582,6 +597,7 @@ def main() -> int:
             "pass": True,
             "ordered_next_gaps": [
                 "close or kill a stronger Xi -> rho_AB -> Phi0 construction",
+                "try a structurally different Phi0 candidate only if it avoids the beta-zero/free-energy control failure",
                 "convert bounded tensor-scaling status into a stronger convergence or environment-contraction falsifier",
                 "extend source-aligned runtime toward full coupled terrain/operator/axis dynamics under the audit freeze",
                 "only then revisit final manifold/basin admission boundaries",
@@ -615,6 +631,7 @@ def main() -> int:
     }
     open_gaps = [
         "final Xi/Phi0 remains open; current stronger evidence is weak bounded first-rung only",
+        "energy-corrected QIT-FEP Phi0 candidate is load-bearing but nonseparating against beta-zero/control rows",
         "tensor scaling is consolidated as bounded L32/L64/MPS/PEPS/PEPS3D evidence but final convergence and full environment contraction remain open",
         "full coupled source-aligned runtime remains open beyond bounded E16 first-rung evidence",
         "final manifold/basin admission remains blocked",

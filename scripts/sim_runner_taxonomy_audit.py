@@ -19,17 +19,38 @@ import adaptive_controller
 OUT_PATH = adaptive_controller.RESULTS / "sim_runner_taxonomy_audit_results.json"
 
 
+def exists_safe(path: Path) -> bool:
+    try:
+        return path.exists()
+    except OSError:
+        return False
+
+
+def exact_result_file(path: Path) -> Path | None:
+    stem = path.stem
+    candidates = [adaptive_controller.RESULTS / f"{stem}_results.json"]
+    if stem.startswith("sim_"):
+        candidates.append(adaptive_controller.RESULTS / f"{stem[4:]}_results.json")
+    for candidate in candidates:
+        if exists_safe(candidate):
+            return candidate
+    return None
+
+
 def row_for(path: Path) -> dict:
     stem = path.stem
-    result_path = adaptive_controller.find_result_file(stem)
-    result = adaptive_controller.load_result(result_path) if result_path else {}
-    runner_class = adaptive_controller.runner_class_for(path)
+    result_path = exact_result_file(path)
+    try:
+        source_text = path.read_text()
+    except Exception:
+        source_text = ""
+    runner_class = adaptive_controller.runner_class_for(path, source_text=source_text)
     return {
         "sim": str(path.relative_to(adaptive_controller.ROOT)),
         "stem": stem,
         "runner_class": runner_class,
-        "runner_class_reason": adaptive_controller.runner_class_reason(path),
-        "classification": result.get("classification"),
+        "runner_class_reason": adaptive_controller.runner_class_reason(path, source_text=source_text),
+        "classification": adaptive_controller._source_classification(source_text),
         "plan_bucket": adaptive_controller.plan_bucket(path.name),
         "plan_stage": adaptive_controller.plan_stage(path.name),
         "result_path": str(result_path.relative_to(adaptive_controller.ROOT)) if result_path else None,

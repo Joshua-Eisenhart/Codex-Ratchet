@@ -87,6 +87,7 @@ ACTIVE_RECEIPTS = {
     "xi_flux_coherent_stress": "two_root_constraint_flux_coherent_recovery_stress_probe_results.json",
     "xi_runtime_tensor_bridge": "two_root_constraint_flux_recovery_runtime_tensor_bridge_classifier_probe_results.json",
     "xi_runtime_embed": "two_root_constraint_flux_recovery_coupled_runtime_embed_probe_results.json",
+    "xi_process_signature": "two_root_constraint_process_signature_vector_phi0_candidate_probe_results.json",
     "xi_l7_history": "two_root_constraint_l7_xi_history_phi0_bridge_probe_results.json",
     "xi_causal_irreversibility": "two_root_constraint_xi_causal_irreversibility_phi0_bridge_probe_results.json",
     "xi_mps_rescue": "two_root_constraint_mps_phi0_bridge_rescue_or_falsifier_probe_results.json",
@@ -162,6 +163,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_flux_coherent_stress = receipts["xi_flux_coherent_stress"]
     xi_runtime_tensor_bridge = receipts["xi_runtime_tensor_bridge"]
     xi_runtime_embed = receipts["xi_runtime_embed"]
+    xi_process_signature = receipts["xi_process_signature"]
     xi_l7_history = receipts["xi_l7_history"]
     xi_causal_irreversibility = receipts["xi_causal_irreversibility"]
     xi_mps_rescue = receipts["xi_mps_rescue"]
@@ -219,6 +221,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_runtime_embed_keys = section_keys(xi_runtime_embed, "positive")
     xi_runtime_embed_graveyard = section_keys(xi_runtime_embed, "graveyard_companions")
     xi_runtime_embed_boundary = section_keys(xi_runtime_embed, "boundary")
+    xi_process_signature_keys = section_keys(xi_process_signature, "positive")
+    xi_process_signature_graveyard = section_keys(xi_process_signature, "graveyard_companions")
+    xi_process_signature_boundary = section_keys(xi_process_signature, "boundary")
     xi_l7_keys = section_keys(xi_l7_history, "positive")
     xi_l7_graveyard = section_keys(xi_l7_history, "graveyard_companions")
     xi_l7_boundary = section_keys(xi_l7_history, "boundary")
@@ -333,7 +338,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
             "limit": "bounded L32/L64/MPS/PEPS/PEPS3D evidence is consolidated; full convergence, full environment contraction, robust Phi0, and scale-basin admission remain blocked",
         },
         "xi_phi0_bridge": {
-            "status": "coupled_runtime_embed_demoted_open_blocker",
+            "status": "process_signature_vector_candidate_open",
             "pass": bool(
                 xi_bridge.get("all_pass")
                 and xi_path_weighted.get("all_pass")
@@ -346,6 +351,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and xi_flux_coherent_stress.get("all_pass")
                 and xi_runtime_tensor_bridge.get("all_pass")
                 and xi_runtime_embed.get("all_pass")
+                and xi_process_signature.get("all_pass")
                 and xi_l7_history.get("all_pass")
                 and xi_causal_irreversibility.get("all_pass")
                 and xi_mps_rescue.get("all_pass")
@@ -426,6 +432,13 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and "standalone_flux_recovery_does_not_transfer_to_coupled_runtime" in xi_runtime_embed_graveyard
                 and "runtime_controls_block_final_phi0" in xi_runtime_embed_graveyard
                 and "final_xi_phi0_not_admitted" in xi_runtime_embed_boundary
+                and "process_signature_vector_built" in xi_process_signature_keys
+                and "vector_signature_separates_controls" in xi_process_signature_keys
+                and "scalar_and_single_feature_controls_fail" in xi_process_signature_keys
+                and "scalar_phi0_not_repaired" in xi_process_signature_graveyard
+                and "single_feature_phi0_rejected" in xi_process_signature_graveyard
+                and "runtime_embedding_demotion_remains_binding" in xi_process_signature_graveyard
+                and "final_xi_phi0_not_admitted" in xi_process_signature_boundary
                 and "bridge_status_classified" in xi_l7_keys
                 and "not_final_axis0_closure" in xi_l7_graveyard
                 and "final_manifold_admission_allowed" in xi_l7_boundary
@@ -486,6 +499,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 | xi_runtime_embed_keys
                 | xi_runtime_embed_graveyard
                 | xi_runtime_embed_boundary
+                | xi_process_signature_keys
+                | xi_process_signature_graveyard
+                | xi_process_signature_boundary
                 | xi_l7_keys
                 | xi_l7_graveyard
                 | xi_l7_boundary
@@ -516,7 +532,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 | full_trace_after_stress_graveyard
                 | full_trace_after_stress_boundary
             ),
-            "limit": "raw/path/capacity/free-energy/QCI/Petz/oriented-recovery candidates are killed or nonseparating; flux-coherent recovery survives standalone bounded deterministic stress but direct coupled-runtime embedding demotes it; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
+            "limit": "raw/path/capacity/free-energy/QCI/Petz/oriented-recovery candidates are killed or nonseparating; flux-coherent recovery survives standalone bounded deterministic stress but direct coupled-runtime embedding demotes it; a vector process signature separates coupled-runtime controls but does not repair scalar Phi0; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
         },
         "formal_scout_boundaries": {
             "status": "preserved",
@@ -563,6 +579,8 @@ def requirement_scores(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
             values.append(0.70)
         elif status == "coupled_runtime_embed_demoted_open_blocker":
             values.append(0.66)
+        elif status == "process_signature_vector_candidate_open":
+            values.append(0.72)
         elif status == "bounded_flux_coherent_first_rung_open_blocker":
             values.append(0.62)
         elif status == "weak_first_rung_open_blocker":
@@ -719,8 +737,8 @@ def main() -> int:
         "next_work_routing": {
             "pass": True,
             "ordered_next_gaps": [
-                "replace or substantially revise the Xi/Phi0 mechanism because flux-coherent recovery was demoted by direct coupled-runtime embedding",
-                "try another Phi0 candidate only if it beats the embedded-runtime demotion baseline and avoids beta-zero/free-energy, collapsed-register/QCI, near-reversed-order/Petz, dephased-history/oriented-recovery, and coupled-runtime-embed failures",
+                "derive a principled scalarization or vector-bundle Axis0 admission rule for the process-signature vector before any Xi/Phi0 promotion",
+                "try another scalar Phi0 candidate only if it beats the embedded-runtime demotion baseline and avoids beta-zero/free-energy, collapsed-register/QCI, near-reversed-order/Petz, dephased-history/oriented-recovery, coupled-runtime-embed, and single-feature process-signature failures",
                 "convert bounded tensor-scaling status into a stronger convergence or environment-contraction falsifier",
                 "extend source-aligned runtime toward full coupled terrain/operator/axis dynamics under the audit freeze",
                 "only then revisit final manifold/basin admission boundaries",
@@ -742,8 +760,9 @@ def main() -> int:
                 "bounded_flux_coherent_first_rung_open_blocker",
                 "flux_coherent_stress_survived_open_blocker",
                 "coupled_runtime_embed_demoted_open_blocker",
+                "process_signature_vector_candidate_open",
             },
-            "summary": "current Xi bridge evidence includes bounded stress-survived flux-coherent recovery support, but direct coupled-runtime embedding demotes that candidate and still admits no final Xi/Phi0",
+            "summary": "current Xi bridge evidence includes a separating vector process signature, but direct flux-recovery embedding demotes the scalar candidate and no final Xi/Phi0 is admitted",
         },
         "full_runtime_and_final_manifold_open": {
             "pass": True,
@@ -760,12 +779,13 @@ def main() -> int:
         "pass": True,
     }
     open_gaps = [
-        "final Xi/Phi0 remains open; current strongest flux-coherent recovery candidate was demoted by direct coupled-runtime embedding",
+        "final Xi/Phi0 remains open; current strongest replacement is a vector process signature without a scalar admission rule",
         "energy-corrected QIT-FEP Phi0 candidate is load-bearing but nonseparating against beta-zero/control rows",
         "tripartite quantum conditional-information Phi0 candidate is load-bearing but nonseparating against collapsed-register/control rows",
         "Petz-recovery Phi0 candidate is load-bearing but nonseparating against near reversed-order/control rows",
         "oriented recovery-asymmetry Phi0 candidate is load-bearing but nonseparating against dephased-history/control rows",
         "flux-coherent recovery Phi0 candidate survived standalone bounded deterministic stress but failed direct coupled-runtime embedding",
+        "process-signature vector separates coupled-runtime controls but does not repair scalar Phi0",
         "tensor scaling is consolidated as bounded L32/L64/MPS/PEPS/PEPS3D evidence but final convergence and full environment contraction remain open",
         "full coupled source-aligned runtime remains open beyond bounded E16 first-rung evidence",
         "final manifold/basin admission remains blocked",

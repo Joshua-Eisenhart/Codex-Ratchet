@@ -85,7 +85,7 @@ SUCCESSOR_ROWS = {
         "qit_szilard_record_ordering_translation_lane",
         "qit_szilard_record_ordering_refinement_translation_lane",
         "szilard_record_ordering_refinement_reset_swing_sweep",
-        "szilard_record_ordering_refinement_reset_axis_widened_sweep",
+        "measurement_record_reset_parameter_sweep",
         "szilard_record_ordering_refinement_measurement_accuracy_recheck",
     ],
     "qit_szilard_substep_refinement_translation_lane": [

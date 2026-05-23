@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Widen the reset axis around the Szilard ordering-refinement carrier."""
+"""Sweep reset parameters around the Szilard ordering-refinement carrier."""
 
 from __future__ import annotations
 
@@ -11,13 +11,17 @@ import numpy as np
 import sim_szilard_record_ordering_refinement_sweep as refined
 
 
-CLASSIFICATION = "diagnostic_only"
+CLASSIFICATION = "audit"
 classification = CLASSIFICATION
 divergence_log = (
     "Bounded successor probe for the Szilard record reset-swing blocker. It "
     "widens reset tilt, reset duration, and reset barrier around the existing "
     "ordering-refinement carrier, keeps the original reset_swing_gap observable, "
     "and does not claim QIT, GStack, axis, or engine admission."
+)
+CLAIM_CEILING = (
+    "Classical audit-only reset-parameter successor for a Szilard record/reset "
+    "gap. It does not promote QIT, GStack, Axis0, engine, or manifold claims."
 )
 
 LEGO_IDS = [
@@ -28,7 +32,7 @@ LEGO_IDS = [
 PRIMARY_LEGO_IDS = ["stochastic_thermodynamics"]
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "runs finite stochastic reset-axis sweep"},
+    "numpy": {"tried": True, "used": True, "reason": "runs finite stochastic reset-parameter sweep"},
     "json": {"tried": True, "used": True, "reason": "loads source receipts and writes result receipt"},
     "pathlib": {"tried": True, "used": True, "reason": "resolves canonical receipt paths"},
 }
@@ -165,13 +169,13 @@ def main() -> None:
             "bound": 0.15,
             "pass": abs(best_candidate["residual_reset_entropy_gap"]) < 0.15,
         },
-        "widened_axis_has_candidate_with_both_reset_checks": {
+        "reset_parameter_sweep_has_candidate_with_both_reset_checks": {
             "passing_candidate_count": int(sum(row["candidate_pass"] for row in rows)),
             "pass": any(row["candidate_pass"] for row in rows),
         },
     }
     negative = {
-        "not_every_widened_axis_setting_closes_reset_gap": {
+        "not_every_reset_parameter_setting_closes_reset_gap": {
             "failing_candidate_count": int(sum(not row["candidate_pass"] for row in rows)),
             "pass": any(not row["candidate_pass"] for row in rows),
         },
@@ -205,10 +209,22 @@ def main() -> None:
         and all(check["pass"] for check in boundary.values())
     )
     out = {
-        "name": "szilard_record_ordering_refinement_reset_axis_widened_sweep",
+        "name": "measurement_record_reset_parameter_sweep",
         "classification": CLASSIFICATION,
         "classification_note": divergence_log,
         "divergence_log": divergence_log,
+        "claim_ceiling": CLAIM_CEILING,
+        "next_lego_target": "measurement_record_reset_parameter_sweep_fixture",
+        "promotion_condition": "not promotable alone; use only as a bounded reset-parameter repair receipt",
+        "blocked_until": "paired downstream with record-lifetime and consolidated repair-gap receipts",
+        "demotion_condition": "demote if used as QIT, GStack, Axis0, engine, or manifold evidence",
+        "out_of_scope": [
+            "no QIT admission",
+            "no GStack admission",
+            "no Axis0 admission",
+            "no engine admission",
+            "no manifold promotion",
+        ],
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
@@ -242,7 +258,7 @@ def main() -> None:
         "rows": rows,
     }
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = RESULT_DIR / "szilard_record_ordering_refinement_reset_axis_widened_sweep_results.json"
+    out_path = RESULT_DIR / "measurement_record_reset_parameter_sweep_results.json"
     out_path.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
     print(out_path)
     print(f"ALL PASS: {all_pass}")

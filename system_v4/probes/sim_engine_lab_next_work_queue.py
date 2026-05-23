@@ -84,9 +84,9 @@ def recommended_lane(row: dict[str, Any]) -> str:
     if row_id == "engine_lab_repair_gap_consolidated_admission":
         return "controller_recheck_after_underlying_repair"
     if row_id == "szilard_record_ordering_refinement_reset_swing_sweep":
-        return "superseded_by_reset_axis_widened_recheck_keep_as_negative"
-    if row_id == "szilard_record_ordering_refinement_reset_axis_widened_sweep":
-        return "use_as_reset_axis_successor_then_recheck_remaining_measurement_accuracy_gap"
+        return "superseded_by_reset_parameter_recheck_keep_as_negative"
+    if row_id == "measurement_record_reset_parameter_sweep":
+        return "use_as_reset_parameter_successor_then_recheck_remaining_measurement_accuracy_gap"
     if audit_class == "repair_gap":
         return "exact_threshold_recheck_or_successor_translation_lane"
     if audit_class == "open_lab_failure":

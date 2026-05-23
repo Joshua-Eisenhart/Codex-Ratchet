@@ -363,13 +363,13 @@ ROW_SPECS = [
         "scope_hint": "repair_companion",
     },
     {
-        "id": "szilard_record_ordering_refinement_reset_axis_widened_sweep",
+        "id": "measurement_record_reset_parameter_sweep",
         "engine_family": "szilard",
         "level": "record_reset_array",
-        "geometry_topology": "double_well_memory_with_ordering_refinement_reset_tilt_duration_barrier_axes",
+        "geometry_topology": "double_well_memory_with_ordering_refinement_reset_tilt_duration_barrier_parameters",
         "entropy_family": ["reset_swing", "reset_stage_entropy", "residual_reset_entropy", "translation_gap"],
         "direction_modes": ["reset_tilt_sensitivity", "reset_duration", "reset_barrier", "ordering_refinement_best_setting"],
-        "result_file": RESULT_DIR / "szilard_record_ordering_refinement_reset_axis_widened_sweep_results.json",
+        "result_file": RESULT_DIR / "measurement_record_reset_parameter_sweep_results.json",
         "scope_hint": "repair_companion",
     },
     {
@@ -1130,7 +1130,7 @@ def extract_headline_metrics(row_id: str, result: dict) -> dict:
         ]:
             if key in summary:
                 metrics[key] = summary[key]
-    if row_id == "szilard_record_ordering_refinement_reset_axis_widened_sweep":
+    if row_id == "measurement_record_reset_parameter_sweep":
         for key in [
             "best_open_reset_swing",
             "qit_reset_swing",

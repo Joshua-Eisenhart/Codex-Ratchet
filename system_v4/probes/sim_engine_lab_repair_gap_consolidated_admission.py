@@ -59,13 +59,13 @@ def reset_recheck_candidates() -> list[dict[str, Any]]:
             "all_pass": bool(summary.get("all_pass")),
         }
     )
-    widened_path = RESULT_DIR / "szilard_record_ordering_refinement_reset_axis_widened_sweep_results.json"
+    widened_path = RESULT_DIR / "measurement_record_reset_parameter_sweep_results.json"
     if widened_path.exists():
         widened = json.loads(widened_path.read_text(encoding="utf-8"))
         widened_summary = widened["summary"]
         candidates.append(
             {
-                "row_id": "szilard_record_ordering_refinement_reset_axis_widened_sweep",
+                "row_id": "measurement_record_reset_parameter_sweep",
                 "receipt": str(widened_path),
                 "open_reset_swing": widened_summary["best_open_reset_swing"],
                 "qit_reset_swing": widened_summary["qit_reset_swing"],

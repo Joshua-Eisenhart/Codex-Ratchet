@@ -7,21 +7,26 @@ import json
 import pathlib
 
 
-CLASSIFICATION = "diagnostic_only"
+CLASSIFICATION = "audit"
 classification = CLASSIFICATION
 divergence_log = (
     "Bounded successor for the Szilard record/reset repair sweep. The source "
     "row improves repair score, ordering, measurement information, and record "
     "survival, while reset swing remains blocked on this carrier and is routed "
-    "to the separate reset-axis recheck. This receipt does not claim QIT, "
+    "to the separate reset-parameter recheck. This receipt does not claim QIT, "
     "GStack, axis, or engine admission."
+)
+CLAIM_CEILING = (
+    "Classical audit-only successor for record lifetime and reset-parameter "
+    "repair bookkeeping. It does not promote QIT, GStack, Axis0, engine, or "
+    "manifold claims."
 )
 
 LEGO_IDS = ["stochastic_thermodynamics", "measurement_feedback", "record_lifetime"]
 PRIMARY_LEGO_IDS = ["measurement_feedback"]
 
 TOOL_MANIFEST = {
-    "json": {"tried": True, "used": True, "reason": "loads record/reset repair and reset-axis receipts"},
+    "json": {"tried": True, "used": True, "reason": "loads record/reset repair and reset-parameter receipts"},
     "pathlib": {"tried": True, "used": True, "reason": "resolves canonical receipt paths"},
 }
 TOOL_INTEGRATION_DEPTH = {"json": "supportive", "pathlib": "supportive"}
@@ -35,10 +40,10 @@ def load(name: str) -> dict:
 
 def main() -> None:
     source = load("szilard_record_reset_repair_sweep_results.json")
-    reset_axis = load("szilard_record_ordering_refinement_reset_axis_widened_sweep_results.json")
+    reset_parameter = load("measurement_record_reset_parameter_sweep_results.json")
     summary = source["summary"]
     positive_source = source["positive"]
-    reset_summary = reset_axis["summary"]
+    reset_summary = reset_parameter["summary"]
 
     positive = {
         "repair_candidate_score_survives": {
@@ -52,8 +57,8 @@ def main() -> None:
         "low_noise_ordering_axis_survives": {
             **positive_source["lower_noise_settings_help_ordering_on_average"],
         },
-        "reset_axis_has_separate_successor_receipt": {
-            "selected_reset_successor": "szilard_record_ordering_refinement_reset_axis_widened_sweep",
+        "reset_parameter_sweep_has_separate_successor_receipt": {
+            "selected_reset_successor": "measurement_record_reset_parameter_sweep",
             "best_reset_swing_gap": reset_summary["best_reset_swing_gap"],
             "best_residual_reset_entropy_gap": reset_summary["best_residual_reset_entropy_gap"],
             "pass": (
@@ -75,10 +80,10 @@ def main() -> None:
         "successor_not_qit_gstack_or_axis_admission": {"pass": True},
     }
     boundary = {
-        "exact_reset_axis_recheck_is_not_substituted_for_lifetime_claims": {
+        "exact_reset_parameter_recheck_is_not_substituted_for_lifetime_claims": {
             "lifetime_source_receipt": str(RESULT_DIR / "szilard_record_reset_repair_sweep_results.json"),
-            "reset_axis_source_receipt": str(
-                RESULT_DIR / "szilard_record_ordering_refinement_reset_axis_widened_sweep_results.json"
+            "reset_parameter_source_receipt": str(
+                RESULT_DIR / "measurement_record_reset_parameter_sweep_results.json"
             ),
             "pass": True,
         }
@@ -93,14 +98,26 @@ def main() -> None:
         "classification": CLASSIFICATION,
         "classification_note": divergence_log,
         "divergence_log": divergence_log,
+        "claim_ceiling": CLAIM_CEILING,
+        "next_lego_target": "record_lifetime_reset_parameter_successor_fixture",
+        "promotion_condition": "not promotable alone; use only as bounded repair bookkeeping",
+        "blocked_until": "paired with consolidated repair-gap admission and open-row audit receipts",
+        "demotion_condition": "demote if used as QIT, GStack, Axis0, engine, or manifold evidence",
+        "out_of_scope": [
+            "no QIT admission",
+            "no GStack admission",
+            "no Axis0 admission",
+            "no engine admission",
+            "no manifold promotion",
+        ],
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "source_receipts": {
             "record_reset_repair_sweep": str(RESULT_DIR / "szilard_record_reset_repair_sweep_results.json"),
-            "reset_axis_widened_sweep": str(
-                RESULT_DIR / "szilard_record_ordering_refinement_reset_axis_widened_sweep_results.json"
+            "measurement_record_reset_parameter_sweep": str(
+                RESULT_DIR / "measurement_record_reset_parameter_sweep_results.json"
             ),
             "szilard_open_failure_graveyard": str(RESULT_DIR / "szilard_open_failure_graveyard_results.json"),
         },
@@ -115,7 +132,7 @@ def main() -> None:
             "best_measurement_mutual_information": summary["best_measurement_mutual_information"],
             "best_record_survival_fraction": summary["best_record_survival_fraction"],
             "source_open_reset_swing": summary["open_reset_swing"],
-            "reset_axis_successor_gap": reset_summary["best_reset_swing_gap"],
+            "reset_parameter_successor_gap": reset_summary["best_reset_swing_gap"],
             "qit_or_axis_promotion_allowed": False,
             "scope_note": divergence_log,
         },

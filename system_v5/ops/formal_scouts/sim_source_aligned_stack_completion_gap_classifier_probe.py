@@ -89,6 +89,7 @@ ACTIVE_RECEIPTS = {
     "xi_runtime_embed": "two_root_constraint_flux_recovery_coupled_runtime_embed_probe_results.json",
     "xi_process_signature": "two_root_constraint_process_signature_vector_phi0_candidate_probe_results.json",
     "xi_process_bundle": "two_root_constraint_process_signature_bundle_admission_rule_probe_results.json",
+    "xi_process_bundle_stress": "two_root_constraint_process_signature_bundle_runtime_stress_probe_results.json",
     "xi_l7_history": "two_root_constraint_l7_xi_history_phi0_bridge_probe_results.json",
     "xi_causal_irreversibility": "two_root_constraint_xi_causal_irreversibility_phi0_bridge_probe_results.json",
     "xi_mps_rescue": "two_root_constraint_mps_phi0_bridge_rescue_or_falsifier_probe_results.json",
@@ -181,6 +182,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_runtime_embed = receipts["xi_runtime_embed"]
     xi_process_signature = receipts["xi_process_signature"]
     xi_process_bundle = receipts["xi_process_bundle"]
+    xi_process_bundle_stress = receipts["xi_process_bundle_stress"]
     xi_l7_history = receipts["xi_l7_history"]
     xi_causal_irreversibility = receipts["xi_causal_irreversibility"]
     xi_mps_rescue = receipts["xi_mps_rescue"]
@@ -244,6 +246,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_process_bundle_keys = section_keys(xi_process_bundle, "positive")
     xi_process_bundle_graveyard = section_keys(xi_process_bundle, "graveyard_companions")
     xi_process_bundle_boundary = section_keys(xi_process_bundle, "boundary")
+    xi_process_bundle_stress_keys = section_keys(xi_process_bundle_stress, "positive")
+    xi_process_bundle_stress_graveyard = section_keys(xi_process_bundle_stress, "graveyard_companions")
+    xi_process_bundle_stress_boundary = section_keys(xi_process_bundle_stress, "boundary")
     xi_l7_keys = section_keys(xi_l7_history, "positive")
     xi_l7_graveyard = section_keys(xi_l7_history, "graveyard_companions")
     xi_l7_boundary = section_keys(xi_l7_history, "boundary")
@@ -369,7 +374,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
             "limit": "bounded L32/L64/MPS/PEPS/PEPS3D evidence is consolidated; full convergence, full environment contraction, robust Phi0, and scale-basin admission remain blocked",
         },
         "xi_phi0_bridge": {
-            "status": "vector_bundle_candidate_open",
+            "status": "local_runtime_projection_demoted_vector_bundle_open",
             "pass": bool(
                 xi_bridge.get("all_pass")
                 and xi_path_weighted.get("all_pass")
@@ -384,6 +389,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and xi_runtime_embed.get("all_pass")
                 and xi_process_signature.get("all_pass")
                 and xi_process_bundle.get("all_pass")
+                and xi_process_bundle_stress.get("all_pass")
                 and xi_l7_history.get("all_pass")
                 and xi_causal_irreversibility.get("all_pass")
                 and xi_mps_rescue.get("all_pass")
@@ -479,6 +485,20 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and "scalar_mutual_information_rejected" in xi_process_bundle_graveyard
                 and "final_phi0_not_admitted" in xi_process_bundle_graveyard
                 and "vector_bundle_candidate_only" in xi_process_bundle_boundary
+                and "full_bundle_replay_separates" in xi_process_bundle_stress_keys
+                and "tensor_carrier_stressor_margin_measured" in xi_process_bundle_stress_keys
+                and "runtime_projection_stress_measured" in xi_process_bundle_stress_keys
+                and "stress_status_classified" in xi_process_bundle_stress_keys
+                and "local_scenario_projection_demotes_bundle" in xi_process_bundle_stress_graveyard
+                and "theta_group_projection_demotes_bundle" in xi_process_bundle_stress_graveyard
+                and "seed_group_projection_demotes_bundle" in xi_process_bundle_stress_graveyard
+                and "final_tensor_scaling_still_blocks" in xi_process_bundle_stress_graveyard
+                and "final_phi0_not_admitted" in xi_process_bundle_stress_graveyard
+                and "global_bundle_not_local_runtime_law" in xi_process_bundle_stress_boundary
+                and "heuristic_thresholds_not_calibrated_physics" in xi_process_bundle_stress_boundary
+                and "full_distance_not_dimensionally_comparable_to_local_projection_distance"
+                in xi_process_bundle_stress_boundary
+                and "runtime_tensor_and_manifold_not_closed" in xi_process_bundle_stress_boundary
                 and "bridge_status_classified" in xi_l7_keys
                 and "not_final_axis0_closure" in xi_l7_graveyard
                 and "final_manifold_admission_allowed" in xi_l7_boundary
@@ -520,6 +540,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                     | xi_runtime_embed_keys
                     | xi_process_signature_keys
                     | xi_process_bundle_keys
+                    | xi_process_bundle_stress_keys
                     | xi_l7_keys
                     | xi_causal_keys
                     | xi_mps_keys
@@ -545,6 +566,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                     | xi_runtime_embed_graveyard
                     | xi_process_signature_graveyard
                     | xi_process_bundle_graveyard
+                    | xi_process_bundle_stress_graveyard
                     | xi_l7_graveyard
                     | xi_causal_graveyard
                     | xi_mps_graveyard
@@ -569,6 +591,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                     | xi_runtime_embed_boundary
                     | xi_process_signature_boundary
                     | xi_process_bundle_boundary
+                    | xi_process_bundle_stress_boundary
                     | xi_l7_boundary
                     | xi_causal_boundary
                     | xi_mps_boundary
@@ -581,7 +604,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                     | full_trace_after_stress_boundary
                 ),
             ),
-            "limit": "raw/path/capacity/free-energy/QCI/Petz/oriented-recovery candidates are killed or nonseparating; flux-coherent recovery survives standalone bounded deterministic stress but direct coupled-runtime embedding demotes it; a base-resolved vector-bundle process signature is admitted for further stress while scalar, single-feature, and base-collapsed reductions are rejected; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
+            "limit": "raw/path/capacity/free-energy/QCI/Petz/oriented-recovery candidates are killed or nonseparating; flux-coherent recovery survives standalone bounded deterministic stress but direct coupled-runtime embedding demotes it; the full stress-base vector bundle separates under the current z-scored finite feature metric and clears a bounded tensor-carrier stressor margin, but local runtime projections demote robustness and the thresholds are heuristic; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
         },
         "formal_scout_boundaries": {
             "status": "preserved",
@@ -632,6 +655,8 @@ def requirement_scores(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
             values.append(0.72)
         elif status == "vector_bundle_candidate_open":
             values.append(0.76)
+        elif status == "local_runtime_projection_demoted_vector_bundle_open":
+            values.append(0.73)
         elif status == "bounded_flux_coherent_first_rung_open_blocker":
             values.append(0.62)
         elif status == "weak_first_rung_open_blocker":
@@ -788,8 +813,8 @@ def main() -> int:
         "next_work_routing": {
             "pass": True,
             "ordered_next_gaps": [
-                "stress the admitted base-resolved vector-bundle process signature across broader coupled-runtime and tensor-scaling surfaces before any Xi/Phi0 promotion",
-                "derive a scalar kernel only if it beats the embedded-runtime demotion baseline and avoids beta-zero/free-energy, collapsed-register/QCI, near-reversed-order/Petz, dephased-history/oriented-recovery, coupled-runtime-embed, single-feature process-signature, and base-collapsed bundle failures",
+                "repair or replace the vector-bundle process signature because local coupled-runtime projections demote the global bundle",
+                "derive a scalar or local-section kernel only if it beats the embedded-runtime demotion baseline and avoids beta-zero/free-energy, collapsed-register/QCI, near-reversed-order/Petz, dephased-history/oriented-recovery, coupled-runtime-embed, single-feature process-signature, base-collapsed bundle, and local-runtime projection failures",
                 "convert bounded tensor-scaling status into a stronger convergence or environment-contraction falsifier",
                 "extend source-aligned runtime toward full coupled terrain/operator/axis dynamics under the audit freeze",
                 "only then revisit final manifold/basin admission boundaries",
@@ -813,8 +838,9 @@ def main() -> int:
                 "coupled_runtime_embed_demoted_open_blocker",
                 "process_signature_vector_candidate_open",
                 "vector_bundle_candidate_open",
+                "local_runtime_projection_demoted_vector_bundle_open",
             },
-            "summary": "current Xi bridge evidence includes a base-resolved vector-bundle process signature admitted for further stress, but scalar/base-collapsed reductions fail and no final Xi/Phi0 is admitted",
+            "summary": "current Xi bridge evidence includes a full stress-base vector-bundle process signature that separates under the current z-scored finite feature metric, but local coupled-runtime projections demote robustness and no final Xi/Phi0 is admitted",
         },
         "full_runtime_and_final_manifold_open": {
             "pass": True,
@@ -831,13 +857,13 @@ def main() -> int:
         "pass": True,
     }
     open_gaps = [
-        "final Xi/Phi0 remains open; current strongest replacement is a base-resolved vector-bundle process signature admitted only for further stress",
+        "final Xi/Phi0 remains open; current strongest replacement is a full stress-base vector bundle that separates under the current z-scored finite feature metric but fails local runtime projection stress",
         "energy-corrected QIT-FEP Phi0 candidate is load-bearing but nonseparating against beta-zero/control rows",
         "tripartite quantum conditional-information Phi0 candidate is load-bearing but nonseparating against collapsed-register/control rows",
         "Petz-recovery Phi0 candidate is load-bearing but nonseparating against near reversed-order/control rows",
         "oriented recovery-asymmetry Phi0 candidate is load-bearing but nonseparating against dephased-history/control rows",
         "flux-coherent recovery Phi0 candidate survived standalone bounded deterministic stress but failed direct coupled-runtime embedding",
-        "base-resolved process-signature vector bundle separates coupled-runtime controls, but scalar, single-feature, and base-collapsed reductions fail",
+        "base-resolved process-signature vector bundle separates globally and clears a bounded tensor-carrier stressor margin, but scalar, single-feature, base-collapsed, and local-runtime projections fail",
         "tensor scaling is consolidated as bounded L32/L64/MPS/PEPS/PEPS3D evidence but final convergence and full environment contraction remain open",
         "full coupled source-aligned runtime remains open beyond bounded E16 first-rung evidence",
         "final manifold/basin admission remains blocked",

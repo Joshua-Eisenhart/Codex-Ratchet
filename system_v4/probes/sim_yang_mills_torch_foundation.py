@@ -25,6 +25,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Connection form A_μ as torch float64 matrices, curvature F_μν via Lie bracket [A_μ,A_ν], Yang-Mills energy ||F||^2 via autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed for gauge theory foundation"},

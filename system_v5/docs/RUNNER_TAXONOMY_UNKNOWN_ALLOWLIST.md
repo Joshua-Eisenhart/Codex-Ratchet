@@ -24,6 +24,7 @@ Allowed current unknowns:
 - `system_v4/probes/sim_hopf_projection_phase_quotient_base_angle_survivor_classes.py`
 - `system_v4/probes/sim_hopf_spinor_density_terrain_loop_dependent_generator_variant_graveyard.py`
 - `system_v4/probes/sim_inventory_unlinked_result_audit.py`
+- `system_v4/probes/sim_measurement_record_reset_parameter_sweep.py` - owner reason: audit-classified Szilard reset-parameter successor remains runner-taxonomy unknown until taxonomy rules learn this audit/successor pattern.
 - `system_v4/probes/sim_nested_torus_phase_offset_distance_collision_survivor_classes.py`
 - `system_v4/probes/sim_prime_qit_sidecar_probe.py`
 - `system_v4/probes/sim_qiskit_hopf_fiber_base_density_readout.py`

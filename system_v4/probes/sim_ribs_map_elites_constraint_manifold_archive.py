@@ -15,6 +15,8 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":  {"tried": False, "used": False, "reason": "not invoked; archive is behavior-indexed, not gradient-indexed"},
     "pyg":      {"tried": False, "used": False, "reason": "no graph structure in this sim"},

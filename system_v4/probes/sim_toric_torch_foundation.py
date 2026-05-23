@@ -27,6 +27,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "T² action on ℂ² as torch float64 reals; moment map μ(z₁,z₂)=(|z₁|²,|z₂|²); norm constraints; autograd through moment map"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed"},

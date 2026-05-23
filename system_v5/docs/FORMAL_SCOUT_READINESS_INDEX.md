@@ -1,20 +1,20 @@
 # Formal Scout Readiness Index
 
-Generated: `2026-05-23T10:08:36.685851+00:00`
+Generated: `2026-05-23T10:26:09.127091+00:00`
 
 Boundary: readiness index only. This does not rerun, admit, promote, or canonicalize formal scouts.
 
 ## Summary
 
-- Result receipts indexed: `398`
-- Source harnesses indexed: `398`
+- Result receipts indexed: `399`
+- Source harnesses indexed: `399`
 - Source harnesses without result receipt: `0`
-- Validator pass: `383`
+- Validator pass: `384`
 - Formal-scout validator fail: `14`
 - Preserved validator-red rows: `14`
 - Actionable validator-red rows: `0`
 - Non-formal boundary rows: `1`
-- README indexed receipts: `398`
+- README indexed receipts: `399`
 - README missing receipts: `0`
 - README explicit-status mismatches: `0`
 - Fresh-rerun mapping defects: `0`
@@ -29,7 +29,7 @@ Boundary: readiness index only. This does not rerun, admit, promote, or canonica
 
 ## Readiness Status Counts
 
-- `schema_ready`: 383
+- `schema_ready`: 384
 - `validator_failed`: 14
 - `non_formal_boundary`: 1
 
@@ -65,15 +65,15 @@ Preserved red rows are intentionally retained as negative, nonclearance, or over
 
 ## Promotion Blocker Counts
 
-- `formal_scout_noncanonical`: 398
-- `fresh_rerun_not_performed`: 398
+- `formal_scout_noncanonical`: 399
+- `fresh_rerun_not_performed`: 399
 - `validator_failed`: 14
 - `classification_not_formal_scout`: 1
 - `non_formal_boundary`: 1
 
 ## Pass Source Counts
 
-- `all_pass`: 285
+- `all_pass`: 286
 - `summary.all_pass`: 78
 - `derived_formal_scout_sections`: 35
 
@@ -82,13 +82,13 @@ Preserved red rows are intentionally retained as negative, nonclearance, or over
 ### TOOL_MANIFEST
 
 - `upper`: 224
-- `both`: 111
+- `both`: 112
 - `lower`: 63
 
 ### TOOL_INTEGRATION_DEPTH
 
 - `upper`: 225
-- `both`: 110
+- `both`: 111
 - `lower`: 63
 
 ## Provider Receipt Validation

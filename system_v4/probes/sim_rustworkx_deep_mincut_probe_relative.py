@@ -5,6 +5,13 @@ Uses rustworkx.stoer_wagner_min_cut to decide the minimum probe-edge cost
 that severs a graph's connectivity. Configurations whose cut exceeds a
 capacity bound are EXCLUDED from the admissible-coupling set.
 """
+import json
+import os
+
+import rustworkx as rx
+
+classification = "canonical"
+
 SCOPE_NOTE = (
     "Probe-relative capacity: rustworkx stoer_wagner_min_cut is "
     "load-bearing for deciding coupling admissibility under a capacity "

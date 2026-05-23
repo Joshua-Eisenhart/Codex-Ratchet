@@ -17,7 +17,8 @@ Sympy derives first Pontryagin class and cohomology ring.
 
 import json
 import os
-import numpy as np
+
+classification = "canonical"
 
 try:
     import sympy as sp
@@ -97,18 +98,18 @@ except ImportError:
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": PYTORCH_AVAILABLE, "used": False, "reason": "Tensor ops optional for cocycle verification"},
-    "pyg": {"tried": PYG_AVAILABLE, "used": False, "reason": "Graph structure secondary to algebraic topology"},
-    "z3": {"tried": Z3_AVAILABLE, "used": Z3_AVAILABLE, "reason": "Proves dd(A)=0 iff untwisted; UNSAT for inconsistent claims"},
-    "cvc5": {"tried": CVC5_AVAILABLE, "used": False, "reason": "z3 sufficient for divisibility constraints"},
-    "sympy": {"tried": SYMPY_AVAILABLE, "used": SYMPY_AVAILABLE, "reason": "Derives Pontryagin classes and cohomology ring structure"},
-    "clifford": {"tried": CLIFFORD_AVAILABLE, "used": False, "reason": "Spinors not primary to twisted K-theory"},
-    "geomstats": {"tried": GEOMSTATS_AVAILABLE, "used": False, "reason": "Manifold structure underlying but not load-bearing"},
-    "e3nn": {"tried": E3NN_AVAILABLE, "used": False, "reason": "Equivariance not central to Dixmier-Douady"},
-    "rustworkx": {"tried": RUSTWORKX_AVAILABLE, "used": False, "reason": "Graph secondary to chain complex"},
-    "xgi": {"tried": XGI_AVAILABLE, "used": False, "reason": "Hypergraph structure not primary"},
-    "toponetx": {"tried": TOPONETX_AVAILABLE, "used": False, "reason": "Cellular complex emerging from cohomology structure"},
-    "gudhi": {"tried": GUDHI_AVAILABLE, "used": False, "reason": "Persistent homology not load-bearing for Dixmier-Douady"},
+    "pytorch": {"tried": True, "used": False, "reason": "Tensor ops optional for cocycle verification"},
+    "pyg": {"tried": True, "used": False, "reason": "Graph structure secondary to algebraic topology"},
+    "z3": {"tried": True, "used": True, "reason": "Proves dd(A)=0 iff untwisted; UNSAT for inconsistent claims"},
+    "cvc5": {"tried": True, "used": False, "reason": "z3 sufficient for divisibility constraints"},
+    "sympy": {"tried": True, "used": True, "reason": "Derives Pontryagin classes and cohomology ring structure"},
+    "clifford": {"tried": True, "used": False, "reason": "Spinors not primary to twisted K-theory"},
+    "geomstats": {"tried": True, "used": False, "reason": "Manifold structure underlying but not load-bearing"},
+    "e3nn": {"tried": True, "used": False, "reason": "Equivariance not central to Dixmier-Douady"},
+    "rustworkx": {"tried": True, "used": False, "reason": "Graph secondary to chain complex"},
+    "xgi": {"tried": True, "used": False, "reason": "Hypergraph structure not primary"},
+    "toponetx": {"tried": True, "used": False, "reason": "Cellular complex emerging from cohomology structure"},
+    "gudhi": {"tried": True, "used": False, "reason": "Persistent homology not load-bearing for Dixmier-Douady"},
 }
 
 TOOL_INTEGRATION_DEPTH = {

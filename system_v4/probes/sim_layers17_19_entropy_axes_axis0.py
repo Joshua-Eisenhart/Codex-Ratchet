@@ -30,7 +30,7 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "numeric entropy and axis calculations for the classical ladder layer",
     },
-    "sim_3qubit_bridge_prototype": {
+    "sim_three_qubit_coherent_information_register": {
         "tried": True,
         "used": True,
         "reason": "bridge operator and entropy helpers used by the classical layer",
@@ -48,14 +48,14 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {
     "numpy": "supportive",
-    "sim_3qubit_bridge_prototype": "supportive",
+    "sim_three_qubit_coherent_information_register": "supportive",
     "engine_3qubit": "supportive",
     "hopf_manifold": "supportive",
 }
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from sim_3qubit_bridge_prototype import (
+from sim_three_qubit_coherent_information_register import (
     I2, SIGMA_X, SIGMA_Y, SIGMA_Z,
     von_neumann_entropy, partial_trace_keep, ensure_valid_density,
     build_3q_Ti, build_3q_Fe, build_3q_Te, build_3q_Fi,

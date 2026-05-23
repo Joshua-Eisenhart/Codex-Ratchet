@@ -45,7 +45,7 @@ from hopf_manifold import (
     TORUS_CLIFFORD, density_to_bloch, left_weyl_spinor, right_weyl_spinor,
     lifted_base_loop,
 )
-from sim_3qubit_bridge_prototype import (
+from sim_three_qubit_coherent_information_register import (
     partial_trace_keep, von_neumann_entropy, ensure_valid_density,
     build_3q_Ti, build_3q_Fe, build_3q_Te, build_3q_Fi,
     compute_info_measures,

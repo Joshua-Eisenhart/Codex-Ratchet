@@ -52,7 +52,7 @@ from hopf_manifold import (
     left_density, right_density, hopf_map, berry_phase,
     lifted_base_loop, density_to_bloch,
 )
-from sim_3qubit_bridge_prototype import (
+from sim_three_qubit_coherent_information_register import (
     partial_trace_keep, von_neumann_entropy, ensure_valid_density,
     build_3q_Ti, build_3q_Fe, build_3q_Te, build_3q_Fi,
     compute_info_measures, I2 as I2_3q, SIGMA_X as SX3,

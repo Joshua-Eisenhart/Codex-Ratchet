@@ -36,7 +36,7 @@ Git was **NOT committed** at handoff time. The handoff snapshot recorded `390` c
 
 ### Witness-replay infrastructure
 - New auditor: `scripts/check_witnesses.py` (untracked).
-- Current state: **violation_count = 12**, all status `no_witness_declared` (capability probes that have not yet declared a witness sim). These are *declaration gaps*, not replay-mismatch violations. The 10 modified `sim_z3_*.py` + `sim_weyl_*.py` + `sim_3qubit_bridge_prototype.py` files are witness-replay fixes that flipped replay mismatches to clean (see the `M` entries in `git status`).
+- Current state: **violation_count = 12**, all status `no_witness_declared` (capability probes that have not yet declared a witness sim). These are *declaration gaps*, not replay-mismatch violations. The 10 modified `sim_z3_*.py` + `sim_weyl_*.py` + `sim_three_qubit_coherent_information_register.py` files are witness-replay fixes that flipped replay mismatches to clean (see the `M` entries in `git status`).
 
 ### Queue runner bug fix
 - `scripts/queue_claim.py counts` returns clean JSON:
@@ -65,7 +65,7 @@ Queue `done` counter advanced to **224** over these runs.
 
 1. **Queue runner claim bug** — `queue_claim.py counts` now returns valid JSON and the `done` counter advances monotonically (observed 224 across the three event logs).
 2. **Witness-replay mismatches** — 10 sims modified in place (see `M` entries):
-   `sim_3qubit_bridge_prototype.py`, `sim_weyl_geometry_ladder_audit.py`, `sim_weyl_hopf_tori.py`, `sim_z3_channel_boundary_theorem.py`, `sim_z3_channel_composition_boundary.py`, `sim_z3_dephasing_symmetry_guard.py`, `sim_z3_dpi_proof.py`, `sim_z3_fence_exhaustive_negatives.py`, `sim_z3_quantum_capacity_bound.py`, `sim_z3_s6_unitary_impossibility.py`.
+   `sim_three_qubit_coherent_information_register.py`, `sim_weyl_geometry_ladder_audit.py`, `sim_weyl_hopf_tori.py`, `sim_z3_channel_boundary_theorem.py`, `sim_z3_channel_composition_boundary.py`, `sim_z3_dephasing_symmetry_guard.py`, `sim_z3_dpi_proof.py`, `sim_z3_fence_exhaustive_negatives.py`, `sim_z3_quantum_capacity_bound.py`, `sim_z3_s6_unitary_impossibility.py`.
    Their paired `*_results.json` under `system_v4/probes/a2_state/sim_results/` were regenerated.
 3. **Lint noise** — `scripts/lint_sim_contract.py` added so SIM_TEMPLATE conformance does not trip generic python lint.
 

@@ -563,7 +563,7 @@ def run_layer_16():
         max_ic_3q = max(max_ic_3q, ic)
 
     # Run 2q comparison
-    from sim_3qubit_bridge_prototype import run_2qubit_comparison
+    from sim_three_qubit_coherent_information_register import run_2qubit_comparison
     twoq_results = run_2qubit_comparison(n_cycles=30)
     max_ic_2q = max(v["max_I_c"] for v in twoq_results.values())
     # Avoid division by zero

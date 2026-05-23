@@ -35,7 +35,7 @@ TOOL_INTEGRATION_DEPTH = {
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from sim_3qubit_bridge_prototype import (
+from sim_three_qubit_coherent_information_register import (
     partial_trace_keep,
     von_neumann_entropy,
     ensure_valid_density,

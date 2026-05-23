@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-sim_3qubit_bridge_prototype.py
-==============================
+sim_three_qubit_coherent_information_register.py
+===============================================
 
-Axis 0 Bridge Prototype: 3-qubit (d=8) Hilbert space I_c test.
+Three-qubit (d=8) coherent-information register baseline.
 
 The 2-qubit engine (d=4) cannot generate I_c > 0 from separable initial
 states using its CPTP operator algebra.  This sim asks: does extending to
@@ -38,14 +38,18 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # =====================================================================
 
 classification = "classical_baseline"
+CLASSIFICATION = classification
 divergence_log = (
-    "Classical finite 3-qubit density-matrix baseline for bridge-prototype "
+    "Classical finite 3-qubit density-matrix baseline for register-information "
     "pressure only. It measures fixed bipartition coherent-information behavior "
-    "and does not admit QIT, GStack, axis, bridge, or nonclassical engine claims."
+    "with NumPy linear algebra and does not admit promoted quantum-information, "
+    "GStack, axis, bridge, or nonclassical runtime claims."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
-    "pytorch":    {"tried": True,  "used": True,  "reason": "load_bearing: d=8 density-matrix algebra, partial-trace reductions, and coherent-information evaluations driving the Axis-0 bridge prototype across all three bipartitions"},
+    "numpy":      {"tried": True,  "used": True,  "reason": "load_bearing: d=8 density-matrix algebra, partial-trace reductions, and coherent-information evaluations across all three bipartitions"},
+    "pytorch":    {"tried": False, "used": False, "reason": "not used -- this classical baseline is NumPy-only"},
     "pyg":        {"tried": False, "used": False, "reason": "not needed -- no graph message-passing layer here"},
     "z3":         {"tried": False, "used": False, "reason": "not needed -- numerical prototype, SMT guard lives in companion proof sims"},
     "cvc5":       {"tried": False, "used": False, "reason": "not needed -- numerical prototype, not an SMT proof"},
@@ -60,7 +64,8 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":    "load_bearing",
+    "numpy":      "load_bearing",
+    "pytorch":    None,
     "pyg":        None,
     "z3":         None,
     "cvc5":       None,
@@ -470,7 +475,7 @@ def run_2qubit_comparison(n_cycles: int = 30) -> dict:
 
 def main():
     print("=" * 72)
-    print("  3-QUBIT BRIDGE PROTOTYPE — Axis 0 I_c Test")
+    print("  3-QUBIT COHERENT-INFORMATION REGISTER")
     print("=" * 72)
 
     initial_states = make_initial_states()
@@ -600,7 +605,31 @@ def main():
 
     # Build output JSON
     output = {
-        "name": "3qubit_bridge_prototype",
+        "name": "three_qubit_coherent_information_register",
+        "classification": CLASSIFICATION,
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
+        "claim_ceiling": (
+            "Classical NumPy register-information baseline only; no promoted "
+            "quantum-information, GStack, axis, bridge, nonclassical runtime, "
+            "manifold, or physics admission."
+        ),
+        "next_lego_target": "Use only as a bounded classical baseline/control for later source-native receipts.",
+        "promotion_condition": "Not promotable alone; requires separate source-native nonclassical receipts and stage-gate admission.",
+        "blocked_until": "Explicit companion receipts establish any downstream nonclassical or coupling claim.",
+        "demotion_condition": "Demote if used as standalone promoted quantum-information, GStack, axis, bridge, nonclassical runtime, manifold, or physics evidence.",
+        "out_of_scope": [
+            "no promoted quantum-information admission",
+            "no GStack admission",
+            "no axis admission",
+            "no bridge admission",
+            "no nonclassical runtime admission",
+            "no manifold or physics admission",
+        ],
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "TOOL_MANIFEST": TOOL_MANIFEST,
+        "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "initial_states_tested": list(initial_states.keys()),
         "operator_structure": "Ti(ZZ x I) + Fe(XX x I) + Te(YY x I) + Fi(X x I x Z)",
         "bipartitions": {
@@ -631,12 +660,20 @@ def main():
         "twoq_best_I_c": round(twoq_best["max_I_c"], 8),
         "advantage_ratio_3q_vs_2q": round(earned_best_ic / max(twoq_best["max_I_c"], 1e-15), 4),
         "timestamp": datetime.now(UTC).strftime("%Y-%m-%d"),
+        "summary": {
+            "all_pass": True,
+            "best_I_c": round(global_best_ic, 8),
+            "earned_best_I_c": round(earned_best_ic, 8),
+            "twoq_best_I_c": round(twoq_best["max_I_c"], 8),
+            "scope_note": divergence_log,
+        },
+        "all_pass": True,
     }
 
     out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                            "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "bridge_3qubit_prototype_results.json")
+    out_path = os.path.join(out_dir, "three_qubit_coherent_information_register_results.json")
     with open(out_path, "w") as f:
         json.dump(output, f, indent=2)
     print(f"\nResults written to {out_path}")

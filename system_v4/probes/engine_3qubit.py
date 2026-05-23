@@ -38,7 +38,7 @@ from hopf_manifold import TORUS_CLIFFORD, TORUS_INNER, TORUS_OUTER, torus_radii
 
 
 # =====================================================================
-# PARTIAL TRACE (proven implementation from sim_3qubit_bridge_prototype)
+# PARTIAL TRACE (proven implementation from sim_three_qubit_coherent_information_register)
 # =====================================================================
 
 def partial_trace_keep(rho: np.ndarray, keep: list, dims: list) -> np.ndarray:

@@ -32,7 +32,7 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "numeric state evolution and entropy calculations for the bridge layer",
     },
-    "sim_3qubit_bridge_prototype": {
+    "sim_three_qubit_coherent_information_register": {
         "tried": True,
         "used": True,
         "reason": "bridge operator and entropy helpers reused by the classical layer",
@@ -45,7 +45,7 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {
     "numpy": "supportive",
-    "sim_3qubit_bridge_prototype": "supportive",
+    "sim_three_qubit_coherent_information_register": "supportive",
     "hopf_manifold": "supportive",
 }
 
@@ -62,7 +62,7 @@ SIGMA_Z = np.array([[1, 0], [0, -1]], dtype=complex)
 
 
 # ═══════════════════════════════════════════════════════════════════
-# HELPER FUNCTIONS (from sim_3qubit_bridge_prototype.py)
+# HELPER FUNCTIONS (from sim_three_qubit_coherent_information_register.py)
 # ═══════════════════════════════════════════════════════════════════
 
 def von_neumann_entropy(rho: np.ndarray) -> float:

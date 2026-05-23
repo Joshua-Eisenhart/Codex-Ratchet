@@ -10,6 +10,13 @@ Reason: current runtime/evidence paths allowed operator-axis mapping drift. Rece
 
 New PEPS/PEPS3D MPDO, Phi0 promotion, basin admission, and final manifold admission work is blocked. Allowed work is limited to source audit, runtime conformance audit, result quarantine classification, and a repaired runtime plan.
 
+Active replacement audit package:
+
+- `system_v5/ops/QIT_ENGINE_SOURCE_AUTHORITY_AUDIT_20260522.md`
+- `system_v5/ops/NEXT_GOAL_QIT_ENGINE_SOURCE_AUTHORITY_AUDIT_PROMPT_20260522.md`
+
+The old formalized-math docs already define the operator/axis stack. Runtime work must now prove conformance to those tables before any new engine or basin work resumes.
+
 This directory is the clean middle layer between informal provider proposals and
 canonical `system_v4/probes` sims.
 

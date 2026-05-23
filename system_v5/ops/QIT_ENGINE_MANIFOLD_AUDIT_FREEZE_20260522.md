@@ -35,6 +35,11 @@ The source math lives in the axes/operator/terrain tables:
   - `system_v5/READ ONLY Reference Docs/Screenshots/Common Operators.png`
   - `system_v5/READ ONLY Reference Docs/Screenshots/Terrain.png`
   - `system_v5/READ ONLY Reference Docs/Screenshots/The actuel candidene math we've been ceeling la lunt thit, once, in one table.png`
+- `system_v5/READ ONLY Reference Docs/operator math explicit.md`
+  - four base operators only; `UP / DOWN` is not extra operator math by itself: lines 1-6
+  - exact operator packet: `Ti`, `Te`, `Fi`, `Fe`
+- `system_v5/READ ONLY Reference Docs/outdated system math and geometry.md`
+  - old formalized stack: constraints, geometry/carrier, axes 0-6, exact operators, engine types, and next move to extend terrain generators / 16 placements / graph-topology objects / engine loop ownership
 
 Any runtime that uses `Se/Ne/Ni/Si` terrain labels without the chart-locked operator token, Axis 5 family, Axis 6 sign, loop placement, sheet/type, and exact class-correct observable/readout is insufficient for this project.
 
@@ -67,15 +72,15 @@ But later scouts used `qit_engine_runtime.py` as the shared runtime anchor, whic
 
 Therefore D130 is useful only as a tiny terrain-only tensor substrate inventory. It must not be cited as evidence that the 16 operator-axis placements ran correctly.
 
-### F4. The Te/Ni/Si issue exposes a source-surface conflict that needs explicit resolution.
+### F4. The Te/Ni/Si issue exposes a layer-separation rule that was not enforced.
 
-The reference docs contain both:
+The reference docs keep separate:
 
-- exact table language where `Te` is `x`-basis dephasing/projection (`JUNGIAN...` lines 208-211; Atlas lines 429-464);
-- Rosetta/operator-side language where `Te` is named as gradient / Hamiltonian drive (`apple axes terrain operator math.md` lines 323-341);
+- exact table language where `Te` is `x`-basis dephasing/projection (`JUNGIAN...` lines 208-211; Atlas lines 429-464; `operator math explicit.md` line 279 onward);
+- semantic/Rosetta language where `Te` can carry gradient / Hamiltonian-drive meaning (`apple axes terrain operator math.md` lines 323-341);
 - chart tables where `NiTe` and `SiTe` are terrain-first `Te-down` tokens on the conjugated `Ni/Si` side (`JUNGIAN...` line 276; Atlas line 593; screenshot `Terrain.png`).
 
-The audit must resolve which surface is canonical for runtime dynamics versus semantic/Rosetta role. A sim may not silently choose one interpretation and then claim axis fidelity.
+These are not interchangeable columns. The exact operator map, semantic role, ordered token, terrain/topology, and loop/sheet placement must all survive into the runtime event row. A sim may not silently collapse them and then claim axis fidelity.
 
 ### F5. At least 26 recent formal scouts import or depend on `qit_engine_runtime.py`.
 
@@ -134,6 +139,15 @@ Still usable with caveat:
 
 5. Only then restart MPDO/PEPS/PEPS3D work.
    - No PEPS/PEPS3D MPDO scout should run until the operator-axis runtime rows are source-conformant.
+
+## Replacement Source Audit
+
+The active replacement audit package is:
+
+- `system_v5/ops/QIT_ENGINE_SOURCE_AUTHORITY_AUDIT_20260522.md`
+- `system_v5/ops/NEXT_GOAL_QIT_ENGINE_SOURCE_AUTHORITY_AUDIT_PROMPT_20260522.md`
+
+The old full-build prompt remains retired. The next admissible move is source-authority and runtime-conformance work, not another engine run.
 
 ## Current Admission Status
 

@@ -21,15 +21,27 @@ Key question answered:
 Also: fidelity vs N pulses -- does it saturate?  At what N?
 
 Mark pytorch=used. Classification: canonical.
-Output: sim_results/lego_dynamical_decoupling_results.json
+Output: a2_state/sim_results/lego_dynamical_decoupling_results.json
 """
 import json
 import os
 import traceback
 import time
 import math
-import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
+CLAIM_CEILING = "canonical_single_qubit_dynamical_decoupling_lego_only"
+PROMOTION_ALLOWED = False
+PROMOTION_CONDITION = (
+    "requires separate receipts before bridge, temporal-cascade, scientific "
+    "coupling, nonclassical engine, or final manifold use"
+)
+OUT_OF_SCOPE = [
+    "temporal cascade proof",
+    "CNOT sandwich promotion",
+    "scientific coupling closure",
+    "nonclassical engine admission",
+    "final manifold admission",
+]
 
 # =====================================================================
 # TOOL MANIFEST
@@ -329,15 +341,18 @@ def cnot_sandwich_as_dd(total_p):
         "sandwich_preservation_ratio": float(sandwich_preservation),
         "unprotected_preservation_ratio": float(unprotected_preservation),
         "single_qubit_dd_improvement": float(dd_improvement),
+        "claim_boundary": (
+            "local dynamical-decoupling fixture only; not temporal-cascade proof "
+            "or CNOT promotion"
+        ),
         "interpretation": (
-            "The CNOT sandwich (CNOT-noise-CNOT) protects entanglement by "
-            "conjugating the noise channel: CNOT transforms independent Z_A,Z_B "
-            "dephasing into correlated noise, then the second CNOT undoes the "
-            "correlation. This is structurally equivalent to a 2-qubit dynamical "
-            "decoupling sequence -- the CNOT plays the role of the refocusing pulse. "
-            "Just as a spin echo refocuses single-qubit phase, the CNOT sandwich "
-            "refocuses 2-qubit entanglement phase. This explains the 29x I_c "
-            "sustaining from temporal_cascade_flipped."
+            "In this finite fixture, the CNOT-noise-CNOT sandwich preserves "
+            "entanglement better than the unprotected comparison by conjugating "
+            "the tested dephasing channel into a correlated frame and then undoing "
+            "that frame. The analogy to two-qubit dynamical decoupling is local "
+            "to this fixture: CNOT plays a refocusing-pulse role here, but this "
+            "does not prove or promote the temporal_cascade_flipped result. It is "
+            "only consistent with that bounded sustaining observation."
         ),
     }
 
@@ -929,7 +944,12 @@ if __name__ == "__main__":
     results = {
         "name": "dynamical_decoupling -- pulse sequences protecting quantum states from decoherence",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "classification": "canonical",
+        "claim_ceiling": CLAIM_CEILING,
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "promotion_condition": PROMOTION_CONDITION,
+        "out_of_scope": OUT_OF_SCOPE,
         "summary": {
             "tests_passed": n_pass,
             "tests_total": n_total,
@@ -951,7 +971,7 @@ if __name__ == "__main__":
         "analysis": analysis,
     }
 
-    out_dir = os.path.join(os.path.dirname(__file__), "sim_results")
+    out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "lego_dynamical_decoupling_results.json")
     with open(out_path, "w") as f:

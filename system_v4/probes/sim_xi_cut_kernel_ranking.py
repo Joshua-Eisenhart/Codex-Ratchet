@@ -25,10 +25,31 @@ from dataclasses import dataclass, replace
 from typing import Dict, List
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "supporting"
+CLAIM_CEILING = "supporting_numpy_cut_kernel_ranking_only"
+PROMOTION_ALLOWED = False
+PROMOTION_CONDITION = (
+    "requires non-NumPy source-native replacement plus separate receipts before "
+    "Xi, Phi0, bridge, nonclassical, or final manifold use"
+)
+OUT_OF_SCOPE = [
+    "final Xi winner",
+    "Phi0 kernel admission",
+    "nonclassical source-native evidence",
+    "bridge promotion",
+    "final manifold admission",
+]
 
 
 TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": (
+            "supporting baseline array/eigensolver implementation for this "
+            "ranking only; not source-native nonclassical evidence"
+        ),
+    },
     "pytorch": {"tried": False, "used": False, "reason": "pure-math numpy baseline"},
     "pyg": {"tried": False, "used": False, "reason": "no graph-learning layer needed"},
     "z3": {"tried": False, "used": False, "reason": "no satisfiability claim in this bounded ranking"},
@@ -49,6 +70,7 @@ TOOL_INTEGRATION_DEPTH = {
     "e3nn": None,
     "geomstats": None,
     "gudhi": None,
+    "numpy": "supportive",
     "pyg": None,
     "pytorch": None,
     "rustworkx": None,
@@ -524,8 +546,13 @@ def main() -> Dict[str, object]:
             "by the cut kernels induced after bipartite state construction."
         ),
         "classification": "supporting",
+        "claim_ceiling": CLAIM_CEILING,
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "promotion_condition": PROMOTION_CONDITION,
+        "out_of_scope": OUT_OF_SCOPE,
         "tools_used": ["numpy"],
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

@@ -26,8 +26,22 @@ import math
 import traceback
 from datetime import datetime, timezone
 
-import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
+CLAIM_CEILING = "canonical_local_layer_coupling_matrix_lego_only"
+PROMOTION_ALLOWED = False
+PROMOTION_CONDITION = (
+    "requires separate reconciled queue row before bridge, axis, engine, "
+    "GStack, QIT, nonclassical, or final manifold use"
+)
+OUT_OF_SCOPE = [
+    "QIT engine admission",
+    "GStack admission",
+    "axis promotion",
+    "engine promotion",
+    "nonclassical proof",
+    "scientific coupling closure",
+    "final manifold admission",
+]
 
 # =====================================================================
 # TOOL MANIFEST
@@ -49,18 +63,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "clifford": "load_bearing",
+    "clifford": None,
     "cvc5": None,
     "e3nn": None,
     "geomstats": None,
     "gudhi": None,
     "pyg": None,
-    "pytorch": "load_bearing",
-    "rustworkx": "load_bearing",
-    "sympy": "load_bearing",
+    "pytorch": None,
+    "rustworkx": None,
+    "sympy": None,
     "toponetx": None,
     "xgi": None,
-    "z3": "load_bearing",
+    "z3": None,
 }
 
 # ── Imports ─────────────────────────────────────────────────────────
@@ -1254,6 +1268,10 @@ if __name__ == "__main__":
         "name": "layer_coupling_matrix_v2",
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "classification": "canonical",
+        "claim_ceiling": CLAIM_CEILING,
+        "promotion_allowed": PROMOTION_ALLOWED,
+        "promotion_condition": PROMOTION_CONDITION,
+        "out_of_scope": OUT_OF_SCOPE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "prior_measurements": PRIOR_MEASUREMENTS,

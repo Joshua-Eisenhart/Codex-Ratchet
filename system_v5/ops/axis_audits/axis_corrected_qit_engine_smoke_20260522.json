@@ -1,0 +1,1604 @@
+{
+  "TOOL_INTEGRATION_DEPTH": "load_bearing",
+  "TOOL_MANIFEST": [
+    {
+      "reason": "load-bearing density-matrix channels, matrix exponentials, eigenvalue checks, and source-aligned engine iteration",
+      "tool": "pytorch"
+    }
+  ],
+  "checks": {
+    "T1_T2_distinct": true,
+    "T1_axis_xor_ok": true,
+    "T1_converges_under_repeated_cycles": true,
+    "T1_runs_valid": true,
+    "T2_axis_xor_ok": true,
+    "T2_converges_under_repeated_cycles": true,
+    "T2_runs_valid": true,
+    "schedule_order_matters": true
+  },
+  "classification": "source_aligned_engine_smoke_pass",
+  "current_formal_scout_spec_mismatches": [
+    {
+      "field": "PERCEPTION_L_MATRICES",
+      "issue": "Older per-perception L table maps Se->sigma_z, Ne->sigma_+, Ni->-i sigma_y, Si->sigma_-. Source terrain packet now requires sheet-specific terrain laws: Se isotropic Pauli dissipator, Ne Hamiltonian circulation, Ni Pit/Source ladder, Si projector strata.",
+      "status": "engine_core_runs_but_not_source_repaired",
+      "surface": "system_v5/ops/formal_scouts/canonical_qit_engine_specs.py"
+    }
+  ],
+  "distances": {
+    "T1_T2_final_fro": 0.20406623501030885,
+    "schedule_T1T2_vs_T2T1_fro": 0.09318426636148834
+  },
+  "engines": {
+    "T1": {
+      "all_a6_xor_ok": true,
+      "all_raw_path_xor_ok": true,
+      "all_stage_valid": true,
+      "cycles": 20,
+      "engine": "T1",
+      "final_bloch": [
+        -0.024590049846499352,
+        0.01082212047599096,
+        -0.12853635788793216
+      ],
+      "final_density_imag": [
+        [
+          0.0,
+          -0.00541106023799548
+        ],
+        [
+          0.005411060237995481,
+          0.0
+        ]
+      ],
+      "final_density_real": [
+        [
+          0.4357318210560339,
+          -0.012295024923249676
+        ],
+        [
+          -0.012295024923249678,
+          0.5642681789439661
+        ]
+      ],
+      "final_eigenvalues": [
+        0.4343429665950693,
+        0.5656570334049307
+      ],
+      "final_entropy": 0.6845005381333183,
+      "final_purity": 0.5086216920710724,
+      "final_valid_density": true,
+      "last_cycle_drift_fro": 1.2283164394633155e-09,
+      "terrain_realizations_seen": [
+        "Funnel",
+        "Hill",
+        "Pit",
+        "Vortex"
+      ],
+      "tokens_seen": [
+        "FeSi",
+        "FiNe",
+        "NeTi",
+        "NiFe",
+        "SeFi",
+        "SiTe",
+        "TeNi",
+        "TiSe"
+      ],
+      "trajectory_head": [
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "open_isothermal",
+            "A2": "expansion_direct",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "dephasing",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.16500347122650594,
+            -0.1187507440141008,
+            0.3538178985335679
+          ],
+          "bloch_before": [
+            0.22999999999999998,
+            -0.17000000000000004,
+            0.4099999999999997
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.29596875849308696,
+            0.704031241506913
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6074098471928877,
+          "idx": 0,
+          "loop": "outer",
+          "operator": "Ti",
+          "purity_after": 0.5832574950217044,
+          "terrain_realization": "Funnel",
+          "token": "TiSe",
+          "topology": "Se",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "closed_adiabatic",
+            "A2": "expansion_direct",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "dephasing",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.1551782492809573,
+            -0.09791236109539322,
+            0.32745848506201286
+          ],
+          "bloch_before": [
+            0.16500347122650594,
+            -0.1187507440141008,
+            0.3538178985335679
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.31231930110938005,
+            0.6876806988906199
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6209438251866175,
+          "idx": 1,
+          "loop": "outer",
+          "operator": "Ti",
+          "purity_after": 0.5704480894721431,
+          "terrain_realization": "Vortex",
+          "token": "NeTi",
+          "topology": "Ne",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "open_isothermal",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "rotation",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.1511065957023312,
+            -0.10189366150140272,
+            0.2400700404297446
+          ],
+          "bloch_before": [
+            0.1551782492809573,
+            -0.09791236109539322,
+            0.32745848506201286
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.3492940397405851,
+            0.650705960259415
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6470085262736088,
+          "idx": 2,
+          "loop": "outer",
+          "operator": "Fe",
+          "purity_after": 0.5454245729154248,
+          "terrain_realization": "Pit",
+          "token": "NiFe",
+          "topology": "Ni",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "closed_adiabatic",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "rotation",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.13330335370537474,
+            -0.07528006292932289,
+            0.2400700404297451
+          ],
+          "bloch_before": [
+            0.1511065957023312,
+            -0.10189366150140272,
+            0.2400700404297446
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.3576355940766067,
+            0.6423644059233931
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6520456567375792,
+          "idx": 3,
+          "loop": "outer",
+          "operator": "Fe",
+          "purity_after": 0.5405352481478413,
+          "terrain_realization": "Hill",
+          "token": "FeSi",
+          "topology": "Si",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "open_isothermal",
+            "A2": "expansion_direct",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "rotation",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.12124442089541357,
+            -0.05797262542090098,
+            0.20952524719852333
+          ],
+          "bloch_before": [
+            0.13330335370537474,
+            -0.07528006292932289,
+            0.2400700404297451
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.37553929926472934,
+            0.6244607007352709
+          ],
+          "engine": "T1",
+          "entropy_after": 0.661838105693543,
+          "idx": 4,
+          "loop": "inner",
+          "operator": "Fi",
+          "purity_after": 0.5309809320550294,
+          "terrain_realization": "Funnel",
+          "token": "SeFi",
+          "topology": "Se",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "closed_adiabatic",
+            "A2": "expansion_direct",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "rotation",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.1401850917024034,
+            -0.06741382090360223,
+            0.19051508941860068
+          ],
+          "bloch_before": [
+            0.12124442089541357,
+            -0.05797262542090098,
+            0.20952524719852333
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.3770239022405047,
+            0.6229760977594951
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6625883670206554,
+          "idx": 5,
+          "loop": "inner",
+          "operator": "Fi",
+          "purity_after": 0.5302462412403058,
+          "terrain_realization": "Vortex",
+          "token": "FiNe",
+          "topology": "Ne",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "open_isothermal",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "dephasing",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.13788720083693068,
+            -0.0501753842328984,
+            0.07339425359753926
+          ],
+          "bloch_before": [
+            0.1401850917024034,
+            -0.06741382090360223,
+            0.19051508941860068
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.41796774140817683,
+            0.5820322585918231
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6796275602287796,
+          "idx": 6,
+          "loop": "inner",
+          "operator": "Te",
+          "purity_after": 0.5134585828993513,
+          "terrain_realization": "Pit",
+          "token": "TeNi",
+          "topology": "Ni",
+          "trace": 0.9999999999999999,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "closed_adiabatic",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "dephasing",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.11749277301623749,
+            -0.02905260065798812,
+            0.057247517806080894
+          ],
+          "bloch_before": [
+            0.13788720083693068,
+            -0.0501753842328984,
+            0.07339425359753926
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.4330562108724882,
+            0.5669437891275121
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6841572667726337,
+          "idx": 7,
+          "loop": "inner",
+          "operator": "Te",
+          "purity_after": 0.5089629418054976,
+          "terrain_realization": "Hill",
+          "token": "SiTe",
+          "topology": "Si",
+          "trace": 1.0,
+          "valid_density": true
+        }
+      ],
+      "trajectory_tail": [
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "open_isothermal",
+            "A2": "expansion_direct",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "dephasing",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.018473790077075013,
+            0.009269889491780496,
+            -0.11196342699496875
+          ],
+          "bloch_before": [
+            -0.02459004867124594,
+            0.010822120579328645,
+            -0.12853635661293283
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.44307236884548207,
+            0.5569276311545179
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6866515937381205,
+          "idx": 0,
+          "loop": "outer",
+          "operator": "Ti",
+          "purity_after": 0.5064815103777297,
+          "terrain_realization": "Funnel",
+          "token": "TiSe",
+          "topology": "Se",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "closed_adiabatic",
+            "A2": "expansion_direct",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "dephasing",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.020521689393485747,
+            0.013012489674079298,
+            -0.10809760172910982
+          ],
+          "bloch_before": [
+            -0.018473790077075013,
+            0.009269889491780496,
+            -0.11196342699496875
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.44460244562558293,
+            0.5553975543744171
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6869967829903358,
+          "idx": 1,
+          "loop": "outer",
+          "operator": "Ti",
+          "purity_after": 0.506137778061333,
+          "terrain_realization": "Vortex",
+          "token": "NeTi",
+          "topology": "Ne",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "open_isothermal",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "rotation",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.020499095980983702,
+            0.014453930456311177,
+            -0.16470874079565362
+          ],
+          "bloch_before": [
+            -0.020521689393485747,
+            0.013012489674079298,
+            -0.10809760172910982
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.416696191059227,
+            0.5833038089407736
+          ],
+          "engine": "T1",
+          "entropy_after": 0.679203198336747,
+          "idx": 2,
+          "loop": "outer",
+          "operator": "Fe",
+          "purity_after": 0.5138790491680818,
+          "terrain_realization": "Pit",
+          "token": "NiFe",
+          "topology": "Ni",
+          "trace": 1.0000000000000002,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "closed_adiabatic",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "rotation",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.0181258499136352,
+            0.010740903905778365,
+            -0.16470874079565317
+          ],
+          "bloch_before": [
+            -0.020499095980983702,
+            0.014453930456311177,
+            -0.16470874079565362
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.41697457807048716,
+            0.5830254219295128
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6792966746074158,
+          "idx": 3,
+          "loop": "outer",
+          "operator": "Fe",
+          "purity_after": 0.5137864413731472,
+          "terrain_realization": "Hill",
+          "token": "FeSi",
+          "topology": "Si",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "open_isothermal",
+            "A2": "expansion_direct",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "rotation",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.01803305871636095,
+            0.00594596864217607,
+            -0.14392116240321995
+          ],
+          "bloch_before": [
+            -0.0181258499136352,
+            0.010740903905778365,
+            -0.16470874079565317
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.42741583034632225,
+            0.5725841696536778
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6825729327363463,
+          "idx": 4,
+          "loop": "inner",
+          "operator": "Fi",
+          "purity_after": 0.5105369233686278,
+          "terrain_realization": "Funnel",
+          "token": "SeFi",
+          "topology": "Se",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "closed_adiabatic",
+            "A2": "expansion_direct",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "rotation",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.028219193072641244,
+            0.022246905001993045,
+            -0.13886269397996032
+          ],
+          "bloch_before": [
+            -0.01803305871636095,
+            0.00594596864217607,
+            -0.14392116240321995
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.42828163516362994,
+            0.5717183648363702
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6828245648630469,
+          "idx": 5,
+          "loop": "inner",
+          "operator": "Fi",
+          "purity_after": 0.5102870477096055,
+          "terrain_realization": "Vortex",
+          "token": "FiNe",
+          "topology": "Ne",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "open_isothermal",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "dephasing",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.028554531373731706,
+            0.017731852846345115,
+            -0.1647902024204248
+          ],
+          "bloch_before": [
+            -0.028219193072641244,
+            0.022246905001993045,
+            -0.13886269397996032
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.4159083971476604,
+            0.5840916028523396
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6789369463440749,
+          "idx": 6,
+          "loop": "inner",
+          "operator": "Te",
+          "purity_after": 0.5141427953405513,
+          "terrain_realization": "Pit",
+          "token": "TeNi",
+          "topology": "Ni",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "closed_adiabatic",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "dephasing",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": true,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.024590049846499352,
+            0.01082212047599096,
+            -0.12853635788793216
+          ],
+          "bloch_before": [
+            -0.028554531373731706,
+            0.017731852846345115,
+            -0.1647902024204248
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.4343429665950693,
+            0.5656570334049307
+          ],
+          "engine": "T1",
+          "entropy_after": 0.6845005381333183,
+          "idx": 7,
+          "loop": "inner",
+          "operator": "Te",
+          "purity_after": 0.5086216920710724,
+          "terrain_realization": "Hill",
+          "token": "SiTe",
+          "topology": "Si",
+          "trace": 1.0,
+          "valid_density": true
+        }
+      ]
+    },
+    "T2": {
+      "all_a6_xor_ok": true,
+      "all_raw_path_xor_ok": false,
+      "all_stage_valid": true,
+      "cycles": 20,
+      "engine": "T2",
+      "final_bloch": [
+        -0.011302278138823776,
+        0.033657091472123396,
+        0.1588450189707914
+      ],
+      "final_density_imag": [
+        [
+          0.0,
+          -0.016828545736061698
+        ],
+        [
+          0.0168285457360617,
+          2.775557561562892e-17
+        ]
+      ],
+      "final_density_real": [
+        [
+          0.5794225094853958,
+          -0.005651139069411889
+        ],
+        [
+          -0.005651139069411887,
+          0.42057749051460436
+        ]
+      ],
+      "final_eigenvalues": [
+        0.41861775170634385,
+        0.5813822482936563
+      ],
+      "final_entropy": 0.6798419244149942,
+      "final_purity": 0.5132461406746608,
+      "final_valid_density": true,
+      "last_cycle_drift_fro": 7.881762165349497e-10,
+      "terrain_realizations_seen": [
+        "Cannon",
+        "Citadel",
+        "Source",
+        "Spiral"
+      ],
+      "tokens_seen": [
+        "FeNi",
+        "FiSe",
+        "NeFi",
+        "NiTe",
+        "SeTi",
+        "SiFe",
+        "TeSi",
+        "TiNe"
+      ],
+      "trajectory_head": [
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "open_isothermal",
+            "A2": "expansion_direct",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "rotation",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.19155509637188034,
+            -0.16181003629798651,
+            0.3579409902386528
+          ],
+          "bloch_before": [
+            0.22999999999999998,
+            -0.17000000000000004,
+            0.4099999999999997
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.28148364175317253,
+            0.7185163582468275
+          ],
+          "engine": "T2",
+          "entropy_after": 0.5943491066901404,
+          "idx": 0,
+          "loop": "outer",
+          "operator": "Fi",
+          "purity_after": 0.5954987976429118,
+          "terrain_realization": "Cannon",
+          "token": "FiSe",
+          "topology": "Se",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "closed_adiabatic",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "dephasing",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.15631293816539454,
+            -0.11268051881136038,
+            0.27919397238614935
+          ],
+          "bloch_before": [
+            0.19155509637188034,
+            -0.16181003629798651,
+            0.3579409902386528
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.3303828515639901,
+            0.66961714843601
+          ],
+          "engine": "T2",
+          "entropy_after": 0.6344494340658344,
+          "idx": 1,
+          "loop": "outer",
+          "operator": "Te",
+          "purity_after": 0.5575399540871269,
+          "terrain_realization": "Citadel",
+          "token": "TeSi",
+          "topology": "Si",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "open_isothermal",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "dephasing",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.14670353472096942,
+            -0.08433012371883827,
+            0.25583170362562907
+          ],
+          "bloch_before": [
+            0.15631293816539454,
+            -0.11268051881136038,
+            0.27919397238614935
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.34663494739180883,
+            0.6533650526081911
+          ],
+          "engine": "T2",
+          "entropy_after": 0.6453386154439844,
+          "idx": 2,
+          "loop": "outer",
+          "operator": "Te",
+          "purity_after": 0.5470416787230264,
+          "terrain_realization": "Source",
+          "token": "NiTe",
+          "topology": "Ni",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "closed_adiabatic",
+            "A2": "expansion_direct",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "rotation",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.11917696921527186,
+            -0.06473117607009887,
+            0.2710331386636524
+          ],
+          "bloch_before": [
+            0.14670353472096942,
+            -0.08433012371883827,
+            0.25583170362562907
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.3484643297762647,
+            0.6515356702237353
+          ],
+          "engine": "T2",
+          "entropy_after": 0.6464908124041406,
+          "idx": 3,
+          "loop": "outer",
+          "operator": "Fi",
+          "purity_after": 0.5459261187003133,
+          "terrain_realization": "Spiral",
+          "token": "NeFi",
+          "topology": "Ne",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "open_isothermal",
+            "A2": "expansion_direct",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "dephasing",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.07754874742823512,
+            -0.042528438195276054,
+            0.23946784898352658
+          ],
+          "bloch_before": [
+            0.11917696921527186,
+            -0.06473117607009887,
+            0.2710331386636524
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.37236054001620955,
+            0.6276394599837906
+          ],
+          "engine": "T2",
+          "entropy_after": 0.6602000579259449,
+          "idx": 4,
+          "loop": "inner",
+          "operator": "Ti",
+          "purity_after": 0.5325836634899074,
+          "terrain_realization": "Cannon",
+          "token": "SeTi",
+          "topology": "Se",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "closed_adiabatic",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "rotation",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.06211037678644207,
+            -0.0407656762576488,
+            0.2394678489835264
+          ],
+          "bloch_before": [
+            0.07754874742823512,
+            -0.042528438195276054,
+            0.23946784898352658
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.3746361396154239,
+            0.6253638603845764
+          ],
+          "engine": "T2",
+          "entropy_after": 0.6613770864721504,
+          "idx": 5,
+          "loop": "inner",
+          "operator": "Fe",
+          "purity_after": 0.5314321949810472,
+          "terrain_realization": "Citadel",
+          "token": "SiFe",
+          "topology": "Si",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "open_isothermal",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "rotation",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.05878497144803761,
+            -0.035048749073317745,
+            0.2890484487155404
+          ],
+          "bloch_before": [
+            0.06211037678644207,
+            -0.0407656762576488,
+            0.2394678489835264
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.351479720757895,
+            0.648520279242105
+          ],
+          "engine": "T2",
+          "entropy_after": 0.6483578350710287,
+          "idx": 6,
+          "loop": "inner",
+          "operator": "Fe",
+          "purity_after": 0.5441165466923057,
+          "terrain_realization": "Source",
+          "token": "FeNi",
+          "topology": "Ni",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "closed_adiabatic",
+            "A2": "expansion_direct",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "dephasing",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            0.026606763392063443,
+            -0.004196807385004214,
+            0.28917881192918016
+          ],
+          "bloch_before": [
+            0.05878497144803761,
+            -0.035048749073317745,
+            0.2890484487155404
+          ],
+          "cycle": 0,
+          "eigenvalues_after": [
+            0.35478471299549746,
+            0.6452152870045026
+          ],
+          "engine": "T2",
+          "entropy_after": 0.6503583532941553,
+          "idx": 7,
+          "loop": "inner",
+          "operator": "Ti",
+          "purity_after": 0.5421749591596002,
+          "terrain_realization": "Spiral",
+          "token": "TiNe",
+          "topology": "Ne",
+          "trace": 1.0,
+          "valid_density": true
+        }
+      ],
+      "trajectory_tail": [
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "open_isothermal",
+            "A2": "expansion_direct",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "rotation",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.010927743212460535,
+            0.026898984207131174,
+            0.13930174677327095
+          ],
+          "bloch_before": [
+            -0.011302278127799693,
+            0.03365709187594561,
+            0.15884502000966078
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.4288523584769363,
+            0.5711476415230636
+          ],
+          "engine": "T2",
+          "entropy_after": 0.6829887620750702,
+          "idx": 0,
+          "loop": "outer",
+          "operator": "Fi",
+          "purity_after": 0.5101239737885888,
+          "terrain_realization": "Cannon",
+          "token": "FiSe",
+          "topology": "Se",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "closed_adiabatic",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "dephasing",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.008431209939859713,
+            0.017994089624707596,
+            0.108655362483152
+          ],
+          "bloch_before": [
+            -0.010927743212460535,
+            0.026898984207131174,
+            0.13930174677327095
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.4447712476177102,
+            0.5552287523822899
+          ],
+          "engine": "T2",
+          "entropy_after": 0.6870342843579359,
+          "idx": 1,
+          "loop": "outer",
+          "operator": "Te",
+          "purity_after": 0.5061004301794086,
+          "terrain_realization": "Citadel",
+          "token": "TeSi",
+          "topology": "Si",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "open_isothermal",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "dephasing",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.008696476017840706,
+            0.01489128463103749,
+            0.12890282421638521
+          ],
+          "bloch_before": [
+            -0.008431209939859713,
+            0.017994089624707596,
+            0.108655362483152
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.43497439515073355,
+            0.5650256048492664
+          ],
+          "engine": "T2",
+          "entropy_after": 0.684666520878751,
+          "idx": 2,
+          "loop": "outer",
+          "operator": "Te",
+          "purity_after": 0.5084566585720259,
+          "terrain_realization": "Source",
+          "token": "NiTe",
+          "topology": "Ni",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "closed_adiabatic",
+            "A2": "expansion_direct",
+            "A3_chart_role": "outer",
+            "A3_geometry_path": "fiber",
+            "A4": "inductive",
+            "A5": "rotation",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.012972409160502928,
+            0.03350507933936496,
+            0.12337486004602644
+          ],
+          "bloch_before": [
+            -0.008696476017840706,
+            0.01489128463103749,
+            0.12890282421638521
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.43575003923670225,
+            0.5642499607632978
+          ],
+          "engine": "T2",
+          "entropy_after": 0.684868193087272,
+          "idx": 3,
+          "loop": "outer",
+          "operator": "Fi",
+          "purity_after": 0.5082561149161706,
+          "terrain_realization": "Spiral",
+          "token": "NeFi",
+          "topology": "Ne",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "open_isothermal",
+            "A2": "expansion_direct",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "dephasing",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.009209845593349482,
+            0.024931011409277365,
+            0.10704762072671015
+          ],
+          "bloch_before": [
+            -0.012972409160502928,
+            0.03350507933936496,
+            0.12337486004602644
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.4448511793213299,
+            0.5551488206786701
+          ],
+          "engine": "T2",
+          "entropy_after": 0.6870520018802426,
+          "idx": 4,
+          "loop": "inner",
+          "operator": "Ti",
+          "purity_after": 0.5060827848444962,
+          "terrain_realization": "Cannon",
+          "token": "SeTi",
+          "topology": "Se",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0-",
+            "A1": "closed_adiabatic",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "rotation",
+            "A6_bit": -1,
+            "A6_path_expected_if_raw_geometry_used": 1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "terrain_first",
+            "A6_xor_expected": -1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.00605514266648915,
+            0.021488475194592616,
+            0.1070476207267102
+          ],
+          "bloch_before": [
+            -0.009209845593349482,
+            0.024931011409277365,
+            0.10704762072671015
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.4453245657947059,
+            0.5546754342052941
+          ],
+          "engine": "T2",
+          "entropy_after": 0.687156401614708,
+          "idx": 5,
+          "loop": "inner",
+          "operator": "Fe",
+          "purity_after": 0.5059788062110748,
+          "terrain_realization": "Citadel",
+          "token": "SiFe",
+          "topology": "Si",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "open_isothermal",
+            "A2": "compression_conjugated",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "rotation",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.007090219599419587,
+            0.022185830191531315,
+            0.16372458907775106
+          ],
+          "bloch_before": [
+            -0.00605514266648915,
+            0.021488475194592616,
+            0.1070476207267102
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.41731350874548223,
+            0.582686491254518
+          ],
+          "engine": "T2",
+          "entropy_after": 0.6794100498013189,
+          "idx": 6,
+          "loop": "inner",
+          "operator": "Fe",
+          "purity_after": 0.513674111671967,
+          "terrain_realization": "Source",
+          "token": "FeNi",
+          "topology": "Ni",
+          "trace": 1.0,
+          "valid_density": true
+        },
+        {
+          "axis_values": {
+            "A0": "A0+",
+            "A1": "closed_adiabatic",
+            "A2": "expansion_direct",
+            "A3_chart_role": "inner",
+            "A3_geometry_path": "base",
+            "A4": "deductive",
+            "A5": "dephasing",
+            "A6_bit": 1,
+            "A6_path_expected_if_raw_geometry_used": -1,
+            "A6_path_xor_ok": false,
+            "A6_token_precedence": "operator_first",
+            "A6_xor_expected": 1,
+            "A6_xor_ok": true,
+            "A6_xor_uses": "A3_chart_role_inner_outer"
+          },
+          "bloch_after": [
+            -0.011302278138823776,
+            0.033657091472123396,
+            0.1588450189707914
+          ],
+          "bloch_before": [
+            -0.007090219599419587,
+            0.022185830191531315,
+            0.16372458907775106
+          ],
+          "cycle": 19,
+          "eigenvalues_after": [
+            0.41861775170634385,
+            0.5813822482936563
+          ],
+          "engine": "T2",
+          "entropy_after": 0.6798419244149942,
+          "idx": 7,
+          "loop": "inner",
+          "operator": "Ti",
+          "purity_after": 0.5132461406746608,
+          "terrain_realization": "Spiral",
+          "token": "TiNe",
+          "topology": "Ne",
+          "trace": 1.0,
+          "valid_density": true
+        }
+      ]
+    }
+  },
+  "generated_at": "2026-05-22T00:00:00-07:00",
+  "kind": "axis_corrected_qit_engine_smoke",
+  "ok": true,
+  "schedules": {
+    "T1_then_T2": {
+      "final_bloch": [
+        -0.0038947516082661095,
+        0.009987502215166059,
+        0.08285792120468277
+      ],
+      "final_entropy": 0.6896529315359246,
+      "final_valid_density": true,
+      "order": [
+        "T1",
+        "T2"
+      ],
+      "repeats": 8
+    },
+    "T2_then_T1": {
+      "final_bloch": [
+        0.0017957244751618893,
+        -0.0007358267195965154,
+        -0.0483641946643979
+      ],
+      "final_entropy": 0.6919752920176716,
+      "final_valid_density": true,
+      "order": [
+        "T2",
+        "T1"
+      ],
+      "repeats": 8
+    }
+  },
+  "scope": {
+    "answers": "corrected single-qubit axis/terrain/operator engine runs and finite math-projection consistency",
+    "does_not_answer": [
+      "full MPDO/MPS/PEPS engine",
+      "Axis 0 Xi bridge closure",
+      "canonical replacement of existing formal_scouts engine_core",
+      "multi-basin proof beyond finite schedule order gap"
+    ]
+  }
+}

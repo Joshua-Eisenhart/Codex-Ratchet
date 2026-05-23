@@ -83,6 +83,7 @@ ACTIVE_RECEIPTS = {
     "xi_qci": "two_root_constraint_quantum_conditional_information_phi0_candidate_probe_results.json",
     "xi_petz": "two_root_constraint_petz_recovery_phi0_candidate_probe_results.json",
     "xi_oriented_recovery": "two_root_constraint_oriented_recovery_phi0_candidate_probe_results.json",
+    "xi_flux_coherent_recovery": "two_root_constraint_flux_coherent_recovery_phi0_candidate_probe_results.json",
     "xi_l7_history": "two_root_constraint_l7_xi_history_phi0_bridge_probe_results.json",
     "xi_causal_irreversibility": "two_root_constraint_xi_causal_irreversibility_phi0_bridge_probe_results.json",
     "xi_mps_rescue": "two_root_constraint_mps_phi0_bridge_rescue_or_falsifier_probe_results.json",
@@ -154,6 +155,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_qci = receipts["xi_qci"]
     xi_petz = receipts["xi_petz"]
     xi_oriented_recovery = receipts["xi_oriented_recovery"]
+    xi_flux_coherent_recovery = receipts["xi_flux_coherent_recovery"]
     xi_l7_history = receipts["xi_l7_history"]
     xi_causal_irreversibility = receipts["xi_causal_irreversibility"]
     xi_mps_rescue = receipts["xi_mps_rescue"]
@@ -199,6 +201,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_oriented_recovery_keys = section_keys(xi_oriented_recovery, "positive")
     xi_oriented_recovery_graveyard = section_keys(xi_oriented_recovery, "graveyard_companions")
     xi_oriented_recovery_boundary = section_keys(xi_oriented_recovery, "boundary")
+    xi_flux_coherent_keys = section_keys(xi_flux_coherent_recovery, "positive")
+    xi_flux_coherent_graveyard = section_keys(xi_flux_coherent_recovery, "graveyard_companions")
+    xi_flux_coherent_boundary = section_keys(xi_flux_coherent_recovery, "boundary")
     xi_l7_keys = section_keys(xi_l7_history, "positive")
     xi_l7_graveyard = section_keys(xi_l7_history, "graveyard_companions")
     xi_l7_boundary = section_keys(xi_l7_history, "boundary")
@@ -313,7 +318,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
             "limit": "bounded L32/L64/MPS/PEPS/PEPS3D evidence is consolidated; full convergence, full environment contraction, robust Phi0, and scale-basin admission remain blocked",
         },
         "xi_phi0_bridge": {
-            "status": "weak_first_rung_open_blocker",
+            "status": "bounded_flux_coherent_first_rung_open_blocker",
             "pass": bool(
                 xi_bridge.get("all_pass")
                 and xi_path_weighted.get("all_pass")
@@ -322,6 +327,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and xi_qci.get("all_pass")
                 and xi_petz.get("all_pass")
                 and xi_oriented_recovery.get("all_pass")
+                and xi_flux_coherent_recovery.get("all_pass")
                 and xi_l7_history.get("all_pass")
                 and xi_causal_irreversibility.get("all_pass")
                 and xi_mps_rescue.get("all_pass")
@@ -373,6 +379,15 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and "oriented_recovery_not_sufficient_for_admission" in xi_oriented_recovery_graveyard
                 and "dephased_or_flux_control_blocks_admission" in xi_oriented_recovery_graveyard
                 and "final_xi_phi0_not_admitted" in xi_oriented_recovery_boundary
+                and "flux_coherent_recovery_surface_built" in xi_flux_coherent_keys
+                and "flux_differential_signal_measured" in xi_flux_coherent_keys
+                and "coherent_history_excess_measured" in xi_flux_coherent_keys
+                and "noncommuting_path_control_rejected" in xi_flux_coherent_keys
+                and "entanglement_and_register_controls_rejected" in xi_flux_coherent_keys
+                and "candidate_first_rung_control_separated" in xi_flux_coherent_keys
+                and "first_rung_is_not_final_phi0" in xi_flux_coherent_graveyard
+                and "full_stress_not_run_for_flux_recovery" in xi_flux_coherent_graveyard
+                and "final_xi_phi0_not_admitted" in xi_flux_coherent_boundary
                 and "bridge_status_classified" in xi_l7_keys
                 and "not_final_axis0_closure" in xi_l7_graveyard
                 and "final_manifold_admission_allowed" in xi_l7_boundary
@@ -421,6 +436,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 | xi_oriented_recovery_keys
                 | xi_oriented_recovery_graveyard
                 | xi_oriented_recovery_boundary
+                | xi_flux_coherent_keys
+                | xi_flux_coherent_graveyard
+                | xi_flux_coherent_boundary
                 | xi_l7_keys
                 | xi_l7_graveyard
                 | xi_l7_boundary
@@ -451,7 +469,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 | full_trace_after_stress_graveyard
                 | full_trace_after_stress_boundary
             ),
-            "limit": "raw/path/capacity/free-energy/QCI/Petz/oriented-recovery candidates are killed or nonseparating; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
+            "limit": "raw/path/capacity/free-energy/QCI/Petz/oriented-recovery candidates are killed or nonseparating; flux-coherent recovery is bounded first-rung control-separated but un-stressed; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
         },
         "formal_scout_boundaries": {
             "status": "preserved",
@@ -494,6 +512,8 @@ def requirement_scores(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
             values.append(stronger_candidate)
         elif status == "candidate_space_evidenced":
             values.append(candidate)
+        elif status == "bounded_flux_coherent_first_rung_open_blocker":
+            values.append(0.62)
         elif status == "weak_first_rung_open_blocker":
             values.append(weak_first_rung)
         elif status == "bounded_tensor_scaling_evidenced_not_final":
@@ -648,8 +668,8 @@ def main() -> int:
         "next_work_routing": {
             "pass": True,
             "ordered_next_gaps": [
-                "close or kill a stronger Xi -> rho_AB -> Phi0 construction",
-                "try the next Phi0 candidate only if it avoids beta-zero/free-energy, collapsed-register/QCI, near-reversed-order/Petz, and dephased-history/oriented-recovery control failures",
+                "stress the flux-coherent recovery Phi0 first-rung candidate across broader seeds, runtime rows, and tensor/carrier controls",
+                "try another Phi0 candidate only if it beats the flux-coherent recovery baseline and avoids beta-zero/free-energy, collapsed-register/QCI, near-reversed-order/Petz, and dephased-history/oriented-recovery failures",
                 "convert bounded tensor-scaling status into a stronger convergence or environment-contraction falsifier",
                 "extend source-aligned runtime toward full coupled terrain/operator/axis dynamics under the audit freeze",
                 "only then revisit final manifold/basin admission boundaries",
@@ -664,8 +684,9 @@ def main() -> int:
             "summary": "current receipts prove formal-scout progress but not final completion",
         },
         "final_xi_phi0_open": {
-            "pass": rows["xi_phi0_bridge"]["status"] in {"open_blocker", "weak_first_rung_open_blocker"},
-            "summary": "current Xi bridge evidence includes weak bounded first-rung runtime support but still admits no final Xi/Phi0",
+            "pass": rows["xi_phi0_bridge"]["status"]
+            in {"open_blocker", "weak_first_rung_open_blocker", "bounded_flux_coherent_first_rung_open_blocker"},
+            "summary": "current Xi bridge evidence includes bounded first-rung flux-coherent recovery support but still admits no final Xi/Phi0",
         },
         "full_runtime_and_final_manifold_open": {
             "pass": True,
@@ -687,6 +708,7 @@ def main() -> int:
         "tripartite quantum conditional-information Phi0 candidate is load-bearing but nonseparating against collapsed-register/control rows",
         "Petz-recovery Phi0 candidate is load-bearing but nonseparating against near reversed-order/control rows",
         "oriented recovery-asymmetry Phi0 candidate is load-bearing but nonseparating against dephased-history/control rows",
+        "flux-coherent recovery Phi0 candidate is bounded first-rung control-separated but un-stressed and not final",
         "tensor scaling is consolidated as bounded L32/L64/MPS/PEPS/PEPS3D evidence but final convergence and full environment contraction remain open",
         "full coupled source-aligned runtime remains open beyond bounded E16 first-rung evidence",
         "final manifold/basin admission remains blocked",

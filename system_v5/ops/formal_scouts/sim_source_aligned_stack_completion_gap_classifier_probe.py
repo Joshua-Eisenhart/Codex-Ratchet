@@ -92,6 +92,7 @@ ACTIVE_RECEIPTS = {
     "xi_process_bundle_stress": "two_root_constraint_process_signature_bundle_runtime_stress_probe_results.json",
     "xi_process_family_repair": "two_root_constraint_process_signature_family_local_section_repair_probe_results.json",
     "xi_process_family_tensor_stress": "two_root_constraint_process_signature_family_local_tensor_stress_probe_results.json",
+    "xi_process_family_broad_stress": "two_root_constraint_process_signature_family_local_broad_stress_probe_results.json",
     "xi_l7_history": "two_root_constraint_l7_xi_history_phi0_bridge_probe_results.json",
     "xi_causal_irreversibility": "two_root_constraint_xi_causal_irreversibility_phi0_bridge_probe_results.json",
     "xi_mps_rescue": "two_root_constraint_mps_phi0_bridge_rescue_or_falsifier_probe_results.json",
@@ -187,6 +188,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_process_bundle_stress = receipts["xi_process_bundle_stress"]
     xi_process_family_repair = receipts["xi_process_family_repair"]
     xi_process_family_tensor_stress = receipts["xi_process_family_tensor_stress"]
+    xi_process_family_broad_stress = receipts["xi_process_family_broad_stress"]
     xi_l7_history = receipts["xi_l7_history"]
     xi_causal_irreversibility = receipts["xi_causal_irreversibility"]
     xi_mps_rescue = receipts["xi_mps_rescue"]
@@ -259,6 +261,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_process_family_tensor_keys = section_keys(xi_process_family_tensor_stress, "positive")
     xi_process_family_tensor_graveyard = section_keys(xi_process_family_tensor_stress, "graveyard_companions")
     xi_process_family_tensor_boundary = section_keys(xi_process_family_tensor_stress, "boundary")
+    xi_process_family_broad_keys = section_keys(xi_process_family_broad_stress, "positive")
+    xi_process_family_broad_graveyard = section_keys(xi_process_family_broad_stress, "graveyard_companions")
+    xi_process_family_broad_boundary = section_keys(xi_process_family_broad_stress, "boundary")
     xi_l7_keys = section_keys(xi_l7_history, "positive")
     xi_l7_graveyard = section_keys(xi_l7_history, "graveyard_companions")
     xi_l7_boundary = section_keys(xi_l7_history, "boundary")
@@ -384,7 +389,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
             "limit": "bounded L32/L64/MPS/PEPS/PEPS3D evidence is consolidated; full convergence, full environment contraction, robust Phi0, and scale-basin admission remain blocked",
         },
         "xi_phi0_bridge": {
-            "status": "family_local_tensor_stress_candidate_open",
+            "status": "family_local_broad_stress_candidate_open",
             "pass": bool(
                 xi_bridge.get("all_pass")
                 and xi_path_weighted.get("all_pass")
@@ -402,6 +407,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and xi_process_bundle_stress.get("all_pass")
                 and xi_process_family_repair.get("all_pass")
                 and xi_process_family_tensor_stress.get("all_pass")
+                and xi_process_family_broad_stress.get("all_pass")
                 and xi_l7_history.get("all_pass")
                 and xi_causal_irreversibility.get("all_pass")
                 and xi_mps_rescue.get("all_pass")
@@ -539,6 +545,23 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and "entropy_coordinates_supportive_not_alone_decisive" in xi_process_family_tensor_boundary
                 and "tensor_stressor_not_direct_tensor_scaling" in xi_process_family_tensor_boundary
                 and "runtime_tensor_and_manifold_not_closed" in xi_process_family_tensor_boundary
+                and "source_native_broad_grid_executed" in xi_process_family_broad_keys
+                and "broad_family_local_projection_measured" in xi_process_family_broad_keys
+                and "tensor_carrier_stressor_margin_measured" in xi_process_family_broad_keys
+                and "coordinate_ablation_controls_measured" in xi_process_family_broad_keys
+                and "broad_stress_status_classified" in xi_process_family_broad_keys
+                and "z3_nonpromotion_guard" in xi_process_family_broad_keys
+                and "global_feature_standardization_fails" in xi_process_family_broad_graveyard
+                and "signed_z_drop_fails" in xi_process_family_broad_graveyard
+                and "entropy_drop_fails" in xi_process_family_broad_graveyard
+                and "signed_z_entropy_joint_drop_fails" in xi_process_family_broad_graveyard
+                and "family_identity_erasure_fails" in xi_process_family_broad_graveyard
+                and "final_tensor_scaling_still_blocks" in xi_process_family_broad_graveyard
+                and "final_phi0_and_manifold_not_admitted" in xi_process_family_broad_graveyard
+                and "family_local_broad_stress_candidate_only" in xi_process_family_broad_boundary
+                and "broad_margin_is_thin" in xi_process_family_broad_boundary
+                and "tensor_stressor_not_direct_tensor_scaling" in xi_process_family_broad_boundary
+                and "runtime_tensor_and_manifold_not_closed" in xi_process_family_broad_boundary
                 and "bridge_status_classified" in xi_l7_keys
                 and "not_final_axis0_closure" in xi_l7_graveyard
                 and "final_manifold_admission_allowed" in xi_l7_boundary
@@ -583,6 +606,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                     | xi_process_bundle_stress_keys
                     | xi_process_family_repair_keys
                     | xi_process_family_tensor_keys
+                    | xi_process_family_broad_keys
                     | xi_l7_keys
                     | xi_causal_keys
                     | xi_mps_keys
@@ -611,6 +635,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                     | xi_process_bundle_stress_graveyard
                     | xi_process_family_repair_graveyard
                     | xi_process_family_tensor_graveyard
+                    | xi_process_family_broad_graveyard
                     | xi_l7_graveyard
                     | xi_causal_graveyard
                     | xi_mps_graveyard
@@ -638,6 +663,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                     | xi_process_bundle_stress_boundary
                     | xi_process_family_repair_boundary
                     | xi_process_family_tensor_boundary
+                    | xi_process_family_broad_boundary
                     | xi_l7_boundary
                     | xi_causal_boundary
                     | xi_mps_boundary
@@ -650,7 +676,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                     | full_trace_after_stress_boundary
                 ),
             ),
-            "limit": "raw/path/capacity/free-energy/QCI/Petz/oriented-recovery candidates are killed or nonseparating; flux-coherent recovery survives standalone bounded deterministic stress but direct coupled-runtime embedding demotes it; the mean/global stress-base vector bundle separates globally but local runtime projections demote it; family-local sections repair the current finite local projection demotion and survive the current bounded tensor/coordinate stressor battery while remaining a heuristic vector/section candidate; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
+            "limit": "raw/path/capacity/free-energy/QCI/Petz/oriented-recovery candidates are killed or nonseparating; flux-coherent recovery survives standalone bounded deterministic stress but direct coupled-runtime embedding demotes it; the mean/global stress-base vector bundle separates globally but local runtime projections demote it; family-local sections repair the current finite local projection demotion and survive the current bounded tensor/coordinate stressor battery plus a broader source-native runtime grid, but the broad margin is thin and the result remains a heuristic vector/section candidate; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
         },
         "formal_scout_boundaries": {
             "status": "preserved",
@@ -707,6 +733,8 @@ def requirement_scores(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
             values.append(0.77)
         elif status == "family_local_tensor_stress_candidate_open":
             values.append(0.79)
+        elif status == "family_local_broad_stress_candidate_open":
+            values.append(0.80)
         elif status == "bounded_flux_coherent_first_rung_open_blocker":
             values.append(0.62)
         elif status == "weak_first_rung_open_blocker":
@@ -863,8 +891,8 @@ def main() -> int:
         "next_work_routing": {
             "pass": True,
             "ordered_next_gaps": [
-                "stress the family-local process-signature section repair against broader runtime/tensor surfaces beyond the current bounded tensor/coordinate stressor battery before considering any scalarization or Phi0 kernel",
-                "derive a scalar or stronger section kernel only if it beats the embedded-runtime demotion baseline and avoids beta-zero/free-energy, collapsed-register/QCI, near-reversed-order/Petz, dephased-history/oriented-recovery, coupled-runtime-embed, single-feature process-signature, base-collapsed bundle, and mean/global local-runtime projection failures",
+                "derive a scalar or stronger section kernel only if it preserves the family-local broad-stress separation and beats the embedded-runtime demotion baseline, beta-zero/free-energy, collapsed-register/QCI, near-reversed-order/Petz, dephased-history/oriented-recovery, coupled-runtime-embed, single-feature process-signature, base-collapsed bundle, mean/global local-runtime projection, and broad-grid coordinate-ablation failures",
+                "stress the thin-margin family-local broad-stress candidate against still broader runtime/tensor surfaces before any scalar Phi0 or manifold admission claim",
                 "convert bounded tensor-scaling status into a stronger convergence or environment-contraction falsifier",
                 "extend source-aligned runtime toward full coupled terrain/operator/axis dynamics under the audit freeze",
                 "only then revisit final manifold/basin admission boundaries",
@@ -891,8 +919,9 @@ def main() -> int:
                 "local_runtime_projection_demoted_vector_bundle_open",
                 "family_local_section_repair_candidate_open",
                 "family_local_tensor_stress_candidate_open",
+                "family_local_broad_stress_candidate_open",
             },
-            "summary": "current Xi bridge evidence includes a family-local process-signature section repair that clears current local scenario/theta/seed projections and a bounded tensor/coordinate stressor battery, but it remains a heuristic finite vector/section candidate and no final Xi/Phi0 is admitted",
+            "summary": "current Xi bridge evidence includes a family-local process-signature section repair that clears current local scenario/theta/seed projections, a bounded tensor/coordinate stressor battery, and a broader source-native runtime grid with thin margin; it remains a heuristic finite vector/section candidate and no final Xi/Phi0 is admitted",
         },
         "full_runtime_and_final_manifold_open": {
             "pass": True,

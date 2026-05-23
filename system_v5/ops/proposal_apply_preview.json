@@ -11,8 +11,8 @@
     {
       "proposal_family": "c4",
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 74,
-      "next_action": "review_required_before_source_edit; 0 simple classical candidates, 74 classification_or_stage_review candidates"
+      "row_count": 71,
+      "next_action": "review_required_before_source_edit; 0 simple classical candidates, 71 classification_or_stage_review candidates"
     },
     {
       "proposal_family": "c6",
@@ -472,13 +472,13 @@
     "c4": {
       "present": true,
       "path": "system_v5/ops/c4_divergence_log_proposals.json",
-      "row_count": 74,
+      "row_count": 71,
       "proposal_count_field": "proposal_kind",
       "proposal_kind_counts": {
-        "classification_or_stage_review_required": 74
+        "classification_or_stage_review_required": 71
       },
       "runner_class_counts": {
-        "bridge": 64,
+        "bridge": 61,
         "classical": 10
       },
       "sample": [
@@ -667,26 +667,6 @@
           "mode": "dry_run_no_source_edits"
         },
         {
-          "sim": "system_v4/probes/sim_gstructure_compatibility_coupling.py",
-          "rule": "C4_divergence_log_missing",
-          "classification": "classical_baseline",
-          "runner_class": "bridge",
-          "all_rules": [
-            "C4_divergence_log_missing"
-          ],
-          "current_divergence_log": null,
-          "classification_conflicts": [
-            {
-              "line": 852,
-              "kind": "result_literal_classification",
-              "emitted": "canonical"
-            }
-          ],
-          "proposal_kind": "classification_or_stage_review_required",
-          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
-          "mode": "dry_run_no_source_edits"
-        },
-        {
           "sim": "system_v4/probes/sim_gudhi_3qubit_bridge.py",
           "rule": "C4_divergence_log_missing",
           "classification": "classical_baseline",
@@ -826,6 +806,26 @@
               "line": 1274,
               "kind": "result_literal_classification",
               "emitted": "NOT_TESTED"
+            }
+          ],
+          "proposal_kind": "classification_or_stage_review_required",
+          "proposed_action": "Do not add divergence_log as a simple C4 fix; review classification, runner class, and any stage-gate claim before editing source metadata.",
+          "mode": "dry_run_no_source_edits"
+        },
+        {
+          "sim": "system_v4/probes/sim_layer_coupling_matrix_v2.py",
+          "rule": "C4_divergence_log_missing",
+          "classification": "classical_baseline",
+          "runner_class": "bridge",
+          "all_rules": [
+            "C4_divergence_log_missing"
+          ],
+          "current_divergence_log": null,
+          "classification_conflicts": [
+            {
+              "line": 1253,
+              "kind": "result_literal_classification",
+              "emitted": "canonical"
             }
           ],
           "proposal_kind": "classification_or_stage_review_required",

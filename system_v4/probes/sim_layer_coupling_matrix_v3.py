@@ -47,8 +47,8 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": "not needed -- no persistence required"},
 }
 
-classification = "classical_baseline"
-DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+classification = "canonical"
+CLAIM_REPAIR_NOTE = "top-level metadata matches emitted canonical local layer-coupling result"
 
 CLAIM_CEILING = "canonical_local_layer_coupling_matrix_lego_only"
 NEXT_LEGO_TARGET = "none"

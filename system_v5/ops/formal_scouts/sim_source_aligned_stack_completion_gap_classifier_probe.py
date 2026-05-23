@@ -9,8 +9,8 @@ completion.
 It intentionally rejects a premature "goal complete" reading. The current
 receipts support bounded formal-scout progress for flux, source-aligned QIT
 runtime, Axis0 candidate families, and spinor/twistor carrier controls. They do
-not close final Xi, final Phi0, final manifold admission, final physics, or a
-promotion-grade full coupled runtime.
+not close final Xi, final Phi0, final tensor scaling, final manifold admission,
+final physics, or a promotion-grade full coupled runtime.
 """
 
 from __future__ import annotations
@@ -37,8 +37,8 @@ PROMOTION_ALLOWED = False
 CLAIM_CEILING = (
     "Formal scout only: classifies current source-aligned stack evidence and "
     "blocks premature completion/promotion. It does not admit final Xi, final "
-    "Phi0, final manifold law, final source-aligned full runtime, holography, "
-    "ER=EPR, or physics."
+    "Phi0, final tensor scaling, final manifold law, final source-aligned full "
+    "runtime, holography, ER=EPR, or physics."
 )
 
 TOOL_MANIFEST = {
@@ -86,6 +86,7 @@ ACTIVE_RECEIPTS = {
     "phi0_stress_controls": "two_root_constraint_coupled_e16_phi0_stress_controls_probe_results.json",
     "phi0_response_gradient": "two_root_constraint_phi0_bridge_response_gradient_after_stress_probe_results.json",
     "scale_basin_stability": "two_root_constraint_scale_basin_stability_map_probe_results.json",
+    "tensor_scaling_status": "two_root_constraint_tensor_scaling_status_classifier_probe_results.json",
     "full_trace_after_stress": "two_root_constraint_full_manifold_trace_after_phi0_stress_probe_results.json",
 }
 
@@ -152,6 +153,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     phi0_stress_controls = receipts["phi0_stress_controls"]
     phi0_response_gradient = receipts["phi0_response_gradient"]
     scale_basin_stability = receipts["scale_basin_stability"]
+    tensor_scaling_status = receipts["tensor_scaling_status"]
     full_trace_after_stress = receipts["full_trace_after_stress"]
 
     runtime_keys = section_keys(source_runtime, "positive")
@@ -198,6 +200,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     scale_basin_keys = section_keys(scale_basin_stability, "positive")
     scale_basin_graveyard = section_keys(scale_basin_stability, "graveyard_companions")
     scale_basin_boundary = section_keys(scale_basin_stability, "boundary")
+    tensor_scaling_keys = section_keys(tensor_scaling_status, "positive")
+    tensor_scaling_graveyard = section_keys(tensor_scaling_status, "graveyard_companions")
+    tensor_scaling_boundary = section_keys(tensor_scaling_status, "boundary")
     full_trace_after_stress_keys = section_keys(full_trace_after_stress, "positive")
     full_trace_after_stress_graveyard = section_keys(full_trace_after_stress, "graveyard_companions")
     full_trace_after_stress_boundary = section_keys(full_trace_after_stress, "boundary")
@@ -271,6 +276,21 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
             ),
             "evidence": sorted(spinor_keys),
             "limit": "supports spinor/twistor-like finite carrier controls; not full twistor theory",
+        },
+        "tensor_scaling_status": {
+            "status": "bounded_tensor_scaling_evidenced_not_final",
+            "pass": bool(
+                tensor_scaling_status.get("all_pass")
+                and "tensor_scaling_receipts_loaded" in tensor_scaling_keys
+                and "l64_chain_classified" in tensor_scaling_keys
+                and "peps_peps3d_chain_classified" in tensor_scaling_keys
+                and "bounded_l64_not_full_convergence" in tensor_scaling_graveyard
+                and "tiny_peps_not_full_environment" in tensor_scaling_graveyard
+                and "robust_phi0_and_scale_basin_still_missing" in tensor_scaling_graveyard
+                and "final_tensor_scaling_not_admitted" in tensor_scaling_boundary
+            ),
+            "evidence": sorted(tensor_scaling_keys | tensor_scaling_graveyard | tensor_scaling_boundary),
+            "limit": "bounded L32/L64/MPS/PEPS/PEPS3D evidence is consolidated; full convergence, full environment contraction, robust Phi0, and scale-basin admission remain blocked",
         },
         "xi_phi0_bridge": {
             "status": "weak_first_rung_open_blocker",
@@ -395,6 +415,7 @@ def requirement_scores(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
         "flux_manifold_binding",
         "axis0_candidate_space",
         "spinor_twistor_carrier",
+        "tensor_scaling_status",
         "xi_phi0_bridge",
         "formal_scout_boundaries",
     ]:
@@ -408,6 +429,8 @@ def requirement_scores(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
             values.append(candidate)
         elif status == "weak_first_rung_open_blocker":
             values.append(weak_first_rung)
+        elif status == "bounded_tensor_scaling_evidenced_not_final":
+            values.append(0.58)
         elif status == "open_blocker":
             values.append(open_blocker)
         else:
@@ -436,6 +459,8 @@ def z3_completion_fence(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
     xi_closed = z3.Bool("xi_closed")
     full_runtime_closed = z3.Bool("full_runtime_closed")
     final_manifold_admitted = z3.Bool("final_manifold_admitted")
+    tensor_scaling_evidenced = z3.Bool("tensor_scaling_evidenced")
+    final_tensor_scaling_closed = z3.Bool("final_tensor_scaling_closed")
     goal_complete = z3.Bool("goal_complete")
 
     facts = {
@@ -443,9 +468,11 @@ def z3_completion_fence(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
         flux_classified: rows["flux_manifold_binding"]["pass"],
         axis0_tested: rows["axis0_candidate_space"]["pass"],
         spinor_useful: rows["spinor_twistor_carrier"]["pass"],
+        tensor_scaling_evidenced: rows["tensor_scaling_status"]["pass"],
         formal_only: rows["formal_scout_boundaries"]["pass"],
         xi_closed: False,
         full_runtime_closed: False,
+        final_tensor_scaling_closed: False,
         final_manifold_admitted: False,
     }
     for var, value in facts.items():
@@ -458,9 +485,11 @@ def z3_completion_fence(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
             flux_classified,
             axis0_tested,
             spinor_useful,
+            tensor_scaling_evidenced,
             formal_only,
             xi_closed,
             full_runtime_closed,
+            final_tensor_scaling_closed,
             final_manifold_admitted,
         )
     )
@@ -473,7 +502,7 @@ def z3_completion_fence(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
     progress = z3.Solver()
     for assertion in s.assertions():
         progress.add(assertion)
-    progress.add(runtime_clean, flux_classified, axis0_tested, spinor_useful, formal_only)
+    progress.add(runtime_clean, flux_classified, axis0_tested, spinor_useful, tensor_scaling_evidenced, formal_only)
 
     return {
         "pass": premature.check() == z3.unsat and progress.check() == z3.sat,
@@ -482,6 +511,7 @@ def z3_completion_fence(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
         "blocked_literals": {
             "xi_closed": False,
             "full_runtime_closed": False,
+            "final_tensor_scaling_closed": False,
             "final_manifold_admitted": False,
         },
     }
@@ -552,6 +582,7 @@ def main() -> int:
             "pass": True,
             "ordered_next_gaps": [
                 "close or kill a stronger Xi -> rho_AB -> Phi0 construction",
+                "convert bounded tensor-scaling status into a stronger convergence or environment-contraction falsifier",
                 "extend source-aligned runtime toward full coupled terrain/operator/axis dynamics under the audit freeze",
                 "only then revisit final manifold/basin admission boundaries",
             ],
@@ -584,6 +615,7 @@ def main() -> int:
     }
     open_gaps = [
         "final Xi/Phi0 remains open; current stronger evidence is weak bounded first-rung only",
+        "tensor scaling is consolidated as bounded L32/L64/MPS/PEPS/PEPS3D evidence but final convergence and full environment contraction remain open",
         "full coupled source-aligned runtime remains open beyond bounded E16 first-rung evidence",
         "final manifold/basin admission remains blocked",
     ]

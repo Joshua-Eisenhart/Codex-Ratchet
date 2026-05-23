@@ -92,7 +92,10 @@ def count_by(rows: list[dict[str, Any]], key: str) -> dict[str, int]:
 
 def main() -> int:
     started = time.time()
-    receipt_paths = sorted(RECEIPTS.glob("*.json"))
+    all_json_paths = sorted(RECEIPTS.glob("*.json"))
+    receipt_paths = provider_validator.receipt_candidate_paths(RECEIPTS)
+    receipt_path_set = set(receipt_paths)
+    sidecar_paths = [path for path in all_json_paths if path not in receipt_path_set]
     rows: list[dict[str, Any]] = []
     for path in receipt_paths:
         data = read_json(path)
@@ -145,7 +148,14 @@ def main() -> int:
         "provider_receipts_loaded": {
             "pass": len(rows) > 0,
             "receipt_count": len(rows),
+            "skipped_sidecar_count": len(sidecar_paths),
             "receipt_root": rel(RECEIPTS),
+        },
+        "provider_sidecars_excluded_from_candidate_set": {
+            "pass": len(all_json_paths) >= len(receipt_paths),
+            "candidate_count": len(receipt_paths),
+            "sidecar_count": len(sidecar_paths),
+            "sidecar_samples": [rel(path) for path in sidecar_paths[:10]],
         },
         "normal_provider_schema_validation_clean": {
             "pass": len(normal_failed) == 0,
@@ -240,6 +250,7 @@ def main() -> int:
         "summary": {
             "all_pass": all_pass,
             "receipt_count": len(rows),
+            "skipped_sidecar_count": len(sidecar_paths),
             "normal_pass_count": len(rows) - len(normal_failed),
             "normal_fail_count": len(normal_failed),
             "strict_live_pass_count": len(live_pass),

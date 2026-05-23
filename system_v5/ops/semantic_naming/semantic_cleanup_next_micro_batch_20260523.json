@@ -1,0 +1,65 @@
+{
+  "kind": "semantic_cleanup_next_micro_batch",
+  "generated_at": "2026-05-23T07:29:22Z",
+  "classification": "naming_cleanup_plan_only",
+  "claim_ceiling": "Planning artifact only. Does not rename, admit, demote, promote, or execute any sim.",
+  "source_policy": {
+    "guard": "scripts/direct_sim_semantic_guard.py",
+    "advisory_audit": "system_v5/ops/semantic_naming/sim_name_claim_label_audit.json",
+    "bypass_allowed": false,
+    "reason": "Direct executable sim names must describe concrete math objects or calibration cycles, not claim-layer labels."
+  },
+  "prior_plan_status": {
+    "path": "system_v5/ops/semantic_naming/current_sim_cleanup_plan_20260514.json",
+    "status": "stale_under_current_guard",
+    "stale_reason": "At least one proposed rename still contains a current guard-blocked token.",
+    "blocked_proposed_name": "system_v4/probes/sim_signed_kernel_density_bridge_phi0.py",
+    "blocked_labels": [
+      "bridge"
+    ],
+    "still_guard_clean_proposed_names": [
+      "system_v4/probes/sim_finite_cycle_readout_companion_index.py",
+      "system_v4/probes/sim_measurement_record_reset_parameter_sweep.py",
+      "system_v4/probes/sim_su2_so3_double_cover_entropy_gap.py"
+    ]
+  },
+  "current_audit_status": {
+    "path": "system_v5/ops/semantic_naming/sim_name_claim_label_audit.json",
+    "live_matched_after_refresh": true,
+    "source_match_count": 572,
+    "result_match_count": 59,
+    "stage_as_named_artifact_only": true,
+    "do_not_rerun_for_timestamp_only": true
+  },
+  "local_quarantine_note": {
+    "path": "archive/maintenance_quarantine/blocked_probe_repair_spillover_20260523T0730Z/",
+    "tracked_by_git": false,
+    "reason": "Six untracked '* 2.py' source-tree spillover files contained rejected metadata-repair hunks for guard-blocked sims. They were moved out of system_v4/probes rather than deleted or staged."
+  },
+  "selected_micro_batch": {
+    "family": "su2_so3_double_cover_entropy_gap",
+    "reason": "Smallest guard-clean family from the stale May 14 plan; proposed executable basename has no current guard matches.",
+    "old_source": "system_v4/probes/sim_rosetta_su2_so3_double_cover_invariant.py",
+    "new_source": "system_v4/probes/sim_su2_so3_double_cover_entropy_gap.py",
+    "old_result": "system_v4/probes/a2_state/sim_results/sim_rosetta_su2_so3_double_cover_invariant_results.json",
+    "new_result": "system_v4/probes/a2_state/sim_results/sim_su2_so3_double_cover_entropy_gap_results.json",
+    "expected_guard_labels_after_rename": []
+  },
+  "required_named_paths_for_next_patch": [
+    "system_v4/probes/sim_rosetta_su2_so3_double_cover_invariant.py",
+    "system_v4/probes/sim_su2_so3_double_cover_entropy_gap.py",
+    "system_v4/probes/a2_state/sim_results/sim_rosetta_su2_so3_double_cover_invariant_results.json",
+    "system_v4/probes/a2_state/sim_results/sim_su2_so3_double_cover_entropy_gap_results.json",
+    "system_v5/ops/wizard_admissions/sim_rosetta_su2_so3_double_cover_invariant.json",
+    "system_v5/ops/wizard_admission_receipts/sim_rosetta_su2_so3_double_cover_invariant_admission_artifact.json",
+    "system_v5/evidence/sim_inventory_index.json",
+    "system_v5/docs/SIM_INVENTORY_INDEX.md"
+  ],
+  "blockers": [
+    "Do not stage any broad system_v4/probes metadata-repair tail by accident.",
+    "Do not use the direct-sim semantic guard bypass.",
+    "Patch must update source/result names plus direct loaders and indexes in one named-path change.",
+    "Run only the selected renamed sim and its narrow inventory/admission checks before staging."
+  ],
+  "next_admissible_step": "Patch only the selected rosetta-to-SU2/SO3 family, rerun that sim through the direct guard, refresh only directly affected inventory/admission artifacts, then stage those named paths separately from formal_scouts."
+}

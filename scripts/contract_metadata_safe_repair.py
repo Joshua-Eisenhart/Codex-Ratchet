@@ -27,6 +27,7 @@ from pathlib import Path
 from typing import Any
 
 import adaptive_controller
+import direct_sim_semantic_guard
 import lint_sim_contract
 
 
@@ -202,6 +203,18 @@ def metadata_block(actions: list[dict[str, Any]]) -> str:
 def repair_plan(path: Path) -> dict[str, Any]:
     tree = parse(path)
     rel = str(path.relative_to(ROOT))
+    guard_labels = direct_sim_semantic_guard.matched_claim_labels(path.stem)
+    if guard_labels:
+        return {
+            "sim": rel,
+            "actions": [],
+            "blocked": ["direct_sim_semantic_guard_name_blocked"],
+            "matched_claim_labels": guard_labels,
+            "reason": (
+                "Rename or quarantine this executable sim before applying mechanical "
+                "metadata repair; claim-layer basenames must not be made stageable."
+            ),
+        }
     if tree is None:
         return {"sim": rel, "actions": [], "blocked": ["parse_error"]}
     assigns = lint_sim_contract._module_level_assignments(tree)  # noqa: SLF001

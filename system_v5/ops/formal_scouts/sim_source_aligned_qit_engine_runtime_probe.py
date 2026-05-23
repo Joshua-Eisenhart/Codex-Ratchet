@@ -206,6 +206,55 @@ def main() -> int:
     }
     z3_gate = z3_nonpromotion_gate(checks, raw_path_witness)
     all_pass = all(checks.values()) and z3_gate["status"] == "sat" and z3_gate["final_admission"] is True
+    positive = {
+        "source_aligned_engines_run": {
+            "pass": checks["source_aligned_engines_run"],
+            "summary": "both Type 1 and Type 2 source-aligned one-qubit engines produce valid final densities",
+        },
+        "source_aligned_engines_converge": {
+            "pass": checks["source_aligned_engines_converge"],
+            "summary": "both engines settle below the finite last-cycle drift threshold",
+        },
+        "source_aligned_engines_are_distinct": {
+            "pass": checks["source_aligned_engines_are_distinct"],
+            "T1_T2_final_fro": t_gap,
+        },
+        "schedule_order_matters": {
+            "pass": checks["schedule_order_matters"],
+            "schedule_T1T2_vs_T2T1_fro": order_gap,
+        },
+        "terrain_realization_count_is_8": {
+            "pass": checks["terrain_realization_count_is_8"],
+            "summary": "the runtime sees all eight sheet-specific terrain realizations",
+        },
+    }
+    graveyard_companions = {
+        "old_perception_l_table_not_source_terrain_law": {
+            "pass": checks["old_perception_l_table_is_not_source_terrain_law"],
+            "old_perception_l_table": old_l_table,
+            "summary": "older one-L-matrix-per-perception replay is preserved as boundary evidence, not accepted as source terrain law",
+        },
+        "raw_fiber_base_xor_killed_for_type2": {
+            "pass": checks["raw_fiber_base_xor_fails_type2_as_expected"],
+            "summary": "raw geometry path is not the A6 XOR sign source because Type 2 swaps fiber/base chart roles",
+        },
+    }
+    boundary = {
+        "a6_chart_role_xor_passes": {
+            "pass": checks["a6_chart_role_xor_passes"],
+            "summary": "b6=-b0*b3 is evaluated against chart role inner/outer, not raw fiber/base path identity",
+        },
+        "z3_nonpromotion_gate": {
+            "pass": z3_gate["status"] == "sat"
+            and z3_gate["tensor_network_admitted"] is False
+            and z3_gate["canonical_replacement_admitted"] is False,
+            "gate": z3_gate,
+        },
+        "formal_scout_only": {
+            "pass": PROMOTION_ALLOWED is False and "Formal scout only" in CLAIM_CEILING,
+            "summary": "does not admit final Axis0, tensor-network runtime, scale-level basin, or canonical replacement claims",
+        },
+    }
 
     result = {
         "name": NAME,
@@ -216,8 +265,25 @@ def main() -> int:
         "claim_ceiling": CLAIM_CEILING,
         "all_pass": all_pass,
         "checks": checks,
+        "positive": positive,
+        "graveyard_companions": graveyard_companions,
+        "boundary": boundary,
+        "nearby_variants": {
+            "passed": sum(1 for value in checks.values() if value),
+            "total": len(checks),
+            "items": sorted(checks),
+        },
+        "why_not_v4_probes": (
+            "Earlier v4 and old-runtime probes replayed PERCEPTION_L_MATRICES or "
+            "older channel boundaries. This scout runs the source-aligned "
+            "A0/A1/A2 terrain square, eight sheet-specific terrain realizations, "
+            "and chart-role A6 XOR in a torch-native one-qubit engine runtime."
+        ),
+        "blockers": [],
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "runtime_seconds": time.time() - started,
         "source_files": {
             "probe": rel(pathlib.Path(__file__).resolve()),

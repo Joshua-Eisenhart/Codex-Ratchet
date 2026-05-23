@@ -668,15 +668,28 @@ def negative_control_section(sections: dict[str, Any]) -> dict[str, Any]:
     }
 
     fired = sum(1 for v in rows.values() if v["pass"])
+    independent_rows = {k: v for k, v in rows.items() if v.get("control_type") != "relay_of_constructive_gate"}
+    relay_rows = {k: v for k, v in rows.items() if v.get("control_type") == "relay_of_constructive_gate"}
+    independent_fired = sum(1 for v in independent_rows.values() if v["pass"])
+    relay_fired = sum(1 for v in relay_rows.values() if v["pass"])
     return {
         "rows": rows,
         "fired_count": fired,
         "rows_total": len(rows),
+        "independent_fired_count": independent_fired,
+        "independent_rows_total": len(independent_rows),
+        "relay_fired_count": relay_fired,
+        "relay_rows_total": len(relay_rows),
         "all_negative_controls_fired_as_expected": fired == len(rows),
         "audit_signal_rows": [
             k for k, v in rows.items() if v["expected_to_fail"] and not v["pass"]
         ],
-        "pass": fired == len(rows),
+        "audit_note": (
+            "Round-2-audit-fix: scout pass uses independent_fired_count "
+            "(excluding rows with control_type='relay_of_constructive_gate'). "
+            "fired_count is kept for backward compat but is inflated by relays."
+        ),
+        "pass": independent_fired == len(independent_rows),
     }
 
 

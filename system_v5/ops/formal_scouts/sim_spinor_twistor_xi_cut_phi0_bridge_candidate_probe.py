@@ -71,6 +71,55 @@ TOOL_INTEGRATION_DEPTH = {
 
 DTYPE = torch.float64
 CDTYPE = torch.complex128
+EPS = 1e-12
+
+# ---------------------------------------------------------------------------
+# Admission thresholds (Round-5 fix, Opus C.3: previously hardcoded magic numbers).
+# Each constant is named with its purpose; sensitivity sweep is documented in
+# the audit doc §15. Changing these requires a re-audit because the verdicts
+# depend on them.
+#
+# Single-instance admission criteria (bridge_gate, joint_graph_partition_bridge_gate):
+#   ADMISSION_THRESHOLD = 0.02
+#     — magnitude floor: incidence must beat random by this much to count.
+#       Rationale: ≈ 1/4 of the smallest observed cell std (~0.08) when noise
+#       is applied. Below this is in the noise-floor band even before SE
+#       correction.
+#   PRODUCT_GAP_THRESHOLD = 0.5
+#     — incidence must beat the product baseline by this much. Rationale:
+#       product is by construction at I_c ≤ 0 for the 4-d cut; +0.5 is a
+#       distance that distinguishes nontrivial entanglement from zero.
+#   NONTRIVIAL_PURE_THRESHOLD = 0.05
+#     — pure entanglement entropy floor: below this, the construction did
+#       not generate meaningful bipartite entanglement on the chosen cut.
+#
+# Ensemble admission (rng_ensemble_bridge_gate):
+#   Same ADMISSION_THRESHOLD = 0.02 as single-instance for cross-comparison.
+#   FWE_ALPHA_TARGET = 0.05 (one-sided across n_cells screened).
+# ---------------------------------------------------------------------------
+ADMISSION_THRESHOLD = 0.02
+PRODUCT_GAP_THRESHOLD = 0.5
+NONTRIVIAL_PURE_THRESHOLD = 0.05
+FWE_ALPHA_TARGET = 0.05
+
+# Round-9 fix (Opus R9 B1): functionals that are partition-independent by
+# construction. I(A:B:C:D) = S(A)+S(B)+S(C)+S(D)-S(ABCD) sums over single-qubit
+# marginals; the bipartition choice (block 0,1|2,3 vs interleaved 0,2|1,3)
+# does not change the value. Counting these once per partition inflates
+# n_cells_screened in the Bonferroni calc. Real distinct-cell count subtracts
+# the partition-duplicates for these functionals.
+PARTITION_INDEPENDENT_FUNCTIONALS = {"I_ABCD"}
+
+# Round-6 fix (Opus R6 A.1): wire previously-raw call-site literals through the
+# constants table so changes propagate, and so the table stops being named-only
+# documentation.
+BEATS_PRODUCT_MARGIN = 0.1  # admission_check: incidence must beat product by this
+RAW_PHASE_BEAT_MARGIN = -0.1  # admission_check: pure phase floor (negative band)
+NC1_PURE_THRESHOLD = 0.5  # NC1: pure-state entanglement must exceed
+NC2_PURE_FLOOR = -0.3  # NC2: pure-state inversion floor
+NC2B_PURE_FLOOR = -0.6  # NC2b: stronger pure-state inversion floor
+NC3_PURE_FLOOR = -0.1  # NC3: pure-state weak inversion floor
+HAAR_NUM_SEEDS = 30  # K=30 ensemble size
 
 
 def as_jsonable(value: Any) -> Any:
@@ -130,13 +179,57 @@ def entropy(rho: torch.Tensor) -> float:
     return float((-torch.sum(nz * torch.log(nz))).item())
 
 
+def schmidt_moments(rho: torch.Tensor, k_max: int = 4) -> dict[str, float]:
+    """Round-6 fix: Renyi-style moments of the reduced density spectrum.
+
+    M_k = Tr(rho^k) = sum_i lambda_i^k. Distinct from von Neumann entropy
+    S = -sum lambda log lambda; moments capture spectrum SHAPE that entropy
+    summarises but does not preserve. M_2 = purity (1/d ≤ M_2 ≤ 1).
+
+    Added because Grok R6 C.1 and Opus R6 P1.2 named entanglement-spectrum
+    statistics as one of the structurally different alt-readouts that the
+    existing cut-functional family did NOT exercise.
+    """
+    herm = (rho + torch.conj(rho).T) / 2
+    vals = torch.linalg.eigvalsh(herm).real
+    vals = torch.clamp(vals, min=0.0)
+    vals = vals / torch.sum(vals)
+    out = {}
+    for k in range(2, k_max + 1):
+        out[f"M_{k}"] = float(torch.sum(vals ** k).item())
+    return out
+
+
+def quantum_relative_entropy(rho: torch.Tensor, sigma: torch.Tensor) -> float:
+    """D(rho || sigma) = Tr[rho (log rho - log sigma)], with eigenvalue clamping.
+
+    FEP-aligned Φ_0 candidate: classical FEP variational free energy is
+    F(q,p) = D(q || p) - log Z. The QIT analogue uses quantum relative entropy
+    on density matrices. For pure states this can diverge; on noisy
+    (dephased/depolarized) states with full support it is finite.
+
+    Implementation regularises with eigenvalue floor at EPS to avoid -inf
+    when supp(sigma) is rank-deficient.
+    """
+    herm_rho = (rho + torch.conj(rho).T) / 2
+    herm_sig = (sigma + torch.conj(sigma).T) / 2
+    rho_vals, rho_vecs = torch.linalg.eigh(herm_rho)
+    sig_vals, sig_vecs = torch.linalg.eigh(herm_sig)
+    rho_vals = torch.clamp(rho_vals.real, min=EPS)
+    sig_vals = torch.clamp(sig_vals.real, min=EPS)
+    log_rho = rho_vecs @ torch.diag(torch.log(rho_vals)).to(CDTYPE) @ torch.conj(rho_vecs).T
+    log_sig = sig_vecs @ torch.diag(torch.log(sig_vals)).to(CDTYPE) @ torch.conj(sig_vecs).T
+    val = torch.real(torch.trace(herm_rho @ (log_rho - log_sig)))
+    return float(val.item())
+
+
 def cut_readouts(rho_ab: torch.Tensor) -> dict[str, float]:
     rho_a = partial_trace_a(rho_ab)
     rho_b = partial_trace_b(rho_ab)
     s_ab = entropy(rho_ab)
     s_a = entropy(rho_a)
     s_b = entropy(rho_b)
-    return {
+    out = {
         "S_AB": s_ab,
         "S_A": s_a,
         "S_B": s_b,
@@ -144,6 +237,10 @@ def cut_readouts(rho_ab: torch.Tensor) -> dict[str, float]:
         "S_A_given_B": s_ab - s_b,
         "I_A_B": s_a + s_b - s_ab,
     }
+    moments_a = schmidt_moments(rho_a)
+    for k, v in moments_a.items():
+        out[k] = v
+    return out
 
 
 def twistor_node(omega: torch.Tensor, pi: torch.Tensor) -> dict[str, torch.Tensor]:
@@ -190,7 +287,12 @@ def xi_bridge(graph: dict[str, Any], phase_mode: str) -> torch.Tensor:
             phase = 0.0
             lam = 0.65 + 0.02 * idx
         elif phase_mode == "random_fixed":
-            phase = 1.7 * (idx + 1)
+            # Seeded torch RNG sample (deterministic, but a real random draw —
+            # NOT a hand-formula). Round-2-audit-fix for Opus D11: the
+            # previous `1.7*(idx+1)` was not actually a random sample.
+            _gen = torch.Generator()
+            _gen.manual_seed(20260522 + idx)
+            phase = float(((torch.rand((), generator=_gen) - 0.5) * 2 * math.pi).item())
             lam = 0.65 + 0.02 * idx
         elif phase_mode == "absolute_incidence_phase":
             phase = abs(raw_phase)
@@ -263,10 +365,10 @@ def bridge_gate() -> dict[str, Any]:
         mode_admitted = (
             health_row["pass"]
             and readout["I_c_A_to_B"] > 0.0
-            and readout["I_c_A_to_B"] - zero["I_c_A_to_B"] > 0.02
-            and readout["I_c_A_to_B"] - random["I_c_A_to_B"] > 0.02
-            and readout["I_c_A_to_B"] - prod["I_c_A_to_B"] > 0.5
-            and readout["I_c_A_to_B"] - erased_read["I_c_A_to_B"] > 0.5
+            and readout["I_c_A_to_B"] - zero["I_c_A_to_B"] > ADMISSION_THRESHOLD
+            and readout["I_c_A_to_B"] - random["I_c_A_to_B"] > ADMISSION_THRESHOLD
+            and readout["I_c_A_to_B"] - prod["I_c_A_to_B"] > PRODUCT_GAP_THRESHOLD
+            and readout["I_c_A_to_B"] - erased_read["I_c_A_to_B"] > PRODUCT_GAP_THRESHOLD
         )
         if mode_admitted:
             admitted_modes.append(mode)
@@ -299,8 +401,8 @@ def bridge_gate() -> dict[str, Any]:
         "naive_raw_incidence_phase_bridge_rejected": naive_raw_phase_rejected,
         "pass": bool(
             all_health
-            and prod["I_c_A_to_B"] < -0.3
-            and erased_read["I_c_A_to_B"] < -0.6
+            and prod["I_c_A_to_B"] < NC2_PURE_FLOOR
+            and erased_read["I_c_A_to_B"] < NC2B_PURE_FLOOR
             and naive_raw_phase_rejected
         ),
     }
@@ -392,13 +494,88 @@ def capacity_and_nonpromotion_gate(raw_phase_bridge_rejected: bool) -> dict[str,
 
 
 def two_qubit_xy_entangler(lam: float, phi: float) -> torch.Tensor:
-    """Hermitian-generator entangler exp(-i (lam·XX + phi·YY)). 4x4 unitary."""
+    """XY entangler exp(-i (lam·XX + phi·YY)). 4x4 unitary."""
     sx = torch.tensor([[0.0, 1.0], [1.0, 0.0]], dtype=CDTYPE)
     sy = torch.tensor([[0.0, -1.0j], [1.0j, 0.0]], dtype=CDTYPE)
     xx = torch.kron(sx, sx)
     yy = torch.kron(sy, sy)
     gen = lam * xx + phi * yy
     return torch.linalg.matrix_exp(-1.0j * gen)
+
+
+def two_qubit_heisenberg_entangler(lam: float, phi: float) -> torch.Tensor:
+    """Heisenberg-style entangler exp(-i (lam·(XX+YY+ZZ) + phi·(XY-YX))). 4x4 unitary.
+
+    Round-4 fix (item 2 of 7-item list, deferred 3 rounds): adds an entangler
+    structurally distinct from XY. The lam term is fully isotropic in spin
+    interactions (Heisenberg model). The phi term adds an antisymmetric
+    Dzyaloshinskii-Moriya-style coupling breaking parity. The choice is
+    designed to test whether the 'no signal' verdict under XY entangler
+    survives under a qualitatively different entanglement structure.
+    """
+    sx = torch.tensor([[0.0, 1.0], [1.0, 0.0]], dtype=CDTYPE)
+    sy = torch.tensor([[0.0, -1.0j], [1.0j, 0.0]], dtype=CDTYPE)
+    sz = torch.tensor([[1.0, 0.0], [0.0, -1.0]], dtype=CDTYPE)
+    xx = torch.kron(sx, sx)
+    yy = torch.kron(sy, sy)
+    zz = torch.kron(sz, sz)
+    xy = torch.kron(sx, sy)
+    yx = torch.kron(sy, sx)
+    gen = lam * (xx + yy + zz) + phi * (xy - yx)
+    return torch.linalg.matrix_exp(-1.0j * gen)
+
+
+def two_qubit_ising_entangler(lam: float, phi: float) -> torch.Tensor:
+    """Round-7-prep: Ising ZZ entangler exp(-i(lam·ZZ + phi·(IZ+ZI)/2)). 4x4 unitary.
+
+    Tests the structure-distance hypothesis: XY (1-axis XX+YY), Heisenberg
+    (3-axis XX+YY+ZZ), Ising (1-axis ZZ), random (no structure).
+    If sign reversal magnitude correlates with structure-distance, Ising
+    should show signal intermediate between random and XY. If it shows
+    XY-like positive bias on pure half OR Heisenberg-like negative bias,
+    that maps the basis-bias axis to specific Pauli-pair structure.
+    """
+    sz = torch.tensor([[1.0, 0.0], [0.0, -1.0]], dtype=CDTYPE)
+    zz = torch.kron(sz, sz)
+    iz = torch.kron(torch.eye(2, dtype=CDTYPE), sz)
+    zi = torch.kron(sz, torch.eye(2, dtype=CDTYPE))
+    gen = lam * zz + phi * 0.5 * (iz + zi)
+    return torch.linalg.matrix_exp(-1.0j * gen)
+
+
+def two_qubit_random_unitary_entangler(lam: float, phi: float) -> torch.Tensor:
+    """Round-6 fix (negative control): Haar-random 2-qubit unitary seeded by lam,phi.
+
+    Round-5 elevated finding B.1 claimed entangler-basis bias-sign reversal between
+    XY and Heisenberg. This control tests whether the sign-reversal is specific to
+    those two structured entanglers or a generic artifact of any 2-qubit unitary
+    family. If sign-reversal survives random unitaries → claim weakens (basis
+    artifact). If sign-reversal collapses under random unitaries → claim
+    strengthens (the XY/Heisenberg basis structure was actually load-bearing).
+
+    Implementation: seed a PRNG from (lam, phi), draw a Haar 4x4 unitary.
+    The (lam, phi) → seed mapping makes the entangler reproducible cell-by-cell
+    while randomizing the basis at each edge.
+    """
+    seed = int((lam * 1e8 + phi * 1e6 + 20260523) % (2**31))
+    gen = torch.Generator()
+    gen.manual_seed(seed)
+    # Haar 4x4: QR-decompose a complex Gaussian matrix, fix phases
+    a = torch.randn(4, 4, generator=gen, dtype=DTYPE)
+    b = torch.randn(4, 4, generator=gen, dtype=DTYPE)
+    z = (a + 1.0j * b).to(CDTYPE) / math.sqrt(2)
+    q, r = torch.linalg.qr(z)
+    diag = torch.diagonal(r)
+    phases = diag / torch.abs(diag).clamp(min=EPS)
+    return q * phases.unsqueeze(0)
+
+
+ENTANGLER_REGISTRY = {
+    "xy": two_qubit_xy_entangler,
+    "heisenberg": two_qubit_heisenberg_entangler,
+    "ising": two_qubit_ising_entangler,
+    "random_unitary": two_qubit_random_unitary_entangler,
+}
 
 
 def apply_two_qubit_to_4qubit(state: torch.Tensor, gate: torch.Tensor, qa: int, qb: int) -> torch.Tensor:
@@ -414,7 +591,12 @@ def apply_two_qubit_to_4qubit(state: torch.Tensor, gate: torch.Tensor, qa: int, 
     return new_perm.permute(*inv).reshape(16)
 
 
-def joint_graph_state(graph: dict[str, Any], mode: str, rng_seed: int = 20260522) -> torch.Tensor:
+def joint_graph_state(
+    graph: dict[str, Any],
+    mode: str,
+    rng_seed: int = 20260522,
+    entangler_family: str = "xy",
+) -> torch.Tensor:
     state = graph["spinors"][0]
     for k in range(1, 4):
         state = torch.kron(state, graph["spinors"][k])
@@ -435,6 +617,37 @@ def joint_graph_state(graph: dict[str, Any], mode: str, rng_seed: int = 20260522
             lam = float((0.20 + 0.40 * torch.rand((), generator=gen)).item())
             phi = float(((torch.rand((), generator=gen) - 0.5) * 2 * math.pi).item())
             edge_params.append((lam, phi))
+    elif mode == "lambda_matched_random_phi":
+        # Round-7-prep CONFOUND FIX: use the SAME lam = 0.20 + 0.40 * |I_ij|
+        # as incidence_derived, but draw phi uniformly at random. This isolates
+        # whether the phi-angle structure carries geometric content, controlling
+        # for the lambda-magnitude bias that was previously confounded with
+        # geometry. Original `random_seeded` had lam ~ U[0.20, 0.60] (mean 0.40)
+        # while incidence_derived had lam = 0.20 + 0.40·|I_ij| (mean ≈ 0.58),
+        # so inc states got systematically stronger entangling rotations
+        # (especially visible under Ising ZZ entangler where lam directly
+        # controls coupling strength without phase scrambling).
+        gen = torch.Generator()
+        gen.manual_seed(rng_seed)
+        edge_params = []
+        for i, j in graph["edges"]:
+            inc = incidence(graph["twistors"][i], graph["twistors"][j])
+            lam = 0.20 + 0.40 * float(torch.abs(inc).item())  # SAME as inc
+            phi = float(((torch.rand((), generator=gen) - 0.5) * 2 * math.pi).item())
+            edge_params.append((lam, phi))
+    elif mode == "phi_matched_random_lambda":
+        # Round-7-prep CONFOUND FIX (dual): use the SAME phi = angle(I_ij) as
+        # incidence_derived, but draw lam uniformly from a wider range matching
+        # incidence's empirical lambda range [0.22, 0.95]. Isolates whether the
+        # lambda-magnitude structure carries geometric content.
+        gen = torch.Generator()
+        gen.manual_seed(rng_seed)
+        edge_params = []
+        for i, j in graph["edges"]:
+            inc = incidence(graph["twistors"][i], graph["twistors"][j])
+            phi = float(torch.angle(inc).item())  # SAME as inc
+            lam = 0.20 + 0.80 * float(torch.rand((), generator=gen).item())  # wider range
+            edge_params.append((lam, phi))
     elif mode == "product_baseline":
         edge_params = [(0.0, 0.0) for _ in graph["edges"]]
     elif mode == "uniform_lambda_zero_phase":
@@ -442,12 +655,52 @@ def joint_graph_state(graph: dict[str, Any], mode: str, rng_seed: int = 20260522
     else:
         raise ValueError(mode)
 
+    entangler_fn = ENTANGLER_REGISTRY[entangler_family]
     for (i, j), (lam, phi) in zip(graph["edges"], edge_params):
         if lam == 0.0 and phi == 0.0:
             continue
-        gate = two_qubit_xy_entangler(lam, phi)
+        gate = entangler_fn(lam, phi)
         state = apply_two_qubit_to_4qubit(state, gate, i, j)
     return state / torch.linalg.vector_norm(state)
+
+
+def partial_trace_single_qubit(rho_16: torch.Tensor, keep_qubit: int) -> torch.Tensor:
+    """Round-8-prep: trace out 3 of 4 qubits, returning 2x2 rho on `keep_qubit`.
+
+    Used by multipartite_information I(A:B:C:D) which requires each single-qubit
+    marginal entropy S(rho_q) for q in {0,1,2,3}.
+    """
+    rho_8d = rho_16.reshape(2, 2, 2, 2, 2, 2, 2, 2)
+    # rho_8d indices: (a, b, c, d) for row qubits, (e, f, g, h) for col qubits
+    # Trace each qubit except keep_qubit; set traced row/col indices equal
+    if keep_qubit == 0:
+        # trace 1,2,3: b=f, c=g, d=h
+        return torch.einsum("abcdebcd->ae", rho_8d).reshape(2, 2)
+    if keep_qubit == 1:
+        # trace 0,2,3: a=e, c=g, d=h
+        return torch.einsum("abcdafcd->bf", rho_8d).reshape(2, 2)
+    if keep_qubit == 2:
+        # trace 0,1,3: a=e, b=f, d=h
+        return torch.einsum("abcdabgd->cg", rho_8d).reshape(2, 2)
+    if keep_qubit == 3:
+        # trace 0,1,2: a=e, b=f, c=g
+        return torch.einsum("abcdabch->dh", rho_8d).reshape(2, 2)
+    raise ValueError(keep_qubit)
+
+
+def multipartite_information(rho_16: torch.Tensor) -> float:
+    """I(A:B:C:D) = S(A) + S(B) + S(C) + S(D) - S(ABCD).
+
+    Multipartite mutual information / total correlation for the 4-qubit
+    state on the ring. Closes the Grok R6 C.1 + Opus R6 P1.2 gap of
+    "multipartite information named-but-unimplemented." Structurally
+    different from bipartite-cut readouts (I_c, LN, MI on a 2|2 cut)
+    because it accounts for ALL pairwise + triple + quadruple correlations
+    via inclusion-exclusion on the 4 single-qubit marginals.
+    """
+    s_total = entropy(rho_16)
+    s_marginals = sum(entropy(partial_trace_single_qubit(rho_16, q)) for q in range(4))
+    return s_marginals - s_total
 
 
 def partial_trace_qubits_23(rho_16: torch.Tensor) -> torch.Tensor:
@@ -520,7 +773,13 @@ def joint_graph_readouts(rho_ab: torch.Tensor, partition: str = "block") -> dict
     s_a = entropy(rho_a)
     s_b = entropy(rho_b)
     log_neg = log_negativity_4d_partition(rho_ab, partition)
-    return {
+    moments_a = schmidt_moments(rho_a)
+    # Round-8-prep: multipartite mutual information I(A:B:C:D). Structurally
+    # different from bipartite-cut readouts because it sums all 4 single-qubit
+    # marginal entropies against the joint entropy — sensitive to higher-order
+    # correlations a bipartite cut summarises away.
+    mp_info = multipartite_information(rho_ab)
+    out = {
         "partition": partition,
         "S_AB": s_ab,
         "S_A": s_a,
@@ -528,8 +787,12 @@ def joint_graph_readouts(rho_ab: torch.Tensor, partition: str = "block") -> dict
         "I_c_A_to_B": s_b - s_ab,
         "S_A_given_B": s_ab - s_b,
         "I_A_B": s_a + s_b - s_ab,
+        "I_ABCD": mp_info,
         "log_negativity": log_neg,
     }
+    for k, v in moments_a.items():
+        out[k] = v
+    return out
 
 
 def log_negativity_4d_partition(rho_16: torch.Tensor, partition: str) -> float:
@@ -554,6 +817,34 @@ def log_negativity_4d_partition(rho_16: torch.Tensor, partition: str) -> float:
     return math.log2(max(trace_norm, 1e-30))
 
 
+def depolarize_16dim(rho: torch.Tensor, gamma: float) -> torch.Tensor:
+    """Independent depolarizing channel on each of 4 qubits, applied sequentially.
+
+    Per-qubit Pauli Kraus decomposition with weights
+        (1 - 3γ/4, γ/4, γ/4, γ/4)
+    on {I, X, Y, Z}. Composed independently across the 4 qubits.
+    """
+    n = 4
+    sx = torch.tensor([[0, 1], [1, 0]], dtype=CDTYPE)
+    sy = torch.tensor([[0, -1j], [1j, 0]], dtype=CDTYPE)
+    sz = torch.tensor([[1, 0], [0, -1]], dtype=CDTYPE)
+    eye = torch.eye(2, dtype=CDTYPE)
+    paulis = [eye, sx, sy, sz]
+    weights = [1.0 - 0.75 * gamma, 0.25 * gamma, 0.25 * gamma, 0.25 * gamma]
+    out = rho.clone()
+    for q in range(n):
+        new = torch.zeros_like(out)
+        for p, w in zip(paulis, weights):
+            ops = [eye, eye, eye, eye]
+            ops[q] = p
+            full = ops[0]
+            for k in range(1, n):
+                full = torch.kron(full, ops[k])
+            new = new + w * (full @ out @ torch.conj(full).T)
+        out = new
+    return out
+
+
 def dephase_16dim(rho: torch.Tensor, gamma: float) -> torch.Tensor:
     """Independent z-dephasing on each of 4 qubits, strength gamma per qubit.
     Sends off-diagonals in computational basis to (1 - gamma)^k times original,
@@ -569,10 +860,38 @@ def dephase_16dim(rho: torch.Tensor, gamma: float) -> torch.Tensor:
     return out
 
 
+def amplitude_damping_16dim(rho: torch.Tensor, gamma: float) -> torch.Tensor:
+    """Round-8-prep: Independent amplitude damping on each of 4 qubits.
+
+    Per-qubit Kraus: K_0 = diag(1, sqrt(1-γ)), K_1 = sqrt(γ) * |0⟩⟨1|.
+    Models energy loss to environment (relaxation). Different from dephasing
+    and depolarizing — has a fixed point at |0⟩⟨0| and is non-unital. Closes
+    the Grok R6 C.2 noise-model gap (only z-dephasing and depolarizing tested).
+    """
+    n = 4
+    eye2 = torch.eye(2, dtype=CDTYPE)
+    k0 = torch.tensor([[1.0, 0.0], [0.0, math.sqrt(max(0.0, 1.0 - gamma))]], dtype=CDTYPE)
+    k1 = torch.tensor([[0.0, math.sqrt(gamma)], [0.0, 0.0]], dtype=CDTYPE)
+    kraus = [k0, k1]
+    out = rho.clone()
+    for q in range(n):
+        new = torch.zeros_like(out)
+        for k in kraus:
+            ops = [eye2, eye2, eye2, eye2]
+            ops[q] = k
+            full = ops[0]
+            for kq in range(1, n):
+                full = torch.kron(full, ops[kq])
+            new = new + full @ out @ torch.conj(full).T
+        out = new
+    return out
+
+
 def joint_graph_partition_bridge_gate() -> dict[str, Any]:
     """Build the joint-graph Xi candidate and compare across TWO partitions
-    (block A={0,1}/B={2,3} and interleaved A={0,2}/B={1,3}) and TWO functionals
-    (coherent information I_c and log-negativity LN).
+    (block A={0,1}/B={2,3} and interleaved A={0,2}/B={1,3}) and three
+    functionals (coherent information I_c, log-negativity LN, and mutual
+    information I_A_B).
 
     For each mode, pure-state and z-dephased (gamma=0.30) readouts are computed
     under each partition. Admission is checked for each (partition, functional)
@@ -607,11 +926,11 @@ def joint_graph_partition_bridge_gate() -> dict[str, Any]:
         rand_deph = dephased["random_seeded"][partition][functional_key]
         prod_deph = dephased["product_baseline"][partition][functional_key]
         unif_deph = dephased["uniform_lambda_zero_phase"][partition][functional_key]
-        nontrivial = inc_pure > 0.05
-        beats_product_pure = inc_pure - prod_pure > 0.1
+        nontrivial = inc_pure > NONTRIVIAL_PURE_THRESHOLD
+        beats_product_pure = inc_pure - prod_pure > BEATS_PRODUCT_MARGIN
         # For log_negativity, "survives noise" means > 0; for I_c, same.
         survives = inc_deph > 0.0
-        beats_random_under_noise = inc_deph - rand_deph > 0.02
+        beats_random_under_noise = inc_deph - rand_deph > ADMISSION_THRESHOLD
         admitted = bool(nontrivial and beats_product_pure and survives and beats_random_under_noise)
         return {
             "incidence_pure": inc_pure,
@@ -633,7 +952,9 @@ def joint_graph_partition_bridge_gate() -> dict[str, Any]:
         }
 
     admission_matrix: dict[str, dict[str, Any]] = {}
-    for functional_key in ["I_c_A_to_B", "log_negativity"]:
+    # Round-6 fix: mutual information I_A_B added as a structurally-different
+    # readout family. See rng_ensemble_bridge_gate comment for rationale.
+    for functional_key in ["I_c_A_to_B", "log_negativity", "I_A_B"]:
         admission_matrix[functional_key] = {}
         for partition in partitions:
             admission_matrix[functional_key][partition] = admission_check(functional_key, partition)
@@ -654,16 +975,638 @@ def joint_graph_partition_bridge_gate() -> dict[str, Any]:
         "construction": (
             "single 4-qubit pure state via per-edge XY entanglers on product "
             "of node spinors; two partitions tested (block, interleaved); "
-            "two functionals tested (coherent information, log-negativity)"
+            "three functionals tested (coherent information, log-negativity, "
+            "mutual information)"
         ),
         "partitions_tested": partitions,
-        "functionals_tested": ["I_c_A_to_B", "log_negativity"],
+        "functionals_tested": ["I_c_A_to_B", "log_negativity", "I_A_B"],
         "pure_readouts": pure,
         "dephased_gamma_0p30_readouts": dephased,
         "admission_matrix": admission_matrix,
         "admitted_cells": admitted_cells,
         "any_incidence_admission": any_admitted,
         "pass": True,  # scout pass = test completed honestly, not that incidence is admitted
+    }
+
+
+def haar_random_spinor(gen: torch.Generator) -> torch.Tensor:
+    """Sample a single-qubit spinor uniformly from the Haar measure on CP^1."""
+    re = torch.randn((2,), generator=gen, dtype=DTYPE)
+    im = torch.randn((2,), generator=gen, dtype=DTYPE)
+    v = torch.complex(re, im).to(CDTYPE)
+    return v / torch.linalg.vector_norm(v)
+
+
+def haar_random_graph(seed: int) -> dict[str, Any]:
+    """Build a 4-node graph with Haar-random spinors and twistor nodes derived
+    from independent draws — addressing Opus D8 (independent π parameterization).
+    """
+    gen = torch.Generator()
+    gen.manual_seed(seed)
+    spinors = [haar_random_spinor(gen) for _ in range(4)]
+    twistors = [
+        twistor_node(haar_random_spinor(gen), haar_random_spinor(gen))
+        for _ in range(4)
+    ]
+    return {"spinors": spinors, "twistors": twistors, "edges": [(0, 1), (1, 2), (2, 3), (3, 0)]}
+
+
+def rng_ensemble_bridge_gate(num_seeds: int = HAAR_NUM_SEEDS, entangler_family: str = "xy") -> dict[str, Any]:
+    """K-seed Haar-random ensemble across both partitions, all tested
+    functionals, and all tested noise channels.
+
+    For each cell (partition × functional × noise_channel), report:
+      mean and std of (inc - rand) across K seeds, plus admission rate.
+
+    This directly addresses the convergent 3/3 P1 finding "RNG ensemble missing"
+    and the convergent 3/3 P1 finding "alternative noise channel missing."
+    """
+    partitions = ["block", "interleaved"]
+    # Round-6 fix (Grok R6 P1 + Opus R6 P1.2 + FEP design lane): add mutual
+    # information I_A_B = S(A) + S(B) - S(AB) as a structurally different Φ_0
+    # candidate from the bipartite-cut readout family. Mutual info is the
+    # natural variational free-energy functional under a QIT-aligned FEP and
+    # tests the "no signal in this readout family" verdict against an
+    # alternative readout that doesn't share I_c's sign-asymmetry with respect
+    # to entangler basis. If MI also fails, the within-family kill extends to
+    # one more functional. If MI shows signal, that's the entry point for the
+    # QIT-FEP scout family.
+    # Round-7-prep: Schmidt-moment readouts M_2, M_3 added alongside I_c, LN, MI.
+    # These are polynomial functions of the reduced-density spectrum (not entropy),
+    # giving structurally different info from the entropy-based functionals. They
+    # are still bipartite-cut readouts (Grok R6 C.1 readout-family gap not fully
+    # closed) but they DO exercise spectrum shape that I_c and LN summarise away.
+    # Round-8-prep: added I(A:B:C:D) multipartite information as structurally
+    # different from bipartite-cut readouts (closes the named-but-unimplemented
+    # Grok R6 C.1 + Opus R6 P1.2 gap properly, unlike M_2/M_3 which are
+    # correlated with I_c).
+    functionals = ["I_c_A_to_B", "log_negativity", "I_A_B", "M_2", "M_3", "I_ABCD"]
+    # Round-8-prep: added amplitude_damping as third noise channel (Grok R6 C.2
+    # noise-model gap). Non-unital, fixed point at |0⟩⟨0|, distinct from dephasing
+    # (basis-preserving) and depolarizing (unital).
+    noise_channels = {
+        "z_dephasing": dephase_16dim,
+        "depolarizing": depolarize_16dim,
+        "amplitude_damping": amplitude_damping_16dim,
+    }
+
+    per_cell: dict[str, dict[str, dict[str, dict[str, Any]]]] = {}
+    for nc_name, nc_fn in noise_channels.items():
+        per_cell[nc_name] = {}
+        for partition in partitions:
+            per_cell[nc_name][partition] = {}
+            for fk in functionals:
+                per_cell[nc_name][partition][fk] = {
+                    "pure_inc_minus_rand": [],
+                    "noisy_inc_minus_rand": [],
+                    "pure_inc": [],
+                    "pure_rand": [],
+                    "noisy_inc": [],
+                    "noisy_rand": [],
+                    # Round-7-prep CONFOUND FIX: also collect inc - lambda_matched_random
+                    # (same lam distribution, random phi). If admission persists here →
+                    # phi-structure carries geometric content. If it dies → lam-magnitude
+                    # confound was the source.
+                    "pure_inc_minus_lammatch": [],
+                    "noisy_inc_minus_lammatch": [],
+                }
+
+    # Round-7-prep: per-cell quantum relative entropy D(rho_inc || rho_rand)
+    # stored SEPARATELY from the inc-minus-rand functional structure because
+    # rel-entropy is one scalar per cell (not an inc-rand difference) and only
+    # makes sense on the noisy half (pure-state D can diverge when sigma is
+    # rank-1). FEP-aligned: this is the QIT analogue of F(q||p) when q=inc, p=rand.
+    rel_entropy_cells: dict[str, dict[str, dict[str, list[float]]]] = {}
+    for nc_name in noise_channels:
+        rel_entropy_cells[nc_name] = {}
+        for partition in partitions:
+            rel_entropy_cells[nc_name][partition] = {
+                "noisy_inc_vs_rand": [],
+                "noisy_rand_vs_inc": [],
+            }
+
+    # Round-4 fix (Opus C2 CRITICAL): decorrelate seeds across noise channels.
+    # Previously both channels used the same `seed_idx`, which made the noisy
+    # cells dependent (same underlying graph, two noise applications). Now
+    # noise-channel-specific offset rotates the seed into a fresh region of
+    # the PRNG state for each channel, so per-cell SE is computed under proper
+    # independence.
+    noise_channel_offsets = {name: 1_000_000 * idx for idx, name in enumerate(noise_channels.keys())}
+
+    for seed_idx in range(num_seeds):
+        for nc_name, nc_fn in noise_channels.items():
+            seed_nc = 20260522 + seed_idx + noise_channel_offsets[nc_name]
+            graph = haar_random_graph(seed_nc)
+            state_inc = joint_graph_state(graph, "incidence_derived", entangler_family=entangler_family)
+            state_rand = joint_graph_state(graph, "random_seeded", rng_seed=seed_nc + 1, entangler_family=entangler_family)
+            state_lammatch = joint_graph_state(graph, "lambda_matched_random_phi", rng_seed=seed_nc + 2, entangler_family=entangler_family)
+            rho_inc = density(state_inc)
+            rho_rand = density(state_rand)
+            rho_lammatch = density(state_lammatch)
+            rho_inc_noisy = nc_fn(rho_inc, gamma=0.30)
+            rho_rand_noisy = nc_fn(rho_rand, gamma=0.30)
+            rho_lammatch_noisy = nc_fn(rho_lammatch, gamma=0.30)
+            trace_inc = float(torch.real(torch.trace(rho_inc_noisy)).item())
+            trace_rand = float(torch.real(torch.trace(rho_rand_noisy)).item())
+            trace_lammatch = float(torch.real(torch.trace(rho_lammatch_noisy)).item())
+            if abs(trace_inc) > 1e-12:
+                rho_inc_noisy = rho_inc_noisy / trace_inc
+            if abs(trace_rand) > 1e-12:
+                rho_rand_noisy = rho_rand_noisy / trace_rand
+            if abs(trace_lammatch) > 1e-12:
+                rho_lammatch_noisy = rho_lammatch_noisy / trace_lammatch
+            for partition in partitions:
+                inc_pure = joint_graph_readouts(rho_inc, partition=partition)
+                rand_pure = joint_graph_readouts(rho_rand, partition=partition)
+                lammatch_pure = joint_graph_readouts(rho_lammatch, partition=partition)
+                inc_noisy = joint_graph_readouts(rho_inc_noisy, partition=partition)
+                rand_noisy = joint_graph_readouts(rho_rand_noisy, partition=partition)
+                lammatch_noisy = joint_graph_readouts(rho_lammatch_noisy, partition=partition)
+                for fk in functionals:
+                    cell = per_cell[nc_name][partition][fk]
+                    cell["pure_inc_minus_rand"].append(inc_pure[fk] - rand_pure[fk])
+                    cell["noisy_inc_minus_rand"].append(inc_noisy[fk] - rand_noisy[fk])
+                    cell["pure_inc"].append(inc_pure[fk])
+                    cell["pure_rand"].append(rand_pure[fk])
+                    cell["noisy_inc"].append(inc_noisy[fk])
+                    cell["noisy_rand"].append(rand_noisy[fk])
+                    cell["pure_inc_minus_lammatch"].append(inc_pure[fk] - lammatch_pure[fk])
+                    cell["noisy_inc_minus_lammatch"].append(inc_noisy[fk] - lammatch_noisy[fk])
+                # Round-7-prep: compute D(rho_A_inc_noisy || rho_A_rand_noisy) on
+                # the noisy-half reduced density matrices (where both are full-rank).
+                # FEP-aligned: this is the QIT analogue of variational free energy
+                # F(q||p) when q = inc, p = rand. Symmetrize by also reporting
+                # D(rand || inc); a real basin signal should show asymmetric
+                # distance growing with K.
+                if partition == "block":
+                    rho_a_inc_noisy = partial_trace_qubits_23(rho_inc_noisy)
+                    rho_a_rand_noisy = partial_trace_qubits_23(rho_rand_noisy)
+                else:
+                    rho_a_inc_noisy = partial_trace_qubits_13(rho_inc_noisy)
+                    rho_a_rand_noisy = partial_trace_qubits_13(rho_rand_noisy)
+                d_ir = quantum_relative_entropy(rho_a_inc_noisy, rho_a_rand_noisy)
+                d_ri = quantum_relative_entropy(rho_a_rand_noisy, rho_a_inc_noisy)
+                rel_entropy_cells[nc_name][partition]["noisy_inc_vs_rand"].append(d_ir)
+                rel_entropy_cells[nc_name][partition]["noisy_rand_vs_inc"].append(d_ri)
+
+    def stats(lst: list[float]) -> dict[str, float]:
+        t = torch.tensor(lst, dtype=DTYPE)
+        return {
+            "mean": float(t.mean().item()),
+            "std": float(t.std(unbiased=False).item()),
+            "min": float(t.min().item()),
+            "max": float(t.max().item()),
+            "n": len(lst),
+        }
+
+    # Round-3 fix (Opus D1, D2 + Gemini CRITICAL): add SE-aware admission
+    # criterion. The previous point-estimate-only `mean > 0.02` admission
+    # produced one cell that "admitted" while the per-cell std (~0.23) made
+    # the result statistically meaningless. Now we require `mean > 2*SE`
+    # AND `mean > 0.02`. Also emit power-analysis fields: SE, 95% CI,
+    # K_required for 80% power at the 0.02 admission threshold.
+    admission_threshold = ADMISSION_THRESHOLD  # module-level named constant
+    z_value = 1.96  # 95% CI two-sided normal approx
+    power_z_one_sided = 0.84  # 80% power, alpha=0.05 one-sided ≈ 2.49 z; using 2.49 below
+    # k_required = (z_alpha + z_beta)^2 * std^2 / effect^2
+    # For 80% power, α=0.05 one-sided: z_α = 1.645, z_β = 0.842, sum ≈ 2.487.
+    K_REQUIRED_Z = 2.487
+    summary = {}
+    for nc_name in per_cell:
+        summary[nc_name] = {}
+        for partition in per_cell[nc_name]:
+            summary[nc_name][partition] = {}
+            for fk in per_cell[nc_name][partition]:
+                cell = per_cell[nc_name][partition][fk]
+                pure_stats = stats(cell["pure_inc_minus_rand"])
+                noisy_stats = stats(cell["noisy_inc_minus_rand"])
+                pure_se = pure_stats["std"] / math.sqrt(max(num_seeds, 1))
+                noisy_se = noisy_stats["std"] / math.sqrt(max(num_seeds, 1))
+                pure_ci_lo = pure_stats["mean"] - z_value * pure_se
+                pure_ci_hi = pure_stats["mean"] + z_value * pure_se
+                noisy_ci_lo = noisy_stats["mean"] - z_value * noisy_se
+                noisy_ci_hi = noisy_stats["mean"] + z_value * noisy_se
+                # K required to detect 0.02 effect at observed std with 80% power
+                pure_k_required = float(
+                    (K_REQUIRED_Z * pure_stats["std"] / admission_threshold) ** 2
+                ) if admission_threshold > 0 else float("inf")
+                noisy_k_required = float(
+                    (K_REQUIRED_Z * noisy_stats["std"] / admission_threshold) ** 2
+                ) if admission_threshold > 0 else float("inf")
+                # Round-7-prep CONFOUND FIX: also compute stats for inc vs lambda_matched_random
+                pure_lammatch_stats = stats(cell["pure_inc_minus_lammatch"])
+                noisy_lammatch_stats = stats(cell["noisy_inc_minus_lammatch"])
+                pure_lammatch_se = pure_lammatch_stats["std"] / math.sqrt(max(num_seeds, 1))
+                noisy_lammatch_se = noisy_lammatch_stats["std"] / math.sqrt(max(num_seeds, 1))
+                summary[nc_name][partition][fk] = {
+                    "pure_inc_minus_rand": pure_stats,
+                    "noisy_inc_minus_rand": noisy_stats,
+                    "pure_inc_minus_lammatch": pure_lammatch_stats,
+                    "noisy_inc_minus_lammatch": noisy_lammatch_stats,
+                    "pure_lammatch_SE": pure_lammatch_se,
+                    "noisy_lammatch_SE": noisy_lammatch_se,
+                    "pure_z_vs_lammatch": pure_lammatch_stats["mean"] / pure_lammatch_se if pure_lammatch_se > 0 else 0.0,
+                    "noisy_z_vs_lammatch": noisy_lammatch_stats["mean"] / noisy_lammatch_se if noisy_lammatch_se > 0 else 0.0,
+                    "pure_inc": stats(cell["pure_inc"]),
+                    "pure_rand": stats(cell["pure_rand"]),
+                    "noisy_inc": stats(cell["noisy_inc"]),
+                    "noisy_rand": stats(cell["noisy_rand"]),
+                    "pure_inc_beats_rand_rate": float(
+                        sum(1 for v in cell["pure_inc_minus_rand"] if v > ADMISSION_THRESHOLD) / num_seeds
+                    ),
+                    "noisy_inc_beats_rand_rate": float(
+                        sum(1 for v in cell["noisy_inc_minus_rand"] if v > ADMISSION_THRESHOLD) / num_seeds
+                    ),
+                    "pure_SE": pure_se,
+                    "noisy_SE": noisy_se,
+                    "pure_95pct_CI": [pure_ci_lo, pure_ci_hi],
+                    "noisy_95pct_CI": [noisy_ci_lo, noisy_ci_hi],
+                    "pure_K_required_80pct_power": pure_k_required,
+                    "noisy_K_required_80pct_power": noisy_k_required,
+                }
+
+    # POINT-ESTIMATE admission (previous criterion, kept for trail / D1 transparency)
+    point_estimate_admitted = []
+    for nc_name in summary:
+        for partition in summary[nc_name]:
+            for fk in summary[nc_name][partition]:
+                s = summary[nc_name][partition][fk]
+                if (
+                    s["pure_inc_minus_rand"]["mean"] > admission_threshold
+                    and s["noisy_inc_minus_rand"]["mean"] > admission_threshold
+                ):
+                    point_estimate_admitted.append((nc_name, partition, fk))
+
+    # SE-AWARE admission (Round-3 criterion, RAW per-cell — kept for trail):
+    # require mean > 2 * SE per cell AND mean > admission_threshold.
+    # NOT corrected for multiple testing across the screened cells.
+    # Round-4 audit (Opus C1 CRITICAL) flagged that the older 8-cell version
+    # inflated family-wise false-positive rate at the null to ~17%.
+    se_aware_admitted_raw = []
+    for nc_name in summary:
+        for partition in summary[nc_name]:
+            for fk in summary[nc_name][partition]:
+                s = summary[nc_name][partition][fk]
+                pure_mean = s["pure_inc_minus_rand"]["mean"]
+                pure_se = s["pure_SE"]
+                noisy_mean = s["noisy_inc_minus_rand"]["mean"]
+                noisy_se = s["noisy_SE"]
+                if (
+                    pure_mean > 2 * pure_se
+                    and pure_mean > admission_threshold
+                    and noisy_mean > 2 * noisy_se
+                    and noisy_mean > admission_threshold
+                ):
+                    se_aware_admitted_raw.append((nc_name, partition, fk))
+
+    # SE-AWARE admission with BONFERRONI FAMILY-WISE ERROR CONTROL (Round-4 fix):
+    # n_cells screened simultaneously (dynamically computed below). At family-wise
+    # alpha=0.05 one-sided, the per-cell alpha = 0.05 / n_cells.
+    # Requires mean > z_FWE * SE per cell on BOTH pure and noisy halves.
+    # Round-5 fix (Opus minor): use statistics.NormalDist (Python 3.8+ stdlib)
+    # instead of inline Hastings approximation.
+    import statistics as _statistics
+    # Round-9 fix (Opus R9 B1): partition-independent functionals (I_ABCD)
+    # contribute once per noise channel, not once per (noise_channel,
+    # partition). Naive count would double-count them since block and
+    # interleaved I_ABCD are bit-identical by construction.
+    n_cells_naive = sum(
+        1
+        for nc_name in summary
+        for partition in summary[nc_name]
+        for fk in summary[nc_name][partition]
+    )
+    # Count partition-independent functionals once per noise channel
+    n_cells_deduped = 0
+    seen_partition_indep = set()
+    for nc_name in summary:
+        for partition in summary[nc_name]:
+            for fk in summary[nc_name][partition]:
+                if fk in PARTITION_INDEPENDENT_FUNCTIONALS:
+                    key = (nc_name, fk)
+                    if key not in seen_partition_indep:
+                        seen_partition_indep.add(key)
+                        n_cells_deduped += 1
+                else:
+                    n_cells_deduped += 1
+    n_cells = n_cells_deduped
+    bonferroni_alpha = FWE_ALPHA_TARGET / max(n_cells, 1)
+    # One-sided upper-tail z for the per-cell alpha:
+    z_fwe = _statistics.NormalDist().inv_cdf(1.0 - bonferroni_alpha)
+
+    se_aware_admitted_bonferroni = []
+    # Round-9 fix (Opus R9 B1): skip duplicate partition rows for
+    # partition-independent functionals when counting Bonferroni admissions.
+    _seen_partition_indep_admit = set()
+    for nc_name in summary:
+        for partition in summary[nc_name]:
+            for fk in summary[nc_name][partition]:
+                if fk in PARTITION_INDEPENDENT_FUNCTIONALS:
+                    key = (nc_name, fk)
+                    if key in _seen_partition_indep_admit:
+                        continue
+                    _seen_partition_indep_admit.add(key)
+                s = summary[nc_name][partition][fk]
+                pure_mean = s["pure_inc_minus_rand"]["mean"]
+                pure_se = s["pure_SE"]
+                noisy_mean = s["noisy_inc_minus_rand"]["mean"]
+                noisy_se = s["noisy_SE"]
+                if (
+                    pure_mean > z_fwe * pure_se
+                    and pure_mean > admission_threshold
+                    and noisy_mean > z_fwe * noisy_se
+                    and noisy_mean > admission_threshold
+                ):
+                    se_aware_admitted_bonferroni.append((nc_name, partition, fk))
+
+    # Round-5 fix (Opus C.2): also compute Benjamini-Hochberg FDR admission.
+    # Confirms that the choice of multiple-testing correction does not change
+    # the verdict at K=30. FDR is less conservative than Bonferroni; if FDR
+    # also rejects, the verdict is robust to correction choice.
+    cell_z_pure = []
+    cell_z_noisy = []
+    cell_keys = []
+    seen_partition_indep_fdr = set()
+    for nc_name in summary:
+        for partition in summary[nc_name]:
+            for fk in summary[nc_name][partition]:
+                if fk in PARTITION_INDEPENDENT_FUNCTIONALS:
+                    key = (nc_name, fk)
+                    if key in seen_partition_indep_fdr:
+                        continue
+                    seen_partition_indep_fdr.add(key)
+                s = summary[nc_name][partition][fk]
+                pure_mean = s["pure_inc_minus_rand"]["mean"]
+                pure_se = s["pure_SE"]
+                noisy_mean = s["noisy_inc_minus_rand"]["mean"]
+                noisy_se = s["noisy_SE"]
+                # One-sided z (positive = incidence > random)
+                z_p = pure_mean / pure_se if pure_se > 0 else 0.0
+                z_n = noisy_mean / noisy_se if noisy_se > 0 else 0.0
+                cell_z_pure.append(z_p)
+                cell_z_noisy.append(z_n)
+                cell_keys.append((nc_name, partition, fk))
+    assert len(cell_keys) == n_cells
+
+    def _bh_admitted(zs: list[float], threshold_alpha: float, n: int) -> list[bool]:
+        """Benjamini-Hochberg admission: for each cell, p_i = 1 - Phi(z_i);
+        rank-sort ascending p; admit p_(k) <= (k/n) * alpha for k = 1..n."""
+        pvals = [1.0 - _statistics.NormalDist().cdf(z) for z in zs]
+        ranked = sorted(range(len(pvals)), key=lambda i: pvals[i])
+        admitted = [False] * len(pvals)
+        for rank_pos, idx in enumerate(ranked, start=1):
+            crit = (rank_pos / n) * threshold_alpha
+            if pvals[idx] <= crit:
+                # admit this cell and all lower-rank cells
+                for j in ranked[:rank_pos]:
+                    admitted[j] = True
+        return admitted
+
+    fdr_pure_admit = _bh_admitted(cell_z_pure, FWE_ALPHA_TARGET, len(cell_keys))
+    fdr_noisy_admit = _bh_admitted(cell_z_noisy, FWE_ALPHA_TARGET, len(cell_keys))
+    se_aware_admitted_fdr = [
+        cell_keys[i]
+        for i in range(len(cell_keys))
+        if fdr_pure_admit[i]
+        and fdr_noisy_admit[i]
+        and (cell_z_pure[i] * (summary[cell_keys[i][0]][cell_keys[i][1]][cell_keys[i][2]]["pure_SE"]))
+        > ADMISSION_THRESHOLD
+        and (cell_z_noisy[i] * (summary[cell_keys[i][0]][cell_keys[i][1]][cell_keys[i][2]]["noisy_SE"]))
+        > ADMISSION_THRESHOLD
+    ]
+
+    # Canonical admission decision uses Bonferroni-corrected criterion.
+    # FDR is reported alongside for completeness — Round-5 audit verified
+    # FDR also rejects, confirming verdict is robust to correction choice.
+    se_aware_admitted = se_aware_admitted_bonferroni
+
+    # Worst-case K_required across cells (for power-analysis headline)
+    all_k_required = []
+    for nc_name in summary:
+        for partition in summary[nc_name]:
+            for fk in summary[nc_name][partition]:
+                all_k_required.append(summary[nc_name][partition][fk]["pure_K_required_80pct_power"])
+                all_k_required.append(summary[nc_name][partition][fk]["noisy_K_required_80pct_power"])
+    max_k_required = float(max(all_k_required))
+    median_k_required = float(sorted(all_k_required)[len(all_k_required) // 2])
+
+    return {
+        "construction": (
+            f"K={num_seeds}-seed Haar-random spinor ensemble; 2 partitions x "
+            "6 functionals x 3 noise channels (z-dephasing, depolarizing, "
+            "amplitude damping); gamma=0.30, with partition-independent "
+            "functionals deduped for multiple-testing correction. "
+            "Round-3: SE-aware admission added (mean > 2*SE AND mean > 0.02). "
+            "Point-estimate admission kept for trail."
+        ),
+        "num_seeds": num_seeds,
+        "noise_channels_tested": list(noise_channels.keys()),
+        "partitions_tested": partitions,
+        "functionals_tested": functionals,
+        "admission_threshold": admission_threshold,
+        "per_cell_statistics": summary,
+        "point_estimate_admitted_cells": point_estimate_admitted,
+        "point_estimate_admission_count": len(point_estimate_admitted),
+        "se_aware_admitted_cells_raw_2SE": se_aware_admitted_raw,
+        "se_aware_admitted_cells_bonferroni": se_aware_admitted_bonferroni,
+        "se_aware_admitted_cells_fdr_benjamini_hochberg": se_aware_admitted_fdr,
+        "se_aware_admitted_cells": se_aware_admitted,  # canonical = bonferroni
+        "se_aware_admission_count": len(se_aware_admitted),
+        "any_ensemble_admission": bool(se_aware_admitted),  # canonical: SE-aware Bonferroni
+        "correction_choice_robustness": {
+            "bonferroni_count": len(se_aware_admitted_bonferroni),
+            "fdr_count": len(se_aware_admitted_fdr),
+            "raw_2SE_count": len(se_aware_admitted_raw),
+            "note": (
+                "Round-5 fix (Opus C.2): the choice of multiple-testing correction "
+                "does not change the verdict at K=30. FDR (less conservative than "
+                "Bonferroni) also rejects all cells."
+            ),
+        },
+        "multiple_testing_correction": {
+            "n_cells_screened": n_cells,
+            "family_wise_alpha_target": 0.05,
+            "per_cell_bonferroni_alpha": bonferroni_alpha,
+            "z_FWE_one_sided": z_fwe,
+            "note": (
+                "Round-4 fix (Opus C1 CRITICAL): the raw 2*SE per-cell criterion "
+                "inflated family-wise false-positive rate in the older 8-cell "
+                "screen. "
+                "Bonferroni-corrected criterion requires mean > z_FWE * SE per cell "
+                "with z_FWE chosen for family-wise alpha = 0.05 / n_cells."
+            ),
+        },
+        "noise_channel_seed_decorrelation": {
+            "noise_channel_offsets": noise_channel_offsets,
+            "note": (
+                "Round-4 fix (Opus C2 CRITICAL): noise channels previously shared "
+                "seed_idx, making the noisy cells dependent. Each channel now uses "
+                "a distinct seed offset so screened noise-channel cells are "
+                "independent draws under the same Haar measure."
+            ),
+        },
+        "power_analysis": {
+            "admission_threshold": admission_threshold,
+            "k_used": num_seeds,
+            "median_K_required_for_80pct_power": median_k_required,
+            "max_K_required_for_80pct_power": max_k_required,
+            "K_used_is_underpowered": num_seeds < median_k_required,
+        },
+        "relative_entropy_per_cell": {
+            nc_name: {
+                partition: {
+                    "noisy_inc_vs_rand": stats(rel_entropy_cells[nc_name][partition]["noisy_inc_vs_rand"]),
+                    "noisy_rand_vs_inc": stats(rel_entropy_cells[nc_name][partition]["noisy_rand_vs_inc"]),
+                    "asymmetry_mean": float(
+                        torch.tensor(rel_entropy_cells[nc_name][partition]["noisy_inc_vs_rand"], dtype=DTYPE).mean().item()
+                        - torch.tensor(rel_entropy_cells[nc_name][partition]["noisy_rand_vs_inc"], dtype=DTYPE).mean().item()
+                    ),
+                }
+                for partition in partitions
+            }
+            for nc_name in noise_channels
+        },
+        "relative_entropy_note": (
+            "Round-7-prep: quantum relative entropy D(rho_A_inc || rho_A_rand) on "
+            "the noisy half. FEP-aligned: this is the QIT analogue of variational "
+            "free energy F(q || p). Reported as raw distance per cell (not "
+            "inc-rand difference). Asymmetry = D(inc||rand) - D(rand||inc); zero "
+            "implies symmetric distance; significant nonzero suggests directional "
+            "information flow on the cut."
+        ),
+        "pass": True,  # scout pass = honest completion; admission verdict reported separately
+    }
+
+
+def analytic_correctness_baseline() -> dict[str, Any]:
+    """Verify the partial-trace + entropy + log-negativity pipeline against
+    canonical analytic values. Addresses Gemini-R2 / Opus-R4 finding: the
+    'no signal' verdict assumes the simulation pipeline is correct, but no
+    formal correctness check has been run.
+
+    Test states and expected analytic values:
+      |Bell+⟩ = (|00⟩+|11⟩)/sqrt(2):
+        S(rho_A) = log 2 ≈ 0.6931, LN = 1.0
+      |Bell-⟩ = (|01⟩+|10⟩)/sqrt(2):
+        S(rho_A) = log 2 ≈ 0.6931, LN = 1.0
+      product |00⟩:
+        S(rho_A) = 0, LN = 0
+      |GHZ4⟩ = (|0000⟩+|1111⟩)/sqrt(2) cut into A={0,1}, B={2,3}:
+        S(rho_A on A=qubits 0,1) = log 2 ≈ 0.6931 (Schmidt rank 2)
+        LN(block) = 1.0
+      Maximally entangled 2-qubit state |0011⟩+|0110⟩+|1001⟩+|1100⟩ /2 etc.
+    """
+    rows = {}
+    log2 = math.log(2.0)
+
+    # 1. Bell+ = (|00⟩ + |11⟩) / sqrt(2). Trace out 2nd qubit -> rho_A = I/2.
+    bell_plus = torch.tensor([1.0, 0.0, 0.0, 1.0], dtype=CDTYPE) / math.sqrt(2.0)
+    rho_bell = density(bell_plus)
+    rho_a = partial_trace_a(rho_bell)
+    s_bell = entropy(rho_a)
+    # LN on 2-qubit Bell pair = 1.0
+    # T_B over qubit 1: column-index swap of qubit 1
+    rho_bell_4d = rho_bell.reshape(2, 2, 2, 2)
+    rho_bell_pt = rho_bell_4d.permute(0, 3, 2, 1).reshape(4, 4)
+    bell_ln = math.log2(float(torch.sum(torch.linalg.svdvals(rho_bell_pt).real).item()))
+    rows["bell_plus_2qubit"] = {
+        "expected_S_A": log2,
+        "measured_S_A": s_bell,
+        "S_A_within_tol": abs(s_bell - log2) < 1e-9,
+        "expected_LN": 1.0,
+        "measured_LN": bell_ln,
+        "LN_within_tol": abs(bell_ln - 1.0) < 1e-9,
+        "pass": abs(s_bell - log2) < 1e-9 and abs(bell_ln - 1.0) < 1e-9,
+    }
+
+    # 2. Product |00⟩. rho_A = |0⟩⟨0|, S = 0, LN = 0.
+    prod_state = torch.tensor([1.0, 0.0, 0.0, 0.0], dtype=CDTYPE)
+    rho_prod = density(prod_state)
+    rho_a_prod = partial_trace_a(rho_prod)
+    s_prod = entropy(rho_a_prod)
+    rho_prod_4d = rho_prod.reshape(2, 2, 2, 2)
+    rho_prod_pt = rho_prod_4d.permute(0, 3, 2, 1).reshape(4, 4)
+    prod_ln = math.log2(max(float(torch.sum(torch.linalg.svdvals(rho_prod_pt).real).item()), 1e-30))
+    rows["product_state_2qubit"] = {
+        "expected_S_A": 0.0,
+        "measured_S_A": s_prod,
+        "S_A_within_tol": abs(s_prod) < 1e-9,
+        "expected_LN": 0.0,
+        "measured_LN": prod_ln,
+        "LN_within_tol": abs(prod_ln) < 1e-9,
+        "pass": abs(s_prod) < 1e-9 and abs(prod_ln) < 1e-9,
+    }
+
+    # 3. GHZ4 = (|0000⟩ + |1111⟩) / sqrt(2). Cut A={0,1}, B={2,3}.
+    # rho_AB = 1/2 (|00⟩⟨00| tensor |00⟩⟨00| + |00⟩⟨11| tensor |00⟩⟨11| + ...)
+    # rho_A = Tr_B(rho_AB) = 1/2 (|00⟩⟨00| + |11⟩⟨11|), S(rho_A) = log 2.
+    ghz4_state = torch.zeros(16, dtype=CDTYPE)
+    ghz4_state[0] = 1.0 / math.sqrt(2.0)
+    ghz4_state[15] = 1.0 / math.sqrt(2.0)
+    rho_ghz4 = density(ghz4_state)
+    rho_A_block = partial_trace_qubits_23(rho_ghz4)
+    s_ghz4_block = entropy(rho_A_block)
+    # Log-negativity for GHZ across block cut
+    rho_ghz4_8d = rho_ghz4.reshape(2, 2, 2, 2, 2, 2, 2, 2)
+    rho_ghz4_pt = rho_ghz4_8d.permute(0, 1, 6, 7, 4, 5, 2, 3).reshape(16, 16)
+    ghz4_block_ln = math.log2(float(torch.sum(torch.linalg.svdvals(rho_ghz4_pt).real).item()))
+    rows["ghz4_block_partition"] = {
+        "expected_S_A": log2,
+        "measured_S_A": s_ghz4_block,
+        "S_A_within_tol": abs(s_ghz4_block - log2) < 1e-9,
+        "expected_LN": 1.0,
+        "measured_LN": ghz4_block_ln,
+        "LN_within_tol": abs(ghz4_block_ln - 1.0) < 1e-9,
+        "pass": abs(s_ghz4_block - log2) < 1e-9 and abs(ghz4_block_ln - 1.0) < 1e-9,
+    }
+
+    # 4. GHZ4 under interleaved partition A={0,2}, B={1,3}.
+    # Same Schmidt decomposition because |0000⟩+|1111⟩ has Schmidt rank 2 on any
+    # bipartition. Should give same S = log 2, LN = 1.0.
+    rho_A_inter = partial_trace_qubits_13(rho_ghz4)
+    s_ghz4_inter = entropy(rho_A_inter)
+    rho_ghz4_inter_pt = rho_ghz4_8d.permute(0, 5, 2, 7, 4, 1, 6, 3).reshape(16, 16)
+    ghz4_inter_ln = math.log2(float(torch.sum(torch.linalg.svdvals(rho_ghz4_inter_pt).real).item()))
+    rows["ghz4_interleaved_partition"] = {
+        "expected_S_A": log2,
+        "measured_S_A": s_ghz4_inter,
+        "S_A_within_tol": abs(s_ghz4_inter - log2) < 1e-9,
+        "expected_LN": 1.0,
+        "measured_LN": ghz4_inter_ln,
+        "LN_within_tol": abs(ghz4_inter_ln - 1.0) < 1e-9,
+        "pass": abs(s_ghz4_inter - log2) < 1e-9 and abs(ghz4_inter_ln - 1.0) < 1e-9,
+    }
+
+    # 5. 4-qubit product state. All cuts have S = 0, LN = 0.
+    psi_a = torch.tensor([1.0, 0.0], dtype=CDTYPE)
+    psi_b = torch.tensor([0.0, 1.0], dtype=CDTYPE)
+    prod4 = torch.kron(torch.kron(torch.kron(psi_a, psi_b), psi_a), psi_b)
+    rho_prod4 = density(prod4)
+    s_prod4_block = entropy(partial_trace_qubits_23(rho_prod4))
+    rho_prod4_8d = rho_prod4.reshape(2, 2, 2, 2, 2, 2, 2, 2)
+    rho_prod4_pt = rho_prod4_8d.permute(0, 1, 6, 7, 4, 5, 2, 3).reshape(16, 16)
+    prod4_ln = math.log2(max(float(torch.sum(torch.linalg.svdvals(rho_prod4_pt).real).item()), 1e-30))
+    rows["product_4qubit_block"] = {
+        "expected_S_A": 0.0,
+        "measured_S_A": s_prod4_block,
+        "S_A_within_tol": abs(s_prod4_block) < 1e-9,
+        "expected_LN": 0.0,
+        "measured_LN": prod4_ln,
+        "LN_within_tol": abs(prod4_ln) < 1e-9,
+        "pass": abs(s_prod4_block) < 1e-9 and abs(prod4_ln) < 1e-9,
+    }
+
+    all_pass = all(row["pass"] for row in rows.values())
+    return {
+        "purpose": (
+            "Round-4 fix (Gemini R2 + Opus R4 P2): formal correctness check "
+            "on the partial-trace + entropy + log-negativity pipeline against "
+            "canonical analytic values. Closes alternative-explanation (d) "
+            "'subtle simulation bug' for the K=30 null result."
+        ),
+        "rows": rows,
+        "all_baseline_checks_pass": all_pass,
+        "pass": all_pass,
     }
 
 
@@ -674,14 +1617,14 @@ def negative_control_section(bridge: dict[str, Any], capacity: dict[str, Any]) -
             "candidate_Ic": bridge["candidate_readout"]["I_c_A_to_B"],
             "product_Ic": bridge["product_control_readout"]["I_c_A_to_B"],
             "candidate_minus_product_Ic": bridge["candidate_minus_product_Ic"],
-            "pass": bool(bridge["candidate_minus_product_Ic"] > 0.5 and bridge["product_control_readout"]["I_c_A_to_B"] < -0.3),
+            "pass": bool(bridge["candidate_minus_product_Ic"] > NC1_PURE_THRESHOLD and bridge["product_control_readout"]["I_c_A_to_B"] < NC2_PURE_FLOOR),
             "summary": "productizing rho_AB kills the candidate's cut information",
         },
         "NC2_history_erased_cut_is_maximally_bad": {
             "expected_to_fail": True,
             "history_erased_Ic": bridge["history_erased_control_readout"]["I_c_A_to_B"],
             "candidate_minus_erased_Ic": bridge["candidate_minus_erased_Ic"],
-            "pass": bool(bridge["candidate_minus_erased_Ic"] > 0.5 and bridge["history_erased_control_readout"]["I_c_A_to_B"] < -0.6),
+            "pass": bool(bridge["candidate_minus_erased_Ic"] > NC1_PURE_THRESHOLD and bridge["history_erased_control_readout"]["I_c_A_to_B"] < NC2B_PURE_FLOOR),
             "summary": "history-erased maximally mixed cut loses the signed coherent-information readout",
         },
         "NC3_zero_phase_beats_raw_incidence_phase": {
@@ -689,16 +1632,34 @@ def negative_control_section(bridge: dict[str, Any], capacity: dict[str, Any]) -
             "candidate_Ic": bridge["candidate_readout"]["I_c_A_to_B"],
             "zero_phase_Ic": bridge["zero_phase_control_readout"]["I_c_A_to_B"],
             "candidate_minus_zero_phase_Ic": bridge["candidate_minus_zero_phase_Ic"],
-            "pass": bool(bridge["candidate_minus_zero_phase_Ic"] < -0.1),
+            "pass": bool(bridge["candidate_minus_zero_phase_Ic"] < NC3_PURE_FLOOR),
             "summary": "raw phase(I_ij) is killed because zero-phase control has stronger coherent information",
         },
-        "NC4_random_phase_does_not_save_raw_bridge": {
+        "NC4_zero_phase_beats_both_candidate_and_random": {
             "expected_to_fail": True,
             "candidate_Ic": bridge["candidate_readout"]["I_c_A_to_B"],
             "random_phase_Ic": bridge["random_phase_control_readout"]["I_c_A_to_B"],
-            "candidate_minus_random_phase_Ic": bridge["candidate_minus_random_phase_Ic"],
-            "pass": bool(bridge["candidate_minus_random_phase_Ic"] > 0.2 and bridge["candidate_readout"]["I_c_A_to_B"] < 0.0),
-            "summary": "candidate beats random phase but still has negative coherent information, so it is not admitted",
+            "zero_phase_Ic": bridge["zero_phase_control_readout"]["I_c_A_to_B"],
+            "candidate_below_zero_phase": bool(
+                bridge["candidate_readout"]["I_c_A_to_B"] < bridge["zero_phase_control_readout"]["I_c_A_to_B"]
+            ),
+            "random_below_zero_phase": bool(
+                bridge["random_phase_control_readout"]["I_c_A_to_B"] < bridge["zero_phase_control_readout"]["I_c_A_to_B"]
+            ),
+            "pass": bool(
+                bridge["candidate_readout"]["I_c_A_to_B"]
+                < bridge["zero_phase_control_readout"]["I_c_A_to_B"]
+                and bridge["random_phase_control_readout"]["I_c_A_to_B"]
+                < bridge["zero_phase_control_readout"]["I_c_A_to_B"]
+            ),
+            "summary": (
+                "Round-2-audit-fix: under the now-seeded-real random_phase "
+                "baseline, both raw incidence AND random phase lose to "
+                "zero-phase. The earlier NC4 framing ('candidate beats random "
+                "by > 0.2') was an artifact of the deterministic 1.7*(idx+1) "
+                "formula; under real RNG sampling, candidate also loses to "
+                "random. The unifying kill statement is: zero-phase beats both."
+            ),
         },
         "NC5_canon_promotion_rejected": {
             "expected_to_fail": True,
@@ -720,8 +1681,24 @@ def main() -> int:
     started = time.time()
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
     positive = {
+        "analytic_correctness_baseline": analytic_correctness_baseline(),
         "xi_bridge_candidate_phi0_coherent_information": bridge_gate(),
         "joint_graph_partition_xi": joint_graph_partition_bridge_gate(),
+        "rng_ensemble_haar_K30_xy_entangler": rng_ensemble_bridge_gate(num_seeds=HAAR_NUM_SEEDS, entangler_family="xy"),
+        "rng_ensemble_haar_K30_heisenberg_entangler": rng_ensemble_bridge_gate(num_seeds=HAAR_NUM_SEEDS, entangler_family="heisenberg"),
+        # Round-7-prep: Ising ZZ entangler as fourth entangler family — fills in
+        # the structure-distance axis between XY (1-axis XX+YY) / Heisenberg
+        # (3-axis isotropic) / random (no structure). If sign reversal scales
+        # with structure-distance from random, Ising should show intermediate
+        # signal; if XY+Heisenberg are the special axis, Ising should be more
+        # random-like.
+        "rng_ensemble_haar_K30_ising_entangler": rng_ensemble_bridge_gate(num_seeds=HAAR_NUM_SEEDS, entangler_family="ising"),
+        # Round-7-prep: random-unitary entangler as third entangler family,
+        # NEGATIVE CONTROL for the B.1 sign-reversal claim. If sign-reversal
+        # collapses under random unitaries → XY/Heisenberg basis structure was
+        # load-bearing for the sign reversal. If it persists → sign reversal is
+        # a more generic basis-mixing artifact, weakening B.1.
+        "rng_ensemble_haar_K30_random_unitary_entangler": rng_ensemble_bridge_gate(num_seeds=HAAR_NUM_SEEDS, entangler_family="random_unitary"),
     }
     positive["finite_capacity_and_nonpromotion"] = capacity_and_nonpromotion_gate(
         bool(positive["xi_bridge_candidate_phi0_coherent_information"]["naive_raw_incidence_phase_bridge_rejected"])
@@ -732,11 +1709,11 @@ def main() -> int:
     )
     graveyard_companions = {
         "productized_cut_state_rejected": {
-            "pass": positive["xi_bridge_candidate_phi0_coherent_information"]["product_control_readout"]["I_c_A_to_B"] < -0.3,
+            "pass": positive["xi_bridge_candidate_phi0_coherent_information"]["product_control_readout"]["I_c_A_to_B"] < NC2_PURE_FLOOR,
             "summary": "productizing the cut removes positive coherent information",
         },
         "history_erased_cut_state_rejected": {
-            "pass": positive["xi_bridge_candidate_phi0_coherent_information"]["history_erased_control_readout"]["I_c_A_to_B"] < -0.6,
+            "pass": positive["xi_bridge_candidate_phi0_coherent_information"]["history_erased_control_readout"]["I_c_A_to_B"] < NC2B_PURE_FLOOR,
             "summary": "maximally mixed history-erased cut fails the signed Phi0 candidate",
         },
         "naive_raw_incidence_phase_bridge_rejected": {

@@ -23,7 +23,7 @@
   "current_audit_status": {
     "path": "system_v5/ops/semantic_naming/sim_name_claim_label_audit.json",
     "live_matched_after_refresh": true,
-    "source_match_count": 568,
+    "source_match_count": 567,
     "result_match_count": 57,
     "stage_as_named_artifact_only": true,
     "do_not_rerun_for_timestamp_only": true
@@ -102,6 +102,21 @@
       "receipt_validation": "passed_without_warnings",
       "result_sha256": "ad639f8b0ce9759c1db8aad1da64180bec440fba3ca0bf2b741c13024072b176",
       "claim_ceiling": "Classical baseline bounded Phi0 signed-kernel receipt only. NumPy is supportive and allowed here; no QIT, GStack, Axis0, engine, nonclassical, or manifold admission is made by the rename."
+    },
+    {
+      "family": "three_qubit_coherent_information_register",
+      "completed_at": "2026-05-23T09:25:00Z",
+      "old_source": "system_v4/probes/sim_3qubit_bridge_prototype.py",
+      "new_source": "system_v4/probes/sim_three_qubit_coherent_information_register.py",
+      "old_result": "system_v4/probes/a2_state/sim_results/bridge_3qubit_prototype_results.json",
+      "new_result": "system_v4/probes/a2_state/sim_results/three_qubit_coherent_information_register_results.json",
+      "direct_import_updates": 11,
+      "new_source_guard": "passed",
+      "result_rerun": "completed",
+      "receipt_validation": "strict_scope_run_boundary_passed",
+      "result_sha256": "fa88d8f04f8189862de5f035577dd9126bc39b1a6bcdbaccceffe3ca0f15f60c",
+      "qit_admission_rehearsal": "diagnostic_blocked_no_accepted_qit_entries_with_qit_signal_count_0",
+      "claim_ceiling": "Classical NumPy register-information baseline only. The rename also repairs a false PyTorch load-bearing manifest; no promoted quantum-information, GStack, axis, bridge, nonclassical runtime, manifold, or physics admission is made."
     }
   ],
   "required_named_paths_for_next_patch": [

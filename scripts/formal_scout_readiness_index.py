@@ -375,6 +375,7 @@ def build_index() -> dict[str, Any]:
             "validator_failure_handling_counts": dict(validator_failure_handling_counts),
             "provider_receipts": provider_summary["summary"],
         },
+        "provider_receipt_skipped_sidecar_samples": provider_summary["skipped_sidecar_samples"],
         "provider_receipt_failed_samples": provider_summary["failed_samples"],
         "provider_receipt_strict_live_failed_samples": provider_summary["strict_live_failed_samples"],
         "source_without_result_samples": source_without_result[:100],
@@ -411,7 +412,17 @@ def provider_receipt_summary() -> dict[str, Any]:
     validator = load_module(PROVIDER_VALIDATOR, "formal_scout_provider_validator")
     rows: list[dict[str, Any]] = []
     strict_rows: list[dict[str, Any]] = []
-    for path in sorted(PROVIDER_RECEIPTS.glob("*.json")):
+    all_paths = sorted(PROVIDER_RECEIPTS.glob("*.json"))
+    skipped_sidecars = [
+        {
+            "path": rel(path),
+            "reason": str(validator.sidecar_artifact_reason(path)),
+        }
+        for path in all_paths
+        if str(validator.sidecar_artifact_reason(path))
+    ]
+    receipt_paths = validator.receipt_candidate_paths(PROVIDER_RECEIPTS)
+    for path in receipt_paths:
         try:
             validation = validator.validate(path)
         except Exception as exc:
@@ -441,6 +452,7 @@ def provider_receipt_summary() -> dict[str, Any]:
     return {
         "summary": {
             "receipt_count": len(rows),
+            "skipped_sidecar_count": len(skipped_sidecars),
             "validator_available": True,
             "validator_pass_count": len(rows) - len(failed),
             "validator_fail_count": len(failed),
@@ -449,6 +461,7 @@ def provider_receipt_summary() -> dict[str, Any]:
             "strict_live_validator_fail_count": len(strict_failed),
             "strict_live_validation_error_counts": dict(strict_error_counts),
         },
+        "skipped_sidecar_samples": skipped_sidecars[:100],
         "failed_samples": failed[:100],
         "strict_live_failed_samples": strict_failed[:100],
     }
@@ -480,6 +493,7 @@ def write_markdown(index: dict[str, Any], path: Path) -> None:
         f"- Fresh-rerun dual-source defects: `{summary['fresh_rerun_dual_source_defect_count']}`",
         f"- Backend policy violations: `{summary['backend_policy_violation_count']}`",
         f"- Provider receipts indexed: `{summary['provider_receipts']['receipt_count']}`",
+        f"- Provider JSON sidecars skipped: `{summary['provider_receipts'].get('skipped_sidecar_count', 0)}`",
         f"- Provider receipt validator pass: `{summary['provider_receipts']['validator_pass_count']}`",
         f"- Provider receipt validator fail: `{summary['provider_receipts']['validator_fail_count']}`",
         f"- Provider strict-live validator pass: `{summary['provider_receipts']['strict_live_validator_pass_count']}`",

@@ -40,6 +40,29 @@ LIVE_PROVIDER_NAMES = {
 }
 
 
+def sidecar_artifact_reason(path: pathlib.Path) -> str:
+    """Return why a local JSON file is not a provider proposal receipt candidate."""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return ""
+    if path.name.endswith(".receipt.json") and {"command", "output_path", "receipt_path"} <= set(data):
+        return "claude_bridge_command_wrapper"
+    if {"type", "subtype", "result", "session_id"} <= set(data) and "schema" not in data:
+        return "claude_bridge_raw_output"
+    if data.get("schema") == "PROVIDER_AUDIT_RECEIPT_v1":
+        return "raw_provider_audit_receipt_requires_normalization"
+    return ""
+
+
+def receipt_candidate_paths(root: pathlib.Path = RECEIPTS) -> list[pathlib.Path]:
+    return [
+        path
+        for path in sorted(root.glob("*.json"))
+        if not sidecar_artifact_reason(path)
+    ]
+
+
 def has_live_api_proof(data: dict[str, Any]) -> bool:
     if data.get("raw_response"):
         return True
@@ -127,7 +150,7 @@ def main() -> int:
     parser.add_argument("--strict-live", action="store_true", help="Require completed live-provider receipts to carry raw API proof.")
     parser.add_argument("paths", nargs="*")
     args = parser.parse_args()
-    paths = [pathlib.Path(arg) for arg in args.paths] or sorted(RECEIPTS.glob("*.json"))
+    paths = [pathlib.Path(arg) for arg in args.paths] or receipt_candidate_paths()
     rows = [validate(path, strict_live=args.strict_live) for path in paths]
     print(json.dumps({"all_pass": all(row["pass"] for row in rows), "results": rows}, indent=2, sort_keys=True))
     return 0 if all(row["pass"] for row in rows) else 1

@@ -11,19 +11,20 @@
   },
   "prior_plan_status": {
     "path": "system_v5/ops/semantic_naming/current_sim_cleanup_plan_20260514.json",
-    "status": "stale_under_current_guard",
+    "status": "stale_under_current_guard_resolved_by_alternate_rename",
     "stale_reason": "At least one proposed rename still contains a current guard-blocked token.",
     "blocked_proposed_name": "system_v4/probes/sim_signed_kernel_density_bridge_phi0.py",
     "blocked_labels": [
       "bridge"
     ],
-    "still_guard_clean_proposed_names": []
+    "still_guard_clean_proposed_names": [],
+    "resolution": "The old source was renamed with a guard-clean alternate basename: system_v4/probes/sim_phi0_signed_kernel_bounded_point_family.py."
   },
   "current_audit_status": {
     "path": "system_v5/ops/semantic_naming/sim_name_claim_label_audit.json",
     "live_matched_after_refresh": true,
-    "source_match_count": 569,
-    "result_match_count": 58,
+    "source_match_count": 568,
+    "result_match_count": 57,
     "stage_as_named_artifact_only": true,
     "do_not_rerun_for_timestamp_only": true
   },
@@ -87,6 +88,20 @@
         ]
       },
       "claim_ceiling": "Classical audit-only reset-parameter cleanup. NumPy is load-bearing but allowed for this classical audit receipt; no QIT, GStack, Axis0, engine, or manifold claim is admitted."
+    },
+    {
+      "family": "phi0_signed_kernel_bounded_point_family",
+      "completed_at": "2026-05-23T08:36:37Z",
+      "old_source": "system_v4/probes/sim_axis0_kernel_phi0.py",
+      "new_source": "system_v4/probes/sim_phi0_signed_kernel_bounded_point_family.py",
+      "old_result_archived": "system_v4/probes/a2_state/sim_results_archive/semantic_naming_20260523/axis0_kernel_phi0_results.json",
+      "new_result": "system_v4/probes/a2_state/sim_results/phi0_signed_kernel_bounded_point_family_results.json",
+      "direct_loader_updates": 4,
+      "new_source_guard": "passed",
+      "result_rerun": "PROBE STATUS: PASS",
+      "receipt_validation": "passed_without_warnings",
+      "result_sha256": "ad639f8b0ce9759c1db8aad1da64180bec440fba3ca0bf2b741c13024072b176",
+      "claim_ceiling": "Classical baseline bounded Phi0 signed-kernel receipt only. NumPy is supportive and allowed here; no QIT, GStack, Axis0, engine, nonclassical, or manifold admission is made by the rename."
     }
   ],
   "required_named_paths_for_next_patch": [
@@ -105,5 +120,5 @@
     "Patch must update source/result names plus direct loaders and indexes in one named-path change.",
     "Run only the selected renamed sim and its narrow inventory/admission checks before staging."
   ],
-  "next_admissible_step": "No guard-clean proposed rename remains from the stale May 14 plan. The remaining May 14 blocked family needs a separate guard-blocked source audit before any rename."
+  "next_admissible_step": "The stale May 14 plan no longer has a remaining named micro-batch in this file. Select the next semantic cleanup from the refreshed sim_name_claim_label_audit.json by source availability, guard-clean alternate basename, and direct-loader footprint."
 }

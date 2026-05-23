@@ -82,6 +82,7 @@ ACTIVE_RECEIPTS = {
     "xi_free_energy": "two_root_constraint_qit_fep_free_energy_phi0_candidate_probe_results.json",
     "xi_qci": "two_root_constraint_quantum_conditional_information_phi0_candidate_probe_results.json",
     "xi_petz": "two_root_constraint_petz_recovery_phi0_candidate_probe_results.json",
+    "xi_oriented_recovery": "two_root_constraint_oriented_recovery_phi0_candidate_probe_results.json",
     "xi_l7_history": "two_root_constraint_l7_xi_history_phi0_bridge_probe_results.json",
     "xi_causal_irreversibility": "two_root_constraint_xi_causal_irreversibility_phi0_bridge_probe_results.json",
     "xi_mps_rescue": "two_root_constraint_mps_phi0_bridge_rescue_or_falsifier_probe_results.json",
@@ -152,6 +153,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_free_energy = receipts["xi_free_energy"]
     xi_qci = receipts["xi_qci"]
     xi_petz = receipts["xi_petz"]
+    xi_oriented_recovery = receipts["xi_oriented_recovery"]
     xi_l7_history = receipts["xi_l7_history"]
     xi_causal_irreversibility = receipts["xi_causal_irreversibility"]
     xi_mps_rescue = receipts["xi_mps_rescue"]
@@ -194,6 +196,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
     xi_petz_keys = section_keys(xi_petz, "positive")
     xi_petz_graveyard = section_keys(xi_petz, "graveyard_companions")
     xi_petz_boundary = section_keys(xi_petz, "boundary")
+    xi_oriented_recovery_keys = section_keys(xi_oriented_recovery, "positive")
+    xi_oriented_recovery_graveyard = section_keys(xi_oriented_recovery, "graveyard_companions")
+    xi_oriented_recovery_boundary = section_keys(xi_oriented_recovery, "boundary")
     xi_l7_keys = section_keys(xi_l7_history, "positive")
     xi_l7_graveyard = section_keys(xi_l7_history, "graveyard_companions")
     xi_l7_boundary = section_keys(xi_l7_history, "boundary")
@@ -316,6 +321,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and xi_free_energy.get("all_pass")
                 and xi_qci.get("all_pass")
                 and xi_petz.get("all_pass")
+                and xi_oriented_recovery.get("all_pass")
                 and xi_l7_history.get("all_pass")
                 and xi_causal_irreversibility.get("all_pass")
                 and xi_mps_rescue.get("all_pass")
@@ -359,6 +365,14 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 and "recovery_signal_not_sufficient_for_admission" in xi_petz_graveyard
                 and "near_reversed_order_control_blocks_admission" in xi_petz_graveyard
                 and "final_xi_phi0_not_admitted" in xi_petz_boundary
+                and "oriented_recovery_surface_built" in xi_oriented_recovery_keys
+                and "orientation_signal_measured" in xi_oriented_recovery_keys
+                and "noncommuting_path_difference_measured" in xi_oriented_recovery_keys
+                and "history_register_signal_measured" in xi_oriented_recovery_keys
+                and "candidate_not_control_separated" in xi_oriented_recovery_graveyard
+                and "oriented_recovery_not_sufficient_for_admission" in xi_oriented_recovery_graveyard
+                and "dephased_or_flux_control_blocks_admission" in xi_oriented_recovery_graveyard
+                and "final_xi_phi0_not_admitted" in xi_oriented_recovery_boundary
                 and "bridge_status_classified" in xi_l7_keys
                 and "not_final_axis0_closure" in xi_l7_graveyard
                 and "final_manifold_admission_allowed" in xi_l7_boundary
@@ -404,6 +418,9 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 | xi_petz_keys
                 | xi_petz_graveyard
                 | xi_petz_boundary
+                | xi_oriented_recovery_keys
+                | xi_oriented_recovery_graveyard
+                | xi_oriented_recovery_boundary
                 | xi_l7_keys
                 | xi_l7_graveyard
                 | xi_l7_boundary
@@ -434,7 +451,7 @@ def evidence_matrix(receipts: dict[str, dict[str, Any]]) -> dict[str, dict[str, 
                 | full_trace_after_stress_graveyard
                 | full_trace_after_stress_boundary
             ),
-            "limit": "raw/path/capacity/free-energy/QCI/Petz candidates are killed or nonseparating; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
+            "limit": "raw/path/capacity/free-energy/QCI/Petz/oriented-recovery candidates are killed or nonseparating; MPS, L7, causal-Xi, E16, stress, response-gradient, and scale-basin repairs remain weak/nonrobust; no final Xi/Phi0 or final basin admission",
         },
         "formal_scout_boundaries": {
             "status": "preserved",
@@ -632,7 +649,7 @@ def main() -> int:
             "pass": True,
             "ordered_next_gaps": [
                 "close or kill a stronger Xi -> rho_AB -> Phi0 construction",
-                "try the next Phi0 candidate only if it avoids beta-zero/free-energy, collapsed-register/QCI, and near-reversed-order/Petz control failures",
+                "try the next Phi0 candidate only if it avoids beta-zero/free-energy, collapsed-register/QCI, near-reversed-order/Petz, and dephased-history/oriented-recovery control failures",
                 "convert bounded tensor-scaling status into a stronger convergence or environment-contraction falsifier",
                 "extend source-aligned runtime toward full coupled terrain/operator/axis dynamics under the audit freeze",
                 "only then revisit final manifold/basin admission boundaries",
@@ -669,6 +686,7 @@ def main() -> int:
         "energy-corrected QIT-FEP Phi0 candidate is load-bearing but nonseparating against beta-zero/control rows",
         "tripartite quantum conditional-information Phi0 candidate is load-bearing but nonseparating against collapsed-register/control rows",
         "Petz-recovery Phi0 candidate is load-bearing but nonseparating against near reversed-order/control rows",
+        "oriented recovery-asymmetry Phi0 candidate is load-bearing but nonseparating against dephased-history/control rows",
         "tensor scaling is consolidated as bounded L32/L64/MPS/PEPS/PEPS3D evidence but final convergence and full environment contraction remain open",
         "full coupled source-aligned runtime remains open beyond bounded E16 first-rung evidence",
         "final manifold/basin admission remains blocked",

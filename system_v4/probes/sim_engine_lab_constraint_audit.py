@@ -113,7 +113,7 @@ def clean_run_status(row_id: str, headline_metrics: dict[str, Any]) -> bool:
 
 def main() -> None:
     engine_lab = load_json("cycle_protocol_receipt_status_matrix_results.json")
-    qit_companion = load_json("qit_engine_companion_array_results.json")
+    qit_companion = load_json("finite_cycle_readout_companion_index_results.json")
     qit_entropy = load_json("qit_entropy_companion_array_results.json")
 
     strict_subset = {

@@ -719,13 +719,13 @@ ROW_SPECS = [
         "scope_hint": "topology_map_successor",
     },
     {
-        "id": "qit_engine_companion_array",
+        "id": "finite_cycle_readout_companion_index",
         "engine_family": "mixed",
         "level": "qit_companion_array",
         "geometry_topology": "finite_qit_anchor_subset",
         "entropy_family": ["anchor_metrics", "family_bridge_mapping"],
         "direction_modes": ["companion_mapping"],
-        "result_file": RESULT_DIR / "qit_engine_companion_array_results.json",
+        "result_file": RESULT_DIR / "finite_cycle_readout_companion_index_results.json",
         "scope_hint": "companion_map",
     },
     {

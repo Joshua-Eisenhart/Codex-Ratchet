@@ -392,7 +392,7 @@ def write_visual_payload(result: dict[str, Any]) -> None:
 def main() -> None:
     carnot = load_result("two_bath_heat_work_reversible_cycle_pair")
     szilard = load_result("measure_feedback_erasure_recovery_cycle_pair")
-    qit_companion = load_optional_result("qit_engine_companion_array_results.json")
+    qit_companion = load_optional_result("finite_cycle_readout_companion_index_results.json")
     qit_entropy = load_optional_result("qit_entropy_companion_array_results.json")
     iching_64 = load_optional_result("six_bit_gray_code_single_flip_cycle_invariant_results.json")
     clifford_capability = load_optional_result("clifford_capability_results.json")
@@ -492,7 +492,7 @@ def main() -> None:
         "qit_companion_summary": (
             qit_companion.get("summary", {})
             if qit_companion
-            else {"all_pass": None, "missing": "qit_engine_companion_array_results.json"}
+            else {"all_pass": None, "missing": "finite_cycle_readout_companion_index_results.json"}
         ),
         "qit_entropy_summary": (
             qit_entropy.get("summary", {})

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-QIT Engine Companion Array
-===========================
-Companion surface for comparing the open engine lab against a stricter QIT
-subset of carriers and readouts.
+Finite Cycle Readout Companion Index
+====================================
+Companion surface for comparing the open lab against a stricter finite-carrier
+subset of cycle carriers and readouts.
 
 This is a comparison/indexing pass, not a new engine theorem.
 """
@@ -723,7 +723,7 @@ def main() -> None:
     )
 
     out = {
-        "name": "qit_engine_companion_array",
+        "name": "finite_cycle_readout_companion_index",
         "classification": CLASSIFICATION if all_pass else "classical_baseline",
         "original_classification": CLASSIFICATION,
         "downgrade_reason": None if all_pass else "summary_all_pass_false_2026-05-01",
@@ -763,7 +763,7 @@ def main() -> None:
         },
     }
 
-    out_path = RESULT_DIR / "qit_engine_companion_array_results.json"
+    out_path = RESULT_DIR / "finite_cycle_readout_companion_index_results.json"
     out_path.write_text(json.dumps(out, indent=2) + "\n")
     print(out_path)
 

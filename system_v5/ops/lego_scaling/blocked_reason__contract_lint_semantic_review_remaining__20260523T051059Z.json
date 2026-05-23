@@ -1,0 +1,41 @@
+{
+  "kind": "blocked_reason",
+  "updated_at": "2026-05-23T07:15:06Z",
+  "scope": "global_formal_scout_estate_contract_lint_and_never_run_backlog_after_safe_repair",
+  "reason": "wizard runtime audit remains red after the safe baseline-only metadata repair because contract lint still reports 771 violations, including 505 missing classifications and 46 divergence-log conflicts. The runner estate still contains 3753 never-run probes. The remaining rows are semantic review candidates, not safe mechanical metadata repairs.",
+  "evidence": {
+    "runtime_audit": "scripts/wizard_v4_2_runtime_audit.py",
+    "contract_lint_source": "/tmp/lint_after_reapply2.json",
+    "contract_lint_violation_total": 771,
+    "contract_lint_by_type": {
+      "C1_classification_missing": 505,
+      "C2_manifest_missing": 138,
+      "C3_depth_missing": 82,
+      "C4_divergence_log_missing": 46
+    },
+    "safe_repair_preview": "system_v5/ops/contract_metadata_safe_repair_preview.json",
+    "safe_repair_mode": "dry_run",
+    "safe_repair_actionable": 0,
+    "safe_repair_blocked_counts": {
+      "assigned_promoted_classification_needs_review": 8221,
+      "emitted_promoted_classification_needs_review": 727,
+      "C1_classification_missing_needs_review": 10,
+      "C1_canonical_needs_review": 4
+    },
+    "c1_classification_proposals": "system_v5/ops/c1_classification_proposals.json",
+    "c1_proposal_count": 505,
+    "c1_counts": {
+      "canonical": 505
+    },
+    "c4_divergence_log_proposals": "system_v5/ops/c4_divergence_log_proposals.json",
+    "c4_proposal_count": 46,
+    "c4_proposal_kinds": {
+      "classification_or_stage_review_required": 46
+    },
+    "c6_loadbearing_decision_table": "system_v5/ops/c6_loadbearing_decision_table.json",
+    "never_run_total": 3753,
+    "external_audit": "system_v5/ops/external_audits/contract_metadata_safe_repair_reaudit_20260523T000000Z"
+  },
+  "next_admissible_step": "Run a bounded semantic review lane over the C1 and C4 candidates, starting with the top queue-blocking rows. Each row must inspect source/result intent before adding classification, divergence_log, or manifest/depth metadata.",
+  "recommended_next_move": "Select a batch of 10 files from c1_classification_proposals.json and c4_divergence_log_proposals.json, verify whether each is canonical, formal_scout, tool_lego_fit_probe, diagnostic_only, supporting, or should stay blocked, then patch only those reviewed rows and rerun lint_sim_contract.py on the named files."
+}

@@ -1,7 +1,7 @@
 {
   "schema": "never_run_cohorts_v1",
   "mode": "audit_no_queue_mutation",
-  "never_run_count": 3753,
+  "never_run_count": 3752,
   "family_counts": {
     "calibration": 576,
     "coupling": 361,
@@ -18,7 +18,7 @@
     "torch": 40,
     "gerbe": 39,
     "integration": 39,
-    "qit": 38,
+    "qit": 37,
     "leviathan": 35,
     "spectral": 34,
     "other": 31,
@@ -623,14 +623,15 @@
   },
   "bucket_counts": {
     "exploratory": 2617,
-    "core_ladder": 1003,
+    "core_ladder": 1002,
     "framework_doctrine": 133
   },
   "contract_rule_counts": {
-    "contract_clean": 3272,
-    "C1_classification_missing": 481,
-    "C2_manifest_missing": 116,
-    "C3_depth_missing": 62
+    "contract_clean": 3139,
+    "C1_classification_missing": 550,
+    "C2_manifest_missing": 130,
+    "C3_depth_missing": 75,
+    "C4_divergence_log_missing": 63
   },
   "rows": [
     {
@@ -1177,7 +1178,9 @@
       "family": "assoc",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_assoc_bundle_associated_vector_bundle_construction.py",
@@ -1666,35 +1669,45 @@
       "family": "axis10",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_axis11_measurement_backaction_bridge.py",
       "family": "axis11",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_axis12_rg_flow_scale_dependence.py",
       "family": "axis12",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_axis1_curvature_gtower_bridge.py",
       "family": "axis1",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_axis2_scale_boundary_bridge.py",
       "family": "axis2",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_axis3_fiber_base.py",
@@ -1715,7 +1728,9 @@
       "family": "axis5",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_axis6_action_orientation.py",
@@ -1736,7 +1751,9 @@
       "family": "axis6",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_axis6_entropy_decomposition.py",
@@ -1764,7 +1781,9 @@
       "family": "axis6",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_axis7_12_gs_residual_axes.py",
@@ -1785,7 +1804,9 @@
       "family": "axis7",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_axis7_deep_test.py",
@@ -1799,21 +1820,27 @@
       "family": "axis7",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_axis8_gauge_invariance_bridge.py",
       "family": "axis8",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_axis9_topology_winding_number_bridge.py",
       "family": "axis9",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_axis_7_12_audit.py",
@@ -1925,7 +1952,9 @@
       "family": "axis",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_axis_dimension_scaling.py",
@@ -2249,7 +2278,9 @@
       "family": "bridge",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_bridge_extended_proofs.py",
@@ -2270,7 +2301,9 @@
       "family": "bridge",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_bridge_hopf_u1_equivariance_e3nn.py",
@@ -2333,7 +2366,9 @@
       "family": "bridge",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_bridge_phi0_tool_penetration_audit.py",
@@ -2347,21 +2382,27 @@
       "family": "bridge",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_bridge_prep_rho_ab_construction.py",
       "family": "bridge",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_bridge_prep_xi_cross_shell_correlation.py",
       "family": "bridge",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_bridge_weyl_cl3_rotor_chirality.py",
@@ -6988,14 +7029,22 @@
       "family": "classical",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing",
+        "C2_manifest_missing",
+        "C3_depth_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_classical_axis6_action_orientation.py",
       "family": "classical",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing",
+        "C2_manifest_missing",
+        "C3_depth_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_classical_constraint_manifold_layers_nested.py",
@@ -7702,7 +7751,9 @@
       "family": "contact",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_contact_holo_weyl_emergence_quantities.py",
@@ -8968,14 +9019,18 @@
       "family": "coupling",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_coupling_fep_leviathan.py",
       "family": "coupling",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_coupling_fep_sci_method.py",
@@ -8989,7 +9044,9 @@
       "family": "coupling",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_coupling_holodeck_igt.py",
@@ -9017,14 +9074,18 @@
       "family": "coupling",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_coupling_igt_leviathan.py",
       "family": "coupling",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_coupling_igt_sci_method.py",
@@ -10501,7 +10562,9 @@
       "family": "coupling",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_courant_fischer_constraint_canonical.py",
@@ -14361,7 +14424,9 @@
       "family": "engine",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_enriched_category_hom_object_constraint_canonical.py",
@@ -14886,8 +14951,10 @@
       "sim": "system_v4/probes/sim_fano_plane_su3_weyl_rosetta.py",
       "family": "fano",
       "bucket": "exploratory",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_feigenbaum_constant_constraint_canonical.py",
@@ -15089,14 +15156,18 @@
       "family": "fep",
       "bucket": "framework_doctrine",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_fep_blanket_entropy_gradient.py",
       "family": "fep",
       "bucket": "framework_doctrine",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_fep_compression_qit.py",
@@ -15120,7 +15191,9 @@
       "family": "fep",
       "bucket": "framework_doctrine",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_fep_engine_coupling.py",
@@ -15148,7 +15221,9 @@
       "family": "fep",
       "bucket": "framework_doctrine",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_fep_joint_smt_free_energy_and_markov_blanket.py",
@@ -15161,8 +15236,10 @@
       "sim": "system_v4/probes/sim_fep_lego_active_inference.py",
       "family": "fep",
       "bucket": "framework_doctrine",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_fep_markov_blanket_on_constraint_manifold.py",
@@ -15301,8 +15378,10 @@
       "sim": "system_v4/probes/sim_fep_su2_so3_markov_double_cover.py",
       "family": "fep",
       "bucket": "framework_doctrine",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_fep_surprise_as_distinguishability.py",
@@ -15315,8 +15394,10 @@
       "sim": "system_v4/probes/sim_fep_xgi_markov_blanket_hypergraph.py",
       "family": "fep",
       "bucket": "framework_doctrine",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_fermi_dirac_constraint_canonical.py",
@@ -17677,7 +17758,9 @@
       "family": "gerbe",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gerbe_derived_stack_cohomology.py",
@@ -17725,7 +17808,9 @@
       "family": "gerbe",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gerbe_dirac_mera_emergence_quantities.py",
@@ -17811,7 +17896,9 @@
       "family": "gerbe",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gerbe_spectral_triple_clifford_emergence_quantities.py",
@@ -17862,7 +17949,9 @@
       "family": "gerbe",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gerbe_weyl_spectral_triple_emergence_quantities.py",
@@ -18424,7 +18513,9 @@
       "family": "gstructure",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gtower_clifford_spin_double_cover.py",
@@ -18458,8 +18549,12 @@
       "sim": "system_v4/probes/sim_gtower_cvc5_parity_on_reduction.py",
       "family": "gtower",
       "bucket": "core_ladder",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing",
+        "C2_manifest_missing",
+        "C3_depth_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gtower_deep_gl_invariant_volume_form.py",
@@ -18542,8 +18637,11 @@
       "sim": "system_v4/probes/sim_gtower_e3nn_so3_equivariance_check.py",
       "family": "gtower",
       "bucket": "core_ladder",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing",
+        "C2_manifest_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gtower_e6_exceptional_geometry.py",
@@ -18754,7 +18852,9 @@
       "family": "gtower",
       "bucket": "core_ladder",
       "runner_class": "classical",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gtower_o3_reflection_parity_shell_local.py",
@@ -18900,8 +19000,12 @@
       "sim": "system_v4/probes/sim_gtower_reduction_chain_composition.py",
       "family": "gtower",
       "bucket": "core_ladder",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing",
+        "C2_manifest_missing",
+        "C3_depth_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gtower_reduction_obstruction_z3.py",
@@ -19054,8 +19158,12 @@
       "sim": "system_v4/probes/sim_gtower_su_to_sp_symplectic.py",
       "family": "gtower",
       "bucket": "core_ladder",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing",
+        "C2_manifest_missing",
+        "C3_depth_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gtower_topo_variant_cayley_graph.py",
@@ -19121,8 +19229,12 @@
       "sim": "system_v4/probes/sim_gtower_u1_hopf_fiber_reduction.py",
       "family": "gtower",
       "bucket": "core_ladder",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing",
+        "C2_manifest_missing",
+        "C3_depth_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gtower_u3_center_phase_shell_local.py",
@@ -19172,15 +19284,21 @@
       "sim": "system_v4/probes/sim_gtower_z3_unsat_nonreductive_chain.py",
       "family": "gtower",
       "bucket": "core_ladder",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing",
+        "C2_manifest_missing",
+        "C3_depth_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gudhi_3qubit_bridge.py",
       "family": "gudhi",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gudhi_bloch_sphere_2d.py",
@@ -19194,7 +19312,9 @@
       "family": "gudhi",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_gudhi_cascade_persistence.py",
@@ -19434,7 +19554,9 @@
       "family": "holo",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_holo_contact_symplectic_emergence_quantities.py",
@@ -19469,7 +19591,9 @@
       "family": "holo",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_holo_dirac_st_emergence_quantities.py",
@@ -19504,7 +19628,9 @@
       "family": "holo",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_holo_mera_clifford_emergence_quantities.py",
@@ -19681,8 +19807,10 @@
       "sim": "system_v4/probes/sim_holodeck_entropy_compression_operator.py",
       "family": "holodeck",
       "bucket": "framework_doctrine",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_holodeck_fep_coupling_stub.py",
@@ -19695,8 +19823,10 @@
       "sim": "system_v4/probes/sim_holodeck_lego_mutual_generation.py",
       "family": "holodeck",
       "bucket": "framework_doctrine",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_holodeck_multi_observer_coexistence.py",
@@ -19709,8 +19839,10 @@
       "sim": "system_v4/probes/sim_holodeck_observer_projection_operator.py",
       "family": "holodeck",
       "bucket": "framework_doctrine",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_holodeck_observer_shell_projection.py",
@@ -19815,7 +19947,9 @@
       "family": "holonomy",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_holonomy_fiber_assoc_moment_index_chern_yang_mills_ricci_spin_frame_10shell_coupling_canonical.py",
@@ -19847,7 +19981,11 @@
       "family": "holonomy",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing",
+        "C2_manifest_missing",
+        "C3_depth_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_holonomy_torch_foundation.py",
@@ -19914,7 +20052,9 @@
       "family": "hopf",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_hopf_contact_gerbe_emergence_quantities.py",
@@ -20131,7 +20271,9 @@
       "family": "hopf",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_hopf_mera_gerbe_emergence_quantities.py",
@@ -20201,7 +20343,9 @@
       "family": "hopf",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_hopf_symplectic_clifford_emergence_quantities.py",
@@ -20383,8 +20527,10 @@
       "sim": "system_v4/probes/sim_iching_trigram_group_structure.py",
       "family": "iching",
       "bucket": "framework_doctrine",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_igt_4ring_operator_family.py",
@@ -20405,7 +20551,9 @@
       "family": "igt",
       "bucket": "framework_doctrine",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_igt_IGT_self_similarity_across_scales.py",
@@ -20490,7 +20638,9 @@
       "family": "igt",
       "bucket": "framework_doctrine",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_igt_forward_potential_strategy_vs_past_causality_strategy.py",
@@ -20504,7 +20654,9 @@
       "family": "igt",
       "bucket": "framework_doctrine",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_igt_irrationality_as_admissibility.py",
@@ -20517,22 +20669,28 @@
       "sim": "system_v4/probes/sim_igt_lego_dominated_strategy_elimination.py",
       "family": "igt",
       "bucket": "framework_doctrine",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_igt_leviathan_coupling.py",
       "family": "igt",
       "bucket": "framework_doctrine",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_igt_leviathan_game_theoretic_bridge.py",
       "family": "igt",
       "bucket": "framework_doctrine",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_igt_nested_WIN_LOSE_attractor.py",
@@ -20553,7 +20711,9 @@
       "family": "igt",
       "bucket": "framework_doctrine",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_igt_two_pattern_uniqueness.py",
@@ -21009,7 +21169,9 @@
       "family": "k3",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_k_theory_localization_sequence_constraint_canonical.py",
@@ -21348,7 +21510,9 @@
       "family": "layer",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_layer_stacking_coexistence.py",
@@ -21481,7 +21645,9 @@
       "family": "lego",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_lego_entanglement_distillation.py",
@@ -21993,7 +22159,9 @@
       "family": "leviathan",
       "bucket": "framework_doctrine",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_leviathan_legacy_durability_under_civilizational_reset.py",
@@ -22006,8 +22174,10 @@
       "sim": "system_v4/probes/sim_leviathan_lego_social_contract_ratchet.py",
       "family": "leviathan",
       "bucket": "framework_doctrine",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_leviathan_potential_mining_probe.py",
@@ -22294,7 +22464,9 @@
       "family": "mera",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_mera_torch_foundation.py",
@@ -22434,7 +22606,9 @@
       "family": "mirror",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_mirror_symmetry_constraint_canonical.py",
@@ -22630,7 +22804,9 @@
       "family": "motives",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_motivic_cohomology_bloch_kato_constraint_canonical.py",
@@ -22886,7 +23062,9 @@
       "family": "nahodge",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_narasimhan_seshadri_constraint_canonical.py",
@@ -22970,7 +23148,9 @@
       "family": "negative",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_negative_channels.py",
@@ -23012,7 +23192,11 @@
       "family": "negative",
       "bucket": "exploratory",
       "runner_class": "classical",
-      "contract_rules": []
+      "contract_rules": [
+        "C2_manifest_missing",
+        "C3_depth_missing",
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_negative_geometry.py",
@@ -23026,7 +23210,9 @@
       "family": "negative",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_negative_k_theory_bass_constraint_canonical.py",
@@ -23047,7 +23233,9 @@
       "family": "negative",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_negative_topology_graphs.py",
@@ -23061,7 +23249,9 @@
       "family": "negative",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_neron_model_constraint_canonical.py",
@@ -23391,35 +23581,45 @@
       "family": "phi0",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_phi0_integrated_bakeoff.py",
       "family": "phi0",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_phi0_matched_packet_head_to_head.py",
       "family": "phi0",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_phi0_packet_robustness_audit.py",
       "family": "phi0",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_phi0_shell_global_ablation.py",
       "family": "phi0",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_pigeonhole_constraint_canonical.py",
@@ -23633,14 +23833,18 @@
       "family": "pure",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_pure_lego_contact_symplectic_kahler_coexistence.py",
       "family": "pure",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_pure_lego_contextuality.py",
@@ -23745,7 +23949,9 @@
       "family": "pure",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_pure_lego_hopf_tori_base.py",
@@ -24207,13 +24413,6 @@
       "family": "qit",
       "bucket": "core_ladder",
       "runner_class": "classical",
-      "contract_rules": []
-    },
-    {
-      "sim": "system_v4/probes/sim_qit_engine_companion_array.py",
-      "family": "qit",
-      "bucket": "core_ladder",
-      "runner_class": "nonclassical",
       "contract_rules": []
     },
     {
@@ -24874,8 +25073,10 @@
       "sim": "system_v4/probes/sim_rosetta_cartan_a21_ladder.py",
       "family": "rosetta",
       "bucket": "exploratory",
-      "runner_class": "classical",
-      "contract_rules": []
+      "runner_class": "nonclassical",
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_rosetta_detector_minhash.py",
@@ -24891,7 +25092,9 @@
       "family": "rosetta",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_rosetta_five_frameworks_self_similarity.py",
@@ -24905,7 +25108,9 @@
       "family": "rosetta",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_rosetta_signal_scorer.py",
@@ -24947,7 +25152,9 @@
       "family": "rustworkx",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_rustworkx_cayley_s4.py",
@@ -24975,7 +25182,9 @@
       "family": "rustworkx",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_rustworkx_deep_planarity_vs_genus.py",
@@ -25208,7 +25417,9 @@
       "family": "sextuple",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_sextuple_coexistence.py",
@@ -25299,7 +25510,9 @@
       "family": "signed",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_singleton_bound_constraint_canonical.py",
@@ -25327,7 +25540,9 @@
       "family": "sou",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_spectral_contact_gerbe_bridge_canonical.py",
@@ -25397,7 +25612,9 @@
       "family": "spectral",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_spectral_triple_contact_gerbe_emergence_quantities.py",
@@ -25719,7 +25936,9 @@
       "family": "st",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_st_dirac_symplectic_emergence_quantities.py",
@@ -25936,7 +26155,9 @@
       "family": "symp",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_symp_st_weyl_emergence_quantities.py",
@@ -25971,7 +26192,9 @@
       "family": "symplectic",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_symplectic_contact_kahler_spectral_triple_gerbe_weyl_hopf_dirac_mera_toric_10shell_coupling_canonical.py",
@@ -26041,7 +26264,9 @@
       "family": "symplectic",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_symplectic_holo_dirac_emergence_quantities.py",
@@ -26076,7 +26301,9 @@
       "family": "symplectic",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_symplectic_hopf_mera_emergence_quantities.py",
@@ -26111,7 +26338,9 @@
       "family": "symplectic",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_symplectic_spectral_triple_mera_emergence_quantities.py",
@@ -26169,14 +26398,18 @@
       "family": "szilard",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_szilard_axis6_measurement_orientation_bridge.py",
       "family": "szilard",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_szilard_graph_proof_alignment.py",
@@ -26246,7 +26479,9 @@
       "family": "szilard",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_szilard_reverse_recovery_sweep.py",
@@ -26260,28 +26495,44 @@
       "family": "szilard",
       "bucket": "exploratory",
       "runner_class": "classical",
-      "contract_rules": []
+      "contract_rules": [
+        "C2_manifest_missing",
+        "C3_depth_missing",
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_szilard_substep_ordering_push_sweep.py",
       "family": "szilard",
       "bucket": "exploratory",
       "runner_class": "classical",
-      "contract_rules": []
+      "contract_rules": [
+        "C2_manifest_missing",
+        "C3_depth_missing",
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_szilard_substep_promotion_sweep.py",
       "family": "szilard",
       "bucket": "exploratory",
       "runner_class": "classical",
-      "contract_rules": []
+      "contract_rules": [
+        "C2_manifest_missing",
+        "C3_depth_missing",
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_szilard_substep_structural_variant_sweep.py",
       "family": "szilard",
       "bucket": "exploratory",
       "runner_class": "classical",
-      "contract_rules": []
+      "contract_rules": [
+        "C2_manifest_missing",
+        "C3_depth_missing",
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_t_structure_heart_abelian_constraint_canonical.py",
@@ -26358,7 +26609,9 @@
       "family": "tetra",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_theta_degeneracy_investigation.py",
@@ -26470,7 +26723,9 @@
       "family": "toponetx",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_toponetx_constraint_shells.py",
@@ -26540,14 +26795,18 @@
       "family": "torch",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_torch_axis0_gradient.py",
       "family": "torch",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_torch_bit_flip.py",
@@ -26610,7 +26869,9 @@
       "family": "torch",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_torch_density_matrix_pilot.py",
@@ -26631,7 +26892,9 @@
       "family": "torch",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_torch_gnn_directional_gate.py",
@@ -27335,7 +27598,9 @@
       "family": "weyl",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_weyl_contact_dirac_emergence_quantities.py",
@@ -27377,7 +27642,9 @@
       "family": "weyl",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_weyl_dirac_mera_emergence_quantities.py",
@@ -27524,7 +27791,9 @@
       "family": "weyl",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_weyl_gerbe_hopf_emergence_quantities.py",
@@ -27584,7 +27853,9 @@
       "family": "weyl",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_weyl_holo_symplectic_emergence_quantities.py",
@@ -27775,7 +28046,9 @@
       "family": "xgi",
       "bucket": "core_ladder",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_xgi_deep_hyperlap_triadic_vs_pairwise.py",
@@ -27805,7 +28078,9 @@
       "family": "xi",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_xi_bridge_bakeoff.py",
@@ -27819,21 +28094,27 @@
       "family": "xi",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_xi_family_separation.py",
       "family": "xi",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_xi_matched_packet_cross_bakeoff.py",
       "family": "xi",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_xi_packet_expansion_stress.py",
@@ -27847,7 +28128,9 @@
       "family": "xi",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C1_classification_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_yang_baxter_equation_r_matrix_constraint_canonical.py",
@@ -27884,7 +28167,9 @@
       "family": "yinyang",
       "bucket": "exploratory",
       "runner_class": "bridge",
-      "contract_rules": []
+      "contract_rules": [
+        "C4_divergence_log_missing"
+      ]
     },
     {
       "sim": "system_v4/probes/sim_yinyang_axis_mapping.py",

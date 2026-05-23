@@ -18,7 +18,6 @@
       "bridge"
     ],
     "still_guard_clean_proposed_names": [
-      "system_v4/probes/sim_finite_cycle_readout_companion_index.py",
       "system_v4/probes/sim_measurement_record_reset_parameter_sweep.py",
       "system_v4/probes/sim_su2_so3_double_cover_entropy_gap.py"
     ]
@@ -26,7 +25,7 @@
   "current_audit_status": {
     "path": "system_v5/ops/semantic_naming/sim_name_claim_label_audit.json",
     "live_matched_after_refresh": true,
-    "source_match_count": 571,
+    "source_match_count": 570,
     "result_match_count": 58,
     "stage_as_named_artifact_only": true,
     "do_not_rerun_for_timestamp_only": true
@@ -54,6 +53,21 @@
     "result_sha256": "07c29b6d4e55cba0f41a6eb4e3da8aca39ce311a1d0daa5f846519076036c2af",
     "remaining_scope": "Broader semantic naming and contract-lint debt remains outside this selected micro-batch."
   },
+  "follow_on_completed_batches": [
+    {
+      "family": "finite_cycle_readout_companion_index",
+      "completed_at": "2026-05-23T08:03:47Z",
+      "old_source": "system_v4/probes/sim_qit_engine_companion_array.py",
+      "new_source": "system_v4/probes/sim_finite_cycle_readout_companion_index.py",
+      "new_result": "system_v4/probes/a2_state/sim_results/finite_cycle_readout_companion_index_results.json",
+      "direct_loader_updates": 4,
+      "new_source_guard": "passed",
+      "result_rerun": "wrote ignored result with all_pass=false",
+      "receipt_validation": "blocked_result_not_all_pass",
+      "result_sha256": "d34056131f108ad7614cd1e6f95ba73b4517e4775432129a848299360459a4b7",
+      "claim_ceiling": "Rename cleanup only. Generated result is a gap/index receipt, not proof of completion or admission."
+    }
+  ],
   "required_named_paths_for_next_patch": [
     "system_v4/probes/sim_rosetta_su2_so3_double_cover_invariant.py",
     "system_v4/probes/sim_su2_so3_double_cover_entropy_gap.py",
@@ -70,5 +84,5 @@
     "Patch must update source/result names plus direct loaders and indexes in one named-path change.",
     "Run only the selected renamed sim and its narrow inventory/admission checks before staging."
   ],
-  "next_admissible_step": "Select the next guard-clean semantic-name family or continue contract-lint repair from the refreshed generated proposal surfaces; do not reuse this completed micro-batch as pending work."
+  "next_admissible_step": "The remaining guard-clean semantic-name family from the stale May 14 plan is sim_measurement_record_reset_parameter_sweep.py; audit its wider direct-loader and visualizer footprint before patching."
 }
